@@ -138,7 +138,7 @@ class GameCardService
     private function codeFingerprint(): string
     {
         // GameBasicsService and the norms it reads draw the Basics tab, so they redraw it too.
-        $files = array_merge([__FILE__, app_path('Http/Services/GameBasicsService.php'), base_path(\App\Console\Commands\BuildPopulation::NORMS)],
+        $files = array_merge([__FILE__, app_path('Http/Services/GameBasicsService.php'), \App\Console\Commands\BuildPopulation::normsPath()],
             glob(resource_path('views/desktop/*.blade.php')), glob(resource_path('views/desktop/partials/*.blade.php')));
         $files = array_values(array_filter($files, 'file_exists'));
         sort($files);

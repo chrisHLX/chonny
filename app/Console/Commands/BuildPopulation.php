@@ -39,7 +39,10 @@ class BuildPopulation extends Command
         {--fresh : Measure every game again}
         {--aggregate : Only rebuild the norms from the games already measured}
         {--limit=0 : Measure at most this many new games (0: all)}
-        {--pool= : A wow:pool-export file from the website: replaces the pool before aggregating}';
+        {--pool= : A wow:pool-export file from the website: replaces the pool before aggregating}
+        {--bundle= : Write the archive\'s measured games to this file (for the server) and stop}
+        {--archive= : A --bundle file: replaces the archive\'s games before aggregating (on the server)}
+        {--live : Write the norms to the live copy (storage) instead of the committed file}';
 
     protected $description = 'Measure every archived game for every player, and build per-spec norms and outcome tables';
 
@@ -73,15 +76,53 @@ class BuildPopulation extends Command
         return storage_path('app/population-pool');
     }
 
+    /**
+     * The live copy the website's own builds write (wow:population-refresh, 2026-10-11): the archive
+     * plus every upload so far. Pages read whichever of it and the committed file is newer.
+     */
+    public static function livePath(): string
+    {
+        return storage_path('app/population-live/norms.json');
+    }
+
+    /**
+     * The norms a page should read: the newer, by `builtAt`, of the live copy and the committed file.
+     * `builtAt` is written first in the file, so this reads a few hundred bytes of each, not 250 KB.
+     */
+    public static function normsPath(): string
+    {
+        $committed = base_path(self::NORMS);
+        $live = self::livePath();
+        if (! is_file($live)) {
+            return $committed;
+        }
+        $builtAt = function (string $path): string {
+            $head = (string) @file_get_contents($path, false, null, 0, 400);
+
+            return preg_match('/"builtAt":\s*"([^"]+)"/', $head, $m) ? $m[1] : '';
+        };
+
+        return $builtAt($live) > $builtAt($committed) ? $live : $committed;
+    }
+
     public function handle(ArenaLogService $arena, RoundAnalysisService $analysis): int
     {
         File::ensureDirectoryExists(self::dir());
+
+        if ($bundle = $this->option('bundle')) {
+            $this->writeBundle($bundle);
+
+            return self::SUCCESS;
+        }
+        if ($archive = $this->option('archive')) {
+            $this->loadInto($archive, self::dir(), 'archive bundle');
+        }
 
         if (! $this->option('aggregate')) {
             $this->measure($arena, $analysis);
         }
         if ($pool = $this->option('pool')) {
-            $this->loadPool($pool);
+            $this->loadInto($pool, self::poolDir(), "website's pool");
         }
 
         $this->aggregate();
@@ -146,28 +187,48 @@ class BuildPopulation extends Command
     }
 
     /**
-     * Replace the pool with a wow:pool-export file (gzipped, one game per line). Replaced, not added
-     * to: a game gone from the website is gone from the next build.
+     * The archive's measured games as one gzipped file, one game per line: what the server needs to
+     * build the norms itself. Players are already hashed (PopulationGame), so nothing names anyone.
+     * Rebuild and upload it after a VERSION change (match-review.md, "The website's pool").
      */
-    private function loadPool(string $path): void
+    private function writeBundle(string $path): void
+    {
+        $gz = gzopen($path, 'wb6');
+        $n = 0;
+        foreach (File::files(self::dir()) as $f) {
+            $line = trim(File::get($f->getPathname()));
+            if ((json_decode($line, true)['version'] ?? 0) === RoundAnalysisService::VERSION) {
+                gzwrite($gz, $line."\n");
+                $n++;
+            }
+        }
+        gzclose($gz);
+        $this->info("{$n} archived game(s) written to {$path}.");
+    }
+
+    /**
+     * Replace a directory's games with a gzipped file of them, one per line (a wow:pool-export or a
+     * --bundle file). Replaced, not added to: a game gone from the source is gone from the next build.
+     */
+    private function loadInto(string $path, string $dir, string $what): void
     {
         $raw = @gzdecode((string) @file_get_contents($path));
         if ($raw === false || $raw === '') {
-            $this->error("Could not read the pool file {$path}.");
+            $this->error("Could not read the {$what} file {$path}.");
 
             return;
         }
-        File::deleteDirectory(self::poolDir());
-        File::ensureDirectoryExists(self::poolDir());
+        File::deleteDirectory($dir);
+        File::ensureDirectoryExists($dir);
         $n = 0;
         foreach (preg_split('/\r?\n/', trim($raw)) as $line) {
             $g = json_decode($line, true);
             if (is_array($g) && isset($g['id']) && preg_match('/^[a-f0-9]{32}$/', $g['id'])) {
-                File::put(self::poolDir()."/{$g['id']}.json", $line);
+                File::put("{$dir}/{$g['id']}.json", $line);
                 $n++;
             }
         }
-        $this->info("{$n} game(s) loaded from the website's pool.");
+        $this->info("{$n} game(s) loaded from the {$what}.");
     }
 
     // ------------------------------------------------------------------ aggregate
@@ -225,6 +286,8 @@ class BuildPopulation extends Command
         }
 
         $norms = [
+            // First, so normsPath() can compare copies by reading only the head of each file.
+            'builtAt' => now()->toIso8601String(),
             'generatedAt' => now()->toDateString(),
             'version' => RoundAnalysisService::VERSION,
             'seasonSince' => self::SEASON_SINCE,
@@ -239,11 +302,14 @@ class BuildPopulation extends Command
         $norms['decisions'] = $this->decisions($games);
         $norms['sources'] = ['archive' => $archived->count(), 'pool' => $pooled->count()];
 
-        File::ensureDirectoryExists(base_path(dirname(self::NORMS)));
-        File::put(base_path(self::NORMS), json_encode($norms, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE)."\n");
+        $out = $this->option('live') ? self::livePath() : base_path(self::NORMS);
+        File::ensureDirectoryExists(dirname($out));
+        // Written whole, then moved into place: a page never reads a half-written file.
+        File::put($out.'.tmp', json_encode($norms, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE)."\n");
+        File::move($out.'.tmp', $out);
 
         $this->info(sprintf('%d games, %d player-rounds, %d players, %d specs -> %s',
-            $norms['games'], $norms['playerRounds'], $norms['players'], count($specs), self::NORMS));
+            $norms['games'], $norms['playerRounds'], $norms['players'], count($specs), $out));
     }
 
     /** Presses a free minute per ability: median and quartiles over the rounds that pressed it, and how many did. */

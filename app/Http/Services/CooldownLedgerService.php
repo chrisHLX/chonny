@@ -7,6 +7,7 @@ use App\Models\Patch;
 use App\Models\Specialization;
 use App\Models\Spell;
 use App\Models\TalentNodeEntry;
+use App\Support\SpellDataCache;
 use Illuminate\Support\Collection;
 
 /**
@@ -58,6 +59,19 @@ class CooldownLedgerService
             return $this->builds[$key];
         }
 
+        // Across requests too: each uploaded round is measured in a request of its own (SpellDataCache).
+        return $this->builds[$key] = SpellDataCache::remember('ledger-build:'.$key, self::codeFiles(),
+            fn () => $this->resolveBuild($combatant, $spec, $key));
+    }
+
+    /** The files whose code decides a build or a cooldown, for SpellDataCache. */
+    private static function codeFiles(): array
+    {
+        return [__FILE__, app_path('Http/Services/ArenaLogService.php'), app_path('Http/Services/ModuleSpellReferenceService.php')];
+    }
+
+    private function resolveBuild(array $combatant, Specialization $spec, string $key): array
+    {
         $resolved = $this->arena->resolveCombatantTalents($combatant, $spec->id);
         $entries = TalentNodeEntry::whereIn('id', array_column($resolved['talents'], 'entryId'))->get()->keyBy('id');
         $selected = collect();
@@ -73,7 +87,7 @@ class CooldownLedgerService
             $selected = $selected->merge(Spell::where('patch_id', $this->patchId())->whereIn('spell_id', $pvp)->pluck('id'));
         }
 
-        return $this->builds[$key] = [
+        return [
             'selected' => $selected->unique()->values(),
             'ranks' => $ranks,
             'key' => $key,
@@ -134,6 +148,12 @@ class CooldownLedgerService
             return $this->cooldowns[$key];
         }
 
+        return $this->cooldowns[$key] = SpellDataCache::remember('ledger-cd:'.$key, self::codeFiles(),
+            fn () => $this->resolveCooldown($name, $spec, $build));
+    }
+
+    private function resolveCooldown(string $name, Specialization $spec, array $build): ?array
+    {
         // `display_name` is an accessor: the column is `name`, sometimes with a "(desc=...)" suffix.
         $spell = Spell::where('patch_id', $this->patchId())
             ->where(fn ($q) => $q->where('name', $name)->orWhere('name', 'like', $name.' (desc=%'))
@@ -142,7 +162,7 @@ class CooldownLedgerService
             ->first();
 
         if (! $spell) {
-            return $this->cooldowns[$key] = null;
+            return null;
         }
 
         $gb = new ModuleGameBuild(['class_id' => $spec->class_id, 'specialization_id' => $spec->id]);
@@ -151,10 +171,10 @@ class CooldownLedgerService
         $seconds = $cd['seconds'] ?? $cd['base_seconds'] ?? null;
 
         if (! $seconds) {
-            return $this->cooldowns[$key] = null;
+            return null;
         }
 
-        return $this->cooldowns[$key] = [
+        return [
             'cd' => (float) $seconds,
             'charges' => (int) max(1, round($ch['charges'] ?? $ch['value'] ?? 1)),
             'base' => isset($cd['base_seconds']) ? (float) $cd['base_seconds'] : null,

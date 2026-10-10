@@ -94,6 +94,27 @@ echo "--- Changed files ---"
 echo "$CHANGED_FILES"
 echo "---------------------"
 
+# --- Fast path: nothing the running site executes changed ----------------------------------
+#
+# Committed norms (data/population/), docs, markdown and the PC-only tools (tools/) are read from
+# disk or never run here, so no OPcache, worker or kit can go stale on them. The full run below
+# would restart php-fpm, bump the spell cache version (dropping every kit onto the slow path until
+# regenerated, rule 17) and rebuild all 40 kits: about two and a half minutes on this one core,
+# for a JSON file (2026-10-11). Anything else, or --force, takes the full run.
+RUNTIME_CHANGED=$(echo "$CHANGED_FILES" | grep -vE '^(data/population/|docs/|tools/)|\.md$' | grep -v '^$' || true)
+if [[ -n "$CHANGED_FILES" && -z "$RUNTIME_CHANGED" && "$FORCE" -eq 0 ]]; then
+    echo "==> Only data, docs and PC tools changed: no restart, no cache bump, no kit rebuild."
+    echo "==> Rebuilding the live norms (wow:population-refresh)"
+    php -d memory_limit=1G artisan wow:population-refresh || echo "    (refresh failed; pages keep the copy they had)"
+    echo "==> Post-deploy smoke test"
+    for url in "https://mindcollector.com/" "https://mindcollector.com/wow/comps"; do
+        code=$(curl -sL -o /dev/null -w '%{http_code}' --max-time 20 "$url" || echo "000")
+        echo "    ${code}  ${url}"
+    done
+    echo "=== Deploy finished (data only) ${AFTER_COMMIT:0:7} $(date -u +"%Y-%m-%dT%H:%M:%SZ") ==="
+    exit 0
+fi
+
 if echo "$CHANGED_FILES" | grep -q '^composer\.lock$'; then
     echo "==> composer.lock changed — running composer install"
     composer install --no-dev --optimize-autoloader --no-interaction
@@ -188,6 +209,10 @@ echo "    pointing at it. import:spelldata does NOT do this. Skipping it is invi
 echo "    someone notices blank icons: on 2026-09-07 production had 4,914 current-patch spells"
 echo "    whose icon was sitting on disk, unreferenced, because this had never been run there."
 php artisan wow:apply-icon-manifest
+
+echo "==> Rebuilding the live norms (wow:population-refresh): the archive bundle plus every"
+echo "    uploaded round, measured by the code just deployed. About 10 seconds."
+php -d memory_limit=1G artisan wow:population-refresh || echo "    (refresh failed; pages keep the copy they had)"
 
 echo "==> Post-deploy smoke test"
 # Game-scoped pages moved under /wow on 2026-09-16. The canonical URLs are listed so the check

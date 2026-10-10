@@ -68,7 +68,7 @@ class ClassLibraryService
     {
         $rounds = ArenaRound::where('user_id', $user->id)->orderBy('id')->get(['id', 'updated_at'])
             ->map(fn ($r) => $r->id.':'.$r->updated_at)->implode(',');
-        $files = [__FILE__, resource_path('views/desktop/player.blade.php'), resource_path('views/desktop/partials/styles.blade.php'), base_path(BuildPopulation::NORMS)];
+        $files = [__FILE__, resource_path('views/desktop/player.blade.php'), resource_path('views/desktop/partials/styles.blade.php'), BuildPopulation::normsPath()];
         $code = implode('|', array_map(fn ($f) => $f.':'.(File::exists($f) ? filemtime($f) : 0), $files))
             .'|spells:'.app(TalentSelectionService::class)->spellCacheVersion();
         $who = md5(json_encode(array_map(fn ($x) => [$x['gladSeasons'] ?? null, $x['exp3v3'] ?? null, $x['rankOneSeasons'] ?? null], $xp)));
@@ -509,7 +509,7 @@ class ClassLibraryService
 
     private function norms(): array
     {
-        $path = base_path(BuildPopulation::NORMS);
+        $path = BuildPopulation::normsPath();
 
         return $this->norms ??= File::exists($path) ? (json_decode(File::get($path), true) ?: []) : [];
     }

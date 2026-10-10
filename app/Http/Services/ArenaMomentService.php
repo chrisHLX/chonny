@@ -4,6 +4,7 @@ namespace App\Http\Services;
 
 use App\Models\Patch;
 use App\Models\Spell;
+use App\Support\SpellDataCache;
 
 /**
  * The moments in a round: when somebody committed, and what happened because they did.
@@ -501,6 +502,20 @@ class ArenaMomentService
         if ($this->cooldowns !== null) {
             return $this->cooldowns;
         }
+
+        // Across requests too: each uploaded round is measured in a request of its own (SpellDataCache).
+        $dir = base_path('data/arena-logs/spell-classification');
+        $both = SpellDataCache::remember('moment-cooldowns', [__FILE__, "{$dir}/short-defensives.json", "{$dir}/cast-aliases.json"],
+            fn () => $this->loadCooldowns());
+        $this->aliasAs = $both['aliasAs'];
+
+        return $this->cooldowns = $both['map'];
+    }
+
+    /** @return array{map: array<int, float>, aliasAs: array<int, ?int>} */
+    private function loadCooldowns(): array
+    {
+        $aliasAs = [];
         $patch = Patch::where('is_current', true)->value('id');
         $map = Spell::query()
             ->where('patch_id', $patch)
@@ -544,22 +559,22 @@ class ArenaMomentService
                 $cd = $cds[$a['cooldownOf'] ?? $a['as']] ?? null;
                 if ($cd > 0) {
                     $map[$a['castId']] = $cd;
-                    $this->aliasAs[$a['castId']] = $a['as'] ?? null;
+                    $aliasAs[$a['castId']] = $a['as'] ?? null;
                 }
             }
         }
 
-        return $this->cooldowns = $map;
+        return ['map' => $map, 'aliasAs' => $aliasAs];
     }
 
     /** spell_id => dr_category for the current patch. Public for RoundAnalysisService. */
     public function crowdControl(): array
     {
-        return $this->crowdControl ??= Spell::query()
+        return $this->crowdControl ??= SpellDataCache::remember('moment-cc', [__FILE__], fn () => Spell::query()
             ->where('patch_id', Patch::where('is_current', true)->value('id'))
             ->whereNotNull('dr_category')
             ->pluck('dr_category', 'spell_id')
-            ->all();
+            ->all());
     }
 
     /** WoW stamps `M/D/YYYY HH:MM:SS.ssss` with no zone; only the difference matters here. */

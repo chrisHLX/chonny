@@ -124,6 +124,8 @@ class CoachUploadController extends Controller
             $assembled += $ingest->assembleLobby($user, $lobbyId) ? 1 : 0;
         }
         BuildCoachPages::dispatch($user->id);
+        // Every upload feeds the shared norms by default (2026-10-10); one rebuild per burst.
+        \App\Jobs\RefreshPopulationNorms::dispatch()->delay(now()->addSeconds(\App\Jobs\RefreshPopulationNorms::DELAY_SECONDS));
 
         return response()->json(['status' => 'ok', 'assembled' => $assembled]);
     }

@@ -155,22 +155,32 @@ Each one is here because breaking it produced a wrong answer at least once.
 
 ## The website's pool
 
-Every round players upload to the website feeds the population by default (Chriso, 2026-10-10):
-the norms, the evidence and the decision table are built from the PC's archive **and** the uploads
-together, so a tester's games make every player's comparisons stronger. Only aggregates are
-committed; names never leave the server. A match in both is counted once (the server's match ids
-are the archive's).
+Every round players upload feeds the shared norms by default (Chriso, 2026-10-10), and **the
+website rebuilds them itself** (2026-10-11): no PC, no commit, no deploy.
 
 ```
-server:  php -d memory_limit=1G artisan wow:pool-export      -> storage/app/pool-export.jsonl.gz
-         (fetch it over SSH: base64 through prod_ssh.py, DEPLOY.md "Working from Claude Code")
-PC:      php -d memory_limit=3G artisan wow:population --aggregate --pool=<file>
-         commit data/population/norms.json, deploy
+upload batch -> /api/coach/done -> RefreshPopulationNorms (queued, 2 min later, one per burst)
+             -> wow:population-refresh: wow:pool-export (every stored round, hashed, no names)
+                + the archive bundle (storage/app/population, uploaded once)
+                -> wow:population --aggregate --live -> storage/app/population-live/norms.json
+pages read BuildPopulation::normsPath(): the newer, by builtAt, of that and data/population/norms.json
 ```
 
-`App\Support\PopulationGame` writes both sources' games; `App\Support\DefensiveDecisions` is the one
-classifier the build and the Basics tab share. Rounds measured at an older version stay out until
-their owner's app sends them again. No scheduler runs, so the pool is as fresh as the last build.
+About 8 seconds and 150 MB. Every deploy runs the refresh too, so the live copy is always measured
+by the deployed code. A match in both the archive and the uploads is counted once.
+`App\Support\PopulationGame` writes both sources' games; `App\Support\DefensiveDecisions` is the
+classifier the build and the Basics tab share.
+
+**After a `RoundAnalysisService::VERSION` change**, the archive bundle on the server is the old
+version and drops out of the build until replaced (uploads re-measure on their own, as each app
+sends its rounds again). On the PC:
+
+```
+php -d memory_limit=3G artisan wow:population --fresh          # re-measure the archive
+php artisan wow:population --bundle=population-archive.jsonl.gz
+# upload it (base64 through prod_ssh.py), then on the server:
+php -d memory_limit=1G artisan wow:population --aggregate --archive=<file> --live
+```
 
 ## The research tools
 

@@ -82,6 +82,23 @@ class CoachTest extends TestCase
         $this->withHeader('Authorization', 'Bearer '.$key)->postJson('/api/coach/done')->assertOk();
 
         Queue::assertPushed(BuildCoachPages::class, fn ($job) => $job->userId === $user->id);
+        Queue::assertPushed(\App\Jobs\RefreshPopulationNorms::class, fn ($job) => $job->delay !== null);
+    }
+
+    public function test_pages_read_the_newer_of_the_live_and_the_committed_norms(): void
+    {
+        $live = \App\Console\Commands\BuildPopulation::livePath();
+        $committed = base_path(\App\Console\Commands\BuildPopulation::NORMS);
+        $had = File::exists($live) ? File::get($live) : null;
+        try {
+            File::ensureDirectoryExists(dirname($live));
+            File::put($live, "{\n    \"builtAt\": \"2000-01-01T00:00:00+00:00\"\n}\n");
+            $this->assertSame($committed, \App\Console\Commands\BuildPopulation::normsPath(), 'an older live copy is ignored');
+            File::put($live, "{\n    \"builtAt\": \"2999-01-01T00:00:00+00:00\"\n}\n");
+            $this->assertSame($live, \App\Console\Commands\BuildPopulation::normsPath(), 'a newer live copy wins');
+        } finally {
+            $had === null ? File::delete($live) : File::put($live, $had);
+        }
     }
 
     public function test_pages_are_listed_and_served_only_from_the_players_own_folder(): void

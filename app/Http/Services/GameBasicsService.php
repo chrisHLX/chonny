@@ -532,14 +532,14 @@ class GameBasicsService
     /** How many games the norms were built from, for the page's footnote. */
     public static function archiveGames(): int
     {
-        $path = base_path(BuildPopulation::NORMS);
+        $path = BuildPopulation::normsPath();
 
         return File::exists($path) ? (int) (json_decode(File::get($path), true)['games'] ?? 0) : 0;
     }
 
     private function norms(): array
     {
-        $path = base_path(BuildPopulation::NORMS);
+        $path = BuildPopulation::normsPath();
 
         return $this->norms ??= File::exists($path) ? (json_decode(File::get($path), true) ?: []) : [];
     }
