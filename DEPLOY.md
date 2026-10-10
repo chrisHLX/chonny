@@ -252,6 +252,15 @@ so re-create the helper with the Write tool if it's missing.
   `DEPLOY.md`.
 - Commit and push locally first (only when the user asks for a commit). Check the server's
   `git status` if a pull might conflict with untracked files.
+- **A commit touching only `data/population/`, `docs/`, markdown or `tools/` takes a fast path**
+  (2026-10-11): no php-fpm restart, no cache bump, no kit rebuild, just the live-norms refresh and
+  a short smoke test, in seconds instead of about two and a half minutes. `--force` takes the full run.
+- **Every deploy rebuilds the live norms** (`wow:population-refresh`, as the owner of `storage/`,
+  never root: root-owned files there block the queue workers' own rebuilds). The website rebuilds
+  them itself after uploads too; see `match-review.md`, "The website's pool".
+- **Uploading a file:** SFTP is broken, so stream it as base64 through a command's stdin
+  (`prod_upload.py`, a sibling of `prod_ssh.py` in the scratchpad), and pass the remote path
+  relative to `/var/www/mindcollector`: git-bash rewrites an argument starting with `/`.
 
 **Queue workers:** 2 Supervisor-managed (`laravel-worker_00`, `mindcollector-worker`), 90s timeout
 each, default queue, restarted by `deploy.sh`. **No scheduler:** root's crontab is empty, so every
