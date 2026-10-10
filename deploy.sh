@@ -105,7 +105,7 @@ RUNTIME_CHANGED=$(echo "$CHANGED_FILES" | grep -vE '^(data/population/|docs/|too
 if [[ -n "$CHANGED_FILES" && -z "$RUNTIME_CHANGED" && "$FORCE" -eq 0 ]]; then
     echo "==> Only data, docs and PC tools changed: no restart, no cache bump, no kit rebuild."
     echo "==> Rebuilding the live norms (wow:population-refresh)"
-    php -d memory_limit=1G artisan wow:population-refresh || echo "    (refresh failed; pages keep the copy they had)"
+    sudo -u "$(stat -c %U storage/app)" php -d memory_limit=1G artisan wow:population-refresh || echo "    (refresh failed; pages keep the copy they had)"
     echo "==> Post-deploy smoke test"
     for url in "https://mindcollector.com/" "https://mindcollector.com/wow/comps"; do
         code=$(curl -sL -o /dev/null -w '%{http_code}' --max-time 20 "$url" || echo "000")
@@ -211,8 +211,10 @@ echo "    whose icon was sitting on disk, unreferenced, because this had never b
 php artisan wow:apply-icon-manifest
 
 echo "==> Rebuilding the live norms (wow:population-refresh): the archive bundle plus every"
-echo "    uploaded round, measured by the code just deployed. About 10 seconds."
-php -d memory_limit=1G artisan wow:population-refresh || echo "    (refresh failed; pages keep the copy they had)"
+echo "    uploaded round, measured by the code just deployed. About 10 seconds. Run as the owner"
+echo "    of storage/ (the queue workers' user): run as root, it left files the workers' own"
+echo "    rebuilds could not replace (2026-10-11)."
+sudo -u "$(stat -c %U storage/app)" php -d memory_limit=1G artisan wow:population-refresh || echo "    (refresh failed; pages keep the copy they had)"
 
 echo "==> Post-deploy smoke test"
 # Game-scoped pages moved under /wow on 2026-09-16. The canonical URLs are listed so the check
