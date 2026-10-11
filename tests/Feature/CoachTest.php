@@ -259,4 +259,23 @@ class CoachTest extends TestCase
         (new \App\Jobs\FetchPlayerExperience(['Old-Realm-US'], $user->id))->handle($experience);
         Queue::assertNotPushed(BuildCoachPages::class);
     }
+
+    public function test_the_website_says_which_version_of_the_app_it_serves(): void
+    {
+        $path = dirname(\App\Http\Controllers\DesktopAppController::path()).'/version.json';
+        $had = is_file($path) ? file_get_contents($path) : null;
+        try {
+            @unlink($path);
+            $this->getJson('/api/coach/app-version')->assertOk()->assertJson(['version' => null]);   // updating off
+
+            File::ensureDirectoryExists(dirname($path));
+            file_put_contents($path, json_encode(['version' => '0.5.1']));
+            $this->getJson('/api/coach/app-version')->assertOk()->assertJson(['version' => '0.5.1']);
+
+            file_put_contents($path, json_encode(['version' => 'not a version']));
+            $this->getJson('/api/coach/app-version')->assertOk()->assertJson(['version' => null]);
+        } finally {
+            $had === null ? @unlink($path) : file_put_contents($path, $had);
+        }
+    }
 }

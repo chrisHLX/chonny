@@ -62,8 +62,17 @@ approval, the key picked up, one real round sent, measured and built, and the ga
 its own single-instance lock, and no self-install); add `MINDCOLLECTOR_NO_BROWSER=1` to have Connect
 write its link to the activity log instead of opening a browser.
 
-The exe is not in git. After `dotnet publish`, copy `publish\MindCollector.exe` to the server's
-`storage/app/desktop/MindCollector.exe` (DEPLOY.md, "Uploading a file").
+**Updates itself (0.5.0, 2026-10-11).** The pages are the website's, so a page, analysis or design
+change reaches every player with a deploy. The window around them (this code) checks
+`/api/coach/app-version` at start and every three hours; when the website serves a newer version and
+WoW is not running, `Updater` downloads it and the installer swaps it in, back in the tray. Players on
+0.4.0 or older have no updater and need one more download from /wow/app.
+
+**Publishing a new version:** bump `<Version>` in the csproj, `dotnet publish`, then upload
+`publish\MindCollector.exe` to the server's `storage/app/desktop/MindCollector.exe` **and** write
+`storage/app/desktop/version.json` as `{"version": "x.y.z"}` (DEPLOY.md, "Uploading a file"). Upload
+the exe first: an app that sees the new version before the new exe is there downloads the old one,
+finds nothing newer to install, and tries again in three hours.
 
 ## Building
 

@@ -11,6 +11,8 @@ Route::post('/coach/done', [CoachUploadController::class, 'done'])->name('api.co
 Route::get('/coach/version', [CoachUploadController::class, 'version'])->name('api.coach.version');
 // The app picking up its key once the player approves it in the browser (AppDownloadController).
 Route::get('/coach/connect/{code}', [\App\Http\Controllers\AppDownloadController::class, 'pickup'])->middleware('throttle:120,1')->name('api.coach.connect');
+// Which version of the app the website serves, so the app can update itself (AppDownloadController).
+Route::get('/coach/app-version', [\App\Http\Controllers\AppDownloadController::class, 'appVersion'])->middleware('throttle:60,1')->name('api.coach.app-version');
 
 // The desktop app reading the player's pages back, with the same key. See CoachPagesController.
 Route::get('/coach/index', [CoachPagesController::class, 'index'])->name('api.coach.index');

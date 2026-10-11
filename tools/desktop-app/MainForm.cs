@@ -51,6 +51,7 @@ internal sealed class MainForm : Form
         ForeColor = Theme.Ink;
         Font = Theme.Ui;
         Theme.DarkTitleBar(this);
+        DoubleBuffered = true;
 
         BuildLayout();
         BuildTray();
@@ -109,7 +110,7 @@ internal sealed class MainForm : Form
         _list.Dock = DockStyle.Fill;
         _list.SelectedIndexChanged += async (_, _) =>
         {
-            if (_list.SelectedFile is { } file) await ShowPageAsync(file);
+            if (!_filling && _list.SelectedFile is { } file) await ShowPageAsync(file);
         };
         var library = new RoundPanel { Dock = DockStyle.Fill, Padding = new Padding(8, 6, 8, 8) };
         library.Controls.Add(_list);
@@ -213,6 +214,19 @@ internal sealed class MainForm : Form
         }
 
         _timer.Start();
+        CleanUpOldUpdates();
+        await CheckForUpdateAsync();
+    }
+
+    /// <summary>The downloaded update files left in the temp folder once one has been installed.</summary>
+    private static void CleanUpOldUpdates()
+    {
+        try
+        {
+            foreach (var f in Directory.GetFiles(Path.GetTempPath(), "MindCollector-*.exe"))
+                try { File.Delete(f); } catch { /* still running: next time */ }
+        }
+        catch { }
     }
 
     private string WatchingText() => _settings.WowLogsDir == null
@@ -310,7 +324,7 @@ internal sealed class MainForm : Form
                 ? "WoW is open, so type /reload once to load the MindCollector addon. Then play arena: each game shows up here about a minute after it ends."
                 : "Play arena: each game shows up here about a minute after it ends. Keep the app running in the tray while you play.";
         }
-        _view.CoreWebView2?.NavigateToString($$"""
+        Show($$"""
             <!doctype html><html><head><meta charset="utf-8"><style>
             html,body{margin:0;height:100%;background:#121212;color:#fff;font-family:'Segoe UI',Arial,sans-serif}
             .wrap{height:100%;display:flex;align-items:center;justify-content:center;background:linear-gradient(180deg,#3a2d12 0,#1e1a12 240px,#121212 520px)}
@@ -326,8 +340,32 @@ internal sealed class MainForm : Form
             """);
     }
 
+    private int _ticks;
+
+    /// <summary>
+    /// A newer app on the website, installed by itself (Updater): at start and every three hours,
+    /// never while WoW is running or a sync is under way, so a game is never interrupted.
+    /// </summary>
+    private async Task CheckForUpdateAsync()
+    {
+        if (_busy || Syncer.WowRunning() || Environment.GetEnvironmentVariable("MINDCOLLECTOR_DATA") != null) return;
+        try
+        {
+            var newer = await Updater.NewerAsync(_settings.ServerUrl, CancellationToken.None);
+            if (newer == null) return;
+            if (await Updater.InstallAsync(_settings.ServerUrl, newer, Log, CancellationToken.None))
+            {
+                _exiting = true;
+                _tray.Visible = false;
+                Application.Exit();
+            }
+        }
+        catch (Exception e) { Log($"Could not check for an update: {e.Message}"); }
+    }
+
     private async Task TickAsync()
     {
+        if (++_ticks % 1080 == 0) await CheckForUpdateAsync();   // every three hours at ten seconds a tick
         if (_refreshesLeft > 0 && !_busy)
         {
             _refreshesLeft--;
@@ -375,6 +413,9 @@ internal sealed class MainForm : Form
         }
     }
 
+    private string? _indexRaw;
+    private bool _filling;
+
     private async Task RefreshIndexAsync()
     {
         if (string.IsNullOrEmpty(_settings.Key)) return;
@@ -382,6 +423,11 @@ internal sealed class MainForm : Form
         {
             using var api = new ApiClient(_settings.ServerUrl, _settings.Key);
             var fresh = await api.IndexAsync(CancellationToken.None);
+            // Unchanged (most of the minute of checks after a game): leave the list and the page be.
+            // Rebuilding them every ten seconds made the open page flash and jump to the top.
+            var raw = fresh.RootElement.GetRawText();
+            if (raw == _indexRaw && _index != null) { fresh.Dispose(); return; }
+            _indexRaw = raw;
             _index?.Dispose();
             _index = fresh;
             FillList();
@@ -422,6 +468,7 @@ internal sealed class MainForm : Form
         var count = rows.Count(x => x.File != null);
         _libTitle.Text = count > 0 ? $"{title}   {count}" : title;
 
+        _filling = true;
         _list.BeginUpdate();
         _list.Items.Clear();
         foreach (var row in rows) _list.Items.Add(row);
@@ -429,6 +476,7 @@ internal sealed class MainForm : Form
             for (var i = 0; i < _list.Items.Count; i++)
                 if (_list.Items[i] is LibraryRow lr && lr.File == selected) { _list.SelectedIndex = i; break; }
         _list.EndUpdate();
+        _filling = false;
     }
 
     private static IEnumerable<LibraryRow> GameRows(JsonElement r)
@@ -491,7 +539,7 @@ internal sealed class MainForm : Form
 
             // The pages use site-relative image paths (/storage/...): give them the site as their base.
             var withBase = html.Replace("<head>", $"<head><base href=\"{_settings.ServerUrl}/\">", StringComparison.OrdinalIgnoreCase);
-            _view.CoreWebView2.NavigateToString(withBase);
+            Show(withBase);
         }
         catch (Exception e)
         {
@@ -525,8 +573,18 @@ internal sealed class MainForm : Form
             OpenUrl(e.Uri);
     }
 
+    private string? _shown;
+
+    /// <summary>Draws a page, unless it is the one already showing (no flash, no jump to the top).</summary>
+    private void Show(string html)
+    {
+        if (_view.CoreWebView2 == null || html == _shown) return;
+        _shown = html;
+        _view.CoreWebView2.NavigateToString(html);
+    }
+
     private void Blank(string message) =>
-        _view.CoreWebView2?.NavigateToString(
+        Show(
             "<!doctype html><html><body style=\"margin:0;height:100vh;display:flex;align-items:center;justify-content:center;background:#121212;color:#B3B3B3;font-family:Segoe UI,Arial;font-size:15px\"><p style=\"max-width:420px;text-align:center;line-height:1.5\">"
             + System.Net.WebUtility.HtmlEncode(message) + "</p></body></html>");
 

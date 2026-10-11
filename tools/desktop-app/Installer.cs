@@ -19,7 +19,7 @@ internal static class Installer
     public static string InstalledExe => Path.Combine(Dir, "MindCollector.exe");
 
     /// <summary>True when this process installed the app and started the installed copy, and should exit.</summary>
-    public static bool InstallIfNeeded()
+    public static bool InstallIfNeeded(bool fromUpdate = false)
     {
         var self = Environment.ProcessPath;
         if (self == null || string.Equals(Path.GetFullPath(self), Path.GetFullPath(InstalledExe), StringComparison.OrdinalIgnoreCase)) return false;
@@ -37,7 +37,7 @@ internal static class Installer
 
             // The first time, the installed copy goes straight to connecting: the browser opens on the
             // "Connect the app on this PC?" page, so a new player clicks nothing in the app at all.
-            Process.Start(new ProcessStartInfo(InstalledExe) { UseShellExecute = true, WorkingDirectory = Dir, Arguments = firstInstall ? "--first-run" : "" });
+            Process.Start(new ProcessStartInfo(InstalledExe) { UseShellExecute = true, WorkingDirectory = Dir, Arguments = firstInstall ? "--first-run" : fromUpdate ? "--minimized" : "" });
             return true;
         }
         catch (Exception e)

@@ -65,6 +65,19 @@ class AppDownloadController extends Controller
             : response()->json(['status' => 'waiting'], 202);
     }
 
+    /**
+     * The version of the app the website serves (2026-10-11), which the app checks to update
+     * itself: storage/app/desktop/version.json, written beside the exe when it is published
+     * (tools/desktop-app/README.md). Null when it is not there, which turns updating off.
+     */
+    public function appVersion(): JsonResponse
+    {
+        $path = dirname(DesktopAppController::path()).'/version.json';
+        $version = is_file($path) ? (json_decode((string) file_get_contents($path), true)['version'] ?? null) : null;
+
+        return response()->json(['version' => is_string($version) && preg_match('/^\d+\.\d+\.\d+$/', $version) ? $version : null]);
+    }
+
     private static function key(string $code): string
     {
         return 'coach-connect:'.$code;

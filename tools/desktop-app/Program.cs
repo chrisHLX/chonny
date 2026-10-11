@@ -14,7 +14,7 @@ internal static class Program
         // build (under bin) and a test run (MINDCOLLECTOR_DATA) never install themselves over the real one.
         var testData = Environment.GetEnvironmentVariable("MINDCOLLECTOR_DATA");
         var fromBuild = Environment.ProcessPath?.Contains(Path.DirectorySeparatorChar + "bin" + Path.DirectorySeparatorChar, StringComparison.OrdinalIgnoreCase) == true;
-        if (!fromBuild && testData == null && Installer.InstallIfNeeded()) return 0;
+        if (!fromBuild && testData == null && Installer.InstallIfNeeded(fromUpdate: args.Contains("--update"))) return 0;
 
         // One app per Windows user; a test run with its own data folder is its own app.
         var name = @"Local\MindCollectorDesktop" + (testData == null ? "" : "-" + Convert.ToHexString(System.Security.Cryptography.SHA1.HashData(System.Text.Encoding.UTF8.GetBytes(testData)))[..12]);
