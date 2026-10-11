@@ -21,6 +21,18 @@
         <div class="rounded-md border border-green-500/40 bg-green-500/5 px-4 py-2.5 mb-5 text-[13px] text-ink">Email confirmed. Thanks.</div>
     @endif
 
+    {{-- The app, until this player has connected it (2026-10-12): the product, ahead of the planner. --}}
+    @if ($me->coach_token_at === null)
+        <a href="{{ route('app') }}" wire:navigate class="page-hero !py-6 flex flex-col sm:flex-row sm:items-center gap-4 mb-6 group">
+            <div class="flex-1 min-w-0">
+                <p class="page-eyebrow">MindCollector for Windows</p>
+                <p class="text-[22px] sm:text-[26px] font-extrabold text-ink leading-tight mt-1">Get every arena game you play reviewed</p>
+                <p class="text-[14px] text-ink-muted mt-1">The app sends each game here when it ends: who died, what killed them, and what to work on next.</p>
+            </div>
+            <span class="btn-primary shrink-0 group-hover:bg-gold-light">Get the app</span>
+        </a>
+    @endif
+
     {{-- Header: a greeting and the one primary action. --}}
     <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-6">
         <div class="min-w-0">

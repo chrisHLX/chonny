@@ -35,15 +35,52 @@
                 Home
         </a>
 
-        {{-- One "Guides" entry with Claude's nested under it, 2026-09-24. Explore had five
-             top-level items and two of them ("Player Guides", "Claude's Comp Guides") were the
-             same kind of thing, which read as two destinations rather than one with a variant.
-             The indented child follows the same pattern "Class data" already uses below.
+        {{-- 2026-10-12: the player's games and the app first, then the planning tools. Guides keeps
+             Claude's nested under it: NAV ONLY, the two listings stay separate pages (rule 30). --}}
+        <a href="{{ route('coach') }}"
+           class="sidebar-item {{ request()->routeIs('coach') || request()->routeIs('game-review') ? 'active' : '' }}">
+            <svg class="w-[18px] h-[18px] shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 17v-6m3 6V7m3 10v-4M5 21h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v14a2 2 0 002 2z"/>
+            </svg>
+            Your games
+        </a>
 
-             NAV ONLY — the two listings stay separate pages. CLAUDE.md rule 30: machine-drafted
-             guides are filtered OUT of Browse, GuideFeed and Home::exampleGuide() by
-             humanAuthored(), and they carry their own byline. Nesting the link must not be read
-             as licence to merge the lists. --}}
+        {{-- The app, the product (2026-10-12): its page, with the download and the steps. --}}
+        <a href="{{ route('app') }}" wire:navigate
+           class="sidebar-item {{ request()->routeIs('app') || request()->routeIs('app.connect') ? 'active' : '' }} !text-gold hover:!text-gold-light">
+            <svg class="w-[18px] h-[18px] shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M12 4v12m0 0l-5-5m5 5l5-5M5 20h14"/>
+            </svg>
+            Get the app
+        </a>
+
+        <p class="px-3 pt-3 pb-1 text-[11px] font-bold text-ink-subtle uppercase tracking-[.12em]">Plan</p>
+        <a href="{{ route('wow-comps') }}" wire:navigate
+           class="sidebar-item {{ request()->routeIs('wow-comps') ? 'active' : '' }}">
+            <svg class="w-[18px] h-[18px] shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/>
+            </svg>
+            3v3 Comps
+        </a>
+
+        <a href="{{ route('matchup-lab') }}" wire:navigate
+           class="sidebar-item {{ request()->routeIs('matchup-lab') ? 'active' : '' }}">
+            <svg class="w-[18px] h-[18px] shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 17l5-6 4 4 5-8 4 5"/>
+            </svg>
+            Matchup Lab
+        </a>
+
+        {{-- One per-spec page for kits, burst, counters and spells (2026-09-07; see App\Livewire\PvpGuides).
+             In the top panel since 2026-10-12, beside the other planning tools. --}}
+        <a href="{{ route('pvp-guides') }}" wire:navigate
+           class="sidebar-item {{ request()->routeIs('pvp-guides') || request()->routeIs('class-guide') || request()->routeIs('burst-guides') || request()->routeIs('claudes-counters') || request()->routeIs('spells.explore') ? 'active' : '' }}">
+            <svg class="w-[18px] h-[18px] shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h10"/>
+            </svg>
+            Class Guides
+        </a>
+
         <a href="{{ route('guides.browse') }}" wire:navigate
            class="sidebar-item {{ request()->routeIs('guides.browse') || request()->routeIs('guides.show') ? 'active' : '' }}">
             <svg class="w-[18px] h-[18px] shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -56,34 +93,6 @@
            class="sidebar-item text-[12px] {{ request()->routeIs('guides.machine') ? 'active !text-accent' : '' }}">
             <span class="w-1 h-1 rounded-full bg-current shrink-0"></span>
             Claude
-        </a>
-
-        <a href="{{ route('wow-comps') }}" wire:navigate
-           class="sidebar-item {{ request()->routeIs('wow-comps') ? 'active' : '' }}">
-            <svg class="w-[18px] h-[18px] shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/>
-            </svg>
-            3v3 Comps
-        </a>
-
-        {{-- Directly under 3v3 Comps: same picker, one step further on — two comps instead of
-             one, and a read of the matchup rather than a listing of the kits. --}}
-        <a href="{{ route('matchup-lab') }}" wire:navigate
-           class="sidebar-item {{ request()->routeIs('matchup-lab') ? 'active' : '' }}">
-            <svg class="w-[18px] h-[18px] shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 17l5-6 4 4 5-8 4 5"/>
-            </svg>
-            Matchup Lab
-        </a>
-
-        {{-- Your own games: one page since 2026-10-05 (Game Review and Your coach merged). Shown
-             signed out too, so the page is found; it asks for a sign-in. See CoachController. --}}
-        <a href="{{ route('coach') }}"
-           class="sidebar-item {{ request()->routeIs('coach') || request()->routeIs('game-review') ? 'active' : '' }}">
-            <svg class="w-[18px] h-[18px] shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 17v-6m3 6V7m3 10v-4M5 21h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v14a2 2 0 002 2z"/>
-            </svg>
-            Your games
         </a>
 
     </nav>
@@ -174,18 +183,9 @@
             </a>
         @endauth
 
-        <p class="px-3 pt-4 pb-1.5 text-[11px] font-bold text-ink-subtle uppercase tracking-[.12em]">Class data</p>
+        <p class="px-3 pt-4 pb-1.5 text-[11px] font-bold text-ink-subtle uppercase tracking-[.12em]">More data</p>
 
-        {{-- One link replacing four (Class Kits / Burst Guides / Spell Counters / Spells),
-             2026-09-07: all four answer questions about a single class/spec, so they are now
-             tabs on one per-spec page. The four routes still exist and still render on their
-             own for anything already bookmarked or linked; they are just no longer separate
-             destinations in the nav. See App\Livewire\PvpGuides. --}}
-        <a href="{{ route('pvp-guides') }}" wire:navigate
-           class="sidebar-item text-[12px] {{ request()->routeIs('pvp-guides') || request()->routeIs('class-guide') || request()->routeIs('burst-guides') || request()->routeIs('claudes-counters') || request()->routeIs('spells.explore') ? 'active !text-accent' : '' }}">
-            <span class="w-1 h-1 rounded-full bg-current shrink-0"></span>
-            Class Guides
-        </a>
+
         <a href="{{ route('top-damage-rotations') }}" wire:navigate
            class="sidebar-item text-[12px] {{ request()->routeIs('top-damage-rotations') ? 'active !text-accent' : '' }}">
             <span class="w-1 h-1 rounded-full bg-current shrink-0"></span>

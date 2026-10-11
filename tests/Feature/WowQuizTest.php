@@ -290,7 +290,8 @@ test('the leaderboard ranks signed-in players by questions answered and leaves g
     expect($board->map(fn ($r) => [$r->user->username, $r->answered, $r->correct])->all())
         ->toBe([['bob', 12, 10], ['alice', 8, 6]]);
 
-    $this->get(route('home'))->assertOk()->assertSeeInOrder(['Most questions answered', '@bob', '@alice']);
+    // On signed-in Home since the front page became the app's (2026-10-12).
+    $this->actingAs($bob)->get(route('dashboard'))->assertOk()->assertSeeInOrder(['Most questions answered', '@bob', '@alice']);
 });
 
 test('starting a quiz as a guest remembers the session it was taken under, for claiming at sign-in', function () {

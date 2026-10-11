@@ -213,13 +213,13 @@ test('the sidebar puts your own pages in one block, separate from the public sit
     $this->actingAs($user)
         ->get(route('dashboard'))
         ->assertOk()
-        // Spotify's layout (2026-10-11): the public site in the top panel, then the library: your
-        // space, social, class data, and Training last.
+        // Spotify's layout (2026-10-11), the app first (2026-10-12): your games, the app and the
+        // planning tools in the top panel, then the library: your space, social, more data, Training.
         ->assertSeeInOrder([
-            'Home', 'Guides', 'Claude', '3v3 Comps', 'Your games',
+            'Home', 'Your games', 'Get the app', '3v3 Comps', 'Matchup Lab', 'Class Guides', 'Guides', 'Claude',
             'Your library', 'Your space', 'Newbie', 'My Guides', 'My Characters', 'Profile &amp; settings',
             'Social', 'Friends', 'Guilds',
-            'Class data', 'Class Guides', 'Training', 'Class quizzes', 'Arena basics check',
+            'More data', 'Top Burst Windows', 'Training', 'Class quizzes', 'Arena basics check',
         ], false)
         ->assertDontSee('Your Profile')
         // Credits/XP live in the account menu now, which comes after everything above.
