@@ -187,6 +187,23 @@ test('a guest whose Battle.net account is already linked is signed in to it', fu
         ->and(BattlenetCharacter::where('name', 'Stabby')->exists())->toBeTrue();
 });
 
+test('a new Battle.net player sent by the desktop app comes back to its Connect page after signing up', function () {
+    signupWorld();
+    Queue::fake();
+    fakeBattlenetAccount(778, 'Fresh#2222');
+    $connect = url('/wow/app/connect?code='.str_repeat('cd34', 8));
+
+    // The app opened the Connect page; signed out, it sent them to sign in first.
+    $this->get($connect)->assertRedirect(route('login'));
+
+    $this->withSession(['battlenet_oauth_state' => 'st'])
+        ->get(route('battlenet.callback', ['state' => 'st', 'code' => 'c']))
+        ->assertRedirect(route('battlenet.finish'));
+
+    $this->post(route('battlenet.finish.store'), ['email' => 'fresh@example.com', 'terms' => '1'])
+        ->assertRedirect($connect);
+});
+
 test('a new Battle.net player finishes sign-up with an email and lands with characters attached', function () {
     signupWorld();
     Queue::fake();
