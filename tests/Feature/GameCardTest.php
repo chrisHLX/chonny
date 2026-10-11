@@ -35,6 +35,11 @@ class GameCardTest extends TestCase
                     't' => 92, 'who' => $dead['guid'], 'side' => $won ? 'them' : 'us',
                     'killingBlow' => ['spell' => 'Unstable Affliction', 'amount' => 38797, 'hpBefore' => 3],
                     'shares' => ['Lock-Realm-US' => 69, 'Hunt-Realm-US' => 31], 'goStartedAgo' => 16.7, 'defensives30s' => [],
+                    'abilities' => [
+                        ['name' => 'Lock-Realm-US', 'spell' => 'Unstable Affliction', 'amount' => 90000, 'pct' => 45],
+                        ['name' => 'Hunt-Realm-US', 'spell' => 'Aimed Shot', 'amount' => 60000, 'pct' => 30],
+                        ['name' => 'Lock-Realm-US', 'spell' => 'Agony', 'amount' => 2000, 'pct' => 1],
+                    ],
                     'healer' => ['state' => $won ? 'none' : 'locked', 'endedAgo' => null, 'medallionUsedAt' => [36]],
                 ]],
                 'defensives' => [
@@ -80,6 +85,10 @@ class GameCardTest extends TestCase
         $this->assertStringContainsString('Killing blow Unstable Affliction', $card);
         $this->assertStringContainsString('Damage in the last 10s: Lock 69%', $card);
         $this->assertStringContainsString('Hunt 31%', $card);
+        // What did the damage, by ability (version 13); a sliver under 3% is left out.
+        $this->assertStringContainsString('Unstable Affliction Lock 45%', $card);
+        $this->assertStringContainsString('Aimed Shot Hunt 30%', $card);
+        $this->assertStringNotContainsString('Agony', $card);
         $this->assertStringContainsString('Your healer locked out at the death Medallion used at 0:36', $card);
         $this->assertStringContainsString("Discipline Priest · healer · CC'd 18.7s", $card);
         $this->assertStringContainsString('10× Glad 2588 Gladiator', $card);

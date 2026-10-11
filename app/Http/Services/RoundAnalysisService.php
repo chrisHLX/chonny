@@ -67,8 +67,10 @@ class RoundAnalysisService
      * side by owner, cooldown, whether it was back and whether its owner was locked out as the go
      * started; `targetHp` is the go's target's health then; each player carries their median item
      * level and PvP talents from COMBATANT_INFO.
+     * 13 (2026-10-11): each death's last ten seconds of damage by ability as well as by player
+     * (`deaths[].abilities`), for the card's "How it ended".
      */
-    public const VERSION = 12;
+    public const VERSION = 13;
 
     /** A defensive pressed this long or less before its owner was locked out went in before the chance was lost. */
     private const BEFORE_LOCKOUT = 4.0;
@@ -1220,12 +1222,16 @@ class RoundAnalysisService
         $killer = $d['side'] === 'us' ? 'them' : 'us';
         $win = array_values(array_filter($dmg, fn ($x) => $x['dst'] === $d['who'] && $x['t'] <= $d['t'] + 0.05 && $x['t'] >= $d['t'] - 10));
         $shares = [];
+        $abilities = [];
         foreach ($win as $x) {
             $who = $credit($x['src']);
             $key = isset($roster[$who]) ? $roster[$who]['name'] : 'pets/other';
             $shares[$key] = ($shares[$key] ?? 0) + $x['amount'];
+            // The same ten seconds by ability (version 13): what killed them, not only who.
+            $abilities[$key.'|'.$x['spell']] = ($abilities[$key.'|'.$x['spell']] ?? 0) + $x['amount'];
         }
         arsort($shares);
+        arsort($abilities);
         $total = max(1, array_sum($shares));
         $kb = end($win) ?: null;
         $before = null;
@@ -1262,6 +1268,11 @@ class RoundAnalysisService
             'side' => $d['side'],
             'killingBlow' => $kb ? ['spell' => $kb['spell'], 'amount' => $kb['amount'], 'hpBefore' => $before] : null,
             'shares' => array_map(fn ($v) => round(100 * $v / $total), array_slice($shares, 0, 4, true)),
+            'abilities' => array_map(function ($k, $v) use ($total) {
+                [$name, $spell] = explode('|', $k, 2);
+
+                return ['name' => $name, 'spell' => $spell, 'amount' => $v, 'pct' => round(100 * $v / $total)];
+            }, array_keys(array_slice($abilities, 0, 6, true)), array_slice($abilities, 0, 6, true)),
             'healer' => ['state' => $state, 'endedAgo' => $endedAgo, 'medallionUsedAt' => $medallion],
             'goStartedAgo' => $go ? round($d['t'] - $go['from'], 1) : null,
             'defensives30s' => array_map(fn ($c) => ['spell' => $c['spell'], 'who' => $roster[$c['who']]['name'] ?? '?', 'ago' => round($d['t'] - $c['t'])], $defs),

@@ -21,6 +21,19 @@
     </div>
 @endif
 
+{{-- What did the damage in those ten seconds, biggest first (RoundAnalysisService version 13). --}}
+@if (! empty($d['abilities']))
+    <table class="ab" style="margin-top: 8px">
+        @foreach ($d['abilities'] as $a)
+            <tr>
+                <td class="sp">@if ($a['icon'])<img class="spell-ic" src="{{ $a['icon'] }}">@else<span class="ph-s"></span>@endif<b>{{ $a['spell'] }}</b> <span class="small" style="color: {{ $a['color'] }}">{{ $a['name'] }}</span></td>
+                <td class="sh"><div class="bar" style="margin:0"><span style="width: {{ $a['pct'] }}%; background: {{ $a['color'] }}"></span></div></td>
+                <td class="n small muted">{{ $a['pct'] }}%</td>
+            </tr>
+        @endforeach
+    </table>
+@endif
+
 @if ($d['healer'])
     <div class="line">
         <span class="muted">{{ $d['healer']['whose'] }}</span>&nbsp;

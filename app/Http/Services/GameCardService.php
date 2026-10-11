@@ -480,7 +480,7 @@ class GameCardService
             $healer['medallion'] = $h['medallionUsedAt'] ? 'Medallion used at '.collect($h['medallionUsedAt'])->map(fn ($t) => $this->clock($t))->implode(', ') : 'Medallion not used';
         }
 
-        $spells = array_filter(array_merge([$d['killingBlow']['spell'] ?? null], array_column($d['defensives30s'], 'spell')));
+        $spells = array_filter(array_merge([$d['killingBlow']['spell'] ?? null], array_column($d['defensives30s'], 'spell'), array_column($d['abilities'] ?? [], 'spell')));
         $icons = $this->icons->for($spells);
 
         return [
@@ -496,6 +496,12 @@ class GameCardService
                 'color' => $byName[$name]['color'] ?? '#6A6A6A',
                 'pct' => $pct,
             ])->values()->all(),
+            // What did the damage (version 13); empty for a round measured before it.
+            'abilities' => array_map(fn ($a) => [
+                'spell' => $a['spell'], 'icon' => $this->spellIcon($icons, $a['spell']), 'pct' => $a['pct'],
+                'name' => isset($byName[$a['name']]) ? $byName[$a['name']]['name'] : $this->short($a['name']),
+                'color' => $byName[$a['name']]['color'] ?? '#6A6A6A',
+            ], array_values(array_filter($d['abilities'] ?? [], fn ($a) => $a['pct'] >= 3))),
             'healer' => $healer,
             'goStartedAgo' => $d['goStartedAgo'],
             'goWhose' => $d['side'] === 'us' ? 'Their' : 'Your',

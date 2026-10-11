@@ -229,4 +229,34 @@ class CoachTest extends TestCase
         $this->getJson("/api/coach/connect/{$code}")->assertStatus(202);   // handed out once
         $this->getJson('/api/coach/connect/not-a-code')->assertNotFound();
     }
+
+    public function test_looking_up_new_players_rebuilds_the_uploaders_pages(): void
+    {
+        Queue::fake();
+        $user = User::factory()->create();
+        File::ensureDirectoryExists(BuildCoachPages::dir($user->id));
+        $experience = Mockery::mock(\App\Http\Services\PlayerExperienceService::class);
+        $experience->shouldReceive('cachedMany')->andReturn(['New-Realm-US' => null, 'Old-Realm-US' => ['found' => true]]);
+        $experience->shouldReceive('lookup')->twice();
+
+        try {
+            // The pages were built before the lookups finished (2026-10-11): build them again.
+            (new \App\Jobs\FetchPlayerExperience(['New-Realm-US', 'Old-Realm-US'], $user->id))->handle($experience);
+            Queue::assertPushed(BuildCoachPages::class, fn ($job) => $job->userId === $user->id);
+        } finally {
+            File::deleteDirectory(BuildCoachPages::dir($user->id));
+        }
+    }
+
+    public function test_nothing_new_to_look_up_rebuilds_nothing(): void
+    {
+        Queue::fake();
+        $user = User::factory()->create();
+        $experience = Mockery::mock(\App\Http\Services\PlayerExperienceService::class);
+        $experience->shouldReceive('cachedMany')->andReturn(['Old-Realm-US' => ['found' => true]]);
+        $experience->shouldReceive('lookup')->once();
+
+        (new \App\Jobs\FetchPlayerExperience(['Old-Realm-US'], $user->id))->handle($experience);
+        Queue::assertNotPushed(BuildCoachPages::class);
+    }
 }
