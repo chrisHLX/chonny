@@ -58,6 +58,12 @@ public sealed class Syncer
             _settings.Save();
         }
 
+        if (_settings.SendSince == null)
+        {
+            _settings.SendSince = DateTime.Now.AddDays(-14);
+            _settings.Save();
+        }
+
         var logs = LogFiles();
         var wow = WowRunning();
         var newest = logs.FirstOrDefault()?.FullName;
@@ -68,6 +74,7 @@ public sealed class Syncer
         {
             ct.ThrowIfCancellationRequested();
             f.Refresh();
+            if (f.LastWriteTime < _settings.SendSince) continue;   // older than the first sync's two weeks
             var progress = _settings.Files.TryGetValue(f.FullName, out var p) ? p : new FileProgress();
             var unchanged = progress.SeenLength == f.Length && progress.SeenWriteTicks == f.LastWriteTimeUtc.Ticks;
             if (unchanged && progress.Offset >= f.Length) continue;

@@ -25,6 +25,13 @@ public sealed class AppSettings
     public string? MoveTo { get; set; }
     public bool MoveLogs { get; set; } = true;
 
+    /// <summary>
+    /// Logs written before this are never sent (2026-10-12): set to two weeks before the first sync,
+    /// so a new player's first connect sends their recent games, not months of them at once to a
+    /// one-core server. Kept, so a later re-send (a new measure version) skips the same old logs.
+    /// </summary>
+    public DateTime? SendSince { get; set; }
+
     /// <summary>The measure version the server reported last; a higher one re-sends every kept log.</summary>
     public int ServerVersion { get; set; }
 

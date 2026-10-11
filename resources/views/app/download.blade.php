@@ -63,7 +63,22 @@
 
     <p class="text-[13px] text-ink-subtle mt-6">
         The app sits in the tray by the clock and starts with Windows, so it's there when you play. You can
-        turn that off in its Settings. It only reads your combat log, and only sends the arena games in it.
+        turn that off in its Settings.
     </p>
+
+    {{-- What it reads and what happens to it (2026-10-12), said before anyone installs it. --}}
+    <h2 class="text-[22px] font-bold text-ink mt-10 mb-3">What it reads, and what happens to it</h2>
+    <div class="linear-card p-5 space-y-2.5 text-[14px] text-ink-muted">
+        <p><span class="text-ink font-semibold">It reads one thing:</span> your WoW combat log
+            (WoWCombatLog.txt), and it only sends the arena games in it. Nothing else on your PC.</p>
+        <p><span class="text-ink font-semibold">Your games are yours.</span> Each game's page names the
+            players in it, so only you can see it.</p>
+        <p><span class="text-ink font-semibold">The averages.</span> Unless you opt out, your games are also
+            counted, without any names, in the averages everyone is compared with. You can leave them out
+            any time on <a href="{{ route('coach') }}#privacy" class="text-gold hover:underline">Your games</a>, under Upload.</p>
+        <p><span class="text-ink font-semibold">Your login stays with Blizzard.</span> You can make an
+            account with an email address. If you use Battle.net, you sign in on Blizzard's own page and
+            we never see your password.</p>
+    </div>
 </div>
 </x-app-layout>

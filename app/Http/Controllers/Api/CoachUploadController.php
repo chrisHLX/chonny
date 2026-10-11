@@ -9,6 +9,7 @@ use App\Models\ArenaRound;
 use App\Models\User;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\RateLimiter;
 
@@ -33,6 +34,16 @@ class CoachUploadController extends Controller
 {
     /** Rounds (or parts) a minute per player. */
     private const PER_MINUTE = 40;
+
+    /**
+     * At most this many rounds measured at once, across every player (2026-10-12). The box has one
+     * core and twelve PHP workers; a round costs 0.5-2s of CPU (measured on it that day), so a rush of
+     * new players (a Reddit post) could hold every worker and stall the site. A round over the limit
+     * is told to come back in RETRY_SECONDS; the app already waits and retries on a 429.
+     */
+    private const MEASURING_AT_ONCE = 3;
+
+    private const RETRY_SECONDS = 10;
 
     /** More parts than this is not a round. */
     private const MAX_PARTS = 40;
@@ -65,17 +76,39 @@ class CoachUploadController extends Controller
             if (count(File::files($dir)) < $parts) {
                 return response()->json(['status' => 'part', 'part' => $part, 'parts' => $parts]);
             }
+        }
+
+        // A free measuring slot, or come back shortly. The part that completed a multi-part round is
+        // dropped when busy, so the retry of that same part completes it again; the others stay.
+        $slot = null;
+        for ($i = 0; $i < self::MEASURING_AT_ONCE && $slot === null; $i++) {
+            $lock = Cache::lock("coach-measuring:{$i}", 120);
+            $slot = $lock->get() ? $lock : null;
+        }
+        if ($slot === null) {
+            if ($parts > 1) {
+                File::delete(storage_path("app/coach-parts/{$user->id}/{$match}/{$part}"));
+            }
+
+            return response()->json(['status' => 'busy', 'retryAfter' => self::RETRY_SECONDS], 429);
+        }
+
+        if ($parts > 1) {
             $body = implode('', array_map(fn ($n) => File::get("{$dir}/{$n}"), range(1, $parts)));
             File::deleteDirectory($dir);
         }
 
-        self::roomToMeasure();
-        $raw = @gzdecode($body);
-        if ($raw === false || $raw === '') {
-            return response()->json(['status' => 'rejected', 'reason' => 'Not readable gzip.'], 422);
-        }
+        try {
+            self::roomToMeasure();
+            $raw = @gzdecode($body);
+            if ($raw === false || $raw === '') {
+                return response()->json(['status' => 'rejected', 'reason' => 'Not readable gzip.'], 422);
+            }
 
-        $result = $ingest->ingestRound($user, $raw);
+            $result = $ingest->ingestRound($user, $raw);
+        } finally {
+            $slot->release();
+        }
 
         // The archive's own lobby, as wow:sync gives it, so a shuffle groups exactly as on the PC.
         $lobby = (string) $request->header('X-Lobby', '');

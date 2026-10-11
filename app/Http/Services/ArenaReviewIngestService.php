@@ -125,7 +125,7 @@ class ArenaReviewIngestService
         // takes about a second a character, which a page must never wait on).
         $players = array_column($derived['analysis']['players'] ?? [], 'name');
         if ($players !== [] && config('services.battlenet.client_id')) {
-            FetchPlayerExperience::dispatch($players, $user->id);
+            FetchPlayerExperience::dispatch($players, $user->id)->delay(now()->addSeconds(FetchPlayerExperience::DELAY_SECONDS));
         }
 
         return [

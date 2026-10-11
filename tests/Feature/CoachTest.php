@@ -73,6 +73,35 @@ class CoachTest extends TestCase
         $this->assertDirectoryDoesNotExist(storage_path("app/coach-parts/{$user->id}/".str_repeat('a', 32)));
     }
 
+    public function test_a_busy_server_asks_for_the_last_part_again_and_the_round_still_arrives_whole(): void
+    {
+        $user = User::factory()->create();
+        $key = $user->issueCoachToken();
+        $raw = str_repeat("10/3/2026 12:18:27.62810  SPELL_CAST_SUCCESS,a,b\n", 2000);
+        $gz = gzencode($raw);
+        [$one, $two] = str_split($gz, (int) ceil(strlen($gz) / 2));
+
+        $ingest = Mockery::mock(ArenaReviewIngestService::class);
+        $ingest->shouldReceive('ingestRound')->once()->withArgs(fn ($u, $text) => $text === $raw)
+            ->andReturn(['status' => 'stored', 'matchId' => str_repeat('b', 32), 'lobbyId' => str_repeat('b', 32)]);
+        $this->app->instance(ArenaReviewIngestService::class, $ingest);
+        $send = fn ($body, $part) => $this->call('POST', '/api/coach/round', [], [], [], [
+            'HTTP_AUTHORIZATION' => 'Bearer '.$key, 'HTTP_X_MATCH' => str_repeat('b', 32),
+            'HTTP_X_PART' => $part, 'HTTP_X_PARTS' => 2, 'CONTENT_TYPE' => 'application/gzip', 'HTTP_ACCEPT' => 'application/json',
+        ], $body);
+
+        // Every measuring slot taken by other players' rounds.
+        $held = array_map(fn ($i) => tap(\Illuminate\Support\Facades\Cache::lock("coach-measuring:{$i}", 120))->get(), range(0, 2));
+
+        $send($one, 1)->assertOk()->assertJson(['status' => 'part']);
+        $send($two, 2)->assertStatus(429)->assertJson(['status' => 'busy', 'retryAfter' => 10]);
+
+        foreach ($held as $lock) {
+            $lock->release();
+        }
+        $send($two, 2)->assertOk()->assertJson(['status' => 'stored']);
+    }
+
     public function test_finishing_a_batch_builds_the_pages_in_the_background(): void
     {
         Queue::fake();
@@ -277,5 +306,32 @@ class CoachTest extends TestCase
         } finally {
             $had === null ? @unlink($path) : file_put_contents($path, $had);
         }
+    }
+
+    public function test_a_player_can_keep_their_games_out_of_the_shared_averages(): void
+    {
+        Queue::fake();
+        $in = User::factory()->create();
+        $out = User::factory()->create();
+        foreach ([$in, $out] as $i => $user) {
+            \App\Models\ArenaRound::create([
+                'user_id' => $user->id, 'match_id' => 'm'.$i, 'lobby_id' => 'm'.$i, 'roster_key' => 'r'.$i,
+                'bracket' => '3v3', 'played_at' => now(), 'payload' => ['metadata' => [], 'analysis' => ['version' => 1]],
+            ]);
+        }
+
+        $this->actingAs($out)->get('/wow/coach')->assertOk()->assertSee('Yours are counted.');
+        $this->actingAs($out)->post('/wow/coach/pool', ['share' => '0'])->assertRedirect(route('coach'));
+        $this->assertNotNull($out->fresh()->pool_opt_out_at);
+        $this->actingAs($out)->get('/wow/coach')->assertSee('Yours are not counted.')->assertSee('Count mine again');
+        Queue::assertPushed(\App\Jobs\RefreshPopulationNorms::class);
+
+        // The export never reads an opted-out player's rounds: only one of the two is even looked at.
+        $file = storage_path('framework/testing-pool.jsonl.gz');
+        $this->artisan('wow:pool-export', ['--out' => $file])->expectsOutputToContain('1 round(s) measured at an older version')->assertSuccessful();
+        @unlink($file);
+
+        $this->actingAs($out)->post('/wow/coach/pool', ['share' => '1']);
+        $this->assertNull($out->fresh()->pool_opt_out_at);
     }
 }

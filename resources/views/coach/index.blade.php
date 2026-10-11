@@ -159,6 +159,25 @@
                     <button type="submit" class="btn-secondary text-[13px]">{{ $hasKey ? 'Make a new key' : 'Make a key' }}</button>
                 </form>
             </div>
+
+            {{-- The shared averages, and the way out of them (2026-10-12). --}}
+            <div id="privacy" class="linear-card p-4 flex flex-col sm:flex-row sm:items-center gap-3">
+                <div class="flex-1">
+                    <p class="text-[14px] text-ink font-bold">Your games in the shared averages</p>
+                    <p class="text-[13px] text-ink-muted">
+                        Your games are only shown to you. Unless you opt out, they're also counted, without
+                        any names, in the averages every player is compared with (damage per spec, how often
+                        a go kills, and so on).
+                        <span class="text-ink">{{ $pooled ? 'Yours are counted.' : 'Yours are not counted.' }}</span>
+                    </p>
+                    @if (session('pool_status'))<p class="text-[13px] text-emerald-300 mt-1">{{ session('pool_status') }}</p>@endif
+                </div>
+                <form method="POST" action="{{ route('coach.pool') }}">
+                    @csrf
+                    <input type="hidden" name="share" value="{{ $pooled ? '0' : '1' }}">
+                    <button type="submit" class="btn-secondary text-[13px]">{{ $pooled ? 'Leave mine out' : 'Count mine again' }}</button>
+                </form>
+            </div>
         </div>
     </div>
 </div>

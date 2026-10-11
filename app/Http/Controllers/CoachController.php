@@ -49,6 +49,7 @@ class CoachController extends Controller
             'hasKey' => $user->coach_token_at !== null,
             'keyMadeAt' => $user->coach_token_at,
             'newKey' => session('coach_key'),
+            'pooled' => $user->pool_opt_out_at === null,
         ]);
     }
 
@@ -59,6 +60,21 @@ class CoachController extends Controller
         abort_unless(File::exists($path), 404);
 
         return response(File::get($path), 200, ['Content-Type' => 'text/html; charset=UTF-8', 'Cache-Control' => 'private, no-cache']);
+    }
+
+    /**
+     * In or out of the shared averages (2026-10-12). Out takes effect at the next rebuild of the
+     * norms, a couple of minutes later. The averages already published are totals with nobody in them.
+     */
+    public function pool(Request $request)
+    {
+        $user = $request->user();
+        $user->forceFill(['pool_opt_out_at' => $request->boolean('share') ? null : now()])->save();
+        \App\Jobs\RefreshPopulationNorms::dispatch()->delay(now()->addSeconds(\App\Jobs\RefreshPopulationNorms::DELAY_SECONDS));
+
+        return redirect()->route('coach')->with('pool_status', $user->pool_opt_out_at
+            ? 'Done. Your games are out of the shared averages.'
+            : 'Done. Your games count towards the shared averages again.');
     }
 
     /** A new key for the desktop app, shown once; it replaces any earlier key. */

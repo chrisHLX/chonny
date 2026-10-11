@@ -38,7 +38,10 @@ class ExportPopulationPool extends Command
         $written = 0;
         $older = 0;
 
-        ArenaRound::query()->orderBy('id')->chunkById(25, function ($rounds) use ($gz, &$seen, &$written, &$older) {
+        // Players who opted out on Your games (users.pool_opt_out_at) are left out entirely.
+        $optedOut = \App\Models\User::whereNotNull('pool_opt_out_at')->pluck('id')->all();
+
+        ArenaRound::query()->whereNotIn('user_id', $optedOut)->orderBy('id')->chunkById(25, function ($rounds) use ($gz, &$seen, &$written, &$older) {
             foreach ($rounds as $r) {
                 $a = $r->payload['analysis'] ?? null;
                 $meta = $r->payload['metadata'] ?? null;

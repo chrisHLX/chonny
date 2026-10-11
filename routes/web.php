@@ -198,6 +198,7 @@ Route::prefix('wow')->group(function () {
     Route::get('/coach/page/{file}', [\App\Http\Controllers\CoachController::class, 'page'])
         ->where('file', '[a-z0-9-]+\.html')->middleware('auth')->name('coach.page');
     Route::post('/coach/key', [\App\Http\Controllers\CoachController::class, 'key'])->middleware('auth')->name('coach.key');
+    Route::post('/coach/pool', [\App\Http\Controllers\CoachController::class, 'pool'])->middleware('auth')->name('coach.pool');
     // The desktop app's download: unlisted while two players test it. See DesktopAppController.
     // The desktop app (2026-10-11): a public download page and download (the app does nothing until
     // it is connected to an account), and connecting it from the browser. See AppDownloadController.
