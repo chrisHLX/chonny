@@ -29,7 +29,7 @@ internal sealed class SettingsForm : Form
         StartPosition = FormStartPosition.CenterParent;
         FormBorderStyle = FormBorderStyle.FixedDialog;
         MaximizeBox = MinimizeBox = false;
-        ClientSize = new Size(720, 420);
+        ClientSize = new Size(760, 480);
         Padding = new Padding(16);
 
         _server.Text = settings.ServerUrl;
@@ -45,7 +45,14 @@ internal sealed class SettingsForm : Form
         grid.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100));
         grid.ColumnStyles.Add(new ColumnStyle(SizeType.AutoSize));
 
-        Row(grid, "Website key", _key, null, "Make one on mindcollector.com, under Your games > Upload. Paste it here.");
+        // Connect is the way in (2026-10-11): the browser does the rest, and the key below fills itself.
+        var connect = Theme.Button(string.IsNullOrEmpty(settings.Key) ? "Connect your account" : "Connect again", primary: string.IsNullOrEmpty(settings.Key));
+        connect.Margin = new Padding(0, 4, 0, 10);
+        connect.Click += (_, _) => { DialogResult = DialogResult.Retry; Close(); };
+        grid.Controls.Add(new Label { Text = "Account", AutoSize = true, Margin = new Padding(0, 14, 8, 0) });
+        grid.Controls.Add(connect);
+        grid.Controls.Add(new Label());
+        Row(grid, "Website key", _key, null, "Filled in by Connect. A key from Your games > Upload on the website works too.");
         Row(grid, "WoW's Logs folder", _wow, Browse(_wow), "Where WoW writes WoWCombatLog-*.txt, usually World of Warcraft\\_retail_\\Logs.");
         Row(grid, "Move logs to", _move, Browse(_move), "Logs go here once every round in them is sent, so WoW's folder stays small.");
         grid.Controls.Add(new Label()); grid.Controls.Add(_moveLogs); grid.Controls.Add(new Label());
@@ -122,11 +129,7 @@ internal sealed class SettingsForm : Form
         _settings.MoveLogs = _moveLogs.Checked;
         _settings.Save();
 
-        using (var run = Registry.CurrentUser.OpenSubKey(RunKey, writable: true))
-        {
-            if (_startup.Checked) run?.SetValue(RunName, $"\"{Application.ExecutablePath}\" --minimized");
-            else run?.DeleteValue(RunName, throwOnMissingValue: false);
-        }
+        Installer.StartWithWindows(_startup.Checked);
 
         DialogResult = DialogResult.OK;
         Close();

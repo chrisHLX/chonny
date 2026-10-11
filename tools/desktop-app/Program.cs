@@ -10,15 +10,34 @@ internal static class Program
         if (args.Length >= 1 && args[0] == "--sync-once") return Diagnostics.SyncOnce(args);
         if (args.Length >= 3 && args[0] == "--install-addon") return Diagnostics.InstallAddon(args[2], replace: args.Contains("--replace"));
 
-        using var mutex = new Mutex(true, @"Local\MindCollectorDesktop", out var first);
+        // Opened from Downloads: install, open the installed copy, and leave (Installer). A development
+        // build (under bin) and a test run (MINDCOLLECTOR_DATA) never install themselves over the real one.
+        var testData = Environment.GetEnvironmentVariable("MINDCOLLECTOR_DATA");
+        var fromBuild = Environment.ProcessPath?.Contains(Path.DirectorySeparatorChar + "bin" + Path.DirectorySeparatorChar, StringComparison.OrdinalIgnoreCase) == true;
+        if (!fromBuild && testData == null && Installer.InstallIfNeeded()) return 0;
+
+        // One app per Windows user; a test run with its own data folder is its own app.
+        var name = @"Local\MindCollectorDesktop" + (testData == null ? "" : "-" + Convert.ToHexString(System.Security.Cryptography.SHA1.HashData(System.Text.Encoding.UTF8.GetBytes(testData)))[..12]);
+        using var mutex = new Mutex(true, name, out var first);
+        using var show = new EventWaitHandle(false, EventResetMode.AutoReset, name + "-show");
         if (!first)
         {
-            MessageBox.Show("MindCollector is already running. Look for it in the tray, by the clock.", "MindCollector");
+            // Already running (usually in the tray): bring its window up, as Spotify does, not a message.
+            show.Set();
             return 0;
         }
 
         ApplicationConfiguration.Initialize();
-        Application.Run(new MainForm(startHidden: args.Contains("--minimized")));
+        var form = new MainForm(startHidden: args.Contains("--minimized"), firstRun: args.Contains("--first-run"));
+        var watcher = new Thread(() =>
+        {
+            while (show.WaitOne())
+            {
+                try { form.BeginInvoke(form.ShowWindow); } catch { }
+            }
+        }) { IsBackground = true, Name = "show-window" };
+        watcher.Start();
+        Application.Run(form);
         return 0;
     }
 }

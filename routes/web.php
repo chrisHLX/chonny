@@ -199,7 +199,12 @@ Route::prefix('wow')->group(function () {
         ->where('file', '[a-z0-9-]+\.html')->middleware('auth')->name('coach.page');
     Route::post('/coach/key', [\App\Http\Controllers\CoachController::class, 'key'])->middleware('auth')->name('coach.key');
     // The desktop app's download: unlisted while two players test it. See DesktopAppController.
-    Route::get('/coach/app', [\App\Http\Controllers\DesktopAppController::class, 'download'])->middleware('auth')->name('coach.app');
+    // The desktop app (2026-10-11): a public download page and download (the app does nothing until
+    // it is connected to an account), and connecting it from the browser. See AppDownloadController.
+    Route::get('/coach/app', [\App\Http\Controllers\DesktopAppController::class, 'download'])->middleware('throttle:20,1')->name('coach.app');
+    Route::get('/app', [\App\Http\Controllers\AppDownloadController::class, 'page'])->name('app');
+    Route::get('/app/connect', [\App\Http\Controllers\AppDownloadController::class, 'connect'])->middleware('auth')->name('app.connect');
+    Route::post('/app/connect', [\App\Http\Controllers\AppDownloadController::class, 'approve'])->middleware(['auth', 'throttle:10,1'])->name('app.connect.approve');
     Route::get('/spells', SpellExplorer::class)->name('spells.explore');
     Route::get('/spell-finder', \App\Livewire\SpellFinder::class)->name('spell-finder');
     // One permanent, linkable page per spell. Renders the same <x-spells.detail> the site-wide

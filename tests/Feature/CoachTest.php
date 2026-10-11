@@ -146,22 +146,23 @@ class CoachTest extends TestCase
         Queue::assertPushed(BuildCoachPages::class, fn ($job) => $job->userId === $user->id);
     }
 
-    public function test_the_desktop_app_downloads_only_for_a_signed_in_player(): void
+    public function test_anyone_can_download_the_desktop_app_from_its_page(): void
     {
         $path = \App\Http\Controllers\DesktopAppController::path();
         $existed = is_file($path);
         $original = $existed ? file_get_contents($path) : null;
 
         try {
-            $this->get('/wow/coach/app')->assertRedirect(route('login'));
-
+            // Public since 2026-10-11: the app does nothing until it is connected to an account.
             if (! $existed) {
-                $this->actingAs(User::factory()->create())->get('/wow/coach/app')->assertNotFound();
+                $this->get('/wow/coach/app')->assertNotFound();
+                $this->get('/wow/app')->assertOk()->assertSee("The download isn't up yet", false);
                 File::ensureDirectoryExists(dirname($path));
                 file_put_contents($path, 'MZ test exe');
             }
 
-            $res = $this->actingAs(User::factory()->create())->get('/wow/coach/app')->assertOk();
+            $this->get('/wow/app')->assertOk()->assertSee('Download for Windows')->assertSee('Run anyway');
+            $res = $this->get('/wow/coach/app')->assertOk();
             $this->assertStringContainsString('MindCollector.exe', $res->headers->get('Content-Disposition'));
         } finally {
             if (! $existed) {
@@ -206,5 +207,26 @@ class CoachTest extends TestCase
         $this->flushHeaders()->getJson('/api/coach/index')->assertStatus(401);
         $this->withHeader('Authorization', 'Bearer mc_wrong')->get('/api/coach/page/abc123.html')->assertStatus(401);
         $this->withHeader('Authorization', "Bearer {$ownerKey}")->get('/api/coach/page/..%2Findex.json')->assertNotFound();
+    }
+
+    public function test_the_app_connects_through_the_browser_and_receives_its_key_once(): void
+    {
+        $code = str_repeat('ab12', 8);
+        $user = User::factory()->create();
+
+        // Not approved yet: the app keeps waiting.
+        $this->getJson("/api/coach/connect/{$code}")->assertStatus(202)->assertJson(['status' => 'waiting']);
+
+        // A guest is sent to sign in first, and comes back to the same page after.
+        $this->get("/wow/app/connect?code={$code}")->assertRedirect(route('login'));
+        $this->actingAs($user)->get("/wow/app/connect?code={$code}")->assertOk()->assertSee('Connect the app on this PC?');
+        $this->actingAs($user)->get('/wow/app/connect?code=nonsense')->assertOk()->assertSee('This link has expired');
+
+        $this->actingAs($user)->post('/wow/app/connect', ['code' => $code])->assertOk()->assertSee("You're connected", false);
+
+        $key = $this->getJson("/api/coach/connect/{$code}")->assertOk()->assertJson(['status' => 'connected'])->json('key');
+        $this->assertSame($user->id, User::forCoachToken($key)?->id, 'the key belongs to the player who approved it');
+        $this->getJson("/api/coach/connect/{$code}")->assertStatus(202);   // handed out once
+        $this->getJson('/api/coach/connect/not-a-code')->assertNotFound();
     }
 }

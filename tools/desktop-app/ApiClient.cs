@@ -31,7 +31,7 @@ public sealed class ApiClient : IDisposable
         _http = new HttpClient { Timeout = TimeSpan.FromMinutes(3) };
         _http.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", key);
         _http.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-        _http.DefaultRequestHeaders.UserAgent.ParseAdd("MindCollector-Desktop/0.2");
+        _http.DefaultRequestHeaders.UserAgent.ParseAdd($"MindCollector-Desktop/{typeof(ApiClient).Assembly.GetName().Version?.ToString(2) ?? "0"}");
     }
 
     public sealed class KeyRejectedException() : Exception("The website did not accept this key. Make a new one on mindcollector.com/wow/coach.");
@@ -94,6 +94,20 @@ public sealed class ApiClient : IDisposable
         res.EnsureSuccessStatusCode();
         using var doc = JsonDocument.Parse(await res.Content.ReadAsStringAsync(ct));
         return doc.RootElement.TryGetProperty("assembled", out var a) ? a.GetInt32() : 0;
+    }
+
+    /// <summary>
+    /// The key the player approved in the browser for this code (AppDownloadController), or null while
+    /// they have not yet. Needs no key itself: this is how the app gets one.
+    /// </summary>
+    public static async Task<string?> PickUpKeyAsync(string serverUrl, string code, CancellationToken ct)
+    {
+        using var http = new HttpClient { Timeout = TimeSpan.FromSeconds(20) };
+        http.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+        using var res = await http.GetAsync($"{serverUrl.TrimEnd('/')}/api/coach/connect/{code}", ct);
+        if (res.StatusCode != HttpStatusCode.OK) return null;
+        using var doc = JsonDocument.Parse(await res.Content.ReadAsStringAsync(ct));
+        return doc.RootElement.TryGetProperty("key", out var key) ? key.GetString() : null;
     }
 
     public async Task<int> VersionAsync(CancellationToken ct)

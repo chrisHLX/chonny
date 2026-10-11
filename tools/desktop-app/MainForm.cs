@@ -28,6 +28,7 @@ internal sealed class MainForm : Form
     private readonly List<string> _activity = [];
     private readonly string _activityFile = Path.Combine(AppSettings.Dir, "activity.log");
     private readonly bool _startHidden;
+    private readonly bool _firstRun;
 
     private JsonDocument? _index;
     private string _tab = "Games";
@@ -35,9 +36,10 @@ internal sealed class MainForm : Form
     private bool _exiting;
     private int _refreshesLeft;
 
-    public MainForm(bool startHidden)
+    public MainForm(bool startHidden, bool firstRun = false)
     {
         _startHidden = startHidden;
+        _firstRun = firstRun;
         _syncer = new Syncer(_settings, Log);
 
         Text = "MindCollector";
@@ -171,7 +173,7 @@ internal sealed class MainForm : Form
         _tray.DoubleClick += (_, _) => ShowWindow();
     }
 
-    private void ShowWindow()
+    public void ShowWindow()
     {
         Show();
         WindowState = FormWindowState.Normal;
@@ -193,22 +195,135 @@ internal sealed class MainForm : Form
         _view.CoreWebView2.Settings.AreDevToolsEnabled = false;
         _view.CoreWebView2.NavigationStarting += OnNavigationStarting;
         _view.CoreWebView2.NewWindowRequested += (_, e) => { e.Handled = true; OpenUrl(e.Uri); };
-        Blank("Pick a game to see who you played, how each death happened, and what to look at.");
-
         CheckAddon();
 
         if (string.IsNullOrEmpty(_settings.Key))
         {
-            SetStatus("Add your website key in Settings to start.");
-            OpenSettings();
+            // A new player: one button, and the browser does the rest (ConnectAsync).
+            FillList();
+            ShowWelcome();
+            SetStatus("Not connected yet. Click Connect to start.");
+            if (_firstRun) _ = ConnectAsync();   // just installed: straight to the browser
         }
         else
         {
-            SetStatus($"Watching {_settings.WowLogsDir ?? "(no WoW Logs folder set)"}");
+            Blank("Pick a game to see who you played, how each death happened, and what to look at.");
+            SetStatus(WatchingText());
             await RefreshIndexAsync();
         }
 
         _timer.Start();
+    }
+
+    private string WatchingText() => _settings.WowLogsDir == null
+        ? "Couldn't find World of Warcraft. Set its folder in Settings."
+        : "Watching your WoW logs for arena games";
+
+    // ------------------------------------------------------------------ connecting (2026-10-11)
+
+    private CancellationTokenSource? _connecting;
+    private string? _connectUrl;
+
+    /// <summary>
+    /// Connects the app to the player's account without a key to copy: opens /wow/app/connect with a
+    /// fresh random code, where they sign in (or sign up) and click Connect, and picks the key up from
+    /// the website as soon as they do (AppDownloadController). Gives up after ten minutes.
+    /// </summary>
+    private async Task ConnectAsync()
+    {
+        if (_connecting != null)
+        {
+            if (_connectUrl != null) OpenUrl(_connectUrl);
+            return;
+        }
+        var code = Convert.ToHexString(System.Security.Cryptography.RandomNumberGenerator.GetBytes(16)).ToLowerInvariant();
+        _connectUrl = $"{_settings.ServerUrl}/wow/app/connect?code={code}";
+        _connecting = new CancellationTokenSource(TimeSpan.FromMinutes(10));
+        var ct = _connecting.Token;
+        // A test run (its own data folder) can leave the browser shut and approve from the log.
+        if (Environment.GetEnvironmentVariable("MINDCOLLECTOR_DATA") != null && Environment.GetEnvironmentVariable("MINDCOLLECTOR_NO_BROWSER") == "1")
+            Log($"Connect at {_connectUrl}");
+        else
+            OpenUrl(_connectUrl);
+        ShowWelcome();
+        SetStatus("Waiting for you to click Connect in your browser…");
+        try
+        {
+            while (true)
+            {
+                await Task.Delay(TimeSpan.FromSeconds(2), ct);
+                string? key = null;
+                try { key = await ApiClient.PickUpKeyAsync(_settings.ServerUrl, code, ct); }
+                catch (Exception e) when (e is not OperationCanceledException) { /* offline for a moment: keep waiting */ }
+                if (key == null) continue;
+
+                _settings.Key = key;
+                _settings.Save();
+                Log("Connected to your account.");
+                _tray.ShowBalloonTip(4000, "Connected", "MindCollector will send your arena games as you play.", ToolTipIcon.Info);
+                SetStatus(WatchingText());
+                _connecting = null;
+                ShowWelcome();
+                await RefreshIndexAsync();
+                ShowWindow();
+                return;
+            }
+        }
+        catch (OperationCanceledException)
+        {
+            SetStatus("Connecting took too long. Click Connect to try again.");
+        }
+        finally
+        {
+            _connecting?.Dispose();
+            _connecting = null;
+        }
+        ShowWelcome();
+    }
+
+    /// <summary>The page shown before there are games: connect, then what to do next.</summary>
+    private void ShowWelcome()
+    {
+        string title, body, button = "";
+        if (string.IsNullOrEmpty(_settings.Key) && _connecting != null)
+        {
+            title = "Finish in your browser";
+            body = "Sign in (or make an account) on the page that opened, then click Connect. This updates by itself.";
+            button = "<a class=\"link\" href=\"mc-app://open\">The page didn't open? Open it again</a>";
+        }
+        else if (string.IsNullOrEmpty(_settings.Key))
+        {
+            title = "Welcome to MindCollector";
+            body = "Connect the app to your account, and every arena game you play shows up here with a review, a minute after it ends.";
+            button = "<a class=\"btn\" href=\"mc-app://connect\">Connect your account</a>";
+        }
+        else if (_settings.WowLogsDir == null)
+        {
+            title = "Where is World of Warcraft?";
+            body = "The app couldn't find WoW on this PC. Pick its Logs folder in Settings (World of Warcraft\\_retail_\\Logs).";
+            button = "<a class=\"btn\" href=\"mc-app://settings\">Open Settings</a>";
+        }
+        else
+        {
+            title = "You're all set";
+            body = Syncer.WowRunning()
+                ? "WoW is open, so type /reload once to load the MindCollector addon. Then play arena: each game shows up here about a minute after it ends."
+                : "Play arena: each game shows up here about a minute after it ends. Keep the app running in the tray while you play.";
+        }
+        _view.CoreWebView2?.NavigateToString($$"""
+            <!doctype html><html><head><meta charset="utf-8"><style>
+            html,body{margin:0;height:100%;background:#121212;color:#fff;font-family:'Segoe UI',Arial,sans-serif}
+            .wrap{height:100%;display:flex;align-items:center;justify-content:center;background:linear-gradient(180deg,#3a2d12 0,#1e1a12 240px,#121212 520px)}
+            .card{max-width:520px;text-align:center;padding:24px}
+            h1{font-size:34px;font-weight:800;letter-spacing:-.02em;margin:0 0 14px}
+            p{font-size:15px;line-height:1.55;color:#b3b3b3;margin:0 0 28px}
+            .btn{display:inline-block;background:#C8952C;color:#000;font-weight:700;font-size:15px;padding:14px 34px;border-radius:999px;text-decoration:none}
+            .btn:hover{background:#E8B84B;transform:scale(1.03)}
+            .link{color:#b3b3b3;font-size:14px}
+            </style></head><body><div class="wrap"><div class="card">
+            <h1>{{System.Net.WebUtility.HtmlEncode(title)}}</h1><p>{{System.Net.WebUtility.HtmlEncode(body)}}</p>{{button}}
+            </div></div></body></html>
+            """);
     }
 
     private async Task TickAsync()
@@ -223,6 +338,11 @@ internal sealed class MainForm : Form
 
     private async Task SyncAsync(bool manual)
     {
+        if (string.IsNullOrEmpty(_settings.Key))
+        {
+            if (manual) await ConnectAsync();   // "Sync now" before connecting: connect first
+            return;
+        }
         if (_busy) return;
         _busy = true;
         try
@@ -237,7 +357,7 @@ internal sealed class MainForm : Form
             }
             SetStatus(result.Failed > 0
                 ? $"{result.Failed} round(s) could not be sent; will try again. See Activity."
-                : $"Watching {_settings.WowLogsDir}");
+                : WatchingText());
         }
         catch (ApiClient.KeyRejectedException e)
         {
@@ -265,6 +385,10 @@ internal sealed class MainForm : Form
             _index?.Dispose();
             _index = fresh;
             FillList();
+            // No games yet: say what to do next. The first time there are games, open the newest.
+            var hasGames = _list.Items.OfType<LibraryRow>().Any(r => r.File != null);
+            if (!hasGames && _list.SelectedFile == null) ShowWelcome();
+            else if (hasGames && !_pageShown && _tab == "Games") _list.SelectedIndex = 0;
         }
         catch (ApiClient.KeyRejectedException e) { SetStatus(e.Message); }
         catch (Exception e) { Log($"Could not load your games: {e.Message}"); }
@@ -353,8 +477,11 @@ internal sealed class MainForm : Form
 
     // ------------------------------------------------------------------ pages
 
+    private bool _pageShown;
+
     private async Task ShowPageAsync(string file)
     {
+        _pageShown = true;
         if (string.IsNullOrEmpty(file) || string.IsNullOrEmpty(_settings.Key) || _view.CoreWebView2 == null) return;
         try
         {
@@ -377,6 +504,19 @@ internal sealed class MainForm : Form
     {
         if (!Uri.TryCreate(e.Uri, UriKind.Absolute, out var uri) || uri.Scheme is "data" or "about") return;
 
+        // The welcome page's buttons (ShowWelcome).
+        if (uri.Scheme == "mc-app")
+        {
+            e.Cancel = true;
+            switch (uri.Host)
+            {
+                case "connect": await ConnectAsync(); break;
+                case "open": if (_connectUrl != null) OpenUrl(_connectUrl); break;
+                case "settings": OpenSettings(); break;
+            }
+            return;
+        }
+
         e.Cancel = true;
         var site = new Uri(_settings.ServerUrl);
         if (uri.Host == site.Host && uri.AbsolutePath.EndsWith(".html", StringComparison.OrdinalIgnoreCase) && !uri.AbsolutePath.StartsWith("/storage/"))
@@ -395,9 +535,15 @@ internal sealed class MainForm : Form
     private void OpenSettings()
     {
         using var f = new SettingsForm(_settings);
-        if (f.ShowDialog(this) == DialogResult.OK)
+        var result = f.ShowDialog(this);
+        if (result == DialogResult.Retry)   // Settings' Connect button
         {
-            SetStatus($"Watching {_settings.WowLogsDir}");
+            _ = ConnectAsync();
+            return;
+        }
+        if (result == DialogResult.OK)
+        {
+            SetStatus(WatchingText());
             CheckAddon();
             _ = RefreshIndexAsync();
         }

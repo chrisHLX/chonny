@@ -34,11 +34,36 @@ is, for the archive and the research tools.
 Not in this version: the live game column, notes and the Ctrl+Shift+M hotkey (the PowerShell app
 has them), and linking one game logged by two players.
 
-## Getting it
+## Getting it (2026-10-11): one file, one click
 
-Signed-in players download it from **mindcollector.com/wow/coach/app** (`DesktopAppController`).
-The link is unlisted while two players test it. The exe is not in git; after `dotnet publish`, copy
-`publish\MindCollector.exe` to the server's `storage/app/desktop/MindCollector.exe`.
+A new player is sent to **mindcollector.com/wow/app** (public, unlisted): what the app does and three
+steps. From there:
+
+1. **Download** (`/wow/coach/app`, public: the app does nothing until it is connected to an account).
+   The exe is not code-signed, so SmartScreen warns; the page says to click More info, Run anyway.
+2. **First run installs it** (`Installer`): copies itself to `%LOCALAPPDATA%\Programs\MindCollector`,
+   adds Start menu and desktop shortcuts, starts with Windows in the tray (Settings turns it off), and
+   opens the installed copy with `--first-run`. Opening a newer download later replaces the installed
+   copy the same way, closing the running one first: that is how an update installs.
+3. **Connect** (`MainForm.ConnectAsync`): on `--first-run` the app opens `/wow/app/connect?code=...`
+   with a fresh random code. The player signs in or makes an account (the intended URL brings them
+   back), clicks Connect, and the app picks its key up from `/api/coach/connect/{code}` within two
+   seconds (`AppDownloadController`). No key to copy; the Connect button in the app and in Settings
+   starts the same flow again.
+4. **WoW is found** from Battle.net's registry entry (`WowRegistry`), then the usual folders; the addon
+   installs beside it.
+
+Opening the app while it is in the tray brings its window up instead of a message.
+
+Checked end to end on 2026-10-11 against a local server with a throwaway account: first run, Connect,
+approval, the key picked up, one real round sent, measured and built, and the game in the library.
+
+**Testing without touching the real install:** set `MINDCOLLECTOR_DATA` to a folder (its own data,
+its own single-instance lock, and no self-install); add `MINDCOLLECTOR_NO_BROWSER=1` to have Connect
+write its link to the activity log instead of opening a browser.
+
+The exe is not in git. After `dotnet publish`, copy `publish\MindCollector.exe` to the server's
+`storage/app/desktop/MindCollector.exe` (DEPLOY.md, "Uploading a file").
 
 ## Building
 

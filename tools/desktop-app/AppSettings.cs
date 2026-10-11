@@ -80,6 +80,17 @@ public sealed class AppSettings
     /// <summary>WoW's usual install places; the first that exists. The player can change it in Settings.</summary>
     private static string? DetectWowLogs()
     {
+        // Where Battle.net says WoW is (2026-10-11): finds a game on any drive, not only the usual
+        // folders below. The Logs folder appears the first time WoW writes a log, so it is made here
+        // when missing; WoW writes into it as it would have.
+        foreach (var retail in WowRegistry.RetailFolders())
+        {
+            if (!Directory.Exists(retail)) continue;
+            var logs = Path.Combine(retail, "Logs");
+            try { Directory.CreateDirectory(logs); } catch { continue; }
+            return logs;
+        }
+
         string[] roots =
         [
             @"C:\Program Files (x86)\World of Warcraft",
@@ -95,6 +106,28 @@ public sealed class AppSettings
             if (Directory.Exists(logs)) return logs;
         }
         return null;
+    }
+}
+
+/// <summary>WoW's _retail_ folder as Battle.net records it in the registry.</summary>
+internal static class WowRegistry
+{
+    public static IEnumerable<string> RetailFolders()
+    {
+        var values = new List<string?>();
+        try
+        {
+            using var lm = Microsoft.Win32.RegistryKey.OpenBaseKey(Microsoft.Win32.RegistryHive.LocalMachine, Microsoft.Win32.RegistryView.Registry32);
+            values.Add(lm.OpenSubKey(@"SOFTWARE\Blizzard Entertainment\World of Warcraft")?.GetValue("InstallPath") as string);
+            values.Add(lm.OpenSubKey(@"SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\World of Warcraft")?.GetValue("InstallLocation") as string);
+        }
+        catch { }
+        foreach (var v in values)
+        {
+            if (string.IsNullOrWhiteSpace(v)) continue;
+            var path = v.Trim().TrimEnd('\\', '/');
+            yield return Path.GetFileName(path).Equals("_retail_", StringComparison.OrdinalIgnoreCase) ? path : Path.Combine(path, "_retail_");
+        }
     }
 }
 

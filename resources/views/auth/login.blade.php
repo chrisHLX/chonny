@@ -42,6 +42,12 @@
         </div>
     </form>
 
+    {{-- A new player sent here by the app's Connect button has no account yet (2026-10-11). The
+         intended URL survives the detour, so signing up brings them back to the same place. --}}
+    <p class="mt-6 pt-5 border-t border-line text-center text-[13.5px] text-ink-muted">
+        New here? <a href="{{ route('register') }}" class="text-gold font-semibold hover:text-gold-light">Make an account</a>
+    </p>
+
     <script src="https://www.google.com/recaptcha/api.js?render={{ config('services.recaptcha.site_key') }}"></script>
     <script>
         document.getElementById('login-form').addEventListener('submit', function (e) {

@@ -121,6 +121,17 @@
 
         {{-- Upload: in the browser (nothing to install), or from the desktop app with a key. --}}
         <div x-show="tab === 'upload'" x-cloak class="space-y-4">
+            {{-- The app first: for a new player it is the way in. --}}
+            <a href="{{ route('app') }}" class="linear-card p-5 flex items-center gap-4 group">
+                <span class="w-11 h-11 rounded-full bg-gold text-black flex items-center justify-center shrink-0 group-hover:scale-105 transition">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4v12m0 0l-5-5m5 5l5-5M5 20h14"/></svg>
+                </span>
+                <span class="flex-1">
+                    <span class="block text-[15px] text-ink font-bold">Get the app for Windows</span>
+                    <span class="block text-[13px] text-ink-muted">It sends each game as you play, so you never upload by hand.</span>
+                </span>
+            </a>
+
             <livewire:games-upload/>
 
             @if ($newKey)
@@ -131,14 +142,15 @@
                 </div>
             @endif
 
+
             <div class="linear-card p-4 flex flex-col sm:flex-row sm:items-center gap-3">
                 <div class="flex-1">
-                    <p class="text-[14px] text-ink font-bold">Or let the app send them</p>
+                    <p class="text-[14px] text-ink font-bold">Or make a key by hand</p>
                     <p class="text-[13px] text-ink-muted">
                         @if ($hasKey)
                             You made a key {{ \Illuminate\Support\Carbon::parse($keyMadeAt)->diffForHumans() }}. Making a new one replaces it.
                         @else
-                            Once it has your key, the MindCollector app sends each game when it ends.
+                            The app connects itself when you click Connect in it. A key here is only for setting it up by hand.
                         @endif
                     </p>
                 </div>

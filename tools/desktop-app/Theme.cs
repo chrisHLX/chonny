@@ -39,8 +39,11 @@ internal static class Theme
 
     public static Icon AppIcon()
     {
+        // A downloaded exe has no .ico beside it, but the icon is built into the exe itself.
         var path = Path.Combine(AppContext.BaseDirectory, "mindcollector.ico");
-        return File.Exists(path) ? new Icon(path) : SystemIcons.Application;
+        if (File.Exists(path)) return new Icon(path);
+        try { if (Environment.ProcessPath is { } exe && Icon.ExtractAssociatedIcon(exe) is { } own) return own; } catch { }
+        return SystemIcons.Application;
     }
 
     public static GraphicsPath Rounded(Rectangle r, int radius)

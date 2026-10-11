@@ -35,7 +35,8 @@ public sealed class Syncer
     public async Task<PassResult> RunAsync(bool manual, CancellationToken ct)
     {
         var key = _settings.Key;
-        if (string.IsNullOrEmpty(key)) { _log("No website key yet: add it in Settings."); return new(0, 0, 0, false); }
+        // Not connected yet: nothing to send to, and nothing worth saying every ten seconds.
+        if (string.IsNullOrEmpty(key)) return new(0, 0, 0, false);
         if (string.IsNullOrEmpty(_settings.WowLogsDir) || !Directory.Exists(_settings.WowLogsDir))
         {
             _log("WoW's Logs folder was not found: set it in Settings.");
