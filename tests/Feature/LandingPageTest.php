@@ -58,7 +58,8 @@ test('a visitor gets the front page at the site root, not a redirect to the comp
         ->assertOk()
         ->assertSee('Every arena game you play, reviewed.')
         ->assertSee('Download for Windows')
-        ->assertSee('Example game')
+        ->assertSee('Real games, names hidden')
+        ->assertSee('How each death happened')
         ->assertSee('Build a 3v3 comp')
         ->assertSee('RMD into Jungle');
 

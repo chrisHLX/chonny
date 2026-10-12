@@ -20,6 +20,7 @@ heading. Rules are still cited by number and still mean the same rule.
 | `match-review-analysis.md` | current | The findings, dated, with the numbers each rests on: what reviews of the user's games found, and the corrections to them. Read before claiming how an ability is used or why games were won or lost. |
 | `match-review-tools.md` | current | Every research tool in `tools/match-review/`, what it answers, and the one-off scripts worth rewriting. Read before writing a new analysis script. |
 | `tools/log-manager/README.md` | current | The desktop app (MindCollector Logs): every page, where its files live, how it syncs. |
+| `tools/app-pictures/README.md` | current | The pictures of the app on the front page and `/wow/app`: real pages with every name swapped out, and the two checks before committing new ones. |
 | `guides-from-play.md` | current | How played games become guides, and the level-of-play rule. Read before drafting a guide from match data. |
 | `addon-upgrades.md` | current | What Chriso wants next from the capture side. Wants, not design. |
 | `docs/reviews/` | history | One-off reviews of a session (2026-10-01: Disc with LFG partners). |

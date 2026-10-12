@@ -23,6 +23,8 @@
         </div>
     </section>
 
+    <x-app-showcase class="mt-8"/>
+
     <h2 class="text-[22px] font-bold text-ink mt-10 mb-4">Three steps</h2>
     <ol class="space-y-3">
         <li class="linear-card p-5 flex gap-4">

@@ -85,19 +85,6 @@ class Landing extends Component
         return ['games' => (int) ($n['games'] ?? 0), 'players' => (int) ($n['players'] ?? 0), 'specs' => count($n['specs'] ?? [])];
     }
 
-    /** The example game's spell icons, by name (null where the data has none: a plain square). */
-    #[Computed]
-    public function icons(): array
-    {
-        $names = ['Kill Command', 'Bloodshed', 'Chaos Bolt', 'Barbed Shot', 'Kill Shot', 'Icebound Fortitude', 'Anti-Magic Shell', 'Fear', 'Counter Shot', 'Pain Suppression'];
-
-        return \App\Models\Spell::query()
-            ->where('patch_id', \App\Models\Patch::where('is_current', true)->value('id'))
-            ->whereIn('name', $names)->whereNotNull('icon_name')
-            ->orderBy('is_passive')->get(['name', 'icon_name'])
-            ->unique('name')->mapWithKeys(fn ($s) => [$s->name => '/storage/spell-icons/'.$s->icon_name])->all();
-    }
-
     #[Computed]
     public function appAvailable(): bool
     {

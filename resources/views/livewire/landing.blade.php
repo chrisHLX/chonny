@@ -2,10 +2,6 @@
     $classColors = config('wow_classes.colors', []);
     $feed = $this->feed;
     $pool = $this->pool;
-    $icon = $this->icons;
-    $hunter = $classColors['hunter'] ?? '#AAD372';
-    $warlock = $classColors['warlock'] ?? '#8788EE';
-    $dk = $classColors['deathknight'] ?? ($classColors['death-knight'] ?? '#C41E3A');
     $download = $this->appAvailable ? route('coach.app') : route('app');
 @endphp
 
@@ -33,90 +29,8 @@
         </p>
     </section>
 
-    {{-- A replica of the app, with a made-up game (a real game's page names real players). --}}
-    <section class="mt-8" aria-label="What the app looks like">
-        <div class="rounded-xl bg-frame p-2 shadow-2xl shadow-black/60 ring-1 ring-white/5">
-            <div class="flex items-center gap-2 px-2 pb-2 text-[12px] text-ink-muted">
-                <span class="w-3 h-3 rounded-full bg-gold/80"></span> MindCollector
-                <span class="ml-auto text-ink-subtle">Example game</span>
-            </div>
-            <div class="flex gap-2 min-h-[420px]">
-                {{-- Left: navigation and the library --}}
-                <div class="hidden md:flex flex-col gap-2 w-64 shrink-0">
-                    <div class="rounded-lg bg-surface-0 p-3">
-                        <p class="text-[17px] font-bold px-1 pb-2"><span class="text-ink">Mind</span><span class="text-gold">Collector</span></p>
-                        @foreach (['Games', 'Improve', 'Comps', 'Classes'] as $i => $nav)
-                            <p class="relative px-3 py-2 rounded-md text-[13.5px] font-semibold {{ $i === 0 ? 'bg-surface-2 text-ink' : 'text-ink-muted' }}">
-                                @if ($i === 0)<span class="absolute left-0 top-2 bottom-2 w-[3px] rounded-full bg-gold"></span>@endif{{ $nav }}
-                            </p>
-                        @endforeach
-                    </div>
-                    <div class="flex-1 rounded-lg bg-surface-0 p-2">
-                        <p class="px-2 pt-1 pb-2 text-[14px] font-bold text-ink">Your games <span class="text-ink-muted font-semibold ml-1">24</span></p>
-                        @foreach ([
-                            ['3v3', 'Sat 14:32 · vs Death Knight, Warlock, Priest', 'Won', 1],
-                            ['Solo Shuffle', 'Sat 13:58', '4-2', 1],
-                            ['2v2', 'Sat 13:20 · vs Rogue, Druid', 'Lost', -1],
-                            ['3v3', 'Fri 22:11 · vs Warrior, Shaman, Paladin', 'Won', 1],
-                        ] as $i => [$bracket, $sub, $badge, $tone])
-                            <div class="relative flex items-center gap-2 px-3 py-2 rounded-md {{ $i === 0 ? 'bg-surface-3' : '' }}">
-                                @if ($i === 0)<span class="absolute left-0 top-3 bottom-3 w-[3px] rounded-full bg-gold"></span>@endif
-                                <div class="min-w-0">
-                                    <p class="text-[13px] font-semibold text-ink truncate">Your Hunter &middot; {{ $bracket }}</p>
-                                    <p class="text-[11.5px] text-ink-muted truncate">{{ $sub }}</p>
-                                </div>
-                                <span class="ml-auto shrink-0 text-[11px] font-bold px-2 py-0.5 rounded-full {{ $tone > 0 ? 'bg-emerald-500/15 text-emerald-300' : 'bg-red-500/15 text-red-300' }}">{{ $badge }}</span>
-                            </div>
-                        @endforeach
-                    </div>
-                </div>
-
-                {{-- Right: the game card --}}
-                <div class="flex-1 min-w-0 rounded-lg bg-surface-0 overflow-hidden">
-                    <div class="px-5 pt-6 pb-4 bg-gradient-to-b from-emerald-700/40 via-emerald-900/20 to-transparent">
-                        <span class="text-[11px] font-bold px-2.5 py-0.5 rounded-full bg-emerald-500/20 text-emerald-300 align-middle">WON</span>
-                        <span class="text-[24px] font-extrabold text-ink align-middle ml-2">3v3</span>
-                        <span class="text-[12.5px] text-ink-muted align-middle ml-2">Sat 14:32 &middot; 2:58</span>
-                        <div class="flex flex-wrap gap-2 mt-4">
-                            @foreach (['Summary', 'Basics', 'Damage & healing', 'Notes'] as $i => $tab)
-                                <span class="text-[12px] font-semibold px-3 py-1 rounded-full {{ $i === 0 ? 'bg-ink text-black' : 'bg-white/[.08] text-ink' }}">{{ $tab }}</span>
-                            @endforeach
-                        </div>
-                    </div>
-                    <div class="px-5 pb-5">
-                        <p class="text-[15px] font-bold text-ink mb-2">How it ended</p>
-                        <div class="rounded-lg bg-surface-1 p-4">
-                            <p class="text-[13.5px]"><span class="text-ink-muted">2:41</span> <b style="color: {{ $dk }}">Their Death Knight</b> died <span class="text-[11px] font-bold px-2 py-0.5 rounded-full bg-emerald-500/15 text-emerald-300">theirs</span></p>
-                            <p class="text-[12.5px] text-ink-muted mt-2">Killing blow
-                                @if (isset($icon['Kill Shot']))<img src="{{ $icon['Kill Shot'] }}" alt="" class="inline w-4 h-4 rounded mx-1">@endif<b class="text-ink">Kill Shot</b>
-                                &nbsp;&middot;&nbsp; their healer <span class="text-[11px] font-bold px-2 py-0.5 rounded-full bg-red-500/15 text-red-300">locked out at the death</span>
-                            </p>
-                            <div class="mt-3 space-y-1.5">
-                                @foreach ([['Kill Command', 'You', $hunter, 34], ['Chaos Bolt', 'Your Warlock', $warlock, 27], ['Bloodshed', 'You', $hunter, 19], ['Barbed Shot', 'You', $hunter, 11]] as [$spell, $who, $color, $pct])
-                                    <div class="flex items-center gap-2 text-[12.5px]">
-                                        @if (isset($icon[$spell]))<img src="{{ $icon[$spell] }}" alt="" class="w-5 h-5 rounded">@else<span class="w-5 h-5 rounded bg-surface-3"></span>@endif
-                                        <span class="w-40 sm:w-48 truncate"><b class="text-ink">{{ $spell }}</b> <span style="color: {{ $color }}">{{ $who }}</span></span>
-                                        <span class="flex-1 h-1.5 rounded-full bg-white/10 overflow-hidden"><span class="block h-full rounded-full" style="width: {{ $pct }}%; background: {{ $color }}"></span></span>
-                                        <span class="w-9 text-right text-ink-muted">{{ $pct }}%</span>
-                                    </div>
-                                @endforeach
-                            </div>
-                            <p class="text-[12px] text-ink-muted mt-3">Defensives in the last 30s:
-                                @foreach ([['Icebound Fortitude', '12s'], ['Anti-Magic Shell', '6s']] as [$spell, $ago])
-                                    @if (isset($icon[$spell]))<img src="{{ $icon[$spell] }}" alt="" class="inline w-4 h-4 rounded ml-2 mr-1">@endif<span class="text-ink">{{ $spell }}</span> {{ $ago }} before
-                                @endforeach
-                            </p>
-                        </div>
-                        <p class="text-[15px] font-bold text-ink mt-4 mb-2">Your answers to their goes</p>
-                        <div class="rounded-lg bg-surface-1 p-4 text-[12.5px] text-ink-muted">
-                            <span class="text-[11px] font-bold px-2 py-0.5 rounded-full bg-emerald-500/15 text-emerald-300 mr-1">GOOD</span>
-                            <b class="text-ink">0 of 3</b> of their goes met two of your big defensives already down.
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+    {{-- The app, slide by slide: real pages with the names swapped out. --}}
+    <x-app-showcase class="mt-8"/>
 
     {{-- What it does --------------------------------------------------------------------------- --}}
     <section class="grid grid-cols-1 md:grid-cols-3 gap-3 mt-10">
