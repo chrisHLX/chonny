@@ -69,8 +69,13 @@ class RoundAnalysisService
      * level and PvP talents from COMBATANT_INFO.
      * 13 (2026-10-11): each death's last ten seconds of damage by ability as well as by player
      * (`deaths[].abilities`), for the card's "How it ended".
+     * 14 (2026-10-12): each death's health a second at a time through the go that killed
+     * (`deaths[].hp`, at most HP_SPAN seconds) and their healer's lockout in it (`healerLocked`).
      */
-    public const VERSION = 13;
+    public const VERSION = 14;
+
+    /** The longest stretch of a death's health line, in seconds. */
+    private const HP_SPAN = 30.0;
 
     /** A defensive pressed this long or less before its owner was locked out went in before the chance was lost. */
     private const BEFORE_LOCKOUT = 4.0;
@@ -1259,6 +1264,30 @@ class RoundAnalysisService
         }
 
         $go = collect($goes[$killer])->first(fn ($g) => $g['from'] <= $d['t'] && $g['to'] >= $d['t'] - 0.1);
+
+        // Their health through the go (version 14): one reading a second from the go's start (at most
+        // HP_SPAN before the death, HP_SPAN/2 when no go was running) to the death. Damage lines carry
+        // the target's health after the hit (checked 2026-10-12: 3,976 of 3,976 lines), so a heal shows
+        // at the next hit. Before any hit: full. The healer's lockout in the same stretch beside it.
+        $span = $go ? min(self::HP_SPAN, max(3.0, $d['t'] - $go['from'])) : self::HP_SPAN / 2;
+        $start = max(0.0, $d['t'] - $span);
+        $readings = array_values(array_filter($dmg, fn ($x) => $x['dst'] === $d['who'] && $x['hpAfter'] !== null && $x['t'] <= $d['t'] + 0.05));
+        $hp = [];
+        $j = 0;
+        $last = 100.0;
+        for ($s = (int) ceil($d['t'] - $start); $s >= 1; $s--) {
+            while ($j < count($readings) && $readings[$j]['t'] <= $d['t'] - $s) {
+                $last = $readings[$j++]['hpAfter'];
+            }
+            // A max-health change mid-fight can put a reading past 100% (2 of 681 deaths, 12 Oct).
+            $hp[] = (int) max(0, min(100, round($last)));
+        }
+        $hp[] = 0;
+        $healerLocked = $healer && $healer !== $d['who']
+            ? array_values(array_filter(array_map(fn ($iv) => [round(min(count($hp) - 1, $d['t'] - $iv[0]), 1), round(max(0, $d['t'] - $iv[1]), 1)],
+                $locked[$healer] ?? []), fn ($iv) => $iv[0] > $iv[1]))
+            : [];
+
         $defs = array_values(array_filter($tl['commitments'], fn ($c) => $sideOf($c['who']) === $d['side'] && $c['cat'] === 'defensive' && $c['t'] >= $d['t'] - 30 && $c['t'] <= $d['t']));
         $medallion = $healer ? array_values(array_map(fn ($c) => $c['t'], array_filter($tl['commitments'], fn ($c) => $c['who'] === $healer && $c['spell'] === "Gladiator's Medallion" && $c['t'] <= $d['t']))) : [];
 
@@ -1275,6 +1304,9 @@ class RoundAnalysisService
             }, array_keys(array_slice($abilities, 0, 6, true)), array_slice($abilities, 0, 6, true)),
             'healer' => ['state' => $state, 'endedAgo' => $endedAgo, 'medallionUsedAt' => $medallion],
             'goStartedAgo' => $go ? round($d['t'] - $go['from'], 1) : null,
+            // Seconds before the death run from count(hp)-1 down to 0; healerLocked spans in the same terms.
+            'hp' => $hp,
+            'healerLocked' => $healerLocked,
             'defensives30s' => array_map(fn ($c) => ['spell' => $c['spell'], 'who' => $roster[$c['who']]['name'] ?? '?', 'ago' => round($d['t'] - $c['t'])], $defs),
         ];
     }

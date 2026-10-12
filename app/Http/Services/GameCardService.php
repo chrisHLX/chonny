@@ -510,6 +510,46 @@ class GameCardService
                 'who' => $this->short($x['who']), 'ago' => $x['ago'],
             ], $d['defensives30s']),
             'answers' => isset($d['answers']) ? $this->answers($d, $players, $goes) : null,
+            'health' => $this->healthLine($d, $p['color'] ?? '#B3B3B3'),
+        ];
+    }
+
+    /**
+     * The dying player's health through the go (RoundAnalysisService version 14), drawn as a line:
+     * their healer's lockout shaded behind it, their side's defensives as dots on it, the 35% danger
+     * line dashed. Null for a round measured before version 14.
+     */
+    private function healthLine(array $d, string $color): ?array
+    {
+        $hp = $d['hp'] ?? null;
+        if (! is_array($hp) || count($hp) < 3) {
+            return null;
+        }
+        $hp = array_map(fn ($v) => max(0, min(100, (int) $v)), $hp);
+        $w = 600;
+        $h = 64;
+        $n = count($hp) - 1;
+        $x = fn (float $ago) => round($w * ($n - $ago) / $n, 1);
+        $y = fn (float $pct) => round($h - $h * max(0, min(100, $pct)) / 100, 1);
+
+        // How long they were in danger (35% or lower) before dying: the window there was to answer.
+        $danger = 0;
+        for ($i = $n - 1; $i >= 0 && $hp[$i] <= 35; $i--) {
+            $danger++;
+        }
+
+        return [
+            'w' => $w, 'h' => $h, 'color' => $color, 'seconds' => $n,
+            'points' => collect($hp)->map(fn ($v, $i) => $x($n - $i).','.$y($v))->implode(' '),
+            'danger' => $y(35),
+            'locked' => array_map(fn ($iv) => ['x' => $x($iv[0]), 'w' => round($x($iv[1]) - $x($iv[0]), 1)], $d['healerLocked'] ?? []),
+            'presses' => collect($d['defensives30s'])->filter(fn ($c) => $c['ago'] <= $n)
+                ->map(fn ($c) => ['x' => $x($c['ago']), 'label' => $c['spell'].', '.$this->short($c['who']).', '.$c['ago'].'s before'])
+                ->values()->all(),
+            'start' => $hp[0],
+            'summary' => $hp[0].'% '.$n.'s before the death; '.($danger === 0
+                ? 'above 35% a second before it, so the last hits came too fast to answer once they landed.'
+                : 'under 35% for the last '.$danger.'s.'),
         ];
     }
 

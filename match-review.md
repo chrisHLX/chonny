@@ -96,6 +96,7 @@ player's side. Its `VERSION` says what a stored round holds:
 | 11 | cooldowns cast under an id with no cooldown in the data enter the timeline by `cast-aliases.json`: Radiant Glory's Avenging Wrath (833 of 897 Ret wings were missing from every go), Havoc's Metamorphosis, a talented Anti-Magic Shell, Smoke Bomb, Ultimate Sacrifice, The Hunt, Wailing Arrow, Doom Winds; Aura Mastery, Breath of Eons and Predator's Wake tagged (2026-10-08) |
 | 12 | the situation each go met (2026-10-10): `cover.answers` lists every defending answer by owner, cooldown, back or not, and its owner locked out or not at the go's start; `targetHp` at the start; each player's median item level and PvP talents. Read by `tools/match-review/decisions.php` (situation, choice, outcome) through `wow:population` |
 | 13 | each death's last ten seconds of damage by ability as well as by player (`deaths[].abilities`), shown under "How it ended" on the card (2026-10-11) |
+| 14 | each death's health a second at a time through the go that killed (`deaths[].hp`, at most 30s) and their healer's lockout in it (`healerLocked`), drawn as a line on the card (2026-10-12) |
 
 | Piece | File | What it decides |
 |---|---|---|

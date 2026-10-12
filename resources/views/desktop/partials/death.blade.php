@@ -34,6 +34,22 @@
     </table>
 @endif
 
+{{-- Their health through the go (RoundAnalysisService version 14). --}}
+@if (! empty($d['health']))
+    @php $g = $d['health']; @endphp
+    <div class="line">
+        <div class="small"><span class="muted">Health, the last {{ $g['seconds'] }}s:</span> {{ $g['summary'] }}</div>
+        <svg class="hpline" viewBox="0 0 {{ $g['w'] }} {{ $g['h'] }}" preserveAspectRatio="none" role="img" aria-label="Health over the last {{ $g['seconds'] }} seconds">
+            @foreach ($g['locked'] as $l)<rect x="{{ $l['x'] }}" y="0" width="{{ $l['w'] }}" height="{{ $g['h'] }}" fill="#fca5a5" fill-opacity="0.12"><title>Healer locked out</title></rect>@endforeach
+            <line x1="0" x2="{{ $g['w'] }}" y1="{{ $g['danger'] }}" y2="{{ $g['danger'] }}" stroke="#6A6A6A" stroke-dasharray="4 4" stroke-width="1" vector-effect="non-scaling-stroke"/>
+            <polyline points="{{ $g['points'] }}" fill="none" stroke="{{ $g['color'] }}" stroke-width="2" stroke-linejoin="round" vector-effect="non-scaling-stroke"/>
+            @foreach ($g['presses'] as $p)<line x1="{{ $p['x'] }}" x2="{{ $p['x'] }}" y1="0" y2="{{ $g['h'] }}" stroke="#C8952C" stroke-width="2" vector-effect="non-scaling-stroke"><title>{{ $p['label'] }}</title></line>@endforeach
+        </svg>
+        <div class="small subtle"><span style="float: right">the death</span>{{ $g['seconds'] }}s before</div>
+        <div class="small subtle">Dashed: 35%. @if ($g['locked'])Shaded: their healer locked out. @endif @if ($g['presses'])Gold: a defensive pressed on their side (hover for which). @endif</div>
+    </div>
+@endif
+
 @if ($d['healer'])
     <div class="line">
         <span class="muted">{{ $d['healer']['whose'] }}</span>&nbsp;

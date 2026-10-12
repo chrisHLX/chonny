@@ -98,6 +98,7 @@
     .bd tr.pl td { cursor: pointer; }
     .bd tr.pl:hover td { background: #232323; }
     .bd td.abil { padding: 2px 0 10px 26px; }
+    .hpline { display: block; width: 100%; height: 64px; margin: 6px 0 2px; background: #181818; border-radius: 4px; }
     .ab { width: 100%; }
     .ab td { padding: 2px 0; }
     .ab .sp { white-space: nowrap; padding-right: 10px; }

@@ -258,6 +258,40 @@ class GameCardTest extends TestCase
         $this->assertStringNotContainsString('Barkskin while they were not in a go', $card, 'pressed just before a lockout is not a fault');
     }
 
+    public function test_a_death_draws_the_health_line_through_the_go(): void
+    {
+        $user = User::factory()->create();
+        // Ten seconds: full until 6s before, then down to 30% for the last three; healer locked from
+        // 5s to 1s before; Feint 4s before.
+        $this->storeRound($user, 'm1', 'm1', '3v3', '2026-10-01 14:43:00', false, $this->threes());
+        $round = ArenaRound::where('match_id', 'm1')->first();
+        $payload = $round->payload;
+        $payload['analysis']['deaths'][0] = [
+            'defensives30s' => [['spell' => 'Feint', 'who' => 'Hunter-Realm-US', 'ago' => 4], ['spell' => 'Barkskin', 'who' => 'Hunter-Realm-US', 'ago' => 25]],
+            'hp' => [100, 100, 100, 100, 90, 60, 50, 30, 20, 9, 0],
+            'healerLocked' => [[5.0, 1.0]],
+        ] + $payload['analysis']['deaths'][0];
+        $round->update(['payload' => $payload]);
+
+        $built = app(GameCardService::class)->build($user);
+        $card = $this->text($built, 'm1');
+        $html = $built['games']['m1']['html'];
+
+        $this->assertStringContainsString('Health, the last 10s: 100% 10s before the death; under 35% for the last 3s.', $card);
+        $this->assertStringContainsString('Shaded: their healer locked out.', $card);
+        $this->assertStringContainsString('<title>Feint, Hunter, 4s before</title>', $html, 'a defensive inside the line is marked on it');
+        $this->assertStringNotContainsString('Barkskin, Hunter, 25s before</title>', $html, 'one before the line starts is not');
+        $this->assertStringContainsString('points="0,0 60,0 120,0 180,0 240,6.4 300,25.6 360,32 420,44.8 480,51.2 540,58.2 600,64"', $html);
+    }
+
+    public function test_a_death_measured_before_version_14_has_no_health_line(): void
+    {
+        $user = User::factory()->create();
+        $this->storeRound($user, 'm1', 'm1', '3v3', '2026-10-01 14:43:00', false, $this->threes());
+
+        $this->assertStringNotContainsString('Health, the last', $this->text(app(GameCardService::class)->build($user), 'm1'));
+    }
+
     public function test_a_game_measured_before_the_breakdown_says_how_to_get_it(): void
     {
         $user = User::factory()->create();
