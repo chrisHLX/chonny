@@ -172,6 +172,34 @@ class ImprovementTest extends TestCase
         $this->assertStringContainsString('Time not pressing anything Behind other Discipline Priests', $page);
     }
 
+    public function test_deaths_with_a_fitting_defensive_ready_are_counted_across_games(): void
+    {
+        $user = User::factory()->create();
+        foreach (range(1, 16) as $i) {
+            $this->storeRound($user, $i);
+            // The Hunter dies each time with Pain Suppression (reaches them) and Desperate Prayer (the
+            // priest's own) ready. In the first four the priest was locked out the whole go: not counted.
+            $round = ArenaRound::where('match_id', "m{$i}")->first();
+            $payload = $round->payload;
+            $payload['analysis']['deaths'][0]['answers'] = ['from' => 80, 'lockout' => ['P-1' => ['seconds' => $i <= 4 ? 19.5 : 6, 'longest' => [85, 91], 'freeBefore' => null]], 'rows' => [
+                ['who' => 'P-1', 'spell' => 'Pain Suppression', 'kind' => 'defensive', 'cd' => 180, 'state' => 'ready', 'at' => null, 'back' => null, 'tried' => []],
+                ['who' => 'P-1', 'spell' => 'Desperate Prayer', 'kind' => 'defensive', 'cd' => 90, 'state' => 'ready', 'at' => null, 'back' => null, 'tried' => []],
+                ['who' => 'P-1', 'spell' => 'Psychic Scream', 'kind' => 'control', 'cd' => 45, 'state' => 'ready', 'at' => null, 'back' => null, 'tried' => []],
+                ['who' => 'P-2', 'spell' => 'Aspect of the Turtle', 'kind' => 'defensive', 'cd' => 180, 'state' => 'ready', 'at' => null, 'back' => null, 'tried' => []],
+            ]];
+            $round->update(['payload' => $payload]);
+        }
+
+        $page = $this->text(app(ImprovementService::class)->build($user)['Healz-Realm-US']['html']);
+
+        $this->assertStringContainsString('Deaths with a fitting defensive of yours ready', $page);
+        $this->assertStringContainsString('You 75% 16 games', $page, '12 of 16: the four locked-out ones are not counted');
+        $this->assertStringContainsString('In 12 of your last 15.', $page);
+        $this->assertStringContainsString('Ready most often: Pain Suppression 12 of 16', $page);
+        $this->assertStringNotContainsString('Desperate Prayer', $page, "the priest's own heal could not have saved the Hunter");
+        $this->assertStringNotContainsString('Aspect of the Turtle', $page, "the Hunter's own button is not yours");
+    }
+
     public function test_the_page_names_one_focus_and_measures_the_last_session(): void
     {
         $user = User::factory()->create();

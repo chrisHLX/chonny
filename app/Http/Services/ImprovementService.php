@@ -6,6 +6,7 @@ use App\Models\ArenaRound;
 use App\Models\Patch;
 use App\Models\Spell;
 use App\Models\User;
+use App\Support\DefensiveFit;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Collection;
 
@@ -50,6 +51,9 @@ class ImprovementService
     /** What a game produces rather than something done in it: listed after the habits, focus last. */
     private const OUTCOMES = ['damage', 'healing'];
 
+    /** "In N of your last 15": the deaths a pattern is read over. */
+    private const LAST_DEATHS = 15;
+
     /** Seconds of dispellable debuffs on the team before a dispel rate is read at all. */
     private const DISPEL_MIN_SECONDS = 60;
 
@@ -71,7 +75,8 @@ class ImprovementService
         // Experience moves each game's difficulty, so it moves the page.
         $rounds .= '|'.md5(json_encode(array_map(fn ($x) => $x['gladSeasons'] ?? null, $xp)));
         $code = implode('|', array_map(fn ($f) => $f.':'.filemtime($f), [__FILE__, resource_path('views/desktop/improve.blade.php'),
-            resource_path('views/desktop/partials/styles.blade.php'), resource_path('views/desktop/partials/spark.blade.php')]));
+            resource_path('views/desktop/partials/styles.blade.php'), resource_path('views/desktop/partials/spark.blade.php'),
+            app_path('Support/DefensiveFit.php'), DefensiveFit::path()]));
         // Which spells dispel comes from the spell data, so a re-import can move the page.
         $code .= '|spells:'.app(TalentSelectionService::class)->spellCacheVersion();
 
@@ -284,6 +289,17 @@ class ImprovementService
             'free' => (float) ($a['habits'][$guid]['free'] ?? 0),
             'kicked' => array_sum($a['habits'][$guid]['kicked'] ?? []),
             'losFails' => $p['logger'] ? (int) ($a['habits'][$guid]['failed']['Target not in line of sight']['n'] ?? 0) : null,
+            // Your team's first death with an answer sheet (version 7, our side only), and your own
+            // defensives that sat ready through the go that killed AND could have saved the player
+            // who died (DefensiveFit: reached them, covers that damage). Counted only when you had a
+            // second or more free of lockout in it: a button you could not press was not left.
+            'sheet' => $sheet = isset($teamFirst['answers']['rows']),
+            'readyFit' => $sheet && (($teamFirst['t'] - $teamFirst['answers']['from']) - ($teamFirst['answers']['lockout'][$guid]['seconds'] ?? 0)) >= 1
+                ? collect($teamFirst['answers']['rows'])
+                    ->filter(fn ($row) => $row['who'] === $guid && $row['state'] === 'ready' && in_array($row['kind'], ['defensive', 'trinket'], true)
+                        && DefensiveFit::judge($row['spell'], $teamFirst['who'] === $guid, $teamFirst['schools'] ?? null)['fit'] === 'fits')
+                    ->pluck('spell')->unique()->values()->all()
+                : [],
             'diedFirst' => $teamFirst !== null && $teamFirst['who'] === $guid && ! $won,
             'teamLost' => $teamFirst !== null && ! $won,
             // The one Medallion fault the log supports: a teammate died while you were locked out
@@ -483,6 +499,24 @@ class ImprovementService
                 $los($mine), null, $v10($mine)->count(), 0, 2, '',
                 [], $trend($los),
                 'Across the archive, rounds with many of these were won less often. A pillar between you and the target blocks heals and control alike: move before you press.',
+            );
+        }
+
+        // 12. Your team's deaths with one of your defensives ready that could have saved them: the one
+        // death on a game card, counted across games so a pattern shows. Other players of the spec
+        // count only where they were on your team, which is rarely enough to grade against.
+        $sheets = fn (Collection $rs) => $rs->where('sheet', true);
+        if ($sheets($mine)->isNotEmpty()) {
+            $left = fn (Collection $rs) => ($n = $sheets($rs)->count()) > 0 ? $sheets($rs)->filter(fn ($r) => $r['readyFit'])->count() / $n : null;
+            $last = $sheets($mine)->slice(-self::LAST_DEATHS);
+            $spells = $sheets($mine)->flatMap(fn ($r) => $r['readyFit'])->countBy()->sortDesc();
+            $habits[] = $this->habit('ready', 'Deaths with a fitting defensive of yours ready', false,
+                "Your team's first death in a round, with one of your defensives ready and never pressed that could have saved them: it reached them and covers the damage that killed. Counted only when you had time free to press it.",
+                $left($mine), $left($others), $sheets($mine)->count(), $sheets($others)->count(), 0, '%',
+                [sprintf('In %d of your last %d.', $last->filter(fn ($r) => $r['readyFit'])->count(), $last->count())],
+                $trend($left),
+                'It lists what was there, not what would have won: one kept for the go after can be the right hold. Each game card shows the go beside it.',
+                $this->iconRows(array_map(fn ($n) => $n.' of '.$sheets($mine)->count(), $spells->take(6)->all()), 'Ready most often'),
             );
         }
 

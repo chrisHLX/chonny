@@ -5,6 +5,7 @@ namespace App\Http\Services;
 use App\Models\ArenaRound;
 use App\Models\Specialization;
 use App\Models\User;
+use App\Support\DefensiveFit;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Collection;
 
@@ -138,7 +139,9 @@ class GameCardService
     private function codeFingerprint(): string
     {
         // GameBasicsService and the norms it reads draw the Basics tab, so they redraw it too.
-        $files = array_merge([__FILE__, app_path('Http/Services/GameBasicsService.php'), \App\Console\Commands\BuildPopulation::normsPath()],
+        // The defensive tags sort each death's ready defensives (DefensiveFit), so a tag change redraws.
+        $files = array_merge([__FILE__, app_path('Http/Services/GameBasicsService.php'), \App\Console\Commands\BuildPopulation::normsPath(),
+            app_path('Support/DefensiveFit.php'), DefensiveFit::path()],
             glob(resource_path('views/desktop/*.blade.php')), glob(resource_path('views/desktop/partials/*.blade.php')));
         $files = array_values(array_filter($files, 'file_exists'));
         sort($files);
@@ -596,9 +599,19 @@ class GameCardService
                 'longestFrom' => $this->clock($l['longest'][0]),
                 'free' => $l['freeBefore'] ? $this->clock($l['freeBefore'][0]).' to '.$this->clock($l['freeBefore'][1]) : null,
             ])->sortByDesc('seconds')->values()->all(),
-            'ready' => $rows->where('state', 'ready')->sortBy(fn ($r) => [$rank($r), $byGuid[$r['who']]['name'] ?? ''])
-                ->map(fn ($r) => $cell($r) + ['tried' => collect($r['tried'])->map(fn ($t) => $this->clock($t['t']).' ('.lcfirst(preg_replace("/^Can't do that /", '', $t['why'])).')')->implode(', ')])
-                ->values()->all(),
+            // Ready and never pressed, sorted by whether it could have saved them (DefensiveFit): a
+            // defensive that reached them and covers what hit them; crowd control, peels and the rest;
+            // and what could not help, with why.
+            'ready' => ($ready = $rows->where('state', 'ready')->sortBy(fn ($r) => [$rank($r), $byGuid[$r['who']]['name'] ?? ''])
+                ->map(fn ($r) => $cell($r) + ['tried' => collect($r['tried'])->map(fn ($t) => $this->clock($t['t']).' ('.lcfirst(preg_replace("/^Can't do that /", '', $t['why'])).')')->implode(', ')]
+                    + (in_array($r['kind'], ['defensive', 'trinket'], true)
+                        ? DefensiveFit::judge($r['spell'], $r['who'] === $d['who'], $d['schools'] ?? null)
+                        : ['fit' => 'other', 'why' => null]))
+                ->values())->all(),
+            'fits' => $ready->where('fit', 'fits')->values()->all(),
+            'others' => $ready->where('fit', 'other')->values()->all(),
+            'cannot' => $ready->where('fit', 'no')->values()->all(),
+            'schools' => isset($d['schools']) && ($d['schools']['physical'] + $d['schools']['magic']) > 0 ? $d['schools'] : null,
             'pressed' => $rows->where('state', 'pressed')->sortBy('at')->map(fn ($r) => $cell($r) + ['clock' => $this->clock($r['at'])])->values()->all(),
             'down' => $rows->where('state', 'down')->map(fn ($r) => $cell($r) + ['back' => $this->clock($r['back'])])->values()->all(),
         ];

@@ -70,7 +70,8 @@ class RoundAnalysisService
      * 13 (2026-10-11): each death's last ten seconds of damage by ability as well as by player
      * (`deaths[].abilities`), for the card's "How it ended".
      * 14 (2026-10-12): each death's health a second at a time through the go that killed
-     * (`deaths[].hp`, at most HP_SPAN seconds) and their healer's lockout in it (`healerLocked`).
+     * (`deaths[].hp`, at most HP_SPAN seconds) and their healer's lockout in it (`healerLocked`), and
+     * the last ten seconds' damage split physical against magic (`schools`), for which defensives fit.
      */
     public const VERSION = 14;
 
@@ -741,6 +742,8 @@ class RoundAnalysisService
             $dmg[] = [
                 't' => $t, 'src' => $f[1], 'dst' => $f[5], 'amount' => (int) $amount,
                 'spell' => $swing ? 'Melee' : $f[10],
+                // The spell's school mask (1 physical; any other bit magic). A melee swing is physical.
+                'school' => $swing ? 1 : (int) hexdec((string) ($f[11] ?? '0x1')),
                 'hpAfter' => is_numeric($cur) && is_numeric($max) && $max > 0 ? round(100 * $cur / $max, 1) : null,
                 // Absolute health, for time to live (warrant()).
                 'hpNow' => is_numeric($cur) ? (int) $cur : null,
@@ -1228,12 +1231,17 @@ class RoundAnalysisService
         $win = array_values(array_filter($dmg, fn ($x) => $x['dst'] === $d['who'] && $x['t'] <= $d['t'] + 0.05 && $x['t'] >= $d['t'] - 10));
         $shares = [];
         $abilities = [];
+        $schools = [];
         foreach ($win as $x) {
             $who = $credit($x['src']);
             $key = isset($roster[$who]) ? $roster[$who]['name'] : 'pets/other';
             $shares[$key] = ($shares[$key] ?? 0) + $x['amount'];
             // The same ten seconds by ability (version 13): what killed them, not only who.
             $abilities[$key.'|'.$x['spell']] = ($abilities[$key.'|'.$x['spell']] ?? 0) + $x['amount'];
+            // Physical or magic (version 14): a school mask with any bit past physical is magic
+            // (Chaos and Shadowstrike included), which is what a magic-only defensive meets.
+            $kind = (($x['school'] ?? 1) & ~1) ? 'magic' : 'physical';
+            $schools[$kind] = ($schools[$kind] ?? 0) + $x['amount'];
         }
         arsort($shares);
         arsort($abilities);
@@ -1305,6 +1313,7 @@ class RoundAnalysisService
             'healer' => ['state' => $state, 'endedAgo' => $endedAgo, 'medallionUsedAt' => $medallion],
             'goStartedAgo' => $go ? round($d['t'] - $go['from'], 1) : null,
             // Seconds before the death run from count(hp)-1 down to 0; healerLocked spans in the same terms.
+            'schools' => ['physical' => (int) round(100 * ($schools['physical'] ?? 0) / $total), 'magic' => (int) round(100 * ($schools['magic'] ?? 0) / $total)],
             'hp' => $hp,
             'healerLocked' => $healerLocked,
             'defensives30s' => array_map(fn ($c) => ['spell' => $c['spell'], 'who' => $roster[$c['who']]['name'] ?? '?', 'ago' => round($d['t'] - $c['t'])], $defs),

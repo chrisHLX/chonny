@@ -1,0 +1,461 @@
+{
+    "_about": "Whom each defensive on an answer sheet can reach and what it covers. Reviewed by the player who plays these games on 2026-10-13 (the review page), from the evidence of tools/match-review/defreach.php and defensivefit.php. reach: self | other | self-or-other | team | none (not a defensive). covers: all | physical | magic | heal | cc (breaks crowd control, frees, peels) | avoid (hides or breaks targeting: invisibility) | none. A null field was left unanswered: the defensive is left out of the fit. Hand-maintained (rule 11): the tools propose, a person decides.",
+    "reviewed": "2026-10-13",
+    "defensives": [
+        {
+            "name": "Abyssal Gaze",
+            "reach": "self",
+            "covers": null
+        },
+        {
+            "name": "Alter Time",
+            "reach": "self",
+            "covers": "heal",
+            "note": "its a heal but it also repositions you so if you use it at x then move to y and press it it takes you back to your health and position state at x"
+        },
+        {
+            "name": "Anti-Magic Shell",
+            "reach": "self-or-other",
+            "covers": "magic"
+        },
+        {
+            "name": "Anti-Magic Zone",
+            "reach": "team",
+            "covers": "magic"
+        },
+        {
+            "name": "Aspect of the Turtle",
+            "reach": "self",
+            "covers": "all"
+        },
+        {
+            "name": "Astral Shift",
+            "reach": "self",
+            "covers": "all"
+        },
+        {
+            "name": "Aura Mastery",
+            "reach": "team",
+            "covers": "all"
+        },
+        {
+            "name": "Avatar",
+            "reach": "none",
+            "covers": "none"
+        },
+        {
+            "name": "Barkskin",
+            "reach": "self",
+            "covers": "all"
+        },
+        {
+            "name": "Berserker Rage",
+            "reach": "self",
+            "covers": "cc"
+        },
+        {
+            "name": "Berserker Shout",
+            "reach": "team",
+            "covers": "cc"
+        },
+        {
+            "name": "Bestial Wrath",
+            "reach": "none",
+            "covers": "none"
+        },
+        {
+            "name": "Blazing Barrier",
+            "reach": "self",
+            "covers": "all"
+        },
+        {
+            "name": "Blessing of Freedom",
+            "reach": "self-or-other",
+            "covers": "cc"
+        },
+        {
+            "name": "Blessing of Protection",
+            "reach": "self-or-other",
+            "covers": "physical"
+        },
+        {
+            "name": "Blessing of Sacrifice",
+            "reach": "other",
+            "covers": "all",
+            "note": "with the talent it redirects all damage to the paly or something like that it saves a teamate"
+        },
+        {
+            "name": "Blessing of Spellwarding",
+            "reach": "self-or-other",
+            "covers": "magic"
+        },
+        {
+            "name": "Blur",
+            "reach": "self",
+            "covers": "all"
+        },
+        {
+            "name": "Camouflage",
+            "reach": "self",
+            "covers": "none"
+        },
+        {
+            "name": "Cauterizing Flame",
+            "reach": "other",
+            "covers": "heal"
+        },
+        {
+            "name": "Cloak of Shadows",
+            "reach": "self",
+            "covers": "magic"
+        },
+        {
+            "name": "Crimson Vial",
+            "reach": "self",
+            "covers": "heal"
+        },
+        {
+            "name": "Dark Pact",
+            "reach": "self",
+            "covers": "all"
+        },
+        {
+            "name": "Darkness",
+            "reach": "team",
+            "covers": "all"
+        },
+        {
+            "name": "Death Pact",
+            "reach": "self",
+            "covers": "heal"
+        },
+        {
+            "name": "Demonic Healthstone",
+            "reach": "self",
+            "covers": "heal"
+        },
+        {
+            "name": "Desperate Prayer",
+            "reach": "self",
+            "covers": "heal"
+        },
+        {
+            "name": "Die by the Sword",
+            "reach": "self",
+            "covers": "all"
+        },
+        {
+            "name": "Dispersion",
+            "reach": "self",
+            "covers": "all"
+        },
+        {
+            "name": "Divine Hymn",
+            "reach": "team",
+            "covers": "heal"
+        },
+        {
+            "name": "Divine Protection",
+            "reach": "self",
+            "covers": "all"
+        },
+        {
+            "name": "Divine Shield",
+            "reach": "self",
+            "covers": "all"
+        },
+        {
+            "name": "Emerald Blossom",
+            "reach": "team",
+            "covers": "heal"
+        },
+        {
+            "name": "Enraged Regeneration",
+            "reach": "self",
+            "covers": "all"
+        },
+        {
+            "name": "Evangelism",
+            "reach": "team",
+            "covers": "heal"
+        },
+        {
+            "name": "Evasion",
+            "reach": "self",
+            "covers": "physical"
+        },
+        {
+            "name": "Exhilaration",
+            "reach": "self",
+            "covers": "heal"
+        },
+        {
+            "name": "Eye Beam",
+            "reach": "none",
+            "covers": "none"
+        },
+        {
+            "name": "Fade",
+            "reach": "self",
+            "covers": "cc"
+        },
+        {
+            "name": "Feint",
+            "reach": "self",
+            "covers": "all"
+        },
+        {
+            "name": "Fists of Fury",
+            "reach": "self",
+            "covers": "physical",
+            "note": "it makes the target parry things in front of them so it can stop a kidney if timed right or physical abilities"
+        },
+        {
+            "name": "Fortifying Brew",
+            "reach": "self",
+            "covers": "all"
+        },
+        {
+            "name": "Frenzied Regeneration",
+            "reach": "self",
+            "covers": "heal"
+        },
+        {
+            "name": "Gladiator's Medallion",
+            "reach": "self",
+            "covers": "cc"
+        },
+        {
+            "name": "Greater Invisibility",
+            "reach": "self",
+            "covers": "avoid"
+        },
+        {
+            "name": "Guardian Spirit",
+            "reach": "other",
+            "covers": "heal",
+            "note": "it also makes the priest immune to cc if this is the thing that makes them the giant angel"
+        },
+        {
+            "name": "Halo",
+            "reach": "team",
+            "covers": "heal"
+        },
+        {
+            "name": "Healthstone",
+            "reach": "self",
+            "covers": "heal"
+        },
+        {
+            "name": "Holy Bulwark",
+            "reach": "team",
+            "covers": "all"
+        },
+        {
+            "name": "Holy Word: Sanctify",
+            "reach": "team",
+            "covers": "heal"
+        },
+        {
+            "name": "Holy Word: Serenity",
+            "reach": "other",
+            "covers": "heal"
+        },
+        {
+            "name": "Ice Barrier",
+            "reach": "self",
+            "covers": "all"
+        },
+        {
+            "name": "Ice Block",
+            "reach": "self",
+            "covers": "all"
+        },
+        {
+            "name": "Icebound Fortitude",
+            "reach": "self",
+            "covers": "all"
+        },
+        {
+            "name": "Impending Victory",
+            "reach": "self",
+            "covers": "heal"
+        },
+        {
+            "name": "Incarnation: Tree of Life",
+            "reach": "team",
+            "covers": "heal",
+            "note": "It also increases the druids armor"
+        },
+        {
+            "name": "Intervene",
+            "reach": "other",
+            "covers": "all",
+            "note": "it redirects the next few casts on the intervene target to the warrior great to counter things like CC but also burst"
+        },
+        {
+            "name": "Invoke Chi-Ji, the Red Crane",
+            "reach": "team",
+            "covers": "heal"
+        },
+        {
+            "name": "Ironbark",
+            "reach": "self-or-other",
+            "covers": "all"
+        },
+        {
+            "name": "Lay on Hands",
+            "reach": "self-or-other",
+            "covers": "heal"
+        },
+        {
+            "name": "Leap of Faith",
+            "reach": "other",
+            "covers": "cc"
+        },
+        {
+            "name": "Lichborne",
+            "reach": "self",
+            "covers": "cc"
+        },
+        {
+            "name": "Life Cocoon",
+            "reach": "other",
+            "covers": "all"
+        },
+        {
+            "name": "Mass Invisibility",
+            "reach": "team",
+            "covers": "avoid",
+            "note": "it doesnt reduce anything but it allows the team to go invisible for a second which works like line of sight it can stop a cast"
+        },
+        {
+            "name": "Master's Call",
+            "reach": "self-or-other",
+            "covers": "cc"
+        },
+        {
+            "name": "Metamorphosis",
+            "reach": "self",
+            "covers": "all"
+        },
+        {
+            "name": "Mindgames",
+            "reach": "none",
+            "covers": "all"
+        },
+        {
+            "name": "Nether Ward",
+            "reach": "self",
+            "covers": "magic"
+        },
+        {
+            "name": "Obsidian Scales",
+            "reach": "team",
+            "covers": "all"
+        },
+        {
+            "name": "Pain Suppression",
+            "reach": "other",
+            "covers": "all"
+        },
+        {
+            "name": "Prismatic Barrier",
+            "reach": "self",
+            "covers": "all"
+        },
+        {
+            "name": "Rallying Cry",
+            "reach": "team",
+            "covers": "heal"
+        },
+        {
+            "name": "Restoral",
+            "reach": "team",
+            "covers": "heal"
+        },
+        {
+            "name": "Roar of Sacrifice",
+            "reach": "self-or-other",
+            "covers": "all"
+        },
+        {
+            "name": "Sentinel",
+            "reach": null,
+            "covers": "all"
+        },
+        {
+            "name": "Smoke Bomb",
+            "reach": "team",
+            "covers": "cc",
+            "note": "works like line of sight anything inside the bomb cant target anything outside and viceversa but dome from priest works or dk amz"
+        },
+        {
+            "name": "Soul Immolation",
+            "reach": "self",
+            "covers": "heal",
+            "note": "im not sure"
+        },
+        {
+            "name": "Spell Reflection",
+            "reach": "self",
+            "covers": "magic"
+        },
+        {
+            "name": "Spirit Link Totem",
+            "reach": "team",
+            "covers": "all"
+        },
+        {
+            "name": "Spirit of Redemption",
+            "reach": "self",
+            "covers": "none"
+        },
+        {
+            "name": "Survival Instincts",
+            "reach": "self",
+            "covers": "all"
+        },
+        {
+            "name": "Survival of the Fittest",
+            "reach": "self",
+            "covers": "all"
+        },
+        {
+            "name": "Touch of Karma",
+            "reach": "self",
+            "covers": "all"
+        },
+        {
+            "name": "Tranquility",
+            "reach": "team",
+            "covers": "heal"
+        },
+        {
+            "name": "Tremor Totem",
+            "reach": "team",
+            "covers": "cc"
+        },
+        {
+            "name": "Ultimate Penitence",
+            "reach": "team",
+            "covers": "all"
+        },
+        {
+            "name": "Unending Resolve",
+            "reach": "self",
+            "covers": "all"
+        },
+        {
+            "name": "Vanish",
+            "reach": "self",
+            "covers": "cc",
+            "note": "yep breaks cc and also makes you invisible"
+        },
+        {
+            "name": "Wraith Walk",
+            "reach": "self",
+            "covers": "cc"
+        }
+    ]
+}

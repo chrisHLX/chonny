@@ -96,7 +96,7 @@ player's side. Its `VERSION` says what a stored round holds:
 | 11 | cooldowns cast under an id with no cooldown in the data enter the timeline by `cast-aliases.json`: Radiant Glory's Avenging Wrath (833 of 897 Ret wings were missing from every go), Havoc's Metamorphosis, a talented Anti-Magic Shell, Smoke Bomb, Ultimate Sacrifice, The Hunt, Wailing Arrow, Doom Winds; Aura Mastery, Breath of Eons and Predator's Wake tagged (2026-10-08) |
 | 12 | the situation each go met (2026-10-10): `cover.answers` lists every defending answer by owner, cooldown, back or not, and its owner locked out or not at the go's start; `targetHp` at the start; each player's median item level and PvP talents. Read by `tools/match-review/decisions.php` (situation, choice, outcome) through `wow:population` |
 | 13 | each death's last ten seconds of damage by ability as well as by player (`deaths[].abilities`), shown under "How it ended" on the card (2026-10-11) |
-| 14 | each death's health a second at a time through the go that killed (`deaths[].hp`, at most 30s) and their healer's lockout in it (`healerLocked`), drawn as a line on the card (2026-10-12) |
+| 14 | each death's health a second at a time through the go that killed (`deaths[].hp`, at most 30s) and their healer's lockout in it (`healerLocked`), drawn as a line on the card; the last ten seconds' damage split physical against magic (`deaths[].schools`), which `defensive-fit.json` is judged against (2026-10-12) |
 
 | Piece | File | What it decides |
 |---|---|---|
@@ -119,6 +119,7 @@ goes, the deaths, the answer sheets and the comp library.
 | `data/arena-logs/spell-classification/{offensive-spells,offensive-buffs,defensive-cooldowns,mixed-cooldowns}.json` | offensive, defensive or mixed. Hand-promoted (rule 11); the site's WoW Comps tabs read them too |
 | `data/arena-logs/spell-classification/contextual-cooldowns.json` | spells read per press (Vanish, Mass Invisibility, Master's Call...) |
 | `data/arena-logs/spell-classification/short-defensives.json` | defensives under the 45s floor that still count (Feint, Crimson Vial, Fade...) |
+| `data/arena-logs/spell-classification/defensive-fit.json` (`App\Support\DefensiveFit`) | whom each defensive on an answer sheet can reach (self, a teammate, either, the team) and what it covers (all damage, physical, magic, a heal, breaking CC, hiding). Sorts a death card's ready defensives into could have saved them, other answers, and could not help (with why), and feeds Improve's "In N of your last 15". Read when a card is drawn: a tag change redraws every card and Improve page at the next `wow:game-cards`, with no re-measure. Drafted by `tools/match-review/defreach.php` (where each landed across the archive) and `defensivefit.php` (the spell data's schools), reviewed by the player on 2026-10-13 |
 | `data/arena-logs/spell-classification/cast-aliases.json` | cooldowns cast under an id with no cooldown in the data, and the copy whose cooldown and tags they take (Radiant Glory's Avenging Wrath, Havoc's Metamorphosis, Smoke Bomb...). Found with `hiddencds.php` |
 | `spells.dr_category` (curated, `cc-synergies-overrides.txt`) | what counts as crowd control, and which kind |
 | `data/matchup-profiles/{class}/{spec}.json` | each spec's answers, control and interrupts (default build); the answer sheet starts here |

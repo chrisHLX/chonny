@@ -250,7 +250,7 @@ class GameCardTest extends TestCase
         $this->assertStringContainsString('Their crowd control on you: Holy Word: Chastise on Healz, 0:15', $card);
         $this->assertStringContainsString('Healz locked out 8.6s of it, the longest stretch 8.9s from 0:15. Free 0:14 to 0:15 just before it', $card);
         // The dying Hunter's own defensives first, then the healer's, with the refused press.
-        $this->assertStringContainsString('Ready, never pressed', $card);
+        $this->assertStringContainsString('Ready, and could have saved them', $card);
         $this->assertLessThan(strpos($card, 'Pain Suppression Healz'), strpos($card, 'Roar of Sacrifice Hunter'));
         $this->assertStringContainsString('Pain Suppression Healz tried 0:19 (while fleeing)', $card);
         $this->assertStringContainsString("Pressed in their go Gladiator's Medallion Healz 0:14", $card);
@@ -282,6 +282,35 @@ class GameCardTest extends TestCase
         $this->assertStringContainsString('<title>Feint, Hunter, 4s before</title>', $html, 'a defensive inside the line is marked on it');
         $this->assertStringNotContainsString('Barkskin, Hunter, 25s before</title>', $html, 'one before the line starts is not');
         $this->assertStringContainsString('points="0,0 60,0 120,0 180,0 240,6.4 300,25.6 360,32 420,44.8 480,51.2 540,58.2 600,64"', $html);
+    }
+
+    public function test_ready_defensives_are_sorted_by_whether_they_could_have_saved_them(): void
+    {
+        $user = User::factory()->create();
+        $this->storeRound($user, 'm1', 'm1', '3v3', '2026-10-01 14:43:00', false, $this->threes());
+        $round = ArenaRound::where('match_id', 'm1')->first();
+        $payload = $round->payload;
+        $ready = fn ($who, $spell, $kind = 'defensive') => ['who' => $who, 'spell' => $spell, 'kind' => $kind, 'cd' => 120, 'state' => 'ready', 'at' => null, 'back' => null, 'tried' => []];
+        // The Hunter died to 90% physical damage.
+        $payload['analysis']['deaths'][0] = [
+            'schools' => ['physical' => 90, 'magic' => 10],
+            'answers' => ['from' => 80, 'lockout' => [], 'rows' => [
+                $ready('P-1', 'Pain Suppression'),          // on a teammate, all damage: fits
+                $ready('P-2', 'Aspect of the Turtle'),      // their own, all damage: fits
+                $ready('P-1', 'Desperate Prayer'),          // the priest's own heal: cannot reach the Hunter
+                $ready('P-1', 'Blessing of Spellwarding'),  // magic only, into physical damage
+                $ready('P-1', "Gladiator's Medallion", 'trinket'),
+            ]],
+        ] + $payload['analysis']['deaths'][0];
+        $round->update(['payload' => $payload]);
+
+        $card = $this->text(app(GameCardService::class)->build($user), 'm1');
+
+        $this->assertStringContainsString('The damage that killed, last 10s: 90% physical, 10% magic', $card);
+        $this->assertStringContainsString('Ready, and could have saved them reached them and covers that damage Aspect of the Turtle Hunter Pain Suppression Healz', $card);
+        $this->assertStringContainsString("Ready, other answers crowd control, peels, trinkets, hiding: whether one fitted is your read Gladiator's Medallion Healz", $card);
+        $this->assertStringContainsString('Desperate Prayer Healz (only on themselves)', $card);
+        $this->assertStringContainsString('Blessing of Spellwarding Healz (magic only; 90% physical)', $card);
     }
 
     public function test_a_death_measured_before_version_14_has_no_health_line(): void

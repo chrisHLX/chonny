@@ -102,11 +102,31 @@
             </div>
         @endforeach
 
-        @if ($s['ready'])
-            <div class="line"><span class="chip warn">Ready, never pressed</span> <span class="small muted">&nbsp;the dying player's own first, then the team's defensives, crowd control to peel, interrupts, Medallions</span></div>
+        {{-- Ready and never pressed, by whether it could have saved them (App\Support\DefensiveFit). --}}
+        @if ($s['schools'])
+            <div class="line small"><span class="muted">The damage that killed, last 10s:</span> {{ $s['schools']['physical'] }}% physical, {{ $s['schools']['magic'] }}% magic</div>
+        @endif
+        @if ($s['fits'])
+            <div class="line"><span class="chip warn">Ready, and could have saved them</span> <span class="small muted">&nbsp;reached them and covers that damage</span></div>
             <div class="line small">
-                @foreach ($s['ready'] as $x)
+                @foreach ($s['fits'] as $x)
                     <span class="def">@if ($x['icon'])<img class="spell-ic" src="{{ $x['icon'] }}">@endif{{ $x['spell'] }} <span style="color: {{ $x['color'] }}">{{ $x['name'] }}</span> @if ($x['tried'])<span class="gold">tried {{ $x['tried'] }}</span>@endif</span>
+                @endforeach
+            </div>
+        @endif
+        @if ($s['others'])
+            <div class="line"><span class="chip neutral">Ready, other answers</span> <span class="small muted">&nbsp;crowd control, peels, trinkets, hiding: whether one fitted is your read</span></div>
+            <div class="line small">
+                @foreach ($s['others'] as $x)
+                    <span class="def">@if ($x['icon'])<img class="spell-ic" src="{{ $x['icon'] }}">@endif{{ $x['spell'] }} <span style="color: {{ $x['color'] }}">{{ $x['name'] }}</span> @if ($x['tried'])<span class="gold">tried {{ $x['tried'] }}</span>@endif</span>
+                @endforeach
+            </div>
+        @endif
+        @if ($s['cannot'])
+            <div class="line"><span class="chip neutral">Ready, but could not help here</span></div>
+            <div class="line small">
+                @foreach ($s['cannot'] as $x)
+                    <span class="def subtle">{{ $x['spell'] }} {{ $x['name'] }} <span>({{ $x['why'] }})</span></span>
                 @endforeach
             </div>
         @endif
