@@ -18,6 +18,11 @@ public sealed class Syncer
 {
     private static readonly TimeSpan Quiet = TimeSpan.FromSeconds(20);
 
+    /** How often the server's measure version is asked when no log has anything new. */
+    private static readonly TimeSpan VersionEvery = TimeSpan.FromHours(1);
+
+    private DateTime _lastVersionCheck = DateTime.MinValue;
+
     private readonly AppSettings _settings;
     private readonly Action<string> _log;
 
@@ -45,19 +50,6 @@ public sealed class Syncer
 
         using var api = new ApiClient(_settings.ServerUrl, key);
 
-        // A measure change on the server: send everything again, from every log still kept.
-        var version = await api.VersionAsync(ct);
-        if (version > _settings.ServerVersion)
-        {
-            if (_settings.ServerVersion > 0)
-            {
-                _log($"The website now measures at version {version}: sending your kept logs again so every game is re-measured.");
-                _settings.Files.Clear();
-            }
-            _settings.ServerVersion = version;
-            _settings.Save();
-        }
-
         if (_settings.SendSince == null)
         {
             _settings.SendSince = DateTime.Now.AddDays(-14);
@@ -65,6 +57,26 @@ public sealed class Syncer
         }
 
         var logs = LogFiles();
+
+        // A measure change on the server: send everything again, from every log still kept. Asked on
+        // "Sync now" and once an hour (0.5.3, 2026-10-13): asking on every ten-second tick was 8,600
+        // requests a day from each app. New games need no ask: the server measures what it is sent
+        // at its own version, so only the re-send of old ones waits on it, by an hour at most.
+        if (manual || DateTime.UtcNow - _lastVersionCheck > VersionEvery)
+        {
+            var version = await api.VersionAsync(ct);
+            _lastVersionCheck = DateTime.UtcNow;
+            if (version > _settings.ServerVersion)
+            {
+                if (_settings.ServerVersion > 0)
+                {
+                    _log($"The website now measures at version {version}: sending your kept logs again so every game is re-measured.");
+                    _settings.Files.Clear();
+                }
+                _settings.ServerVersion = version;
+                _settings.Save();
+            }
+        }
         var wow = WowRunning();
         var newest = logs.FirstOrDefault()?.FullName;
         int sent = 0, skipped = 0, failed = 0;
