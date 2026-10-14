@@ -39,6 +39,19 @@ Two reasons. It resets every session, so you would have to remember it every tim
 permanently it logs everything — questing, dungeons, raids — which grows the file by gigabytes
 a week and makes the import slow for no benefit.
 
+## Other logging addons (LoggerHead)
+
+LoggerHead switches logging on or off by zone type. With its arena setting off it switches
+logging **off** as you zone into an arena, often just after this addon switched it on. Until
+2026-10-14 this addon kept its own "on" flag, never noticed, and still counted the game: a tester
+saw "3 match(es) logged" while his log held no arena at all, and the app had nothing to send.
+
+Now it reads the real state (`LoggingCombat()` with no argument), turns logging back on whenever
+anything turns it off during an arena (a hook on `LoggingCombat`, plus a second look at the gates
+and two seconds after zoning in), and turns it off afterwards only if it was the one that turned
+it on. A game only counts when logging was still on at its end; otherwise chat says it was not
+recorded.
+
 ## Advanced Combat Logging is the part that matters
 
 Without it the log has **no `COMBATANT_INFO` lines**, which means no specs, which means the
