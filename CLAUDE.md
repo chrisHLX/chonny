@@ -626,6 +626,10 @@ it probably doesn't belong.
   as plain arrays and convert once at the end.
 - **Eloquent `Collection::merge()` calls `getKey()` on incoming items** — it throws outright on a
   plain array of strings. `->toBase()` first.
+- **A plain `throttle:N,1` shares ONE counter per IP (or per user) with every other plain throttle
+  on the site.** The limit differs per route, the count does not. Always name it:
+  `throttle:20,1,battlenet`. Unnamed, the desktop app's connect polling (every 2s) used up
+  Battle.net sign-in's 20 from the same PC and a tester got "Too many requests" (2026-10-14).
 
 **Blade**
 - **A directive glued to a word character is not compiled** (the `\B` guard):

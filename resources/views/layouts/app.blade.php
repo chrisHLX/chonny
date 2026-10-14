@@ -165,9 +165,19 @@
         </div>
 
         <script>
-            window.addEventListener('beforeunload', () => {
-                document.getElementById('global-loading-spinner').classList.remove('hidden');
-            });
+            // A link that downloads a file (the app) fires beforeunload but never leaves the page, so the
+            // spinner would stay up for good: take it down if the page is still here a few seconds on,
+            // and when the browser shows this page again from its back/forward cache.
+            (() => {
+                const spinner = document.getElementById('global-loading-spinner');
+                let timer;
+                window.addEventListener('beforeunload', () => {
+                    spinner.classList.remove('hidden');
+                    clearTimeout(timer);
+                    timer = setTimeout(() => spinner.classList.add('hidden'), 4000);
+                });
+                window.addEventListener('pageshow', () => spinner.classList.add('hidden'));
+            })();
         </script>
         @include('partials.page-view-beacon')
     </body>

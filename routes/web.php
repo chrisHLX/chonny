@@ -202,10 +202,10 @@ Route::prefix('wow')->group(function () {
     // The desktop app's download: unlisted while two players test it. See DesktopAppController.
     // The desktop app (2026-10-11): a public download page and download (the app does nothing until
     // it is connected to an account), and connecting it from the browser. See AppDownloadController.
-    Route::get('/coach/app', [\App\Http\Controllers\DesktopAppController::class, 'download'])->middleware('throttle:20,1')->name('coach.app');
+    Route::get('/coach/app', [\App\Http\Controllers\DesktopAppController::class, 'download'])->middleware('throttle:20,1,app-download')->name('coach.app');
     Route::get('/app', [\App\Http\Controllers\AppDownloadController::class, 'page'])->name('app');
     Route::get('/app/connect', [\App\Http\Controllers\AppDownloadController::class, 'connect'])->middleware('auth')->name('app.connect');
-    Route::post('/app/connect', [\App\Http\Controllers\AppDownloadController::class, 'approve'])->middleware(['auth', 'throttle:10,1'])->name('app.connect.approve');
+    Route::post('/app/connect', [\App\Http\Controllers\AppDownloadController::class, 'approve'])->middleware(['auth', 'throttle:10,1,app-connect'])->name('app.connect.approve');
     Route::get('/spells', SpellExplorer::class)->name('spells.explore');
     Route::get('/spell-finder', \App\Livewire\SpellFinder::class)->name('spell-finder');
     // One permanent, linkable page per spell. Renders the same <x-spells.detail> the site-wide
@@ -396,7 +396,7 @@ Route::post('/try/{type}', function (string $type) {
         : app(\App\Http\Services\GuestPlanService::class)->start($guideType);
 
     return redirect()->route('guides.edit', ['guide' => $guide->slug]);
-})->middleware('throttle:10,60')->name('guides.try');
+})->middleware('throttle:10,60,guides-try')->name('guides.try');
 
 Route::middleware('auth')->prefix('guides')->name('guides.')->group(function () {
     Route::get('/', \App\Livewire\Guides\Index::class)->name('index');
@@ -410,7 +410,7 @@ Route::middleware('auth')->prefix('guides')->name('guides.')->group(function () 
         $guide = \App\Models\UserGuide::startDraft(auth()->user(), $guideType);
 
         return redirect()->route('guides.edit', ['guide' => $guide->slug]);
-    })->middleware('throttle:20,1')->name('create');
+    })->middleware('throttle:20,1,guides-new')->name('create');
 });
 
 // ------- Battle.net link + your characters -------
@@ -420,18 +420,18 @@ Route::middleware('auth')->prefix('guides')->name('guides.')->group(function () 
 // The redirect and callback serve guests too: signed in they LINK, signed out they sign in or sign
 // up (see BattlenetController). The finish step is the email form a brand-new Battle.net sign-up
 // needs, since Blizzard shares no email address.
-Route::middleware('throttle:20,1')->group(function () {
+Route::middleware('throttle:20,1,battlenet')->group(function () {
     Route::get('/auth/battlenet', [\App\Http\Controllers\BattlenetController::class, 'redirect'])->name('battlenet.redirect');
     Route::get('/auth/battlenet/callback', [\App\Http\Controllers\BattlenetController::class, 'callback'])->name('battlenet.callback');
 });
-Route::middleware(['guest', 'throttle:10,1'])->group(function () {
+Route::middleware(['guest', 'throttle:10,1,battlenet-finish'])->group(function () {
     Route::get('/auth/battlenet/finish', [\App\Http\Controllers\BattlenetController::class, 'finishForm'])->name('battlenet.finish');
     Route::post('/auth/battlenet/finish', [\App\Http\Controllers\BattlenetController::class, 'finishStore'])->name('battlenet.finish.store');
 });
 
 // "Continue with Google" — see GoogleAuthController. Guests only: a signed-in player has nothing
 // to sign in to.
-Route::middleware(['guest', 'throttle:20,1'])->group(function () {
+Route::middleware(['guest', 'throttle:20,1,google'])->group(function () {
     Route::get('/auth/google', [\App\Http\Controllers\Auth\GoogleAuthController::class, 'redirect'])->name('google.redirect');
     Route::get('/auth/google/callback', [\App\Http\Controllers\Auth\GoogleAuthController::class, 'callback'])->name('google.callback');
 });
@@ -487,7 +487,7 @@ Route::get('/support', function () {
     \App\Models\PageViewEvent::log('support_click');
 
     return redirect()->away($url);
-})->middleware('throttle:30,1')->name('support');
+})->middleware('throttle:30,1,support')->name('support');
 
 // Feedback
 Route::get('/feedback', [FeedbackController::class, 'create'])->name('feedback.create');

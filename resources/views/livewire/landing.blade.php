@@ -18,7 +18,7 @@
             a card for every game: who died, what killed them, what you still had, and what to work on next.
         </p>
         <div class="flex flex-col sm:flex-row sm:items-center gap-3 mt-7">
-            <a href="{{ $download }}" class="btn-primary !px-8 !py-3.5 !text-[15px]">
+            <a href="{{ $download }}" @if ($this->appAvailable) download @endif class="btn-primary !px-8 !py-3.5 !text-[15px]">
                 <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4v12m0 0l-5-5m5 5l5-5M5 20h14"/></svg>
                 Download for Windows
             </a>
@@ -69,7 +69,7 @@
                 </li>
             @endforeach
         </ol>
-        <a href="{{ $download }}" class="btn-primary mt-7">Download for Windows</a>
+        <a href="{{ $download }}" @if ($this->appAvailable) download @endif class="btn-primary mt-7">Download for Windows</a>
     </section>
 
     {{-- The planning tools -------------------------------------------------------------------- --}}

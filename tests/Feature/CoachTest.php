@@ -259,6 +259,21 @@ class CoachTest extends TestCase
         $this->getJson('/api/coach/connect/not-a-code')->assertNotFound();
     }
 
+    public function test_the_app_waiting_to_connect_does_not_block_signing_in_from_the_same_pc(): void
+    {
+        // 2026-10-14: the app polls every two seconds while the player signs in, from the same
+        // address. Every plain "throttle:N,1" shares one counter per address, so the polls used up
+        // Battle.net sign-in's 20 and its email step's 10, and the player saw "Too many requests".
+        $code = str_repeat('cd34', 8);
+        for ($i = 0; $i < 30; $i++) {
+            $this->getJson("/api/coach/connect/{$code}")->assertStatus(202);
+        }
+
+        $this->assertNotSame(429, $this->get('/auth/battlenet')->status());
+        $this->assertNotSame(429, $this->get('/auth/battlenet/finish')->status());
+        $this->assertNotSame(429, $this->get('/auth/google')->status());
+    }
+
     public function test_looking_up_new_players_rebuilds_the_uploaders_pages(): void
     {
         Queue::fake();
