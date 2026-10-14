@@ -64,8 +64,9 @@ The rules it is given, each one already a rule of this project:
    (`MatchAnalysisService::LEAD_BELOW`).
 3. **A [HYP] claim in the model may be offered as reasoning, never as settled** (`arena-structure.md` Part 0).
 4. **No win probabilities, and never call a window a kill** (CLAUDE.md rule 33).
-5. **The loss rules are an estimate, not a verdict.** The log cannot see positioning, calls or
-   mistakes nobody pressed a button for. Say so when it matters.
+5. **The loss rules are an estimate, not a verdict.** They do not read positioning (the log has
+   positions but no walls, so no line of sight), calls, or mistakes nobody pressed a button for.
+   Say so when it matters.
 6. **Name the game and round** an answer rests on, so the player can open it.
 7. **Opponents' experience is as their character is now,** and Gladiator seasons count across a
    whole account.

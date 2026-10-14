@@ -44,6 +44,31 @@ This is rule 12's full text.
     would make it permitted; the reason they built the gate has not changed, so do not resume
     bulk pulling through it.
 
+## Position and facing (checked 2026-10-14)
+
+**The log does record where each player stands.** Every event with an advanced block carries one
+unit's position at that moment. The block starts 12 fields in for a spell event and 9 for a swing,
+and its first field names the unit it describes (the caster on `SPELL_CAST_SUCCESS`, the target on
+damage and heal lines). From the block's start: current and max health at +2 and +3, then
+**x at +14, y at +15, a map id at +16 (0 in arenas), facing in radians at +17, item level at +18**
+(format 22, patch 12.1.0; the block grew two fields since the layout most references give, so
+count from a raw line, never from a reference). Checked three ways on the 996 archived games:
+- **Units are yards.** Psychic Scream's 2,039 victims stood a median 5.2 yards from the priest's own
+  cast position, 90% within 8.6 (an 8-yard radius plus a body); of 2,579 enemies it did not fear,
+  220 were within 8 yards (immune, out of sight or already controlled).
+- **Facing is radians from +x toward +y.** 94.6% of 10,444 casts that need the caster to face the
+  target point within 90 degrees of it on that reading; swapping the axes gives chance (54%).
+- **How fresh a position is depends on activity.** A unit is placed only when an event describes
+  it: the median gap is 0.04s and 99% are under 0.85s in a fight, but a player who does nothing
+  (stealth, drinking, a long cast) goes unplaced. At a random moment both of two players had a
+  position under 0.5s old 73% of the time, under 1s 82%. A distance is trustworthy to about a yard
+  with fresh samples; with a sample over a second old, fear victims "reached" 12+ yards. Use the
+  sample's age, never interpolate across a gap.
+
+**What it does not give:** the arena's walls and pillars. Distance and range are measurable; line of
+sight is not (a player's own failed casts say "not in line of sight", nobody else's are logged).
+The exploration that established this: `docs/learning/fear-windows-2026-10-14.md`.
+
 ## The format and patch each game was logged in (from 4 Oct 2026)
 
 WoW writes a header whenever logging starts, so before every arena the addon logs:

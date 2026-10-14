@@ -682,8 +682,9 @@ What it needs from each game (RoundAnalysisService v3): who applied each overlap
 (the `BUFF` aura's source), who spent each defensive and whether it was outside the enemy's goes,
 and whose lockout was on their healer during each go and each burst.
 
-**An estimate from rules, not a verdict.** It cannot see positioning, calls, or a mistake nobody
-pressed a button for; a player who never pressed anything collects no share. The page says so,
+**An estimate from rules, not a verdict.** It does not read positioning (the log records positions
+but no walls or line of sight: `docs/combat-log-ingest.md`), calls, or a mistake nobody pressed a
+button for; a player who never pressed anything collects no share. The page says so,
 shows every item in a ledger, and prints the weights.
 
 **The overlap rule was removed on 2026-10-03, after it changed how Chriso played and lost a game.**

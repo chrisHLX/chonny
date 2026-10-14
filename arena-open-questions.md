@@ -231,8 +231,9 @@ The player's realisation: if crowd control costs your team more defensives than 
 from range that forces their cooldowns wins the exchange. That such trades happen is his report;
 how often they decide games is untested. The archive can measure the part it sees: per go and per
 stretch between goes, enemy defensives forced against our defensives spent, and whether the side
-ahead on that balance more often wins the round. It cannot see the positioning half of his
-example, so a result here tests the damage trade only.
+ahead on that balance more often wins the round. The positioning half of his example (damage
+from range) is partly measurable since positions turned out to be in the log (E1): range from the
+target is, line of sight is not. As first posed, a result here tests the damage trade only.
 
 ANSWER:
 
@@ -290,10 +291,14 @@ ANSWER:
 
 ## E. Gaps in the model the framework admits to
 
-**E1. Positioning.** Nothing in the data model represents position, and Part 14.1 shows
-it deciding round after round in the final. Is this permanently out of scope, or is
-there a cheap partial — e.g. tagging abilities as requiring LOS / range / a stacked
-enemy, so a plan can at least state its positional preconditions in prose?
+**E1. Positioning.** Part 14.1 shows positioning deciding round after round in the final.
+**Correction (2026-10-14):** the combat log does record position: every cast and hit carries
+the unit's x, y and facing (`docs/combat-log-ingest.md`, "Position and facing"; checked against
+Psychic Scream's radius and casts that need facing). The data model does not use it yet. What the
+log lacks is the arena's geometry, so distance and range are measurable and line of sight is not.
+The open question is now narrower: which positional reads are worth measuring, given positions
+only arrive when a player acts? A first exploration on Psychic Scream windows:
+`docs/learning/fear-windows-2026-10-14.md`.
 
 ANSWER:
 

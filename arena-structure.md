@@ -858,8 +858,10 @@ not smaller.
 
 ### 14.1 Positioning [OBS]
 
-Nothing in the data model represents position, and positioning decides an enormous
-number of the plays in the final:
+The data model does not use position yet, and positioning decides an enormous number of the
+plays in the final. (Correction, 2026-10-14: the combat log does record each player's position
+and facing whenever they act or are hit, so distance and range can be measured; it has no walls
+or pillars, so line of sight cannot. `arena-open-questions.md` E1.)
 
 - **Denying a specific ability with geometry:** *"I evasion and I put my back to the
   wall so that I can't get kidney shot... which is why I think he didn't press it."*
