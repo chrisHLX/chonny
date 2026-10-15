@@ -259,6 +259,20 @@ class CoachTest extends TestCase
         $this->getJson('/api/coach/connect/not-a-code')->assertNotFound();
     }
 
+    public function test_the_app_page_tells_search_engines_and_link_previews_what_the_app_is(): void
+    {
+        $html = $this->get('/wow/app')->assertOk()->getContent();
+
+        preg_match_all('#<script type="application/ld\+json">(.*?)</script>#s', $html, $m);
+        $types = collect($m[1])->flatMap(fn ($json) => json_decode($json, true)['@graph'] ?? [])->pluck('@type');
+        $this->assertContains('SoftwareApplication', $types->all());
+        $this->assertStringContainsString('<meta name="twitter:card" content="summary_large_image">', $html);
+        $this->assertStringContainsString('/images/app/card.webp', $html);
+
+        // Every other page keeps the small card and no app entry.
+        $this->assertStringContainsString('<meta name="twitter:card" content="summary">', $this->get('/browse-guides')->getContent());
+    }
+
     public function test_the_app_waiting_to_connect_does_not_block_signing_in_from_the_same_pc(): void
     {
         // 2026-10-14: the app polls every two seconds while the player signs in, from the same

@@ -42,10 +42,14 @@
                             ['@type' => 'SiteNavigationElement', 'position' => 2, 'name' => '3v3 Comp Builder', 'url' => 'https://mindcollector.com/wow/comps'],
                             ['@type' => 'SiteNavigationElement', 'position' => 3, 'name' => 'Class Guides', 'url' => 'https://mindcollector.com/wow/pvp-guides'],
                             ['@type' => 'SiteNavigationElement', 'position' => 4, 'name' => 'Spell Explorer', 'url' => 'https://mindcollector.com/wow/spells'],
+                            ['@type' => 'SiteNavigationElement', 'position' => 5, 'name' => 'The MindCollector app', 'url' => 'https://mindcollector.com/wow/app'],
                         ],
                     ],
                 ],
             ];
+            if (! empty($schema ?? [])) {
+                $structuredData['@graph'][] = $schema;
+            }
         @endphp
         <title>{{ $seoTitle }}</title>
         <meta name="description" content="{{ $seoDescription }}">
@@ -57,7 +61,7 @@
         <meta property="og:description" content="{{ $seoDescription }}">
         <meta property="og:url" content="{{ $seoCanonical }}">
         <meta property="og:image" content="{{ $seoImage }}">
-        <meta name="twitter:card" content="summary">
+        <meta name="twitter:card" content="{{ ! empty($ogImage) ? 'summary_large_image' : 'summary' }}">
         <meta name="twitter:title" content="{{ $seoTitle }}">
         <meta name="twitter:description" content="{{ $seoDescription }}">
         <meta name="twitter:image" content="{{ $seoImage }}">

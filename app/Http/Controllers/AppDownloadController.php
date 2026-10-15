@@ -72,10 +72,37 @@ class AppDownloadController extends Controller
      */
     public function appVersion(): JsonResponse
     {
+        return response()->json(['version' => self::servedVersion()]);
+    }
+
+    /** The version in storage/app/desktop/version.json, or null when it is missing or malformed. */
+    public static function servedVersion(): ?string
+    {
         $path = dirname(DesktopAppController::path()).'/version.json';
         $version = is_file($path) ? (json_decode((string) file_get_contents($path), true)['version'] ?? null) : null;
 
-        return response()->json(['version' => is_string($version) && preg_match('/^\d+\.\d+\.\d+$/', $version) ? $version : null]);
+        return is_string($version) && preg_match('/^\d+\.\d+\.\d+$/', $version) ? $version : null;
+    }
+
+    /**
+     * What search engines read about the app (schema.org SoftwareApplication, 2026-10-15): a free
+     * Windows app, its version and its pictures, so a search for a WoW arena app can show it as one.
+     */
+    public static function schema(): array
+    {
+        return array_filter([
+            '@type' => 'SoftwareApplication',
+            'name' => 'MindCollector',
+            'description' => 'Reviews every WoW arena game you play: a card for each game, what to work on next, and how you compare with other players of your spec.',
+            'operatingSystem' => 'Windows 10, Windows 11',
+            'applicationCategory' => 'GameApplication',
+            'url' => route('app'),
+            'downloadUrl' => route('coach.app'),
+            'softwareVersion' => self::servedVersion(),
+            'screenshot' => collect(['card', 'improve', 'death', 'comp'])->map(fn ($p) => url("/images/app/{$p}.webp"))->all(),
+            'offers' => ['@type' => 'Offer', 'price' => '0', 'priceCurrency' => 'USD'],
+            'publisher' => ['@type' => 'Organization', 'name' => 'MindCollector', 'url' => url('/')],
+        ], fn ($v) => $v !== null);
     }
 
     private static function key(string $code): string

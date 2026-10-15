@@ -1,5 +1,8 @@
 {{-- The desktop app's page (/wow/app): what it does and how to get going. See AppDownloadController. --}}
-<x-app-layout title="MindCollector for Windows" description="The MindCollector app sends your WoW arena games to your page as you play, so every game gets a review.">
+@php
+    $appSchema = \App\Http\Controllers\AppDownloadController::schema();
+@endphp
+<x-app-layout title="MindCollector for Windows: a review of every WoW arena game" description="Free Windows app for WoW arena. It sends your games to your page as you play, so every game gets a review: what killed you, what to work on next, and how you compare with players of your spec." og-image="/images/app/card.webp" :schema="$appSchema">
 <div class="max-w-4xl mx-auto px-4 py-6 sm:py-10">
 
     <section class="page-hero">

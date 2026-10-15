@@ -53,6 +53,9 @@ Route::get('/checkout/cancel', fn () => view('checkout.cancel'))->name('checkout
 // server-side can undo it, and it is harmless (the builder still works).
 Route::get('/', \App\Livewire\Landing::class)->name('home');
 
+// Built from the database: every public page, every spec's guide page and every published guide.
+Route::get('/sitemap.xml', \App\Http\Controllers\SitemapController::class)->name('sitemap');
+
 Route::get('/diagnostic', function () {
     return view('diagnostic');
 })->name('diagnostic');

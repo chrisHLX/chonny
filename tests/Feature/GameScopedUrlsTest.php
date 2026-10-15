@@ -118,12 +118,17 @@ test('route names still build the paths every internal link depends on', functio
  * the wrong canonical URL) — a page's own index-to-default-spec redirect is fine and is followed.
  */
 test('the sitemap lists no path that has been moved away', function () {
-    $xml = file_get_contents(public_path('sitemap.xml'));
-
-    preg_match_all('#<loc>https://mindcollector\.com(/[^<]*)</loc>#', $xml, $m);
-    expect($m[1])->not->toBeEmpty();
-
     seedMinimalWowData();
+    \Illuminate\Support\Facades\Cache::forget(\App\Http\Controllers\SitemapController::CACHE_KEY);
+
+    // Built from the database since 2026-10-15 (SitemapController), not a static file.
+    $xml = $this->get('/sitemap.xml')->assertOk()->assertHeader('Content-Type', 'application/xml; charset=UTF-8')->getContent();
+
+    preg_match_all('#<loc>https?://[^/<]+(/[^<]*)</loc>#', $xml, $m);
+    expect($m[1])->not->toBeEmpty()
+        ->and($m[1])->toContain('/wow/app')
+        ->and($m[1])->not->toContain('/wow/pvp-guides');   // only redirects to a spec; the spec pages are listed
+    expect(collect($m[1])->filter(fn ($p) => str_starts_with($p, '/wow/pvp-guides/'))->count())->toBeGreaterThan(0);
 
     foreach ($m[1] as $path) {
         $direct = $this->get($path);

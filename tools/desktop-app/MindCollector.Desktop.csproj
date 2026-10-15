@@ -17,6 +17,11 @@
     <Version>0.5.4</Version>
     <Product>MindCollector</Product>
     <Company>MindCollector</Company>
+    <!-- What Windows shows in the file's Properties and in its install and SmartScreen prompts. -->
+    <AssemblyTitle>MindCollector: WoW arena game reviews</AssemblyTitle>
+    <Description>Sends your WoW arena games to mindcollector.com and shows each one reviewed.</Description>
+    <Copyright>Copyright (c) 2026 MindCollector</Copyright>
+    <NeutralLanguage>en</NeutralLanguage>
     <!-- One exe for testers: the .NET runtime is inside it, so nothing else needs installing. -->
     <RuntimeIdentifier>win-x64</RuntimeIdentifier>
     <SelfContained>true</SelfContained>
