@@ -108,4 +108,11 @@
 - `/characters` — `Battlenet\Characters` / `CharacterShow`.
 - `/top-damage-rotations`, `/cc-chains`, `/cc-review`, `/friends`, `/guilds`, `/profile`.
 - Admin: `/admin/content`, `/admin/talent-builds`, `/admin/page-usage`, `/admin/weak-areas`,
-  `/admin/diagnostic-stats`, `/admin/api-usage`.
+  `/admin/diagnostic-stats`, `/admin/api-usage`, `/admin/matches`.
+- `/admin/matches` (`Admin\Matches`, 2026-10-15) — every game uploaded to the site, by everyone:
+  totals, games per day, each uploader (including anyone who connected the app and has sent
+  nothing yet), and each game with both teams, the result, MMR and length, opening into its rounds
+  and the uploader's own game card (`/admin/matches/{user}/{lobby}.html`). Built from
+  `arena_reviews`; only the page's 30 rows are decoded, and MMR is read from the rounds in SQL.
+  Played times are the uploader's clock (Australian games read 11 hours ahead of UTC). A game two
+  people uploaded is two rows.

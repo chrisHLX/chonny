@@ -20,6 +20,7 @@ use App\Livewire\Admin\ContentManager;
 use App\Livewire\Admin\DiagnosticStats;
 use App\Livewire\Admin\GameDataBrowser;
 use App\Livewire\Admin\LogViewer;
+use App\Livewire\Admin\Matches;
 use App\Livewire\Admin\PageUsage;
 use App\Livewire\Admin\TalentBuildEditor;
 use App\Livewire\Admin\WeakAreas;
@@ -376,6 +377,10 @@ Route::middleware(['auth', 'can:admin'])->prefix('admin')->name('admin.')->group
     Route::get('/logs', LogViewer::class)->name('logs');
     Route::get('/game-data', GameDataBrowser::class)->name('game-data');
     Route::get('/talent-builds', TalentBuildEditor::class)->name('talent-builds');
+    // Every uploaded game, and any player's game card opened from it (Admin\Matches).
+    Route::get('/matches', Matches::class)->name('matches');
+    Route::get('/matches/{user}/{file}', \App\Http\Controllers\AdminMatchCardController::class)
+        ->whereNumber('user')->where('file', '[a-z0-9-]+\.html')->name('matches.card');
 });
 
 // ------- User-authored guides -------
