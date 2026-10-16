@@ -296,6 +296,11 @@
                     <span class="w-1 h-1 rounded-full bg-current shrink-0"></span>
                     Matches
                 </a>
+                <a href="{{ route('admin.search-pages') }}"
+                   class="sidebar-item text-[12px] {{ request()->routeIs('admin.search-pages') ? 'active !text-accent' : '' }}">
+                    <span class="w-1 h-1 rounded-full bg-current shrink-0"></span>
+                    Search Pages
+                </a>
                 <a href="{{ route('admin.page-usage') }}"
                    class="sidebar-item text-[12px] {{ request()->routeIs('admin.page-usage') ? 'active !text-accent' : '' }}">
                     <span class="w-1 h-1 rounded-full bg-current shrink-0"></span>

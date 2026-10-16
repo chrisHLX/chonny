@@ -22,6 +22,11 @@
                     The talents top players run, how to line up your burst, your full spell kit, and what
                     answers your crowd control. Built from high-rated arena matches and current patch data.
                 </p>
+                @if ($specGuideUrl)
+                    <a href="{{ $specGuideUrl }}" class="inline-block text-[12.5px] text-gold hover:text-gold-light mt-2">
+                        How {{ $spec->name }} players actually play arena, counted from real games &rarr;
+                    </a>
+                @endif
             </div>
 
             <button type="button"

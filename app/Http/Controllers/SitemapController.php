@@ -52,6 +52,14 @@ class SitemapController extends Controller
             $urls[] = ['loc' => url($path), 'freq' => $freq, 'priority' => $priority];
         }
 
+        // The spec guides counted from real games (SpecPvpController): the pages written for search.
+        $urls[] = ['loc' => route('spec-pvp.index'), 'freq' => 'weekly', 'priority' => '0.9'];
+        $withPages = array_map('intval', array_keys(\App\Support\SpecPages::load()['specs'] ?? []));
+        foreach (Specialization::with('gameClass')->whereIn('external_spec_id', $withPages)
+            ->whereHas('gameClass.game', fn ($q) => $q->where('slug', 'wow'))->get() as $spec) {
+            $urls[] = ['loc' => route('spec-pvp.show', [$spec->gameClass->slug, $spec->slug]), 'freq' => 'weekly', 'priority' => '0.8'];
+        }
+
         // Every spec's guide page: /wow/pvp-guides alone only redirects to one of these.
         $specs = Specialization::with('gameClass')
             ->whereHas('gameClass.game', fn ($q) => $q->where('slug', 'wow'))

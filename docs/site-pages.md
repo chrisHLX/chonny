@@ -107,8 +107,24 @@
   Drill results are **never** written to `UserConceptMastery` — see the Rules.
 - `/characters` — `Battlenet\Characters` / `CharacterShow`.
 - `/top-damage-rotations`, `/cc-chains`, `/cc-review`, `/friends`, `/guilds`, `/profile`.
+- `/wow/pvp` and `/wow/pvp/{class}/{spec}` (`SpecPvpController`, 2026-10-16) — the spec guides
+  written for search. Each answers what players type into Google ("ret paladin pvp talents",
+  "disc priest pvp guide midnight": the autocomplete research is in the commit) with numbers counted
+  from every player in every measured game: PvP talent pick rates, the cooldowns pressed in a go and
+  the CC on the healer (`go-cooldowns.json`), deaths and first deaths against every spec, the
+  defensives pressed when a go lands on them, interrupts, and the 3v3 comps they played with their
+  record. The numbers are `data/population/spec-pages.json` (`App\Support\SpecPages`), written by
+  `wow:population`'s aggregate beside the norms, so the server's `wow:population-refresh` keeps a
+  live copy fresh from every uploaded round. A spec with under 8 rounds has no page (no thin pages).
+  Every page states its sample, dates, rating band and how much of it is the uploaders' own games,
+  and ends with the app. The old `/wow/pvp-guides` pages are titled "Arena Kit" since, so the two
+  do not compete for the same searches, and link to the guide.
 - Admin: `/admin/content`, `/admin/talent-builds`, `/admin/page-usage`, `/admin/weak-areas`,
-  `/admin/diagnostic-stats`, `/admin/api-usage`, `/admin/matches`.
+  `/admin/diagnostic-stats`, `/admin/api-usage`, `/admin/matches`, `/admin/search-pages`.
+- `/admin/search-pages` (`Admin\SearchPages`) — how the spec guides do: readers (browser-confirmed
+  sessions), how many came from a search engine, crawler visits, and what readers did next (the
+  app's page, the download, connecting the app). Which searches bring them needs Google Search
+  Console, not yet connected.
 - `/admin/matches` (`Admin\Matches`, 2026-10-15) — every game uploaded to the site, by everyone:
   totals, games per day, each uploader (including anyone who connected the app and has sent
   nothing yet), and each game with both teams, the result, MMR and length, opening into its rounds

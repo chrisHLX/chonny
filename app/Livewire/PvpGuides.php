@@ -278,9 +278,14 @@ class PvpGuides extends Component
             'classSpecs' => $this->classSpecs,
             'tabs' => self::TABS,
             'tabHasData' => $this->tabHasData,
+            // The spec's guide counted from real games (SpecPvpController), when it has one.
+            'specGuideUrl' => $this->spec?->external_spec_id && \App\Support\SpecPages::forSpec((int) $this->spec->external_spec_id)
+                ? route('spec-pvp.show', [$this->class->slug, $this->spec->slug]) : null,
         ])->layout('layouts.app', [
-            'title' => "{$name} Class Guide - {$tabLabel} | MindCollector",
-            'description' => "{$name} arena guide: the talents top players run, how to line up your burst, your full spell kit with build-adjusted cooldowns, and what counters your crowd control.",
+            // "Kit", not "Guide", since 2026-10-16: /wow/pvp/{class}/{spec} is the spec's guide in
+            // search, and two pages titled the same would compete for the same searches.
+            'title' => "{$name} Arena Kit: Cooldowns, Burst and CC - {$tabLabel} | MindCollector",
+            'description' => "{$name} spell kit for arena: the talents most players pick, every cooldown adjusted for your build, how to line up your burst, and what answers your crowd control.",
         ]);
     }
 }

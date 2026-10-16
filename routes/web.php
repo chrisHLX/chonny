@@ -234,6 +234,10 @@ Route::prefix('wow')->group(function () {
     // always names the spec it opens on.
     Route::get('/pvp-guides/{classSlug?}/{specSlug?}', \App\Livewire\PvpGuides::class)->name('pvp-guides');
 
+    // The public spec guides, counted from real games and written for search (SpecPvpController).
+    Route::get('/pvp', [\App\Http\Controllers\SpecPvpController::class, 'index'])->name('spec-pvp.index');
+    Route::get('/pvp/{classSlug}/{specSlug}', [\App\Http\Controllers\SpecPvpController::class, 'show'])->name('spec-pvp.show');
+
     // Class quizzes (Training). Questions are built from live game data each attempt, so they stay
     // current when a patch changes the kit. The engine is game-neutral (App\Quiz); these routes and
     // their components are WoW's. See App\Quiz\QuizService.
@@ -382,6 +386,7 @@ Route::middleware(['auth', 'can:admin'])->prefix('admin')->name('admin.')->group
     Route::get('/talent-builds', TalentBuildEditor::class)->name('talent-builds');
     // Every uploaded game, and any player's game card opened from it (Admin\Matches).
     Route::get('/matches', Matches::class)->name('matches');
+    Route::get('/search-pages', \App\Livewire\Admin\SearchPages::class)->name('search-pages');
     Route::get('/matches/{user}/{file}', \App\Http\Controllers\AdminMatchCardController::class)
         ->whereNumber('user')->where('file', '[a-z0-9-]+\.html')->name('matches.card');
 });

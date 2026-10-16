@@ -1,0 +1,3033 @@
+{
+    "builtAt": "2026-10-16T09:15:38+00:00",
+    "generatedAt": "2026-10-16",
+    "seasonSince": "2026-08-01",
+    "games": 996,
+    "specs": {
+        "105": {
+            "label": "Restoration Druid",
+            "window": "season",
+            "healer": true,
+            "rounds": 122,
+            "players": 63,
+            "from": "2026-08-28",
+            "to": "2026-10-12",
+            "mmr": {
+                "p25": 1842,
+                "p50": 1962,
+                "p75": 2127
+            },
+            "brackets": {
+                "3v3": 0.7,
+                "Rated Solo Shuffle": 0.28,
+                "2v2": 0.02
+            },
+            "recorderShare": 0.08,
+            "pvpTalents": {
+                "Early Spring": 1,
+                "Forest Guardian": 0.9,
+                "High Winds": 0.43,
+                "Call of Ohn'ahra": 0.36,
+                "Tireless Pursuit": 0.11,
+                "Disentanglement": 0.11,
+                "Ancient of Lore": 0.07
+            },
+            "interruptRounds": 0,
+            "died": 0.2,
+            "diedFirst": 0.07,
+            "defensives": {
+                "goes": 47,
+                "self": {
+                    "Barkskin": 0.4,
+                    "Ironbark": 0.23,
+                    "Frenzied Regeneration": 0.23,
+                    "Incarnation: Tree of Life": 0.23,
+                    "Gladiator's Medallion": 0.23,
+                    "Ancient of Lore": 0.09,
+                    "Tranquility": 0.09
+                },
+                "team": []
+            },
+            "comps": [
+                {
+                    "specs": [
+                        63,
+                        105,
+                        259
+                    ],
+                    "games": 14,
+                    "won": 10
+                },
+                {
+                    "specs": [
+                        105,
+                        251,
+                        1480
+                    ],
+                    "games": 12,
+                    "won": 7
+                },
+                {
+                    "specs": [
+                        103,
+                        105,
+                        253
+                    ],
+                    "games": 9,
+                    "won": 3
+                },
+                {
+                    "specs": [
+                        105,
+                        254,
+                        258
+                    ],
+                    "games": 7,
+                    "won": 2
+                },
+                {
+                    "specs": [
+                        105,
+                        263,
+                        1480
+                    ],
+                    "games": 4,
+                    "won": 2
+                },
+                {
+                    "specs": [
+                        105,
+                        253,
+                        1480
+                    ],
+                    "games": 4,
+                    "won": 2
+                }
+            ]
+        },
+        "251": {
+            "label": "Frost Death Knight",
+            "window": "season",
+            "healer": false,
+            "rounds": 32,
+            "players": 11,
+            "from": "2026-09-25",
+            "to": "2026-10-11",
+            "mmr": {
+                "p25": 1928,
+                "p50": 2061,
+                "p75": 2127
+            },
+            "brackets": {
+                "Rated Solo Shuffle": 0.75,
+                "3v3": 0.25
+            },
+            "recorderShare": 0,
+            "pvpTalents": {
+                "Strangulate": 0.81,
+                "Bloodforged Armor": 0.66,
+                "Spellwarden": 0.59,
+                "Delirium": 0.44,
+                "Dark Simulacrum": 0.38,
+                "Death's Cold Embrace": 0.13
+            },
+            "interruptRounds": 0.22,
+            "died": 0.41,
+            "diedFirst": 0.38,
+            "defensives": {
+                "goes": 48,
+                "self": {
+                    "Anti-Magic Shell": 0.77,
+                    "Lichborne": 0.38,
+                    "Icebound Fortitude": 0.35,
+                    "Gladiator's Medallion": 0.29,
+                    "Death Pact": 0.27,
+                    "Anti-Magic Zone": 0.21,
+                    "Wraith Walk": 0.17
+                },
+                "team": {
+                    "Pain Suppression": 0.35,
+                    "Blessing of Sacrifice": 0.15,
+                    "Lay on Hands": 0.15,
+                    "Evangelism": 0.13,
+                    "Leap of Faith": 0.06
+                }
+            },
+            "comps": [
+                {
+                    "specs": [
+                        105,
+                        251,
+                        1480
+                    ],
+                    "games": 12,
+                    "won": 7
+                },
+                {
+                    "specs": [
+                        71,
+                        251,
+                        256
+                    ],
+                    "games": 2,
+                    "won": 1
+                },
+                {
+                    "specs": [
+                        251,
+                        263,
+                        270
+                    ],
+                    "games": 2,
+                    "won": 0
+                }
+            ]
+        },
+        "72": {
+            "label": "Fury Warrior",
+            "window": "season",
+            "healer": false,
+            "rounds": 24,
+            "players": 12,
+            "from": "2026-08-28",
+            "to": "2026-10-09",
+            "mmr": {
+                "p25": 1845,
+                "p50": 2103,
+                "p75": 2131
+            },
+            "brackets": {
+                "Rated Solo Shuffle": 0.5,
+                "3v3": 0.46,
+                "2v2": 0.04
+            },
+            "recorderShare": 0,
+            "pvpTalents": {
+                "Slaughterhouse": 1,
+                "Enduring Rage": 0.75,
+                "Disarm": 0.75,
+                "Safeguard": 0.29,
+                "Berserker Roar": 0.13,
+                "Rebound": 0.08
+            },
+            "interruptRounds": 0.58,
+            "died": 0.21,
+            "diedFirst": 0.13,
+            "defensives": {
+                "goes": 26,
+                "self": {
+                    "Spell Reflection": 0.58,
+                    "Berserker Shout": 0.27,
+                    "Gladiator's Medallion": 0.23,
+                    "Enraged Regeneration": 0.19,
+                    "Rallying Cry": 0.12
+                },
+                "team": {
+                    "Pain Suppression": 0.15,
+                    "Holy Word: Serenity": 0.12,
+                    "Blessing of Sacrifice": 0.12,
+                    "Ironbark": 0.08,
+                    "Anti-Magic Shell": 0.08
+                }
+            },
+            "comps": [
+                {
+                    "specs": [
+                        64,
+                        72,
+                        105
+                    ],
+                    "games": 2,
+                    "won": 2
+                },
+                {
+                    "specs": [
+                        70,
+                        72,
+                        256
+                    ],
+                    "games": 2,
+                    "won": 1
+                }
+            ]
+        },
+        "265": {
+            "label": "Affliction Warlock",
+            "window": "season",
+            "healer": false,
+            "rounds": 121,
+            "players": 53,
+            "from": "2026-09-25",
+            "to": "2026-10-13",
+            "mmr": {
+                "p25": 1944,
+                "p50": 2003,
+                "p75": 2098
+            },
+            "brackets": {
+                "3v3": 0.8,
+                "Rated Solo Shuffle": 0.2
+            },
+            "recorderShare": 0,
+            "pvpTalents": {
+                "Jinx": 0.95,
+                "Impish Instincts": 0.79,
+                "Nether Ward": 0.66,
+                "Gateway Mastery": 0.33,
+                "Rot and Decay": 0.17,
+                "Soul Rip": 0.07
+            },
+            "interruptRounds": 0.02,
+            "died": 0.37,
+            "diedFirst": 0.3,
+            "defensives": {
+                "goes": 197,
+                "self": {
+                    "Dark Pact": 0.59,
+                    "Demonic Healthstone": 0.36,
+                    "Unending Resolve": 0.25,
+                    "Gladiator's Medallion": 0.23,
+                    "Nether Ward": 0.15
+                },
+                "team": {
+                    "Blessing of Sacrifice": 0.1,
+                    "Pain Suppression": 0.08,
+                    "Holy Word: Serenity": 0.08,
+                    "Lay on Hands": 0.07,
+                    "Leap of Faith": 0.06
+                }
+            },
+            "comps": [
+                {
+                    "specs": [
+                        263,
+                        265,
+                        270
+                    ],
+                    "games": 13,
+                    "won": 9
+                },
+                {
+                    "specs": [
+                        65,
+                        265,
+                        269
+                    ],
+                    "games": 10,
+                    "won": 4
+                },
+                {
+                    "specs": [
+                        65,
+                        258,
+                        265
+                    ],
+                    "games": 6,
+                    "won": 4
+                },
+                {
+                    "specs": [
+                        256,
+                        259,
+                        265
+                    ],
+                    "games": 5,
+                    "won": 4
+                },
+                {
+                    "specs": [
+                        103,
+                        256,
+                        265
+                    ],
+                    "games": 5,
+                    "won": 2
+                },
+                {
+                    "specs": [
+                        65,
+                        254,
+                        265
+                    ],
+                    "games": 4,
+                    "won": 3
+                }
+            ]
+        },
+        "70": {
+            "label": "Retribution Paladin",
+            "window": "season",
+            "healer": false,
+            "rounds": 226,
+            "players": 72,
+            "from": "2026-08-28",
+            "to": "2026-10-12",
+            "mmr": {
+                "p25": 1939,
+                "p50": 1998,
+                "p75": 2144
+            },
+            "brackets": {
+                "Rated Solo Shuffle": 0.62,
+                "3v3": 0.38,
+                "2v2": 0
+            },
+            "recorderShare": 0,
+            "pvpTalents": {
+                "Blessing of Sanctuary": 0.88,
+                "Hallowed Ground": 0.77,
+                "Blessing of Spellwarding": 0.58,
+                "Luminescence": 0.33,
+                "Searing Glare": 0.26,
+                "Spreading the Word": 0.09,
+                "Ultimate Retribution": 0.05
+            },
+            "interruptRounds": 0.39,
+            "died": 0.28,
+            "diedFirst": 0.22,
+            "defensives": {
+                "goes": 300,
+                "self": {
+                    "Divine Protection": 0.54,
+                    "Lay on Hands": 0.21,
+                    "Gladiator's Medallion": 0.19,
+                    "Divine Shield": 0.16,
+                    "Blessing of Sacrifice": 0.13,
+                    "Blessing of Protection": 0.07,
+                    "Blessing of Spellwarding": 0.07
+                },
+                "team": {
+                    "Pain Suppression": 0.22,
+                    "Blessing of Sacrifice": 0.07,
+                    "Ironbark": 0.06,
+                    "Evangelism": 0.05,
+                    "Holy Word: Serenity": 0.05
+                }
+            },
+            "comps": [
+                {
+                    "specs": [
+                        70,
+                        254,
+                        256
+                    ],
+                    "games": 13,
+                    "won": 6
+                },
+                {
+                    "specs": [
+                        70,
+                        256,
+                        577
+                    ],
+                    "games": 10,
+                    "won": 3
+                },
+                {
+                    "specs": [
+                        70,
+                        71,
+                        256
+                    ],
+                    "games": 8,
+                    "won": 4
+                },
+                {
+                    "specs": [
+                        70,
+                        253,
+                        256
+                    ],
+                    "games": 7,
+                    "won": 3
+                },
+                {
+                    "specs": [
+                        70,
+                        71,
+                        270
+                    ],
+                    "games": 5,
+                    "won": 1
+                },
+                {
+                    "specs": [
+                        70,
+                        252,
+                        256
+                    ],
+                    "games": 4,
+                    "won": 3
+                }
+            ]
+        },
+        "1468": {
+            "label": "Preservation Evoker",
+            "window": "season",
+            "healer": true,
+            "rounds": 60,
+            "players": 32,
+            "from": "2026-08-28",
+            "to": "2026-10-12",
+            "mmr": {
+                "p25": 1929,
+                "p50": 2044,
+                "p75": 2129
+            },
+            "brackets": {
+                "3v3": 0.68,
+                "Rated Solo Shuffle": 0.3,
+                "2v2": 0.02
+            },
+            "recorderShare": 0.02,
+            "pvpTalents": {
+                "Emerald Communion": 1,
+                "Nullifying Shroud": 0.98,
+                "Scouring Flame": 0.65,
+                "Obsidian Mettle": 0.3,
+                "Time Stop": 0.05
+            },
+            "interruptRounds": 0,
+            "died": 0.07,
+            "diedFirst": 0.02,
+            "defensives": {
+                "goes": 10,
+                "self": {
+                    "Obsidian Scales": 0.4,
+                    "Time Dilation": 0.3,
+                    "Cauterizing Flame": 0.2,
+                    "Gladiator's Medallion": 0.1,
+                    "Rewind": 0.1
+                },
+                "team": {
+                    "Lay on Hands": 0.1
+                }
+            },
+            "comps": [
+                {
+                    "specs": [
+                        63,
+                        259,
+                        1468
+                    ],
+                    "games": 12,
+                    "won": 7
+                },
+                {
+                    "specs": [
+                        63,
+                        71,
+                        1468
+                    ],
+                    "games": 4,
+                    "won": 3
+                },
+                {
+                    "specs": [
+                        254,
+                        577,
+                        1468
+                    ],
+                    "games": 2,
+                    "won": 0
+                },
+                {
+                    "specs": [
+                        102,
+                        269,
+                        1468
+                    ],
+                    "games": 2,
+                    "won": 1
+                },
+                {
+                    "specs": [
+                        265,
+                        269,
+                        1468
+                    ],
+                    "games": 2,
+                    "won": 0
+                },
+                {
+                    "specs": [
+                        252,
+                        577,
+                        1468
+                    ],
+                    "games": 2,
+                    "won": 1
+                }
+            ]
+        },
+        "64": {
+            "label": "Frost Mage",
+            "window": "season",
+            "healer": false,
+            "rounds": 80,
+            "players": 24,
+            "from": "2026-08-28",
+            "to": "2026-10-12",
+            "mmr": {
+                "p25": 1968,
+                "p50": 2129,
+                "p75": 2173
+            },
+            "brackets": {
+                "3v3": 0.61,
+                "Rated Solo Shuffle": 0.38,
+                "2v2": 0.01
+            },
+            "recorderShare": 0,
+            "pvpTalents": {
+                "Overpowered Barrier": 0.88,
+                "Master Shepherd": 0.83,
+                "Improved Mass Invisibility": 0.64,
+                "Snowdrift": 0.46,
+                "Ice Wall": 0.11,
+                "Frost Bomb": 0.08
+            },
+            "interruptRounds": 0.63,
+            "died": 0.29,
+            "diedFirst": 0.2,
+            "defensives": {
+                "goes": 116,
+                "self": {
+                    "Alter Time": 0.57,
+                    "Greater Invisibility": 0.34,
+                    "Ice Block": 0.28,
+                    "Gladiator's Medallion": 0.22,
+                    "Mass Invisibility": 0.19
+                },
+                "team": {
+                    "Pain Suppression": 0.25,
+                    "Evangelism": 0.16,
+                    "Leap of Faith": 0.05,
+                    "Blessing of Sacrifice": 0.05
+                }
+            },
+            "comps": [
+                {
+                    "specs": [
+                        64,
+                        103,
+                        256
+                    ],
+                    "games": 26,
+                    "won": 15
+                },
+                {
+                    "specs": [
+                        64,
+                        256,
+                        259
+                    ],
+                    "games": 4,
+                    "won": 2
+                },
+                {
+                    "specs": [
+                        64,
+                        257,
+                        259
+                    ],
+                    "games": 4,
+                    "won": 1
+                },
+                {
+                    "specs": [
+                        64,
+                        256,
+                        265
+                    ],
+                    "games": 3,
+                    "won": 1
+                },
+                {
+                    "specs": [
+                        64,
+                        65,
+                        265
+                    ],
+                    "games": 3,
+                    "won": 1
+                },
+                {
+                    "specs": [
+                        64,
+                        105,
+                        1480
+                    ],
+                    "games": 3,
+                    "won": 0
+                }
+            ]
+        },
+        "264": {
+            "label": "Restoration Shaman",
+            "window": "season",
+            "healer": true,
+            "rounds": 68,
+            "players": 35,
+            "from": "2026-08-28",
+            "to": "2026-10-12",
+            "mmr": {
+                "p25": 1951,
+                "p50": 2015,
+                "p75": 2096
+            },
+            "brackets": {
+                "3v3": 0.53,
+                "Rated Solo Shuffle": 0.44,
+                "2v2": 0.03
+            },
+            "recorderShare": 0,
+            "pvpTalents": {
+                "Grounding Totem": 0.91,
+                "Lightning Lasso": 0.66,
+                "Static Field Totem": 0.46,
+                "Master of the Elements": 0.4,
+                "Counterstrike Totem": 0.24,
+                "Totem of Wrath": 0.18,
+                "Call of Al'Akir": 0.09,
+                "Rain Dance": 0.06
+            },
+            "interruptRounds": 0.43,
+            "died": 0.09,
+            "diedFirst": 0.06,
+            "defensives": {
+                "goes": 22,
+                "self": {
+                    "Astral Shift": 0.32,
+                    "Gladiator's Medallion": 0.27,
+                    "Spirit Link Totem": 0.09,
+                    "Healthstone": 0.05
+                },
+                "team": {
+                    "Leap of Faith": 0.09,
+                    "Anti-Magic Shell": 0.05,
+                    "Blessing of Sacrifice": 0.05
+                }
+            },
+            "comps": [
+                {
+                    "specs": [
+                        258,
+                        264,
+                        269
+                    ],
+                    "games": 3,
+                    "won": 3
+                },
+                {
+                    "specs": [
+                        70,
+                        264,
+                        265
+                    ],
+                    "games": 3,
+                    "won": 2
+                },
+                {
+                    "specs": [
+                        103,
+                        253,
+                        264
+                    ],
+                    "games": 2,
+                    "won": 0
+                },
+                {
+                    "specs": [
+                        62,
+                        258,
+                        264
+                    ],
+                    "games": 2,
+                    "won": 1
+                },
+                {
+                    "specs": [
+                        103,
+                        264,
+                        265
+                    ],
+                    "games": 2,
+                    "won": 1
+                },
+                {
+                    "specs": [
+                        70,
+                        264,
+                        1480
+                    ],
+                    "games": 2,
+                    "won": 1
+                }
+            ]
+        },
+        "263": {
+            "label": "Enhancement Shaman",
+            "window": "season",
+            "healer": false,
+            "rounds": 74,
+            "players": 10,
+            "from": "2026-09-30",
+            "to": "2026-10-12",
+            "mmr": {
+                "p25": 1930,
+                "p50": 1954,
+                "p75": 2031
+            },
+            "brackets": {
+                "Rated Solo Shuffle": 0.73,
+                "3v3": 0.27
+            },
+            "recorderShare": 0.66,
+            "pvpTalents": {
+                "Shamanism": 1,
+                "Burrow": 0.95,
+                "Grounding Totem": 0.81,
+                "Counterstrike Totem": 0.19,
+                "Totem of Wrath": 0.05
+            },
+            "interruptRounds": 0.64,
+            "died": 0.26,
+            "diedFirst": 0.19,
+            "defensives": {
+                "goes": 93,
+                "self": {
+                    "Astral Shift": 0.42,
+                    "Gladiator's Medallion": 0.29,
+                    "Tremor Totem": 0.09
+                },
+                "team": {
+                    "Pain Suppression": 0.25,
+                    "Ironbark": 0.1,
+                    "Blessing of Sacrifice": 0.1,
+                    "Evangelism": 0.1
+                }
+            },
+            "comps": [
+                {
+                    "specs": [
+                        263,
+                        265,
+                        270
+                    ],
+                    "games": 13,
+                    "won": 9
+                },
+                {
+                    "specs": [
+                        105,
+                        263,
+                        1480
+                    ],
+                    "games": 4,
+                    "won": 2
+                },
+                {
+                    "specs": [
+                        251,
+                        263,
+                        270
+                    ],
+                    "games": 2,
+                    "won": 0
+                }
+            ]
+        },
+        "260": {
+            "label": "Outlaw Rogue",
+            "window": "all",
+            "healer": false,
+            "rounds": 26,
+            "players": 5,
+            "from": "2026-04-29",
+            "to": "2026-10-06",
+            "mmr": {
+                "p25": 1616,
+                "p50": 1616,
+                "p75": 1616
+            },
+            "brackets": {
+                "Rated Solo Shuffle": 0.92,
+                "2v2": 0.04,
+                "3v3": 0.04
+            },
+            "recorderShare": 0,
+            "pvpTalents": {
+                "Smoke Bomb": 1,
+                "Turn the Tables": 0.65,
+                "Preemptive Maneuver": 0.54,
+                "Dismantle": 0.5,
+                "Maneuverability": 0.23,
+                "Control is King": 0.08
+            },
+            "interruptRounds": 0.38,
+            "died": 0.42,
+            "diedFirst": 0.42,
+            "defensives": {
+                "goes": 39,
+                "self": {
+                    "Feint": 0.64,
+                    "Crimson Vial": 0.44,
+                    "Cloak of Shadows": 0.33,
+                    "Gladiator's Medallion": 0.28,
+                    "Evasion": 0.23,
+                    "Smoke Bomb": 0.15,
+                    "Vanish": 0.15
+                },
+                "team": {
+                    "Ironbark": 0.31,
+                    "Holy Word: Serenity": 0.13,
+                    "Pain Suppression": 0.1,
+                    "Guardian Spirit": 0.05
+                }
+            },
+            "comps": []
+        },
+        "65": {
+            "label": "Holy Paladin",
+            "window": "season",
+            "healer": true,
+            "rounds": 164,
+            "players": 29,
+            "from": "2026-08-28",
+            "to": "2026-10-11",
+            "mmr": {
+                "p25": 1912,
+                "p50": 1947,
+                "p75": 2014
+            },
+            "brackets": {
+                "3v3": 0.48,
+                "Rated Solo Shuffle": 0.48,
+                "2v2": 0.05
+            },
+            "recorderShare": 0.73,
+            "pvpTalents": {
+                "Ultimate Sacrifice": 0.74,
+                "Cleanse the Weak": 0.68,
+                "Spreading the Word": 0.66,
+                "Blessing of Spellwarding": 0.49,
+                "Divine Vision": 0.24,
+                "Searing Glare": 0.13
+            },
+            "interruptRounds": 0,
+            "died": 0.16,
+            "diedFirst": 0.1,
+            "defensives": {
+                "goes": 50,
+                "self": {
+                    "Divine Protection": 0.52,
+                    "Aura Mastery": 0.24,
+                    "Divine Shield": 0.18,
+                    "Gladiator's Medallion": 0.16,
+                    "Blessing of Sacrifice": 0.12
+                },
+                "team": []
+            },
+            "comps": [
+                {
+                    "specs": [
+                        65,
+                        265,
+                        269
+                    ],
+                    "games": 10,
+                    "won": 4
+                },
+                {
+                    "specs": [
+                        65,
+                        71,
+                        269
+                    ],
+                    "games": 7,
+                    "won": 5
+                },
+                {
+                    "specs": [
+                        65,
+                        258,
+                        265
+                    ],
+                    "games": 6,
+                    "won": 4
+                },
+                {
+                    "specs": [
+                        65,
+                        252,
+                        269
+                    ],
+                    "games": 5,
+                    "won": 4
+                },
+                {
+                    "specs": [
+                        63,
+                        65,
+                        71
+                    ],
+                    "games": 4,
+                    "won": 2
+                },
+                {
+                    "specs": [
+                        65,
+                        254,
+                        265
+                    ],
+                    "games": 4,
+                    "won": 3
+                }
+            ]
+        },
+        "71": {
+            "label": "Arms Warrior",
+            "window": "season",
+            "healer": false,
+            "rounds": 166,
+            "players": 62,
+            "from": "2026-09-25",
+            "to": "2026-10-13",
+            "mmr": {
+                "p25": 1907,
+                "p50": 1975,
+                "p75": 2101
+            },
+            "brackets": {
+                "Rated Solo Shuffle": 0.54,
+                "3v3": 0.45,
+                "2v2": 0.01
+            },
+            "recorderShare": 0,
+            "pvpTalents": {
+                "Sharpen Blade": 0.98,
+                "Storm of Destruction": 0.73,
+                "Disarm": 0.62,
+                "Berserker Roar": 0.27,
+                "Safeguard": 0.19,
+                "Rebound": 0.14,
+                "Master and Commander": 0.06
+            },
+            "interruptRounds": 0.49,
+            "died": 0.29,
+            "diedFirst": 0.17,
+            "defensives": {
+                "goes": 210,
+                "self": {
+                    "Spell Reflection": 0.61,
+                    "Die by the Sword": 0.38,
+                    "Gladiator's Medallion": 0.26,
+                    "Rallying Cry": 0.24,
+                    "Berserker Shout": 0.22
+                },
+                "team": {
+                    "Pain Suppression": 0.16,
+                    "Blessing of Sacrifice": 0.16,
+                    "Lay on Hands": 0.1,
+                    "Holy Word: Serenity": 0.08,
+                    "Time Dilation": 0.07,
+                    "Blessing of Protection": 0.06
+                }
+            },
+            "comps": [
+                {
+                    "specs": [
+                        71,
+                        256,
+                        577
+                    ],
+                    "games": 9,
+                    "won": 6
+                },
+                {
+                    "specs": [
+                        70,
+                        71,
+                        256
+                    ],
+                    "games": 8,
+                    "won": 4
+                },
+                {
+                    "specs": [
+                        65,
+                        71,
+                        269
+                    ],
+                    "games": 7,
+                    "won": 5
+                },
+                {
+                    "specs": [
+                        63,
+                        71,
+                        256
+                    ],
+                    "games": 5,
+                    "won": 3
+                },
+                {
+                    "specs": [
+                        70,
+                        71,
+                        270
+                    ],
+                    "games": 5,
+                    "won": 1
+                },
+                {
+                    "specs": [
+                        63,
+                        71,
+                        1468
+                    ],
+                    "games": 4,
+                    "won": 3
+                }
+            ]
+        },
+        "269": {
+            "label": "Windwalker Monk",
+            "window": "season",
+            "healer": false,
+            "rounds": 97,
+            "players": 33,
+            "from": "2026-08-28",
+            "to": "2026-10-13",
+            "mmr": {
+                "p25": 1903,
+                "p50": 1972,
+                "p75": 2045
+            },
+            "brackets": {
+                "3v3": 0.73,
+                "Rated Solo Shuffle": 0.27
+            },
+            "recorderShare": 0,
+            "pvpTalents": {
+                "Turbo Fists": 1,
+                "Grapple Weapon": 0.79,
+                "Ride the Wind": 0.54,
+                "Wind Waker": 0.54,
+                "Rising Dragon Sweep": 0.12
+            },
+            "interruptRounds": 0.49,
+            "died": 0.3,
+            "diedFirst": 0.18,
+            "defensives": {
+                "goes": 94,
+                "self": {
+                    "Fortifying Brew": 0.33,
+                    "Gladiator's Medallion": 0.31
+                },
+                "team": {
+                    "Pain Suppression": 0.12,
+                    "Blessing of Sacrifice": 0.09
+                }
+            },
+            "comps": [
+                {
+                    "specs": [
+                        252,
+                        256,
+                        269
+                    ],
+                    "games": 15,
+                    "won": 9
+                },
+                {
+                    "specs": [
+                        65,
+                        265,
+                        269
+                    ],
+                    "games": 10,
+                    "won": 4
+                },
+                {
+                    "specs": [
+                        65,
+                        71,
+                        269
+                    ],
+                    "games": 7,
+                    "won": 5
+                },
+                {
+                    "specs": [
+                        254,
+                        256,
+                        269
+                    ],
+                    "games": 5,
+                    "won": 2
+                },
+                {
+                    "specs": [
+                        65,
+                        252,
+                        269
+                    ],
+                    "games": 5,
+                    "won": 4
+                },
+                {
+                    "specs": [
+                        258,
+                        264,
+                        269
+                    ],
+                    "games": 3,
+                    "won": 3
+                }
+            ]
+        },
+        "102": {
+            "label": "Balance Druid",
+            "window": "season",
+            "healer": false,
+            "rounds": 31,
+            "players": 12,
+            "from": "2026-09-30",
+            "to": "2026-10-12",
+            "mmr": {
+                "p25": 1959,
+                "p50": 2045,
+                "p75": 2096
+            },
+            "brackets": {
+                "Rated Solo Shuffle": 0.58,
+                "3v3": 0.42
+            },
+            "recorderShare": 0,
+            "pvpTalents": {
+                "Owlkin Adept": 0.97,
+                "Moonkin Aura": 0.9,
+                "Faerie Swarm": 0.68,
+                "High Winds": 0.42
+            },
+            "interruptRounds": 0.19,
+            "died": 0.29,
+            "diedFirst": 0.26,
+            "defensives": {
+                "goes": 38,
+                "self": {
+                    "Barkskin": 0.58,
+                    "Frenzied Regeneration": 0.45,
+                    "Gladiator's Medallion": 0.21
+                },
+                "team": {
+                    "Pain Suppression": 0.26,
+                    "Blessing of Sacrifice": 0.16,
+                    "Blessing of Protection": 0.11,
+                    "Evangelism": 0.08,
+                    "Lay on Hands": 0.08,
+                    "Leap of Faith": 0.05,
+                    "Ironbark": 0.05,
+                    "Life Cocoon": 0.05
+                }
+            },
+            "comps": [
+                {
+                    "specs": [
+                        102,
+                        256,
+                        259
+                    ],
+                    "games": 3,
+                    "won": 0
+                },
+                {
+                    "specs": [
+                        102,
+                        253,
+                        256
+                    ],
+                    "games": 3,
+                    "won": 1
+                },
+                {
+                    "specs": [
+                        102,
+                        269,
+                        1468
+                    ],
+                    "games": 2,
+                    "won": 1
+                },
+                {
+                    "specs": [
+                        70,
+                        102,
+                        105
+                    ],
+                    "games": 2,
+                    "won": 2
+                }
+            ]
+        },
+        "256": {
+            "label": "Discipline Priest",
+            "window": "season",
+            "healer": true,
+            "rounds": 486,
+            "players": 78,
+            "from": "2026-08-28",
+            "to": "2026-10-13",
+            "mmr": {
+                "p25": 1950,
+                "p50": 2032,
+                "p75": 2133
+            },
+            "brackets": {
+                "3v3": 0.56,
+                "Rated Solo Shuffle": 0.43,
+                "2v2": 0.01
+            },
+            "recorderShare": 0.43,
+            "pvpTalents": {
+                "Ultimate Radiance": 0.97,
+                "Phase Shift": 0.95,
+                "Inner Light": 0.78,
+                "Dark Archangel": 0.09,
+                "Psychic Shroud": 0.09
+            },
+            "interruptRounds": 0,
+            "died": 0.05,
+            "diedFirst": 0.01,
+            "defensives": {
+                "goes": 43,
+                "self": {
+                    "Fade": 0.37,
+                    "Pain Suppression": 0.33,
+                    "Desperate Prayer": 0.3,
+                    "Gladiator's Medallion": 0.3,
+                    "Evangelism": 0.26,
+                    "Healthstone": 0.05
+                },
+                "team": []
+            },
+            "comps": [
+                {
+                    "specs": [
+                        103,
+                        253,
+                        256
+                    ],
+                    "games": 37,
+                    "won": 18
+                },
+                {
+                    "specs": [
+                        63,
+                        256,
+                        259
+                    ],
+                    "games": 35,
+                    "won": 18
+                },
+                {
+                    "specs": [
+                        64,
+                        103,
+                        256
+                    ],
+                    "games": 26,
+                    "won": 15
+                },
+                {
+                    "specs": [
+                        63,
+                        103,
+                        256
+                    ],
+                    "games": 22,
+                    "won": 15
+                },
+                {
+                    "specs": [
+                        252,
+                        256,
+                        269
+                    ],
+                    "games": 15,
+                    "won": 9
+                },
+                {
+                    "specs": [
+                        70,
+                        254,
+                        256
+                    ],
+                    "games": 13,
+                    "won": 6
+                }
+            ]
+        },
+        "254": {
+            "label": "Marksmanship Hunter",
+            "window": "season",
+            "healer": false,
+            "rounds": 101,
+            "players": 40,
+            "from": "2026-08-28",
+            "to": "2026-10-12",
+            "mmr": {
+                "p25": 1913,
+                "p50": 2028,
+                "p75": 2152
+            },
+            "brackets": {
+                "3v3": 0.64,
+                "Rated Solo Shuffle": 0.36
+            },
+            "recorderShare": 0,
+            "pvpTalents": {
+                "Survival Tactics": 0.99,
+                "Chimaeral Sting": 0.88,
+                "Scatter Shot": 0.84,
+                "Ranger's Finesse": 0.19,
+                "Hunting Pack": 0.07
+            },
+            "interruptRounds": 0.55,
+            "died": 0.43,
+            "diedFirst": 0.3,
+            "defensives": {
+                "goes": 137,
+                "self": {
+                    "Survival of the Fittest": 0.54,
+                    "Exhilaration": 0.44,
+                    "Gladiator's Medallion": 0.27,
+                    "Roar of Sacrifice": 0.23,
+                    "Aspect of the Turtle": 0.21,
+                    "Master's Call": 0.13
+                },
+                "team": {
+                    "Pain Suppression": 0.21,
+                    "Blessing of Sacrifice": 0.13,
+                    "Leap of Faith": 0.12,
+                    "Time Dilation": 0.1,
+                    "Holy Word: Serenity": 0.1,
+                    "Evangelism": 0.09,
+                    "Lay on Hands": 0.07,
+                    "Obsidian Scales": 0.06
+                }
+            },
+            "comps": [
+                {
+                    "specs": [
+                        70,
+                        254,
+                        256
+                    ],
+                    "games": 13,
+                    "won": 6
+                },
+                {
+                    "specs": [
+                        105,
+                        254,
+                        258
+                    ],
+                    "games": 7,
+                    "won": 2
+                },
+                {
+                    "specs": [
+                        254,
+                        256,
+                        269
+                    ],
+                    "games": 5,
+                    "won": 2
+                },
+                {
+                    "specs": [
+                        65,
+                        254,
+                        265
+                    ],
+                    "games": 4,
+                    "won": 3
+                },
+                {
+                    "specs": [
+                        103,
+                        254,
+                        256
+                    ],
+                    "games": 3,
+                    "won": 1
+                },
+                {
+                    "specs": [
+                        254,
+                        256,
+                        265
+                    ],
+                    "games": 3,
+                    "won": 2
+                }
+            ]
+        },
+        "1480": {
+            "label": "Devourer Demon Hunter",
+            "window": "season",
+            "healer": false,
+            "rounds": 43,
+            "players": 15,
+            "from": "2026-08-28",
+            "to": "2026-10-10",
+            "mmr": {
+                "p25": 1859,
+                "p50": 1939,
+                "p75": 1962
+            },
+            "brackets": {
+                "Rated Solo Shuffle": 0.7,
+                "3v3": 0.3
+            },
+            "recorderShare": 0,
+            "pvpTalents": {
+                "Beckon": 1,
+                "Glimpse": 0.67,
+                "Armor of Souls": 0.67,
+                "Surrender to the Void": 0.19,
+                "Reverse Magic": 0.19,
+                "Inevitable End": 0.14,
+                "Detainment": 0.14
+            },
+            "interruptRounds": 0.58,
+            "died": 0.19,
+            "diedFirst": 0.12,
+            "defensives": {
+                "goes": 37,
+                "self": {
+                    "Blur": 0.46,
+                    "Darkness": 0.22,
+                    "Gladiator's Medallion": 0.19
+                },
+                "team": {
+                    "Blessing of Sacrifice": 0.11,
+                    "Lay on Hands": 0.08
+                }
+            },
+            "comps": [
+                {
+                    "specs": [
+                        105,
+                        251,
+                        1480
+                    ],
+                    "games": 12,
+                    "won": 7
+                },
+                {
+                    "specs": [
+                        105,
+                        263,
+                        1480
+                    ],
+                    "games": 4,
+                    "won": 2
+                },
+                {
+                    "specs": [
+                        105,
+                        253,
+                        1480
+                    ],
+                    "games": 4,
+                    "won": 2
+                },
+                {
+                    "specs": [
+                        64,
+                        105,
+                        1480
+                    ],
+                    "games": 3,
+                    "won": 0
+                },
+                {
+                    "specs": [
+                        105,
+                        252,
+                        1480
+                    ],
+                    "games": 3,
+                    "won": 2
+                },
+                {
+                    "specs": [
+                        105,
+                        255,
+                        1480
+                    ],
+                    "games": 2,
+                    "won": 2
+                }
+            ]
+        },
+        "257": {
+            "label": "Holy Priest",
+            "window": "season",
+            "healer": true,
+            "rounds": 96,
+            "players": 49,
+            "from": "2026-08-28",
+            "to": "2026-10-12",
+            "mmr": {
+                "p25": 1944,
+                "p50": 1996,
+                "p75": 2119
+            },
+            "brackets": {
+                "3v3": 0.61,
+                "Rated Solo Shuffle": 0.38,
+                "2v2": 0.01
+            },
+            "recorderShare": 0,
+            "pvpTalents": {
+                "Spirit of the Redeemer": 0.99,
+                "Phase Shift": 0.92,
+                "Sanctified Ground": 0.48,
+                "Psychic Shroud": 0.44,
+                "Purification": 0.17
+            },
+            "interruptRounds": 0,
+            "died": 0.09,
+            "diedFirst": 0,
+            "defensives": {
+                "goes": 10,
+                "self": {
+                    "Holy Word: Serenity": 0.4,
+                    "Fade": 0.3,
+                    "Desperate Prayer": 0.3,
+                    "Holy Word: Sanctify": 0.2
+                },
+                "team": []
+            },
+            "comps": [
+                {
+                    "specs": [
+                        63,
+                        257,
+                        261
+                    ],
+                    "games": 8,
+                    "won": 3
+                },
+                {
+                    "specs": [
+                        63,
+                        257,
+                        267
+                    ],
+                    "games": 6,
+                    "won": 3
+                },
+                {
+                    "specs": [
+                        64,
+                        257,
+                        259
+                    ],
+                    "games": 4,
+                    "won": 1
+                },
+                {
+                    "specs": [
+                        63,
+                        257,
+                        259
+                    ],
+                    "games": 4,
+                    "won": 2
+                },
+                {
+                    "specs": [
+                        257,
+                        259,
+                        265
+                    ],
+                    "games": 3,
+                    "won": 2
+                },
+                {
+                    "specs": [
+                        70,
+                        257,
+                        258
+                    ],
+                    "games": 3,
+                    "won": 3
+                }
+            ]
+        },
+        "252": {
+            "label": "Unholy Death Knight",
+            "window": "season",
+            "healer": false,
+            "rounds": 149,
+            "players": 48,
+            "from": "2026-08-28",
+            "to": "2026-10-12",
+            "mmr": {
+                "p25": 1947,
+                "p50": 2001,
+                "p75": 2109
+            },
+            "brackets": {
+                "3v3": 0.5,
+                "Rated Solo Shuffle": 0.48,
+                "2v2": 0.01
+            },
+            "recorderShare": 0,
+            "pvpTalents": {
+                "Necrotic Wounds": 1,
+                "Strangulate": 0.73,
+                "Spellwarden": 0.7,
+                "Life and Death": 0.32,
+                "Bloodforged Armor": 0.12,
+                "Doomburst": 0.09
+            },
+            "interruptRounds": 0.51,
+            "died": 0.34,
+            "diedFirst": 0.28,
+            "defensives": {
+                "goes": 207,
+                "self": {
+                    "Anti-Magic Shell": 0.78,
+                    "Icebound Fortitude": 0.4,
+                    "Death Pact": 0.33,
+                    "Lichborne": 0.26,
+                    "Gladiator's Medallion": 0.26,
+                    "Anti-Magic Zone": 0.19,
+                    "Wraith Walk": 0.13
+                },
+                "team": {
+                    "Pain Suppression": 0.21,
+                    "Blessing of Sacrifice": 0.11,
+                    "Evangelism": 0.07,
+                    "Lay on Hands": 0.07,
+                    "Time Dilation": 0.05,
+                    "Holy Word: Serenity": 0.05
+                }
+            },
+            "comps": [
+                {
+                    "specs": [
+                        252,
+                        256,
+                        269
+                    ],
+                    "games": 15,
+                    "won": 9
+                },
+                {
+                    "specs": [
+                        252,
+                        253,
+                        256
+                    ],
+                    "games": 10,
+                    "won": 5
+                },
+                {
+                    "specs": [
+                        65,
+                        252,
+                        269
+                    ],
+                    "games": 5,
+                    "won": 4
+                },
+                {
+                    "specs": [
+                        70,
+                        252,
+                        256
+                    ],
+                    "games": 4,
+                    "won": 3
+                },
+                {
+                    "specs": [
+                        65,
+                        71,
+                        252
+                    ],
+                    "games": 4,
+                    "won": 2
+                },
+                {
+                    "specs": [
+                        65,
+                        252,
+                        577
+                    ],
+                    "games": 3,
+                    "won": 1
+                }
+            ]
+        },
+        "1467": {
+            "label": "Devastation Evoker",
+            "window": "season",
+            "healer": false,
+            "rounds": 17,
+            "players": 11,
+            "from": "2026-08-28",
+            "to": "2026-10-10",
+            "mmr": {
+                "p25": 1850,
+                "p50": 1962,
+                "p75": 1989
+            },
+            "brackets": {
+                "3v3": 0.59,
+                "Rated Solo Shuffle": 0.35,
+                "2v2": 0.06
+            },
+            "recorderShare": 0.06,
+            "pvpTalents": {
+                "Obsidian Mettle": 1,
+                "Unburdened Flight": 0.88,
+                "Scouring Flame": 0.76,
+                "Time Stop": 0.35
+            },
+            "interruptRounds": 0.59,
+            "died": 0.47,
+            "diedFirst": 0.29,
+            "defensives": {
+                "goes": 21,
+                "self": {
+                    "Obsidian Scales": 0.33,
+                    "Gladiator's Medallion": 0.19,
+                    "黑曜鳞片": 0.1,
+                    "角斗士的勋章": 0.05,
+                    "Cauterizing Flame": 0.05
+                },
+                "team": {
+                    "Ironbark": 0.1,
+                    "Life Cocoon": 0.05,
+                    "Holy Word: Serenity": 0.05,
+                    "Leap of Faith": 0.05,
+                    "Blessing of Sacrifice": 0.05
+                }
+            },
+            "comps": [
+                {
+                    "specs": [
+                        71,
+                        256,
+                        1467
+                    ],
+                    "games": 2,
+                    "won": 0
+                }
+            ]
+        },
+        "259": {
+            "label": "Assassination Rogue",
+            "window": "season",
+            "healer": false,
+            "rounds": 176,
+            "players": 55,
+            "from": "2026-08-28",
+            "to": "2026-10-12",
+            "mmr": {
+                "p25": 1947,
+                "p50": 2014,
+                "p75": 2087
+            },
+            "brackets": {
+                "3v3": 0.69,
+                "Rated Solo Shuffle": 0.31,
+                "2v2": 0.01
+            },
+            "recorderShare": 0.32,
+            "pvpTalents": {
+                "Smoke Bomb": 0.99,
+                "Preemptive Maneuver": 0.81,
+                "Dismantle": 0.65,
+                "Hemotoxin": 0.4,
+                "Thick as Thieves": 0.06
+            },
+            "interruptRounds": 0.37,
+            "died": 0.4,
+            "diedFirst": 0.26,
+            "defensives": {
+                "goes": 172,
+                "self": {
+                    "Feint": 0.66,
+                    "Crimson Vial": 0.51,
+                    "Vanish": 0.31,
+                    "Cloak of Shadows": 0.31,
+                    "Evasion": 0.24,
+                    "Gladiator's Medallion": 0.22,
+                    "Smoke Bomb": 0.19
+                },
+                "team": {
+                    "Pain Suppression": 0.2,
+                    "Holy Word: Serenity": 0.09,
+                    "Evangelism": 0.09,
+                    "Leap of Faith": 0.07
+                }
+            },
+            "comps": [
+                {
+                    "specs": [
+                        63,
+                        256,
+                        259
+                    ],
+                    "games": 35,
+                    "won": 18
+                },
+                {
+                    "specs": [
+                        63,
+                        105,
+                        259
+                    ],
+                    "games": 14,
+                    "won": 10
+                },
+                {
+                    "specs": [
+                        63,
+                        259,
+                        1468
+                    ],
+                    "games": 12,
+                    "won": 7
+                },
+                {
+                    "specs": [
+                        256,
+                        258,
+                        259
+                    ],
+                    "games": 5,
+                    "won": 4
+                },
+                {
+                    "specs": [
+                        256,
+                        259,
+                        265
+                    ],
+                    "games": 5,
+                    "won": 4
+                },
+                {
+                    "specs": [
+                        64,
+                        256,
+                        259
+                    ],
+                    "games": 4,
+                    "won": 2
+                }
+            ]
+        },
+        "577": {
+            "label": "Havoc Demon Hunter",
+            "window": "season",
+            "healer": false,
+            "rounds": 76,
+            "players": 31,
+            "from": "2026-08-28",
+            "to": "2026-10-12",
+            "mmr": {
+                "p25": 1893,
+                "p50": 1992,
+                "p75": 2182
+            },
+            "brackets": {
+                "3v3": 0.53,
+                "Rated Solo Shuffle": 0.47
+            },
+            "recorderShare": 0,
+            "pvpTalents": {
+                "Glimpse": 0.95,
+                "Blood Moon": 0.93,
+                "Reverse Magic": 0.75,
+                "Detainment": 0.22,
+                "Rain from Above": 0.11
+            },
+            "interruptRounds": 0.61,
+            "died": 0.26,
+            "diedFirst": 0.09,
+            "defensives": {
+                "goes": 60,
+                "self": {
+                    "Blur": 0.58,
+                    "Gladiator's Medallion": 0.23,
+                    "Darkness": 0.2
+                },
+                "team": {
+                    "Blessing of Sacrifice": 0.15,
+                    "Pain Suppression": 0.13
+                }
+            },
+            "comps": [
+                {
+                    "specs": [
+                        70,
+                        256,
+                        577
+                    ],
+                    "games": 10,
+                    "won": 3
+                },
+                {
+                    "specs": [
+                        71,
+                        256,
+                        577
+                    ],
+                    "games": 9,
+                    "won": 6
+                },
+                {
+                    "specs": [
+                        65,
+                        252,
+                        577
+                    ],
+                    "games": 3,
+                    "won": 1
+                },
+                {
+                    "specs": [
+                        254,
+                        577,
+                        1468
+                    ],
+                    "games": 2,
+                    "won": 0
+                },
+                {
+                    "specs": [
+                        256,
+                        265,
+                        577
+                    ],
+                    "games": 2,
+                    "won": 1
+                },
+                {
+                    "specs": [
+                        105,
+                        577,
+                        577
+                    ],
+                    "games": 2,
+                    "won": 1
+                }
+            ]
+        },
+        "103": {
+            "label": "Feral Druid",
+            "window": "season",
+            "healer": false,
+            "rounds": 123,
+            "players": 16,
+            "from": "2026-08-28",
+            "to": "2026-10-11",
+            "mmr": {
+                "p25": 1953,
+                "p50": 2038,
+                "p75": 2172
+            },
+            "brackets": {
+                "3v3": 0.89,
+                "Rated Solo Shuffle": 0.11
+            },
+            "recorderShare": 0.49,
+            "pvpTalents": {
+                "Wicked Claws": 0.85,
+                "Savage Momentum": 0.85,
+                "Strength of the Wild": 0.61,
+                "High Winds": 0.28,
+                "Ferocious Wound": 0.26,
+                "Tireless Pursuit": 0.07,
+                "Freedom of the Herd": 0.06
+            },
+            "interruptRounds": 0.61,
+            "died": 0.25,
+            "diedFirst": 0.21,
+            "defensives": {
+                "goes": 156,
+                "self": {
+                    "Barkskin": 0.55,
+                    "Frenzied Regeneration": 0.35,
+                    "Gladiator's Medallion": 0.25,
+                    "Survival Instincts": 0.21
+                },
+                "team": {
+                    "Pain Suppression": 0.3,
+                    "Evangelism": 0.13,
+                    "Holy Word: Serenity": 0.05,
+                    "Leap of Faith": 0.05
+                }
+            },
+            "comps": [
+                {
+                    "specs": [
+                        103,
+                        253,
+                        256
+                    ],
+                    "games": 37,
+                    "won": 18
+                },
+                {
+                    "specs": [
+                        64,
+                        103,
+                        256
+                    ],
+                    "games": 26,
+                    "won": 15
+                },
+                {
+                    "specs": [
+                        63,
+                        103,
+                        256
+                    ],
+                    "games": 22,
+                    "won": 15
+                },
+                {
+                    "specs": [
+                        103,
+                        105,
+                        253
+                    ],
+                    "games": 9,
+                    "won": 3
+                },
+                {
+                    "specs": [
+                        103,
+                        256,
+                        265
+                    ],
+                    "games": 5,
+                    "won": 2
+                },
+                {
+                    "specs": [
+                        103,
+                        254,
+                        256
+                    ],
+                    "games": 3,
+                    "won": 1
+                }
+            ]
+        },
+        "258": {
+            "label": "Shadow Priest",
+            "window": "season",
+            "healer": false,
+            "rounds": 87,
+            "players": 35,
+            "from": "2026-08-28",
+            "to": "2026-10-10",
+            "mmr": {
+                "p25": 1849,
+                "p50": 1974,
+                "p75": 2113
+            },
+            "brackets": {
+                "3v3": 0.57,
+                "Rated Solo Shuffle": 0.41,
+                "2v2": 0.01
+            },
+            "recorderShare": 0.03,
+            "pvpTalents": {
+                "Phase Shift": 0.92,
+                "Driven to Madness": 0.72,
+                "Psyfiend": 0.71,
+                "Cascading Horrors": 0.37,
+                "Mindgames": 0.22,
+                "Improved Mass Dispel": 0.06
+            },
+            "interruptRounds": 0,
+            "died": 0.21,
+            "diedFirst": 0.09,
+            "defensives": {
+                "goes": 102,
+                "self": {
+                    "Fade": 0.77,
+                    "Desperate Prayer": 0.37,
+                    "Gladiator's Medallion": 0.23,
+                    "Dispersion": 0.19
+                },
+                "team": {
+                    "Pain Suppression": 0.22,
+                    "Blessing of Sacrifice": 0.13,
+                    "Evangelism": 0.11,
+                    "Leap of Faith": 0.07,
+                    "Lay on Hands": 0.07,
+                    "Holy Word: Serenity": 0.07,
+                    "Ironbark": 0.05
+                }
+            },
+            "comps": [
+                {
+                    "specs": [
+                        105,
+                        254,
+                        258
+                    ],
+                    "games": 7,
+                    "won": 2
+                },
+                {
+                    "specs": [
+                        65,
+                        258,
+                        265
+                    ],
+                    "games": 6,
+                    "won": 4
+                },
+                {
+                    "specs": [
+                        256,
+                        258,
+                        259
+                    ],
+                    "games": 5,
+                    "won": 4
+                },
+                {
+                    "specs": [
+                        70,
+                        257,
+                        258
+                    ],
+                    "games": 3,
+                    "won": 3
+                },
+                {
+                    "specs": [
+                        258,
+                        264,
+                        269
+                    ],
+                    "games": 3,
+                    "won": 3
+                },
+                {
+                    "specs": [
+                        62,
+                        258,
+                        264
+                    ],
+                    "games": 2,
+                    "won": 1
+                }
+            ]
+        },
+        "62": {
+            "label": "Arcane Mage",
+            "window": "season",
+            "healer": false,
+            "rounds": 27,
+            "players": 12,
+            "from": "2026-09-25",
+            "to": "2026-10-12",
+            "mmr": {
+                "p25": 1967,
+                "p50": 2034,
+                "p75": 2106
+            },
+            "brackets": {
+                "Rated Solo Shuffle": 0.52,
+                "3v3": 0.48
+            },
+            "recorderShare": 0,
+            "pvpTalents": {
+                "Overpowered Barrier": 0.85,
+                "Improved Mass Invisibility": 0.7,
+                "Chrono Shift": 0.67,
+                "Ice Wall": 0.48,
+                "Master Shepherd": 0.26
+            },
+            "interruptRounds": 0.59,
+            "died": 0.63,
+            "diedFirst": 0.52,
+            "defensives": {
+                "goes": 42,
+                "self": {
+                    "Alter Time": 0.5,
+                    "Greater Invisibility": 0.29,
+                    "Mass Invisibility": 0.26,
+                    "Gladiator's Medallion": 0.19,
+                    "Ice Block": 0.19
+                },
+                "team": {
+                    "Pain Suppression": 0.17,
+                    "Ironbark": 0.12,
+                    "Holy Word: Serenity": 0.07,
+                    "Evangelism": 0.05
+                }
+            },
+            "comps": [
+                {
+                    "specs": [
+                        62,
+                        256,
+                        261
+                    ],
+                    "games": 3,
+                    "won": 0
+                },
+                {
+                    "specs": [
+                        62,
+                        258,
+                        264
+                    ],
+                    "games": 2,
+                    "won": 1
+                }
+            ]
+        },
+        "253": {
+            "label": "Beast Mastery Hunter",
+            "window": "season",
+            "healer": false,
+            "rounds": 122,
+            "players": 34,
+            "from": "2026-08-28",
+            "to": "2026-10-12",
+            "mmr": {
+                "p25": 1918,
+                "p50": 1970,
+                "p75": 2106
+            },
+            "brackets": {
+                "3v3": 0.75,
+                "Rated Solo Shuffle": 0.2,
+                "2v2": 0.06
+            },
+            "recorderShare": 0.11,
+            "pvpTalents": {
+                "Survival Tactics": 0.98,
+                "Chimaeral Sting": 0.7,
+                "Scatter Shot": 0.58,
+                "Kindred Beasts": 0.48,
+                "The Beast Within": 0.22
+            },
+            "interruptRounds": 0.54,
+            "died": 0.39,
+            "diedFirst": 0.3,
+            "defensives": {
+                "goes": 165,
+                "self": {
+                    "Survival of the Fittest": 0.62,
+                    "Exhilaration": 0.44,
+                    "Gladiator's Medallion": 0.25,
+                    "Aspect of the Turtle": 0.21,
+                    "Roar of Sacrifice": 0.16,
+                    "Master's Call": 0.1
+                },
+                "team": {
+                    "Pain Suppression": 0.28,
+                    "Leap of Faith": 0.13,
+                    "Blessing of Sacrifice": 0.12,
+                    "Holy Word: Serenity": 0.1,
+                    "Lay on Hands": 0.07,
+                    "Evangelism": 0.06
+                }
+            },
+            "comps": [
+                {
+                    "specs": [
+                        103,
+                        253,
+                        256
+                    ],
+                    "games": 37,
+                    "won": 18
+                },
+                {
+                    "specs": [
+                        252,
+                        253,
+                        256
+                    ],
+                    "games": 10,
+                    "won": 5
+                },
+                {
+                    "specs": [
+                        103,
+                        105,
+                        253
+                    ],
+                    "games": 9,
+                    "won": 3
+                },
+                {
+                    "specs": [
+                        70,
+                        253,
+                        256
+                    ],
+                    "games": 7,
+                    "won": 3
+                },
+                {
+                    "specs": [
+                        105,
+                        253,
+                        1480
+                    ],
+                    "games": 4,
+                    "won": 2
+                },
+                {
+                    "specs": [
+                        65,
+                        71,
+                        253
+                    ],
+                    "games": 3,
+                    "won": 0
+                }
+            ]
+        },
+        "63": {
+            "label": "Fire Mage",
+            "window": "season",
+            "healer": false,
+            "rounds": 152,
+            "players": 47,
+            "from": "2026-08-28",
+            "to": "2026-10-13",
+            "mmr": {
+                "p25": 1953,
+                "p50": 2018,
+                "p75": 2097
+            },
+            "brackets": {
+                "3v3": 0.88,
+                "Rated Solo Shuffle": 0.12
+            },
+            "recorderShare": 0.01,
+            "pvpTalents": {
+                "Improved Mass Invisibility": 0.97,
+                "Overpowered Barrier": 0.92,
+                "Master Shepherd": 0.76,
+                "Ice Wall": 0.32
+            },
+            "interruptRounds": 0.59,
+            "died": 0.39,
+            "diedFirst": 0.31,
+            "defensives": {
+                "goes": 281,
+                "self": {
+                    "Alter Time": 0.48,
+                    "Greater Invisibility": 0.3,
+                    "Gladiator's Medallion": 0.23,
+                    "Ice Block": 0.2,
+                    "Mass Invisibility": 0.16
+                },
+                "team": {
+                    "Pain Suppression": 0.22,
+                    "Holy Word: Serenity": 0.12,
+                    "Evangelism": 0.1,
+                    "Time Dilation": 0.08,
+                    "Leap of Faith": 0.07,
+                    "Guardian Spirit": 0.05,
+                    "Ironbark": 0.05
+                }
+            },
+            "comps": [
+                {
+                    "specs": [
+                        63,
+                        256,
+                        259
+                    ],
+                    "games": 35,
+                    "won": 18
+                },
+                {
+                    "specs": [
+                        63,
+                        103,
+                        256
+                    ],
+                    "games": 22,
+                    "won": 15
+                },
+                {
+                    "specs": [
+                        63,
+                        105,
+                        259
+                    ],
+                    "games": 14,
+                    "won": 10
+                },
+                {
+                    "specs": [
+                        63,
+                        259,
+                        1468
+                    ],
+                    "games": 12,
+                    "won": 7
+                },
+                {
+                    "specs": [
+                        63,
+                        257,
+                        261
+                    ],
+                    "games": 8,
+                    "won": 3
+                },
+                {
+                    "specs": [
+                        63,
+                        257,
+                        267
+                    ],
+                    "games": 6,
+                    "won": 3
+                }
+            ]
+        },
+        "267": {
+            "label": "Destruction Warlock",
+            "window": "season",
+            "healer": false,
+            "rounds": 44,
+            "players": 20,
+            "from": "2026-08-28",
+            "to": "2026-10-12",
+            "mmr": {
+                "p25": 1941,
+                "p50": 1960,
+                "p75": 2085
+            },
+            "brackets": {
+                "3v3": 0.52,
+                "Rated Solo Shuffle": 0.41,
+                "2v2": 0.07
+            },
+            "recorderShare": 0.05,
+            "pvpTalents": {
+                "Fel Fissure": 0.82,
+                "Impish Instincts": 0.8,
+                "Gateway Mastery": 0.52,
+                "Nether Ward": 0.52,
+                "Soul Rip": 0.3,
+                "Bonds of Fel": 0.05
+            },
+            "interruptRounds": 0.02,
+            "died": 0.43,
+            "diedFirst": 0.39,
+            "defensives": {
+                "goes": 82,
+                "self": {
+                    "Dark Pact": 0.61,
+                    "Demonic Healthstone": 0.46,
+                    "Gladiator's Medallion": 0.32,
+                    "Unending Resolve": 0.3,
+                    "Nether Ward": 0.13
+                },
+                "team": {
+                    "Holy Word: Serenity": 0.15,
+                    "Pain Suppression": 0.13,
+                    "Blessing of Sacrifice": 0.09,
+                    "Time Dilation": 0.09,
+                    "Evangelism": 0.07,
+                    "Guardian Spirit": 0.07,
+                    "Leap of Faith": 0.06,
+                    "Obsidian Scales": 0.05
+                }
+            },
+            "comps": [
+                {
+                    "specs": [
+                        63,
+                        257,
+                        267
+                    ],
+                    "games": 6,
+                    "won": 3
+                },
+                {
+                    "specs": [
+                        256,
+                        259,
+                        267
+                    ],
+                    "games": 3,
+                    "won": 0
+                },
+                {
+                    "specs": [
+                        257,
+                        259,
+                        267
+                    ],
+                    "games": 3,
+                    "won": 2
+                },
+                {
+                    "specs": [
+                        255,
+                        257,
+                        267
+                    ],
+                    "games": 2,
+                    "won": 2
+                },
+                {
+                    "specs": [
+                        63,
+                        65,
+                        267
+                    ],
+                    "games": 2,
+                    "won": 2
+                }
+            ]
+        },
+        "270": {
+            "label": "Mistweaver Monk",
+            "window": "season",
+            "healer": true,
+            "rounds": 57,
+            "players": 28,
+            "from": "2026-09-26",
+            "to": "2026-10-13",
+            "mmr": {
+                "p25": 1936,
+                "p50": 2001,
+                "p75": 2122
+            },
+            "brackets": {
+                "3v3": 0.67,
+                "Rated Solo Shuffle": 0.32,
+                "2v2": 0.02
+            },
+            "recorderShare": 0,
+            "pvpTalents": {
+                "Zen Spheres": 1,
+                "Peaceweaver": 0.98,
+                "Eminence": 0.54,
+                "Zen Focus Tea": 0.28,
+                "Counteract Magic": 0.11,
+                "Healing Spheres": 0.05
+            },
+            "interruptRounds": 0,
+            "died": 0.09,
+            "diedFirst": 0.02,
+            "defensives": {
+                "goes": 5,
+                "self": {
+                    "Fortifying Brew": 0.4,
+                    "Healthstone": 0.2,
+                    "Invoke Chi-Ji, the Red Crane": 0.2
+                },
+                "team": {
+                    "Roar of Sacrifice": 0.2
+                }
+            },
+            "comps": [
+                {
+                    "specs": [
+                        263,
+                        265,
+                        270
+                    ],
+                    "games": 13,
+                    "won": 9
+                },
+                {
+                    "specs": [
+                        70,
+                        71,
+                        270
+                    ],
+                    "games": 5,
+                    "won": 1
+                },
+                {
+                    "specs": [
+                        64,
+                        261,
+                        270
+                    ],
+                    "games": 2,
+                    "won": 1
+                },
+                {
+                    "specs": [
+                        252,
+                        254,
+                        270
+                    ],
+                    "games": 2,
+                    "won": 0
+                },
+                {
+                    "specs": [
+                        259,
+                        265,
+                        270
+                    ],
+                    "games": 2,
+                    "won": 2
+                },
+                {
+                    "specs": [
+                        71,
+                        252,
+                        270
+                    ],
+                    "games": 2,
+                    "won": 1
+                }
+            ]
+        },
+        "261": {
+            "label": "Subtlety Rogue",
+            "window": "season",
+            "healer": false,
+            "rounds": 38,
+            "players": 17,
+            "from": "2026-08-28",
+            "to": "2026-10-12",
+            "mmr": {
+                "p25": 1937,
+                "p50": 2015,
+                "p75": 2106
+            },
+            "brackets": {
+                "Rated Solo Shuffle": 0.47,
+                "3v3": 0.42,
+                "2v2": 0.11
+            },
+            "recorderShare": 0.03,
+            "pvpTalents": {
+                "Smoke Bomb": 1,
+                "Preemptive Maneuver": 0.82,
+                "Dismantle": 0.66,
+                "Thick as Thieves": 0.47,
+                "Death from Above": 0.05
+            },
+            "interruptRounds": 0.42,
+            "died": 0.21,
+            "diedFirst": 0.08,
+            "defensives": {
+                "goes": 44,
+                "self": {
+                    "Feint": 0.66,
+                    "Crimson Vial": 0.57,
+                    "Gladiator's Medallion": 0.25,
+                    "Evasion": 0.23,
+                    "Smoke Bomb": 0.23,
+                    "Vanish": 0.18,
+                    "Cloak of Shadows": 0.16
+                },
+                "team": {
+                    "Holy Word: Serenity": 0.2,
+                    "Evangelism": 0.09,
+                    "Pain Suppression": 0.09,
+                    "Guardian Spirit": 0.05,
+                    "Leap of Faith": 0.05
+                }
+            },
+            "comps": [
+                {
+                    "specs": [
+                        63,
+                        257,
+                        261
+                    ],
+                    "games": 8,
+                    "won": 3
+                },
+                {
+                    "specs": [
+                        62,
+                        256,
+                        261
+                    ],
+                    "games": 3,
+                    "won": 0
+                },
+                {
+                    "specs": [
+                        105,
+                        261,
+                        1480
+                    ],
+                    "games": 2,
+                    "won": 1
+                },
+                {
+                    "specs": [
+                        64,
+                        261,
+                        270
+                    ],
+                    "games": 2,
+                    "won": 1
+                },
+                {
+                    "specs": [
+                        63,
+                        105,
+                        261
+                    ],
+                    "games": 2,
+                    "won": 2
+                },
+                {
+                    "specs": [
+                        65,
+                        261,
+                        577
+                    ],
+                    "games": 2,
+                    "won": 2
+                }
+            ]
+        },
+        "255": {
+            "label": "Survival Hunter",
+            "window": "season",
+            "healer": false,
+            "rounds": 23,
+            "players": 11,
+            "from": "2026-08-28",
+            "to": "2026-10-10",
+            "mmr": {
+                "p25": 1920,
+                "p50": 1964,
+                "p75": 2080
+            },
+            "brackets": {
+                "Rated Solo Shuffle": 0.52,
+                "3v3": 0.48
+            },
+            "recorderShare": 0,
+            "pvpTalents": {
+                "Sticky Tar Bomb": 0.83,
+                "Survival Tactics": 0.78,
+                "Chimaeral Sting": 0.7,
+                "Scatter Shot": 0.35,
+                "Tracker's Net": 0.22,
+                "Mending Bandage": 0.13
+            },
+            "interruptRounds": 0.35,
+            "died": 0.26,
+            "diedFirst": 0.17,
+            "defensives": {
+                "goes": 20,
+                "self": {
+                    "Survival of the Fittest": 0.25,
+                    "Exhilaration": 0.2,
+                    "Aspect of the Turtle": 0.2,
+                    "Gladiator's Medallion": 0.15,
+                    "Roar of Sacrifice": 0.1
+                },
+                "team": {
+                    "Time Dilation": 0.1,
+                    "Blessing of Sacrifice": 0.1,
+                    "Holy Word: Serenity": 0.05,
+                    "Lay on Hands": 0.05,
+                    "Blessing of Protection": 0.05,
+                    "Blessing of Spellwarding": 0.05
+                }
+            },
+            "comps": [
+                {
+                    "specs": [
+                        255,
+                        257,
+                        267
+                    ],
+                    "games": 2,
+                    "won": 2
+                },
+                {
+                    "specs": [
+                        105,
+                        255,
+                        1480
+                    ],
+                    "games": 2,
+                    "won": 2
+                },
+                {
+                    "specs": [
+                        65,
+                        255,
+                        1480
+                    ],
+                    "games": 2,
+                    "won": 0
+                }
+            ]
+        },
+        "266": {
+            "label": "Demonology Warlock",
+            "window": "season",
+            "healer": false,
+            "rounds": 12,
+            "players": 5,
+            "from": "2026-09-25",
+            "to": "2026-10-12",
+            "mmr": {
+                "p25": 1875,
+                "p50": 1897,
+                "p75": 1907
+            },
+            "brackets": {
+                "3v3": 0.5,
+                "Rated Solo Shuffle": 0.5
+            },
+            "recorderShare": 0,
+            "pvpTalents": {
+                "Nether Ward": 0.83,
+                "Gateway Mastery": 0.83,
+                "Impish Instincts": 0.67,
+                "Call Fel Lord": 0.5,
+                "Soul Rip": 0.17
+            },
+            "interruptRounds": 0,
+            "died": 0.42,
+            "diedFirst": 0.33,
+            "defensives": {
+                "goes": 19,
+                "self": {
+                    "Dark Pact": 0.74,
+                    "Nether Ward": 0.53,
+                    "Demonic Healthstone": 0.47,
+                    "Unending Resolve": 0.32,
+                    "Gladiator's Medallion": 0.32
+                },
+                "team": {
+                    "Pain Suppression": 0.47,
+                    "Evangelism": 0.21,
+                    "Blessing of Sacrifice": 0.21,
+                    "Leap of Faith": 0.11,
+                    "Lay on Hands": 0.11,
+                    "Blessing of Protection": 0.05,
+                    "Roar of Sacrifice": 0.05
+                }
+            },
+            "comps": [
+                {
+                    "specs": [
+                        71,
+                        256,
+                        266
+                    ],
+                    "games": 3,
+                    "won": 1
+                }
+            ]
+        },
+        "262": {
+            "label": "Elemental Shaman",
+            "window": "season",
+            "healer": false,
+            "rounds": 45,
+            "players": 18,
+            "from": "2026-09-25",
+            "to": "2026-10-11",
+            "mmr": {
+                "p25": 1919,
+                "p50": 2046,
+                "p75": 2128
+            },
+            "brackets": {
+                "Rated Solo Shuffle": 0.67,
+                "3v3": 0.31,
+                "2v2": 0.02
+            },
+            "recorderShare": 0,
+            "pvpTalents": {
+                "Burrow": 0.93,
+                "Shamanism": 0.8,
+                "Grounding Totem": 0.73,
+                "Static Field Totem": 0.2,
+                "Totem of Wrath": 0.13,
+                "Counterstrike Totem": 0.13,
+                "Lightning Lasso": 0.07
+            },
+            "interruptRounds": 0.53,
+            "died": 0.29,
+            "diedFirst": 0.27,
+            "defensives": {
+                "goes": 93,
+                "self": {
+                    "Astral Shift": 0.37,
+                    "Gladiator's Medallion": 0.18,
+                    "Tremor Totem": 0.06
+                },
+                "team": {
+                    "Blessing of Sacrifice": 0.2,
+                    "Holy Word: Serenity": 0.14,
+                    "Guardian Spirit": 0.06,
+                    "Leap of Faith": 0.06,
+                    "Lay on Hands": 0.06
+                }
+            },
+            "comps": [
+                {
+                    "specs": [
+                        105,
+                        253,
+                        262
+                    ],
+                    "games": 2,
+                    "won": 2
+                },
+                {
+                    "specs": [
+                        262,
+                        269,
+                        1468
+                    ],
+                    "games": 2,
+                    "won": 2
+                },
+                {
+                    "specs": [
+                        257,
+                        262,
+                        265
+                    ],
+                    "games": 2,
+                    "won": 0
+                }
+            ]
+        }
+    }
+}

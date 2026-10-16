@@ -6,6 +6,7 @@ use App\Http\Services\ArenaLogService;
 use App\Http\Services\RoundAnalysisService;
 use App\Models\Specialization;
 use App\Support\PopulationGame;
+use App\Support\SpecPages;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\File;
 
@@ -310,6 +311,14 @@ class BuildPopulation extends Command
 
         $this->info(sprintf('%d games, %d player-rounds, %d players, %d specs -> %s',
             $norms['games'], $norms['playerRounds'], $norms['players'], count($specs), $out));
+
+        // The public spec guides' numbers (SpecPages), from the same games, beside the norms.
+        $pages = SpecPages::build($games, self::SEASON_SINCE);
+        $pagesOut = $this->option('live') ? SpecPages::livePath() : base_path(SpecPages::FILE);
+        File::ensureDirectoryExists(dirname($pagesOut));
+        File::put($pagesOut.'.tmp', json_encode($pages, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE)."\n");
+        File::move($pagesOut.'.tmp', $pagesOut);
+        $this->info(sprintf('%d specs with a guide page -> %s', count($pages['specs']), $pagesOut));
     }
 
     /** Presses a free minute per ability: median and quartiles over the rounds that pressed it, and how many did. */
