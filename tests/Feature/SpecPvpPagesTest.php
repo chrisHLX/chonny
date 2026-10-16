@@ -91,7 +91,8 @@ class SpecPvpPagesTest extends TestCase
     public function test_a_spec_guide_reads_like_a_guide_and_is_counted_as_one(): void
     {
         $specs = $this->specs();
-        SpecPages::fake(SpecPages::build(collect(range(1, 10))->map(fn ($i) => $this->round($i, $i <= 6)), '2026-08-01'));
+        // 20 rounds: the defensives section needs 20 goes on the spec before it shows.
+        SpecPages::fake(SpecPages::build(collect(range(1, 20))->map(fn ($i) => $this->round($i, $i <= 12)), '2026-08-01'));
 
         $html = $this->get('/wow/pvp/paladin/retribution')->assertOk()->getContent();
         $this->assertStringContainsString('<title>Retribution Paladin PvP Guide &amp; Talents (Midnight', $html);
@@ -101,7 +102,7 @@ class SpecPvpPagesTest extends TestCase
         $this->assertStringContainsString(route('app'), $html);
         $this->assertSame(1, PageViewEvent::where('page', 'spec_pvp')->where('spec_id', $specs['ret']->id)->count());
 
-        $this->get('/wow/pvp')->assertOk()->assertSee('Retribution Paladin PvP guide')->assertSee('Shadow Priest PvP guide');
+        $this->get('/wow/pvp')->assertOk()->assertSeeText('Retribution Paladin PvP guide')->assertSeeText('Shadow Priest PvP guide');
         $this->get('/wow/pvp/paladin/holy')->assertNotFound();     // no such spec
         $this->get('/wow/pvp/priest/holy')->assertNotFound();
     }
@@ -130,11 +131,13 @@ class SpecPvpPagesTest extends TestCase
 
         $html = $this->get('/wow/pvp/paladin/retribution')->assertOk()->getContent();
         $this->assertStringContainsString('What to kick on a Retribution Paladin', $html);
-        $this->assertStringContainsString('stopped 18 of 170 casts', $html);
-        $this->assertStringContainsString('Never stopped in 90 casts', $html);
+        // Shares, not counts, since 2026-10-17: 18 of 170 Searing Glares stopped.
+        $this->assertStringContainsString('stopped 11% of the time', $html);
+        $this->assertStringContainsString('Never stopped: most likely instant', $html);
+        $this->assertStringNotContainsString('170', $html);
         $this->assertStringContainsString('https://example.test/ret', $html);
         $this->assertStringContainsString('Retribution Paladins as kickers', $html);
-        $this->assertStringContainsString('met 40 high-priority enemy casts', $html);
+        $this->assertStringContainsString('stop <span class="text-ink font-semibold">25%</span>', $html);
 
         // Under 20 chances, the kicker line says nothing rather than a number from a handful.
         $few = $games->map(function ($g) {

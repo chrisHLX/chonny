@@ -181,7 +181,7 @@ class SpecPages
         $withTalents = $list->filter(fn ($p) => ! empty($p['pvpTalents']));
         $n = max(1, $withTalents->count());
 
-        return $withTalents->flatMap(fn ($p) => array_unique($p['pvpTalents']))->countBy()
+        return $withTalents->flatMap(fn ($p) => array_unique($p['pvpTalents']))->filter(fn ($name) => self::readable($name))->countBy()
             ->map(fn ($c) => round($c / $n, 2))
             ->filter(fn ($share) => $share >= self::MIN_SHARE)
             ->sortDesc()->take(10)->all();
@@ -224,12 +224,21 @@ class SpecPages
         if ($n === 0) {
             return ['goes' => 0, 'self' => [], 'team' => []];
         }
-        $share = fn (string $who) => $all->flatMap(fn ($go) => $go[$who])->countBy()
+        $share = fn (string $who) => $all->flatMap(fn ($go) => $go[$who])->filter(fn ($name) => self::readable($name))->countBy()
             ->map(fn ($c) => round($c / $n, 2))
             ->filter(fn ($s) => $s >= self::MIN_SHARE)
             ->sortDesc()->take(8)->all();
 
         return ['goes' => $n, 'self' => $share('self'), 'team' => $share('team')];
+    }
+
+    /**
+     * A name an English page can show. A game from a Chinese, Korean or Russian client logs its
+     * spells in that language (角斗士的勋章 is Gladiator's Medallion): counted, never printed.
+     */
+    public static function readable(string $name): bool
+    {
+        return ! preg_match('/[\x{2E80}-\x{9FFF}\x{AC00}-\x{D7AF}\x{0400}-\x{04FF}]/u', $name);
     }
 
     /** For each spec, the 3v3 teams it played in: games, and games won. */

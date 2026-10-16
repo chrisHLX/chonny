@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Console\Commands\BuildGoCooldowns;
+use App\Http\Services\SpellIconIndex;
 use App\Models\PageViewEvent;
 use App\Models\Patch;
 use App\Models\Specialization;
@@ -77,11 +78,27 @@ class SpecPvpController extends Controller
             'members' => collect($c['specs'])->map(fn ($id) => $bySpecId[$id] ?? null)->filter()->values(),
         ])->filter(fn ($c) => $c['members']->count() === 3)->values();
 
+        $go = $goFile['specs'][(string) $spec->external_spec_id] ?? null;
+        $kicks = KickPriorities::forSpec($key);
+        $alsoKicked = array_slice(KickPriorities::alsoKicked($key), 0, 4);
+
+        // Every ability the page names, to its icon in one query (SpellIconIndex).
+        $icons = app(SpellIconIndex::class)->for(array_merge(
+            array_keys($page['pvpTalents']),
+            array_keys($page['defensives']['self']),
+            array_keys($page['defensives']['team']),
+            array_column($go['spells'] ?? [], 'name'),
+            collect($go['healerRuns'] ?? [])->flatMap(fn ($r) => $r['chain'])->all(),
+            array_column($kicks, 'name'),
+            array_column($alsoKicked, 'name'),
+        ));
+
         return view('spec-pvp.show', [
             'spec' => $spec,
             'name' => "{$spec->name} {$spec->gameClass->name}",
             'page' => $page,
-            'go' => $goFile['specs'][(string) $spec->external_spec_id] ?? null,
+            'go' => $go,
+            'icons' => $icons,
             'average' => $average,
             'comps' => $comps,
             'siblings' => $bySpecId->filter(fn ($s) => $s->class_id === $spec->class_id && $s->id !== $spec->id)->values(),
@@ -91,8 +108,8 @@ class SpecPvpController extends Controller
             'builtAt' => SpecPages::load()['generatedAt'] ?? null,
             // What to kick on this spec: the published interrupt list, each cast set against the
             // archive (KickPriorities; committed files, rule 14).
-            'kicks' => KickPriorities::forSpec($key),
-            'alsoKicked' => array_slice(KickPriorities::alsoKicked($key), 0, 4),
+            'kicks' => $kicks,
+            'alsoKicked' => $alsoKicked,
             'kickSource' => KickPriorities::source($key),
             'kickGames' => KickPriorities::evidence()['games'] ?? 0,
         ]);
