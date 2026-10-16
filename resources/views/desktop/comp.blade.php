@@ -214,6 +214,34 @@
     </tr></table>
 </div>
 
+{{-- ============================== what to kick (KickPriorities, measure 15) --}}
+@if (! empty($c['kicks']))
+    @php $k = $c['kicks']; @endphp
+    <div class="section">
+        <div class="label">What to kick on them <span class="aside">the casts top players rank highest to interrupt, each seen stopped in the archive</span></div>
+        @foreach (array_chunk($k['specs'], 2) as $pair)
+            <table class="two"><tr>
+                @foreach ($pair as $s)
+                    <td class="col {{ $loop->first ? 'left' : 'right' }}"><div class="box">
+                        <div class="label">{{ $s['spec'] }}</div>
+                        {!! $list($s['rows']) !!}
+                    </div></td>
+                @endforeach
+                @if (count($pair) === 1)
+                    <td class="col right"></td>
+                @endif
+            </tr></table>
+        @endforeach
+        @if ($k['measured'] > 0)
+            <div class="box" style="margin-top: 8px">
+                <div class="label">Went through while your kick was ready <span class="aside">in {{ $k['measured'] }} of these games</span></div>
+                {!! $list($k['through'], 'Nothing worth a kick went through while yours was ready.') !!}
+                <div class="line small muted">A chance means you were alive, free to act, had your kick off cooldown and stood within its range as the cast began. Line of sight is not in the log, so a pillar may have been in the way.</div>
+            </div>
+        @endif
+    </div>
+@endif
+
 {{-- ============================== by their experience --}}
 @php $x = $c['byExperience']; @endphp
 <div class="section">

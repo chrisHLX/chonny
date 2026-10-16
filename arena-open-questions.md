@@ -250,6 +250,18 @@ holding is worth it, by player and spec, and it keeps Part 6's "use it early" ti
 
 ANSWER:
 
+**C16. Which listed casts cannot be interrupted this patch, and which does no one kick?** [DATA/TEST]
+— *new, from the Skill Capped interrupt lists (Part 10.1).*
+The published lists put Penance among a Discipline Priest's high-priority casts, and the archive
+has 8,738 Penances with none stopped. Enveloping Mist (331 begun), Sheilun's Gift (162) and
+Vivify (113) are the same. Two readings: the spell cannot be interrupted in 12.1, or it can and
+players never try. The spell data may settle it (the `Attributes` line `SpellDataFileParser`
+already reads, for an interrupt-immunity flag); one in-game kick on each settles it for certain.
+Until then the site says "never stopped in N casts" and the measure never counts them, which is
+right under either reading.
+
+ANSWER:
+
 **C9. How often is the correct save actually taken, by bracket?** [ARCHIVE]
 The Tier-2 probabilistic framing from Part 11, and the input to the "usage rate beats
 optimality" tiering in Part 6. Combat-log frequencies: trinket wasted, CC not

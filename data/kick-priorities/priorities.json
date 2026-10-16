@@ -1,0 +1,164 @@
+{
+    "about": "Which casts of each spec are worth an interrupt, by tier. Drafted from Skill Capped's per-spec PvP pages (the 'Important Casts' lists), read 2026-10-16. Spell names and tiers only; the pages themselves are linked per spec. Checked against the archive by tools/match-review/kickpriority.php: a spell the archive never shows being stopped is listed in 'neverStopped' and is not counted as a chance. Reviewed by the player: not yet.",
+    "read": "2026-10-16",
+    "patch": "12.1 (Midnight Season 2)",
+    "source": "Skill Capped",
+    "specs": {
+        "priest/discipline": {
+            "url": "https://www.skill-capped.com/wowarticles/guides/discipline-priest-pvp-guide/",
+            "high": ["Mind Control", "Power Word: Radiance", "Penance", "Dark Reprimand", "Ultimate Penitence", "Void Blast"],
+            "medium": ["Flash Heal"],
+            "low": ["Mind Blast", "Smite"]
+        },
+        "priest/holy": {
+            "url": "https://www.skill-capped.com/wowarticles/guides/holy-priest-pvp-guide/",
+            "high": ["Mind Control", "Divine Hymn", "Halo", "Greater Heal"],
+            "medium": ["Flash Heal", "Holy Fire"],
+            "low": ["Mind Blast", "Smite"]
+        },
+        "priest/shadow": {
+            "url": "https://www.skill-capped.com/wowarticles/guides/shadow-priest-pvp-guide/",
+            "high": ["Mind Control", "Mind Blast", "Halo", "Void Blast", "Void Eruption", "Void Torrent", "Mind Flay: Insanity", "Vampiric Touch"],
+            "medium": [],
+            "low": ["Flash Heal"]
+        },
+        "druid/restoration": {
+            "url": "https://www.skill-capped.com/wowarticles/guides/restoration-druid-pvp-guide/",
+            "high": ["Cyclone", "Tranquility"],
+            "medium": ["Regrowth"],
+            "low": ["Wrath", "Starfire"]
+        },
+        "druid/balance": {
+            "url": "https://www.skill-capped.com/wowarticles/guides/balance-druid-pvp-guide/",
+            "high": ["Cyclone", "Full Moon"],
+            "medium": [],
+            "low": ["Wrath", "Starfire", "Regrowth"]
+        },
+        "druid/feral": {
+            "url": "https://www.skill-capped.com/wowarticles/guides/feral-druid-pvp-guide/",
+            "high": ["Cyclone"],
+            "medium": [],
+            "low": ["Wrath", "Starfire", "Regrowth"]
+        },
+        "shaman/restoration": {
+            "url": "https://www.skill-capped.com/wowarticles/guides/restoration-shaman-pvp-guide/",
+            "high": ["Hex", "Lightning Lasso"],
+            "medium": ["Healing Wave"],
+            "low": ["Lightning Bolt", "Chain Lightning", "Lava Burst"]
+        },
+        "shaman/elemental": {
+            "url": "https://www.skill-capped.com/wowarticles/guides/elemental-shaman-pvp-guide/",
+            "high": ["Hex", "Lightning Lasso", "Stormkeeper", "Elemental Blast", "Tempest"],
+            "medium": ["Lava Burst", "Healing Surge"],
+            "low": ["Lightning Bolt", "Chain Lightning"]
+        },
+        "shaman/enhancement": {
+            "url": "https://www.skill-capped.com/wowarticles/guides/enhancement-shaman-pvp-guide/",
+            "high": ["Hex", "Lightning Lasso", "Tempest"],
+            "medium": ["Healing Surge"],
+            "low": ["Lightning Bolt", "Chain Lightning", "Lava Burst"]
+        },
+        "paladin/holy": {
+            "url": "https://www.skill-capped.com/wowarticles/guides/holy-paladin-pvp-guide/",
+            "high": ["Searing Glare", "Denounce"],
+            "medium": ["Holy Light", "Flash of Light"],
+            "low": []
+        },
+        "paladin/retribution": {
+            "url": "https://www.skill-capped.com/wowarticles/guides/retribution-paladin-pvp-guide/",
+            "high": ["Searing Glare"],
+            "medium": [],
+            "low": ["Flash of Light"]
+        },
+        "monk/mistweaver": {
+            "url": "https://www.skill-capped.com/wowarticles/guides/mistweaver-monk-pvp-guide/",
+            "high": ["Song of Chi-Ji", "Crackling Jade Lightning", "Sheilun's Gift", "Celestial Conduit"],
+            "medium": ["Soothing Mist", "Enveloping Mist"],
+            "low": ["Vivify"]
+        },
+        "monk/windwalker": {
+            "url": "https://www.skill-capped.com/wowarticles/guides/windwalker-monk-pvp-guide/",
+            "high": ["Song of Chi-Ji", "Crackling Jade Lightning", "Fists of Fury", "Celestial Conduit"],
+            "medium": [],
+            "low": ["Vivify"]
+        },
+        "evoker/preservation": {
+            "url": "https://www.skill-capped.com/wowarticles/guides/preservation-evoker-pvp-guide/",
+            "high": ["Sleep Walk", "Dream Breath", "Emerald Communion"],
+            "medium": ["Fire Breath", "Disintegrate"],
+            "low": ["Living Flame"]
+        },
+        "evoker/devastation": {
+            "url": "https://www.skill-capped.com/wowarticles/guides/devastation-evoker-pvp-guide/",
+            "high": ["Sleep Walk", "Disintegrate", "Eternity Surge"],
+            "medium": ["Fire Breath"],
+            "low": ["Living Flame"]
+        },
+        "evoker/augmentation": {
+            "url": "https://www.skill-capped.com/wowarticles/guides/augmentation-evoker-pvp-guide/",
+            "high": ["Sleep Walk", "Time Skip", "Ebon Might", "Eruption", "Upheaval"],
+            "medium": ["Fire Breath"],
+            "low": ["Living Flame"]
+        },
+        "mage/frost": {
+            "url": "https://www.skill-capped.com/wowarticles/guides/frost-mage-pvp-guide/",
+            "high": ["Polymorph", "Ring of Frost", "Mass Polymorph", "Ice Wall", "Glacial Spike", "Ray of Frost"],
+            "medium": ["Frostbolt", "Frostfire Bolt"],
+            "low": ["Ring of Fire"]
+        },
+        "mage/fire": {
+            "url": "https://www.skill-capped.com/wowarticles/guides/fire-mage-pvp-guide/",
+            "high": ["Polymorph", "Ring of Frost", "Mass Polymorph", "Ice Wall", "Greater Pyroblast"],
+            "medium": ["Pyroblast", "Fireball", "Scorch", "Frostfire Bolt"],
+            "low": ["Ring of Fire"]
+        },
+        "mage/arcane": {
+            "url": "https://www.skill-capped.com/wowarticles/guides/arcane-mage-pvp-guide/",
+            "high": ["Polymorph", "Ring of Frost", "Mass Polymorph", "Ice Wall", "Arcane Surge"],
+            "medium": ["Arcane Missiles", "Arcane Blast", "Arcane Pulse"],
+            "low": ["Ring of Fire"]
+        },
+        "warlock/affliction": {
+            "url": "https://www.skill-capped.com/wowarticles/guides/affliction-warlock-pvp-guide/",
+            "high": ["Fear", "Shadowfury", "Unstable Affliction", "Haunt", "Dark Harvest", "Malefic Grasp", "Shadow Bolt", "Drain Soul"],
+            "medium": ["Drain Life"],
+            "low": []
+        },
+        "warlock/destruction": {
+            "url": "https://www.skill-capped.com/wowarticles/guides/destruction-warlock-pvp-guide/",
+            "high": ["Fear", "Shadowfury", "Immolate", "Cataclysm", "Chaos Bolt", "Soul Fire"],
+            "medium": ["Drain Life"],
+            "low": ["Incinerate"]
+        },
+        "warlock/demonology": {
+            "url": "https://www.skill-capped.com/wowarticles/guides/demonology-warlock-pvp-guide/",
+            "high": ["Fear", "Shadowfury", "Summon Demonic Tyrant", "Hand of Gul'dan", "Demonbolt"],
+            "medium": ["Drain Life", "Shadow Bolt"],
+            "low": []
+        },
+        "demonhunter/devourer": {
+            "url": "https://www.skill-capped.com/wowarticles/guides/devourer-demon-hunter-pvp-guide/",
+            "high": ["The Hunt", "Collapsing Star"],
+            "medium": ["Void Ray"],
+            "low": []
+        },
+        "demonhunter/havoc": {
+            "url": "https://www.skill-capped.com/wowarticles/guides/havoc-demon-hunter-pvp-guide/",
+            "high": ["Illidan's Grasp", "The Hunt", "Eye Beam"],
+            "medium": [],
+            "low": []
+        },
+        "hunter/marksmanship": {
+            "url": "https://www.skill-capped.com/wowarticles/guides/marksmanship-hunter-pvp-guide/",
+            "high": ["Revive Pet", "Aimed Shot", "Rapid Fire"],
+            "medium": [],
+            "low": []
+        },
+        "hunter/beast-mastery": {
+            "url": "https://www.skill-capped.com/wowarticles/guides/beast-mastery-hunter-pvp-guide/",
+            "high": ["Revive Pet"],
+            "medium": [],
+            "low": []
+        }
+    }
+}

@@ -2,6 +2,8 @@
 
 namespace App\Http\Services;
 
+use App\Support\KickPriorities;
+
 /**
  * One arena round, measured the way match-review-operations.md defines, for any player.
  *
@@ -72,8 +74,28 @@ class RoundAnalysisService
      * 14 (2026-10-12): each death's health a second at a time through the go that killed
      * (`deaths[].hp`, at most HP_SPAN seconds) and their healer's lockout in it (`healerLocked`), and
      * the last ten seconds' damage split physical against magic (`schools`), for which defensives fit.
+     * 15 (2026-10-16): each player's `habits.priority` (priorityKicks()): the other side's casts worth
+     * an interrupt (data/kick-priorities, high and medium, only casts the archive has seen stopped)
+     * begun while the player was alive, not locked out and had their kick ready, and what became of
+     * each: they stopped it, a teammate did, it went through, or it was cancelled. A chance also
+     * needs the cast begun within the kick's range (the spell data's, plus REACH_SLACK), judged from
+     * both players' positions in the log (docs/combat-log-ingest.md); a cast beyond it is `far`, one
+     * with either player unplaced is `unplaced`, and neither counts. Interrupts also keep the
+     * stopped spell's id.
      */
-    public const VERSION = 14;
+    public const VERSION = 15;
+
+    /** A priority cast is taken as stopped or finished when that happens this long after it began. */
+    private const CAST_WINDOW = 3.5;
+
+    /**
+     * Yards added to a kick's range when judging reach: two bodies and a sample's error. Psychic
+     * Scream's 8-yard fear landed 90% within 8.6 yards of the priest (combat-log-ingest.md).
+     */
+    private const REACH_SLACK = 3.0;
+
+    /** A position is used only if sampled this close in time to the moment it is asked about. */
+    private const PLACE_AGE = 1.0;
 
     /** The longest stretch of a death's health line, in seconds. */
     private const HP_SPAN = 30.0;
@@ -141,7 +163,7 @@ class RoundAnalysisService
         }
         unset($c);
 
-        [$dmg, $owner, $buffs, $interrupts, $end, $heals, $absorbs, $casts, $swingOnly, $dispelEvents, $debuffSpans, $named, $failed] = $this->secondPass($lines, $roster);
+        [$dmg, $owner, $buffs, $interrupts, $end, $heals, $absorbs, $casts, $swingOnly, $dispelEvents, $debuffSpans, $named, $failed, $starts, $pos] = $this->secondPass($lines, $roster);
         $this->classifyContextual($tl, $dmg, $sideOf);
         $credit = function (string $src) use ($roster, $owner) {
             for ($i = 0; $i < 3 && ! isset($roster[$src]) && isset($owner[$src]); $i++) {
@@ -228,7 +250,10 @@ class RoundAnalysisService
             'checks' => $this->checks($tl, $roster, $sideOf, $deaths, $metadata, $this->overlaps($tl, $buffs, $sideOf, $firstDeath)),
             'dispels' => $this->dispels($dispelEvents, $sideOf, $credit),
             'debuffs' => $this->debuffs($debuffSpans, $sideOf, $credit),
-            'habits' => $this->habits($roster, $sideOf, $credit, $named, $dmg, $interrupts, $failed, $locked, $deaths, $metadata, $ccMap),
+            'habits' => $this->priorityKicks(
+                $this->habits($roster, $sideOf, $credit, $named, $dmg, $interrupts, $failed, $locked, $deaths, $metadata, $ccMap),
+                $metadata, $sideOf, $credit, $starts, $named, $interrupts, $locked, $deaths, $pos,
+            ),
         ];
     }
 
@@ -606,7 +631,18 @@ class RoundAnalysisService
         $openDebuffs = [];
         $named = [];
         $failed = [];
+        $starts = [];
+        // Where each player stood, from every line with an advanced block: its first field names the
+        // unit it places, x and y 14 and 15 fields on (docs/combat-log-ingest.md). A regular closure:
+        // $t moves on every line, and an arrow function would freeze it.
+        $pos = [];
         $t = 0.0;
+        $place = function (array $f, int $start) use (&$pos, &$t, $roster): void {
+            $u = $f[$start] ?? '';
+            if (isset($roster[$u], $f[$start + 15]) && is_numeric($f[$start + 14]) && is_numeric($f[$start + 15])) {
+                $pos[$u][] = [$t, (float) $f[$start + 14], (float) $f[$start + 15]];
+            }
+        };
 
         foreach ($lines as $line) {
             $s = $this->seconds($line);
@@ -637,8 +673,17 @@ class RoundAnalysisService
                 if (isset($roster[$f[1]])) {
                     $casts[$f[1]][] = $t;
                 }
+                $place($f, 12);
                 // Every press by name, pets included (credited later), for the answer sheet.
                 $named[] = ['src' => $f[1], 'spell' => $f[10], 't' => $t, 'dst' => $f[5], 'id' => (int) $f[9]];
+
+                continue;
+            }
+            if ($event === 'SPELL_CAST_START') {
+                $f = str_getcsv($body);
+                if (isset($roster[$f[1]])) {
+                    $starts[] = ['src' => $f[1], 'id' => (int) $f[9], 'spell' => $f[10], 't' => $t];
+                }
 
                 continue;
             }
@@ -652,6 +697,7 @@ class RoundAnalysisService
             }
             if ($event === 'SPELL_HEAL' || $event === 'SPELL_PERIODIC_HEAL') {
                 $f = str_getcsv($body);
+                $place($f, 12);
                 $amount = $f[count($f) - 5] ?? null;
                 $over = $f[count($f) - 3] ?? null;
                 if (isset($roster[$f[5]]) && is_numeric($amount) && is_numeric($over)) {
@@ -673,7 +719,7 @@ class RoundAnalysisService
                 $f = str_getcsv($body);
                 if (isset($roster[$f[5]])) {
                     // ...,kick id,kick name,school,stopped id,stopped name,school
-                    $interrupts[] = ['t' => $t, 'src' => $f[1], 'dst' => $f[5], 'spell' => $f[10], 'stopped' => $f[13] ?? '?'];
+                    $interrupts[] = ['t' => $t, 'src' => $f[1], 'dst' => $f[5], 'spell' => $f[10], 'stopped' => $f[13] ?? '?', 'stoppedId' => (int) ($f[12] ?? 0)];
                 }
 
                 continue;
@@ -717,6 +763,7 @@ class RoundAnalysisService
             }
             if ($event === 'SWING_DAMAGE') {
                 $f = str_getcsv($body);
+                $place($f, 9);
                 $amount = $f[count($f) - 10] ?? null;
                 if (is_numeric($amount) && isset($roster[$f[5]]) && $f[1] !== $f[5]) {
                     $swingOnly[strtok($line, ' ').'|'.$s.'|'.$f[1].'|'.$f[5].'|'.$amount] = ['t' => $t, 'src' => $f[1], 'dst' => $f[5], 'amount' => (int) $amount, 'spell' => 'Melee'];
@@ -729,6 +776,7 @@ class RoundAnalysisService
             }
             $f = str_getcsv($body);
             $swing = str_starts_with($event, 'SWING');
+            $place($f, $swing ? 9 : 12);
             $amount = $f[count($f) - ($swing ? 10 : 11)] ?? null;
             if (! is_numeric($amount) || ! isset($roster[$f[5]]) || $f[1] === $f[5]) {
                 continue;
@@ -756,7 +804,7 @@ class RoundAnalysisService
             $debuffs[] = $o + ['to' => $t];
         }
 
-        return [$dmg, $owner, $buffs, $interrupts, $end, $heals, $absorbs, $casts, $swingOnly, $dispels, $debuffs, $named, $failed];
+        return [$dmg, $owner, $buffs, $interrupts, $end, $heals, $absorbs, $casts, $swingOnly, $dispels, $debuffs, $named, $failed, $starts, $pos];
     }
 
     // ------------------------------------------------------------------ breakdown and checks
@@ -949,6 +997,162 @@ class RoundAnalysisService
         unset($row);
 
         return $out;
+    }
+
+    /**
+     * Kicks against the casts worth kicking (version 15, 2026-10-16). The chance is kickread.php's:
+     * a cast the other side began while the player was alive, not locked out, and with their
+     * interrupt off its base cooldown. Only the casts KickPriorities counts are asked about: high and
+     * medium in data/kick-priorities, and seen stopped in the archive at least once. Range and line
+     * of sight are not in the log, so a chance may have been out of reach; that is said wherever the
+     * number is shown.
+     *
+     * A chance also needs the cast begun within reach of a ready kick: the kick's range in the spell
+     * data plus REACH_SLACK, from the kicker's and the caster's positions within PLACE_AGE of the
+     * cast's start. A cast begun beyond reach is counted as `far`, one with either player unplaced
+     * as `unplaced`; neither is a chance. A kick with no range in the data (a warlock pet's) is not
+     * judged for reach. Like the base cooldowns, every rule here can only count fewer chances.
+     *
+     * Adds `priority` to each player's habits, or null when they have no interrupt (a Discipline
+     * Priest) or the log cannot tell whether they took one and they never pressed it:
+     * {chances, mine, mate, landed, faked, far, unplaced, high: {chances, mine, landed}, through: {spell: n}}.
+     * `through` names the casts that went through, high and medium, for the card.
+     */
+    private function priorityKicks(array $habits, array $metadata, callable $sideOf, callable $credit, array $starts,
+        array $named, array $interrupts, array $locked, array $deaths, array $pos = []): array
+    {
+        $specKey = [];
+        foreach ($metadata['units'] ?? [] as $u) {
+            $spec = isset($habits[$u['id'] ?? '']) ? $this->arena->specForExternalId((string) ($u['spec'] ?? '')) : null;
+            if ($spec) {
+                $specKey[$u['id']] = $spec->gameClass?->slug.'/'.$spec->slug;
+            }
+        }
+
+        // The casts worth kicking that each player began: a cast at its start, a channel at its
+        // SPELL_CAST_SUCCESS (it writes no start).
+        $chancesFrom = [];
+        foreach ($starts as $c) {
+            $p = KickPriorities::countable($specKey[$c['src']] ?? '')[$c['id']] ?? null;
+            if ($p && ! $p['channel']) {
+                $chancesFrom[] = $c + $p;
+            }
+        }
+        $finished = [];
+        foreach ($named as $n) {
+            if (! isset($specKey[$n['src']])) {
+                continue;
+            }
+            $finished[$n['src'].'|'.$n['id']][] = $n['t'];
+            $p = KickPriorities::countable($specKey[$n['src']])[$n['id']] ?? null;
+            if ($p && $p['channel']) {
+                $chancesFrom[] = ['src' => $n['src'], 'id' => $n['id'], 't' => $n['t']] + $p;
+            }
+        }
+
+        $diedAt = array_column($deaths, 't', 'who');
+        foreach ($habits as $g => &$row) {
+            $row['priority'] = null;
+            [$class] = explode('/', $specKey[$g] ?? '');
+            // The player's kicks: the ones they pressed this round, or the class's first when they
+            // pressed none (a spec that always has it), each with its range and cooldown.
+            $all = KickPriorities::interrupts($class);
+            $presses = [];
+            foreach ($named as $n) {
+                if ($credit($n['src']) === $g && in_array($n['spell'], array_column($all, 'name'), true)) {
+                    $presses[$n['spell']][] = $n['t'];
+                }
+            }
+            if (! $all || (! $presses && ! KickPriorities::alwaysHasKick($specKey[$g] ?? ''))) {
+                continue;
+            }
+            $kicks = $presses ? array_values(array_filter($all, fn ($k) => isset($presses[$k['name']]))) : [$all[0]];
+
+            $p = ['chances' => 0, 'mine' => 0, 'mate' => 0, 'landed' => 0, 'faked' => 0, 'far' => 0, 'unplaced' => 0,
+                'high' => ['chances' => 0, 'mine' => 0, 'landed' => 0], 'through' => []];
+            foreach ($chancesFrom as $c) {
+                $t = $c['t'];
+                if ($sideOf($c['src']) === $sideOf($g)
+                    || (isset($diedAt[$g]) && $diedAt[$g] <= $t)
+                    || collect($locked[$g] ?? [])->contains(fn ($iv) => $t >= $iv[0] && $t < $iv[1])) {
+                    continue;
+                }
+                $ready = array_values(array_filter($kicks, fn ($k) => ! collect($presses[$k['name']] ?? [])->contains(fn ($at) => $at < $t && $t < $at + $k['cd'])));
+                if (! $ready) {
+                    continue;
+                }
+                // Within reach of a ready kick, from where both stood as the cast began.
+                $range = in_array(null, array_column($ready, 'range'), true) ? null : max(array_column($ready, 'range'));
+                if ($range !== null) {
+                    $a = $this->placeAt($pos[$g] ?? [], $t);
+                    $b = $this->placeAt($pos[$c['src']] ?? [], $t);
+                    if (! $a || ! $b) {
+                        $p['unplaced']++;
+
+                        continue;
+                    }
+                    if (hypot($a[0] - $b[0], $a[1] - $b[1]) > $range + self::REACH_SLACK) {
+                        $p['far']++;
+
+                        continue;
+                    }
+                }
+                $done = collect($finished[$c['src'].'|'.$c['id']] ?? [])->first(fn ($ft) => $ft > $t && $ft <= $t + self::CAST_WINDOW);
+                $stop = collect($interrupts)->first(fn ($i) => $i['dst'] === $c['src'] && $i['stoppedId'] === $c['id'] && $i['t'] >= $t && $i['t'] <= $t + self::CAST_WINDOW)
+                    // A kick the log writes as crowd control (Silence) stops the cast it lands in.
+                    ?? collect($named)->first(fn ($n) => in_array($n['spell'], KickPriorities::LOGGED_AS_CONTROL, true) && $n['dst'] === $c['src']
+                        && $n['t'] >= $t && $n['t'] <= ($c['channel'] ? $t + self::CAST_WINDOW : ($done ?? $t + self::CAST_WINDOW)));
+                $outcome = match (true) {
+                    $stop !== null && $credit($stop['src']) === $g => 'mine',
+                    $stop !== null && $sideOf($credit($stop['src'])) === $sideOf($g) => 'mate',
+                    $stop !== null => 'faked',
+                    $c['channel'] => 'landed',
+                    $done !== null => 'landed',
+                    default => 'faked',   // cancelled, moved out of, or a fake cast: no one had to stop it
+                };
+                $p['chances']++;
+                $p[$outcome]++;
+                if ($c['tier'] === 'high') {
+                    $p['high']['chances']++;
+                    $p['high']['mine'] += $outcome === 'mine' ? 1 : 0;
+                    $p['high']['landed'] += $outcome === 'landed' ? 1 : 0;
+                }
+                if ($outcome === 'landed') {
+                    $p['through'][$c['name']] = ($p['through'][$c['name']] ?? 0) + 1;
+                }
+            }
+            arsort($p['through']);
+            $row['priority'] = $p;
+        }
+        unset($row);
+
+        return $habits;
+    }
+
+    /** The [x, y] sampled nearest $t, if within PLACE_AGE of it: never interpolated across a gap. */
+    private function placeAt(array $samples, float $t): ?array
+    {
+        $lo = 0;
+        $hi = count($samples) - 1;
+        if ($hi < 0) {
+            return null;
+        }
+        while ($lo < $hi) {
+            $mid = intdiv($lo + $hi, 2);
+            if ($samples[$mid][0] < $t) {
+                $lo = $mid + 1;
+            } else {
+                $hi = $mid;
+            }
+        }
+        $best = null;
+        foreach ([$lo - 1, $lo] as $i) {
+            if (isset($samples[$i]) && abs($samples[$i][0] - $t) <= self::PLACE_AGE && ($best === null || abs($samples[$i][0] - $t) < abs($best[0] - $t))) {
+                $best = $samples[$i];
+            }
+        }
+
+        return $best ? [$best[1], $best[2]] : null;
     }
 
     /** One control or kick that landed: off target when the player was hitting someone else. */

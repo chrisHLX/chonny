@@ -215,8 +215,10 @@ test('the sidebar puts your own pages in one block, separate from the public sit
         ->assertOk()
         // Spotify's layout (2026-10-11), the app first (2026-10-12): your games, the app and the
         // planning tools in the top panel, then the library: your space, social, more data, Training.
+        // The spec guides joined the planning tools as "PvP Guides" (2026-10-16), and the kit pages
+        // are "Arena Kit" there, as their titles are.
         ->assertSeeInOrder([
-            'Home', 'Your games', 'Get the app', '3v3 Comps', 'Matchup Lab', 'Class Guides', 'Guides', 'Claude',
+            'Home', 'Your games', 'Get the app', '3v3 Comps', 'Matchup Lab', 'PvP Guides', 'Arena Kit', 'Guides', 'Claude',
             'Your library', 'Your space', 'Newbie', 'My Guides', 'My Characters', 'Profile &amp; settings',
             'Social', 'Friends', 'Guilds',
             'More data', 'Top Burst Windows', 'Training', 'Class quizzes', 'Arena basics check',

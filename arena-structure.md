@@ -725,6 +725,26 @@ build roughly this often") and as **forcing routines** like the one above. The s
 is why a coaching product beats a calculator — and it is authorable today, without any
 new data.
 
+### 10.1 What to kick, ranked [OBS, one source; DER, the archive]
+
+The forcing routine above is about the kick you *eat*. The other half is the kick you *hold*:
+which of their casts is worth spending it on. Skill Capped's per-spec lists for 12.1
+(`docs/arena/sources/skillcapped-kick-priorities-2026-10-16.md`) rank the same three kinds of
+cast highest for every spec: **crowd control with a cast time on your team**, **the big healing
+cooldowns**, and **the cast that opens a spec's burst**. Filler is low. [OBS]
+
+The archive corrects the lists in two ways [DER, 597 games]:
+- **Some listed casts are never stopped.** Penance (8,738 casts), Aimed Shot, Enveloping Mist,
+  Fists of Fury, Eye Beam. Waiting for one with a kick ready spends the kick's whole cooldown on
+  nothing. Whether they cannot be interrupted or simply are not is open (C16).
+- **Some unlisted casts are stopped often.** Benediction, Shadow Mend, Voidform.
+
+Read against Part 2, a kick is an answer like any other: it is only worth what it removes from
+their pool, and a kick spent on filler is one not ready for the Polymorph on your healer. Measure
+15 counts, per player, the high-priority casts met with the kick ready and what became of them; it
+is the one place the product reads this, and a chance there is a question, never a fault: range
+is judged from the log's positions, line of sight cannot be.
+
 ---
 
 ## Part 11 — Determinism is reached by memorising thresholds, not by calculating

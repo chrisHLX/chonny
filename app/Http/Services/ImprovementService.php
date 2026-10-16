@@ -288,6 +288,13 @@ class ImprovementService
             'v10' => ($a['version'] ?? 0) >= 10 && isset($a['habits'][$guid]),
             'free' => (float) ($a['habits'][$guid]['free'] ?? 0),
             'kicked' => array_sum($a['habits'][$guid]['kicked'] ?? []),
+            // Version 15: the high-priority casts met with your kick ready, what you stopped, and
+            // which casts went through. Null without an interrupt or before version 15.
+            'prio' => isset($a['habits'][$guid]['priority']) ? [
+                'chances' => (int) $a['habits'][$guid]['priority']['high']['chances'],
+                'mine' => (int) $a['habits'][$guid]['priority']['high']['mine'],
+                'through' => $a['habits'][$guid]['priority']['through'] ?? [],
+            ] : null,
             'losFails' => $p['logger'] ? (int) ($a['habits'][$guid]['failed']['Target not in line of sight']['n'] ?? 0) : null,
             // Your team's first death with an answer sheet (version 7, our side only), and your own
             // defensives that sat ready through the go that killed AND could have saved the player
@@ -502,7 +509,25 @@ class ImprovementService
             );
         }
 
-        // 12. Your team's deaths with one of your defensives ready that could have saved them: the one
+        // 12. The casts worth a kick (data/kick-priorities, high) met with your kick ready, and the
+        // share you stopped (version 15). The other players of your spec are everyone the archive
+        // met, so the comparison is against the ladder, not your teammates.
+        $prio = fn (Collection $rs) => $rs->filter(fn ($r) => $r['prio'] !== null);
+        if ($prio($mine)->sum(fn ($r) => $r['prio']['chances']) > 0) {
+            $share = fn (Collection $rs) => ($c = $prio($rs)->sum(fn ($r) => $r['prio']['chances'])) > 0 ? $prio($rs)->sum(fn ($r) => $r['prio']['mine']) / $c : null;
+            $through = $prio($mine)->flatMap(fn ($r) => collect($r['prio']['through'])->map(fn ($n, $s) => ['s' => $s, 'n' => $n])->values())
+                ->groupBy('s')->map(fn ($g) => $g->sum('n'))->sortDesc();
+            $habits[] = $this->habit('priorityKicks', 'High-priority casts you kicked', true,
+                'Of the casts top players rank highest to interrupt (crowd control, the big heals and cooldowns), the share you stopped when one began while you were alive, free to act, had your kick ready and stood within its range.',
+                $share($mine), $share($others), $prio($mine)->count(), $prio($others)->count(), 0, '%',
+                [sprintf('%d chances in your games, %d stopped.', $prio($mine)->sum(fn ($r) => $r['prio']['chances']), $prio($mine)->sum(fn ($r) => $r['prio']['mine']))],
+                $trend($share),
+                'Line of sight is not in the log, so a pillar may have been in the way, and a teammate may have had the kick. Each spec\'s list is on its PvP guide on the website.',
+                $this->iconRows(array_map(fn ($n) => $n.' went through', $through->take(6)->all()), 'Went through most often'),
+            );
+        }
+
+        // 13. Your team's deaths with one of your defensives ready that could have saved them: the one
         // death on a game card, counted across games so a pattern shows. Other players of the spec
         // count only where they were on your team, which is rarely enough to grade against.
         $sheets = fn (Collection $rs) => $rs->where('sheet', true);

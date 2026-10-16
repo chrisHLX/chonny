@@ -6,6 +6,7 @@ use App\Console\Commands\BuildGoCooldowns;
 use App\Models\PageViewEvent;
 use App\Models\Patch;
 use App\Models\Specialization;
+use App\Support\KickPriorities;
 use App\Support\SpecPages;
 use Illuminate\Support\Collection;
 
@@ -65,6 +66,13 @@ class SpecPvpController extends Controller
             'interruptRounds' => round($all->sum(fn ($s) => ($s['interruptRounds'] ?? 0) * $s['rounds']) / $rounds, 2),
         ];
 
+        // Every spec with a kick, pooled: the comparison the kicker line needs.
+        $kickers = $all->pluck('priorityKicks')->filter();
+        $kickChances = $kickers->sum('chances');
+        $average['priorityKickShare'] = $kickChances > 0 ? round($kickers->sum('mine') / $kickChances, 2) : null;
+
+        $key = $spec->gameClass->slug.'/'.$spec->slug;
+
         $comps = collect($page['comps'])->map(fn ($c) => $c + [
             'members' => collect($c['specs'])->map(fn ($id) => $bySpecId[$id] ?? null)->filter()->values(),
         ])->filter(fn ($c) => $c['members']->count() === 3)->values();
@@ -81,6 +89,12 @@ class SpecPvpController extends Controller
             'color' => config('wow_classes.colors', [])[$spec->gameClass->slug] ?? '#B3B3B3',
             'classColors' => config('wow_classes.colors', []),
             'builtAt' => SpecPages::load()['generatedAt'] ?? null,
+            // What to kick on this spec: the published interrupt list, each cast set against the
+            // archive (KickPriorities; committed files, rule 14).
+            'kicks' => KickPriorities::forSpec($key),
+            'alsoKicked' => array_slice(KickPriorities::alsoKicked($key), 0, 4),
+            'kickSource' => KickPriorities::source($key),
+            'kickGames' => KickPriorities::evidence()['games'] ?? 0,
         ]);
     }
 

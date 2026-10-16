@@ -80,7 +80,7 @@
             @foreach ([
                 [route('wow-comps'), 'Build a 3v3 comp', 'Pick three specs and see their cooldowns, crowd control and defensives side by side.'],
                 [route('matchup-lab'), 'Matchup Lab', 'Set two comps against each other and see when each side has its answers.'],
-                [route('pvp-guides'), 'Class guides', 'Every spec\'s kit, burst windows and counters.'],
+                [route('spec-pvp.index'), 'PvP guides', 'Every spec\'s PvP talents, goes, defensives and what to kick, counted from real games.'],
                 [route('guides.browse'), 'Guides', 'Game plans other players have written for their comps.'],
             ] as [$href, $title, $text])
                 <a href="{{ $href }}" wire:navigate class="linear-card group p-5 flex flex-col">

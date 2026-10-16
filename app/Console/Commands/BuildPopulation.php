@@ -279,6 +279,10 @@ class BuildPopulation extends Command
                 'idleShare' => $this->quartiles($list->map(fn ($p) => $p['idle'] / max(1, $p['alive']))),
                 'lockedShare' => $this->quartiles($list->map(fn ($p) => $p['locked'] / max(1, $p['alive']))),
                 'kicksPerMinute' => $this->quartiles($perFree('kicks')),
+                // Of the high-priority casts met with the kick ready, the share the player stopped
+                // (version 15). Rounds with fewer than 3 such chances say too little on their own.
+                'priorityKickShare' => $this->quartiles($list->filter(fn ($p) => ($p['priority']['high']['chances'] ?? 0) >= 3)
+                    ->map(fn ($p) => $p['priority']['high']['mine'] / $p['priority']['high']['chances'])),
                 'controlPerMinute' => $this->quartiles($perFree('control')),
                 'offTargetShare' => $this->quartiles($list->filter(fn ($p) => $p['control'] >= 3)->map(fn ($p) => $p['offTarget'] / $p['control'])),
                 'petOnTargetShare' => $this->quartiles($list->filter(fn ($p) => $p['petHits'] >= 30)->map(fn ($p) => $p['petOnTarget'] / $p['petHits'])),

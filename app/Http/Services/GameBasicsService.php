@@ -256,6 +256,22 @@ class GameBasicsService
         $offTarget = 0;
         $control = 0;
         $kicked = [];
+        // Casts worth a kick met with yours ready (version 15); null rows have no interrupt.
+        $prio = null;
+        foreach ($analyses as $a) {
+            $p = $a['habits'][$me]['priority'] ?? null;
+            if ($p) {
+                $prio ??= ['chances' => 0, 'mine' => 0, 'landed' => 0, 'highChances' => 0, 'highMine' => 0, 'through' => []];
+                $prio['chances'] += $p['chances'];
+                $prio['mine'] += $p['mine'];
+                $prio['landed'] += $p['landed'];
+                $prio['highChances'] += $p['high']['chances'];
+                $prio['highMine'] += $p['high']['mine'];
+                foreach ($p['through'] as $spell => $n) {
+                    $prio['through'][$spell] = ($prio['through'][$spell] ?? 0) + $n;
+                }
+            }
+        }
         foreach ($analyses as $a) {
             foreach ($a['goes'] as $g) {
                 foreach ($g['links'] ?? [] as $l) {
@@ -293,6 +309,9 @@ class GameBasicsService
                 'spells' => array_keys(array_slice($kicked, 0, 3, true)),
             ];
         }
+        if ($prio && $prio['chances'] > 0) {
+            $rows[] = $this->priorityKickRow($prio, $analyses, $me);
+        }
         if ($control >= 3 && $offTarget * 2 >= $control) {
             $spell = $this->offTargetSpell($analyses, $me);
             $rows[] = [
@@ -305,6 +324,39 @@ class GameBasicsService
         }
 
         return $rows ? ['title' => 'Your crowd control and casts', 'rows' => $rows] : null;
+    }
+
+    /**
+     * The casts worth a kick (data/kick-priorities, high and medium) that the other side began while
+     * your kick was ready: what you stopped and what went through, set against the median player of
+     * your spec once the norms carry it (priorityKickShare). A count, said as one: the log has no
+     * line of sight (range it has: measure 15 counts only casts begun within the kick's reach).
+     */
+    private function priorityKickRow(array $prio, array $analyses, string $me): array
+    {
+        $spec = (string) (collect($analyses[0]['players'])->firstWhere('guid', $me)['specExternalId'] ?? '');
+        $norm = $this->norms()['specs'][$spec]['priorityKickShare'] ?? null;
+        $label = $this->norms()['specs'][$spec]['label'] ?? 'your spec';
+
+        arsort($prio['through']);
+        $through = collect($prio['through'])->take(3)->map(fn ($n, $s) => "{$s} ×{$n}")->implode(', ');
+        $text = $prio['landed'] > 0
+            ? "Went through: {$through}. The priority lists rank crowd control on your team and the big healing cooldowns highest."
+            : 'Nothing worth a kick went through while yours was ready.';
+        if ($norm && ($norm['n'] ?? 0) >= 20 && $norm['p50'] !== null && $prio['highChances'] >= 3) {
+            // The middle player of many specs stops none in a round: "stop 0%" reads as a broken number.
+            $most = $norm['p50'] > 0 ? 'stop '.round($norm['p50'] * 100).'% of the high-priority casts they meet with their kick ready' : 'stop none of the high-priority casts they meet in a round';
+            $text .= ' Most '.$label.' players '.$most.'; you stopped '.round(100 * $prio['highMine'] / $prio['highChances']).'% here.';
+        }
+        $text .= ' A chance means you were alive, free to act, had your kick off cooldown and stood within its range as the cast began. Line of sight is not in the log, so a pillar may have been in the way.';
+
+        return [
+            'label' => 'Casts worth a kick while yours was ready',
+            'value' => "{$prio['mine']} stopped · {$prio['landed']} went through",
+            'tone' => $prio['landed'] >= self::FAIL_MIN && $prio['landed'] > $prio['mine'] ? 'warn' : ($prio['mine'] > 0 && $prio['landed'] === 0 ? 'good' : 'neutral'),
+            'text' => $text,
+            'spells' => array_keys(array_slice($prio['through'], 0, 3, true)),
+        ];
     }
 
     /** Your single-target control most often put on someone other than the go's target. */

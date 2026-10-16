@@ -106,6 +106,49 @@ class SpecPvpPagesTest extends TestCase
         $this->get('/wow/pvp/priest/holy')->assertNotFound();
     }
 
+    public function test_a_spec_guide_says_what_to_kick_and_how_its_players_kick(): void
+    {
+        $this->specs();
+        \App\Support\KickPriorities::fake(
+            ['source' => 'Skill Capped', 'read' => '2026-10-16', 'patch' => '12.1 (Midnight Season 2)', 'specs' => ['paladin/retribution' => [
+                'url' => 'https://example.test/ret', 'high' => ['Searing Glare', 'Blinding Light'], 'medium' => [], 'low' => ['Flash of Light'],
+            ]]],
+            ['games' => 597, 'specs' => ['paladin/retribution' => ['listed' => [
+                'Searing Glare' => ['tier' => 'high', 'ids' => [410126], 'begun' => 170, 'done' => 109, 'stopped' => 18],
+                'Blinding Light' => ['tier' => 'high', 'ids' => [115750], 'begun' => 0, 'done' => 90, 'stopped' => 0],
+                'Flash of Light' => ['tier' => 'low', 'ids' => [19750], 'begun' => 34, 'done' => 19, 'stopped' => 1],
+            ]]]],
+        );
+        // Every Ret met 4 high-priority casts with the kick ready and stopped 1 (version 15).
+        $games = collect(range(1, 10))->map(function ($i) {
+            $g = $this->round($i, true);
+            $g['players']['ret']['priority'] = ['chances' => 5, 'mine' => 1, 'mate' => 1, 'landed' => 2, 'high' => ['chances' => 4, 'mine' => 1, 'landed' => 2]];
+
+            return $g;
+        });
+        SpecPages::fake(SpecPages::build($games, '2026-08-01'));
+
+        $html = $this->get('/wow/pvp/paladin/retribution')->assertOk()->getContent();
+        $this->assertStringContainsString('What to kick on a Retribution Paladin', $html);
+        $this->assertStringContainsString('stopped 18 of 170 casts', $html);
+        $this->assertStringContainsString('Never stopped in 90 casts', $html);
+        $this->assertStringContainsString('https://example.test/ret', $html);
+        $this->assertStringContainsString('Retribution Paladins as kickers', $html);
+        $this->assertStringContainsString('met 40 high-priority enemy casts', $html);
+
+        // Under 20 chances, the kicker line says nothing rather than a number from a handful.
+        $few = $games->map(function ($g) {
+            $g['players']['ret']['priority']['high'] = ['chances' => 1, 'mine' => 0, 'landed' => 1];
+
+            return $g;
+        });
+        SpecPages::fake(SpecPages::build($few, '2026-08-01'));
+        $html = $this->get('/wow/pvp/paladin/retribution')->assertOk()->getContent();
+        $this->assertStringContainsString('What to kick on a Retribution Paladin', $html);
+        $this->assertStringNotContainsString('as kickers', $html);
+        \App\Support\KickPriorities::flush();
+    }
+
     public function test_the_sitemap_lists_the_spec_guides(): void
     {
         $this->specs();

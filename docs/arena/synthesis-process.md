@@ -40,6 +40,12 @@ timestamps and transcription errors left in. Add a header if it has none: who, w
 when, and **why this source is worth reading** — a highlight reel is not the same
 kind of evidence as a post-hoc explanation of a plan that worked.
 
+**A published guide or video someone else made is not copied in.** The raw file is for
+what the player hands over: their own dictation, a transcript they supplied. For a
+third-party guide, page or video, the raw file holds the link, the author, the patch and
+the date it was read, and a summary in our own words with only short quotes. Re-reading
+it means going back to the link.
+
 ## Step 2 — Read it whole, once, before writing anything
 
 No skimming for keywords. The Calvish opener insight was in an aside about a

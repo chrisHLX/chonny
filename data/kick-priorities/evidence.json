@@ -1,0 +1,2096 @@
+{
+    "about": "Counted by tools/match-review/kickpriority.php from every archived game since 2026-08-18. begun = casts started with a cast time; done = casts that finished (channels included); stopped = casts an interrupt stopped. No names.",
+    "since": "2026-08-18",
+    "games": 597,
+    "builtAt": "2026-10-16T09:36:59+00:00",
+    "specs": {
+        "priest/discipline": {
+            "listed": {
+                "Mind Control": {
+                    "tier": "high",
+                    "ids": [
+                        605
+                    ],
+                    "begun": 291,
+                    "done": 190,
+                    "stopped": 26
+                },
+                "Power Word: Radiance": {
+                    "tier": "high",
+                    "ids": [
+                        194509
+                    ],
+                    "begun": 2145,
+                    "done": 2999,
+                    "stopped": 7
+                },
+                "Penance": {
+                    "tier": "high",
+                    "ids": [
+                        47540,
+                        47666,
+                        47750,
+                        47758,
+                        186723,
+                        186724,
+                        197419,
+                        270501,
+                        281469,
+                        1232567,
+                        1232571
+                    ],
+                    "begun": 0,
+                    "done": 8738,
+                    "stopped": 0
+                },
+                "Dark Reprimand": {
+                    "tier": "high",
+                    "ids": [
+                        373129,
+                        373130,
+                        400169,
+                        400171,
+                        400187,
+                        1232592,
+                        1232615
+                    ],
+                    "begun": 0,
+                    "done": 0,
+                    "stopped": 0
+                },
+                "Ultimate Penitence": {
+                    "tier": "high",
+                    "ids": [
+                        421434,
+                        421543,
+                        421544,
+                        432154,
+                        421453
+                    ],
+                    "begun": 543,
+                    "done": 397,
+                    "stopped": 49
+                },
+                "Void Blast": {
+                    "tier": "high",
+                    "ids": [
+                        450215,
+                        450404,
+                        450983,
+                        450405
+                    ],
+                    "begun": 138,
+                    "done": 112,
+                    "stopped": 3
+                },
+                "Flash Heal": {
+                    "tier": "medium",
+                    "ids": [
+                        2061
+                    ],
+                    "begun": 507,
+                    "done": 454,
+                    "stopped": 15
+                },
+                "Mind Blast": {
+                    "tier": "low",
+                    "ids": [
+                        8092
+                    ],
+                    "begun": 1813,
+                    "done": 1389,
+                    "stopped": 89
+                },
+                "Smite": {
+                    "tier": "low",
+                    "ids": [
+                        585,
+                        425529
+                    ],
+                    "begun": 790,
+                    "done": 558,
+                    "stopped": 17
+                }
+            },
+            "notListed": {
+                "Shadow Mend": {
+                    "ids": [
+                        186263
+                    ],
+                    "stopped": 21,
+                    "begun": 893,
+                    "done": 1333
+                },
+                "Mass Dispel": {
+                    "ids": [
+                        32375
+                    ],
+                    "stopped": 8,
+                    "begun": 92,
+                    "done": 60
+                }
+            }
+        },
+        "priest/holy": {
+            "listed": {
+                "Mind Control": {
+                    "tier": "high",
+                    "ids": [
+                        605
+                    ],
+                    "begun": 128,
+                    "done": 84,
+                    "stopped": 18
+                },
+                "Divine Hymn": {
+                    "tier": "high",
+                    "ids": [
+                        64844,
+                        64843
+                    ],
+                    "begun": 0,
+                    "done": 457,
+                    "stopped": 3
+                },
+                "Halo": {
+                    "tier": "high",
+                    "ids": [
+                        120692,
+                        120696,
+                        390964,
+                        390971,
+                        120517,
+                        120644
+                    ],
+                    "begun": 0,
+                    "done": 0,
+                    "stopped": 0
+                },
+                "Greater Heal": {
+                    "tier": "high",
+                    "ids": [
+                        289666
+                    ],
+                    "begun": 0,
+                    "done": 0,
+                    "stopped": 0
+                },
+                "Flash Heal": {
+                    "tier": "medium",
+                    "ids": [
+                        2061
+                    ],
+                    "begun": 719,
+                    "done": 585,
+                    "stopped": 14
+                },
+                "Holy Fire": {
+                    "tier": "medium",
+                    "ids": [
+                        14914,
+                        196818,
+                        231687
+                    ],
+                    "begun": 372,
+                    "done": 338,
+                    "stopped": 4
+                },
+                "Mind Blast": {
+                    "tier": "low",
+                    "ids": [
+                        8092
+                    ],
+                    "begun": 0,
+                    "done": 0,
+                    "stopped": 0
+                },
+                "Smite": {
+                    "tier": "low",
+                    "ids": [
+                        585,
+                        425529
+                    ],
+                    "begun": 170,
+                    "done": 126,
+                    "stopped": 6
+                }
+            },
+            "notListed": {
+                "Benediction": {
+                    "ids": [
+                        1262763
+                    ],
+                    "stopped": 47,
+                    "begun": 902,
+                    "done": 698
+                }
+            }
+        },
+        "priest/shadow": {
+            "listed": {
+                "Mind Control": {
+                    "tier": "high",
+                    "ids": [
+                        605
+                    ],
+                    "begun": 88,
+                    "done": 69,
+                    "stopped": 7
+                },
+                "Mind Blast": {
+                    "tier": "high",
+                    "ids": [
+                        8092
+                    ],
+                    "begun": 477,
+                    "done": 411,
+                    "stopped": 15
+                },
+                "Halo": {
+                    "tier": "high",
+                    "ids": [
+                        120692,
+                        120696,
+                        390964,
+                        390971,
+                        120517,
+                        120644
+                    ],
+                    "begun": 47,
+                    "done": 41,
+                    "stopped": 3
+                },
+                "Void Blast": {
+                    "tier": "high",
+                    "ids": [
+                        450215,
+                        450404,
+                        450983,
+                        450405
+                    ],
+                    "begun": 206,
+                    "done": 176,
+                    "stopped": 3
+                },
+                "Void Eruption": {
+                    "tier": "high",
+                    "ids": [
+                        228360,
+                        228361
+                    ],
+                    "begun": 0,
+                    "done": 0,
+                    "stopped": 0
+                },
+                "Void Torrent": {
+                    "tier": "high",
+                    "ids": [
+                        289577,
+                        263165,
+                        205065
+                    ],
+                    "begun": 0,
+                    "done": 226,
+                    "stopped": 32
+                },
+                "Mind Flay: Insanity": {
+                    "tier": "high",
+                    "ids": [
+                        391401,
+                        391403
+                    ],
+                    "begun": 0,
+                    "done": 135,
+                    "stopped": 3
+                },
+                "Vampiric Touch": {
+                    "tier": "high",
+                    "ids": [
+                        34914
+                    ],
+                    "begun": 263,
+                    "done": 184,
+                    "stopped": 26
+                },
+                "Flash Heal": {
+                    "tier": "low",
+                    "ids": [
+                        2061
+                    ],
+                    "begun": 428,
+                    "done": 300,
+                    "stopped": 49
+                }
+            },
+            "notListed": {
+                "Voidform": {
+                    "ids": [
+                        228260
+                    ],
+                    "stopped": 25,
+                    "begun": 226,
+                    "done": 160
+                },
+                "Mind Flay": {
+                    "ids": [
+                        15407
+                    ],
+                    "stopped": 12,
+                    "begun": 0,
+                    "done": 230
+                },
+                "Mindgames": {
+                    "ids": [
+                        375901
+                    ],
+                    "stopped": 5,
+                    "begun": 58,
+                    "done": 40
+                },
+                "Mass Dispel": {
+                    "ids": [
+                        32375
+                    ],
+                    "stopped": 5,
+                    "begun": 45,
+                    "done": 32
+                }
+            }
+        },
+        "druid/restoration": {
+            "listed": {
+                "Cyclone": {
+                    "tier": "high",
+                    "ids": [
+                        33786
+                    ],
+                    "begun": 677,
+                    "done": 384,
+                    "stopped": 73
+                },
+                "Tranquility": {
+                    "tier": "high",
+                    "ids": [
+                        157982,
+                        1236573,
+                        740
+                    ],
+                    "begun": 0,
+                    "done": 48,
+                    "stopped": 4
+                },
+                "Regrowth": {
+                    "tier": "medium",
+                    "ids": [
+                        8936,
+                        1264664
+                    ],
+                    "begun": 619,
+                    "done": 598,
+                    "stopped": 12
+                },
+                "Wrath": {
+                    "tier": "low",
+                    "ids": [
+                        5176,
+                        18104,
+                        190984
+                    ],
+                    "begun": 141,
+                    "done": 134,
+                    "stopped": 1
+                },
+                "Starfire": {
+                    "tier": "low",
+                    "ids": [
+                        194153,
+                        197628
+                    ],
+                    "begun": 3,
+                    "done": 2,
+                    "stopped": 0
+                }
+            }
+        },
+        "druid/balance": {
+            "listed": {
+                "Cyclone": {
+                    "tier": "high",
+                    "ids": [
+                        33786
+                    ],
+                    "begun": 275,
+                    "done": 154,
+                    "stopped": 35
+                },
+                "Full Moon": {
+                    "tier": "high",
+                    "ids": [
+                        274283
+                    ],
+                    "begun": 0,
+                    "done": 0,
+                    "stopped": 0
+                },
+                "Wrath": {
+                    "tier": "low",
+                    "ids": [
+                        5176,
+                        18104,
+                        190984
+                    ],
+                    "begun": 169,
+                    "done": 143,
+                    "stopped": 2
+                },
+                "Starfire": {
+                    "tier": "low",
+                    "ids": [
+                        194153,
+                        197628
+                    ],
+                    "begun": 135,
+                    "done": 130,
+                    "stopped": 0
+                },
+                "Regrowth": {
+                    "tier": "low",
+                    "ids": [
+                        8936,
+                        1264664
+                    ],
+                    "begun": 44,
+                    "done": 35,
+                    "stopped": 2
+                }
+            }
+        },
+        "druid/feral": {
+            "listed": {
+                "Cyclone": {
+                    "tier": "high",
+                    "ids": [
+                        33786
+                    ],
+                    "begun": 852,
+                    "done": 496,
+                    "stopped": 123
+                },
+                "Wrath": {
+                    "tier": "low",
+                    "ids": [
+                        5176,
+                        18104,
+                        190984
+                    ],
+                    "begun": 0,
+                    "done": 0,
+                    "stopped": 0
+                },
+                "Starfire": {
+                    "tier": "low",
+                    "ids": [
+                        194153,
+                        197628
+                    ],
+                    "begun": 0,
+                    "done": 0,
+                    "stopped": 0
+                },
+                "Regrowth": {
+                    "tier": "low",
+                    "ids": [
+                        8936,
+                        1264664
+                    ],
+                    "begun": 527,
+                    "done": 755,
+                    "stopped": 6
+                }
+            }
+        },
+        "shaman/restoration": {
+            "listed": {
+                "Hex": {
+                    "tier": "high",
+                    "ids": [
+                        51514,
+                        210873,
+                        269352,
+                        211015
+                    ],
+                    "begun": 213,
+                    "done": 130,
+                    "stopped": 19
+                },
+                "Lightning Lasso": {
+                    "tier": "high",
+                    "ids": [
+                        305483,
+                        305484,
+                        305485
+                    ],
+                    "begun": 0,
+                    "done": 62,
+                    "stopped": 3
+                },
+                "Healing Wave": {
+                    "tier": "medium",
+                    "ids": [
+                        77472
+                    ],
+                    "begun": 827,
+                    "done": 662,
+                    "stopped": 29
+                },
+                "Lightning Bolt": {
+                    "tier": "low",
+                    "ids": [
+                        54843,
+                        96891,
+                        188196,
+                        214815,
+                        37661,
+                        318044
+                    ],
+                    "begun": 15,
+                    "done": 9,
+                    "stopped": 0
+                },
+                "Chain Lightning": {
+                    "tier": "low",
+                    "ids": [
+                        191732,
+                        211094,
+                        447425,
+                        188443
+                    ],
+                    "begun": 0,
+                    "done": 0,
+                    "stopped": 0
+                },
+                "Lava Burst": {
+                    "tier": "low",
+                    "ids": [
+                        285452,
+                        429627,
+                        447419,
+                        51505
+                    ],
+                    "begun": 308,
+                    "done": 241,
+                    "stopped": 5
+                }
+            }
+        },
+        "shaman/elemental": {
+            "listed": {
+                "Hex": {
+                    "tier": "high",
+                    "ids": [
+                        51514,
+                        210873,
+                        269352,
+                        211015
+                    ],
+                    "begun": 170,
+                    "done": 116,
+                    "stopped": 22
+                },
+                "Lightning Lasso": {
+                    "tier": "high",
+                    "ids": [
+                        305483,
+                        305484,
+                        305485
+                    ],
+                    "begun": 0,
+                    "done": 14,
+                    "stopped": 2
+                },
+                "Stormkeeper": {
+                    "tier": "high",
+                    "ids": [
+                        383009,
+                        392714,
+                        392763,
+                        191634,
+                        205495
+                    ],
+                    "begun": 209,
+                    "done": 155,
+                    "stopped": 26
+                },
+                "Elemental Blast": {
+                    "tier": "high",
+                    "ids": [
+                        344645,
+                        394150,
+                        394152,
+                        447427,
+                        465717,
+                        117014
+                    ],
+                    "begun": 0,
+                    "done": 0,
+                    "stopped": 0
+                },
+                "Tempest": {
+                    "tier": "high",
+                    "ids": [
+                        452201,
+                        454015,
+                        454009
+                    ],
+                    "begun": 47,
+                    "done": 29,
+                    "stopped": 6
+                },
+                "Lava Burst": {
+                    "tier": "medium",
+                    "ids": [
+                        285452,
+                        429627,
+                        447419,
+                        51505
+                    ],
+                    "begun": 1161,
+                    "done": 1037,
+                    "stopped": 32
+                },
+                "Healing Surge": {
+                    "tier": "medium",
+                    "ids": [
+                        8004
+                    ],
+                    "begun": 110,
+                    "done": 88,
+                    "stopped": 8
+                },
+                "Lightning Bolt": {
+                    "tier": "low",
+                    "ids": [
+                        54843,
+                        96891,
+                        188196,
+                        214815,
+                        37661,
+                        318044
+                    ],
+                    "begun": 430,
+                    "done": 382,
+                    "stopped": 12
+                },
+                "Chain Lightning": {
+                    "tier": "low",
+                    "ids": [
+                        191732,
+                        211094,
+                        447425,
+                        188443
+                    ],
+                    "begun": 3,
+                    "done": 2,
+                    "stopped": 1
+                }
+            }
+        },
+        "shaman/enhancement": {
+            "listed": {
+                "Hex": {
+                    "tier": "high",
+                    "ids": [
+                        51514,
+                        210873,
+                        269352,
+                        211015
+                    ],
+                    "begun": 142,
+                    "done": 81,
+                    "stopped": 16
+                },
+                "Lightning Lasso": {
+                    "tier": "high",
+                    "ids": [
+                        305483,
+                        305484,
+                        305485
+                    ],
+                    "begun": 0,
+                    "done": 0,
+                    "stopped": 0
+                },
+                "Tempest": {
+                    "tier": "high",
+                    "ids": [
+                        452201,
+                        454015,
+                        454009
+                    ],
+                    "begun": 89,
+                    "done": 312,
+                    "stopped": 0
+                },
+                "Healing Surge": {
+                    "tier": "medium",
+                    "ids": [
+                        8004
+                    ],
+                    "begun": 94,
+                    "done": 211,
+                    "stopped": 0
+                },
+                "Lightning Bolt": {
+                    "tier": "low",
+                    "ids": [
+                        54843,
+                        96891,
+                        188196,
+                        214815,
+                        37661,
+                        318044
+                    ],
+                    "begun": 273,
+                    "done": 712,
+                    "stopped": 0
+                },
+                "Chain Lightning": {
+                    "tier": "low",
+                    "ids": [
+                        191732,
+                        211094,
+                        447425,
+                        188443
+                    ],
+                    "begun": 60,
+                    "done": 134,
+                    "stopped": 0
+                },
+                "Lava Burst": {
+                    "tier": "low",
+                    "ids": [
+                        285452,
+                        429627,
+                        447419,
+                        51505
+                    ],
+                    "begun": 0,
+                    "done": 0,
+                    "stopped": 0
+                }
+            }
+        },
+        "paladin/holy": {
+            "listed": {
+                "Searing Glare": {
+                    "tier": "high",
+                    "ids": [
+                        410126
+                    ],
+                    "begun": 59,
+                    "done": 40,
+                    "stopped": 6
+                },
+                "Denounce": {
+                    "tier": "high",
+                    "ids": [
+                        2812
+                    ],
+                    "begun": 32,
+                    "done": 27,
+                    "stopped": 1
+                },
+                "Holy Light": {
+                    "tier": "medium",
+                    "ids": [
+                        82326
+                    ],
+                    "begun": 153,
+                    "done": 411,
+                    "stopped": 1
+                },
+                "Flash of Light": {
+                    "tier": "medium",
+                    "ids": [
+                        19750,
+                        182480
+                    ],
+                    "begun": 578,
+                    "done": 2079,
+                    "stopped": 2
+                }
+            }
+        },
+        "paladin/retribution": {
+            "listed": {
+                "Searing Glare": {
+                    "tier": "high",
+                    "ids": [
+                        410126
+                    ],
+                    "begun": 170,
+                    "done": 109,
+                    "stopped": 18
+                },
+                "Flash of Light": {
+                    "tier": "low",
+                    "ids": [
+                        19750,
+                        182480
+                    ],
+                    "begun": 34,
+                    "done": 19,
+                    "stopped": 1
+                }
+            }
+        },
+        "monk/mistweaver": {
+            "listed": {
+                "Song of Chi-Ji": {
+                    "tier": "high",
+                    "ids": [
+                        198909,
+                        198898
+                    ],
+                    "begun": 41,
+                    "done": 30,
+                    "stopped": 6
+                },
+                "Crackling Jade Lightning": {
+                    "tier": "high",
+                    "ids": [
+                        117952,
+                        117959,
+                        123333
+                    ],
+                    "begun": 0,
+                    "done": 44,
+                    "stopped": 0
+                },
+                "Sheilun's Gift": {
+                    "tier": "high",
+                    "ids": [
+                        214483,
+                        399494,
+                        399496,
+                        399497,
+                        399510,
+                        399491,
+                        205406
+                    ],
+                    "begun": 162,
+                    "done": 162,
+                    "stopped": 0
+                },
+                "Celestial Conduit": {
+                    "tier": "high",
+                    "ids": [
+                        443038,
+                        443039,
+                        448380,
+                        1248992,
+                        443028,
+                        1248989
+                    ],
+                    "begun": 0,
+                    "done": 0,
+                    "stopped": 0
+                },
+                "Soothing Mist": {
+                    "tier": "medium",
+                    "ids": [
+                        198533,
+                        115175,
+                        209525
+                    ],
+                    "begun": 0,
+                    "done": 275,
+                    "stopped": 34
+                },
+                "Enveloping Mist": {
+                    "tier": "medium",
+                    "ids": [
+                        274062,
+                        124682
+                    ],
+                    "begun": 331,
+                    "done": 328,
+                    "stopped": 0
+                },
+                "Vivify": {
+                    "tier": "low",
+                    "ids": [
+                        116670
+                    ],
+                    "begun": 113,
+                    "done": 113,
+                    "stopped": 0
+                }
+            }
+        },
+        "monk/windwalker": {
+            "listed": {
+                "Song of Chi-Ji": {
+                    "tier": "high",
+                    "ids": [
+                        198909,
+                        198898
+                    ],
+                    "begun": 14,
+                    "done": 14,
+                    "stopped": 0
+                },
+                "Crackling Jade Lightning": {
+                    "tier": "high",
+                    "ids": [
+                        117952,
+                        117959,
+                        123333
+                    ],
+                    "begun": 0,
+                    "done": 5,
+                    "stopped": 0
+                },
+                "Fists of Fury": {
+                    "tier": "high",
+                    "ids": [
+                        117418,
+                        120086,
+                        232055,
+                        113656
+                    ],
+                    "begun": 0,
+                    "done": 496,
+                    "stopped": 0
+                },
+                "Celestial Conduit": {
+                    "tier": "high",
+                    "ids": [
+                        443038,
+                        443039,
+                        448380,
+                        1248992,
+                        443028,
+                        1248989
+                    ],
+                    "begun": 0,
+                    "done": 7,
+                    "stopped": 0
+                },
+                "Vivify": {
+                    "tier": "low",
+                    "ids": [
+                        116670
+                    ],
+                    "begun": 95,
+                    "done": 82,
+                    "stopped": 1
+                }
+            }
+        },
+        "evoker/preservation": {
+            "listed": {
+                "Sleep Walk": {
+                    "tier": "high",
+                    "ids": [
+                        360806
+                    ],
+                    "begun": 298,
+                    "done": 194,
+                    "stopped": 23
+                },
+                "Dream Breath": {
+                    "tier": "high",
+                    "ids": [
+                        355941,
+                        376788,
+                        382614,
+                        355936
+                    ],
+                    "begun": 0,
+                    "done": 445,
+                    "stopped": 4
+                },
+                "Emerald Communion": {
+                    "tier": "high",
+                    "ids": [
+                        370960
+                    ],
+                    "begun": 0,
+                    "done": 44,
+                    "stopped": 0
+                },
+                "Fire Breath": {
+                    "tier": "medium",
+                    "ids": [
+                        367106,
+                        367995,
+                        369416,
+                        357208,
+                        357209,
+                        366903,
+                        366904,
+                        366905,
+                        382266,
+                        431164,
+                        431165,
+                        444249,
+                        1283718,
+                        1283719
+                    ],
+                    "begun": 0,
+                    "done": 246,
+                    "stopped": 3
+                },
+                "Disintegrate": {
+                    "tier": "medium",
+                    "ids": [
+                        356995,
+                        369819,
+                        1236949
+                    ],
+                    "begun": 0,
+                    "done": 222,
+                    "stopped": 10
+                },
+                "Living Flame": {
+                    "tier": "low",
+                    "ids": [
+                        364664,
+                        369398,
+                        370260,
+                        377277,
+                        383880,
+                        385757,
+                        399787,
+                        361469,
+                        361500,
+                        361509,
+                        430806,
+                        430817
+                    ],
+                    "begun": 91,
+                    "done": 169,
+                    "stopped": 4
+                }
+            }
+        },
+        "evoker/devastation": {
+            "listed": {
+                "Sleep Walk": {
+                    "tier": "high",
+                    "ids": [
+                        360806
+                    ],
+                    "begun": 82,
+                    "done": 56,
+                    "stopped": 12
+                },
+                "Disintegrate": {
+                    "tier": "high",
+                    "ids": [
+                        356995,
+                        369819,
+                        1236949
+                    ],
+                    "begun": 0,
+                    "done": 278,
+                    "stopped": 21
+                },
+                "Eternity Surge": {
+                    "tier": "high",
+                    "ids": [
+                        359077,
+                        382411,
+                        431192,
+                        359073
+                    ],
+                    "begun": 0,
+                    "done": 63,
+                    "stopped": 2
+                },
+                "Fire Breath": {
+                    "tier": "medium",
+                    "ids": [
+                        367106,
+                        367995,
+                        369416,
+                        357208,
+                        357209,
+                        366903,
+                        366904,
+                        366905,
+                        382266,
+                        431164,
+                        431165,
+                        444249,
+                        1283718,
+                        1283719
+                    ],
+                    "begun": 0,
+                    "done": 72,
+                    "stopped": 3
+                },
+                "Living Flame": {
+                    "tier": "low",
+                    "ids": [
+                        364664,
+                        369398,
+                        370260,
+                        377277,
+                        383880,
+                        385757,
+                        399787,
+                        361469,
+                        361500,
+                        361509,
+                        430806,
+                        430817
+                    ],
+                    "begun": 62,
+                    "done": 70,
+                    "stopped": 0
+                }
+            }
+        },
+        "evoker/augmentation": {
+            "listed": {
+                "Sleep Walk": {
+                    "tier": "high",
+                    "ids": [
+                        360806
+                    ],
+                    "begun": 77,
+                    "done": 52,
+                    "stopped": 9
+                },
+                "Time Skip": {
+                    "tier": "high",
+                    "ids": [
+                        404977
+                    ],
+                    "begun": 0,
+                    "done": 7,
+                    "stopped": 0
+                },
+                "Ebon Might": {
+                    "tier": "high",
+                    "ids": [
+                        412707,
+                        395152,
+                        395296,
+                        413654,
+                        423803,
+                        426404
+                    ],
+                    "begun": 49,
+                    "done": 39,
+                    "stopped": 2
+                },
+                "Eruption": {
+                    "tier": "high",
+                    "ids": [
+                        395160,
+                        424428,
+                        438653,
+                        1259172
+                    ],
+                    "begun": 204,
+                    "done": 146,
+                    "stopped": 5
+                },
+                "Upheaval": {
+                    "tier": "high",
+                    "ids": [
+                        410295,
+                        410296,
+                        410297,
+                        410298,
+                        1219253,
+                        1219254,
+                        1219255,
+                        1219257,
+                        396286,
+                        396288,
+                        408092,
+                        431620
+                    ],
+                    "begun": 0,
+                    "done": 41,
+                    "stopped": 0
+                },
+                "Fire Breath": {
+                    "tier": "medium",
+                    "ids": [
+                        367106,
+                        367995,
+                        369416,
+                        357208,
+                        357209,
+                        366903,
+                        366904,
+                        366905,
+                        382266,
+                        431164,
+                        431165,
+                        444249,
+                        1283718,
+                        1283719
+                    ],
+                    "begun": 0,
+                    "done": 37,
+                    "stopped": 0
+                },
+                "Living Flame": {
+                    "tier": "low",
+                    "ids": [
+                        364664,
+                        369398,
+                        370260,
+                        377277,
+                        383880,
+                        385757,
+                        399787,
+                        361469,
+                        361500,
+                        361509,
+                        430806,
+                        430817
+                    ],
+                    "begun": 14,
+                    "done": 10,
+                    "stopped": 2
+                }
+            }
+        },
+        "mage/frost": {
+            "listed": {
+                "Polymorph": {
+                    "tier": "high",
+                    "ids": [
+                        118,
+                        61721,
+                        161354,
+                        460392,
+                        61305,
+                        28271,
+                        391622,
+                        28272,
+                        161353
+                    ],
+                    "begun": 856,
+                    "done": 535,
+                    "stopped": 103
+                },
+                "Ring of Frost": {
+                    "tier": "high",
+                    "ids": [
+                        82691,
+                        136511,
+                        140376,
+                        140384,
+                        321329,
+                        113724
+                    ],
+                    "begun": 65,
+                    "done": 40,
+                    "stopped": 7
+                },
+                "Mass Polymorph": {
+                    "tier": "high",
+                    "ids": [
+                        383121
+                    ],
+                    "begun": 0,
+                    "done": 0,
+                    "stopped": 0
+                },
+                "Ice Wall": {
+                    "tier": "high",
+                    "ids": [
+                        352278
+                    ],
+                    "begun": 11,
+                    "done": 9,
+                    "stopped": 0
+                },
+                "Glacial Spike": {
+                    "tier": "high",
+                    "ids": [
+                        199786,
+                        214325,
+                        228600,
+                        1236209,
+                        1236211,
+                        1262860,
+                        1262862
+                    ],
+                    "begun": 473,
+                    "done": 312,
+                    "stopped": 39
+                },
+                "Ray of Frost": {
+                    "tier": "high",
+                    "ids": [
+                        208141,
+                        269748,
+                        205021
+                    ],
+                    "begun": 0,
+                    "done": 283,
+                    "stopped": 67
+                },
+                "Frostbolt": {
+                    "tier": "medium",
+                    "ids": [
+                        288548,
+                        317792,
+                        116,
+                        13439,
+                        59638,
+                        96089,
+                        144251,
+                        222320,
+                        228597,
+                        1292107
+                    ],
+                    "begun": 657,
+                    "done": 454,
+                    "stopped": 32
+                },
+                "Frostfire Bolt": {
+                    "tier": "medium",
+                    "ids": [
+                        468655,
+                        431044
+                    ],
+                    "begun": 6,
+                    "done": 4,
+                    "stopped": 0
+                },
+                "Ring of Fire": {
+                    "tier": "low",
+                    "ids": [
+                        353082
+                    ],
+                    "begun": 0,
+                    "done": 0,
+                    "stopped": 0
+                }
+            }
+        },
+        "mage/fire": {
+            "listed": {
+                "Polymorph": {
+                    "tier": "high",
+                    "ids": [
+                        118,
+                        61721,
+                        161354,
+                        460392,
+                        61305,
+                        28271,
+                        391622,
+                        28272,
+                        161353
+                    ],
+                    "begun": 1630,
+                    "done": 841,
+                    "stopped": 262
+                },
+                "Ring of Frost": {
+                    "tier": "high",
+                    "ids": [
+                        82691,
+                        136511,
+                        140376,
+                        140384,
+                        321329,
+                        113724
+                    ],
+                    "begun": 259,
+                    "done": 133,
+                    "stopped": 45
+                },
+                "Mass Polymorph": {
+                    "tier": "high",
+                    "ids": [
+                        383121
+                    ],
+                    "begun": 0,
+                    "done": 0,
+                    "stopped": 0
+                },
+                "Ice Wall": {
+                    "tier": "high",
+                    "ids": [
+                        352278
+                    ],
+                    "begun": 53,
+                    "done": 30,
+                    "stopped": 7
+                },
+                "Greater Pyroblast": {
+                    "tier": "high",
+                    "ids": [
+                        450421,
+                        203286
+                    ],
+                    "begun": 0,
+                    "done": 0,
+                    "stopped": 0
+                },
+                "Pyroblast": {
+                    "tier": "medium",
+                    "ids": [
+                        321712,
+                        450461,
+                        460475,
+                        1262863,
+                        11366,
+                        321711
+                    ],
+                    "begun": 4857,
+                    "done": 4460,
+                    "stopped": 50
+                },
+                "Fireball": {
+                    "tier": "medium",
+                    "ids": [
+                        133,
+                        13438,
+                        16415,
+                        18082,
+                        18199,
+                        18796,
+                        21159,
+                        21162,
+                        88082,
+                        222305
+                    ],
+                    "begun": 740,
+                    "done": 441,
+                    "stopped": 39
+                },
+                "Scorch": {
+                    "tier": "medium",
+                    "ids": [
+                        1254311,
+                        2948
+                    ],
+                    "begun": 979,
+                    "done": 786,
+                    "stopped": 52
+                },
+                "Frostfire Bolt": {
+                    "tier": "medium",
+                    "ids": [
+                        468655,
+                        431044
+                    ],
+                    "begun": 178,
+                    "done": 163,
+                    "stopped": 5
+                },
+                "Ring of Fire": {
+                    "tier": "low",
+                    "ids": [
+                        353082
+                    ],
+                    "begun": 0,
+                    "done": 0,
+                    "stopped": 0
+                }
+            }
+        },
+        "mage/arcane": {
+            "listed": {
+                "Polymorph": {
+                    "tier": "high",
+                    "ids": [
+                        118,
+                        61721,
+                        161354,
+                        460392,
+                        61305,
+                        28271,
+                        391622,
+                        28272,
+                        161353
+                    ],
+                    "begun": 201,
+                    "done": 120,
+                    "stopped": 13
+                },
+                "Ring of Frost": {
+                    "tier": "high",
+                    "ids": [
+                        82691,
+                        136511,
+                        140376,
+                        140384,
+                        321329,
+                        113724
+                    ],
+                    "begun": 71,
+                    "done": 41,
+                    "stopped": 12
+                },
+                "Mass Polymorph": {
+                    "tier": "high",
+                    "ids": [
+                        383121
+                    ],
+                    "begun": 0,
+                    "done": 0,
+                    "stopped": 0
+                },
+                "Ice Wall": {
+                    "tier": "high",
+                    "ids": [
+                        352278
+                    ],
+                    "begun": 16,
+                    "done": 12,
+                    "stopped": 1
+                },
+                "Arcane Surge": {
+                    "tier": "high",
+                    "ids": [
+                        365350,
+                        365265,
+                        365362,
+                        453326
+                    ],
+                    "begun": 86,
+                    "done": 44,
+                    "stopped": 9
+                },
+                "Arcane Missiles": {
+                    "tier": "medium",
+                    "ids": [
+                        5143,
+                        7268,
+                        139678,
+                        145435,
+                        243313
+                    ],
+                    "begun": 0,
+                    "done": 421,
+                    "stopped": 40
+                },
+                "Arcane Blast": {
+                    "tier": "medium",
+                    "ids": [
+                        18091,
+                        20883,
+                        30451,
+                        88084,
+                        222321
+                    ],
+                    "begun": 97,
+                    "done": 65,
+                    "stopped": 8
+                },
+                "Arcane Pulse": {
+                    "tier": "medium",
+                    "ids": [
+                        1241462,
+                        1243460,
+                        1295977
+                    ],
+                    "begun": 0,
+                    "done": 0,
+                    "stopped": 0
+                },
+                "Ring of Fire": {
+                    "tier": "low",
+                    "ids": [
+                        353082
+                    ],
+                    "begun": 0,
+                    "done": 0,
+                    "stopped": 0
+                }
+            },
+            "notListed": {
+                "Prismatic Bolt": {
+                    "ids": [
+                        1295924
+                    ],
+                    "stopped": 10,
+                    "begun": 98,
+                    "done": 60
+                }
+            }
+        },
+        "warlock/affliction": {
+            "listed": {
+                "Fear": {
+                    "tier": "high",
+                    "ids": [
+                        5782,
+                        118699,
+                        130616,
+                        342914
+                    ],
+                    "begun": 607,
+                    "done": 373,
+                    "stopped": 66
+                },
+                "Shadowfury": {
+                    "tier": "high",
+                    "ids": [
+                        30283
+                    ],
+                    "begun": 13,
+                    "done": 9,
+                    "stopped": 1
+                },
+                "Unstable Affliction": {
+                    "tier": "high",
+                    "ids": [
+                        1259790,
+                        30108,
+                        31117,
+                        196364,
+                        233490,
+                        233496,
+                        233497,
+                        233498,
+                        233499,
+                        316099,
+                        1219045,
+                        1261176,
+                        231791
+                    ],
+                    "begun": 2421,
+                    "done": 1936,
+                    "stopped": 130
+                },
+                "Haunt": {
+                    "tier": "high",
+                    "ids": [
+                        48181
+                    ],
+                    "begun": 823,
+                    "done": 622,
+                    "stopped": 60
+                },
+                "Dark Harvest": {
+                    "tier": "high",
+                    "ids": [
+                        1257052,
+                        1257065
+                    ],
+                    "begun": 0,
+                    "done": 224,
+                    "stopped": 32
+                },
+                "Malefic Grasp": {
+                    "tier": "high",
+                    "ids": [
+                        1261149,
+                        1261153,
+                        1279659
+                    ],
+                    "begun": 0,
+                    "done": 261,
+                    "stopped": 19
+                },
+                "Shadow Bolt": {
+                    "tier": "high",
+                    "ids": [
+                        288546,
+                        317791,
+                        686,
+                        194192,
+                        196657,
+                        394238
+                    ],
+                    "begun": 114,
+                    "done": 95,
+                    "stopped": 0
+                },
+                "Drain Soul": {
+                    "tier": "high",
+                    "ids": [
+                        388667,
+                        198590,
+                        205292
+                    ],
+                    "begun": 0,
+                    "done": 1001,
+                    "stopped": 98
+                },
+                "Drain Life": {
+                    "tier": "medium",
+                    "ids": [
+                        234153
+                    ],
+                    "begun": 0,
+                    "done": 7,
+                    "stopped": 1
+                }
+            }
+        },
+        "warlock/destruction": {
+            "listed": {
+                "Fear": {
+                    "tier": "high",
+                    "ids": [
+                        5782,
+                        118699,
+                        130616,
+                        342914
+                    ],
+                    "begun": 243,
+                    "done": 148,
+                    "stopped": 30
+                },
+                "Shadowfury": {
+                    "tier": "high",
+                    "ids": [
+                        30283
+                    ],
+                    "begun": 15,
+                    "done": 8,
+                    "stopped": 1
+                },
+                "Immolate": {
+                    "tier": "high",
+                    "ids": [
+                        118297,
+                        348,
+                        157736,
+                        193540,
+                        193541,
+                        228312
+                    ],
+                    "begun": 0,
+                    "done": 0,
+                    "stopped": 0
+                },
+                "Cataclysm": {
+                    "tier": "high",
+                    "ids": [
+                        152108
+                    ],
+                    "begun": 0,
+                    "done": 0,
+                    "stopped": 0
+                },
+                "Chaos Bolt": {
+                    "tier": "high",
+                    "ids": [
+                        215409,
+                        213229,
+                        215279,
+                        394244,
+                        394246,
+                        434589,
+                        116858
+                    ],
+                    "begun": 650,
+                    "done": 390,
+                    "stopped": 69
+                },
+                "Soul Fire": {
+                    "tier": "high",
+                    "ids": [
+                        281440,
+                        281490,
+                        335004,
+                        6353
+                    ],
+                    "begun": 116,
+                    "done": 68,
+                    "stopped": 14
+                },
+                "Drain Life": {
+                    "tier": "medium",
+                    "ids": [
+                        234153
+                    ],
+                    "begun": 0,
+                    "done": 5,
+                    "stopped": 1
+                },
+                "Incinerate": {
+                    "tier": "low",
+                    "ids": [
+                        29722,
+                        244670
+                    ],
+                    "begun": 342,
+                    "done": 320,
+                    "stopped": 2
+                }
+            }
+        },
+        "warlock/demonology": {
+            "listed": {
+                "Fear": {
+                    "tier": "high",
+                    "ids": [
+                        5782,
+                        118699,
+                        130616,
+                        342914
+                    ],
+                    "begun": 147,
+                    "done": 102,
+                    "stopped": 11
+                },
+                "Shadowfury": {
+                    "tier": "high",
+                    "ids": [
+                        30283
+                    ],
+                    "begun": 1,
+                    "done": 1,
+                    "stopped": 0
+                },
+                "Summon Demonic Tyrant": {
+                    "tier": "high",
+                    "ids": [
+                        265187
+                    ],
+                    "begun": 32,
+                    "done": 25,
+                    "stopped": 1
+                },
+                "Hand of Gul'dan": {
+                    "tier": "high",
+                    "ids": [
+                        86040,
+                        105174,
+                        196282,
+                        270215,
+                        464890,
+                        1250273
+                    ],
+                    "begun": 155,
+                    "done": 126,
+                    "stopped": 6
+                },
+                "Demonbolt": {
+                    "tier": "high",
+                    "ids": [
+                        264178,
+                        280127,
+                        280381
+                    ],
+                    "begun": 149,
+                    "done": 145,
+                    "stopped": 1
+                },
+                "Drain Life": {
+                    "tier": "medium",
+                    "ids": [
+                        234153
+                    ],
+                    "begun": 0,
+                    "done": 1,
+                    "stopped": 0
+                },
+                "Shadow Bolt": {
+                    "tier": "medium",
+                    "ids": [
+                        288546,
+                        317791,
+                        686,
+                        194192,
+                        196657,
+                        394238
+                    ],
+                    "begun": 109,
+                    "done": 90,
+                    "stopped": 0
+                }
+            }
+        },
+        "demonhunter/devourer": {
+            "listed": {
+                "The Hunt": {
+                    "tier": "high",
+                    "ids": [
+                        345335,
+                        345396,
+                        345422,
+                        370966,
+                        370967,
+                        370968,
+                        370969,
+                        370970,
+                        370971,
+                        370973,
+                        1246168,
+                        1246169,
+                        1246167,
+                        370965,
+                        323639,
+                        323802,
+                        323996,
+                        333762,
+                        362222,
+                        362224
+                    ],
+                    "begun": 64,
+                    "done": 190,
+                    "stopped": 0
+                },
+                "Collapsing Star": {
+                    "tier": "high",
+                    "ids": [
+                        1221150,
+                        1221162,
+                        1221171,
+                        1227702,
+                        1221167
+                    ],
+                    "begun": 6,
+                    "done": 4,
+                    "stopped": 0
+                },
+                "Void Ray": {
+                    "tier": "medium",
+                    "ids": [
+                        1213649,
+                        1214595,
+                        473728
+                    ],
+                    "begun": 0,
+                    "done": 347,
+                    "stopped": 0
+                }
+            },
+            "notListed": {
+                "Consume": {
+                    "ids": [
+                        473662
+                    ],
+                    "stopped": 22,
+                    "begun": 676,
+                    "done": 593
+                },
+                "Devour": {
+                    "ids": [
+                        1217610
+                    ],
+                    "stopped": 10,
+                    "begun": 496,
+                    "done": 448
+                }
+            }
+        },
+        "demonhunter/havoc": {
+            "listed": {
+                "Illidan's Grasp": {
+                    "tier": "high",
+                    "ids": [
+                        205630
+                    ],
+                    "begun": 0,
+                    "done": 0,
+                    "stopped": 0
+                },
+                "The Hunt": {
+                    "tier": "high",
+                    "ids": [
+                        345335,
+                        345396,
+                        345422,
+                        370966,
+                        370967,
+                        370968,
+                        370969,
+                        370970,
+                        370971,
+                        370973,
+                        1246168,
+                        1246169,
+                        1246167,
+                        370965,
+                        323639,
+                        323802,
+                        323996,
+                        333762,
+                        362222,
+                        362224
+                    ],
+                    "begun": 208,
+                    "done": 361,
+                    "stopped": 0
+                },
+                "Eye Beam": {
+                    "tier": "high",
+                    "ids": [
+                        198030,
+                        203040,
+                        333386,
+                        333389,
+                        346504,
+                        346505,
+                        391057,
+                        391058,
+                        1287949,
+                        198013,
+                        205231,
+                        362177
+                    ],
+                    "begun": 0,
+                    "done": 418,
+                    "stopped": 0
+                }
+            }
+        },
+        "hunter/marksmanship": {
+            "listed": {
+                "Revive Pet": {
+                    "tier": "high",
+                    "ids": [
+                        982
+                    ],
+                    "begun": 0,
+                    "done": 0,
+                    "stopped": 0
+                },
+                "Aimed Shot": {
+                    "tier": "high",
+                    "ids": [
+                        19434
+                    ],
+                    "begun": 1376,
+                    "done": 1234,
+                    "stopped": 0
+                },
+                "Rapid Fire": {
+                    "tier": "high",
+                    "ids": [
+                        257045,
+                        263585,
+                        460496,
+                        257044
+                    ],
+                    "begun": 0,
+                    "done": 848,
+                    "stopped": 0
+                }
+            }
+        },
+        "hunter/beast-mastery": {
+            "listed": {
+                "Revive Pet": {
+                    "tier": "high",
+                    "ids": [
+                        982
+                    ],
+                    "begun": 2,
+                    "done": 2,
+                    "stopped": 0
+                }
+            }
+        }
+    }
+}

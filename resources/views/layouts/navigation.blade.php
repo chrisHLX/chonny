@@ -71,14 +71,25 @@
             Matchup Lab
         </a>
 
+        {{-- The spec guides counted from real games (/wow/pvp, 2026-10-16): every spec's PvP talents,
+             goes, defensives, what to kick and comps. --}}
+        <a href="{{ route('spec-pvp.index') }}" wire:navigate
+           class="sidebar-item {{ request()->routeIs('spec-pvp.*') ? 'active' : '' }}">
+            <svg class="w-[18px] h-[18px] shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/>
+            </svg>
+            PvP Guides
+        </a>
+
         {{-- One per-spec page for kits, burst, counters and spells (2026-09-07; see App\Livewire\PvpGuides).
-             In the top panel since 2026-10-12, beside the other planning tools. --}}
+             In the top panel since 2026-10-12, beside the other planning tools. Its pages are titled
+             "Arena Kit" since 2026-10-16, so the menu says the same. --}}
         <a href="{{ route('pvp-guides') }}" wire:navigate
            class="sidebar-item {{ request()->routeIs('pvp-guides') || request()->routeIs('class-guide') || request()->routeIs('burst-guides') || request()->routeIs('claudes-counters') || request()->routeIs('spells.explore') ? 'active' : '' }}">
             <svg class="w-[18px] h-[18px] shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h10"/>
             </svg>
-            Class Guides
+            Arena Kit
         </a>
 
         <a href="{{ route('guides.browse') }}" wire:navigate

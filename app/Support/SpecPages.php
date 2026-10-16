@@ -137,6 +137,7 @@ class SpecPages
                 // A successful interrupt is rare enough that the middle player of most specs lands
                 // none in a round, so the page says how often a round has one rather than a median of 0.
                 'interruptRounds' => round($list->filter(fn ($p) => ($p['kicks'] ?? 0) > 0)->count() / $n, 2),
+                'priorityKicks' => self::priorityKicks($list),
                 'died' => round($list->where('died', true)->count() / $n, 2),
                 'diedFirst' => round($list->where('diedFirst', true)->count() / $n, 2),
                 'defensives' => self::defensives($goesOn->only($keys->keys()->all())),
@@ -150,6 +151,27 @@ class SpecPages
             'seasonSince' => $seasonSince,
             'games' => $games->count(),
             'specs' => $specs,
+        ];
+    }
+
+    /**
+     * The spec as a kicker (measure 15): every high-priority cast its players met with their kick
+     * ready, and how many they stopped, a teammate stopped, or let through. Null when no round of it
+     * carries the measure (a spec with no interrupt, or rounds measured before version 15).
+     */
+    private static function priorityKicks(Collection $list): ?array
+    {
+        $with = $list->filter(fn ($p) => isset($p['priority']['high']));
+        $chances = $with->sum(fn ($p) => $p['priority']['high']['chances']);
+        if ($chances === 0) {
+            return null;
+        }
+
+        return [
+            'rounds' => $with->count(),
+            'chances' => $chances,
+            'mine' => $with->sum(fn ($p) => $p['priority']['high']['mine']),
+            'landed' => $with->sum(fn ($p) => $p['priority']['high']['landed']),
         ];
     }
 

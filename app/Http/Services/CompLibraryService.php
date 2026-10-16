@@ -7,6 +7,7 @@ use App\Models\ModuleGameBuild;
 use App\Models\Patch;
 use App\Models\Spell;
 use App\Models\User;
+use App\Support\KickPriorities;
 use Illuminate\Support\Collection;
 
 /**
@@ -64,6 +65,8 @@ class CompLibraryService
         $rounds = ArenaRound::where('user_id', $user->id)->orderBy('id')->get(['id', 'updated_at'])
             ->map(fn ($r) => $r->id.':'.$r->updated_at)->implode(',');
         $code = implode('|', array_map(fn ($f) => $f.':'.filemtime($f), [__FILE__, resource_path('views/desktop/comp.blade.php'), resource_path('views/desktop/partials/styles.blade.php')]))
+            // What to kick on them reads the priority files (KickPriorities).
+            .'|kicks:'.KickPriorities::signature()
             // Tooltips come from the spell data.
             .'|spells:'.app(TalentSelectionService::class)->spellCacheVersion();
 
@@ -338,8 +341,75 @@ class CompLibraryService
                 ],
             ],
             'list' => $list,
+            'kicks' => $this->kicks($games, $dps, $healers),
             'byExperience' => $byExperience,
             'unused' => ['losses' => $sheets->count(), 'rows' => $this->withIcons($unused->take(8)->map(fn ($n, $s) => ['label' => $s, 'value' => $n.' of '.$sheets->count()])->values()->all(), true)],
+        ];
+    }
+
+    /** @var array<string, string> external spec id => "class/spec" */
+    private array $specKeys = [];
+
+    /**
+     * What to kick on this comp (KickPriorities, 2026-10-16): each of their specs' casts that count
+     * (high and medium, seen stopped in the archive), in the order of the published lists, and what
+     * of it went through while YOUR kick was ready in these games (measure 15). Only the logging
+     * player's own: a teammate with a kick ready counts the same cast again.
+     */
+    private function kicks(Collection $games, Collection $dps, Collection $healers): ?array
+    {
+        $keyOf = function (array $p): ?string {
+            $ext = (string) ($p['specExternalId'] ?? '');
+            if ($ext === '') {
+                return null;
+            }
+            if (! isset($this->specKeys[$ext])) {
+                $s = \App\Models\Specialization::with('gameClass')->where('external_spec_id', $ext)->first();
+                $this->specKeys[$ext] = $s ? $s->gameClass?->slug.'/'.$s->slug : '';
+            }
+
+            return $this->specKeys[$ext] ?: null;
+        };
+
+        // Their DPS are the comp; their healer can change from game to game, so the two seen most.
+        $members = $dps->all();
+        $seenHealers = $games->map(fn ($g) => $g['healer'])->filter()->unique('spec')
+            ->sortByDesc(fn ($h) => $healers[$h['spec']] ?? 0)->take(2)->all();
+
+        $specs = [];
+        foreach (array_merge($members, $seenHealers) as $p) {
+            $key = $keyOf($p);
+            $rows = $key ? array_values(array_filter(KickPriorities::forSpec($key), fn ($r) => $r['counts'])) : [];
+            if (! $rows || isset($specs[$key])) {
+                continue;
+            }
+            $specs[$key] = ['spec' => $p['spec'], 'rows' => $this->withIcons(array_map(fn ($r) => [
+                'label' => $r['name'],
+                'value' => $r['tier'] === 'high' ? 'high' : 'medium',
+            ], $rows))];
+        }
+        if (! $specs) {
+            return null;
+        }
+
+        $through = [];
+        $measured = 0;
+        foreach ($games as $g) {
+            $me = collect($g['a']['players'])->firstWhere('logger', true);
+            $p = $me ? ($g['a']['habits'][$me['guid']]['priority'] ?? null) : null;
+            if ($p) {
+                $measured++;
+                foreach ($p['through'] as $spell => $n) {
+                    $through[$spell] = ($through[$spell] ?? 0) + $n;
+                }
+            }
+        }
+        arsort($through);
+
+        return [
+            'specs' => array_values($specs),
+            'measured' => $measured,
+            'through' => $this->withIcons(collect($through)->take(6)->map(fn ($n, $s) => ['label' => $s, 'value' => $n.'×'])->values()->all()),
         ];
     }
 

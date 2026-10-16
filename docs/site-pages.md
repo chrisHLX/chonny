@@ -119,6 +119,17 @@
   Every page states its sample, dates, rating band and how much of it is the uploaders' own games,
   and ends with the app. The old `/wow/pvp-guides` pages are titled "Arena Kit" since, so the two
   do not compete for the same searches, and link to the guide.
+  **What to kick (2026-10-16):** each page lists the spec's casts worth an interrupt, in the tiers
+  of Skill Capped's list for the patch (linked; names and tiers only), each with how often it was
+  stopped when that spec cast it in the archive, a never-stopped cast saying so, and the casts
+  kicked often that the list leaves out (`App\Support\KickPriorities`, `data/kick-priorities/`).
+  "{Spec}s as kickers" gives the share of high-priority casts the spec's players stopped with their
+  kick ready (measure 15), against every spec with a kick; under 20 chances it is left out.
+  **Fixed the same day:** rows under 5% are left out of the goes and healer-control lists like
+  every other list on the page (a "0%" chain was shown), a spec with under 20 measured goes shows
+  no go section ("over 1 goes ... Touch of Death 100%" on Mistweaver), and the spec is named as a
+  noun throughout ("a Fire Mage", not "a Fire"). **In the menu as "PvP Guides"** (under Plan, and
+  the landing page's planning cards); the kit pages are "Arena Kit" there, as their titles are.
 - Admin: `/admin/content`, `/admin/talent-builds`, `/admin/page-usage`, `/admin/weak-areas`,
   `/admin/diagnostic-stats`, `/admin/api-usage`, `/admin/matches`, `/admin/search-pages`.
 - `/admin/search-pages` (`Admin\SearchPages`) — how the spec guides do: readers (browser-confirmed

@@ -42,6 +42,11 @@ class PopulationGame
                 'offTarget' => $h['offTarget'] ?? 0,
                 'kicks' => $h['kicks'] ?? 0,
                 'kicked' => array_sum($h['kicked'] ?? []),
+                // Casts worth a kick met with the kick ready (version 15); null without an interrupt.
+                'priority' => isset($h['priority']) ? [
+                    'chances' => $h['priority']['chances'], 'mine' => $h['priority']['mine'], 'mate' => $h['priority']['mate'],
+                    'landed' => $h['priority']['landed'], 'high' => $h['priority']['high'],
+                ] : null,
                 'petHits' => $h['petHits'] ?? 0,
                 'petOnTarget' => $h['petOnTarget'] ?? 0,
                 'ilvl' => $p['ilvl'] ?? null,
