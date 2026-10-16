@@ -24,6 +24,21 @@ product itself. The map of this work: `match-review.md`.
 
 The spell data below stays the foundation: every coaching read sees a button only through it.
 
+## The platform (2026-10-17)
+
+**MindCollector is a platform, one game at a time.** The same idea (read a player's own games against
+the players they meet, name one thing to work on, measure it next session) applies to any competitive
+game with a record of what happened. World of Warcraft arena is the first and the only one open.
+StarCraft II is next: its replays hold the whole game, and its unit and upgrade data is public.
+League of Legends is shown as coming.
+
+The site says so: `/` is MindCollector's home with a card per game, each game has its own home (`/wow`,
+`/sc2`, `/lol`) and its own menu, and a game that is not open yet has a page that says what is
+coming and lets a player ask to be told. The games are listed once, in `config/platform.php`. A new
+game gets its own route group and its own pages, never a parameter on WoW's (see the `/wow` route
+group's comment in `routes/web.php`). What SC2 starts with is still to be chosen: replay reviews or a
+unit and build reference.
+
 ## The current focus
 
 Getting the spell data confidently correct — accurate cooldowns, charges, talent modifiers, CC durations, and mechanics, presented cleanly. Every `(varies)`, every unresolved `$s1`/`${...}` token, every duplicate spell row, every missing icon is a defect to close, not a limitation to accept. Where a real value genuinely cannot be computed yet, the answer is to get the data — never to ship a placeholder, and never to fabricate a number.
@@ -44,4 +59,5 @@ Sections in `CLAUDE.md` and elsewhere describing the older learning-platform dir
 2. **Diagnostics-first** — the value shifted to profiling the player and routing them to content.
 3. **Expertise-capture** — the value was capturing how experts think, with content/diagnostics/recommendations as downstream representations.
 4. **WoW arena spell data** — a fast, clean, accurate reference for class/spell/talent/mechanics data plus player and match insight, aimed squarely at players pushing for Gladiator.
-5. **A coach for one player (current, 2026-10-02)** — the player's own games read against the players they meet, through the spell data, the arena model and the desktop app. Diagnostics return (stage 2), now with evidence from the combat log rather than self-report.
+5. **A coach for one player (2026-10-02)** — the player's own games read against the players they meet, through the spell data, the arena model and the desktop app. Diagnostics return (stage 2), now with evidence from the combat log rather than self-report.
+6. **A platform for more than one game (current, 2026-10-17)** — the same coach, game by game: WoW arena open, StarCraft II next, League of Legends shown as coming.

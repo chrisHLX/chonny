@@ -8,6 +8,22 @@
             </p>
         </div>
 
+        {{-- ── Coming games: who asked to be told (2026-10-17) ── --}}
+        @if ($gameInterest)
+            <div class="linear-card p-5">
+                <p class="text-[12px] font-medium text-ink mb-2">Waiting for a game</p>
+                <div class="flex flex-wrap gap-x-8 gap-y-2 text-[12px]">
+                    @foreach ($gameInterest as $g)
+                        <span class="text-ink-muted">
+                            <span class="text-ink font-semibold">{{ $g['game'] }}</span>:
+                            <span class="tabular-nums text-ink">{{ $g['n'] }}</span> asked
+                            ({{ $g['accounts'] }} with an account), latest {{ \Carbon\Carbon::parse($g['latest'])->diffForHumans() }}
+                        </span>
+                    @endforeach
+                </div>
+            </div>
+        @endif
+
         {{-- ── The headline ──
              Until 2026-09-24 this page opened with all-time totals, no window and no bot filter,
              and about half of every number was a crawler. Two windows, visitors first. --}}

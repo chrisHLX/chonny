@@ -22,8 +22,11 @@ class SitemapController extends Controller
 
     /** The fixed public pages, most important first, with how often each changes. */
     private const PAGES = [
-        '/' => ['daily', '1.0'],
+        '/' => ['weekly', '1.0'],
+        '/wow' => ['daily', '1.0'],
         '/wow/app' => ['weekly', '0.9'],
+        '/sc2' => ['monthly', '0.5'],
+        '/lol' => ['monthly', '0.4'],
         '/wow/comps' => ['daily', '0.9'],
         '/wow/matchup-lab' => ['weekly', '0.8'],
         '/browse-guides' => ['daily', '0.8'],

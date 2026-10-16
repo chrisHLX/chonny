@@ -1,7 +1,8 @@
 <?php
 
-it('serves the public front page at the site root', function () {
-    // '/' redirected to the comp builder until 2026-09-16; it is now the front page
-    // (App\Livewire\Landing). See LandingPageTest for the full contract.
-    $this->get('/')->assertOk()->assertSee('Build a 3v3 comp');
+it('serves the MindCollector home at the site root, and the WoW home at /wow', function () {
+    // '/' was the WoW front page (App\Livewire\Landing) from 2026-09-16 to 2026-10-17; it is now the
+    // platform's home (PlatformController), and WoW's front page is /wow. See PlatformTest.
+    $this->get('/')->assertOk()->assertSee('A coach that reads your own games.');
+    $this->get('/wow')->assertOk()->assertSee('Build a 3v3 comp');
 });

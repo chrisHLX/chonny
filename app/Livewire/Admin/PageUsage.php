@@ -36,7 +36,10 @@ class PageUsage extends Component
      * never added here, so its views were being recorded with nowhere to see them.
      */
     private const PAGES = [
-        'landing' => 'Front page (visitors)',
+        'platform_home' => 'MindCollector home (/)',
+        'landing' => 'WoW home (/wow, visitors)',
+        'sc2_home' => 'StarCraft II, coming soon (/sc2)',
+        'lol_home' => 'League of Legends, coming soon (/lol)',
         'home' => 'Home (signed-in landing)',
         'friends' => 'Friends',
         'spell_detail' => 'Spell Detail',
@@ -526,9 +529,20 @@ class PageUsage extends Component
         ];
     }
 
+    /** Who asked to be told when a coming game opens (PlatformController::notify), per game. */
+    public function getGameInterestProperty(): array
+    {
+        return \App\Models\GameInterest::query()
+            ->selectRaw('game, count(*) n, sum(case when user_id is not null then 1 else 0 end) accounts, max(created_at) latest')
+            ->groupBy('game')->get()
+            ->map(fn ($r) => ['game' => config("platform.games.{$r->game}.name", $r->game), 'n' => (int) $r->n, 'accounts' => (int) $r->accounts, 'latest' => $r->latest])
+            ->all();
+    }
+
     public function render()
     {
         return view('livewire.admin.page-usage', [
+            'gameInterest' => $this->gameInterest,
             'overview' => $this->overview,
             'daily' => $this->daily,
             'referrers' => $this->referrers,

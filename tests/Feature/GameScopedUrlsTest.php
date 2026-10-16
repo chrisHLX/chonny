@@ -92,9 +92,9 @@ test('a deep old link keeps its parameters instead of dropping to an index', fun
     ['/spell/12345', '/wow/spell/12345'],
 ]);
 
-test('the site root is the front page, which links to the comp builder rather than redirecting', function () {
-    // A 301 to /wow/comps until 2026-09-16; see LandingPageTest.
-    $this->get('/')->assertOk()->assertSee(route('wow-comps'), false);
+test('the WoW home links to the comp builder rather than redirecting to it', function () {
+    // '/' was a 301 to /wow/comps until 2026-09-16, then the WoW front page, which is /wow since 2026-10-17.
+    $this->get('/wow')->assertOk()->assertSee(route('wow-comps'), false);
 });
 
 test('the pre-existing /claudes-counters link still resolves, in one hop not two', function () {

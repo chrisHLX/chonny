@@ -1,3 +1,9 @@
+@php
+    // The game this page belongs to (2026-10-17, the platform): /sc2 and /lol are their own games;
+    // everything else, the platform home included, shows WoW's menu, since WoW is the one game open.
+    $navGames = config('platform.games');
+    $navGame = request()->is('sc2', 'sc2/*') ? 'sc2' : (request()->is('lol', 'lol/*') ? 'lol' : 'wow');
+@endphp
 <aside class="fixed sm:relative inset-y-0 left-0 z-30
               flex flex-col gap-2 w-64 h-screen sm:h-full shrink-0
               bg-frame p-2 sm:p-0
@@ -8,7 +14,7 @@
     <div class="shrink-0 rounded-lg bg-surface-0 px-2 pb-2">
     <!-- App name -->
     <div class="flex items-center px-3 h-14 shrink-0">
-        <a href="{{ auth()->check() ? route('dashboard') : url('/') }}" wire:navigate
+        <a href="{{ route('home') }}" wire:navigate
            class="flex items-center gap-2 hover:opacity-90 transition-opacity">
             <svg class="w-6 h-6 text-gold shrink-0" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M20 3 L35 11.5 L35 28.5 L20 37 L5 28.5 L5 11.5 Z" stroke="currentColor" stroke-width="2" fill="none" stroke-linejoin="round"/>
@@ -34,6 +40,21 @@
                 </svg>
                 Home
         </a>
+
+        {{-- The games (config/platform.php): one tab each, the page's own game lit in its colour. --}}
+        <div class="grid grid-cols-3 gap-1 px-1 pt-2 pb-1">
+            @foreach ($navGames as $gSlug => $g)
+                @php $gOn = $navGame === $gSlug && ! request()->routeIs('home'); @endphp
+                <a href="{{ route($g['route']) }}" wire:navigate title="{{ $g['name'] }}{{ $g['status'] === 'soon' ? ' (coming soon)' : '' }}"
+                   class="flex flex-col items-center gap-1 rounded-lg py-2 text-[11px] font-semibold transition-colors {{ $gOn ? 'bg-surface-2 text-ink' : 'text-ink-subtle hover:text-ink hover:bg-surface-1' }}">
+                    <x-mc-icon :name="$g['icon']" class="w-6 h-6" style="color: {{ $gOn || $g['status'] === 'live' ? $g['color'] : '#6A6A6A' }}" />
+                    {{ $g['short'] }}
+                </a>
+            @endforeach
+        </div>
+
+        @if ($navGame === 'wow')
+        <p class="px-3 pt-2 pb-1 text-[11px] font-bold uppercase tracking-[.12em]" style="color: {{ $navGames['wow']['color'] }}">World of Warcraft</p>
 
         {{-- 2026-10-12: the player's games and the app first, then the planning tools. Guides keeps
              Claude's nested under it: NAV ONLY, the two listings stay separate pages (rule 30). --}}
@@ -105,6 +126,21 @@
             <span class="w-1 h-1 rounded-full bg-current shrink-0"></span>
             Claude
         </a>
+        @else
+            {{-- A game that is not open yet: its page, and what is coming. --}}
+            @php $g = $navGames[$navGame]; @endphp
+            <p class="px-3 pt-2 pb-1 text-[11px] font-bold uppercase tracking-[.12em]" style="color: {{ $g['color'] }}">{{ $g['name'] }}</p>
+            <a href="{{ route($g['route']) }}" wire:navigate class="sidebar-item active">
+                <x-mc-icon :name="$g['icon']" class="w-[18px] h-[18px] shrink-0" style="color: {{ $g['color'] }}" />
+                {{ $g['short'] }} home
+            </a>
+            @foreach ($g['coming'] ?? [] as $c)
+                <span class="sidebar-item text-[12px] !text-ink-subtle cursor-default">
+                    <span class="w-1 h-1 rounded-full bg-current shrink-0"></span>
+                    {{ $c['title'] }} <span class="ml-auto text-[10px] uppercase tracking-wide">Soon</span>
+                </span>
+            @endforeach
+        @endif
 
     </nav>
     </div>
@@ -194,6 +230,13 @@
             </a>
         @endauth
 
+        @guest
+            @if ($navGame !== 'wow')
+                <p class="px-3 pt-1 text-[12px] text-ink-subtle">Your games, guides and characters live here once you sign in.</p>
+            @endif
+        @endguest
+
+        @if ($navGame === 'wow')
         <p class="px-3 pt-4 pb-1.5 text-[11px] font-bold text-ink-subtle uppercase tracking-[.12em]">More data</p>
 
 
@@ -239,6 +282,7 @@
                      quizzes are built out. See CLAUDE.md, "Old Training pages hidden". --}}
             </div>
         </div>
+        @endif
 
         @can('admin')
         <!-- Creator -->

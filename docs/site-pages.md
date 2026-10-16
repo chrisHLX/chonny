@@ -107,6 +107,14 @@
   Drill results are **never** written to `UserConceptMastery` — see the Rules.
 - `/characters` — `Battlenet\Characters` / `CharacterShow`.
 - `/top-damage-rotations`, `/cc-chains`, `/cc-review`, `/friends`, `/guilds`, `/profile`.
+- `/`, `/wow`, `/sc2`, `/lol` (2026-10-17, Chriso: "look more like a platform"). `/` is MindCollector's
+  home (`PlatformController::home`): what it is, and a card per game from `config/platform.php`
+  (WoW live, SC2 and LoL coming soon). The WoW front page (`App\Livewire\Landing`) moved to `/wow`
+  unchanged, still logged as `landing`; signed-in players are still sent from it to `/dashboard`.
+  `/sc2` and `/lol` say what is coming and take "tell me when it's ready" (`game_interests`: by the
+  account when signed in, by email otherwise, with a hidden field against scripts; counts on
+  `/admin/page-usage`). The sidebar has a game switcher; WoW's menu, its reference pages and its
+  training show on WoW's pages only, and a coming game's page shows its own short menu.
 - `/wow/pvp` and `/wow/pvp/{class}/{spec}` (`SpecPvpController`, 2026-10-16) — the spec guides
   written for search. Each answers what players type into Google ("ret paladin pvp talents",
   "disc priest pvp guide midnight": the autocomplete research is in the commit) with numbers counted

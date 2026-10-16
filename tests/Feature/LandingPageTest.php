@@ -51,10 +51,10 @@ function landingItems(): array
     return Livewire::test(Landing::class)->instance()->feed['items'];
 }
 
-test('a visitor gets the front page at the site root, not a redirect to the comp builder', function () {
+test('a visitor gets the WoW home at /wow (the site root until 2026-10-17)', function () {
     landingGuide(landingUser('writer'), 'RMD into Jungle');
 
-    $this->get('/')
+    $this->get('/wow')
         ->assertOk()
         ->assertSee('Every arena game you play, reviewed.')
         ->assertSee('Download for Windows')
@@ -67,7 +67,7 @@ test('a visitor gets the front page at the site root, not a redirect to the comp
 });
 
 test('a signed-in player is sent to Home', function () {
-    $this->actingAs(landingUser('me'))->get('/')->assertRedirect(route('dashboard'));
+    $this->actingAs(landingUser('me'))->get('/wow')->assertRedirect(route('dashboard'));
 });
 
 test('a visitor only sees public published guides', function () {
@@ -110,7 +110,7 @@ test('a thin feed is topped up with popular guides, marked as popular and listed
         ->and($popular)->toHaveCount(2)
         ->and($items->take(2)->every(fn ($i) => ! $i['popular']))->toBeTrue();
 
-    $this->get('/')->assertSee('Popular guide');
+    $this->get('/wow')->assertSee('Popular guide');
 });
 
 test('tooltip-only updates are hidden from visitors but still shown on Home', function () {

@@ -45,13 +45,18 @@ Route::post('/webhook/stripe', [StripeWebhookController::class, 'handle']);
 Route::get('/checkout/success', fn () => view('checkout.success'))->name('checkout.success');
 Route::get('/checkout/cancel', fn () => view('checkout.cancel'))->name('checkout.cancel');
 
-// The public front page (2026-09-16): what the site is for, the comp builder as the first action,
-// and the public feed of game plans. Signed-in players are sent on to Home. See App\Livewire\Landing.
+// MindCollector's home since 2026-10-17 (Chriso: "look more like a platform"): what it is and a card
+// per game (config/platform.php). The WoW front page that stood here (App\Livewire\Landing) is WoW's
+// own home now, /wow. Games not open yet have a page of their own that says what is coming.
 //
-// This used to be a 301 to /wow/comps. Browsers cache a 301, so a visitor who hit the old redirect
-// may keep being sent to the comp builder by their own browser until that cache clears — nothing
-// server-side can undo it, and it is harmless (the builder still works).
-Route::get('/', \App\Livewire\Landing::class)->name('home');
+// Before 2026-09-16 '/' was a 301 to /wow/comps. Browsers cache a 301, so a visitor who hit the old
+// redirect may keep being sent to the comp builder by their own browser until that cache clears;
+// nothing server-side can undo it, and it is harmless.
+Route::get('/', [\App\Http\Controllers\PlatformController::class, 'home'])->name('home');
+Route::get('/sc2', [\App\Http\Controllers\PlatformController::class, 'game'])->defaults('game', 'sc2')->name('sc2');
+Route::get('/lol', [\App\Http\Controllers\PlatformController::class, 'game'])->defaults('game', 'lol')->name('lol');
+Route::post('/games/{game}/notify', [\App\Http\Controllers\PlatformController::class, 'notify'])
+    ->whereIn('game', ['sc2', 'lol'])->middleware('throttle:10,1,game-notify')->name('game.notify');
 
 // Built from the database: every public page, every spec's guide page and every published guide.
 Route::get('/sitemap.xml', \App\Http\Controllers\SitemapController::class)->name('sitemap');
@@ -144,6 +149,9 @@ Route::get('modules', Index::class)->name('modules.index');
 // on WoW's own spec/talent/spell model throughout. When a second game arrives it gets its own
 // group and its own components; this stays honest about what it is until then.
 Route::prefix('wow')->group(function () {
+    // WoW's home: the front page of the site until 2026-10-17, when / became MindCollector's.
+    // Signed-in players are sent on to Home (the dashboard), as before. See App\Livewire\Landing.
+    Route::get('/', \App\Livewire\Landing::class)->name('wow.home');
     Route::get('/comps', \App\Livewire\WowComps::class)->name('wow-comps');
 
     // Two comps on one clock — whose kill window opens first, and why. The first page here that

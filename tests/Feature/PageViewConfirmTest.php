@@ -30,7 +30,7 @@ class PageViewConfirmTest extends TestCase
 
     public function test_the_front_page_carries_a_signed_beacon_that_confirms_its_view(): void
     {
-        $response = $this->get('/')->assertOk();
+        $response = $this->get('/wow')->assertOk();
 
         $view = PageViewEvent::where('page', 'landing')->latest('id')->firstOrFail();
         $this->assertNull($view->confirmed_at, 'serving the page is not proof a browser ran it');
