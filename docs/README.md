@@ -24,6 +24,8 @@ heading. Rules are still cited by number and still mean the same rule.
 | `guides-from-play.md` | current | How played games become guides, and the level-of-play rule. Read before drafting a guide from match data. |
 | `addon-upgrades.md` | current | What Chriso wants next from the capture side. Wants, not design. |
 | `docs/reviews/` | history | One-off reviews of a session (2026-10-01: Disc with LFG partners). |
+| `docs/achievements.md` | proposal | Achievements and rewards (AI credits) for improving, not grinding: the rules, the kinds, the data model, and a first pass on Disc Priest dispels with real numbers. Not built. |
+| `docs/sc2/plan.md` | research | StarCraft II: where its game knowledge comes from (the game's data files, replays; Blizzard's API has no unit data), WoW's pieces mapped to SC2's, and a first build planner. Not built. |
 | `docs/ai/ask-about-this-game.md` | proposal | "Ask about this game": a model answering from stored measurements. Not built. |
 | `docs/testers/how-to-test.md` | current | How a tester runs the app. |
 | `docs/combat-log-ingest.md` | reference | How a combat log becomes archive games: team ids, Solo Shuffle, Feign Death, the checks behind each (rule 12 in full). |

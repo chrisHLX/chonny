@@ -37,7 +37,8 @@ The site says so: `/` is MindCollector's home with a card per game, each game ha
 coming and lets a player ask to be told. The games are listed once, in `config/platform.php`. A new
 game gets its own route group and its own pages, never a parameter on WoW's (see the `/wow` route
 group's comment in `routes/web.php`). What SC2 starts with is still to be chosen: replay reviews or a
-unit and build reference.
+unit and build reference (`docs/sc2/plan.md`). Achievements and credit rewards for improving are
+proposed in `docs/achievements.md`.
 
 ## The current focus
 
