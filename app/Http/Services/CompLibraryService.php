@@ -3,11 +3,10 @@
 namespace App\Http\Services;
 
 use App\Models\ArenaRound;
-use App\Models\ModuleGameBuild;
-use App\Models\Patch;
 use App\Models\Spell;
 use App\Models\User;
 use App\Support\KickPriorities;
+use App\Support\SpellTips;
 use Illuminate\Support\Collection;
 
 /**
@@ -56,15 +55,13 @@ class CompLibraryService
     private array $xp = [];
 
     /** @var array<string, ?array> a spell's tooltip by name, memoised across every comp of a build */
-    private array $tips = [];
-
-    public function __construct(private SpellIconIndex $icons, private ModuleSpellReferenceService $spells) {}
+    public function __construct(private SpellIconIndex $icons) {}
 
     public function signature(User $user, array $xp = []): string
     {
         $rounds = ArenaRound::where('user_id', $user->id)->orderBy('id')->get(['id', 'updated_at'])
             ->map(fn ($r) => $r->id.':'.$r->updated_at)->implode(',');
-        $code = implode('|', array_map(fn ($f) => $f.':'.filemtime($f), [__FILE__, resource_path('views/desktop/comp.blade.php'), resource_path('views/desktop/partials/styles.blade.php')]))
+        $code = implode('|', array_map(fn ($f) => $f.':'.filemtime($f), [__FILE__, resource_path('views/desktop/comp.blade.php'), resource_path('views/desktop/partials/styles.blade.php'), app_path('Support/SpellTips.php')]))
             // What to kick on them reads the priority files (KickPriorities).
             .'|kicks:'.KickPriorities::signature()
             // Tooltips come from the spell data.
@@ -501,82 +498,9 @@ class CompLibraryService
         ], $rows);
     }
 
-    /**
-     * What a click on a spell shows: the resolved description (no build: the base spell, as the
-     * site's spell page shows it without a spec) and its cooldown and arena duration. Text that
-     * would still carry an unresolved formula is left out rather than shown raw.
-     *
-     * @return array{text: ?string, facts: string}|null
-     */
+    /** What a click on a spell shows (App\Support\SpellTips, shared with the website's spec guides). */
     private function tip(string $name): ?array
     {
-        if (array_key_exists($name, $this->tips)) {
-            return $this->tips[$name];
-        }
-        // The pressable copy with a description, as the site prefers (CLAUDE.md rule 3).
-        $spell = Spell::query()
-            ->where('patch_id', Patch::where('is_current', true)->value('id'))
-            ->where('name', $name)
-            ->orderByRaw('description is null')->orderBy('is_passive')->orderBy('not_in_spellbook')
-            ->first();
-        if (! $spell) {
-            return $this->tips[$name] = null;
-        }
-
-        // The text the site's own pages show: a spec kit's, resolved against that spec's build, for
-        // any copy of the spell a kit holds; else the base spell resolved with no spec.
-        $kit = null;
-        foreach (Spell::query()->where('patch_id', $spell->patch_id)->where('name', $name)->pluck('id') as $id) {
-            if ($kit = $this->kitEntries()[$id] ?? null) {
-                break;
-            }
-        }
-        $text = $kit['text'] ?? null;
-        if ($text === null) {
-            try {
-                $text = $this->spells->resolveDescription($spell, new ModuleGameBuild([]))['text'] ?? null;
-            } catch (\Throwable) {
-                $text = null;
-            }
-        }
-        $text = trim(preg_replace('/\s+/', ' ', strip_tags((string) $text)));
-        // One "(varies by condition ...)" says it; the resolver can repeat it back to back.
-        $text = preg_replace('/(\(varies[^)]*\))(\s*\1)+/', '$1', $text);
-        if ($text === '' || preg_match('/\$[\w{]/', $text)) {
-            $text = null;
-        }
-
-        $num = fn ($v) => rtrim(rtrim(number_format((float) $v, 1), '0'), '.');
-        $cooldown = $kit['cd'] ?? $spell->cooldown_seconds;
-        $facts = array_filter([
-            $cooldown > 0 ? $num($cooldown).'s cooldown' : null,
-            $spell->charges > 1 ? $spell->charges.' charges' : null,
-            $spell->pvp_duration_seconds > 0 ? 'lasts '.$num($spell->pvp_duration_seconds).'s in arena'
-                : ($spell->duration_seconds > 0 && $spell->duration_seconds < 60 ? 'lasts '.$num($spell->duration_seconds).'s' : null),
-        ]);
-
-        return $this->tips[$name] = ($text === null && ! $facts) ? null : ['text' => $text, 'facts' => implode(' · ', $facts)];
-    }
-
-    /** @var array<int, array{text: ?string, cd: ?float}>|null every kit's spells, by internal spell id */
-    private ?array $kitEntries = null;
-
-    /**
-     * Every precomputed spec kit's description and cooldown, by internal spell id (the kits carry
-     * internal ids: CLAUDE.md rule 32). Read once for a whole build.
-     */
-    private function kitEntries(): array
-    {
-        if ($this->kitEntries !== null) {
-            return $this->kitEntries;
-        }
-        $this->kitEntries = [];
-        foreach (glob(base_path('data/spell-kits/*/*.json')) ?: [] as $file) {
-            foreach (json_decode((string) file_get_contents($file), true)['entries'] ?? [] as $e) {
-                $this->kitEntries[$e['spellId']] ??= ['text' => $e['description']['text'] ?? null, 'cd' => $e['cooldown']['seconds'] ?? null];
-            }
-        }
-
-        return $this->kitEntries;
+        return app(SpellTips::class)->for($name);
     }
 }

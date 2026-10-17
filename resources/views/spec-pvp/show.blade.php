@@ -92,16 +92,35 @@
     {{-- ── PvP talents ── --}}
     <section class="linear-card p-5">
         <h2 class="text-[16px] font-semibold text-ink">{{ $name }} PvP talents</h2>
-        <p class="text-[13px] text-ink-muted mt-1">How often each PvP talent is taken.</p>
-        <div class="mt-4 space-y-2.5">
+        <p class="text-[13px] text-ink-muted mt-1">How often each PvP talent is taken. Click one for what it does.</p>
+        <div class="mt-3 space-y-0.5">
             @foreach ($page['pvpTalents'] as $talent => $share)
-                <div class="grid grid-cols-[1.75rem_minmax(0,10rem)_1fr_3rem] sm:grid-cols-[1.75rem_13rem_1fr_3rem] items-center gap-3 text-[13px]">
-                    <x-ability-icon :spell="$icons[$talent] ?? null" :name="$talent" :color="$color" />
-                    <span class="text-ink truncate" title="{{ $talent }}">{{ $talent }}</span>
-                    <div class="h-2 rounded-full bg-surface-2 overflow-hidden">
-                        <div class="h-full rounded-full" style="width: {{ $bar($share) }}%; background: {{ $color }}"></div>
-                    </div>
-                    <span class="text-ink-muted tabular-nums text-right">{{ $pct($share) }}</span>
+                @php $tip = $tips[$talent] ?? null; @endphp
+                {{-- A talent with a tooltip is a button; it opens what the talent does under the row. --}}
+                <div x-data="{ open: false }">
+                    <{{ $tip ? 'button type=button' : 'div' }} @if ($tip) @click="open = ! open" :aria-expanded="open.toString()" aria-controls="pvp-tip-{{ $loop->index }}" @endif
+                        class="w-full text-left grid grid-cols-[1.75rem_minmax(0,10rem)_1fr_3rem] sm:grid-cols-[1.75rem_13rem_1fr_3rem] items-center gap-3 text-[13px] rounded-lg px-2 py-1.5 {{ $tip ? 'hover:bg-surface-2 cursor-pointer transition-colors' : '' }}"
+                        @if ($tip) :class="open && 'bg-surface-2'" @endif>
+                        <x-ability-icon :spell="$icons[$talent] ?? null" :name="$talent" :color="$color" />
+                        <span class="flex items-center gap-1.5 min-w-0">
+                            <span class="text-ink truncate" title="{{ $talent }}">{{ $talent }}</span>
+                            @if ($tip)
+                                <svg class="w-3 h-3 shrink-0 text-ink-subtle transition-transform" :class="open && 'rotate-180'" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.06l3.71-3.83a.75.75 0 111.08 1.04l-4.25 4.39a.75.75 0 01-1.08 0L5.21 8.27a.75.75 0 01.02-1.06z" clip-rule="evenodd"/></svg>
+                            @endif
+                        </span>
+                        <div class="h-2 rounded-full bg-surface-2 overflow-hidden">
+                            <div class="h-full rounded-full" style="width: {{ $bar($share) }}%; background: {{ $color }}"></div>
+                        </div>
+                        <span class="text-ink-muted tabular-nums text-right">{{ $pct($share) }}</span>
+                    </{{ $tip ? 'button' : 'div' }}>
+                    @if ($tip)
+                        <div id="pvp-tip-{{ $loop->index }}" x-show="open" x-cloak x-transition.opacity
+                             class="ml-2 sm:ml-[2.75rem] mr-2 mt-1 mb-2 rounded-lg bg-surface-2 border-l-2 px-3.5 py-2.5 text-[13px] leading-relaxed"
+                             style="border-color: {{ $color }}">
+                            @if ($tip['text'])<p class="text-ink-muted">{{ $tip['text'] }}</p>@endif
+                            @if ($tip['facts'])<p class="text-[12px] text-ink-subtle {{ $tip['text'] ? 'mt-1.5' : '' }}">{{ $tip['facts'] }}</p>@endif
+                        </div>
+                    @endif
                 </div>
             @endforeach
         </div>

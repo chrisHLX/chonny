@@ -7,7 +7,9 @@ use App\Livewire\Admin\SearchPages;
 use App\Models\Game;
 use App\Models\GameClass;
 use App\Models\PageViewEvent;
+use App\Models\Patch;
 use App\Models\Specialization;
+use App\Models\Spell;
 use App\Models\User;
 use App\Support\SpecPages;
 use Illuminate\Foundation\Testing\RefreshDatabase;
@@ -105,6 +107,26 @@ class SpecPvpPagesTest extends TestCase
         $this->get('/wow/pvp')->assertOk()->assertSeeText('Retribution Paladin PvP guide')->assertSeeText('Shadow Priest PvP guide');
         $this->get('/wow/pvp/paladin/holy')->assertNotFound();     // no such spec
         $this->get('/wow/pvp/priest/holy')->assertNotFound();
+    }
+
+    public function test_a_pvp_talent_opens_what_it_does(): void
+    {
+        $specs = $this->specs();
+        SpecPages::fake(SpecPages::build(collect(range(1, 20))->map(fn ($i) => $this->round($i, $i <= 12)), '2026-08-01'));
+        $patch = Patch::create(['game_id' => $specs['ret']->gameClass->game_id, 'build_version' => '12.1.0.test', 'is_current' => true]);
+        // An id far from any in the committed spell kits, which SpellTips reads from disk by internal id.
+        Spell::create(['id' => 9_000_001, 'patch_id' => $patch->id, 'spell_id' => 228049, 'name' => 'Hallowed Ground',
+            'description' => 'Consecrates the land beneath you, making allies inside immune to silence and interrupts.',
+            'cooldown_seconds' => 120, 'pvp_duration_seconds' => 8]);
+
+        $html = $this->get('/wow/pvp/paladin/retribution')->assertOk()->getContent();
+
+        $this->assertStringContainsString('Click one for what it does.', $html);
+        $this->assertStringContainsString('aria-controls="pvp-tip-0"', $html, 'the most taken talent is a button that opens its tip');
+        $this->assertStringContainsString('making allies inside immune to silence and interrupts.', $html);
+        $this->assertStringContainsString('120s cooldown · lasts 8s in arena', $html);
+        // A talent the spell data does not know stays a plain row, never an empty tip.
+        $this->assertStringNotContainsString('aria-controls="pvp-tip-1"', $html);
     }
 
     public function test_a_spec_guide_says_what_to_kick_and_how_its_players_kick(): void

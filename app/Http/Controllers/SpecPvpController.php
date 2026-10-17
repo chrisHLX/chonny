@@ -9,6 +9,7 @@ use App\Models\Patch;
 use App\Models\Specialization;
 use App\Support\KickPriorities;
 use App\Support\SpecPages;
+use App\Support\SpellTips;
 use Illuminate\Support\Collection;
 
 /**
@@ -99,6 +100,8 @@ class SpecPvpController extends Controller
             'page' => $page,
             'go' => $go,
             'icons' => $icons,
+            // What a click on a PvP talent opens: its description and cooldown (SpellTips, cached).
+            'tips' => app(SpellTips::class)->forMany(array_keys($page['pvpTalents'])),
             'average' => $average,
             'comps' => $comps,
             'siblings' => $bySpecId->filter(fn ($s) => $s->class_id === $spec->class_id && $s->id !== $spec->id)->values(),
