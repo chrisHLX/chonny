@@ -19,6 +19,8 @@
     .nums .v { font-size: 20px; font-weight: 600; }
     .nums .k { font-size: 11px; font-weight: 700; letter-spacing: .09em; text-transform: uppercase; color: #B3B3B3; }
     .habit .caveat { margin-top: 8px; color: #6A6A6A; font-size: 11.5px; }
+    .habit .why { margin-top: 8px; padding: 8px 10px; background: #1E150A; }
+    .rot td { padding: 3px 14px 3px 0; }
     .habit .list { margin-top: 8px; }
     .habit .list .def { color: #FFFFFF; }
     .habit .list .def span { color: #B3B3B3; margin-left: 4px; }
@@ -134,6 +136,14 @@
                 @endif
             </div>
         @endif
+        @if (! empty($h['why']))
+            <div class="why">
+                <div class="small" style="color: #E8B84B; font-weight: 600">Why yours is lower</div>
+                @foreach ($h['why'] as $w)
+                    <div class="line">{{ $w }}</div>
+                @endforeach
+            </div>
+        @endif
         @if ($h['list'])
             <div class="list">
                 <span class="small muted">{{ $h['list']['label'] }}:</span><br>
@@ -145,6 +155,43 @@
         <div class="caveat">{{ $h['caveat'] }}</div>
     </div>
 @endforeach
+
+@if (! empty($m['rotation']['rows']))
+    <div class="label" style="margin-top: 18px">Your rotation <span class="aside">presses per minute you were free to act, against the other {{ $m['spec'] }}s in your games and the middle {{ $m['spec'] }} of every game measured</span></div>
+    <div class="box">
+        <table class="stats rot">
+            <tr><td></td><td class="small muted">You</td><td class="small muted">In your games</td><td class="small muted">Every {{ $m['spec'] }}</td><td></td></tr>
+            @foreach ($m['rotation']['rows'] as $r)
+                <tr>
+                    <td>@if ($r['icon'])<img class="spell-ic" src="{{ $r['icon'] }}" alt="" style="margin-right: 5px">@endif{{ $r['spell'] }}</td>
+                    <td><b>{{ $r['you'] }}</b></td>
+                    <td class="muted">{{ $r['others'] }}</td>
+                    <td class="muted">{{ $r['norm'] ?? '-' }}</td>
+                    <td>@if ($r['mark'])<span class="chip {{ $r['mark'] === 'less' ? 'warn' : 'neutral' }}">{{ $r['mark'] === 'less' ? 'you press it less' : 'you press it more' }}</span>@endif</td>
+                </tr>
+            @endforeach
+        </table>
+        @if (! $m['rotation']['enough'])
+            <div class="small subtle" style="margin-top: 6px">Under 10 games on either side, so nothing is marked yet.</div>
+        @endif
+    </div>
+    @if ($o = $m['rotation']['opening'])
+        <div class="label" style="margin-top: 14px">The start of their goes <span class="aside">what you pressed in the first 4 seconds of their goes, per go: {{ $o['goes'] }} of yours, {{ $o['theirGoes'] }} for the others</span></div>
+        <div class="box">
+            <table class="stats rot">
+                <tr><td></td><td class="small muted">You</td><td class="small muted">Other {{ $m['spec'] }}s</td></tr>
+                @foreach ($o['rows'] as $r)
+                    <tr>
+                        <td>@if ($r['icon'])<img class="spell-ic" src="{{ $r['icon'] }}" alt="" style="margin-right: 5px">@endif{{ $r['spell'] }}</td>
+                        <td><b>{{ $r['you'] }}</b></td>
+                        <td class="muted">{{ $r['others'] ?? '-' }}</td>
+                    </tr>
+                @endforeach
+            </table>
+            <div class="small subtle" style="margin-top: 6px">A press counts once per go. Over 100% means more than one press of it per go. Each game's Moments tab shows these goes one by one.</div>
+        </div>
+    @endif
+@endif
 
 <div class="foot">
     Every number is from your own games and the players in them. "Other {{ $m['spec'] }}s" are everyone of your spec you played with or against, so they share your rating range.

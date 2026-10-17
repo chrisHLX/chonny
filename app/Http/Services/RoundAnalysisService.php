@@ -82,8 +82,13 @@ class RoundAnalysisService
      * both players' positions in the log (docs/combat-log-ingest.md); a cast beyond it is `far`, one
      * with either player unplaced is `unplaced`, and neither counts. Interrupts also keep the
      * stopped spell's id.
+     * 16 (2026-10-17): `timeline`, the building blocks of moments (GameMomentsService) and of the
+     * "why" on the Improve page, read when a page is drawn so either can change without measuring
+     * again (timeline()): every player's casts (time, spell, the player it went on), each player's
+     * health a second at a time from damage and heal events, every crowd control span, and every
+     * defensive buff span on a player (tagged defensive and not also offensive, 2s or longer).
      */
-    public const VERSION = 15;
+    public const VERSION = 16;
 
     /** A priority cast is taken as stopped or finished when that happens this long after it began. */
     private const CAST_WINDOW = 3.5;
@@ -250,6 +255,7 @@ class RoundAnalysisService
             'checks' => $this->checks($tl, $roster, $sideOf, $deaths, $metadata, $this->overlaps($tl, $buffs, $sideOf, $firstDeath)),
             'dispels' => $this->dispels($dispelEvents, $sideOf, $credit),
             'debuffs' => $this->debuffs($debuffSpans, $sideOf, $credit),
+            'timeline' => $this->timeline($named, $roster, $tl, $buffs, $heals, $credit),
             'habits' => $this->priorityKicks(
                 $this->habits($roster, $sideOf, $credit, $named, $dmg, $interrupts, $failed, $locked, $deaths, $metadata, $ccMap),
                 $metadata, $sideOf, $credit, $starts, $named, $interrupts, $locked, $deaths, $pos,
@@ -373,6 +379,98 @@ class RoundAnalysisService
         }
 
         return $out;
+    }
+
+    /**
+     * Version 16: what moments and the Improve page's "why" are read from when a page is drawn.
+     *  - casts: guid => [[t, spell, the player it went on or null], ...], every successful cast;
+     *    one press logged twice in the same tenth of a second (on self and on an ally) kept once.
+     *  - hp: guid => [health % at second 0, 1, 2, ...], the last reading from a damage or heal event
+     *    (full until the first), 0 from their death on.
+     *  - control: [[on, by, spell, dr, from, to], ...], every crowd control span (ArenaMomentService),
+     *    credited to the player behind a pet.
+     *  - defUp: [[on, by, spell, from, to], ...], every buff on a player the classification calls only
+     *    defensive and that lasted 2s or more (a proc or a one-tick shield is not a defensive window).
+     */
+    private function timeline(array $named, array $roster, array $tl, array $buffs, array $heals, callable $credit): array
+    {
+        $casts = [];
+        $seen = [];
+        foreach ($named as $c) {
+            if (! isset($roster[$c['src']])) {
+                continue;
+            }
+            $t = round($c['t'], 1);
+            $key = $c['src'].'|'.$c['spell'].'|'.$t;
+            if (isset($seen[$key])) {
+                continue;
+            }
+            $seen[$key] = true;
+            $casts[$c['src']][] = [$t, $c['spell'], isset($roster[$c['dst']]) ? $c['dst'] : null];
+        }
+
+        // Health readings per player, from damage (readTimeline) and heals, in time order.
+        $readings = [];
+        foreach ($tl['health'] as $g => $pts) {
+            foreach ($pts as $p) {
+                $readings[$g][] = [$p['t'], $p['pct']];
+            }
+        }
+        foreach ($heals as $h) {
+            if (($h['hpAfter'] ?? null) !== null && isset($roster[$h['dst']])) {
+                $readings[$h['dst']][] = [$h['t'], $h['hpAfter']];
+            }
+        }
+        $died = [];
+        foreach ($tl['deaths'] as $d) {
+            $died[$d['who']] ??= $d['t'];
+        }
+        $end = 0.0;
+        foreach ($readings as $pts) {
+            foreach ($pts as $p) {
+                $end = max($end, $p[0]);
+            }
+        }
+        foreach ($casts as $list) {
+            $end = max($end, (float) end($list)[0]);
+        }
+        $hp = [];
+        foreach ($roster as $g => $_) {
+            $pts = $readings[$g] ?? [];
+            usort($pts, fn ($a, $b) => $a[0] <=> $b[0]);
+            $series = [];
+            $last = 100.0;
+            $i = 0;
+            for ($s = 0; $s <= (int) ceil($end); $s++) {
+                while ($i < count($pts) && $pts[$i][0] <= $s) {
+                    $last = $pts[$i][1];
+                    $i++;
+                }
+                $series[] = isset($died[$g]) && $s >= $died[$g] ? 0 : (int) round($last);
+            }
+            $hp[$g] = $series;
+        }
+
+        $control = [];
+        foreach ($tl['control'] as $c) {
+            $control[] = [$c['on'], $credit($c['by']), $c['spell'], $c['dr'], round($c['from'], 1), round($c['to'], 1)];
+        }
+
+        // Defensive only: a cooldown tagged both ways (Avatar) is a damage window, not cover.
+        $classes = $this->arena->offensiveDefensiveClassification();
+        $defensive = function (string $n) use ($classes): bool {
+            $e = $classes['byName'][$n] ?? $classes['byName'][strtolower($n)] ?? [];
+
+            return ($e['defensive'] ?? false) && ! ($e['offensive'] ?? false);
+        };
+        $defUp = [];
+        foreach ($buffs as $b) {
+            if ($b['to'] - $b['from'] >= 2.0 && $defensive($b['name'])) {
+                $defUp[] = [$b['on'], $credit($b['by']), $b['name'], round($b['from'], 1), round($b['to'], 1)];
+            }
+        }
+
+        return ['casts' => $casts, 'hp' => $hp, 'control' => $control, 'defUp' => $defUp];
     }
 
     /**
@@ -701,7 +799,13 @@ class RoundAnalysisService
                 $amount = $f[count($f) - 5] ?? null;
                 $over = $f[count($f) - 3] ?? null;
                 if (isset($roster[$f[5]]) && is_numeric($amount) && is_numeric($over)) {
-                    $heals[] = ['src' => $f[1], 'dst' => $f[5], 'spell' => $f[10], 'eff' => (int) $amount - (int) $over, 'over' => (int) $over];
+                    // The advanced block's first field names the unit it describes; when that is the
+                    // target, its health after the heal (timeline()).
+                    $mine = ($f[12] ?? '') === $f[5];
+                    $cur = $mine ? ($f[14] ?? null) : null;
+                    $max = $mine ? ($f[15] ?? null) : null;
+                    $heals[] = ['src' => $f[1], 'dst' => $f[5], 'spell' => $f[10], 'eff' => (int) $amount - (int) $over, 'over' => (int) $over, 't' => $t,
+                        'hpAfter' => is_numeric($cur) && is_numeric($max) && $max > 0 ? round(100 * $cur / $max, 1) : null];
                 }
 
                 continue;

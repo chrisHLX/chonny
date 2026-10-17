@@ -165,6 +165,19 @@ class ImprovementService
     }
 
     /**
+     * The same sets for another reader (GameMomentsService), from a list of stored analyses: which
+     * debuffs each spec's dispels were seen removing. One definition of "could have been dispelled".
+     *
+     * @return array<string, array<string, true>>
+     */
+    public function dispellable(array $analyses): array
+    {
+        $this->dispelSpells = $this->dispelSpells ?: $this->dispelSpells();
+
+        return $this->dispelSets(collect($analyses)->map(fn ($a) => ['a' => $a]));
+    }
+
+    /**
      * For each spec, the debuffs its players' dispels were seen removing, across every stored round.
      *
      * @return array<string, array<string, true>>
@@ -314,6 +327,110 @@ class ImprovementService
             'medallionFault' => $p['healer'] && $teamFirst && $teamFirst['who'] !== $guid
                 && ($teamFirst['healer']['state'] ?? null) === 'locked'
                 && collect($teamFirst['healer']['medallionUsedAt'] ?? [])->filter(fn ($t) => $t <= $teamFirst['t'] && $teamFirst['t'] - $t < 120)->isEmpty(),
+            // Presses per ability (version 10), for the rotation and the "why" under damage and healing.
+            'presses' => $a['habits'][$guid]['casts'] ?? [],
+            // Version 16: what the "why" reads from the round's timeline. Null before it.
+            'v16' => ($a['version'] ?? 0) >= 16 && isset($a['timeline']) ? $this->timelineReads($a, $guid, $side, $team, $dispellable, (bool) $p['healer']) : null,
+        ];
+    }
+
+    /**
+     * One player's round read off its timeline (version 16), for the "why" lines and the rotation:
+     *  - chance: seconds a teammate carried a debuff the spec dispels, the part of it the player was
+     *    locked out, and what they cast in the rest (by name);
+     *  - idle: seconds alive, free and pressing nothing (gaps over 2.5s), split by whose go it fell in;
+     *  - opening: what a healer cast in the first seconds of each of the other team's goes;
+     *  - ccMissed: the team's goes without their control on the enemy healer, and how many of those
+     *    they spent locked out as it started.
+     */
+    private function timelineReads(array $a, string $guid, string $side, array $team, array $dispellable, bool $healer): array
+    {
+        $tl = $a['timeline'];
+        $casts = $tl['casts'][$guid] ?? [];
+        $locked = [];
+        foreach ($tl['control'] as [$on, , , $dr, $from, $to]) {
+            if ($on === $guid && in_array($dr, ['Stun', 'Silence', 'Disorient', 'Incapacitate'], true)) {
+                $locked[] = [$from, $to];
+            }
+        }
+        $locked = $this->union($locked);
+        $lockedIn = fn (float $f, float $t) => array_sum(array_map(fn ($iv) => max(0, min($t, $iv[1]) - max($f, $iv[0])), $locked));
+
+        // The chance to dispel, and what filled it.
+        $windows = [];
+        if ($dispellable) {
+            foreach ($team as $mate) {
+                foreach ($a['debuffs'][$mate] ?? [] as [$name, $from, $to]) {
+                    if (isset($dispellable[$name])) {
+                        $windows[] = [$from, $to];
+                    }
+                }
+            }
+        }
+        $windows = $this->union($windows);
+        $chanceLocked = 0.0;
+        $chanceCasts = [];
+        foreach ($windows as [$f, $t]) {
+            $chanceLocked += $lockedIn($f, $t);
+            foreach ($casts as [$ct, $spell]) {
+                if ($ct >= $f && $ct <= $t) {
+                    $chanceCasts[$spell] = ($chanceCasts[$spell] ?? 0) + 1;
+                }
+            }
+        }
+
+        // Time pressing nothing, by whose go it fell in.
+        $goes = collect($a['goes']);
+        $theirs = $this->union($goes->where('side', '!=', $side)->map(fn ($g) => [(float) $g['from'], (float) $g['to']])->values()->all());
+        $ours = $this->union($goes->where('side', $side)->map(fn ($g) => [(float) $g['from'], (float) $g['to']])->values()->all());
+        $alive = count($tl['hp'][$guid] ?? []);
+        foreach ($tl['hp'][$guid] ?? [] as $i => $h) {
+            if ($h === 0 && $i > 0) {
+                $alive = $i;
+                break;
+            }
+        }
+        $idle = ['theirs' => 0.0, 'ours' => 0.0, 'none' => 0.0];
+        $times = array_merge([0.0], array_column($casts, 0), [(float) $alive]);
+        sort($times);
+        for ($i = 1; $i < count($times); $i++) {
+            [$f, $t] = [$times[$i - 1], min($times[$i], (float) $alive)];
+            if ($t - $f <= 2.5) {
+                continue;
+            }
+            $gap = $t - $f - $lockedIn($f, $t);
+            $inTheirs = array_sum(array_map(fn ($iv) => max(0, min($t, $iv[1]) - max($f, $iv[0])), $theirs));
+            $inOurs = array_sum(array_map(fn ($iv) => max(0, min($t, $iv[1]) - max($f, $iv[0])), $ours));
+            $span = max(0.001, $t - $f);
+            $idle['theirs'] += $gap * min(1, $inTheirs / $span);
+            $idle['ours'] += $gap * min(1, $inOurs / $span);
+            $idle['none'] += $gap * max(0, 1 - ($inTheirs + $inOurs) / $span);
+        }
+
+        // A healer's opening casts in the other team's goes.
+        $opening = [];
+        if ($healer) {
+            foreach ($goes->where('side', '!=', $side) as $g) {
+                foreach ($casts as [$ct, $spell]) {
+                    if ($ct >= (float) $g['from'] && $ct <= (float) $g['from'] + 4) {
+                        $opening[$spell] = ($opening[$spell] ?? 0) + 1;
+                    }
+                }
+            }
+        }
+
+        // Your team's goes without your control on their healer.
+        $missed = $goes->where('side', $side)->reject(fn ($g) => in_array($guid, $g['healerCcBy'] ?? [], true));
+
+        return [
+            'chance' => array_sum(array_map(fn ($w) => $w[1] - $w[0], $windows)),
+            'chanceLocked' => $chanceLocked,
+            'chanceCasts' => $chanceCasts,
+            'idle' => $idle,
+            'opening' => $opening,
+            'openingGoes' => $healer ? $goes->where('side', '!=', $side)->count() : 0,
+            'ccMissed' => $missed->count(),
+            'ccMissedLocked' => $missed->filter(fn ($g) => $lockedIn((float) $g['from'], (float) $g['from'] + 3) >= 1.0)->count(),
         ];
     }
 
@@ -545,6 +662,12 @@ class ImprovementService
             );
         }
 
+        // Where a measure is behind, why: the gap split into the parts the rounds can show (why()).
+        foreach ($habits as &$h) {
+            $h['why'] = $h['status'] === 'behind' ? $this->why($h['key'], $mine, $others) : [];
+        }
+        unset($h);
+
         // Behind the others first, then level, then ahead; within each, habits before outcomes (the
         // focus's own rule, so the list never leads with what the focus skips), then the larger gap.
         $order = ['behind' => 0, 'lead' => 1, 'level' => 2, 'ahead' => 3, 'none' => 4];
@@ -572,10 +695,274 @@ class ImprovementService
                 $mine->where('difficulty', $label)->where('won', false)->count(),
             ]])->filter(fn ($wl) => array_sum($wl) > 0)->all(),
             'habits' => $habits,
+            'rotation' => $this->rotation($spec, $mine, $others),
             'focus' => ($focus = $this->focus($habits, (bool) $mine->first()['healer']))
                 ? $focus + ['chartWide' => $this->spark($focus['series'], $focus['ref'], 300, 64)]
                 : null,
         ];
+    }
+
+    // ------------------------------------------------------------------ why, and the rotation
+
+    /**
+     * Why a measure is behind (2026-10-17): the gap split into what the rounds can show, each line a
+     * fact with both sides' numbers. It says where the difference comes from, never that it is a
+     * fault (match-review.md, reading rules 1 and 6), and a line needs enough on both sides to stand.
+     *
+     * @return array<int, string>
+     */
+    private function why(string $key, Collection $mine, Collection $others): array
+    {
+        $withB = fn (Collection $rs) => $rs->where('hasBreakdown', true);
+        $v16 = fn (Collection $rs) => $rs->filter(fn ($r) => $r['v16'] !== null);
+
+        return match ($key) {
+            'damage' => array_merge($this->byAbility($withB($mine), $withB($others), 'dmgBy'), $this->activeLine($withB($mine), $withB($others))),
+            'healing' => array_merge($this->pressureLine($withB($mine), $withB($others)), $this->byAbility($withB($mine), $withB($others), 'healBy')),
+            'dispels' => $v16($mine)->count() >= 3 && $v16($others)->count() >= 3 ? $this->dispelWhy($v16($mine), $v16($others)) : [],
+            'idle' => $v16($mine)->count() >= 3 && $v16($others)->count() >= 3 ? $this->idleWhy($v16($mine), $v16($others)) : [],
+            'cc' => $v16($mine)->count() >= 3 ? $this->ccWhy($v16($mine), $v16($others)) : [],
+            default => [],
+        };
+    }
+
+    /**
+     * Per ability, per minute alive, the three where the others do most more, and whether it is how
+     * often it is pressed or how much each press does.
+     */
+    private function byAbility(Collection $mine, Collection $others, string $field): array
+    {
+        $rates = function (Collection $rs) use ($field) {
+            $alive = max(1, $rs->sum('alive')) / 60;
+            $free = max(1, $rs->where('v10', true)->sum('free')) / 60;
+            $amount = [];
+            $presses = [];
+            foreach ($rs as $r) {
+                foreach ($r[$field] as $spell => $v) {
+                    $amount[$spell] = ($amount[$spell] ?? 0) + $v;
+                }
+                if ($r['v10']) {
+                    foreach ($r['presses'] as $spell => $n) {
+                        $presses[$spell] = ($presses[$spell] ?? 0) + $n;
+                    }
+                }
+            }
+
+            return collect($amount)->map(fn ($v, $spell) => [
+                'perMin' => $v / $alive / 1000,
+                'presses' => isset($presses[$spell]) ? $presses[$spell] / $free : null,
+                'perPress' => ! empty($presses[$spell]) ? $v / $presses[$spell] / 1000 : null,
+            ]);
+        };
+        $a = $rates($mine);
+        $b = $rates($others);
+
+        return $b->map(fn ($x, $spell) => $x + ['gap' => $x['perMin'] - ($a[$spell]['perMin'] ?? 0)])
+            ->filter(fn ($x) => $x['gap'] > 0 && $x['perMin'] >= 10)
+            ->sortByDesc('gap')->take(3)
+            ->map(function ($x, $spell) use ($a) {
+                $y = $a[$spell] ?? ['perMin' => 0, 'presses' => null, 'perPress' => null];
+                $line = sprintf('%s: %s a minute against %s for them.', $spell, $this->num($y['perMin'], 0, 'k'), $this->num($x['perMin'], 0, 'k'));
+                if ($y['presses'] !== null && $x['presses'] !== null && $x['presses'] > 0) {
+                    if ($y['presses'] <= 0.8 * $x['presses']) {
+                        $line .= sprintf(' You press it %s times a free minute, they press it %s.', $this->num($y['presses'], 1, ''), $this->num($x['presses'], 1, ''));
+                    } elseif ($y['perPress'] !== null && $x['perPress'] !== null && $y['perPress'] <= 0.8 * $x['perPress']) {
+                        $line .= sprintf(' You press it about as often, but each press does %s against %s: talents, gear or what it lands on.', $this->num($y['perPress'], 0, 'k'), $this->num($x['perPress'], 0, 'k'));
+                    }
+                } elseif ($y['perMin'] == 0) {
+                    $line .= ' You did not use it in these games.';
+                }
+
+                return $line;
+            })->values()->all();
+    }
+
+    /** Time alive spent free and pressing something: locked out and idle both take from it. */
+    private function activeLine(Collection $mine, Collection $others): array
+    {
+        $active = fn (Collection $rs) => ($s = $rs->where('v10', true)->sum('alive')) > 0
+            ? ($rs->where('v10', true)->sum('free') - $rs->where('v10', true)->sum('idle')) / $s : null;
+        [$x, $y] = [$active($mine), $active($others)];
+        if ($x === null || $y === null || abs($x - $y) < 0.05) {
+            return [];
+        }
+
+        return [sprintf('You were free and pressing something %s of your time alive, they %s: time locked out and time idle both take from your damage.', $this->pct($x), $this->pct($y))];
+    }
+
+    /** How much damage there was to heal: healing as a share of it moves with it. */
+    private function pressureLine(Collection $mine, Collection $others): array
+    {
+        $taken = fn (Collection $rs) => ($m = $rs->sum('mins')) > 0 ? $rs->sum('teamTaken') / $m / 1000 : null;
+        [$x, $y] = [$taken($mine), $taken($others)];
+        if ($x === null || $y === null) {
+            return [];
+        }
+
+        return [sprintf('Your team took %s a minute, theirs %s. %s', $this->num($x, 0, 'k'), $this->num($y, 0, 'k'),
+            $x > $y * 1.1 ? 'More damage to heal brings the share down even at the same healing.' : ($x < $y * 0.9 ? 'Less damage to heal, so this gap is not about how hard it was.' : 'About the same pressure, so the gap is in the healing.'))];
+    }
+
+    /** Locked out while something was dispellable, and what the free time went on. */
+    private function dispelWhy(Collection $mine, Collection $others): array
+    {
+        $agg = function (Collection $rs) {
+            $chance = $rs->sum(fn ($r) => $r['v16']['chance']);
+            $casts = [];
+            foreach ($rs as $r) {
+                foreach ($r['v16']['chanceCasts'] as $s => $n) {
+                    $casts[$s] = ($casts[$s] ?? 0) + $n;
+                }
+            }
+            arsort($casts);
+            $total = max(1, array_sum($casts));
+            $dispels = array_sum(array_intersect_key($casts, $this->dispelSpells));
+
+            return ['locked' => $chance > 0 ? $rs->sum(fn ($r) => $r['v16']['chanceLocked']) / $chance : null, 'casts' => $casts, 'total' => $total, 'dispelShare' => $dispels / $total];
+        };
+        $a = $agg($mine);
+        $b = $agg($others);
+        $out = [];
+        if ($a['locked'] !== null && $b['locked'] !== null) {
+            $out[] = sprintf('While a debuff you could dispel was on your team, you were locked out %s of the time, they %s.', $this->pct($a['locked']), $this->pct($b['locked']));
+        }
+        $top = collect($a['casts'])->take(3)->map(fn ($n, $s) => "{$s} (".$this->pct($n / $a['total']).')')->implode(', ');
+        if ($top !== '') {
+            $out[] = sprintf('In that time your casts were mostly %s. Dispels were %s of your casts then, %s of theirs.', $top, $this->pct($a['dispelShare']), $this->pct($b['dispelShare']));
+        }
+
+        return $out;
+    }
+
+    /** Where the time pressing nothing fell: their goes, yours, or neither. */
+    private function idleWhy(Collection $mine, Collection $others): array
+    {
+        $split = function (Collection $rs) {
+            $sum = ['theirs' => 0.0, 'ours' => 0.0, 'none' => 0.0];
+            foreach ($rs as $r) {
+                foreach ($r['v16']['idle'] as $k => $v) {
+                    $sum[$k] += $v;
+                }
+            }
+            $mins = max(0.1, $rs->sum('mins'));
+
+            return array_map(fn ($v) => $v / $mins, $sum);
+        };
+        $a = $split($mine);
+        $b = $split($others);
+        $label = ['theirs' => 'in their goes', 'ours' => 'in your team\'s goes', 'none' => 'outside any go'];
+        $worst = collect($a)->map(fn ($v, $k) => $v - $b[$k])->sortDesc()->keys()->first();
+
+        return [
+            sprintf('Seconds a minute pressing nothing: %s in their goes, %s in your team\'s goes, %s outside any go. Theirs: %s, %s, %s.',
+                $this->num($a['theirs'], 1, 's'), $this->num($a['ours'], 1, 's'), $this->num($a['none'], 1, 's'),
+                $this->num($b['theirs'], 1, 's'), $this->num($b['ours'], 1, 's'), $this->num($b['none'], 1, 's')),
+            sprintf('Most of the difference is %s.', $label[$worst]),
+        ];
+    }
+
+    /** The team's goes without your control on their healer, and how many you began locked out. */
+    private function ccWhy(Collection $mine, Collection $others): array
+    {
+        $missed = $mine->sum(fn ($r) => $r['v16']['ccMissed']);
+        if ($missed === 0) {
+            return [];
+        }
+        $locked = $mine->sum(fn ($r) => $r['v16']['ccMissedLocked']);
+        $theirMissed = $others->filter(fn ($r) => $r['v16'] !== null)->sum(fn ($r) => $r['v16']['ccMissed']);
+        $theirLocked = $others->filter(fn ($r) => $r['v16'] !== null)->sum(fn ($r) => $r['v16']['ccMissedLocked']);
+
+        return [sprintf('Of your team\'s %d goes without your control on their healer, you were locked out as %d of them started (%s)%s. The rest you began free to act.',
+            $missed, $locked, $this->pct($locked / $missed),
+            $theirMissed > 0 ? '; for them '.$this->pct($theirLocked / $theirMissed) : '')];
+    }
+
+    /**
+     * Your rotation against the players of your spec (2026-10-17): presses per ability per minute free
+     * to act, against the others in your games and the middle player of the spec in every measured
+     * game (the norms). A row is marked where yours is a third or more apart on enough games. For a
+     * healer, also what was pressed in the first seconds of the other team's goes (version 16).
+     */
+    private function rotation(string $spec, Collection $mine, Collection $others): ?array
+    {
+        $v10 = fn (Collection $rs) => $rs->where('v10', true);
+        if ($v10($mine)->isEmpty()) {
+            return null;
+        }
+        $perFree = function (Collection $rs) {
+            $free = max(1, $rs->sum('free')) / 60;
+            $presses = [];
+            foreach ($rs as $r) {
+                foreach ($r['presses'] as $s => $n) {
+                    $presses[$s] = ($presses[$s] ?? 0) + $n;
+                }
+            }
+
+            return collect($presses)->map(fn ($n) => $n / $free);
+        };
+        $a = $perFree($v10($mine));
+        $b = $perFree($v10($others));
+        $norms = collect(json_decode((string) @file_get_contents(\App\Console\Commands\BuildPopulation::normsPath()), true)['specs'] ?? [])
+            ->firstWhere('label', $spec)['abilities'] ?? [];
+        $enough = $v10($mine)->count() >= self::LEAD_BELOW && $v10($others)->count() >= self::LEAD_BELOW;
+
+        $names = $b->sortDesc()->take(12)->keys()->merge($a->sortDesc()->take(8)->keys())->unique()
+            ->reject(fn ($s) => str_starts_with($s, 'pet: '));
+        $rows = $names->map(function ($s) use ($a, $b, $norms, $enough) {
+            $x = $a[$s] ?? 0.0;
+            $y = $b[$s] ?? 0.0;
+            $apart = $enough && max($x, $y) >= 0.2 && ($y > 0 ? abs($x - $y) / $y >= 0.35 : $x > 0);
+
+            return [
+                'spell' => $s,
+                'you' => $this->num($x, 1, ''),
+                'others' => $this->num($y, 1, ''),
+                'norm' => isset($norms[$s]['p50']) ? $this->num((float) $norms[$s]['p50'], 1, '') : null,
+                'mark' => $apart ? ($x > $y ? 'more' : 'less') : null,
+                'sort' => $y,
+            ];
+        })->sortByDesc('sort')->values()->all();
+        $icons = $this->icons->for(array_column($rows, 'spell'));
+        foreach ($rows as &$r) {
+            $r['icon'] = ($icons[$r['spell']] ?? null)?->icon_name ? \App\Support\DesktopAsset::icon($icons[$r['spell']]->icon_name) : null;
+            unset($r['sort']);
+        }
+        unset($r);
+
+        // A healer's first casts in their goes: share of the opening casts, yours against theirs.
+        $opening = null;
+        $v16 = fn (Collection $rs) => $rs->filter(fn ($r) => $r['v16'] !== null && $r['v16']['openingGoes'] > 0);
+        if ($mine->first()['healer'] && $v16($mine)->isNotEmpty()) {
+            $share = function (Collection $rs) {
+                $sum = [];
+                foreach ($rs as $r) {
+                    foreach ($r['v16']['opening'] as $s => $n) {
+                        $sum[$s] = ($sum[$s] ?? 0) + $n;
+                    }
+                }
+
+                return ['goes' => $rs->sum(fn ($r) => $r['v16']['openingGoes']), 'casts' => $sum];
+            };
+            $x = $share($v16($mine));
+            $y = $share($v16($others));
+            if ($x['goes'] >= 5) {
+                $spells = collect($x['casts'])->merge($y['casts'])->keys()->unique()
+                    ->sortByDesc(fn ($s) => ($y['casts'][$s] ?? 0) / max(1, $y['goes']) + ($x['casts'][$s] ?? 0) / max(1, $x['goes']))->take(8);
+                $oIcons = $this->icons->for($spells->all());
+                $opening = [
+                    'goes' => $x['goes'],
+                    'theirGoes' => $y['goes'],
+                    'rows' => $spells->map(fn ($s) => [
+                        'spell' => $s,
+                        'icon' => ($oIcons[$s] ?? null)?->icon_name ? \App\Support\DesktopAsset::icon($oIcons[$s]->icon_name) : null,
+                        'you' => $this->pct(($x['casts'][$s] ?? 0) / max(1, $x['goes'])),
+                        'others' => $y['goes'] > 0 ? $this->pct(($y['casts'][$s] ?? 0) / $y['goes']) : null,
+                    ])->values()->all(),
+                ];
+            }
+        }
+
+        return ['rows' => $rows, 'enough' => $enough, 'opening' => $opening];
     }
 
     /**

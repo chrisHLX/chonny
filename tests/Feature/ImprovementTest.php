@@ -172,6 +172,46 @@ class ImprovementTest extends TestCase
         $this->assertStringContainsString('Time not pressing anything Behind other Discipline Priests', $page);
     }
 
+    public function test_behind_says_why_and_the_rotation_says_what_is_pressed(): void
+    {
+        $user = User::factory()->create();
+        foreach (range(1, 10) as $i) {
+            $this->storeRound($user, $i, 16);
+            $round = ArenaRound::where('match_id', "m{$i}")->first();
+            $payload = $round->payload;
+            // Presses and time free to act (version 10): ours 5 Penance and 20 Shadow Word: Pain in 90s
+            // free; theirs 15 Penance in 114s.
+            $payload['analysis']['habits'] = [
+                'P-1' => ['casts' => ['Penance' => 5, 'Shadow Word: Pain' => 20], 'free' => 90, 'kicked' => []],
+                'E-1' => ['casts' => ['Penance' => 15], 'free' => 114, 'kicked' => []],
+            ];
+            // The timeline (version 16): our priest stunned for the first 30s of the minute of Polymorph
+            // on our Hunter, casting three Penance and one Purify in it; theirs free, casting six Purify.
+            $payload['analysis']['timeline'] = [
+                'casts' => [
+                    'P-1' => [[32, 'Penance', 'E-2'], [36, 'Penance', 'E-2'], [40, 'Penance', 'E-2'], [44, 'Purify', 'P-2']],
+                    'E-1' => array_map(fn ($t) => [$t, 'Purify', 'E-2'], [5, 10, 15, 20, 25, 30]),
+                ],
+                'hp' => ['P-1' => array_fill(0, 121, 90), 'E-1' => array_fill(0, 121, 90)],
+                'control' => [['P-1', 'E-2', 'Fear', 'Disorient', 0.0, 30.0]],
+                'defUp' => [],
+            ];
+            $round->update(['payload' => $payload]);
+        }
+
+        $page = $this->text(app(ImprovementService::class)->build($user)['Healz-Realm-US']['html']);
+
+        // Damage: 150k a minute of Penance against 600k, and pressed 3.3 times a free minute against 7.9.
+        $this->assertStringContainsString('Why yours is lower Penance: 150k a minute against 600k for them. You press it 3.3 times a free minute, they press it 7.9.', $page);
+        // Dispels: locked out half the minute of Polymorph; their free time went on Purify.
+        $this->assertStringContainsString('While a debuff you could dispel was on your team, you were locked out 50% of the time, they 0%.', $page);
+        $this->assertStringContainsString('In that time your casts were mostly Penance (75%), Purify (25%). Dispels were 25% of your casts then, 100% of theirs.', $page);
+        // The rotation: presses per minute free, Penance marked.
+        $this->assertStringContainsString('Your rotation', $page);
+        // The third column is the spec's middle player in the norms (the committed or live file).
+        $this->assertMatchesRegularExpression('/Penance 3\.3 7\.9 \S+ you press it less/', $page);
+    }
+
     public function test_deaths_with_a_fitting_defensive_ready_are_counted_across_games(): void
     {
         $user = User::factory()->create();

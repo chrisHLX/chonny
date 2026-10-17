@@ -122,6 +122,20 @@ the desktop and in the Start menu, run this once:
    furthest behind comes first, and the top of the page names it as **your focus**: one habit at
    a time, with its chart. Under 10 games on either side a difference reads as a lead, not a
    finding. The page describes; whether a dispel is worth the global is your call.
+
+   Under a measure that is behind, **why yours is lower** (2026-10-17, analysis version 16): damage
+   and healing by ability (pressed less often, or less per press), how much damage there was to
+   heal, how much of the time something was dispellable you spent locked out and what you cast
+   instead, where your idle time fell (their goes, yours, neither), and how many of your team's goes
+   without your control you began locked out. At the bottom, **your rotation**: presses per ability
+   per minute free to act, against the players met and the spec's middle in every measured game,
+   marked where a third or more apart; for a healer, what you pressed in the first 4 seconds of their
+   goes.
+
+   Each game card also has a **Moments** tab (`GameMomentsService`): crowd control that landed
+   through one of a player's own big defensives and what it cost, crowd control on a teammate in
+   their go that you could dispel, and for a healer, the start of each of their goes (your first
+   casts, your first big defensive, the target's health). Each with a short timeline of the casts.
    `wow:game-cards` writes the pages (`ImprovementService`) and redraws them only when a game
    changed. Dispels and big defensives need analysis version 6 (3 Oct): games synced before then
    need `php artisan wow:sync --skip-ingest --fresh` once.

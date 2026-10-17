@@ -19,6 +19,7 @@
     .muted { color: #B3B3B3; }
     .subtle { color: #6A6A6A; }
     .gold { color: #C8952C; }
+    .warn-text { color: #F28B82; }
     .small { font-size: 12px; }
 
     /* The page's title, on a wash of colour that fades into the page: gold by default, green for a

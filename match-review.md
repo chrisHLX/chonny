@@ -98,6 +98,7 @@ player's side. Its `VERSION` says what a stored round holds:
 | 13 | each death's last ten seconds of damage by ability as well as by player (`deaths[].abilities`), shown under "How it ended" on the card (2026-10-11) |
 | 14 | each death's health a second at a time through the go that killed (`deaths[].hp`, at most 30s) and their healer's lockout in it (`healerLocked`), drawn as a line on the card; the last ten seconds' damage split physical against magic (`deaths[].schools`), which `defensive-fit.json` is judged against (2026-10-12) |
 | 15 | each player's `habits.priority`: the other side's casts worth a kick (`data/kick-priorities`, high and medium, only casts the archive has seen stopped) begun while the player was alive, free, had their kick ready (the spell data's cooldown) and stood within its range (the spell data's, plus 3 yards, from both players' positions under a second old; `far` and `unplaced` are kept but never chances), and whether they stopped it (a Shadow Priest's Silence by its press on the caster mid-cast, since the log writes no interrupt for it; a healer's kick is measured only in rounds they used it), a teammate did, it went through or it was cancelled; interrupts keep the stopped spell's id (2026-10-16). Feeds the Basics line "Casts worth a kick while yours was ready", Improve's "High-priority casts you kicked", the Comps page's "What to kick on them", the norms' `priorityKickShare` and the site's spec guides |
+| 16 | `timeline` (2026-10-17): every player's casts (time, spell, the player it went on), each player's health a second at a time (damage and heal events), every crowd control span, and every defensive-only buff span of 2s or more. Nothing is judged at measure time: **moments** (`GameMomentsService`, each card's Moments tab) and Improve's **"why yours is lower"** and **rotation** read it when a page is drawn, so either can change with only `wow:game-cards` |
 
 | Piece | File | What it decides |
 |---|---|---|
@@ -109,6 +110,8 @@ player's side. Its `VERSION` says what a stored round holds:
 | The loss rules | `MatchAnalysisService::lossItems()`, `FAULT_WEIGHTS` | "worth a look" items. The overlap rule was removed on 2026-10-03 |
 | Difficulty | `GameCardService::difficultyOf()` | harder: their MMR 50+ above yours, or 3+ more Gladiator seasons |
 | Experience | `PlayerExperienceService` | Blizzard profile lookups, cached 7 days; the index keeps older ones |
+| Moments | `GameMomentsService` (version 16) | situations a player would recognise, with what was up, what was pressed and what it cost: control through one of a player's own big defensives (45s+, not team-wide, not a grip), control on a teammate in their go that the player's spec dispels, and a healer's first casts and first big defensive in each of their goes. On each card's Moments tab |
+| Why, and the rotation | `ImprovementService::why()`, `rotation()` | under a measure that is behind: damage and healing by ability (pressed less, or less per press), the damage there was to heal, lockout while something was dispellable and what was cast instead, where idle time fell, lockout as the team's goes started; and presses per ability per free minute against the players met and the spec's norms, with a healer's opening casts in their goes |
 
 ## The data files that decide what is seen
 

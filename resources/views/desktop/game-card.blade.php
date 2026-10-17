@@ -49,6 +49,7 @@
     <div class="tabs">
         <a id="b-summary" onclick="showTab('summary')">Summary</a>
         <a id="b-basics" onclick="showTab('basics')">Basics</a>
+        <a id="b-moments" onclick="showTab('moments')">Moments @if (! empty($g['moments']))<span class="cnt">{{ count($g['moments']) }}</span>@endif</a>
         <a id="b-damage" onclick="showTab('damage')">Damage &amp; healing</a>
         <a id="b-numbers" onclick="showTab('numbers')">Numbers</a>
         <a id="b-notes" onclick="showTab('notes')">Notes @if ($noteCount)<span class="cnt">{{ $noteCount }}</span>@endif</a>
@@ -85,6 +86,10 @@
 
     <div class="tab" id="t-basics">
         @include('desktop.partials.basics', ['b' => $g['basics'] ?? null])
+    </div>
+
+    <div class="tab" id="t-moments">
+        @include('desktop.partials.moments', ['m' => $g['moments'] ?? null])
     </div>
 
     <div class="tab" id="t-damage">
@@ -133,6 +138,7 @@
     <div class="tabs">
         <a id="b-summary" onclick="showTab('summary')">Rounds</a>
         <a id="b-basics" onclick="showTab('basics')">Basics</a>
+        <a id="b-moments" onclick="showTab('moments')">Moments @if (! empty($g['moments']))<span class="cnt">{{ count($g['moments']) }}</span>@endif</a>
         <a id="b-damage" onclick="showTab('damage')">Damage &amp; healing</a>
         <a id="b-notes" onclick="showTab('notes')">Notes @if ($noteCount)<span class="cnt">{{ $noteCount }}</span>@endif</a>
     </div>
@@ -187,6 +193,10 @@
 
     <div class="tab" id="t-basics">
         @include('desktop.partials.basics', ['b' => $g['basics'] ?? null])
+    </div>
+
+    <div class="tab" id="t-moments">
+        @include('desktop.partials.moments', ['m' => $g['moments'] ?? null])
     </div>
 
     <div class="tab" id="t-damage">

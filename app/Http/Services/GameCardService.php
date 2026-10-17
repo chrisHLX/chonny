@@ -38,7 +38,12 @@ class GameCardService
         private MatchAnalysisService $analysis,
         private SpellIconIndex $icons,
         private GameBasicsService $basics,
+        private GameMomentsService $moments,
+        private ImprovementService $improvement,
     ) {}
+
+    /** @var array<string, array<string, true>> spec => what its dispels were seen removing, for the moments */
+    private array $dispellable = [];
 
     /**
      * Each game carries a signature (`sig`) of everything its card is drawn from: its rounds as
@@ -64,6 +69,8 @@ class GameCardService
             ->groupBy('lobby_id');
 
         $names = $lobbies->flatten(1)->flatMap(fn (ArenaRound $r) => array_column($this->payload($r)['analysis']['players'], 'name'))->unique()->values()->all();
+        // What each spec's dispels remove, from every stored round: one definition with Improve.
+        $this->dispellable = $this->improvement->dispellable($lobbies->flatten(1)->map(fn (ArenaRound $r) => $this->payload($r)['analysis'])->all());
         $xp = [];
         foreach ($this->experience->cachedMany($names) as $name => $hit) {
             $hit ??= $remembered[$name] ?? null;
@@ -140,7 +147,8 @@ class GameCardService
     {
         // GameBasicsService and the norms it reads draw the Basics tab, so they redraw it too.
         // The defensive tags sort each death's ready defensives (DefensiveFit), so a tag change redraws.
-        $files = array_merge([__FILE__, app_path('Http/Services/GameBasicsService.php'), \App\Console\Commands\BuildPopulation::normsPath(),
+        // GameMomentsService draws the Moments tab.
+        $files = array_merge([__FILE__, app_path('Http/Services/GameBasicsService.php'), app_path('Http/Services/GameMomentsService.php'), \App\Console\Commands\BuildPopulation::normsPath(),
             app_path('Support/DefensiveFit.php'), DefensiveFit::path()],
             glob(resource_path('views/desktop/*.blade.php')), glob(resource_path('views/desktop/partials/*.blade.php')));
         $files = array_values(array_filter($files, 'file_exists'));
@@ -187,7 +195,35 @@ class GameCardService
             'checks' => $this->checkRows($a['checks'] ?? null, $players),
             'notes' => $this->noteRows($notes[$round->id] ?? [], $round),
             'basics' => $this->basicsModel([$a]),
+            'moments' => $this->momentsModel([[null, $a]]),
         ];
+    }
+
+    /**
+     * The Moments tab: each round's moments (GameMomentsService), with icons. `$rounds` is a list of
+     * [label or null, analysis]; a shuffle labels each moment with its round.
+     */
+    private function momentsModel(array $rounds): ?array
+    {
+        $all = [];
+        $measured = false;
+        foreach ($rounds as [$label, $a]) {
+            $measured = $measured || (($a['version'] ?? 0) >= 16);
+            foreach ($this->moments->forRound($a, $this->dispellable) as $m) {
+                $all[] = $m + ['round' => $label];
+            }
+        }
+        if (! $measured) {
+            return null;
+        }
+        $names = collect($all)->flatMap(fn ($m) => array_merge($m['spells'], array_column($m['steps'], 'spell'), $m['during']['casts'] ?? []))->unique()->values()->all();
+        $icons = $this->icons->for($names);
+
+        // array_merge, not +: the steps are replaced by the same steps with their icons.
+        return array_map(fn ($m) => array_merge($m, [
+            'icons' => array_values(array_filter(array_map(fn ($n) => $this->spellIcon($icons, $n), array_slice($m['spells'], 0, 4)))),
+            'steps' => array_map(fn ($s) => $s + ['icon' => $this->spellIcon($icons, $s['spell'])], $m['steps']),
+        ]), $all);
     }
 
     // ------------------------------------------------------------------ a Solo Shuffle lobby
@@ -240,6 +276,7 @@ class GameCardService
             // The same six players all lobby, so their output adds up across the rounds.
             'breakdown' => $this->breakdownModel($rounds, $roster, teams: false),
             'basics' => $this->basicsModel($rounds->map(fn (ArenaRound $r) => $this->payload($r)['analysis'])->all()),
+            'moments' => $this->momentsModel($rounds->values()->map(fn (ArenaRound $r, $i) => ['Round '.($i + 1), $this->payload($r)['analysis']])->all()),
         ];
     }
 
