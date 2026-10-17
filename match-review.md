@@ -1,8 +1,9 @@
 # Match review and the desktop app
 
-The current work. MindCollector reads each player's own arena games and tells them what to work
-on: a coach for one player, measured against the players they actually meet (the direction set on
-2026-10-02: `VISION.md`, stage 5). This page is the map of that area: what runs where, what is
+The current work. MindCollector reads each player's own arena games and shows what happened in them,
+measured against the players they actually meet (the direction set on 2026-10-02: `VISION.md`, stage
+5). It is a platform for understanding your games first; coaching is a prospect on top (Chriso,
+2026-10-18), so copy does not promise a coach. This page is the map of that area: what runs where, what is
 stored, what to re-run after a change, and which docs hold the detail.
 
 | Doc | Holds |

@@ -18,8 +18,12 @@ that do the job); **clean formatting** (resolved, finished output — no broken 
 placeholder symbols, no `(varies)` or raw formula text, no duplicate spells); **clean data**
 (accurate, current spells, abilities, talents, mechanics).
 
-**Current focus: a coach for one player** (since 2026-10-02). Read each player's own arena games
-against the players they meet, name what to work on, and measure it next session. The work lives
+**Current focus: understanding your own games** (since 2026-10-02, reworded 2026-10-18). Read each
+player's own arena games against the players they meet and show what happened and where they stand.
+Coaching is a prospect built on that, not the claim: Chriso, 2026-10-18, "more a platform for
+understanding your games and then maybe the prospect of some coaching". Where a page does name
+something to work on, it leads with what decides games (damage, defensive use, crowd control;
+`ImprovementService::PRIORITY`), not with whatever gap is largest. The work lives
 in the match review and the desktop app: **`match-review.md`** is its map. Game plans and guides
 remain, as the baseline a player is measured against, and the spell/talent/match-data pipeline
 underneath must stay correct: every read sees a button only through it.

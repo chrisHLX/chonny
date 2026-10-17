@@ -48,8 +48,28 @@ class ImprovementService
     /** Dispels on a long cooldown that would make "could have dispelled" unfair (Cyclone via Mass Dispel). */
     private const NOT_A_ROUTINE_DISPEL = ['Mass Dispel'];
 
-    /** What a game produces rather than something done in it: listed after the habits, focus last. */
-    private const OUTCOMES = ['damage', 'healing'];
+    /**
+     * The order the measures are listed in, and the focus is chosen from: what decides arena games
+     * first (2026-10-18, Chriso: "prioritise the things that actually win games like Damage,
+     * Defensive use and Crowd Control"). The archive agrees where it has measured (norms.json, 1,064
+     * games): damage dealers above their spec's middle on damage won 56% of rounds against 47%;
+     * healers locked out less won 61% against 40%; goes with their healer locked out killed 33%
+     * against 25%, and goes into a spent big defensive 30% against 20%. Dispels have never been set
+     * against wins, so they come last until they are. Positioning would sit beside defensives and
+     * crowd control, but the log has no map to measure it against.
+     *
+     * Until then (since 2026-10-03) the list ran furthest behind first with damage and healing
+     * after every habit, as "what a game produces", which put dispels at the top for most healers.
+     */
+    private const PRIORITY = ['damage', 'ready', 'cover', 'defensives', 'died', 'cc', 'lockout', 'healing', 'priorityKicks', 'kicked', 'idle', 'los', 'dispels'];
+
+    /**
+     * The measures the focus is chosen from: damage, defensive use and crowd control (healing for a
+     * healer). Behind only on the rest, the page says the player is level on what decides games and
+     * lists the smaller gaps instead. A healer's idle time is not among them either way: healers who
+     * idled more won more (54% against 48%), because there was less to heal.
+     */
+    private const DECIDES = ['damage', 'ready', 'cover', 'defensives', 'died', 'cc', 'lockout', 'healing'];
 
     /** "In N of your last 15": the deaths a pattern is read over. */
     private const LAST_DEATHS = 15;
@@ -62,6 +82,9 @@ class ImprovementService
 
     /** @var array<string, true> the spells that count as a dispel, by name */
     private array $dispelSpells = [];
+
+    /** The population norms, read once for the evidence lines. */
+    private ?array $norms = null;
 
     public function __construct(private SpellIconIndex $icons) {}
 
@@ -668,11 +691,16 @@ class ImprovementService
         }
         unset($h);
 
-        // Behind the others first, then level, then ahead; within each, habits before outcomes (the
-        // focus's own rule, so the list never leads with what the focus skips), then the larger gap.
+        // What decides games first (PRIORITY), each with what the archive found about it and wins;
+        // a measure with nothing to set it against goes to the end.
+        $healer = (bool) $mine->first()['healer'];
+        foreach ($habits as &$h) {
+            $h['evidence'] = $this->evidence($h['key'], $healer);
+        }
+        unset($h);
         $order = ['behind' => 0, 'lead' => 1, 'level' => 2, 'ahead' => 3, 'none' => 4];
-        $outcome = fn (array $h) => (int) in_array($h['key'], self::OUTCOMES, true);
-        usort($habits, fn ($x, $y) => [$order[$x['status']], $outcome($x), -abs($x['gap'] ?? 0)] <=> [$order[$y['status']], $outcome($y), -abs($y['gap'] ?? 0)]);
+        $place = fn (array $h) => [(int) ($h['status'] === 'none'), $this->rank($h['key'], $healer), $order[$h['status']]];
+        usort($habits, fn ($x, $y) => $place($x) <=> $place($y));
 
         $won = $mine->where('won', true)->count();
 
@@ -695,6 +723,10 @@ class ImprovementService
                 $mine->where('difficulty', $label)->where('won', false)->count(),
             ]])->filter(fn ($wl) => array_sum($wl) > 0)->all(),
             'habits' => $habits,
+            'healer' => $healer,
+            // Behind on something, but nothing that decides games: named under the focus box.
+            'smallerBehind' => collect($habits)->where('status', 'behind')->reject(fn ($h) => in_array($h['key'], self::DECIDES, true) && ! ($healer && $h['key'] === 'damage'))->pluck('title')->values()->all(),
+            'archiveGames' => $this->norms['games'] ?? null,
             'rotation' => $this->rotation($spec, $mine, $others),
             'focus' => ($focus = $this->focus($habits, (bool) $mine->first()['healer']))
                 ? $focus + ['chartWide' => $this->spark($focus['series'], $focus['ref'], 300, 64)]
@@ -967,16 +999,73 @@ class ImprovementService
 
     /**
      * The one thing to work on: the habit furthest behind the other players of the spec, on
-     * enough games on both sides to trust (a lead never becomes the focus). Damage and healing are
-     * what a game produces, not something done in it, so a habit behind comes first; and a
-     * healer's damage is never the focus, since it falls whenever there is more to heal.
+     * enough games on both sides to trust (a lead never becomes the focus), taken in PRIORITY's
+     * order from DECIDES only: of what decides games most, the first where the player is behind. A healer's damage is
+     * never the focus, since it falls whenever there is more to heal.
      */
     private function focus(array $habits, bool $healer): ?array
     {
-        $behind = collect($habits)->where('status', 'behind')
-            ->reject(fn ($h) => $healer && $h['key'] === 'damage');
+        return collect($habits)->where('status', 'behind')
+            ->filter(fn ($h) => in_array($h['key'], self::DECIDES, true))
+            ->reject(fn ($h) => $healer && $h['key'] === 'damage')
+            ->sortBy(fn ($h) => $this->rank($h['key'], $healer))
+            ->first();
+    }
 
-        return $behind->first(fn ($h) => ! in_array($h['key'], self::OUTCOMES, true)) ?? $behind->first();
+    /** A measure's place in PRIORITY. A healer's damage goes last: it is not what they are there for. */
+    private function rank(string $key, bool $healer): int
+    {
+        if ($healer && $key === 'damage') {
+            return count(self::PRIORITY);
+        }
+        $i = array_search($key, self::PRIORITY, true);
+
+        return $i === false ? count(self::PRIORITY) : $i;
+    }
+
+    /**
+     * What the archive found about a measure and winning, in one line, from the norms' outcome and
+     * evidence tables (wow:population). Each split is the spec's own middle in its own season, both
+     * sides counted; under 20 rounds on either side it says nothing. A correlation, and the page
+     * says so once.
+     */
+    private function evidence(string $key, bool $healer): ?string
+    {
+        $this->norms ??= json_decode((string) @file_get_contents(\App\Console\Commands\BuildPopulation::normsPath()), true) ?: [];
+        $role = $healer ? 'healer' : 'dps';
+        $who = $healer ? 'Healers' : 'Damage dealers';
+        $split = function (string $metric, string $better) use ($role) {
+            $o = $this->norms['outcomes'][$metric][$role] ?? null;
+            $worse = $better === 'above' ? 'below' : 'above';
+
+            return $o && ($o[$better]['n'] ?? 0) >= 20 && ($o[$worse]['n'] ?? 0) >= 20 && $o[$better]['winRate'] !== null && $o[$worse]['winRate'] !== null
+                ? [$this->pct($o[$better]['winRate']), $this->pct($o[$worse]['winRate'])] : null;
+        };
+        $pair = function (string $name) {
+            $e = $this->norms['evidence'][$name] ?? null;
+
+            return $e && ($e['with']['n'] ?? 0) >= 20 && ($e['without']['n'] ?? 0) >= 20 && $e['with']['rate'] !== null && $e['without']['rate'] !== null
+                ? [$this->pct($e['with']['rate']), $this->pct($e['without']['rate'])] : null;
+        };
+        $games = $this->norms['games'] ?? null;
+        if (! $games) {
+            return null;
+        }
+
+        return match ($key) {
+            'damage' => $healer ? null : (($s = $split('damagePerFreeMinute', 'above')) ? "{$who} above their spec's middle on damage won {$s[0]} of rounds, below it {$s[1]}." : null),
+            'lockout' => ($s = $split('lockedShare', 'below')) ? "{$who} locked out less than their spec's middle won {$s[0]} of rounds, more {$s[1]}." : null,
+            'idle' => $healer
+                ? (($s = $split('idleShare', 'above')) ? "Healers idle more than their spec's middle won {$s[0]} of rounds, less {$s[1]}: a healer idles when there is less to heal, so this says more about the pressure than the healer." : null)
+                : (($s = $split('idleShare', 'below')) ? "{$who} idle less than their spec's middle won {$s[0]} of rounds, more {$s[1]}." : null),
+            'healing' => $healer && ($s = $split('healingPerFreeMinute', 'above')) ? "Healers above their spec's middle on healing won {$s[0]} of rounds, below it {$s[1]}: more healing comes with more damage to heal, so this says as much about the pressure as the healer." : null,
+            'cc' => ($s = $pair('healerLockedInPeak')) ? "Goes with their healer locked out or kicked killed {$s[0]} of the time, without {$s[1]}." : null,
+            'cover' => ($s = $pair('theirDefensivesDown')) ? "Goes into a team with a big defensive already spent killed {$s[0]} of the time, into a full set {$s[1]}." : null,
+            'kicked' => ($s = $pair('castsInterrupted')) ? "Rounds where the logging player was kicked often were won {$s[0]}, otherwise {$s[1]}." : null,
+            'los' => ($s = $pair('lineOfSightFailures')) ? "Rounds with many casts blocked by line of sight were won {$s[0]}, otherwise {$s[1]}." : null,
+            'dispels' => 'Not yet set against wins across the archive.',
+            default => null,
+        };
     }
 
     /**

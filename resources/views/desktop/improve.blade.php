@@ -76,7 +76,7 @@
                     @endif
                 </div>
             @endif
-            <div class="small muted" style="margin-top: 6px">One thing at a time: the habit furthest behind the players you meet, on 10+ games on both sides. The detail is below.</div>
+            <div class="small muted" style="margin-top: 6px">One thing at a time: of what decides games most ({{ $m['healer'] ? 'defensives, crowd control, then healing' : 'damage, defensives, then crowd control' }}), the first where you are behind the players you meet, on 10+ games on both sides. The detail is below.</div>
         </td>
         @if ($f['chartWide'])
             <td style="width: 310px; vertical-align: top; padding-left: 12px">
@@ -87,11 +87,16 @@
         @endif
         </tr></table>
     @else
-        <div class="small">Nothing measured puts you behind other {{ $m['spec'] }}s on 10 or more games. Keep playing: the habits below say where you stand.</div>
+        @if (! empty($m['smallerBehind']))
+            <div class="small">On what decides games most ({{ $m['healer'] ? 'defensives, crowd control and healing' : 'damage, defensives and crowd control' }}), you are level with or ahead of other {{ $m['spec'] }}s on 10 or more games.
+                Smaller gaps, lower down: {{ implode(', ', $m['smallerBehind']) }}.</div>
+        @else
+            <div class="small">Nothing measured puts you behind other {{ $m['spec'] }}s on 10 or more games. Keep playing: the habits below say where you stand.</div>
+        @endif
     @endif
 </div>
 
-<div class="label">What to work on <span class="aside">your games against {{ $m['others'] }} other {{ $m['spec'] }}{{ $m['others'] === 1 ? '' : 's' }} in them ({{ $m['otherGames'] }} games, both teams). Furthest behind first.</span></div>
+<div class="label">What to work on <span class="aside">your games against {{ $m['others'] }} other {{ $m['spec'] }}{{ $m['others'] === 1 ? '' : 's' }} in them ({{ $m['otherGames'] }} games, both teams). What decides games first: {{ $m['healer'] ? 'defensives, crowd control, then healing' : 'damage, defensives, then crowd control' }}.</span></div>
 
 @if ($m['v6'] < $m['games'])
     <div class="box small muted" style="margin-bottom: 4px">
@@ -110,6 +115,9 @@
             <span class="chip {{ $c[0] }}">{{ $c[1] }}</span>
         </div>
         <div class="what muted">{{ $h['what'] }}</div>
+        @if (! empty($h['evidence']))
+            <div class="small subtle" style="margin-top: 2px">Across the archive: {{ $h['evidence'] }}</div>
+        @endif
         <table class="nums"><tr>
             <td><div class="k">You</div><div class="v">{{ $h['you'] }}</div><div class="small subtle">{{ $h['youN'] }} game{{ $h['youN'] === 1 ? '' : 's' }}</div></td>
             <td><div class="k">Other {{ $m['spec'] }}s</div><div class="v muted">{{ $h['others'] }}</div><div class="small subtle">{{ $h['othersN'] }} game{{ $h['othersN'] === 1 ? '' : 's' }}</div></td>
@@ -155,6 +163,9 @@
         <div class="caveat">{{ $h['caveat'] }}</div>
     </div>
 @endforeach
+@if ($m['archiveGames'] ?? null)
+<div class="small subtle" style="margin: 4px 0 12px">"Across the archive" lines are every player in {{ number_format($m['archiveGames'] ?? 0) }} recorded games, each set against the middle of their own spec. They show what goes with winning, not what causes it: a team that is winning also has more room to deal damage.</div>
+@endif
 
 @if (! empty($m['rotation']['rows']))
     <div class="label" style="margin-top: 18px">Your rotation <span class="aside">presses per minute you were free to act, against the other {{ $m['spec'] }}s in your games and the middle {{ $m['spec'] }} of every game measured</span></div>

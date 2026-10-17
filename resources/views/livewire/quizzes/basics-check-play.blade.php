@@ -97,7 +97,7 @@
                     <p>
                         Knowing a basic and doing it mid-game are different things.
                         @auth
-                            <a href="{{ route('coach') }}" class="text-gold hover:underline">Your coach</a> shows what you do in your own games.
+                            <a href="{{ route('coach') }}" class="text-gold hover:underline">Your games</a> show what you actually do in them.
                         @else
                             <a href="{{ route('register') }}" class="text-gold hover:underline">Make an account</a> and your games can show what you do.
                         @endauth

@@ -118,9 +118,13 @@ the desktop and in the Start menu, run this once:
    Each shows your number, the others', your last 20 games against the ones before, and a small
    **chart by session** (each day you played, with the other players' level dashed). Your **last
    session** is set against the range of your sessions before it (3+ games each, 3 or more of
-   them): outside it, it is your best or worst session yet; inside, within your usual range. The
-   furthest behind comes first, and the top of the page names it as **your focus**: one habit at
-   a time, with its chart. Under 10 games on either side a difference reads as a lead, not a
+   them): outside it, it is your best or worst session yet; inside, within your usual range. They
+   are listed by what decides games (2026-10-18): damage, then defensive use, then crowd control,
+   with kicks, idle time, line of sight and dispels after; a healer's healing sits with crowd
+   control and their damage goes last. Under each, one line says what the archive found about it
+   and winning (a correlation, from `norms.json`). The top of the page names **your focus**: of
+   damage, defensives and crowd control, the first where you are behind, with its chart. Behind
+   only on the rest, it says you are level on what decides games and names the smaller gaps. Under 10 games on either side a difference reads as a lead, not a
    finding. The page describes; whether a dispel is worth the global is your call.
 
    Under a measure that is behind, **why yours is lower** (2026-10-17, analysis version 16): damage

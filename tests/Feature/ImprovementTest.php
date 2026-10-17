@@ -301,18 +301,36 @@ class ImprovementTest extends TestCase
         $this->assertNull($read([10, 12, 11], true), 'two sessions before it are too few for a range');
     }
 
-    public function test_the_focus_is_a_habit_before_an_outcome_and_never_a_healers_damage(): void
+    public function test_the_focus_is_what_decides_games_first_and_never_a_healers_damage(): void
     {
         $focus = new \ReflectionMethod(ImprovementService::class, 'focus');
         $pick = fn (array $keys, bool $healer) => $focus->invoke(app(ImprovementService::class),
             array_map(fn ($k) => ['key' => $k, 'status' => 'behind'], $keys), $healer)['key'] ?? null;
 
-        // Ordered furthest behind first, as model() sorts them.
-        $this->assertSame('idle', $pick(['damage', 'idle'], true), "a Holy Paladin's damage gap is not the focus");
-        $this->assertSame('idle', $pick(['damage', 'idle'], false), 'a habit comes before an outcome');
-        $this->assertSame('damage', $pick(['damage'], false), "a damage dealer's damage, when nothing else is behind");
+        // Damage, then defensive use, then crowd control, whatever order they arrive in; dispels last.
+        $this->assertSame('damage', $pick(['dispels', 'idle', 'damage'], false), "a damage dealer's damage comes first");
+        $this->assertSame('ready', $pick(['dispels', 'cc', 'ready'], true), 'defensive use before crowd control');
+        $this->assertSame('cc', $pick(['dispels', 'priorityKicks', 'cc'], true), 'crowd control before dispels');
+        // Behind only on what does not decide games: no focus, and the page lists them as smaller gaps.
+        $this->assertNull($pick(['damage', 'idle'], true), "a Holy Paladin's damage gap and idle time are not the focus");
+        $this->assertNull($pick(['dispels', 'priorityKicks'], false));
         $this->assertNull($pick(['damage'], true));
         $this->assertSame('healing', $pick(['damage', 'healing'], true));
+    }
+
+    public function test_the_list_runs_in_order_of_what_decides_games_with_the_archive_beside_each(): void
+    {
+        $rank = new \ReflectionMethod(ImprovementService::class, 'rank');
+        $service = app(ImprovementService::class);
+        $this->assertLessThan($rank->invoke($service, 'dispels', true), $rank->invoke($service, 'cc', true));
+        $this->assertLessThan($rank->invoke($service, 'cover', false), $rank->invoke($service, 'damage', false));
+        $this->assertGreaterThan($rank->invoke($service, 'dispels', true), $rank->invoke($service, 'damage', true), "a healer's damage goes last");
+
+        $evidence = new \ReflectionMethod(ImprovementService::class, 'evidence');
+        $line = $evidence->invoke($service, 'damage', false);
+        $this->assertMatchesRegularExpression("/^Damage dealers above their spec's middle on damage won \\d+% of rounds, below it \\d+%\\.$/", (string) $line);
+        $this->assertNull($evidence->invoke($service, 'damage', true), 'no damage line for a healer');
+        $this->assertSame('Not yet set against wins across the archive.', $evidence->invoke($service, 'dispels', true));
     }
 
     public function test_fewer_than_ten_games_is_a_lead_and_older_games_say_how_to_measure_them(): void

@@ -37,7 +37,7 @@ return [
             'coming' => [
                 ['title' => 'Replay reviews', 'body' => 'Drop in your replays and each game comes back read: your build against the clock, workers and army over time, supply blocks, and where the game was won or lost.'],
                 ['title' => 'Unit and build reference', 'body' => 'Every unit, building and upgrade with its cost, build time and what it beats, taken from the game\'s data rather than written from memory.'],
-                ['title' => 'What to work on', 'body' => 'The same coach as for WoW: measured against the players you actually meet, one thing to fix, checked again next session.'],
+                ['title' => 'Where you stand', 'body' => 'As for WoW: your games set against the players you actually meet, and how each session compares with the ones before.'],
             ],
         ],
         'lol' => [
@@ -50,7 +50,7 @@ return [
             'tagline' => 'Ranked: your own games read the same way, against the players in your matches.',
             'coming' => [
                 ['title' => 'Your games, reviewed', 'body' => 'Each ranked game read for what decided it, measured against the players you actually met.'],
-                ['title' => 'What to work on', 'body' => 'One thing to fix at a time, checked again next session.'],
+                ['title' => 'Where you stand', 'body' => 'Each game set against the players you actually met, session by session.'],
             ],
         ],
     ],
