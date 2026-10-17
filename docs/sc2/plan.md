@@ -1,7 +1,19 @@
 # StarCraft II on MindCollector: where its data comes from, and a first planner
 
-Status: **research, 2026-10-17.** Nothing SC2 is built beyond the `/sc2` page. What it starts with is
-Chriso's call (`VISION.md`, "The platform").
+Status: **research, 2026-10-17. Step 1's data is in (2026-10-18):** `data/sc2/techtree.json` is
+sc2-techtree's extraction at 5.0.14, checked against all ten cost, supply and time changes in
+Blizzard's 5.0.14 notes (all matched), and `data/sc2/roster.json` brings the fields the quizzes use
+up to 5.0.17 from Blizzard's 5.0.15 to 5.0.17 notes (Spire, Viking, Ghost; 5.0.16 changed much
+more and 5.0.17 put it back). `Sc2TechTree` reads both. The first thing built on it is the quizzes
+(`/sc2/quiz`, `App\Quiz\Sc2`); the unit reference pages are next on the same reader. What else
+it starts with is Chriso's call (`VISION.md`, "The platform").
+
+What the extraction gets wrong or leaves out, found while building the quizzes: costs are
+cumulative (a Baneling's includes its Zergling, a Zerg building's its Drone; `Sc2TechTree` takes
+them off); several units have no weapon in it (Battlecruiser, Void Ray, Sentry, Oracle, Carrier,
+Baneling), so "what can it hit" is not asked of them; the Baneling's morph from a Zergling is
+missing (added in `roster.json`); the Ravager's requirement reads as a Hatchery. High Templar and
+Dark Templar build times are not asked until a new extraction settles them.
 
 ## Is there a planner like WoW's?
 

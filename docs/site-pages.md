@@ -115,6 +115,17 @@
   account when signed in, by email otherwise, with a hidden field against scripts; counts on
   `/admin/page-usage`). The sidebar has a game switcher; WoW's menu, its reference pages and its
   training show on WoW's pages only, and a coming game's page shows its own short menu.
+- `/sc2/quiz`, `/sc2/quiz/{race}`, `/sc2/quiz/{race}/level/{level}`, `/sc2/diagnostic` (2026-10-18,
+  Chriso: "do the diagnostic and game quizzes for sc2 so there is some content"). SC2's first
+  content, listed as "Open now" on `/sc2` and in its sidebar (`config/platform.php` `now`,
+  `PlatformController::openNow`). The quizzes run on the shared engine (`QuizService::GAMES['sc2']`,
+  `App\Quiz\Sc2`): four levels per race (costs, supply and time, the tech tree, Light/Armored and
+  what an attack hits), every question built from `data/sc2/techtree.json` (the game's own data
+  at 5.0.14, sc2-techtree, MIT) brought up to 5.0.17 by `data/sc2/roster.json`'s corrections, each
+  from Blizzard's notes. `/sc2/diagnostic` is the learning platform's Commander Profile Assessment
+  (`app.screener_sc2_module_id`) at SC2's own address, so the sidebar stays on SC2; its result now
+  points at the SC2 quizzes. Tracked as `sc2_quiz`, `sc2_quiz_play` (slot `race:level`),
+  `sc2_diagnostic`.
 - `/wow/pvp` and `/wow/pvp/{class}/{spec}` (`SpecPvpController`, 2026-10-16) — the spec guides
   written for search. Each answers what players type into Google ("ret paladin pvp talents",
   "disc priest pvp guide midnight": the autocomplete research is in the commit) with numbers counted

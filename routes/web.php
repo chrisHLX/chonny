@@ -55,6 +55,12 @@ Route::get('/checkout/cancel', fn () => view('checkout.cancel'))->name('checkout
 Route::get('/', [\App\Http\Controllers\PlatformController::class, 'home'])->name('home');
 Route::get('/sc2', [\App\Http\Controllers\PlatformController::class, 'game'])->defaults('game', 'sc2')->name('sc2');
 Route::get('/lol', [\App\Http\Controllers\PlatformController::class, 'game'])->defaults('game', 'lol')->name('lol');
+// StarCraft II's first content (2026-10-18): quizzes built from the game's unit data (App\Quiz\Sc2).
+Route::get('/sc2/quiz/{race}/level/{level}', \App\Livewire\Quizzes\Sc2QuizPlay::class)
+    ->whereIn('race', ['terran', 'protoss', 'zerg'])->whereNumber('level')->name('sc2-quiz.play');
+Route::get('/sc2/quiz/{race?}', \App\Livewire\Quizzes\Sc2QuizIndex::class)
+    ->whereIn('race', ['terran', 'protoss', 'zerg'])->name('sc2-quiz');
+Route::get('/sc2/diagnostic', [\App\Http\Controllers\PlatformController::class, 'diagnostic'])->defaults('game', 'sc2')->name('sc2-diagnostic');
 Route::post('/games/{game}/notify', [\App\Http\Controllers\PlatformController::class, 'notify'])
     ->whereIn('game', ['sc2', 'lol'])->middleware('throttle:10,1,game-notify')->name('game.notify');
 

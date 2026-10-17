@@ -308,7 +308,8 @@ fingerprint; falls back to a live compute when stale (6,964ms/3,042 queries vs 9
 
 `/` MindCollector's home, a card per game (`PlatformController`, `config/platform.php`) · `/wow`
 WoW's home (`Landing`; signed-in players go to `/dashboard`) · `/sc2`, `/lol` coming games, with
-"tell me when it's ready" (`game_interests`) · the sidebar's game switcher shows each game's own menu ·
+"tell me when it's ready" (`game_interests`) · `/sc2/quiz` and `/sc2/diagnostic`, SC2's first content
+(quizzes from the game's unit data, `App\Quiz\Sc2`, `data/sc2/`) · the sidebar's game switcher shows each game's own menu ·
 `/wow/pvp/{class}/{spec}` spec guides written for search · `/wow/comps` (the heaviest page) ·
 `/wow/matchup-lab` · `/wow/coach` (**"Your games"**: the desktop app's pages, uploaded by the app with
 the player's key or from the browser, plus the same-spec reviews at `/wow/game-review/{id?}`;

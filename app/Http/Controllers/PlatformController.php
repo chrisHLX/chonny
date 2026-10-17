@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\GameInterest;
+use App\Models\Module;
 use App\Models\PageViewEvent;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Route;
 
 /**
  * MindCollector as a platform (2026-10-17): the home at / that says what MindCollector is and lets
@@ -33,8 +35,39 @@ class PlatformController extends Controller
             'slug' => $game,
             'game' => $info,
             'games' => config('platform.games'),
+            'now' => self::openNow($game),
             'waiting' => $user !== null && GameInterest::where('game', $game)->where('user_id', $user->id)->exists(),
         ]);
+    }
+
+    /**
+     * The game's playstyle diagnostic at the game's own address (/sc2/diagnostic), so the sidebar
+     * stays on that game. It is the learning platform's diagnostic module named by
+     * app.screener_{game}_module_id, shown exactly as /modules/{slug}/quiz shows it.
+     */
+    public function diagnostic(string $game)
+    {
+        $slug = config("app.screener_{$game}_module_id");
+        $module = $slug ? Module::where('slug', $slug)->first() : null;
+        abort_if($module === null, 404);
+
+        PageViewEvent::log("{$game}_diagnostic");
+
+        return app(ModuleQuizController::class)->show($module);
+    }
+
+    /**
+     * What a coming game already has open (config platform.games.*.now), each with its address:
+     * the game's page and the sidebar both list them.
+     *
+     * @return array<int, array{title: string, body: string, cta: string, url: string}>
+     */
+    public static function openNow(string $game): array
+    {
+        return collect(config("platform.games.{$game}.now", []))
+            ->map(fn (array $n) => $n + ['url' => isset($n['route']) && Route::has($n['route']) ? route($n['route']) : null])
+            ->filter(fn (array $n) => $n['url'] !== null)
+            ->values()->all();
     }
 
     /** "Tell me when it's ready": by the account when signed in, by email otherwise. */

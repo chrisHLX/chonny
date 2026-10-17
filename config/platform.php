@@ -29,6 +29,11 @@ return [
             'icon' => 'badge-sc2',
             'color' => '#3FA7F5',
             'tagline' => 'Ladder: your replays read game by game, and every unit, building and upgrade from the game\'s own data.',
+            // Open already, before the rest (2026-10-18), each at a route of the game's own.
+            'now' => [
+                ['title' => 'Unit and tech quizzes', 'body' => 'Terran, Protoss and Zerg: costs, supply, build times, the tech tree and what each unit can hit, from the game\'s own data.', 'route' => 'sc2-quiz', 'cta' => 'Take a quiz'],
+                ['title' => 'How do you play?', 'body' => 'Thirteen questions about the calls you make on the ladder, and a read on your style. No right answers.', 'route' => 'sc2-diagnostic', 'cta' => 'Start'],
+            ],
             'coming' => [
                 ['title' => 'Replay reviews', 'body' => 'Drop in your replays and each game comes back read: your build against the clock, workers and army over time, supply blocks, and where the game was won or lost.'],
                 ['title' => 'Unit and build reference', 'body' => 'Every unit, building and upgrade with its cost, build time and what it beats, taken from the game\'s data rather than written from memory.'],

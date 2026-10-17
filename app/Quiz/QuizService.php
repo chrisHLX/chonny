@@ -4,6 +4,7 @@ namespace App\Quiz;
 
 use App\Models\QuizAttempt;
 use App\Models\User;
+use App\Quiz\Sc2\Sc2Quiz;
 use App\Quiz\Wow\WowQuiz;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\DB;
@@ -19,6 +20,7 @@ class QuizService
 
     public const GAMES = [
         'wow' => WowQuiz::class,
+        'sc2' => Sc2Quiz::class,
     ];
 
     public function game(string $game): GameQuiz

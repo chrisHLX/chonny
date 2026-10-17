@@ -127,13 +127,20 @@
             Claude
         </a>
         @else
-            {{-- A game that is not open yet: its page, and what is coming. --}}
+            {{-- A game that is not open yet: its page, what is open already, and what is coming. --}}
             @php $g = $navGames[$navGame]; @endphp
             <p class="px-3 pt-2 pb-1 text-[11px] font-bold uppercase tracking-[.12em]" style="color: {{ $g['color'] }}">{{ $g['name'] }}</p>
-            <a href="{{ route($g['route']) }}" wire:navigate class="sidebar-item active">
+            <a href="{{ route($g['route']) }}" wire:navigate class="sidebar-item {{ request()->routeIs($g['route']) ? 'active' : '' }}">
                 <x-mc-icon :name="$g['icon']" class="w-[18px] h-[18px] shrink-0" style="color: {{ $g['color'] }}" />
                 {{ $g['short'] }} home
             </a>
+            @foreach (\App\Http\Controllers\PlatformController::openNow($navGame) as $n)
+                <a href="{{ $n['url'] }}" @if (isset($n['route'])) wire:navigate @endif
+                   class="sidebar-item {{ isset($n['route']) && request()->routeIs($n['route'], $n['route'].'.*') ? 'active' : '' }}">
+                    <span class="w-1.5 h-1.5 rounded-full shrink-0" style="background: {{ $g['color'] }}"></span>
+                    {{ $n['title'] }}
+                </a>
+            @endforeach
             @foreach ($g['coming'] ?? [] as $c)
                 <span class="sidebar-item text-[12px] !text-ink-subtle cursor-default">
                     <span class="w-1 h-1 rounded-full bg-current shrink-0"></span>

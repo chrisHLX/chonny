@@ -38,7 +38,10 @@ class PageUsage extends Component
     private const PAGES = [
         'platform_home' => 'MindCollector home (/)',
         'landing' => 'WoW home (/wow, visitors)',
-        'sc2_home' => 'StarCraft II, coming soon (/sc2)',
+        'sc2_home' => 'StarCraft II home (/sc2)',
+        'sc2_quiz' => 'StarCraft II quizzes (/sc2/quiz)',
+        'sc2_quiz_play' => 'StarCraft II quiz (playing)',
+        'sc2_diagnostic' => 'StarCraft II diagnostic (/sc2/diagnostic)',
         'lol_home' => 'League of Legends, coming soon (/lol)',
         'home' => 'Home (signed-in landing)',
         'friends' => 'Friends',

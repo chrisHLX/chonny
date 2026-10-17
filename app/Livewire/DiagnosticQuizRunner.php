@@ -776,6 +776,12 @@ class DiagnosticQuizRunner extends Component
 
     public function render()
     {
-        return view('livewire.diagnostic-quiz-runner');
+        // After StarCraft II's diagnostic the next thing to do is SC2's own quizzes (2026-10-18),
+        // not the learning platform's module list.
+        $sc2 = config('app.screener_sc2_module_id');
+
+        return view('livewire.diagnostic-quiz-runner', [
+            'nextUrl' => $sc2 && Module::whereKey($this->moduleId)->value('slug') === $sc2 ? route('sc2-quiz') : null,
+        ]);
     }
 }

@@ -1,0 +1,46 @@
+{
+    "_about": "What the SC2 quizzes ask about, read with techtree.json (Sc2TechTree). techtree.json is BurnySc2/sc2-techtree's data_readable.json (MIT), read from the game through Blizzard's API at patch 5.0.14: checked 2026-10-18 against all ten cost, supply and time changes in Blizzard's 5.0.14 notes, every one matching. The live game is 5.0.17. `corrections` brings the fields the quizzes use up to it, each line from Blizzard's own notes. 5.0.16 changed much more (Command Center, Hatchery, Ghost, Gateway times) and 5.0.17 put nearly all of it back; only what is still different from 5.0.14 is listed. Re-extract and empty `corrections` when the next balance patch lands.",
+    "extractedVersion": "5.0.14",
+    "gameVersion": "5.0.17",
+    "races": {
+        "terran": {
+            "name": "Terran",
+            "units": ["SCV", "Marine", "Marauder", "Reaper", "Ghost", "Hellion", "HellionTank", "WidowMine", "SiegeTank", "Cyclone", "Thor", "VikingFighter", "Medivac", "Liberator", "Raven", "Banshee", "Battlecruiser"],
+            "structures": ["CommandCenter", "OrbitalCommand", "PlanetaryFortress", "SupplyDepot", "Refinery", "Barracks", "EngineeringBay", "Bunker", "MissileTurret", "SensorTower", "Factory", "GhostAcademy", "Starport", "Armory", "FusionCore", "BarracksTechLab", "BarracksReactor"]
+        },
+        "protoss": {
+            "name": "Protoss",
+            "units": ["Probe", "Zealot", "Stalker", "Sentry", "Adept", "HighTemplar", "DarkTemplar", "Observer", "WarpPrism", "Immortal", "Colossus", "Disruptor", "Phoenix", "VoidRay", "Oracle", "Tempest", "Carrier", "Mothership"],
+            "structures": ["Nexus", "Pylon", "Assimilator", "Gateway", "Forge", "PhotonCannon", "ShieldBattery", "CyberneticsCore", "TwilightCouncil", "Stargate", "RoboticsFacility", "TemplarArchive", "DarkShrine", "RoboticsBay", "FleetBeacon"]
+        },
+        "zerg": {
+            "name": "Zerg",
+            "units": ["Drone", "Overlord", "Overseer", "Queen", "Zergling", "Baneling", "Roach", "Ravager", "Hydralisk", "LurkerMP", "Infestor", "SwarmHostMP", "Ultralisk", "Mutalisk", "Corruptor", "BroodLord", "Viper"],
+            "structures": ["Hatchery", "Lair", "Hive", "Extractor", "SpawningPool", "EvolutionChamber", "SpineCrawler", "SporeCrawler", "RoachWarren", "BanelingNest", "HydraliskDen", "LurkerDenMP", "InfestationPit", "Spire", "GreaterSpire", "NydusNetwork", "UltraliskCavern"]
+        }
+    },
+    "labels": {
+        "HellionTank": "Hellbat",
+        "VikingFighter": "Viking",
+        "LurkerMP": "Lurker",
+        "SwarmHostMP": "Swarm Host",
+        "LurkerDenMP": "Lurker Den",
+        "BarracksTechLab": "Tech Lab",
+        "BarracksReactor": "Reactor",
+        "SCV": "SCV",
+        "TemplarArchive": "Templar Archives"
+    },
+    "_morphs": "Units the data does not say are morphed from another: Baneling from Zergling, needing a Baneling Nest.",
+    "morphs": {
+        "Baneling": {"from": "Zergling", "needs": "BanelingNest"}
+    },
+    "corrections": [
+        {"name": "Spire", "minerals": 150, "gas": 150, "seconds": 66, "patch": "5.0.15", "source": "https://news.blizzard.com/en-us/article/24225313/starcraft-ii-5-0-15-patch-notes", "note": "150/150 and 66 seconds, from 200/200 and 71"},
+        {"name": "VikingFighter", "minerals": 125, "gas": 75, "patch": "5.0.15", "source": "https://news.blizzard.com/en-us/article/24225313/starcraft-ii-5-0-15-patch-notes", "note": "125/75, from 150/75"},
+        {"name": "Ghost", "supply": 2, "addAttribute": "Light", "patch": "5.0.15, 5.0.16b", "source": "https://news.blizzard.com/en-us/article/24291949/starcraft-ii-5-0-16b-hotfix-patch-notes", "note": "2 supply and Light, from 3 supply; 5.0.16 made it 3 again for a few weeks, and its second hotfix put it back to 2"}
+    ],
+    "_noTime": "Build times not asked: 5.0.16's hotfix moved the High Templar and Dark Templar from 43 to 40 seconds while 5.0.14 has them at 39, and 5.0.17 did not say where they ended. Asked again after the next extraction.",
+    "noTime": ["HighTemplar", "DarkTemplar"],
+    "_noTargets": "Units whose attack changes with a mode: a Viking lands to shoot ground, a Liberator sieges to.",
+    "noTargets": ["VikingFighter", "Liberator"]
+}

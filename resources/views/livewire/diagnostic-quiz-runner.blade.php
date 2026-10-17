@@ -207,10 +207,17 @@
                     <span wire:loading wire:target="retake">Starting…</span>
                 </button>
 
-                <a href="{{ route('modules.index') }}"
-                   class="inline-flex items-center justify-center w-full py-2 text-[13px] font-medium text-ink-subtle hover:text-ink transition-colors">
-                    Browse Guides
-                </a>
+                @if ($nextUrl)
+                    <a href="{{ $nextUrl }}"
+                       class="inline-flex items-center justify-center w-full py-2 text-[13px] font-medium text-ink-subtle hover:text-ink transition-colors">
+                        Try the StarCraft II quizzes
+                    </a>
+                @else
+                    <a href="{{ route('modules.index') }}"
+                       class="inline-flex items-center justify-center w-full py-2 text-[13px] font-medium text-ink-subtle hover:text-ink transition-colors">
+                        Browse Guides
+                    </a>
+                @endif
             </div>
         </div>
 

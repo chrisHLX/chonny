@@ -27,6 +27,8 @@
                         <x-mc-icon :name="$g['icon']" class="w-11 h-11" style="color: {{ $g['color'] }}" />
                         @if ($live)
                             <span class="badge-green">Live</span>
+                        @elseif (! empty($g['now']))
+                            <span class="badge-blue">Quizzes open</span>
                         @else
                             <span class="badge-gray">Coming soon</span>
                         @endif
@@ -38,7 +40,7 @@
                              class="mt-4 w-full rounded-lg border border-line shadow-xl">
                     @endif
                     <span class="mt-4 text-[13px] font-semibold group-hover:underline" style="color: {{ $g['color'] }}">
-                        {{ $live ? 'Open '.$g['short'] : 'See what\'s coming' }} &rarr;
+                        {{ $live ? 'Open '.$g['short'] : (empty($g['now']) ? 'See what\'s coming' : 'Try the quizzes') }} &rarr;
                     </span>
                 </a>
             @endforeach
