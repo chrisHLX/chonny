@@ -181,13 +181,18 @@ classifier the build and the Basics tab share.
 
 **After a `RoundAnalysisService::VERSION` change**, the archive bundle on the server is the old
 version and drops out of the build until replaced (uploads re-measure on their own, as each app
-sends its rounds again). On the PC:
+sends its rounds again). Until it is replaced, the deploy's rebuild holds only the few rounds
+uploaded since; pages keep reading the committed copy while the live one rests on less than half
+its games (`App\Support\LiveOrCommitted`, added after the 17 Oct bump left 30 spec guides at 404
+for ten minutes). So commit the re-measured norms with the change, deploy, then load the bundle at
+once. The bundle's files belong to the queue's user (`christian`), so run the load as that user. On
+the PC:
 
 ```
 php -d memory_limit=3G artisan wow:population --fresh          # re-measure the archive
 php artisan wow:population --bundle=population-archive.jsonl.gz
 # upload it (base64 through prod_ssh.py), then on the server:
-php -d memory_limit=1G artisan wow:population --aggregate --archive=<file> --live
+sudo -u christian php -d memory_limit=1G artisan wow:population --aggregate --archive=<file> --live
 ```
 
 ## The research tools

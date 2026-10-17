@@ -37,21 +37,10 @@ class SpecPages
         return dirname(BuildPopulation::livePath()).'/spec-pages.json';
     }
 
-    /** The newer of the live copy (the server's own builds) and the committed one. */
+    /** The newer of the live copy and the committed one, unless the live one rests on far fewer games (LiveOrCommitted). */
     public static function path(): string
     {
-        $committed = base_path(self::FILE);
-        $live = self::livePath();
-        if (! is_file($live)) {
-            return $committed;
-        }
-        $builtAt = function (string $path): string {
-            $head = (string) @file_get_contents($path, false, null, 0, 300);
-
-            return preg_match('/"builtAt":\s*"([^"]+)"/', $head, $m) ? $m[1] : '';
-        };
-
-        return $builtAt($live) > $builtAt($committed) ? $live : $committed;
+        return LiveOrCommitted::pick(base_path(self::FILE), self::livePath());
     }
 
     /** What load() returns in a test instead of either file (fake()). */

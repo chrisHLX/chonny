@@ -87,23 +87,12 @@ class BuildPopulation extends Command
     }
 
     /**
-     * The norms a page should read: the newer, by `builtAt`, of the live copy and the committed file.
-     * `builtAt` is written first in the file, so this reads a few hundred bytes of each, not 250 KB.
+     * The norms a page should read: the newer, by `builtAt`, of the live copy and the committed file,
+     * unless the live one rests on less than half the games (App\Support\LiveOrCommitted).
      */
     public static function normsPath(): string
     {
-        $committed = base_path(self::NORMS);
-        $live = self::livePath();
-        if (! is_file($live)) {
-            return $committed;
-        }
-        $builtAt = function (string $path): string {
-            $head = (string) @file_get_contents($path, false, null, 0, 400);
-
-            return preg_match('/"builtAt":\s*"([^"]+)"/', $head, $m) ? $m[1] : '';
-        };
-
-        return $builtAt($live) > $builtAt($committed) ? $live : $committed;
+        return \App\Support\LiveOrCommitted::pick(base_path(self::NORMS), self::livePath());
     }
 
     public function handle(ArenaLogService $arena, RoundAnalysisService $analysis): int

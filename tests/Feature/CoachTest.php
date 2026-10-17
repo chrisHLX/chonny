@@ -121,9 +121,10 @@ class CoachTest extends TestCase
         $had = File::exists($live) ? File::get($live) : null;
         try {
             File::ensureDirectoryExists(dirname($live));
-            File::put($live, "{\n    \"builtAt\": \"2000-01-01T00:00:00+00:00\"\n}\n");
+            // With a game count: a live copy on far fewer games than the committed one never wins (LiveOrCommitted).
+            File::put($live, "{\n    \"builtAt\": \"2000-01-01T00:00:00+00:00\",\n    \"games\": 99999\n}\n");
             $this->assertSame($committed, \App\Console\Commands\BuildPopulation::normsPath(), 'an older live copy is ignored');
-            File::put($live, "{\n    \"builtAt\": \"2999-01-01T00:00:00+00:00\"\n}\n");
+            File::put($live, "{\n    \"builtAt\": \"2999-01-01T00:00:00+00:00\",\n    \"games\": 99999\n}\n");
             $this->assertSame($live, \App\Console\Commands\BuildPopulation::normsPath(), 'a newer live copy wins');
         } finally {
             $had === null ? File::delete($live) : File::put($live, $had);
