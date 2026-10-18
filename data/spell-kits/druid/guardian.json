@@ -1,6 +1,6 @@
 {
-    "generatedAt": "2026-10-07T21:48:33+00:00",
-    "spellCacheVersion": 27,
+    "generatedAt": "2026-10-18T02:36:45+00:00",
+    "spellCacheVersion": 29,
     "codeFingerprint": "dev",
     "entries": [
         {
@@ -355,7 +355,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Sharp brambles protect you, absorbing and reflecting up to (varies) damage from each attack. While Barkskin is active, the brambles also deal (varies) Nature damage to all nearby enemies every (varies) sec.",
+                            "text": "Sharp brambles protect you, absorbing and reflecting up to (varies) damage from each attack. While Barkskin is active, the brambles also deal ≈7.5% of Attack Power Nature damage to all nearby enemies every 1 sec.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -371,7 +371,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Sharp brambles protect you, absorbing and reflecting up to (varies) damage from each attack. While Barkskin is active, the brambles also deal (varies) Nature damage to all nearby enemies every (varies) sec.",
+                            "text": "Sharp brambles protect you, absorbing and reflecting up to ≈7.5% of Attack Power damage from each attack. While Barkskin is active, the brambles also deal ≈7.5% of Attack Power Nature damage to all nearby enemies every 1 sec.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -387,8 +387,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "When you use Barkskin or Survival Instincts, absorb (varies) damage for 15.",
-                            "uncertain": true
+                            "text": "When you use Barkskin or Survival Instincts, absorb ≈1,875% of Attack Power damage for 15.",
+                            "uncertain": false
                         },
                         "category": "Defensive",
                         "cooldown": {
@@ -403,8 +403,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "When you use Barkskin or Survival Instincts, absorb (varies) damage for 15.",
-                            "uncertain": true
+                            "text": "When you use Barkskin or Survival Instincts, absorb ≈1,875% of Attack Power damage for 15.",
+                            "uncertain": false
                         },
                         "category": "Defensive",
                         "cooldown": {
@@ -419,7 +419,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Sharp brambles protect you, absorbing and reflecting up to (varies) damage from each attack. While Barkskin is active, the brambles also deal (varies) Nature damage to all nearby enemies every (varies) sec.",
+                            "text": "Sharp brambles protect you, absorbing and reflecting up to ≈25% of Attack Power damage from each attack. While Barkskin is active, the brambles also deal ≈7.5% of Attack Power Nature damage to all nearby enemies every 1 sec.",
                             "uncertain": true
                         },
                         "category": "Defensive",
@@ -484,6 +484,7 @@
                             "charges": null,
                             "max_stacks": null,
                             "proc_chance": null,
+                            "proc_cooldown_seconds": null,
                             "cooldown_seconds": null,
                             "cooldown_scaling_note": null,
                             "duration_seconds": null,
@@ -531,6 +532,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:22:10.000000Z",
@@ -549,6 +551,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:22:10.000000Z",
@@ -567,6 +570,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:22:10.000000Z",
@@ -585,6 +589,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:22:10.000000Z",
@@ -603,6 +608,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:22:10.000000Z",
@@ -621,6 +627,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:22:10.000000Z",
@@ -639,6 +646,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:22:10.000000Z",
@@ -657,6 +665,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:22:10.000000Z",
@@ -675,6 +684,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:22:10.000000Z",
@@ -693,6 +703,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:22:10.000000Z",
@@ -711,6 +722,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:22:10.000000Z",
@@ -729,6 +741,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:22:10.000000Z",
@@ -747,6 +760,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:22:10.000000Z",
@@ -765,6 +779,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:22:10.000000Z",
@@ -783,6 +798,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:22:10.000000Z",
@@ -801,6 +817,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:22:10.000000Z",
@@ -819,6 +836,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:22:10.000000Z",
@@ -837,6 +855,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:22:10.000000Z",
@@ -855,6 +874,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:22:10.000000Z",
@@ -873,6 +893,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:22:10.000000Z",
@@ -891,6 +912,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:22:10.000000Z",
@@ -909,6 +931,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:22:10.000000Z",
@@ -927,6 +950,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:22:10.000000Z",
@@ -945,6 +969,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:22:10.000000Z",
@@ -963,6 +988,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": 1.05,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:22:10.000000Z",
@@ -981,6 +1007,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:22:10.000000Z",
@@ -999,6 +1026,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:22:10.000000Z",
@@ -1017,6 +1045,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:22:10.000000Z",
@@ -1138,8 +1167,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Go Berserk for 15. While Berserk: Generate 1 combo point every (varies) sec. Combo point generating abilities generate 1 additional combo point. Finishing moves restore up to 3 combo points generated over the cap. All attack and ability damage is increased by 15%.",
-                            "uncertain": true
+                            "text": "Go Berserk for 15. While Berserk: Generate 1 combo point every 1.5 sec. Combo point generating abilities generate 1 additional combo point. Finishing moves restore up to 3 combo points generated over the cap. All attack and ability damage is increased by 15%.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -1365,7 +1394,7 @@
             "spellId": 2971,
             "category": "Defensive",
             "description": {
-                "text": "Sharp brambles protect you, absorbing and reflecting up to (varies) damage from each attack. While Barkskin is active, the brambles also deal (varies) Nature damage to all nearby enemies every (varies) sec.",
+                "text": "Sharp brambles protect you, absorbing and reflecting up to ≈25% of Attack Power damage from each attack. While Barkskin is active, the brambles also deal ≈7.5% of Attack Power Nature damage to all nearby enemies every 1 sec.",
                 "uncertain": true
             },
             "formulaModifierSpellIds": [],
@@ -1377,7 +1406,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Sharp brambles protect you, absorbing and reflecting up to (varies) damage from each attack. While Barkskin is active, the brambles also deal (varies) Nature damage to all nearby enemies every (varies) sec.",
+                            "text": "Sharp brambles protect you, absorbing and reflecting up to (varies) damage from each attack. While Barkskin is active, the brambles also deal ≈7.5% of Attack Power Nature damage to all nearby enemies every 1 sec.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -1393,7 +1422,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Sharp brambles protect you, absorbing and reflecting up to (varies) damage from each attack. While Barkskin is active, the brambles also deal (varies) Nature damage to all nearby enemies every (varies) sec.",
+                            "text": "Sharp brambles protect you, absorbing and reflecting up to ≈7.5% of Attack Power damage from each attack. While Barkskin is active, the brambles also deal ≈7.5% of Attack Power Nature damage to all nearby enemies every 1 sec.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -1859,7 +1888,7 @@
             "spellId": 3017,
             "category": "Offensive",
             "description": {
-                "text": "Ravage also inflicts a Bleed that causes (varies) damage over 6 and saps its victims' strength, reducing damage they deal to you by 15%. Dreadful Wound is not affected by Circle of Life and Death. ",
+                "text": "Ravage also inflicts a Bleed that causes ≈100% of Attack Power damage over 6 and saps its victims' strength, reducing damage they deal to you by 15%. Dreadful Wound is not affected by Circle of Life and Death. ",
                 "uncertain": true
             },
             "formulaModifierSpellIds": [],
@@ -1873,7 +1902,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Ravage also inflicts a Bleed that causes (varies) damage over 6 and saps its victims' strength, reducing damage they deal to you by 15%. Dreadful Wound is not affected by Circle of Life and Death. ",
+                            "text": "Ravage also inflicts a Bleed that causes ≈100% of Attack Power damage over 6 and saps its victims' strength, reducing damage they deal to you by 15%. Dreadful Wound is not affected by Circle of Life and Death. ",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -1889,7 +1918,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Ravage also inflicts a Bleed that causes (varies) damage over 6 and saps its victims' strength, reducing damage they deal to you by 15%. Dreadful Wound is not affected by Circle of Life and Death. ",
+                            "text": "Ravage also inflicts a Bleed that causes ≈100% of Attack Power damage over 6 and saps its victims' strength, reducing damage they deal to you by 15%. Dreadful Wound is not affected by Circle of Life and Death. ",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -2518,8 +2547,8 @@
             "spellId": 2865,
             "category": "Defensive",
             "description": {
-                "text": "Heals you for (varies)% health over 3, and increases healing received by 20%.",
-                "uncertain": true
+                "text": "Heals you for 24% health over 3, and increases healing received by 20%.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -2931,6 +2960,7 @@
                             "charges": null,
                             "max_stacks": null,
                             "proc_chance": null,
+                            "proc_cooldown_seconds": null,
                             "cooldown_seconds": null,
                             "cooldown_scaling_note": null,
                             "duration_seconds": null,
@@ -2978,6 +3008,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:22:10.000000Z",
@@ -2996,6 +3027,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:22:10.000000Z",
@@ -3014,6 +3046,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:22:10.000000Z",
@@ -3032,6 +3065,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:22:10.000000Z",
@@ -3050,6 +3084,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:22:10.000000Z",
@@ -3068,6 +3103,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:22:10.000000Z",
@@ -3086,6 +3122,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:22:10.000000Z",
@@ -3104,6 +3141,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:22:10.000000Z",
@@ -3122,6 +3160,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:22:10.000000Z",
@@ -3140,6 +3179,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:22:10.000000Z",
@@ -3158,6 +3198,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:22:10.000000Z",
@@ -3176,6 +3217,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:22:10.000000Z",
@@ -3194,6 +3236,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:22:10.000000Z",
@@ -3212,6 +3255,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:22:10.000000Z",
@@ -3230,6 +3274,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:22:10.000000Z",
@@ -3248,6 +3293,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:22:10.000000Z",
@@ -3266,6 +3312,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:22:10.000000Z",
@@ -3284,6 +3331,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:22:10.000000Z",
@@ -3302,6 +3350,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:22:10.000000Z",
@@ -3320,6 +3369,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:22:10.000000Z",
@@ -3338,6 +3388,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:22:10.000000Z",
@@ -3356,6 +3407,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:22:10.000000Z",
@@ -3374,6 +3426,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:22:10.000000Z",
@@ -3392,6 +3445,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:22:10.000000Z",
@@ -3410,6 +3464,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": 1.05,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:22:10.000000Z",
@@ -3428,6 +3483,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:22:10.000000Z",
@@ -3446,6 +3502,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:22:10.000000Z",
@@ -3464,6 +3521,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:22:10.000000Z",
@@ -3493,6 +3551,7 @@
                             "charges": null,
                             "max_stacks": null,
                             "proc_chance": null,
+                            "proc_cooldown_seconds": null,
                             "cooldown_seconds": null,
                             "cooldown_scaling_note": null,
                             "duration_seconds": null,
@@ -3540,6 +3599,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:22:15.000000Z",
@@ -3558,6 +3618,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:22:15.000000Z",
@@ -4574,8 +4635,8 @@
             "spellId": 2882,
             "category": "Defensive",
             "description": {
-                "text": "Increases armor by (varies) for 7. Multiple uses of this ability may overlap.",
-                "uncertain": true
+                "text": "Increases armor by ≈124% of Agility for 7. Multiple uses of this ability may overlap.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -5216,7 +5277,7 @@
             "spellId": 2976,
             "category": "Offensive",
             "description": {
-                "text": "Summons a beam of lunar light at your target's location, dealing 8 Arcane damage each second to your target and 8 to up to 5 other enemies within (varies) yd. Lunar Beam also increases your mastery by (varies)%, and heals you for 64 over 8 sec.",
+                "text": "Summons a beam of lunar light at your target's location, dealing 8 Arcane damage each second to your target and 8 to up to 5 other enemies within (varies) yd. Lunar Beam also increases your mastery by (varies)%, and heals you for ≈2,800% of Attack Power over 8 sec.",
                 "uncertain": true
             },
             "formulaModifierSpellIds": [],
@@ -5391,7 +5452,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Summons a beam of lunar light at your target's location, dealing 8 Arcane damage each second to your target and 8 to up to 5 other enemies within (varies) yd. Lunar Beam also increases your mastery by (varies)%, and heals you for 64 over (varies) sec.",
+                            "text": "Summons a beam of lunar light at your target's location, dealing 8 Arcane damage each second to your target and 8 to up to 5 other enemies within (varies) yd. Lunar Beam also increases your mastery by (varies)%, and heals you for (varies) over (varies) sec.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -5407,7 +5468,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Summons a beam of lunar light at your target's location, dealing 8 Arcane damage each second to your target and 8 to up to 5 other enemies within 8 yd. Lunar Beam also increases your mastery by (varies)%, and heals you for 64 over (varies) sec.",
+                            "text": "Summons a beam of lunar light at your target's location, dealing 8 Arcane damage each second to your target and 8 to up to 5 other enemies within 8 yd. Lunar Beam also increases your mastery by (varies)%, and heals you for (varies) over (varies) sec.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -5423,7 +5484,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Summons a beam of lunar light at your target's location, dealing 8 Arcane damage each second to your target and 8 to up to 5 other enemies within (varies) yd. Lunar Beam also increases your mastery by (varies)%, and heals you for 64 over (varies) sec.",
+                            "text": "Summons a beam of lunar light at your target's location, dealing 8 Arcane damage each second to your target and 8 to up to 5 other enemies within (varies) yd. Lunar Beam also increases your mastery by (varies)%, and heals you for (varies) over (varies) sec.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -5627,8 +5688,8 @@
             "spellId": 2864,
             "category": "Crowd Control",
             "description": {
-                "text": "Finishing move that causes Physical damage and stuns the target. Damage and duration increased per combo point: 1 point  : (varies) damage, 1 sec 2 points: (varies) damage, 2 sec 3 points: (varies) damage, 3 sec 4 points: (varies) damage, 4 sec 5 points: (varies) damage, 5 sec",
-                "uncertain": true
+                "text": "Finishing move that causes Physical damage and stuns the target. Damage and duration increased per combo point: 1 point  : ≈14.4% of Attack Power damage, 1 sec 2 points: ≈28.8% of Attack Power damage, 2 sec 3 points: ≈43.2% of Attack Power damage, 3 sec 4 points: ≈57.6% of Attack Power damage, 4 sec 5 points: ≈72% of Attack Power damage, 5 sec",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -5655,8 +5716,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Go Berserk for 15. While Berserk: Generate 1 combo point every (varies) sec. Combo point generating abilities generate 1 additional combo point. Finishing moves restore up to 3 combo points generated over the cap. All attack and ability damage is increased by 15%.",
-                            "uncertain": true
+                            "text": "Go Berserk for 15. While Berserk: Generate 1 combo point every 1.5 sec. Combo point generating abilities generate 1 additional combo point. Finishing moves restore up to 3 combo points generated over the cap. All attack and ability damage is increased by 15%.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -5687,7 +5748,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Rake the target for 0.3 Bleed damage and an additional (varies) Bleed damage over 15. While stealthed, Rake will also stun the target for 4 and deal 60% increased damage. While stealthed, Rake will also stun the target for 4 and deal 60% increased damage. Awards 1 combo point.",
+                            "text": "Rake the target for 0.3 Bleed damage and an additional ≈147% of Attack Power Bleed damage over 15. While stealthed, Rake will also stun the target for 4 and deal 60% increased damage. While stealthed, Rake will also stun the target for 4 and deal 60% increased damage. Awards 1 combo point.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -5754,7 +5815,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Strikes all nearby enemies, dealing 10 Arcane damage and an additional (varies) Arcane damage over 15. When applied from Bear Form, this effect can stack up to 3 times. Generates 0 Rage.",
+                            "text": "Strikes all nearby enemies, dealing 10 Arcane damage and an additional ≈32% of Attack Power Arcane damage over 15. When applied from Bear Form, this effect can stack up to 3 times. Generates 0 Rage.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -5945,7 +6006,7 @@
             "spellId": 2090,
             "category": "Offensive",
             "description": {
-                "text": "Mangle the target for (varies) Physical damage. Deals 20% additional damage against bleeding targets. Generates 12 Rage.",
+                "text": "Mangle the target for ≈200% of Attack Power Physical damage. Deals 20% additional damage against bleeding targets. Generates 12 Rage.",
                 "uncertain": true
             },
             "formulaModifierSpellIds": [],
@@ -6249,7 +6310,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Strikes all nearby enemies, dealing 10 Arcane damage and an additional (varies) Arcane damage over 15. When applied from Bear Form, this effect can stack up to 3 times. Generates 0 Rage.",
+                            "text": "Strikes all nearby enemies, dealing 10 Arcane damage and an additional ≈32% of Attack Power Arcane damage over 15. When applied from Bear Form, this effect can stack up to 3 times. Generates 0 Rage.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -6457,7 +6518,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Channel the power of the enraged moon to deal (varies) Arcane damage to your target over 8. Casting Mangle extends its duration by 1 sec and generates 8 Rage.",
+                            "text": "Channel the power of the enraged moon to deal ≈640% of Spell Power Arcane damage to your target over 8. Casting Mangle extends its duration by 1 sec and generates 8 Rage.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -6587,6 +6648,7 @@
                             "charges": null,
                             "max_stacks": null,
                             "proc_chance": null,
+                            "proc_cooldown_seconds": null,
                             "cooldown_seconds": null,
                             "cooldown_scaling_note": null,
                             "duration_seconds": null,
@@ -6634,6 +6696,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:22:15.000000Z",
@@ -6652,6 +6715,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:22:15.000000Z",
@@ -6670,6 +6734,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:22:15.000000Z",
@@ -6818,8 +6883,8 @@
             "spellId": 2899,
             "category": "Defensive",
             "description": {
-                "text": "When you use Barkskin or Survival Instincts, absorb (varies) damage for 15.",
-                "uncertain": true
+                "text": "When you use Barkskin or Survival Instincts, absorb ≈1,875% of Attack Power damage for 15.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -6848,7 +6913,7 @@
             "spellId": 2964,
             "category": "Offensive",
             "description": {
-                "text": "Maul the target for (varies) Physical damage.",
+                "text": "Maul the target for ≈212.5% of Attack Power Physical damage.",
                 "uncertain": true
             },
             "formulaModifierSpellIds": [],
@@ -6988,7 +7053,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Strike with the might of Ursoc, dealing (varies) Physical damage to your target and (varies) to all other enemies in front of you. Damage reduced beyond 5 targets.",
+                            "text": "Strike with the might of Ursoc, dealing ≈212.5% of Attack Power Physical damage to your target and ≈115.6% of Attack Power to all other enemies in front of you. Damage reduced beyond 5 targets.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -7184,7 +7249,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Strikes all nearby enemies, dealing 10 Arcane damage and an additional (varies) Arcane damage over 15. When applied from Bear Form, this effect can stack up to 3 times. Generates 0 Rage.",
+                            "text": "Strikes all nearby enemies, dealing 10 Arcane damage and an additional ≈32% of Attack Power Arcane damage over 15. When applied from Bear Form, this effect can stack up to 3 times. Generates 0 Rage.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -7611,7 +7676,7 @@
             "spellId": 2072,
             "category": "Offensive",
             "description": {
-                "text": "A quick beam of lunar light burns the enemy for ≈21.2% of Spell Power Arcane damage and then an additional (varies) Arcane damage over 18, and causes enemies to deal 1% less damage to you. Hits a second target within 15 yds of the first.",
+                "text": "A quick beam of lunar light burns the enemy for ≈21.2% of Spell Power Arcane damage and then an additional ≈165.6% of Spell Power Arcane damage over 18, and causes enemies to deal 1% less damage to you. Hits a second target within 15 yds of the first.",
                 "uncertain": true
             },
             "formulaModifierSpellIds": [],
@@ -7831,7 +7896,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Moonfire damage has a chance to call down a Fury of Elune to follow your target for 3 sec. Fury of Elune Calls down a beam of pure celestial energy, dealing ≈110% of Spell Power Astral damage over 3 sec within its area. Generates (varies) Rage over its duration.",
+                            "text": "Moonfire damage has a chance to call down a Fury of Elune to follow your target for 3 sec. Fury of Elune Calls down a beam of pure celestial energy, dealing ≈110% of Spell Power Astral damage over 3 sec within its area. Generates 0 Rage over its duration.",
                             "uncertain": true
                         },
                         "category": "Other",
@@ -7931,7 +7996,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Channel the power of the enraged moon to deal (varies) Arcane damage to your target over 8. Casting Mangle extends its duration by 1 sec and generates 8 Rage.",
+                            "text": "Channel the power of the enraged moon to deal ≈640% of Spell Power Arcane damage to your target over 8. Casting Mangle extends its duration by 1 sec and generates 8 Rage.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -8661,7 +8726,7 @@
             "spellId": 2858,
             "category": "Offensive",
             "description": {
-                "text": "Rake the target for 0.3 Bleed damage and an additional (varies) Bleed damage over 15. While stealthed, Rake will also stun the target for 4 and deal 60% increased damage. While stealthed, Rake will also stun the target for 4 and deal 60% increased damage. Awards 1 combo point.",
+                "text": "Rake the target for 0.3 Bleed damage and an additional ≈147% of Attack Power Bleed damage over 15. While stealthed, Rake will also stun the target for 4 and deal 60% increased damage. While stealthed, Rake will also stun the target for 4 and deal 60% increased damage. Awards 1 combo point.",
                 "uncertain": true
             },
             "formulaModifierSpellIds": [],
@@ -8689,8 +8754,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Go Berserk for 15. While Berserk: Generate 1 combo point every (varies) sec. Combo point generating abilities generate 1 additional combo point. Finishing moves restore up to 3 combo points generated over the cap. All attack and ability damage is increased by 15%.",
-                            "uncertain": true
+                            "text": "Go Berserk for 15. While Berserk: Generate 1 combo point every 1.5 sec. Combo point generating abilities generate 1 additional combo point. Finishing moves restore up to 3 combo points generated over the cap. All attack and ability damage is increased by 15%.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -8721,7 +8786,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Rake the target for 0.3 Bleed damage and an additional (varies) Bleed damage over 15. While stealthed, Rake will also stun the target for 4 and deal 60% increased damage. While stealthed, Rake will also stun the target for 4 and deal 60% increased damage. Awards 1 combo point.",
+                            "text": "Rake the target for 0.3 Bleed damage and an additional ≈147% of Attack Power Bleed damage over 15. While stealthed, Rake will also stun the target for 4 and deal 60% increased damage. While stealthed, Rake will also stun the target for 4 and deal 60% increased damage. Awards 1 combo point.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -8833,7 +8898,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Rake the target for 0.3 Bleed damage and an additional (varies) Bleed damage over 15. While stealthed, Rake will also stun the target for 4 and deal 60% increased damage. While stealthed, Rake will also stun the target for 4 and deal 60% increased damage. Awards 1 combo point.",
+                            "text": "Rake the target for 0.3 Bleed damage and an additional ≈147% of Attack Power Bleed damage over 15. While stealthed, Rake will also stun the target for 4 and deal 60% increased damage. While stealthed, Rake will also stun the target for 4 and deal 60% increased damage. Awards 1 combo point.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -8900,7 +8965,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Strikes all nearby enemies, dealing 10 Arcane damage and an additional (varies) Arcane damage over 15. When applied from Bear Form, this effect can stack up to 3 times. Generates 0 Rage.",
+                            "text": "Strikes all nearby enemies, dealing 10 Arcane damage and an additional ≈32% of Attack Power Arcane damage over 15. When applied from Bear Form, this effect can stack up to 3 times. Generates 0 Rage.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -8948,7 +9013,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Ravage also inflicts a Bleed that causes (varies) damage over 6 and saps its victims' strength, reducing damage they deal to you by 15%. Dreadful Wound is not affected by Circle of Life and Death. ",
+                            "text": "Ravage also inflicts a Bleed that causes ≈100% of Attack Power damage over 6 and saps its victims' strength, reducing damage they deal to you by 15%. Dreadful Wound is not affected by Circle of Life and Death. ",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -8980,7 +9045,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Ravage also inflicts a Bleed that causes (varies) damage over 6 and saps its victims' strength, reducing damage they deal to you by 15%. Dreadful Wound is not affected by Circle of Life and Death. ",
+                            "text": "Ravage also inflicts a Bleed that causes ≈100% of Attack Power damage over 6 and saps its victims' strength, reducing damage they deal to you by 15%. Dreadful Wound is not affected by Circle of Life and Death. ",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -9107,7 +9172,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Ravage also inflicts a Bleed that causes (varies) damage over 6 and saps its victims' strength, reducing damage they deal to you by 15%. Dreadful Wound is not affected by Circle of Life and Death. ",
+                            "text": "Ravage also inflicts a Bleed that causes ≈100% of Attack Power damage over 6 and saps its victims' strength, reducing damage they deal to you by 15%. Dreadful Wound is not affected by Circle of Life and Death. ",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -9171,7 +9236,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Ravage also inflicts a Bleed that causes (varies) damage over 6 and saps its victims' strength, reducing damage they deal to you by 15%. Dreadful Wound is not affected by Circle of Life and Death. ",
+                            "text": "Ravage also inflicts a Bleed that causes ≈100% of Attack Power damage over 6 and saps its victims' strength, reducing damage they deal to you by 15%. Dreadful Wound is not affected by Circle of Life and Death. ",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -9235,7 +9300,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Ravage also inflicts a Bleed that causes (varies) damage over 6 and saps its victims' strength, reducing damage they deal to you by 15%. Dreadful Wound is not affected by Circle of Life and Death. ",
+                            "text": "Ravage also inflicts a Bleed that causes ≈100% of Attack Power damage over 6 and saps its victims' strength, reducing damage they deal to you by 15%. Dreadful Wound is not affected by Circle of Life and Death. ",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -9348,7 +9413,7 @@
             "spellId": 2995,
             "category": "Offensive",
             "description": {
-                "text": "Strike with the might of Ursoc, dealing (varies) Physical damage to your target and (varies) to all other enemies in front of you. Damage reduced beyond 5 targets.",
+                "text": "Strike with the might of Ursoc, dealing ≈212.5% of Attack Power Physical damage to your target and ≈115.6% of Attack Power to all other enemies in front of you. Damage reduced beyond 5 targets.",
                 "uncertain": true
             },
             "formulaModifierSpellIds": [],
@@ -9556,7 +9621,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Strikes all nearby enemies, dealing 10 Arcane damage and an additional (varies) Arcane damage over 15. When applied from Bear Form, this effect can stack up to 3 times. Generates 0 Rage.",
+                            "text": "Strikes all nearby enemies, dealing 10 Arcane damage and an additional ≈32% of Attack Power Arcane damage over 15. When applied from Bear Form, this effect can stack up to 3 times. Generates 0 Rage.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -9861,7 +9926,7 @@
             "spellId": 3002,
             "category": "Offensive",
             "description": {
-                "text": "Channel the power of the enraged moon to deal (varies) Arcane damage to your target over 8. Casting Mangle extends its duration by 1 sec and generates 8 Rage.",
+                "text": "Channel the power of the enraged moon to deal ≈640% of Spell Power Arcane damage to your target over 8. Casting Mangle extends its duration by 1 sec and generates 8 Rage.",
                 "uncertain": true
             },
             "formulaModifierSpellIds": [],
@@ -9889,7 +9954,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Summons a beam of lunar light at your target's location, dealing 8 Arcane damage each second to your target and 8 to up to 5 other enemies within (varies) yd. Lunar Beam also increases your mastery by (varies)%, and heals you for 64 over 8 sec.",
+                            "text": "Summons a beam of lunar light at your target's location, dealing 8 Arcane damage each second to your target and 8 to up to 5 other enemies within (varies) yd. Lunar Beam also increases your mastery by (varies)%, and heals you for ≈2,800% of Attack Power over 8 sec.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -10037,7 +10102,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "A quick beam of lunar light burns the enemy for ≈21.2% of Spell Power Arcane damage and then an additional (varies) Arcane damage over 18, and causes enemies to deal 1% less damage to you. Hits a second target within 15 yds of the first.",
+                            "text": "A quick beam of lunar light burns the enemy for ≈21.2% of Spell Power Arcane damage and then an additional ≈165.6% of Spell Power Arcane damage over 18, and causes enemies to deal 1% less damage to you. Hits a second target within 15 yds of the first.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -10406,7 +10471,7 @@
             "spellId": 2856,
             "category": "Defensive",
             "description": {
-                "text": "Heals the target for (varies) over 12.",
+                "text": "Heals the target for ≈369.6% of Spell Power over 12.",
                 "uncertain": true
             },
             "formulaModifierSpellIds": [
@@ -10711,8 +10776,8 @@
             "spellId": 2857,
             "category": "Offensive",
             "description": {
-                "text": "Finishing move that causes Bleed damage over time. Lasts longer per combo point. 1 point  : (varies) over 1.3 sec 2 points: (varies) over 2 sec 3 points: (varies) over 2.7 sec 4 points: (varies) over 3.3 sec 5 points: (varies) over 4 sec",
-                "uncertain": true
+                "text": "Finishing move that causes Bleed damage over time. Lasts longer per combo point. 1 point  : ≈20.8% of Attack Power over 1.3 sec 2 points: ≈31.1% of Attack Power over 2 sec 3 points: ≈41.5% of Attack Power over 2.7 sec 4 points: ≈51.9% of Attack Power over 3.3 sec 5 points: ≈62.3% of Attack Power over 4 sec",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -10739,8 +10804,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Go Berserk for 15. While Berserk: Generate 1 combo point every (varies) sec. Combo point generating abilities generate 1 additional combo point. Finishing moves restore up to 3 combo points generated over the cap. All attack and ability damage is increased by 15%.",
-                            "uncertain": true
+                            "text": "Go Berserk for 15. While Berserk: Generate 1 combo point every 1.5 sec. Combo point generating abilities generate 1 additional combo point. Finishing moves restore up to 3 combo points generated over the cap. All attack and ability damage is increased by 15%.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -10771,7 +10836,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Rake the target for 0.3 Bleed damage and an additional (varies) Bleed damage over 15. While stealthed, Rake will also stun the target for 4 and deal 60% increased damage. While stealthed, Rake will also stun the target for 4 and deal 60% increased damage. Awards 1 combo point.",
+                            "text": "Rake the target for 0.3 Bleed damage and an additional ≈147% of Attack Power Bleed damage over 15. While stealthed, Rake will also stun the target for 4 and deal 60% increased damage. While stealthed, Rake will also stun the target for 4 and deal 60% increased damage. Awards 1 combo point.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -10854,7 +10919,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Strikes all nearby enemies, dealing 10 Arcane damage and an additional (varies) Arcane damage over 15. When applied from Bear Form, this effect can stack up to 3 times. Generates 0 Rage.",
+                            "text": "Strikes all nearby enemies, dealing 10 Arcane damage and an additional ≈32% of Attack Power Arcane damage over 15. When applied from Bear Form, this effect can stack up to 3 times. Generates 0 Rage.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -10902,7 +10967,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Ravage also inflicts a Bleed that causes (varies) damage over 6 and saps its victims' strength, reducing damage they deal to you by 15%. Dreadful Wound is not affected by Circle of Life and Death. ",
+                            "text": "Ravage also inflicts a Bleed that causes ≈100% of Attack Power damage over 6 and saps its victims' strength, reducing damage they deal to you by 15%. Dreadful Wound is not affected by Circle of Life and Death. ",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -10918,7 +10983,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Ravage also inflicts a Bleed that causes (varies) damage over 6 and saps its victims' strength, reducing damage they deal to you by 15%. Dreadful Wound is not affected by Circle of Life and Death. ",
+                            "text": "Ravage also inflicts a Bleed that causes ≈100% of Attack Power damage over 6 and saps its victims' strength, reducing damage they deal to you by 15%. Dreadful Wound is not affected by Circle of Life and Death. ",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -11519,6 +11584,7 @@
                             "charges": null,
                             "max_stacks": null,
                             "proc_chance": null,
+                            "proc_cooldown_seconds": null,
                             "cooldown_seconds": null,
                             "cooldown_scaling_note": null,
                             "duration_seconds": null,
@@ -11566,6 +11632,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:22:15.000000Z",
@@ -11701,7 +11768,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Summons a beam of lunar light at your target's location, dealing 8 Arcane damage each second to your target and 8 to up to 5 other enemies within (varies) yd. Lunar Beam also increases your mastery by (varies)%, and heals you for 64 over 8 sec.",
+                            "text": "Summons a beam of lunar light at your target's location, dealing 8 Arcane damage each second to your target and 8 to up to 5 other enemies within (varies) yd. Lunar Beam also increases your mastery by (varies)%, and heals you for ≈2,800% of Attack Power over 8 sec.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -11864,7 +11931,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "A quick beam of lunar light burns the enemy for ≈21.2% of Spell Power Arcane damage and then an additional (varies) Arcane damage over 18, and causes enemies to deal 1% less damage to you. Hits a second target within 15 yds of the first.",
+                            "text": "A quick beam of lunar light burns the enemy for ≈21.2% of Spell Power Arcane damage and then an additional ≈165.6% of Spell Power Arcane damage over 18, and causes enemies to deal 1% less damage to you. Hits a second target within 15 yds of the first.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -11880,7 +11947,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Strikes all nearby enemies, dealing 10 Arcane damage and an additional (varies) Arcane damage over 15. When applied from Bear Form, this effect can stack up to 3 times. Generates 0 Rage.",
+                            "text": "Strikes all nearby enemies, dealing 10 Arcane damage and an additional ≈32% of Attack Power Arcane damage over 15. When applied from Bear Form, this effect can stack up to 3 times. Generates 0 Rage.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -12195,7 +12262,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Summons a beam of lunar light at your target's location, dealing 8 Arcane damage each second to your target and 8 to up to 5 other enemies within (varies) yd. Lunar Beam also increases your mastery by (varies)%, and heals you for 64 over 8 sec.",
+                            "text": "Summons a beam of lunar light at your target's location, dealing 8 Arcane damage each second to your target and 8 to up to 5 other enemies within (varies) yd. Lunar Beam also increases your mastery by (varies)%, and heals you for ≈2,800% of Attack Power over 8 sec.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -12294,7 +12361,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "A quick beam of lunar light burns the enemy for ≈21.2% of Spell Power Arcane damage and then an additional (varies) Arcane damage over 18, and causes enemies to deal 1% less damage to you. Hits a second target within 15 yds of the first.",
+                            "text": "A quick beam of lunar light burns the enemy for ≈21.2% of Spell Power Arcane damage and then an additional ≈165.6% of Spell Power Arcane damage over 18, and causes enemies to deal 1% less damage to you. Hits a second target within 15 yds of the first.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -12310,7 +12377,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "A quick beam of solar light burns the enemy and all enemies within 8 yards for ≈21.2% of Spell Power Nature damage and then an additional (varies) Nature damage over 18.",
+                            "text": "A quick beam of solar light burns the enemy and all enemies within 8 yards for ≈21.2% of Spell Power Nature damage and then an additional ≈165.6% of Spell Power Nature damage over 18.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -12326,7 +12393,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Strikes all nearby enemies, dealing 10 Arcane damage and an additional (varies) Arcane damage over 15. When applied from Bear Form, this effect can stack up to 3 times. Generates 0 Rage.",
+                            "text": "Strikes all nearby enemies, dealing 10 Arcane damage and an additional ≈32% of Attack Power Arcane damage over 15. When applied from Bear Form, this effect can stack up to 3 times. Generates 0 Rage.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -12599,7 +12666,7 @@
             "spellId": 3006,
             "category": "Offensive",
             "description": {
-                "text": "Roar with earthshattering ferocity, dealing (varies) Physical damage, and resetting the cooldown of Thrash and allowing it to stack 5 additional times for 12. When Sundering Roar ends, any excess stacks of Thrash immediately deal their remaining damage.",
+                "text": "Roar with earthshattering ferocity, dealing ≈280% of Attack Power Physical damage, and resetting the cooldown of Thrash and allowing it to stack 5 additional times for 12. When Sundering Roar ends, any excess stacks of Thrash immediately deal their remaining damage.",
                 "uncertain": true
             },
             "formulaModifierSpellIds": [],
@@ -12743,7 +12810,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Strikes all nearby enemies, dealing 10 Arcane damage and an additional (varies) Arcane damage over 15. When applied from Bear Form, this effect can stack up to 3 times. Generates 0 Rage.",
+                            "text": "Strikes all nearby enemies, dealing 10 Arcane damage and an additional ≈32% of Attack Power Arcane damage over 15. When applied from Bear Form, this effect can stack up to 3 times. Generates 0 Rage.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -12812,7 +12879,7 @@
             "spellId": 2872,
             "category": "Offensive",
             "description": {
-                "text": "A quick beam of solar light burns the enemy and all enemies within 8 yards for ≈21.2% of Spell Power Nature damage and then an additional (varies) Nature damage over 18.",
+                "text": "A quick beam of solar light burns the enemy and all enemies within 8 yards for ≈21.2% of Spell Power Nature damage and then an additional ≈165.6% of Spell Power Nature damage over 18.",
                 "uncertain": true
             },
             "formulaModifierSpellIds": [],
@@ -12919,8 +12986,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "When you use Barkskin or Survival Instincts, absorb (varies) damage for 15.",
-                            "uncertain": true
+                            "text": "When you use Barkskin or Survival Instincts, absorb ≈1,875% of Attack Power damage for 15.",
+                            "uncertain": false
                         },
                         "category": "Defensive",
                         "cooldown": {
@@ -12935,8 +13002,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "When you use Barkskin or Survival Instincts, absorb (varies) damage for 15.",
-                            "uncertain": true
+                            "text": "When you use Barkskin or Survival Instincts, absorb ≈1,875% of Attack Power damage for 15.",
+                            "uncertain": false
                         },
                         "category": "Defensive",
                         "cooldown": {
@@ -12983,6 +13050,7 @@
                             "charges": null,
                             "max_stacks": null,
                             "proc_chance": null,
+                            "proc_cooldown_seconds": null,
                             "cooldown_seconds": null,
                             "cooldown_scaling_note": null,
                             "duration_seconds": null,
@@ -13030,6 +13098,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": "set",
                                     "rank_values": [
                                         -12,
@@ -13051,6 +13120,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": "set",
                                     "rank_values": [
                                         -12,
@@ -13085,6 +13155,7 @@
                             "charges": null,
                             "max_stacks": null,
                             "proc_chance": null,
+                            "proc_cooldown_seconds": null,
                             "cooldown_seconds": null,
                             "cooldown_scaling_note": null,
                             "duration_seconds": null,
@@ -13132,6 +13203,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:22:10.000000Z",
@@ -13150,6 +13222,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:22:10.000000Z",
@@ -13168,6 +13241,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:22:10.000000Z",
@@ -13186,6 +13260,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:22:10.000000Z",
@@ -13204,6 +13279,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:22:10.000000Z",
@@ -13222,6 +13298,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:22:10.000000Z",
@@ -13240,6 +13317,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:22:10.000000Z",
@@ -13258,6 +13336,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:22:10.000000Z",
@@ -13276,6 +13355,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:22:10.000000Z",
@@ -13294,6 +13374,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:22:10.000000Z",
@@ -13312,6 +13393,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:22:10.000000Z",
@@ -13330,6 +13412,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:22:10.000000Z",
@@ -13348,6 +13431,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:22:10.000000Z",
@@ -13366,6 +13450,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:22:10.000000Z",
@@ -13384,6 +13469,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:22:10.000000Z",
@@ -13402,6 +13488,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:22:10.000000Z",
@@ -13420,6 +13507,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:22:10.000000Z",
@@ -13438,6 +13526,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:22:10.000000Z",
@@ -13456,6 +13545,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:22:10.000000Z",
@@ -13474,6 +13564,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:22:10.000000Z",
@@ -13492,6 +13583,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:22:10.000000Z",
@@ -13510,6 +13602,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:22:10.000000Z",
@@ -13528,6 +13621,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:22:10.000000Z",
@@ -13546,6 +13640,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:22:10.000000Z",
@@ -13564,6 +13659,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": 1.05,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:22:10.000000Z",
@@ -13582,6 +13678,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:22:10.000000Z",
@@ -13600,6 +13697,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:22:10.000000Z",
@@ -13618,6 +13716,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:22:10.000000Z",
@@ -13707,7 +13806,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Swipe all nearby enemies, inflicting (varies) Physical damage. Deals reduced damage beyond 5 targets. Applies the Bleed from Thrash. Awards 1 combo point.",
+                            "text": "Swipe all nearby enemies, inflicting ≈112.7% of Attack Power Physical damage. Deals reduced damage beyond 5 targets. Applies the Bleed from Thrash. Awards 1 combo point.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -13739,7 +13838,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Swipe all nearby enemies, inflicting (varies) Physical damage. Deals reduced damage beyond 5 targets.",
+                            "text": "Swipe all nearby enemies, inflicting ≈110% of Attack Power Physical damage. Deals reduced damage beyond 5 targets.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -14009,7 +14108,7 @@
             "spellId": 3031,
             "category": "Other",
             "description": {
-                "text": "Moonfire damage has a chance to call down a Fury of Elune to follow your target for 3 sec. Fury of Elune Calls down a beam of pure celestial energy, dealing ≈110% of Spell Power Astral damage over 3 sec within its area. Generates (varies) Rage over its duration.",
+                "text": "Moonfire damage has a chance to call down a Fury of Elune to follow your target for 3 sec. Fury of Elune Calls down a beam of pure celestial energy, dealing ≈110% of Spell Power Astral damage over 3 sec within its area. Generates 0 Rage over its duration.",
                 "uncertain": true
             },
             "formulaModifierSpellIds": [],
@@ -14069,7 +14168,7 @@
             "spellId": 2131,
             "category": "Offensive",
             "description": {
-                "text": "Strikes all nearby enemies, dealing 10 Arcane damage and an additional (varies) Arcane damage over 15. When applied from Bear Form, this effect can stack up to 3 times. Generates 5 Rage.",
+                "text": "Strikes all nearby enemies, dealing 10 Arcane damage and an additional ≈32% of Attack Power Arcane damage over 15. When applied from Bear Form, this effect can stack up to 3 times. Generates 5 Rage.",
                 "uncertain": true
             },
             "formulaModifierSpellIds": [],
@@ -14113,7 +14212,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Summons a beam of lunar light at your target's location, dealing 8 Arcane damage each second to your target and 8 to up to 5 other enemies within (varies) yd. Lunar Beam also increases your mastery by (varies)%, and heals you for 64 over 8 sec.",
+                            "text": "Summons a beam of lunar light at your target's location, dealing 8 Arcane damage each second to your target and 8 to up to 5 other enemies within (varies) yd. Lunar Beam also increases your mastery by (varies)%, and heals you for ≈2,800% of Attack Power over 8 sec.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -14225,7 +14324,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Swipe all nearby enemies, inflicting (varies) Physical damage. Deals reduced damage beyond 5 targets. Applies the Bleed from Thrash. Awards 1 combo point.",
+                            "text": "Swipe all nearby enemies, inflicting ≈112.7% of Attack Power Physical damage. Deals reduced damage beyond 5 targets. Applies the Bleed from Thrash. Awards 1 combo point.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -14449,7 +14548,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Roar with earthshattering ferocity, dealing (varies) Physical damage, and resetting the cooldown of Thrash and allowing it to stack 5 additional times for 12. When Sundering Roar ends, any excess stacks of Thrash immediately deal their remaining damage.",
+                            "text": "Roar with earthshattering ferocity, dealing ≈280% of Attack Power Physical damage, and resetting the cooldown of Thrash and allowing it to stack 5 additional times for 12. When Sundering Roar ends, any excess stacks of Thrash immediately deal their remaining damage.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -14581,7 +14680,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Strikes all nearby enemies, dealing 10 Arcane damage and an additional (varies) Arcane damage over 15. When applied from Bear Form, this effect can stack up to 3 times. Generates 0 Rage.",
+                            "text": "Strikes all nearby enemies, dealing 10 Arcane damage and an additional ≈32% of Attack Power Arcane damage over 15. When applied from Bear Form, this effect can stack up to 3 times. Generates 0 Rage.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -14645,7 +14744,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Ravage also inflicts a Bleed that causes (varies) damage over 6 and saps its victims' strength, reducing damage they deal to you by 15%. Dreadful Wound is not affected by Circle of Life and Death. ",
+                            "text": "Ravage also inflicts a Bleed that causes ≈100% of Attack Power damage over 6 and saps its victims' strength, reducing damage they deal to you by 15%. Dreadful Wound is not affected by Circle of Life and Death. ",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -14661,7 +14760,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Ravage also inflicts a Bleed that causes (varies) damage over 6 and saps its victims' strength, reducing damage they deal to you by 15%. Dreadful Wound is not affected by Circle of Life and Death. ",
+                            "text": "Ravage also inflicts a Bleed that causes ≈100% of Attack Power damage over 6 and saps its victims' strength, reducing damage they deal to you by 15%. Dreadful Wound is not affected by Circle of Life and Death. ",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -15496,7 +15595,7 @@
             "spellId": 2870,
             "category": "Defensive",
             "description": {
-                "text": "Heals up to 5 injured allies within 30 yards of the target for (varies) over 7. Healing starts high and declines over the duration.",
+                "text": "Heals up to 5 injured allies within 30 yards of the target for ≈336.7% of Spell Power over 7. Healing starts high and declines over the duration.",
                 "uncertain": true
             },
             "formulaModifierSpellIds": [],
@@ -16003,7 +16102,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "A quick beam of solar light burns the enemy and all enemies within 8 yards for ≈21.2% of Spell Power Nature damage and then an additional (varies) Nature damage over 18.",
+                            "text": "A quick beam of solar light burns the enemy and all enemies within 8 yards for ≈21.2% of Spell Power Nature damage and then an additional ≈165.6% of Spell Power Nature damage over 18.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -16019,7 +16118,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Strikes all nearby enemies, dealing 10 Arcane damage and an additional (varies) Arcane damage over 15. When applied from Bear Form, this effect can stack up to 3 times. Generates 0 Rage.",
+                            "text": "Strikes all nearby enemies, dealing 10 Arcane damage and an additional ≈32% of Attack Power Arcane damage over 15. When applied from Bear Form, this effect can stack up to 3 times. Generates 0 Rage.",
                             "uncertain": true
                         },
                         "category": "Offensive",

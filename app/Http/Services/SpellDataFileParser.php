@@ -91,14 +91,14 @@ class SpellDataFileParser
      *     spell_id: int, name: string, school: ?string, description: ?string, description_ref: ?int,
      *     variables: ?string,
      *     class_field: ?string,
-     *     charges: ?int, max_stacks: ?int, proc_chance: ?float, cooldown_seconds: ?float, duration_seconds: ?float, mechanic: ?string, spell_type: ?string, range_yards: ?string, cast_type: string,
+     *     charges: ?int, max_stacks: ?int, proc_chance: ?float, proc_cooldown_seconds: ?float, cooldown_seconds: ?float, duration_seconds: ?float, mechanic: ?string, spell_type: ?string, range_yards: ?string, cast_type: string,
      *     affecting_spells: array<int, array{name: string, effect_index: ?int}>,
      *     category_refs: array<int, array{name: string, effect_index: ?int}>,
      *     replaces_refs: array<int, string>,
      *     free_specs: array<int, string>,
      *     not_in_spellbook: bool,
      *     is_passive: bool,
-     *     effects: array<int, array{effect_index: int, type: ?string, base_value: ?float, scaled_value: ?float, sp_coefficient: ?float, pvp_coefficient: ?float, radius_yards: ?float, chain_targets: ?int, rank_op: ?string, rank_values: ?array<int, float>, modified_by: array<int, array{name: string, effect_index: ?int}>, affects_category: array<int, array{name: string, effect_index: ?int}>}>,
+     *     effects: array<int, array{effect_index: int, type: ?string, base_value: ?float, scaled_value: ?float, sp_coefficient: ?float, pvp_coefficient: ?float, ap_coefficient: ?float, radius_yards: ?float, chain_targets: ?int, rank_op: ?string, rank_values: ?array<int, float>, modified_by: array<int, array{name: string, effect_index: ?int}>, affects_category: array<int, array{name: string, effect_index: ?int}>}>,
      * }>
      */
     public function parseContent(string $content): array
@@ -146,6 +146,7 @@ class SpellDataFileParser
                     'charges' => null,
                     'max_stacks' => null,
                     'proc_chance' => null,
+                    'proc_cooldown_seconds' => null,
                     'cooldown_seconds' => null,
                     'duration_seconds' => null,
                     'mechanic' => null,
@@ -296,6 +297,17 @@ class SpellDataFileParser
             // "Proc Chance : 40%" — what $h means ("has a $h% chance to reset the cooldown").
             // Stored exactly as given; see the 2026_09_24_000002 migration for why the column's
             // odd-looking 101% rows are not a reason to distrust the ones descriptions use.
+            // "Internal Cooldown: 30 seconds" — how often a proc can fire, what "$proccooldown"
+            // asks for (Swift Art: "once every $proccooldown sec"). Stored 2026-10-18.
+            if (preg_match('/^Internal Cooldown\s*:\s*([\d.]+)\s*sec/i', $line, $m)) {
+                $current['proc_cooldown_seconds'] = (float) $m[1];
+                $inEffects = false;
+                $inDescriptionContinuation = false;
+                $inVariablesContinuation = false;
+
+                continue;
+            }
+
             if (preg_match('/^Proc Chance\s*:\s*([\d.]+)\s*%/i', $line, $m)) {
                 $current['proc_chance'] = (float) $m[1];
                 $inEffects = false;
@@ -607,6 +619,7 @@ class SpellDataFileParser
                     'scaled_value' => null,
                     'sp_coefficient' => null,
                     'pvp_coefficient' => null,
+                    'ap_coefficient' => null,
                     'misc_value' => null,
                     'radius_yards' => null,
                     'chain_targets' => null,
@@ -645,6 +658,13 @@ class SpellDataFileParser
 
             if (preg_match('/PvP Coefficient:\s*(-?[\d.]+)/', $line, $m)) {
                 $currentEffect['pvp_coefficient'] = (float) $m[1];
+            }
+
+            // "AP Coefficient: 1.64" — the same thing against Attack Power, for physical and
+            // attack-power-scaled effects (Blood Boil, Death Coil, every melee strike). Captured
+            // 2026-10-18; without it those read "(varies)" where a spell reads "≈N% of Spell Power".
+            if (preg_match('/AP Coefficient:\s*(-?[\d.]+)/', $line, $m)) {
+                $currentEffect['ap_coefficient'] = (float) $m[1];
             }
 
             // "Misc Value: 9" or "Misc Value: 0x7e" — deliberately matched against "Value:"

@@ -1,6 +1,6 @@
 {
-    "generatedAt": "2026-10-07T21:48:49+00:00",
-    "spellCacheVersion": 27,
+    "generatedAt": "2026-10-18T02:37:04+00:00",
+    "spellCacheVersion": 29,
     "codeFingerprint": "dev",
     "entries": [
         {
@@ -1012,7 +1012,7 @@
             "spellId": 8924,
             "category": "Offensive",
             "description": {
-                "text": "Strikes up to (varies) nearby targets for (varies) Physical damage that generates 1 combo point per target, and causes your single target attacks to also strike up to 7 additional nearby enemies for 28% of normal damage for 10.",
+                "text": "Strikes up to (varies) nearby targets for ≈153% of Attack Power Physical damage that generates 1 combo point per target, and causes your single target attacks to also strike up to 7 additional nearby enemies for 28% of normal damage for 10.",
                 "uncertain": true
             },
             "formulaModifierSpellIds": [],
@@ -1120,7 +1120,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Charge to your target with your blades out, dealing (varies) Physical damage to the target and (varies) to all other nearby enemies. Damage reduced beyond (varies) targets. While Blade Flurry is active, damage to non-primary targets is increased by 5%. Generates (varies) Energy over 5.",
+                            "text": "Charge to your target with your blades out, dealing (varies) Physical damage to the target and (varies) to all other nearby enemies. Damage reduced beyond (varies) targets. While Blade Flurry is active, damage to non-primary targets is increased by 5%. Generates 25 Energy over 5.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -1136,7 +1136,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Charge to your target with your blades out, dealing (varies) Physical damage to the target and (varies) to all other nearby enemies. Damage reduced beyond (varies) targets. While Blade Flurry is active, damage to non-primary targets is increased by 5%. Generates (varies) Energy over 5.",
+                            "text": "Charge to your target with your blades out, dealing (varies) Physical damage to the target and (varies) to all other nearby enemies. Damage reduced beyond (varies) targets. While Blade Flurry is active, damage to non-primary targets is increased by 5%. Generates 25 Energy over 5.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -1152,7 +1152,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Charge to your target with your blades out, dealing (varies) Physical damage to the target and (varies) to all other nearby enemies. Damage reduced beyond (varies) targets. While Blade Flurry is active, damage to non-primary targets is increased by 5%. Generates (varies) Energy over 5.",
+                            "text": "Charge to your target with your blades out, dealing (varies) Physical damage to the target and (varies) to all other nearby enemies. Damage reduced beyond (varies) targets. While Blade Flurry is active, damage to non-primary targets is increased by 5%. Generates 25 Energy over 5.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -1200,7 +1200,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Charge to your target with your blades out, dealing (varies) Physical damage to the target and (varies) to all other nearby enemies. Damage reduced beyond (varies) targets. While Blade Flurry is active, damage to non-primary targets is increased by 100%. Generates (varies) Energy over 5.",
+                            "text": "Charge to your target with your blades out, dealing (varies) Physical damage to the target and (varies) to all other nearby enemies. Damage reduced beyond (varies) targets. While Blade Flurry is active, damage to non-primary targets is increased by 100%. Generates 25 Energy over 5.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -1267,7 +1267,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Charge to your target with your blades out, dealing (varies) Physical damage to the target and (varies) to all other nearby enemies. Damage reduced beyond (varies) targets. While Blade Flurry is active, damage to non-primary targets is increased by 441,776%. Generates (varies) Energy over 5.",
+                            "text": "Charge to your target with your blades out, dealing (varies) Physical damage to the target and (varies) to all other nearby enemies. Damage reduced beyond (varies) targets. While Blade Flurry is active, damage to non-primary targets is increased by 441,776%. Generates 25 Energy over 5.",
                             "uncertain": true
                         },
                         "category": "Other",
@@ -1304,7 +1304,7 @@
             "spellId": 9653,
             "category": "Offensive",
             "description": {
-                "text": "Charge to your target with your blades out, dealing (varies) Physical damage to the target and (varies) to all other nearby enemies. Damage reduced beyond (varies) targets. While Blade Flurry is active, damage to non-primary targets is increased by 100%. Generates (varies) Energy over 5.",
+                "text": "Charge to your target with your blades out, dealing (varies) Physical damage to the target and (varies) to all other nearby enemies. Damage reduced beyond (varies) targets. While Blade Flurry is active, damage to non-primary targets is increased by 100%. Generates 25 Energy over 5.",
                 "uncertain": true
             },
             "formulaModifierSpellIds": [],
@@ -1702,7 +1702,7 @@
             "spellId": 9618,
             "category": "Other",
             "description": {
-                "text": "Flipping a Fatebound Coin restores (varies) health.",
+                "text": "Flipping a Fatebound Coin restores ≈30% of Attack Power health.",
                 "uncertain": true
             },
             "formulaModifierSpellIds": [],
@@ -3211,8 +3211,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Taking damage from an area-of-effect attack while Feint is active or dodging while Evasion is active refreshes your opportunity to strike with Unseen Blade. This effect may only occur once every (varies) sec.",
-                            "uncertain": true
+                            "text": "Taking damage from an area-of-effect attack while Feint is active or dodging while Evasion is active refreshes your opportunity to strike with Unseen Blade. This effect may only occur once every 5 sec.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -3523,8 +3523,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Taking damage from an area-of-effect attack while Feint is active or dodging while Evasion is active refreshes your opportunity to strike with Unseen Blade. This effect may only occur once every (varies) sec.",
-                            "uncertain": true
+                            "text": "Taking damage from an area-of-effect attack while Feint is active or dodging while Evasion is active refreshes your opportunity to strike with Unseen Blade. This effect may only occur once every 5 sec.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -3557,6 +3557,7 @@
                             "charges": null,
                             "max_stacks": null,
                             "proc_chance": null,
+                            "proc_cooldown_seconds": null,
                             "cooldown_seconds": null,
                             "cooldown_scaling_note": null,
                             "duration_seconds": null,
@@ -3604,6 +3605,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:23:14.000000Z",
@@ -3880,8 +3882,8 @@
             "spellId": 9632,
             "category": "Other",
             "description": {
-                "text": "Taking damage from an area-of-effect attack while Feint is active or dodging while Evasion is active refreshes your opportunity to strike with Unseen Blade. This effect may only occur once every (varies) sec.",
-                "uncertain": true
+                "text": "Taking damage from an area-of-effect attack while Feint is active or dodging while Evasion is active refreshes your opportunity to strike with Unseen Blade. This effect may only occur once every 5 sec.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -4290,6 +4292,7 @@
                             "charges": null,
                             "max_stacks": null,
                             "proc_chance": null,
+                            "proc_cooldown_seconds": null,
                             "cooldown_seconds": null,
                             "cooldown_scaling_note": null,
                             "duration_seconds": null,
@@ -4337,6 +4340,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:23:14.000000Z",
@@ -4355,6 +4359,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:23:14.000000Z",
@@ -5021,7 +5026,7 @@
             "spellId": 9645,
             "category": "Offensive",
             "description": {
-                "text": "Finishing move that unleashes a barrage of gunfire, striking random enemies within (varies) yards for Physical damage. Number of strikes increased per combo point. Restores (varies) combo points every 0 sec. Each combo point spent above 7 increases damage by 15%. 1 point  : 202 over 0.5 sec 2 points: 303 over 1 sec 3 points: 404 over 1.5 sec 4 points: 505 over 2 sec 5 points: 606 over 2.5 sec$?s193531|((s394320|s394321)&!s193531)[ 6 points: 707 over 3 sec][](varies by condition — check in-game)",
+                "text": "Finishing move that unleashes a barrage of gunfire, striking random enemies within 8 yards for Physical damage. Number of strikes increased per combo point. Restores (varies) combo points every 0.5 sec. Each combo point spent above 7 increases damage by 15%. 1 point  : (varies) over 0.5 sec 2 points: (varies) over 1 sec 3 points: (varies) over 1.5 sec 4 points: (varies) over 2 sec 5 points: (varies) over 2.5 sec$?s193531|((s394320|s394321)&!s193531)[ 6 points: (varies) over 3 sec][](varies by condition — check in-game)",
                 "uncertain": true
             },
             "formulaModifierSpellIds": [],
@@ -5929,8 +5934,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Taking damage from an area-of-effect attack while Feint is active or dodging while Evasion is active refreshes your opportunity to strike with Unseen Blade. This effect may only occur once every (varies) sec.",
-                            "uncertain": true
+                            "text": "Taking damage from an area-of-effect attack while Feint is active or dodging while Evasion is active refreshes your opportunity to strike with Unseen Blade. This effect may only occur once every 5 sec.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -7243,6 +7248,7 @@
                             "charges": null,
                             "max_stacks": null,
                             "proc_chance": null,
+                            "proc_cooldown_seconds": null,
                             "cooldown_seconds": null,
                             "cooldown_scaling_note": null,
                             "duration_seconds": null,
@@ -7290,6 +7296,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:23:14.000000Z",
@@ -7418,6 +7425,7 @@
                                         "charges": null,
                                         "max_stacks": null,
                                         "proc_chance": null,
+                                        "proc_cooldown_seconds": null,
                                         "cooldown_seconds": null,
                                         "cooldown_scaling_note": null,
                                         "duration_seconds": null,
@@ -8433,8 +8441,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Taking damage from an area-of-effect attack while Feint is active or dodging while Evasion is active refreshes your opportunity to strike with Unseen Blade. This effect may only occur once every (varies) sec.",
-                            "uncertain": true
+                            "text": "Taking damage from an area-of-effect attack while Feint is active or dodging while Evasion is active refreshes your opportunity to strike with Unseen Blade. This effect may only occur once every 5 sec.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -8563,6 +8571,7 @@
                             "charges": null,
                             "max_stacks": null,
                             "proc_chance": null,
+                            "proc_cooldown_seconds": null,
                             "cooldown_seconds": null,
                             "cooldown_scaling_note": null,
                             "duration_seconds": null,
@@ -8610,6 +8619,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:23:14.000000Z",

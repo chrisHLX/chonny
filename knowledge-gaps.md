@@ -621,3 +621,7 @@ Arena Kit's descriptions show "(varies)" where the description resolver could no
 Limb's pull interval). Each is already flagged `uncertain` and the page says so under it. Closing it
 is resolver work in the import pipeline (`game-data.md`): find which variable kinds produce most of
 them and compute those from the spell data, then regenerate the kits (rule 21).
+
+**Done the same day: 734 → 311 entries (297 → 140 with a cooldown).** Attack-power coefficients,
+tick intervals, over-time totals, stat-share formulas, proc cooldowns and range now resolve; what is
+left and why is in `game-data.md`, "(varies) halved".

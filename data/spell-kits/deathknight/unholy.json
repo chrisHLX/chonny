@@ -1,6 +1,6 @@
 {
-    "generatedAt": "2026-10-07T21:49:16+00:00",
-    "spellCacheVersion": 27,
+    "generatedAt": "2026-10-18T02:37:34+00:00",
+    "spellCacheVersion": 29,
     "codeFingerprint": "dev",
     "entries": [
         {
@@ -127,13 +127,10 @@
             "spellId": 19,
             "category": "Defensive",
             "description": {
-                "text": "Surrounds you in an Anti-Magic Shell for 5, absorbing up to (varies) magic damage and preventing application of harmful magical effects.",
-                "uncertain": true
+                "text": "Surrounds you in an Anti-Magic Shell for 5, absorbing up to ≈30–48.3% of maximum health magic damage and preventing application of harmful magical effects.",
+                "uncertain": false
             },
-            "formulaModifierSpellIds": [
-                897,
-                922
-            ],
+            "formulaModifierSpellIds": [],
             "modifiers": {
                 "named": [
                     {
@@ -174,7 +171,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Casting Anti-Magic Shell grants (varies) nearby allies a Lesser Anti-Magic Shell that Absorbs up to (varies) magic damage and reduces the duration of harmful Magic effects against them by 50%.",
+                            "text": "Casting Anti-Magic Shell grants (varies) nearby allies a Lesser Anti-Magic Shell that Absorbs up to ≈425% of Attack Power magic damage and reduces the duration of harmful Magic effects against them by 50%.",
                             "uncertain": true
                         },
                         "category": "Other",
@@ -241,8 +238,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Surrounds your target in an Anti-Magic Shell for 5, absorbing up to (varies) magic damage and preventing application of harmful magical effects.",
-                            "uncertain": true
+                            "text": "Surrounds your target in an Anti-Magic Shell for 5, absorbing up to ≈30–48.3% of maximum health magic damage and preventing application of harmful magical effects.",
+                            "uncertain": false
                         },
                         "category": "Defensive",
                         "cooldown": {
@@ -261,6 +258,7 @@
                                         "charges": null,
                                         "max_stacks": null,
                                         "proc_chance": null,
+                                        "proc_cooldown_seconds": null,
                                         "cooldown_seconds": null,
                                         "cooldown_scaling_note": null,
                                         "duration_seconds": null,
@@ -309,8 +307,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Surrounds your target in an Anti-Magic Shell for 5, absorbing up to (varies) magic damage and preventing application of harmful magical effects.",
-                            "uncertain": true
+                            "text": "Surrounds your target in an Anti-Magic Shell for 5, absorbing up to ≈30–48.3% of maximum health magic damage and preventing application of harmful magical effects.",
+                            "uncertain": false
                         },
                         "category": "Defensive",
                         "cooldown": {
@@ -329,6 +327,7 @@
                                         "charges": null,
                                         "max_stacks": null,
                                         "proc_chance": null,
+                                        "proc_cooldown_seconds": null,
                                         "cooldown_seconds": null,
                                         "cooldown_scaling_note": null,
                                         "duration_seconds": null,
@@ -406,6 +405,7 @@
                             "charges": null,
                             "max_stacks": null,
                             "proc_chance": null,
+                            "proc_cooldown_seconds": null,
                             "cooldown_seconds": null,
                             "cooldown_scaling_note": null,
                             "duration_seconds": null,
@@ -453,6 +453,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:21:56.000000Z",
@@ -471,6 +472,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": 0.5,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:21:56.000000Z",
@@ -489,6 +491,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:21:56.000000Z",
@@ -586,6 +589,7 @@
                                         "charges": null,
                                         "max_stacks": null,
                                         "proc_chance": null,
+                                        "proc_cooldown_seconds": null,
                                         "cooldown_seconds": null,
                                         "cooldown_scaling_note": null,
                                         "duration_seconds": null,
@@ -665,6 +669,7 @@
                             "charges": null,
                             "max_stacks": null,
                             "proc_chance": null,
+                            "proc_cooldown_seconds": null,
                             "cooldown_seconds": null,
                             "cooldown_scaling_note": null,
                             "duration_seconds": null,
@@ -712,6 +717,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:21:56.000000Z",
@@ -730,6 +736,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:21:56.000000Z",
@@ -793,7 +800,7 @@
             "spellId": 1027,
             "category": "Offensive",
             "description": {
-                "text": "Summon or empower Lesser Ghouls to form an unholy army of 8 for 30 sec. While active, summoning a Lesser Ghoul will instead execute Orders based on nearby enemies. Death Orders Lesser Ghouls strike with you, dealing (varies) Shadow damage to your target. Epidemic Orders Lesser Ghouls erupt in viscera, dealing (varies) Shadow damage to nearby enemies. Deals reduced damage beyond 5 targets.",
+                "text": "Summon or empower Lesser Ghouls to form an unholy army of 8 for 30 sec. While active, summoning a Lesser Ghoul will instead execute Orders based on nearby enemies. Death Orders Lesser Ghouls strike with you, dealing ≈30% of Attack Power Shadow damage to your target. Epidemic Orders Lesser Ghouls erupt in viscera, dealing (varies) Shadow damage to nearby enemies. Deals reduced damage beyond 5 targets.",
                 "uncertain": true
             },
             "formulaModifierSpellIds": [
@@ -839,7 +846,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Army of the Dead siphons the power of the fallen, transforming Death Coil and Epidemic into Necrotic Coil and Graveyard for 30. Necrotic Coil Unleash a vortex of necrotic energy and bone, dealing 1,242,174 Shadowstrike damage up to 3 foes and 1,242,174 Shadow damage to all pierced enemies. Graveyard The dead erupt beneath all foes with Virulent Plague, dealing 383,269 Shadow damage and (varies) Shadow damage to enemies nearby.",
+                            "text": "Army of the Dead siphons the power of the fallen, transforming Death Coil and Epidemic into Necrotic Coil and Graveyard for 30. Necrotic Coil Unleash a vortex of necrotic energy and bone, dealing 1,242,174 Shadowstrike damage up to 3 foes and 1,242,174 Shadow damage to all pierced enemies. Graveyard The dead erupt beneath all foes with Virulent Plague, dealing 383,269 Shadow damage and ≈52.7% of Attack Power Shadow damage to enemies nearby.",
                             "uncertain": true
                         },
                         "category": "Other",
@@ -887,7 +894,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Army of the Dead siphons the power of the fallen, transforming Death Coil and Epidemic into Necrotic Coil and Graveyard for 30. Necrotic Coil Unleash a vortex of necrotic energy and bone, dealing 1,242,174 Shadowstrike damage up to 3 foes and 1,242,174 Shadow damage to all pierced enemies. Graveyard The dead erupt beneath all foes with Virulent Plague, dealing 383,269 Shadow damage and (varies) Shadow damage to enemies nearby.",
+                            "text": "Army of the Dead siphons the power of the fallen, transforming Death Coil and Epidemic into Necrotic Coil and Graveyard for 30. Necrotic Coil Unleash a vortex of necrotic energy and bone, dealing 1,242,174 Shadowstrike damage up to 3 foes and 1,242,174 Shadow damage to all pierced enemies. Graveyard The dead erupt beneath all foes with Virulent Plague, dealing 383,269 Shadow damage and ≈52.7% of Attack Power Shadow damage to enemies nearby.",
                             "uncertain": true
                         },
                         "category": "Other",
@@ -1413,7 +1420,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Clawing Shadows shatters Trollbane's Chains of Ice when hit, dealing (varies) Shadowfrost damage to nearby enemies, and slowing them by 40% for 4. Deals reduced damage beyond 40 targets.",
+                            "text": "Clawing Shadows shatters Trollbane's Chains of Ice when hit, dealing ≈105.3% of Attack Power Shadowfrost damage to nearby enemies, and slowing them by 40% for 4. Deals reduced damage beyond 40 targets.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -1429,7 +1436,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Spending Runes has a chance to call forth the aid of a Horsemen for 10. Mograine Casts Death and Decay at his location that follows his position and extends the duration of your diseases by 1 sec whenever it deals damage. Whitemane Casts Undeath on your target dealing (varies) Shadowfrost damage per stack every (varies) sec, for 24. Each time Undeath deals damage it gains a stack. Cannot be refreshed. Trollbane Casts Chains of Ice on your target slowing their movement speed by 40% and increasing the damage they take from you by 5% for 8 sec. Nazgrim While Nazgrim is active you gain Apocalyptic Conquest, increasing your Strength by 5%.",
+                            "text": "Spending Runes has a chance to call forth the aid of a Horsemen for 10. Mograine Casts Death and Decay at his location that follows his position and extends the duration of your diseases by 1 sec whenever it deals damage. Whitemane Casts Undeath on your target dealing ≈6.9% of Attack Power Shadowfrost damage per stack every (varies) sec, for 24. Each time Undeath deals damage it gains a stack. Cannot be refreshed. Trollbane Casts Chains of Ice on your target slowing their movement speed by 40% and increasing the damage they take from you by 5% for 8 sec. Nazgrim While Nazgrim is active you gain Apocalyptic Conquest, increasing your Strength by 5%.",
                             "uncertain": true
                         },
                         "category": "Other",
@@ -1445,7 +1452,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Clawing Shadows shatters Trollbane's Chains of Ice when hit, dealing (varies) Shadowfrost damage to nearby enemies, and slowing them by 40% for 4. Deals reduced damage beyond 8 targets.",
+                            "text": "Clawing Shadows shatters Trollbane's Chains of Ice when hit, dealing ≈105.3% of Attack Power Shadowfrost damage to nearby enemies, and slowing them by 40% for 4. Deals reduced damage beyond 8 targets.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -1541,7 +1548,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Clawing Shadows shatters Trollbane's Chains of Ice when hit, dealing (varies) Shadowfrost damage to nearby enemies, and slowing them by 40% for 4. Deals reduced damage beyond 40 targets.",
+                            "text": "Clawing Shadows shatters Trollbane's Chains of Ice when hit, dealing ≈105.3% of Attack Power Shadowfrost damage to nearby enemies, and slowing them by 40% for 4. Deals reduced damage beyond 40 targets.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -1589,7 +1596,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Clawing Shadows shatters Trollbane's Chains of Ice when hit, dealing (varies) Shadowfrost damage to nearby enemies, and slowing them by 40% for 4. Deals reduced damage beyond 8 targets.",
+                            "text": "Clawing Shadows shatters Trollbane's Chains of Ice when hit, dealing ≈105.3% of Attack Power Shadowfrost damage to nearby enemies, and slowing them by 40% for 4. Deals reduced damage beyond 8 targets.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -2247,7 +2254,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Each Lesser Ghoul increases the damage of your permanent Ghoul by 10%, and Dark Transformation additionally empowers the Claw attacks of your Lesser Ghouls to Sweeping Claws. Sweeping Claws Rakes an enemy with deformed claws, dealing (varies) Shadow damage to the target and (varies) Shadow damage to nearby enemies.",
+                            "text": "Each Lesser Ghoul increases the damage of your permanent Ghoul by 10%, and Dark Transformation additionally empowers the Claw attacks of your Lesser Ghouls to Sweeping Claws. Sweeping Claws Rakes an enemy with deformed claws, dealing ≈49.7% of Attack Power Shadow damage to the target and ≈34.3% of Attack Power Shadow damage to nearby enemies.",
                             "uncertain": true
                         },
                         "category": "Other",
@@ -2571,7 +2578,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Spending Runes has a chance to call forth the aid of a Horsemen for 10. Mograine Casts Death and Decay at his location that follows his position and extends the duration of your diseases by 1 sec whenever it deals damage. Whitemane Casts Undeath on your target dealing (varies) Shadowfrost damage per stack every (varies) sec, for 24. Each time Undeath deals damage it gains a stack. Cannot be refreshed. Trollbane Casts Chains of Ice on your target slowing their movement speed by 40% and increasing the damage they take from you by 5% for 8 sec. Nazgrim While Nazgrim is active you gain Apocalyptic Conquest, increasing your Strength by 5%.",
+                            "text": "Spending Runes has a chance to call forth the aid of a Horsemen for 10. Mograine Casts Death and Decay at his location that follows his position and extends the duration of your diseases by 1 sec whenever it deals damage. Whitemane Casts Undeath on your target dealing ≈6.9% of Attack Power Shadowfrost damage per stack every (varies) sec, for 24. Each time Undeath deals damage it gains a stack. Cannot be refreshed. Trollbane Casts Chains of Ice on your target slowing their movement speed by 40% and increasing the damage they take from you by 5% for 8 sec. Nazgrim While Nazgrim is active you gain Apocalyptic Conquest, increasing your Strength by 5%.",
                             "uncertain": true
                         },
                         "category": "Other",
@@ -2763,6 +2770,7 @@
                             "charges": null,
                             "max_stacks": null,
                             "proc_chance": null,
+                            "proc_cooldown_seconds": null,
                             "cooldown_seconds": null,
                             "cooldown_scaling_note": null,
                             "duration_seconds": null,
@@ -2810,6 +2818,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:21:57.000000Z",
@@ -2828,6 +2837,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:21:57.000000Z",
@@ -2846,6 +2856,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:21:57.000000Z",
@@ -2864,6 +2875,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:21:57.000000Z",
@@ -2882,6 +2894,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:21:57.000000Z",
@@ -2912,6 +2925,7 @@
                             "charges": null,
                             "max_stacks": null,
                             "proc_chance": null,
+                            "proc_cooldown_seconds": null,
                             "cooldown_seconds": null,
                             "cooldown_scaling_note": null,
                             "duration_seconds": null,
@@ -2959,6 +2973,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:21:56.000000Z",
@@ -2977,6 +2992,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:21:56.000000Z",
@@ -2995,6 +3011,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:21:56.000000Z",
@@ -3013,6 +3030,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:21:56.000000Z",
@@ -3031,6 +3049,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:21:56.000000Z",
@@ -3156,6 +3175,7 @@
                             "charges": null,
                             "max_stacks": null,
                             "proc_chance": null,
+                            "proc_cooldown_seconds": null,
                             "cooldown_seconds": null,
                             "cooldown_scaling_note": null,
                             "duration_seconds": null,
@@ -3203,6 +3223,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:21:56.000000Z",
@@ -3221,6 +3242,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:21:56.000000Z",
@@ -3239,6 +3261,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:21:56.000000Z",
@@ -3257,6 +3280,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:21:56.000000Z",
@@ -3275,6 +3299,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:21:56.000000Z",
@@ -3299,7 +3324,7 @@
             "spellId": 15,
             "category": "Offensive",
             "description": {
-                "text": "Fires a blast of unholy energy at the target, causing (varies) Shadow damage to an enemy or healing an Undead ally for (varies) health. Extends the duration of Dread Plague and Virulent Plague by 1 sec.",
+                "text": "Fires a blast of unholy energy at the target, causing ≈211.8% of Attack Power Shadow damage to an enemy or healing an Undead ally for ≈463.8% of Attack Power health. Extends the duration of Dread Plague and Virulent Plague by 1 sec.",
                 "uncertain": true
             },
             "formulaModifierSpellIds": [
@@ -3346,7 +3371,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Cause an unholy blast around your permanent Ghoul, dealing 1 Shadow damage to nearby enemies and evolving it into a Monstrosity, greatly empowering its abilities. Death Coil and Epidemic extends the duration of this effect by 1 sec.",
+                            "text": "Cause an unholy blast around your permanent Ghoul, dealing 1 Shadow damage to nearby enemies and evolving it into a Monstrosity, greatly empowering its abilities. Death Coil and Epidemic extends the duration of this effect by ≈88% of Attack Power sec.",
                             "uncertain": false
                         },
                         "category": "Offensive",
@@ -3458,7 +3483,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Army of the Dead siphons the power of the fallen, transforming Death Coil and Epidemic into Necrotic Coil and Graveyard for 30. Necrotic Coil Unleash a vortex of necrotic energy and bone, dealing 1,242,174 Shadowstrike damage up to 3 foes and 1,242,174 Shadow damage to all pierced enemies. Graveyard The dead erupt beneath all foes with Virulent Plague, dealing 383,269 Shadow damage and (varies) Shadow damage to enemies nearby.",
+                            "text": "Army of the Dead siphons the power of the fallen, transforming Death Coil and Epidemic into Necrotic Coil and Graveyard for 30. Necrotic Coil Unleash a vortex of necrotic energy and bone, dealing 1,242,174 Shadowstrike damage up to 3 foes and 1,242,174 Shadow damage to all pierced enemies. Graveyard The dead erupt beneath all foes with Virulent Plague, dealing 383,269 Shadow damage and ≈52.7% of Attack Power Shadow damage to enemies nearby.",
                             "uncertain": true
                         },
                         "category": "Other",
@@ -3618,7 +3643,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Army of the Dead siphons the power of the fallen, transforming Death Coil and Epidemic into Necrotic Coil and Graveyard for 30. Necrotic Coil Unleash a vortex of necrotic energy and bone, dealing 1,242,174 Shadowstrike damage up to 3 foes and 1,242,174 Shadow damage to all pierced enemies. Graveyard The dead erupt beneath all foes with Virulent Plague, dealing 383,269 Shadow damage and (varies) Shadow damage to enemies nearby.",
+                            "text": "Army of the Dead siphons the power of the fallen, transforming Death Coil and Epidemic into Necrotic Coil and Graveyard for 30. Necrotic Coil Unleash a vortex of necrotic energy and bone, dealing 1,242,174 Shadowstrike damage up to 3 foes and 1,242,174 Shadow damage to all pierced enemies. Graveyard The dead erupt beneath all foes with Virulent Plague, dealing 383,269 Shadow damage and ≈52.7% of Attack Power Shadow damage to enemies nearby.",
                             "uncertain": true
                         },
                         "category": "Other",
@@ -3857,6 +3882,7 @@
                             "charges": null,
                             "max_stacks": null,
                             "proc_chance": null,
+                            "proc_cooldown_seconds": null,
                             "cooldown_seconds": null,
                             "cooldown_scaling_note": null,
                             "duration_seconds": null,
@@ -3904,6 +3930,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:21:51.000000Z",
@@ -3922,6 +3949,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:21:51.000000Z",
@@ -3940,6 +3968,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:21:51.000000Z",
@@ -3958,6 +3987,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:21:51.000000Z",
@@ -3976,6 +4006,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:21:51.000000Z",
@@ -3994,6 +4025,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:21:51.000000Z",
@@ -4012,6 +4044,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:21:51.000000Z",
@@ -4030,6 +4063,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:21:51.000000Z",
@@ -4048,6 +4082,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:21:51.000000Z",
@@ -4066,6 +4101,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:21:51.000000Z",
@@ -4084,6 +4120,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:21:51.000000Z",
@@ -4102,6 +4139,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:21:51.000000Z",
@@ -4120,6 +4158,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:21:51.000000Z",
@@ -4138,6 +4177,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:21:51.000000Z",
@@ -4156,6 +4196,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:21:51.000000Z",
@@ -4174,6 +4215,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:21:51.000000Z",
@@ -4192,6 +4234,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:21:51.000000Z",
@@ -4210,6 +4253,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": 0,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:21:51.000000Z",
@@ -4228,6 +4272,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:21:51.000000Z",
@@ -4246,6 +4291,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:21:51.000000Z",
@@ -4264,6 +4310,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-20T05:15:29.000000Z",
@@ -4282,6 +4329,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-20T05:15:29.000000Z",
@@ -4311,6 +4359,7 @@
                             "charges": null,
                             "max_stacks": null,
                             "proc_chance": null,
+                            "proc_cooldown_seconds": null,
                             "cooldown_seconds": null,
                             "cooldown_scaling_note": null,
                             "duration_seconds": null,
@@ -4358,6 +4407,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:21:56.000000Z",
@@ -4376,6 +4426,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:21:56.000000Z",
@@ -4394,6 +4445,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:21:56.000000Z",
@@ -4412,6 +4464,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:21:56.000000Z",
@@ -4430,6 +4483,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:21:56.000000Z",
@@ -4527,6 +4581,7 @@
                             "charges": null,
                             "max_stacks": null,
                             "proc_chance": null,
+                            "proc_cooldown_seconds": null,
                             "cooldown_seconds": null,
                             "cooldown_scaling_note": null,
                             "duration_seconds": null,
@@ -4574,6 +4629,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:21:57.000000Z",
@@ -4592,6 +4648,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:21:57.000000Z",
@@ -4625,7 +4682,7 @@
             "spellId": 893,
             "category": "Offensive",
             "description": {
-                "text": "Focuses dark power into a strike that deals (varies) Physical damage and heals you for 20% of all damage taken in the last 5 sec, minimum 7% of maximum health.",
+                "text": "Focuses dark power into a strike that deals ≈176.1% of Attack Power Physical damage and heals you for 20% of all damage taken in the last 5 sec, minimum 7% of maximum health.",
                 "uncertain": true
             },
             "formulaModifierSpellIds": [],
@@ -5446,7 +5503,7 @@
             "spellId": 1058,
             "category": "Other",
             "description": {
-                "text": "Army of the Dead siphons the power of the fallen, transforming Death Coil and Epidemic into Necrotic Coil and Graveyard for 30. Necrotic Coil Unleash a vortex of necrotic energy and bone, dealing 1,242,174 Shadowstrike damage up to 3 foes and 1,242,174 Shadow damage to all pierced enemies. Graveyard The dead erupt beneath all foes with Virulent Plague, dealing 383,269 Shadow damage and (varies) Shadow damage to enemies nearby.",
+                "text": "Army of the Dead siphons the power of the fallen, transforming Death Coil and Epidemic into Necrotic Coil and Graveyard for 30. Necrotic Coil Unleash a vortex of necrotic energy and bone, dealing 1,242,174 Shadowstrike damage up to 3 foes and 1,242,174 Shadow damage to all pierced enemies. Graveyard The dead erupt beneath all foes with Virulent Plague, dealing 383,269 Shadow damage and ≈52.7% of Attack Power Shadow damage to enemies nearby.",
                 "uncertain": true
             },
             "formulaModifierSpellIds": [],
@@ -6404,6 +6461,7 @@
                             "charges": null,
                             "max_stacks": null,
                             "proc_chance": null,
+                            "proc_cooldown_seconds": null,
                             "cooldown_seconds": null,
                             "cooldown_scaling_note": null,
                             "duration_seconds": null,
@@ -6451,6 +6509,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:21:56.000000Z",
@@ -6469,6 +6528,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:21:56.000000Z",
@@ -6918,7 +6978,7 @@
             "spellId": 1035,
             "category": "Other",
             "description": {
-                "text": "When your Lesser Ghouls expire, they explode in viscera, dealing (varies) Shadow damage to enemies nearby.",
+                "text": "When your Lesser Ghouls expire, they explode in viscera, dealing ≈42% of Attack Power Shadow damage to enemies nearby.",
                 "uncertain": true
             },
             "formulaModifierSpellIds": [
@@ -7010,7 +7070,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Army of the Dead siphons the power of the fallen, transforming Death Coil and Epidemic into Necrotic Coil and Graveyard for 30. Necrotic Coil Unleash a vortex of necrotic energy and bone, dealing 1,242,174 Shadowstrike damage up to 3 foes and 1,242,174 Shadow damage to all pierced enemies. Graveyard The dead erupt beneath all foes with Virulent Plague, dealing 383,269 Shadow damage and (varies) Shadow damage to enemies nearby.",
+                            "text": "Army of the Dead siphons the power of the fallen, transforming Death Coil and Epidemic into Necrotic Coil and Graveyard for 30. Necrotic Coil Unleash a vortex of necrotic energy and bone, dealing 1,242,174 Shadowstrike damage up to 3 foes and 1,242,174 Shadow damage to all pierced enemies. Graveyard The dead erupt beneath all foes with Virulent Plague, dealing 383,269 Shadow damage and ≈52.7% of Attack Power Shadow damage to enemies nearby.",
                             "uncertain": true
                         },
                         "category": "Other",
@@ -7026,7 +7086,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Army of the Dead siphons the power of the fallen, transforming Death Coil and Epidemic into Necrotic Coil and Graveyard for 30. Necrotic Coil Unleash a vortex of necrotic energy and bone, dealing 1,242,174 Shadowstrike damage up to 3 foes and 1,242,174 Shadow damage to all pierced enemies. Graveyard The dead erupt beneath all foes with Virulent Plague, dealing 383,269 Shadow damage and (varies) Shadow damage to enemies nearby.",
+                            "text": "Army of the Dead siphons the power of the fallen, transforming Death Coil and Epidemic into Necrotic Coil and Graveyard for 30. Necrotic Coil Unleash a vortex of necrotic energy and bone, dealing 1,242,174 Shadowstrike damage up to 3 foes and 1,242,174 Shadow damage to all pierced enemies. Graveyard The dead erupt beneath all foes with Virulent Plague, dealing 383,269 Shadow damage and ≈52.7% of Attack Power Shadow damage to enemies nearby.",
                             "uncertain": true
                         },
                         "category": "Other",
@@ -7310,7 +7370,7 @@
             "spellId": 1030,
             "category": "Other",
             "description": {
-                "text": "Inflicts the target with Dread Plague and Virulent Plague. Dread Plague A malicious plague that deals (varies) Shadow damage over 24. Explodes for (varies) Shadow damage to nearby enemies and infects one when the host dies. Can only be applied to 1 host at a time. Virulent Plague An infectious plague that spreads to all nearby enemies, dealing (varies) Shadow damage over 24.",
+                "text": "Inflicts the target with Dread Plague and Virulent Plague. Dread Plague A malicious plague that deals (varies) Shadow damage over 24. Explodes for ≈184.5% of Attack Power Shadow damage to nearby enemies and infects one when the host dies. Can only be applied to 1 host at a time. Virulent Plague An infectious plague that spreads to all nearby enemies, dealing (varies) Shadow damage over 24.",
                 "uncertain": true
             },
             "formulaModifierSpellIds": [],
@@ -7439,7 +7499,7 @@
             "spellId": 1055,
             "category": "Other",
             "description": {
-                "text": "Each Lesser Ghoul increases the damage of your permanent Ghoul by 10%, and Dark Transformation additionally empowers the Claw attacks of your Lesser Ghouls to Sweeping Claws. Sweeping Claws Rakes an enemy with deformed claws, dealing (varies) Shadow damage to the target and (varies) Shadow damage to nearby enemies.",
+                "text": "Each Lesser Ghoul increases the damage of your permanent Ghoul by 10%, and Dark Transformation additionally empowers the Claw attacks of your Lesser Ghouls to Sweeping Claws. Sweeping Claws Rakes an enemy with deformed claws, dealing ≈49.7% of Attack Power Shadow damage to the target and ≈34.3% of Attack Power Shadow damage to nearby enemies.",
                 "uncertain": true
             },
             "formulaModifierSpellIds": [],
@@ -7846,6 +7906,7 @@
                             "charges": null,
                             "max_stacks": null,
                             "proc_chance": null,
+                            "proc_cooldown_seconds": null,
                             "cooldown_seconds": null,
                             "cooldown_scaling_note": null,
                             "duration_seconds": null,
@@ -7893,6 +7954,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:21:57.000000Z",
@@ -7911,6 +7973,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:21:57.000000Z",
@@ -7929,6 +7992,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:21:57.000000Z",
@@ -8124,7 +8188,7 @@
             "spellId": 992,
             "category": "Other",
             "description": {
-                "text": "Spending Runes has a chance to call forth the aid of a Horsemen for 10. Mograine Casts Death and Decay at his location that follows his position and extends the duration of your diseases by 1 sec whenever it deals damage. Whitemane Casts Undeath on your target dealing (varies) Shadowfrost damage per stack every (varies) sec, for 24. Each time Undeath deals damage it gains a stack. Cannot be refreshed. Trollbane Casts Chains of Ice on your target slowing their movement speed by 40% and increasing the damage they take from you by 5% for 8 sec. Nazgrim While Nazgrim is active you gain Apocalyptic Conquest, increasing your Strength by 5%.",
+                "text": "Spending Runes has a chance to call forth the aid of a Horsemen for 10. Mograine Casts Death and Decay at his location that follows his position and extends the duration of your diseases by 1 sec whenever it deals damage. Whitemane Casts Undeath on your target dealing ≈6.9% of Attack Power Shadowfrost damage per stack every (varies) sec, for 24. Each time Undeath deals damage it gains a stack. Cannot be refreshed. Trollbane Casts Chains of Ice on your target slowing their movement speed by 40% and increasing the damage they take from you by 5% for 8 sec. Nazgrim While Nazgrim is active you gain Apocalyptic Conquest, increasing your Strength by 5%.",
                 "uncertain": true
             },
             "formulaModifierSpellIds": [],
@@ -8304,7 +8368,7 @@
             "spellId": 1029,
             "category": "Offensive",
             "description": {
-                "text": "An unholy strike that deals (varies) Shadow damage and causing your plagues on the target to erupt, dealing their damage an additional time at 35% effectiveness. Applies Virulent Plague or spreads it to a nearby enemy.",
+                "text": "An unholy strike that deals ≈135% of Attack Power Shadow damage and causing your plagues on the target to erupt, dealing their damage an additional time at 35% effectiveness. Applies Virulent Plague or spreads it to a nearby enemy.",
                 "uncertain": true
             },
             "formulaModifierSpellIds": [],
@@ -8412,7 +8476,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Clawing Shadows shatters Trollbane's Chains of Ice when hit, dealing (varies) Shadowfrost damage to nearby enemies, and slowing them by 40% for 4. Deals reduced damage beyond 40 targets.",
+                            "text": "Clawing Shadows shatters Trollbane's Chains of Ice when hit, dealing ≈105.3% of Attack Power Shadowfrost damage to nearby enemies, and slowing them by 40% for 4. Deals reduced damage beyond 40 targets.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -8508,7 +8572,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Clawing Shadows shatters Trollbane's Chains of Ice when hit, dealing (varies) Shadowfrost damage to nearby enemies, and slowing them by 40% for 4. Deals reduced damage beyond 8 targets.",
+                            "text": "Clawing Shadows shatters Trollbane's Chains of Ice when hit, dealing ≈105.3% of Attack Power Shadowfrost damage to nearby enemies, and slowing them by 40% for 4. Deals reduced damage beyond 8 targets.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -8688,7 +8752,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Slash the enemy for (varies) Physical damage and corrupt your weapon with blight, causing your next 2-3 Scourge Strikes to summon a Lesser Ghoul. Lesser Ghoul A mindless servant of the Scourge, raised to obey its master's commands for 8.",
+                            "text": "Slash the enemy for ≈202.5% of Attack Power Physical damage and corrupt your weapon with blight, causing your next 2-3 Scourge Strikes to summon a Lesser Ghoul. Lesser Ghoul A mindless servant of the Scourge, raised to obey its master's commands for 8.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -8768,7 +8832,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Slash the enemy for (varies) Physical damage and corrupt your weapon with blight, causing your next 2-3 Scourge Strikes to summon a Lesser Ghoul. Lesser Ghoul A mindless servant of the Scourge, raised to obey its master's commands for 8.",
+                            "text": "Slash the enemy for ≈139.2% of Attack Power Physical damage and corrupt your weapon with blight, causing your next 2-3 Scourge Strikes to summon a Lesser Ghoul. Lesser Ghoul A mindless servant of the Scourge, raised to obey its master's commands for 8.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -9584,7 +9648,7 @@
             "spellId": 1004,
             "category": "Offensive",
             "description": {
-                "text": "Clawing Shadows shatters Trollbane's Chains of Ice when hit, dealing (varies) Shadowfrost damage to nearby enemies, and slowing them by 40% for 4. Deals reduced damage beyond 8 targets.",
+                "text": "Clawing Shadows shatters Trollbane's Chains of Ice when hit, dealing ≈105.3% of Attack Power Shadowfrost damage to nearby enemies, and slowing them by 40% for 4. Deals reduced damage beyond 8 targets.",
                 "uncertain": true
             },
             "formulaModifierSpellIds": [],
@@ -10220,7 +10284,7 @@
             "spellId": 929,
             "category": "Other",
             "description": {
-                "text": "Casting Anti-Magic Shell grants (varies) nearby allies a Lesser Anti-Magic Shell that Absorbs up to (varies) magic damage and reduces the duration of harmful Magic effects against them by 50%.",
+                "text": "Casting Anti-Magic Shell grants (varies) nearby allies a Lesser Anti-Magic Shell that Absorbs up to ≈425% of Attack Power magic damage and reduces the duration of harmful Magic effects against them by 50%.",
                 "uncertain": true
             },
             "formulaModifierSpellIds": [],

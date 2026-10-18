@@ -1,6 +1,6 @@
 {
-    "generatedAt": "2026-10-07T21:49:00+00:00",
-    "spellCacheVersion": 27,
+    "generatedAt": "2026-10-18T02:37:16+00:00",
+    "spellCacheVersion": 29,
     "codeFingerprint": "dev",
     "entries": [
         {
@@ -99,6 +99,7 @@
                                         "charges": null,
                                         "max_stacks": null,
                                         "proc_chance": null,
+                                        "proc_cooldown_seconds": null,
                                         "cooldown_seconds": null,
                                         "cooldown_scaling_note": null,
                                         "duration_seconds": null,
@@ -261,8 +262,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "When you use Barkskin or Survival Instincts, absorb (varies) damage for 15.",
-                            "uncertain": true
+                            "text": "When you use Barkskin or Survival Instincts, absorb ≈1,875% of Attack Power damage for 15.",
+                            "uncertain": false
                         },
                         "category": "Defensive",
                         "cooldown": {
@@ -277,8 +278,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "When you use Barkskin or Survival Instincts, absorb (varies) damage for 15.",
-                            "uncertain": true
+                            "text": "When you use Barkskin or Survival Instincts, absorb ≈1,875% of Attack Power damage for 15.",
+                            "uncertain": false
                         },
                         "category": "Defensive",
                         "cooldown": {
@@ -488,7 +489,7 @@
             "spellId": 3077,
             "category": "Offensive",
             "description": {
-                "text": "When Bloodseeker Vines expire or you use Ferocious Bite on their target they explode in thorns, dealing (varies) physical damage to nearby enemies. Damage reduced above 5 targets. When Symbiotic Blooms expire or you cast Rejuvenation on their target flowers grow around their target, healing them and up to 3 nearby allies for ≈42.1% of Spell Power.",
+                "text": "When Bloodseeker Vines expire or you use Ferocious Bite on their target they explode in thorns, dealing ≈100% of Attack Power physical damage to nearby enemies. Damage reduced above 5 targets. When Symbiotic Blooms expire or you cast Rejuvenation on their target flowers grow around their target, healing them and up to 3 nearby allies for ≈42.1% of Spell Power.",
                 "uncertain": true
             },
             "formulaModifierSpellIds": [],
@@ -565,8 +566,8 @@
             "spellId": 3124,
             "category": "Offensive",
             "description": {
-                "text": "When you cast Starsurge, Rake, Shred, or Frenzied Regeneration you gain Call of the Elder Druid for 20 sec, once every 60. Call of the Elder Druid Abilities not associated with your specialization are substantially empowered for 45. Balance: Cast time of Balance spells reduced by 30% and damage increased by 20%. Feral: Gain 1 Combo Point every (varies) sec while in Cat Form and Physical damage increased by 20%. Guardian: Bear Form gives an additional 20% Stamina, multiple uses of Ironfur may overlap, and Frenzied Regeneration has 2 charges.",
-                "uncertain": true
+                "text": "When you cast Starsurge, Rake, Shred, or Frenzied Regeneration you gain Call of the Elder Druid for 20 sec, once every 60. Call of the Elder Druid Abilities not associated with your specialization are substantially empowered for 45. Balance: Cast time of Balance spells reduced by 30% and damage increased by 20%. Feral: Gain 1 Combo Point every 2 sec while in Cat Form and Physical damage increased by 20%. Guardian: Bear Form gives an additional 20% Stamina, multiple uses of Ironfur may overlap, and Frenzied Regeneration has 2 charges.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -577,8 +578,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "When you cast Starsurge, Rake, Shred, or Frenzied Regeneration you gain Call of the Elder Druid for 20 sec, once every 60. Call of the Elder Druid Abilities not associated with your specialization are substantially empowered for 45. Balance: Cast time of Balance spells reduced by 30% and damage increased by 20%. Feral: Gain 1 Combo Point every (varies) sec while in Cat Form and Physical damage increased by 20%. Guardian: Bear Form gives an additional 20% Stamina, multiple uses of Ironfur may overlap, and Frenzied Regeneration has 2 charges.",
-                            "uncertain": true
+                            "text": "When you cast Starsurge, Rake, Shred, or Frenzied Regeneration you gain Call of the Elder Druid for 20 sec, once every 60. Call of the Elder Druid Abilities not associated with your specialization are substantially empowered for 45. Balance: Cast time of Balance spells reduced by 30% and damage increased by 20%. Feral: Gain 1 Combo Point every 2 sec while in Cat Form and Physical damage increased by 20%. Guardian: Bear Form gives an additional 20% Stamina, multiple uses of Ironfur may overlap, and Frenzied Regeneration has 2 charges.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -983,6 +984,7 @@
                                         "charges": null,
                                         "max_stacks": null,
                                         "proc_chance": null,
+                                        "proc_cooldown_seconds": null,
                                         "cooldown_seconds": null,
                                         "cooldown_scaling_note": null,
                                         "duration_seconds": null,
@@ -1047,8 +1049,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Abilities not associated with your specialization are substantially empowered for 45. Balance: Cast time of Balance spells reduced by 30% and damage increased by 20%. Feral: Gain 1 Combo Point every (varies) sec while in Cat Form and Physical damage increased by 20%. Guardian: Bear Form gives an additional 20% Stamina, multiple uses of Ironfur may overlap, and Frenzied Regeneration has 2 charges.",
-                            "uncertain": true
+                            "text": "Abilities not associated with your specialization are substantially empowered for 45. Balance: Cast time of Balance spells reduced by 30% and damage increased by 20%. Feral: Gain 1 Combo Point every 2 sec while in Cat Form and Physical damage increased by 20%. Guardian: Bear Form gives an additional 20% Stamina, multiple uses of Ironfur may overlap, and Frenzied Regeneration has 2 charges.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -1451,7 +1453,7 @@
             "spellId": 3090,
             "category": "Defensive",
             "description": {
-                "text": "Grows a healing blossom at the target location, restoring 5 health to (varies by condition — check in-game) injured allies within 10 yards every (varies) sec for 30. Limit 1.",
+                "text": "Grows a healing blossom at the target location, restoring 5 health to (varies by condition — check in-game) injured allies within 10 yards every 2 sec for 30. Limit 1.",
                 "uncertain": true
             },
             "formulaModifierSpellIds": [],
@@ -1610,7 +1612,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Rip and Rake damage has a chance to cause Bloodseeker Vines to grow on the victim, dealing (varies) Bleed damage over 6. Wild Growth, Regrowth, and Efflorescence healing has a chance to cause Symbiotic Blooms to grow on the target, healing for (varies) over 6. Multiple instances of these can overlap.",
+                            "text": "Rip and Rake damage has a chance to cause Bloodseeker Vines to grow on the victim, dealing ≈97.5% of Attack Power Bleed damage over 6. Wild Growth, Regrowth, and Efflorescence healing has a chance to cause Symbiotic Blooms to grow on the target, healing for ≈219.6% of Spell Power over 6. Multiple instances of these can overlap.",
                             "uncertain": true
                         },
                         "category": "Other",
@@ -1767,6 +1769,7 @@
                                         "charges": null,
                                         "max_stacks": null,
                                         "proc_chance": null,
+                                        "proc_cooldown_seconds": null,
                                         "cooldown_seconds": null,
                                         "cooldown_scaling_note": null,
                                         "duration_seconds": null,
@@ -1831,8 +1834,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Abilities not associated with your specialization are substantially empowered for 45. Balance: Cast time of Balance spells reduced by 30% and damage increased by 20%. Feral: Gain 1 Combo Point every (varies) sec while in Cat Form and Physical damage increased by 20%. Guardian: Bear Form gives an additional 20% Stamina, multiple uses of Ironfur may overlap, and Frenzied Regeneration has 2 charges.",
-                            "uncertain": true
+                            "text": "Abilities not associated with your specialization are substantially empowered for 45. Balance: Cast time of Balance spells reduced by 30% and damage increased by 20%. Feral: Gain 1 Combo Point every 2 sec while in Cat Form and Physical damage increased by 20%. Guardian: Bear Form gives an additional 20% Stamina, multiple uses of Ironfur may overlap, and Frenzied Regeneration has 2 charges.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -2113,8 +2116,8 @@
             "spellId": 3096,
             "category": "Other",
             "description": {
-                "text": "Tranquility extends the duration of all of your heal over time effects by 2 sec every (varies) sec.",
-                "uncertain": true
+                "text": "Tranquility extends the duration of all of your heal over time effects by 2 sec every 1 sec.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -2263,8 +2266,8 @@
             "spellId": 2865,
             "category": "Defensive",
             "description": {
-                "text": "Heals you for (varies)% health over 3.",
-                "uncertain": true
+                "text": "Heals you for 24% health over 3.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -2275,8 +2278,8 @@
                         "modifier_value": 1,
                         "modifier_unit": "charges",
                         "description": {
-                            "text": "Abilities not associated with your specialization are substantially empowered for 45. Balance: Cast time of Balance spells reduced by 30% and damage increased by 20%. Feral: Gain 1 Combo Point every (varies) sec while in Cat Form and Physical damage increased by 20%. Guardian: Bear Form gives an additional 20% Stamina, multiple uses of Ironfur may overlap, and Frenzied Regeneration has 2 charges.",
-                            "uncertain": true
+                            "text": "Abilities not associated with your specialization are substantially empowered for 45. Balance: Cast time of Balance spells reduced by 30% and damage increased by 20%. Feral: Gain 1 Combo Point every 2 sec while in Cat Form and Physical damage increased by 20%. Guardian: Bear Form gives an additional 20% Stamina, multiple uses of Ironfur may overlap, and Frenzied Regeneration has 2 charges.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -2371,8 +2374,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "When you cast Starsurge, Rake, Shred, or Frenzied Regeneration you gain Call of the Elder Druid for 20 sec, once every 60. Call of the Elder Druid Abilities not associated with your specialization are substantially empowered for 45. Balance: Cast time of Balance spells reduced by 30% and damage increased by 20%. Feral: Gain 1 Combo Point every (varies) sec while in Cat Form and Physical damage increased by 20%. Guardian: Bear Form gives an additional 20% Stamina, multiple uses of Ironfur may overlap, and Frenzied Regeneration has 2 charges.",
-                            "uncertain": true
+                            "text": "When you cast Starsurge, Rake, Shred, or Frenzied Regeneration you gain Call of the Elder Druid for 20 sec, once every 60. Call of the Elder Druid Abilities not associated with your specialization are substantially empowered for 45. Balance: Cast time of Balance spells reduced by 30% and damage increased by 20%. Feral: Gain 1 Combo Point every 2 sec while in Cat Form and Physical damage increased by 20%. Guardian: Bear Form gives an additional 20% Stamina, multiple uses of Ironfur may overlap, and Frenzied Regeneration has 2 charges.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -2403,8 +2406,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "When you cast Starsurge, Rake, Shred, or Frenzied Regeneration you gain Call of the Elder Druid for 20 sec, once every 60. Call of the Elder Druid Abilities not associated with your specialization are substantially empowered for 45. Balance: Cast time of Balance spells reduced by 30% and damage increased by 20%. Feral: Gain 1 Combo Point every (varies) sec while in Cat Form and Physical damage increased by 20%. Guardian: Bear Form gives an additional 20% Stamina, multiple uses of Ironfur may overlap, and Frenzied Regeneration has 2 charges.",
-                            "uncertain": true
+                            "text": "When you cast Starsurge, Rake, Shred, or Frenzied Regeneration you gain Call of the Elder Druid for 20 sec, once every 60. Call of the Elder Druid Abilities not associated with your specialization are substantially empowered for 45. Balance: Cast time of Balance spells reduced by 30% and damage increased by 20%. Feral: Gain 1 Combo Point every 2 sec while in Cat Form and Physical damage increased by 20%. Guardian: Bear Form gives an additional 20% Stamina, multiple uses of Ironfur may overlap, and Frenzied Regeneration has 2 charges.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -2473,6 +2476,7 @@
                             "charges": null,
                             "max_stacks": null,
                             "proc_chance": null,
+                            "proc_cooldown_seconds": null,
                             "cooldown_seconds": "300.00",
                             "cooldown_scaling_note": null,
                             "duration_seconds": "45.00",
@@ -2520,6 +2524,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:22:11.000000Z",
@@ -2538,6 +2543,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:22:11.000000Z",
@@ -2556,6 +2562,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:22:11.000000Z",
@@ -2574,6 +2581,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:22:11.000000Z",
@@ -2592,6 +2600,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:22:11.000000Z",
@@ -2610,6 +2619,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:22:11.000000Z",
@@ -2628,6 +2638,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:22:11.000000Z",
@@ -2646,6 +2657,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:22:11.000000Z",
@@ -2664,6 +2676,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:22:11.000000Z",
@@ -2682,6 +2695,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:22:11.000000Z",
@@ -2700,6 +2714,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:22:11.000000Z",
@@ -2718,6 +2733,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:22:11.000000Z",
@@ -2736,6 +2752,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": 0.5,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:22:11.000000Z",
@@ -2754,6 +2771,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:22:11.000000Z",
@@ -2772,6 +2790,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": 0.5,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:22:11.000000Z",
@@ -3451,8 +3470,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Abilities not associated with your specialization are substantially empowered for 45. Balance: Cast time of Balance spells reduced by 30% and damage increased by 20%. Feral: Gain 1 Combo Point every (varies) sec while in Cat Form and Physical damage increased by 20%. Guardian: Bear Form gives an additional 20% Stamina, multiple uses of Ironfur may overlap, and Frenzied Regeneration has 2 charges.",
-                            "uncertain": true
+                            "text": "Abilities not associated with your specialization are substantially empowered for 45. Balance: Cast time of Balance spells reduced by 30% and damage increased by 20%. Feral: Gain 1 Combo Point every 2 sec while in Cat Form and Physical damage increased by 20%. Guardian: Bear Form gives an additional 20% Stamina, multiple uses of Ironfur may overlap, and Frenzied Regeneration has 2 charges.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -3899,6 +3918,7 @@
                                         "charges": null,
                                         "max_stacks": null,
                                         "proc_chance": null,
+                                        "proc_cooldown_seconds": null,
                                         "cooldown_seconds": null,
                                         "cooldown_scaling_note": null,
                                         "duration_seconds": null,
@@ -4359,6 +4379,7 @@
                             "charges": null,
                             "max_stacks": null,
                             "proc_chance": null,
+                            "proc_cooldown_seconds": null,
                             "cooldown_seconds": null,
                             "cooldown_scaling_note": null,
                             "duration_seconds": null,
@@ -4406,6 +4427,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:22:16.000000Z",
@@ -4439,8 +4461,8 @@
             "spellId": 2882,
             "category": "Defensive",
             "description": {
-                "text": "Increases armor by (varies) for 7. Multiple uses of this ability may overlap.",
-                "uncertain": true
+                "text": "Increases armor by ≈124% of Agility for 7. Multiple uses of this ability may overlap.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -4467,8 +4489,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Abilities not associated with your specialization are substantially empowered for 45. Balance: Cast time of Balance spells reduced by 30% and damage increased by 20%. Feral: Gain 1 Combo Point every (varies) sec while in Cat Form and Physical damage increased by 20%. Guardian: Bear Form gives an additional 20% Stamina, multiple uses of Ironfur may overlap, and Frenzied Regeneration has 2 charges.",
-                            "uncertain": true
+                            "text": "Abilities not associated with your specialization are substantially empowered for 45. Balance: Cast time of Balance spells reduced by 30% and damage increased by 20%. Feral: Gain 1 Combo Point every 2 sec while in Cat Form and Physical damage increased by 20%. Guardian: Bear Form gives an additional 20% Stamina, multiple uses of Ironfur may overlap, and Frenzied Regeneration has 2 charges.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -4675,7 +4697,7 @@
             "spellId": 3084,
             "category": "Defensive",
             "description": {
-                "text": "Heals the target for (varies) over 15. When Lifebloom expires, is dispelled, or is refreshed near expiration the target is instantly healed for ≈218.9% of Spell Power. May be active on one target at a time.",
+                "text": "Heals the target for ≈402.6% of Spell Power over 15. When Lifebloom expires, is dispelled, or is refreshed near expiration the target is instantly healed for ≈218.9% of Spell Power. May be active on one target at a time.",
                 "uncertain": true
             },
             "formulaModifierSpellIds": [],
@@ -4723,6 +4745,7 @@
                                         "charges": null,
                                         "max_stacks": null,
                                         "proc_chance": null,
+                                        "proc_cooldown_seconds": null,
                                         "cooldown_seconds": null,
                                         "cooldown_scaling_note": null,
                                         "duration_seconds": null,
@@ -4787,8 +4810,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Abilities not associated with your specialization are substantially empowered for 45. Balance: Cast time of Balance spells reduced by 30% and damage increased by 20%. Feral: Gain 1 Combo Point every (varies) sec while in Cat Form and Physical damage increased by 20%. Guardian: Bear Form gives an additional 20% Stamina, multiple uses of Ironfur may overlap, and Frenzied Regeneration has 2 charges.",
-                            "uncertain": true
+                            "text": "Abilities not associated with your specialization are substantially empowered for 45. Balance: Cast time of Balance spells reduced by 30% and damage increased by 20%. Feral: Gain 1 Combo Point every 2 sec while in Cat Form and Physical damage increased by 20%. Guardian: Bear Form gives an additional 20% Stamina, multiple uses of Ironfur may overlap, and Frenzied Regeneration has 2 charges.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -4867,7 +4890,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Heals the target for (varies) over 15.  When Lifebloom expires or is dispelled, the target is instantly healed for ≈218.9% of Spell Power. May be active on two targets at a time. Lifebloom counts for 3 stacks of Mastery: Harmony.",
+                            "text": "Heals the target for ≈330% of Spell Power over 15.  When Lifebloom expires or is dispelled, the target is instantly healed for ≈218.9% of Spell Power. May be active on two targets at a time. Lifebloom counts for 3 stacks of Mastery: Harmony.",
                             "uncertain": true
                         },
                         "category": "Defensive",
@@ -5498,8 +5521,8 @@
             "spellId": 2864,
             "category": "Crowd Control",
             "description": {
-                "text": "Finishing move that causes Physical damage and stuns the target. Damage and duration increased per combo point: 1 point  : (varies) damage, 1 sec 2 points: (varies) damage, 2 sec 3 points: (varies) damage, 3 sec 4 points: (varies) damage, 4 sec 5 points: (varies) damage, 5 sec",
-                "uncertain": true
+                "text": "Finishing move that causes Physical damage and stuns the target. Damage and duration increased per combo point: 1 point  : ≈14.4% of Attack Power damage, 1 sec 2 points: ≈28.8% of Attack Power damage, 2 sec 3 points: ≈43.2% of Attack Power damage, 3 sec 4 points: ≈57.6% of Attack Power damage, 4 sec 5 points: ≈72% of Attack Power damage, 5 sec",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -5526,8 +5549,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Abilities not associated with your specialization are substantially empowered for 45. Balance: Cast time of Balance spells reduced by 30% and damage increased by 20%. Feral: Gain 1 Combo Point every (varies) sec while in Cat Form and Physical damage increased by 20%. Guardian: Bear Form gives an additional 20% Stamina, multiple uses of Ironfur may overlap, and Frenzied Regeneration has 2 charges.",
-                            "uncertain": true
+                            "text": "Abilities not associated with your specialization are substantially empowered for 45. Balance: Cast time of Balance spells reduced by 30% and damage increased by 20%. Feral: Gain 1 Combo Point every 2 sec while in Cat Form and Physical damage increased by 20%. Guardian: Bear Form gives an additional 20% Stamina, multiple uses of Ironfur may overlap, and Frenzied Regeneration has 2 charges.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -5673,7 +5696,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Rake the target for 0.3 Bleed damage and an additional (varies) Bleed damage over 15. While stealthed, Rake will also stun the target for 4 and deal 60% increased damage. While stealthed, Rake will also stun the target for 4 and deal 60% increased damage. Awards 1 combo point.",
+                            "text": "Rake the target for 0.3 Bleed damage and an additional ≈147% of Attack Power Bleed damage over 15. While stealthed, Rake will also stun the target for 4 and deal 60% increased damage. While stealthed, Rake will also stun the target for 4 and deal 60% increased damage. Awards 1 combo point.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -5941,8 +5964,8 @@
             "spellId": 2899,
             "category": "Defensive",
             "description": {
-                "text": "When you use Barkskin or Survival Instincts, absorb (varies) damage for 15.",
-                "uncertain": true
+                "text": "When you use Barkskin or Survival Instincts, absorb ≈1,875% of Attack Power damage for 15.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -6035,7 +6058,7 @@
             "spellId": 2072,
             "category": "Offensive",
             "description": {
-                "text": "A quick beam of lunar light burns the enemy for ≈21.2% of Spell Power Arcane damage and then an additional (varies) Arcane damage over 18.",
+                "text": "A quick beam of lunar light burns the enemy for ≈21.2% of Spell Power Arcane damage and then an additional ≈165.6% of Spell Power Arcane damage over 18.",
                 "uncertain": true
             },
             "formulaModifierSpellIds": [],
@@ -6650,6 +6673,7 @@
                             "charges": null,
                             "max_stacks": null,
                             "proc_chance": null,
+                            "proc_cooldown_seconds": null,
                             "cooldown_seconds": null,
                             "cooldown_scaling_note": null,
                             "duration_seconds": null,
@@ -6697,6 +6721,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:22:16.000000Z",
@@ -7303,7 +7328,7 @@
             "spellId": 2858,
             "category": "Offensive",
             "description": {
-                "text": "Rake the target for 0.3 Bleed damage and an additional (varies) Bleed damage over 15. While stealthed, Rake will also stun the target for 4 and deal 60% increased damage. While stealthed, Rake will also stun the target for 4 and deal 60% increased damage. Awards 1 combo point.",
+                "text": "Rake the target for 0.3 Bleed damage and an additional ≈147% of Attack Power Bleed damage over 15. While stealthed, Rake will also stun the target for 4 and deal 60% increased damage. While stealthed, Rake will also stun the target for 4 and deal 60% increased damage. Awards 1 combo point.",
                 "uncertain": true
             },
             "formulaModifierSpellIds": [],
@@ -7315,8 +7340,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Abilities not associated with your specialization are substantially empowered for 45. Balance: Cast time of Balance spells reduced by 30% and damage increased by 20%. Feral: Gain 1 Combo Point every (varies) sec while in Cat Form and Physical damage increased by 20%. Guardian: Bear Form gives an additional 20% Stamina, multiple uses of Ironfur may overlap, and Frenzied Regeneration has 2 charges.",
-                            "uncertain": true
+                            "text": "Abilities not associated with your specialization are substantially empowered for 45. Balance: Cast time of Balance spells reduced by 30% and damage increased by 20%. Feral: Gain 1 Combo Point every 2 sec while in Cat Form and Physical damage increased by 20%. Guardian: Bear Form gives an additional 20% Stamina, multiple uses of Ironfur may overlap, and Frenzied Regeneration has 2 charges.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -7347,8 +7372,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "When you cast Starsurge, Rake, Shred, or Frenzied Regeneration you gain Call of the Elder Druid for 20 sec, once every 60. Call of the Elder Druid Abilities not associated with your specialization are substantially empowered for 45. Balance: Cast time of Balance spells reduced by 30% and damage increased by 20%. Feral: Gain 1 Combo Point every (varies) sec while in Cat Form and Physical damage increased by 20%. Guardian: Bear Form gives an additional 20% Stamina, multiple uses of Ironfur may overlap, and Frenzied Regeneration has 2 charges.",
-                            "uncertain": true
+                            "text": "When you cast Starsurge, Rake, Shred, or Frenzied Regeneration you gain Call of the Elder Druid for 20 sec, once every 60. Call of the Elder Druid Abilities not associated with your specialization are substantially empowered for 45. Balance: Cast time of Balance spells reduced by 30% and damage increased by 20%. Feral: Gain 1 Combo Point every 2 sec while in Cat Form and Physical damage increased by 20%. Guardian: Bear Form gives an additional 20% Stamina, multiple uses of Ironfur may overlap, and Frenzied Regeneration has 2 charges.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -7363,8 +7388,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "When you cast Starsurge, Rake, Shred, or Frenzied Regeneration you gain Call of the Elder Druid for 20 sec, once every 60. Call of the Elder Druid Abilities not associated with your specialization are substantially empowered for 45. Balance: Cast time of Balance spells reduced by 30% and damage increased by 20%. Feral: Gain 1 Combo Point every (varies) sec while in Cat Form and Physical damage increased by 20%. Guardian: Bear Form gives an additional 20% Stamina, multiple uses of Ironfur may overlap, and Frenzied Regeneration has 2 charges.",
-                            "uncertain": true
+                            "text": "When you cast Starsurge, Rake, Shred, or Frenzied Regeneration you gain Call of the Elder Druid for 20 sec, once every 60. Call of the Elder Druid Abilities not associated with your specialization are substantially empowered for 45. Balance: Cast time of Balance spells reduced by 30% and damage increased by 20%. Feral: Gain 1 Combo Point every 2 sec while in Cat Form and Physical damage increased by 20%. Guardian: Bear Form gives an additional 20% Stamina, multiple uses of Ironfur may overlap, and Frenzied Regeneration has 2 charges.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -7463,7 +7488,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Rake the target for 0.3 Bleed damage and an additional (varies) Bleed damage over 15. While stealthed, Rake will also stun the target for 4 and deal 60% increased damage. While stealthed, Rake will also stun the target for 4 and deal 60% increased damage. Awards 1 combo point.",
+                            "text": "Rake the target for 0.3 Bleed damage and an additional ≈147% of Attack Power Bleed damage over 15. While stealthed, Rake will also stun the target for 4 and deal 60% increased damage. While stealthed, Rake will also stun the target for 4 and deal 60% increased damage. Awards 1 combo point.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -7655,7 +7680,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Rake the target for 0.3 Bleed damage and an additional (varies) Bleed damage over 15. While stealthed, Rake will also stun the target for 4 and deal 60% increased damage. While stealthed, Rake will also stun the target for 4 and deal 60% increased damage. Awards 1 combo point.",
+                            "text": "Rake the target for 0.3 Bleed damage and an additional ≈147% of Attack Power Bleed damage over 15. While stealthed, Rake will also stun the target for 4 and deal 60% increased damage. While stealthed, Rake will also stun the target for 4 and deal 60% increased damage. Awards 1 combo point.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -7671,7 +7696,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Rip and Rake damage has a chance to cause Bloodseeker Vines to grow on the victim, dealing (varies) Bleed damage over 6. Wild Growth, Regrowth, and Efflorescence healing has a chance to cause Symbiotic Blooms to grow on the target, healing for (varies) over 6. Multiple instances of these can overlap.",
+                            "text": "Rip and Rake damage has a chance to cause Bloodseeker Vines to grow on the victim, dealing ≈97.5% of Attack Power Bleed damage over 6. Wild Growth, Regrowth, and Efflorescence healing has a chance to cause Symbiotic Blooms to grow on the target, healing for ≈219.6% of Spell Power over 6. Multiple instances of these can overlap.",
                             "uncertain": true
                         },
                         "category": "Other",
@@ -7812,6 +7837,7 @@
                                         "charges": null,
                                         "max_stacks": null,
                                         "proc_chance": null,
+                                        "proc_cooldown_seconds": null,
                                         "cooldown_seconds": null,
                                         "cooldown_scaling_note": null,
                                         "duration_seconds": null,
@@ -8053,6 +8079,7 @@
                                         "charges": null,
                                         "max_stacks": null,
                                         "proc_chance": null,
+                                        "proc_cooldown_seconds": null,
                                         "cooldown_seconds": null,
                                         "cooldown_scaling_note": null,
                                         "duration_seconds": null,
@@ -8121,6 +8148,7 @@
                                         "charges": null,
                                         "max_stacks": null,
                                         "proc_chance": null,
+                                        "proc_cooldown_seconds": null,
                                         "cooldown_seconds": null,
                                         "cooldown_scaling_note": null,
                                         "duration_seconds": null,
@@ -8185,8 +8213,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Abilities not associated with your specialization are substantially empowered for 45. Balance: Cast time of Balance spells reduced by 30% and damage increased by 20%. Feral: Gain 1 Combo Point every (varies) sec while in Cat Form and Physical damage increased by 20%. Guardian: Bear Form gives an additional 20% Stamina, multiple uses of Ironfur may overlap, and Frenzied Regeneration has 2 charges.",
-                            "uncertain": true
+                            "text": "Abilities not associated with your specialization are substantially empowered for 45. Balance: Cast time of Balance spells reduced by 30% and damage increased by 20%. Feral: Gain 1 Combo Point every 2 sec while in Cat Form and Physical damage increased by 20%. Guardian: Bear Form gives an additional 20% Stamina, multiple uses of Ironfur may overlap, and Frenzied Regeneration has 2 charges.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -8493,6 +8521,7 @@
                                         "charges": null,
                                         "max_stacks": null,
                                         "proc_chance": null,
+                                        "proc_cooldown_seconds": null,
                                         "cooldown_seconds": null,
                                         "cooldown_scaling_note": null,
                                         "duration_seconds": null,
@@ -8849,7 +8878,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Rip and Rake damage has a chance to cause Bloodseeker Vines to grow on the victim, dealing (varies) Bleed damage over 6. Wild Growth, Regrowth, and Efflorescence healing has a chance to cause Symbiotic Blooms to grow on the target, healing for (varies) over 6. Multiple instances of these can overlap.",
+                            "text": "Rip and Rake damage has a chance to cause Bloodseeker Vines to grow on the victim, dealing ≈97.5% of Attack Power Bleed damage over 6. Wild Growth, Regrowth, and Efflorescence healing has a chance to cause Symbiotic Blooms to grow on the target, healing for ≈219.6% of Spell Power over 6. Multiple instances of these can overlap.",
                             "uncertain": true
                         },
                         "category": "Other",
@@ -8994,7 +9023,7 @@
             "spellId": 2856,
             "category": "Defensive",
             "description": {
-                "text": "Heals the target for (varies) over 12. You can apply Rejuvenation twice to the same target. Tree of Life: Healing increased by 40% and Mana cost reduced by 30%.",
+                "text": "Heals the target for ≈369.6% of Spell Power over 12. You can apply Rejuvenation twice to the same target. Tree of Life: Healing increased by 40% and Mana cost reduced by 30%.",
                 "uncertain": true
             },
             "formulaModifierSpellIds": [
@@ -9044,6 +9073,7 @@
                                         "charges": null,
                                         "max_stacks": null,
                                         "proc_chance": null,
+                                        "proc_cooldown_seconds": null,
                                         "cooldown_seconds": null,
                                         "cooldown_scaling_note": null,
                                         "duration_seconds": null,
@@ -9140,8 +9170,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Abilities not associated with your specialization are substantially empowered for 45. Balance: Cast time of Balance spells reduced by 30% and damage increased by 20%. Feral: Gain 1 Combo Point every (varies) sec while in Cat Form and Physical damage increased by 20%. Guardian: Bear Form gives an additional 20% Stamina, multiple uses of Ironfur may overlap, and Frenzied Regeneration has 2 charges.",
-                            "uncertain": true
+                            "text": "Abilities not associated with your specialization are substantially empowered for 45. Balance: Cast time of Balance spells reduced by 30% and damage increased by 20%. Feral: Gain 1 Combo Point every 2 sec while in Cat Form and Physical damage increased by 20%. Guardian: Bear Form gives an additional 20% Stamina, multiple uses of Ironfur may overlap, and Frenzied Regeneration has 2 charges.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -9288,6 +9318,7 @@
                                         "charges": null,
                                         "max_stacks": null,
                                         "proc_chance": null,
+                                        "proc_cooldown_seconds": null,
                                         "cooldown_seconds": null,
                                         "cooldown_scaling_note": null,
                                         "duration_seconds": null,
@@ -9548,7 +9579,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Heals the target for (varies) over 12. You can apply Rejuvenation twice to the same target. Tree of Life: Healing increased by 40% and Mana cost reduced by 30%.",
+                            "text": "Heals the target for ≈369.6% of Spell Power over 12. You can apply Rejuvenation twice to the same target. Tree of Life: Healing increased by 40% and Mana cost reduced by 30%.",
                             "uncertain": true
                         },
                         "category": "Defensive",
@@ -9708,7 +9739,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "When Bloodseeker Vines expire or you use Ferocious Bite on their target they explode in thorns, dealing (varies) physical damage to nearby enemies. Damage reduced above 5 targets. When Symbiotic Blooms expire or you cast Rejuvenation on their target flowers grow around their target, healing them and up to 3 nearby allies for ≈42.1% of Spell Power.",
+                            "text": "When Bloodseeker Vines expire or you use Ferocious Bite on their target they explode in thorns, dealing ≈100% of Attack Power physical damage to nearby enemies. Damage reduced above 5 targets. When Symbiotic Blooms expire or you cast Rejuvenation on their target flowers grow around their target, healing them and up to 3 nearby allies for ≈42.1% of Spell Power.",
                             "uncertain": true
                         },
                         "category": "Defensive",
@@ -9724,7 +9755,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "When Bloodseeker Vines expire or you use Ferocious Bite on their target they explode in thorns, dealing (varies) physical damage to nearby enemies. Damage reduced above 5 targets. When Symbiotic Blooms expire or you cast Rejuvenation on their target flowers grow around their target, healing them and up to 3 nearby allies for ≈42.1% of Spell Power.",
+                            "text": "When Bloodseeker Vines expire or you use Ferocious Bite on their target they explode in thorns, dealing ≈100% of Attack Power physical damage to nearby enemies. Damage reduced above 5 targets. When Symbiotic Blooms expire or you cast Rejuvenation on their target flowers grow around their target, healing them and up to 3 nearby allies for ≈42.1% of Spell Power.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -9740,7 +9771,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "When Bloodseeker Vines expire or you use Ferocious Bite on their target they explode in thorns, dealing (varies) physical damage to nearby enemies. Damage reduced above 5 targets. When Symbiotic Blooms expire or you cast Rejuvenation on their target flowers grow around their target, healing them and up to 3 nearby allies for ≈42.1% of Spell Power.",
+                            "text": "When Bloodseeker Vines expire or you use Ferocious Bite on their target they explode in thorns, dealing ≈100% of Attack Power physical damage to nearby enemies. Damage reduced above 5 targets. When Symbiotic Blooms expire or you cast Rejuvenation on their target flowers grow around their target, healing them and up to 3 nearby allies for ≈42.1% of Spell Power.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -9772,8 +9803,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Heals you for 3% of your maximum health every (varies) sec. If you are at full health, an injured party or raid member will be healed instead. Healing is increased by 8% for each of your active Rejuvenations.",
-                            "uncertain": true
+                            "text": "Heals you for 3% of your maximum health every 5 sec. If you are at full health, an injured party or raid member will be healed instead. Healing is increased by 8% for each of your active Rejuvenations.",
+                            "uncertain": false
                         },
                         "category": "Defensive",
                         "cooldown": {
@@ -9933,7 +9964,7 @@
             "spellId": 2194,
             "category": "Defensive",
             "description": {
-                "text": "Heals the target for (varies) over 12. You can apply Rejuvenation twice to the same target. Tree of Life: Healing increased by 40% and Mana cost reduced by 30%.",
+                "text": "Heals the target for ≈369.6% of Spell Power over 12. You can apply Rejuvenation twice to the same target. Tree of Life: Healing increased by 40% and Mana cost reduced by 30%.",
                 "uncertain": true
             },
             "formulaModifierSpellIds": [
@@ -9983,6 +10014,7 @@
                                         "charges": null,
                                         "max_stacks": null,
                                         "proc_chance": null,
+                                        "proc_cooldown_seconds": null,
                                         "cooldown_seconds": null,
                                         "cooldown_scaling_note": null,
                                         "duration_seconds": null,
@@ -10079,8 +10111,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Abilities not associated with your specialization are substantially empowered for 45. Balance: Cast time of Balance spells reduced by 30% and damage increased by 20%. Feral: Gain 1 Combo Point every (varies) sec while in Cat Form and Physical damage increased by 20%. Guardian: Bear Form gives an additional 20% Stamina, multiple uses of Ironfur may overlap, and Frenzied Regeneration has 2 charges.",
-                            "uncertain": true
+                            "text": "Abilities not associated with your specialization are substantially empowered for 45. Balance: Cast time of Balance spells reduced by 30% and damage increased by 20%. Feral: Gain 1 Combo Point every 2 sec while in Cat Form and Physical damage increased by 20%. Guardian: Bear Form gives an additional 20% Stamina, multiple uses of Ironfur may overlap, and Frenzied Regeneration has 2 charges.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -10480,8 +10512,8 @@
             "spellId": 2857,
             "category": "Offensive",
             "description": {
-                "text": "Finishing move that causes Bleed damage over time. Lasts longer per combo point. 1 point  : (varies) over 1.3 sec 2 points: (varies) over 2 sec 3 points: (varies) over 2.7 sec 4 points: (varies) over 3.3 sec 5 points: (varies) over 4 sec",
-                "uncertain": true
+                "text": "Finishing move that causes Bleed damage over time. Lasts longer per combo point. 1 point  : ≈20.8% of Attack Power over 1.3 sec 2 points: ≈31.1% of Attack Power over 2 sec 3 points: ≈41.5% of Attack Power over 2.7 sec 4 points: ≈51.9% of Attack Power over 3.3 sec 5 points: ≈62.3% of Attack Power over 4 sec",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -10508,8 +10540,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Abilities not associated with your specialization are substantially empowered for 45. Balance: Cast time of Balance spells reduced by 30% and damage increased by 20%. Feral: Gain 1 Combo Point every (varies) sec while in Cat Form and Physical damage increased by 20%. Guardian: Bear Form gives an additional 20% Stamina, multiple uses of Ironfur may overlap, and Frenzied Regeneration has 2 charges.",
-                            "uncertain": true
+                            "text": "Abilities not associated with your specialization are substantially empowered for 45. Balance: Cast time of Balance spells reduced by 30% and damage increased by 20%. Feral: Gain 1 Combo Point every 2 sec while in Cat Form and Physical damage increased by 20%. Guardian: Bear Form gives an additional 20% Stamina, multiple uses of Ironfur may overlap, and Frenzied Regeneration has 2 charges.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -10688,7 +10720,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Rake the target for 0.3 Bleed damage and an additional (varies) Bleed damage over 15. While stealthed, Rake will also stun the target for 4 and deal 60% increased damage. While stealthed, Rake will also stun the target for 4 and deal 60% increased damage. Awards 1 combo point.",
+                            "text": "Rake the target for 0.3 Bleed damage and an additional ≈147% of Attack Power Bleed damage over 15. While stealthed, Rake will also stun the target for 4 and deal 60% increased damage. While stealthed, Rake will also stun the target for 4 and deal 60% increased damage. Awards 1 combo point.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -10832,7 +10864,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Rip and Rake damage has a chance to cause Bloodseeker Vines to grow on the victim, dealing (varies) Bleed damage over 6. Wild Growth, Regrowth, and Efflorescence healing has a chance to cause Symbiotic Blooms to grow on the target, healing for (varies) over 6. Multiple instances of these can overlap.",
+                            "text": "Rip and Rake damage has a chance to cause Bloodseeker Vines to grow on the victim, dealing ≈97.5% of Attack Power Bleed damage over 6. Wild Growth, Regrowth, and Efflorescence healing has a chance to cause Symbiotic Blooms to grow on the target, healing for ≈219.6% of Spell Power over 6. Multiple instances of these can overlap.",
                             "uncertain": true
                         },
                         "category": "Other",
@@ -11020,8 +11052,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Abilities not associated with your specialization are substantially empowered for 45. Balance: Cast time of Balance spells reduced by 30% and damage increased by 20%. Feral: Gain 1 Combo Point every (varies) sec while in Cat Form and Physical damage increased by 20%. Guardian: Bear Form gives an additional 20% Stamina, multiple uses of Ironfur may overlap, and Frenzied Regeneration has 2 charges.",
-                            "uncertain": true
+                            "text": "Abilities not associated with your specialization are substantially empowered for 45. Balance: Cast time of Balance spells reduced by 30% and damage increased by 20%. Feral: Gain 1 Combo Point every 2 sec while in Cat Form and Physical damage increased by 20%. Guardian: Bear Form gives an additional 20% Stamina, multiple uses of Ironfur may overlap, and Frenzied Regeneration has 2 charges.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -11321,8 +11353,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Abilities not associated with your specialization are substantially empowered for 45. Balance: Cast time of Balance spells reduced by 30% and damage increased by 20%. Feral: Gain 1 Combo Point every (varies) sec while in Cat Form and Physical damage increased by 20%. Guardian: Bear Form gives an additional 20% Stamina, multiple uses of Ironfur may overlap, and Frenzied Regeneration has 2 charges.",
-                            "uncertain": true
+                            "text": "Abilities not associated with your specialization are substantially empowered for 45. Balance: Cast time of Balance spells reduced by 30% and damage increased by 20%. Feral: Gain 1 Combo Point every 2 sec while in Cat Form and Physical damage increased by 20%. Guardian: Bear Form gives an additional 20% Stamina, multiple uses of Ironfur may overlap, and Frenzied Regeneration has 2 charges.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -11677,7 +11709,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "A quick beam of lunar light burns the enemy for ≈21.2% of Spell Power Arcane damage and then an additional (varies) Arcane damage over 18.",
+                            "text": "A quick beam of lunar light burns the enemy for ≈21.2% of Spell Power Arcane damage and then an additional ≈165.6% of Spell Power Arcane damage over 18.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -11880,8 +11912,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Abilities not associated with your specialization are substantially empowered for 45. Balance: Cast time of Balance spells reduced by 30% and damage increased by 20%. Feral: Gain 1 Combo Point every (varies) sec while in Cat Form and Physical damage increased by 20%. Guardian: Bear Form gives an additional 20% Stamina, multiple uses of Ironfur may overlap, and Frenzied Regeneration has 2 charges.",
-                            "uncertain": true
+                            "text": "Abilities not associated with your specialization are substantially empowered for 45. Balance: Cast time of Balance spells reduced by 30% and damage increased by 20%. Feral: Gain 1 Combo Point every 2 sec while in Cat Form and Physical damage increased by 20%. Guardian: Bear Form gives an additional 20% Stamina, multiple uses of Ironfur may overlap, and Frenzied Regeneration has 2 charges.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -12072,8 +12104,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "When you cast Starsurge, Rake, Shred, or Frenzied Regeneration you gain Call of the Elder Druid for 20 sec, once every 60. Call of the Elder Druid Abilities not associated with your specialization are substantially empowered for 45. Balance: Cast time of Balance spells reduced by 30% and damage increased by 20%. Feral: Gain 1 Combo Point every (varies) sec while in Cat Form and Physical damage increased by 20%. Guardian: Bear Form gives an additional 20% Stamina, multiple uses of Ironfur may overlap, and Frenzied Regeneration has 2 charges.",
-                            "uncertain": true
+                            "text": "When you cast Starsurge, Rake, Shred, or Frenzied Regeneration you gain Call of the Elder Druid for 20 sec, once every 60. Call of the Elder Druid Abilities not associated with your specialization are substantially empowered for 45. Balance: Cast time of Balance spells reduced by 30% and damage increased by 20%. Feral: Gain 1 Combo Point every 2 sec while in Cat Form and Physical damage increased by 20%. Guardian: Bear Form gives an additional 20% Stamina, multiple uses of Ironfur may overlap, and Frenzied Regeneration has 2 charges.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -12216,8 +12248,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "When you cast Starsurge, Rake, Shred, or Frenzied Regeneration you gain Call of the Elder Druid for 20 sec, once every 60. Call of the Elder Druid Abilities not associated with your specialization are substantially empowered for 45. Balance: Cast time of Balance spells reduced by 30% and damage increased by 20%. Feral: Gain 1 Combo Point every (varies) sec while in Cat Form and Physical damage increased by 20%. Guardian: Bear Form gives an additional 20% Stamina, multiple uses of Ironfur may overlap, and Frenzied Regeneration has 2 charges.",
-                            "uncertain": true
+                            "text": "When you cast Starsurge, Rake, Shred, or Frenzied Regeneration you gain Call of the Elder Druid for 20 sec, once every 60. Call of the Elder Druid Abilities not associated with your specialization are substantially empowered for 45. Balance: Cast time of Balance spells reduced by 30% and damage increased by 20%. Feral: Gain 1 Combo Point every 2 sec while in Cat Form and Physical damage increased by 20%. Guardian: Bear Form gives an additional 20% Stamina, multiple uses of Ironfur may overlap, and Frenzied Regeneration has 2 charges.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -12284,7 +12316,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "A quick beam of lunar light burns the enemy for ≈21.2% of Spell Power Arcane damage and then an additional (varies) Arcane damage over 18.",
+                            "text": "A quick beam of lunar light burns the enemy for ≈21.2% of Spell Power Arcane damage and then an additional ≈165.6% of Spell Power Arcane damage over 18.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -12300,7 +12332,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "A quick beam of solar light burns the enemy and all enemies within 8 yards for ≈21.2% of Spell Power Nature damage and then an additional (varies) Nature damage over 18.",
+                            "text": "A quick beam of solar light burns the enemy and all enemies within 8 yards for ≈21.2% of Spell Power Nature damage and then an additional ≈165.6% of Spell Power Nature damage over 18.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -12393,6 +12425,7 @@
                             "charges": null,
                             "max_stacks": null,
                             "proc_chance": null,
+                            "proc_cooldown_seconds": null,
                             "cooldown_seconds": null,
                             "cooldown_scaling_note": null,
                             "duration_seconds": null,
@@ -12440,6 +12473,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:22:15.000000Z",
@@ -12458,6 +12492,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:22:15.000000Z",
@@ -12476,6 +12511,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:22:15.000000Z",
@@ -12569,7 +12605,7 @@
             "spellId": 2872,
             "category": "Offensive",
             "description": {
-                "text": "A quick beam of solar light burns the enemy and all enemies within 8 yards for ≈21.2% of Spell Power Nature damage and then an additional (varies) Nature damage over 18.",
+                "text": "A quick beam of solar light burns the enemy and all enemies within 8 yards for ≈21.2% of Spell Power Nature damage and then an additional ≈165.6% of Spell Power Nature damage over 18.",
                 "uncertain": true
             },
             "formulaModifierSpellIds": [],
@@ -12693,8 +12729,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Abilities not associated with your specialization are substantially empowered for 45. Balance: Cast time of Balance spells reduced by 30% and damage increased by 20%. Feral: Gain 1 Combo Point every (varies) sec while in Cat Form and Physical damage increased by 20%. Guardian: Bear Form gives an additional 20% Stamina, multiple uses of Ironfur may overlap, and Frenzied Regeneration has 2 charges.",
-                            "uncertain": true
+                            "text": "Abilities not associated with your specialization are substantially empowered for 45. Balance: Cast time of Balance spells reduced by 30% and damage increased by 20%. Feral: Gain 1 Combo Point every 2 sec while in Cat Form and Physical damage increased by 20%. Guardian: Bear Form gives an additional 20% Stamina, multiple uses of Ironfur may overlap, and Frenzied Regeneration has 2 charges.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -13174,6 +13210,7 @@
                             "charges": null,
                             "max_stacks": null,
                             "proc_chance": null,
+                            "proc_cooldown_seconds": null,
                             "cooldown_seconds": null,
                             "cooldown_scaling_note": null,
                             "duration_seconds": null,
@@ -13221,6 +13258,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:22:16.000000Z",
@@ -13239,6 +13277,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:22:16.000000Z",
@@ -13257,6 +13296,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:22:16.000000Z",
@@ -13300,7 +13340,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Swipe all nearby enemies, inflicting (varies) Physical damage. Deals reduced damage beyond 5 targets. Applies the Bleed from Thrash. Awards 1 combo point.",
+                            "text": "Swipe all nearby enemies, inflicting ≈112.7% of Attack Power Physical damage. Deals reduced damage beyond 5 targets. Applies the Bleed from Thrash. Awards 1 combo point.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -13332,7 +13372,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Swipe all nearby enemies, inflicting (varies) Physical damage. Deals reduced damage beyond 5 targets.",
+                            "text": "Swipe all nearby enemies, inflicting ≈110% of Attack Power Physical damage. Deals reduced damage beyond 5 targets.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -13533,7 +13573,7 @@
             "spellId": 3064,
             "category": "Other",
             "description": {
-                "text": "Rip and Rake damage has a chance to cause Bloodseeker Vines to grow on the victim, dealing (varies) Bleed damage over 6. Wild Growth, Regrowth, and Efflorescence healing has a chance to cause Symbiotic Blooms to grow on the target, healing for (varies) over 6. Multiple instances of these can overlap.",
+                "text": "Rip and Rake damage has a chance to cause Bloodseeker Vines to grow on the victim, dealing ≈97.5% of Attack Power Bleed damage over 6. Wild Growth, Regrowth, and Efflorescence healing has a chance to cause Symbiotic Blooms to grow on the target, healing for ≈219.6% of Spell Power over 6. Multiple instances of these can overlap.",
                 "uncertain": true
             },
             "formulaModifierSpellIds": [],
@@ -13700,8 +13740,8 @@
             "spellId": 3082,
             "category": "Defensive",
             "description": {
-                "text": "Heals all allies within 40 yards for ≈5,099.6–6,119.5% of Spell Power over 6. Extends the duration of all your heal over time effects by 2 sec every (varies) sec. Healing decreased beyond 5 targets. Roots form around you while channeling, absorbing up to 60% of your health in damage and preventing knockbacks.",
-                "uncertain": true
+                "text": "Heals all allies within 40 yards for ≈5,099.6–6,119.5% of Spell Power over 6. Extends the duration of all your heal over time effects by 2 sec every 1 sec. Healing decreased beyond 5 targets. Roots form around you while channeling, absorbing up to 60% of your health in damage and preventing knockbacks.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -13827,8 +13867,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Tranquility extends the duration of all of your heal over time effects by 2 sec every (varies) sec.",
-                            "uncertain": true
+                            "text": "Tranquility extends the duration of all of your heal over time effects by 2 sec every 1 sec.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -14481,7 +14521,7 @@
             "spellId": 2870,
             "category": "Defensive",
             "description": {
-                "text": "Heals up to 5 injured allies within 30 yards of the target for (varies) over 7. Healing starts high and declines over the duration. Tree of Life: Affects 2 additional targets.",
+                "text": "Heals up to 5 injured allies within 30 yards of the target for ≈336.7% of Spell Power over 7. Healing starts high and declines over the duration. Tree of Life: Affects 2 additional targets.",
                 "uncertain": true
             },
             "formulaModifierSpellIds": [],
@@ -14529,6 +14569,7 @@
                                         "charges": null,
                                         "max_stacks": null,
                                         "proc_chance": null,
+                                        "proc_cooldown_seconds": null,
                                         "cooldown_seconds": null,
                                         "cooldown_scaling_note": null,
                                         "duration_seconds": null,
@@ -14593,8 +14634,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Abilities not associated with your specialization are substantially empowered for 45. Balance: Cast time of Balance spells reduced by 30% and damage increased by 20%. Feral: Gain 1 Combo Point every (varies) sec while in Cat Form and Physical damage increased by 20%. Guardian: Bear Form gives an additional 20% Stamina, multiple uses of Ironfur may overlap, and Frenzied Regeneration has 2 charges.",
-                            "uncertain": true
+                            "text": "Abilities not associated with your specialization are substantially empowered for 45. Balance: Cast time of Balance spells reduced by 30% and damage increased by 20%. Feral: Gain 1 Combo Point every 2 sec while in Cat Form and Physical damage increased by 20%. Guardian: Bear Form gives an additional 20% Stamina, multiple uses of Ironfur may overlap, and Frenzied Regeneration has 2 charges.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -14773,6 +14814,7 @@
                                         "charges": null,
                                         "max_stacks": null,
                                         "proc_chance": null,
+                                        "proc_cooldown_seconds": null,
                                         "cooldown_seconds": null,
                                         "cooldown_scaling_note": null,
                                         "duration_seconds": null,
@@ -15017,7 +15059,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Rip and Rake damage has a chance to cause Bloodseeker Vines to grow on the victim, dealing (varies) Bleed damage over 6. Wild Growth, Regrowth, and Efflorescence healing has a chance to cause Symbiotic Blooms to grow on the target, healing for (varies) over 6. Multiple instances of these can overlap.",
+                            "text": "Rip and Rake damage has a chance to cause Bloodseeker Vines to grow on the victim, dealing ≈97.5% of Attack Power Bleed damage over 6. Wild Growth, Regrowth, and Efflorescence healing has a chance to cause Symbiotic Blooms to grow on the target, healing for ≈219.6% of Spell Power over 6. Multiple instances of these can overlap.",
                             "uncertain": true
                         },
                         "category": "Other",
@@ -15142,6 +15184,7 @@
                             "charges": null,
                             "max_stacks": null,
                             "proc_chance": null,
+                            "proc_cooldown_seconds": null,
                             "cooldown_seconds": null,
                             "cooldown_scaling_note": null,
                             "duration_seconds": null,
@@ -15189,6 +15232,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:22:16.000000Z",
@@ -15207,6 +15251,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:22:16.000000Z",
@@ -15225,6 +15270,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:22:16.000000Z",
@@ -15358,8 +15404,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Abilities not associated with your specialization are substantially empowered for 45. Balance: Cast time of Balance spells reduced by 30% and damage increased by 20%. Feral: Gain 1 Combo Point every (varies) sec while in Cat Form and Physical damage increased by 20%. Guardian: Bear Form gives an additional 20% Stamina, multiple uses of Ironfur may overlap, and Frenzied Regeneration has 2 charges.",
-                            "uncertain": true
+                            "text": "Abilities not associated with your specialization are substantially empowered for 45. Balance: Cast time of Balance spells reduced by 30% and damage increased by 20%. Feral: Gain 1 Combo Point every 2 sec while in Cat Form and Physical damage increased by 20%. Guardian: Bear Form gives an additional 20% Stamina, multiple uses of Ironfur may overlap, and Frenzied Regeneration has 2 charges.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -15714,7 +15760,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "A quick beam of solar light burns the enemy and all enemies within 8 yards for ≈21.2% of Spell Power Nature damage and then an additional (varies) Nature damage over 18.",
+                            "text": "A quick beam of solar light burns the enemy and all enemies within 8 yards for ≈21.2% of Spell Power Nature damage and then an additional ≈165.6% of Spell Power Nature damage over 18.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -15859,8 +15905,8 @@
             "spellId": 3089,
             "category": "Defensive",
             "description": {
-                "text": "Heals you for 3% of your maximum health every (varies) sec. If you are at full health, an injured party or raid member will be healed instead. Healing is increased by 8% for each of your active Rejuvenations.",
-                "uncertain": true
+                "text": "Heals you for 3% of your maximum health every 5 sec. If you are at full health, an injured party or raid member will be healed instead. Healing is increased by 8% for each of your active Rejuvenations.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {

@@ -1850,6 +1850,21 @@ class ModuleSpellReferenceService
     }
 
     /**
+     * Character stats a tooltip formula can name (2026-10-18). Their values exist only for a real
+     * character, so Pass 2 reads a formula built on one as a share of it ("${$MHP*$s2/100}" is
+     * "≈30% of maximum health"), the same footing as a Spell Power coefficient. Mastery ($mas) is
+     * not here: it is a percentage added to 1, not a quantity the result is a share of.
+     */
+    private const STAT_TOKENS = [
+        'AP' => 'Attack Power', 'ap' => 'Attack Power',
+        'SP' => 'Spell Power', 'sp' => 'Spell Power',
+        'MHP' => 'maximum health', 'mhp' => 'maximum health',
+        'AGI' => 'Agility', 'agi' => 'Agility',
+        'STR' => 'Strength', 'str' => 'Strength',
+        'INT' => 'Intellect', 'int' => 'Intellect',
+    ];
+
+    /**
      * Thin memoizing wrapper — the real work is resolveDescriptionUncached() below. Added
      * 2026-09-01 alongside the modifiersFor() memo (see that one's own docblock for the full
      * profiling context): confirmed 342 of 523 resolveDescription() calls in one spec's render
@@ -2071,41 +2086,56 @@ class ModuleSpellReferenceService
                     // 21 kit entries affected. Additive carve-out added same day so Alter Time
                     // (${$110909d+$s3}) keeps its real "10 seconds" and Nature's Guardian
                     // (${$Xs1*(1+$s2/100)}) keeps its real base %.
-                    $expr = $m[1];
+                    // "(1+$@versadmg)": the player's Versatility, which this system does not have.
+                    // As an added term it is exactly "before Versatility" at 0, the same footing
+                    // as every coefficient here (Anti-Magic Shell, 2026-10-18). Only the added
+                    // form is read; anywhere else it stays unresolved and the expression with it.
+                    $expr = preg_replace('/\+\s*\$@versa(?:dmg|heal)\b/', '+0', $m[1]);
                     $poisoned = false;
                     $count = 0;
-                    $usedCoefficient = false;
+                    $labels = [];
 
-                    // Run twice: once substituting each spell-power coefficient with its real
-                    // value, once with zero. Comparing the two is what decides whether the whole
-                    // expression is a share of Spell Power — see below. Every flag it sets is a
-                    // one-way latch, so the second run cannot change the verdict of the first.
+                    // Evaluated at three sizes of whatever the expression scales with: each
+                    // coefficient (Spell Power, Attack Power) and each stat token ($AP, $SP, $MHP,
+                    // $AGI...) multiplied by $scale. At 1 it gives the share; at 0 and 2 it proves
+                    // the share is real: a value proportional to the stat is 0 at 0 and doubles at
+                    // 2, while "40% of Spell Power plus 500" does neither. Every flag set inside is
+                    // a one-way latch, so the extra runs cannot change the verdict of the first.
                     //
-                    // A REGULAR CLOSURE. Written as `fn () =>` this captures $usedCoefficient by
-                    // value, the inner callback's `&$usedCoefficient` then binds to that copy, and
-                    // the flag never reaches the code below — Penance came out as a bare "2.8–9.8"
-                    // with the "% of Spell Power" silently dropped. Same trap as the settle loop
-                    // earlier in this method, and it is the first one CLAUDE.md lists.
-                    $substitute = function (bool $zeroCoefficients) use (&$poisoned, &$uncertain, &$usedCoefficient, &$count, $spell, $expr, $m): ?string {
+                    // A REGULAR CLOSURE. Written as `fn () =>` this captures the flags by value, the
+                    // inner callback's references then bind to that copy, and they never reach the
+                    // code below: Penance came out as a bare "2.8–9.8" with the "% of Spell Power"
+                    // silently dropped. Same trap as the settle loop below, and the first one
+                    // CLAUDE.md lists.
+                    $substitute = function (float $scale) use (&$poisoned, &$uncertain, &$labels, &$count, $spell, $expr): ?string {
                         return preg_replace_callback(
                             '/\$(\d*[a-zA-Z]+\d*)/',
-                            function ($mm) use (&$poisoned, &$uncertain, &$usedCoefficient, $spell, $expr, $zeroCoefficients) {
+                            function ($mm) use (&$poisoned, &$uncertain, &$labels, $spell, $expr, $scale) {
                                 // PREG_OFFSET_CAPTURE: $mm[n] is [string, byteOffset].
                                 [$full, $offset] = $mm[0];
                                 $token = $mm[1][0];
 
+                                // A character stat: the number exists only for a real character, so
+                                // it stands for one unit of itself and the result is read as a share.
+                                $stat = self::STAT_TOKENS[$token] ?? null;
+                                if ($stat !== null) {
+                                    $labels[$stat] = true;
+
+                                    return (string) $scale;
+                                }
+
                                 // The coefficient is tried FIRST, because resolveValueToken() ends in
                                 // findEffectByIndex()'s sibling recovery and that fires before any
-                                // coefficient would be reached. ownCoefficient() answers null whenever
+                                // coefficient would be reached. ownScaling() answers null whenever
                                 // the named effect holds a real value, so the order that actually runs
                                 // is: this effect's own value, then this effect's own coefficient,
-                                // then a sibling's value — which is the order of decreasing certainty.
+                                // then a sibling's value, which is the order of decreasing certainty.
                                 $coefficient = $this->coefficientFor($token, $spell);
 
                                 if ($coefficient !== null) {
-                                    $usedCoefficient = true;
+                                    $labels[$coefficient[1]] = true;
 
-                                    return $zeroCoefficients ? '0' : (string) $coefficient;
+                                    return (string) ($coefficient[0] * $scale);
                                 }
 
                                 $value = $this->resolveValueToken($token, $spell);
@@ -2114,19 +2144,6 @@ class ModuleSpellReferenceService
                                     return (string) $value;
                                 }
 
-                                // A purely spell-power-scaled effect carries Base and Scaled Value 0
-                                // and its real magnitude in sp_coefficient, so resolveValueToken()
-                                // correctly finds nothing. Substituting the coefficient keeps the
-                                // arithmetic intact and the result is then read as a share of Spell
-                                // Power rather than as a flat number.
-                                //
-                                // coefficientDisplay()'s docblock declined to do this in Pass 2,
-                                // because blending a coefficient into talent-conditional math risked
-                                // being confidently wrong. What changed is the conditional handling,
-                                // not the arithmetic: Pass 1.5 no longer picks a branch at all, it
-                                // reports both. Mixing a coefficient with a real flat value in one
-                                // expression is still refused below — "x% of Spell Power plus 500"
-                                // has no single honest rendering.
                                 $uncertain = true;
 
                                 // Operators immediately flanking this token in the raw expression.
@@ -2138,14 +2155,14 @@ class ModuleSpellReferenceService
                                 // 0 annihilates a product and breaks division-by; it's the identity for
                                 // an additive term or a dividend.
                                 //
-                                // It is NOT the identity for a MINUEND either — "$x1-1" collapses to
+                                // It is NOT the identity for a MINUEND either: "$x1-1" collapses to
                                 // "0-1" and renders a confident "-1". Found 2026-09-10 while fixing the
                                 // signed-reduction prose below: this is what was left rendering "jumping
                                 // to -1 additional nearby enemies" (Avenger's Shield), "once every -1
                                 // sec" (Earth Shield) and "strikes up to -3 nearby targets" (Blade
                                 // Flurry). The tokens involved ($x chain-targets, $u max-stacks, $i
                                 // targets) aren't captured in this schema at all, so there is nothing to
-                                // resolve them to — "(varies)" is the honest answer, and a negative count
+                                // resolve them to: "(varies)" is the honest answer, and a negative count
                                 // of targets is the confidently-wrong one. A 0 SUBTRAHEND ("$d-$s1" where
                                 // $s1 is null) stays safe and is deliberately still allowed through.
                                 if ($prevOp === '*' || $prevOp === '/' || $nextOp === '*' || $nextOp === '-') {
@@ -2154,14 +2171,14 @@ class ModuleSpellReferenceService
 
                                 return '0';
                             },
-                            $m[1],
+                            $expr,
                             -1,
                             $count,
                             PREG_OFFSET_CAPTURE
                         );
                     };
 
-                    $inner = $substitute(false);
+                    $inner = $substitute(1.0);
 
                     if ($poisoned) {
                         return '(varies)';
@@ -2174,30 +2191,28 @@ class ModuleSpellReferenceService
                         return '(varies)';
                     }
 
-                    if (! $usedCoefficient) {
+                    if ($labels === []) {
                         return $this->formatNumber($result);
                     }
 
-                    // A coefficient can be multiplied by anything and still be a share of Spell
-                    // Power; added to a flat amount it is no longer a share of anything. Rather
-                    // than inspect the operators, the expression is evaluated a second time with
-                    // every coefficient set to zero: a value proportional to Spell Power collapses
-                    // to zero, "40% of Spell Power plus 500" does not.
+                    // One thing to be a share of: "x% of Spell Power plus y% of maximum health" has
+                    // no single honest rendering. Then the proportionality check described above.
                     //
-                    // Penance's own formula is exactly why the cruder test — refuse any expression
-                    // mixing a coefficient with a real effect value — was wrong: its multipliers
-                    // (1.3 for Power of the Dark Side, 1.15 for Twilight Equilibrium) and its bolt
-                    // count are all real effect values, and the product is still a clean multiple
-                    // of Spell Power.
-                    $withoutCoefficients = $this->safeEval($substitute(true));
+                    // Penance's own formula is why the cruder test (refuse any expression mixing a
+                    // coefficient with a real effect value) was wrong: its multipliers (1.3 for
+                    // Power of the Dark Side, 1.15 for Twilight Equilibrium) and its bolt count are
+                    // all real effect values, and the product is still a clean multiple of Spell Power.
+                    $atZero = $this->safeEval($substitute(0.0));
+                    $atTwo = $this->safeEval($substitute(2.0));
 
-                    if ($withoutCoefficients === null || abs($withoutCoefficients) > 0.0001) {
+                    if (count($labels) !== 1 || $atZero === null || abs($atZero) > 0.0001
+                        || $atTwo === null || abs($atTwo - 2 * $result) > 0.0001 * max(1.0, abs($result))) {
                         $uncertain = true;
 
                         return '(varies)';
                     }
 
-                    return '≈'.$this->formatNumber($result * 100).'% of Spell Power';
+                    return '≈'.$this->formatNumber($result * 100).'% of '.array_key_first($labels);
                 },
                 $input
             );
@@ -2364,12 +2379,12 @@ class ModuleSpellReferenceService
                 // (a cross-spell reference, e.g. a description inherited from a different
                 // spell_id whose own effects are what the token was really written against).
                 $coefficientText = null;
-                if (preg_match('/^s(\d+)$/', $m[1], $sm)) {
-                    $coefficientText = $this->coefficientDisplay($spell, (int) $sm[1]);
-                } elseif (preg_match('/^(\d+)s(\d+)$/', $m[1], $sm)) {
+                if (preg_match('/^([so])(\d+)$/', $m[1], $sm)) {
+                    $coefficientText = $this->coefficientDisplay($spell, (int) $sm[2], $sm[1] === 'o');
+                } elseif (preg_match('/^(\d+)([so])(\d+)$/', $m[1], $sm)) {
                     $other = $this->findSpellBySpellId((int) $sm[1], $spell->patch_id);
                     if ($other) {
-                        $coefficientText = $this->coefficientDisplay($other, (int) $sm[2]);
+                        $coefficientText = $this->coefficientDisplay($other, (int) $sm[3], $sm[2] === 'o');
                     }
                 }
 
@@ -2783,6 +2798,16 @@ class ModuleSpellReferenceService
             return $spell->max_stacks !== null ? (float) $spell->max_stacks : null;
         }
 
+        // $proccooldown — "once every $proccooldown sec", the proc's internal cooldown; $r — the
+        // spell's range, "within $r yards" (both 2026-10-18).
+        if ($token === 'proccooldown') {
+            return $spell->proc_cooldown_seconds !== null ? (float) $spell->proc_cooldown_seconds : null;
+        }
+
+        if ($token === 'r') {
+            return $this->rangeOf($spell);
+        }
+
         // $h — "has a $h% chance to". The percent sign is written in the prose around the token,
         // so only the number is substituted.
         if ($token === 'h') {
@@ -2806,7 +2831,15 @@ class ModuleSpellReferenceService
             return $effect?->chain_targets !== null ? (float) $effect->chain_targets : null;
         }
 
-        if (preg_match('/^(\d+)(s(\d+)|[aA](\d+)|x(\d+)|d|[uU]|h)$/', $token, $m)) {
+        // $tN — effect N's tick interval, "every $t1 sec"; $oN — its total over the duration,
+        // "an additional $o1 Fire damage over $d" (2026-10-18). Own effect only, like $AN: the
+        // period and the duration have to belong to the same record. A coefficient-only $oN (the
+        // usual case for damage) is coefficientFor()'s, which reads it as a share of a stat.
+        if (preg_match('/^([to])(\d+)$/', $token, $m)) {
+            return $this->periodicToken($spell, $m[1], (int) $m[2]);
+        }
+
+        if (preg_match('/^(\d+)(s(\d+)|[aA](\d+)|x(\d+)|[to](\d+)|d|[uU]|h|r|proccooldown)$/', $token, $m)) {
             $other = $this->findSpellBySpellId((int) $m[1], $spell->patch_id);
 
             if (! $other) {
@@ -2827,6 +2860,14 @@ class ModuleSpellReferenceService
                 return $other->proc_chance !== null ? (float) $other->proc_chance : null;
             }
 
+            if ($rest === 'r') {
+                return $this->rangeOf($other);
+            }
+
+            if ($rest === 'proccooldown') {
+                return $other->proc_cooldown_seconds !== null ? (float) $other->proc_cooldown_seconds : null;
+            }
+
             if (preg_match('/^[aA](\d+)$/', $rest, $am)) {
                 $effect = $other->effects->firstWhere('effect_index', (int) $am[1]);
 
@@ -2839,12 +2880,50 @@ class ModuleSpellReferenceService
                 return $effect?->chain_targets !== null ? (float) $effect->chain_targets : null;
             }
 
+            if (preg_match('/^([to])(\d+)$/', $rest, $tm)) {
+                return $this->periodicToken($other, $tm[1], (int) $tm[2]);
+            }
+
             $effect = $this->findEffectByIndex($other, (int) $m[3]);
 
             return $effect ? $this->effectValue($effect) : null;
         }
 
         return null;
+    }
+
+    /**
+     * A spell's maximum range in yards, for "$r", from the dump's raw "Range : 30 yards" (or "6 - 25
+     * yards", whose second number is the maximum). Self-range spells read "0 yards" and the dump's
+     * "50000 yards" means unlimited; neither is a distance a sentence means, so both stay null.
+     */
+    private function rangeOf(Spell $spell): ?float
+    {
+        if (! preg_match_all('/[\d.]+/', (string) $spell->range_yards, $m) || $m[0] === []) {
+            return null;
+        }
+        $max = (float) end($m[0]);
+
+        return $max > 0 && $max <= 100 ? $max : null;
+    }
+
+    /** "$tN" (the tick interval) or "$oN" (the total over the duration) of $spell's own effect N. */
+    private function periodicToken(Spell $spell, string $kind, int $index): ?float
+    {
+        $effect = $spell->effects->firstWhere('effect_index', $index);
+
+        if (! $effect) {
+            return null;
+        }
+
+        if ($kind === 't') {
+            return $this->period($effect);
+        }
+
+        $value = $this->effectValue($effect);
+        $ticks = $this->ticks($spell, $effect);
+
+        return $value !== null && $ticks !== null ? $value * $ticks : null;
     }
 
     /**
@@ -2945,36 +3024,40 @@ class ModuleSpellReferenceService
     }
 
     /**
-     * The coefficient-based fallback for a bare "sN" token (Pass 3 of resolveDescription() only
-     * — deliberately not wired into Pass 2's `${...}` arithmetic evaluator, where blending an
-     * estimated percentage into compound math with talent-conditional multipliers risks the
-     * exact "confidently wrong" failure this resolver otherwise avoids; Penance-shaped formulas
-     * stay unresolved and instead surface their real modifying talent names via
-     * variablesModifiers() below). Routes through the same findEffectByIndex() sibling fallback
-     * as effectValue(), so Mind Blast's own coefficient (found directly) and any future
-     * pointer/sibling-split case both work the same way.
+     * The coefficient-based fallback for a bare "sN" or "oN" token in prose (Pass 3) — deliberately
+     * the bare-token case only; Pass 2's arithmetic reads coefficients through coefficientFor().
+     * Routes "sN" through the same findEffectByIndex() sibling fallback as effectValue(), so Mind
+     * Blast's own coefficient (found directly) and any pointer/sibling-split case both work.
      *
-     * @return ?string e.g. "≈78.3% of Spell Power" — null when no coefficient exists either.
+     * "oN" (an over-time total, 2026-10-18) reads the spell's OWN effect only: the tick count comes
+     * from that effect's own period and the spell's own duration, and a sibling's coefficient over
+     * this spell's ticks would be two different records multiplied together.
+     *
+     * @return ?string e.g. "≈78.3% of Spell Power", "≈164% of Attack Power"; null when nothing scales.
      */
-    private function coefficientDisplay(Spell $spell, int $index): ?string
+    private function coefficientDisplay(Spell $spell, int $index, bool $total = false): ?string
     {
-        $effect = $this->findEffectByIndex($spell, $index);
+        $effect = $total ? $spell->effects->firstWhere('effect_index', $index) : $this->findEffectByIndex($spell, $index);
 
-        // Same type gate as ownCoefficient(): a coefficient on a Taunt or a Shapeshift is not a
-        // share of anything, and this method has been printing those as one.
-        if (! $effect || ! $this->scalesWithSpellPower($effect)) {
+        // Same type gate as scaling(): a coefficient on a Taunt or a Shapeshift is not a share of
+        // anything, and this method once printed those as one.
+        $scaling = $effect ? $this->scaling($effect) : null;
+        $ticks = $total && $effect ? $this->ticks($spell, $effect) : 1.0;
+
+        if ($scaling === null || $ticks === null) {
             return null;
         }
 
-        return '≈'.$this->formatNumber($effect->sp_coefficient * 100).'% of Spell Power';
+        return '≈'.$this->formatNumber($scaling[0] * $ticks * 100).'% of '.$scaling[1];
     }
 
     /**
-     * The raw spell-power coefficient behind an "sN" or "<id>sN" token, for Pass 2's arithmetic.
+     * The raw coefficient behind an "sN", "<id>sN", "oN" or "<id>oN" token, for Pass 2's
+     * arithmetic, with what it is a share of: [0.78, 'Spell Power'] or [1.64, 'Attack Power'].
      *
      * The number, not the sentence — coefficientDisplay() above formats the same value for prose.
-     * Only these two token shapes: every other token ($d, $u, $AN, $xN) is a duration or a count,
-     * and a coefficient has nothing to do with it.
+     * Every other token ($d, $u, $AN, $xN, $tN) is a duration or a count, and a coefficient has
+     * nothing to do with it.
      *
      * OWN EFFECT ONLY — no findEffectByIndex() sibling recovery, and this is the whole reason the
      * first attempt printed a confident wrong number. Penance's damage bolt (47666) has effect #1
@@ -2985,37 +3068,47 @@ class ModuleSpellReferenceService
      * the effect the token actually names.
      *
      * A real value on that same effect still wins: null here, and resolveValueToken() takes over.
+     *
+     * @return ?array{0: float, 1: string}
      */
-    private function coefficientFor(string $token, Spell $spell): ?float
+    private function coefficientFor(string $token, Spell $spell): ?array
     {
-        if (preg_match('/^s(\d+)$/', $token, $m)) {
-            return $this->ownCoefficient($spell, (int) $m[1]);
+        if (preg_match('/^([so])(\d+)$/', $token, $m)) {
+            return $this->ownScaling($spell, (int) $m[2], $m[1] === 'o');
         }
 
-        if (preg_match('/^(\d+)s(\d+)$/', $token, $m)) {
+        if (preg_match('/^(\d+)([so])(\d+)$/', $token, $m)) {
             $other = $this->findSpellBySpellId((int) $m[1], $spell->patch_id);
 
-            return $other ? $this->ownCoefficient($other, (int) $m[2]) : null;
+            return $other ? $this->ownScaling($other, (int) $m[3], $m[2] === 'o') : null;
         }
 
         return null;
     }
 
-    private function ownCoefficient(Spell $spell, int $index): ?float
+    /** @return ?array{0: float, 1: string} */
+    private function ownScaling(Spell $spell, int $index, bool $total = false): ?array
     {
         $effect = $spell->effects->firstWhere('effect_index', $index);
 
-        if (! $effect || ! $this->scalesWithSpellPower($effect) || $this->effectValue($effect) !== null) {
+        if (! $effect || $this->effectValue($effect) !== null || ($scaling = $this->scaling($effect)) === null) {
             return null;
         }
 
-        return (float) $effect->sp_coefficient;
+        if (! $total) {
+            return $scaling;
+        }
+
+        $ticks = $this->ticks($spell, $effect);
+
+        return $ticks === null ? null : [$scaling[0] * $ticks, $scaling[1]];
     }
 
     /**
-     * Whether an effect's magnitude is genuinely a multiple of Spell Power.
+     * Whether an effect's magnitude is a multiple of Spell Power or Attack Power, and of which:
+     * [coefficient, 'Spell Power' | 'Attack Power'], or null.
      *
-     * A populated sp_coefficient is NOT enough on its own, which the dump makes obvious once you
+     * A populated coefficient is NOT enough on its own, which the dump makes obvious once you
      * group by effect type: Taunt, Shapeshift, Change Model, Charge, Fear, Modify Block% and
      * Instant Kill all carry one. Reading those as damage produced real nonsense on the page —
      * an Evoker breath rendered "healing ≈53.5% of Spell Power injured allies in a ≈92.2% of
@@ -3023,11 +3116,49 @@ class ModuleSpellReferenceService
      *
      * So the type has to say the effect deals damage, heals, leeches or absorbs. Anything else
      * keeps its honest "(varies)" — a visible hole beats a confident number about an angle.
+     * Attack Power since 2026-10-18 (ap_coefficient), under the same gate: Blood Boil's "Deals $s1
+     * Shadow damage" is AP Coefficient 1.64 on a School Damage effect.
+     *
+     * @return ?array{0: float, 1: string}
      */
-    private function scalesWithSpellPower(SpellEffect $effect): bool
+    private function scaling(SpellEffect $effect): ?array
     {
-        return $effect->sp_coefficient !== null
-            && preg_match('/^(School Damage|Direct Heal|Periodic Damage|Periodic Heal|Health Leech|Periodic Health Leech|Absorb Damage|School Absorb)/i', (string) $effect->type) === 1;
+        if (preg_match('/^(School Damage|Direct Heal|Periodic Damage|Periodic Heal|Health Leech|Periodic Health Leech|Absorb Damage|School Absorb)/i', (string) $effect->type) !== 1) {
+            return null;
+        }
+
+        if ($effect->sp_coefficient !== null && (float) $effect->sp_coefficient !== 0.0) {
+            return [(float) $effect->sp_coefficient, 'Spell Power'];
+        }
+
+        if ($effect->ap_coefficient !== null && (float) $effect->ap_coefficient !== 0.0) {
+            return [(float) $effect->ap_coefficient, 'Attack Power'];
+        }
+
+        return null;
+    }
+
+    /**
+     * An effect's tick interval in seconds — "$tN" (2026-10-18). The dump writes it into the
+     * effect's own type line, "Periodic Damage (3): fire every 2 seconds", which is stored as is,
+     * so it is read from there: 911 effects carry one.
+     */
+    private function period(SpellEffect $effect): ?float
+    {
+        return preg_match('/\bevery ([\d.]+) sec/', (string) $effect->type, $m) && (float) $m[1] > 0 ? (float) $m[1] : null;
+    }
+
+    /**
+     * How many ticks an over-time effect makes — what "$oN" multiplies by (SimC: amplitude × duration
+     * ÷ period). Both numbers must be the record's own: the spell's duration and the effect's period.
+     */
+    private function ticks(Spell $spell, SpellEffect $effect): ?float
+    {
+        $period = $this->period($effect);
+
+        return $period !== null && $spell->duration_seconds !== null && (float) $spell->duration_seconds > 0
+            ? (float) $spell->duration_seconds / $period
+            : null;
     }
 
     /**

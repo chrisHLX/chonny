@@ -389,3 +389,48 @@ get the real data, not to leave a placeholder on screen.
 - Hero-tree attribution for baseline pet/summon spells via embedded `$<id>` description tokens, and filtering `getTopCooldownSpellsProperty()` by the selected `heroTreeId` (see above).
 - Threading `talent_nodes.type`/`CHOICE` context into the Top Cooldowns section (see above).
 - Any automation of the trusted-ability-list matching pattern (see above) — currently a validated-by-hand approach, not a built feature.
+
+## "(varies)" halved: attack power, tick intervals, totals over time, stat shares — 2026-10-18
+
+Chriso: "go ahead and do the varies". Measured first, with every kit entry showing "(varies)" traced
+to the raw token that failed: **734 of 6,189 kit entries (462 distinct spells)**, including 297 of the
+1,116 spells with a cooldown. Five causes held most of it, and each is now read from data the dump
+already carries:
+
+1. **Attack Power (about 105 spells).** Physical and attack-power effects carry Base and Scaled Value
+   0 with the size in `AP Coefficient:` (Blood Boil 1.64, checked against Wowhead's live "AP mod: 1.64"),
+   which was never captured. New `spell_effects.ap_coefficient` (migration `2026_10_18_000001`); the
+   resolver's `scaling()` reads Spell Power first, then Attack Power, under the same damage/heal/absorb
+   type gate, so Blood Boil reads "Deals ≈164% of Attack Power Shadow damage".
+2. **`$tN`, a tick interval (94).** The dump writes it into the effect's type line ("Periodic Damage
+   (3): fire every 2 seconds"), which is stored as is, so `period()` reads it from there: no column.
+3. **`$oN`, the total over the duration (82).** Value × duration ÷ period, both from the same record
+   (`ticks()`); a coefficient-only effect gives a share ("≈300% of Attack Power", Soul Carver: AP 1,
+   every 1 s, 3 s).
+4. **Stat formulas.** `$AP`, `$SP`, `$MHP`, `$AGI`, `$STR`, `$INT` (`STAT_TOKENS`) stand for one unit
+   of the stat in Pass 2, and `+$@versadmg` counts as 0 (before Versatility). A result is printed as a
+   share only when it is proportional to exactly one thing: it must be 0 with the stat at 0 and double
+   at 2, otherwise "(varies)". Anti-Magic Shell: "≈30–48% of maximum health" (the range is its two
+   talents).
+5. **`$proccooldown` and `$r`.** `spells.proc_cooldown_seconds` (migration `2026_10_18_000002`, the
+   dump's `Internal Cooldown:`); `$r` reads the stored `range_yards`, taking the maximum, ignoring 0
+   and the dump's 50,000 ("unlimited").
+
+**After: 311 entries (212 spells), 140 of the 1,116 with a cooldown.** 332 spells' text changed.
+None gained a "(varies)" it did not have, except Killing Spree, whose old "1 point: 202" was built
+from unrelated same-name records (a movement-speed slow among them): both of its damage records are
+AP 2.25 and nothing else, and its formula reads an effect #2 that does not exist. 39 spells changed
+one number for another, nearly all of them old sibling-recovery numbers that were never the damage:
+Divine Hammer "1,241,413 Holy damage", Immolation Aura "90,000", Chaos Strike-family strikes "60".
+
+**Left, a long tail** (largest groups, by spells): an effect index that exists on no record (27),
+another spell with no duration (9), `$<id>swN` (9), `$<id>t` with no index (8, not guessed as t1),
+`$<id>i` target counts (7), mastery (`$mas`, 6, a percentage added to 1, not a share), and
+conditional or Variables text that inlines another spell's unresolved description (31). Separately,
+12 entries still print raw conditional syntax (Rogue finishers' compound `$?s193531|((...)&!...)`,
+Eye Beam's `$?a320415` inside a Variables definition, Flash of Light's `$?$c1&...`, Purge's space
+before the bracket); none of that is "(varies)" and each shape needs its own handling.
+
+Tests: 6 new cases in `ModuleSpellReferenceServiceDescriptionTest.php`. Production: `deploy.sh`
+migrates, and re-imports because the migrations' names contain "spell".
+

@@ -1,6 +1,6 @@
 {
-    "generatedAt": "2026-10-07T21:48:19+00:00",
-    "spellCacheVersion": 27,
+    "generatedAt": "2026-10-18T02:36:31+00:00",
+    "spellCacheVersion": 29,
     "codeFingerprint": "dev",
     "entries": [
         {
@@ -217,8 +217,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "When you use Barkskin or Survival Instincts, absorb (varies) damage for 15.",
-                            "uncertain": true
+                            "text": "When you use Barkskin or Survival Instincts, absorb ≈1,875% of Attack Power damage for 15.",
+                            "uncertain": false
                         },
                         "category": "Defensive",
                         "cooldown": {
@@ -249,8 +249,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "When you use Barkskin or Survival Instincts, absorb (varies) damage for 15.",
-                            "uncertain": true
+                            "text": "When you use Barkskin or Survival Instincts, absorb ≈1,875% of Attack Power damage for 15.",
+                            "uncertain": false
                         },
                         "category": "Defensive",
                         "cooldown": {
@@ -321,8 +321,8 @@
             "spellId": 2163,
             "category": "Offensive",
             "description": {
-                "text": "Go Berserk for 15. While Berserk: Generate 1 combo point every (varies) sec. Combo point generating abilities generate 1 additional combo point. Finishing moves restore up to 3 combo points generated over the cap. All attack and ability damage is increased by 15%.",
-                "uncertain": true
+                "text": "Go Berserk for 15. While Berserk: Generate 1 combo point every 1.5 sec. Combo point generating abilities generate 1 additional combo point. Finishing moves restore up to 3 combo points generated over the cap. All attack and ability damage is increased by 15%.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -384,8 +384,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "An improved Cat Form that grants all of your known Berserk effects and lasts 20. You may shapeshift in and out of this improved Cat Form for its duration. During Incarnation: Energy cost of all Cat Form abilities is reduced by 25%, and Prowl can be used once while in combat. Generate 1 combo point every (varies) sec. Combo point generating abilities generate 1 additional combo point. Finishing moves restore up to 3 combo points generated over the cap. All attack and ability damage is increased by 15%.",
-                            "uncertain": true
+                            "text": "An improved Cat Form that grants all of your known Berserk effects and lasts 20. You may shapeshift in and out of this improved Cat Form for its duration. During Incarnation: Energy cost of all Cat Form abilities is reduced by 25%, and Prowl can be used once while in combat. Generate 1 combo point every 1.5 sec. Combo point generating abilities generate 1 additional combo point. Finishing moves restore up to 3 combo points generated over the cap. All attack and ability damage is increased by 15%.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -404,6 +404,7 @@
                                         "charges": null,
                                         "max_stacks": null,
                                         "proc_chance": null,
+                                        "proc_cooldown_seconds": null,
                                         "cooldown_seconds": null,
                                         "cooldown_scaling_note": null,
                                         "duration_seconds": null,
@@ -455,6 +456,7 @@
                                         "charges": null,
                                         "max_stacks": null,
                                         "proc_chance": null,
+                                        "proc_cooldown_seconds": null,
                                         "cooldown_seconds": null,
                                         "cooldown_scaling_note": null,
                                         "duration_seconds": null,
@@ -532,6 +534,7 @@
                             "charges": null,
                             "max_stacks": null,
                             "proc_chance": null,
+                            "proc_cooldown_seconds": null,
                             "cooldown_seconds": null,
                             "cooldown_scaling_note": null,
                             "duration_seconds": null,
@@ -579,6 +582,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:22:15.000000Z",
@@ -732,7 +736,7 @@
             "spellId": 3077,
             "category": "Offensive",
             "description": {
-                "text": "When Bloodseeker Vines expire or you use Ferocious Bite on their target they explode in thorns, dealing (varies) physical damage to nearby enemies. Damage reduced above 5 targets. When Symbiotic Blooms expire or you cast Rejuvenation on their target flowers grow around their target, healing them and up to 3 nearby allies for ≈42.1% of Spell Power.",
+                "text": "When Bloodseeker Vines expire or you use Ferocious Bite on their target they explode in thorns, dealing ≈100% of Attack Power physical damage to nearby enemies. Damage reduced above 5 targets. When Symbiotic Blooms expire or you cast Rejuvenation on their target flowers grow around their target, healing them and up to 3 nearby allies for ≈42.1% of Spell Power.",
                 "uncertain": true
             },
             "formulaModifierSpellIds": [],
@@ -856,7 +860,7 @@
             "spellId": 2955,
             "category": "Offensive",
             "description": {
-                "text": "Chomp your target, causing (varies) Physical damage. Chomp critical strikes deal 3 times normal damage. Chomp can only be used when you fall below 30% Energy or for 2 seconds afterward.",
+                "text": "Chomp your target, causing ≈1,170% of Attack Power Physical damage. Chomp critical strikes deal 3 times normal damage. Chomp can only be used when you fall below 30% Energy or for 2 seconds afterward.",
                 "uncertain": true
             },
             "formulaModifierSpellIds": [],
@@ -868,8 +872,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Finishing move that causes Bleed damage over time. Lasts longer per combo point. 1 point  : (varies) over 1.3 sec 2 points: (varies) over 2 sec 3 points: (varies) over 2.7 sec 4 points: (varies) over 3.3 sec 5 points: (varies) over 4 sec",
-                            "uncertain": true
+                            "text": "Finishing move that causes Bleed damage over time. Lasts longer per combo point. 1 point  : ≈20.8% of Attack Power over 1.3 sec 2 points: ≈31.1% of Attack Power over 2 sec 3 points: ≈41.5% of Attack Power over 2.7 sec 4 points: ≈51.9% of Attack Power over 3.3 sec 5 points: ≈62.3% of Attack Power over 4 sec",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -900,8 +904,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Go Berserk for 15. While Berserk: Generate 1 combo point every (varies) sec. Combo point generating abilities generate 1 additional combo point. Finishing moves restore up to 3 combo points generated over the cap. All attack and ability damage is increased by 15%.",
-                            "uncertain": true
+                            "text": "Go Berserk for 15. While Berserk: Generate 1 combo point every 1.5 sec. Combo point generating abilities generate 1 additional combo point. Finishing moves restore up to 3 combo points generated over the cap. All attack and ability damage is increased by 15%.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -920,6 +924,7 @@
                                         "charges": null,
                                         "max_stacks": null,
                                         "proc_chance": null,
+                                        "proc_cooldown_seconds": null,
                                         "cooldown_seconds": null,
                                         "cooldown_scaling_note": null,
                                         "duration_seconds": null,
@@ -1068,8 +1073,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "An improved Cat Form that grants all of your known Berserk effects and lasts 20. You may shapeshift in and out of this improved Cat Form for its duration. During Incarnation: Energy cost of all Cat Form abilities is reduced by 25%, and Prowl can be used once while in combat. Generate 1 combo point every (varies) sec. Combo point generating abilities generate 1 additional combo point. Finishing moves restore up to 3 combo points generated over the cap. All attack and ability damage is increased by 15%.",
-                            "uncertain": true
+                            "text": "An improved Cat Form that grants all of your known Berserk effects and lasts 20. You may shapeshift in and out of this improved Cat Form for its duration. During Incarnation: Energy cost of all Cat Form abilities is reduced by 25%, and Prowl can be used once while in combat. Generate 1 combo point every 1.5 sec. Combo point generating abilities generate 1 additional combo point. Finishing moves restore up to 3 combo points generated over the cap. All attack and ability damage is increased by 15%.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -1088,6 +1093,7 @@
                                         "charges": null,
                                         "max_stacks": null,
                                         "proc_chance": null,
+                                        "proc_cooldown_seconds": null,
                                         "cooldown_seconds": null,
                                         "cooldown_scaling_note": null,
                                         "duration_seconds": null,
@@ -1139,6 +1145,7 @@
                                         "charges": null,
                                         "max_stacks": null,
                                         "proc_chance": null,
+                                        "proc_cooldown_seconds": null,
                                         "cooldown_seconds": null,
                                         "cooldown_scaling_note": null,
                                         "duration_seconds": null,
@@ -1187,7 +1194,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Rake the target for 0.3 Bleed damage and an additional (varies) Bleed damage over 15. Reduces the target's movement speed by 20% for 12. While stealthed, Rake will also stun the target for 4 and deal 60% increased damage. Awards 1 combo point.",
+                            "text": "Rake the target for 0.3 Bleed damage and an additional ≈147% of Attack Power Bleed damage over 15. Reduces the target's movement speed by 20% for 12. While stealthed, Rake will also stun the target for 4 and deal 60% increased damage. Awards 1 combo point.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -1203,7 +1210,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Strikes all nearby enemies, dealing 10 Arcane damage and an additional (varies) Arcane damage over 15. When applied from Bear Form, this effect can stack up to 3 times. Generates 0 Rage.",
+                            "text": "Strikes all nearby enemies, dealing 10 Arcane damage and an additional ≈32% of Attack Power Arcane damage over 15. When applied from Bear Form, this effect can stack up to 3 times. Generates 0 Rage.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -1314,7 +1321,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Ravage also inflicts a Bleed that causes (varies) damage over 6 and saps its victims' strength, reducing damage they deal to you by 4%. Dreadful Wound is not affected by Circle of Life and Death. If a Dreadful Wound benefiting from Tiger's Fury is re-applied, the new Dreadful Wound deals damage as if Tiger's Fury was active.",
+                            "text": "Ravage also inflicts a Bleed that causes ≈50.4% of Attack Power damage over 6 and saps its victims' strength, reducing damage they deal to you by 4%. Dreadful Wound is not affected by Circle of Life and Death. If a Dreadful Wound benefiting from Tiger's Fury is re-applied, the new Dreadful Wound deals damage as if Tiger's Fury was active.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -1330,7 +1337,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Ravage also inflicts a Bleed that causes (varies) damage over 6 and saps its victims' strength, reducing damage they deal to you by 4%. Dreadful Wound is not affected by Circle of Life and Death. If a Dreadful Wound benefiting from Tiger's Fury is re-applied, the new Dreadful Wound deals damage as if Tiger's Fury was active.",
+                            "text": "Ravage also inflicts a Bleed that causes ≈50.4% of Attack Power damage over 6 and saps its victims' strength, reducing damage they deal to you by 4%. Dreadful Wound is not affected by Circle of Life and Death. If a Dreadful Wound benefiting from Tiger's Fury is re-applied, the new Dreadful Wound deals damage as if Tiger's Fury was active.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -1346,7 +1353,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Ravage also inflicts a Bleed that causes (varies) damage over 6 and saps its victims' strength, reducing damage they deal to you by 4%. Dreadful Wound is not affected by Circle of Life and Death. If a Dreadful Wound benefiting from Tiger's Fury is re-applied, the new Dreadful Wound deals damage as if Tiger's Fury was active.",
+                            "text": "Ravage also inflicts a Bleed that causes ≈50.4% of Attack Power damage over 6 and saps its victims' strength, reducing damage they deal to you by 4%. Dreadful Wound is not affected by Circle of Life and Death. If a Dreadful Wound benefiting from Tiger's Fury is re-applied, the new Dreadful Wound deals damage as if Tiger's Fury was active.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -1765,7 +1772,7 @@
             "spellId": 3017,
             "category": "Offensive",
             "description": {
-                "text": "Ravage also inflicts a Bleed that causes (varies) damage over 6 and saps its victims' strength, reducing damage they deal to you by 4%. Dreadful Wound is not affected by Circle of Life and Death. If a Dreadful Wound benefiting from Tiger's Fury is re-applied, the new Dreadful Wound deals damage as if Tiger's Fury was active.",
+                "text": "Ravage also inflicts a Bleed that causes ≈50.4% of Attack Power damage over 6 and saps its victims' strength, reducing damage they deal to you by 4%. Dreadful Wound is not affected by Circle of Life and Death. If a Dreadful Wound benefiting from Tiger's Fury is re-applied, the new Dreadful Wound deals damage as if Tiger's Fury was active.",
                 "uncertain": true
             },
             "formulaModifierSpellIds": [],
@@ -1779,7 +1786,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Ravage also inflicts a Bleed that causes (varies) damage over 6 and saps its victims' strength, reducing damage they deal to you by 4%. Dreadful Wound is not affected by Circle of Life and Death. If a Dreadful Wound benefiting from Tiger's Fury is re-applied, the new Dreadful Wound deals damage as if Tiger's Fury was active.",
+                            "text": "Ravage also inflicts a Bleed that causes ≈50.4% of Attack Power damage over 6 and saps its victims' strength, reducing damage they deal to you by 4%. Dreadful Wound is not affected by Circle of Life and Death. If a Dreadful Wound benefiting from Tiger's Fury is re-applied, the new Dreadful Wound deals damage as if Tiger's Fury was active.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -1795,7 +1802,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Ravage also inflicts a Bleed that causes (varies) damage over 6 and saps its victims' strength, reducing damage they deal to you by 4%. Dreadful Wound is not affected by Circle of Life and Death. If a Dreadful Wound benefiting from Tiger's Fury is re-applied, the new Dreadful Wound deals damage as if Tiger's Fury was active.",
+                            "text": "Ravage also inflicts a Bleed that causes ≈50.4% of Attack Power damage over 6 and saps its victims' strength, reducing damage they deal to you by 4%. Dreadful Wound is not affected by Circle of Life and Death. If a Dreadful Wound benefiting from Tiger's Fury is re-applied, the new Dreadful Wound deals damage as if Tiger's Fury was active.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -2122,8 +2129,8 @@
             "spellId": 2930,
             "category": "Offensive",
             "description": {
-                "text": "Unleash a furious frenzy, clawing your target 5 times for 25 Physical damage and an additional (varies) Bleed damage over 6. Awards 5 combo points.",
-                "uncertain": true
+                "text": "Unleash a furious frenzy, clawing your target 5 times for ≈81.5% of Attack Power Physical damage and an additional ≈490.1% of Attack Power Bleed damage over 6. Awards 5 combo points.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -2313,8 +2320,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "An improved Cat Form that grants all of your known Berserk effects and lasts 20. You may shapeshift in and out of this improved Cat Form for its duration. During Incarnation: Energy cost of all Cat Form abilities is reduced by 25%, and Prowl can be used once while in combat. Generate 1 combo point every (varies) sec. Combo point generating abilities generate 1 additional combo point. Finishing moves restore up to 3 combo points generated over the cap. All attack and ability damage is increased by 15%.",
-                            "uncertain": true
+                            "text": "An improved Cat Form that grants all of your known Berserk effects and lasts 20. You may shapeshift in and out of this improved Cat Form for its duration. During Incarnation: Energy cost of all Cat Form abilities is reduced by 25%, and Prowl can be used once while in combat. Generate 1 combo point every 1.5 sec. Combo point generating abilities generate 1 additional combo point. Finishing moves restore up to 3 combo points generated over the cap. All attack and ability damage is increased by 15%.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -2333,6 +2340,7 @@
                                         "charges": null,
                                         "max_stacks": null,
                                         "proc_chance": null,
+                                        "proc_cooldown_seconds": null,
                                         "cooldown_seconds": null,
                                         "cooldown_scaling_note": null,
                                         "duration_seconds": null,
@@ -2384,6 +2392,7 @@
                                         "charges": null,
                                         "max_stacks": null,
                                         "proc_chance": null,
+                                        "proc_cooldown_seconds": null,
                                         "cooldown_seconds": null,
                                         "cooldown_scaling_note": null,
                                         "duration_seconds": null,
@@ -2432,7 +2441,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Ravage also inflicts a Bleed that causes (varies) damage over 6 and saps its victims' strength, reducing damage they deal to you by 4%. Dreadful Wound is not affected by Circle of Life and Death. If a Dreadful Wound benefiting from Tiger's Fury is re-applied, the new Dreadful Wound deals damage as if Tiger's Fury was active.",
+                            "text": "Ravage also inflicts a Bleed that causes ≈50.4% of Attack Power damage over 6 and saps its victims' strength, reducing damage they deal to you by 4%. Dreadful Wound is not affected by Circle of Life and Death. If a Dreadful Wound benefiting from Tiger's Fury is re-applied, the new Dreadful Wound deals damage as if Tiger's Fury was active.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -2464,7 +2473,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Ravage also inflicts a Bleed that causes (varies) damage over 6 and saps its victims' strength, reducing damage they deal to you by 4%. Dreadful Wound is not affected by Circle of Life and Death. If a Dreadful Wound benefiting from Tiger's Fury is re-applied, the new Dreadful Wound deals damage as if Tiger's Fury was active.",
+                            "text": "Ravage also inflicts a Bleed that causes ≈50.4% of Attack Power damage over 6 and saps its victims' strength, reducing damage they deal to you by 4%. Dreadful Wound is not affected by Circle of Life and Death. If a Dreadful Wound benefiting from Tiger's Fury is re-applied, the new Dreadful Wound deals damage as if Tiger's Fury was active.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -2480,8 +2489,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Unleash a furious frenzy, flickering to nearby targets in front of you 5 times and clawing all enemies around them for 1 Physical damage and an additional (varies) Bleed damage over 6. Awards 5 combo points.",
-                            "uncertain": true
+                            "text": "Unleash a furious frenzy, flickering to nearby targets in front of you 5 times and clawing all enemies around them for 1 Physical damage and an additional ≈93.2% of Attack Power Bleed damage over 6. Awards 5 combo points.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -2500,6 +2509,7 @@
                                         "charges": null,
                                         "max_stacks": null,
                                         "proc_chance": null,
+                                        "proc_cooldown_seconds": null,
                                         "cooldown_seconds": null,
                                         "cooldown_scaling_note": null,
                                         "duration_seconds": null,
@@ -2561,6 +2571,7 @@
                             "charges": null,
                             "max_stacks": null,
                             "proc_chance": null,
+                            "proc_cooldown_seconds": null,
                             "cooldown_seconds": null,
                             "cooldown_scaling_note": null,
                             "duration_seconds": null,
@@ -2608,6 +2619,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:22:15.000000Z",
@@ -2626,6 +2638,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:22:15.000000Z",
@@ -2644,6 +2657,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:22:15.000000Z",
@@ -2689,8 +2703,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Finishing move that causes Bleed damage over time. Lasts longer per combo point. 1 point  : (varies) over 1.3 sec 2 points: (varies) over 2 sec 3 points: (varies) over 2.7 sec 4 points: (varies) over 3.3 sec 5 points: (varies) over 4 sec",
-                            "uncertain": true
+                            "text": "Finishing move that causes Bleed damage over time. Lasts longer per combo point. 1 point  : ≈20.8% of Attack Power over 1.3 sec 2 points: ≈31.1% of Attack Power over 2 sec 3 points: ≈41.5% of Attack Power over 2.7 sec 4 points: ≈51.9% of Attack Power over 3.3 sec 5 points: ≈62.3% of Attack Power over 4 sec",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -2721,8 +2735,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Go Berserk for 15. While Berserk: Generate 1 combo point every (varies) sec. Combo point generating abilities generate 1 additional combo point. Finishing moves restore up to 3 combo points generated over the cap. All attack and ability damage is increased by 15%.",
-                            "uncertain": true
+                            "text": "Go Berserk for 15. While Berserk: Generate 1 combo point every 1.5 sec. Combo point generating abilities generate 1 additional combo point. Finishing moves restore up to 3 combo points generated over the cap. All attack and ability damage is increased by 15%.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -2741,6 +2755,7 @@
                                         "charges": null,
                                         "max_stacks": null,
                                         "proc_chance": null,
+                                        "proc_cooldown_seconds": null,
                                         "cooldown_seconds": null,
                                         "cooldown_scaling_note": null,
                                         "duration_seconds": null,
@@ -3013,7 +3028,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "When Bloodseeker Vines expire or you use Ferocious Bite on their target they explode in thorns, dealing (varies) physical damage to nearby enemies. Damage reduced above 5 targets. When Symbiotic Blooms expire or you cast Rejuvenation on their target flowers grow around their target, healing them and up to 3 nearby allies for ≈42.1% of Spell Power.",
+                            "text": "When Bloodseeker Vines expire or you use Ferocious Bite on their target they explode in thorns, dealing ≈100% of Attack Power physical damage to nearby enemies. Damage reduced above 5 targets. When Symbiotic Blooms expire or you cast Rejuvenation on their target flowers grow around their target, healing them and up to 3 nearby allies for ≈42.1% of Spell Power.",
                             "uncertain": true
                         },
                         "category": "Defensive",
@@ -3029,7 +3044,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "When Bloodseeker Vines expire or you use Ferocious Bite on their target they explode in thorns, dealing (varies) physical damage to nearby enemies. Damage reduced above 5 targets. When Symbiotic Blooms expire or you cast Rejuvenation on their target flowers grow around their target, healing them and up to 3 nearby allies for ≈42.1% of Spell Power.",
+                            "text": "When Bloodseeker Vines expire or you use Ferocious Bite on their target they explode in thorns, dealing ≈100% of Attack Power physical damage to nearby enemies. Damage reduced above 5 targets. When Symbiotic Blooms expire or you cast Rejuvenation on their target flowers grow around their target, healing them and up to 3 nearby allies for ≈42.1% of Spell Power.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -3077,7 +3092,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "When you Ferocious Bite, you have a 15% chance per combo point spent to flicker to an enemy within 30 yds and deliver an Unseen Attack. Unseen Attack damage is reduced if less than 5 combo points and 25 Energy are spent on Ferocious Bite. Unseen Slash Slash the target, dealing 1 Physical damage and an additional (varies) Bleed damage over 6. If this effect is reapplied, any remaining damage is added to the new Bleed. Unseen Swipe Swipe nearby targets, dealing 1 Physical damage. Damage reduced beyond 5 targets.",
+                            "text": "When you Ferocious Bite, you have a 15% chance per combo point spent to flicker to an enemy within 30 yds and deliver an Unseen Attack. Unseen Attack damage is reduced if less than 5 combo points and 25 Energy are spent on Ferocious Bite. Unseen Slash Slash the target, dealing 1 Physical damage and an additional ≈138% of Attack Power Bleed damage over 6. If this effect is reapplied, any remaining damage is added to the new Bleed. Unseen Swipe Swipe nearby targets, dealing 1 Physical damage. Damage reduced beyond 5 targets.",
                             "uncertain": true
                         },
                         "category": "Other",
@@ -3093,7 +3108,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "When Bloodseeker Vines expire or you use Ferocious Bite on their target they explode in thorns, dealing (varies) physical damage to nearby enemies. Damage reduced above 5 targets. When Symbiotic Blooms expire or you cast Rejuvenation on their target flowers grow around their target, healing them and up to 3 nearby allies for ≈42.1% of Spell Power.",
+                            "text": "When Bloodseeker Vines expire or you use Ferocious Bite on their target they explode in thorns, dealing ≈100% of Attack Power physical damage to nearby enemies. Damage reduced above 5 targets. When Symbiotic Blooms expire or you cast Rejuvenation on their target flowers grow around their target, healing them and up to 3 nearby allies for ≈42.1% of Spell Power.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -3193,8 +3208,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "An improved Cat Form that grants all of your known Berserk effects and lasts 20. You may shapeshift in and out of this improved Cat Form for its duration. During Incarnation: Energy cost of all Cat Form abilities is reduced by 25%, and Prowl can be used once while in combat. Generate 1 combo point every (varies) sec. Combo point generating abilities generate 1 additional combo point. Finishing moves restore up to 3 combo points generated over the cap. All attack and ability damage is increased by 15%.",
-                            "uncertain": true
+                            "text": "An improved Cat Form that grants all of your known Berserk effects and lasts 20. You may shapeshift in and out of this improved Cat Form for its duration. During Incarnation: Energy cost of all Cat Form abilities is reduced by 25%, and Prowl can be used once while in combat. Generate 1 combo point every 1.5 sec. Combo point generating abilities generate 1 additional combo point. Finishing moves restore up to 3 combo points generated over the cap. All attack and ability damage is increased by 15%.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -3213,6 +3228,7 @@
                                         "charges": null,
                                         "max_stacks": null,
                                         "proc_chance": null,
+                                        "proc_cooldown_seconds": null,
                                         "cooldown_seconds": null,
                                         "cooldown_scaling_note": null,
                                         "duration_seconds": null,
@@ -3264,6 +3280,7 @@
                                         "charges": null,
                                         "max_stacks": null,
                                         "proc_chance": null,
+                                        "proc_cooldown_seconds": null,
                                         "cooldown_seconds": null,
                                         "cooldown_scaling_note": null,
                                         "duration_seconds": null,
@@ -3312,7 +3329,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Rake the target for 0.3 Bleed damage and an additional (varies) Bleed damage over 15. Reduces the target's movement speed by 20% for 12. While stealthed, Rake will also stun the target for 4 and deal 60% increased damage. Awards 1 combo point.",
+                            "text": "Rake the target for 0.3 Bleed damage and an additional ≈147% of Attack Power Bleed damage over 15. Reduces the target's movement speed by 20% for 12. While stealthed, Rake will also stun the target for 4 and deal 60% increased damage. Awards 1 combo point.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -3328,7 +3345,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Strikes all nearby enemies, dealing 10 Arcane damage and an additional (varies) Arcane damage over 15. When applied from Bear Form, this effect can stack up to 3 times. Generates 0 Rage.",
+                            "text": "Strikes all nearby enemies, dealing 10 Arcane damage and an additional ≈32% of Attack Power Arcane damage over 15. When applied from Bear Form, this effect can stack up to 3 times. Generates 0 Rage.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -3861,8 +3878,8 @@
             "spellId": 2954,
             "category": "Offensive",
             "description": {
-                "text": "Unleash a furious frenzy, flickering to nearby targets in front of you 5 times and clawing all enemies around them for 1 Physical damage and an additional (varies) Bleed damage over 6. Awards 5 combo points.",
-                "uncertain": true
+                "text": "Unleash a furious frenzy, flickering to nearby targets in front of you 5 times and clawing all enemies around them for 1 Physical damage and an additional ≈93.2% of Attack Power Bleed damage over 6. Awards 5 combo points.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -3988,8 +4005,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "An improved Cat Form that grants all of your known Berserk effects and lasts 20. You may shapeshift in and out of this improved Cat Form for its duration. During Incarnation: Energy cost of all Cat Form abilities is reduced by 25%, and Prowl can be used once while in combat. Generate 1 combo point every (varies) sec. Combo point generating abilities generate 1 additional combo point. Finishing moves restore up to 3 combo points generated over the cap. All attack and ability damage is increased by 15%.",
-                            "uncertain": true
+                            "text": "An improved Cat Form that grants all of your known Berserk effects and lasts 20. You may shapeshift in and out of this improved Cat Form for its duration. During Incarnation: Energy cost of all Cat Form abilities is reduced by 25%, and Prowl can be used once while in combat. Generate 1 combo point every 1.5 sec. Combo point generating abilities generate 1 additional combo point. Finishing moves restore up to 3 combo points generated over the cap. All attack and ability damage is increased by 15%.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -4008,6 +4025,7 @@
                                         "charges": null,
                                         "max_stacks": null,
                                         "proc_chance": null,
+                                        "proc_cooldown_seconds": null,
                                         "cooldown_seconds": null,
                                         "cooldown_scaling_note": null,
                                         "duration_seconds": null,
@@ -4059,6 +4077,7 @@
                                         "charges": null,
                                         "max_stacks": null,
                                         "proc_chance": null,
+                                        "proc_cooldown_seconds": null,
                                         "cooldown_seconds": null,
                                         "cooldown_scaling_note": null,
                                         "duration_seconds": null,
@@ -4107,7 +4126,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Ravage also inflicts a Bleed that causes (varies) damage over 6 and saps its victims' strength, reducing damage they deal to you by 4%. Dreadful Wound is not affected by Circle of Life and Death. If a Dreadful Wound benefiting from Tiger's Fury is re-applied, the new Dreadful Wound deals damage as if Tiger's Fury was active.",
+                            "text": "Ravage also inflicts a Bleed that causes ≈50.4% of Attack Power damage over 6 and saps its victims' strength, reducing damage they deal to you by 4%. Dreadful Wound is not affected by Circle of Life and Death. If a Dreadful Wound benefiting from Tiger's Fury is re-applied, the new Dreadful Wound deals damage as if Tiger's Fury was active.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -4139,7 +4158,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Ravage also inflicts a Bleed that causes (varies) damage over 6 and saps its victims' strength, reducing damage they deal to you by 4%. Dreadful Wound is not affected by Circle of Life and Death. If a Dreadful Wound benefiting from Tiger's Fury is re-applied, the new Dreadful Wound deals damage as if Tiger's Fury was active.",
+                            "text": "Ravage also inflicts a Bleed that causes ≈50.4% of Attack Power damage over 6 and saps its victims' strength, reducing damage they deal to you by 4%. Dreadful Wound is not affected by Circle of Life and Death. If a Dreadful Wound benefiting from Tiger's Fury is re-applied, the new Dreadful Wound deals damage as if Tiger's Fury was active.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -4168,6 +4187,7 @@
                             "charges": null,
                             "max_stacks": null,
                             "proc_chance": null,
+                            "proc_cooldown_seconds": null,
                             "cooldown_seconds": null,
                             "cooldown_scaling_note": null,
                             "duration_seconds": null,
@@ -4215,6 +4235,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:22:15.000000Z",
@@ -4233,6 +4254,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:22:15.000000Z",
@@ -4251,6 +4273,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:22:15.000000Z",
@@ -4340,8 +4363,8 @@
             "spellId": 2865,
             "category": "Defensive",
             "description": {
-                "text": "Heals you for (varies)% health over 3.",
-                "uncertain": true
+                "text": "Heals you for 24% health over 3.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -5229,8 +5252,8 @@
             "spellId": 2923,
             "category": "Offensive",
             "description": {
-                "text": "An improved Cat Form that grants all of your known Berserk effects and lasts 20. You may shapeshift in and out of this improved Cat Form for its duration. During Incarnation: Energy cost of all Cat Form abilities is reduced by 25%, and Prowl can be used once while in combat. Generate 1 combo point every (varies) sec. Combo point generating abilities generate 1 additional combo point. Finishing moves restore up to 3 combo points generated over the cap. All attack and ability damage is increased by 15%.",
-                "uncertain": true
+                "text": "An improved Cat Form that grants all of your known Berserk effects and lasts 20. You may shapeshift in and out of this improved Cat Form for its duration. During Incarnation: Energy cost of all Cat Form abilities is reduced by 25%, and Prowl can be used once while in combat. Generate 1 combo point every 1.5 sec. Combo point generating abilities generate 1 additional combo point. Finishing moves restore up to 3 combo points generated over the cap. All attack and ability damage is increased by 15%.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -5322,6 +5345,7 @@
                             "charges": null,
                             "max_stacks": null,
                             "proc_chance": null,
+                            "proc_cooldown_seconds": null,
                             "cooldown_seconds": null,
                             "cooldown_scaling_note": null,
                             "duration_seconds": null,
@@ -5369,6 +5393,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:22:15.000000Z",
@@ -5393,6 +5418,7 @@
                             "charges": null,
                             "max_stacks": null,
                             "proc_chance": null,
+                            "proc_cooldown_seconds": null,
                             "cooldown_seconds": null,
                             "cooldown_scaling_note": null,
                             "duration_seconds": null,
@@ -5440,6 +5466,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:22:14.000000Z",
@@ -5659,8 +5686,8 @@
             "spellId": 2882,
             "category": "Defensive",
             "description": {
-                "text": "Increases armor by (varies) for 7. Multiple uses of this ability may overlap.",
-                "uncertain": true
+                "text": "Increases armor by ≈124% of Agility for 7. Multiple uses of this ability may overlap.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -6178,8 +6205,8 @@
             "spellId": 2864,
             "category": "Crowd Control",
             "description": {
-                "text": "Finishing move that causes Physical damage and stuns the target. Damage and duration increased per combo point: 1 point  : (varies) damage, 1 sec 2 points: (varies) damage, 2 sec 3 points: (varies) damage, 3 sec 4 points: (varies) damage, 4 sec 5 points: (varies) damage, 5 sec",
-                "uncertain": true
+                "text": "Finishing move that causes Physical damage and stuns the target. Damage and duration increased per combo point: 1 point  : ≈14.4% of Attack Power damage, 1 sec 2 points: ≈28.8% of Attack Power damage, 2 sec 3 points: ≈43.2% of Attack Power damage, 3 sec 4 points: ≈57.6% of Attack Power damage, 4 sec 5 points: ≈72% of Attack Power damage, 5 sec",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -6190,8 +6217,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Finishing move that causes Bleed damage over time. Lasts longer per combo point. 1 point  : (varies) over 1.3 sec 2 points: (varies) over 2 sec 3 points: (varies) over 2.7 sec 4 points: (varies) over 3.3 sec 5 points: (varies) over 4 sec",
-                            "uncertain": true
+                            "text": "Finishing move that causes Bleed damage over time. Lasts longer per combo point. 1 point  : ≈20.8% of Attack Power over 1.3 sec 2 points: ≈31.1% of Attack Power over 2 sec 3 points: ≈41.5% of Attack Power over 2.7 sec 4 points: ≈51.9% of Attack Power over 3.3 sec 5 points: ≈62.3% of Attack Power over 4 sec",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -6222,8 +6249,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Go Berserk for 15. While Berserk: Generate 1 combo point every (varies) sec. Combo point generating abilities generate 1 additional combo point. Finishing moves restore up to 3 combo points generated over the cap. All attack and ability damage is increased by 15%.",
-                            "uncertain": true
+                            "text": "Go Berserk for 15. While Berserk: Generate 1 combo point every 1.5 sec. Combo point generating abilities generate 1 additional combo point. Finishing moves restore up to 3 combo points generated over the cap. All attack and ability damage is increased by 15%.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -6242,6 +6269,7 @@
                                         "charges": null,
                                         "max_stacks": null,
                                         "proc_chance": null,
+                                        "proc_cooldown_seconds": null,
                                         "cooldown_seconds": null,
                                         "cooldown_scaling_note": null,
                                         "duration_seconds": null,
@@ -6438,8 +6466,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "An improved Cat Form that grants all of your known Berserk effects and lasts 20. You may shapeshift in and out of this improved Cat Form for its duration. During Incarnation: Energy cost of all Cat Form abilities is reduced by 25%, and Prowl can be used once while in combat. Generate 1 combo point every (varies) sec. Combo point generating abilities generate 1 additional combo point. Finishing moves restore up to 3 combo points generated over the cap. All attack and ability damage is increased by 15%.",
-                            "uncertain": true
+                            "text": "An improved Cat Form that grants all of your known Berserk effects and lasts 20. You may shapeshift in and out of this improved Cat Form for its duration. During Incarnation: Energy cost of all Cat Form abilities is reduced by 25%, and Prowl can be used once while in combat. Generate 1 combo point every 1.5 sec. Combo point generating abilities generate 1 additional combo point. Finishing moves restore up to 3 combo points generated over the cap. All attack and ability damage is increased by 15%.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -6458,6 +6486,7 @@
                                         "charges": null,
                                         "max_stacks": null,
                                         "proc_chance": null,
+                                        "proc_cooldown_seconds": null,
                                         "cooldown_seconds": null,
                                         "cooldown_scaling_note": null,
                                         "duration_seconds": null,
@@ -6509,6 +6538,7 @@
                                         "charges": null,
                                         "max_stacks": null,
                                         "proc_chance": null,
+                                        "proc_cooldown_seconds": null,
                                         "cooldown_seconds": null,
                                         "cooldown_scaling_note": null,
                                         "duration_seconds": null,
@@ -6557,7 +6587,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Rake the target for 0.3 Bleed damage and an additional (varies) Bleed damage over 15. Reduces the target's movement speed by 20% for 12. While stealthed, Rake will also stun the target for 4 and deal 60% increased damage. Awards 1 combo point.",
+                            "text": "Rake the target for 0.3 Bleed damage and an additional ≈147% of Attack Power Bleed damage over 15. Reduces the target's movement speed by 20% for 12. While stealthed, Rake will also stun the target for 4 and deal 60% increased damage. Awards 1 combo point.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -6573,7 +6603,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Strikes all nearby enemies, dealing 10 Arcane damage and an additional (varies) Arcane damage over 15. When applied from Bear Form, this effect can stack up to 3 times. Generates 0 Rage.",
+                            "text": "Strikes all nearby enemies, dealing 10 Arcane damage and an additional ≈32% of Attack Power Arcane damage over 15. When applied from Bear Form, this effect can stack up to 3 times. Generates 0 Rage.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -6684,7 +6714,7 @@
             "spellId": 2090,
             "category": "Offensive",
             "description": {
-                "text": "Mangle the target for (varies) Physical damage. Deals 20% additional damage against bleeding targets. Generates 12 Rage.",
+                "text": "Mangle the target for ≈200% of Attack Power Physical damage. Deals 20% additional damage against bleeding targets. Generates 12 Rage.",
                 "uncertain": true
             },
             "formulaModifierSpellIds": [],
@@ -6828,7 +6858,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Strikes all nearby enemies, dealing 10 Arcane damage and an additional (varies) Arcane damage over 15. When applied from Bear Form, this effect can stack up to 3 times. Generates 0 Rage.",
+                            "text": "Strikes all nearby enemies, dealing 10 Arcane damage and an additional ≈32% of Attack Power Arcane damage over 15. When applied from Bear Form, this effect can stack up to 3 times. Generates 0 Rage.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -7212,8 +7242,8 @@
             "spellId": 2899,
             "category": "Defensive",
             "description": {
-                "text": "When you use Barkskin or Survival Instincts, absorb (varies) damage for 15.",
-                "uncertain": true
+                "text": "When you use Barkskin or Survival Instincts, absorb ≈1,875% of Attack Power damage for 15.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -7366,7 +7396,7 @@
             "spellId": 2072,
             "category": "Offensive",
             "description": {
-                "text": "A quick beam of lunar light burns the enemy for ≈21.2% of Spell Power Arcane damage and then an additional (varies) Arcane damage over 18.",
+                "text": "A quick beam of lunar light burns the enemy for ≈21.2% of Spell Power Arcane damage and then an additional ≈165.6% of Spell Power Arcane damage over 18.",
                 "uncertain": true
             },
             "formulaModifierSpellIds": [],
@@ -8178,8 +8208,8 @@
             "spellId": 2931,
             "category": "Offensive",
             "description": {
-                "text": "Finishing move that deals instant damage and applies Rip to all enemies within 10 yards. Lasts longer per combo point. 1 point  : (varies) plus Rip for 4 sec 2 points: (varies) plus Rip for 6 sec 3 points: (varies) plus Rip for 8 sec 4 points: (varies) plus Rip for 10 sec 5 points: (varies) plus Rip for 12 sec",
-                "uncertain": true
+                "text": "Finishing move that deals instant damage and applies Rip to all enemies within 10 yards. Lasts longer per combo point. 1 point  : ≈31% of Attack Power plus Rip for 4 sec 2 points: ≈46.5% of Attack Power plus Rip for 6 sec 3 points: ≈62% of Attack Power plus Rip for 8 sec 4 points: ≈77.5% of Attack Power plus Rip for 10 sec 5 points: ≈93% of Attack Power plus Rip for 12 sec",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -8190,8 +8220,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Finishing move that causes Bleed damage over time. Lasts longer per combo point. 1 point  : (varies) over 1.3 sec 2 points: (varies) over 2 sec 3 points: (varies) over 2.7 sec 4 points: (varies) over 3.3 sec 5 points: (varies) over 4 sec",
-                            "uncertain": true
+                            "text": "Finishing move that causes Bleed damage over time. Lasts longer per combo point. 1 point  : ≈20.8% of Attack Power over 1.3 sec 2 points: ≈31.1% of Attack Power over 2 sec 3 points: ≈41.5% of Attack Power over 2.7 sec 4 points: ≈51.9% of Attack Power over 3.3 sec 5 points: ≈62.3% of Attack Power over 4 sec",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -8222,8 +8252,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Go Berserk for 15. While Berserk: Generate 1 combo point every (varies) sec. Combo point generating abilities generate 1 additional combo point. Finishing moves restore up to 3 combo points generated over the cap. All attack and ability damage is increased by 15%.",
-                            "uncertain": true
+                            "text": "Go Berserk for 15. While Berserk: Generate 1 combo point every 1.5 sec. Combo point generating abilities generate 1 additional combo point. Finishing moves restore up to 3 combo points generated over the cap. All attack and ability damage is increased by 15%.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -8242,6 +8272,7 @@
                                         "charges": null,
                                         "max_stacks": null,
                                         "proc_chance": null,
+                                        "proc_cooldown_seconds": null,
                                         "cooldown_seconds": null,
                                         "cooldown_scaling_note": null,
                                         "duration_seconds": null,
@@ -8486,8 +8517,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "An improved Cat Form that grants all of your known Berserk effects and lasts 20. You may shapeshift in and out of this improved Cat Form for its duration. During Incarnation: Energy cost of all Cat Form abilities is reduced by 25%, and Prowl can be used once while in combat. Generate 1 combo point every (varies) sec. Combo point generating abilities generate 1 additional combo point. Finishing moves restore up to 3 combo points generated over the cap. All attack and ability damage is increased by 15%.",
-                            "uncertain": true
+                            "text": "An improved Cat Form that grants all of your known Berserk effects and lasts 20. You may shapeshift in and out of this improved Cat Form for its duration. During Incarnation: Energy cost of all Cat Form abilities is reduced by 25%, and Prowl can be used once while in combat. Generate 1 combo point every 1.5 sec. Combo point generating abilities generate 1 additional combo point. Finishing moves restore up to 3 combo points generated over the cap. All attack and ability damage is increased by 15%.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -8506,6 +8537,7 @@
                                         "charges": null,
                                         "max_stacks": null,
                                         "proc_chance": null,
+                                        "proc_cooldown_seconds": null,
                                         "cooldown_seconds": null,
                                         "cooldown_scaling_note": null,
                                         "duration_seconds": null,
@@ -8557,6 +8589,7 @@
                                         "charges": null,
                                         "max_stacks": null,
                                         "proc_chance": null,
+                                        "proc_cooldown_seconds": null,
                                         "cooldown_seconds": null,
                                         "cooldown_scaling_note": null,
                                         "duration_seconds": null,
@@ -8605,7 +8638,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Rake the target for 0.3 Bleed damage and an additional (varies) Bleed damage over 15. Reduces the target's movement speed by 20% for 12. While stealthed, Rake will also stun the target for 4 and deal 60% increased damage. Awards 1 combo point.",
+                            "text": "Rake the target for 0.3 Bleed damage and an additional ≈147% of Attack Power Bleed damage over 15. Reduces the target's movement speed by 20% for 12. While stealthed, Rake will also stun the target for 4 and deal 60% increased damage. Awards 1 combo point.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -8621,7 +8654,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Strikes all nearby enemies, dealing 10 Arcane damage and an additional (varies) Arcane damage over 15. When applied from Bear Form, this effect can stack up to 3 times. Generates 0 Rage.",
+                            "text": "Strikes all nearby enemies, dealing 10 Arcane damage and an additional ≈32% of Attack Power Arcane damage over 15. When applied from Bear Form, this effect can stack up to 3 times. Generates 0 Rage.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -8781,8 +8814,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "An improved Cat Form that grants all of your known Berserk effects and lasts 20. You may shapeshift in and out of this improved Cat Form for its duration. During Incarnation: Energy cost of all Cat Form abilities is reduced by 25%, and Prowl can be used once while in combat. Generate 1 combo point every (varies) sec. Combo point generating abilities generate 1 additional combo point. Finishing moves restore up to 3 combo points generated over the cap. All attack and ability damage is increased by 15%.",
-                            "uncertain": true
+                            "text": "An improved Cat Form that grants all of your known Berserk effects and lasts 20. You may shapeshift in and out of this improved Cat Form for its duration. During Incarnation: Energy cost of all Cat Form abilities is reduced by 25%, and Prowl can be used once while in combat. Generate 1 combo point every 1.5 sec. Combo point generating abilities generate 1 additional combo point. Finishing moves restore up to 3 combo points generated over the cap. All attack and ability damage is increased by 15%.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -8801,6 +8834,7 @@
                                         "charges": null,
                                         "max_stacks": null,
                                         "proc_chance": null,
+                                        "proc_cooldown_seconds": null,
                                         "cooldown_seconds": null,
                                         "cooldown_scaling_note": null,
                                         "duration_seconds": null,
@@ -8852,6 +8886,7 @@
                                         "charges": null,
                                         "max_stacks": null,
                                         "proc_chance": null,
+                                        "proc_cooldown_seconds": null,
                                         "cooldown_seconds": null,
                                         "cooldown_scaling_note": null,
                                         "duration_seconds": null,
@@ -8947,7 +8982,7 @@
             "spellId": 2858,
             "category": "Offensive",
             "description": {
-                "text": "Rake the target for 0.3 Bleed damage and an additional (varies) Bleed damage over 15. Reduces the target's movement speed by 20% for 12. While stealthed, Rake will also stun the target for 4 and deal 60% increased damage. Awards 1 combo point.",
+                "text": "Rake the target for 0.3 Bleed damage and an additional ≈147% of Attack Power Bleed damage over 15. Reduces the target's movement speed by 20% for 12. While stealthed, Rake will also stun the target for 4 and deal 60% increased damage. Awards 1 combo point.",
                 "uncertain": true
             },
             "formulaModifierSpellIds": [],
@@ -8959,8 +8994,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Finishing move that causes Bleed damage over time. Lasts longer per combo point. 1 point  : (varies) over 1.3 sec 2 points: (varies) over 2 sec 3 points: (varies) over 2.7 sec 4 points: (varies) over 3.3 sec 5 points: (varies) over 4 sec",
-                            "uncertain": true
+                            "text": "Finishing move that causes Bleed damage over time. Lasts longer per combo point. 1 point  : ≈20.8% of Attack Power over 1.3 sec 2 points: ≈31.1% of Attack Power over 2 sec 3 points: ≈41.5% of Attack Power over 2.7 sec 4 points: ≈51.9% of Attack Power over 3.3 sec 5 points: ≈62.3% of Attack Power over 4 sec",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -9007,8 +9042,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Go Berserk for 15. While Berserk: Generate 1 combo point every (varies) sec. Combo point generating abilities generate 1 additional combo point. Finishing moves restore up to 3 combo points generated over the cap. All attack and ability damage is increased by 15%.",
-                            "uncertain": true
+                            "text": "Go Berserk for 15. While Berserk: Generate 1 combo point every 1.5 sec. Combo point generating abilities generate 1 additional combo point. Finishing moves restore up to 3 combo points generated over the cap. All attack and ability damage is increased by 15%.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -9027,6 +9062,7 @@
                                         "charges": null,
                                         "max_stacks": null,
                                         "proc_chance": null,
+                                        "proc_cooldown_seconds": null,
                                         "cooldown_seconds": null,
                                         "cooldown_scaling_note": null,
                                         "duration_seconds": null,
@@ -9347,7 +9383,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Rip and Rake damage has a chance to cause Bloodseeker Vines to grow on the victim, dealing (varies) Bleed damage over 6. Wild Growth and Regrowth healing has a chance to cause Symbiotic Blooms to grow on the target, healing for (varies) over 6. Multiple instances of these can overlap.",
+                            "text": "Rip and Rake damage has a chance to cause Bloodseeker Vines to grow on the victim, dealing ≈97.5% of Attack Power Bleed damage over 6. Wild Growth and Regrowth healing has a chance to cause Symbiotic Blooms to grow on the target, healing for ≈219.6% of Spell Power over 6. Multiple instances of these can overlap.",
                             "uncertain": true
                         },
                         "category": "Other",
@@ -9447,8 +9483,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "An improved Cat Form that grants all of your known Berserk effects and lasts 20. You may shapeshift in and out of this improved Cat Form for its duration. During Incarnation: Energy cost of all Cat Form abilities is reduced by 25%, and Prowl can be used once while in combat. Generate 1 combo point every (varies) sec. Combo point generating abilities generate 1 additional combo point. Finishing moves restore up to 3 combo points generated over the cap. All attack and ability damage is increased by 15%.",
-                            "uncertain": true
+                            "text": "An improved Cat Form that grants all of your known Berserk effects and lasts 20. You may shapeshift in and out of this improved Cat Form for its duration. During Incarnation: Energy cost of all Cat Form abilities is reduced by 25%, and Prowl can be used once while in combat. Generate 1 combo point every 1.5 sec. Combo point generating abilities generate 1 additional combo point. Finishing moves restore up to 3 combo points generated over the cap. All attack and ability damage is increased by 15%.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -9467,6 +9503,7 @@
                                         "charges": null,
                                         "max_stacks": null,
                                         "proc_chance": null,
+                                        "proc_cooldown_seconds": null,
                                         "cooldown_seconds": null,
                                         "cooldown_scaling_note": null,
                                         "duration_seconds": null,
@@ -9518,6 +9555,7 @@
                                         "charges": null,
                                         "max_stacks": null,
                                         "proc_chance": null,
+                                        "proc_cooldown_seconds": null,
                                         "cooldown_seconds": null,
                                         "cooldown_scaling_note": null,
                                         "duration_seconds": null,
@@ -9582,7 +9620,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Rake the target for 0.3 Bleed damage and an additional (varies) Bleed damage over 15. Reduces the target's movement speed by 20% for 12. While stealthed, Rake will also stun the target for 4 and deal 60% increased damage. Awards 1 combo point.",
+                            "text": "Rake the target for 0.3 Bleed damage and an additional ≈147% of Attack Power Bleed damage over 15. Reduces the target's movement speed by 20% for 12. While stealthed, Rake will also stun the target for 4 and deal 60% increased damage. Awards 1 combo point.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -9598,7 +9636,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Strikes all nearby enemies, dealing 10 Arcane damage and an additional (varies) Arcane damage over 15. When applied from Bear Form, this effect can stack up to 3 times. Generates 0 Rage.",
+                            "text": "Strikes all nearby enemies, dealing 10 Arcane damage and an additional ≈32% of Attack Power Arcane damage over 15. When applied from Bear Form, this effect can stack up to 3 times. Generates 0 Rage.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -9646,7 +9684,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Ravage also inflicts a Bleed that causes (varies) damage over 6 and saps its victims' strength, reducing damage they deal to you by 4%. Dreadful Wound is not affected by Circle of Life and Death. If a Dreadful Wound benefiting from Tiger's Fury is re-applied, the new Dreadful Wound deals damage as if Tiger's Fury was active.",
+                            "text": "Ravage also inflicts a Bleed that causes ≈50.4% of Attack Power damage over 6 and saps its victims' strength, reducing damage they deal to you by 4%. Dreadful Wound is not affected by Circle of Life and Death. If a Dreadful Wound benefiting from Tiger's Fury is re-applied, the new Dreadful Wound deals damage as if Tiger's Fury was active.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -9678,7 +9716,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Ravage also inflicts a Bleed that causes (varies) damage over 6 and saps its victims' strength, reducing damage they deal to you by 4%. Dreadful Wound is not affected by Circle of Life and Death. If a Dreadful Wound benefiting from Tiger's Fury is re-applied, the new Dreadful Wound deals damage as if Tiger's Fury was active.",
+                            "text": "Ravage also inflicts a Bleed that causes ≈50.4% of Attack Power damage over 6 and saps its victims' strength, reducing damage they deal to you by 4%. Dreadful Wound is not affected by Circle of Life and Death. If a Dreadful Wound benefiting from Tiger's Fury is re-applied, the new Dreadful Wound deals damage as if Tiger's Fury was active.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -9742,7 +9780,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Rake the target for 0.3 Bleed damage and an additional (varies) Bleed damage over 15. Reduces the target's movement speed by 20% for 12. While stealthed, Rake will also stun the target for 4 and deal 60% increased damage. Awards 1 combo point.",
+                            "text": "Rake the target for 0.3 Bleed damage and an additional ≈147% of Attack Power Bleed damage over 15. Reduces the target's movement speed by 20% for 12. While stealthed, Rake will also stun the target for 4 and deal 60% increased damage. Awards 1 combo point.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -9930,7 +9968,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Ravage also inflicts a Bleed that causes (varies) damage over 6 and saps its victims' strength, reducing damage they deal to you by 4%. Dreadful Wound is not affected by Circle of Life and Death. If a Dreadful Wound benefiting from Tiger's Fury is re-applied, the new Dreadful Wound deals damage as if Tiger's Fury was active.",
+                            "text": "Ravage also inflicts a Bleed that causes ≈50.4% of Attack Power damage over 6 and saps its victims' strength, reducing damage they deal to you by 4%. Dreadful Wound is not affected by Circle of Life and Death. If a Dreadful Wound benefiting from Tiger's Fury is re-applied, the new Dreadful Wound deals damage as if Tiger's Fury was active.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -9994,7 +10032,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Ravage also inflicts a Bleed that causes (varies) damage over 6 and saps its victims' strength, reducing damage they deal to you by 4%. Dreadful Wound is not affected by Circle of Life and Death. If a Dreadful Wound benefiting from Tiger's Fury is re-applied, the new Dreadful Wound deals damage as if Tiger's Fury was active.",
+                            "text": "Ravage also inflicts a Bleed that causes ≈50.4% of Attack Power damage over 6 and saps its victims' strength, reducing damage they deal to you by 4%. Dreadful Wound is not affected by Circle of Life and Death. If a Dreadful Wound benefiting from Tiger's Fury is re-applied, the new Dreadful Wound deals damage as if Tiger's Fury was active.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -10010,7 +10048,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Ravage also inflicts a Bleed that causes (varies) damage over 6 and saps its victims' strength, reducing damage they deal to you by 4%. Dreadful Wound is not affected by Circle of Life and Death. If a Dreadful Wound benefiting from Tiger's Fury is re-applied, the new Dreadful Wound deals damage as if Tiger's Fury was active.",
+                            "text": "Ravage also inflicts a Bleed that causes ≈50.4% of Attack Power damage over 6 and saps its victims' strength, reducing damage they deal to you by 4%. Dreadful Wound is not affected by Circle of Life and Death. If a Dreadful Wound benefiting from Tiger's Fury is re-applied, the new Dreadful Wound deals damage as if Tiger's Fury was active.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -10297,7 +10335,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Rip and Rake damage has a chance to cause Bloodseeker Vines to grow on the victim, dealing (varies) Bleed damage over 6. Wild Growth and Regrowth healing has a chance to cause Symbiotic Blooms to grow on the target, healing for (varies) over 6. Multiple instances of these can overlap.",
+                            "text": "Rip and Rake damage has a chance to cause Bloodseeker Vines to grow on the victim, dealing ≈97.5% of Attack Power Bleed damage over 6. Wild Growth and Regrowth healing has a chance to cause Symbiotic Blooms to grow on the target, healing for ≈219.6% of Spell Power over 6. Multiple instances of these can overlap.",
                             "uncertain": true
                         },
                         "category": "Other",
@@ -10478,7 +10516,7 @@
             "spellId": 2856,
             "category": "Defensive",
             "description": {
-                "text": "Heals the target for (varies) over 12.",
+                "text": "Heals the target for ≈369.6% of Spell Power over 12.",
                 "uncertain": true
             },
             "formulaModifierSpellIds": [
@@ -10604,7 +10642,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "When Bloodseeker Vines expire or you use Ferocious Bite on their target they explode in thorns, dealing (varies) physical damage to nearby enemies. Damage reduced above 5 targets. When Symbiotic Blooms expire or you cast Rejuvenation on their target flowers grow around their target, healing them and up to 3 nearby allies for ≈42.1% of Spell Power.",
+                            "text": "When Bloodseeker Vines expire or you use Ferocious Bite on their target they explode in thorns, dealing ≈100% of Attack Power physical damage to nearby enemies. Damage reduced above 5 targets. When Symbiotic Blooms expire or you cast Rejuvenation on their target flowers grow around their target, healing them and up to 3 nearby allies for ≈42.1% of Spell Power.",
                             "uncertain": true
                         },
                         "category": "Defensive",
@@ -10620,7 +10658,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "When Bloodseeker Vines expire or you use Ferocious Bite on their target they explode in thorns, dealing (varies) physical damage to nearby enemies. Damage reduced above 5 targets. When Symbiotic Blooms expire or you cast Rejuvenation on their target flowers grow around their target, healing them and up to 3 nearby allies for ≈42.1% of Spell Power.",
+                            "text": "When Bloodseeker Vines expire or you use Ferocious Bite on their target they explode in thorns, dealing ≈100% of Attack Power physical damage to nearby enemies. Damage reduced above 5 targets. When Symbiotic Blooms expire or you cast Rejuvenation on their target flowers grow around their target, healing them and up to 3 nearby allies for ≈42.1% of Spell Power.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -10636,7 +10674,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "When Bloodseeker Vines expire or you use Ferocious Bite on their target they explode in thorns, dealing (varies) physical damage to nearby enemies. Damage reduced above 5 targets. When Symbiotic Blooms expire or you cast Rejuvenation on their target flowers grow around their target, healing them and up to 3 nearby allies for ≈42.1% of Spell Power.",
+                            "text": "When Bloodseeker Vines expire or you use Ferocious Bite on their target they explode in thorns, dealing ≈100% of Attack Power physical damage to nearby enemies. Damage reduced above 5 targets. When Symbiotic Blooms expire or you cast Rejuvenation on their target flowers grow around their target, healing them and up to 3 nearby allies for ≈42.1% of Spell Power.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -10927,8 +10965,8 @@
             "spellId": 2857,
             "category": "Offensive",
             "description": {
-                "text": "Finishing move that causes Bleed damage over time. Lasts longer per combo point. 1 point  : (varies) over 1.3 sec 2 points: (varies) over 2 sec 3 points: (varies) over 2.7 sec 4 points: (varies) over 3.3 sec 5 points: (varies) over 4 sec",
-                "uncertain": true
+                "text": "Finishing move that causes Bleed damage over time. Lasts longer per combo point. 1 point  : ≈20.8% of Attack Power over 1.3 sec 2 points: ≈31.1% of Attack Power over 2 sec 3 points: ≈41.5% of Attack Power over 2.7 sec 4 points: ≈51.9% of Attack Power over 3.3 sec 5 points: ≈62.3% of Attack Power over 4 sec",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -10955,8 +10993,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Go Berserk for 15. While Berserk: Generate 1 combo point every (varies) sec. Combo point generating abilities generate 1 additional combo point. Finishing moves restore up to 3 combo points generated over the cap. All attack and ability damage is increased by 15%.",
-                            "uncertain": true
+                            "text": "Go Berserk for 15. While Berserk: Generate 1 combo point every 1.5 sec. Combo point generating abilities generate 1 additional combo point. Finishing moves restore up to 3 combo points generated over the cap. All attack and ability damage is increased by 15%.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -10975,6 +11013,7 @@
                                         "charges": null,
                                         "max_stacks": null,
                                         "proc_chance": null,
+                                        "proc_cooldown_seconds": null,
                                         "cooldown_seconds": null,
                                         "cooldown_scaling_note": null,
                                         "duration_seconds": null,
@@ -11263,8 +11302,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Finishing move that deals instant damage and applies Rip to all enemies within 10 yards. Lasts longer per combo point. 1 point  : (varies) plus Rip for 4 sec 2 points: (varies) plus Rip for 6 sec 3 points: (varies) plus Rip for 8 sec 4 points: (varies) plus Rip for 10 sec 5 points: (varies) plus Rip for 12 sec",
-                            "uncertain": true
+                            "text": "Finishing move that deals instant damage and applies Rip to all enemies within 10 yards. Lasts longer per combo point. 1 point  : ≈31% of Attack Power plus Rip for 4 sec 2 points: ≈46.5% of Attack Power plus Rip for 6 sec 3 points: ≈62% of Attack Power plus Rip for 8 sec 4 points: ≈77.5% of Attack Power plus Rip for 10 sec 5 points: ≈93% of Attack Power plus Rip for 12 sec",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -11295,7 +11334,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Rip and Rake damage has a chance to cause Bloodseeker Vines to grow on the victim, dealing (varies) Bleed damage over 6. Wild Growth and Regrowth healing has a chance to cause Symbiotic Blooms to grow on the target, healing for (varies) over 6. Multiple instances of these can overlap.",
+                            "text": "Rip and Rake damage has a chance to cause Bloodseeker Vines to grow on the victim, dealing ≈97.5% of Attack Power Bleed damage over 6. Wild Growth and Regrowth healing has a chance to cause Symbiotic Blooms to grow on the target, healing for ≈219.6% of Spell Power over 6. Multiple instances of these can overlap.",
                             "uncertain": true
                         },
                         "category": "Other",
@@ -11395,8 +11434,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "An improved Cat Form that grants all of your known Berserk effects and lasts 20. You may shapeshift in and out of this improved Cat Form for its duration. During Incarnation: Energy cost of all Cat Form abilities is reduced by 25%, and Prowl can be used once while in combat. Generate 1 combo point every (varies) sec. Combo point generating abilities generate 1 additional combo point. Finishing moves restore up to 3 combo points generated over the cap. All attack and ability damage is increased by 15%.",
-                            "uncertain": true
+                            "text": "An improved Cat Form that grants all of your known Berserk effects and lasts 20. You may shapeshift in and out of this improved Cat Form for its duration. During Incarnation: Energy cost of all Cat Form abilities is reduced by 25%, and Prowl can be used once while in combat. Generate 1 combo point every 1.5 sec. Combo point generating abilities generate 1 additional combo point. Finishing moves restore up to 3 combo points generated over the cap. All attack and ability damage is increased by 15%.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -11415,6 +11454,7 @@
                                         "charges": null,
                                         "max_stacks": null,
                                         "proc_chance": null,
+                                        "proc_cooldown_seconds": null,
                                         "cooldown_seconds": null,
                                         "cooldown_scaling_note": null,
                                         "duration_seconds": null,
@@ -11466,6 +11506,7 @@
                                         "charges": null,
                                         "max_stacks": null,
                                         "proc_chance": null,
+                                        "proc_cooldown_seconds": null,
                                         "cooldown_seconds": null,
                                         "cooldown_scaling_note": null,
                                         "duration_seconds": null,
@@ -11514,7 +11555,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Rake the target for 0.3 Bleed damage and an additional (varies) Bleed damage over 15. Reduces the target's movement speed by 20% for 12. While stealthed, Rake will also stun the target for 4 and deal 60% increased damage. Awards 1 combo point.",
+                            "text": "Rake the target for 0.3 Bleed damage and an additional ≈147% of Attack Power Bleed damage over 15. Reduces the target's movement speed by 20% for 12. While stealthed, Rake will also stun the target for 4 and deal 60% increased damage. Awards 1 combo point.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -11530,7 +11571,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Strikes all nearby enemies, dealing 10 Arcane damage and an additional (varies) Arcane damage over 15. When applied from Bear Form, this effect can stack up to 3 times. Generates 0 Rage.",
+                            "text": "Strikes all nearby enemies, dealing 10 Arcane damage and an additional ≈32% of Attack Power Arcane damage over 15. When applied from Bear Form, this effect can stack up to 3 times. Generates 0 Rage.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -11578,7 +11619,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Ravage also inflicts a Bleed that causes (varies) damage over 6 and saps its victims' strength, reducing damage they deal to you by 4%. Dreadful Wound is not affected by Circle of Life and Death. If a Dreadful Wound benefiting from Tiger's Fury is re-applied, the new Dreadful Wound deals damage as if Tiger's Fury was active.",
+                            "text": "Ravage also inflicts a Bleed that causes ≈50.4% of Attack Power damage over 6 and saps its victims' strength, reducing damage they deal to you by 4%. Dreadful Wound is not affected by Circle of Life and Death. If a Dreadful Wound benefiting from Tiger's Fury is re-applied, the new Dreadful Wound deals damage as if Tiger's Fury was active.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -11594,7 +11635,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Ravage also inflicts a Bleed that causes (varies) damage over 6 and saps its victims' strength, reducing damage they deal to you by 4%. Dreadful Wound is not affected by Circle of Life and Death. If a Dreadful Wound benefiting from Tiger's Fury is re-applied, the new Dreadful Wound deals damage as if Tiger's Fury was active.",
+                            "text": "Ravage also inflicts a Bleed that causes ≈50.4% of Attack Power damage over 6 and saps its victims' strength, reducing damage they deal to you by 4%. Dreadful Wound is not affected by Circle of Life and Death. If a Dreadful Wound benefiting from Tiger's Fury is re-applied, the new Dreadful Wound deals damage as if Tiger's Fury was active.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -11981,7 +12022,7 @@
             "spellId": 2066,
             "category": "Offensive",
             "description": {
-                "text": "Shred the target, causing (varies) Physical damage to the target. Deals 25% increased damage against bleeding targets. Deals 5% increased damage against bleeding targets. Applies the Bleed from Thrash. While stealthed, Shred deals 60% increased damage, has double the chance to critically strike, and generates 1 additional combo point. Awards 1 combo point.",
+                "text": "Shred the target, causing ≈260.5% of Attack Power Physical damage to the target. Deals 25% increased damage against bleeding targets. Deals 5% increased damage against bleeding targets. Applies the Bleed from Thrash. While stealthed, Shred deals 60% increased damage, has double the chance to critically strike, and generates 1 additional combo point. Awards 1 combo point.",
                 "uncertain": true
             },
             "formulaModifierSpellIds": [],
@@ -11993,8 +12034,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Finishing move that causes Bleed damage over time. Lasts longer per combo point. 1 point  : (varies) over 1.3 sec 2 points: (varies) over 2 sec 3 points: (varies) over 2.7 sec 4 points: (varies) over 3.3 sec 5 points: (varies) over 4 sec",
-                            "uncertain": true
+                            "text": "Finishing move that causes Bleed damage over time. Lasts longer per combo point. 1 point  : ≈20.8% of Attack Power over 1.3 sec 2 points: ≈31.1% of Attack Power over 2 sec 3 points: ≈41.5% of Attack Power over 2.7 sec 4 points: ≈51.9% of Attack Power over 3.3 sec 5 points: ≈62.3% of Attack Power over 4 sec",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -12025,8 +12066,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Go Berserk for 15. While Berserk: Generate 1 combo point every (varies) sec. Combo point generating abilities generate 1 additional combo point. Finishing moves restore up to 3 combo points generated over the cap. All attack and ability damage is increased by 15%.",
-                            "uncertain": true
+                            "text": "Go Berserk for 15. While Berserk: Generate 1 combo point every 1.5 sec. Combo point generating abilities generate 1 additional combo point. Finishing moves restore up to 3 combo points generated over the cap. All attack and ability damage is increased by 15%.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -12045,6 +12086,7 @@
                                         "charges": null,
                                         "max_stacks": null,
                                         "proc_chance": null,
+                                        "proc_cooldown_seconds": null,
                                         "cooldown_seconds": null,
                                         "cooldown_scaling_note": null,
                                         "duration_seconds": null,
@@ -12401,8 +12443,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "An improved Cat Form that grants all of your known Berserk effects and lasts 20. You may shapeshift in and out of this improved Cat Form for its duration. During Incarnation: Energy cost of all Cat Form abilities is reduced by 25%, and Prowl can be used once while in combat. Generate 1 combo point every (varies) sec. Combo point generating abilities generate 1 additional combo point. Finishing moves restore up to 3 combo points generated over the cap. All attack and ability damage is increased by 15%.",
-                            "uncertain": true
+                            "text": "An improved Cat Form that grants all of your known Berserk effects and lasts 20. You may shapeshift in and out of this improved Cat Form for its duration. During Incarnation: Energy cost of all Cat Form abilities is reduced by 25%, and Prowl can be used once while in combat. Generate 1 combo point every 1.5 sec. Combo point generating abilities generate 1 additional combo point. Finishing moves restore up to 3 combo points generated over the cap. All attack and ability damage is increased by 15%.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -12421,6 +12463,7 @@
                                         "charges": null,
                                         "max_stacks": null,
                                         "proc_chance": null,
+                                        "proc_cooldown_seconds": null,
                                         "cooldown_seconds": null,
                                         "cooldown_scaling_note": null,
                                         "duration_seconds": null,
@@ -12472,6 +12515,7 @@
                                         "charges": null,
                                         "max_stacks": null,
                                         "proc_chance": null,
+                                        "proc_cooldown_seconds": null,
                                         "cooldown_seconds": null,
                                         "cooldown_scaling_note": null,
                                         "duration_seconds": null,
@@ -12520,7 +12564,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Rake the target for 0.3 Bleed damage and an additional (varies) Bleed damage over 15. Reduces the target's movement speed by 20% for 12. While stealthed, Rake will also stun the target for 4 and deal 60% increased damage. Awards 1 combo point.",
+                            "text": "Rake the target for 0.3 Bleed damage and an additional ≈147% of Attack Power Bleed damage over 15. Reduces the target's movement speed by 20% for 12. While stealthed, Rake will also stun the target for 4 and deal 60% increased damage. Awards 1 combo point.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -12536,7 +12580,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Strikes all nearby enemies, dealing 10 Arcane damage and an additional (varies) Arcane damage over 15. When applied from Bear Form, this effect can stack up to 3 times. Generates 0 Rage.",
+                            "text": "Strikes all nearby enemies, dealing 10 Arcane damage and an additional ≈32% of Attack Power Arcane damage over 15. When applied from Bear Form, this effect can stack up to 3 times. Generates 0 Rage.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -12809,8 +12853,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "An improved Cat Form that grants all of your known Berserk effects and lasts 20. You may shapeshift in and out of this improved Cat Form for its duration. During Incarnation: Energy cost of all Cat Form abilities is reduced by 25%, and Prowl can be used once while in combat. Generate 1 combo point every (varies) sec. Combo point generating abilities generate 1 additional combo point. Finishing moves restore up to 3 combo points generated over the cap. All attack and ability damage is increased by 15%.",
-                            "uncertain": true
+                            "text": "An improved Cat Form that grants all of your known Berserk effects and lasts 20. You may shapeshift in and out of this improved Cat Form for its duration. During Incarnation: Energy cost of all Cat Form abilities is reduced by 25%, and Prowl can be used once while in combat. Generate 1 combo point every 1.5 sec. Combo point generating abilities generate 1 additional combo point. Finishing moves restore up to 3 combo points generated over the cap. All attack and ability damage is increased by 15%.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -12829,6 +12873,7 @@
                                         "charges": null,
                                         "max_stacks": null,
                                         "proc_chance": null,
+                                        "proc_cooldown_seconds": null,
                                         "cooldown_seconds": null,
                                         "cooldown_scaling_note": null,
                                         "duration_seconds": null,
@@ -12880,6 +12925,7 @@
                                         "charges": null,
                                         "max_stacks": null,
                                         "proc_chance": null,
+                                        "proc_cooldown_seconds": null,
                                         "cooldown_seconds": null,
                                         "cooldown_scaling_note": null,
                                         "duration_seconds": null,
@@ -13228,6 +13274,7 @@
                             "charges": null,
                             "max_stacks": null,
                             "proc_chance": null,
+                            "proc_cooldown_seconds": null,
                             "cooldown_seconds": null,
                             "cooldown_scaling_note": null,
                             "duration_seconds": null,
@@ -13275,6 +13322,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:22:15.000000Z",
@@ -13399,7 +13447,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "A quick beam of lunar light burns the enemy for ≈21.2% of Spell Power Arcane damage and then an additional (varies) Arcane damage over 18.",
+                            "text": "A quick beam of lunar light burns the enemy for ≈21.2% of Spell Power Arcane damage and then an additional ≈165.6% of Spell Power Arcane damage over 18.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -13415,7 +13463,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Strikes all nearby enemies, dealing 10 Arcane damage and an additional (varies) Arcane damage over 15. When applied from Bear Form, this effect can stack up to 3 times. Generates 0 Rage.",
+                            "text": "Strikes all nearby enemies, dealing 10 Arcane damage and an additional ≈32% of Attack Power Arcane damage over 15. When applied from Bear Form, this effect can stack up to 3 times. Generates 0 Rage.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -13653,7 +13701,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "A quick beam of lunar light burns the enemy for ≈21.2% of Spell Power Arcane damage and then an additional (varies) Arcane damage over 18.",
+                            "text": "A quick beam of lunar light burns the enemy for ≈21.2% of Spell Power Arcane damage and then an additional ≈165.6% of Spell Power Arcane damage over 18.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -13669,7 +13717,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "A quick beam of solar light burns the enemy and all enemies within 8 yards for ≈21.2% of Spell Power Nature damage and then an additional (varies) Nature damage over 18.",
+                            "text": "A quick beam of solar light burns the enemy and all enemies within 8 yards for ≈21.2% of Spell Power Nature damage and then an additional ≈165.6% of Spell Power Nature damage over 18.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -13685,7 +13733,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Strikes all nearby enemies, dealing 10 Arcane damage and an additional (varies) Arcane damage over 15. When applied from Bear Form, this effect can stack up to 3 times. Generates 0 Rage.",
+                            "text": "Strikes all nearby enemies, dealing 10 Arcane damage and an additional ≈32% of Attack Power Arcane damage over 15. When applied from Bear Form, this effect can stack up to 3 times. Generates 0 Rage.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -13938,7 +13986,7 @@
             "spellId": 2872,
             "category": "Offensive",
             "description": {
-                "text": "A quick beam of solar light burns the enemy and all enemies within 8 yards for ≈21.2% of Spell Power Nature damage and then an additional (varies) Nature damage over 18.",
+                "text": "A quick beam of solar light burns the enemy and all enemies within 8 yards for ≈21.2% of Spell Power Nature damage and then an additional ≈165.6% of Spell Power Nature damage over 18.",
                 "uncertain": true
             },
             "formulaModifierSpellIds": [],
@@ -14046,8 +14094,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "When you use Barkskin or Survival Instincts, absorb (varies) damage for 15.",
-                            "uncertain": true
+                            "text": "When you use Barkskin or Survival Instincts, absorb ≈1,875% of Attack Power damage for 15.",
+                            "uncertain": false
                         },
                         "category": "Defensive",
                         "cooldown": {
@@ -14062,8 +14110,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "When you use Barkskin or Survival Instincts, absorb (varies) damage for 15.",
-                            "uncertain": true
+                            "text": "When you use Barkskin or Survival Instincts, absorb ≈1,875% of Attack Power damage for 15.",
+                            "uncertain": false
                         },
                         "category": "Defensive",
                         "cooldown": {
@@ -14245,7 +14293,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Swipe all nearby enemies, inflicting (varies) Physical damage. Deals reduced damage beyond 5 targets. Deals 25% increased damage against bleeding targets. Applies the Bleed from Thrash. Awards 1 combo point.",
+                            "text": "Swipe all nearby enemies, inflicting ≈112.7% of Attack Power Physical damage. Deals reduced damage beyond 5 targets. Deals 25% increased damage against bleeding targets. Applies the Bleed from Thrash. Awards 1 combo point.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -14261,7 +14309,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Swipe all nearby enemies, inflicting (varies) Physical damage. Deals reduced damage beyond 5 targets.",
+                            "text": "Swipe all nearby enemies, inflicting ≈110% of Attack Power Physical damage. Deals reduced damage beyond 5 targets.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -14588,7 +14636,7 @@
             "spellId": 2131,
             "category": "Offensive",
             "description": {
-                "text": "Strikes all nearby enemies, dealing 10 Arcane damage and an additional (varies) Arcane damage over 15. When applied from Bear Form, this effect can stack up to 3 times. Generates 5 Rage.",
+                "text": "Strikes all nearby enemies, dealing 10 Arcane damage and an additional ≈32% of Attack Power Arcane damage over 15. When applied from Bear Form, this effect can stack up to 3 times. Generates 5 Rage.",
                 "uncertain": true
             },
             "formulaModifierSpellIds": [],
@@ -14700,8 +14748,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "An improved Cat Form that grants all of your known Berserk effects and lasts 20. You may shapeshift in and out of this improved Cat Form for its duration. During Incarnation: Energy cost of all Cat Form abilities is reduced by 25%, and Prowl can be used once while in combat. Generate 1 combo point every (varies) sec. Combo point generating abilities generate 1 additional combo point. Finishing moves restore up to 3 combo points generated over the cap. All attack and ability damage is increased by 15%.",
-                            "uncertain": true
+                            "text": "An improved Cat Form that grants all of your known Berserk effects and lasts 20. You may shapeshift in and out of this improved Cat Form for its duration. During Incarnation: Energy cost of all Cat Form abilities is reduced by 25%, and Prowl can be used once while in combat. Generate 1 combo point every 1.5 sec. Combo point generating abilities generate 1 additional combo point. Finishing moves restore up to 3 combo points generated over the cap. All attack and ability damage is increased by 15%.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -14720,6 +14768,7 @@
                                         "charges": null,
                                         "max_stacks": null,
                                         "proc_chance": null,
+                                        "proc_cooldown_seconds": null,
                                         "cooldown_seconds": null,
                                         "cooldown_scaling_note": null,
                                         "duration_seconds": null,
@@ -14771,6 +14820,7 @@
                                         "charges": null,
                                         "max_stacks": null,
                                         "proc_chance": null,
+                                        "proc_cooldown_seconds": null,
                                         "cooldown_seconds": null,
                                         "cooldown_scaling_note": null,
                                         "duration_seconds": null,
@@ -14819,7 +14869,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Strikes all nearby enemies, dealing 10 Arcane damage and an additional (varies) Arcane damage over 15. When applied from Bear Form, this effect can stack up to 3 times. Generates 0 Rage.",
+                            "text": "Strikes all nearby enemies, dealing 10 Arcane damage and an additional ≈32% of Attack Power Arcane damage over 15. When applied from Bear Form, this effect can stack up to 3 times. Generates 0 Rage.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -14867,7 +14917,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Ravage also inflicts a Bleed that causes (varies) damage over 6 and saps its victims' strength, reducing damage they deal to you by 4%. Dreadful Wound is not affected by Circle of Life and Death. If a Dreadful Wound benefiting from Tiger's Fury is re-applied, the new Dreadful Wound deals damage as if Tiger's Fury was active.",
+                            "text": "Ravage also inflicts a Bleed that causes ≈50.4% of Attack Power damage over 6 and saps its victims' strength, reducing damage they deal to you by 4%. Dreadful Wound is not affected by Circle of Life and Death. If a Dreadful Wound benefiting from Tiger's Fury is re-applied, the new Dreadful Wound deals damage as if Tiger's Fury was active.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -14883,7 +14933,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Ravage also inflicts a Bleed that causes (varies) damage over 6 and saps its victims' strength, reducing damage they deal to you by 4%. Dreadful Wound is not affected by Circle of Life and Death. If a Dreadful Wound benefiting from Tiger's Fury is re-applied, the new Dreadful Wound deals damage as if Tiger's Fury was active.",
+                            "text": "Ravage also inflicts a Bleed that causes ≈50.4% of Attack Power damage over 6 and saps its victims' strength, reducing damage they deal to you by 4%. Dreadful Wound is not affected by Circle of Life and Death. If a Dreadful Wound benefiting from Tiger's Fury is re-applied, the new Dreadful Wound deals damage as if Tiger's Fury was active.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -14899,7 +14949,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Shred the target, causing (varies) Physical damage to the target. Deals 25% increased damage against bleeding targets. Deals 5% increased damage against bleeding targets. Applies the Bleed from Thrash. While stealthed, Shred deals 60% increased damage, has double the chance to critically strike, and generates 1 additional combo point. Awards 1 combo point.",
+                            "text": "Shred the target, causing ≈260.5% of Attack Power Physical damage to the target. Deals 25% increased damage against bleeding targets. Deals 5% increased damage against bleeding targets. Applies the Bleed from Thrash. While stealthed, Shred deals 60% increased damage, has double the chance to critically strike, and generates 1 additional combo point. Awards 1 combo point.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -14915,7 +14965,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Swipe all nearby enemies, inflicting (varies) Physical damage. Deals reduced damage beyond 5 targets. Deals 25% increased damage against bleeding targets. Applies the Bleed from Thrash. Awards 1 combo point.",
+                            "text": "Swipe all nearby enemies, inflicting ≈112.7% of Attack Power Physical damage. Deals reduced damage beyond 5 targets. Deals 25% increased damage against bleeding targets. Applies the Bleed from Thrash. Awards 1 combo point.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -14980,7 +15030,7 @@
             "spellId": 3064,
             "category": "Other",
             "description": {
-                "text": "Rip and Rake damage has a chance to cause Bloodseeker Vines to grow on the victim, dealing (varies) Bleed damage over 6. Wild Growth and Regrowth healing has a chance to cause Symbiotic Blooms to grow on the target, healing for (varies) over 6. Multiple instances of these can overlap.",
+                "text": "Rip and Rake damage has a chance to cause Bloodseeker Vines to grow on the victim, dealing ≈97.5% of Attack Power Bleed damage over 6. Wild Growth and Regrowth healing has a chance to cause Symbiotic Blooms to grow on the target, healing for ≈219.6% of Spell Power over 6. Multiple instances of these can overlap.",
                 "uncertain": true
             },
             "formulaModifierSpellIds": [],
@@ -15296,7 +15346,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Ravage also inflicts a Bleed that causes (varies) damage over 6 and saps its victims' strength, reducing damage they deal to you by 4%. Dreadful Wound is not affected by Circle of Life and Death. If a Dreadful Wound benefiting from Tiger's Fury is re-applied, the new Dreadful Wound deals damage as if Tiger's Fury was active.",
+                            "text": "Ravage also inflicts a Bleed that causes ≈50.4% of Attack Power damage over 6 and saps its victims' strength, reducing damage they deal to you by 4%. Dreadful Wound is not affected by Circle of Life and Death. If a Dreadful Wound benefiting from Tiger's Fury is re-applied, the new Dreadful Wound deals damage as if Tiger's Fury was active.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -15344,7 +15394,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Ravage also inflicts a Bleed that causes (varies) damage over 6 and saps its victims' strength, reducing damage they deal to you by 4%. Dreadful Wound is not affected by Circle of Life and Death. If a Dreadful Wound benefiting from Tiger's Fury is re-applied, the new Dreadful Wound deals damage as if Tiger's Fury was active.",
+                            "text": "Ravage also inflicts a Bleed that causes ≈50.4% of Attack Power damage over 6 and saps its victims' strength, reducing damage they deal to you by 4%. Dreadful Wound is not affected by Circle of Life and Death. If a Dreadful Wound benefiting from Tiger's Fury is re-applied, the new Dreadful Wound deals damage as if Tiger's Fury was active.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -15376,7 +15426,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Ravage also inflicts a Bleed that causes (varies) damage over 6 and saps its victims' strength, reducing damage they deal to you by 4%. Dreadful Wound is not affected by Circle of Life and Death. If a Dreadful Wound benefiting from Tiger's Fury is re-applied, the new Dreadful Wound deals damage as if Tiger's Fury was active.",
+                            "text": "Ravage also inflicts a Bleed that causes ≈50.4% of Attack Power damage over 6 and saps its victims' strength, reducing damage they deal to you by 4%. Dreadful Wound is not affected by Circle of Life and Death. If a Dreadful Wound benefiting from Tiger's Fury is re-applied, the new Dreadful Wound deals damage as if Tiger's Fury was active.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -15740,7 +15790,7 @@
             "spellId": 2960,
             "category": "Other",
             "description": {
-                "text": "When you Ferocious Bite, you have a 15% chance per combo point spent to flicker to an enemy within 30 yds and deliver an Unseen Attack. Unseen Attack damage is reduced if less than 5 combo points and 25 Energy are spent on Ferocious Bite. Unseen Slash Slash the target, dealing 1 Physical damage and an additional (varies) Bleed damage over 6. If this effect is reapplied, any remaining damage is added to the new Bleed. Unseen Swipe Swipe nearby targets, dealing 1 Physical damage. Damage reduced beyond 5 targets.",
+                "text": "When you Ferocious Bite, you have a 15% chance per combo point spent to flicker to an enemy within 30 yds and deliver an Unseen Attack. Unseen Attack damage is reduced if less than 5 combo points and 25 Energy are spent on Ferocious Bite. Unseen Slash Slash the target, dealing 1 Physical damage and an additional ≈138% of Attack Power Bleed damage over 6. If this effect is reapplied, any remaining damage is added to the new Bleed. Unseen Swipe Swipe nearby targets, dealing 1 Physical damage. Damage reduced beyond 5 targets.",
                 "uncertain": true
             },
             "formulaModifierSpellIds": [],
@@ -16107,7 +16157,7 @@
             "spellId": 2870,
             "category": "Defensive",
             "description": {
-                "text": "Heals up to 5 injured allies within 30 yards of the target for (varies) over 7. Healing starts high and declines over the duration.",
+                "text": "Heals up to 5 injured allies within 30 yards of the target for ≈336.7% of Spell Power over 7. Healing starts high and declines over the duration.",
                 "uncertain": true
             },
             "formulaModifierSpellIds": [],
@@ -16263,7 +16313,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Rip and Rake damage has a chance to cause Bloodseeker Vines to grow on the victim, dealing (varies) Bleed damage over 6. Wild Growth and Regrowth healing has a chance to cause Symbiotic Blooms to grow on the target, healing for (varies) over 6. Multiple instances of these can overlap.",
+                            "text": "Rip and Rake damage has a chance to cause Bloodseeker Vines to grow on the victim, dealing ≈97.5% of Attack Power Bleed damage over 6. Wild Growth and Regrowth healing has a chance to cause Symbiotic Blooms to grow on the target, healing for ≈219.6% of Spell Power over 6. Multiple instances of these can overlap.",
                             "uncertain": true
                         },
                         "category": "Other",
@@ -16643,7 +16693,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "A quick beam of solar light burns the enemy and all enemies within 8 yards for ≈21.2% of Spell Power Nature damage and then an additional (varies) Nature damage over 18.",
+                            "text": "A quick beam of solar light burns the enemy and all enemies within 8 yards for ≈21.2% of Spell Power Nature damage and then an additional ≈165.6% of Spell Power Nature damage over 18.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -16659,7 +16709,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Strikes all nearby enemies, dealing 10 Arcane damage and an additional (varies) Arcane damage over 15. When applied from Bear Form, this effect can stack up to 3 times. Generates 0 Rage.",
+                            "text": "Strikes all nearby enemies, dealing 10 Arcane damage and an additional ≈32% of Attack Power Arcane damage over 15. When applied from Bear Form, this effect can stack up to 3 times. Generates 0 Rage.",
                             "uncertain": true
                         },
                         "category": "Offensive",

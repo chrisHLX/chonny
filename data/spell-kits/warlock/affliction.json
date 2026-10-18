@@ -1,6 +1,6 @@
 {
-    "generatedAt": "2026-10-07T21:47:40+00:00",
-    "spellCacheVersion": 27,
+    "generatedAt": "2026-10-18T02:35:47+00:00",
+    "spellCacheVersion": 29,
     "codeFingerprint": "dev",
     "entries": [
         {
@@ -67,8 +67,8 @@
             "spellId": 10706,
             "category": "Offensive",
             "description": {
-                "text": "Inflicts increasing agony on the target, causing up to (varies) Shadow damage over 18. Damage starts low and increases over the duration. Refreshing Agony maintains its current damage level. Agony damage sometimes generates 1 Soul Shard.",
-                "uncertain": true
+                "text": "Inflicts increasing agony on the target, causing up to ≈670.5% of Spell Power Shadow damage over 18. Damage starts low and increases over the duration. Refreshing Agony maintains its current damage level. Agony damage sometimes generates 1 Soul Shard.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -95,7 +95,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Afflicts one target with (varies) Shadow damage over 16. If dispelled, deals (varies) damage to the dispeller and silences them for 4. Generates (varies) Soul Shards if the target dies while afflicted.",
+                            "text": "Afflicts one target with ≈934.8% of Spell Power Shadow damage over 16. If dispelled, deals (varies) damage to the dispeller and silences them for 4. Generates (varies) Soul Shards if the target dies while afflicted.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -159,7 +159,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Afflicts one target with (varies) Shadow damage over 12. If dispelled, deals (varies) damage to the dispeller and silences them for 4. Generates (varies) Soul Shards if the target dies while afflicted.",
+                            "text": "Afflicts one target with ≈415.5% of Spell Power Shadow damage over 12. If dispelled, deals (varies) damage to the dispeller and silences them for 4. Generates (varies) Soul Shards if the target dies while afflicted.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -559,8 +559,8 @@
             "spellId": 11649,
             "category": "Offensive",
             "description": {
-                "text": "If the target is afflicted with your Wither, casting Unstable Affliction increase its stack count by 1. Each time Wither gains a stack it has a chance to collapse, consuming a stack every (varies) sec to deal 1 Shadowflame damage to its host until 1 stack remains.",
-                "uncertain": true
+                "text": "If the target is afflicted with your Wither, casting Unstable Affliction increase its stack count by 1. Each time Wither gains a stack it has a chance to collapse, consuming a stack every 1 sec to deal 1 Shadowflame damage to its host until 1 stack remains.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -621,8 +621,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "After Wither reaches 8 stacks or when its host reaches 20% health, Wither deals 1 Shadowflame damage to its host every (varies) sec until 1 stack remains. When Blackened Soul deals damage, you have a chance to gain Shard Instability.",
-                            "uncertain": true
+                            "text": "After Wither reaches 8 stacks or when its host reaches 20% health, Wither deals 1 Shadowflame damage to its host every 1 sec until 1 stack remains. When Blackened Soul deals damage, you have a chance to gain Shard Instability.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -911,7 +911,7 @@
             "spellId": 10749,
             "category": "Offensive",
             "description": {
-                "text": "Corrupts the target, causing ≈40.3% of Spell Power Shadow damage and ≈38% of Spell Power Shadow damage every (varies) sec.",
+                "text": "Corrupts the target, causing ≈40.3% of Spell Power Shadow damage and ≈38% of Spell Power Shadow damage every 2 sec.",
                 "uncertain": true
             },
             "formulaModifierSpellIds": [],
@@ -971,7 +971,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Afflicts one target with (varies) Shadow damage over 16. If dispelled, deals (varies) damage to the dispeller and silences them for 4. Generates (varies) Soul Shards if the target dies while afflicted.",
+                            "text": "Afflicts one target with ≈934.8% of Spell Power Shadow damage over 16. If dispelled, deals (varies) damage to the dispeller and silences them for 4. Generates (varies) Soul Shards if the target dies while afflicted.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -987,8 +987,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Corruption damage is increased by 25%, and each time it deals damage any of your Curses active on the target are extended by (varies) sec.",
-                            "uncertain": true
+                            "text": "Corruption damage is increased by 25%, and each time it deals damage any of your Curses active on the target are extended by 2 sec.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -1067,7 +1067,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Afflicts one target with (varies) Shadow damage over 12. If dispelled, deals (varies) damage to the dispeller and silences them for 4. Generates (varies) Soul Shards if the target dies while afflicted.",
+                            "text": "Afflicts one target with ≈415.5% of Spell Power Shadow damage over 12. If dispelled, deals (varies) damage to the dispeller and silences them for 4. Generates (varies) Soul Shards if the target dies while afflicted.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -1131,7 +1131,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "A ghostly soul haunts a single target, dealing ≈720.6% of Spell Power Shadow damage and increasing your damage dealt to the target by 16% for 18. While active, Haunt deals (varies) Shadow damage to its host and 3 enemies within 10 yards suffering from your Corruption or Wither. If the target dies, Haunt's cooldown is reset.",
+                            "text": "A ghostly soul haunts a single target, dealing ≈720.6% of Spell Power Shadow damage and increasing your damage dealt to the target by 16% for 18. While active, Haunt deals ≈814.1% of Spell Power Shadow damage to its host and 3 enemies within 10 yards suffering from your Corruption or Wither. If the target dies, Haunt's cooldown is reset.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -1307,8 +1307,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Haunt now calls upon a demonic soul from within the Twisting Nether to haunt your target. The soul is unstable and ravenous, dealing (varies) Shadow damage to its host and 3 enemies within 10 yards suffering from your Wither over its duration.",
-                            "uncertain": true
+                            "text": "Haunt now calls upon a demonic soul from within the Twisting Nether to haunt your target. The soul is unstable and ravenous, dealing ≈814.1% of Spell Power Shadow damage to its host and 3 enemies within 10 yards suffering from your Wither over its duration.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -1419,8 +1419,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Haunt now calls upon a demonic soul from within the Twisting Nether to haunt your target. The soul is unstable and ravenous, dealing (varies) Shadow damage to its host and 3 enemies within 10 yards suffering from your Wither over its duration.",
-                            "uncertain": true
+                            "text": "Haunt now calls upon a demonic soul from within the Twisting Nether to haunt your target. The soul is unstable and ravenous, dealing ≈814.1% of Spell Power Shadow damage to its host and 3 enemies within 10 yards suffering from your Wither over its duration.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -1567,7 +1567,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Bestows a vile malediction upon the target, burning the sinew and muscle of its host, dealing 445,468 Shadowflame damage immediately and an additional (varies) Shadowflame damage over 18. Replaces Corruption.",
+                            "text": "Bestows a vile malediction upon the target, burning the sinew and muscle of its host, dealing 445,468 Shadowflame damage immediately and an additional ≈370.7% of Spell Power Shadowflame damage over 18. Replaces Corruption.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -1583,7 +1583,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Bestows a vile malediction upon the target, burning the sinew and muscle of its host, dealing 445,468 Shadowflame damage immediately and an additional (varies) Shadowflame damage over 18. Replaces Corruption.",
+                            "text": "Bestows a vile malediction upon the target, burning the sinew and muscle of its host, dealing 445,468 Shadowflame damage immediately and an additional ≈370.7% of Spell Power Shadowflame damage over 18. Replaces Corruption.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -1615,7 +1615,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Bestows a vile malediction upon the target, burning the sinew and muscle of its host, dealing 445,468 Shadowflame damage immediately and an additional (varies) Shadowflame damage over 18. Replaces Corruption.",
+                            "text": "Bestows a vile malediction upon the target, burning the sinew and muscle of its host, dealing 445,468 Shadowflame damage immediately and an additional ≈370.7% of Spell Power Shadowflame damage over 18. Replaces Corruption.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -1631,7 +1631,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Bestows a vile malediction upon the target, burning the sinew and muscle of its host, dealing 445,468 Shadowflame damage immediately and an additional (varies) Shadowflame damage over 18. Replaces Corruption.",
+                            "text": "Bestows a vile malediction upon the target, burning the sinew and muscle of its host, dealing 445,468 Shadowflame damage immediately and an additional ≈370.7% of Spell Power Shadowflame damage over 18. Replaces Corruption.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -2166,7 +2166,7 @@
             "spellId": 10728,
             "category": "Other",
             "description": {
-                "text": "Consume the life force of each target afflicted by your damaging periodic effects, dealing (varies) Shadowflame damage over 3. Damage dealt by Dark Harvest heals you for (varies)% of damage done.",
+                "text": "Consume the life force of each target afflicted by your damaging periodic effects, dealing ≈3,358.2% of Spell Power Shadowflame damage over 3. Damage dealt by Dark Harvest heals you for (varies)% of damage done.",
                 "uncertain": true
             },
             "formulaModifierSpellIds": [],
@@ -2298,8 +2298,8 @@
             "spellId": 11501,
             "category": "Defensive",
             "description": {
-                "text": "Sacrifices 20% of your current health to shield you for 200% of the sacrificed health plus an additional (varies) for 20. Usable while suffering from control impairing effects.",
-                "uncertain": true
+                "text": "Sacrifices 20% of your current health to shield you for 200% of the sacrificed health plus an additional ≈250% of Spell Power for 20. Usable while suffering from control impairing effects.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -2361,7 +2361,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Dark Pact heals you for ≈205.7% of Spell Power every (varies) sec while active.",
+                            "text": "Dark Pact heals you for ≈205.7% of Spell Power every 1 sec while active.",
                             "uncertain": true
                         },
                         "category": "Other",
@@ -2428,8 +2428,8 @@
             "spellId": 11504,
             "category": "Other",
             "description": {
-                "text": "Your Soul Leech absorption now passively recharges at a rate of 0.2% of maximum health every (varies) sec, and may now absorb an additional 5% of maximum health. Increases your armor by 45%.",
-                "uncertain": true
+                "text": "Your Soul Leech absorption now passively recharges at a rate of 0.2% of maximum health every 1 sec, and may now absorb an additional 5% of maximum health. Increases your armor by 45%.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -2931,8 +2931,8 @@
             "spellId": 11342,
             "category": "Defensive",
             "description": {
-                "text": "Instantly restores 25% health, plus an additional (varies)% over 6.",
-                "uncertain": true
+                "text": "Instantly restores 25% health, plus an additional 30% over 6.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -2959,8 +2959,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Healthstones you conjure for yourself are now Demonic Healthstones and can be used multiple times in combat. Demonic Healthstones cannot be traded. Demonic Healthstone Instantly restores 25% health, plus an additional (varies)% over 6. 60 sec cooldown.",
-                            "uncertain": true
+                            "text": "Healthstones you conjure for yourself are now Demonic Healthstones and can be used multiple times in combat. Demonic Healthstones cannot be traded. Demonic Healthstone Instantly restores 25% health, plus an additional 30% over 6. 60 sec cooldown.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -3040,8 +3040,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Haunt now calls upon a demonic soul from within the Twisting Nether to haunt your target. The soul is unstable and ravenous, dealing (varies) Shadow damage to its host and 3 enemies within 10 yards suffering from your Wither over its duration.",
-                            "uncertain": true
+                            "text": "Haunt now calls upon a demonic soul from within the Twisting Nether to haunt your target. The soul is unstable and ravenous, dealing ≈814.1% of Spell Power Shadow damage to its host and 3 enemies within 10 yards suffering from your Wither over its duration.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -3120,7 +3120,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Unleashing your demonic soul bestows a fiendish entity unto the soul of its targets, dealing (varies) Shadow damage over 10. If this effect is reapplied, any remaining damage will be added to the new Soul Anathema.",
+                            "text": "Unleashing your demonic soul bestows a fiendish entity unto the soul of its targets, dealing ≈114.7% of Spell Power Shadow damage over 10. If this effect is reapplied, any remaining damage will be added to the new Soul Anathema.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -3152,8 +3152,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Haunt now calls upon a demonic soul from within the Twisting Nether to haunt your target. The soul is unstable and ravenous, dealing (varies) Shadow damage to its host and 3 enemies within 10 yards suffering from your Wither over its duration.",
-                            "uncertain": true
+                            "text": "Haunt now calls upon a demonic soul from within the Twisting Nether to haunt your target. The soul is unstable and ravenous, dealing ≈814.1% of Spell Power Shadow damage to its host and 3 enemies within 10 yards suffering from your Wither over its duration.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -3184,7 +3184,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Unleashing your demonic soul bestows a fiendish entity unto the soul of its targets, dealing (varies) Shadow damage over 10. If this effect is reapplied, any remaining damage will be added to the new Soul Anathema.",
+                            "text": "Unleashing your demonic soul bestows a fiendish entity unto the soul of its targets, dealing ≈114.7% of Spell Power Shadow damage over 10. If this effect is reapplied, any remaining damage will be added to the new Soul Anathema.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -3314,7 +3314,7 @@
             "spellId": 10959,
             "category": "Defensive",
             "description": {
-                "text": "Drains life from the target, causing (varies) Shadow damage over 5, and healing you for (varies)% of the damage done. Drain Life heals for 15% more while below 50% health.",
+                "text": "Drains life from the target, causing ≈3,750% of Spell Power Shadow damage over 5, and healing you for (varies)% of the damage done. Drain Life heals for 15% more while below 50% health.",
                 "uncertain": true
             },
             "formulaModifierSpellIds": [],
@@ -3539,7 +3539,7 @@
             "spellId": 10901,
             "category": "Offensive",
             "description": {
-                "text": "Drains the target's soul, causing (varies) Shadow damage over 5. Damage is increased by 100% against enemies below 20% health. Generates 1 Soul Shard if the target dies during this effect.",
+                "text": "Drains the target's soul, causing ≈556.9% of Spell Power Shadow damage over 5. Damage is increased by 100% against enemies below 20% health. Generates 1 Soul Shard if the target dies during this effect.",
                 "uncertain": true
             },
             "formulaModifierSpellIds": [],
@@ -3779,7 +3779,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "While Darkglare is active, your Drain Soul becomes Malefic Grasp. Malefic Grasp Binds the target in twilight, dealing (varies) Shadow damage over 4. When Malefic Grasp deals damage, it causes all of your other periodic Affliction damage effects to instantly deal 30% of their normal periodic damage.",
+                            "text": "While Darkglare is active, your Drain Soul becomes Malefic Grasp. Malefic Grasp Binds the target in twilight, dealing ≈1,053% of Spell Power Shadow damage over 4. When Malefic Grasp deals damage, it causes all of your other periodic Affliction damage effects to instantly deal 30% of their normal periodic damage.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -3811,7 +3811,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "While Darkglare is active, your Drain Soul becomes Malefic Grasp. Malefic Grasp Binds the target in twilight, dealing (varies) Shadow damage over 4. When Malefic Grasp deals damage, it causes all of your other periodic Affliction damage effects to instantly deal 30% of their normal periodic damage.",
+                            "text": "While Darkglare is active, your Drain Soul becomes Malefic Grasp. Malefic Grasp Binds the target in twilight, dealing ≈1,053% of Spell Power Shadow damage over 4. When Malefic Grasp deals damage, it causes all of your other periodic Affliction damage effects to instantly deal 30% of their normal periodic damage.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -4102,6 +4102,7 @@
                                         "charges": null,
                                         "max_stacks": null,
                                         "proc_chance": null,
+                                        "proc_cooldown_seconds": null,
                                         "cooldown_seconds": null,
                                         "cooldown_scaling_note": null,
                                         "duration_seconds": null,
@@ -4386,6 +4387,7 @@
                             "charges": null,
                             "max_stacks": null,
                             "proc_chance": null,
+                            "proc_cooldown_seconds": null,
                             "cooldown_seconds": null,
                             "cooldown_scaling_note": null,
                             "duration_seconds": null,
@@ -4433,6 +4435,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:23:32.000000Z",
@@ -4457,6 +4460,7 @@
                             "charges": null,
                             "max_stacks": null,
                             "proc_chance": null,
+                            "proc_cooldown_seconds": null,
                             "cooldown_seconds": null,
                             "cooldown_scaling_note": null,
                             "duration_seconds": null,
@@ -4504,10 +4508,11 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": 0.33333,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:23:33.000000Z",
-                                    "updated_at": "2026-10-07T21:43:23.000000Z"
+                                    "updated_at": "2026-10-18T02:31:08.000000Z"
                                 }
                             ]
                         },
@@ -5040,7 +5045,7 @@
             "spellId": 10708,
             "category": "Offensive",
             "description": {
-                "text": "A ghostly soul haunts a single target, dealing ≈720.6% of Spell Power Shadow damage and increasing your damage dealt to the target by 16% for 18. While active, Haunt deals (varies) Shadow damage to its host and 3 enemies within 10 yards suffering from your Corruption or Wither. If the target dies, Haunt's cooldown is reset.",
+                "text": "A ghostly soul haunts a single target, dealing ≈720.6% of Spell Power Shadow damage and increasing your damage dealt to the target by 16% for 18. While active, Haunt deals ≈814.1% of Spell Power Shadow damage to its host and 3 enemies within 10 yards suffering from your Corruption or Wither. If the target dies, Haunt's cooldown is reset.",
                 "uncertain": true
             },
             "formulaModifierSpellIds": [],
@@ -5084,8 +5089,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Haunt now calls upon a demonic soul from within the Twisting Nether to haunt your target. The soul is unstable and ravenous, dealing (varies) Shadow damage to its host and 3 enemies within 10 yards suffering from your Wither over its duration.",
-                            "uncertain": true
+                            "text": "Haunt now calls upon a demonic soul from within the Twisting Nether to haunt your target. The soul is unstable and ravenous, dealing ≈814.1% of Spell Power Shadow damage to its host and 3 enemies within 10 yards suffering from your Wither over its duration.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -5100,8 +5105,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Haunt now calls upon a demonic soul from within the Twisting Nether to haunt your target. The soul is unstable and ravenous, dealing (varies) Shadow damage to its host and 3 enemies within 10 yards suffering from your Wither over its duration.",
-                            "uncertain": true
+                            "text": "Haunt now calls upon a demonic soul from within the Twisting Nether to haunt your target. The soul is unstable and ravenous, dealing ≈814.1% of Spell Power Shadow damage to its host and 3 enemies within 10 yards suffering from your Wither over its duration.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -5372,6 +5377,7 @@
                             "charges": null,
                             "max_stacks": null,
                             "proc_chance": null,
+                            "proc_cooldown_seconds": null,
                             "cooldown_seconds": null,
                             "cooldown_scaling_note": null,
                             "duration_seconds": null,
@@ -5419,6 +5425,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:23:32.000000Z",
@@ -5437,6 +5444,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:23:32.000000Z",
@@ -5455,6 +5463,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:23:32.000000Z",
@@ -5473,6 +5482,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:23:32.000000Z",
@@ -5786,7 +5796,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Bestows a vile malediction upon the target, burning the sinew and muscle of its host, dealing 445,468 Shadowflame damage immediately and an additional (varies) Shadowflame damage over 18. Replaces Corruption.",
+                            "text": "Bestows a vile malediction upon the target, burning the sinew and muscle of its host, dealing 445,468 Shadowflame damage immediately and an additional ≈370.7% of Spell Power Shadowflame damage over 18. Replaces Corruption.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -5802,7 +5812,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Bestows a vile malediction upon the target, burning the sinew and muscle of its host, dealing 445,468 Shadowflame damage immediately and an additional (varies) Shadowflame damage over 18. Replaces Corruption.",
+                            "text": "Bestows a vile malediction upon the target, burning the sinew and muscle of its host, dealing 445,468 Shadowflame damage immediately and an additional ≈370.7% of Spell Power Shadowflame damage over 18. Replaces Corruption.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -5818,7 +5828,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Bestows a vile malediction upon the target, burning the sinew and muscle of its host, dealing 445,468 Shadowflame damage immediately and an additional (varies) Shadowflame damage over 18. Replaces Corruption.",
+                            "text": "Bestows a vile malediction upon the target, burning the sinew and muscle of its host, dealing 445,468 Shadowflame damage immediately and an additional ≈370.7% of Spell Power Shadowflame damage over 18. Replaces Corruption.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -5834,7 +5844,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Bestows a vile malediction upon the target, burning the sinew and muscle of its host, dealing 445,468 Shadowflame damage immediately and an additional (varies) Shadowflame damage over 18. Replaces Corruption.",
+                            "text": "Bestows a vile malediction upon the target, burning the sinew and muscle of its host, dealing 445,468 Shadowflame damage immediately and an additional ≈370.7% of Spell Power Shadowflame damage over 18. Replaces Corruption.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -5867,7 +5877,7 @@
             "spellId": 10741,
             "category": "Offensive",
             "description": {
-                "text": "While Darkglare is active, your Drain Soul becomes Malefic Grasp. Malefic Grasp Binds the target in twilight, dealing (varies) Shadow damage over 4. When Malefic Grasp deals damage, it causes all of your other periodic Affliction damage effects to instantly deal 30% of their normal periodic damage.",
+                "text": "While Darkglare is active, your Drain Soul becomes Malefic Grasp. Malefic Grasp Binds the target in twilight, dealing ≈1,053% of Spell Power Shadow damage over 4. When Malefic Grasp deals damage, it causes all of your other periodic Affliction damage effects to instantly deal 30% of their normal periodic damage.",
                 "uncertain": true
             },
             "formulaModifierSpellIds": [],
@@ -5930,7 +5940,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Binds the target in twilight, dealing (varies) Shadow damage over 4. When Malefic Grasp deals damage, it causes all of your other periodic Affliction damage effects to instantly deal 30% of their normal periodic damage.",
+                            "text": "Binds the target in twilight, dealing ≈1,053% of Spell Power Shadow damage over 4. When Malefic Grasp deals damage, it causes all of your other periodic Affliction damage effects to instantly deal 30% of their normal periodic damage.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -5946,7 +5956,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "While Darkglare is active, your Drain Soul becomes Malefic Grasp. Malefic Grasp Binds the target in twilight, dealing (varies) Shadow damage over 4. When Malefic Grasp deals damage, it causes all of your other periodic Affliction damage effects to instantly deal 30% of their normal periodic damage.",
+                            "text": "While Darkglare is active, your Drain Soul becomes Malefic Grasp. Malefic Grasp Binds the target in twilight, dealing ≈1,053% of Spell Power Shadow damage over 4. When Malefic Grasp deals damage, it causes all of your other periodic Affliction damage effects to instantly deal 30% of their normal periodic damage.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -6634,8 +6644,8 @@
             "spellId": 11520,
             "category": "Other",
             "description": {
-                "text": "Healthstones you conjure for yourself are now Demonic Healthstones and can be used multiple times in combat. Demonic Healthstones cannot be traded. Demonic Healthstone Instantly restores 25% health, plus an additional (varies)% over 6. 60 sec cooldown.",
-                "uncertain": true
+                "text": "Healthstones you conjure for yourself are now Demonic Healthstones and can be used multiple times in combat. Demonic Healthstones cannot be traded. Demonic Healthstone Instantly restores 25% health, plus an additional 30% over 6. 60 sec cooldown.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -7357,8 +7367,8 @@
             "spellId": 11655,
             "category": "Other",
             "description": {
-                "text": "After Wither reaches 8 stacks or when its host reaches 20% health, Wither deals 1 Shadowflame damage to its host every (varies) sec until 1 stack remains. When Blackened Soul deals damage, you have a chance to gain Shard Instability.",
-                "uncertain": true
+                "text": "After Wither reaches 8 stacks or when its host reaches 20% health, Wither deals 1 Shadowflame damage to its host every 1 sec until 1 stack remains. When Blackened Soul deals damage, you have a chance to gain Shard Instability.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -7417,8 +7427,8 @@
             "spellId": 10742,
             "category": "Offensive",
             "description": {
-                "text": "Haunt now calls upon a demonic soul from within the Twisting Nether to haunt your target. The soul is unstable and ravenous, dealing (varies) Shadow damage to its host and 3 enemies within 10 yards suffering from your Wither over its duration.",
-                "uncertain": true
+                "text": "Haunt now calls upon a demonic soul from within the Twisting Nether to haunt your target. The soul is unstable and ravenous, dealing ≈814.1% of Spell Power Shadow damage to its host and 3 enemies within 10 yards suffering from your Wither over its duration.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -7520,6 +7530,7 @@
                             "charges": null,
                             "max_stacks": null,
                             "proc_chance": null,
+                            "proc_cooldown_seconds": null,
                             "cooldown_seconds": null,
                             "cooldown_scaling_note": null,
                             "duration_seconds": null,
@@ -7567,6 +7578,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:23:32.000000Z",
@@ -7585,6 +7597,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:23:32.000000Z",
@@ -7603,6 +7616,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:23:32.000000Z",
@@ -7621,6 +7635,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:23:32.000000Z",
@@ -7664,8 +7679,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "After Wither reaches 8 stacks or when its host reaches 20% health, Wither deals 1 Shadowflame damage to its host every (varies) sec until 1 stack remains. When Blackened Soul deals damage, you have a chance to gain Shard Instability.",
-                            "uncertain": true
+                            "text": "After Wither reaches 8 stacks or when its host reaches 20% health, Wither deals 1 Shadowflame damage to its host every 1 sec until 1 stack remains. When Blackened Soul deals damage, you have a chance to gain Shard Instability.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -7727,8 +7742,8 @@
             "spellId": 11675,
             "category": "Offensive",
             "description": {
-                "text": "When you kill a target, its tortured soul is flung into a nearby enemy for 3. This effect inflicts 8 Shadow damage to enemies within 10 yds every (varies) sec. Deals reduced damage beyond 8 targets.",
-                "uncertain": true
+                "text": "When you kill a target, its tortured soul is flung into a nearby enemy for 3. This effect inflicts 8 Shadow damage to enemies within 10 yds every 1 sec. Deals reduced damage beyond 8 targets.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -7897,7 +7912,7 @@
             "spellId": 11667,
             "category": "Offensive",
             "description": {
-                "text": "Unleashing your demonic soul bestows a fiendish entity unto the soul of its targets, dealing (varies) Shadow damage over 10. If this effect is reapplied, any remaining damage will be added to the new Soul Anathema.",
+                "text": "Unleashing your demonic soul bestows a fiendish entity unto the soul of its targets, dealing ≈114.7% of Spell Power Shadow damage over 10. If this effect is reapplied, any remaining damage will be added to the new Soul Anathema.",
                 "uncertain": true
             },
             "formulaModifierSpellIds": [],
@@ -7909,7 +7924,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Unleashing your demonic soul bestows a fiendish entity unto the soul of its targets, dealing (varies) Shadow damage over 10. If this effect is reapplied, any remaining damage will be added to the new Soul Anathema.",
+                            "text": "Unleashing your demonic soul bestows a fiendish entity unto the soul of its targets, dealing ≈114.7% of Spell Power Shadow damage over 10. If this effect is reapplied, any remaining damage will be added to the new Soul Anathema.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -7972,8 +7987,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Your Soul Leech absorption now passively recharges at a rate of 0.2% of maximum health every (varies) sec, and may now absorb an additional 5% of maximum health. Increases your armor by 45%.",
-                            "uncertain": true
+                            "text": "Your Soul Leech absorption now passively recharges at a rate of 0.2% of maximum health every 1 sec, and may now absorb an additional 5% of maximum health. Increases your armor by 45%.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -8541,6 +8556,7 @@
                                         "charges": null,
                                         "max_stacks": null,
                                         "proc_chance": null,
+                                        "proc_cooldown_seconds": null,
                                         "cooldown_seconds": null,
                                         "cooldown_scaling_note": null,
                                         "duration_seconds": null,
@@ -8592,6 +8608,7 @@
                                         "charges": null,
                                         "max_stacks": null,
                                         "proc_chance": null,
+                                        "proc_cooldown_seconds": null,
                                         "cooldown_seconds": null,
                                         "cooldown_scaling_note": null,
                                         "duration_seconds": null,
@@ -8691,6 +8708,7 @@
                                         "charges": null,
                                         "max_stacks": null,
                                         "proc_chance": null,
+                                        "proc_cooldown_seconds": null,
                                         "cooldown_seconds": null,
                                         "cooldown_scaling_note": null,
                                         "duration_seconds": null,
@@ -8742,6 +8760,7 @@
                                         "charges": null,
                                         "max_stacks": null,
                                         "proc_chance": null,
+                                        "proc_cooldown_seconds": null,
                                         "cooldown_seconds": null,
                                         "cooldown_scaling_note": null,
                                         "duration_seconds": null,
@@ -9046,7 +9065,7 @@
             "spellId": 10729,
             "category": "Offensive",
             "description": {
-                "text": "Afflicts the target with (varies) Shadow damage over 8. Multiple uses of this ability may overlap. If dispelled, deals (varies) damage to the dispeller and silences them for 4. This damage is increased by 15% per stack on the target. Generates (varies) Soul Shards if the target dies while afflicted.",
+                "text": "Afflicts the target with ≈347.7% of Spell Power Shadow damage over 8. Multiple uses of this ability may overlap. If dispelled, deals (varies) damage to the dispeller and silences them for 4. This damage is increased by 15% per stack on the target. Generates (varies) Soul Shards if the target dies while afflicted.",
                 "uncertain": true
             },
             "formulaModifierSpellIds": [],
@@ -9282,7 +9301,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Afflicts the target with (varies) Shadow damage over 8. You may afflict a target with up to 5 Unstable Afflictions at once. You deal 10% increased damage to targets affected by your Unstable Affliction. If dispelled, deals ≈72.5% of Spell Power damage to the dispeller and silences them for 4. Refunds (varies) Soul Shards if the target dies while afflicted.",
+                            "text": "Afflicts the target with ≈72.5% of Spell Power Shadow damage over 8. You may afflict a target with up to 5 Unstable Afflictions at once. You deal 10% increased damage to targets affected by your Unstable Affliction. If dispelled, deals ≈72.5% of Spell Power damage to the dispeller and silences them for 4. Refunds (varies) Soul Shards if the target dies while afflicted.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -9298,7 +9317,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Afflicts the target with (varies) Shadow damage over 8. You may afflict a target with up to 5 Unstable Afflictions at once. You deal 15% increased damage to targets affected by your Unstable Affliction. If dispelled, deals ≈1.8% of Spell Power damage to the dispeller and silences them for 4. Refunds (varies) Soul Shards if the target dies while afflicted.",
+                            "text": "Afflicts the target with ≈72.5% of Spell Power Shadow damage over 8. You may afflict a target with up to 5 Unstable Afflictions at once. You deal 15% increased damage to targets affected by your Unstable Affliction. If dispelled, deals ≈1.8% of Spell Power damage to the dispeller and silences them for 4. Refunds (varies) Soul Shards if the target dies while afflicted.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -9314,7 +9333,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Afflicts the target with (varies) Shadow damage over 8. You may afflict a target with up to 5 Unstable Afflictions at once. You deal 15% increased damage to targets affected by your Unstable Affliction. If dispelled, deals ≈0% of Spell Power damage to the dispeller and silences them for 4. Refunds (varies) Soul Shards if the target dies while afflicted.",
+                            "text": "Afflicts the target with ≈72.5% of Spell Power Shadow damage over 8. You may afflict a target with up to 5 Unstable Afflictions at once. You deal 15% increased damage to targets affected by your Unstable Affliction. If dispelled, deals (varies) damage to the dispeller and silences them for 4. Refunds (varies) Soul Shards if the target dies while afflicted.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -9330,7 +9349,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Afflicts the target with (varies) Shadow damage over 8. You may afflict a target with up to 5 Unstable Afflictions at once. You deal 15% increased damage to targets affected by your Unstable Affliction. If dispelled, deals ≈0% of Spell Power damage to the dispeller and silences them for 4. Refunds (varies) Soul Shards if the target dies while afflicted.",
+                            "text": "Afflicts the target with ≈72.5% of Spell Power Shadow damage over 8. You may afflict a target with up to 5 Unstable Afflictions at once. You deal 15% increased damage to targets affected by your Unstable Affliction. If dispelled, deals (varies) damage to the dispeller and silences them for 4. Refunds (varies) Soul Shards if the target dies while afflicted.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -9346,7 +9365,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Afflicts the target with (varies) Shadow damage over 8. You may afflict a target with up to 5 Unstable Afflictions at once. You deal 15% increased damage to targets affected by your Unstable Affliction. If dispelled, deals ≈0% of Spell Power damage to the dispeller and silences them for 4. Refunds (varies) Soul Shards if the target dies while afflicted.",
+                            "text": "Afflicts the target with ≈72.5% of Spell Power Shadow damage over 8. You may afflict a target with up to 5 Unstable Afflictions at once. You deal 15% increased damage to targets affected by your Unstable Affliction. If dispelled, deals (varies) damage to the dispeller and silences them for 4. Refunds (varies) Soul Shards if the target dies while afflicted.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -9362,7 +9381,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Afflicts the target with (varies) Shadow damage over 8. You may afflict a target with up to 5 Unstable Afflictions at once. You deal 15% increased damage to targets affected by your Unstable Affliction. If dispelled, deals ≈0% of Spell Power damage to the dispeller and silences them for 4. Refunds (varies) Soul Shards if the target dies while afflicted.",
+                            "text": "Afflicts the target with ≈72.5% of Spell Power Shadow damage over 8. You may afflict a target with up to 5 Unstable Afflictions at once. You deal 15% increased damage to targets affected by your Unstable Affliction. If dispelled, deals (varies) damage to the dispeller and silences them for 4. Refunds (varies) Soul Shards if the target dies while afflicted.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -9378,7 +9397,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Afflicts the target with (varies) Shadow damage over 8. You may afflict a target with up to 5 Unstable Afflictions at once. You deal 15% increased damage to targets affected by your Unstable Affliction. If dispelled, deals ≈0% of Spell Power damage to the dispeller and silences them for 4. Refunds (varies) Soul Shards if the target dies while afflicted.",
+                            "text": "Afflicts the target with ≈72.5% of Spell Power Shadow damage over 8. You may afflict a target with up to 5 Unstable Afflictions at once. You deal 15% increased damage to targets affected by your Unstable Affliction. If dispelled, deals (varies) damage to the dispeller and silences them for 4. Refunds (varies) Soul Shards if the target dies while afflicted.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -9510,8 +9529,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "If the target is afflicted with your Wither, casting Unstable Affliction increase its stack count by 1. Each time Wither gains a stack it has a chance to collapse, consuming a stack every (varies) sec to deal 1 Shadowflame damage to its host until 1 stack remains.",
-                            "uncertain": true
+                            "text": "If the target is afflicted with your Wither, casting Unstable Affliction increase its stack count by 1. Each time Wither gains a stack it has a chance to collapse, consuming a stack every 1 sec to deal 1 Shadowflame damage to its host until 1 stack remains.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -9526,8 +9545,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "If the target is afflicted with your Wither, casting Unstable Affliction increase its stack count by 1. Each time Wither gains a stack it has a chance to collapse, consuming a stack every (varies) sec to deal 1 Shadowflame damage to its host until 1 stack remains.",
-                            "uncertain": true
+                            "text": "If the target is afflicted with your Wither, casting Unstable Affliction increase its stack count by 1. Each time Wither gains a stack it has a chance to collapse, consuming a stack every 1 sec to deal 1 Shadowflame damage to its host until 1 stack remains.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -9542,8 +9561,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "If the target is afflicted with your Wither, casting Unstable Affliction increase its stack count by 1. Each time Wither gains a stack it has a chance to collapse, consuming a stack every (varies) sec to deal 1 Shadowflame damage to its host until 1 stack remains.",
-                            "uncertain": true
+                            "text": "If the target is afflicted with your Wither, casting Unstable Affliction increase its stack count by 1. Each time Wither gains a stack it has a chance to collapse, consuming a stack every 1 sec to deal 1 Shadowflame damage to its host until 1 stack remains.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -9558,8 +9577,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "If the target is afflicted with your Wither, casting Unstable Affliction increase its stack count by 1. Each time Wither gains a stack it has a chance to collapse, consuming a stack every (varies) sec to deal 1 Shadowflame damage to its host until 1 stack remains.",
-                            "uncertain": true
+                            "text": "If the target is afflicted with your Wither, casting Unstable Affliction increase its stack count by 1. Each time Wither gains a stack it has a chance to collapse, consuming a stack every 1 sec to deal 1 Shadowflame damage to its host until 1 stack remains.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -9621,7 +9640,7 @@
             "spellId": 11319,
             "category": "Offensive",
             "description": {
-                "text": "Bestows a vile malediction upon the target, burning the sinew and muscle of its host, dealing 445,468 Shadowflame damage immediately and an additional (varies) Shadowflame damage over 18. Replaces Corruption.",
+                "text": "Bestows a vile malediction upon the target, burning the sinew and muscle of its host, dealing 445,468 Shadowflame damage immediately and an additional ≈370.7% of Spell Power Shadowflame damage over 18. Replaces Corruption.",
                 "uncertain": true
             },
             "formulaModifierSpellIds": [],
@@ -9681,7 +9700,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Afflicts one target with (varies) Shadow damage over 16. If dispelled, deals (varies) damage to the dispeller and silences them for 4. Generates (varies) Soul Shards if the target dies while afflicted.",
+                            "text": "Afflicts one target with ≈934.8% of Spell Power Shadow damage over 16. If dispelled, deals (varies) damage to the dispeller and silences them for 4. Generates (varies) Soul Shards if the target dies while afflicted.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -9697,8 +9716,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Corruption damage is increased by 25%, and each time it deals damage any of your Curses active on the target are extended by (varies) sec.",
-                            "uncertain": true
+                            "text": "Corruption damage is increased by 25%, and each time it deals damage any of your Curses active on the target are extended by 2 sec.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -9793,7 +9812,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Afflicts one target with (varies) Shadow damage over 12. If dispelled, deals (varies) damage to the dispeller and silences them for 4. Generates (varies) Soul Shards if the target dies while afflicted.",
+                            "text": "Afflicts one target with ≈415.5% of Spell Power Shadow damage over 12. If dispelled, deals (varies) damage to the dispeller and silences them for 4. Generates (varies) Soul Shards if the target dies while afflicted.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -9857,7 +9876,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "A ghostly soul haunts a single target, dealing ≈720.6% of Spell Power Shadow damage and increasing your damage dealt to the target by 16% for 18. While active, Haunt deals (varies) Shadow damage to its host and 3 enemies within 10 yards suffering from your Corruption or Wither. If the target dies, Haunt's cooldown is reset.",
+                            "text": "A ghostly soul haunts a single target, dealing ≈720.6% of Spell Power Shadow damage and increasing your damage dealt to the target by 16% for 18. While active, Haunt deals ≈814.1% of Spell Power Shadow damage to its host and 3 enemies within 10 yards suffering from your Corruption or Wither. If the target dies, Haunt's cooldown is reset.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -9937,8 +9956,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Haunt now calls upon a demonic soul from within the Twisting Nether to haunt your target. The soul is unstable and ravenous, dealing (varies) Shadow damage to its host and 3 enemies within 10 yards suffering from your Wither over its duration.",
-                            "uncertain": true
+                            "text": "Haunt now calls upon a demonic soul from within the Twisting Nether to haunt your target. The soul is unstable and ravenous, dealing ≈814.1% of Spell Power Shadow damage to its host and 3 enemies within 10 yards suffering from your Wither over its duration.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -10033,8 +10052,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Haunt now calls upon a demonic soul from within the Twisting Nether to haunt your target. The soul is unstable and ravenous, dealing (varies) Shadow damage to its host and 3 enemies within 10 yards suffering from your Wither over its duration.",
-                            "uncertain": true
+                            "text": "Haunt now calls upon a demonic soul from within the Twisting Nether to haunt your target. The soul is unstable and ravenous, dealing ≈814.1% of Spell Power Shadow damage to its host and 3 enemies within 10 yards suffering from your Wither over its duration.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -10165,7 +10184,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Bestows a vile malediction upon the target, burning the sinew and muscle of its host, dealing 445,468 Shadowflame damage immediately and an additional (varies) Shadowflame damage over 18. Replaces Corruption.",
+                            "text": "Bestows a vile malediction upon the target, burning the sinew and muscle of its host, dealing 445,468 Shadowflame damage immediately and an additional ≈370.7% of Spell Power Shadowflame damage over 18. Replaces Corruption.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -10197,8 +10216,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "If the target is afflicted with your Wither, casting Unstable Affliction increase its stack count by 1. Each time Wither gains a stack it has a chance to collapse, consuming a stack every (varies) sec to deal 1 Shadowflame damage to its host until 1 stack remains.",
-                            "uncertain": true
+                            "text": "If the target is afflicted with your Wither, casting Unstable Affliction increase its stack count by 1. Each time Wither gains a stack it has a chance to collapse, consuming a stack every 1 sec to deal 1 Shadowflame damage to its host until 1 stack remains.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -10261,8 +10280,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "If the target is afflicted with your Wither, casting Unstable Affliction increase its stack count by 1. Each time Wither gains a stack it has a chance to collapse, consuming a stack every (varies) sec to deal 1 Shadowflame damage to its host until 1 stack remains.",
-                            "uncertain": true
+                            "text": "If the target is afflicted with your Wither, casting Unstable Affliction increase its stack count by 1. Each time Wither gains a stack it has a chance to collapse, consuming a stack every 1 sec to deal 1 Shadowflame damage to its host until 1 stack remains.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -10277,8 +10296,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "If the target is afflicted with your Wither, casting Unstable Affliction increase its stack count by 1. Each time Wither gains a stack it has a chance to collapse, consuming a stack every (varies) sec to deal 1 Shadowflame damage to its host until 1 stack remains.",
-                            "uncertain": true
+                            "text": "If the target is afflicted with your Wither, casting Unstable Affliction increase its stack count by 1. Each time Wither gains a stack it has a chance to collapse, consuming a stack every 1 sec to deal 1 Shadowflame damage to its host until 1 stack remains.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -10341,8 +10360,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "If the target is afflicted with your Wither, casting Unstable Affliction increase its stack count by 1. Each time Wither gains a stack it has a chance to collapse, consuming a stack every (varies) sec to deal 1 Shadowflame damage to its host until 1 stack remains.",
-                            "uncertain": true
+                            "text": "If the target is afflicted with your Wither, casting Unstable Affliction increase its stack count by 1. Each time Wither gains a stack it has a chance to collapse, consuming a stack every 1 sec to deal 1 Shadowflame damage to its host until 1 stack remains.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -10389,8 +10408,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "After Wither reaches 8 stacks or when its host reaches 20% health, Wither deals 1 Shadowflame damage to its host every (varies) sec until 1 stack remains. When Blackened Soul deals damage, you have a chance to gain Shard Instability.",
-                            "uncertain": true
+                            "text": "After Wither reaches 8 stacks or when its host reaches 20% health, Wither deals 1 Shadowflame damage to its host every 1 sec until 1 stack remains. When Blackened Soul deals damage, you have a chance to gain Shard Instability.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -10574,7 +10593,7 @@
             "spellId": 11658,
             "category": "Other",
             "description": {
-                "text": "Dark Pact heals you for ≈205.7% of Spell Power every (varies) sec while active.",
+                "text": "Dark Pact heals you for ≈205.7% of Spell Power every 1 sec while active.",
                 "uncertain": true
             },
             "formulaModifierSpellIds": [],

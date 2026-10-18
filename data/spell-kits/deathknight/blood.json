@@ -1,14 +1,14 @@
 {
-    "generatedAt": "2026-10-07T21:47:57+00:00",
-    "spellCacheVersion": 27,
+    "generatedAt": "2026-10-18T02:36:06+00:00",
+    "spellCacheVersion": 29,
     "codeFingerprint": "dev",
     "entries": [
         {
             "spellId": 876,
             "category": "Offensive",
             "description": {
-                "text": "Sprout an additional limb, pulling enemies further than 8 yds from you every (varies) sec. The same enemy can only be pulled once every 4.",
-                "uncertain": true
+                "text": "Sprout an additional limb, pulling enemies further than 8 yds from you every 1 sec. The same enemy can only be pulled once every 4.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -84,13 +84,10 @@
             "spellId": 19,
             "category": "Defensive",
             "description": {
-                "text": "Surrounds you in an Anti-Magic Shell for 5, absorbing up to (varies) magic damage and preventing application of harmful magical effects.",
-                "uncertain": true
+                "text": "Surrounds you in an Anti-Magic Shell for 5, absorbing up to ≈30–48.3% of maximum health magic damage and preventing application of harmful magical effects.",
+                "uncertain": false
             },
-            "formulaModifierSpellIds": [
-                897,
-                922
-            ],
+            "formulaModifierSpellIds": [],
             "modifiers": {
                 "named": [
                     {
@@ -179,7 +176,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Casting Anti-Magic Shell grants (varies) nearby allies a Lesser Anti-Magic Shell that Absorbs up to (varies) magic damage and reduces the duration of harmful Magic effects against them by 50%.",
+                            "text": "Casting Anti-Magic Shell grants (varies) nearby allies a Lesser Anti-Magic Shell that Absorbs up to ≈425% of Attack Power magic damage and reduces the duration of harmful Magic effects against them by 50%.",
                             "uncertain": true
                         },
                         "category": "Other",
@@ -246,8 +243,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Surrounds your target in an Anti-Magic Shell for 5, absorbing up to (varies) magic damage and preventing application of harmful magical effects.",
-                            "uncertain": true
+                            "text": "Surrounds your target in an Anti-Magic Shell for 5, absorbing up to ≈30–48.3% of maximum health magic damage and preventing application of harmful magical effects.",
+                            "uncertain": false
                         },
                         "category": "Defensive",
                         "cooldown": {
@@ -266,6 +263,7 @@
                                         "charges": null,
                                         "max_stacks": null,
                                         "proc_chance": null,
+                                        "proc_cooldown_seconds": null,
                                         "cooldown_seconds": null,
                                         "cooldown_scaling_note": null,
                                         "duration_seconds": null,
@@ -317,6 +315,7 @@
                                         "charges": null,
                                         "max_stacks": null,
                                         "proc_chance": "100.00",
+                                        "proc_cooldown_seconds": null,
                                         "cooldown_seconds": null,
                                         "cooldown_scaling_note": null,
                                         "duration_seconds": null,
@@ -365,8 +364,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Surrounds your target in an Anti-Magic Shell for 5, absorbing up to (varies) magic damage and preventing application of harmful magical effects.",
-                            "uncertain": true
+                            "text": "Surrounds your target in an Anti-Magic Shell for 5, absorbing up to ≈30–48.3% of maximum health magic damage and preventing application of harmful magical effects.",
+                            "uncertain": false
                         },
                         "category": "Defensive",
                         "cooldown": {
@@ -385,6 +384,7 @@
                                         "charges": null,
                                         "max_stacks": null,
                                         "proc_chance": null,
+                                        "proc_cooldown_seconds": null,
                                         "cooldown_seconds": null,
                                         "cooldown_scaling_note": null,
                                         "duration_seconds": null,
@@ -436,6 +436,7 @@
                                         "charges": null,
                                         "max_stacks": null,
                                         "proc_chance": "100.00",
+                                        "proc_cooldown_seconds": null,
                                         "cooldown_seconds": null,
                                         "cooldown_scaling_note": null,
                                         "duration_seconds": null,
@@ -513,6 +514,7 @@
                             "charges": null,
                             "max_stacks": null,
                             "proc_chance": null,
+                            "proc_cooldown_seconds": null,
                             "cooldown_seconds": null,
                             "cooldown_scaling_note": null,
                             "duration_seconds": null,
@@ -560,6 +562,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:21:56.000000Z",
@@ -578,6 +581,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": 0.5,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:21:56.000000Z",
@@ -596,6 +600,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:21:56.000000Z",
@@ -620,6 +625,7 @@
                             "charges": null,
                             "max_stacks": null,
                             "proc_chance": "100.00",
+                            "proc_cooldown_seconds": null,
                             "cooldown_seconds": null,
                             "cooldown_scaling_note": null,
                             "duration_seconds": null,
@@ -667,6 +673,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:21:57.000000Z",
@@ -685,6 +692,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:21:57.000000Z",
@@ -782,6 +790,7 @@
                                         "charges": null,
                                         "max_stacks": null,
                                         "proc_chance": null,
+                                        "proc_cooldown_seconds": null,
                                         "cooldown_seconds": null,
                                         "cooldown_scaling_note": null,
                                         "duration_seconds": null,
@@ -861,6 +870,7 @@
                             "charges": null,
                             "max_stacks": null,
                             "proc_chance": null,
+                            "proc_cooldown_seconds": null,
                             "cooldown_seconds": null,
                             "cooldown_scaling_note": null,
                             "duration_seconds": null,
@@ -908,6 +918,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:21:56.000000Z",
@@ -926,6 +937,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:21:56.000000Z",
@@ -1096,7 +1108,7 @@
             "spellId": 845,
             "category": "Offensive",
             "description": {
-                "text": "Deals (varies) Shadow damage and infects all enemies within 10 yds with Blood Plague. Blood Plague A shadowy disease that drains (varies) health from the target over 24.",
+                "text": "Deals ≈164% of Attack Power Shadow damage and infects all enemies within 10 yds with Blood Plague. Blood Plague A shadowy disease that drains ≈267.8% of Attack Power health from the target over 24.",
                 "uncertain": true
             },
             "formulaModifierSpellIds": [],
@@ -1459,8 +1471,8 @@
             "spellId": 877,
             "category": "Offensive",
             "description": {
-                "text": "When you cast Dancing Rune Weapon, you become enveloped in a blood mist that surrounds you for 8, increasing your Parry by 5%. Deals 20 Shadow damage every (varies) sec to enemies within 10 yds. Every time it deals damage you gain 2 Runic Power, up to a maximum of 10 Runic Power. Deals reduced damage beyond 8 targets.",
-                "uncertain": true
+                "text": "When you cast Dancing Rune Weapon, you become enveloped in a blood mist that surrounds you for 8, increasing your Parry by 5%. Deals 20 Shadow damage every 1 sec to enemies within 10 yds. Every time it deals damage you gain 2 Runic Power, up to a maximum of 10 Runic Power. Deals reduced damage beyond 8 targets.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -1471,8 +1483,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "When you cast Dancing Rune Weapon, you become enveloped in a blood mist that surrounds you for 8, increasing your Parry by 5%. Deals 20 Shadow damage every (varies) sec to enemies within 10 yds. Every time it deals damage you gain 2 Runic Power, up to a maximum of 10 Runic Power. Deals reduced damage beyond 8 targets.",
-                            "uncertain": true
+                            "text": "When you cast Dancing Rune Weapon, you become enveloped in a blood mist that surrounds you for 8, increasing your Parry by 5%. Deals 20 Shadow damage every 1 sec to enemies within 10 yds. Every time it deals damage you gain 2 Runic Power, up to a maximum of 10 Runic Power. Deals reduced damage beyond 8 targets.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -1487,8 +1499,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "When you cast Dancing Rune Weapon, you become enveloped in a blood mist that surrounds you for 8, increasing your Parry by 5%. Deals 20 Shadow damage every (varies) sec to enemies within 10 yds. Every time it deals damage you gain 2 Runic Power, up to a maximum of 10 Runic Power. Deals reduced damage beyond 8 targets.",
-                            "uncertain": true
+                            "text": "When you cast Dancing Rune Weapon, you become enveloped in a blood mist that surrounds you for 8, increasing your Parry by 5%. Deals 20 Shadow damage every 1 sec to enemies within 10 yds. Every time it deals damage you gain 2 Runic Power, up to a maximum of 10 Runic Power. Deals reduced damage beyond 8 targets.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -1874,7 +1886,7 @@
             "spellId": 873,
             "category": "Other",
             "description": {
-                "text": "When you would pull an enemy generate 1 charge of Bone Shield. Bone Shield Surrounds you with a barrier of whirling bones, increasing Armor by (varies), and your Haste by (varies)%. Each melee attack against you consumes a charge. Lasts 30 or until all charges are consumed.",
+                "text": "When you would pull an enemy generate 1 charge of Bone Shield. Bone Shield Surrounds you with a barrier of whirling bones, increasing Armor by ≈180% of Strength, and your Haste by (varies)%. Each melee attack against you consumes a charge. Lasts 30 or until all charges are consumed.",
                 "uncertain": true
             },
             "formulaModifierSpellIds": [],
@@ -2309,6 +2321,7 @@
                                         "charges": null,
                                         "max_stacks": null,
                                         "proc_chance": null,
+                                        "proc_cooldown_seconds": null,
                                         "cooldown_seconds": null,
                                         "cooldown_scaling_note": null,
                                         "duration_seconds": null,
@@ -2357,8 +2370,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "When you cast Dancing Rune Weapon, you become enveloped in a blood mist that surrounds you for 8, increasing your Parry by 5%. Deals 20 Shadow damage every (varies) sec to enemies within 10 yds. Every time it deals damage you gain 2 Runic Power, up to a maximum of 10 Runic Power. Deals reduced damage beyond 8 targets.",
-                            "uncertain": true
+                            "text": "When you cast Dancing Rune Weapon, you become enveloped in a blood mist that surrounds you for 8, increasing your Parry by 5%. Deals 20 Shadow damage every 1 sec to enemies within 10 yds. Every time it deals damage you gain 2 Runic Power, up to a maximum of 10 Runic Power. Deals reduced damage beyond 8 targets.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -2373,8 +2386,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "When you cast Dancing Rune Weapon, you become enveloped in a blood mist that surrounds you for 8, increasing your Parry by 5%. Deals 20 Shadow damage every (varies) sec to enemies within 10 yds. Every time it deals damage you gain 2 Runic Power, up to a maximum of 10 Runic Power. Deals reduced damage beyond 8 targets.",
-                            "uncertain": true
+                            "text": "When you cast Dancing Rune Weapon, you become enveloped in a blood mist that surrounds you for 8, increasing your Parry by 5%. Deals 20 Shadow damage every 1 sec to enemies within 10 yds. Every time it deals damage you gain 2 Runic Power, up to a maximum of 10 Runic Power. Deals reduced damage beyond 8 targets.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -2421,8 +2434,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "When you cast Dancing Rune Weapon, you become enveloped in a blood mist that surrounds you for 8, increasing your Parry by 5%. Deals 20 Shadow damage every (varies) sec to enemies within 10 yds. Every time it deals damage you gain 2 Runic Power, up to a maximum of 10 Runic Power. Deals reduced damage beyond 8 targets.",
-                            "uncertain": true
+                            "text": "When you cast Dancing Rune Weapon, you become enveloped in a blood mist that surrounds you for 8, increasing your Parry by 5%. Deals 20 Shadow damage every 1 sec to enemies within 10 yds. Every time it deals damage you gain 2 Runic Power, up to a maximum of 10 Runic Power. Deals reduced damage beyond 8 targets.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -2597,6 +2610,7 @@
                             "charges": null,
                             "max_stacks": null,
                             "proc_chance": null,
+                            "proc_cooldown_seconds": null,
                             "cooldown_seconds": null,
                             "cooldown_scaling_note": null,
                             "duration_seconds": null,
@@ -2644,6 +2658,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:21:56.000000Z",
@@ -2662,6 +2677,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:21:56.000000Z",
@@ -2935,6 +2951,7 @@
                             "charges": null,
                             "max_stacks": null,
                             "proc_chance": null,
+                            "proc_cooldown_seconds": null,
                             "cooldown_seconds": null,
                             "cooldown_scaling_note": null,
                             "duration_seconds": null,
@@ -2982,6 +2999,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:21:57.000000Z",
@@ -3000,6 +3018,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:21:57.000000Z",
@@ -3033,7 +3052,7 @@
             "spellId": 893,
             "category": "Offensive",
             "description": {
-                "text": "Focuses dark power into a strike that deals (varies) Physical damage and heals you for 20% of all damage taken in the last 5 sec, minimum 7% of maximum health.",
+                "text": "Focuses dark power into a strike that deals ≈176.1% of Attack Power Physical damage and heals you for 20% of all damage taken in the last 5 sec, minimum 7% of maximum health.",
                 "uncertain": true
             },
             "formulaModifierSpellIds": [],
@@ -5518,7 +5537,7 @@
             "spellId": 850,
             "category": "Offensive",
             "description": {
-                "text": "Smash the target, dealing (varies) Physical damage and generating 3 charges of Bone Shield. Bone Shield Surrounds you with a barrier of whirling bones, increasing Armor by (varies), and your Haste by (varies)%. Each melee attack against you consumes a charge. Lasts 30 or until all charges are consumed.",
+                "text": "Smash the target, dealing ≈220.7% of Attack Power Physical damage and generating 3 charges of Bone Shield. Bone Shield Surrounds you with a barrier of whirling bones, increasing Armor by ≈180% of Strength, and your Haste by (varies)%. Each melee attack against you consumes a charge. Lasts 30 or until all charges are consumed.",
                 "uncertain": true
             },
             "formulaModifierSpellIds": [],
@@ -7973,7 +7992,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "A vampiric strike that deals (varies) Shadow damage and heals you for 2% of your maximum health. Additionally grants you Essence of the Blood Queen for 20.",
+                            "text": "A vampiric strike that deals ≈113.4% of Attack Power Shadow damage and heals you for 2% of your maximum health. Additionally grants you Essence of the Blood Queen for 20.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -8298,7 +8317,7 @@
             "spellId": 929,
             "category": "Other",
             "description": {
-                "text": "Casting Anti-Magic Shell grants (varies) nearby allies a Lesser Anti-Magic Shell that Absorbs up to (varies) magic damage and reduces the duration of harmful Magic effects against them by 50%.",
+                "text": "Casting Anti-Magic Shell grants (varies) nearby allies a Lesser Anti-Magic Shell that Absorbs up to ≈425% of Attack Power magic damage and reduces the duration of harmful Magic effects against them by 50%.",
                 "uncertain": true
             },
             "formulaModifierSpellIds": [],

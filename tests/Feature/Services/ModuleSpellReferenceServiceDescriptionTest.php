@@ -404,3 +404,74 @@ test('an unresolvable token used as a subtrahend stays safe and still resolves',
     expect(app(ModuleSpellReferenceService::class)->resolveDescription($spell, $fixture['build'])['text'])
         ->toBe('Lasts 12 sec.');
 });
+
+// ------------------------------------------------------------------ 2026-10-18: the "(varies)" pass
+
+function resolvedFor(array $fixture, Spell $spell): array
+{
+    return app(ModuleSpellReferenceService::class)->resolveDescription($spell->load('effects'), $fixture['build']);
+}
+
+test('an attack-power effect reads as a share of Attack Power, like a spell-power one', function () {
+    // Blood Boil (50842): "Deals $s1 Shadow damage", effect #1 Base 0, AP Coefficient 1.64.
+    $fixture = makeDescriptionFixture();
+    $spell = makeTestSpell($fixture, 50842, 'Deals $s1 Shadow damage.');
+    SpellEffect::create(['spell_id' => $spell->id, 'effect_index' => 1, 'type' => 'School Damage (2): shadow', 'base_value' => 0, 'scaled_value' => 0, 'ap_coefficient' => 1.64]);
+
+    expect(resolvedFor($fixture, $spell)['text'])->toBe('Deals ≈164% of Attack Power Shadow damage.');
+});
+
+test('$tN reads the tick interval from the effect, and $oN the total over the duration', function () {
+    // Soul Carver (207407): "$o1 Fire damage over $d ... every $t1 sec"; Periodic Damage every
+    // 1 second for 3 seconds, AP Coefficient 1, so the over-time part is 300% of Attack Power.
+    $fixture = makeDescriptionFixture();
+    $spell = makeTestSpell($fixture, 207407, 'an additional $o1 Fire damage over $d, and $o2 more, every $t1 sec.');
+    $spell->update(['duration_seconds' => 3]);
+    SpellEffect::create(['spell_id' => $spell->id, 'effect_index' => 1, 'type' => 'Periodic Damage (3): fire every 1 seconds', 'base_value' => 0, 'scaled_value' => 0, 'ap_coefficient' => 1]);
+    SpellEffect::create(['spell_id' => $spell->id, 'effect_index' => 2, 'type' => 'Periodic Heal (8): every 1 seconds', 'base_value' => 50, 'scaled_value' => 50]);
+
+    expect(resolvedFor($fixture, $spell)['text'])->toBe('an additional ≈300% of Attack Power Fire damage over 3, and 150 more, every 1 sec.');
+});
+
+test('a formula on maximum health reads as a share of it, Versatility left out', function () {
+    // Anti-Magic Shell's shape: ${$MHP*$m2/100*(1+$@versadmg)}, effect #2 Base 30.
+    $fixture = makeDescriptionFixture();
+    $spell = makeTestSpell($fixture, 48707, 'absorbing up to ${$MHP*$m2/100*(1+$@versadmg)} magic damage.');
+    SpellEffect::create(['spell_id' => $spell->id, 'effect_index' => 2, 'type' => 'Absorb Damage', 'base_value' => 30, 'scaled_value' => 30]);
+
+    expect(resolvedFor($fixture, $spell)['text'])->toBe('absorbing up to ≈30% of maximum health magic damage.');
+});
+
+test('a formula that is not a clean share of one stat stays (varies)', function () {
+    $fixture = makeDescriptionFixture();
+    // A share of two different things, and a share plus a flat amount: neither has one honest reading.
+    $spell = makeTestSpell($fixture, 2, 'Deals ${$MHP*0.1+$AP} and ${$AP+500} damage.');
+
+    $result = resolvedFor($fixture, $spell);
+    expect($result['text'])->toBe('Deals (varies) and (varies) damage.')->and($result['uncertain'])->toBeTrue();
+});
+
+test('$proccooldown and $r read the stored internal cooldown and range', function () {
+    // Swift Art (450622): "once every $proccooldown sec", Internal Cooldown 30 seconds.
+    $fixture = makeDescriptionFixture();
+    $spell = makeTestSpell($fixture, 450622, 'Removes a snare once every $proccooldown sec, within $r yards.');
+    $spell->update(['proc_cooldown_seconds' => 30, 'range_yards' => '6 - 25 yards']);
+
+    expect(resolvedFor($fixture, $spell)['text'])->toBe('Removes a snare once every 30 sec, within 25 yards.');
+});
+
+test('the parser keeps the AP coefficient and the internal cooldown from the dump', function () {
+    $dump = "Name             : Swift Art (id=450622) [Spell Family (53), Passive]\n"
+        ."Class            : Monk\n"
+        ."Internal Cooldown: 30 seconds\n"
+        ."Proc Chance      : 100%\n"
+        ."Effects          :\n"
+        ."#1 (id=43101)    : School Damage (2): shadow | Attributes: Always AOE Line of Sight (5)\n"
+        ."                   Base Value: 0 | Scaled Value: 0 (delta=0.05) | AP Coefficient: 1.64 | Radius: 0 - 10 yards\n"
+        ."Description      : Deals \$s1 Shadow damage.\n";
+    $record = (new \App\Http\Services\SpellDataFileParser)->parseContent($dump)[0];
+
+    expect($record['proc_cooldown_seconds'])->toBe(30.0)
+        ->and($record['effects'][0]['ap_coefficient'])->toBe(1.64)
+        ->and($record['effects'][0]['sp_coefficient'])->toBeNull();
+});

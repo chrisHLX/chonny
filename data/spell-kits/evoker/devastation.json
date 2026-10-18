@@ -1,6 +1,6 @@
 {
-    "generatedAt": "2026-10-07T21:48:06+00:00",
-    "spellCacheVersion": 27,
+    "generatedAt": "2026-10-18T02:36:16+00:00",
+    "spellCacheVersion": 29,
     "codeFingerprint": "dev",
     "entries": [
         {
@@ -340,8 +340,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "While Dragonrage is active you gain Rising Fury every (varies) sec, increasing your haste by 4%, stacking up to 5 times.",
-                            "uncertain": true
+                            "text": "While Dragonrage is active you gain Rising Fury every 6 sec, increasing your haste by 4%, stacking up to 5 times.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -580,8 +580,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "While Dragonrage is active you gain Rising Fury every (varies) sec, increasing your haste by 4%, stacking up to 5 times.",
-                            "uncertain": true
+                            "text": "While Dragonrage is active you gain Rising Fury every 6 sec, increasing your haste by 4%, stacking up to 5 times.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -1171,7 +1171,7 @@
             "spellId": 3233,
             "category": "Offensive",
             "description": {
-                "text": "Take in a deep breath and fly to the targeted location, spewing molten cinders dealing (varies) Volcanic damage to enemies in your path. Removes all root effects. You are immune to movement impairing and loss of control effects while flying.",
+                "text": "Take in a deep breath and fly to the targeted location, spewing molten cinders dealing ≈520% of Spell Power Volcanic damage to enemies in your path. Removes all root effects. You are immune to movement impairing and loss of control effects while flying.",
                 "uncertain": true
             },
             "formulaModifierSpellIds": [],
@@ -1246,6 +1246,7 @@
                             "charges": null,
                             "max_stacks": null,
                             "proc_chance": null,
+                            "proc_cooldown_seconds": null,
                             "cooldown_seconds": null,
                             "cooldown_scaling_note": null,
                             "duration_seconds": null,
@@ -1293,6 +1294,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:22:23.000000Z",
@@ -1323,6 +1325,7 @@
                             "charges": null,
                             "max_stacks": null,
                             "proc_chance": null,
+                            "proc_cooldown_seconds": null,
                             "cooldown_seconds": null,
                             "cooldown_scaling_note": null,
                             "duration_seconds": "18.00",
@@ -1370,6 +1373,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:22:22.000000Z",
@@ -1388,6 +1392,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:22:22.000000Z",
@@ -1446,7 +1451,7 @@
             "spellId": 3230,
             "category": "Offensive",
             "description": {
-                "text": "Tear into an enemy with a blast of blue magic, inflicting (varies) Spellfrost damage over 3, and slowing their movement speed by 50% for 3.",
+                "text": "Tear into an enemy with a blast of blue magic, inflicting ≈475.5% of Spell Power Spellfrost damage over 3, and slowing their movement speed by 50% for 3.",
                 "uncertain": true
             },
             "formulaModifierSpellIds": [],
@@ -1554,8 +1559,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "While Dragonrage is active you gain Rising Fury every (varies) sec, increasing your haste by 4%, stacking up to 5 times.",
-                            "uncertain": true
+                            "text": "While Dragonrage is active you gain Rising Fury every 6 sec, increasing your haste by 4%, stacking up to 5 times.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -1686,7 +1691,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Take in a deep breath and fly to the targeted location, spewing molten cinders dealing (varies) Volcanic damage to enemies in your path. Removes all root effects. You are immune to movement impairing and loss of control effects while flying.",
+                            "text": "Take in a deep breath and fly to the targeted location, spewing molten cinders dealing ≈520% of Spell Power Volcanic damage to enemies in your path. Removes all root effects. You are immune to movement impairing and loss of control effects while flying.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -2503,7 +2508,7 @@
             "spellId": 3357,
             "category": "Offensive",
             "description": {
-                "text": "Inhale, stoking your inner flame. Release to exhale, burning enemies in a cone in front of you for (varies) Fire damage, reduced beyond 5 targets. Empowering causes more of the damage to be dealt immediately instead of over time. I:   Deals ≈163.4% of Spell Power damage instantly and (varies) over ≈20–28 sec. II:  Deals (varies) damage instantly and (varies) over ≈14–22 sec. III: Deals (varies) damage instantly and (varies) over ≈8–16 sec.",
+                "text": "Inhale, stoking your inner flame. Release to exhale, burning enemies in a cone in front of you for (varies) Fire damage, reduced beyond 5 targets. Empowering causes more of the damage to be dealt immediately instead of over time. I:   Deals ≈163.4% of Spell Power damage instantly and ≈394.8–552.8% of Spell Power over ≈20–28 sec. II:  Deals ≈281.9% of Spell Power damage instantly and ≈276.4–434.3% of Spell Power over ≈14–22 sec. III: Deals ≈400.3% of Spell Power damage instantly and ≈157.9–315.9% of Spell Power over ≈8–16 sec.",
                 "uncertain": true
             },
             "formulaModifierSpellIds": [
@@ -3107,6 +3112,7 @@
                             "charges": null,
                             "max_stacks": null,
                             "proc_chance": null,
+                            "proc_cooldown_seconds": null,
                             "cooldown_seconds": null,
                             "cooldown_scaling_note": null,
                             "duration_seconds": null,
@@ -3154,6 +3160,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:22:22.000000Z",
@@ -3569,8 +3576,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Store 20% of your effective healing, up to (varies). Your next damaging Living Flame consumes all stored healing to increase its damage dealt.",
-                            "uncertain": true
+                            "text": "Store 20% of your effective healing, up to ≈157.8–225.4% of Spell Power. Your next damaging Living Flame consumes all stored healing to increase its damage dealt.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -3649,8 +3656,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Store 20% of your effective healing, up to (varies). Your next damaging Living Flame consumes all stored healing to increase its damage dealt.",
-                            "uncertain": true
+                            "text": "Store 20% of your effective healing, up to ≈157.8–225.4% of Spell Power. Your next damaging Living Flame consumes all stored healing to increase its damage dealt.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -3748,7 +3755,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Living Flame deals (varies) damage over 12 to enemies, or restores (varies) health to allies over 12. Stacks 3 times.",
+                            "text": "Living Flame deals ≈26.5% of Spell Power damage over 12 to enemies, or restores ≈52% of Spell Power health to allies over 12. Stacks 3 times.",
                             "uncertain": true
                         },
                         "category": "Other",
@@ -3875,7 +3882,7 @@
             "spellId": 3755,
             "category": "Other",
             "description": {
-                "text": "Deep Breath can now be steered in your desired direction. In addition, Deep Breath burns targets for (varies) Volcanic damage over 12.(varies by condition — check in-game)",
+                "text": "Deep Breath can now be steered in your desired direction. In addition, Deep Breath burns targets for ≈840% of Spell Power Volcanic damage over 12.(varies by condition — check in-game)",
                 "uncertain": true
             },
             "formulaModifierSpellIds": [],
@@ -4304,6 +4311,7 @@
                             "charges": null,
                             "max_stacks": null,
                             "proc_chance": null,
+                            "proc_cooldown_seconds": null,
                             "cooldown_seconds": null,
                             "cooldown_scaling_note": null,
                             "duration_seconds": null,
@@ -4351,6 +4359,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:22:23.000000Z",
@@ -4482,6 +4491,7 @@
                             "charges": null,
                             "max_stacks": null,
                             "proc_chance": null,
+                            "proc_cooldown_seconds": null,
                             "cooldown_seconds": null,
                             "cooldown_scaling_note": null,
                             "duration_seconds": null,
@@ -4529,6 +4539,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:22:23.000000Z",
@@ -4547,6 +4558,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:22:23.000000Z",
@@ -4565,6 +4577,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:22:23.000000Z",
@@ -5118,8 +5131,8 @@
             "spellId": 3719,
             "category": "Offensive",
             "description": {
-                "text": "While Dragonrage is active you gain Rising Fury every (varies) sec, increasing your haste by 4%, stacking up to 5 times.",
-                "uncertain": true
+                "text": "While Dragonrage is active you gain Rising Fury every 6 sec, increasing your haste by 4%, stacking up to 5 times.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -5130,8 +5143,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "While Dragonrage is active you gain Rising Fury every (varies) sec, increasing your haste by 4%, stacking up to 5 times.",
-                            "uncertain": true
+                            "text": "While Dragonrage is active you gain Rising Fury every 6 sec, increasing your haste by 4%, stacking up to 5 times.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -5198,7 +5211,7 @@
             "spellId": 3685,
             "category": "Other",
             "description": {
-                "text": "Living Flame deals (varies) damage over 12 to enemies, or restores (varies) health to allies over 12. Stacks 3 times.",
+                "text": "Living Flame deals ≈26.5% of Spell Power damage over 12 to enemies, or restores ≈52% of Spell Power health to allies over 12. Stacks 3 times.",
                 "uncertain": true
             },
             "formulaModifierSpellIds": [],
@@ -5258,12 +5271,10 @@
             "spellId": 3653,
             "category": "Other",
             "description": {
-                "text": "Store 20% of your effective healing, up to (varies). Your next damaging Living Flame consumes all stored healing to increase its damage dealt.",
-                "uncertain": true
+                "text": "Store 20% of your effective healing, up to ≈157.8–225.4% of Spell Power. Your next damaging Living Flame consumes all stored healing to increase its damage dealt.",
+                "uncertain": false
             },
-            "formulaModifierSpellIds": [
-                97
-            ],
+            "formulaModifierSpellIds": [],
             "modifiers": {
                 "named": [],
                 "baseline": [],
@@ -6174,8 +6185,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "While Dragonrage is active you gain Rising Fury every (varies) sec, increasing your haste by 4%, stacking up to 5 times.",
-                            "uncertain": true
+                            "text": "While Dragonrage is active you gain Rising Fury every 6 sec, increasing your haste by 4%, stacking up to 5 times.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {

@@ -1,6 +1,6 @@
 {
-    "generatedAt": "2026-10-07T21:48:05+00:00",
-    "spellCacheVersion": 27,
+    "generatedAt": "2026-10-18T02:36:14+00:00",
+    "spellCacheVersion": 29,
     "codeFingerprint": "dev",
     "entries": [
         {
@@ -217,8 +217,8 @@
             "spellId": 11623,
             "category": "Other",
             "description": {
-                "text": "Casting Soul Fire summons an Overfiend. Opening a Dimensional Rift has a chance to summon an Overfiend instead. Summon Overfiend Generates 1 Soul Shard Fragment every (varies) sec and casts Chaos Bolt at 80% effectiveness at its summoner's target. Lasts 8.",
-                "uncertain": true
+                "text": "Casting Soul Fire summons an Overfiend. Opening a Dimensional Rift has a chance to summon an Overfiend instead. Summon Overfiend Generates 1 Soul Shard Fragment every 1 sec and casts Chaos Bolt at 80% effectiveness at its summoner's target. Lasts 8.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -277,8 +277,8 @@
             "spellId": 11606,
             "category": "Offensive",
             "description": {
-                "text": "Increases your critical strike chance by 2%. Physical attacks against you have a 20% chance to make your next Incinerate instant cast. This effect can only occur once every (varies) sec.",
-                "uncertain": true
+                "text": "Increases your critical strike chance by 2%. Physical attacks against you have a 20% chance to make your next Incinerate instant cast. This effect can only occur once every 6 sec.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -400,8 +400,8 @@
             "spellId": 11649,
             "category": "Offensive",
             "description": {
-                "text": "If the target is afflicted with your Wither, casting Chaos Bolt and Shadowburn increase its stack count by 1. Each time Wither gains a stack it has a chance to collapse, consuming a stack every (varies) sec to deal 1 Shadowflame damage to its host until 1 stack remains.",
-                "uncertain": true
+                "text": "If the target is afflicted with your Wither, casting Chaos Bolt and Shadowburn increase its stack count by 1. Each time Wither gains a stack it has a chance to collapse, consuming a stack every 1 sec to deal 1 Shadowflame damage to its host until 1 stack remains.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -460,8 +460,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "After Wither reaches 8 stacks or when its host reaches 20% health, Wither deals 1 Shadowflame damage to its host every (varies) sec until 1 stack remains. When Blackened Soul deals damage, you have a chance to gain 2 stacks of Flashpoint.",
-                            "uncertain": true
+                            "text": "After Wither reaches 8 stacks or when its host reaches 20% health, Wither deals 1 Shadowflame damage to its host every 1 sec until 1 stack remains. When Blackened Soul deals damage, you have a chance to gain 2 stacks of Flashpoint.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -1137,7 +1137,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Bestows a vile malediction upon the target, burning the sinew and muscle of its host, dealing 445,468 Shadowflame damage immediately and an additional (varies) Shadowflame damage over 18. Periodic damage generates 1 Soul Shard Fragment and has a 50% chance to generate an additional 1 on critical strikes. Replaces Immolate.",
+                            "text": "Bestows a vile malediction upon the target, burning the sinew and muscle of its host, dealing 445,468 Shadowflame damage immediately and an additional ≈370.7% of Spell Power Shadowflame damage over 18. Periodic damage generates 1 Soul Shard Fragment and has a 50% chance to generate an additional 1 on critical strikes. Replaces Immolate.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -1377,8 +1377,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "If the target is afflicted with your Wither, casting Chaos Bolt and Shadowburn increase its stack count by 1. Each time Wither gains a stack it has a chance to collapse, consuming a stack every (varies) sec to deal 1 Shadowflame damage to its host until 1 stack remains.",
-                            "uncertain": true
+                            "text": "If the target is afflicted with your Wither, casting Chaos Bolt and Shadowburn increase its stack count by 1. Each time Wither gains a stack it has a chance to collapse, consuming a stack every 1 sec to deal 1 Shadowflame damage to its host until 1 stack remains.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -1393,8 +1393,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "If the target is afflicted with your Wither, casting Chaos Bolt and Shadowburn increase its stack count by 1. Each time Wither gains a stack it has a chance to collapse, consuming a stack every (varies) sec to deal 1 Shadowflame damage to its host until 1 stack remains.",
-                            "uncertain": true
+                            "text": "If the target is afflicted with your Wither, casting Chaos Bolt and Shadowburn increase its stack count by 1. Each time Wither gains a stack it has a chance to collapse, consuming a stack every 1 sec to deal 1 Shadowflame damage to its host until 1 stack remains.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -1409,8 +1409,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "If the target is afflicted with your Wither, casting Chaos Bolt and Shadowburn increase its stack count by 1. Each time Wither gains a stack it has a chance to collapse, consuming a stack every (varies) sec to deal 1 Shadowflame damage to its host until 1 stack remains.",
-                            "uncertain": true
+                            "text": "If the target is afflicted with your Wither, casting Chaos Bolt and Shadowburn increase its stack count by 1. Each time Wither gains a stack it has a chance to collapse, consuming a stack every 1 sec to deal 1 Shadowflame damage to its host until 1 stack remains.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -1477,6 +1477,7 @@
                                         "charges": null,
                                         "max_stacks": null,
                                         "proc_chance": null,
+                                        "proc_cooldown_seconds": null,
                                         "cooldown_seconds": null,
                                         "cooldown_scaling_note": null,
                                         "duration_seconds": null,
@@ -1605,8 +1606,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "If the target is afflicted with your Wither, casting Chaos Bolt and Shadowburn increase its stack count by 1. Each time Wither gains a stack it has a chance to collapse, consuming a stack every (varies) sec to deal 1 Shadowflame damage to its host until 1 stack remains.",
-                            "uncertain": true
+                            "text": "If the target is afflicted with your Wither, casting Chaos Bolt and Shadowburn increase its stack count by 1. Each time Wither gains a stack it has a chance to collapse, consuming a stack every 1 sec to deal 1 Shadowflame damage to its host until 1 stack remains.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -1673,7 +1674,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Burns the enemy, causing 1 Fire damage immediately and an additional (varies) Fire damage over 18. Periodic damage generates 1 Soul Shard Fragment and has a 50% chance to generate an additional 1 on critical strikes.",
+                            "text": "Burns the enemy, causing 1 Fire damage immediately and an additional ≈350.8% of Spell Power Fire damage over 18. Periodic damage generates 1 Soul Shard Fragment and has a 50% chance to generate an additional 1 on critical strikes.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -1785,8 +1786,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Chaos Bolt and Shadowburn have a 10% chance to rip open a hole in space and time, opening a random portal that damages your target: Shadowy Tear Deals (varies) Shadow damage over 14. Unstable Tear Deals (varies) Chaos damage over 6. Chaos Tear Fires a Chaos Bolt, dealing 1 Chaos damage. This Chaos Bolt always critically strikes and your critical strike chance increases its damage. Generates 3 Soul Shard Fragments.",
-                            "uncertain": true
+                            "text": "Chaos Bolt and Shadowburn have a 10% chance to rip open a hole in space and time, opening a random portal that damages your target: Shadowy Tear Deals ≈738.4% of Spell Power Shadow damage over 14. Unstable Tear Deals ≈632.9% of Spell Power Chaos damage over 6. Chaos Tear Fires a Chaos Bolt, dealing 1 Chaos damage. This Chaos Bolt always critically strikes and your critical strike chance increases its damage. Generates 3 Soul Shard Fragments.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -2305,6 +2306,7 @@
                             "charges": null,
                             "max_stacks": null,
                             "proc_chance": null,
+                            "proc_cooldown_seconds": null,
                             "cooldown_seconds": null,
                             "cooldown_scaling_note": null,
                             "duration_seconds": null,
@@ -2352,6 +2354,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:23:33.000000Z",
@@ -2382,6 +2385,7 @@
                             "charges": null,
                             "max_stacks": null,
                             "proc_chance": null,
+                            "proc_cooldown_seconds": null,
                             "cooldown_seconds": null,
                             "cooldown_scaling_note": null,
                             "duration_seconds": null,
@@ -2429,6 +2433,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:23:33.000000Z",
@@ -2814,8 +2819,8 @@
             "spellId": 11501,
             "category": "Defensive",
             "description": {
-                "text": "Sacrifices 20% of your current health to shield you for 200% of the sacrificed health plus an additional (varies) for 20. Usable while suffering from control impairing effects.",
-                "uncertain": true
+                "text": "Sacrifices 20% of your current health to shield you for 200% of the sacrificed health plus an additional ≈250% of Spell Power for 20. Usable while suffering from control impairing effects.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -2842,7 +2847,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Dark Pact heals you for ≈205.7% of Spell Power every (varies) sec while active.",
+                            "text": "Dark Pact heals you for ≈205.7% of Spell Power every 1 sec while active.",
                             "uncertain": true
                         },
                         "category": "Other",
@@ -2898,8 +2903,8 @@
             "spellId": 11504,
             "category": "Other",
             "description": {
-                "text": "Your Soul Leech absorption now passively recharges at a rate of 0.2% of maximum health every (varies) sec, and may now absorb an additional 5% of maximum health. Increases your armor by 45%.",
-                "uncertain": true
+                "text": "Your Soul Leech absorption now passively recharges at a rate of 0.2% of maximum health every 1 sec, and may now absorb an additional 5% of maximum health. Increases your armor by 45%.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -3418,8 +3423,8 @@
             "spellId": 11342,
             "category": "Defensive",
             "description": {
-                "text": "Instantly restores 25% health, plus an additional (varies)% over 6.",
-                "uncertain": true
+                "text": "Instantly restores 25% health, plus an additional 30% over 6.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -3446,8 +3451,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Healthstones you conjure for yourself are now Demonic Healthstones and can be used multiple times in combat. Demonic Healthstones cannot be traded. Demonic Healthstone Instantly restores 25% health, plus an additional (varies)% over 6. 60 sec cooldown.",
-                            "uncertain": true
+                            "text": "Healthstones you conjure for yourself are now Demonic Healthstones and can be used multiple times in combat. Demonic Healthstones cannot be traded. Demonic Healthstone Instantly restores 25% health, plus an additional 30% over 6. 60 sec cooldown.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -3825,8 +3830,8 @@
             "spellId": 11629,
             "category": "Other",
             "description": {
-                "text": "Chaos Bolt and Shadowburn have a 10% chance to rip open a hole in space and time, opening a random portal that damages your target: Shadowy Tear Deals (varies) Shadow damage over 14. Unstable Tear Deals (varies) Chaos damage over 6. Chaos Tear Fires a Chaos Bolt, dealing 1 Chaos damage. This Chaos Bolt always critically strikes and your critical strike chance increases its damage. Generates 3 Soul Shard Fragments.",
-                "uncertain": true
+                "text": "Chaos Bolt and Shadowburn have a 10% chance to rip open a hole in space and time, opening a random portal that damages your target: Shadowy Tear Deals ≈738.4% of Spell Power Shadow damage over 14. Unstable Tear Deals ≈632.9% of Spell Power Chaos damage over 6. Chaos Tear Fires a Chaos Bolt, dealing 1 Chaos damage. This Chaos Bolt always critically strikes and your critical strike chance increases its damage. Generates 3 Soul Shard Fragments.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -3837,8 +3842,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Casting Soul Fire summons an Overfiend. Opening a Dimensional Rift has a chance to summon an Overfiend instead. Summon Overfiend Generates 1 Soul Shard Fragment every (varies) sec and casts Chaos Bolt at 80% effectiveness at its summoner's target. Lasts 8.",
-                            "uncertain": true
+                            "text": "Casting Soul Fire summons an Overfiend. Opening a Dimensional Rift has a chance to summon an Overfiend instead. Summon Overfiend Generates 1 Soul Shard Fragment every 1 sec and casts Chaos Bolt at 80% effectiveness at its summoner's target. Lasts 8.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -4054,6 +4059,7 @@
                                         "charges": null,
                                         "max_stacks": null,
                                         "proc_chance": null,
+                                        "proc_cooldown_seconds": null,
                                         "cooldown_seconds": null,
                                         "cooldown_scaling_note": null,
                                         "duration_seconds": null,
@@ -4501,8 +4507,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "After Wither reaches 8 stacks or when its host reaches 20% health, Wither deals 1 Shadowflame damage to its host every (varies) sec until 1 stack remains. When Blackened Soul deals damage, you have a chance to gain 2 stacks of Flashpoint.",
-                            "uncertain": true
+                            "text": "After Wither reaches 8 stacks or when its host reaches 20% health, Wither deals 1 Shadowflame damage to its host every 1 sec until 1 stack remains. When Blackened Soul deals damage, you have a chance to gain 2 stacks of Flashpoint.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -5079,6 +5085,7 @@
                             "charges": null,
                             "max_stacks": null,
                             "proc_chance": null,
+                            "proc_cooldown_seconds": null,
                             "cooldown_seconds": null,
                             "cooldown_scaling_note": null,
                             "duration_seconds": null,
@@ -5126,6 +5133,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:23:32.000000Z",
@@ -5144,6 +5152,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:23:32.000000Z",
@@ -5162,6 +5171,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:23:32.000000Z",
@@ -5180,6 +5190,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:23:32.000000Z",
@@ -5509,8 +5520,8 @@
             "spellId": 11636,
             "category": "Defensive",
             "description": {
-                "text": "Unending Resolve heals you for (varies)% of your maximum health over 10.",
-                "uncertain": true
+                "text": "Unending Resolve heals you for 30% of your maximum health over 10.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -6064,8 +6075,8 @@
             "spellId": 11520,
             "category": "Other",
             "description": {
-                "text": "Healthstones you conjure for yourself are now Demonic Healthstones and can be used multiple times in combat. Demonic Healthstones cannot be traded. Demonic Healthstone Instantly restores 25% health, plus an additional (varies)% over 6. 60 sec cooldown.",
-                "uncertain": true
+                "text": "Healthstones you conjure for yourself are now Demonic Healthstones and can be used multiple times in combat. Demonic Healthstones cannot be traded. Demonic Healthstone Instantly restores 25% health, plus an additional 30% over 6. 60 sec cooldown.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -6648,8 +6659,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Consuming Ritual of Ruin summons an Overfiend for 8. Summon Overfiend Generates 1 Soul Shard Fragment every (varies) sec and casts Chaos Bolt at 80% effectiveness at its summoner's target. Lasts 8.",
-                            "uncertain": true
+                            "text": "Consuming Ritual of Ruin summons an Overfiend for 8. Summon Overfiend Generates 1 Soul Shard Fragment every 1 sec and casts Chaos Bolt at 80% effectiveness at its summoner's target. Lasts 8.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -6853,8 +6864,8 @@
             "spellId": 11655,
             "category": "Other",
             "description": {
-                "text": "After Wither reaches 8 stacks or when its host reaches 20% health, Wither deals 1 Shadowflame damage to its host every (varies) sec until 1 stack remains. When Blackened Soul deals damage, you have a chance to gain 2 stacks of Flashpoint.",
-                "uncertain": true
+                "text": "After Wither reaches 8 stacks or when its host reaches 20% health, Wither deals 1 Shadowflame damage to its host every 1 sec until 1 stack remains. When Blackened Soul deals damage, you have a chance to gain 2 stacks of Flashpoint.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -7021,7 +7032,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Bestows a vile malediction upon the target, burning the sinew and muscle of its host, dealing 445,468 Shadowflame damage immediately and an additional (varies) Shadowflame damage over 18. Periodic damage generates 1 Soul Shard Fragment and has a 50% chance to generate an additional 1 on critical strikes. Replaces Immolate.",
+                            "text": "Bestows a vile malediction upon the target, burning the sinew and muscle of its host, dealing 445,468 Shadowflame damage immediately and an additional ≈370.7% of Spell Power Shadowflame damage over 18. Periodic damage generates 1 Soul Shard Fragment and has a 50% chance to generate an additional 1 on critical strikes. Replaces Immolate.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -7117,8 +7128,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "If the target is afflicted with your Wither, casting Chaos Bolt and Shadowburn increase its stack count by 1. Each time Wither gains a stack it has a chance to collapse, consuming a stack every (varies) sec to deal 1 Shadowflame damage to its host until 1 stack remains.",
-                            "uncertain": true
+                            "text": "If the target is afflicted with your Wither, casting Chaos Bolt and Shadowburn increase its stack count by 1. Each time Wither gains a stack it has a chance to collapse, consuming a stack every 1 sec to deal 1 Shadowflame damage to its host until 1 stack remains.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -7133,8 +7144,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "If the target is afflicted with your Wither, casting Chaos Bolt and Shadowburn increase its stack count by 1. Each time Wither gains a stack it has a chance to collapse, consuming a stack every (varies) sec to deal 1 Shadowflame damage to its host until 1 stack remains.",
-                            "uncertain": true
+                            "text": "If the target is afflicted with your Wither, casting Chaos Bolt and Shadowburn increase its stack count by 1. Each time Wither gains a stack it has a chance to collapse, consuming a stack every 1 sec to deal 1 Shadowflame damage to its host until 1 stack remains.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -7149,8 +7160,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "If the target is afflicted with your Wither, casting Chaos Bolt and Shadowburn increase its stack count by 1. Each time Wither gains a stack it has a chance to collapse, consuming a stack every (varies) sec to deal 1 Shadowflame damage to its host until 1 stack remains.",
-                            "uncertain": true
+                            "text": "If the target is afflicted with your Wither, casting Chaos Bolt and Shadowburn increase its stack count by 1. Each time Wither gains a stack it has a chance to collapse, consuming a stack every 1 sec to deal 1 Shadowflame damage to its host until 1 stack remains.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -7213,8 +7224,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "If the target is afflicted with your Wither, casting Chaos Bolt and Shadowburn increase its stack count by 1. Each time Wither gains a stack it has a chance to collapse, consuming a stack every (varies) sec to deal 1 Shadowflame damage to its host until 1 stack remains.",
-                            "uncertain": true
+                            "text": "If the target is afflicted with your Wither, casting Chaos Bolt and Shadowburn increase its stack count by 1. Each time Wither gains a stack it has a chance to collapse, consuming a stack every 1 sec to deal 1 Shadowflame damage to its host until 1 stack remains.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -7265,7 +7276,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Burns the enemy, causing 1 Fire damage immediately and an additional (varies) Fire damage over 18. Periodic damage generates 1 Soul Shard Fragment and has a 50% chance to generate an additional 1 on critical strikes.",
+                            "text": "Burns the enemy, causing 1 Fire damage immediately and an additional ≈350.8% of Spell Power Fire damage over 18. Periodic damage generates 1 Soul Shard Fragment and has a 50% chance to generate an additional 1 on critical strikes.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -7329,8 +7340,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Chaos Bolt and Shadowburn have a 10% chance to rip open a hole in space and time, opening a random portal that damages your target: Shadowy Tear Deals (varies) Shadow damage over 14. Unstable Tear Deals (varies) Chaos damage over 6. Chaos Tear Fires a Chaos Bolt, dealing 1 Chaos damage. This Chaos Bolt always critically strikes and your critical strike chance increases its damage. Generates 3 Soul Shard Fragments.",
-                            "uncertain": true
+                            "text": "Chaos Bolt and Shadowburn have a 10% chance to rip open a hole in space and time, opening a random portal that damages your target: Shadowy Tear Deals ≈738.4% of Spell Power Shadow damage over 14. Unstable Tear Deals ≈632.9% of Spell Power Chaos damage over 6. Chaos Tear Fires a Chaos Bolt, dealing 1 Chaos damage. This Chaos Bolt always critically strikes and your critical strike chance increases its damage. Generates 3 Soul Shard Fragments.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -7437,6 +7448,7 @@
                             "charges": null,
                             "max_stacks": null,
                             "proc_chance": null,
+                            "proc_cooldown_seconds": null,
                             "cooldown_seconds": null,
                             "cooldown_scaling_note": null,
                             "duration_seconds": null,
@@ -7484,6 +7496,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:23:32.000000Z",
@@ -7502,6 +7515,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:23:32.000000Z",
@@ -7520,6 +7534,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:23:32.000000Z",
@@ -7538,6 +7553,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:23:32.000000Z",
@@ -7753,8 +7769,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Casting Soul Fire summons an Overfiend. Opening a Dimensional Rift has a chance to summon an Overfiend instead. Summon Overfiend Generates 1 Soul Shard Fragment every (varies) sec and casts Chaos Bolt at 80% effectiveness at its summoner's target. Lasts 8.",
-                            "uncertain": true
+                            "text": "Casting Soul Fire summons an Overfiend. Opening a Dimensional Rift has a chance to summon an Overfiend instead. Summon Overfiend Generates 1 Soul Shard Fragment every 1 sec and casts Chaos Bolt at 80% effectiveness at its summoner's target. Lasts 8.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -7854,8 +7870,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Your Soul Leech absorption now passively recharges at a rate of 0.2% of maximum health every (varies) sec, and may now absorb an additional 5% of maximum health. Increases your armor by 45%.",
-                            "uncertain": true
+                            "text": "Your Soul Leech absorption now passively recharges at a rate of 0.2% of maximum health every 1 sec, and may now absorb an additional 5% of maximum health. Increases your armor by 45%.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -8327,7 +8343,7 @@
             "spellId": 11584,
             "category": "Other",
             "description": {
-                "text": "Summons an Infernal from the Twisting Nether, impacting for ≈60% of Spell Power Fire damage and stunning all enemies in the area for 2. The Infernal will serve you for 30, dealing ≈57.8% of Spell Power damage to all nearby enemies every (varies) sec and generating 1 Soul Shard Fragment every (varies) sec.",
+                "text": "Summons an Infernal from the Twisting Nether, impacting for ≈60% of Spell Power Fire damage and stunning all enemies in the area for 2. The Infernal will serve you for 30, dealing ≈57.8% of Spell Power damage to all nearby enemies every 2 sec and generating 1 Soul Shard Fragment every 1 sec.",
                 "uncertain": true
             },
             "formulaModifierSpellIds": [],
@@ -8386,6 +8402,7 @@
                             "charges": null,
                             "max_stacks": null,
                             "proc_chance": "101.00",
+                            "proc_cooldown_seconds": null,
                             "cooldown_seconds": null,
                             "cooldown_scaling_note": null,
                             "duration_seconds": null,
@@ -8433,6 +8450,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:23:29.000000Z",
@@ -8451,6 +8469,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:23:29.000000Z",
@@ -8475,6 +8494,7 @@
                             "charges": null,
                             "max_stacks": null,
                             "proc_chance": null,
+                            "proc_cooldown_seconds": null,
                             "cooldown_seconds": null,
                             "cooldown_scaling_note": null,
                             "duration_seconds": null,
@@ -8522,6 +8542,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:23:33.000000Z",
@@ -8540,6 +8561,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:23:33.000000Z",
@@ -8866,8 +8888,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Unending Resolve heals you for (varies)% of your maximum health over 10.",
-                            "uncertain": true
+                            "text": "Unending Resolve heals you for 30% of your maximum health over 10.",
+                            "uncertain": false
                         },
                         "category": "Defensive",
                         "cooldown": {
@@ -8898,8 +8920,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Unending Resolve heals you for (varies)% of your maximum health over 10.",
-                            "uncertain": true
+                            "text": "Unending Resolve heals you for 30% of your maximum health over 10.",
+                            "uncertain": false
                         },
                         "category": "Defensive",
                         "cooldown": {
@@ -8951,7 +8973,7 @@
             "spellId": 11319,
             "category": "Offensive",
             "description": {
-                "text": "Bestows a vile malediction upon the target, burning the sinew and muscle of its host, dealing 445,468 Shadowflame damage immediately and an additional (varies) Shadowflame damage over 18. Periodic damage generates 1 Soul Shard Fragment and has a 50% chance to generate an additional 1 on critical strikes. Replaces Immolate.",
+                "text": "Bestows a vile malediction upon the target, burning the sinew and muscle of its host, dealing 445,468 Shadowflame damage immediately and an additional ≈370.7% of Spell Power Shadowflame damage over 18. Periodic damage generates 1 Soul Shard Fragment and has a 50% chance to generate an additional 1 on critical strikes. Replaces Immolate.",
                 "uncertain": true
             },
             "formulaModifierSpellIds": [],
@@ -9075,7 +9097,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Bestows a vile malediction upon the target, burning the sinew and muscle of its host, dealing 445,468 Shadowflame damage immediately and an additional (varies) Shadowflame damage over 18. Periodic damage generates 1 Soul Shard Fragment and has a 50% chance to generate an additional 1 on critical strikes. Replaces Immolate.",
+                            "text": "Bestows a vile malediction upon the target, burning the sinew and muscle of its host, dealing 445,468 Shadowflame damage immediately and an additional ≈370.7% of Spell Power Shadowflame damage over 18. Periodic damage generates 1 Soul Shard Fragment and has a 50% chance to generate an additional 1 on critical strikes. Replaces Immolate.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -9187,8 +9209,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "If the target is afflicted with your Wither, casting Chaos Bolt and Shadowburn increase its stack count by 1. Each time Wither gains a stack it has a chance to collapse, consuming a stack every (varies) sec to deal 1 Shadowflame damage to its host until 1 stack remains.",
-                            "uncertain": true
+                            "text": "If the target is afflicted with your Wither, casting Chaos Bolt and Shadowburn increase its stack count by 1. Each time Wither gains a stack it has a chance to collapse, consuming a stack every 1 sec to deal 1 Shadowflame damage to its host until 1 stack remains.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -9251,8 +9273,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "If the target is afflicted with your Wither, casting Chaos Bolt and Shadowburn increase its stack count by 1. Each time Wither gains a stack it has a chance to collapse, consuming a stack every (varies) sec to deal 1 Shadowflame damage to its host until 1 stack remains.",
-                            "uncertain": true
+                            "text": "If the target is afflicted with your Wither, casting Chaos Bolt and Shadowburn increase its stack count by 1. Each time Wither gains a stack it has a chance to collapse, consuming a stack every 1 sec to deal 1 Shadowflame damage to its host until 1 stack remains.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -9267,8 +9289,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "If the target is afflicted with your Wither, casting Chaos Bolt and Shadowburn increase its stack count by 1. Each time Wither gains a stack it has a chance to collapse, consuming a stack every (varies) sec to deal 1 Shadowflame damage to its host until 1 stack remains.",
-                            "uncertain": true
+                            "text": "If the target is afflicted with your Wither, casting Chaos Bolt and Shadowburn increase its stack count by 1. Each time Wither gains a stack it has a chance to collapse, consuming a stack every 1 sec to deal 1 Shadowflame damage to its host until 1 stack remains.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -9379,8 +9401,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "If the target is afflicted with your Wither, casting Chaos Bolt and Shadowburn increase its stack count by 1. Each time Wither gains a stack it has a chance to collapse, consuming a stack every (varies) sec to deal 1 Shadowflame damage to its host until 1 stack remains.",
-                            "uncertain": true
+                            "text": "If the target is afflicted with your Wither, casting Chaos Bolt and Shadowburn increase its stack count by 1. Each time Wither gains a stack it has a chance to collapse, consuming a stack every 1 sec to deal 1 Shadowflame damage to its host until 1 stack remains.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -9411,8 +9433,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "After Wither reaches 8 stacks or when its host reaches 20% health, Wither deals 1 Shadowflame damage to its host every (varies) sec until 1 stack remains. When Blackened Soul deals damage, you have a chance to gain 2 stacks of Flashpoint.",
-                            "uncertain": true
+                            "text": "After Wither reaches 8 stacks or when its host reaches 20% health, Wither deals 1 Shadowflame damage to its host every 1 sec until 1 stack remains. When Blackened Soul deals damage, you have a chance to gain 2 stacks of Flashpoint.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -9958,7 +9980,7 @@
             "spellId": 11658,
             "category": "Other",
             "description": {
-                "text": "Dark Pact heals you for ≈205.7% of Spell Power every (varies) sec while active.",
+                "text": "Dark Pact heals you for ≈205.7% of Spell Power every 1 sec while active.",
                 "uncertain": true
             },
             "formulaModifierSpellIds": [],

@@ -1,6 +1,6 @@
 {
-    "generatedAt": "2026-10-07T21:47:55+00:00",
-    "spellCacheVersion": 27,
+    "generatedAt": "2026-10-18T02:36:04+00:00",
+    "spellCacheVersion": 29,
     "codeFingerprint": "dev",
     "entries": [
         {
@@ -148,6 +148,7 @@
                                         "charges": null,
                                         "max_stacks": null,
                                         "proc_chance": null,
+                                        "proc_cooldown_seconds": null,
                                         "cooldown_seconds": null,
                                         "cooldown_scaling_note": null,
                                         "duration_seconds": null,
@@ -195,6 +196,7 @@
                                                 "affected_schools": null,
                                                 "sp_coefficient": null,
                                                 "pvp_coefficient": null,
+                                                "ap_coefficient": null,
                                                 "rank_op": "set",
                                                 "rank_values": [
                                                     -60000,
@@ -490,6 +492,7 @@
                             "charges": null,
                             "max_stacks": null,
                             "proc_chance": null,
+                            "proc_cooldown_seconds": null,
                             "cooldown_seconds": null,
                             "cooldown_scaling_note": null,
                             "duration_seconds": null,
@@ -537,6 +540,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": "mul",
                                     "rank_values": [
                                         1,
@@ -564,6 +568,7 @@
                             "charges": null,
                             "max_stacks": null,
                             "proc_chance": null,
+                            "proc_cooldown_seconds": null,
                             "cooldown_seconds": null,
                             "cooldown_scaling_note": null,
                             "duration_seconds": null,
@@ -611,6 +616,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:22:31.000000Z",
@@ -748,6 +754,7 @@
                             "charges": null,
                             "max_stacks": null,
                             "proc_chance": null,
+                            "proc_cooldown_seconds": null,
                             "cooldown_seconds": null,
                             "cooldown_scaling_note": null,
                             "duration_seconds": null,
@@ -795,6 +802,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": "mul",
                                     "rank_values": [
                                         1,
@@ -822,6 +830,7 @@
                             "charges": null,
                             "max_stacks": null,
                             "proc_chance": null,
+                            "proc_cooldown_seconds": null,
                             "cooldown_seconds": null,
                             "cooldown_scaling_note": null,
                             "duration_seconds": null,
@@ -869,6 +878,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:22:31.000000Z",
@@ -934,6 +944,7 @@
                                         "charges": null,
                                         "max_stacks": null,
                                         "proc_chance": null,
+                                        "proc_cooldown_seconds": null,
                                         "cooldown_seconds": null,
                                         "cooldown_scaling_note": null,
                                         "duration_seconds": null,
@@ -981,6 +992,7 @@
                                                 "affected_schools": null,
                                                 "sp_coefficient": null,
                                                 "pvp_coefficient": null,
+                                                "ap_coefficient": null,
                                                 "rank_op": "set",
                                                 "rank_values": [
                                                     -60000,
@@ -1213,8 +1225,8 @@
             "spellId": 4627,
             "category": "Offensive",
             "description": {
-                "text": "Fire a shot that tears through your enemy, causing them to bleed for 25 damage over 12. If Barbed Shot is reapplied, any remaining damage will be added to the new Barbed Shot. Generates (varies) Focus over 8.",
-                "uncertain": true
+                "text": "Fire a shot that tears through your enemy, causing them to bleed for ≈428.5% of Attack Power damage over 12. If Barbed Shot is reapplied, any remaining damage will be added to the new Barbed Shot. Generates 20 Focus over 8.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -1245,6 +1257,7 @@
                                         "charges": null,
                                         "max_stacks": null,
                                         "proc_chance": null,
+                                        "proc_cooldown_seconds": null,
                                         "cooldown_seconds": null,
                                         "cooldown_scaling_note": null,
                                         "duration_seconds": null,
@@ -1292,6 +1305,7 @@
                                                 "affected_schools": null,
                                                 "sp_coefficient": null,
                                                 "pvp_coefficient": null,
+                                                "ap_coefficient": null,
                                                 "rank_op": "set",
                                                 "rank_values": [
                                                     -60000,
@@ -1416,6 +1430,7 @@
                                         "charges": null,
                                         "max_stacks": null,
                                         "proc_chance": null,
+                                        "proc_cooldown_seconds": null,
                                         "cooldown_seconds": null,
                                         "cooldown_scaling_note": null,
                                         "duration_seconds": null,
@@ -1496,7 +1511,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Fire a shot that tears through your enemy, causing them to bleed for (varies) damage over (varies). If Barbed Shot is reapplied, any remaining damage will be added to the new Barbed Shot. Generates (varies) Focus over 8.",
+                            "text": "Fire a shot that tears through your enemy, causing them to bleed for (varies) damage over (varies). If Barbed Shot is reapplied, any remaining damage will be added to the new Barbed Shot. Generates 20 Focus over 8.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -1512,8 +1527,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Fire a shot that tears through your enemy, causing them to bleed for 25 damage over 8. If Barbed Shot is reapplied, any remaining damage will be added to the new Barbed Shot. Generates (varies) Focus over 8.",
-                            "uncertain": true
+                            "text": "Fire a shot that tears through your enemy, causing them to bleed for 25 damage over 8. If Barbed Shot is reapplied, any remaining damage will be added to the new Barbed Shot. Generates 20 Focus over 8.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -1528,7 +1543,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Fire a shot that tears through your enemy, causing them to bleed for (varies) damage over 12. If Barbed Shot is reapplied, any remaining damage will be added to the new Barbed Shot. Generates (varies) Focus over 8.",
+                            "text": "Fire a shot that tears through your enemy, causing them to bleed for (varies) damage over 12. If Barbed Shot is reapplied, any remaining damage will be added to the new Barbed Shot. Generates 20 Focus over 8.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -1564,6 +1579,7 @@
                                         "charges": null,
                                         "max_stacks": null,
                                         "proc_chance": null,
+                                        "proc_cooldown_seconds": null,
                                         "cooldown_seconds": null,
                                         "cooldown_scaling_note": null,
                                         "duration_seconds": null,
@@ -2244,6 +2260,7 @@
                                         "charges": null,
                                         "max_stacks": null,
                                         "proc_chance": null,
+                                        "proc_cooldown_seconds": null,
                                         "cooldown_seconds": null,
                                         "cooldown_scaling_note": null,
                                         "duration_seconds": null,
@@ -2344,6 +2361,7 @@
                                         "charges": null,
                                         "max_stacks": null,
                                         "proc_chance": null,
+                                        "proc_cooldown_seconds": null,
                                         "cooldown_seconds": null,
                                         "cooldown_scaling_note": null,
                                         "duration_seconds": null,
@@ -2412,6 +2430,7 @@
                                         "charges": null,
                                         "max_stacks": null,
                                         "proc_chance": null,
+                                        "proc_cooldown_seconds": null,
                                         "cooldown_seconds": null,
                                         "cooldown_scaling_note": null,
                                         "duration_seconds": null,
@@ -2492,7 +2511,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Casting (varies by condition — check in-game) grants Howl of the Pack Leader and causes your next Kill Command to rouse the nearby wildlife into a Stampede, charging your target and dealing 9 Physical damage over 7.",
+                            "text": "Casting (varies by condition — check in-game) grants Howl of the Pack Leader and causes your next Kill Command to rouse the nearby wildlife into a Stampede, charging your target and dealing ≈1,350% of Attack Power Physical damage over 7.",
                             "uncertain": true
                         },
                         "category": "Other",
@@ -2620,7 +2639,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Bestial Wrath provokes your pets to tear into your target, causing your target to bleed for (varies) damage over 12.",
+                            "text": "Bestial Wrath provokes your pets to tear into your target, causing your target to bleed for ≈1,440% of Attack Power damage over 12.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -2652,7 +2671,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Casting (varies by condition — check in-game) grants Howl of the Pack Leader and causes your next Kill Command to rouse the nearby wildlife into a Stampede, charging your target and dealing 9 Physical damage over 7.",
+                            "text": "Casting (varies by condition — check in-game) grants Howl of the Pack Leader and causes your next Kill Command to rouse the nearby wildlife into a Stampede, charging your target and dealing ≈1,350% of Attack Power Physical damage over 7.",
                             "uncertain": true
                         },
                         "category": "Other",
@@ -2813,6 +2832,7 @@
                             "charges": null,
                             "max_stacks": null,
                             "proc_chance": null,
+                            "proc_cooldown_seconds": null,
                             "cooldown_seconds": null,
                             "cooldown_scaling_note": null,
                             "duration_seconds": null,
@@ -2860,6 +2880,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": "set",
                                     "rank_values": [
                                         -60000,
@@ -3039,7 +3060,7 @@
             "spellId": 4717,
             "category": "Offensive",
             "description": {
-                "text": "You attempt to finish off a wounded target, dealing 466,930 Shadow damage and (varies) Shadow damage over 8. Only usable on enemies above 80% health or below 20% health.",
+                "text": "You attempt to finish off a wounded target, dealing 466,930 Shadow damage and ≈400% of Attack Power Shadow damage over 8. Only usable on enemies above 80% health or below 20% health.",
                 "uncertain": true
             },
             "formulaModifierSpellIds": [],
@@ -3071,6 +3092,7 @@
                                         "charges": null,
                                         "max_stacks": null,
                                         "proc_chance": null,
+                                        "proc_cooldown_seconds": null,
                                         "cooldown_seconds": null,
                                         "cooldown_scaling_note": null,
                                         "duration_seconds": null,
@@ -3118,6 +3140,7 @@
                                                 "affected_schools": null,
                                                 "sp_coefficient": null,
                                                 "pvp_coefficient": null,
+                                                "ap_coefficient": null,
                                                 "rank_op": "set",
                                                 "rank_values": [
                                                     -60000,
@@ -3306,7 +3329,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "You attempt to finish off a wounded target, dealing 466,930 Shadow damage and (varies) Shadow damage over 8. Only usable on enemies above 80% health or below 20% health.",
+                            "text": "You attempt to finish off a wounded target, dealing 466,930 Shadow damage and ≈400% of Attack Power Shadow damage over 8. Only usable on enemies above 80% health or below 20% health.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -3466,7 +3489,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Your Kill Shot is replaced with Black Arrow. Black Arrow You attempt to finish off a wounded target, dealing 466,930 Shadow damage and (varies) Shadow damage over 8. Only usable on enemies above 80% health or below 20% health.",
+                            "text": "Your Kill Shot is replaced with Black Arrow. Black Arrow You attempt to finish off a wounded target, dealing 466,930 Shadow damage and ≈400% of Attack Power Shadow damage over 8. Only usable on enemies above 80% health or below 20% health.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -3738,7 +3761,7 @@
             "spellId": 4659,
             "category": "Offensive",
             "description": {
-                "text": "Bestial Wrath provokes your pets to tear into your target, causing your target to bleed for (varies) damage over 12.",
+                "text": "Bestial Wrath provokes your pets to tear into your target, causing your target to bleed for ≈1,440% of Attack Power damage over 12.",
                 "uncertain": true
             },
             "formulaModifierSpellIds": [],
@@ -3786,6 +3809,7 @@
                                         "charges": null,
                                         "max_stacks": null,
                                         "proc_chance": null,
+                                        "proc_cooldown_seconds": null,
                                         "cooldown_seconds": null,
                                         "cooldown_scaling_note": null,
                                         "duration_seconds": null,
@@ -4099,6 +4123,7 @@
                                         "charges": null,
                                         "max_stacks": null,
                                         "proc_chance": null,
+                                        "proc_cooldown_seconds": null,
                                         "cooldown_seconds": null,
                                         "cooldown_scaling_note": null,
                                         "duration_seconds": null,
@@ -4146,6 +4171,7 @@
                                                 "affected_schools": null,
                                                 "sp_coefficient": null,
                                                 "pvp_coefficient": null,
+                                                "ap_coefficient": null,
                                                 "rank_op": "set",
                                                 "rank_values": [
                                                     -60000,
@@ -4977,6 +5003,7 @@
                                         "charges": null,
                                         "max_stacks": null,
                                         "proc_chance": null,
+                                        "proc_cooldown_seconds": null,
                                         "cooldown_seconds": null,
                                         "cooldown_scaling_note": null,
                                         "duration_seconds": null,
@@ -5041,7 +5068,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Summoning a Dire Beast 8 times sounds the Horn of Valor, summoning either Hati or Fenryr to battle. Hati Increases the damage of all your pets by 4%. Fenryr Pounces your primary target, inflicting a heavy bleed that deals (varies) damage over 8 and grants you 4% Haste.",
+                            "text": "Summoning a Dire Beast 8 times sounds the Horn of Valor, summoning either Hati or Fenryr to battle. Hati Increases the damage of all your pets by 4%. Fenryr Pounces your primary target, inflicting a heavy bleed that deals ≈800% of Attack Power damage over 8 and grants you 4% Haste.",
                             "uncertain": true
                         },
                         "category": "Other",
@@ -5105,7 +5132,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Summoning a Dire Beast 8 times sounds the Horn of Valor, summoning either Hati or Fenryr to battle. Hati Increases the damage of all your pets by 4%. Fenryr Pounces your primary target, inflicting a heavy bleed that deals (varies) damage over 8 and grants you 4% Haste.",
+                            "text": "Summoning a Dire Beast 8 times sounds the Horn of Valor, summoning either Hati or Fenryr to battle. Hati Increases the damage of all your pets by 4%. Fenryr Pounces your primary target, inflicting a heavy bleed that deals ≈800% of Attack Power damage over 8 and grants you 4% Haste.",
                             "uncertain": true
                         },
                         "category": "Other",
@@ -5502,7 +5529,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "While in combat, casting Disengage releases a fan of daggers, dealing (varies) shadow damage over time and reducing affected target's movement speed by 30%.",
+                            "text": "While in combat, casting Disengage releases a fan of daggers, dealing ≈0.5% of Attack Power shadow damage over time and reducing affected target's movement speed by 30%.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -5534,7 +5561,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "While in combat, Disengage releases a fan of shadow daggers, dealing (varies) Shadow damage per second and reducing affected target's movement speed by 30% for 6.",
+                            "text": "While in combat, Disengage releases a fan of shadow daggers, dealing ≈0.5% of Attack Power Shadow damage per second and reducing affected target's movement speed by 30% for 6.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -5782,6 +5809,7 @@
                             "charges": null,
                             "max_stacks": null,
                             "proc_chance": null,
+                            "proc_cooldown_seconds": null,
                             "cooldown_seconds": null,
                             "cooldown_scaling_note": null,
                             "duration_seconds": null,
@@ -5829,6 +5857,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": "mul",
                                     "rank_values": [
                                         1,
@@ -5972,6 +6001,7 @@
                             "charges": null,
                             "max_stacks": null,
                             "proc_chance": null,
+                            "proc_cooldown_seconds": null,
                             "cooldown_seconds": null,
                             "cooldown_scaling_note": null,
                             "duration_seconds": null,
@@ -6019,6 +6049,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": 1,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:22:26.000000Z",
@@ -6043,6 +6074,7 @@
                             "charges": null,
                             "max_stacks": null,
                             "proc_chance": null,
+                            "proc_cooldown_seconds": null,
                             "cooldown_seconds": null,
                             "cooldown_scaling_note": null,
                             "duration_seconds": null,
@@ -6090,6 +6122,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": "mul",
                                     "rank_values": [
                                         1,
@@ -6295,6 +6328,7 @@
                             "charges": null,
                             "max_stacks": null,
                             "proc_chance": null,
+                            "proc_cooldown_seconds": null,
                             "cooldown_seconds": null,
                             "cooldown_scaling_note": null,
                             "duration_seconds": null,
@@ -6342,6 +6376,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:22:31.000000Z",
@@ -6662,7 +6697,7 @@
             "spellId": 4733,
             "category": "Other",
             "description": {
-                "text": "While in combat, every 30 your next Kill Command summons the aid of a Beast. Wyvern A Wyvern descends from the skies, letting out a battle cry that increases the damage of you and your pets by 10% for 12. Boar A Boar charges through your target 1 time, dealing (varies) damage to nearby enemies and an additional (varies) physical damage to its primary target. Damage reduced beyond 5 targets. Bear A Bear leaps into the fray, rending the flesh of your enemies, dealing (varies) damage over 10 to up to 8 nearby enemies.",
+                "text": "While in combat, every 30 your next Kill Command summons the aid of a Beast. Wyvern A Wyvern descends from the skies, letting out a battle cry that increases the damage of you and your pets by 10% for 12. Boar A Boar charges through your target 1 time, dealing ≈1,440% of Attack Power damage to nearby enemies and an additional ≈1,200% of Attack Power physical damage to its primary target. Damage reduced beyond 5 targets. Bear A Bear leaps into the fray, rending the flesh of your enemies, dealing ≈400% of Attack Power damage over 10 to up to 8 nearby enemies.",
                 "uncertain": true
             },
             "formulaModifierSpellIds": [],
@@ -6674,7 +6709,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Casting (varies by condition — check in-game) grants Howl of the Pack Leader and causes your next Kill Command to rouse the nearby wildlife into a Stampede, charging your target and dealing 9 Physical damage over 7.",
+                            "text": "Casting (varies by condition — check in-game) grants Howl of the Pack Leader and causes your next Kill Command to rouse the nearby wildlife into a Stampede, charging your target and dealing ≈1,350% of Attack Power Physical damage over 7.",
                             "uncertain": true
                         },
                         "category": "Other",
@@ -6722,7 +6757,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Casting (varies by condition — check in-game) grants Howl of the Pack Leader and causes your next Kill Command to rouse the nearby wildlife into a Stampede, charging your target and dealing 9 Physical damage over 7.",
+                            "text": "Casting (varies by condition — check in-game) grants Howl of the Pack Leader and causes your next Kill Command to rouse the nearby wildlife into a Stampede, charging your target and dealing ≈1,350% of Attack Power Physical damage over 7.",
                             "uncertain": true
                         },
                         "category": "Other",
@@ -6913,7 +6948,7 @@
             "spellId": 4647,
             "category": "Other",
             "description": {
-                "text": "Summoning a Dire Beast 8 times sounds the Horn of Valor, summoning either Hati or Fenryr to battle. Hati Increases the damage of all your pets by 4%. Fenryr Pounces your primary target, inflicting a heavy bleed that deals (varies) damage over 8 and grants you 4% Haste.",
+                "text": "Summoning a Dire Beast 8 times sounds the Horn of Valor, summoning either Hati or Fenryr to battle. Hati Increases the damage of all your pets by 4%. Fenryr Pounces your primary target, inflicting a heavy bleed that deals ≈800% of Attack Power damage over 8 and grants you 4% Haste.",
                 "uncertain": true
             },
             "formulaModifierSpellIds": [],
@@ -7187,6 +7222,7 @@
                                         "charges": null,
                                         "max_stacks": null,
                                         "proc_chance": null,
+                                        "proc_cooldown_seconds": null,
                                         "cooldown_seconds": null,
                                         "cooldown_scaling_note": null,
                                         "duration_seconds": null,
@@ -7300,6 +7336,7 @@
                             "charges": null,
                             "max_stacks": null,
                             "proc_chance": null,
+                            "proc_cooldown_seconds": null,
                             "cooldown_seconds": null,
                             "cooldown_scaling_note": null,
                             "duration_seconds": null,
@@ -7347,6 +7384,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:22:31.000000Z",
@@ -7515,6 +7553,7 @@
                                         "charges": null,
                                         "max_stacks": null,
                                         "proc_chance": null,
+                                        "proc_cooldown_seconds": null,
                                         "cooldown_seconds": null,
                                         "cooldown_scaling_note": null,
                                         "duration_seconds": null,
@@ -7562,6 +7601,7 @@
                                                 "affected_schools": null,
                                                 "sp_coefficient": null,
                                                 "pvp_coefficient": null,
+                                                "ap_coefficient": null,
                                                 "rank_op": "set",
                                                 "rank_values": [
                                                     -60000,
@@ -7698,7 +7738,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "While in combat, every 30 your next Kill Command summons the aid of a Beast. Wyvern A Wyvern descends from the skies, letting out a battle cry that increases the damage of you and your pets by 10% for 12. Boar A Boar charges through your target 1 time, dealing (varies) damage to nearby enemies and an additional (varies) physical damage to its primary target. Damage reduced beyond 5 targets. Bear A Bear leaps into the fray, rending the flesh of your enemies, dealing (varies) damage over 10 to up to 8 nearby enemies.",
+                            "text": "While in combat, every 30 your next Kill Command summons the aid of a Beast. Wyvern A Wyvern descends from the skies, letting out a battle cry that increases the damage of you and your pets by 10% for 12. Boar A Boar charges through your target 1 time, dealing ≈1,440% of Attack Power damage to nearby enemies and an additional ≈1,200% of Attack Power physical damage to its primary target. Damage reduced beyond 5 targets. Bear A Bear leaps into the fray, rending the flesh of your enemies, dealing ≈400% of Attack Power damage over 10 to up to 8 nearby enemies.",
                             "uncertain": true
                         },
                         "category": "Other",
@@ -7714,7 +7754,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "While in combat, every 30 your next Kill Command summons the aid of a Beast. Wyvern A Wyvern descends from the skies, letting out a battle cry that increases the damage of you and your pets by 10% for 12. Boar A Boar charges through your target 1 time, dealing (varies) damage to nearby enemies and an additional (varies) physical damage to its primary target. Damage reduced beyond 5 targets. Bear A Bear leaps into the fray, rending the flesh of your enemies, dealing (varies) damage over 10 to up to 8 nearby enemies.",
+                            "text": "While in combat, every 30 your next Kill Command summons the aid of a Beast. Wyvern A Wyvern descends from the skies, letting out a battle cry that increases the damage of you and your pets by 10% for 12. Boar A Boar charges through your target 1 time, dealing ≈1,440% of Attack Power damage to nearby enemies and an additional ≈1,200% of Attack Power physical damage to its primary target. Damage reduced beyond 5 targets. Bear A Bear leaps into the fray, rending the flesh of your enemies, dealing ≈400% of Attack Power damage over 10 to up to 8 nearby enemies.",
                             "uncertain": true
                         },
                         "category": "Other",
@@ -7730,7 +7770,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "While in combat, every 30 your next Kill Command summons the aid of a Beast. Wyvern A Wyvern descends from the skies, letting out a battle cry that increases the damage of you and your pets by 10% for 12. Boar A Boar charges through your target 1 time, dealing (varies) damage to nearby enemies and an additional (varies) physical damage to its primary target. Damage reduced beyond 5 targets. Bear A Bear leaps into the fray, rending the flesh of your enemies, dealing (varies) damage over 10 to up to 8 nearby enemies.",
+                            "text": "While in combat, every 30 your next Kill Command summons the aid of a Beast. Wyvern A Wyvern descends from the skies, letting out a battle cry that increases the damage of you and your pets by 10% for 12. Boar A Boar charges through your target 1 time, dealing ≈1,440% of Attack Power damage to nearby enemies and an additional ≈1,200% of Attack Power physical damage to its primary target. Damage reduced beyond 5 targets. Bear A Bear leaps into the fray, rending the flesh of your enemies, dealing ≈400% of Attack Power damage over 10 to up to 8 nearby enemies.",
                             "uncertain": true
                         },
                         "category": "Other",
@@ -7746,7 +7786,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "While in combat, every 30 your next Kill Command summons the aid of a Beast. Wyvern A Wyvern descends from the skies, letting out a battle cry that increases the damage of you and your pets by 10% for 12. Boar A Boar charges through your target 1 time, dealing (varies) damage to nearby enemies and an additional (varies) physical damage to its primary target. Damage reduced beyond 5 targets. Bear A Bear leaps into the fray, rending the flesh of your enemies, dealing (varies) damage over 10 to up to 8 nearby enemies.",
+                            "text": "While in combat, every 30 your next Kill Command summons the aid of a Beast. Wyvern A Wyvern descends from the skies, letting out a battle cry that increases the damage of you and your pets by 10% for 12. Boar A Boar charges through your target 1 time, dealing ≈1,440% of Attack Power damage to nearby enemies and an additional ≈1,200% of Attack Power physical damage to its primary target. Damage reduced beyond 5 targets. Bear A Bear leaps into the fray, rending the flesh of your enemies, dealing ≈400% of Attack Power damage over 10 to up to 8 nearby enemies.",
                             "uncertain": true
                         },
                         "category": "Other",
@@ -7810,7 +7850,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Casting (varies by condition — check in-game) grants Howl of the Pack Leader and causes your next Kill Command to rouse the nearby wildlife into a Stampede, charging your target and dealing 9 Physical damage over 7.",
+                            "text": "Casting (varies by condition — check in-game) grants Howl of the Pack Leader and causes your next Kill Command to rouse the nearby wildlife into a Stampede, charging your target and dealing ≈1,350% of Attack Power Physical damage over 7.",
                             "uncertain": true
                         },
                         "category": "Other",
@@ -8018,7 +8058,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "While in combat, every 30 your next Kill Command summons the aid of a Beast. Wyvern A Wyvern descends from the skies, letting out a battle cry that increases the damage of you and your pets by 10% for 12. Boar A Boar charges through your target 1 time, dealing (varies) damage to nearby enemies and an additional (varies) physical damage to its primary target. Damage reduced beyond 5 targets. Bear A Bear leaps into the fray, rending the flesh of your enemies, dealing (varies) damage over 10 to up to 8 nearby enemies.",
+                            "text": "While in combat, every 30 your next Kill Command summons the aid of a Beast. Wyvern A Wyvern descends from the skies, letting out a battle cry that increases the damage of you and your pets by 10% for 12. Boar A Boar charges through your target 1 time, dealing ≈1,440% of Attack Power damage to nearby enemies and an additional ≈1,200% of Attack Power physical damage to its primary target. Damage reduced beyond 5 targets. Bear A Bear leaps into the fray, rending the flesh of your enemies, dealing ≈400% of Attack Power damage over 10 to up to 8 nearby enemies.",
                             "uncertain": true
                         },
                         "category": "Other",
@@ -8082,7 +8122,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Casting (varies by condition — check in-game) grants Howl of the Pack Leader and causes your next Kill Command to rouse the nearby wildlife into a Stampede, charging your target and dealing 9 Physical damage over 7.",
+                            "text": "Casting (varies by condition — check in-game) grants Howl of the Pack Leader and causes your next Kill Command to rouse the nearby wildlife into a Stampede, charging your target and dealing ≈1,350% of Attack Power Physical damage over 7.",
                             "uncertain": true
                         },
                         "category": "Other",
@@ -8424,6 +8464,7 @@
                             "charges": null,
                             "max_stacks": null,
                             "proc_chance": null,
+                            "proc_cooldown_seconds": null,
                             "cooldown_seconds": null,
                             "cooldown_scaling_note": null,
                             "duration_seconds": null,
@@ -8471,6 +8512,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:22:31.000000Z",
@@ -8489,6 +8531,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:22:31.000000Z",
@@ -8507,6 +8550,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:22:31.000000Z",
@@ -8525,6 +8569,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:22:31.000000Z",
@@ -9796,7 +9841,7 @@
             "spellId": 4721,
             "category": "Offensive",
             "description": {
-                "text": "While in combat, Disengage releases a fan of shadow daggers, dealing (varies) Shadow damage per second and reducing affected target's movement speed by 30% for 6.",
+                "text": "While in combat, Disengage releases a fan of shadow daggers, dealing ≈0.5% of Attack Power Shadow damage per second and reducing affected target's movement speed by 30% for 6.",
                 "uncertain": true
             },
             "formulaModifierSpellIds": [],
@@ -10126,7 +10171,7 @@
             "spellId": 4744,
             "category": "Other",
             "description": {
-                "text": "Casting (varies by condition — check in-game) grants Howl of the Pack Leader and causes your next Kill Command to rouse the nearby wildlife into a Stampede, charging your target and dealing 9 Physical damage over 7.",
+                "text": "Casting (varies by condition — check in-game) grants Howl of the Pack Leader and causes your next Kill Command to rouse the nearby wildlife into a Stampede, charging your target and dealing ≈1,350% of Attack Power Physical damage over 7.",
                 "uncertain": true
             },
             "formulaModifierSpellIds": [],
@@ -10188,6 +10233,7 @@
                                         "charges": null,
                                         "max_stacks": null,
                                         "proc_chance": null,
+                                        "proc_cooldown_seconds": null,
                                         "cooldown_seconds": null,
                                         "cooldown_scaling_note": null,
                                         "duration_seconds": null,
@@ -10235,6 +10281,7 @@
                                                 "affected_schools": null,
                                                 "sp_coefficient": null,
                                                 "pvp_coefficient": null,
+                                                "ap_coefficient": null,
                                                 "rank_op": "set",
                                                 "rank_values": [
                                                     -60000,
@@ -10259,8 +10306,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Fire a shot that tears through your enemy, causing them to bleed for 25 damage over 12. If Barbed Shot is reapplied, any remaining damage will be added to the new Barbed Shot. Generates (varies) Focus over 8.",
-                            "uncertain": true
+                            "text": "Fire a shot that tears through your enemy, causing them to bleed for ≈428.5% of Attack Power damage over 12. If Barbed Shot is reapplied, any remaining damage will be added to the new Barbed Shot. Generates 20 Focus over 8.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -10456,6 +10503,7 @@
                                         "charges": null,
                                         "max_stacks": null,
                                         "proc_chance": null,
+                                        "proc_cooldown_seconds": null,
                                         "cooldown_seconds": null,
                                         "cooldown_scaling_note": null,
                                         "duration_seconds": null,
@@ -10503,6 +10551,7 @@
                                                 "affected_schools": null,
                                                 "sp_coefficient": null,
                                                 "pvp_coefficient": null,
+                                                "ap_coefficient": null,
                                                 "rank_op": "set",
                                                 "rank_values": [
                                                     -60000,
@@ -10869,6 +10918,7 @@
                             "charges": null,
                             "max_stacks": null,
                             "proc_chance": null,
+                            "proc_cooldown_seconds": null,
                             "cooldown_seconds": null,
                             "cooldown_scaling_note": null,
                             "duration_seconds": null,
@@ -10916,6 +10966,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:22:31.000000Z",
@@ -11082,6 +11133,7 @@
                             "charges": null,
                             "max_stacks": null,
                             "proc_chance": null,
+                            "proc_cooldown_seconds": null,
                             "cooldown_seconds": null,
                             "cooldown_scaling_note": null,
                             "duration_seconds": null,
@@ -11129,6 +11181,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:22:31.000000Z",
@@ -11943,8 +11996,8 @@
             "spellId": 4679,
             "category": "Utility",
             "description": {
-                "text": "Mend Pet heals for an additional (varies)% of your pet's health over its duration, and has a 25% chance to dispel a magic effect each time it heals your pet.",
-                "uncertain": true
+                "text": "Mend Pet heals for an additional 25% of your pet's health over its duration, and has a 25% chance to dispel a magic effect each time it heals your pet.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {

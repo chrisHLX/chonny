@@ -1,6 +1,6 @@
 {
-    "generatedAt": "2026-10-07T21:48:35+00:00",
-    "spellCacheVersion": 27,
+    "generatedAt": "2026-10-18T02:36:48+00:00",
+    "spellCacheVersion": 29,
     "codeFingerprint": "dev",
     "entries": [
         {
@@ -37,7 +37,7 @@
             "spellId": 1580,
             "category": "Defensive",
             "description": {
-                "text": "Blasts all enemies in front of you, dealing guaranteed critical strikes for up to {?a320415[{40}][{20}] Chaos damage over 2. Deals reduced damage beyond 5 targets. When Eye Beam finishes fully channeling, your Haste is increased by an additional 8% for 8.",
+                "text": "Blasts all enemies in front of you, dealing guaranteed critical strikes for up to {?a320415[{≈805.2% of Attack Power}][{≈402.6% of Attack Power}] Chaos damage over 2. Deals reduced damage beyond 5 targets. When Eye Beam finishes fully channeling, your Haste is increased by an additional 8% for 8.",
                 "uncertain": false
             },
             "formulaModifierSpellIds": [],
@@ -178,7 +178,7 @@
             "spellId": 1126,
             "category": "Offensive",
             "description": {
-                "text": "Slice your target for 60 Chaos damage. Annihilation has a 20% chance to refund 20 Fury.",
+                "text": "Slice your target for ≈246% of Attack Power Chaos damage. Annihilation has a 20% chance to refund 20 Fury.",
                 "uncertain": false
             },
             "formulaModifierSpellIds": [],
@@ -258,7 +258,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Slice your target for 60 Chaos damage. Annihilation has a 20% chance to refund 20 Fury.",
+                            "text": "Slice your target for ≈246% of Attack Power Chaos damage. Annihilation has a 20% chance to refund 20 Fury.",
                             "uncertain": false
                         },
                         "category": "Offensive",
@@ -274,7 +274,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Slice your target for 60 Chaos damage. Annihilation has a 20% chance to refund 20 Fury.",
+                            "text": "Slice your target for ≈246% of Attack Power Chaos damage. Annihilation has a 20% chance to refund 20 Fury.",
                             "uncertain": false
                         },
                         "category": "Offensive",
@@ -429,7 +429,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "The final slash of Blade Dance inflicts an additional (varies) Chaos damage.",
+                            "text": "The final slash of Blade Dance inflicts an additional ≈72% of Attack Power Chaos damage.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -493,7 +493,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "The final slash of Blade Dance inflicts an additional (varies) Chaos damage.",
+                            "text": "The final slash of Blade Dance inflicts an additional ≈72% of Attack Power Chaos damage.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -817,7 +817,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "The final slash of Blade Dance consumes 25 Fury when it strikes 8 or more enemies, launching two demonic glaives in a whirlwind of energy, causing 350 Chaos damage over 3 to all nearby enemies. Deals reduced damage beyond 8 targets.",
+                            "text": "The final slash of Blade Dance consumes 25 Fury when it strikes 8 or more enemies, launching two demonic glaives in a whirlwind of energy, causing ≈184.8% of Attack Power Chaos damage over 3 to all nearby enemies. Deals reduced damage beyond 8 targets.",
                             "uncertain": false
                         },
                         "category": "Offensive",
@@ -833,7 +833,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "The final slash of Blade Dance consumes 25 Fury when it strikes 8 or more enemies, launching two demonic glaives in a whirlwind of energy, causing 350 Chaos damage over 3 to all nearby enemies. Deals reduced damage beyond 8 targets.",
+                            "text": "The final slash of Blade Dance consumes 25 Fury when it strikes 8 or more enemies, launching two demonic glaives in a whirlwind of energy, causing ≈184.8% of Attack Power Chaos damage over 3 to all nearby enemies. Deals reduced damage beyond 8 targets.",
                             "uncertain": false
                         },
                         "category": "Offensive",
@@ -977,7 +977,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "The final slash of Blade Dance consumes 25 Fury when it strikes 3 or more enemies, launching two demonic glaives in a whirlwind of energy, causing 350 Chaos damage over 3 to all nearby enemies. Deals reduced damage beyond 8 targets.",
+                            "text": "The final slash of Blade Dance consumes 25 Fury when it strikes 3 or more enemies, launching two demonic glaives in a whirlwind of energy, causing ≈184.8% of Attack Power Chaos damage over 3 to all nearby enemies. Deals reduced damage beyond 8 targets.",
                             "uncertain": false
                         },
                         "category": "Offensive",
@@ -1294,6 +1294,7 @@
                             "charges": null,
                             "max_stacks": null,
                             "proc_chance": null,
+                            "proc_cooldown_seconds": null,
                             "cooldown_seconds": null,
                             "cooldown_scaling_note": null,
                             "duration_seconds": null,
@@ -1341,6 +1342,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:22:05.000000Z",
@@ -1359,6 +1361,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:22:05.000000Z",
@@ -1537,7 +1540,7 @@
             "spellId": 1881,
             "category": "Offensive",
             "description": {
-                "text": "Demon Blades and Throw Glaive leave open wounds on your enemies, dealing (varies) Chaos damage over 15 and increasing damage taken from your Immolation Aura by 35%. May be applied to up to 3 targets.",
+                "text": "Demon Blades and Throw Glaive leave open wounds on your enemies, dealing ≈73.5% of Attack Power Chaos damage over 15 and increasing damage taken from your Immolation Aura by 35%. May be applied to up to 3 targets.",
                 "uncertain": true
             },
             "formulaModifierSpellIds": [],
@@ -1704,7 +1707,7 @@
             "spellId": 1759,
             "category": "Crowd Control",
             "description": {
-                "text": "Unleash an eruption of fel energy, dealing (varies) Chaos damage and stunning all nearby enemies for 3. Each enemy stunned by Chaos Nova has a 30% chance to generate a Lesser Soul Fragment.",
+                "text": "Unleash an eruption of fel energy, dealing ≈27.5% of Attack Power Chaos damage and stunning all nearby enemies for 3. Each enemy stunned by Chaos Nova has a 30% chance to generate a Lesser Soul Fragment.",
                 "uncertain": true
             },
             "formulaModifierSpellIds": [],
@@ -2099,7 +2102,7 @@
             "spellId": 1878,
             "category": "Other",
             "description": {
-                "text": "Eye Beam summons an allied Vengeance Demon Hunter who casts Fel Devastation, dealing (varies) Fire damage over 2. Dealing damage heals you for up to (varies) health.",
+                "text": "Eye Beam summons an allied Vengeance Demon Hunter who casts Fel Devastation, dealing ≈262% of Attack Power Fire damage over 2. Dealing damage heals you for up to (varies) health.",
                 "uncertain": true
             },
             "formulaModifierSpellIds": [],
@@ -2213,7 +2216,7 @@
             "spellId": 1574,
             "category": "Other",
             "description": {
-                "text": "Engulf yourself in flames, instantly causing 15,000 Chaos damage to enemies within 8 yards and radiating -90,000 Chaos damage over 6. Generates 38 Fury over 6.",
+                "text": "Engulf yourself in flames, instantly causing 15,000 Chaos damage to enemies within 8 yards and radiating ≈74.8% of Attack Power Chaos damage over 6. Generates 38 Fury over 6.",
                 "uncertain": false
             },
             "formulaModifierSpellIds": [],
@@ -2305,6 +2308,7 @@
                             "charges": null,
                             "max_stacks": null,
                             "proc_chance": null,
+                            "proc_cooldown_seconds": null,
                             "cooldown_seconds": null,
                             "cooldown_scaling_note": null,
                             "duration_seconds": null,
@@ -2352,6 +2356,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:22:05.000000Z",
@@ -2370,6 +2375,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:22:05.000000Z",
@@ -2388,6 +2394,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:22:05.000000Z",
@@ -2406,6 +2413,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:22:05.000000Z",
@@ -2424,6 +2432,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:22:05.000000Z",
@@ -2442,6 +2451,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:22:05.000000Z",
@@ -2460,6 +2470,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:22:05.000000Z",
@@ -2490,6 +2501,7 @@
                             "charges": null,
                             "max_stacks": null,
                             "proc_chance": null,
+                            "proc_cooldown_seconds": null,
                             "cooldown_seconds": null,
                             "cooldown_scaling_note": null,
                             "duration_seconds": null,
@@ -2537,6 +2549,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:22:05.000000Z",
@@ -2555,6 +2568,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:22:05.000000Z",
@@ -2573,6 +2587,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:22:05.000000Z",
@@ -2591,6 +2606,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:22:05.000000Z",
@@ -2609,6 +2625,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:22:05.000000Z",
@@ -2627,6 +2644,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:22:05.000000Z",
@@ -2645,6 +2663,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:22:05.000000Z",
@@ -2928,6 +2947,7 @@
                             "charges": null,
                             "max_stacks": null,
                             "proc_chance": null,
+                            "proc_cooldown_seconds": null,
                             "cooldown_seconds": null,
                             "cooldown_scaling_note": null,
                             "duration_seconds": null,
@@ -2975,6 +2995,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:22:05.000000Z",
@@ -3199,7 +3220,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Throw a demonic glaive at the target, dealing (varies) Physical damage. The glaive can ricochet to (varies by condition — check in-game) within 10 yards.",
+                            "text": "Throw a demonic glaive at the target, dealing ≈49.2% of Attack Power Physical damage. The glaive can ricochet to (varies by condition — check in-game) within 10 yards.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -3215,7 +3236,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Throw a demonic glaive at the target, dealing (varies) Physical damage. The glaive can ricochet to (varies by condition — check in-game) within 10 yards.",
+                            "text": "Throw a demonic glaive at the target, dealing ≈49.2% of Attack Power Physical damage. The glaive can ricochet to (varies by condition — check in-game) within 10 yards.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -3231,7 +3252,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Throw a demonic glaive at the target, dealing (varies) Physical damage. The glaive can ricochet to (varies by condition — check in-game) within 10 yards.",
+                            "text": "Throw a demonic glaive at the target, dealing ≈49.2% of Attack Power Physical damage. The glaive can ricochet to (varies by condition — check in-game) within 10 yards.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -3247,7 +3268,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "The final slash of Blade Dance consumes 25 Fury when it strikes 8 or more enemies, launching two demonic glaives in a whirlwind of energy, causing 350 Chaos damage over 3 to all nearby enemies. Deals reduced damage beyond 8 targets.",
+                            "text": "The final slash of Blade Dance consumes 25 Fury when it strikes 8 or more enemies, launching two demonic glaives in a whirlwind of energy, causing ≈184.8% of Attack Power Chaos damage over 3 to all nearby enemies. Deals reduced damage beyond 8 targets.",
                             "uncertain": false
                         },
                         "category": "Offensive",
@@ -3263,7 +3284,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "The final slash of Blade Dance consumes 25 Fury when it strikes 8 or more enemies, launching two demonic glaives in a whirlwind of energy, causing 350 Chaos damage over 3 to all nearby enemies. Deals reduced damage beyond 8 targets.",
+                            "text": "The final slash of Blade Dance consumes 25 Fury when it strikes 8 or more enemies, launching two demonic glaives in a whirlwind of energy, causing ≈184.8% of Attack Power Chaos damage over 3 to all nearby enemies. Deals reduced damage beyond 8 targets.",
                             "uncertain": false
                         },
                         "category": "Offensive",
@@ -3295,7 +3316,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Throw a demonic glaive at the target, dealing (varies) Physical damage. The glaive can ricochet to (varies by condition — check in-game) within 10 yards.",
+                            "text": "Throw a demonic glaive at the target, dealing ≈49.2% of Attack Power Physical damage. The glaive can ricochet to (varies by condition — check in-game) within 10 yards.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -3359,7 +3380,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "The final slash of Blade Dance consumes 25 Fury when it strikes 3 or more enemies, launching two demonic glaives in a whirlwind of energy, causing 350 Chaos damage over 3 to all nearby enemies. Deals reduced damage beyond 8 targets.",
+                            "text": "The final slash of Blade Dance consumes 25 Fury when it strikes 3 or more enemies, launching two demonic glaives in a whirlwind of energy, causing ≈184.8% of Attack Power Chaos damage over 3 to all nearby enemies. Deals reduced damage beyond 8 targets.",
                             "uncertain": false
                         },
                         "category": "Offensive",
@@ -4530,7 +4551,7 @@
             "spellId": 1850,
             "category": "Defensive",
             "description": {
-                "text": "Blasts all enemies in front of you, dealing guaranteed critical strikes for up to {?a320415[{40}][{20}] Chaos damage over 2. Deals reduced damage beyond 5 targets. When Eye Beam finishes fully channeling, your Haste is increased by an additional 8% for 8.",
+                "text": "Blasts all enemies in front of you, dealing guaranteed critical strikes for up to {?a320415[{≈805.2% of Attack Power}][{≈402.6% of Attack Power}] Chaos damage over 2. Deals reduced damage beyond 5 targets. When Eye Beam finishes fully channeling, your Haste is increased by an additional 8% for 8.",
                 "uncertain": false
             },
             "formulaModifierSpellIds": [],
@@ -4558,7 +4579,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Blasts all enemies in front of you, dealing guaranteed critical strikes for up to {?a320415[{40}][{20}] Chaos damage over (varies). Deals reduced damage beyond 5 targets. When Eye Beam finishes fully channeling, your Haste is increased by an additional 8% for 8.",
+                            "text": "Blasts all enemies in front of you, dealing guaranteed critical strikes for up to {?a320415[{≈805.2% of Attack Power}][{≈402.6% of Attack Power}] Chaos damage over (varies). Deals reduced damage beyond 5 targets. When Eye Beam finishes fully channeling, your Haste is increased by an additional 8% for 8.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -4574,7 +4595,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Blasts all enemies in front of you, dealing guaranteed critical strikes for up to {?a320415[{40}][{20}] Chaos damage over (varies). Deals reduced damage beyond 5 targets. When Eye Beam finishes fully channeling, your Haste is increased by an additional 8% for 8.",
+                            "text": "Blasts all enemies in front of you, dealing guaranteed critical strikes for up to {?a320415[{≈805.2% of Attack Power}][{≈402.6% of Attack Power}] Chaos damage over (varies). Deals reduced damage beyond 5 targets. When Eye Beam finishes fully channeling, your Haste is increased by an additional 8% for 8.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -4638,7 +4659,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Blasts all enemies in front of you, dealing guaranteed critical strikes for up to {?a320415[{40}][{20}] Chaos damage over (varies). Deals reduced damage beyond 5 targets. When Eye Beam finishes fully channeling, your Haste is increased by an additional 8% for 8.",
+                            "text": "Blasts all enemies in front of you, dealing guaranteed critical strikes for up to {?a320415[{≈805.2% of Attack Power}][{≈402.6% of Attack Power}] Chaos damage over (varies). Deals reduced damage beyond 5 targets. When Eye Beam finishes fully channeling, your Haste is increased by an additional 8% for 8.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -4849,7 +4870,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Blasts all enemies in front of you, dealing guaranteed critical strikes for up to {?a320415[{40}][{20}] Chaos damage over 2. Deals reduced damage beyond 5 targets. When Eye Beam finishes fully channeling, your Haste is increased by an additional 8% for 8.",
+                            "text": "Blasts all enemies in front of you, dealing guaranteed critical strikes for up to {?a320415[{≈805.2% of Attack Power}][{≈402.6% of Attack Power}] Chaos damage over 2. Deals reduced damage beyond 5 targets. When Eye Beam finishes fully channeling, your Haste is increased by an additional 8% for 8.",
                             "uncertain": false
                         },
                         "category": "Defensive",
@@ -4865,7 +4886,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Eye Beam applies Student of Suffering to you, increasing Mastery by (varies)% and granting 5 Fury every (varies) sec, for 6.",
+                            "text": "Eye Beam applies Student of Suffering to you, increasing Mastery by (varies)% and granting 5 Fury every 2 sec, for 6.",
                             "uncertain": true
                         },
                         "category": "Other",
@@ -4881,7 +4902,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Eye Beam applies Student of Suffering to you, increasing Mastery by (varies)% and granting 5 Fury every (varies) sec, for 6.",
+                            "text": "Eye Beam applies Student of Suffering to you, increasing Mastery by (varies)% and granting 5 Fury every 2 sec, for 6.",
                             "uncertain": true
                         },
                         "category": "Other",
@@ -4897,7 +4918,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Eye Beam summons an allied Vengeance Demon Hunter who casts Fel Devastation, dealing (varies) Fire damage over 2. Dealing damage heals you for up to (varies) health.",
+                            "text": "Eye Beam summons an allied Vengeance Demon Hunter who casts Fel Devastation, dealing ≈262% of Attack Power Fire damage over 2. Dealing damage heals you for up to (varies) health.",
                             "uncertain": true
                         },
                         "category": "Other",
@@ -4929,7 +4950,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Eye Beam applies Student of Suffering to you, increasing Mastery by (varies)% and granting 5 Fury every (varies) sec, for 6.",
+                            "text": "Eye Beam applies Student of Suffering to you, increasing Mastery by (varies)% and granting 5 Fury every 2 sec, for 6.",
                             "uncertain": true
                         },
                         "category": "Other",
@@ -5234,6 +5255,7 @@
                             "charges": null,
                             "max_stacks": null,
                             "proc_chance": null,
+                            "proc_cooldown_seconds": null,
                             "cooldown_seconds": null,
                             "cooldown_scaling_note": null,
                             "duration_seconds": null,
@@ -5281,6 +5303,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": "mul",
                                     "rank_values": [
                                         1,
@@ -5302,6 +5325,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": "mul",
                                     "rank_values": [
                                         1,
@@ -5323,6 +5347,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": "mul",
                                     "rank_values": [
                                         1,
@@ -5356,6 +5381,7 @@
                             "charges": null,
                             "max_stacks": null,
                             "proc_chance": null,
+                            "proc_cooldown_seconds": null,
                             "cooldown_seconds": null,
                             "cooldown_scaling_note": null,
                             "duration_seconds": null,
@@ -5403,6 +5429,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:22:05.000000Z",
@@ -5421,6 +5448,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:22:05.000000Z",
@@ -5439,6 +5467,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:22:05.000000Z",
@@ -6252,7 +6281,7 @@
             "spellId": 1892,
             "category": "Offensive",
             "description": {
-                "text": "The final slash of Blade Dance consumes 25 Fury when it strikes 3 or more enemies, launching two demonic glaives in a whirlwind of energy, causing 350 Chaos damage over 3 to all nearby enemies. Deals reduced damage beyond 8 targets.",
+                "text": "The final slash of Blade Dance consumes 25 Fury when it strikes 3 or more enemies, launching two demonic glaives in a whirlwind of energy, causing ≈184.8% of Attack Power Chaos damage over 3 to all nearby enemies. Deals reduced damage beyond 8 targets.",
                 "uncertain": false
             },
             "formulaModifierSpellIds": [],
@@ -6509,7 +6538,7 @@
             "spellId": 1280,
             "category": "Defensive",
             "description": {
-                "text": "Engulf yourself in flames, instantly causing 15,000 Chaos damage to enemies within 8 yards and radiating -90,000 Chaos damage over 6. Generates 38 Fury over 6.",
+                "text": "Engulf yourself in flames, instantly causing 15,000 Chaos damage to enemies within 8 yards and radiating ≈74.8% of Attack Power Chaos damage over 6. Generates 38 Fury over 6.",
                 "uncertain": false
             },
             "formulaModifierSpellIds": [],
@@ -6521,7 +6550,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game) increases your armor by 20% and causes melee attackers to suffer 20 Chaos damage.",
+                            "text": "(varies by condition — check in-game) increases your armor by 20% and causes melee attackers to suffer ≈12% of Attack Power Chaos damage.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -6537,7 +6566,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Demon's Bite leaves an open wound on your enemy dealing (varies) Chaos damage over 15 and increasing damage taken from your Immolation Aura by 65%.",
+                            "text": "Demon's Bite leaves an open wound on your enemy dealing ≈100% of Attack Power Chaos damage over 15 and increasing damage taken from your Immolation Aura by 65%.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -6649,7 +6678,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game) increases your armor by 20% and causes melee attackers to suffer 20 Chaos damage.",
+                            "text": "(varies by condition — check in-game) increases your armor by 20% and causes melee attackers to suffer ≈12% of Attack Power Chaos damage.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -6665,7 +6694,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Demon's Bite leaves an open wound on your enemy dealing (varies) Chaos damage over 15 and increasing damage taken from your Immolation Aura by 65%.",
+                            "text": "Demon's Bite leaves an open wound on your enemy dealing ≈100% of Attack Power Chaos damage over 15 and increasing damage taken from your Immolation Aura by 65%.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -6681,7 +6710,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Demon Blades and Throw Glaive leave open wounds on your enemies, dealing (varies) Chaos damage over 15 and increasing damage taken from your Immolation Aura by 35%. May be applied to up to 35 targets.",
+                            "text": "Demon Blades and Throw Glaive leave open wounds on your enemies, dealing ≈73.5% of Attack Power Chaos damage over 15 and increasing damage taken from your Immolation Aura by 35%. May be applied to up to 35 targets.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -6793,7 +6822,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Demon Blades and Throw Glaive leave open wounds on your enemies, dealing (varies) Chaos damage over 15 and increasing damage taken from your Immolation Aura by 35%. May be applied to up to 3 targets.",
+                            "text": "Demon Blades and Throw Glaive leave open wounds on your enemies, dealing ≈73.5% of Attack Power Chaos damage over 15 and increasing damage taken from your Immolation Aura by 35%. May be applied to up to 3 targets.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -7162,6 +7191,7 @@
                             "charges": null,
                             "max_stacks": null,
                             "proc_chance": null,
+                            "proc_cooldown_seconds": null,
                             "cooldown_seconds": null,
                             "cooldown_scaling_note": null,
                             "duration_seconds": null,
@@ -7209,6 +7239,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:22:05.000000Z",
@@ -7227,6 +7258,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:22:05.000000Z",
@@ -7245,6 +7277,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:22:05.000000Z",
@@ -7263,6 +7296,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:22:05.000000Z",
@@ -7281,6 +7315,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:22:05.000000Z",
@@ -7299,6 +7334,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:22:05.000000Z",
@@ -7317,6 +7353,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:22:05.000000Z",
@@ -7347,6 +7384,7 @@
                             "charges": null,
                             "max_stacks": null,
                             "proc_chance": null,
+                            "proc_cooldown_seconds": null,
                             "cooldown_seconds": null,
                             "cooldown_scaling_note": null,
                             "duration_seconds": null,
@@ -7394,6 +7432,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:22:05.000000Z",
@@ -7412,6 +7451,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:22:05.000000Z",
@@ -7430,6 +7470,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:22:05.000000Z",
@@ -7448,6 +7489,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:22:05.000000Z",
@@ -7466,6 +7508,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:22:05.000000Z",
@@ -7484,6 +7527,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:22:05.000000Z",
@@ -7502,6 +7546,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:22:05.000000Z",
@@ -7804,7 +7849,7 @@
             "spellId": 1771,
             "category": "Offensive",
             "description": {
-                "text": "(varies by condition — check in-game) increases your armor by 20% and causes melee attackers to suffer 20 Chaos damage.",
+                "text": "(varies by condition — check in-game) increases your armor by 20% and causes melee attackers to suffer ≈12% of Attack Power Chaos damage.",
                 "uncertain": true
             },
             "formulaModifierSpellIds": [],
@@ -9299,7 +9344,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Charge to your target, striking them for (varies) Chaos damage, rooting them in place for 1.5 and inflicting (varies) Chaos damage over 6 to up to 50 enemies in your path. The pursuit invigorates your soul, healing you for (varies by condition — check in-game) of the damage you deal to your Hunt target for 30.",
+                            "text": "Charge to your target, striking them for ≈455% of Attack Power Chaos damage, rooting them in place for 1.5 and inflicting ≈227.7% of Attack Power Chaos damage over 6 to up to 50 enemies in your path. The pursuit invigorates your soul, healing you for (varies by condition — check in-game) of the damage you deal to your Hunt target for 30.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -10436,6 +10481,7 @@
                             "charges": null,
                             "max_stacks": null,
                             "proc_chance": null,
+                            "proc_cooldown_seconds": null,
                             "cooldown_seconds": null,
                             "cooldown_scaling_note": null,
                             "duration_seconds": null,
@@ -10483,6 +10529,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:22:05.000000Z",
@@ -10501,6 +10548,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:22:05.000000Z",
@@ -10761,7 +10809,7 @@
             "spellId": 1939,
             "category": "Other",
             "description": {
-                "text": "Eye Beam applies Student of Suffering to you, increasing Mastery by (varies)% and granting 5 Fury every (varies) sec, for 6.",
+                "text": "Eye Beam applies Student of Suffering to you, increasing Mastery by (varies)% and granting 5 Fury every 2 sec, for 6.",
                 "uncertain": true
             },
             "formulaModifierSpellIds": [],
@@ -10775,7 +10823,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Eye Beam applies Student of Suffering to you, increasing Mastery by (varies)% and granting 5 Fury every (varies) sec, for 6.",
+                            "text": "Eye Beam applies Student of Suffering to you, increasing Mastery by (varies)% and granting 5 Fury every 2 sec, for 6.",
                             "uncertain": true
                         },
                         "category": "Other",
@@ -10791,7 +10839,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Eye Beam applies Student of Suffering to you, increasing Mastery by (varies)% and granting 5 Fury every (varies) sec, for 6.",
+                            "text": "Eye Beam applies Student of Suffering to you, increasing Mastery by (varies)% and granting 5 Fury every 2 sec, for 6.",
                             "uncertain": true
                         },
                         "category": "Other",
@@ -10914,7 +10962,7 @@
             "spellId": 1865,
             "category": "Crowd Control",
             "description": {
-                "text": "Charge to your target, striking them for 5 Chaos damage, rooting them in place for 1.5 and inflicting (varies) Chaos damage over 6 to up to 50 enemies in your path.",
+                "text": "Charge to your target, striking them for 5 Chaos damage, rooting them in place for 1.5 and inflicting ≈480.6% of Attack Power Chaos damage over 6 to up to 50 enemies in your path.",
                 "uncertain": true
             },
             "formulaModifierSpellIds": [],
@@ -11334,7 +11382,7 @@
             "spellId": 1097,
             "category": "Offensive",
             "description": {
-                "text": "Throw a demonic glaive at the target, dealing (varies) Physical damage. The glaive can ricochet to (varies by condition — check in-game) within 10 yards.",
+                "text": "Throw a demonic glaive at the target, dealing ≈49.2% of Attack Power Physical damage. The glaive can ricochet to (varies by condition — check in-game) within 10 yards.",
                 "uncertain": true
             },
             "formulaModifierSpellIds": [],
@@ -11474,7 +11522,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Demon Blades and Throw Glaive leave open wounds on your enemies, dealing (varies) Chaos damage over 15 and increasing damage taken from your Immolation Aura by 35%. May be applied to up to 35 targets.",
+                            "text": "Demon Blades and Throw Glaive leave open wounds on your enemies, dealing ≈73.5% of Attack Power Chaos damage over 15 and increasing damage taken from your Immolation Aura by 35%. May be applied to up to 35 targets.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -11554,7 +11602,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Demon Blades and Throw Glaive leave open wounds on your enemies, dealing (varies) Chaos damage over 15 and increasing damage taken from your Immolation Aura by 35%. May be applied to up to 3 targets.",
+                            "text": "Demon Blades and Throw Glaive leave open wounds on your enemies, dealing ≈73.5% of Attack Power Chaos damage over 15 and increasing damage taken from your Immolation Aura by 35%. May be applied to up to 3 targets.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -11848,6 +11896,7 @@
                             "charges": null,
                             "max_stacks": null,
                             "proc_chance": "100.00",
+                            "proc_cooldown_seconds": null,
                             "cooldown_seconds": null,
                             "cooldown_scaling_note": null,
                             "duration_seconds": null,
@@ -11895,6 +11944,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:22:05.000000Z",
@@ -11913,6 +11963,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:22:05.000000Z",
@@ -11988,7 +12039,7 @@
             "spellId": 1857,
             "category": "Offensive",
             "description": {
-                "text": "The final slash of Blade Dance inflicts an additional (varies) Chaos damage.",
+                "text": "The final slash of Blade Dance inflicts an additional ≈72% of Attack Power Chaos damage.",
                 "uncertain": true
             },
             "formulaModifierSpellIds": [],
@@ -12544,6 +12595,7 @@
                             "charges": null,
                             "max_stacks": null,
                             "proc_chance": null,
+                            "proc_cooldown_seconds": null,
                             "cooldown_seconds": null,
                             "cooldown_scaling_note": null,
                             "duration_seconds": null,
@@ -12591,6 +12643,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:22:05.000000Z",

@@ -1,14 +1,14 @@
 {
-    "generatedAt": "2026-10-07T21:49:02+00:00",
-    "spellCacheVersion": 27,
+    "generatedAt": "2026-10-18T02:37:19+00:00",
+    "spellCacheVersion": 29,
     "codeFingerprint": "dev",
     "entries": [
         {
             "spellId": 10664,
             "category": "Offensive",
             "description": {
-                "text": "Deal ≈100% of Spell Power Nature damage every (varies) sec to up to 5 enemies inside of your Healing Rain.",
-                "uncertain": true
+                "text": "Deal ≈100% of Spell Power Nature damage every 2 sec to up to 5 enemies inside of your Healing Rain.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -471,8 +471,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Transform into an Air Ascendant for 15 and unleash Doom Winds, reducing the cooldown and cost of Stormstrike by 60%, and transforming your auto attack and Stormstrike into Wind attacks which bypass armor and have a (varies) yd range. Maelstrom Weapon spenders have a 0.5% chance to unleash Doom Winds per Maelstrom Weapon spent while Ascendance is not active.",
-                            "uncertain": true
+                            "text": "Transform into an Air Ascendant for 15 and unleash Doom Winds, reducing the cooldown and cost of Stormstrike by 60%, and transforming your auto attack and Stormstrike into Wind attacks which bypass armor and have a 30 yd range. Maelstrom Weapon spenders have a 0.5% chance to unleash Doom Winds per Maelstrom Weapon spent while Ascendance is not active.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -491,6 +491,7 @@
                                         "charges": null,
                                         "max_stacks": null,
                                         "proc_chance": null,
+                                        "proc_cooldown_seconds": null,
                                         "cooldown_seconds": null,
                                         "cooldown_scaling_note": null,
                                         "duration_seconds": null,
@@ -539,8 +540,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Transform into an Air Ascendant for 15 and unleash Doom Winds, reducing the cooldown and cost of Stormstrike by 60%, and transforming your auto attack and Stormstrike into Wind attacks which bypass armor and have a (varies) yd range. Maelstrom Weapon spenders have a 0.5% chance to unleash Doom Winds per Maelstrom Weapon spent while Ascendance is not active.",
-                            "uncertain": true
+                            "text": "Transform into an Air Ascendant for 15 and unleash Doom Winds, reducing the cooldown and cost of Stormstrike by 60%, and transforming your auto attack and Stormstrike into Wind attacks which bypass armor and have a 30 yd range. Maelstrom Weapon spenders have a 0.5% chance to unleash Doom Winds per Maelstrom Weapon spent while Ascendance is not active.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -559,6 +560,7 @@
                                         "charges": null,
                                         "max_stacks": null,
                                         "proc_chance": null,
+                                        "proc_cooldown_seconds": null,
                                         "cooldown_seconds": null,
                                         "cooldown_scaling_note": null,
                                         "duration_seconds": null,
@@ -636,6 +638,7 @@
                             "charges": null,
                             "max_stacks": null,
                             "proc_chance": null,
+                            "proc_cooldown_seconds": null,
                             "cooldown_seconds": null,
                             "cooldown_scaling_note": null,
                             "duration_seconds": null,
@@ -683,6 +686,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:23:23.000000Z",
@@ -852,6 +856,7 @@
                             "charges": null,
                             "max_stacks": null,
                             "proc_chance": null,
+                            "proc_cooldown_seconds": null,
                             "cooldown_seconds": null,
                             "cooldown_scaling_note": null,
                             "duration_seconds": null,
@@ -899,6 +904,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:23:23.000000Z",
@@ -917,6 +923,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:23:23.000000Z",
@@ -1193,6 +1200,7 @@
                             "charges": null,
                             "max_stacks": null,
                             "proc_chance": null,
+                            "proc_cooldown_seconds": null,
                             "cooldown_seconds": null,
                             "cooldown_scaling_note": null,
                             "duration_seconds": null,
@@ -1240,6 +1248,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": "set",
                                     "rank_values": [
                                         -10000,
@@ -1284,8 +1293,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Protects the target with an earthen shield, increasing your healing on them by 20% and healing them for ≈87.6% of Spell Power when they take damage. This heal can only occur once every -1 sec. Lasts 3,600. Earth Shield can only be placed on the Shaman and one other target at a time. The Shaman can have up to two Elemental Shields active on them.",
-                            "uncertain": true
+                            "text": "Protects the target with an earthen shield, increasing your healing on them by 20% and healing them for ≈87.6% of Spell Power when they take damage. This heal can only occur once every 2 sec. Lasts 3,600. Earth Shield can only be placed on the Shaman and one other target at a time. The Shaman can have up to two Elemental Shields active on them.",
+                            "uncertain": false
                         },
                         "category": "Defensive",
                         "cooldown": {
@@ -1380,7 +1389,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Imbue your weapon with the element of Earth for 3,600. Your Riptide, Healing Wave, and Chain Heal healing has a 20% chance to trigger Earthliving on the target, healing for (varies) over 6.",
+                            "text": "Imbue your weapon with the element of Earth for 3,600. Your Riptide, Healing Wave, and Chain Heal healing has a 20% chance to trigger Earthliving on the target, healing for ≈138.9% of Spell Power over 6.",
                             "uncertain": true
                         },
                         "category": "Defensive",
@@ -1428,8 +1437,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Protects the target with an earthen shield, increasing your healing on them by 20% and healing them for ≈87.6% of Spell Power when they take damage. This heal can only occur once every -1 sec. Lasts 3,600. Earth Shield can only be placed on the Shaman and one other target at a time. The Shaman can have up to two Elemental Shields active on them.",
-                            "uncertain": true
+                            "text": "Protects the target with an earthen shield, increasing your healing on them by 20% and healing them for ≈87.6% of Spell Power when they take damage. This heal can only occur once every 2 sec. Lasts 3,600. Earth Shield can only be placed on the Shaman and one other target at a time. The Shaman can have up to two Elemental Shields active on them.",
+                            "uncertain": false
                         },
                         "category": "Defensive",
                         "cooldown": {
@@ -1524,7 +1533,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Imbue your weapon with the element of Earth for 3,600. Your Riptide, Healing Wave, and Chain Heal healing has a 20% chance to trigger Earthliving on the target, healing for (varies) over 6.",
+                            "text": "Imbue your weapon with the element of Earth for 3,600. Your Riptide, Healing Wave, and Chain Heal healing has a 20% chance to trigger Earthliving on the target, healing for ≈138.9% of Spell Power over 6.",
                             "uncertain": true
                         },
                         "category": "Defensive",
@@ -1588,8 +1597,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Chain Heal now jumps to a nearby totem within 20 yards once it reaches its last target, causing the totem to cast Chain Heal on an injured ally within (varies) yards for 50. Jumps to 10 nearby targets within 20 yards.",
-                            "uncertain": true
+                            "text": "Chain Heal now jumps to a nearby totem within 20 yards once it reaches its last target, causing the totem to cast Chain Heal on an injured ally within 30 yards for 50. Jumps to 10 nearby targets within 20 yards.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -1604,8 +1613,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Chain Heal now jumps to a nearby totem within 20 yards once it reaches its last target, causing the totem to cast Chain Heal on an injured ally within (varies) yards for 50. Jumps to 50 nearby targets within 20 yards.",
-                            "uncertain": true
+                            "text": "Chain Heal now jumps to a nearby totem within 20 yards once it reaches its last target, causing the totem to cast Chain Heal on an injured ally within 30 yards for 50. Jumps to 50 nearby targets within 20 yards.",
+                            "uncertain": false
                         },
                         "category": "Defensive",
                         "cooldown": {
@@ -1684,8 +1693,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Chain Heal now jumps to a nearby totem within 20 yards once it reaches its last target, causing the totem to cast Chain Heal on an injured ally within (varies) yards for 50. Jumps to 2 nearby targets within 20 yards.",
-                            "uncertain": true
+                            "text": "Chain Heal now jumps to a nearby totem within 20 yards once it reaches its last target, causing the totem to cast Chain Heal on an injured ally within 30 yards for 50. Jumps to 2 nearby targets within 20 yards.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -1780,7 +1789,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Imbue your weapon with the element of Earth for 3,600. Your Riptide, Healing Wave, and Chain Heal healing has a 20% chance to trigger Earthliving on the target, healing for (varies) over 6.",
+                            "text": "Imbue your weapon with the element of Earth for 3,600. Your Riptide, Healing Wave, and Chain Heal healing has a 20% chance to trigger Earthliving on the target, healing for ≈138.9% of Spell Power over 6.",
                             "uncertain": true
                         },
                         "category": "Defensive",
@@ -1884,6 +1893,7 @@
                                         "charges": null,
                                         "max_stacks": null,
                                         "proc_chance": null,
+                                        "proc_cooldown_seconds": null,
                                         "cooldown_seconds": null,
                                         "cooldown_scaling_note": null,
                                         "duration_seconds": null,
@@ -2137,8 +2147,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Chain Heal now jumps to a nearby totem within 20 yards once it reaches its last target, causing the totem to cast Chain Heal on an injured ally within (varies) yards for 50. Jumps to 10 nearby targets within 20 yards.",
-                            "uncertain": true
+                            "text": "Chain Heal now jumps to a nearby totem within 20 yards once it reaches its last target, causing the totem to cast Chain Heal on an injured ally within 30 yards for 50. Jumps to 10 nearby targets within 20 yards.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -2153,8 +2163,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Chain Heal now jumps to a nearby totem within 20 yards once it reaches its last target, causing the totem to cast Chain Heal on an injured ally within (varies) yards for 50. Jumps to 50 nearby targets within 20 yards.",
-                            "uncertain": true
+                            "text": "Chain Heal now jumps to a nearby totem within 20 yards once it reaches its last target, causing the totem to cast Chain Heal on an injured ally within 30 yards for 50. Jumps to 50 nearby targets within 20 yards.",
+                            "uncertain": false
                         },
                         "category": "Defensive",
                         "cooldown": {
@@ -2169,8 +2179,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Chain Heal now jumps to a nearby totem within 20 yards once it reaches its last target, causing the totem to cast Chain Heal on an injured ally within (varies) yards for 50. Jumps to 2 nearby targets within 20 yards.",
-                            "uncertain": true
+                            "text": "Chain Heal now jumps to a nearby totem within 20 yards once it reaches its last target, causing the totem to cast Chain Heal on an injured ally within 30 yards for 50. Jumps to 2 nearby targets within 20 yards.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -2237,7 +2247,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Sears the target with fire, causing ≈22.4% of Spell Power Volcanic damage and then an additional (varies) Volcanic damage over 18. Flame Shock can be applied to a maximum of (varies) targets.",
+                            "text": "Sears the target with fire, causing ≈22.4% of Spell Power Volcanic damage and then an additional ≈120.1% of Spell Power Volcanic damage over 18. Flame Shock can be applied to a maximum of (varies) targets.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -2766,8 +2776,8 @@
             "spellId": 10456,
             "category": "Defensive",
             "description": {
-                "text": "Protects the target with an earthen shield, increasing your healing on them by 20% and healing them for ≈87.6% of Spell Power when they take damage. This heal can only occur once every -1 sec. Lasts 3,600. Earth Shield can only be placed on the Shaman and one other target at a time. The Shaman can have up to two Elemental Shields active on them.",
-                "uncertain": true
+                "text": "Protects the target with an earthen shield, increasing your healing on them by 20% and healing them for ≈87.6% of Spell Power when they take damage. This heal can only occur once every 2 sec. Lasts 3,600. Earth Shield can only be placed on the Shaman and one other target at a time. The Shaman can have up to two Elemental Shields active on them.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -2810,7 +2820,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Protects the target with an earthen shield, increasing your healing on them by 20% and healing them for ≈73.5% of Spell Power when they take damage. This heal can only occur once every -1 sec. Lasts (varies). Earth Shield can only be placed on the Shaman and one other target at a time. The Shaman can have up to two Elemental Shields active on them.",
+                            "text": "Protects the target with an earthen shield, increasing your healing on them by 20% and healing them for (varies) when they take damage. This heal can only occur once every -1 sec. Lasts (varies). Earth Shield can only be placed on the Shaman and one other target at a time. The Shaman can have up to two Elemental Shields active on them.",
                             "uncertain": true
                         },
                         "category": "Defensive",
@@ -2842,8 +2852,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Protects the target with an earthen shield, increasing your healing on them by 20% and healing them for ≈87.6% of Spell Power when they take damage. This heal can only occur once every -1 sec. Lasts 3,600. Earth Shield can only be placed on the Shaman and one other target at a time. The Shaman can have up to two Elemental Shields active on them.",
-                            "uncertain": true
+                            "text": "Protects the target with an earthen shield, increasing your healing on them by 20% and healing them for ≈87.6% of Spell Power when they take damage. This heal can only occur once every 2 sec. Lasts 3,600. Earth Shield can only be placed on the Shaman and one other target at a time. The Shaman can have up to two Elemental Shields active on them.",
+                            "uncertain": false
                         },
                         "category": "Defensive",
                         "cooldown": {
@@ -3080,8 +3090,8 @@
             "spellId": 10460,
             "category": "Crowd Control",
             "description": {
-                "text": "Summons a totem at the target location for 20. The totem pulses every (varies) sec, rooting all enemies within 8 yards for 8. Enemies previously rooted by the totem instead suffer 50% movement speed reduction.",
-                "uncertain": true
+                "text": "Summons a totem at the target location for 20. The totem pulses every 2 sec, rooting all enemies within 8 yards for 8. Enemies previously rooted by the totem instead suffer 50% movement speed reduction.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -3160,7 +3170,7 @@
             "spellId": 10667,
             "category": "Defensive",
             "description": {
-                "text": "Imbue your weapon with the element of Earth for 3,600. Your Riptide, Healing Wave, and Chain Heal healing has a 20% chance to trigger Earthliving on the target, healing for (varies) over 6.",
+                "text": "Imbue your weapon with the element of Earth for 3,600. Your Riptide, Healing Wave, and Chain Heal healing has a 20% chance to trigger Earthliving on the target, healing for ≈138.9% of Spell Power over 6.",
                 "uncertain": true
             },
             "formulaModifierSpellIds": [],
@@ -3833,7 +3843,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Sears the target with fire, causing ≈22.4% of Spell Power Volcanic damage and then an additional (varies) Volcanic damage over 18. Flame Shock can be applied to a maximum of (varies) targets.",
+                            "text": "Sears the target with fire, causing ≈22.4% of Spell Power Volcanic damage and then an additional ≈120.1% of Spell Power Volcanic damage over 18. Flame Shock can be applied to a maximum of (varies) targets.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -3869,6 +3879,7 @@
                                         "charges": null,
                                         "max_stacks": null,
                                         "proc_chance": null,
+                                        "proc_cooldown_seconds": null,
                                         "cooldown_seconds": null,
                                         "cooldown_scaling_note": null,
                                         "duration_seconds": null,
@@ -4217,8 +4228,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Ghost Wolf increases your movement speed by an additional 10% for the first 3. May only occur once every (varies) sec.",
-                            "uncertain": true
+                            "text": "Ghost Wolf increases your movement speed by an additional 10% for the first 3. May only occur once every 60 sec.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -4281,8 +4292,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Ghost Wolf removes snares and increases your movement speed by an additional 25% for the first 3. May only occur once every (varies) sec.",
-                            "uncertain": true
+                            "text": "Ghost Wolf removes snares and increases your movement speed by an additional 25% for the first 3. May only occur once every 20 sec.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -4332,8 +4343,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "While transformed into a Ghost Wolf, you gain 5% increased movement speed and 5% damage reduction every (varies) sec, stacking up to 4 times.",
-                            "uncertain": true
+                            "text": "While transformed into a Ghost Wolf, you gain 5% increased movement speed and 5% damage reduction every 1 sec, stacking up to 4 times.",
+                            "uncertain": false
                         },
                         "category": "Defensive",
                         "cooldown": {
@@ -4348,8 +4359,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "While transformed into a Ghost Wolf, you gain 5% increased movement speed and 5% damage reduction every (varies) sec, stacking up to 4 times.",
-                            "uncertain": true
+                            "text": "While transformed into a Ghost Wolf, you gain 5% increased movement speed and 5% damage reduction every 1 sec, stacking up to 4 times.",
+                            "uncertain": false
                         },
                         "category": "Defensive",
                         "cooldown": {
@@ -4380,8 +4391,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "While transformed into a Ghost Wolf, you gain 5% increased movement speed and 5% damage reduction every (varies) sec, stacking up to 4 times.",
-                            "uncertain": true
+                            "text": "While transformed into a Ghost Wolf, you gain 5% increased movement speed and 5% damage reduction every 1 sec, stacking up to 4 times.",
+                            "uncertain": false
                         },
                         "category": "Defensive",
                         "cooldown": {
@@ -4725,8 +4736,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Deal ≈100% of Spell Power Nature damage every (varies) sec to up to 5 enemies inside of your Healing Rain.",
-                            "uncertain": true
+                            "text": "Deal ≈100% of Spell Power Nature damage every 2 sec to up to 5 enemies inside of your Healing Rain.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -4741,7 +4752,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Deal ≈100% of Spell Power Nature damage every (varies) sec to up to 5 enemies inside of your Healing Rain.",
+                            "text": "Deal (varies) Nature damage every 2 sec to up to 5 enemies inside of your Healing Rain.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -4837,8 +4848,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Deal ≈100% of Spell Power Nature damage every (varies) sec to up to 5 enemies inside of your Healing Rain.",
-                            "uncertain": true
+                            "text": "Deal ≈100% of Spell Power Nature damage every 2 sec to up to 5 enemies inside of your Healing Rain.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -5017,12 +5028,10 @@
             "spellId": 9753,
             "category": "Defensive",
             "description": {
-                "text": "Summons a totem at your feet for 15 that heals two injured party or raid members within 40 yards for 5 every (varies) sec. If you already know Healing Stream Totem, instead gain 1 additional charge of Healing Stream Totem.",
-                "uncertain": true
+                "text": "Summons a totem at your feet for 15 that heals two injured party or raid members within 40 yards for 5 every 2 sec. If you already know Healing Stream Totem, instead gain 1 additional charge of Healing Stream Totem.",
+                "uncertain": false
             },
-            "formulaModifierSpellIds": [
-                9846
-            ],
+            "formulaModifierSpellIds": [],
             "modifiers": {
                 "named": [
                     {
@@ -5463,6 +5472,7 @@
                             "charges": null,
                             "max_stacks": null,
                             "proc_chance": null,
+                            "proc_cooldown_seconds": null,
                             "cooldown_seconds": null,
                             "cooldown_scaling_note": null,
                             "duration_seconds": null,
@@ -5510,6 +5520,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:23:23.000000Z",
@@ -5528,6 +5539,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:23:23.000000Z",
@@ -5552,6 +5564,7 @@
                             "charges": null,
                             "max_stacks": null,
                             "proc_chance": null,
+                            "proc_cooldown_seconds": null,
                             "cooldown_seconds": null,
                             "cooldown_scaling_note": null,
                             "duration_seconds": null,
@@ -5599,6 +5612,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:23:24.000000Z",
@@ -5623,6 +5637,7 @@
                             "charges": null,
                             "max_stacks": null,
                             "proc_chance": null,
+                            "proc_cooldown_seconds": null,
                             "cooldown_seconds": null,
                             "cooldown_scaling_note": null,
                             "duration_seconds": null,
@@ -5670,6 +5685,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:23:24.000000Z",
@@ -5688,6 +5704,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:23:24.000000Z",
@@ -5706,6 +5723,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:23:24.000000Z",
@@ -5736,6 +5754,7 @@
                             "charges": null,
                             "max_stacks": null,
                             "proc_chance": null,
+                            "proc_cooldown_seconds": null,
                             "cooldown_seconds": null,
                             "cooldown_scaling_note": null,
                             "duration_seconds": null,
@@ -5783,6 +5802,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:23:23.000000Z",
@@ -5801,6 +5821,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:23:23.000000Z",
@@ -5830,6 +5851,7 @@
                                         "charges": null,
                                         "max_stacks": null,
                                         "proc_chance": null,
+                                        "proc_cooldown_seconds": null,
                                         "cooldown_seconds": null,
                                         "cooldown_scaling_note": null,
                                         "duration_seconds": null,
@@ -5877,6 +5899,7 @@
                                                 "affected_schools": null,
                                                 "sp_coefficient": null,
                                                 "pvp_coefficient": null,
+                                                "ap_coefficient": null,
                                                 "rank_op": null,
                                                 "rank_values": null,
                                                 "created_at": "2026-08-03T12:23:19.000000Z",
@@ -5907,6 +5930,7 @@
                                         "charges": null,
                                         "max_stacks": null,
                                         "proc_chance": null,
+                                        "proc_cooldown_seconds": null,
                                         "cooldown_seconds": null,
                                         "cooldown_scaling_note": null,
                                         "duration_seconds": "3600.00",
@@ -5964,6 +5988,7 @@
                                         "charges": null,
                                         "max_stacks": 2,
                                         "proc_chance": "100.00",
+                                        "proc_cooldown_seconds": null,
                                         "cooldown_seconds": null,
                                         "cooldown_scaling_note": null,
                                         "duration_seconds": "60.00",
@@ -6011,6 +6036,7 @@
                                                 "affected_schools": null,
                                                 "sp_coefficient": null,
                                                 "pvp_coefficient": null,
+                                                "ap_coefficient": null,
                                                 "rank_op": null,
                                                 "rank_values": null,
                                                 "created_at": "2026-08-03T12:23:22.000000Z",
@@ -6029,6 +6055,7 @@
                                                 "affected_schools": null,
                                                 "sp_coefficient": null,
                                                 "pvp_coefficient": null,
+                                                "ap_coefficient": null,
                                                 "rank_op": null,
                                                 "rank_values": null,
                                                 "created_at": "2026-08-03T12:23:22.000000Z",
@@ -6047,6 +6074,7 @@
                                                 "affected_schools": null,
                                                 "sp_coefficient": null,
                                                 "pvp_coefficient": null,
+                                                "ap_coefficient": null,
                                                 "rank_op": null,
                                                 "rank_values": null,
                                                 "created_at": "2026-08-03T12:23:22.000000Z",
@@ -6086,8 +6114,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Protects the target with an earthen shield, increasing your healing on them by 20% and healing them for ≈87.6% of Spell Power when they take damage. This heal can only occur once every -1 sec. Lasts 3,600. Earth Shield can only be placed on the Shaman and one other target at a time. The Shaman can have up to two Elemental Shields active on them.",
-                            "uncertain": true
+                            "text": "Protects the target with an earthen shield, increasing your healing on them by 20% and healing them for ≈87.6% of Spell Power when they take damage. This heal can only occur once every 2 sec. Lasts 3,600. Earth Shield can only be placed on the Shaman and one other target at a time. The Shaman can have up to two Elemental Shields active on them.",
+                            "uncertain": false
                         },
                         "category": "Defensive",
                         "cooldown": {
@@ -6166,7 +6194,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Imbue your weapon with the element of Earth for 3,600. Your Riptide, Healing Wave, and Chain Heal healing has a 20% chance to trigger Earthliving on the target, healing for (varies) over 6.",
+                            "text": "Imbue your weapon with the element of Earth for 3,600. Your Riptide, Healing Wave, and Chain Heal healing has a 20% chance to trigger Earthliving on the target, healing for ≈138.9% of Spell Power over 6.",
                             "uncertain": true
                         },
                         "category": "Defensive",
@@ -6198,8 +6226,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Protects the target with an earthen shield, increasing your healing on them by 20% and healing them for ≈87.6% of Spell Power when they take damage. This heal can only occur once every -1 sec. Lasts 3,600. Earth Shield can only be placed on the Shaman and one other target at a time. The Shaman can have up to two Elemental Shields active on them.",
-                            "uncertain": true
+                            "text": "Protects the target with an earthen shield, increasing your healing on them by 20% and healing them for ≈87.6% of Spell Power when they take damage. This heal can only occur once every 2 sec. Lasts 3,600. Earth Shield can only be placed on the Shaman and one other target at a time. The Shaman can have up to two Elemental Shields active on them.",
+                            "uncertain": false
                         },
                         "category": "Defensive",
                         "cooldown": {
@@ -6395,7 +6423,7 @@
             "spellId": 10659,
             "category": "Offensive",
             "description": {
-                "text": "Summons a totem at your feet for 10, which pulses every (varies) sec, healing all party or raid members within 40 yards for ≈514.5% of Spell Power. Healing reduced beyond 5 targets.",
+                "text": "Summons a totem at your feet for 10, which pulses every 2 sec, healing all party or raid members within 40 yards for ≈514.5% of Spell Power. Healing reduced beyond 5 targets.",
                 "uncertain": true
             },
             "formulaModifierSpellIds": [],
@@ -6615,6 +6643,7 @@
                             "charges": null,
                             "max_stacks": null,
                             "proc_chance": null,
+                            "proc_cooldown_seconds": null,
                             "cooldown_seconds": null,
                             "cooldown_scaling_note": null,
                             "duration_seconds": null,
@@ -6662,6 +6691,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:23:23.000000Z",
@@ -6813,6 +6843,7 @@
                             "charges": null,
                             "max_stacks": null,
                             "proc_chance": null,
+                            "proc_cooldown_seconds": null,
                             "cooldown_seconds": null,
                             "cooldown_scaling_note": null,
                             "duration_seconds": null,
@@ -6860,6 +6891,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:23:23.000000Z",
@@ -7441,6 +7473,7 @@
                                         "charges": null,
                                         "max_stacks": null,
                                         "proc_chance": null,
+                                        "proc_cooldown_seconds": null,
                                         "cooldown_seconds": null,
                                         "cooldown_scaling_note": null,
                                         "duration_seconds": null,
@@ -7539,6 +7572,7 @@
                             "charges": null,
                             "max_stacks": null,
                             "proc_chance": null,
+                            "proc_cooldown_seconds": null,
                             "cooldown_seconds": null,
                             "cooldown_scaling_note": null,
                             "duration_seconds": null,
@@ -7586,6 +7620,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:23:23.000000Z",
@@ -7604,6 +7639,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:23:23.000000Z",
@@ -7632,7 +7668,7 @@
             "spellId": 10466,
             "category": "Offensive",
             "description": {
-                "text": "Charges your off-hand weapon with lava and burns your target, dealing (varies) Fire damage. Damage is increased by 100% if your offhand weapon is imbued with Flametongue Weapon. ",
+                "text": "Charges your off-hand weapon with lava and burns your target, dealing ≈322.3% of Attack Power Fire damage. Damage is increased by 100% if your offhand weapon is imbued with Flametongue Weapon. ",
                 "uncertain": true
             },
             "formulaModifierSpellIds": [],
@@ -8033,8 +8069,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Chain Heal now jumps to a nearby totem within 20 yards once it reaches its last target, causing the totem to cast Chain Heal on an injured ally within (varies) yards for 50. Jumps to 10 nearby targets within 20 yards.",
-                            "uncertain": true
+                            "text": "Chain Heal now jumps to a nearby totem within 20 yards once it reaches its last target, causing the totem to cast Chain Heal on an injured ally within 30 yards for 50. Jumps to 10 nearby targets within 20 yards.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -8049,8 +8085,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Chain Heal now jumps to a nearby totem within 20 yards once it reaches its last target, causing the totem to cast Chain Heal on an injured ally within (varies) yards for 50. Jumps to 50 nearby targets within 20 yards.",
-                            "uncertain": true
+                            "text": "Chain Heal now jumps to a nearby totem within 20 yards once it reaches its last target, causing the totem to cast Chain Heal on an injured ally within 30 yards for 50. Jumps to 50 nearby targets within 20 yards.",
+                            "uncertain": false
                         },
                         "category": "Defensive",
                         "cooldown": {
@@ -8081,8 +8117,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Chain Heal now jumps to a nearby totem within 20 yards once it reaches its last target, causing the totem to cast Chain Heal on an injured ally within (varies) yards for 50. Jumps to 2 nearby targets within 20 yards.",
-                            "uncertain": true
+                            "text": "Chain Heal now jumps to a nearby totem within 20 yards once it reaches its last target, causing the totem to cast Chain Heal on an injured ally within 30 yards for 50. Jumps to 2 nearby targets within 20 yards.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -8165,7 +8201,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Sears the target with fire, causing ≈22.4% of Spell Power Volcanic damage and then an additional (varies) Volcanic damage over 18. Flame Shock can be applied to a maximum of (varies) targets.",
+                            "text": "Sears the target with fire, causing ≈22.4% of Spell Power Volcanic damage and then an additional ≈120.1% of Spell Power Volcanic damage over 18. Flame Shock can be applied to a maximum of (varies) targets.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -8230,7 +8266,7 @@
             "spellId": 10075,
             "category": "Crowd Control",
             "description": {
-                "text": "Grips the target in lightning, stunning and dealing (varies) Nature damage over 5 while the target is lassoed. Can move while channeling.",
+                "text": "Grips the target in lightning, stunning and dealing ≈3,850% of Spell Power Nature damage over 5 while the target is lassoed. Can move while channeling.",
                 "uncertain": true
             },
             "formulaModifierSpellIds": [],
@@ -8968,7 +9004,7 @@
             "spellId": 10498,
             "category": "Other",
             "description": {
-                "text": "Summons a totem at your feet that removes all Poison effects from a nearby party or raid member within (varies) yards every (varies) sec for 6.",
+                "text": "Summons a totem at your feet that removes all Poison effects from a nearby party or raid member within (varies) yards every 1.5 sec for 6.",
                 "uncertain": true
             },
             "formulaModifierSpellIds": [],
@@ -9092,7 +9128,7 @@
             "spellId": 9804,
             "category": "Offensive",
             "description": {
-                "text": "An instant weapon strike that causes (varies) Physical damage.",
+                "text": "An instant weapon strike that causes ≈34% of Attack Power Physical damage.",
                 "uncertain": true
             },
             "formulaModifierSpellIds": [],
@@ -9519,7 +9555,7 @@
             "spellId": 10655,
             "category": "Defensive",
             "description": {
-                "text": "Restorative waters wash over a friendly target, healing them for ≈600% of Spell Power and an additional (varies) over 18.",
+                "text": "Restorative waters wash over a friendly target, healing them for ≈600% of Spell Power and an additional ≈478.2% of Spell Power over 18.",
                 "uncertain": true
             },
             "formulaModifierSpellIds": [],
@@ -9531,8 +9567,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Protects the target with an earthen shield, increasing your healing on them by 20% and healing them for ≈87.6% of Spell Power when they take damage. This heal can only occur once every -1 sec. Lasts 3,600. Earth Shield can only be placed on the Shaman and one other target at a time. The Shaman can have up to two Elemental Shields active on them.",
-                            "uncertain": true
+                            "text": "Protects the target with an earthen shield, increasing your healing on them by 20% and healing them for ≈87.6% of Spell Power when they take damage. This heal can only occur once every 2 sec. Lasts 3,600. Earth Shield can only be placed on the Shaman and one other target at a time. The Shaman can have up to two Elemental Shields active on them.",
+                            "uncertain": false
                         },
                         "category": "Defensive",
                         "cooldown": {
@@ -9611,7 +9647,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Imbue your weapon with the element of Earth for 3,600. Your Riptide, Healing Wave, and Chain Heal healing has a 20% chance to trigger Earthliving on the target, healing for (varies) over 6.",
+                            "text": "Imbue your weapon with the element of Earth for 3,600. Your Riptide, Healing Wave, and Chain Heal healing has a 20% chance to trigger Earthliving on the target, healing for ≈138.9% of Spell Power over 6.",
                             "uncertain": true
                         },
                         "category": "Defensive",
@@ -9643,8 +9679,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Protects the target with an earthen shield, increasing your healing on them by 20% and healing them for ≈87.6% of Spell Power when they take damage. This heal can only occur once every -1 sec. Lasts 3,600. Earth Shield can only be placed on the Shaman and one other target at a time. The Shaman can have up to two Elemental Shields active on them.",
-                            "uncertain": true
+                            "text": "Protects the target with an earthen shield, increasing your healing on them by 20% and healing them for ≈87.6% of Spell Power when they take damage. This heal can only occur once every 2 sec. Lasts 3,600. Earth Shield can only be placed on the Shaman and one other target at a time. The Shaman can have up to two Elemental Shields active on them.",
+                            "uncertain": false
                         },
                         "category": "Defensive",
                         "cooldown": {
@@ -9835,7 +9871,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Imbue your weapon with the element of Earth for 3,600. Your Riptide, Healing Wave, and Chain Heal healing has a 20% chance to trigger Earthliving on the target, healing for (varies) over 6.",
+                            "text": "Imbue your weapon with the element of Earth for 3,600. Your Riptide, Healing Wave, and Chain Heal healing has a 20% chance to trigger Earthliving on the target, healing for ≈138.9% of Spell Power over 6.",
                             "uncertain": true
                         },
                         "category": "Defensive",
@@ -10075,7 +10111,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Imbue your weapon with the element of Earth for 3,600. Your Riptide, Healing Wave, and Chain Heal healing has a 20% chance to trigger Earthliving on the target, healing for (varies) over 6.",
+                            "text": "Imbue your weapon with the element of Earth for 3,600. Your Riptide, Healing Wave, and Chain Heal healing has a 20% chance to trigger Earthliving on the target, healing for ≈138.9% of Spell Power over 6.",
                             "uncertain": true
                         },
                         "category": "Defensive",
@@ -10396,6 +10432,7 @@
                             "charges": null,
                             "max_stacks": null,
                             "proc_chance": null,
+                            "proc_cooldown_seconds": null,
                             "cooldown_seconds": null,
                             "cooldown_scaling_note": null,
                             "duration_seconds": null,
@@ -10443,6 +10480,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:23:24.000000Z",
@@ -10473,6 +10511,7 @@
                             "charges": null,
                             "max_stacks": null,
                             "proc_chance": null,
+                            "proc_cooldown_seconds": null,
                             "cooldown_seconds": null,
                             "cooldown_scaling_note": null,
                             "duration_seconds": null,
@@ -10520,6 +10559,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:23:23.000000Z",
@@ -10538,6 +10578,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:23:23.000000Z",
@@ -10652,8 +10693,8 @@
             "spellId": 10658,
             "category": "Defensive",
             "description": {
-                "text": "Summons a totem at the target location for 6, which reduces damage taken by all party and raid members within 10 yards by 10%. Immediately and every (varies) sec, the health of all affected players is redistributed evenly.",
-                "uncertain": true
+                "text": "Summons a totem at the target location for 6, which reduces damage taken by all party and raid members within 10 yards by 10%. Immediately and every 1 sec, the health of all affected players is redistributed evenly.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -10696,8 +10737,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "The Spirit Link Totem reduces damage taken by all party and raid members within 10 yards by 10%. Every (varies) sec, the health of all affected players is redistributed, such that each player ends up with the same percentage of their maximum health.",
-                            "uncertain": true
+                            "text": "The Spirit Link Totem reduces damage taken by all party and raid members within 10 yards by 10%. Every 1 sec, the health of all affected players is redistributed, such that each player ends up with the same percentage of their maximum health.",
+                            "uncertain": false
                         },
                         "category": "Defensive",
                         "cooldown": {
@@ -10893,8 +10934,8 @@
             "spellId": 10478,
             "category": "Defensive",
             "description": {
-                "text": "While transformed into a Ghost Wolf, you gain 5% increased movement speed and 5% damage reduction every (varies) sec, stacking up to 4 times.",
-                "uncertain": true
+                "text": "While transformed into a Ghost Wolf, you gain 5% increased movement speed and 5% damage reduction every 1 sec, stacking up to 4 times.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -11276,7 +11317,7 @@
             "spellId": 10440,
             "category": "Defensive",
             "description": {
-                "text": "Summons a totem at your feet that immediately heals 3 injured allies for ≈1,323% of Spell Power and additional heals 3 injured allies within 40 yards for 5 every (varies) sec for 15.",
+                "text": "Summons a totem at your feet that immediately heals 3 injured allies for ≈1,323% of Spell Power and additional heals 3 injured allies within 40 yards for 5 every 2 sec for 15.",
                 "uncertain": true
             },
             "formulaModifierSpellIds": [],
@@ -11512,6 +11553,7 @@
                             "charges": null,
                             "max_stacks": null,
                             "proc_chance": null,
+                            "proc_cooldown_seconds": null,
                             "cooldown_seconds": null,
                             "cooldown_scaling_note": null,
                             "duration_seconds": null,
@@ -11559,6 +11601,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:23:23.000000Z",
@@ -11577,6 +11620,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:23:23.000000Z",
@@ -11601,6 +11645,7 @@
                             "charges": null,
                             "max_stacks": null,
                             "proc_chance": null,
+                            "proc_cooldown_seconds": null,
                             "cooldown_seconds": null,
                             "cooldown_scaling_note": null,
                             "duration_seconds": null,
@@ -11648,6 +11693,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:23:24.000000Z",
@@ -11672,6 +11718,7 @@
                             "charges": null,
                             "max_stacks": null,
                             "proc_chance": null,
+                            "proc_cooldown_seconds": null,
                             "cooldown_seconds": null,
                             "cooldown_scaling_note": null,
                             "duration_seconds": null,
@@ -11719,6 +11766,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:23:24.000000Z",
@@ -11737,6 +11785,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:23:24.000000Z",
@@ -11755,6 +11804,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:23:24.000000Z",
@@ -11785,6 +11835,7 @@
                             "charges": null,
                             "max_stacks": null,
                             "proc_chance": null,
+                            "proc_cooldown_seconds": null,
                             "cooldown_seconds": null,
                             "cooldown_scaling_note": null,
                             "duration_seconds": null,
@@ -11832,6 +11883,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:23:23.000000Z",
@@ -11850,6 +11902,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:23:23.000000Z",
@@ -11879,6 +11932,7 @@
                                         "charges": null,
                                         "max_stacks": null,
                                         "proc_chance": null,
+                                        "proc_cooldown_seconds": null,
                                         "cooldown_seconds": null,
                                         "cooldown_scaling_note": null,
                                         "duration_seconds": null,
@@ -11926,6 +11980,7 @@
                                                 "affected_schools": null,
                                                 "sp_coefficient": null,
                                                 "pvp_coefficient": null,
+                                                "ap_coefficient": null,
                                                 "rank_op": null,
                                                 "rank_values": null,
                                                 "created_at": "2026-08-03T12:23:19.000000Z",
@@ -11956,6 +12011,7 @@
                                         "charges": null,
                                         "max_stacks": null,
                                         "proc_chance": null,
+                                        "proc_cooldown_seconds": null,
                                         "cooldown_seconds": null,
                                         "cooldown_scaling_note": null,
                                         "duration_seconds": "3600.00",
@@ -12013,6 +12069,7 @@
                                         "charges": null,
                                         "max_stacks": 2,
                                         "proc_chance": "100.00",
+                                        "proc_cooldown_seconds": null,
                                         "cooldown_seconds": null,
                                         "cooldown_scaling_note": null,
                                         "duration_seconds": "60.00",
@@ -12060,6 +12117,7 @@
                                                 "affected_schools": null,
                                                 "sp_coefficient": null,
                                                 "pvp_coefficient": null,
+                                                "ap_coefficient": null,
                                                 "rank_op": null,
                                                 "rank_values": null,
                                                 "created_at": "2026-08-03T12:23:22.000000Z",
@@ -12078,6 +12136,7 @@
                                                 "affected_schools": null,
                                                 "sp_coefficient": null,
                                                 "pvp_coefficient": null,
+                                                "ap_coefficient": null,
                                                 "rank_op": null,
                                                 "rank_values": null,
                                                 "created_at": "2026-08-03T12:23:22.000000Z",
@@ -12096,6 +12155,7 @@
                                                 "affected_schools": null,
                                                 "sp_coefficient": null,
                                                 "pvp_coefficient": null,
+                                                "ap_coefficient": null,
                                                 "rank_op": null,
                                                 "rank_values": null,
                                                 "created_at": "2026-08-03T12:23:22.000000Z",
@@ -12229,8 +12289,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Chain Heal now jumps to a nearby totem within 20 yards once it reaches its last target, causing the totem to cast Chain Heal on an injured ally within (varies) yards for 50. Jumps to 10 nearby targets within 20 yards.",
-                            "uncertain": true
+                            "text": "Chain Heal now jumps to a nearby totem within 20 yards once it reaches its last target, causing the totem to cast Chain Heal on an injured ally within 30 yards for 50. Jumps to 10 nearby targets within 20 yards.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -12245,8 +12305,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Chain Heal now jumps to a nearby totem within 20 yards once it reaches its last target, causing the totem to cast Chain Heal on an injured ally within (varies) yards for 50. Jumps to 50 nearby targets within 20 yards.",
-                            "uncertain": true
+                            "text": "Chain Heal now jumps to a nearby totem within 20 yards once it reaches its last target, causing the totem to cast Chain Heal on an injured ally within 30 yards for 50. Jumps to 50 nearby targets within 20 yards.",
+                            "uncertain": false
                         },
                         "category": "Defensive",
                         "cooldown": {
@@ -12309,8 +12369,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Chain Heal now jumps to a nearby totem within 20 yards once it reaches its last target, causing the totem to cast Chain Heal on an injured ally within (varies) yards for 50. Jumps to 2 nearby targets within 20 yards.",
-                            "uncertain": true
+                            "text": "Chain Heal now jumps to a nearby totem within 20 yards once it reaches its last target, causing the totem to cast Chain Heal on an injured ally within 30 yards for 50. Jumps to 2 nearby targets within 20 yards.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -12664,8 +12724,8 @@
             "spellId": 10482,
             "category": "Other",
             "description": {
-                "text": "Ghost Wolf removes snares and increases your movement speed by an additional 25% for the first 3. May only occur once every (varies) sec.",
-                "uncertain": true
+                "text": "Ghost Wolf removes snares and increases your movement speed by an additional 25% for the first 3. May only occur once every 20 sec.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -13032,8 +13092,8 @@
             "spellId": 10636,
             "category": "Other",
             "description": {
-                "text": "Chain Heal now jumps to a nearby totem within 20 yards once it reaches its last target, causing the totem to cast Chain Heal on an injured ally within (varies) yards for 50. Jumps to 2 nearby targets within 20 yards.",
-                "uncertain": true
+                "text": "Chain Heal now jumps to a nearby totem within 20 yards once it reaches its last target, causing the totem to cast Chain Heal on an injured ally within 30 yards for 50. Jumps to 2 nearby targets within 20 yards.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -13215,8 +13275,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Protects the target with an earthen shield, increasing your healing on them by 20% and healing them for ≈87.6% of Spell Power when they take damage. This heal can only occur once every -1 sec. Lasts 3,600. Earth Shield can only be placed on the Shaman and one other target at a time. The Shaman can have up to two Elemental Shields active on them.",
-                            "uncertain": true
+                            "text": "Protects the target with an earthen shield, increasing your healing on them by 20% and healing them for ≈87.6% of Spell Power when they take damage. This heal can only occur once every 2 sec. Lasts 3,600. Earth Shield can only be placed on the Shaman and one other target at a time. The Shaman can have up to two Elemental Shields active on them.",
+                            "uncertain": false
                         },
                         "category": "Defensive",
                         "cooldown": {
@@ -13263,7 +13323,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Imbue your weapon with the element of Earth for 3,600. Your Riptide, Healing Wave, and Chain Heal healing has a 20% chance to trigger Earthliving on the target, healing for (varies) over 6.",
+                            "text": "Imbue your weapon with the element of Earth for 3,600. Your Riptide, Healing Wave, and Chain Heal healing has a 20% chance to trigger Earthliving on the target, healing for ≈138.9% of Spell Power over 6.",
                             "uncertain": true
                         },
                         "category": "Defensive",
@@ -13295,8 +13355,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Protects the target with an earthen shield, increasing your healing on them by 20% and healing them for ≈87.6% of Spell Power when they take damage. This heal can only occur once every -1 sec. Lasts 3,600. Earth Shield can only be placed on the Shaman and one other target at a time. The Shaman can have up to two Elemental Shields active on them.",
-                            "uncertain": true
+                            "text": "Protects the target with an earthen shield, increasing your healing on them by 20% and healing them for ≈87.6% of Spell Power when they take damage. This heal can only occur once every 2 sec. Lasts 3,600. Earth Shield can only be placed on the Shaman and one other target at a time. The Shaman can have up to two Elemental Shields active on them.",
+                            "uncertain": false
                         },
                         "category": "Defensive",
                         "cooldown": {
@@ -13704,8 +13764,8 @@
             "spellId": 10642,
             "category": "Defensive",
             "description": {
-                "text": "If you have a totem active, your totem grants you a shield absorbing (varies) damage for 30 every 30.",
-                "uncertain": true
+                "text": "If you have a totem active, your totem grants you a shield absorbing ≈6% of maximum health damage for 30 every 30.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -13954,6 +14014,7 @@
                             "charges": null,
                             "max_stacks": null,
                             "proc_chance": null,
+                            "proc_cooldown_seconds": null,
                             "cooldown_seconds": null,
                             "cooldown_scaling_note": null,
                             "duration_seconds": null,
@@ -14001,6 +14062,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:23:18.000000Z",
@@ -14019,6 +14081,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:23:18.000000Z",
@@ -14037,6 +14100,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:23:18.000000Z",
@@ -14055,6 +14119,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:23:18.000000Z",
@@ -14073,6 +14138,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:23:18.000000Z",
@@ -14091,6 +14157,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:23:18.000000Z",
@@ -14109,6 +14176,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:23:18.000000Z",
@@ -14127,6 +14195,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:23:18.000000Z",
@@ -14145,6 +14214,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:23:18.000000Z",
@@ -14163,6 +14233,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:23:18.000000Z",
@@ -14181,6 +14252,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:23:18.000000Z",
@@ -14199,6 +14271,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:23:18.000000Z",
@@ -14217,6 +14290,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:23:18.000000Z",
@@ -14235,6 +14309,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:23:18.000000Z",
@@ -14253,6 +14328,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:23:18.000000Z",
@@ -14271,6 +14347,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:23:18.000000Z",
@@ -14289,6 +14366,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:23:18.000000Z",
@@ -14307,6 +14385,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:23:18.000000Z",
@@ -14325,6 +14404,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:23:18.000000Z",

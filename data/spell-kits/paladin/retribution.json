@@ -1,6 +1,6 @@
 {
-    "generatedAt": "2026-10-07T21:49:06+00:00",
-    "spellCacheVersion": 27,
+    "generatedAt": "2026-10-18T02:37:23+00:00",
+    "spellCacheVersion": 29,
     "codeFingerprint": "dev",
     "entries": [
         {
@@ -160,8 +160,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Righteous Cause further empowers Blade of Justice to unleash a wave of Holy energy, dealing 11 Holy damage to its primary target and 10 Holy damage to all other enemies in its path.",
-                            "uncertain": false
+                            "text": "Righteous Cause further empowers Blade of Justice to unleash a wave of Holy energy, dealing (varies) Holy damage to its primary target and 10 Holy damage to all other enemies in its path.",
+                            "uncertain": true
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -176,7 +176,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Righteous Cause further empowers Blade of Justice to unleash a wave of Holy energy, dealing 25 Holy damage to its primary target and 10 Holy damage to all other enemies in its path.",
+                            "text": "Righteous Cause further empowers Blade of Justice to unleash a wave of Holy energy, dealing ≈829.8% of Attack Power Holy damage to its primary target and 10 Holy damage to all other enemies in its path.",
                             "uncertain": false
                         },
                         "category": "Offensive",
@@ -637,6 +637,7 @@
                             "charges": null,
                             "max_stacks": null,
                             "proc_chance": null,
+                            "proc_cooldown_seconds": null,
                             "cooldown_seconds": null,
                             "cooldown_scaling_note": null,
                             "duration_seconds": null,
@@ -684,6 +685,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:22:57.000000Z",
@@ -702,6 +704,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:22:57.000000Z",
@@ -720,6 +723,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": 0.25,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:22:57.000000Z",
@@ -738,6 +742,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": 0.25,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:22:57.000000Z",
@@ -756,6 +761,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": 0.25,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:22:57.000000Z",
@@ -774,6 +780,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": 0.25,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:22:57.000000Z",
@@ -792,6 +799,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:22:57.000000Z",
@@ -810,6 +818,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:22:57.000000Z",
@@ -828,6 +837,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:22:57.000000Z",
@@ -846,6 +856,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:22:57.000000Z",
@@ -864,6 +875,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:22:57.000000Z",
@@ -882,6 +894,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:22:57.000000Z",
@@ -900,6 +913,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:22:57.000000Z",
@@ -918,6 +932,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:22:57.000000Z",
@@ -936,6 +951,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:22:57.000000Z",
@@ -954,6 +970,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:22:57.000000Z",
@@ -972,6 +989,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:22:57.000000Z",
@@ -990,6 +1008,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:22:57.000000Z",
@@ -1008,6 +1027,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:22:57.000000Z",
@@ -1026,6 +1046,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:22:57.000000Z",
@@ -1044,6 +1065,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:22:57.000000Z",
@@ -1062,6 +1084,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": 0.5,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:22:57.000000Z",
@@ -1080,6 +1103,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:22:57.000000Z",
@@ -1098,6 +1122,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:22:57.000000Z",
@@ -1130,7 +1155,7 @@
             "spellId": 7935,
             "category": "Offensive",
             "description": {
-                "text": "Pierce enemies with a blade of light, dealing (varies) Holy damage to your target and (varies) Holy damage to nearby enemies. Generates 1 Holy Power.",
+                "text": "Pierce enemies with a blade of light, dealing ≈192.9% of Attack Power Holy damage to your target and ≈58.5% of Attack Power Holy damage to nearby enemies. Generates 1 Holy Power.",
                 "uncertain": true
             },
             "formulaModifierSpellIds": [],
@@ -1162,6 +1187,7 @@
                                         "charges": null,
                                         "max_stacks": null,
                                         "proc_chance": null,
+                                        "proc_cooldown_seconds": null,
                                         "cooldown_seconds": null,
                                         "cooldown_scaling_note": null,
                                         "duration_seconds": null,
@@ -1289,7 +1315,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Your Blade of Justice causes the target to burn for (varies) Holy damage over 9. When reapplied, any remaining damage is added to the new effect.",
+                            "text": "Your Blade of Justice causes the target to burn for ≈68.9% of Attack Power Holy damage over 9. When reapplied, any remaining damage is added to the new effect.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -1321,7 +1347,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Your Blade of Justice causes the target to burn for (varies) Holy damage over 9. When reapplied, any remaining damage is added to the new effect.",
+                            "text": "Your Blade of Justice causes the target to burn for ≈68.9% of Attack Power Holy damage over 9. When reapplied, any remaining damage is added to the new effect.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -1337,7 +1363,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Blade of Justice now hits nearby enemies for (varies) Holy damage. Deals reduced damage beyond 5 targets.",
+                            "text": "Blade of Justice now hits nearby enemies for ≈58.5% of Attack Power Holy damage. Deals reduced damage beyond 5 targets.",
                             "uncertain": true
                         },
                         "category": "Other",
@@ -1453,7 +1479,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Increases Holy damage done by 0%. Judgment has a 0% chance to blast the target with the Light, dealing (varies) Holy damage.",
+                            "text": "Increases Holy damage done by 0%. Judgment has a 0% chance to blast the target with the Light, dealing ≈390% of Attack Power Holy damage.",
                             "uncertain": true
                         },
                         "category": "Other",
@@ -1505,6 +1531,7 @@
                                         "charges": null,
                                         "max_stacks": null,
                                         "proc_chance": null,
+                                        "proc_cooldown_seconds": null,
                                         "cooldown_seconds": null,
                                         "cooldown_scaling_note": null,
                                         "duration_seconds": null,
@@ -1680,8 +1707,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Righteous Cause further empowers Blade of Justice to unleash a wave of Holy energy, dealing 11 Holy damage to its primary target and 10 Holy damage to all other enemies in its path.",
-                            "uncertain": false
+                            "text": "Righteous Cause further empowers Blade of Justice to unleash a wave of Holy energy, dealing (varies) Holy damage to its primary target and 10 Holy damage to all other enemies in its path.",
+                            "uncertain": true
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -1728,7 +1755,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Righteous Cause further empowers Blade of Justice to unleash a wave of Holy energy, dealing 25 Holy damage to its primary target and 10 Holy damage to all other enemies in its path.",
+                            "text": "Righteous Cause further empowers Blade of Justice to unleash a wave of Holy energy, dealing ≈829.8% of Attack Power Holy damage to its primary target and 10 Holy damage to all other enemies in its path.",
                             "uncertain": false
                         },
                         "category": "Offensive",
@@ -1765,7 +1792,7 @@
             "spellId": 7954,
             "category": "Other",
             "description": {
-                "text": "Blade of Justice now hits nearby enemies for (varies) Holy damage. Deals reduced damage beyond 5 targets.",
+                "text": "Blade of Justice now hits nearby enemies for ≈58.5% of Attack Power Holy damage. Deals reduced damage beyond 5 targets.",
                 "uncertain": true
             },
             "formulaModifierSpellIds": [],
@@ -1932,8 +1959,8 @@
             "spellId": 7719,
             "category": "Defensive",
             "description": {
-                "text": "While you are above 85% health, 5% of all damage taken by allies within 20 yds is redirected to you, up to a maximum of (varies) every 5 sec.",
-                "uncertain": true
+                "text": "While you are above 85% health, 5% of all damage taken by allies within 20 yds is redirected to you, up to a maximum of ≈5% of maximum health every 5 sec.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -2476,6 +2503,7 @@
                             "charges": null,
                             "max_stacks": null,
                             "proc_chance": null,
+                            "proc_cooldown_seconds": null,
                             "cooldown_seconds": null,
                             "cooldown_scaling_note": null,
                             "duration_seconds": null,
@@ -2523,6 +2551,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:22:58.000000Z",
@@ -2729,6 +2758,7 @@
                             "charges": null,
                             "max_stacks": null,
                             "proc_chance": null,
+                            "proc_cooldown_seconds": null,
                             "cooldown_seconds": null,
                             "cooldown_scaling_note": null,
                             "duration_seconds": null,
@@ -2776,6 +2806,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:22:58.000000Z",
@@ -3029,7 +3060,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "After (varies by condition — check in-game) successfully removes an effect from an ally, they are healed for ≈2,916% of Spell Power.",
+                            "text": "After (varies by condition — check in-game) successfully removes an effect from an ally, they are healed for (varies).",
                             "uncertain": true
                         },
                         "category": "Defensive",
@@ -3427,7 +3458,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Crusader Strike loses a charge but is now a combo ability. Templar Strike slashes an enemy for (varies) Radiant damage and gets followed up by Templar Slash that deals (varies) Radiant damage. Templar Slash always critically strikes.",
+                            "text": "Crusader Strike loses a charge but is now a combo ability. Templar Strike slashes an enemy for ≈187.5% of Attack Power Radiant damage and gets followed up by Templar Slash that deals ≈215.6% of Attack Power Radiant damage. Templar Slash always critically strikes.",
                             "uncertain": true
                         },
                         "category": "Other",
@@ -3460,7 +3491,7 @@
             "spellId": 7439,
             "category": "Offensive",
             "description": {
-                "text": "Strike the target for 1 Holystrike damage. Generates 1 Holy Power every other attack.",
+                "text": "Strike the target for ≈234.7% of Attack Power Holystrike damage. Generates 1 Holy Power every other attack.",
                 "uncertain": false
             },
             "formulaModifierSpellIds": [],
@@ -3492,6 +3523,7 @@
                                         "charges": null,
                                         "max_stacks": null,
                                         "proc_chance": null,
+                                        "proc_cooldown_seconds": null,
                                         "cooldown_seconds": null,
                                         "cooldown_scaling_note": null,
                                         "duration_seconds": null,
@@ -3691,6 +3723,7 @@
                                         "charges": null,
                                         "max_stacks": null,
                                         "proc_chance": null,
+                                        "proc_cooldown_seconds": null,
                                         "cooldown_seconds": null,
                                         "cooldown_scaling_note": null,
                                         "duration_seconds": null,
@@ -3803,7 +3836,7 @@
             "spellId": 7780,
             "category": "Offensive",
             "description": {
-                "text": "Casting (varies by condition — check in-game) causes your next 2 Holy Power spending abilities to apply Dawnlight on your target, dealing (varies) Radiant damage or (varies) healing over 8. 8% of Dawnlight's damage and healing radiates to nearby allies or enemies, reduced beyond 5 targets.(varies by condition — check in-game)",
+                "text": "Casting (varies by condition — check in-game) causes your next 2 Holy Power spending abilities to apply Dawnlight on your target, dealing ≈255% of Spell Power Radiant damage or ≈538.2% of Spell Power healing over 8. 8% of Dawnlight's damage and healing radiates to nearby allies or enemies, reduced beyond 5 targets.(varies by condition — check in-game)",
                 "uncertain": true
             },
             "formulaModifierSpellIds": [],
@@ -3815,7 +3848,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Casting (varies by condition — check in-game) causes your next 2 Holy Power spending abilities to apply Dawnlight on your target, dealing (varies) Radiant damage or (varies) healing over 8. 8% of Dawnlight's damage and healing radiates to nearby allies or enemies, reduced beyond 5 targets.(varies by condition — check in-game)",
+                            "text": "Casting (varies by condition — check in-game) causes your next 2 Holy Power spending abilities to apply Dawnlight on your target, dealing ≈255% of Spell Power Radiant damage or ≈538.2% of Spell Power healing over 8. 8% of Dawnlight's damage and healing radiates to nearby allies or enemies, reduced beyond 5 targets.(varies by condition — check in-game)",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -3831,7 +3864,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Casting (varies by condition — check in-game) causes your next 2 Holy Power spending abilities to apply Dawnlight on your target, dealing (varies) Radiant damage or (varies) healing over 8. 8% of Dawnlight's damage and healing radiates to nearby allies or enemies, reduced beyond 5 targets.(varies by condition — check in-game)",
+                            "text": "Casting (varies by condition — check in-game) causes your next 2 Holy Power spending abilities to apply Dawnlight on your target, dealing ≈255% of Spell Power Radiant damage or ≈538.2% of Spell Power healing over 8. 8% of Dawnlight's damage and healing radiates to nearby allies or enemies, reduced beyond 5 targets.(varies by condition — check in-game)",
                             "uncertain": true
                         },
                         "category": "Mobility",
@@ -3847,7 +3880,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Casting (varies by condition — check in-game) causes your next 2 Holy Power spending abilities to apply Dawnlight on your target, dealing (varies) Radiant damage or (varies) healing over 8. 8% of Dawnlight's damage and healing radiates to nearby allies or enemies, reduced beyond 5 targets.(varies by condition — check in-game)",
+                            "text": "Casting (varies by condition — check in-game) causes your next 2 Holy Power spending abilities to apply Dawnlight on your target, dealing ≈255% of Spell Power Radiant damage or ≈538.2% of Spell Power healing over 8. 8% of Dawnlight's damage and healing radiates to nearby allies or enemies, reduced beyond 5 targets.(varies by condition — check in-game)",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -3863,7 +3896,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Casting (varies by condition — check in-game) causes your next 2 Holy Power spending abilities to apply Dawnlight on your target, dealing (varies) Radiant damage or (varies) healing over 8. 8% of Dawnlight's damage and healing radiates to nearby allies or enemies, reduced beyond 5 targets.(varies by condition — check in-game)",
+                            "text": "Casting (varies by condition — check in-game) causes your next 2 Holy Power spending abilities to apply Dawnlight on your target, dealing ≈255% of Spell Power Radiant damage or ≈538.2% of Spell Power healing over 8. 8% of Dawnlight's damage and healing radiates to nearby allies or enemies, reduced beyond 5 targets.(varies by condition — check in-game)",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -3879,7 +3912,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Casting (varies by condition — check in-game) causes your next ≈13.5% of Spell Power Holy Power spending abilities to apply Dawnlight on your target, dealing (varies) Radiant damage or (varies) healing over 8. 8% of Dawnlight's damage and healing radiates to nearby allies or enemies, reduced beyond 5 targets.(varies by condition — check in-game)",
+                            "text": "Casting (varies by condition — check in-game) causes your next ≈13.5% of Spell Power Holy Power spending abilities to apply Dawnlight on your target, dealing ≈255% of Spell Power Radiant damage or ≈538.2% of Spell Power healing over 8. 8% of Dawnlight's damage and healing radiates to nearby allies or enemies, reduced beyond 5 targets.(varies by condition — check in-game)",
                             "uncertain": true
                         },
                         "category": "Defensive",
@@ -3943,7 +3976,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Casting (varies by condition — check in-game) causes your next 8 Holy Power spending abilities to apply Dawnlight on your target, dealing (varies) Radiant damage or (varies) healing over 8. 8% of Dawnlight's damage and healing radiates to nearby allies or enemies, reduced beyond 5 targets.(varies by condition — check in-game)",
+                            "text": "Casting (varies by condition — check in-game) causes your next 8 Holy Power spending abilities to apply Dawnlight on your target, dealing ≈255% of Spell Power Radiant damage or ≈538.2% of Spell Power healing over 8. 8% of Dawnlight's damage and healing radiates to nearby allies or enemies, reduced beyond 5 targets.(varies by condition — check in-game)",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -4103,8 +4136,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Every 0 sec, your next Dawnlight's damage or healing is increased by 5%, stacking up to 10 times. Morning Star stacks twice as fast while out of combat.",
-                            "uncertain": true
+                            "text": "Every 5 sec, your next Dawnlight's damage or healing is increased by 5%, stacking up to 10 times. Morning Star stacks twice as fast while out of combat.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -4281,7 +4314,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Hurls a divine hammer that strikes an enemy for 1,241,413 Holy damage. Generates 1 Holy Power.",
+                            "text": "Hurls a divine hammer that strikes an enemy for ≈215.8% of Attack Power Holy damage. Generates 1 Holy Power.",
                             "uncertain": false
                         },
                         "category": "Offensive",
@@ -4313,7 +4346,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Hurls a divine hammer that strikes an enemy for 1,241,413 Holystrike damage. Generates 1 Holy Power.",
+                            "text": "Hurls a divine hammer that strikes an enemy for ≈123.8% of Attack Power Holystrike damage. Generates 1 Holy Power.",
                             "uncertain": false
                         },
                         "category": "Offensive",
@@ -4329,7 +4362,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Hurls a divine hammer that strikes an enemy for 1,241,413 Holy damage. Generates 1 Holy Power.",
+                            "text": "Hurls a divine hammer that strikes an enemy for ≈215.8% of Attack Power Holy damage. Generates 1 Holy Power.",
                             "uncertain": false
                         },
                         "category": "Offensive",
@@ -4422,8 +4455,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Divine Protection reduces damage taken by an additional 30% and casts Shield of Vengeance. Shield of Vengeance Creates a barrier of holy light that absorbs (varies) damage for 10. When the shield expires, it bursts to inflict Holy damage equal to the total amount absorbed, divided among all nearby enemies.",
-                            "uncertain": true
+                            "text": "Divine Protection reduces damage taken by an additional 30% and casts Shield of Vengeance. Shield of Vengeance Creates a barrier of holy light that absorbs ≈30% of maximum health damage for 10. When the shield expires, it bursts to inflict Holy damage equal to the total amount absorbed, divided among all nearby enemies.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -4519,6 +4552,7 @@
                             "charges": null,
                             "max_stacks": null,
                             "proc_chance": null,
+                            "proc_cooldown_seconds": null,
                             "cooldown_seconds": null,
                             "cooldown_scaling_note": null,
                             "duration_seconds": null,
@@ -4566,6 +4600,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:22:57.000000Z",
@@ -4584,6 +4619,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:22:57.000000Z",
@@ -4602,6 +4638,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": 0.25,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:22:57.000000Z",
@@ -4620,6 +4657,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": 0.25,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:22:57.000000Z",
@@ -4638,6 +4676,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": 0.25,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:22:57.000000Z",
@@ -4656,6 +4695,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": 0.25,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:22:57.000000Z",
@@ -4674,6 +4714,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:22:57.000000Z",
@@ -4692,6 +4733,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:22:57.000000Z",
@@ -4710,6 +4752,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:22:57.000000Z",
@@ -4728,6 +4771,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:22:57.000000Z",
@@ -4746,6 +4790,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:22:57.000000Z",
@@ -4764,6 +4809,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:22:57.000000Z",
@@ -4782,6 +4828,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:22:57.000000Z",
@@ -4800,6 +4847,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:22:57.000000Z",
@@ -4818,6 +4866,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:22:57.000000Z",
@@ -4836,6 +4885,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:22:57.000000Z",
@@ -4854,6 +4904,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:22:57.000000Z",
@@ -4872,6 +4923,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:22:57.000000Z",
@@ -4890,6 +4942,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:22:57.000000Z",
@@ -4908,6 +4961,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:22:57.000000Z",
@@ -4926,6 +4980,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:22:57.000000Z",
@@ -4944,6 +4999,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": 0.5,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:22:57.000000Z",
@@ -4962,6 +5018,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:22:57.000000Z",
@@ -4980,6 +5037,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:22:57.000000Z",
@@ -5443,6 +5501,7 @@
                             "charges": null,
                             "max_stacks": null,
                             "proc_chance": null,
+                            "proc_cooldown_seconds": null,
                             "cooldown_seconds": null,
                             "cooldown_scaling_note": null,
                             "duration_seconds": null,
@@ -5490,6 +5549,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:22:58.000000Z",
@@ -5514,8 +5574,8 @@
             "spellId": 7934,
             "category": "Offensive",
             "description": {
-                "text": "Unleashes a whirl of divine energy, dealing (varies) Radiant damage to all nearby enemies. Deals reduced damage beyond 5 targets.",
-                "uncertain": true
+                "text": "Unleashes a whirl of divine energy, dealing ≈276.6% of Attack Power Radiant damage to all nearby enemies. Deals reduced damage beyond 5 targets.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -5546,6 +5606,7 @@
                                         "charges": null,
                                         "max_stacks": null,
                                         "proc_chance": null,
+                                        "proc_cooldown_seconds": null,
                                         "cooldown_seconds": null,
                                         "cooldown_scaling_note": null,
                                         "duration_seconds": null,
@@ -5901,7 +5962,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Increases Holy damage done by 0%. Judgment has a 0% chance to blast the target with the Light, dealing (varies) Holy damage.",
+                            "text": "Increases Holy damage done by 0%. Judgment has a 0% chance to blast the target with the Light, dealing ≈390% of Attack Power Holy damage.",
                             "uncertain": true
                         },
                         "category": "Other",
@@ -6033,6 +6094,7 @@
                                         "charges": null,
                                         "max_stacks": null,
                                         "proc_chance": null,
+                                        "proc_cooldown_seconds": null,
                                         "cooldown_seconds": null,
                                         "cooldown_scaling_note": null,
                                         "duration_seconds": null,
@@ -6128,7 +6190,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Divine Storm heals you and up to 2 nearby allies for (varies).",
+                            "text": "Divine Storm heals you and up to 2 nearby allies for ≈125% of Attack Power.",
                             "uncertain": true
                         },
                         "category": "Other",
@@ -6273,6 +6335,7 @@
                                         "charges": null,
                                         "max_stacks": null,
                                         "proc_chance": null,
+                                        "proc_cooldown_seconds": null,
                                         "cooldown_seconds": null,
                                         "cooldown_scaling_note": null,
                                         "duration_seconds": null,
@@ -6352,7 +6415,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "After casting Divine Toll, you instantly cast (varies by condition — check in-game) every (varies) sec. This effect lasts 15 sec.",
+                            "text": "After casting Divine Toll, you instantly cast (varies by condition — check in-game) every 5 sec. This effect lasts 15 sec.",
                             "uncertain": true
                         },
                         "category": "Other",
@@ -6368,7 +6431,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "After casting Divine Toll, you instantly cast (varies by condition — check in-game) every (varies) sec. This effect lasts 15 sec.",
+                            "text": "After casting Divine Toll, you instantly cast (varies by condition — check in-game) every 5 sec. This effect lasts 15 sec.",
                             "uncertain": true
                         },
                         "category": "Other",
@@ -6384,7 +6447,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "After casting Divine Toll, you instantly cast (varies by condition — check in-game) every (varies) sec. This effect lasts 15 sec.",
+                            "text": "After casting Divine Toll, you instantly cast (varies by condition — check in-game) every 5 sec. This effect lasts 15 sec.",
                             "uncertain": true
                         },
                         "category": "Other",
@@ -6400,7 +6463,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "After casting Divine Toll, you instantly cast (varies by condition — check in-game) every (varies) sec. This effect lasts 15 sec.",
+                            "text": "After casting Divine Toll, you instantly cast (varies by condition — check in-game) every 5 sec. This effect lasts 15 sec.",
                             "uncertain": true
                         },
                         "category": "Other",
@@ -6416,7 +6479,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "After casting Divine Toll, you instantly cast (varies by condition — check in-game) every (varies) sec. This effect lasts 15 sec.",
+                            "text": "After casting Divine Toll, you instantly cast (varies by condition — check in-game) every 5 sec. This effect lasts 15 sec.",
                             "uncertain": true
                         },
                         "category": "Other",
@@ -6496,7 +6559,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "After casting(varies by condition — check in-game) Divine Toll, you instantly cast (varies by condition — check in-game) every (varies) sec for 15 sec.",
+                            "text": "After casting(varies by condition — check in-game) Divine Toll, you instantly cast (varies by condition — check in-game) every 5 sec for 15 sec.",
                             "uncertain": true
                         },
                         "category": "Other",
@@ -6512,7 +6575,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "After casting(varies by condition — check in-game) Divine Toll, you instantly cast (varies by condition — check in-game) every (varies) sec for 15 sec.",
+                            "text": "After casting(varies by condition — check in-game) Divine Toll, you instantly cast (varies by condition — check in-game) every 5 sec for 15 sec.",
                             "uncertain": true
                         },
                         "category": "Other",
@@ -6528,7 +6591,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "After casting(varies by condition — check in-game) Divine Toll, you instantly cast (varies by condition — check in-game) every (varies) sec for 15 sec.",
+                            "text": "After casting(varies by condition — check in-game) Divine Toll, you instantly cast (varies by condition — check in-game) every 5 sec for 15 sec.",
                             "uncertain": true
                         },
                         "category": "Other",
@@ -6544,7 +6607,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "After casting(varies by condition — check in-game) Divine Toll, you instantly cast (varies by condition — check in-game) every (varies) sec for 15 sec.",
+                            "text": "After casting(varies by condition — check in-game) Divine Toll, you instantly cast (varies by condition — check in-game) every 5 sec for 15 sec.",
                             "uncertain": true
                         },
                         "category": "Other",
@@ -6560,7 +6623,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "After casting(varies by condition — check in-game) Divine Toll, you instantly cast (varies by condition — check in-game) every (varies) sec for 15 sec.",
+                            "text": "After casting(varies by condition — check in-game) Divine Toll, you instantly cast (varies by condition — check in-game) every 5 sec for 15 sec.",
                             "uncertain": true
                         },
                         "category": "Other",
@@ -6576,7 +6639,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Casting (varies by condition — check in-game) causes your next 2 Holy Power spending abilities to apply Dawnlight on your target, dealing (varies) Radiant damage or (varies) healing over 8. 8% of Dawnlight's damage and healing radiates to nearby allies or enemies, reduced beyond 5 targets.(varies by condition — check in-game)",
+                            "text": "Casting (varies by condition — check in-game) causes your next 2 Holy Power spending abilities to apply Dawnlight on your target, dealing ≈255% of Spell Power Radiant damage or ≈538.2% of Spell Power healing over 8. 8% of Dawnlight's damage and healing radiates to nearby allies or enemies, reduced beyond 5 targets.(varies by condition — check in-game)",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -6592,7 +6655,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Casting (varies by condition — check in-game) causes your next 2 Holy Power spending abilities to apply Dawnlight on your target, dealing (varies) Radiant damage or (varies) healing over 8. 8% of Dawnlight's damage and healing radiates to nearby allies or enemies, reduced beyond 5 targets.(varies by condition — check in-game)",
+                            "text": "Casting (varies by condition — check in-game) causes your next 2 Holy Power spending abilities to apply Dawnlight on your target, dealing ≈255% of Spell Power Radiant damage or ≈538.2% of Spell Power healing over 8. 8% of Dawnlight's damage and healing radiates to nearby allies or enemies, reduced beyond 5 targets.(varies by condition — check in-game)",
                             "uncertain": true
                         },
                         "category": "Mobility",
@@ -6608,7 +6671,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Casting (varies by condition — check in-game) causes your next 2 Holy Power spending abilities to apply Dawnlight on your target, dealing (varies) Radiant damage or (varies) healing over 8. 8% of Dawnlight's damage and healing radiates to nearby allies or enemies, reduced beyond 5 targets.(varies by condition — check in-game)",
+                            "text": "Casting (varies by condition — check in-game) causes your next 2 Holy Power spending abilities to apply Dawnlight on your target, dealing ≈255% of Spell Power Radiant damage or ≈538.2% of Spell Power healing over 8. 8% of Dawnlight's damage and healing radiates to nearby allies or enemies, reduced beyond 5 targets.(varies by condition — check in-game)",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -6624,7 +6687,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Casting (varies by condition — check in-game) causes your next 2 Holy Power spending abilities to apply Dawnlight on your target, dealing (varies) Radiant damage or (varies) healing over 8. 8% of Dawnlight's damage and healing radiates to nearby allies or enemies, reduced beyond 5 targets.(varies by condition — check in-game)",
+                            "text": "Casting (varies by condition — check in-game) causes your next 2 Holy Power spending abilities to apply Dawnlight on your target, dealing ≈255% of Spell Power Radiant damage or ≈538.2% of Spell Power healing over 8. 8% of Dawnlight's damage and healing radiates to nearby allies or enemies, reduced beyond 5 targets.(varies by condition — check in-game)",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -6640,7 +6703,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Casting (varies by condition — check in-game) causes your next ≈13.5% of Spell Power Holy Power spending abilities to apply Dawnlight on your target, dealing (varies) Radiant damage or (varies) healing over 8. 8% of Dawnlight's damage and healing radiates to nearby allies or enemies, reduced beyond 5 targets.(varies by condition — check in-game)",
+                            "text": "Casting (varies by condition — check in-game) causes your next ≈13.5% of Spell Power Holy Power spending abilities to apply Dawnlight on your target, dealing ≈255% of Spell Power Radiant damage or ≈538.2% of Spell Power healing over 8. 8% of Dawnlight's damage and healing radiates to nearby allies or enemies, reduced beyond 5 targets.(varies by condition — check in-game)",
                             "uncertain": true
                         },
                         "category": "Defensive",
@@ -6656,7 +6719,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Casting (varies by condition — check in-game) causes your next 8 Holy Power spending abilities to apply Dawnlight on your target, dealing (varies) Radiant damage or (varies) healing over 8. 8% of Dawnlight's damage and healing radiates to nearby allies or enemies, reduced beyond 5 targets.(varies by condition — check in-game)",
+                            "text": "Casting (varies by condition — check in-game) causes your next 8 Holy Power spending abilities to apply Dawnlight on your target, dealing ≈255% of Spell Power Radiant damage or ≈538.2% of Spell Power healing over 8. 8% of Dawnlight's damage and healing radiates to nearby allies or enemies, reduced beyond 5 targets.(varies by condition — check in-game)",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -6704,7 +6767,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "After casting(varies by condition — check in-game) Divine Toll, you instantly cast (varies by condition — check in-game) every (varies) sec for 15 sec.",
+                            "text": "After casting(varies by condition — check in-game) Divine Toll, you instantly cast (varies by condition — check in-game) every 5 sec for 15 sec.",
                             "uncertain": true
                         },
                         "category": "Other",
@@ -6720,7 +6783,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Casting (varies by condition — check in-game) causes your next 2 Holy Power spending abilities to apply Dawnlight on your target, dealing (varies) Radiant damage or (varies) healing over 8. 8% of Dawnlight's damage and healing radiates to nearby allies or enemies, reduced beyond 5 targets.(varies by condition — check in-game)",
+                            "text": "Casting (varies by condition — check in-game) causes your next 2 Holy Power spending abilities to apply Dawnlight on your target, dealing ≈255% of Spell Power Radiant damage or ≈538.2% of Spell Power healing over 8. 8% of Dawnlight's damage and healing radiates to nearby allies or enemies, reduced beyond 5 targets.(varies by condition — check in-game)",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -6836,7 +6899,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Increases Holy damage done by 0%. Judgment has a 0% chance to blast the target with the Light, dealing (varies) Holy damage.",
+                            "text": "Increases Holy damage done by 0%. Judgment has a 0% chance to blast the target with the Light, dealing ≈390% of Attack Power Holy damage.",
                             "uncertain": true
                         },
                         "category": "Other",
@@ -6904,6 +6967,7 @@
                                         "charges": null,
                                         "max_stacks": null,
                                         "proc_chance": null,
+                                        "proc_cooldown_seconds": null,
                                         "cooldown_seconds": null,
                                         "cooldown_scaling_note": null,
                                         "duration_seconds": null,
@@ -7079,7 +7143,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Wake of Ashes is replaced with Hammer of Light for 20 after it is cast. Hammer of Light: Hammer down your enemy with the power of the Light, dealing 427,453 Holy damage and 427,453 Holy damage up to 7 nearby enemies. Additionally, calls down Empyrean Hammers from the sky to strike 3 nearby enemies for (varies) Holy damage each. Costs 5 Holy Power.",
+                            "text": "Wake of Ashes is replaced with Hammer of Light for 20 after it is cast. Hammer of Light: Hammer down your enemy with the power of the Light, dealing 427,453 Holy damage and 427,453 Holy damage up to 7 nearby enemies. Additionally, calls down Empyrean Hammers from the sky to strike 3 nearby enemies for ≈52.1% of Attack Power Holy damage each. Costs 5 Holy Power.",
                             "uncertain": true
                         },
                         "category": "Other",
@@ -7374,7 +7438,7 @@
             "spellId": 7779,
             "category": "Defensive",
             "description": {
-                "text": "Heals an ally for 25 and an additional (varies) over 16. Healing increased by (varies by condition — check in-game)% when cast on self.",
+                "text": "Heals an ally for 25 and an additional ≈109.4% of Spell Power over 16. Healing increased by (varies by condition — check in-game)% when cast on self.",
                 "uncertain": true
             },
             "formulaModifierSpellIds": [],
@@ -7406,6 +7470,7 @@
                                         "charges": null,
                                         "max_stacks": null,
                                         "proc_chance": null,
+                                        "proc_cooldown_seconds": null,
                                         "cooldown_seconds": null,
                                         "cooldown_scaling_note": null,
                                         "duration_seconds": null,
@@ -7621,6 +7686,7 @@
                                         "charges": null,
                                         "max_stacks": null,
                                         "proc_chance": null,
+                                        "proc_cooldown_seconds": null,
                                         "cooldown_seconds": null,
                                         "cooldown_scaling_note": null,
                                         "duration_seconds": null,
@@ -7701,7 +7767,7 @@
             "spellId": 7938,
             "category": "Offensive",
             "description": {
-                "text": "Unleash a heavenly blast around the target, dealing (varies) Holy damage to all enemies within 10 yds, and call down a hammer that slowly falls from the sky upon the target. After 10, they suffer 20% of the Holy damage you dealt to all targets affected by the initial blast during that time.",
+                "text": "Unleash a heavenly blast around the target, dealing ≈505.3% of Attack Power Holy damage to all enemies within 10 yds, and call down a hammer that slowly falls from the sky upon the target. After 10, they suffer 20% of the Holy damage you dealt to all targets affected by the initial blast during that time.",
                 "uncertain": true
             },
             "formulaModifierSpellIds": [
@@ -7736,6 +7802,7 @@
                                         "charges": null,
                                         "max_stacks": null,
                                         "proc_chance": null,
+                                        "proc_cooldown_seconds": null,
                                         "cooldown_seconds": null,
                                         "cooldown_scaling_note": null,
                                         "duration_seconds": null,
@@ -7915,7 +7982,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Increases Holy damage done by 0%. Judgment has a 0% chance to blast the target with the Light, dealing (varies) Holy damage.",
+                            "text": "Increases Holy damage done by 0%. Judgment has a 0% chance to blast the target with the Light, dealing ≈390% of Attack Power Holy damage.",
                             "uncertain": true
                         },
                         "category": "Other",
@@ -7951,6 +8018,7 @@
                                         "charges": null,
                                         "max_stacks": null,
                                         "proc_chance": null,
+                                        "proc_cooldown_seconds": null,
                                         "cooldown_seconds": null,
                                         "cooldown_scaling_note": null,
                                         "duration_seconds": null,
@@ -8035,7 +8103,7 @@
             "spellId": 7943,
             "category": "Offensive",
             "description": {
-                "text": "Your Blade of Justice causes the target to burn for (varies) Holy damage over 9. When reapplied, any remaining damage is added to the new effect.",
+                "text": "Your Blade of Justice causes the target to burn for ≈68.9% of Attack Power Holy damage over 9. When reapplied, any remaining damage is added to the new effect.",
                 "uncertain": true
             },
             "formulaModifierSpellIds": [],
@@ -8319,6 +8387,7 @@
                                         "charges": null,
                                         "max_stacks": null,
                                         "proc_chance": null,
+                                        "proc_cooldown_seconds": null,
                                         "cooldown_seconds": null,
                                         "cooldown_scaling_note": null,
                                         "duration_seconds": null,
@@ -8546,7 +8615,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Increases Holy damage done by 0%. Judgment has a 0% chance to blast the target with the Light, dealing (varies) Holy damage.",
+                            "text": "Increases Holy damage done by 0%. Judgment has a 0% chance to blast the target with the Light, dealing ≈390% of Attack Power Holy damage.",
                             "uncertain": true
                         },
                         "category": "Other",
@@ -8630,6 +8699,7 @@
                                         "charges": null,
                                         "max_stacks": null,
                                         "proc_chance": null,
+                                        "proc_cooldown_seconds": null,
                                         "cooldown_seconds": null,
                                         "cooldown_scaling_note": null,
                                         "duration_seconds": null,
@@ -8868,8 +8938,8 @@
             "spellId": 7732,
             "category": "Other",
             "description": {
-                "text": "Consecration heals you and 5 allies within it for 50 every (varies) sec.",
-                "uncertain": true
+                "text": "Consecration heals you and 5 allies within it for ≈6.3% of Attack Power every 1 sec.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -8994,8 +9064,8 @@
             "spellId": 7750,
             "category": "Other",
             "description": {
-                "text": "When your health is brought below 25%, you instantly cast a free Word of Glory at 60% effectiveness on yourself. Cannot occur more than once every (varies) sec.",
-                "uncertain": true
+                "text": "When your health is brought below 25%, you instantly cast a free Word of Glory at 60% effectiveness on yourself. Cannot occur more than once every 60 sec.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -9114,6 +9184,7 @@
                             "charges": null,
                             "max_stacks": null,
                             "proc_chance": null,
+                            "proc_cooldown_seconds": null,
                             "cooldown_seconds": null,
                             "cooldown_scaling_note": null,
                             "duration_seconds": null,
@@ -9161,6 +9232,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:22:58.000000Z",
@@ -9190,7 +9262,7 @@
             "spellId": 6863,
             "category": "Offensive",
             "description": {
-                "text": "Hurls a divine hammer that strikes an enemy for 1,241,413 Holy damage. Generates 1 Holy Power.",
+                "text": "Hurls a divine hammer that strikes an enemy for ≈215.8% of Attack Power Holy damage. Generates 1 Holy Power.",
                 "uncertain": false
             },
             "formulaModifierSpellIds": [],
@@ -9222,6 +9294,7 @@
                                         "charges": null,
                                         "max_stacks": null,
                                         "proc_chance": null,
+                                        "proc_cooldown_seconds": null,
                                         "cooldown_seconds": null,
                                         "cooldown_scaling_note": null,
                                         "duration_seconds": null,
@@ -9657,7 +9730,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Increases Holy damage done by 0%. Judgment has a 0% chance to blast the target with the Light, dealing (varies) Holy damage.",
+                            "text": "Increases Holy damage done by 0%. Judgment has a 0% chance to blast the target with the Light, dealing ≈390% of Attack Power Holy damage.",
                             "uncertain": true
                         },
                         "category": "Other",
@@ -9709,6 +9782,7 @@
                                         "charges": null,
                                         "max_stacks": null,
                                         "proc_chance": null,
+                                        "proc_cooldown_seconds": null,
                                         "cooldown_seconds": null,
                                         "cooldown_scaling_note": null,
                                         "duration_seconds": null,
@@ -9870,6 +9944,7 @@
                             "charges": null,
                             "max_stacks": null,
                             "proc_chance": null,
+                            "proc_cooldown_seconds": null,
                             "cooldown_seconds": null,
                             "cooldown_scaling_note": null,
                             "duration_seconds": null,
@@ -9917,6 +9992,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:23:00.000000Z",
@@ -9935,6 +10011,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:23:00.000000Z",
@@ -10535,6 +10612,7 @@
                                         "charges": null,
                                         "max_stacks": null,
                                         "proc_chance": null,
+                                        "proc_cooldown_seconds": null,
                                         "cooldown_seconds": null,
                                         "cooldown_scaling_note": null,
                                         "duration_seconds": null,
@@ -10758,7 +10836,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "After casting(varies by condition — check in-game) Divine Toll, you instantly cast (varies by condition — check in-game) every (varies) sec for 15 sec.",
+                            "text": "After casting(varies by condition — check in-game) Divine Toll, you instantly cast (varies by condition — check in-game) every 5 sec for 15 sec.",
                             "uncertain": true
                         },
                         "category": "Other",
@@ -10774,7 +10852,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "After casting(varies by condition — check in-game) Divine Toll, you instantly cast (varies by condition — check in-game) every (varies) sec for 15 sec.",
+                            "text": "After casting(varies by condition — check in-game) Divine Toll, you instantly cast (varies by condition — check in-game) every 5 sec for 15 sec.",
                             "uncertain": true
                         },
                         "category": "Other",
@@ -10790,7 +10868,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "After casting(varies by condition — check in-game) Divine Toll, you instantly cast (varies by condition — check in-game) every (varies) sec for 15 sec.",
+                            "text": "After casting(varies by condition — check in-game) Divine Toll, you instantly cast (varies by condition — check in-game) every 5 sec for 15 sec.",
                             "uncertain": true
                         },
                         "category": "Other",
@@ -10806,7 +10884,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "After casting(varies by condition — check in-game) Divine Toll, you instantly cast (varies by condition — check in-game) every (varies) sec for 15 sec.",
+                            "text": "After casting(varies by condition — check in-game) Divine Toll, you instantly cast (varies by condition — check in-game) every 5 sec for 15 sec.",
                             "uncertain": true
                         },
                         "category": "Other",
@@ -10822,7 +10900,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "After casting(varies by condition — check in-game) Divine Toll, you instantly cast (varies by condition — check in-game) every (varies) sec for 15 sec.",
+                            "text": "After casting(varies by condition — check in-game) Divine Toll, you instantly cast (varies by condition — check in-game) every 5 sec for 15 sec.",
                             "uncertain": true
                         },
                         "category": "Other",
@@ -10966,7 +11044,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "After casting(varies by condition — check in-game) Divine Toll, you instantly cast (varies by condition — check in-game) every (varies) sec for 15 sec.",
+                            "text": "After casting(varies by condition — check in-game) Divine Toll, you instantly cast (varies by condition — check in-game) every 5 sec for 15 sec.",
                             "uncertain": true
                         },
                         "category": "Other",
@@ -11146,7 +11224,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Increases Holy damage done by 0%. Judgment has a 0% chance to blast the target with the Light, dealing (varies) Holy damage.",
+                            "text": "Increases Holy damage done by 0%. Judgment has a 0% chance to blast the target with the Light, dealing ≈390% of Attack Power Holy damage.",
                             "uncertain": true
                         },
                         "category": "Other",
@@ -11182,6 +11260,7 @@
                                         "charges": null,
                                         "max_stacks": null,
                                         "proc_chance": null,
+                                        "proc_cooldown_seconds": null,
                                         "cooldown_seconds": null,
                                         "cooldown_scaling_note": null,
                                         "duration_seconds": null,
@@ -11567,6 +11646,7 @@
                             "charges": null,
                             "max_stacks": null,
                             "proc_chance": null,
+                            "proc_cooldown_seconds": null,
                             "cooldown_seconds": null,
                             "cooldown_scaling_note": null,
                             "duration_seconds": null,
@@ -11614,6 +11694,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:23:00.000000Z",
@@ -11632,6 +11713,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:23:00.000000Z",
@@ -12051,7 +12133,7 @@
             "spellId": 7816,
             "category": "Other",
             "description": {
-                "text": "Wake of Ashes is replaced with Hammer of Light for 20 after it is cast. Hammer of Light: Hammer down your enemy with the power of the Light, dealing 427,453 Holy damage and 427,453 Holy damage up to 7 nearby enemies. Additionally, calls down Empyrean Hammers from the sky to strike 3 nearby enemies for (varies) Holy damage each. Costs 5 Holy Power.",
+                "text": "Wake of Ashes is replaced with Hammer of Light for 20 after it is cast. Hammer of Light: Hammer down your enemy with the power of the Light, dealing 427,453 Holy damage and 427,453 Holy damage up to 7 nearby enemies. Additionally, calls down Empyrean Hammers from the sky to strike 3 nearby enemies for ≈52.1% of Attack Power Holy damage each. Costs 5 Holy Power.",
                 "uncertain": true
             },
             "formulaModifierSpellIds": [],
@@ -12188,7 +12270,7 @@
             "spellId": 7748,
             "category": "Other",
             "description": {
-                "text": "Divine Storm heals you and up to 2 nearby allies for (varies).",
+                "text": "Divine Storm heals you and up to 2 nearby allies for ≈125% of Attack Power.",
                 "uncertain": true
             },
             "formulaModifierSpellIds": [],
@@ -12308,8 +12390,8 @@
             "spellId": 7790,
             "category": "Other",
             "description": {
-                "text": "Every 0 sec, your next Dawnlight's damage or healing is increased by 5%, stacking up to 10 times. Morning Star stacks twice as fast while out of combat.",
-                "uncertain": true
+                "text": "Every 5 sec, your next Dawnlight's damage or healing is increased by 5%, stacking up to 10 times. Morning Star stacks twice as fast while out of combat.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -12571,6 +12653,7 @@
                                         "charges": null,
                                         "max_stacks": null,
                                         "proc_chance": null,
+                                        "proc_cooldown_seconds": null,
                                         "cooldown_seconds": null,
                                         "cooldown_scaling_note": null,
                                         "duration_seconds": null,
@@ -12706,6 +12789,7 @@
                                         "charges": null,
                                         "max_stacks": null,
                                         "proc_chance": null,
+                                        "proc_cooldown_seconds": null,
                                         "cooldown_seconds": null,
                                         "cooldown_scaling_note": null,
                                         "duration_seconds": null,
@@ -12817,8 +12901,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Righteous Cause further empowers Blade of Justice to unleash a wave of Holy energy, dealing 11 Holy damage to its primary target and 10 Holy damage to all other enemies in its path.",
-                            "uncertain": false
+                            "text": "Righteous Cause further empowers Blade of Justice to unleash a wave of Holy energy, dealing (varies) Holy damage to its primary target and 10 Holy damage to all other enemies in its path.",
+                            "uncertain": true
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -12833,7 +12917,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Righteous Cause further empowers Blade of Justice to unleash a wave of Holy energy, dealing 25 Holy damage to its primary target and 10 Holy damage to all other enemies in its path.",
+                            "text": "Righteous Cause further empowers Blade of Justice to unleash a wave of Holy energy, dealing ≈829.8% of Attack Power Holy damage to its primary target and 10 Holy damage to all other enemies in its path.",
                             "uncertain": false
                         },
                         "category": "Offensive",
@@ -13399,8 +13483,8 @@
             "spellId": 7775,
             "category": "Offensive",
             "description": {
-                "text": "Divine Protection reduces damage taken by an additional 30% and casts Shield of Vengeance. Shield of Vengeance Creates a barrier of holy light that absorbs (varies) damage for 10. When the shield expires, it bursts to inflict Holy damage equal to the total amount absorbed, divided among all nearby enemies.",
-                "uncertain": true
+                "text": "Divine Protection reduces damage taken by an additional 30% and casts Shield of Vengeance. Shield of Vengeance Creates a barrier of holy light that absorbs ≈30% of maximum health damage for 10. When the shield expires, it bursts to inflict Holy damage equal to the total amount absorbed, divided among all nearby enemies.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -13450,6 +13534,7 @@
                                         "charges": null,
                                         "max_stacks": null,
                                         "proc_chance": null,
+                                        "proc_cooldown_seconds": null,
                                         "cooldown_seconds": null,
                                         "cooldown_scaling_note": null,
                                         "duration_seconds": null,
@@ -13861,7 +13946,7 @@
             "spellId": 7965,
             "category": "Other",
             "description": {
-                "text": "Crusader Strike loses a charge but is now a combo ability. Templar Strike slashes an enemy for (varies) Radiant damage and gets followed up by Templar Slash that deals (varies) Radiant damage. Templar Slash always critically strikes.",
+                "text": "Crusader Strike loses a charge but is now a combo ability. Templar Strike slashes an enemy for ≈187.5% of Attack Power Radiant damage and gets followed up by Templar Slash that deals ≈215.6% of Attack Power Radiant damage. Templar Slash always critically strikes.",
                 "uncertain": true
             },
             "formulaModifierSpellIds": [],
@@ -14184,6 +14269,7 @@
                                         "charges": null,
                                         "max_stacks": null,
                                         "proc_chance": null,
+                                        "proc_cooldown_seconds": null,
                                         "cooldown_seconds": null,
                                         "cooldown_scaling_note": null,
                                         "duration_seconds": null,
@@ -14263,7 +14349,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Casting (varies by condition — check in-game) causes your next 2 Holy Power spending abilities to apply Dawnlight on your target, dealing (varies) Radiant damage or (varies) healing over 8. 8% of Dawnlight's damage and healing radiates to nearby allies or enemies, reduced beyond 5 targets.(varies by condition — check in-game)",
+                            "text": "Casting (varies by condition — check in-game) causes your next 2 Holy Power spending abilities to apply Dawnlight on your target, dealing ≈255% of Spell Power Radiant damage or ≈538.2% of Spell Power healing over 8. 8% of Dawnlight's damage and healing radiates to nearby allies or enemies, reduced beyond 5 targets.(varies by condition — check in-game)",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -14279,7 +14365,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Casting (varies by condition — check in-game) causes your next 2 Holy Power spending abilities to apply Dawnlight on your target, dealing (varies) Radiant damage or (varies) healing over 8. 8% of Dawnlight's damage and healing radiates to nearby allies or enemies, reduced beyond 5 targets.(varies by condition — check in-game)",
+                            "text": "Casting (varies by condition — check in-game) causes your next 2 Holy Power spending abilities to apply Dawnlight on your target, dealing ≈255% of Spell Power Radiant damage or ≈538.2% of Spell Power healing over 8. 8% of Dawnlight's damage and healing radiates to nearby allies or enemies, reduced beyond 5 targets.(varies by condition — check in-game)",
                             "uncertain": true
                         },
                         "category": "Mobility",
@@ -14295,7 +14381,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Casting (varies by condition — check in-game) causes your next 2 Holy Power spending abilities to apply Dawnlight on your target, dealing (varies) Radiant damage or (varies) healing over 8. 8% of Dawnlight's damage and healing radiates to nearby allies or enemies, reduced beyond 5 targets.(varies by condition — check in-game)",
+                            "text": "Casting (varies by condition — check in-game) causes your next 2 Holy Power spending abilities to apply Dawnlight on your target, dealing ≈255% of Spell Power Radiant damage or ≈538.2% of Spell Power healing over 8. 8% of Dawnlight's damage and healing radiates to nearby allies or enemies, reduced beyond 5 targets.(varies by condition — check in-game)",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -14311,7 +14397,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Casting (varies by condition — check in-game) causes your next 2 Holy Power spending abilities to apply Dawnlight on your target, dealing (varies) Radiant damage or (varies) healing over 8. 8% of Dawnlight's damage and healing radiates to nearby allies or enemies, reduced beyond 5 targets.(varies by condition — check in-game)",
+                            "text": "Casting (varies by condition — check in-game) causes your next 2 Holy Power spending abilities to apply Dawnlight on your target, dealing ≈255% of Spell Power Radiant damage or ≈538.2% of Spell Power healing over 8. 8% of Dawnlight's damage and healing radiates to nearby allies or enemies, reduced beyond 5 targets.(varies by condition — check in-game)",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -14327,7 +14413,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Casting (varies by condition — check in-game) causes your next ≈13.5% of Spell Power Holy Power spending abilities to apply Dawnlight on your target, dealing (varies) Radiant damage or (varies) healing over 8. 8% of Dawnlight's damage and healing radiates to nearby allies or enemies, reduced beyond 5 targets.(varies by condition — check in-game)",
+                            "text": "Casting (varies by condition — check in-game) causes your next ≈13.5% of Spell Power Holy Power spending abilities to apply Dawnlight on your target, dealing ≈255% of Spell Power Radiant damage or ≈538.2% of Spell Power healing over 8. 8% of Dawnlight's damage and healing radiates to nearby allies or enemies, reduced beyond 5 targets.(varies by condition — check in-game)",
                             "uncertain": true
                         },
                         "category": "Defensive",
@@ -14375,7 +14461,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Casting (varies by condition — check in-game) causes your next 8 Holy Power spending abilities to apply Dawnlight on your target, dealing (varies) Radiant damage or (varies) healing over 8. 8% of Dawnlight's damage and healing radiates to nearby allies or enemies, reduced beyond 5 targets.(varies by condition — check in-game)",
+                            "text": "Casting (varies by condition — check in-game) causes your next 8 Holy Power spending abilities to apply Dawnlight on your target, dealing ≈255% of Spell Power Radiant damage or ≈538.2% of Spell Power healing over 8. 8% of Dawnlight's damage and healing radiates to nearby allies or enemies, reduced beyond 5 targets.(varies by condition — check in-game)",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -14423,7 +14509,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Casting (varies by condition — check in-game) causes your next 2 Holy Power spending abilities to apply Dawnlight on your target, dealing (varies) Radiant damage or (varies) healing over 8. 8% of Dawnlight's damage and healing radiates to nearby allies or enemies, reduced beyond 5 targets.(varies by condition — check in-game)",
+                            "text": "Casting (varies by condition — check in-game) causes your next 2 Holy Power spending abilities to apply Dawnlight on your target, dealing ≈255% of Spell Power Radiant damage or ≈538.2% of Spell Power healing over 8. 8% of Dawnlight's damage and healing radiates to nearby allies or enemies, reduced beyond 5 targets.(varies by condition — check in-game)",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -14539,7 +14625,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Increases Holy damage done by 0%. Judgment has a 0% chance to blast the target with the Light, dealing (varies) Holy damage.",
+                            "text": "Increases Holy damage done by 0%. Judgment has a 0% chance to blast the target with the Light, dealing ≈390% of Attack Power Holy damage.",
                             "uncertain": true
                         },
                         "category": "Other",
@@ -14575,6 +14661,7 @@
                                         "charges": null,
                                         "max_stacks": null,
                                         "proc_chance": null,
+                                        "proc_cooldown_seconds": null,
                                         "cooldown_seconds": null,
                                         "cooldown_scaling_note": null,
                                         "duration_seconds": null,
@@ -14750,7 +14837,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Wake of Ashes is replaced with Hammer of Light for 20 after it is cast. Hammer of Light: Hammer down your enemy with the power of the Light, dealing 427,453 Holy damage and 427,453 Holy damage up to 7 nearby enemies. Additionally, calls down Empyrean Hammers from the sky to strike 3 nearby enemies for (varies) Holy damage each. Costs 5 Holy Power.",
+                            "text": "Wake of Ashes is replaced with Hammer of Light for 20 after it is cast. Hammer of Light: Hammer down your enemy with the power of the Light, dealing 427,453 Holy damage and 427,453 Holy damage up to 7 nearby enemies. Additionally, calls down Empyrean Hammers from the sky to strike 3 nearby enemies for ≈52.1% of Attack Power Holy damage each. Costs 5 Holy Power.",
                             "uncertain": true
                         },
                         "category": "Other",

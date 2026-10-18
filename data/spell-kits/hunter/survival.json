@@ -1,6 +1,6 @@
 {
-    "generatedAt": "2026-10-07T21:49:13+00:00",
-    "spellCacheVersion": 27,
+    "generatedAt": "2026-10-18T02:37:32+00:00",
+    "spellCacheVersion": 29,
     "codeFingerprint": "dev",
     "entries": [
         {
@@ -161,6 +161,7 @@
                             "charges": null,
                             "max_stacks": null,
                             "proc_chance": null,
+                            "proc_cooldown_seconds": null,
                             "cooldown_seconds": null,
                             "cooldown_scaling_note": null,
                             "duration_seconds": null,
@@ -208,6 +209,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": "mul",
                                     "rank_values": [
                                         1,
@@ -235,6 +237,7 @@
                             "charges": null,
                             "max_stacks": null,
                             "proc_chance": null,
+                            "proc_cooldown_seconds": null,
                             "cooldown_seconds": null,
                             "cooldown_scaling_note": null,
                             "duration_seconds": null,
@@ -282,6 +285,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:22:32.000000Z",
@@ -300,6 +304,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:22:32.000000Z",
@@ -324,6 +329,7 @@
                             "charges": null,
                             "max_stacks": null,
                             "proc_chance": null,
+                            "proc_cooldown_seconds": null,
                             "cooldown_seconds": null,
                             "cooldown_scaling_note": null,
                             "duration_seconds": null,
@@ -371,6 +377,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:22:31.000000Z",
@@ -400,8 +407,8 @@
             "spellId": 3970,
             "category": "Other",
             "description": {
-                "text": "Increases the range of your Mongoose Bite and Mastery: Spirit Bond to (varies) yds for 15.",
-                "uncertain": true
+                "text": "Increases the range of your Mongoose Bite and Mastery: Spirit Bond to 40 yds for 15.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -460,6 +467,7 @@
                             "charges": null,
                             "max_stacks": null,
                             "proc_chance": null,
+                            "proc_cooldown_seconds": null,
                             "cooldown_seconds": null,
                             "cooldown_scaling_note": null,
                             "duration_seconds": null,
@@ -507,6 +515,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": "mul",
                                     "rank_values": [
                                         1,
@@ -651,6 +660,7 @@
                             "charges": null,
                             "max_stacks": null,
                             "proc_chance": null,
+                            "proc_cooldown_seconds": null,
                             "cooldown_seconds": null,
                             "cooldown_scaling_note": null,
                             "duration_seconds": null,
@@ -698,6 +708,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": "mul",
                                     "rank_values": [
                                         1,
@@ -725,6 +736,7 @@
                             "charges": null,
                             "max_stacks": null,
                             "proc_chance": null,
+                            "proc_cooldown_seconds": null,
                             "cooldown_seconds": null,
                             "cooldown_scaling_note": null,
                             "duration_seconds": null,
@@ -772,6 +784,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:22:31.000000Z",
@@ -1098,8 +1111,8 @@
             "spellId": 4849,
             "category": "Offensive",
             "description": {
-                "text": "Unload a series of (varies) shotgun blasts 20 yds in front of you, dealing (varies) Physical damage over 3. Deals reduced damage beyond 8 targets.",
-                "uncertain": true
+                "text": "Unload a series of 4 shotgun blasts 20 yds in front of you, dealing ≈2,430% of Attack Power Physical damage over 3. Deals reduced damage beyond 8 targets.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -1366,6 +1379,7 @@
                             "charges": null,
                             "max_stacks": null,
                             "proc_chance": null,
+                            "proc_cooldown_seconds": null,
                             "cooldown_seconds": null,
                             "cooldown_scaling_note": null,
                             "duration_seconds": null,
@@ -1413,6 +1427,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:22:32.000000Z",
@@ -2203,6 +2218,7 @@
                             "charges": null,
                             "max_stacks": null,
                             "proc_chance": null,
+                            "proc_cooldown_seconds": null,
                             "cooldown_seconds": null,
                             "cooldown_scaling_note": null,
                             "duration_seconds": null,
@@ -2250,6 +2266,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": "mul",
                                     "rank_values": [
                                         1,
@@ -2658,6 +2675,7 @@
                             "charges": null,
                             "max_stacks": null,
                             "proc_chance": null,
+                            "proc_cooldown_seconds": null,
                             "cooldown_seconds": null,
                             "cooldown_scaling_note": null,
                             "duration_seconds": null,
@@ -2705,6 +2723,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:22:31.000000Z",
@@ -3219,7 +3238,7 @@
             "spellId": 4733,
             "category": "Other",
             "description": {
-                "text": "While in combat, every 30 your next Kill Command summons the aid of a Beast. Wyvern A Wyvern descends from the skies, letting out a battle cry that increases the damage of you and your pets by 10% for 12. Boar A Boar charges through your target 1 time, dealing (varies) damage to nearby enemies and an additional (varies) physical damage to its primary target. Damage reduced beyond 5 targets. Bear A Bear leaps into the fray, rending the flesh of your enemies, dealing (varies) damage over 10 to up to 8 nearby enemies.",
+                "text": "While in combat, every 30 your next Kill Command summons the aid of a Beast. Wyvern A Wyvern descends from the skies, letting out a battle cry that increases the damage of you and your pets by 10% for 12. Boar A Boar charges through your target 1 time, dealing ≈1,440% of Attack Power damage to nearby enemies and an additional ≈1,200% of Attack Power physical damage to its primary target. Damage reduced beyond 5 targets. Bear A Bear leaps into the fray, rending the flesh of your enemies, dealing ≈400% of Attack Power damage over 10 to up to 8 nearby enemies.",
                 "uncertain": true
             },
             "formulaModifierSpellIds": [],
@@ -3250,7 +3269,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Casting (varies by condition — check in-game) grants Howl of the Pack Leader and causes your next Kill Command to rouse the nearby wildlife into a Stampede, charging your target and dealing 9 Physical damage over 7.",
+                            "text": "Casting (varies by condition — check in-game) grants Howl of the Pack Leader and causes your next Kill Command to rouse the nearby wildlife into a Stampede, charging your target and dealing ≈1,350% of Attack Power Physical damage over 7.",
                             "uncertain": true
                         },
                         "category": "Other",
@@ -3298,7 +3317,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Casting (varies by condition — check in-game) grants Howl of the Pack Leader and causes your next Kill Command to rouse the nearby wildlife into a Stampede, charging your target and dealing 9 Physical damage over 7.",
+                            "text": "Casting (varies by condition — check in-game) grants Howl of the Pack Leader and causes your next Kill Command to rouse the nearby wildlife into a Stampede, charging your target and dealing ≈1,350% of Attack Power Physical damage over 7.",
                             "uncertain": true
                         },
                         "category": "Other",
@@ -3761,6 +3780,7 @@
                                         "charges": null,
                                         "max_stacks": null,
                                         "proc_chance": null,
+                                        "proc_cooldown_seconds": null,
                                         "cooldown_seconds": null,
                                         "cooldown_scaling_note": null,
                                         "duration_seconds": null,
@@ -3874,6 +3894,7 @@
                             "charges": null,
                             "max_stacks": null,
                             "proc_chance": null,
+                            "proc_cooldown_seconds": null,
                             "cooldown_seconds": null,
                             "cooldown_scaling_note": null,
                             "duration_seconds": null,
@@ -3921,6 +3942,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:22:31.000000Z",
@@ -4038,7 +4060,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "You and your pet leap to your target and strike as one, dealing 100 Physical damage to your target and up to 4 nearby enemies. Your pet frees itself from roots when it leaps. For the next 8, the damage dealt by you and your pet is increased by 20% and your attack speed is increased by (varies)%. Generates 50 Focus and 3 stacks of Tip of the Spear.",
+                            "text": "You and your pet leap to your target and strike as one, dealing ≈1,800% of Attack Power Physical damage to your target and up to 4 nearby enemies. Your pet frees itself from roots when it leaps. For the next 8, the damage dealt by you and your pet is increased by 20% and your attack speed is increased by (varies)%. Generates 50 Focus and 3 stacks of Tip of the Spear.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -4058,6 +4080,7 @@
                                         "charges": null,
                                         "max_stacks": null,
                                         "proc_chance": null,
+                                        "proc_cooldown_seconds": null,
                                         "cooldown_seconds": null,
                                         "cooldown_scaling_note": null,
                                         "duration_seconds": null,
@@ -4105,6 +4128,7 @@
                                                 "affected_schools": null,
                                                 "sp_coefficient": null,
                                                 "pvp_coefficient": null,
+                                                "ap_coefficient": null,
                                                 "rank_op": "mul",
                                                 "rank_values": [
                                                     1,
@@ -4209,7 +4233,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Lace your Wildfire Bomb with extra reagents, randomly giving it one of the following enhancements each time you throw it: Shrapnel Bomb: Shrapnel pierces the targets, causing Mongoose Bite and Butchery to apply a bleed for 9 that stacks up to 3 times. Pheromone Bomb: Kill Command has a 100% chance to reset against targets coated with Pheromones. Volatile Bomb: Reacts violently with poison, causing an extra (varies) Fire damage against enemies suffering from your Serpent Sting, and applies Serpent Sting to up to 3 targets.",
+                            "text": "Lace your Wildfire Bomb with extra reagents, randomly giving it one of the following enhancements each time you throw it: Shrapnel Bomb: Shrapnel pierces the targets, causing Mongoose Bite and Butchery to apply a bleed for 9 that stacks up to 3 times. Pheromone Bomb: Kill Command has a 100% chance to reset against targets coated with Pheromones. Volatile Bomb: Reacts violently with poison, causing an extra ≈33.4% of Attack Power Fire damage against enemies suffering from your Serpent Sting, and applies Serpent Sting to up to 3 targets.",
                             "uncertain": true
                         },
                         "category": "Other",
@@ -4225,7 +4249,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Lace your Wildfire Bomb with extra reagents, randomly giving it one of the following enhancements each time you throw it: Shrapnel Bomb: Shrapnel pierces the targets, causing Mongoose Bite and Butchery to apply a bleed for 9 that stacks up to 3 times. Pheromone Bomb: Kill Command has a 100% chance to reset against targets coated with Pheromones. Volatile Bomb: Reacts violently with poison, causing an extra (varies) Fire damage against enemies suffering from your Serpent Sting, and applies Serpent Sting to up to 3 targets.",
+                            "text": "Lace your Wildfire Bomb with extra reagents, randomly giving it one of the following enhancements each time you throw it: Shrapnel Bomb: Shrapnel pierces the targets, causing Mongoose Bite and Butchery to apply a bleed for 9 that stacks up to 3 times. Pheromone Bomb: Kill Command has a 100% chance to reset against targets coated with Pheromones. Volatile Bomb: Reacts violently with poison, causing an extra ≈33.4% of Attack Power Fire damage against enemies suffering from your Serpent Sting, and applies Serpent Sting to up to 3 targets.",
                             "uncertain": true
                         },
                         "category": "Other",
@@ -4501,7 +4525,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Lace your Wildfire Bomb with extra reagents, randomly giving it one of the following enhancements each time you throw it: Shrapnel Bomb: Shrapnel pierces the targets, causing Mongoose Bite and Butchery to apply a bleed for 9 that stacks up to 3 times. Pheromone Bomb: Kill Command has a 100% chance to reset against targets coated with Pheromones. Volatile Bomb: Reacts violently with poison, causing an extra (varies) Fire damage against enemies suffering from your Serpent Sting, and applies Serpent Sting to up to 270,335 targets.",
+                            "text": "Lace your Wildfire Bomb with extra reagents, randomly giving it one of the following enhancements each time you throw it: Shrapnel Bomb: Shrapnel pierces the targets, causing Mongoose Bite and Butchery to apply a bleed for 9 that stacks up to 3 times. Pheromone Bomb: Kill Command has a 100% chance to reset against targets coated with Pheromones. Volatile Bomb: Reacts violently with poison, causing an extra ≈33.4% of Attack Power Fire damage against enemies suffering from your Serpent Sting, and applies Serpent Sting to up to 270,335 targets.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -4517,7 +4541,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "While in combat, every 30 your next Kill Command summons the aid of a Beast. Wyvern A Wyvern descends from the skies, letting out a battle cry that increases the damage of you and your pets by 10% for 12. Boar A Boar charges through your target 1 time, dealing (varies) damage to nearby enemies and an additional (varies) physical damage to its primary target. Damage reduced beyond 5 targets. Bear A Bear leaps into the fray, rending the flesh of your enemies, dealing (varies) damage over 10 to up to 8 nearby enemies.",
+                            "text": "While in combat, every 30 your next Kill Command summons the aid of a Beast. Wyvern A Wyvern descends from the skies, letting out a battle cry that increases the damage of you and your pets by 10% for 12. Boar A Boar charges through your target 1 time, dealing ≈1,440% of Attack Power damage to nearby enemies and an additional ≈1,200% of Attack Power physical damage to its primary target. Damage reduced beyond 5 targets. Bear A Bear leaps into the fray, rending the flesh of your enemies, dealing ≈400% of Attack Power damage over 10 to up to 8 nearby enemies.",
                             "uncertain": true
                         },
                         "category": "Other",
@@ -4533,7 +4557,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "While in combat, every 30 your next Kill Command summons the aid of a Beast. Wyvern A Wyvern descends from the skies, letting out a battle cry that increases the damage of you and your pets by 10% for 12. Boar A Boar charges through your target 1 time, dealing (varies) damage to nearby enemies and an additional (varies) physical damage to its primary target. Damage reduced beyond 5 targets. Bear A Bear leaps into the fray, rending the flesh of your enemies, dealing (varies) damage over 10 to up to 8 nearby enemies.",
+                            "text": "While in combat, every 30 your next Kill Command summons the aid of a Beast. Wyvern A Wyvern descends from the skies, letting out a battle cry that increases the damage of you and your pets by 10% for 12. Boar A Boar charges through your target 1 time, dealing ≈1,440% of Attack Power damage to nearby enemies and an additional ≈1,200% of Attack Power physical damage to its primary target. Damage reduced beyond 5 targets. Bear A Bear leaps into the fray, rending the flesh of your enemies, dealing ≈400% of Attack Power damage over 10 to up to 8 nearby enemies.",
                             "uncertain": true
                         },
                         "category": "Other",
@@ -4549,7 +4573,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "While in combat, every 30 your next Kill Command summons the aid of a Beast. Wyvern A Wyvern descends from the skies, letting out a battle cry that increases the damage of you and your pets by 10% for 12. Boar A Boar charges through your target 1 time, dealing (varies) damage to nearby enemies and an additional (varies) physical damage to its primary target. Damage reduced beyond 5 targets. Bear A Bear leaps into the fray, rending the flesh of your enemies, dealing (varies) damage over 10 to up to 8 nearby enemies.",
+                            "text": "While in combat, every 30 your next Kill Command summons the aid of a Beast. Wyvern A Wyvern descends from the skies, letting out a battle cry that increases the damage of you and your pets by 10% for 12. Boar A Boar charges through your target 1 time, dealing ≈1,440% of Attack Power damage to nearby enemies and an additional ≈1,200% of Attack Power physical damage to its primary target. Damage reduced beyond 5 targets. Bear A Bear leaps into the fray, rending the flesh of your enemies, dealing ≈400% of Attack Power damage over 10 to up to 8 nearby enemies.",
                             "uncertain": true
                         },
                         "category": "Other",
@@ -4565,7 +4589,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "While in combat, every 30 your next Kill Command summons the aid of a Beast. Wyvern A Wyvern descends from the skies, letting out a battle cry that increases the damage of you and your pets by 10% for 12. Boar A Boar charges through your target 1 time, dealing (varies) damage to nearby enemies and an additional (varies) physical damage to its primary target. Damage reduced beyond 5 targets. Bear A Bear leaps into the fray, rending the flesh of your enemies, dealing (varies) damage over 10 to up to 8 nearby enemies.",
+                            "text": "While in combat, every 30 your next Kill Command summons the aid of a Beast. Wyvern A Wyvern descends from the skies, letting out a battle cry that increases the damage of you and your pets by 10% for 12. Boar A Boar charges through your target 1 time, dealing ≈1,440% of Attack Power damage to nearby enemies and an additional ≈1,200% of Attack Power physical damage to its primary target. Damage reduced beyond 5 targets. Bear A Bear leaps into the fray, rending the flesh of your enemies, dealing ≈400% of Attack Power damage over 10 to up to 8 nearby enemies.",
                             "uncertain": true
                         },
                         "category": "Other",
@@ -4597,7 +4621,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Casting (varies by condition — check in-game) grants Howl of the Pack Leader and causes your next Kill Command to rouse the nearby wildlife into a Stampede, charging your target and dealing 9 Physical damage over 7.",
+                            "text": "Casting (varies by condition — check in-game) grants Howl of the Pack Leader and causes your next Kill Command to rouse the nearby wildlife into a Stampede, charging your target and dealing ≈1,350% of Attack Power Physical damage over 7.",
                             "uncertain": true
                         },
                         "category": "Other",
@@ -4613,7 +4637,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "While in combat, every 30 your next Kill Command summons the aid of a Beast. Wyvern A Wyvern descends from the skies, letting out a battle cry that increases the damage of you and your pets by 10% for 12. Boar A Boar charges through your target 1 time, dealing (varies) damage to nearby enemies and an additional (varies) physical damage to its primary target. Damage reduced beyond 5 targets. Bear A Bear leaps into the fray, rending the flesh of your enemies, dealing (varies) damage over 10 to up to 8 nearby enemies.",
+                            "text": "While in combat, every 30 your next Kill Command summons the aid of a Beast. Wyvern A Wyvern descends from the skies, letting out a battle cry that increases the damage of you and your pets by 10% for 12. Boar A Boar charges through your target 1 time, dealing ≈1,440% of Attack Power damage to nearby enemies and an additional ≈1,200% of Attack Power physical damage to its primary target. Damage reduced beyond 5 targets. Bear A Bear leaps into the fray, rending the flesh of your enemies, dealing ≈400% of Attack Power damage over 10 to up to 8 nearby enemies.",
                             "uncertain": true
                         },
                         "category": "Other",
@@ -4677,7 +4701,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Casting (varies by condition — check in-game) grants Howl of the Pack Leader and causes your next Kill Command to rouse the nearby wildlife into a Stampede, charging your target and dealing 9 Physical damage over 7.",
+                            "text": "Casting (varies by condition — check in-game) grants Howl of the Pack Leader and causes your next Kill Command to rouse the nearby wildlife into a Stampede, charging your target and dealing ≈1,350% of Attack Power Physical damage over 7.",
                             "uncertain": true
                         },
                         "category": "Other",
@@ -5115,8 +5139,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Mend Pet heals for an additional (varies)% of your pet's health over its duration, and has a 25% chance to dispel a magic effect each time it heals your pet.",
-                            "uncertain": true
+                            "text": "Mend Pet heals for an additional 25% of your pet's health over its duration, and has a 25% chance to dispel a magic effect each time it heals your pet.",
+                            "uncertain": false
                         },
                         "category": "Utility",
                         "cooldown": {
@@ -5288,6 +5312,7 @@
                             "charges": null,
                             "max_stacks": null,
                             "proc_chance": null,
+                            "proc_cooldown_seconds": null,
                             "cooldown_seconds": null,
                             "cooldown_scaling_note": null,
                             "duration_seconds": null,
@@ -5335,6 +5360,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:22:31.000000Z",
@@ -5562,7 +5588,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "You and your pet leap to your target and strike as one, dealing 100 Physical damage to your target and up to 4 nearby enemies. Your pet frees itself from roots when it leaps. For the next 8, the damage dealt by you and your pet is increased by 20% and your attack speed is increased by (varies)%. Generates 50 Focus and 3 stacks of Tip of the Spear.",
+                            "text": "You and your pet leap to your target and strike as one, dealing ≈1,800% of Attack Power Physical damage to your target and up to 4 nearby enemies. Your pet frees itself from roots when it leaps. For the next 8, the damage dealt by you and your pet is increased by 20% and your attack speed is increased by (varies)%. Generates 50 Focus and 3 stacks of Tip of the Spear.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -5582,6 +5608,7 @@
                                         "charges": null,
                                         "max_stacks": null,
                                         "proc_chance": null,
+                                        "proc_cooldown_seconds": null,
                                         "cooldown_seconds": null,
                                         "cooldown_scaling_note": null,
                                         "duration_seconds": null,
@@ -5629,6 +5656,7 @@
                                                 "affected_schools": null,
                                                 "sp_coefficient": null,
                                                 "pvp_coefficient": null,
+                                                "ap_coefficient": null,
                                                 "rank_op": "mul",
                                                 "rank_values": [
                                                     1,
@@ -6352,7 +6380,7 @@
             "spellId": 4813,
             "category": "Offensive",
             "description": {
-                "text": "A vicious slash dealing (varies) Physical damage.",
+                "text": "A vicious slash dealing ≈393.3% of Attack Power Physical damage.",
                 "uncertain": true
             },
             "formulaModifierSpellIds": [],
@@ -6412,7 +6440,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "You and your pet leap to your target and strike as one, dealing 100 Physical damage to your target and up to 4 nearby enemies. Your pet frees itself from roots when it leaps. For the next 8, the damage dealt by you and your pet is increased by 20% and your attack speed is increased by (varies)%. Generates 50 Focus and 3 stacks of Tip of the Spear.",
+                            "text": "You and your pet leap to your target and strike as one, dealing ≈1,800% of Attack Power Physical damage to your target and up to 4 nearby enemies. Your pet frees itself from roots when it leaps. For the next 8, the damage dealt by you and your pet is increased by 20% and your attack speed is increased by (varies)%. Generates 50 Focus and 3 stacks of Tip of the Spear.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -6432,6 +6460,7 @@
                                         "charges": null,
                                         "max_stacks": null,
                                         "proc_chance": null,
+                                        "proc_cooldown_seconds": null,
                                         "cooldown_seconds": null,
                                         "cooldown_scaling_note": null,
                                         "duration_seconds": null,
@@ -6479,6 +6508,7 @@
                                                 "affected_schools": null,
                                                 "sp_coefficient": null,
                                                 "pvp_coefficient": null,
+                                                "ap_coefficient": null,
                                                 "rank_op": "mul",
                                                 "rank_values": [
                                                     1,
@@ -6551,7 +6581,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Lace your Wildfire Bomb with extra reagents, randomly giving it one of the following enhancements each time you throw it: Shrapnel Bomb: Shrapnel pierces the targets, causing Mongoose Bite and Butchery to apply a bleed for 9 that stacks up to 3 times. Pheromone Bomb: Kill Command has a 100% chance to reset against targets coated with Pheromones. Volatile Bomb: Reacts violently with poison, causing an extra (varies) Fire damage against enemies suffering from your Serpent Sting, and applies Serpent Sting to up to 3 targets.",
+                            "text": "Lace your Wildfire Bomb with extra reagents, randomly giving it one of the following enhancements each time you throw it: Shrapnel Bomb: Shrapnel pierces the targets, causing Mongoose Bite and Butchery to apply a bleed for 9 that stacks up to 3 times. Pheromone Bomb: Kill Command has a 100% chance to reset against targets coated with Pheromones. Volatile Bomb: Reacts violently with poison, causing an extra ≈33.4% of Attack Power Fire damage against enemies suffering from your Serpent Sting, and applies Serpent Sting to up to 3 targets.",
                             "uncertain": true
                         },
                         "category": "Other",
@@ -6567,7 +6597,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Lace your Wildfire Bomb with extra reagents, randomly giving it one of the following enhancements each time you throw it: Shrapnel Bomb: Shrapnel pierces the targets, causing Mongoose Bite and Butchery to apply a bleed for 9 that stacks up to 3 times. Pheromone Bomb: Kill Command has a 100% chance to reset against targets coated with Pheromones. Volatile Bomb: Reacts violently with poison, causing an extra (varies) Fire damage against enemies suffering from your Serpent Sting, and applies Serpent Sting to up to 3 targets.",
+                            "text": "Lace your Wildfire Bomb with extra reagents, randomly giving it one of the following enhancements each time you throw it: Shrapnel Bomb: Shrapnel pierces the targets, causing Mongoose Bite and Butchery to apply a bleed for 9 that stacks up to 3 times. Pheromone Bomb: Kill Command has a 100% chance to reset against targets coated with Pheromones. Volatile Bomb: Reacts violently with poison, causing an extra ≈33.4% of Attack Power Fire damage against enemies suffering from your Serpent Sting, and applies Serpent Sting to up to 3 targets.",
                             "uncertain": true
                         },
                         "category": "Other",
@@ -6715,8 +6745,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Increases the range of your Mongoose Bite and Mastery: Spirit Bond to (varies) yds for 15.",
-                            "uncertain": true
+                            "text": "Increases the range of your Mongoose Bite and Mastery: Spirit Bond to 40 yds for 15.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -6735,6 +6765,7 @@
                                         "charges": null,
                                         "max_stacks": null,
                                         "proc_chance": null,
+                                        "proc_cooldown_seconds": null,
                                         "cooldown_seconds": null,
                                         "cooldown_scaling_note": null,
                                         "duration_seconds": null,
@@ -6879,7 +6910,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Hurl a bomb at the target, exploding for 270,335 Fire damage in a cone and impaling enemies with burning shrapnel, scorching them for (varies) Fire damage over 6. Deals reduced damage beyond 8 targets. Deals 50% increased damage to your primary target. Mongoose Bite and Butchery apply Internal Bleeding, causing (varies) damage over 9. Internal Bleeding stacks up to 3 times.",
+                            "text": "Hurl a bomb at the target, exploding for 270,335 Fire damage in a cone and impaling enemies with burning shrapnel, scorching them for ≈156% of Attack Power Fire damage over 6. Deals reduced damage beyond 8 targets. Deals 50% increased damage to your primary target. Mongoose Bite and Butchery apply Internal Bleeding, causing ≈25.5% of Attack Power damage over 9. Internal Bleeding stacks up to 3 times.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -6895,7 +6926,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Hurl a bomb at the target, exploding for 270,335 Fire damage in a cone and impaling enemies with burning shrapnel, scorching them for (varies) Fire damage over 6. Deals reduced damage beyond 8 targets. Deals 50% increased damage to your primary target. Mongoose Bite and Butchery apply Internal Bleeding, causing (varies) damage over 9. Internal Bleeding stacks up to 3 times.",
+                            "text": "Hurl a bomb at the target, exploding for 270,335 Fire damage in a cone and impaling enemies with burning shrapnel, scorching them for ≈156% of Attack Power Fire damage over 6. Deals reduced damage beyond 8 targets. Deals 50% increased damage to your primary target. Mongoose Bite and Butchery apply Internal Bleeding, causing ≈25.5% of Attack Power damage over 9. Internal Bleeding stacks up to 3 times.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -6911,7 +6942,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Hurl a bomb at the target, exploding for 270,335 Fire damage in a cone and impaling enemies with burning shrapnel, scorching them for (varies) Fire damage over 6. Deals reduced damage beyond 8 targets. Deals 50% increased damage to your primary target. Mongoose Bite and Butchery apply Internal Bleeding, causing (varies) damage over 9. Internal Bleeding stacks up to 3 times.",
+                            "text": "Hurl a bomb at the target, exploding for 270,335 Fire damage in a cone and impaling enemies with burning shrapnel, scorching them for ≈156% of Attack Power Fire damage over 6. Deals reduced damage beyond 8 targets. Deals 50% increased damage to your primary target. Mongoose Bite and Butchery apply Internal Bleeding, causing ≈25.5% of Attack Power damage over 9. Internal Bleeding stacks up to 3 times.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -6927,7 +6958,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Hurl a bomb at the target, exploding for 270,335 Fire damage in a cone and impaling enemies with burning shrapnel, scorching them for (varies) Fire damage over 6. Deals reduced damage beyond 8 targets. Deals 50% increased damage to your primary target. Mongoose Bite and Butchery apply Internal Bleeding, causing (varies) damage over 9. Internal Bleeding stacks up to 3 times.",
+                            "text": "Hurl a bomb at the target, exploding for 270,335 Fire damage in a cone and impaling enemies with burning shrapnel, scorching them for ≈156% of Attack Power Fire damage over 6. Deals reduced damage beyond 8 targets. Deals 50% increased damage to your primary target. Mongoose Bite and Butchery apply Internal Bleeding, causing ≈25.5% of Attack Power damage over 9. Internal Bleeding stacks up to 3 times.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -6943,7 +6974,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Lace your Wildfire Bomb with extra reagents, randomly giving it one of the following enhancements each time you throw it: Shrapnel Bomb: Shrapnel pierces the targets, causing Mongoose Bite and Butchery to apply a bleed for 9 that stacks up to 3 times. Pheromone Bomb: Kill Command has a 100% chance to reset against targets coated with Pheromones. Volatile Bomb: Reacts violently with poison, causing an extra (varies) Fire damage against enemies suffering from your Serpent Sting, and applies Serpent Sting to up to 270,335 targets.",
+                            "text": "Lace your Wildfire Bomb with extra reagents, randomly giving it one of the following enhancements each time you throw it: Shrapnel Bomb: Shrapnel pierces the targets, causing Mongoose Bite and Butchery to apply a bleed for 9 that stacks up to 3 times. Pheromone Bomb: Kill Command has a 100% chance to reset against targets coated with Pheromones. Volatile Bomb: Reacts violently with poison, causing an extra ≈33.4% of Attack Power Fire damage against enemies suffering from your Serpent Sting, and applies Serpent Sting to up to 270,335 targets.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -7100,7 +7131,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "You and your pet leap to your target and strike as one, dealing 100 Physical damage to your target and up to 4 nearby enemies. Your pet frees itself from roots when it leaps. For the next 8, the damage dealt by you and your pet is increased by 20% and your attack speed is increased by (varies)%. Generates 50 Focus and 3 stacks of Tip of the Spear.",
+                            "text": "You and your pet leap to your target and strike as one, dealing ≈1,800% of Attack Power Physical damage to your target and up to 4 nearby enemies. Your pet frees itself from roots when it leaps. For the next 8, the damage dealt by you and your pet is increased by 20% and your attack speed is increased by (varies)%. Generates 50 Focus and 3 stacks of Tip of the Spear.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -7120,6 +7151,7 @@
                                         "charges": null,
                                         "max_stacks": null,
                                         "proc_chance": null,
+                                        "proc_cooldown_seconds": null,
                                         "cooldown_seconds": null,
                                         "cooldown_scaling_note": null,
                                         "duration_seconds": null,
@@ -7167,6 +7199,7 @@
                                                 "affected_schools": null,
                                                 "sp_coefficient": null,
                                                 "pvp_coefficient": null,
+                                                "ap_coefficient": null,
                                                 "rank_op": "mul",
                                                 "rank_values": [
                                                     1,
@@ -7323,8 +7356,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Increases the range of your Mongoose Bite and Mastery: Spirit Bond to (varies) yds for 15.",
-                            "uncertain": true
+                            "text": "Increases the range of your Mongoose Bite and Mastery: Spirit Bond to 40 yds for 15.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -7343,6 +7376,7 @@
                                         "charges": null,
                                         "max_stacks": null,
                                         "proc_chance": null,
+                                        "proc_cooldown_seconds": null,
                                         "cooldown_seconds": null,
                                         "cooldown_scaling_note": null,
                                         "duration_seconds": null,
@@ -8165,7 +8199,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Lace your Wildfire Bomb with extra reagents, randomly giving it one of the following enhancements each time you throw it: Shrapnel Bomb: Shrapnel pierces the targets, causing Mongoose Bite and Butchery to apply a bleed for 9 that stacks up to 3 times. Pheromone Bomb: Kill Command has a 100% chance to reset against targets coated with Pheromones. Volatile Bomb: Reacts violently with poison, causing an extra (varies) Fire damage against enemies suffering from your Serpent Sting, and applies Serpent Sting to up to 3 targets.",
+                            "text": "Lace your Wildfire Bomb with extra reagents, randomly giving it one of the following enhancements each time you throw it: Shrapnel Bomb: Shrapnel pierces the targets, causing Mongoose Bite and Butchery to apply a bleed for 9 that stacks up to 3 times. Pheromone Bomb: Kill Command has a 100% chance to reset against targets coated with Pheromones. Volatile Bomb: Reacts violently with poison, causing an extra ≈33.4% of Attack Power Fire damage against enemies suffering from your Serpent Sting, and applies Serpent Sting to up to 3 targets.",
                             "uncertain": true
                         },
                         "category": "Other",
@@ -8181,7 +8215,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Lace your Wildfire Bomb with extra reagents, randomly giving it one of the following enhancements each time you throw it: Shrapnel Bomb: Shrapnel pierces the targets, causing Mongoose Bite and Butchery to apply a bleed for 9 that stacks up to 3 times. Pheromone Bomb: Kill Command has a 100% chance to reset against targets coated with Pheromones. Volatile Bomb: Reacts violently with poison, causing an extra (varies) Fire damage against enemies suffering from your Serpent Sting, and applies Serpent Sting to up to 3 targets.",
+                            "text": "Lace your Wildfire Bomb with extra reagents, randomly giving it one of the following enhancements each time you throw it: Shrapnel Bomb: Shrapnel pierces the targets, causing Mongoose Bite and Butchery to apply a bleed for 9 that stacks up to 3 times. Pheromone Bomb: Kill Command has a 100% chance to reset against targets coated with Pheromones. Volatile Bomb: Reacts violently with poison, causing an extra ≈33.4% of Attack Power Fire damage against enemies suffering from your Serpent Sting, and applies Serpent Sting to up to 3 targets.",
                             "uncertain": true
                         },
                         "category": "Other",
@@ -8200,7 +8234,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Lace your Wildfire Bomb with extra reagents, randomly giving it one of the following enhancements each time you throw it: Shrapnel Bomb: Shrapnel pierces the targets, causing Mongoose Bite and Butchery to apply a bleed for 9 that stacks up to 3 times. Pheromone Bomb: Kill Command has a 100% chance to reset against targets coated with Pheromones. Volatile Bomb: Reacts violently with poison, causing an extra (varies) Fire damage against enemies suffering from your Serpent Sting, and applies Serpent Sting to up to 270,335 targets.",
+                            "text": "Lace your Wildfire Bomb with extra reagents, randomly giving it one of the following enhancements each time you throw it: Shrapnel Bomb: Shrapnel pierces the targets, causing Mongoose Bite and Butchery to apply a bleed for 9 that stacks up to 3 times. Pheromone Bomb: Kill Command has a 100% chance to reset against targets coated with Pheromones. Volatile Bomb: Reacts violently with poison, causing an extra ≈33.4% of Attack Power Fire damage against enemies suffering from your Serpent Sting, and applies Serpent Sting to up to 270,335 targets.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -8233,7 +8267,7 @@
             "spellId": 4840,
             "category": "Offensive",
             "description": {
-                "text": "When Strike as One critically strikes, it bleeds its target for an additional (varies) damage over 5.",
+                "text": "When Strike as One critically strikes, it bleeds its target for an additional ≈40% of Attack Power damage over 5.",
                 "uncertain": true
             },
             "formulaModifierSpellIds": [],
@@ -8353,7 +8387,7 @@
             "spellId": 4744,
             "category": "Other",
             "description": {
-                "text": "Casting (varies by condition — check in-game) grants Howl of the Pack Leader and causes your next Kill Command to rouse the nearby wildlife into a Stampede, charging your target and dealing 9 Physical damage over 7.",
+                "text": "Casting (varies by condition — check in-game) grants Howl of the Pack Leader and causes your next Kill Command to rouse the nearby wildlife into a Stampede, charging your target and dealing ≈1,350% of Attack Power Physical damage over 7.",
                 "uncertain": true
             },
             "formulaModifierSpellIds": [],
@@ -8455,7 +8489,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "When Strike as One critically strikes, it bleeds its target for an additional (varies) damage over 5.",
+                            "text": "When Strike as One critically strikes, it bleeds its target for an additional ≈40% of Attack Power damage over 5.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -8487,7 +8521,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "You and your pet leap to your target and strike as one, dealing 100 Physical damage to your target and up to 4 nearby enemies. Your pet frees itself from roots when it leaps. For the next 8, the damage dealt by you and your pet is increased by 20% and your attack speed is increased by (varies)%. Generates 50 Focus and 3 stacks of Tip of the Spear.",
+                            "text": "You and your pet leap to your target and strike as one, dealing ≈1,800% of Attack Power Physical damage to your target and up to 4 nearby enemies. Your pet frees itself from roots when it leaps. For the next 8, the damage dealt by you and your pet is increased by 20% and your attack speed is increased by (varies)%. Generates 50 Focus and 3 stacks of Tip of the Spear.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -8507,6 +8541,7 @@
                                         "charges": null,
                                         "max_stacks": null,
                                         "proc_chance": null,
+                                        "proc_cooldown_seconds": null,
                                         "cooldown_seconds": null,
                                         "cooldown_scaling_note": null,
                                         "duration_seconds": null,
@@ -8554,6 +8589,7 @@
                                                 "affected_schools": null,
                                                 "sp_coefficient": null,
                                                 "pvp_coefficient": null,
+                                                "ap_coefficient": null,
                                                 "rank_op": "mul",
                                                 "rank_values": [
                                                     1,
@@ -8594,7 +8630,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "When Strike as One critically strikes, it bleeds its target for an additional (varies) damage over 5.",
+                            "text": "When Strike as One critically strikes, it bleeds its target for an additional ≈40% of Attack Power damage over 5.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -8613,7 +8649,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "You and your pet leap to your target and strike as one, dealing 100 Physical damage to your target and up to 4 nearby enemies. Your pet frees itself from roots when it leaps. For the next (varies), the damage dealt by you and your pet is increased by 50% and your attack speed is increased by (varies)%. Generates 50 Focus and 3 stacks of Tip of the Spear.",
+                            "text": "You and your pet leap to your target and strike as one, dealing ≈1,800% of Attack Power Physical damage to your target and up to 4 nearby enemies. Your pet frees itself from roots when it leaps. For the next (varies), the damage dealt by you and your pet is increased by 50% and your attack speed is increased by (varies)%. Generates 50 Focus and 3 stacks of Tip of the Spear.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -8633,6 +8669,7 @@
                                         "charges": null,
                                         "max_stacks": null,
                                         "proc_chance": null,
+                                        "proc_cooldown_seconds": null,
                                         "cooldown_seconds": null,
                                         "cooldown_scaling_note": null,
                                         "duration_seconds": null,
@@ -8681,7 +8718,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "You and your pet leap to your target and strike as one, dealing 100 Physical damage to your target and up to 4 nearby enemies. Your pet frees itself from roots when it leaps. For the next (varies), the damage dealt by you and your pet is increased by 50% and your attack speed is increased by (varies)%. Generates 50 Focus and 3 stacks of Tip of the Spear.",
+                            "text": "You and your pet leap to your target and strike as one, dealing ≈1,800% of Attack Power Physical damage to your target and up to 4 nearby enemies. Your pet frees itself from roots when it leaps. For the next (varies), the damage dealt by you and your pet is increased by 50% and your attack speed is increased by (varies)%. Generates 50 Focus and 3 stacks of Tip of the Spear.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -8697,7 +8734,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "You and your pet leap to your target and strike as one, dealing 100 Physical damage to your target and up to 4 nearby enemies. Your pet frees itself from roots when it leaps. For the next (varies), the damage dealt by you and your pet is increased by 50% and your attack speed is increased by (varies)%. Generates 50 Focus and 3 stacks of Tip of the Spear.",
+                            "text": "You and your pet leap to your target and strike as one, dealing ≈1,800% of Attack Power Physical damage to your target and up to 4 nearby enemies. Your pet frees itself from roots when it leaps. For the next (varies), the damage dealt by you and your pet is increased by 50% and your attack speed is increased by (varies)%. Generates 50 Focus and 3 stacks of Tip of the Spear.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -8717,6 +8754,7 @@
                                         "charges": null,
                                         "max_stacks": null,
                                         "proc_chance": null,
+                                        "proc_cooldown_seconds": null,
                                         "cooldown_seconds": null,
                                         "cooldown_scaling_note": null,
                                         "duration_seconds": null,
@@ -8911,6 +8949,7 @@
                             "charges": null,
                             "max_stacks": null,
                             "proc_chance": null,
+                            "proc_cooldown_seconds": null,
                             "cooldown_seconds": null,
                             "cooldown_scaling_note": null,
                             "duration_seconds": null,
@@ -8958,6 +8997,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:22:31.000000Z",
@@ -9046,7 +9086,7 @@
             "spellId": 4830,
             "category": "Offensive",
             "description": {
-                "text": "You and your pet leap to your target and strike as one, dealing 100 Physical damage to your target and up to 4 nearby enemies. Your pet frees itself from roots when it leaps. For the next 8, the damage dealt by you and your pet is increased by 20% and your attack speed is increased by (varies)%. Generates 50 Focus and 3 stacks of Tip of the Spear.",
+                "text": "You and your pet leap to your target and strike as one, dealing ≈1,800% of Attack Power Physical damage to your target and up to 4 nearby enemies. Your pet frees itself from roots when it leaps. For the next 8, the damage dealt by you and your pet is increased by 20% and your attack speed is increased by (varies)%. Generates 50 Focus and 3 stacks of Tip of the Spear.",
                 "uncertain": true
             },
             "formulaModifierSpellIds": [],
@@ -9173,7 +9213,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Casting (varies by condition — check in-game) grants Howl of the Pack Leader and causes your next Kill Command to rouse the nearby wildlife into a Stampede, charging your target and dealing 9 Physical damage over 7.",
+                            "text": "Casting (varies by condition — check in-game) grants Howl of the Pack Leader and causes your next Kill Command to rouse the nearby wildlife into a Stampede, charging your target and dealing ≈1,350% of Attack Power Physical damage over 7.",
                             "uncertain": true
                         },
                         "category": "Other",
@@ -9189,7 +9229,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Casting (varies by condition — check in-game) grants Howl of the Pack Leader and causes your next Kill Command to rouse the nearby wildlife into a Stampede, charging your target and dealing 9 Physical damage over 7.",
+                            "text": "Casting (varies by condition — check in-game) grants Howl of the Pack Leader and causes your next Kill Command to rouse the nearby wildlife into a Stampede, charging your target and dealing ≈1,350% of Attack Power Physical damage over 7.",
                             "uncertain": true
                         },
                         "category": "Other",
@@ -9218,6 +9258,7 @@
                             "charges": null,
                             "max_stacks": null,
                             "proc_chance": null,
+                            "proc_cooldown_seconds": null,
                             "cooldown_seconds": null,
                             "cooldown_scaling_note": null,
                             "duration_seconds": null,
@@ -9265,6 +9306,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": "mul",
                                     "rank_values": [
                                         1,
@@ -9409,6 +9451,7 @@
                             "charges": null,
                             "max_stacks": null,
                             "proc_chance": null,
+                            "proc_cooldown_seconds": null,
                             "cooldown_seconds": null,
                             "cooldown_scaling_note": null,
                             "duration_seconds": null,
@@ -9456,6 +9499,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:22:31.000000Z",
@@ -9669,7 +9713,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "You and your pet leap to your target and strike as one, dealing 100 Physical damage to your target and up to 4 nearby enemies. Your pet frees itself from roots when it leaps. For the next 8, the damage dealt by you and your pet is increased by 20% and your attack speed is increased by (varies)%. Generates 50 Focus and 3 stacks of Tip of the Spear.",
+                            "text": "You and your pet leap to your target and strike as one, dealing ≈1,800% of Attack Power Physical damage to your target and up to 4 nearby enemies. Your pet frees itself from roots when it leaps. For the next 8, the damage dealt by you and your pet is increased by 20% and your attack speed is increased by (varies)%. Generates 50 Focus and 3 stacks of Tip of the Spear.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -9689,6 +9733,7 @@
                                         "charges": null,
                                         "max_stacks": null,
                                         "proc_chance": null,
+                                        "proc_cooldown_seconds": null,
                                         "cooldown_seconds": null,
                                         "cooldown_scaling_note": null,
                                         "duration_seconds": null,
@@ -9736,6 +9781,7 @@
                                                 "affected_schools": null,
                                                 "sp_coefficient": null,
                                                 "pvp_coefficient": null,
+                                                "ap_coefficient": null,
                                                 "rank_op": "mul",
                                                 "rank_values": [
                                                     1,
@@ -9811,7 +9857,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "You and your pet leap to your target and strike as one, dealing 100 Physical damage to your target and up to 4 nearby enemies. Your pet frees itself from roots when it leaps. For the next (varies), the damage dealt by you and your pet is increased by 50% and your attack speed is increased by (varies)%. Generates 50 Focus and 3 stacks of Tip of the Spear.",
+                            "text": "You and your pet leap to your target and strike as one, dealing ≈1,800% of Attack Power Physical damage to your target and up to 4 nearby enemies. Your pet frees itself from roots when it leaps. For the next (varies), the damage dealt by you and your pet is increased by 50% and your attack speed is increased by (varies)%. Generates 50 Focus and 3 stacks of Tip of the Spear.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -9831,6 +9877,7 @@
                                         "charges": null,
                                         "max_stacks": null,
                                         "proc_chance": null,
+                                        "proc_cooldown_seconds": null,
                                         "cooldown_seconds": null,
                                         "cooldown_scaling_note": null,
                                         "duration_seconds": null,
@@ -9879,7 +9926,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "You and your pet leap to your target and strike as one, dealing 100 Physical damage to your target and up to 4 nearby enemies. Your pet frees itself from roots when it leaps. For the next (varies), the damage dealt by you and your pet is increased by 50% and your attack speed is increased by (varies)%. Generates 50 Focus and 3 stacks of Tip of the Spear.",
+                            "text": "You and your pet leap to your target and strike as one, dealing ≈1,800% of Attack Power Physical damage to your target and up to 4 nearby enemies. Your pet frees itself from roots when it leaps. For the next (varies), the damage dealt by you and your pet is increased by 50% and your attack speed is increased by (varies)%. Generates 50 Focus and 3 stacks of Tip of the Spear.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -9895,7 +9942,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "You and your pet leap to your target and strike as one, dealing 100 Physical damage to your target and up to 4 nearby enemies. Your pet frees itself from roots when it leaps. For the next (varies), the damage dealt by you and your pet is increased by 50% and your attack speed is increased by (varies)%. Generates 50 Focus and 3 stacks of Tip of the Spear.",
+                            "text": "You and your pet leap to your target and strike as one, dealing ≈1,800% of Attack Power Physical damage to your target and up to 4 nearby enemies. Your pet frees itself from roots when it leaps. For the next (varies), the damage dealt by you and your pet is increased by 50% and your attack speed is increased by (varies)%. Generates 50 Focus and 3 stacks of Tip of the Spear.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -9915,6 +9962,7 @@
                                         "charges": null,
                                         "max_stacks": null,
                                         "proc_chance": null,
+                                        "proc_cooldown_seconds": null,
                                         "cooldown_seconds": null,
                                         "cooldown_scaling_note": null,
                                         "duration_seconds": null,
@@ -10420,8 +10468,8 @@
             "spellId": 4679,
             "category": "Utility",
             "description": {
-                "text": "Mend Pet heals for an additional (varies)% of your pet's health over its duration, and has a 25% chance to dispel a magic effect each time it heals your pet.",
-                "uncertain": true
+                "text": "Mend Pet heals for an additional 25% of your pet's health over its duration, and has a 25% chance to dispel a magic effect each time it heals your pet.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -10450,7 +10498,7 @@
             "spellId": 4815,
             "category": "Offensive",
             "description": {
-                "text": "Hurl a bomb at the target, exploding for (varies) Fire damage in a cone and coating enemies in wildfire, scorching them for (varies) Fire damage over 6. Deals reduced damage beyond 8 targets. Deals 50% increased damage to your primary target.",
+                "text": "Hurl a bomb at the target, exploding for ≈190% of Attack Power Fire damage in a cone and coating enemies in wildfire, scorching them for ≈151.2% of Attack Power Fire damage over 6. Deals reduced damage beyond 8 targets. Deals 50% increased damage to your primary target.",
                 "uncertain": true
             },
             "formulaModifierSpellIds": [],
@@ -10478,7 +10526,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Lace your Wildfire Bomb with extra reagents, randomly giving it one of the following enhancements each time you throw it: Shrapnel Bomb: Shrapnel pierces the targets, causing Mongoose Bite and Butchery to apply a bleed for 9 that stacks up to 3 times. Pheromone Bomb: Kill Command has a 100% chance to reset against targets coated with Pheromones. Volatile Bomb: Reacts violently with poison, causing an extra (varies) Fire damage against enemies suffering from your Serpent Sting, and applies Serpent Sting to up to 3 targets.",
+                            "text": "Lace your Wildfire Bomb with extra reagents, randomly giving it one of the following enhancements each time you throw it: Shrapnel Bomb: Shrapnel pierces the targets, causing Mongoose Bite and Butchery to apply a bleed for 9 that stacks up to 3 times. Pheromone Bomb: Kill Command has a 100% chance to reset against targets coated with Pheromones. Volatile Bomb: Reacts violently with poison, causing an extra ≈33.4% of Attack Power Fire damage against enemies suffering from your Serpent Sting, and applies Serpent Sting to up to 3 targets.",
                             "uncertain": true
                         },
                         "category": "Other",
@@ -10494,7 +10542,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Lace your Wildfire Bomb with extra reagents, randomly giving it one of the following enhancements each time you throw it: Shrapnel Bomb: Shrapnel pierces the targets, causing Mongoose Bite and Butchery to apply a bleed for 9 that stacks up to 3 times. Pheromone Bomb: Kill Command has a 100% chance to reset against targets coated with Pheromones. Volatile Bomb: Reacts violently with poison, causing an extra (varies) Fire damage against enemies suffering from your Serpent Sting, and applies Serpent Sting to up to 3 targets.",
+                            "text": "Lace your Wildfire Bomb with extra reagents, randomly giving it one of the following enhancements each time you throw it: Shrapnel Bomb: Shrapnel pierces the targets, causing Mongoose Bite and Butchery to apply a bleed for 9 that stacks up to 3 times. Pheromone Bomb: Kill Command has a 100% chance to reset against targets coated with Pheromones. Volatile Bomb: Reacts violently with poison, causing an extra ≈33.4% of Attack Power Fire damage against enemies suffering from your Serpent Sting, and applies Serpent Sting to up to 3 targets.",
                             "uncertain": true
                         },
                         "category": "Other",
@@ -10674,7 +10722,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Lace your Wildfire Bomb with extra reagents, randomly giving it one of the following enhancements each time you throw it: Shrapnel Bomb: Shrapnel pierces the targets, causing Mongoose Bite and Butchery to apply a bleed for 9 that stacks up to 3 times. Pheromone Bomb: Kill Command has a 100% chance to reset against targets coated with Pheromones. Volatile Bomb: Reacts violently with poison, causing an extra (varies) Fire damage against enemies suffering from your Serpent Sting, and applies Serpent Sting to up to 270,335 targets.",
+                            "text": "Lace your Wildfire Bomb with extra reagents, randomly giving it one of the following enhancements each time you throw it: Shrapnel Bomb: Shrapnel pierces the targets, causing Mongoose Bite and Butchery to apply a bleed for 9 that stacks up to 3 times. Pheromone Bomb: Kill Command has a 100% chance to reset against targets coated with Pheromones. Volatile Bomb: Reacts violently with poison, causing an extra ≈33.4% of Attack Power Fire damage against enemies suffering from your Serpent Sting, and applies Serpent Sting to up to 270,335 targets.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -10996,6 +11044,7 @@
                             "charges": null,
                             "max_stacks": null,
                             "proc_chance": null,
+                            "proc_cooldown_seconds": null,
                             "cooldown_seconds": null,
                             "cooldown_scaling_note": null,
                             "duration_seconds": null,
@@ -11043,6 +11092,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:22:32.000000Z",
@@ -11061,6 +11111,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:22:32.000000Z",

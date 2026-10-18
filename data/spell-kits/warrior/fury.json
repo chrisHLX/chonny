@@ -1,6 +1,6 @@
 {
-    "generatedAt": "2026-10-07T21:48:29+00:00",
-    "spellCacheVersion": 27,
+    "generatedAt": "2026-10-18T02:36:41+00:00",
+    "spellCacheVersion": 29,
     "codeFingerprint": "dev",
     "entries": [
         {
@@ -127,7 +127,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Damaging enemies with Thunder Clap, Raging Blow, or Execute has a 25% chance to also strike one with a lightning bolt, dealing (varies) Nature damage and generating 0 Rage. Lightning Strikes occur 30% more often during Avatar.",
+                            "text": "Damaging enemies with Thunder Clap, Raging Blow, or Execute has a 25% chance to also strike one with a lightning bolt, dealing ≈232.7% of Attack Power Nature damage and generating 0 Rage. Lightning Strikes occur 30% more often during Avatar.",
                             "uncertain": true
                         },
                         "category": "Other",
@@ -954,7 +954,7 @@
             "spellId": 13550,
             "category": "Other",
             "description": {
-                "text": "Thunder Clap affects all targets with Rend, causing them to Bleed for (varies) damage over 15.",
+                "text": "Thunder Clap affects all targets with Rend, causing them to Bleed for ≈190.5% of Attack Power damage over 15.",
                 "uncertain": true
             },
             "formulaModifierSpellIds": [],
@@ -984,7 +984,7 @@
             "spellId": 12039,
             "category": "Offensive",
             "description": {
-                "text": "Assault the target in a bloodthirsty craze, dealing 335,096 Physical damage and restoring 3% of your health. Bloodbath wounds the target to suffer (varies) Bleed damage over 6. Using Bloodbath on a target that is affected by Bloodbath extends the bleed by 6. Generates 8 Rage and has a 30% chance to Enrage you.",
+                "text": "Assault the target in a bloodthirsty craze, dealing 335,096 Physical damage and restoring 3% of your health. Bloodbath wounds the target to suffer ≈187.3% of Attack Power Bleed damage over 6. Using Bloodbath on a target that is affected by Bloodbath extends the bleed by 6. Generates 8 Rage and has a 30% chance to Enrage you.",
                 "uncertain": true
             },
             "formulaModifierSpellIds": [],
@@ -1188,7 +1188,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Wounds the target, causing (varies) Physical damage instantly and an additional (varies) Bleed damage over 15.",
+                            "text": "Wounds the target, causing ≈38.1% of Attack Power Physical damage instantly and an additional ≈190.5% of Attack Power Bleed damage over 15.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -1204,7 +1204,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Activating Recklessness generates 50 Rage and while Recklessness is active, Raging Blow and Bloodthirst are upgraded to Crushing Blow and Bloodbath. Crushing Blow Deals increased damage and deals 20% additional critical strike damage. Bloodbath Deals increased damage and wounds the target to suffer (varies) Bleed damage over 6. Using Bloodbath on a target affected by Bloodbath extends the bleed by 6.",
+                            "text": "Activating Recklessness generates 50 Rage and while Recklessness is active, Raging Blow and Bloodthirst are upgraded to Crushing Blow and Bloodbath. Crushing Blow Deals increased damage and deals 20% additional critical strike damage. Bloodbath Deals increased damage and wounds the target to suffer ≈187.3% of Attack Power Bleed damage over 6. Using Bloodbath on a target affected by Bloodbath extends the bleed by 6.",
                             "uncertain": true
                         },
                         "category": "Other",
@@ -1352,7 +1352,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Assault the target in a bloodthirsty craze, dealing 335,096 Physical damage and restoring 3% of your health. Bloodbath wounds the target to suffer (varies) Bleed damage over 6. Using Bloodbath on a target that is affected by Bloodbath extends the bleed by 6. Generates 8 Rage and has a 30% chance to Enrage you.",
+                            "text": "Assault the target in a bloodthirsty craze, dealing 335,096 Physical damage and restoring 3% of your health. Bloodbath wounds the target to suffer ≈187.3% of Attack Power Bleed damage over 6. Using Bloodbath on a target that is affected by Bloodbath extends the bleed by 6. Generates 8 Rage and has a 30% chance to Enrage you.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -1368,7 +1368,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Activating Recklessness generates 33,509.7 Rage and while Recklessness is active, Raging Blow and Bloodthirst are upgraded to Crushing Blow and Bloodbath. Crushing Blow Deals increased damage and deals 20% additional critical strike damage. Bloodbath Deals increased damage and wounds the target to suffer (varies) Bleed damage over 6. Using Bloodbath on a target affected by Bloodbath extends the bleed by 6.",
+                            "text": "Activating Recklessness generates 33,509.7 Rage and while Recklessness is active, Raging Blow and Bloodthirst are upgraded to Crushing Blow and Bloodbath. Crushing Blow Deals increased damage and deals 20% additional critical strike damage. Bloodbath Deals increased damage and wounds the target to suffer ≈187.3% of Attack Power Bleed damage over 6. Using Bloodbath on a target affected by Bloodbath extends the bleed by 6.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -1384,7 +1384,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Activating Recklessness generates 33,509.6 Rage and while Recklessness is active, Raging Blow and Bloodthirst are upgraded to Crushing Blow and Bloodbath. Crushing Blow Deals increased damage and deals 20% additional critical strike damage. Bloodbath Deals increased damage and wounds the target to suffer (varies) Bleed damage over 6. Using Bloodbath on a target affected by Bloodbath extends the bleed by 6.",
+                            "text": "Activating Recklessness generates 33,509.6 Rage and while Recklessness is active, Raging Blow and Bloodthirst are upgraded to Crushing Blow and Bloodbath. Crushing Blow Deals increased damage and deals 20% additional critical strike damage. Bloodbath Deals increased damage and wounds the target to suffer ≈187.3% of Attack Power Bleed damage over 6. Using Bloodbath on a target affected by Bloodbath extends the bleed by 6.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -1477,7 +1477,7 @@
             "spellId": 12385,
             "category": "Offensive",
             "description": {
-                "text": "Assault the target in a bloodthirsty craze, dealing (varies) Physical damage and restoring 3% of your health. Generates 8 Rage and has a 30% chance to Enrage you.",
+                "text": "Assault the target in a bloodthirsty craze, dealing ≈424.2% of Attack Power Physical damage and restoring 3% of your health. Generates 8 Rage and has a 30% chance to Enrage you.",
                 "uncertain": true
             },
             "formulaModifierSpellIds": [],
@@ -1681,7 +1681,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Wounds the target, causing (varies) Physical damage instantly and an additional (varies) Bleed damage over 15.",
+                            "text": "Wounds the target, causing ≈38.1% of Attack Power Physical damage instantly and an additional ≈190.5% of Attack Power Bleed damage over 15.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -1841,7 +1841,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Activating Recklessness generates 50 Rage and while Recklessness is active, Raging Blow and Bloodthirst are upgraded to Crushing Blow and Bloodbath. Crushing Blow Deals increased damage and deals 20% additional critical strike damage. Bloodbath Deals increased damage and wounds the target to suffer (varies) Bleed damage over 6. Using Bloodbath on a target affected by Bloodbath extends the bleed by 6.",
+                            "text": "Activating Recklessness generates 50 Rage and while Recklessness is active, Raging Blow and Bloodthirst are upgraded to Crushing Blow and Bloodbath. Crushing Blow Deals increased damage and deals 20% additional critical strike damage. Bloodbath Deals increased damage and wounds the target to suffer ≈187.3% of Attack Power Bleed damage over 6. Using Bloodbath on a target affected by Bloodbath extends the bleed by 6.",
                             "uncertain": true
                         },
                         "category": "Other",
@@ -2053,7 +2053,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Assault the target in a bloodthirsty craze, dealing 335,096 Physical damage and restoring 3% of your health. Bloodbath wounds the target to suffer (varies) Bleed damage over 6. Using Bloodbath on a target that is affected by Bloodbath extends the bleed by 6. Generates 8 Rage and has a 30% chance to Enrage you.",
+                            "text": "Assault the target in a bloodthirsty craze, dealing 335,096 Physical damage and restoring 3% of your health. Bloodbath wounds the target to suffer ≈187.3% of Attack Power Bleed damage over 6. Using Bloodbath on a target that is affected by Bloodbath extends the bleed by 6. Generates 8 Rage and has a 30% chance to Enrage you.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -2101,7 +2101,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Assault the target in a bloodthirsty craze, dealing 335,096 Physical damage and restoring 3% of your health. Bloodbath wounds the target to suffer (varies) Bleed damage over 6. Using Bloodbath on a target that is affected by Bloodbath extends the bleed by 6. Generates 8 Rage and has a 30% chance to Enrage you.",
+                            "text": "Assault the target in a bloodthirsty craze, dealing 335,096 Physical damage and restoring 3% of your health. Bloodbath wounds the target to suffer ≈187.3% of Attack Power Bleed damage over 6. Using Bloodbath on a target that is affected by Bloodbath extends the bleed by 6. Generates 8 Rage and has a 30% chance to Enrage you.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -2117,7 +2117,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Activating Recklessness generates 33,509.7 Rage and while Recklessness is active, Raging Blow and Bloodthirst are upgraded to Crushing Blow and Bloodbath. Crushing Blow Deals increased damage and deals 20% additional critical strike damage. Bloodbath Deals increased damage and wounds the target to suffer (varies) Bleed damage over 6. Using Bloodbath on a target affected by Bloodbath extends the bleed by 6.",
+                            "text": "Activating Recklessness generates 33,509.7 Rage and while Recklessness is active, Raging Blow and Bloodthirst are upgraded to Crushing Blow and Bloodbath. Crushing Blow Deals increased damage and deals 20% additional critical strike damage. Bloodbath Deals increased damage and wounds the target to suffer ≈187.3% of Attack Power Bleed damage over 6. Using Bloodbath on a target affected by Bloodbath extends the bleed by 6.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -2149,7 +2149,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Activating Recklessness generates 33,509.6 Rage and while Recklessness is active, Raging Blow and Bloodthirst are upgraded to Crushing Blow and Bloodbath. Crushing Blow Deals increased damage and deals 20% additional critical strike damage. Bloodbath Deals increased damage and wounds the target to suffer (varies) Bleed damage over 6. Using Bloodbath on a target affected by Bloodbath extends the bleed by 6.",
+                            "text": "Activating Recklessness generates 33,509.6 Rage and while Recklessness is active, Raging Blow and Bloodthirst are upgraded to Crushing Blow and Bloodbath. Crushing Blow Deals increased damage and deals 20% additional critical strike damage. Bloodbath Deals increased damage and wounds the target to suffer ≈187.3% of Attack Power Bleed damage over 6. Using Bloodbath on a target affected by Bloodbath extends the bleed by 6.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -2364,7 +2364,7 @@
             "spellId": 12355,
             "category": "Offensive",
             "description": {
-                "text": "Throw a spear at the target location, chaining all enemies in the area to the spear's location and dealing 1,271,980 Physical damage instantly and an additional (varies) Physical damage over 6. While the spear is active, activating this ability will cause you to leap to the spear, dealing (varies) Physical damage to all targets. All damage dealt reduced beyond 5 targets. Generates $/10;376080s3 Rage.",
+                "text": "Throw a spear at the target location, chaining all enemies in the area to the spear's location and dealing 1,271,980 Physical damage instantly and an additional ≈326.3% of Attack Power Physical damage over 6. While the spear is active, activating this ability will cause you to leap to the spear, dealing ≈47% of Attack Power Physical damage to all targets. All damage dealt reduced beyond 5 targets. Generates $/10;376080s3 Rage.",
                 "uncertain": true
             },
             "formulaModifierSpellIds": [],
@@ -2392,7 +2392,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Leap to your Champion's Spear, dealing (varies) Physical damage.",
+                            "text": "Leap to your Champion's Spear, dealing ≈47% of Attack Power Physical damage.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -2877,6 +2877,7 @@
                             "charges": null,
                             "max_stacks": null,
                             "proc_chance": null,
+                            "proc_cooldown_seconds": null,
                             "cooldown_seconds": null,
                             "cooldown_scaling_note": null,
                             "duration_seconds": null,
@@ -2924,6 +2925,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:23:40.000000Z",
@@ -2942,6 +2944,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": 0.8,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:23:40.000000Z",
@@ -2972,6 +2975,7 @@
                             "charges": null,
                             "max_stacks": null,
                             "proc_chance": null,
+                            "proc_cooldown_seconds": null,
                             "cooldown_seconds": null,
                             "cooldown_scaling_note": null,
                             "duration_seconds": null,
@@ -3019,6 +3023,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:23:40.000000Z",
@@ -3037,6 +3042,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": 0.8,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:23:40.000000Z",
@@ -3275,7 +3281,7 @@
             "spellId": 12040,
             "category": "Offensive",
             "description": {
-                "text": "Strike a mighty blow with both weapons that deals a total of 50 Physical damage. Crushing Blow has a 25% chance to instantly reset its own cooldown and its critical strikes deal 20% additional damage. Generates 12 Rage.",
+                "text": "Strike a mighty blow with both weapons that deals a total of ≈496.8% of Attack Power Physical damage. Crushing Blow has a 25% chance to instantly reset its own cooldown and its critical strikes deal 20% additional damage. Generates 12 Rage.",
                 "uncertain": false
             },
             "formulaModifierSpellIds": [],
@@ -3335,7 +3341,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Activating Recklessness generates 50 Rage and while Recklessness is active, Raging Blow and Bloodthirst are upgraded to Crushing Blow and Bloodbath. Crushing Blow Deals increased damage and deals 20% additional critical strike damage. Bloodbath Deals increased damage and wounds the target to suffer (varies) Bleed damage over 6. Using Bloodbath on a target affected by Bloodbath extends the bleed by 6.",
+                            "text": "Activating Recklessness generates 50 Rage and while Recklessness is active, Raging Blow and Bloodthirst are upgraded to Crushing Blow and Bloodbath. Crushing Blow Deals increased damage and deals 20% additional critical strike damage. Bloodbath Deals increased damage and wounds the target to suffer ≈187.3% of Attack Power Bleed damage over 6. Using Bloodbath on a target affected by Bloodbath extends the bleed by 6.",
                             "uncertain": true
                         },
                         "category": "Other",
@@ -3387,7 +3393,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Strike a mighty blow with both weapons that deals a total of 50 Physical damage. Crushing Blow has a 25% chance to instantly reset its own cooldown and its critical strikes deal 20% additional damage. Generates 0 Rage.",
+                            "text": "Strike a mighty blow with both weapons that deals a total of ≈496.8% of Attack Power Physical damage. Crushing Blow has a 25% chance to instantly reset its own cooldown and its critical strikes deal 20% additional damage. Generates 0 Rage.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -3403,7 +3409,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Strike a mighty blow with both weapons that deals a total of 50 Physical damage. Crushing Blow has a 25% chance to instantly reset its own cooldown and its critical strikes deal 20% additional damage. Generates 0 Rage.",
+                            "text": "Strike a mighty blow with both weapons that deals a total of ≈496.8% of Attack Power Physical damage. Crushing Blow has a 25% chance to instantly reset its own cooldown and its critical strikes deal 20% additional damage. Generates 0 Rage.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -3419,7 +3425,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Activating Recklessness generates 33,509.7 Rage and while Recklessness is active, Raging Blow and Bloodthirst are upgraded to Crushing Blow and Bloodbath. Crushing Blow Deals increased damage and deals 20% additional critical strike damage. Bloodbath Deals increased damage and wounds the target to suffer (varies) Bleed damage over 6. Using Bloodbath on a target affected by Bloodbath extends the bleed by 6.",
+                            "text": "Activating Recklessness generates 33,509.7 Rage and while Recklessness is active, Raging Blow and Bloodthirst are upgraded to Crushing Blow and Bloodbath. Crushing Blow Deals increased damage and deals 20% additional critical strike damage. Bloodbath Deals increased damage and wounds the target to suffer ≈187.3% of Attack Power Bleed damage over 6. Using Bloodbath on a target affected by Bloodbath extends the bleed by 6.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -3435,7 +3441,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Activating Recklessness generates 33,509.6 Rage and while Recklessness is active, Raging Blow and Bloodthirst are upgraded to Crushing Blow and Bloodbath. Crushing Blow Deals increased damage and deals 20% additional critical strike damage. Bloodbath Deals increased damage and wounds the target to suffer (varies) Bleed damage over 6. Using Bloodbath on a target affected by Bloodbath extends the bleed by 6.",
+                            "text": "Activating Recklessness generates 33,509.6 Rage and while Recklessness is active, Raging Blow and Bloodthirst are upgraded to Crushing Blow and Bloodbath. Crushing Blow Deals increased damage and deals 20% additional critical strike damage. Bloodbath Deals increased damage and wounds the target to suffer ≈187.3% of Attack Power Bleed damage over 6. Using Bloodbath on a target affected by Bloodbath extends the bleed by 6.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -3469,6 +3475,7 @@
                             "charges": null,
                             "max_stacks": null,
                             "proc_chance": null,
+                            "proc_cooldown_seconds": null,
                             "cooldown_seconds": null,
                             "cooldown_scaling_note": null,
                             "duration_seconds": null,
@@ -3516,6 +3523,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:23:41.000000Z",
@@ -3694,7 +3702,7 @@
             "spellId": 11729,
             "category": "Offensive",
             "description": {
-                "text": "Execute inflicts Deep Wounds on the target. Deep Wounds Causes the target to suffer (varies) Bleed damage over 6. If this effect is reapplied, any remaining damage will be added to the new Deep Wounds.",
+                "text": "Execute inflicts Deep Wounds on the target. Deep Wounds Causes the target to suffer ≈145.5% of Attack Power Bleed damage over 6. If this effect is reapplied, any remaining damage will be added to the new Deep Wounds.",
                 "uncertain": true
             },
             "formulaModifierSpellIds": [],
@@ -3706,7 +3714,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Causes the target to suffer (varies) Bleed damage over 6. If this effect is reapplied, any remaining damage will be added to the new Deep Wounds.",
+                            "text": "Causes the target to suffer ≈145.5% of Attack Power Bleed damage over 6. If this effect is reapplied, any remaining damage will be added to the new Deep Wounds.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -4130,7 +4138,7 @@
             "spellId": 11975,
             "category": "Offensive",
             "description": {
-                "text": "Attempt to finish off a wounded foe, causing 0 Physical damage. Only usable on enemies that have less than 35% health. Generates 0 Rage.",
+                "text": "Attempt to finish off a wounded foe, causing ≈770.5% of Attack Power Physical damage. Only usable on enemies that have less than 35% health. Generates 0 Rage.",
                 "uncertain": true
             },
             "formulaModifierSpellIds": [],
@@ -4254,7 +4262,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Execute inflicts Deep Wounds on the target. Deep Wounds Causes the target to suffer (varies) Bleed damage over 6. If this effect is reapplied, any remaining damage will be added to the new Deep Wounds.",
+                            "text": "Execute inflicts Deep Wounds on the target. Deep Wounds Causes the target to suffer ≈145.5% of Attack Power Bleed damage over 6. If this effect is reapplied, any remaining damage will be added to the new Deep Wounds.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -4334,7 +4342,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Damaging enemies with Thunder Clap, Raging Blow, or Execute has a 25% chance to also strike one with a lightning bolt, dealing (varies) Nature damage and generating 0 Rage. Lightning Strikes occur 30% more often during Avatar.",
+                            "text": "Damaging enemies with Thunder Clap, Raging Blow, or Execute has a 25% chance to also strike one with a lightning bolt, dealing ≈232.7% of Attack Power Nature damage and generating 0 Rage. Lightning Strikes occur 30% more often during Avatar.",
                             "uncertain": true
                         },
                         "category": "Other",
@@ -4418,7 +4426,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Your attacks against your primary target have a (varies by condition — check in-game)% chance to overwhelm their defenses and trigger a Slayer's Strike, dealing (varies) Physical damage and granting you a stack of Executioner, increasing your Execute damage by 3% for 12. Multiple stacks of Executioner may overlap.",
+                            "text": "Your attacks against your primary target have a (varies by condition — check in-game)% chance to overwhelm their defenses and trigger a Slayer's Strike, dealing ≈840.4% of Attack Power Physical damage and granting you a stack of Executioner, increasing your Execute damage by 3% for 12. Multiple stacks of Executioner may overlap.",
                             "uncertain": true
                         },
                         "category": "Other",
@@ -4861,7 +4869,7 @@
             "spellId": 12442,
             "category": "Other",
             "description": {
-                "text": "Lightning Strikes also deal (varies) Nature damage to enemies near their target. Damage reduced beyond 5 targets.",
+                "text": "Lightning Strikes also deal ≈167.7% of Attack Power Nature damage to enemies near their target. Damage reduced beyond 5 targets.",
                 "uncertain": true
             },
             "formulaModifierSpellIds": [],
@@ -4921,7 +4929,7 @@
             "spellId": 11743,
             "category": "Offensive",
             "description": {
-                "text": "Maims the enemy for (varies) Physical damage, reducing movement speed by 50% for 15.",
+                "text": "Maims the enemy for ≈15% of Attack Power Physical damage, reducing movement speed by 50% for 15.",
                 "uncertain": true
             },
             "formulaModifierSpellIds": [],
@@ -4981,7 +4989,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Wounds the target, causing (varies) Physical damage instantly and an additional (varies) Bleed damage over 15.",
+                            "text": "Wounds the target, causing ≈38.1% of Attack Power Physical damage instantly and an additional ≈190.5% of Attack Power Bleed damage over 15.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -5206,6 +5214,7 @@
                             "charges": null,
                             "max_stacks": null,
                             "proc_chance": null,
+                            "proc_cooldown_seconds": null,
                             "cooldown_seconds": null,
                             "cooldown_scaling_note": null,
                             "duration_seconds": null,
@@ -5253,6 +5262,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": 0.7,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:23:40.000000Z",
@@ -5271,6 +5281,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": 0.7,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:23:40.000000Z",
@@ -5424,7 +5435,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Wounds the target, causing (varies) Physical damage instantly and an additional (varies) Bleed damage over 15.",
+                            "text": "Wounds the target, causing ≈38.1% of Attack Power Physical damage instantly and an additional ≈190.5% of Attack Power Bleed damage over 15.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -5713,7 +5724,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Unleash a series of 5.6 brutal strikes for a total of 22.4 Physical damage. While Improved Whirlwind is active, Rampage's final strike deals 5 Physical damage to all enemies within 8 yds of your target. Deals reduced damage beyond 5 targets. Enrages you.",
+                            "text": "Unleash a series of 5.6 brutal strikes for a total of ≈744.6% of Attack Power Physical damage. While Improved Whirlwind is active, Rampage's final strike deals 5 Physical damage to all enemies within 8 yds of your target. Deals reduced damage beyond 5 targets. Enrages you.",
                             "uncertain": false
                         },
                         "category": "Offensive",
@@ -5729,7 +5740,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Unleash a series of 5.6 brutal strikes for a total of 22.4 Physical damage. While Improved Whirlwind is active, Rampage's final strike deals 5 Physical damage to all enemies within 8 yds of your target. Deals reduced damage beyond 5 targets. Enrages you.",
+                            "text": "Unleash a series of 5.6 brutal strikes for a total of ≈744.6% of Attack Power Physical damage. While Improved Whirlwind is active, Rampage's final strike deals 5 Physical damage to all enemies within 8 yds of your target. Deals reduced damage beyond 5 targets. Enrages you.",
                             "uncertain": false
                         },
                         "category": "Offensive",
@@ -5745,7 +5756,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Unleash a series of 5.6 brutal strikes for a total of 22.4 Physical damage. While Improved Whirlwind is active, Rampage's final strike deals 5 Physical damage to all enemies within 8 yds of your target. Deals reduced damage beyond 5 targets. Enrages you.",
+                            "text": "Unleash a series of 5.6 brutal strikes for a total of ≈744.6% of Attack Power Physical damage. While Improved Whirlwind is active, Rampage's final strike deals 5 Physical damage to all enemies within 8 yds of your target. Deals reduced damage beyond 5 targets. Enrages you.",
                             "uncertain": false
                         },
                         "category": "Offensive",
@@ -5761,7 +5772,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Unleash a series of 5.6 brutal strikes for a total of 22.4 Physical damage. While Improved Whirlwind is active, Rampage's final strike deals 5 Physical damage to all enemies within 8 yds of your target. Deals reduced damage beyond 5 targets. Enrages you.",
+                            "text": "Unleash a series of 5.6 brutal strikes for a total of ≈744.6% of Attack Power Physical damage. While Improved Whirlwind is active, Rampage's final strike deals 5 Physical damage to all enemies within 8 yds of your target. Deals reduced damage beyond 5 targets. Enrages you.",
                             "uncertain": false
                         },
                         "category": "Offensive",
@@ -5777,7 +5788,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Unleash a series of 5.6 brutal strikes for a total of 22.4 Physical damage. While Improved Whirlwind is active, Rampage's final strike deals 5 Physical damage to all enemies within 8 yds of your target. Deals reduced damage beyond 5 targets. Enrages you.",
+                            "text": "Unleash a series of 5.6 brutal strikes for a total of ≈744.6% of Attack Power Physical damage. While Improved Whirlwind is active, Rampage's final strike deals 5 Physical damage to all enemies within 8 yds of your target. Deals reduced damage beyond 5 targets. Enrages you.",
                             "uncertain": false
                         },
                         "category": "Offensive",
@@ -5793,7 +5804,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Unleash a series of 5.6 brutal strikes for a total of 22.4 Physical damage. While Improved Whirlwind is active, Rampage's final strike deals 5 Physical damage to all enemies within 8 yds of your target. Deals reduced damage beyond 5 targets. Enrages you.",
+                            "text": "Unleash a series of 5.6 brutal strikes for a total of ≈744.6% of Attack Power Physical damage. While Improved Whirlwind is active, Rampage's final strike deals 5 Physical damage to all enemies within 8 yds of your target. Deals reduced damage beyond 5 targets. Enrages you.",
                             "uncertain": false
                         },
                         "category": "Offensive",
@@ -5809,7 +5820,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Unleash a series of 5.6 brutal strikes for a total of 22.4 Physical damage. While Improved Whirlwind is active, Rampage's final strike deals 5 Physical damage to all enemies within 8 yds of your target. Deals reduced damage beyond 5 targets. Enrages you.",
+                            "text": "Unleash a series of 5.6 brutal strikes for a total of ≈744.6% of Attack Power Physical damage. While Improved Whirlwind is active, Rampage's final strike deals 5 Physical damage to all enemies within 8 yds of your target. Deals reduced damage beyond 5 targets. Enrages you.",
                             "uncertain": false
                         },
                         "category": "Offensive",
@@ -5825,7 +5836,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Unleash a series of 5.6 brutal strikes for a total of 22.4 Physical damage. While Improved Whirlwind is active, Rampage's final strike deals 5 Physical damage to all enemies within 8 yds of your target. Deals reduced damage beyond 5 targets. Enrages you.",
+                            "text": "Unleash a series of 5.6 brutal strikes for a total of ≈744.6% of Attack Power Physical damage. While Improved Whirlwind is active, Rampage's final strike deals 5 Physical damage to all enemies within 8 yds of your target. Deals reduced damage beyond 5 targets. Enrages you.",
                             "uncertain": false
                         },
                         "category": "Offensive",
@@ -5841,7 +5852,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Unleash a series of 5.6 brutal strikes for a total of 22.4 Physical damage. While Improved Whirlwind is active, Rampage's final strike deals 5 Physical damage to all enemies within 8 yds of your target. Deals reduced damage beyond 5 targets. Enrages you.",
+                            "text": "Unleash a series of 5.6 brutal strikes for a total of ≈744.6% of Attack Power Physical damage. While Improved Whirlwind is active, Rampage's final strike deals 5 Physical damage to all enemies within 8 yds of your target. Deals reduced damage beyond 5 targets. Enrages you.",
                             "uncertain": false
                         },
                         "category": "Offensive",
@@ -5857,7 +5868,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Unleash a series of 11.2 brutal strikes for a total of 22.4 Physical damage. While Improved Whirlwind is active, Rampage's final strike deals 5 Physical damage to all enemies within 8 yds of your target. Deals reduced damage beyond 5 targets. Enrages you.",
+                            "text": "Unleash a series of 11.2 brutal strikes for a total of ≈744.6% of Attack Power Physical damage. While Improved Whirlwind is active, Rampage's final strike deals 5 Physical damage to all enemies within 8 yds of your target. Deals reduced damage beyond 5 targets. Enrages you.",
                             "uncertain": false
                         },
                         "category": "Offensive",
@@ -5873,7 +5884,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Unleash a series of 4 brutal strikes for a total of 22.4 Physical damage. While Improved Whirlwind is active, Rampage's final strike deals 5 Physical damage to all enemies within 8 yds of your target. Deals reduced damage beyond 5 targets. Enrages you.",
+                            "text": "Unleash a series of 4 brutal strikes for a total of ≈744.6% of Attack Power Physical damage. While Improved Whirlwind is active, Rampage's final strike deals 5 Physical damage to all enemies within 8 yds of your target. Deals reduced damage beyond 5 targets. Enrages you.",
                             "uncertain": false
                         },
                         "category": "Offensive",
@@ -6020,7 +6031,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Unleash a series of 5 brutal strikes for a total of 22.4 Physical damage. While Improved Whirlwind is active, Rampage's final strike deals 5 Physical damage to all enemies within 8 yds of your target. Deals reduced damage beyond 5 targets. Enrages you.",
+                            "text": "Unleash a series of 5 brutal strikes for a total of ≈744.6% of Attack Power Physical damage. While Improved Whirlwind is active, Rampage's final strike deals 5 Physical damage to all enemies within 8 yds of your target. Deals reduced damage beyond 5 targets. Enrages you.",
                             "uncertain": false
                         },
                         "category": "Offensive",
@@ -6053,8 +6064,8 @@
             "spellId": 12378,
             "category": "Defensive",
             "description": {
-                "text": "Run at high speed toward a target location near your allies, taking 30% of all damage dealt to allies within 3 yards for 8 or until you take at least (varies) damage from this effect.",
-                "uncertain": true
+                "text": "Run at high speed toward a target location near your allies, taking 30% of all damage dealt to allies within 3 yards for 8 or until you take at least ≈20% of maximum health damage from this effect.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -6275,6 +6286,7 @@
                             "charges": null,
                             "max_stacks": null,
                             "proc_chance": null,
+                            "proc_cooldown_seconds": null,
                             "cooldown_seconds": null,
                             "cooldown_scaling_note": null,
                             "duration_seconds": null,
@@ -6322,6 +6334,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:23:40.000000Z",
@@ -6340,6 +6353,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:23:40.000000Z",
@@ -6358,6 +6372,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:23:40.000000Z",
@@ -6376,6 +6391,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:23:40.000000Z",
@@ -6394,6 +6410,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:23:40.000000Z",
@@ -6412,6 +6429,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:23:40.000000Z",
@@ -6591,7 +6609,7 @@
             "spellId": 12439,
             "category": "Other",
             "description": {
-                "text": "Damaging enemies with Thunder Clap, Raging Blow, or Execute has a 25% chance to also strike one with a lightning bolt, dealing (varies) Nature damage and generating 0 Rage. Lightning Strikes occur 30% more often during Avatar.",
+                "text": "Damaging enemies with Thunder Clap, Raging Blow, or Execute has a 25% chance to also strike one with a lightning bolt, dealing ≈232.7% of Attack Power Nature damage and generating 0 Rage. Lightning Strikes occur 30% more often during Avatar.",
                 "uncertain": true
             },
             "formulaModifierSpellIds": [],
@@ -6619,7 +6637,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Lightning Strikes also deal (varies) Nature damage to enemies near their target. Damage reduced beyond 5 targets.",
+                            "text": "Lightning Strikes also deal ≈167.7% of Attack Power Nature damage to enemies near their target. Damage reduced beyond 5 targets.",
                             "uncertain": true
                         },
                         "category": "Other",
@@ -6826,7 +6844,7 @@
             "spellId": 12405,
             "category": "Offensive",
             "description": {
-                "text": "Unleashes your power, dealing 0 Physical damage and an additional (varies) Bleed damage over 4 to all enemies within 12 yards. Deals reduced damage beyond 8 targets. Enrages you and generates 20 Rage.",
+                "text": "Unleashes your power, dealing 0 Physical damage and an additional ≈520% of Attack Power Bleed damage over 4 to all enemies within 12 yards. Deals reduced damage beyond 8 targets. Enrages you and generates 20 Rage.",
                 "uncertain": true
             },
             "formulaModifierSpellIds": [],
@@ -6886,7 +6904,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Wounds the target, causing (varies) Physical damage instantly and an additional (varies) Bleed damage over 15.",
+                            "text": "Wounds the target, causing ≈38.1% of Attack Power Physical damage instantly and an additional ≈190.5% of Attack Power Bleed damage over 15.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -7159,8 +7177,8 @@
             "spellId": 12358,
             "category": "Defensive",
             "description": {
-                "text": "When you take any damage, heal for 2% of your maximum health. This can only occur once every (varies) sec.",
-                "uncertain": true
+                "text": "When you take any damage, heal for 2% of your maximum health. This can only occur once every 10 sec.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -7425,7 +7443,7 @@
             "spellId": 12386,
             "category": "Offensive",
             "description": {
-                "text": "A mighty blow with both weapons that deals a total of 50 Physical damage. Raging Blow has a 25% chance to instantly reset its own cooldown. Generates 12 Rage.",
+                "text": "A mighty blow with both weapons that deals a total of ≈414% of Attack Power Physical damage. Raging Blow has a 25% chance to instantly reset its own cooldown. Generates 12 Rage.",
                 "uncertain": false
             },
             "formulaModifierSpellIds": [],
@@ -7485,7 +7503,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "A mighty blow with both weapons that deals a total of 50 Physical damage. Raging Blow has a 25% chance to instantly reset its own cooldown. Generates 0 Rage.",
+                            "text": "A mighty blow with both weapons that deals a total of ≈414% of Attack Power Physical damage. Raging Blow has a 25% chance to instantly reset its own cooldown. Generates 0 Rage.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -7501,7 +7519,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "A mighty blow with both weapons that deals a total of 50 Physical damage. Raging Blow has a 25% chance to instantly reset its own cooldown. Generates 0 Rage.",
+                            "text": "A mighty blow with both weapons that deals a total of ≈414% of Attack Power Physical damage. Raging Blow has a 25% chance to instantly reset its own cooldown. Generates 0 Rage.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -7693,7 +7711,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Activating Recklessness generates 50 Rage and while Recklessness is active, Raging Blow and Bloodthirst are upgraded to Crushing Blow and Bloodbath. Crushing Blow Deals increased damage and deals 20% additional critical strike damage. Bloodbath Deals increased damage and wounds the target to suffer (varies) Bleed damage over 6. Using Bloodbath on a target affected by Bloodbath extends the bleed by 6.",
+                            "text": "Activating Recklessness generates 50 Rage and while Recklessness is active, Raging Blow and Bloodthirst are upgraded to Crushing Blow and Bloodbath. Crushing Blow Deals increased damage and deals 20% additional critical strike damage. Bloodbath Deals increased damage and wounds the target to suffer ≈187.3% of Attack Power Bleed damage over 6. Using Bloodbath on a target affected by Bloodbath extends the bleed by 6.",
                             "uncertain": true
                         },
                         "category": "Other",
@@ -7741,7 +7759,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Damaging enemies with Thunder Clap, Raging Blow, or Execute has a 25% chance to also strike one with a lightning bolt, dealing (varies) Nature damage and generating 0 Rage. Lightning Strikes occur 30% more often during Avatar.",
+                            "text": "Damaging enemies with Thunder Clap, Raging Blow, or Execute has a 25% chance to also strike one with a lightning bolt, dealing ≈232.7% of Attack Power Nature damage and generating 0 Rage. Lightning Strikes occur 30% more often during Avatar.",
                             "uncertain": true
                         },
                         "category": "Other",
@@ -7825,7 +7843,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Activating Recklessness generates 33,509.7 Rage and while Recklessness is active, Raging Blow and Bloodthirst are upgraded to Crushing Blow and Bloodbath. Crushing Blow Deals increased damage and deals 20% additional critical strike damage. Bloodbath Deals increased damage and wounds the target to suffer (varies) Bleed damage over 6. Using Bloodbath on a target affected by Bloodbath extends the bleed by 6.",
+                            "text": "Activating Recklessness generates 33,509.7 Rage and while Recklessness is active, Raging Blow and Bloodthirst are upgraded to Crushing Blow and Bloodbath. Crushing Blow Deals increased damage and deals 20% additional critical strike damage. Bloodbath Deals increased damage and wounds the target to suffer ≈187.3% of Attack Power Bleed damage over 6. Using Bloodbath on a target affected by Bloodbath extends the bleed by 6.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -7857,7 +7875,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Activating Recklessness generates 33,509.6 Rage and while Recklessness is active, Raging Blow and Bloodthirst are upgraded to Crushing Blow and Bloodbath. Crushing Blow Deals increased damage and deals 20% additional critical strike damage. Bloodbath Deals increased damage and wounds the target to suffer (varies) Bleed damage over 6. Using Bloodbath on a target affected by Bloodbath extends the bleed by 6.",
+                            "text": "Activating Recklessness generates 33,509.6 Rage and while Recklessness is active, Raging Blow and Bloodthirst are upgraded to Crushing Blow and Bloodbath. Crushing Blow Deals increased damage and deals 20% additional critical strike damage. Bloodbath Deals increased damage and wounds the target to suffer ≈187.3% of Attack Power Bleed damage over 6. Using Bloodbath on a target affected by Bloodbath extends the bleed by 6.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -7923,6 +7941,7 @@
                             "charges": null,
                             "max_stacks": null,
                             "proc_chance": null,
+                            "proc_cooldown_seconds": null,
                             "cooldown_seconds": null,
                             "cooldown_scaling_note": null,
                             "duration_seconds": null,
@@ -7970,6 +7989,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:23:41.000000Z",
@@ -8131,7 +8151,7 @@
             "spellId": 12388,
             "category": "Offensive",
             "description": {
-                "text": "Unleash a series of 4 brutal strikes for a total of 22.4 Physical damage. While Improved Whirlwind is active, Rampage's final strike deals 5 Physical damage to all enemies within 8 yds of your target. Deals reduced damage beyond 5 targets. Enrages you.",
+                "text": "Unleash a series of 4 brutal strikes for a total of ≈744.6% of Attack Power Physical damage. While Improved Whirlwind is active, Rampage's final strike deals 5 Physical damage to all enemies within 8 yds of your target. Deals reduced damage beyond 5 targets. Enrages you.",
                 "uncertain": false
             },
             "formulaModifierSpellIds": [],
@@ -8207,7 +8227,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Unleash a series of 5.6 brutal strikes for a total of 22.4 Physical damage. While Improved Whirlwind is active, Rampage's final strike deals 5 Physical damage to all enemies within 8 yds of your target. Deals reduced damage beyond 5 targets. Enrages you.",
+                            "text": "Unleash a series of 5.6 brutal strikes for a total of ≈744.6% of Attack Power Physical damage. While Improved Whirlwind is active, Rampage's final strike deals 5 Physical damage to all enemies within 8 yds of your target. Deals reduced damage beyond 5 targets. Enrages you.",
                             "uncertain": false
                         },
                         "category": "Offensive",
@@ -8223,7 +8243,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Unleash a series of 5.6 brutal strikes for a total of 22.4 Physical damage. While Improved Whirlwind is active, Rampage's final strike deals 5 Physical damage to all enemies within 8 yds of your target. Deals reduced damage beyond 5 targets. Enrages you.",
+                            "text": "Unleash a series of 5.6 brutal strikes for a total of ≈744.6% of Attack Power Physical damage. While Improved Whirlwind is active, Rampage's final strike deals 5 Physical damage to all enemies within 8 yds of your target. Deals reduced damage beyond 5 targets. Enrages you.",
                             "uncertain": false
                         },
                         "category": "Offensive",
@@ -8239,7 +8259,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Unleash a series of 5.6 brutal strikes for a total of 22.4 Physical damage. While Improved Whirlwind is active, Rampage's final strike deals 5 Physical damage to all enemies within 8 yds of your target. Deals reduced damage beyond 5 targets. Enrages you.",
+                            "text": "Unleash a series of 5.6 brutal strikes for a total of ≈744.6% of Attack Power Physical damage. While Improved Whirlwind is active, Rampage's final strike deals 5 Physical damage to all enemies within 8 yds of your target. Deals reduced damage beyond 5 targets. Enrages you.",
                             "uncertain": false
                         },
                         "category": "Offensive",
@@ -8255,7 +8275,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Unleash a series of 5.6 brutal strikes for a total of 22.4 Physical damage. While Improved Whirlwind is active, Rampage's final strike deals 5 Physical damage to all enemies within 8 yds of your target. Deals reduced damage beyond 5 targets. Enrages you.",
+                            "text": "Unleash a series of 5.6 brutal strikes for a total of ≈744.6% of Attack Power Physical damage. While Improved Whirlwind is active, Rampage's final strike deals 5 Physical damage to all enemies within 8 yds of your target. Deals reduced damage beyond 5 targets. Enrages you.",
                             "uncertain": false
                         },
                         "category": "Offensive",
@@ -8271,7 +8291,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Unleash a series of 5.6 brutal strikes for a total of 22.4 Physical damage. While Improved Whirlwind is active, Rampage's final strike deals 5 Physical damage to all enemies within 8 yds of your target. Deals reduced damage beyond 5 targets. Enrages you.",
+                            "text": "Unleash a series of 5.6 brutal strikes for a total of ≈744.6% of Attack Power Physical damage. While Improved Whirlwind is active, Rampage's final strike deals 5 Physical damage to all enemies within 8 yds of your target. Deals reduced damage beyond 5 targets. Enrages you.",
                             "uncertain": false
                         },
                         "category": "Offensive",
@@ -8287,7 +8307,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Unleash a series of 5.6 brutal strikes for a total of 22.4 Physical damage. While Improved Whirlwind is active, Rampage's final strike deals 5 Physical damage to all enemies within 8 yds of your target. Deals reduced damage beyond 5 targets. Enrages you.",
+                            "text": "Unleash a series of 5.6 brutal strikes for a total of ≈744.6% of Attack Power Physical damage. While Improved Whirlwind is active, Rampage's final strike deals 5 Physical damage to all enemies within 8 yds of your target. Deals reduced damage beyond 5 targets. Enrages you.",
                             "uncertain": false
                         },
                         "category": "Offensive",
@@ -8303,7 +8323,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Unleash a series of 5.6 brutal strikes for a total of 22.4 Physical damage. While Improved Whirlwind is active, Rampage's final strike deals 5 Physical damage to all enemies within 8 yds of your target. Deals reduced damage beyond 5 targets. Enrages you.",
+                            "text": "Unleash a series of 5.6 brutal strikes for a total of ≈744.6% of Attack Power Physical damage. While Improved Whirlwind is active, Rampage's final strike deals 5 Physical damage to all enemies within 8 yds of your target. Deals reduced damage beyond 5 targets. Enrages you.",
                             "uncertain": false
                         },
                         "category": "Offensive",
@@ -8319,7 +8339,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Unleash a series of 5.6 brutal strikes for a total of 22.4 Physical damage. While Improved Whirlwind is active, Rampage's final strike deals 5 Physical damage to all enemies within 8 yds of your target. Deals reduced damage beyond 5 targets. Enrages you.",
+                            "text": "Unleash a series of 5.6 brutal strikes for a total of ≈744.6% of Attack Power Physical damage. While Improved Whirlwind is active, Rampage's final strike deals 5 Physical damage to all enemies within 8 yds of your target. Deals reduced damage beyond 5 targets. Enrages you.",
                             "uncertain": false
                         },
                         "category": "Offensive",
@@ -8335,7 +8355,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Unleash a series of 5.6 brutal strikes for a total of 22.4 Physical damage. While Improved Whirlwind is active, Rampage's final strike deals 5 Physical damage to all enemies within 8 yds of your target. Deals reduced damage beyond 5 targets. Enrages you.",
+                            "text": "Unleash a series of 5.6 brutal strikes for a total of ≈744.6% of Attack Power Physical damage. While Improved Whirlwind is active, Rampage's final strike deals 5 Physical damage to all enemies within 8 yds of your target. Deals reduced damage beyond 5 targets. Enrages you.",
                             "uncertain": false
                         },
                         "category": "Offensive",
@@ -8351,7 +8371,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Unleash a series of 11.2 brutal strikes for a total of 22.4 Physical damage. While Improved Whirlwind is active, Rampage's final strike deals 5 Physical damage to all enemies within 8 yds of your target. Deals reduced damage beyond 5 targets. Enrages you.",
+                            "text": "Unleash a series of 11.2 brutal strikes for a total of ≈744.6% of Attack Power Physical damage. While Improved Whirlwind is active, Rampage's final strike deals 5 Physical damage to all enemies within 8 yds of your target. Deals reduced damage beyond 5 targets. Enrages you.",
                             "uncertain": false
                         },
                         "category": "Offensive",
@@ -8691,7 +8711,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Unleash a series of 5 brutal strikes for a total of 22.4 Physical damage. While Improved Whirlwind is active, Rampage's final strike deals 5 Physical damage to all enemies within 8 yds of your target. Deals reduced damage beyond 5 targets. Enrages you.",
+                            "text": "Unleash a series of 5 brutal strikes for a total of ≈744.6% of Attack Power Physical damage. While Improved Whirlwind is active, Rampage's final strike deals 5 Physical damage to all enemies within 8 yds of your target. Deals reduced damage beyond 5 targets. Enrages you.",
                             "uncertain": false
                         },
                         "category": "Offensive",
@@ -8877,7 +8897,7 @@
             "spellId": 12410,
             "category": "Other",
             "description": {
-                "text": "Activating Recklessness generates 50 Rage and while Recklessness is active, Raging Blow and Bloodthirst are upgraded to Crushing Blow and Bloodbath. Crushing Blow Deals increased damage and deals 20% additional critical strike damage. Bloodbath Deals increased damage and wounds the target to suffer (varies) Bleed damage over 6. Using Bloodbath on a target affected by Bloodbath extends the bleed by 6.",
+                "text": "Activating Recklessness generates 50 Rage and while Recklessness is active, Raging Blow and Bloodthirst are upgraded to Crushing Blow and Bloodbath. Crushing Blow Deals increased damage and deals 20% additional critical strike damage. Bloodbath Deals increased damage and wounds the target to suffer ≈187.3% of Attack Power Bleed damage over 6. Using Bloodbath on a target affected by Bloodbath extends the bleed by 6.",
                 "uncertain": true
             },
             "formulaModifierSpellIds": [],
@@ -8919,7 +8939,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Activating Recklessness generates 50 Rage and while Recklessness is active, Raging Blow and Bloodthirst are upgraded to Crushing Blow and Bloodbath. Crushing Blow Deals increased damage and deals 20% additional critical strike damage. Bloodbath Deals increased damage and wounds the target to suffer (varies) Bleed damage over 6. Using Bloodbath on a target affected by Bloodbath extends the bleed by 6.",
+                            "text": "Activating Recklessness generates 50 Rage and while Recklessness is active, Raging Blow and Bloodthirst are upgraded to Crushing Blow and Bloodbath. Crushing Blow Deals increased damage and deals 20% additional critical strike damage. Bloodbath Deals increased damage and wounds the target to suffer ≈187.3% of Attack Power Bleed damage over 6. Using Bloodbath on a target affected by Bloodbath extends the bleed by 6.",
                             "uncertain": true
                         },
                         "category": "Other",
@@ -9003,7 +9023,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Activating Recklessness generates 33,509.7 Rage and while Recklessness is active, Raging Blow and Bloodthirst are upgraded to Crushing Blow and Bloodbath. Crushing Blow Deals increased damage and deals 20% additional critical strike damage. Bloodbath Deals increased damage and wounds the target to suffer (varies) Bleed damage over 6. Using Bloodbath on a target affected by Bloodbath extends the bleed by 6.",
+                            "text": "Activating Recklessness generates 33,509.7 Rage and while Recklessness is active, Raging Blow and Bloodthirst are upgraded to Crushing Blow and Bloodbath. Crushing Blow Deals increased damage and deals 20% additional critical strike damage. Bloodbath Deals increased damage and wounds the target to suffer ≈187.3% of Attack Power Bleed damage over 6. Using Bloodbath on a target affected by Bloodbath extends the bleed by 6.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -9019,7 +9039,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Activating Recklessness generates 33,509.6 Rage and while Recklessness is active, Raging Blow and Bloodthirst are upgraded to Crushing Blow and Bloodbath. Crushing Blow Deals increased damage and deals 20% additional critical strike damage. Bloodbath Deals increased damage and wounds the target to suffer (varies) Bleed damage over 6. Using Bloodbath on a target affected by Bloodbath extends the bleed by 6.",
+                            "text": "Activating Recklessness generates 33,509.6 Rage and while Recklessness is active, Raging Blow and Bloodthirst are upgraded to Crushing Blow and Bloodbath. Crushing Blow Deals increased damage and deals 20% additional critical strike damage. Bloodbath Deals increased damage and wounds the target to suffer ≈187.3% of Attack Power Bleed damage over 6. Using Bloodbath on a target affected by Bloodbath extends the bleed by 6.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -9148,7 +9168,7 @@
             "spellId": 12336,
             "category": "Offensive",
             "description": {
-                "text": "Wounds the target, causing (varies) Physical damage instantly and an additional (varies) Bleed damage over 15.",
+                "text": "Wounds the target, causing ≈124.6% of Attack Power Physical damage instantly and an additional ≈190.5% of Attack Power Bleed damage over 15.",
                 "uncertain": true
             },
             "formulaModifierSpellIds": [],
@@ -9224,7 +9244,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Wounds the target, causing (varies) Physical damage instantly and an additional (varies) Bleed damage over 15.",
+                            "text": "Wounds the target, causing ≈38.1% of Attack Power Physical damage instantly and an additional ≈190.5% of Attack Power Bleed damage over 15.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -9340,7 +9360,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Thunder Clap affects all targets with Rend, causing them to Bleed for (varies) damage over 15.",
+                            "text": "Thunder Clap affects all targets with Rend, causing them to Bleed for ≈190.5% of Attack Power damage over 15.",
                             "uncertain": true
                         },
                         "category": "Other",
@@ -9356,7 +9376,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Whirlwind and Thunder Clap affects all targets with Rend, causing them to Bleed for (varies) damage over 15.",
+                            "text": "Whirlwind and Thunder Clap affects all targets with Rend, causing them to Bleed for ≈190.5% of Attack Power damage over 15.",
                             "uncertain": true
                         },
                         "category": "Other",
@@ -9509,8 +9529,8 @@
             "spellId": 12343,
             "category": "Defensive",
             "description": {
-                "text": "Restores 6% health every (varies) sec when you have not taken damage for 5 sec. Restores 2% health every (varies) sec while you are below 35% health. The amount restored increases the closer you are to death.",
-                "uncertain": true
+                "text": "Restores 6% health every 1 sec when you have not taken damage for 5 sec. Restores 2% health every 1 sec while you are below 35% health. The amount restored increases the closer you are to death.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -9521,7 +9541,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "When your health is brought below 35%, you gain a Second Wind, healing you for (varies)% of your max health over 2. This effect cannot occur more than once every (varies) sec.",
+                            "text": "When your health is brought below 35%, you gain a Second Wind, healing you for 12% of your max health over 2. This effect cannot occur more than once every (varies) sec.",
                             "uncertain": true
                         },
                         "category": "Defensive",
@@ -9556,7 +9576,7 @@
             "spellId": 12345,
             "category": "Offensive",
             "description": {
-                "text": "Hurl your weapon at the enemy,  removing any magical immunities and causing (varies) Physical damage, ignoring armor. Deals up to 500% increased damage to absorb shields.",
+                "text": "Hurl your weapon at the enemy,  removing any magical immunities and causing ≈600% of Attack Power Physical damage, ignoring armor. Deals up to 500% increased damage to absorb shields.",
                 "uncertain": true
             },
             "formulaModifierSpellIds": [],
@@ -9632,7 +9652,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Wounds the target, causing (varies) Physical damage instantly and an additional (varies) Bleed damage over 15.",
+                            "text": "Wounds the target, causing ≈38.1% of Attack Power Physical damage instantly and an additional ≈190.5% of Attack Power Bleed damage over 15.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -9909,7 +9929,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Wounds the target, causing (varies) Physical damage instantly and an additional (varies) Bleed damage over 15.",
+                            "text": "Wounds the target, causing ≈38.1% of Attack Power Physical damage instantly and an additional ≈190.5% of Attack Power Bleed damage over 15.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -10102,7 +10122,7 @@
             "spellId": 12457,
             "category": "Other",
             "description": {
-                "text": "Your attacks against your primary target have a (varies by condition — check in-game)% chance to overwhelm their defenses and trigger a Slayer's Strike, dealing (varies) Physical damage and granting you a stack of Executioner, increasing your Execute damage by 3% for 12. Multiple stacks of Executioner may overlap.",
+                "text": "Your attacks against your primary target have a (varies by condition — check in-game)% chance to overwhelm their defenses and trigger a Slayer's Strike, dealing ≈840.4% of Attack Power Physical damage and granting you a stack of Executioner, increasing your Execute damage by 3% for 12. Multiple stacks of Executioner may overlap.",
                 "uncertain": true
             },
             "formulaModifierSpellIds": [],
@@ -10398,7 +10418,7 @@
             "spellId": 12348,
             "category": "Crowd Control",
             "description": {
-                "text": "Hurls your weapon at an enemy, causing (varies) Physical damage and stunning for 4. Also hits 2 additional nearby targets, stunning for 2 sec.",
+                "text": "Hurls your weapon at an enemy, causing ≈28.5% of Attack Power Physical damage and stunning for 4. Also hits 2 additional nearby targets, stunning for 2 sec.",
                 "uncertain": true
             },
             "formulaModifierSpellIds": [],
@@ -10490,7 +10510,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Wounds the target, causing (varies) Physical damage instantly and an additional (varies) Bleed damage over 15.",
+                            "text": "Wounds the target, causing ≈38.1% of Attack Power Physical damage instantly and an additional ≈190.5% of Attack Power Bleed damage over 15.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -10717,7 +10737,7 @@
             "spellId": 13551,
             "category": "Other",
             "description": {
-                "text": "Whirlwind and Thunder Clap affects all targets with Rend, causing them to Bleed for (varies) damage over 15.",
+                "text": "Whirlwind and Thunder Clap affects all targets with Rend, causing them to Bleed for ≈190.5% of Attack Power damage over 15.",
                 "uncertain": true
             },
             "formulaModifierSpellIds": [],
@@ -11149,7 +11169,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Wounds the target, causing (varies) Physical damage instantly and an additional (varies) Bleed damage over 15.",
+                            "text": "Wounds the target, causing ≈38.1% of Attack Power Physical damage instantly and an additional ≈190.5% of Attack Power Bleed damage over 15.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -11502,7 +11522,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Wounds the target, causing (varies) Physical damage instantly and an additional (varies) Bleed damage over 15.",
+                            "text": "Wounds the target, causing ≈38.1% of Attack Power Physical damage instantly and an additional ≈190.5% of Attack Power Bleed damage over 15.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -11566,7 +11586,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Damaging enemies with Thunder Clap, Raging Blow, or Execute has a 25% chance to also strike one with a lightning bolt, dealing (varies) Nature damage and generating 0 Rage. Lightning Strikes occur 30% more often during Avatar.",
+                            "text": "Damaging enemies with Thunder Clap, Raging Blow, or Execute has a 25% chance to also strike one with a lightning bolt, dealing ≈232.7% of Attack Power Nature damage and generating 0 Rage. Lightning Strikes occur 30% more often during Avatar.",
                             "uncertain": true
                         },
                         "category": "Other",
@@ -11730,7 +11750,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Thunder Clap affects all targets with Rend, causing them to Bleed for (varies) damage over 15.",
+                            "text": "Thunder Clap affects all targets with Rend, causing them to Bleed for ≈190.5% of Attack Power damage over 15.",
                             "uncertain": true
                         },
                         "category": "Other",
@@ -11746,7 +11766,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Whirlwind and Thunder Clap affects all targets with Rend, causing them to Bleed for (varies) damage over 15.",
+                            "text": "Whirlwind and Thunder Clap affects all targets with Rend, causing them to Bleed for ≈190.5% of Attack Power damage over 15.",
                             "uncertain": true
                         },
                         "category": "Other",
@@ -12079,7 +12099,7 @@
             "spellId": 12368,
             "category": "Offensive",
             "description": {
-                "text": "Hurl your weapon at the enemy, causing (varies) Physical damage, ignoring armor. Deals up to 500% increased damage to absorb shields.",
+                "text": "Hurl your weapon at the enemy, causing ≈600% of Attack Power Physical damage, ignoring armor. Deals up to 500% increased damage to absorb shields.",
                 "uncertain": true
             },
             "formulaModifierSpellIds": [],
@@ -12155,7 +12175,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Wounds the target, causing (varies) Physical damage instantly and an additional (varies) Bleed damage over 15.",
+                            "text": "Wounds the target, causing ≈38.1% of Attack Power Physical damage instantly and an additional ≈190.5% of Attack Power Bleed damage over 15.",
                             "uncertain": true
                         },
                         "category": "Offensive",

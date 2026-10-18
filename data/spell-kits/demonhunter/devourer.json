@@ -1,6 +1,6 @@
 {
-    "generatedAt": "2026-10-07T21:48:08+00:00",
-    "spellCacheVersion": 27,
+    "generatedAt": "2026-10-18T02:36:19+00:00",
+    "spellCacheVersion": 29,
     "codeFingerprint": "dev",
     "entries": [
         {
@@ -269,6 +269,7 @@
                             "charges": null,
                             "max_stacks": null,
                             "proc_chance": null,
+                            "proc_cooldown_seconds": null,
                             "cooldown_seconds": null,
                             "cooldown_scaling_note": null,
                             "duration_seconds": null,
@@ -316,6 +317,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:22:05.000000Z",
@@ -334,6 +336,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:22:05.000000Z",
@@ -572,7 +575,7 @@
             "spellId": 1759,
             "category": "Crowd Control",
             "description": {
-                "text": "Unleash an eruption of fel energy, dealing (varies) Chaos damage and stunning all nearby enemies for 3. Each enemy stunned by Chaos Nova has a 30% chance to generate a Lesser Soul Fragment.",
+                "text": "Unleash an eruption of fel energy, dealing ≈27.5% of Attack Power Chaos damage and stunning all nearby enemies for 3. Each enemy stunned by Chaos Nova has a 30% chance to generate a Lesser Soul Fragment.",
                 "uncertain": true
             },
             "formulaModifierSpellIds": [],
@@ -1248,6 +1251,7 @@
                             "charges": null,
                             "max_stacks": null,
                             "proc_chance": null,
+                            "proc_cooldown_seconds": null,
                             "cooldown_seconds": null,
                             "cooldown_scaling_note": null,
                             "duration_seconds": null,
@@ -1295,6 +1299,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:22:05.000000Z",
@@ -1462,6 +1467,7 @@
                             "charges": null,
                             "max_stacks": null,
                             "proc_chance": null,
+                            "proc_cooldown_seconds": null,
                             "cooldown_seconds": null,
                             "cooldown_scaling_note": null,
                             "duration_seconds": null,
@@ -1509,6 +1515,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:22:05.000000Z",
@@ -2619,6 +2626,7 @@
                                         "charges": null,
                                         "max_stacks": null,
                                         "proc_chance": null,
+                                        "proc_cooldown_seconds": null,
                                         "cooldown_seconds": null,
                                         "cooldown_scaling_note": null,
                                         "duration_seconds": null,
@@ -2687,6 +2695,7 @@
                                         "charges": null,
                                         "max_stacks": null,
                                         "proc_chance": null,
+                                        "proc_cooldown_seconds": null,
                                         "cooldown_seconds": null,
                                         "cooldown_scaling_note": null,
                                         "duration_seconds": null,
@@ -2906,8 +2915,8 @@
             "spellId": 1842,
             "category": "Other",
             "description": {
-                "text": "While in combat, generate 1 Soul Fragment every (varies) sec. While out of combat, you will slowly build towards your Void Metamorphosis, up to 25 Soul Fragments.",
-                "uncertain": true
+                "text": "While in combat, generate 1 Soul Fragment every 12 sec. While out of combat, you will slowly build towards your Void Metamorphosis, up to 25 Soul Fragments.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -2964,8 +2973,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Slam your Scythe to the ground, dealing 83 Cosmic damage to your primary target and ≈46.5% of Spell Power to all other enemies within a 25 yd cone in front of you. Damage reduced beyond 5 targets. Eradicate gathers up to 4 nearby souls. Generates 10 Fury.",
-                            "uncertain": false
+                            "text": "Slam your Scythe to the ground, dealing 83 Cosmic damage to your primary target and (varies) to all other enemies within a 25 yd cone in front of you. Damage reduced beyond 5 targets. Eradicate gathers up to 4 nearby souls. Generates 10 Fury.",
+                            "uncertain": true
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -2996,8 +3005,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Slam your Scythe to the ground, dealing 83 Cosmic damage to your primary target and ≈59.8% of Spell Power to all other enemies within a 25 yd cone in front of you. Damage reduced beyond 5 targets. Eradicate gathers up to 4 nearby souls. Generates 10 Fury.",
-                            "uncertain": false
+                            "text": "Slam your Scythe to the ground, dealing 83 Cosmic damage to your primary target and (varies) to all other enemies within a 25 yd cone in front of you. Damage reduced beyond 5 targets. Eradicate gathers up to 4 nearby souls. Generates 10 Fury.",
+                            "uncertain": true
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -4545,7 +4554,7 @@
             "spellId": 1771,
             "category": "Offensive",
             "description": {
-                "text": "(varies by condition — check in-game) increases your armor by 20% and causes melee attackers to suffer 20 Chaos damage.",
+                "text": "(varies by condition — check in-game) increases your armor by 20% and causes melee attackers to suffer ≈12% of Attack Power Chaos damage.",
                 "uncertain": true
             },
             "formulaModifierSpellIds": [],
@@ -5249,7 +5258,7 @@
             "spellId": 1713,
             "category": "Other",
             "description": {
-                "text": "Charge to your target, striking them for 5 Cosmic damage, rooting them in place for 1.5 and inflicting (varies) Cosmic damage over 6 to up to 50 enemies in your path.",
+                "text": "Charge to your target, striking them for 5 Cosmic damage, rooting them in place for 1.5 and inflicting ≈382.5% of Spell Power Cosmic damage over 6 to up to 50 enemies in your path.",
                 "uncertain": true
             },
             "formulaModifierSpellIds": [],
@@ -5347,7 +5356,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Charge to your target, striking them for (varies) Chaos damage, rooting them in place for 1.5 and inflicting (varies) Chaos damage over 6 to up to 50 enemies in your path. The pursuit invigorates your soul, healing you for (varies by condition — check in-game) of the damage you deal to your Hunt target for 30.",
+                            "text": "Charge to your target, striking them for ≈455% of Attack Power Chaos damage, rooting them in place for 1.5 and inflicting ≈227.7% of Attack Power Chaos damage over 6 to up to 50 enemies in your path. The pursuit invigorates your soul, healing you for (varies by condition — check in-game) of the damage you deal to your Hunt target for 30.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -5838,6 +5847,7 @@
                             "charges": null,
                             "max_stacks": null,
                             "proc_chance": null,
+                            "proc_cooldown_seconds": null,
                             "cooldown_seconds": null,
                             "cooldown_scaling_note": null,
                             "duration_seconds": null,
@@ -5885,6 +5895,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": "mul",
                                     "rank_values": [
                                         1,
@@ -5906,6 +5917,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": "mul",
                                     "rank_values": [
                                         1,
@@ -5927,6 +5939,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": "mul",
                                     "rank_values": [
                                         1,
@@ -5960,6 +5973,7 @@
                             "charges": null,
                             "max_stacks": null,
                             "proc_chance": null,
+                            "proc_cooldown_seconds": null,
                             "cooldown_seconds": null,
                             "cooldown_scaling_note": null,
                             "duration_seconds": null,
@@ -6007,6 +6021,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:22:05.000000Z",
@@ -6025,6 +6040,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:22:05.000000Z",
@@ -6043,6 +6059,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:22:05.000000Z",
@@ -6429,6 +6446,7 @@
                                         "charges": null,
                                         "max_stacks": null,
                                         "proc_chance": null,
+                                        "proc_cooldown_seconds": null,
                                         "cooldown_seconds": null,
                                         "cooldown_scaling_note": null,
                                         "duration_seconds": null,
@@ -6493,8 +6511,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "While in combat, generate 1 Soul Fragment every (varies) sec. While out of combat, you will slowly build towards your Void Metamorphosis, up to 25 Soul Fragments.",
-                            "uncertain": true
+                            "text": "While in combat, generate 1 Soul Fragment every 12 sec. While out of combat, you will slowly build towards your Void Metamorphosis, up to 25 Soul Fragments.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -6848,7 +6866,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Unleash an eruption of fel energy, dealing (varies) Chaos damage and stunning all nearby enemies for 3. Each enemy stunned by Chaos Nova has a 30% chance to generate a Lesser Soul Fragment.",
+                            "text": "Unleash an eruption of fel energy, dealing ≈27.5% of Attack Power Chaos damage and stunning all nearby enemies for 3. Each enemy stunned by Chaos Nova has a 30% chance to generate a Lesser Soul Fragment.",
                             "uncertain": true
                         },
                         "category": "Crowd Control",
@@ -6971,7 +6989,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game) increases your armor by 20% and causes melee attackers to suffer 20 Chaos damage.",
+                            "text": "(varies by condition — check in-game) increases your armor by 20% and causes melee attackers to suffer ≈12% of Attack Power Chaos damage.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -7019,7 +7037,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game) increases your armor by 20% and causes melee attackers to suffer 20 Chaos damage.",
+                            "text": "(varies by condition — check in-game) increases your armor by 20% and causes melee attackers to suffer ≈12% of Attack Power Chaos damage.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -7228,6 +7246,7 @@
                             "charges": null,
                             "max_stacks": null,
                             "proc_chance": null,
+                            "proc_cooldown_seconds": null,
                             "cooldown_seconds": null,
                             "cooldown_scaling_note": null,
                             "duration_seconds": null,
@@ -7275,6 +7294,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:22:05.000000Z",
@@ -7293,6 +7313,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:22:05.000000Z",
@@ -7323,6 +7344,7 @@
                             "charges": null,
                             "max_stacks": null,
                             "proc_chance": null,
+                            "proc_cooldown_seconds": null,
                             "cooldown_seconds": null,
                             "cooldown_scaling_note": null,
                             "duration_seconds": null,
@@ -7370,6 +7392,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:22:05.000000Z",
@@ -7388,6 +7411,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:22:05.000000Z",
@@ -7613,6 +7637,7 @@
                             "charges": null,
                             "max_stacks": null,
                             "proc_chance": null,
+                            "proc_cooldown_seconds": null,
                             "cooldown_seconds": null,
                             "cooldown_scaling_note": null,
                             "duration_seconds": null,
@@ -7660,6 +7685,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:22:05.000000Z",
@@ -7678,6 +7704,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:22:05.000000Z",
@@ -7797,7 +7824,7 @@
             "spellId": 1939,
             "category": "Other",
             "description": {
-                "text": "Void Ray applies Student of Suffering to you, increasing Mastery by (varies)% and granting 5 Fury every (varies) sec, for 6.",
+                "text": "Void Ray applies Student of Suffering to you, increasing Mastery by (varies)% and granting 5 Fury every 2 sec, for 6.",
                 "uncertain": true
             },
             "formulaModifierSpellIds": [],
@@ -7811,7 +7838,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Void Ray applies Student of Suffering to you, increasing Mastery by (varies)% and granting 5 Fury every (varies) sec, for 6.",
+                            "text": "Void Ray applies Student of Suffering to you, increasing Mastery by (varies)% and granting 5 Fury every 2 sec, for 6.",
                             "uncertain": true
                         },
                         "category": "Other",
@@ -7827,7 +7854,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Void Ray applies Student of Suffering to you, increasing Mastery by (varies)% and granting 5 Fury every (varies) sec, for 6.",
+                            "text": "Void Ray applies Student of Suffering to you, increasing Mastery by (varies)% and granting 5 Fury every 2 sec, for 6.",
                             "uncertain": true
                         },
                         "category": "Other",
@@ -8057,7 +8084,7 @@
             "spellId": 1833,
             "category": "Crowd Control",
             "description": {
-                "text": "Charge to your target, striking them for 5 Cosmic damage, rooting them in place for 1.5 and inflicting (varies) Cosmic damage over 6 to up to 50 enemies in your path.",
+                "text": "Charge to your target, striking them for 5 Cosmic damage, rooting them in place for 1.5 and inflicting ≈382.5% of Spell Power Cosmic damage over 6 to up to 50 enemies in your path.",
                 "uncertain": true
             },
             "formulaModifierSpellIds": [],
@@ -8238,7 +8265,7 @@
             "spellId": 1097,
             "category": "Offensive",
             "description": {
-                "text": "Throw a demonic glaive at the target, dealing (varies) Physical damage. The glaive can ricochet to (varies by condition — check in-game) within 10 yards.",
+                "text": "Throw a demonic glaive at the target, dealing ≈49.2% of Attack Power Physical damage. The glaive can ricochet to (varies by condition — check in-game) within 10 yards.",
                 "uncertain": true
             },
             "formulaModifierSpellIds": [],
@@ -8416,6 +8443,7 @@
                             "charges": null,
                             "max_stacks": null,
                             "proc_chance": "100.00",
+                            "proc_cooldown_seconds": null,
                             "cooldown_seconds": null,
                             "cooldown_scaling_note": null,
                             "duration_seconds": null,
@@ -8463,6 +8491,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:22:05.000000Z",
@@ -8481,6 +8510,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:22:05.000000Z",
@@ -8928,8 +8958,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "While in combat, generate 1 Soul Fragment every (varies) sec. While out of combat, you will slowly build towards your Void Metamorphosis, up to 25 Soul Fragments.",
-                            "uncertain": true
+                            "text": "While in combat, generate 1 Soul Fragment every 12 sec. While out of combat, you will slowly build towards your Void Metamorphosis, up to 25 Soul Fragments.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -9289,7 +9319,7 @@
             "spellId": 1808,
             "category": "Defensive",
             "description": {
-                "text": " Unleash a beam of concentrated void energy, dealing ≈20.3% of Spell Power Cosmic damage every 0 sec. Channeling Void Ray substantially reduces your Fury drain.",
+                "text": " Unleash a beam of concentrated void energy, dealing ≈20.3% of Spell Power Cosmic damage every 0.2 sec. Channeling Void Ray substantially reduces your Fury drain.",
                 "uncertain": true
             },
             "formulaModifierSpellIds": [],
@@ -9545,7 +9575,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Void Ray applies Student of Suffering to you, increasing Mastery by (varies)% and granting 5 Fury every (varies) sec, for 6.",
+                            "text": "Void Ray applies Student of Suffering to you, increasing Mastery by (varies)% and granting 5 Fury every 2 sec, for 6.",
                             "uncertain": true
                         },
                         "category": "Other",
@@ -9561,7 +9591,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Void Ray applies Student of Suffering to you, increasing Mastery by (varies)% and granting 5 Fury every (varies) sec, for 6.",
+                            "text": "Void Ray applies Student of Suffering to you, increasing Mastery by (varies)% and granting 5 Fury every 2 sec, for 6.",
                             "uncertain": true
                         },
                         "category": "Other",
@@ -9673,7 +9703,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Void Ray applies Student of Suffering to you, increasing Mastery by (varies)% and granting 5 Fury every (varies) sec, for 6.",
+                            "text": "Void Ray applies Student of Suffering to you, increasing Mastery by (varies)% and granting 5 Fury every 2 sec, for 6.",
                             "uncertain": true
                         },
                         "category": "Other",

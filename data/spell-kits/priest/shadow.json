@@ -1,6 +1,6 @@
 {
-    "generatedAt": "2026-10-07T21:49:08+00:00",
-    "spellCacheVersion": 27,
+    "generatedAt": "2026-10-18T02:37:26+00:00",
+    "spellCacheVersion": 29,
     "codeFingerprint": "dev",
     "entries": [
         {
@@ -984,6 +984,7 @@
                             "charges": null,
                             "max_stacks": null,
                             "proc_chance": null,
+                            "proc_cooldown_seconds": null,
                             "cooldown_seconds": null,
                             "cooldown_scaling_note": null,
                             "duration_seconds": null,
@@ -1031,6 +1032,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:23:07.000000Z",
@@ -1049,6 +1051,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:23:07.000000Z",
@@ -1497,7 +1500,7 @@
             "spellId": 8722,
             "category": "Offensive",
             "description": {
-                "text": "(varies by condition — check in-game) that follows the enemy for 8. Enemies caught in its path suffer 30 Shadow damage every (varies) sec while within its reach.",
+                "text": "(varies by condition — check in-game) that follows the enemy for 8. Enemies caught in its path suffer 30 Shadow damage every 1 sec while within its reach.",
                 "uncertain": true
             },
             "formulaModifierSpellIds": [],
@@ -1688,7 +1691,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game) that follows the enemy for 8. Enemies caught in its path suffer 30 Shadow damage every (varies) sec while within its reach.",
+                            "text": "(varies by condition — check in-game) that follows the enemy for 8. Enemies caught in its path suffer 30 Shadow damage every 1 sec while within its reach.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -1704,7 +1707,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game) that follows the enemy for 8. Enemies caught in its path suffer 30 Shadow damage every (varies) sec while within its reach.",
+                            "text": "(varies by condition — check in-game) that follows the enemy for 8. Enemies caught in its path suffer 30 Shadow damage every 1 sec while within its reach.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -1736,7 +1739,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game) that follows the enemy for 8. Enemies caught in its path suffer 30 Shadow damage every (varies) sec while within its reach.",
+                            "text": "(varies by condition — check in-game) that follows the enemy for 8. Enemies caught in its path suffer 30 Shadow damage every 1 sec while within its reach.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -1768,7 +1771,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game) that follows the enemy for 8. Enemies caught in its path suffer 30 Shadow damage every (varies) sec while within its reach.",
+                            "text": "(varies by condition — check in-game) that follows the enemy for 8. Enemies caught in its path suffer 30 Shadow damage every 1 sec while within its reach.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -2019,6 +2022,7 @@
                             "charges": null,
                             "max_stacks": null,
                             "proc_chance": null,
+                            "proc_cooldown_seconds": null,
                             "cooldown_seconds": null,
                             "cooldown_scaling_note": null,
                             "duration_seconds": null,
@@ -2066,6 +2070,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": "set",
                                     "rank_values": [
                                         -5000,
@@ -2511,7 +2516,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Creating a Halo upgrades your next Mind Flay to Mind Flay: Insanity. Mind Flay: Insanity Assaults the target's mind with Shadow energy, causing (varies) Shadow damage over 1.5 and slowing their movement speed by 70%. Generates 8 Insanity over the duration.",
+                            "text": "Creating a Halo upgrades your next Mind Flay to Mind Flay: Insanity. Mind Flay: Insanity Assaults the target's mind with Shadow energy, causing ≈623.7% of Spell Power Shadow damage over 1.5 and slowing their movement speed by 70%. Generates 8 Insanity over the duration.",
                             "uncertain": true
                         },
                         "category": "Other",
@@ -2656,7 +2661,7 @@
             "spellId": 8592,
             "category": "Offensive",
             "description": {
-                "text": "Consumes the enemy in Holy flames that cause ≈308% of Spell Power Holy damage and an additional (varies) Holy damage over 7. Stacks up to 1 times.",
+                "text": "Consumes the enemy in Holy flames that cause ≈308% of Spell Power Holy damage and an additional ≈98.9% of Spell Power Holy damage over 7. Stacks up to 1 times.",
                 "uncertain": true
             },
             "formulaModifierSpellIds": [],
@@ -3062,7 +3067,7 @@
             "spellId": 8805,
             "category": "Other",
             "description": {
-                "text": "Mind Flay has a chance to spawn a Void Tendril that channels Mind Flay or Void Lasher that channels Mind Sear at your target. Mind Flay Assaults the target's mind with Shadow energy, causing (varies) Shadow damage over 10 and slowing their movement speed by 30%. Generates 5 Insanity over the duration. Mind Sear Corrosive shadow energy radiates from the target, dealing ≈214.6% of Spell Power Shadow damage over 10 to all enemies within 10 yards of the target. Damage reduced beyond 5 targets. Generates 5 Insanity over the duration.",
+                "text": "Mind Flay has a chance to spawn a Void Tendril that channels Mind Flay or Void Lasher that channels Mind Sear at your target. Mind Flay Assaults the target's mind with Shadow energy, causing ≈321.8% of Spell Power Shadow damage over 10 and slowing their movement speed by 30%. Generates 5 Insanity over the duration. Mind Sear Corrosive shadow energy radiates from the target, dealing ≈214.6% of Spell Power Shadow damage over 10 to all enemies within 10 yards of the target. Damage reduced beyond 5 targets. Generates 5 Insanity over the duration.",
                 "uncertain": true
             },
             "formulaModifierSpellIds": [],
@@ -3092,8 +3097,8 @@
             "spellId": 8799,
             "category": "Other",
             "description": {
-                "text": "You create Horrific Visions when casting harmful spells on enemies. At 50 stacks of Horrific Visions, your target sees a nightmare, dealing 50 Shadow damage and granting you 0 Insanity over 3 sec. At 100 stacks, your target witnesses a vision of N'Zoth, dealing 50 Shadow damage and granting you 0 Insanity over 3 sec.",
-                "uncertain": true
+                "text": "You create Horrific Visions when casting harmful spells on enemies. At 50 stacks of Horrific Visions, your target sees a nightmare, dealing 50 Shadow damage and granting you 2 Insanity over 3 sec. At 100 stacks, your target witnesses a vision of N'Zoth, dealing 50 Shadow damage and granting you 6.1 Insanity over 3 sec.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -3893,6 +3898,7 @@
                             "charges": null,
                             "max_stacks": null,
                             "proc_chance": null,
+                            "proc_cooldown_seconds": null,
                             "cooldown_seconds": null,
                             "cooldown_scaling_note": null,
                             "duration_seconds": null,
@@ -3940,6 +3946,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:23:04.000000Z",
@@ -3964,6 +3971,7 @@
                             "charges": null,
                             "max_stacks": null,
                             "proc_chance": null,
+                            "proc_cooldown_seconds": null,
                             "cooldown_seconds": null,
                             "cooldown_scaling_note": null,
                             "duration_seconds": null,
@@ -4011,6 +4019,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:23:06.000000Z",
@@ -4194,7 +4203,7 @@
             "spellId": 8693,
             "category": "Other",
             "description": {
-                "text": "Creating a Halo upgrades your next Mind Flay to Mind Flay: Insanity. Mind Flay: Insanity Assaults the target's mind with Shadow energy, causing (varies) Shadow damage over 1.5 and slowing their movement speed by 70%. Generates 8 Insanity over the duration.",
+                "text": "Creating a Halo upgrades your next Mind Flay to Mind Flay: Insanity. Mind Flay: Insanity Assaults the target's mind with Shadow energy, causing ≈623.7% of Spell Power Shadow damage over 1.5 and slowing their movement speed by 70%. Generates 8 Insanity over the duration.",
                 "uncertain": true
             },
             "formulaModifierSpellIds": [],
@@ -4920,7 +4929,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game) that follows the enemy for 8. Enemies caught in its path suffer 30 Shadow damage every (varies) sec while within its reach.",
+                            "text": "(varies by condition — check in-game) that follows the enemy for 8. Enemies caught in its path suffer 30 Shadow damage every 1 sec while within its reach.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -4936,7 +4945,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game) that follows the enemy for 8. Enemies caught in its path suffer 30 Shadow damage every (varies) sec while within its reach.",
+                            "text": "(varies by condition — check in-game) that follows the enemy for 8. Enemies caught in its path suffer 30 Shadow damage every 1 sec while within its reach.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -4952,7 +4961,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game) that follows the enemy for 8. Enemies caught in its path suffer 30 Shadow damage every (varies) sec while within its reach.",
+                            "text": "(varies by condition — check in-game) that follows the enemy for 8. Enemies caught in its path suffer 30 Shadow damage every 1 sec while within its reach.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -4968,7 +4977,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game) that follows the enemy for 8. Enemies caught in its path suffer 30 Shadow damage every (varies) sec while within its reach.",
+                            "text": "(varies by condition — check in-game) that follows the enemy for 8. Enemies caught in its path suffer 30 Shadow damage every 1 sec while within its reach.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -4984,7 +4993,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game) that follows the enemy for 8. Enemies caught in its path suffer 30 Shadow damage every (varies) sec while within its reach.",
+                            "text": "(varies by condition — check in-game) that follows the enemy for 8. Enemies caught in its path suffer 30 Shadow damage every 1 sec while within its reach.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -5066,6 +5075,7 @@
                             "charges": null,
                             "max_stacks": null,
                             "proc_chance": "101.00",
+                            "proc_cooldown_seconds": null,
                             "cooldown_seconds": null,
                             "cooldown_scaling_note": null,
                             "duration_seconds": "10.00",
@@ -5113,6 +5123,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:23:05.000000Z",
@@ -5131,6 +5142,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:23:05.000000Z",
@@ -5149,6 +5161,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:23:05.000000Z",
@@ -5167,6 +5180,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:23:05.000000Z",
@@ -5185,6 +5199,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:23:05.000000Z",
@@ -5321,8 +5336,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Mind Flay and Mind Sear have a chance to spawn a Void Tendril or Void Lasher that channels at your target for 15, generating 30 insanity every (varies) sec.",
-                            "uncertain": true
+                            "text": "Mind Flay and Mind Sear have a chance to spawn a Void Tendril or Void Lasher that channels at your target for 15, generating 30 insanity every 1 sec.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -5337,7 +5352,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Mind Flay has a chance to spawn a Void Tendril that channels Mind Flay or Void Lasher that channels Mind Sear at your target. Mind Flay Assaults the target's mind with Shadow energy, causing (varies) Shadow damage over 10 and slowing their movement speed by 30%. Generates 5 Insanity over the duration. Mind Sear Corrosive shadow energy radiates from the target, dealing ≈214.6% of Spell Power Shadow damage over 10 to all enemies within 10 yards of the target. Damage reduced beyond 5 targets. Generates 5 Insanity over the duration.",
+                            "text": "Mind Flay has a chance to spawn a Void Tendril that channels Mind Flay or Void Lasher that channels Mind Sear at your target. Mind Flay Assaults the target's mind with Shadow energy, causing ≈321.8% of Spell Power Shadow damage over 10 and slowing their movement speed by 30%. Generates 5 Insanity over the duration. Mind Sear Corrosive shadow energy radiates from the target, dealing ≈214.6% of Spell Power Shadow damage over 10 to all enemies within 10 yards of the target. Damage reduced beyond 5 targets. Generates 5 Insanity over the duration.",
                             "uncertain": true
                         },
                         "category": "Other",
@@ -5353,7 +5368,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Mind Flay has a chance to spawn a Void Tendril that channels Mind Flay or Void Lasher that channels Mind Sear at your target. Mind Flay Assaults the target's mind with Shadow energy, causing (varies) Shadow damage over 10 and slowing their movement speed by 30%. Generates 5 Insanity over the duration. Mind Sear Corrosive shadow energy radiates from the target, dealing ≈214.6% of Spell Power Shadow damage over 10 to all enemies within 10 yards of the target. Damage reduced beyond 5 targets. Generates 5 Insanity over the duration.",
+                            "text": "Mind Flay has a chance to spawn a Void Tendril that channels Mind Flay or Void Lasher that channels Mind Sear at your target. Mind Flay Assaults the target's mind with Shadow energy, causing ≈321.8% of Spell Power Shadow damage over 10 and slowing their movement speed by 30%. Generates 5 Insanity over the duration. Mind Sear Corrosive shadow energy radiates from the target, dealing ≈214.6% of Spell Power Shadow damage over 10 to all enemies within 10 yards of the target. Damage reduced beyond 5 targets. Generates 5 Insanity over the duration.",
                             "uncertain": true
                         },
                         "category": "Other",
@@ -5369,7 +5384,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Mind Flay has a chance to spawn a Void Tendril that channels Mind Flay or Void Lasher that channels Mind Sear at your target. Mind Flay Assaults the target's mind with Shadow energy, causing (varies) Shadow damage over 10 and slowing their movement speed by 30%. Generates 5 Insanity over the duration. Mind Sear Corrosive shadow energy radiates from the target, dealing ≈214.6% of Spell Power Shadow damage over 10 to all enemies within 10 yards of the target. Damage reduced beyond 5 targets. Generates 5 Insanity over the duration.",
+                            "text": "Mind Flay has a chance to spawn a Void Tendril that channels Mind Flay or Void Lasher that channels Mind Sear at your target. Mind Flay Assaults the target's mind with Shadow energy, causing ≈321.8% of Spell Power Shadow damage over 10 and slowing their movement speed by 30%. Generates 5 Insanity over the duration. Mind Sear Corrosive shadow energy radiates from the target, dealing ≈214.6% of Spell Power Shadow damage over 10 to all enemies within 10 yards of the target. Damage reduced beyond 5 targets. Generates 5 Insanity over the duration.",
                             "uncertain": true
                         },
                         "category": "Other",
@@ -6509,6 +6524,7 @@
                             "charges": null,
                             "max_stacks": null,
                             "proc_chance": null,
+                            "proc_cooldown_seconds": null,
                             "cooldown_seconds": null,
                             "cooldown_scaling_note": null,
                             "duration_seconds": null,
@@ -6556,6 +6572,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:23:06.000000Z",
@@ -7614,7 +7631,7 @@
             "spellId": 8793,
             "category": "Defensive",
             "description": {
-                "text": "A word of madness haunts the target's mind, dealing ≈261.6% of Spell Power Shadow damage instantly plus an additional (varies) Shadow damage over 6. Heals you for (varies)% of damage dealt. When reapplied to a target, all remaining damage is added to the new effect.",
+                "text": "A word of madness haunts the target's mind, dealing ≈261.6% of Spell Power Shadow damage instantly plus an additional ≈784.9% of Spell Power Shadow damage over 6. Heals you for (varies)% of damage dealt. When reapplied to a target, all remaining damage is added to the new effect.",
                 "uncertain": true
             },
             "formulaModifierSpellIds": [],
@@ -8207,8 +8224,8 @@
             "spellId": 7999,
             "category": "Offensive",
             "description": {
-                "text": "A word of darkness that causes ≈19.3% of Spell Power Shadow damage instantly, and an additional (varies) Shadow damage over 16. Generates 3 Insanity.",
-                "uncertain": true
+                "text": "A word of darkness that causes ≈19.3% of Spell Power Shadow damage instantly, and an additional ≈114.6% of Spell Power Shadow damage over 16. Generates 3 Insanity.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -8687,7 +8704,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Consumes the enemy in Holy flames that cause ≈308% of Spell Power Holy damage and an additional (varies) Holy damage over 7. Stacks up to 1 times.",
+                            "text": "Consumes the enemy in Holy flames that cause ≈308% of Spell Power Holy damage and an additional ≈98.9% of Spell Power Holy damage over 7. Stacks up to 1 times.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -9785,6 +9802,7 @@
                                         "charges": null,
                                         "max_stacks": null,
                                         "proc_chance": null,
+                                        "proc_cooldown_seconds": null,
                                         "cooldown_seconds": null,
                                         "cooldown_scaling_note": null,
                                         "duration_seconds": null,
@@ -10136,7 +10154,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Creating a Halo upgrades your next Mind Flay to Mind Flay: Insanity. Mind Flay: Insanity Assaults the target's mind with Shadow energy, causing (varies) Shadow damage over 1.5 and slowing their movement speed by 70%. Generates 8 Insanity over the duration.",
+                            "text": "Creating a Halo upgrades your next Mind Flay to Mind Flay: Insanity. Mind Flay: Insanity Assaults the target's mind with Shadow energy, causing ≈623.7% of Spell Power Shadow damage over 1.5 and slowing their movement speed by 70%. Generates 8 Insanity over the duration.",
                             "uncertain": true
                         },
                         "category": "Other",
@@ -11190,6 +11208,7 @@
                             "charges": null,
                             "max_stacks": null,
                             "proc_chance": "101.00",
+                            "proc_cooldown_seconds": null,
                             "cooldown_seconds": null,
                             "cooldown_scaling_note": null,
                             "duration_seconds": "10.00",
@@ -11237,6 +11256,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:23:05.000000Z",
@@ -11255,6 +11275,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:23:05.000000Z",
@@ -11273,6 +11294,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:23:05.000000Z",
@@ -11291,6 +11313,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:23:05.000000Z",
@@ -11309,6 +11332,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:23:05.000000Z",
@@ -11622,8 +11646,8 @@
             "spellId": 8733,
             "category": "Offensive",
             "description": {
-                "text": "Every (varies) sec siphon an amount equal to 4% of your health from an ally within 40 yds if they are higher health than you.",
-                "uncertain": true
+                "text": "Every 3 sec siphon an amount equal to 4% of your health from an ally within 40 yds if they are higher health than you.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -11712,7 +11736,7 @@
             "spellId": 8721,
             "category": "Offensive",
             "description": {
-                "text": "Channel a torrent of void energy into the target, dealing (varies) Shadow damage over 3 and tearing open an Entropic Rift. Entropic Rift (varies by condition — check in-game) that follows the enemy for 8. Enemies caught in its path suffer 30 Shadow damage every (varies) sec while within its reach. Generates 24 Insanity over the duration.",
+                "text": "Channel a torrent of void energy into the target, dealing (varies) Shadow damage over 3 and tearing open an Entropic Rift. Entropic Rift (varies by condition — check in-game) that follows the enemy for 8. Enemies caught in its path suffer 30 Shadow damage every 1 sec while within its reach. Generates 24 Insanity over the duration.",
                 "uncertain": true
             },
             "formulaModifierSpellIds": [],

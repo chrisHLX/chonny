@@ -1,6 +1,6 @@
 {
-    "generatedAt": "2026-10-07T21:48:02+00:00",
-    "spellCacheVersion": 27,
+    "generatedAt": "2026-10-18T02:36:12+00:00",
+    "spellCacheVersion": 29,
     "codeFingerprint": "dev",
     "entries": [
         {
@@ -707,8 +707,8 @@
             "spellId": 11501,
             "category": "Defensive",
             "description": {
-                "text": "Sacrifices 20% of your current health to shield you for 200% of the sacrificed health plus an additional (varies) for 20. Usable while suffering from control impairing effects.",
-                "uncertain": true
+                "text": "Sacrifices 20% of your current health to shield you for 200% of the sacrificed health plus an additional ≈250% of Spell Power for 20. Usable while suffering from control impairing effects.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -791,8 +791,8 @@
             "spellId": 11504,
             "category": "Other",
             "description": {
-                "text": "Your Soul Leech absorption now passively recharges at a rate of 0.2% of maximum health every (varies) sec, and may now absorb an additional 5% of maximum health. Increases your armor by 45%.",
-                "uncertain": true
+                "text": "Your Soul Leech absorption now passively recharges at a rate of 0.2% of maximum health every 1 sec, and may now absorb an additional 5% of maximum health. Increases your armor by 45%.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -1675,8 +1675,8 @@
             "spellId": 11342,
             "category": "Defensive",
             "description": {
-                "text": "Instantly restores 25% health, plus an additional (varies)% over 6.",
-                "uncertain": true
+                "text": "Instantly restores 25% health, plus an additional 30% over 6.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -1703,8 +1703,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Healthstones you conjure for yourself are now Demonic Healthstones and can be used multiple times in combat. Demonic Healthstones cannot be traded. Demonic Healthstone Instantly restores 25% health, plus an additional (varies)% over 6. 60 sec cooldown.",
-                            "uncertain": true
+                            "text": "Healthstones you conjure for yourself are now Demonic Healthstones and can be used multiple times in combat. Demonic Healthstones cannot be traded. Demonic Healthstone Instantly restores 25% health, plus an additional 30% over 6. 60 sec cooldown.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -1878,7 +1878,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Unleashing your demonic soul bestows a fiendish entity unto the soul of its targets, dealing (varies) Shadow damage over 10. If this effect is reapplied, any remaining damage will be added to the new Soul Anathema.",
+                            "text": "Unleashing your demonic soul bestows a fiendish entity unto the soul of its targets, dealing ≈114.7% of Spell Power Shadow damage over 10. If this effect is reapplied, any remaining damage will be added to the new Soul Anathema.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -1926,7 +1926,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Unleashing your demonic soul bestows a fiendish entity unto the soul of its targets, dealing (varies) Shadow damage over 10. If this effect is reapplied, any remaining damage will be added to the new Soul Anathema.",
+                            "text": "Unleashing your demonic soul bestows a fiendish entity unto the soul of its targets, dealing ≈114.7% of Spell Power Shadow damage over 10. If this effect is reapplied, any remaining damage will be added to the new Soul Anathema.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -2744,6 +2744,7 @@
                                         "charges": null,
                                         "max_stacks": null,
                                         "proc_chance": null,
+                                        "proc_cooldown_seconds": null,
                                         "cooldown_seconds": null,
                                         "cooldown_scaling_note": null,
                                         "duration_seconds": null,
@@ -3058,6 +3059,7 @@
                             "charges": null,
                             "max_stacks": null,
                             "proc_chance": null,
+                            "proc_cooldown_seconds": null,
                             "cooldown_seconds": null,
                             "cooldown_scaling_note": null,
                             "duration_seconds": null,
@@ -3105,6 +3107,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:23:32.000000Z",
@@ -3129,6 +3132,7 @@
                             "charges": null,
                             "max_stacks": null,
                             "proc_chance": null,
+                            "proc_cooldown_seconds": null,
                             "cooldown_seconds": null,
                             "cooldown_scaling_note": null,
                             "duration_seconds": null,
@@ -3176,10 +3180,11 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": 0.33333,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:23:33.000000Z",
-                                    "updated_at": "2026-10-07T21:43:23.000000Z"
+                                    "updated_at": "2026-10-18T02:31:08.000000Z"
                                 }
                             ]
                         },
@@ -4302,6 +4307,7 @@
                             "charges": null,
                             "max_stacks": null,
                             "proc_chance": null,
+                            "proc_cooldown_seconds": null,
                             "cooldown_seconds": null,
                             "cooldown_scaling_note": null,
                             "duration_seconds": null,
@@ -4349,6 +4355,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:23:32.000000Z",
@@ -4367,6 +4374,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:23:32.000000Z",
@@ -4385,6 +4393,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:23:32.000000Z",
@@ -4403,6 +4412,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:23:32.000000Z",
@@ -4833,8 +4843,8 @@
             "spellId": 11636,
             "category": "Defensive",
             "description": {
-                "text": "Unending Resolve heals you for (varies)% of your maximum health over 10.",
-                "uncertain": true
+                "text": "Unending Resolve heals you for 30% of your maximum health over 10.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -4863,8 +4873,8 @@
             "spellId": 11547,
             "category": "Offensive",
             "description": {
-                "text": "You passively summon a Wild Imp to fight for you every (varies) sec.",
-                "uncertain": true
+                "text": "You passively summon a Wild Imp to fight for you every 12 sec.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -4970,7 +4980,7 @@
             "spellId": 11558,
             "category": "Other",
             "description": {
-                "text": "Your Summon Vilefiend becomes Summon Charhound and learns the following ability: Infernal Presence Cloaked in the ever-burning flames of the abyss, dealing ≈16% of Spell Power Fire damage to enemies within 10 yards every (varies) sec.",
+                "text": "Your Summon Vilefiend becomes Summon Charhound and learns the following ability: Infernal Presence Cloaked in the ever-burning flames of the abyss, dealing ≈16% of Spell Power Fire damage to enemies within 10 yards every 1 sec.",
                 "uncertain": true
             },
             "formulaModifierSpellIds": [],
@@ -5257,8 +5267,8 @@
             "spellId": 11520,
             "category": "Other",
             "description": {
-                "text": "Healthstones you conjure for yourself are now Demonic Healthstones and can be used multiple times in combat. Demonic Healthstones cannot be traded. Demonic Healthstone Instantly restores 25% health, plus an additional (varies)% over 6. 60 sec cooldown.",
-                "uncertain": true
+                "text": "Healthstones you conjure for yourself are now Demonic Healthstones and can be used multiple times in combat. Demonic Healthstones cannot be traded. Demonic Healthstone Instantly restores 25% health, plus an additional 30% over 6. 60 sec cooldown.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -6057,6 +6067,7 @@
                             "charges": null,
                             "max_stacks": null,
                             "proc_chance": null,
+                            "proc_cooldown_seconds": null,
                             "cooldown_seconds": null,
                             "cooldown_scaling_note": null,
                             "duration_seconds": null,
@@ -6104,6 +6115,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:23:32.000000Z",
@@ -6122,6 +6134,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:23:32.000000Z",
@@ -6140,6 +6153,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:23:32.000000Z",
@@ -6158,6 +6172,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:23:32.000000Z",
@@ -6187,8 +6202,8 @@
             "spellId": 11675,
             "category": "Offensive",
             "description": {
-                "text": "When you kill a target, its tortured soul is flung into a nearby enemy for 3. This effect inflicts 8 Shadow damage to enemies within 10 yds every (varies) sec. Deals reduced damage beyond 8 targets.",
-                "uncertain": true
+                "text": "When you kill a target, its tortured soul is flung into a nearby enemy for 3. This effect inflicts 8 Shadow damage to enemies within 10 yds every 1 sec. Deals reduced damage beyond 8 targets.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -6294,7 +6309,7 @@
             "spellId": 11667,
             "category": "Offensive",
             "description": {
-                "text": "Unleashing your demonic soul bestows a fiendish entity unto the soul of its targets, dealing (varies) Shadow damage over 10. If this effect is reapplied, any remaining damage will be added to the new Soul Anathema.",
+                "text": "Unleashing your demonic soul bestows a fiendish entity unto the soul of its targets, dealing ≈114.7% of Spell Power Shadow damage over 10. If this effect is reapplied, any remaining damage will be added to the new Soul Anathema.",
                 "uncertain": true
             },
             "formulaModifierSpellIds": [],
@@ -6306,7 +6321,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Unleashing your demonic soul bestows a fiendish entity unto the soul of its targets, dealing (varies) Shadow damage over 10. If this effect is reapplied, any remaining damage will be added to the new Soul Anathema.",
+                            "text": "Unleashing your demonic soul bestows a fiendish entity unto the soul of its targets, dealing ≈114.7% of Spell Power Shadow damage over 10. If this effect is reapplied, any remaining damage will be added to the new Soul Anathema.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -6369,8 +6384,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Your Soul Leech absorption now passively recharges at a rate of 0.2% of maximum health every (varies) sec, and may now absorb an additional 5% of maximum health. Increases your armor by 45%.",
-                            "uncertain": true
+                            "text": "Your Soul Leech absorption now passively recharges at a rate of 0.2% of maximum health every 1 sec, and may now absorb an additional 5% of maximum health. Increases your armor by 45%.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -7065,6 +7080,7 @@
                                         "charges": null,
                                         "max_stacks": null,
                                         "proc_chance": null,
+                                        "proc_cooldown_seconds": null,
                                         "cooldown_seconds": null,
                                         "cooldown_scaling_note": null,
                                         "duration_seconds": null,
@@ -7116,6 +7132,7 @@
                                         "charges": null,
                                         "max_stacks": null,
                                         "proc_chance": null,
+                                        "proc_cooldown_seconds": null,
                                         "cooldown_seconds": null,
                                         "cooldown_scaling_note": null,
                                         "duration_seconds": null,
@@ -7246,7 +7263,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Your Summon Vilefiend becomes Summon Charhound and learns the following ability: Infernal Presence Cloaked in the ever-burning flames of the abyss, dealing ≈16% of Spell Power Fire damage to enemies within 10 yards every (varies) sec.",
+                            "text": "Your Summon Vilefiend becomes Summon Charhound and learns the following ability: Infernal Presence Cloaked in the ever-burning flames of the abyss, dealing ≈16% of Spell Power Fire damage to enemies within 10 yards every 1 sec.",
                             "uncertain": true
                         },
                         "category": "Other",
@@ -7476,8 +7493,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Unending Resolve heals you for (varies)% of your maximum health over 10.",
-                            "uncertain": true
+                            "text": "Unending Resolve heals you for 30% of your maximum health over 10.",
+                            "uncertain": false
                         },
                         "category": "Defensive",
                         "cooldown": {
@@ -7508,8 +7525,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Unending Resolve heals you for (varies)% of your maximum health over 10.",
-                            "uncertain": true
+                            "text": "Unending Resolve heals you for 30% of your maximum health over 10.",
+                            "uncertain": false
                         },
                         "category": "Defensive",
                         "cooldown": {

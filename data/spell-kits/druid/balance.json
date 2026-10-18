@@ -1,6 +1,6 @@
 {
-    "generatedAt": "2026-10-07T21:47:51+00:00",
-    "spellCacheVersion": 27,
+    "generatedAt": "2026-10-18T02:36:01+00:00",
+    "spellCacheVersion": 29,
     "codeFingerprint": "dev",
     "entries": [
         {
@@ -247,8 +247,8 @@
             "spellId": 2031,
             "category": "Other",
             "description": {
-                "text": "Entering Eclipse increases your critical strike chance with Arcane or Nature spells by 20%, decreasing by 2% every (varies) sec.",
-                "uncertain": true
+                "text": "Entering Eclipse increases your critical strike chance with Arcane or Nature spells by 20%, decreasing by 2% every 1 sec.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -321,8 +321,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "When you use Barkskin or Survival Instincts, absorb (varies) damage for 15.",
-                            "uncertain": true
+                            "text": "When you use Barkskin or Survival Instincts, absorb ≈1,875% of Attack Power damage for 15.",
+                            "uncertain": false
                         },
                         "category": "Defensive",
                         "cooldown": {
@@ -337,8 +337,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "When you use Barkskin or Survival Instincts, absorb (varies) damage for 15.",
-                            "uncertain": true
+                            "text": "When you use Barkskin or Survival Instincts, absorb ≈1,875% of Attack Power damage for 15.",
+                            "uncertain": false
                         },
                         "category": "Defensive",
                         "cooldown": {
@@ -737,7 +737,7 @@
                         "modifier_value": -60,
                         "modifier_unit": "seconds",
                         "description": {
-                            "text": "Incarnation: Chosen of Elune blasts all enemies in a targeted area for ≈201.4% of Spell Power Astral damage and applies Stellar Flare to them. Reduces the cooldown of Incarnation: Chosen of Elune by 60 sec. Stellar Flare Burns the target for ≈36% of Spell Power Astral damage, and then an additional (varies) damage over 24. If dispelled, causes 15 damage to the dispeller and blasts them upwards. Generates 0 Astral Power.",
+                            "text": "Incarnation: Chosen of Elune blasts all enemies in a targeted area for ≈201.4% of Spell Power Astral damage and applies Stellar Flare to them. Reduces the cooldown of Incarnation: Chosen of Elune by 60 sec. Stellar Flare Burns the target for ≈36% of Spell Power Astral damage, and then an additional ≈210% of Spell Power damage over 24. If dispelled, causes 15 damage to the dispeller and blasts them upwards. Generates 0 Astral Power.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -789,6 +789,7 @@
                                         "charges": null,
                                         "max_stacks": null,
                                         "proc_chance": null,
+                                        "proc_cooldown_seconds": null,
                                         "cooldown_seconds": null,
                                         "cooldown_scaling_note": null,
                                         "duration_seconds": null,
@@ -837,7 +838,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Incarnation: Chosen of Elune blasts all enemies in a targeted area for ≈201.4% of Spell Power Astral damage and applies Stellar Flare to them. Reduces the cooldown of Incarnation: Chosen of Elune by 60 sec. Stellar Flare Burns the target for ≈36% of Spell Power Astral damage, and then an additional (varies) damage over 24. If dispelled, causes 15 damage to the dispeller and blasts them upwards. Generates 0 Astral Power.",
+                            "text": "Incarnation: Chosen of Elune blasts all enemies in a targeted area for ≈201.4% of Spell Power Astral damage and applies Stellar Flare to them. Reduces the cooldown of Incarnation: Chosen of Elune by 60 sec. Stellar Flare Burns the target for ≈36% of Spell Power Astral damage, and then an additional ≈210% of Spell Power damage over 24. If dispelled, causes 15 damage to the dispeller and blasts them upwards. Generates 0 Astral Power.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -873,6 +874,7 @@
                                         "charges": null,
                                         "max_stacks": null,
                                         "proc_chance": null,
+                                        "proc_cooldown_seconds": null,
                                         "cooldown_seconds": null,
                                         "cooldown_scaling_note": null,
                                         "duration_seconds": null,
@@ -934,6 +936,7 @@
                             "charges": null,
                             "max_stacks": null,
                             "proc_chance": null,
+                            "proc_cooldown_seconds": null,
                             "cooldown_seconds": null,
                             "cooldown_scaling_note": null,
                             "duration_seconds": null,
@@ -981,6 +984,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": 1.5,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:22:09.000000Z",
@@ -999,6 +1003,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:22:09.000000Z",
@@ -1017,6 +1022,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:22:09.000000Z",
@@ -1035,6 +1041,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:22:09.000000Z",
@@ -1065,6 +1072,7 @@
                             "charges": null,
                             "max_stacks": null,
                             "proc_chance": null,
+                            "proc_cooldown_seconds": null,
                             "cooldown_seconds": null,
                             "cooldown_scaling_note": null,
                             "duration_seconds": null,
@@ -1112,6 +1120,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": 1.5,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:22:09.000000Z",
@@ -1130,6 +1139,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:22:09.000000Z",
@@ -1148,6 +1158,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:22:09.000000Z",
@@ -1166,6 +1177,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:22:09.000000Z",
@@ -1761,7 +1773,7 @@
             "spellId": 3057,
             "category": "Other",
             "description": {
-                "text": "Force of Nature grants 3 charges of Dream Burst, causing your next Wrath or Starfire to explode on the target, dealing 20 Nature damage to nearby enemies. Damage reduced above 5 targets.",
+                "text": "Force of Nature grants 3 charges of Dream Burst, causing your next Wrath or Starfire to explode on the target, dealing ≈393% of Attack Power Nature damage to nearby enemies. Damage reduced above 5 targets.",
                 "uncertain": true
             },
             "formulaModifierSpellIds": [],
@@ -2035,8 +2047,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Entering Eclipse increases your critical strike chance with Arcane or Nature spells by 20%, decreasing by 2% every (varies) sec.",
-                            "uncertain": true
+                            "text": "Entering Eclipse increases your critical strike chance with Arcane or Nature spells by 20%, decreasing by 2% every 1 sec.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -2167,6 +2179,7 @@
                                         "charges": null,
                                         "max_stacks": null,
                                         "proc_chance": null,
+                                        "proc_cooldown_seconds": null,
                                         "cooldown_seconds": null,
                                         "cooldown_scaling_note": null,
                                         "duration_seconds": null,
@@ -2231,8 +2244,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Entering Eclipse increases your critical strike chance with Arcane or Nature spells by 24%, decreasing by 3% every (varies) sec.",
-                            "uncertain": true
+                            "text": "Entering Eclipse increases your critical strike chance with Arcane or Nature spells by 24%, decreasing by 3% every 1 sec.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -2247,8 +2260,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Entering Eclipse increases your critical strike chance with Arcane or Nature spells by 24%, decreasing by 3% every (varies) sec.",
-                            "uncertain": true
+                            "text": "Entering Eclipse increases your critical strike chance with Arcane or Nature spells by 24%, decreasing by 3% every 1 sec.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -2263,8 +2276,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Entering Eclipse increases your critical strike chance with Arcane or Nature spells by 24%, decreasing by 3% every (varies) sec.",
-                            "uncertain": true
+                            "text": "Entering Eclipse increases your critical strike chance with Arcane or Nature spells by 24%, decreasing by 3% every 1 sec.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -2295,8 +2308,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Entering Eclipse increases your critical strike chance with Nature spells by 20%, decreasing by 2% every (varies) sec.",
-                            "uncertain": true
+                            "text": "Entering Eclipse increases your critical strike chance with Nature spells by 20%, decreasing by 2% every 1 sec.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -2311,8 +2324,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Entering Eclipse increases your critical strike chance with Arcane spells by 20%, decreasing by 2% every (varies) sec.",
-                            "uncertain": true
+                            "text": "Entering Eclipse increases your critical strike chance with Arcane spells by 20%, decreasing by 2% every 1 sec.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -2638,6 +2651,7 @@
                                         "charges": null,
                                         "max_stacks": null,
                                         "proc_chance": null,
+                                        "proc_cooldown_seconds": null,
                                         "cooldown_seconds": null,
                                         "cooldown_scaling_note": null,
                                         "duration_seconds": null,
@@ -2722,6 +2736,7 @@
                                         "charges": null,
                                         "max_stacks": null,
                                         "proc_chance": null,
+                                        "proc_cooldown_seconds": null,
                                         "cooldown_seconds": null,
                                         "cooldown_scaling_note": null,
                                         "duration_seconds": null,
@@ -2854,6 +2869,7 @@
                                         "charges": null,
                                         "max_stacks": null,
                                         "proc_chance": null,
+                                        "proc_cooldown_seconds": null,
                                         "cooldown_seconds": null,
                                         "cooldown_scaling_note": null,
                                         "duration_seconds": null,
@@ -2922,6 +2938,7 @@
                                         "charges": null,
                                         "max_stacks": null,
                                         "proc_chance": null,
+                                        "proc_cooldown_seconds": null,
                                         "cooldown_seconds": null,
                                         "cooldown_scaling_note": null,
                                         "duration_seconds": null,
@@ -3614,8 +3631,8 @@
             "spellId": 2865,
             "category": "Defensive",
             "description": {
-                "text": "Heals you for (varies)% health over 3.",
-                "uncertain": true
+                "text": "Heals you for 24% health over 3.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -3795,8 +3812,8 @@
             "spellId": 2015,
             "category": "Offensive",
             "description": {
-                "text": "Calls down a beam of pure celestial energy that follows the enemy, dealing up to ≈293.4% of Spell Power Astral damage over 8 within its area. Damage reduced on secondary targets. Generates (varies) Astral Power over its duration.",
-                "uncertain": true
+                "text": "Calls down a beam of pure celestial energy that follows the enemy, dealing up to ≈293.4% of Spell Power Astral damage over 8 within its area. Damage reduced on secondary targets. Generates 40 Astral Power over its duration.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -3807,7 +3824,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "A quick beam of solar light burns the enemy and all enemies within 8 yards for ≈21.2% of Spell Power Nature damage and then an additional (varies) Nature damage over 18. Generates 0 Astral Power.",
+                            "text": "A quick beam of solar light burns the enemy and all enemies within 8 yards for ≈21.2% of Spell Power Nature damage and then an additional ≈165.6% of Spell Power Nature damage over 18. Generates 0 Astral Power.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -3839,8 +3856,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Entering Eclipse increases your critical strike chance with Arcane or Nature spells by 24%, decreasing by 3% every (varies) sec.",
-                            "uncertain": true
+                            "text": "Entering Eclipse increases your critical strike chance with Arcane or Nature spells by 24%, decreasing by 3% every 1 sec.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -3855,8 +3872,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Entering Eclipse increases your critical strike chance with Arcane or Nature spells by 24%, decreasing by 3% every (varies) sec.",
-                            "uncertain": true
+                            "text": "Entering Eclipse increases your critical strike chance with Arcane or Nature spells by 24%, decreasing by 3% every 1 sec.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -3871,8 +3888,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Entering Eclipse increases your critical strike chance with Nature spells by 20%, decreasing by 2% every (varies) sec.",
-                            "uncertain": true
+                            "text": "Entering Eclipse increases your critical strike chance with Nature spells by 20%, decreasing by 2% every 1 sec.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -3887,8 +3904,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Entering Eclipse increases your critical strike chance with Arcane spells by 20%, decreasing by 2% every (varies) sec.",
-                            "uncertain": true
+                            "text": "Entering Eclipse increases your critical strike chance with Arcane spells by 20%, decreasing by 2% every 1 sec.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -3954,7 +3971,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "A quick beam of lunar light burns the enemy for ≈21.2% of Spell Power Arcane damage and then an additional (varies) Arcane damage over 18. Generates 0 Astral Power.",
+                            "text": "A quick beam of lunar light burns the enemy for ≈21.2% of Spell Power Arcane damage and then an additional ≈165.6% of Spell Power Arcane damage over 18. Generates 0 Astral Power.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -4178,7 +4195,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Moonfire damage has a chance to call down a Fury of Elune to follow your target for 3 sec. Fury of Elune Calls down a beam of pure celestial energy, dealing ≈110% of Spell Power Astral damage over 3 sec within its area. Generates (varies) Astral Power over its duration.",
+                            "text": "Moonfire damage has a chance to call down a Fury of Elune to follow your target for 3 sec. Fury of Elune Calls down a beam of pure celestial energy, dealing ≈110% of Spell Power Astral damage over 3 sec within its area. Generates 0 Astral Power over its duration.",
                             "uncertain": true
                         },
                         "category": "Other",
@@ -4239,6 +4256,7 @@
                             "charges": null,
                             "max_stacks": null,
                             "proc_chance": null,
+                            "proc_cooldown_seconds": null,
                             "cooldown_seconds": null,
                             "cooldown_scaling_note": null,
                             "duration_seconds": null,
@@ -4286,6 +4304,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:22:09.000000Z",
@@ -4304,6 +4323,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:22:09.000000Z",
@@ -4322,6 +4342,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:22:09.000000Z",
@@ -5049,7 +5070,7 @@
                         "modifier_value": -60,
                         "modifier_unit": "seconds",
                         "description": {
-                            "text": "Incarnation: Chosen of Elune blasts all enemies in a targeted area for ≈201.4% of Spell Power Astral damage and applies Stellar Flare to them. Reduces the cooldown of Incarnation: Chosen of Elune by 60 sec. Stellar Flare Burns the target for ≈36% of Spell Power Astral damage, and then an additional (varies) damage over 24. If dispelled, causes 15 damage to the dispeller and blasts them upwards. Generates 0 Astral Power.",
+                            "text": "Incarnation: Chosen of Elune blasts all enemies in a targeted area for ≈201.4% of Spell Power Astral damage and applies Stellar Flare to them. Reduces the cooldown of Incarnation: Chosen of Elune by 60 sec. Stellar Flare Burns the target for ≈36% of Spell Power Astral damage, and then an additional ≈210% of Spell Power damage over 24. If dispelled, causes 15 damage to the dispeller and blasts them upwards. Generates 0 Astral Power.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -5078,6 +5099,7 @@
                             "charges": null,
                             "max_stacks": null,
                             "proc_chance": null,
+                            "proc_cooldown_seconds": null,
                             "cooldown_seconds": null,
                             "cooldown_scaling_note": null,
                             "duration_seconds": null,
@@ -5125,6 +5147,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": 1.5,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:22:09.000000Z",
@@ -5143,6 +5166,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:22:09.000000Z",
@@ -5161,6 +5185,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:22:09.000000Z",
@@ -5179,6 +5204,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:22:09.000000Z",
@@ -5209,6 +5235,7 @@
                             "charges": null,
                             "max_stacks": null,
                             "proc_chance": null,
+                            "proc_cooldown_seconds": null,
                             "cooldown_seconds": null,
                             "cooldown_scaling_note": null,
                             "duration_seconds": null,
@@ -5256,6 +5283,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": 1.5,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:22:09.000000Z",
@@ -5274,6 +5302,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:22:09.000000Z",
@@ -5292,6 +5321,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:22:09.000000Z",
@@ -5310,6 +5340,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:22:09.000000Z",
@@ -5478,8 +5509,8 @@
             "spellId": 2882,
             "category": "Defensive",
             "description": {
-                "text": "Increases armor by (varies) for 7. Multiple uses of this ability may overlap.",
-                "uncertain": true
+                "text": "Increases armor by ≈124% of Agility for 7. Multiple uses of this ability may overlap.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -5918,6 +5949,7 @@
                                         "charges": null,
                                         "max_stacks": null,
                                         "proc_chance": null,
+                                        "proc_cooldown_seconds": null,
                                         "cooldown_seconds": null,
                                         "cooldown_scaling_note": null,
                                         "duration_seconds": null,
@@ -5995,6 +6027,7 @@
                             "charges": null,
                             "max_stacks": null,
                             "proc_chance": null,
+                            "proc_cooldown_seconds": null,
                             "cooldown_seconds": null,
                             "cooldown_scaling_note": null,
                             "duration_seconds": null,
@@ -6042,6 +6075,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:22:09.000000Z",
@@ -6072,6 +6106,7 @@
                             "charges": null,
                             "max_stacks": null,
                             "proc_chance": null,
+                            "proc_cooldown_seconds": null,
                             "cooldown_seconds": null,
                             "cooldown_scaling_note": null,
                             "duration_seconds": null,
@@ -6119,6 +6154,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:22:09.000000Z",
@@ -6263,8 +6299,8 @@
             "spellId": 2864,
             "category": "Crowd Control",
             "description": {
-                "text": "Finishing move that causes Physical damage and stuns the target. Damage and duration increased per combo point: 1 point  : (varies) damage, 1 sec 2 points: (varies) damage, 2 sec 3 points: (varies) damage, 3 sec 4 points: (varies) damage, 4 sec 5 points: (varies) damage, 5 sec",
-                "uncertain": true
+                "text": "Finishing move that causes Physical damage and stuns the target. Damage and duration increased per combo point: 1 point  : ≈14.4% of Attack Power damage, 1 sec 2 points: ≈28.8% of Attack Power damage, 2 sec 3 points: ≈43.2% of Attack Power damage, 3 sec 4 points: ≈57.6% of Attack Power damage, 4 sec 5 points: ≈72% of Attack Power damage, 5 sec",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -6291,7 +6327,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Rake the target for 0.3 Bleed damage and an additional (varies) Bleed damage over 15. While stealthed, Rake will also stun the target for 4 and deal 60% increased damage. While stealthed, Rake will also stun the target for 4 and deal 60% increased damage. Awards 1 combo point.",
+                            "text": "Rake the target for 0.3 Bleed damage and an additional ≈147% of Attack Power Bleed damage over 15. While stealthed, Rake will also stun the target for 4 and deal 60% increased damage. While stealthed, Rake will also stun the target for 4 and deal 60% increased damage. Awards 1 combo point.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -6658,8 +6694,8 @@
             "spellId": 2899,
             "category": "Defensive",
             "description": {
-                "text": "When you use Barkskin or Survival Instincts, absorb (varies) damage for 15.",
-                "uncertain": true
+                "text": "When you use Barkskin or Survival Instincts, absorb ≈1,875% of Attack Power damage for 15.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -6902,7 +6938,7 @@
             "spellId": 2072,
             "category": "Offensive",
             "description": {
-                "text": "A quick beam of lunar light burns the enemy for ≈21.2% of Spell Power Arcane damage and then an additional (varies) Arcane damage over 18. Generates 0 Astral Power.",
+                "text": "A quick beam of lunar light burns the enemy for ≈21.2% of Spell Power Arcane damage and then an additional ≈165.6% of Spell Power Arcane damage over 18. Generates 0 Astral Power.",
                 "uncertain": true
             },
             "formulaModifierSpellIds": [],
@@ -7349,7 +7385,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Moonfire damage has a chance to call down a Fury of Elune to follow your target for 3 sec. Fury of Elune Calls down a beam of pure celestial energy, dealing ≈110% of Spell Power Astral damage over 3 sec within its area. Generates (varies) Astral Power over its duration.",
+                            "text": "Moonfire damage has a chance to call down a Fury of Elune to follow your target for 3 sec. Fury of Elune Calls down a beam of pure celestial energy, dealing ≈110% of Spell Power Astral damage over 3 sec within its area. Generates 0 Astral Power over its duration.",
                             "uncertain": true
                         },
                         "category": "Other",
@@ -7445,7 +7481,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "If Moonfire and Sunfire are dispelled, Stellar Flare is applied to the target: Stellar Flare Burns the target for ≈36% of Spell Power Astral damage, and then an additional (varies) damage over 24. If dispelled, causes 15 damage to the dispeller and blasts them upwards. Generates 0 Astral Power.",
+                            "text": "If Moonfire and Sunfire are dispelled, Stellar Flare is applied to the target: Stellar Flare Burns the target for ≈36% of Spell Power Astral damage, and then an additional ≈210% of Spell Power damage over 24. If dispelled, causes 15 damage to the dispeller and blasts them upwards. Generates 0 Astral Power.",
                             "uncertain": true
                         },
                         "category": "Other",
@@ -7784,6 +7820,7 @@
                                         "charges": null,
                                         "max_stacks": null,
                                         "proc_chance": null,
+                                        "proc_cooldown_seconds": null,
                                         "cooldown_seconds": null,
                                         "cooldown_scaling_note": null,
                                         "duration_seconds": null,
@@ -7868,6 +7905,7 @@
                                         "charges": null,
                                         "max_stacks": null,
                                         "proc_chance": null,
+                                        "proc_cooldown_seconds": null,
                                         "cooldown_seconds": null,
                                         "cooldown_scaling_note": null,
                                         "duration_seconds": null,
@@ -8027,8 +8065,8 @@
             "spellId": 2014,
             "category": "Other",
             "description": {
-                "text": "While in combat you generate 1 Astral Power every (varies) sec. While out of combat your Astral Power rebalances to 50 instead of depleting to empty.",
-                "uncertain": true
+                "text": "While in combat you generate 1 Astral Power every 2 sec. While out of combat your Astral Power rebalances to 50 instead of depleting to empty.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -8115,7 +8153,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "A quick beam of solar light burns the enemy and all enemies within 8 yards for ≈21.2% of Spell Power Nature damage and then an additional (varies) Nature damage over 18. Generates 0 Astral Power.",
+                            "text": "A quick beam of solar light burns the enemy and all enemies within 8 yards for ≈21.2% of Spell Power Nature damage and then an additional ≈165.6% of Spell Power Nature damage over 18. Generates 0 Astral Power.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -8163,8 +8201,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Entering Eclipse increases your critical strike chance with Arcane or Nature spells by 24%, decreasing by 3% every (varies) sec.",
-                            "uncertain": true
+                            "text": "Entering Eclipse increases your critical strike chance with Arcane or Nature spells by 24%, decreasing by 3% every 1 sec.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -8179,8 +8217,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Entering Eclipse increases your critical strike chance with Arcane or Nature spells by 24%, decreasing by 3% every (varies) sec.",
-                            "uncertain": true
+                            "text": "Entering Eclipse increases your critical strike chance with Arcane or Nature spells by 24%, decreasing by 3% every 1 sec.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -8211,8 +8249,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Entering Eclipse increases your critical strike chance with Nature spells by 20%, decreasing by 2% every (varies) sec.",
-                            "uncertain": true
+                            "text": "Entering Eclipse increases your critical strike chance with Nature spells by 20%, decreasing by 2% every 1 sec.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -8227,8 +8265,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Entering Eclipse increases your critical strike chance with Arcane spells by 20%, decreasing by 2% every (varies) sec.",
-                            "uncertain": true
+                            "text": "Entering Eclipse increases your critical strike chance with Arcane spells by 20%, decreasing by 2% every 1 sec.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -8411,6 +8449,7 @@
                                         "charges": null,
                                         "max_stacks": null,
                                         "proc_chance": null,
+                                        "proc_cooldown_seconds": null,
                                         "cooldown_seconds": null,
                                         "cooldown_scaling_note": null,
                                         "duration_seconds": null,
@@ -8459,7 +8498,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "A quick beam of lunar light burns the enemy for ≈21.2% of Spell Power Arcane damage and then an additional (varies) Arcane damage over 18. Generates 0 Astral Power.",
+                            "text": "A quick beam of lunar light burns the enemy for ≈21.2% of Spell Power Arcane damage and then an additional ≈165.6% of Spell Power Arcane damage over 18. Generates 0 Astral Power.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -8527,6 +8566,7 @@
                                         "charges": null,
                                         "max_stacks": null,
                                         "proc_chance": null,
+                                        "proc_cooldown_seconds": null,
                                         "cooldown_seconds": null,
                                         "cooldown_scaling_note": null,
                                         "duration_seconds": null,
@@ -8778,7 +8818,7 @@
             "spellId": 2023,
             "category": "Offensive",
             "description": {
-                "text": "Incarnation: Chosen of Elune blasts all enemies in a targeted area for ≈201.4% of Spell Power Astral damage and applies Stellar Flare to them. Reduces the cooldown of Incarnation: Chosen of Elune by 60 sec. Stellar Flare Burns the target for ≈36% of Spell Power Astral damage, and then an additional (varies) damage over 24. If dispelled, causes 15 damage to the dispeller and blasts them upwards. Generates 0 Astral Power.",
+                "text": "Incarnation: Chosen of Elune blasts all enemies in a targeted area for ≈201.4% of Spell Power Astral damage and applies Stellar Flare to them. Reduces the cooldown of Incarnation: Chosen of Elune by 60 sec. Stellar Flare Burns the target for ≈36% of Spell Power Astral damage, and then an additional ≈210% of Spell Power damage over 24. If dispelled, causes 15 damage to the dispeller and blasts them upwards. Generates 0 Astral Power.",
                 "uncertain": true
             },
             "formulaModifierSpellIds": [],
@@ -9202,7 +9242,7 @@
             "spellId": 2858,
             "category": "Offensive",
             "description": {
-                "text": "Rake the target for 0.3 Bleed damage and an additional (varies) Bleed damage over 15. While stealthed, Rake will also stun the target for 4 and deal 60% increased damage. While stealthed, Rake will also stun the target for 4 and deal 60% increased damage. Awards 1 combo point.",
+                "text": "Rake the target for 0.3 Bleed damage and an additional ≈147% of Attack Power Bleed damage over 15. While stealthed, Rake will also stun the target for 4 and deal 60% increased damage. While stealthed, Rake will also stun the target for 4 and deal 60% increased damage. Awards 1 combo point.",
                 "uncertain": true
             },
             "formulaModifierSpellIds": [],
@@ -9230,7 +9270,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Rake the target for 0.3 Bleed damage and an additional (varies) Bleed damage over 15. While stealthed, Rake will also stun the target for 4 and deal 60% increased damage. While stealthed, Rake will also stun the target for 4 and deal 60% increased damage. Awards 1 combo point.",
+                            "text": "Rake the target for 0.3 Bleed damage and an additional ≈147% of Attack Power Bleed damage over 15. While stealthed, Rake will also stun the target for 4 and deal 60% increased damage. While stealthed, Rake will also stun the target for 4 and deal 60% increased damage. Awards 1 combo point.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -9278,7 +9318,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Rake the target for 0.3 Bleed damage and an additional (varies) Bleed damage over 15. While stealthed, Rake will also stun the target for 4 and deal 60% increased damage. While stealthed, Rake will also stun the target for 4 and deal 60% increased damage. Awards 1 combo point.",
+                            "text": "Rake the target for 0.3 Bleed damage and an additional ≈147% of Attack Power Bleed damage over 15. While stealthed, Rake will also stun the target for 4 and deal 60% increased damage. While stealthed, Rake will also stun the target for 4 and deal 60% increased damage. Awards 1 combo point.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -9908,7 +9948,7 @@
             "spellId": 2856,
             "category": "Defensive",
             "description": {
-                "text": "Heals the target for (varies) over 12.",
+                "text": "Heals the target for ≈369.6% of Spell Power over 12.",
                 "uncertain": true
             },
             "formulaModifierSpellIds": [
@@ -10231,8 +10271,8 @@
             "spellId": 2857,
             "category": "Offensive",
             "description": {
-                "text": "Finishing move that causes Bleed damage over time. Lasts longer per combo point. 1 point  : (varies) over 1.3 sec 2 points: (varies) over 2 sec 3 points: (varies) over 2.7 sec 4 points: (varies) over 3.3 sec 5 points: (varies) over 4 sec",
-                "uncertain": true
+                "text": "Finishing move that causes Bleed damage over time. Lasts longer per combo point. 1 point  : ≈20.8% of Attack Power over 1.3 sec 2 points: ≈31.1% of Attack Power over 2 sec 3 points: ≈41.5% of Attack Power over 2.7 sec 4 points: ≈51.9% of Attack Power over 3.3 sec 5 points: ≈62.3% of Attack Power over 4 sec",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -10259,7 +10299,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Rake the target for 0.3 Bleed damage and an additional (varies) Bleed damage over 15. While stealthed, Rake will also stun the target for 4 and deal 60% increased damage. While stealthed, Rake will also stun the target for 4 and deal 60% increased damage. Awards 1 combo point.",
+                            "text": "Rake the target for 0.3 Bleed damage and an additional ≈147% of Attack Power Bleed damage over 15. While stealthed, Rake will also stun the target for 4 and deal 60% increased damage. While stealthed, Rake will also stun the target for 4 and deal 60% increased damage. Awards 1 combo point.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -10969,6 +11009,7 @@
                                         "charges": null,
                                         "max_stacks": null,
                                         "proc_chance": null,
+                                        "proc_cooldown_seconds": null,
                                         "cooldown_seconds": null,
                                         "cooldown_scaling_note": null,
                                         "duration_seconds": null,
@@ -11046,6 +11087,7 @@
                             "charges": null,
                             "max_stacks": null,
                             "proc_chance": null,
+                            "proc_cooldown_seconds": null,
                             "cooldown_seconds": null,
                             "cooldown_scaling_note": null,
                             "duration_seconds": null,
@@ -11093,6 +11135,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:22:09.000000Z",
@@ -11123,6 +11166,7 @@
                             "charges": null,
                             "max_stacks": null,
                             "proc_chance": null,
+                            "proc_cooldown_seconds": null,
                             "cooldown_seconds": null,
                             "cooldown_scaling_note": null,
                             "duration_seconds": null,
@@ -11170,6 +11214,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:22:09.000000Z",
@@ -11458,6 +11503,7 @@
                             "charges": null,
                             "max_stacks": null,
                             "proc_chance": null,
+                            "proc_cooldown_seconds": null,
                             "cooldown_seconds": null,
                             "cooldown_scaling_note": null,
                             "duration_seconds": null,
@@ -11505,6 +11551,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:22:15.000000Z",
@@ -11654,8 +11701,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Entering Eclipse increases your critical strike chance with Arcane or Nature spells by 24%, decreasing by 3% every (varies) sec.",
-                            "uncertain": true
+                            "text": "Entering Eclipse increases your critical strike chance with Arcane or Nature spells by 24%, decreasing by 3% every 1 sec.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -11686,8 +11733,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Entering Eclipse increases your critical strike chance with Arcane spells by 20%, decreasing by 2% every (varies) sec.",
-                            "uncertain": true
+                            "text": "Entering Eclipse increases your critical strike chance with Arcane spells by 20%, decreasing by 2% every 1 sec.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -11942,7 +11989,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Force of Nature grants 3 charges of Dream Burst, causing your next Wrath or Starfire to explode on the target, dealing 20 Nature damage to nearby enemies. Damage reduced above 5 targets.",
+                            "text": "Force of Nature grants 3 charges of Dream Burst, causing your next Wrath or Starfire to explode on the target, dealing ≈393% of Attack Power Nature damage to nearby enemies. Damage reduced above 5 targets.",
                             "uncertain": true
                         },
                         "category": "Other",
@@ -12030,6 +12077,7 @@
                                         "charges": null,
                                         "max_stacks": null,
                                         "proc_chance": null,
+                                        "proc_cooldown_seconds": null,
                                         "cooldown_seconds": null,
                                         "cooldown_scaling_note": null,
                                         "duration_seconds": null,
@@ -12094,7 +12142,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "A quick beam of lunar light burns the enemy for ≈21.2% of Spell Power Arcane damage and then an additional (varies) Arcane damage over 18. Generates 0 Astral Power.",
+                            "text": "A quick beam of lunar light burns the enemy for ≈21.2% of Spell Power Arcane damage and then an additional ≈165.6% of Spell Power Arcane damage over 18. Generates 0 Astral Power.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -12162,6 +12210,7 @@
                                         "charges": null,
                                         "max_stacks": null,
                                         "proc_chance": null,
+                                        "proc_cooldown_seconds": null,
                                         "cooldown_seconds": null,
                                         "cooldown_scaling_note": null,
                                         "duration_seconds": null,
@@ -12550,6 +12599,7 @@
                                         "charges": null,
                                         "max_stacks": null,
                                         "proc_chance": null,
+                                        "proc_cooldown_seconds": null,
                                         "cooldown_seconds": null,
                                         "cooldown_scaling_note": null,
                                         "duration_seconds": null,
@@ -12618,6 +12668,7 @@
                                         "charges": null,
                                         "max_stacks": null,
                                         "proc_chance": null,
+                                        "proc_cooldown_seconds": null,
                                         "cooldown_seconds": null,
                                         "cooldown_scaling_note": null,
                                         "duration_seconds": null,
@@ -12787,7 +12838,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "A quick beam of solar light burns the enemy and all enemies within 8 yards for ≈21.2% of Spell Power Nature damage and then an additional (varies) Nature damage over 18. Generates 0 Astral Power.",
+                            "text": "A quick beam of solar light burns the enemy and all enemies within 8 yards for ≈21.2% of Spell Power Nature damage and then an additional ≈165.6% of Spell Power Nature damage over 18. Generates 0 Astral Power.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -12835,8 +12886,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Entering Eclipse increases your critical strike chance with Arcane or Nature spells by 24%, decreasing by 3% every (varies) sec.",
-                            "uncertain": true
+                            "text": "Entering Eclipse increases your critical strike chance with Arcane or Nature spells by 24%, decreasing by 3% every 1 sec.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -12851,8 +12902,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Entering Eclipse increases your critical strike chance with Arcane or Nature spells by 24%, decreasing by 3% every (varies) sec.",
-                            "uncertain": true
+                            "text": "Entering Eclipse increases your critical strike chance with Arcane or Nature spells by 24%, decreasing by 3% every 1 sec.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -12899,8 +12950,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Entering Eclipse increases your critical strike chance with Nature spells by 20%, decreasing by 2% every (varies) sec.",
-                            "uncertain": true
+                            "text": "Entering Eclipse increases your critical strike chance with Nature spells by 20%, decreasing by 2% every 1 sec.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -12915,8 +12966,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Entering Eclipse increases your critical strike chance with Arcane spells by 20%, decreasing by 2% every (varies) sec.",
-                            "uncertain": true
+                            "text": "Entering Eclipse increases your critical strike chance with Arcane spells by 20%, decreasing by 2% every 1 sec.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -13435,6 +13486,7 @@
                                         "charges": null,
                                         "max_stacks": null,
                                         "proc_chance": null,
+                                        "proc_cooldown_seconds": null,
                                         "cooldown_seconds": null,
                                         "cooldown_scaling_note": null,
                                         "duration_seconds": null,
@@ -13483,7 +13535,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "A quick beam of lunar light burns the enemy for ≈21.2% of Spell Power Arcane damage and then an additional (varies) Arcane damage over 18. Generates 0 Astral Power.",
+                            "text": "A quick beam of lunar light burns the enemy for ≈21.2% of Spell Power Arcane damage and then an additional ≈165.6% of Spell Power Arcane damage over 18. Generates 0 Astral Power.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -13551,6 +13603,7 @@
                                         "charges": null,
                                         "max_stacks": null,
                                         "proc_chance": null,
+                                        "proc_cooldown_seconds": null,
                                         "cooldown_seconds": null,
                                         "cooldown_scaling_note": null,
                                         "duration_seconds": null,
@@ -13852,6 +13905,7 @@
                             "charges": null,
                             "max_stacks": null,
                             "proc_chance": null,
+                            "proc_cooldown_seconds": null,
                             "cooldown_seconds": null,
                             "cooldown_scaling_note": null,
                             "duration_seconds": null,
@@ -13899,6 +13953,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:22:15.000000Z",
@@ -13917,6 +13972,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:22:15.000000Z",
@@ -13935,6 +13991,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:22:15.000000Z",
@@ -14088,7 +14145,7 @@
             "spellId": 2872,
             "category": "Offensive",
             "description": {
-                "text": "A quick beam of solar light burns the enemy and all enemies within 8 yards for ≈21.2% of Spell Power Nature damage and then an additional (varies) Nature damage over 18. Generates 0 Astral Power.",
+                "text": "A quick beam of solar light burns the enemy and all enemies within 8 yards for ≈21.2% of Spell Power Nature damage and then an additional ≈165.6% of Spell Power Nature damage over 18. Generates 0 Astral Power.",
                 "uncertain": true
             },
             "formulaModifierSpellIds": [],
@@ -14164,7 +14221,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Sunfire damage has a chance to grow a magical mushroom at a target's location. After 1, the mushroom detonates, dealing 30 Nature damage and then an additional (varies) Nature damage over 10. Affected targets are slowed by 50%. Generates up to 20 Astral Power based on targets hit.",
+                            "text": "Sunfire damage has a chance to grow a magical mushroom at a target's location. After 1, the mushroom detonates, dealing 30 Nature damage and then an additional ≈150% of Spell Power Nature damage over 10. Affected targets are slowed by 50%. Generates up to 20 Astral Power based on targets hit.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -14228,7 +14285,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Sunfire damage has a chance to grow a magical mushroom at a target's location. After 1, the mushroom detonates, dealing 30 Nature damage and then an additional (varies) Nature damage over 10. Affected targets are slowed by 50%. Generates up to 20 Astral Power based on targets hit.",
+                            "text": "Sunfire damage has a chance to grow a magical mushroom at a target's location. After 1, the mushroom detonates, dealing 30 Nature damage and then an additional ≈150% of Spell Power Nature damage over 10. Affected targets are slowed by 50%. Generates up to 20 Astral Power based on targets hit.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -14260,7 +14317,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Sunfire damage has a chance to grow a magical mushroom at a target's location. After 1, the mushroom detonates, dealing 30 Nature damage and then an additional (varies) Nature damage over 10. Affected targets are slowed by 50%. Generates up to 20 Astral Power based on targets hit.",
+                            "text": "Sunfire damage has a chance to grow a magical mushroom at a target's location. After 1, the mushroom detonates, dealing 30 Nature damage and then an additional ≈150% of Spell Power Nature damage over 10. Affected targets are slowed by 50%. Generates up to 20 Astral Power based on targets hit.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -14439,7 +14496,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "If Moonfire and Sunfire are dispelled, Stellar Flare is applied to the target: Stellar Flare Burns the target for ≈36% of Spell Power Astral damage, and then an additional (varies) damage over 24. If dispelled, causes 15 damage to the dispeller and blasts them upwards. Generates 0 Astral Power.",
+                            "text": "If Moonfire and Sunfire are dispelled, Stellar Flare is applied to the target: Stellar Flare Burns the target for ≈36% of Spell Power Astral damage, and then an additional ≈210% of Spell Power damage over 24. If dispelled, causes 15 damage to the dispeller and blasts them upwards. Generates 0 Astral Power.",
                             "uncertain": true
                         },
                         "category": "Other",
@@ -14472,7 +14529,7 @@
             "spellId": 2044,
             "category": "Offensive",
             "description": {
-                "text": "Sunfire damage has a chance to grow a magical mushroom at a target's location. After 1, the mushroom detonates, dealing 30 Nature damage and then an additional (varies) Nature damage over 10. Affected targets are slowed by 50%. Generates up to 20 Astral Power based on targets hit.",
+                "text": "Sunfire damage has a chance to grow a magical mushroom at a target's location. After 1, the mushroom detonates, dealing 30 Nature damage and then an additional ≈150% of Spell Power Nature damage over 10. Affected targets are slowed by 50%. Generates up to 20 Astral Power based on targets hit.",
                 "uncertain": true
             },
             "formulaModifierSpellIds": [],
@@ -14484,7 +14541,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "A quick beam of solar light burns the enemy and all enemies within 8 yards for ≈21.2% of Spell Power Nature damage and then an additional (varies) Nature damage over 18. Generates 0 Astral Power.",
+                            "text": "A quick beam of solar light burns the enemy and all enemies within 8 yards for ≈21.2% of Spell Power Nature damage and then an additional ≈165.6% of Spell Power Nature damage over 18. Generates 0 Astral Power.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -14516,8 +14573,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Entering Eclipse increases your critical strike chance with Nature spells by 20%, decreasing by 2% every (varies) sec.",
-                            "uncertain": true
+                            "text": "Entering Eclipse increases your critical strike chance with Nature spells by 20%, decreasing by 2% every 1 sec.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -14614,7 +14671,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Swipe all nearby enemies, inflicting (varies) Physical damage. Deals reduced damage beyond 5 targets. Applies the Bleed from Thrash. Awards 1 combo point.",
+                            "text": "Swipe all nearby enemies, inflicting ≈112.7% of Attack Power Physical damage. Deals reduced damage beyond 5 targets. Applies the Bleed from Thrash. Awards 1 combo point.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -14630,7 +14687,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Swipe all nearby enemies, inflicting (varies) Physical damage. Deals reduced damage beyond 5 targets.",
+                            "text": "Swipe all nearby enemies, inflicting ≈110% of Attack Power Physical damage. Deals reduced damage beyond 5 targets.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -14753,7 +14810,7 @@
             "spellId": 3031,
             "category": "Other",
             "description": {
-                "text": "Moonfire damage has a chance to call down a Fury of Elune to follow your target for 3 sec. Fury of Elune Calls down a beam of pure celestial energy, dealing ≈110% of Spell Power Astral damage over 3 sec within its area. Generates (varies) Astral Power over its duration.",
+                "text": "Moonfire damage has a chance to call down a Fury of Elune to follow your target for 3 sec. Fury of Elune Calls down a beam of pure celestial energy, dealing ≈110% of Spell Power Astral damage over 3 sec within its area. Generates 0 Astral Power over its duration.",
                 "uncertain": true
             },
             "formulaModifierSpellIds": [],
@@ -15653,7 +15710,7 @@
             "spellId": 2870,
             "category": "Defensive",
             "description": {
-                "text": "Heals up to 5 injured allies within 30 yards of the target for (varies) over 7. Healing starts high and declines over the duration.",
+                "text": "Heals up to 5 injured allies within 30 yards of the target for ≈336.7% of Spell Power over 7. Healing starts high and declines over the duration.",
                 "uncertain": true
             },
             "formulaModifierSpellIds": [],
@@ -15874,6 +15931,7 @@
                             "charges": null,
                             "max_stacks": null,
                             "proc_chance": null,
+                            "proc_cooldown_seconds": null,
                             "cooldown_seconds": null,
                             "cooldown_scaling_note": null,
                             "duration_seconds": null,
@@ -15921,6 +15979,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:22:16.000000Z",
@@ -15939,6 +15998,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:22:16.000000Z",
@@ -15957,6 +16017,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:22:16.000000Z",
@@ -15986,7 +16047,7 @@
             "spellId": 2010,
             "category": "Offensive",
             "description": {
-                "text": "Grow a magical mushroom at the target enemy's location. After 1, the mushroom detonates, dealing ≈318.7% of Spell Power Nature damage and then an additional (varies) Nature damage over 10. Affected targets are slowed by 50%. Generates up to 20 Astral Power based on targets hit.",
+                "text": "Grow a magical mushroom at the target enemy's location. After 1, the mushroom detonates, dealing ≈318.7% of Spell Power Nature damage and then an additional ≈180% of Spell Power Nature damage over 10. Affected targets are slowed by 50%. Generates up to 20 Astral Power based on targets hit.",
                 "uncertain": true
             },
             "formulaModifierSpellIds": [],
@@ -15998,7 +16059,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "A quick beam of solar light burns the enemy and all enemies within 8 yards for ≈21.2% of Spell Power Nature damage and then an additional (varies) Nature damage over 18. Generates 0 Astral Power.",
+                            "text": "A quick beam of solar light burns the enemy and all enemies within 8 yards for ≈21.2% of Spell Power Nature damage and then an additional ≈165.6% of Spell Power Nature damage over 18. Generates 0 Astral Power.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -16030,8 +16091,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Entering Eclipse increases your critical strike chance with Nature spells by 20%, decreasing by 2% every (varies) sec.",
-                            "uncertain": true
+                            "text": "Entering Eclipse increases your critical strike chance with Nature spells by 20%, decreasing by 2% every 1 sec.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -16160,7 +16221,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "A quick beam of solar light burns the enemy and all enemies within 8 yards for ≈21.2% of Spell Power Nature damage and then an additional (varies) Nature damage over 18. Generates 0 Astral Power.",
+                            "text": "A quick beam of solar light burns the enemy and all enemies within 8 yards for ≈21.2% of Spell Power Nature damage and then an additional ≈165.6% of Spell Power Nature damage over 18. Generates 0 Astral Power.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -16208,8 +16269,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Entering Eclipse increases your critical strike chance with Arcane or Nature spells by 24%, decreasing by 3% every (varies) sec.",
-                            "uncertain": true
+                            "text": "Entering Eclipse increases your critical strike chance with Arcane or Nature spells by 24%, decreasing by 3% every 1 sec.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -16240,8 +16301,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Entering Eclipse increases your critical strike chance with Nature spells by 20%, decreasing by 2% every (varies) sec.",
-                            "uncertain": true
+                            "text": "Entering Eclipse increases your critical strike chance with Nature spells by 20%, decreasing by 2% every 1 sec.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -16496,7 +16557,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Force of Nature grants 3 charges of Dream Burst, causing your next Wrath or Starfire to explode on the target, dealing 20 Nature damage to nearby enemies. Damage reduced above 5 targets.",
+                            "text": "Force of Nature grants 3 charges of Dream Burst, causing your next Wrath or Starfire to explode on the target, dealing ≈393% of Attack Power Nature damage to nearby enemies. Damage reduced above 5 targets.",
                             "uncertain": true
                         },
                         "category": "Other",
@@ -16584,6 +16645,7 @@
                                         "charges": null,
                                         "max_stacks": null,
                                         "proc_chance": null,
+                                        "proc_cooldown_seconds": null,
                                         "cooldown_seconds": null,
                                         "cooldown_scaling_note": null,
                                         "duration_seconds": null,
@@ -16700,6 +16762,7 @@
                                         "charges": null,
                                         "max_stacks": null,
                                         "proc_chance": null,
+                                        "proc_cooldown_seconds": null,
                                         "cooldown_seconds": null,
                                         "cooldown_scaling_note": null,
                                         "duration_seconds": null,
@@ -17024,6 +17087,7 @@
                                         "charges": null,
                                         "max_stacks": null,
                                         "proc_chance": null,
+                                        "proc_cooldown_seconds": null,
                                         "cooldown_seconds": null,
                                         "cooldown_scaling_note": null,
                                         "duration_seconds": null,
@@ -17092,6 +17156,7 @@
                                         "charges": null,
                                         "max_stacks": null,
                                         "proc_chance": null,
+                                        "proc_cooldown_seconds": null,
                                         "cooldown_seconds": null,
                                         "cooldown_scaling_note": null,
                                         "duration_seconds": null,

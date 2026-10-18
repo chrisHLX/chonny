@@ -1,6 +1,6 @@
 {
-    "generatedAt": "2026-10-07T21:48:57+00:00",
-    "spellCacheVersion": 27,
+    "generatedAt": "2026-10-18T02:37:13+00:00",
+    "spellCacheVersion": 29,
     "codeFingerprint": "dev",
     "entries": [
         {
@@ -171,7 +171,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Damaging enemies with Thunder Clap, Revenge, or Execute has a 25% chance to also strike one with a lightning bolt, dealing (varies) Nature damage and generating 0 Rage. Lightning Strikes occur 30% more often during Avatar.",
+                            "text": "Damaging enemies with Thunder Clap, Revenge, or Execute has a 25% chance to also strike one with a lightning bolt, dealing ≈232.7% of Attack Power Nature damage and generating 0 Rage. Lightning Strikes occur 30% more often during Avatar.",
                             "uncertain": true
                         },
                         "category": "Other",
@@ -648,7 +648,7 @@
             "spellId": 13550,
             "category": "Other",
             "description": {
-                "text": "Thunder Clap affects all targets with Rend, causing them to Bleed for (varies) damage over 15.",
+                "text": "Thunder Clap affects all targets with Rend, causing them to Bleed for ≈190.5% of Attack Power damage over 15.",
                 "uncertain": true
             },
             "formulaModifierSpellIds": [],
@@ -888,8 +888,8 @@
             "spellId": 12484,
             "category": "Other",
             "description": {
-                "text": "10% of damage you deal adds to your active Ignore Pain or the next Ignore Pain you activate. Your next Ignore Pain can be increased by up to (varies).",
-                "uncertain": true
+                "text": "10% of damage you deal adds to your active Ignore Pain or the next Ignore Pain you activate. Your next Ignore Pain can be increased by up to ≈15% of maximum health.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -1071,7 +1071,7 @@
             "spellId": 12355,
             "category": "Offensive",
             "description": {
-                "text": "Throw a spear at the target location, chaining all enemies in the area to the spear's location and dealing 1,271,980 Physical damage instantly and an additional (varies) Physical damage over 6. While the spear is active, activating this ability will cause you to leap to the spear, dealing (varies) Physical damage to all targets. All damage dealt reduced beyond 5 targets. Generates $/10;376080s3 Rage.",
+                "text": "Throw a spear at the target location, chaining all enemies in the area to the spear's location and dealing 1,271,980 Physical damage instantly and an additional ≈326.3% of Attack Power Physical damage over 6. While the spear is active, activating this ability will cause you to leap to the spear, dealing ≈47% of Attack Power Physical damage to all targets. All damage dealt reduced beyond 5 targets. Generates $/10;376080s3 Rage.",
                 "uncertain": true
             },
             "formulaModifierSpellIds": [],
@@ -1099,7 +1099,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Leap to your Champion's Spear, dealing (varies) Physical damage.",
+                            "text": "Leap to your Champion's Spear, dealing ≈47% of Attack Power Physical damage.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -1508,7 +1508,7 @@
             "spellId": 11729,
             "category": "Offensive",
             "description": {
-                "text": "Execute inflicts Deep Wounds on the target. Deep Wounds Causes the target to suffer (varies) Bleed damage over 6. If this effect is reapplied, any remaining damage will be added to the new Deep Wounds.",
+                "text": "Execute inflicts Deep Wounds on the target. Deep Wounds Causes the target to suffer ≈145.5% of Attack Power Bleed damage over 6. If this effect is reapplied, any remaining damage will be added to the new Deep Wounds.",
                 "uncertain": true
             },
             "formulaModifierSpellIds": [],
@@ -1536,7 +1536,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Causes the target to suffer (varies) Bleed damage over 6. If this effect is reapplied, any remaining damage will be added to the new Deep Wounds.",
+                            "text": "Causes the target to suffer ≈145.5% of Attack Power Bleed damage over 6. If this effect is reapplied, any remaining damage will be added to the new Deep Wounds.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -1762,7 +1762,7 @@
             "spellId": 12431,
             "category": "Defensive",
             "description": {
-                "text": "Unleash a series of precise and powerful strikes against your target, dealing 24 damage to it, and 8 damage to enemies within 10 yds of it. Deals reduced damage beyond 8 targets. While channeling Demolish, you take 10% less damage and are immune to stuns, knockbacks, and forced movement effects. You can block, parry, dodge, and use certain defensive abilities while channeling Demolish.",
+                "text": "Unleash a series of precise and powerful strikes against your target, dealing ≈2,295.3% of Attack Power damage to it, and 8 damage to enemies within 10 yds of it. Deals reduced damage beyond 8 targets. While channeling Demolish, you take 10% less damage and are immune to stuns, knockbacks, and forced movement effects. You can block, parry, dodge, and use certain defensive abilities while channeling Demolish.",
                 "uncertain": false
             },
             "formulaModifierSpellIds": [],
@@ -1809,7 +1809,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Unleash a series of precise and powerful strikes against your target, dealing 24 damage to it, and 8 damage to enemies within 10 yds of it. Deals reduced damage beyond 8 targets. While channeling Demolish, you take 10% less damage and are immune to stuns, knockbacks, and forced movement effects. You can block, parry, dodge, and use certain defensive abilities while channeling Demolish.",
+                            "text": "Unleash a series of precise and powerful strikes against your target, dealing ≈2,295.3% of Attack Power damage to it, and 8 damage to enemies within 10 yds of it. Deals reduced damage beyond 8 targets. While channeling Demolish, you take 10% less damage and are immune to stuns, knockbacks, and forced movement effects. You can block, parry, dodge, and use certain defensive abilities while channeling Demolish.",
                             "uncertain": false
                         },
                         "category": "Offensive",
@@ -1825,7 +1825,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Unleash a series of precise and powerful strikes against your target, dealing 24 damage to it, and 8 damage to enemies within 10 yds of it. Deals reduced damage beyond 8 targets. While channeling Demolish, you take 10% less damage and are immune to stuns, knockbacks, and forced movement effects. You can block, parry, dodge, and use certain defensive abilities while channeling Demolish.",
+                            "text": "Unleash a series of precise and powerful strikes against your target, dealing ≈2,295.3% of Attack Power damage to it, and 8 damage to enemies within 10 yds of it. Deals reduced damage beyond 8 targets. While channeling Demolish, you take 10% less damage and are immune to stuns, knockbacks, and forced movement effects. You can block, parry, dodge, and use certain defensive abilities while channeling Demolish.",
                             "uncertain": false
                         },
                         "category": "Offensive",
@@ -1841,7 +1841,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Unleash a series of precise and powerful strikes against your target, dealing 24 damage to it, and 8 damage to enemies within 10 yds of it. Deals reduced damage beyond 8 targets. While channeling Demolish, you take 10% less damage and are immune to stuns, knockbacks, and forced movement effects. You can block, parry, dodge, and use certain defensive abilities while channeling Demolish.",
+                            "text": "Unleash a series of precise and powerful strikes against your target, dealing ≈2,295.3% of Attack Power damage to it, and 8 damage to enemies within 10 yds of it. Deals reduced damage beyond 8 targets. While channeling Demolish, you take 10% less damage and are immune to stuns, knockbacks, and forced movement effects. You can block, parry, dodge, and use certain defensive abilities while channeling Demolish.",
                             "uncertain": false
                         },
                         "category": "Offensive",
@@ -2902,7 +2902,7 @@
             "spellId": 12442,
             "category": "Other",
             "description": {
-                "text": "Lightning Strikes also deal (varies) Nature damage to enemies near their target. Damage reduced beyond 5 targets.",
+                "text": "Lightning Strikes also deal ≈167.7% of Attack Power Nature damage to enemies near their target. Damage reduced beyond 5 targets.",
                 "uncertain": true
             },
             "formulaModifierSpellIds": [],
@@ -3039,7 +3039,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Unleash a series of precise and powerful strikes against your target, dealing 24 damage to it, and 8 damage to enemies within 10 yds of it. Deals reduced damage beyond 8 targets. While channeling Demolish, you take 10% less damage and are immune to stuns, knockbacks, and forced movement effects. You can block, parry, dodge, and use certain defensive abilities while channeling Demolish.",
+                            "text": "Unleash a series of precise and powerful strikes against your target, dealing ≈2,295.3% of Attack Power damage to it, and 8 damage to enemies within 10 yds of it. Deals reduced damage beyond 8 targets. While channeling Demolish, you take 10% less damage and are immune to stuns, knockbacks, and forced movement effects. You can block, parry, dodge, and use certain defensive abilities while channeling Demolish.",
                             "uncertain": false
                         },
                         "category": "Defensive",
@@ -3068,6 +3068,7 @@
                             "charges": null,
                             "max_stacks": null,
                             "proc_chance": null,
+                            "proc_cooldown_seconds": null,
                             "cooldown_seconds": null,
                             "cooldown_scaling_note": null,
                             "duration_seconds": null,
@@ -3115,6 +3116,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": 0.7,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:23:40.000000Z",
@@ -3133,6 +3135,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": 0.7,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:23:40.000000Z",
@@ -3226,7 +3229,7 @@
             "spellId": 12476,
             "category": "Defensive",
             "description": {
-                "text": "Fight through the pain, ignoring 50% of damage taken (varies by condition — check in-game)until (varies) damage has been prevented.(varies by condition — check in-game)",
+                "text": "Fight through the pain, ignoring 50% of damage taken (varies by condition — check in-game)until ≈1,612.4% of Attack Power damage has been prevented.(varies by condition — check in-game)",
                 "uncertain": true
             },
             "formulaModifierSpellIds": [
@@ -3257,8 +3260,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "10% of damage you deal adds to your active Ignore Pain or the next Ignore Pain you activate. Your next Ignore Pain can be increased by up to (varies).",
-                            "uncertain": true
+                            "text": "10% of damage you deal adds to your active Ignore Pain or the next Ignore Pain you activate. Your next Ignore Pain can be increased by up to ≈15% of maximum health.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -3325,7 +3328,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Unleash a series of precise and powerful strikes against your target, dealing 24 damage to it, and 8 damage to enemies within 10 yds of it. Deals reduced damage beyond 8 targets. While channeling Demolish, you take 10% less damage and are immune to stuns, knockbacks, and forced movement effects. You can block, parry, dodge, and use certain defensive abilities while channeling Demolish.",
+                            "text": "Unleash a series of precise and powerful strikes against your target, dealing ≈2,295.3% of Attack Power damage to it, and 8 damage to enemies within 10 yds of it. Deals reduced damage beyond 8 targets. While channeling Demolish, you take 10% less damage and are immune to stuns, knockbacks, and forced movement effects. You can block, parry, dodge, and use certain defensive abilities while channeling Demolish.",
                             "uncertain": false
                         },
                         "category": "Defensive",
@@ -3438,7 +3441,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Wounds the target, causing (varies) Physical damage instantly and an additional (varies) Bleed damage over 15.",
+                            "text": "Wounds the target, causing ≈38.1% of Attack Power Physical damage instantly and an additional ≈190.5% of Attack Power Bleed damage over 15.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -3745,8 +3748,8 @@
             "spellId": 12378,
             "category": "Defensive",
             "description": {
-                "text": "Run at high speed toward a target location near your allies, taking 30% of all damage dealt to allies within 3 yards for 8 or until you take at least (varies) damage from this effect.",
-                "uncertain": true
+                "text": "Run at high speed toward a target location near your allies, taking 30% of all damage dealt to allies within 3 yards for 8 or until you take at least ≈20% of maximum health damage from this effect.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -3792,7 +3795,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Unleash a series of precise and powerful strikes against your target, dealing 24 damage to it, and 8 damage to enemies within 10 yds of it. Deals reduced damage beyond 8 targets. While channeling Demolish, you take 10% less damage and are immune to stuns, knockbacks, and forced movement effects. You can block, parry, dodge, and use certain defensive abilities while channeling Demolish.",
+                            "text": "Unleash a series of precise and powerful strikes against your target, dealing ≈2,295.3% of Attack Power damage to it, and 8 damage to enemies within 10 yds of it. Deals reduced damage beyond 8 targets. While channeling Demolish, you take 10% less damage and are immune to stuns, knockbacks, and forced movement effects. You can block, parry, dodge, and use certain defensive abilities while channeling Demolish.",
                             "uncertain": false
                         },
                         "category": "Defensive",
@@ -3888,7 +3891,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Unleash a series of precise and powerful strikes against your target, dealing 24 damage to it, and 8 damage to enemies within 10 yds of it. Deals reduced damage beyond 8 targets. While channeling Demolish, you take 10% less damage and are immune to stuns, knockbacks, and forced movement effects. You can block, parry, dodge, and use certain defensive abilities while channeling Demolish.",
+                            "text": "Unleash a series of precise and powerful strikes against your target, dealing ≈2,295.3% of Attack Power damage to it, and 8 damage to enemies within 10 yds of it. Deals reduced damage beyond 8 targets. While channeling Demolish, you take 10% less damage and are immune to stuns, knockbacks, and forced movement effects. You can block, parry, dodge, and use certain defensive abilities while channeling Demolish.",
                             "uncertain": false
                         },
                         "category": "Defensive",
@@ -4001,6 +4004,7 @@
                             "charges": null,
                             "max_stacks": null,
                             "proc_chance": null,
+                            "proc_cooldown_seconds": null,
                             "cooldown_seconds": null,
                             "cooldown_scaling_note": null,
                             "duration_seconds": null,
@@ -4048,6 +4052,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:23:40.000000Z",
@@ -4066,6 +4071,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:23:40.000000Z",
@@ -4084,6 +4090,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:23:40.000000Z",
@@ -4102,6 +4109,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:23:40.000000Z",
@@ -4120,6 +4128,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:23:40.000000Z",
@@ -4138,6 +4147,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:23:40.000000Z",
@@ -4317,7 +4327,7 @@
             "spellId": 12439,
             "category": "Other",
             "description": {
-                "text": "Damaging enemies with Thunder Clap, Revenge, or Execute has a 25% chance to also strike one with a lightning bolt, dealing (varies) Nature damage and generating 0 Rage. Lightning Strikes occur 30% more often during Avatar.",
+                "text": "Damaging enemies with Thunder Clap, Revenge, or Execute has a 25% chance to also strike one with a lightning bolt, dealing ≈232.7% of Attack Power Nature damage and generating 0 Rage. Lightning Strikes occur 30% more often during Avatar.",
                 "uncertain": true
             },
             "formulaModifierSpellIds": [],
@@ -4345,7 +4355,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Lightning Strikes also deal (varies) Nature damage to enemies near their target. Damage reduced beyond 5 targets.",
+                            "text": "Lightning Strikes also deal ≈167.7% of Attack Power Nature damage to enemies near their target. Damage reduced beyond 5 targets.",
                             "uncertain": true
                         },
                         "category": "Other",
@@ -4732,8 +4742,8 @@
             "spellId": 12358,
             "category": "Defensive",
             "description": {
-                "text": "When you take any damage, heal for 2% of your maximum health. This can only occur once every (varies) sec.",
-                "uncertain": true
+                "text": "When you take any damage, heal for 2% of your maximum health. This can only occur once every 10 sec.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -5222,7 +5232,7 @@
             "spellId": 11702,
             "category": "Offensive",
             "description": {
-                "text": "Throws a whirling weapon at your target that chases nearby enemies, inflicting 600 Physical damage to all enemies over 12. Deals reduced damage beyond 8 targets. Enemies damaged by Ravager take 50% additional damage from your Bleeds for 12.(varies by condition — check in-game)",
+                "text": "Throws a whirling weapon at your target that chases nearby enemies, inflicting ≈1,075.7% of Attack Power Physical damage to all enemies over 12. Deals reduced damage beyond 8 targets. Enemies damaged by Ravager take 50% additional damage from your Bleeds for 12.(varies by condition — check in-game)",
                 "uncertain": true
             },
             "formulaModifierSpellIds": [],
@@ -5270,7 +5280,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Throws a whirling weapon at your target that chases nearby enemies, inflicting 600 Physical damage to all enemies over (varies). Deals reduced damage beyond 8 targets. Enemies damaged by Ravager take 50% additional damage from your Bleeds for 12.(varies by condition — check in-game)",
+                            "text": "Throws a whirling weapon at your target that chases nearby enemies, inflicting ≈1,075.7% of Attack Power Physical damage to all enemies over (varies). Deals reduced damage beyond 8 targets. Enemies damaged by Ravager take 50% additional damage from your Bleeds for 12.(varies by condition — check in-game)",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -5396,7 +5406,7 @@
             "spellId": 12336,
             "category": "Offensive",
             "description": {
-                "text": "Wounds the target, causing (varies) Physical damage instantly and an additional (varies) Bleed damage over 15.",
+                "text": "Wounds the target, causing ≈124.6% of Attack Power Physical damage instantly and an additional ≈190.5% of Attack Power Bleed damage over 15.",
                 "uncertain": true
             },
             "formulaModifierSpellIds": [],
@@ -5504,7 +5514,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Wounds the target, causing (varies) Physical damage instantly and an additional (varies) Bleed damage over 15.",
+                            "text": "Wounds the target, causing ≈38.1% of Attack Power Physical damage instantly and an additional ≈190.5% of Attack Power Bleed damage over 15.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -5764,7 +5774,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Thunder Clap affects all targets with Rend, causing them to Bleed for (varies) damage over 15.",
+                            "text": "Thunder Clap affects all targets with Rend, causing them to Bleed for ≈190.5% of Attack Power damage over 15.",
                             "uncertain": true
                         },
                         "category": "Other",
@@ -5780,7 +5790,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Whirlwind and Thunder Clap affects all targets with Rend, causing them to Bleed for (varies) damage over 15.",
+                            "text": "Whirlwind and Thunder Clap affects all targets with Rend, causing them to Bleed for ≈190.5% of Attack Power damage over 15.",
                             "uncertain": true
                         },
                         "category": "Other",
@@ -5843,7 +5853,7 @@
             "spellId": 12475,
             "category": "Offensive",
             "description": {
-                "text": "Swing in a wide arc, dealing (varies) Physical damage to all enemies in front of you. Deals reduced damage beyond 5 targets. Your successful dodges, parries, and auto-attacks have a chance to make your next Revenge cost no Rage.",
+                "text": "Swing in a wide arc, dealing ≈281.7% of Attack Power Physical damage to all enemies in front of you. Deals reduced damage beyond 5 targets. Your successful dodges, parries, and auto-attacks have a chance to make your next Revenge cost no Rage.",
                 "uncertain": true
             },
             "formulaModifierSpellIds": [],
@@ -5967,7 +5977,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Wounds the target, causing (varies) Physical damage instantly and an additional (varies) Bleed damage over 15.",
+                            "text": "Wounds the target, causing ≈38.1% of Attack Power Physical damage instantly and an additional ≈190.5% of Attack Power Bleed damage over 15.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -5999,7 +6009,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Swing in a wide arc, dealing (varies) Physical damage to all enemies in front of you. Deals reduced damage beyond 5 targets. Your successful dodges, parries, and auto-attacks have a chance to make your next Revenge cost no Rage.",
+                            "text": "Swing in a wide arc, dealing ≈65.2% of Attack Power Physical damage to all enemies in front of you. Deals reduced damage beyond 5 targets. Your successful dodges, parries, and auto-attacks have a chance to make your next Revenge cost no Rage.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -6047,7 +6057,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Damaging enemies with Thunder Clap, Revenge, or Execute has a 25% chance to also strike one with a lightning bolt, dealing (varies) Nature damage and generating 0 Rage. Lightning Strikes occur 30% more often during Avatar.",
+                            "text": "Damaging enemies with Thunder Clap, Revenge, or Execute has a 25% chance to also strike one with a lightning bolt, dealing ≈232.7% of Attack Power Nature damage and generating 0 Rage. Lightning Strikes occur 30% more often during Avatar.",
                             "uncertain": true
                         },
                         "category": "Other",
@@ -6163,7 +6173,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Throws a whirling weapon at your target that chases nearby enemies, inflicting 600 Physical damage to all enemies over 12. Deals reduced damage beyond 8 targets. Enemies damaged by Ravager take 50% additional damage from your Bleeds for 12.(varies by condition — check in-game)",
+                            "text": "Throws a whirling weapon at your target that chases nearby enemies, inflicting ≈1,075.7% of Attack Power Physical damage to all enemies over 12. Deals reduced damage beyond 8 targets. Enemies damaged by Ravager take 50% additional damage from your Bleeds for 12.(varies by condition — check in-game)",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -6275,7 +6285,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Slams the target with your shield, causing (varies) Physical damage. Devastate, Thunder Clap, Revenge, and Execute have a 30% chance to reset the cooldown of Shield Slam. Generates $/10;s3 Rage.",
+                            "text": "Slams the target with your shield, causing ≈230.6% of Attack Power Physical damage. Devastate, Thunder Clap, Revenge, and Execute have a 30% chance to reset the cooldown of Shield Slam. Generates $/10;s3 Rage.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -6416,8 +6426,8 @@
             "spellId": 12343,
             "category": "Defensive",
             "description": {
-                "text": "Restores 6% health every (varies) sec when you have not taken damage for 5 sec. Restores 2% health every (varies) sec while you are below 35% health. The amount restored increases the closer you are to death.",
-                "uncertain": true
+                "text": "Restores 6% health every 1 sec when you have not taken damage for 5 sec. Restores 2% health every 1 sec while you are below 35% health. The amount restored increases the closer you are to death.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -6428,7 +6438,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "When your health is brought below 35%, you gain a Second Wind, healing you for (varies)% of your max health over 2. This effect cannot occur more than once every (varies) sec.",
+                            "text": "When your health is brought below 35%, you gain a Second Wind, healing you for 12% of your max health over 2. This effect cannot occur more than once every (varies) sec.",
                             "uncertain": true
                         },
                         "category": "Defensive",
@@ -6447,8 +6457,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "When your health is brought below 35%, you gain a Second Wind, healing you for (varies)% of your max health over 2. This effect cannot occur more than once every (varies) sec.",
-                            "uncertain": true
+                            "text": "When your health is brought below 35%, you gain a Second Wind, healing you for 12% of your max health over 2. This effect cannot occur more than once every 60 sec.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -6496,7 +6506,7 @@
             "spellId": 12345,
             "category": "Offensive",
             "description": {
-                "text": "Hurl your weapon at the enemy,  removing any magical immunities and causing (varies) Physical damage, ignoring armor. Deals up to 500% increased damage to absorb shields.",
+                "text": "Hurl your weapon at the enemy,  removing any magical immunities and causing ≈600% of Attack Power Physical damage, ignoring armor. Deals up to 500% increased damage to absorb shields.",
                 "uncertain": true
             },
             "formulaModifierSpellIds": [],
@@ -6588,7 +6598,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Wounds the target, causing (varies) Physical damage instantly and an additional (varies) Bleed damage over 15.",
+                            "text": "Wounds the target, causing ≈38.1% of Attack Power Physical damage instantly and an additional ≈190.5% of Attack Power Bleed damage over 15.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -6819,7 +6829,7 @@
             "spellId": 12492,
             "category": "Offensive",
             "description": {
-                "text": "Charge to an enemy with your shield, granting you Shield Block and dealing (varies) Physical damage to it and (varies) Physical damage to all enemies within 10 yards. Also stuns the primary target for 4. Generates 20 Rage.",
+                "text": "Charge to an enemy with your shield, granting you Shield Block and dealing ≈840% of Attack Power Physical damage to it and ≈268.4% of Attack Power Physical damage to all enemies within 10 yards. Also stuns the primary target for 4. Generates 20 Rage.",
                 "uncertain": true
             },
             "formulaModifierSpellIds": [],
@@ -6850,7 +6860,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Unleash a series of precise and powerful strikes against your target, dealing 24 damage to it, and 8 damage to enemies within 10 yds of it. Deals reduced damage beyond 8 targets. While channeling Demolish, you take 10% less damage and are immune to stuns, knockbacks, and forced movement effects. You can block, parry, dodge, and use certain defensive abilities while channeling Demolish.",
+                            "text": "Unleash a series of precise and powerful strikes against your target, dealing ≈2,295.3% of Attack Power damage to it, and 8 damage to enemies within 10 yds of it. Deals reduced damage beyond 8 targets. While channeling Demolish, you take 10% less damage and are immune to stuns, knockbacks, and forced movement effects. You can block, parry, dodge, and use certain defensive abilities while channeling Demolish.",
                             "uncertain": false
                         },
                         "category": "Defensive",
@@ -6887,7 +6897,7 @@
             "spellId": 11760,
             "category": "Offensive",
             "description": {
-                "text": "Slams the target with your shield, causing (varies) Physical damage. Devastate, Thunder Clap, Revenge, and Execute have a 30% chance to reset the cooldown of Shield Slam. Generates $/10;s3 Rage.",
+                "text": "Slams the target with your shield, causing ≈230.6% of Attack Power Physical damage. Devastate, Thunder Clap, Revenge, and Execute have a 30% chance to reset the cooldown of Shield Slam. Generates $/10;s3 Rage.",
                 "uncertain": true
             },
             "formulaModifierSpellIds": [],
@@ -7091,7 +7101,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Wounds the target, causing (varies) Physical damage instantly and an additional (varies) Bleed damage over 15.",
+                            "text": "Wounds the target, causing ≈38.1% of Attack Power Physical damage instantly and an additional ≈190.5% of Attack Power Bleed damage over 15.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -7849,7 +7859,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Unleash a series of precise and powerful strikes against your target, dealing 24 damage to it, and 8 damage to enemies within 10 yds of it. Deals reduced damage beyond 8 targets. While channeling Demolish, you take 10% less damage and are immune to stuns, knockbacks, and forced movement effects. You can block, parry, dodge, and use certain defensive abilities while channeling Demolish.",
+                            "text": "Unleash a series of precise and powerful strikes against your target, dealing ≈2,295.3% of Attack Power damage to it, and 8 damage to enemies within 10 yds of it. Deals reduced damage beyond 8 targets. While channeling Demolish, you take 10% less damage and are immune to stuns, knockbacks, and forced movement effects. You can block, parry, dodge, and use certain defensive abilities while channeling Demolish.",
                             "uncertain": false
                         },
                         "category": "Defensive",
@@ -7910,6 +7920,7 @@
                             "charges": null,
                             "max_stacks": null,
                             "proc_chance": null,
+                            "proc_cooldown_seconds": null,
                             "cooldown_seconds": null,
                             "cooldown_scaling_note": null,
                             "duration_seconds": null,
@@ -7957,6 +7968,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:23:41.000000Z",
@@ -7975,6 +7987,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:23:41.000000Z",
@@ -8005,6 +8018,7 @@
                             "charges": null,
                             "max_stacks": null,
                             "proc_chance": null,
+                            "proc_cooldown_seconds": null,
                             "cooldown_seconds": null,
                             "cooldown_scaling_note": null,
                             "duration_seconds": null,
@@ -8052,6 +8066,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:23:41.000000Z",
@@ -8070,6 +8085,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:23:41.000000Z",
@@ -8190,7 +8206,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Wounds the target, causing (varies) Physical damage instantly and an additional (varies) Bleed damage over 15.",
+                            "text": "Wounds the target, causing ≈38.1% of Attack Power Physical damage instantly and an additional ≈190.5% of Attack Power Bleed damage over 15.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -8560,7 +8576,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Unleash a series of precise and powerful strikes against your target, dealing 24 damage to it, and 8 damage to enemies within 10 yds of it. Deals reduced damage beyond 8 targets. While channeling Demolish, you take 10% less damage and are immune to stuns, knockbacks, and forced movement effects. You can block, parry, dodge, and use certain defensive abilities while channeling Demolish.",
+                            "text": "Unleash a series of precise and powerful strikes against your target, dealing ≈2,295.3% of Attack Power damage to it, and 8 damage to enemies within 10 yds of it. Deals reduced damage beyond 8 targets. While channeling Demolish, you take 10% less damage and are immune to stuns, knockbacks, and forced movement effects. You can block, parry, dodge, and use certain defensive abilities while channeling Demolish.",
                             "uncertain": false
                         },
                         "category": "Defensive",
@@ -8719,7 +8735,7 @@
             "spellId": 12348,
             "category": "Crowd Control",
             "description": {
-                "text": "Hurls your weapon at an enemy, causing (varies) Physical damage and stunning for 4. Also hits 2 additional nearby targets, stunning for 2 sec.",
+                "text": "Hurls your weapon at an enemy, causing ≈28.5% of Attack Power Physical damage and stunning for 4. Also hits 2 additional nearby targets, stunning for 2 sec.",
                 "uncertain": true
             },
             "formulaModifierSpellIds": [],
@@ -8827,7 +8843,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Wounds the target, causing (varies) Physical damage instantly and an additional (varies) Bleed damage over 15.",
+                            "text": "Wounds the target, causing ≈38.1% of Attack Power Physical damage instantly and an additional ≈190.5% of Attack Power Bleed damage over 15.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -9038,7 +9054,7 @@
             "spellId": 13551,
             "category": "Other",
             "description": {
-                "text": "Whirlwind and Thunder Clap affects all targets with Rend, causing them to Bleed for (varies) damage over 15.",
+                "text": "Whirlwind and Thunder Clap affects all targets with Rend, causing them to Bleed for ≈190.5% of Attack Power damage over 15.",
                 "uncertain": true
             },
             "formulaModifierSpellIds": [],
@@ -9297,6 +9313,7 @@
                                         "charges": null,
                                         "max_stacks": null,
                                         "proc_chance": null,
+                                        "proc_cooldown_seconds": null,
                                         "cooldown_seconds": null,
                                         "cooldown_scaling_note": null,
                                         "duration_seconds": null,
@@ -9413,6 +9430,7 @@
                                         "charges": null,
                                         "max_stacks": null,
                                         "proc_chance": null,
+                                        "proc_cooldown_seconds": null,
                                         "cooldown_seconds": null,
                                         "cooldown_scaling_note": null,
                                         "duration_seconds": null,
@@ -9480,7 +9498,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Unleash a series of precise and powerful strikes against your target, dealing 24 damage to it, and 8 damage to enemies within 10 yds of it. Deals reduced damage beyond 8 targets. While channeling Demolish, you take 10% less damage and are immune to stuns, knockbacks, and forced movement effects. You can block, parry, dodge, and use certain defensive abilities while channeling Demolish.",
+                            "text": "Unleash a series of precise and powerful strikes against your target, dealing ≈2,295.3% of Attack Power damage to it, and 8 damage to enemies within 10 yds of it. Deals reduced damage beyond 8 targets. While channeling Demolish, you take 10% less damage and are immune to stuns, knockbacks, and forced movement effects. You can block, parry, dodge, and use certain defensive abilities while channeling Demolish.",
                             "uncertain": false
                         },
                         "category": "Defensive",
@@ -9715,7 +9733,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Wounds the target, causing (varies) Physical damage instantly and an additional (varies) Bleed damage over 15.",
+                            "text": "Wounds the target, causing ≈38.1% of Attack Power Physical damage instantly and an additional ≈190.5% of Attack Power Bleed damage over 15.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -9879,7 +9897,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Throws a whirling weapon at your target that chases nearby enemies, inflicting 600 Physical damage to all enemies over 12. Deals reduced damage beyond 8 targets. Enemies damaged by Ravager take 50% additional damage from your Bleeds for 12.(varies by condition — check in-game)",
+                            "text": "Throws a whirling weapon at your target that chases nearby enemies, inflicting ≈1,075.7% of Attack Power Physical damage to all enemies over 12. Deals reduced damage beyond 8 targets. Enemies damaged by Ravager take 50% additional damage from your Bleeds for 12.(varies by condition — check in-game)",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -10180,7 +10198,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Wounds the target, causing (varies) Physical damage instantly and an additional (varies) Bleed damage over 15.",
+                            "text": "Wounds the target, causing ≈38.1% of Attack Power Physical damage instantly and an additional ≈190.5% of Attack Power Bleed damage over 15.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -10244,7 +10262,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Damaging enemies with Thunder Clap, Revenge, or Execute has a 25% chance to also strike one with a lightning bolt, dealing (varies) Nature damage and generating 0 Rage. Lightning Strikes occur 30% more often during Avatar.",
+                            "text": "Damaging enemies with Thunder Clap, Revenge, or Execute has a 25% chance to also strike one with a lightning bolt, dealing ≈232.7% of Attack Power Nature damage and generating 0 Rage. Lightning Strikes occur 30% more often during Avatar.",
                             "uncertain": true
                         },
                         "category": "Other",
@@ -10424,7 +10442,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Throws a whirling weapon at your target that chases nearby enemies, inflicting 600 Physical damage to all enemies over 12. Deals reduced damage beyond 8 targets. Enemies damaged by Ravager take 50% additional damage from your Bleeds for 12.(varies by condition — check in-game)",
+                            "text": "Throws a whirling weapon at your target that chases nearby enemies, inflicting ≈1,075.7% of Attack Power Physical damage to all enemies over 12. Deals reduced damage beyond 8 targets. Enemies damaged by Ravager take 50% additional damage from your Bleeds for 12.(varies by condition — check in-game)",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -10552,7 +10570,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Slams the target with your shield, causing (varies) Physical damage. Devastate, Thunder Clap, Revenge, and Execute have a 30% chance to reset the cooldown of Shield Slam. Generates $/10;s3 Rage.",
+                            "text": "Slams the target with your shield, causing ≈230.6% of Attack Power Physical damage. Devastate, Thunder Clap, Revenge, and Execute have a 30% chance to reset the cooldown of Shield Slam. Generates $/10;s3 Rage.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -10632,7 +10650,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Thunder Clap affects all targets with Rend, causing them to Bleed for (varies) damage over 15.",
+                            "text": "Thunder Clap affects all targets with Rend, causing them to Bleed for ≈190.5% of Attack Power damage over 15.",
                             "uncertain": true
                         },
                         "category": "Other",
@@ -10648,7 +10666,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Whirlwind and Thunder Clap affects all targets with Rend, causing them to Bleed for (varies) damage over 15.",
+                            "text": "Whirlwind and Thunder Clap affects all targets with Rend, causing them to Bleed for ≈190.5% of Attack Power damage over 15.",
                             "uncertain": true
                         },
                         "category": "Other",
@@ -10771,7 +10789,7 @@
             "spellId": 12491,
             "category": "Offensive",
             "description": {
-                "text": "Blocking an attack deals (varies) Physical damage to the attacker. Critical blocks deal double damage. Generates high threat.",
+                "text": "Blocking an attack deals ≈120% of Attack Power Physical damage to the attacker. Critical blocks deal double damage. Generates high threat.",
                 "uncertain": true
             },
             "formulaModifierSpellIds": [],
@@ -10861,8 +10879,8 @@
             "spellId": 12433,
             "category": "Other",
             "description": {
-                "text": "When your health is brought below 35%, you gain a Second Wind, healing you for (varies)% of your max health over 2. This effect cannot occur more than once every (varies) sec.",
-                "uncertain": true
+                "text": "When your health is brought below 35%, you gain a Second Wind, healing you for 12% of your max health over 2. This effect cannot occur more than once every 60 sec.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -11028,7 +11046,7 @@
             "spellId": 12368,
             "category": "Offensive",
             "description": {
-                "text": "Hurl your weapon at the enemy, causing (varies) Physical damage, ignoring armor. Deals up to 500% increased damage to absorb shields.",
+                "text": "Hurl your weapon at the enemy, causing ≈600% of Attack Power Physical damage, ignoring armor. Deals up to 500% increased damage to absorb shields.",
                 "uncertain": true
             },
             "formulaModifierSpellIds": [],
@@ -11120,7 +11138,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Wounds the target, causing (varies) Physical damage instantly and an additional (varies) Bleed damage over 15.",
+                            "text": "Wounds the target, causing ≈38.1% of Attack Power Physical damage instantly and an additional ≈190.5% of Attack Power Bleed damage over 15.",
                             "uncertain": true
                         },
                         "category": "Offensive",

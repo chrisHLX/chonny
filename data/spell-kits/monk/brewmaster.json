@@ -1,6 +1,6 @@
 {
-    "generatedAt": "2026-10-07T21:48:00+00:00",
-    "spellCacheVersion": 27,
+    "generatedAt": "2026-10-18T02:36:09+00:00",
+    "spellCacheVersion": 29,
     "codeFingerprint": "dev",
     "entries": [
         {
@@ -379,7 +379,7 @@
             "spellId": 6583,
             "category": "Defensive",
             "description": {
-                "text": "Purifying Brew also surrounds you with protective energies for 15. When Staggered damage would be dealt to you, you instead absorb up to 50%, until (varies) has been prevented.",
+                "text": "Purifying Brew also surrounds you with protective energies for 15. When Staggered damage would be dealt to you, you instead absorb up to 50%, until ≈600% of Attack Power has been prevented.",
                 "uncertain": true
             },
             "formulaModifierSpellIds": [],
@@ -593,7 +593,7 @@
             "spellId": 6535,
             "category": "Offensive",
             "description": {
-                "text": "Breathe fire on targets in front of you, causing (varies) Fire damage. Deals reduced damage to secondary targets. Targets affected by Keg Smash will also burn, taking (varies) Fire damage and dealing 5% reduced damage to you for 12.",
+                "text": "Breathe fire on targets in front of you, causing ≈100% of Attack Power Fire damage. Deals reduced damage to secondary targets. Targets affected by Keg Smash will also burn, taking ≈66% of Attack Power Fire damage and dealing 5% reduced damage to you for 12.",
                 "uncertain": true
             },
             "formulaModifierSpellIds": [],
@@ -1148,7 +1148,7 @@
             "spellId": 6547,
             "category": "Defensive",
             "description": {
-                "text": "A swig of strong brew that coalesces purified chi escaping your body into a celestial guard, absorbing (varies) damage.",
+                "text": "A swig of strong brew that coalesces purified chi escaping your body into a celestial guard, absorbing ≈6,804% of Attack Power damage.",
                 "uncertain": true
             },
             "formulaModifierSpellIds": [],
@@ -1437,6 +1437,7 @@
                             "charges": null,
                             "max_stacks": null,
                             "proc_chance": null,
+                            "proc_cooldown_seconds": null,
                             "cooldown_seconds": null,
                             "cooldown_scaling_note": null,
                             "duration_seconds": null,
@@ -1484,6 +1485,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:22:48.000000Z",
@@ -1502,6 +1504,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:22:48.000000Z",
@@ -1928,6 +1931,7 @@
                             "charges": null,
                             "max_stacks": null,
                             "proc_chance": null,
+                            "proc_cooldown_seconds": null,
                             "cooldown_seconds": null,
                             "cooldown_scaling_note": null,
                             "duration_seconds": null,
@@ -1975,6 +1979,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:22:48.000000Z",
@@ -1993,6 +1998,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:22:48.000000Z",
@@ -2412,6 +2418,7 @@
                             "charges": null,
                             "max_stacks": null,
                             "proc_chance": null,
+                            "proc_cooldown_seconds": null,
                             "cooldown_seconds": null,
                             "cooldown_scaling_note": null,
                             "duration_seconds": null,
@@ -2459,6 +2466,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:22:48.000000Z",
@@ -2477,6 +2485,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:22:48.000000Z",
@@ -2501,6 +2510,7 @@
                             "charges": null,
                             "max_stacks": null,
                             "proc_chance": "100.00",
+                            "proc_cooldown_seconds": null,
                             "cooldown_seconds": null,
                             "cooldown_scaling_note": null,
                             "duration_seconds": null,
@@ -2548,6 +2558,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": 2,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:22:48.000000Z",
@@ -2578,6 +2589,7 @@
                             "charges": null,
                             "max_stacks": null,
                             "proc_chance": null,
+                            "proc_cooldown_seconds": null,
                             "cooldown_seconds": null,
                             "cooldown_scaling_note": null,
                             "duration_seconds": null,
@@ -2625,6 +2637,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:22:48.000000Z",
@@ -2643,6 +2656,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:22:48.000000Z",
@@ -2727,8 +2741,8 @@
             "spellId": 6634,
             "category": "Offensive",
             "description": {
-                "text": "Every (varies) sec, your next Keg Smash or Vivify releases a wave of Chi energy that flows through friends and foes, dealing 7 Nature damage or 7 healing. Bounces up to 7 times to targets within 25 yards.",
-                "uncertain": true
+                "text": "Every 15 sec, your next Keg Smash or Vivify releases a wave of Chi energy that flows through friends and foes, dealing 7 Nature damage or 7 healing. Bounces up to 7 times to targets within 25 yards.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -2807,12 +2821,10 @@
             "spellId": 6691,
             "category": "Other",
             "description": {
-                "text": "Casting Purifying Brew stores (varies) additional vitality.",
-                "uncertain": true
+                "text": "Casting Purifying Brew stores ≈300% of Spell Power additional vitality.",
+                "uncertain": false
             },
-            "formulaModifierSpellIds": [
-                5864
-            ],
+            "formulaModifierSpellIds": [],
             "modifiers": {
                 "named": [],
                 "baseline": [],
@@ -3620,7 +3632,7 @@
             "spellId": 6551,
             "category": "Offensive",
             "description": {
-                "text": "Hurls a flaming keg at the target location, dealing (varies) Fire damage to nearby enemies, causing your attacks against them to deal (varies) additional Fire damage, and causing their melee attacks to deal 100% reduced damage for the next 3. Resets the cooldown of Keg Smash.",
+                "text": "Hurls a flaming keg at the target location, dealing ≈380% of Attack Power Fire damage to nearby enemies, causing your attacks against them to deal ≈30% of Attack Power additional Fire damage, and causing their melee attacks to deal 100% reduced damage for the next 3. Resets the cooldown of Keg Smash.",
                 "uncertain": true
             },
             "formulaModifierSpellIds": [],
@@ -4074,7 +4086,7 @@
             "spellId": 6700,
             "category": "Other",
             "description": {
-                "text": "Your auto attacks have a chance to generate 1-2 Flurry Charges. When you cast (varies by condition — check in-game), unleash all Flurry Charges, dealing (varies) Physical damage per charge.",
+                "text": "Your auto attacks have a chance to generate 1-2 Flurry Charges. When you cast (varies by condition — check in-game), unleash all Flurry Charges, dealing ≈60% of Attack Power Physical damage per charge.",
                 "uncertain": true
             },
             "formulaModifierSpellIds": [],
@@ -4137,7 +4149,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Flurry Strikes deal (varies) Nature damage to all enemies within (varies) yds, reduced beyond 8 targets.",
+                            "text": "Flurry Strikes deal ≈52% of Attack Power Nature damage to all enemies within (varies) yds, reduced beyond 8 targets.",
                             "uncertain": true
                         },
                         "category": "Other",
@@ -4315,8 +4327,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Fortifying Brew applies a Chi Cocoon, absorbing (varies) damage.",
-                            "uncertain": true
+                            "text": "Fortifying Brew applies a Chi Cocoon, absorbing ≈12% of maximum health damage.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -4376,6 +4388,7 @@
                             "charges": null,
                             "max_stacks": null,
                             "proc_chance": null,
+                            "proc_cooldown_seconds": null,
                             "cooldown_seconds": null,
                             "cooldown_scaling_note": null,
                             "duration_seconds": null,
@@ -4423,6 +4436,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:22:48.000000Z",
@@ -4824,7 +4838,7 @@
             "spellId": 6702,
             "category": "Offensive",
             "description": {
-                "text": "Enemies who die within 10 of being damaged by a Flurry Strike explode, dealing (varies) physical damage to uncontrolled enemies within 8 yds.",
+                "text": "Enemies who die within 10 of being damaged by a Flurry Strike explode, dealing ≈100% of Attack Power physical damage to uncontrolled enemies within 8 yds.",
                 "uncertain": true
             },
             "formulaModifierSpellIds": [],
@@ -5258,7 +5272,7 @@
             "spellId": 6649,
             "category": "Other",
             "description": {
-                "text": "Thunder Focus Tea summons a Jade Serpent Statue at your location. When you channel Soothing Mist, the statue will also begin to channel Soothing Mist on your target, healing for (varies) over 8.",
+                "text": "Thunder Focus Tea summons a Jade Serpent Statue at your location. When you channel Soothing Mist, the statue will also begin to channel Soothing Mist on your target, healing for ≈560% of Spell Power over 8.",
                 "uncertain": true
             },
             "formulaModifierSpellIds": [],
@@ -5318,7 +5332,7 @@
             "spellId": 6539,
             "category": "Offensive",
             "description": {
-                "text": "Smash a keg of brew, dealing (varies) Physical damage to your primary target and (varies) Physical damage to all other enemies within 8 yds, and reducing their movement speed by 20% for 15. Deals reduced damage beyond 5 targets. Grants Shuffle for 5 sec and reduces the remaining cooldown on your Brews by 3 sec.",
+                "text": "Smash a keg of brew, dealing ≈285% of Attack Power Physical damage to your primary target and ≈190% of Attack Power Physical damage to all other enemies within 8 yds, and reducing their movement speed by 20% for 15. Deals reduced damage beyond 5 targets. Grants Shuffle for 5 sec and reduces the remaining cooldown on your Brews by 3 sec.",
                 "uncertain": true
             },
             "formulaModifierSpellIds": [
@@ -5396,7 +5410,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Breathe fire on targets in front of you, causing (varies) Fire damage. Deals reduced damage to secondary targets. Targets affected by Keg Smash will also burn, taking (varies) Fire damage and dealing 5% reduced damage to you for 12.",
+                            "text": "Breathe fire on targets in front of you, causing ≈11% of Attack Power Fire damage. Deals reduced damage to secondary targets. Targets affected by Keg Smash will also burn, taking ≈66% of Attack Power Fire damage and dealing 5% reduced damage to you for 12.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -5476,7 +5490,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Hurls a flaming keg at the target location, dealing (varies) Fire damage to nearby enemies, causing your attacks against them to deal (varies) additional Fire damage, and causing their melee attacks to deal 100% reduced damage for the next (varies). Resets the cooldown of Keg Smash.",
+                            "text": "Hurls a flaming keg at the target location, dealing ≈30% of Attack Power Fire damage to nearby enemies, causing your attacks against them to deal ≈30% of Attack Power additional Fire damage, and causing their melee attacks to deal 100% reduced damage for the next (varies). Resets the cooldown of Keg Smash.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -5604,7 +5618,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Breathe fire on targets in front of you, causing (varies) Fire damage. Deals reduced damage to secondary targets. Targets affected by Keg Smash will also burn, taking (varies) Fire damage and dealing 5% reduced damage to you for 12.",
+                            "text": "Breathe fire on targets in front of you, causing ≈100% of Attack Power Fire damage. Deals reduced damage to secondary targets. Targets affected by Keg Smash will also burn, taking ≈66% of Attack Power Fire damage and dealing 5% reduced damage to you for 12.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -5652,7 +5666,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Hurls a flaming keg at the target location, dealing (varies) Fire damage to nearby enemies, causing your attacks against them to deal (varies) additional Fire damage, and causing their melee attacks to deal 100% reduced damage for the next 3. Resets the cooldown of Keg Smash.",
+                            "text": "Hurls a flaming keg at the target location, dealing ≈380% of Attack Power Fire damage to nearby enemies, causing your attacks against them to deal ≈30% of Attack Power additional Fire damage, and causing their melee attacks to deal 100% reduced damage for the next 3. Resets the cooldown of Keg Smash.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -5732,8 +5746,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Every (varies) sec, your next Keg Smash or Vivify releases a wave of Chi energy that flows through friends and foes, dealing 7 Nature damage or 7 healing. Bounces up to 7 times to targets within 25 yards.",
-                            "uncertain": true
+                            "text": "Every 15 sec, your next Keg Smash or Vivify releases a wave of Chi energy that flows through friends and foes, dealing 7 Nature damage or 7 healing. Bounces up to 7 times to targets within 25 yards.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -5928,7 +5942,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Your auto attacks have a chance to generate 1-2 Flurry Charges. When you cast (varies by condition — check in-game), unleash all Flurry Charges, dealing (varies) Physical damage per charge.",
+                            "text": "Your auto attacks have a chance to generate 1-2 Flurry Charges. When you cast (varies by condition — check in-game), unleash all Flurry Charges, dealing ≈60% of Attack Power Physical damage per charge.",
                             "uncertain": true
                         },
                         "category": "Other",
@@ -5976,7 +5990,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Your auto attacks have a chance to generate 1-2 Flurry Charges. When you cast (varies by condition — check in-game), unleash all Flurry Charges, dealing (varies) Physical damage per charge.",
+                            "text": "Your auto attacks have a chance to generate 1-2 Flurry Charges. When you cast (varies by condition — check in-game), unleash all Flurry Charges, dealing ≈60% of Attack Power Physical damage per charge.",
                             "uncertain": true
                         },
                         "category": "Other",
@@ -6010,6 +6024,7 @@
                             "charges": null,
                             "max_stacks": null,
                             "proc_chance": "100.00",
+                            "proc_cooldown_seconds": null,
                             "cooldown_seconds": null,
                             "cooldown_scaling_note": null,
                             "duration_seconds": null,
@@ -6057,6 +6072,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:22:44.000000Z",
@@ -6075,6 +6091,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:22:44.000000Z",
@@ -6099,6 +6116,7 @@
                             "charges": null,
                             "max_stacks": null,
                             "proc_chance": "100.00",
+                            "proc_cooldown_seconds": null,
                             "cooldown_seconds": null,
                             "cooldown_scaling_note": null,
                             "duration_seconds": null,
@@ -6146,6 +6164,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:22:47.000000Z",
@@ -6164,6 +6183,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:22:47.000000Z",
@@ -6182,6 +6202,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:22:47.000000Z",
@@ -6346,8 +6367,8 @@
             "spellId": 6694,
             "category": "Defensive",
             "description": {
-                "text": "Purifying Brew removes 10% additional Stagger and causes you to absorb up to (varies) incoming Stagger.",
-                "uncertain": true
+                "text": "Purifying Brew removes 10% additional Stagger and causes you to absorb up to ≈100% of Attack Power incoming Stagger.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -6376,8 +6397,8 @@
             "spellId": 6693,
             "category": "Other",
             "description": {
-                "text": "Fortifying Brew applies a Chi Cocoon, absorbing (varies) damage.",
-                "uncertain": true
+                "text": "Fortifying Brew applies a Chi Cocoon, absorbing ≈12% of maximum health damage.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -6985,6 +7006,7 @@
                             "charges": null,
                             "max_stacks": null,
                             "proc_chance": null,
+                            "proc_cooldown_seconds": null,
                             "cooldown_seconds": null,
                             "cooldown_scaling_note": null,
                             "duration_seconds": null,
@@ -7032,6 +7054,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": "set",
                                     "rank_values": [
                                         -8000,
@@ -7053,6 +7076,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": "set",
                                     "rank_values": [
                                         -5000,
@@ -7495,8 +7519,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Purifying Brew removes 10% additional Stagger and causes you to absorb up to (varies) incoming Stagger.",
-                            "uncertain": true
+                            "text": "Purifying Brew removes 10% additional Stagger and causes you to absorb up to ≈100% of Attack Power incoming Stagger.",
+                            "uncertain": false
                         },
                         "category": "Defensive",
                         "cooldown": {
@@ -7575,8 +7599,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Casting Purifying Brew stores (varies) additional vitality.",
-                            "uncertain": true
+                            "text": "Casting Purifying Brew stores ≈300% of Spell Power additional vitality.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -7607,8 +7631,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Purifying Brew removes 10% additional Stagger and causes you to absorb up to (varies) incoming Stagger.",
-                            "uncertain": true
+                            "text": "Purifying Brew removes 10% additional Stagger and causes you to absorb up to ≈100% of Attack Power incoming Stagger.",
+                            "uncertain": false
                         },
                         "category": "Defensive",
                         "cooldown": {
@@ -7671,8 +7695,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Casting Purifying Brew stores (varies) additional vitality.",
-                            "uncertain": true
+                            "text": "Casting Purifying Brew stores ≈300% of Spell Power additional vitality.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -7739,7 +7763,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Purifying Brew also surrounds you with protective energies for 15. When Staggered damage would be dealt to you, you instead absorb up to 50%, until (varies) has been prevented.",
+                            "text": "Purifying Brew also surrounds you with protective energies for 15. When Staggered damage would be dealt to you, you instead absorb up to 50%, until ≈600% of Attack Power has been prevented.",
                             "uncertain": true
                         },
                         "category": "Defensive",
@@ -7771,7 +7795,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Purifying Brew also surrounds you with protective energies for 15. When Staggered damage would be dealt to you, you instead absorb up to 50%, until (varies) has been prevented.",
+                            "text": "Purifying Brew also surrounds you with protective energies for 15. When Staggered damage would be dealt to you, you instead absorb up to 50%, until ≈600% of Attack Power has been prevented.",
                             "uncertain": true
                         },
                         "category": "Defensive",
@@ -8002,6 +8026,7 @@
                             "charges": null,
                             "max_stacks": null,
                             "proc_chance": null,
+                            "proc_cooldown_seconds": null,
                             "cooldown_seconds": null,
                             "cooldown_scaling_note": null,
                             "duration_seconds": null,
@@ -8049,6 +8074,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:22:48.000000Z",
@@ -8067,6 +8093,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:22:48.000000Z",
@@ -8220,8 +8247,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Every (varies) sec, your next Keg Smash or Vivify releases a wave of Chi energy that flows through friends and foes, dealing 7 Nature damage or 7 healing. Bounces up to 7 times to targets within 25 yards.",
-                            "uncertain": true
+                            "text": "Every 15 sec, your next Keg Smash or Vivify releases a wave of Chi energy that flows through friends and foes, dealing 7 Nature damage or 7 healing. Bounces up to 7 times to targets within 25 yards.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -8368,7 +8395,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Spin while kicking in the air, dealing 20 Physical damage over 1.5 to all enemies within 8 yds. Deals reduced damage beyond 5 targets. Spinning Crane Kick's damage is increased by 18% for each unique target you've struck in the last 20 with Tiger Palm, Blackout Kick, or Rising Sun Kick. Stacks up to (varies) times.",
+                            "text": "Spin while kicking in the air, dealing ≈40% of Attack Power Physical damage over 1.5 to all enemies within 8 yds. Deals reduced damage beyond 5 targets. Spinning Crane Kick's damage is increased by 18% for each unique target you've struck in the last 20 with Tiger Palm, Blackout Kick, or Rising Sun Kick. Stacks up to (varies) times.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -8384,7 +8411,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Spin while kicking in the air, dealing 20 Physical damage over (varies) to all enemies within 8 yds. Deals reduced damage beyond 5 targets. Spinning Crane Kick's damage is increased by 18% for each unique target you've struck in the last 20 with Tiger Palm, Blackout Kick, or Rising Sun Kick. Stacks up to (varies) times.",
+                            "text": "Spin while kicking in the air, dealing ≈40% of Attack Power Physical damage over (varies) to all enemies within 8 yds. Deals reduced damage beyond 5 targets. Spinning Crane Kick's damage is increased by 18% for each unique target you've struck in the last 20 with Tiger Palm, Blackout Kick, or Rising Sun Kick. Stacks up to (varies) times.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -8400,7 +8427,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Spin while kicking in the air, dealing 20 Physical damage over (varies) to all enemies within 8 yds. Deals reduced damage beyond 100 targets. Spinning Crane Kick's damage is increased by 18% for each unique target you've struck in the last 20 with Tiger Palm, Blackout Kick, or Rising Sun Kick. Stacks up to (varies) times.",
+                            "text": "Spin while kicking in the air, dealing ≈40% of Attack Power Physical damage over (varies) to all enemies within 8 yds. Deals reduced damage beyond 100 targets. Spinning Crane Kick's damage is increased by 18% for each unique target you've struck in the last 20 with Tiger Palm, Blackout Kick, or Rising Sun Kick. Stacks up to (varies) times.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -8416,7 +8443,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Spin while kicking in the air, dealing 20 Physical damage over 1.5 to enemies within 8 yds.  Dealing damage with Spinning Crane Kick grants Shuffle for 1 sec, and your Healing Spheres travel towards you. (varies by condition — check in-game)",
+                            "text": "Spin while kicking in the air, dealing ≈40% of Attack Power Physical damage over 1.5 to enemies within 8 yds.  Dealing damage with Spinning Crane Kick grants Shuffle for 1 sec, and your Healing Spheres travel towards you. (varies by condition — check in-game)",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -8432,7 +8459,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Spin while kicking in the air, dealing 20 Physical damage over (varies) to all enemies within 8 yds. Deals reduced damage beyond 5 targets. Spinning Crane Kick's damage is increased by 18% for each unique target you've struck in the last 20 with Tiger Palm, Blackout Kick, or Rising Sun Kick. Stacks up to (varies) times.",
+                            "text": "Spin while kicking in the air, dealing ≈40% of Attack Power Physical damage over (varies) to all enemies within 8 yds. Deals reduced damage beyond 5 targets. Spinning Crane Kick's damage is increased by 18% for each unique target you've struck in the last 20 with Tiger Palm, Blackout Kick, or Rising Sun Kick. Stacks up to (varies) times.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -8448,7 +8475,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Spin while kicking in the air, dealing 20 Physical damage over (varies) to all enemies within 8 yds. Deals reduced damage beyond 5 targets. Spinning Crane Kick's damage is increased by 18% for each unique target you've struck in the last 20 with Tiger Palm, Blackout Kick, or Rising Sun Kick. Stacks up to (varies) times.",
+                            "text": "Spin while kicking in the air, dealing ≈40% of Attack Power Physical damage over (varies) to all enemies within 8 yds. Deals reduced damage beyond 5 targets. Spinning Crane Kick's damage is increased by 18% for each unique target you've struck in the last 20 with Tiger Palm, Blackout Kick, or Rising Sun Kick. Stacks up to (varies) times.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -8547,12 +8574,10 @@
             "spellId": 6537,
             "category": "Offensive",
             "description": {
-                "text": "Summons a whirling tornado around you, causing (varies) Physical damage over 6 to all enemies within 8 yards. Deals reduced damage beyond 5 targets.",
-                "uncertain": true
+                "text": "Summons a whirling tornado around you, causing ≈119.7% of Attack Power Physical damage over 6 to all enemies within 8 yards. Deals reduced damage beyond 5 targets.",
+                "uncertain": false
             },
-            "formulaModifierSpellIds": [
-                5781
-            ],
+            "formulaModifierSpellIds": [],
             "modifiers": {
                 "named": [
                     {
@@ -8693,8 +8718,8 @@
             "spellId": 6632,
             "category": "Other",
             "description": {
-                "text": "Your heightened reflexes allow you to react swiftly to the presence of enemies, causing you to quickly lunge to the nearest enemy in front of you within (varies) yards after you Roll.",
-                "uncertain": true
+                "text": "Your heightened reflexes allow you to react swiftly to the presence of enemies, causing you to quickly lunge to the nearest enemy in front of you within 10 yards after you Roll.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -8843,7 +8868,7 @@
             "spellId": 6713,
             "category": "Other",
             "description": {
-                "text": "Flurry Strikes deal (varies) Nature damage to all enemies within (varies) yds, reduced beyond 8 targets.",
+                "text": "Flurry Strikes deal ≈52% of Attack Power Nature damage to all enemies within (varies) yds, reduced beyond 8 targets.",
                 "uncertain": true
             },
             "formulaModifierSpellIds": [],
@@ -8979,7 +9004,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Smash a keg of brew, dealing (varies) Physical damage to your primary target and (varies) Physical damage to all other enemies within 8 yds, and reducing their movement speed by 20% for 15. Deals reduced damage beyond 5 targets. Grants Shuffle for 5 sec and reduces the remaining cooldown on your Brews by 3 sec.",
+                            "text": "Smash a keg of brew, dealing ≈129% of Attack Power Physical damage to your primary target and ≈86% of Attack Power Physical damage to all other enemies within 8 yds, and reducing their movement speed by 20% for 15. Deals reduced damage beyond 5 targets. Grants Shuffle for 5 sec and reduces the remaining cooldown on your Brews by 3 sec.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -8995,7 +9020,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Smash a keg of brew, dealing (varies) Physical damage to your primary target and (varies) Physical damage to all other enemies within 8 yds, and reducing their movement speed by 20% for 15. Deals reduced damage beyond 5 targets. Grants Shuffle for 5 sec and reduces the remaining cooldown on your Brews by 3 sec.",
+                            "text": "Smash a keg of brew, dealing ≈285% of Attack Power Physical damage to your primary target and ≈190% of Attack Power Physical damage to all other enemies within 8 yds, and reducing their movement speed by 20% for 15. Deals reduced damage beyond 5 targets. Grants Shuffle for 5 sec and reduces the remaining cooldown on your Brews by 3 sec.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -9014,7 +9039,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Spin while kicking in the air, dealing 20 Physical damage over 1.5 to enemies within 8 yds.  Dealing damage with Spinning Crane Kick grants Shuffle for 1 sec, and your Healing Spheres travel towards you. (varies by condition — check in-game)",
+                            "text": "Spin while kicking in the air, dealing ≈40% of Attack Power Physical damage over 1.5 to enemies within 8 yds.  Dealing damage with Spinning Crane Kick grants Shuffle for 1 sec, and your Healing Spheres travel towards you. (varies by condition — check in-game)",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -9079,8 +9104,8 @@
             "spellId": 6652,
             "category": "Defensive",
             "description": {
-                "text": "While no enemies are within 15 yds, you heal for 15 every (varies) sec.",
-                "uncertain": true
+                "text": "While no enemies are within 15 yds, you heal for 15 every 3 sec.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -9172,7 +9197,7 @@
             "spellId": 6596,
             "category": "Defensive",
             "description": {
-                "text": "Heals the target for (varies) over 8. While channeling, Enveloping Mist, Surging Mist,, Zen Pulse, and Vivify may be cast instantly on the target.",
+                "text": "Heals the target for ≈1,680% of Spell Power over 8. While channeling, Enveloping Mist, Surging Mist,, Zen Pulse, and Vivify may be cast instantly on the target.",
                 "uncertain": true
             },
             "formulaModifierSpellIds": [],
@@ -9284,7 +9309,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Summons a Jade Serpent Statue at the target location. When you channel Soothing Mist, the statue will also begin to channel Soothing Mist on your target, healing for (varies) over 8.",
+                            "text": "Summons a Jade Serpent Statue at the target location. When you channel Soothing Mist, the statue will also begin to channel Soothing Mist on your target, healing for ≈560% of Spell Power over 8.",
                             "uncertain": true
                         },
                         "category": "Other",
@@ -9300,7 +9325,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Thunder Focus Tea summons a Jade Serpent Statue at your location. When you channel Soothing Mist, the statue will also begin to channel Soothing Mist on your target, healing for (varies) over 8.",
+                            "text": "Thunder Focus Tea summons a Jade Serpent Statue at your location. When you channel Soothing Mist, the statue will also begin to channel Soothing Mist on your target, healing for ≈560% of Spell Power over 8.",
                             "uncertain": true
                         },
                         "category": "Other",
@@ -9600,6 +9625,7 @@
                                         "charges": null,
                                         "max_stacks": null,
                                         "proc_chance": null,
+                                        "proc_cooldown_seconds": null,
                                         "cooldown_seconds": null,
                                         "cooldown_scaling_note": null,
                                         "duration_seconds": null,
@@ -9696,8 +9722,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Reduces Stagger by (varies).",
-                            "uncertain": true
+                            "text": "Reduces Stagger by ≈750% of Attack Power.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -9760,8 +9786,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Purifying Brew removes 10% additional Stagger and causes you to absorb up to (varies) incoming Stagger.",
-                            "uncertain": true
+                            "text": "Purifying Brew removes 10% additional Stagger and causes you to absorb up to ≈100% of Attack Power incoming Stagger.",
+                            "uncertain": false
                         },
                         "category": "Defensive",
                         "cooldown": {
@@ -9856,8 +9882,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "When you Blackout Kick, your Stagger is reduced by (varies), increased by up to 200% based on your missing health.",
-                            "uncertain": true
+                            "text": "When you Blackout Kick, your Stagger is reduced by ≈750% of Attack Power, increased by up to 200% based on your missing health.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -9888,8 +9914,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Purifying Brew removes 10% additional Stagger and causes you to absorb up to (varies) incoming Stagger.",
-                            "uncertain": true
+                            "text": "Purifying Brew removes 10% additional Stagger and causes you to absorb up to ≈100% of Attack Power incoming Stagger.",
+                            "uncertain": false
                         },
                         "category": "Defensive",
                         "cooldown": {
@@ -9987,7 +10013,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Purifying Brew also surrounds you with protective energies for 15. When Staggered damage would be dealt to you, you instead absorb up to 50%, until (varies) has been prevented.",
+                            "text": "Purifying Brew also surrounds you with protective energies for 15. When Staggered damage would be dealt to you, you instead absorb up to 50%, until ≈600% of Attack Power has been prevented.",
                             "uncertain": true
                         },
                         "category": "Defensive",
@@ -10083,7 +10109,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Purifying Brew also surrounds you with protective energies for 15. When Staggered damage would be dealt to you, you instead absorb up to 50%, until (varies) has been prevented.",
+                            "text": "Purifying Brew also surrounds you with protective energies for 15. When Staggered damage would be dealt to you, you instead absorb up to 50%, until ≈600% of Attack Power has been prevented.",
                             "uncertain": true
                         },
                         "category": "Defensive",
@@ -10099,8 +10125,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Fortifying Brew applies a Chi Cocoon, absorbing (varies) damage.",
-                            "uncertain": true
+                            "text": "Fortifying Brew applies a Chi Cocoon, absorbing ≈12% of maximum health damage.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -10164,8 +10190,8 @@
             "spellId": 6565,
             "category": "Other",
             "description": {
-                "text": "When you Blackout Kick, your Stagger is reduced by (varies), increased by up to 200% based on your missing health.",
-                "uncertain": true
+                "text": "When you Blackout Kick, your Stagger is reduced by ≈750% of Attack Power, increased by up to 200% based on your missing health.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -10344,7 +10370,7 @@
             "spellId": 6597,
             "category": "Other",
             "description": {
-                "text": "Summons a Jade Serpent Statue at the target location. When you channel Soothing Mist, the statue will also begin to channel Soothing Mist on your target, healing for (varies) over 8.",
+                "text": "Summons a Jade Serpent Statue at the target location. When you channel Soothing Mist, the statue will also begin to channel Soothing Mist on your target, healing for ≈560% of Spell Power over 8.",
                 "uncertain": true
             },
             "formulaModifierSpellIds": [],
@@ -10374,8 +10400,8 @@
             "spellId": 6646,
             "category": "Other",
             "description": {
-                "text": "Roll removes a snare effect once every (varies) sec.",
-                "uncertain": true
+                "text": "Roll removes a snare effect once every 30 sec.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -11240,8 +11266,8 @@
             "spellId": 6708,
             "category": "Defensive",
             "description": {
-                "text": "When your health drops below 50%, summon Whirling Steel, increasing your parry chance and avoidance by 15% for 6. This effect can not occur more than once every (varies) sec.",
-                "uncertain": true
+                "text": "When your health drops below 50%, summon Whirling Steel, increasing your parry chance and avoidance by 15% for 6. This effect can not occur more than once every 180 sec.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {

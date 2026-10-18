@@ -1,6 +1,6 @@
 {
-    "generatedAt": "2026-10-07T21:48:16+00:00",
-    "spellCacheVersion": 27,
+    "generatedAt": "2026-10-18T02:36:28+00:00",
+    "spellCacheVersion": 29,
     "codeFingerprint": "dev",
     "entries": [
         {
@@ -127,8 +127,8 @@
             "spellId": 10564,
             "category": "Offensive",
             "description": {
-                "text": "Transform into an Air Ascendant for 15 and unleash Doom Winds, reducing the cooldown and cost of Stormstrike by 60%, and transforming your auto attack and Stormstrike into Wind attacks which bypass armor and have a (varies) yd range. Maelstrom Weapon spenders have a 0.5% chance to unleash Doom Winds per Maelstrom Weapon spent while Ascendance is not active.",
-                "uncertain": true
+                "text": "Transform into an Air Ascendant for 15 and unleash Doom Winds, reducing the cooldown and cost of Stormstrike by 60%, and transforming your auto attack and Stormstrike into Wind attacks which bypass armor and have a 30 yd range. Maelstrom Weapon spenders have a 0.5% chance to unleash Doom Winds per Maelstrom Weapon spent while Ascendance is not active.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -155,8 +155,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "During Doom Winds or Ascendance, you generate 1 Maelstrom Weapon stack every (varies) sec.",
-                            "uncertain": true
+                            "text": "During Doom Winds or Ascendance, you generate 1 Maelstrom Weapon stack every 1 sec.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -171,8 +171,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Transform into an Air Ascendant for 15 and unleash Doom Winds, reducing the cooldown and cost of Stormstrike by 60%, and transforming your auto attack and Stormstrike into Wind attacks which bypass armor and have a (varies) yd range. Maelstrom Weapon spenders have a 0.5% chance to unleash Doom Winds per Maelstrom Weapon spent while Ascendance is not active.",
-                            "uncertain": true
+                            "text": "Transform into an Air Ascendant for 15 and unleash Doom Winds, reducing the cooldown and cost of Stormstrike by 60%, and transforming your auto attack and Stormstrike into Wind attacks which bypass armor and have a 30 yd range. Maelstrom Weapon spenders have a 0.5% chance to unleash Doom Winds per Maelstrom Weapon spent while Ascendance is not active.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -191,6 +191,7 @@
                                         "charges": null,
                                         "max_stacks": null,
                                         "proc_chance": null,
+                                        "proc_cooldown_seconds": null,
                                         "cooldown_seconds": null,
                                         "cooldown_scaling_note": null,
                                         "duration_seconds": null,
@@ -239,8 +240,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "During Doom Winds or Ascendance, you generate 1 Maelstrom Weapon stack every (varies) sec.",
-                            "uncertain": true
+                            "text": "During Doom Winds or Ascendance, you generate 1 Maelstrom Weapon stack every 1 sec.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -255,8 +256,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Transform into an Air Ascendant for 15 and unleash Doom Winds, reducing the cooldown and cost of Stormstrike by 60%, and transforming your auto attack and Stormstrike into Wind attacks which bypass armor and have a (varies) yd range. Maelstrom Weapon spenders have a 0.5% chance to unleash Doom Winds per Maelstrom Weapon spent while Ascendance is not active.",
-                            "uncertain": true
+                            "text": "Transform into an Air Ascendant for 15 and unleash Doom Winds, reducing the cooldown and cost of Stormstrike by 60%, and transforming your auto attack and Stormstrike into Wind attacks which bypass armor and have a 30 yd range. Maelstrom Weapon spenders have a 0.5% chance to unleash Doom Winds per Maelstrom Weapon spent while Ascendance is not active.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -275,6 +276,7 @@
                                         "charges": null,
                                         "max_stacks": null,
                                         "proc_chance": null,
+                                        "proc_cooldown_seconds": null,
                                         "cooldown_seconds": null,
                                         "cooldown_scaling_note": null,
                                         "duration_seconds": null,
@@ -358,8 +360,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Each stack of Maelstrom Weapon consumed has a 0.6% chance to activate Ascendance for 6 sec. Ascendance Transform into an Air Ascendant for 15 and unleash Doom Winds, reducing the cooldown and cost of Stormstrike by 60%, and transforming your auto attack and Stormstrike into Wind attacks which bypass armor and have a (varies) yd range.",
-                            "uncertain": true
+                            "text": "Each stack of Maelstrom Weapon consumed has a 0.6% chance to activate Ascendance for 6 sec. Ascendance Transform into an Air Ascendant for 15 and unleash Doom Winds, reducing the cooldown and cost of Stormstrike by 60%, and transforming your auto attack and Stormstrike into Wind attacks which bypass armor and have a 30 yd range.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -403,6 +405,7 @@
                             "charges": null,
                             "max_stacks": null,
                             "proc_chance": null,
+                            "proc_cooldown_seconds": null,
                             "cooldown_seconds": null,
                             "cooldown_scaling_note": null,
                             "duration_seconds": null,
@@ -450,6 +453,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:23:24.000000Z",
@@ -468,6 +472,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": 0.35,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:23:24.000000Z",
@@ -486,6 +491,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:23:24.000000Z",
@@ -504,6 +510,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:23:24.000000Z",
@@ -522,6 +529,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:23:24.000000Z",
@@ -540,6 +548,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:23:24.000000Z",
@@ -723,6 +732,7 @@
                             "charges": null,
                             "max_stacks": null,
                             "proc_chance": null,
+                            "proc_cooldown_seconds": null,
                             "cooldown_seconds": null,
                             "cooldown_scaling_note": null,
                             "duration_seconds": null,
@@ -770,6 +780,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:23:23.000000Z",
@@ -788,6 +799,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:23:23.000000Z",
@@ -987,6 +999,7 @@
                             "charges": null,
                             "max_stacks": null,
                             "proc_chance": null,
+                            "proc_cooldown_seconds": null,
                             "cooldown_seconds": null,
                             "cooldown_scaling_note": null,
                             "duration_seconds": null,
@@ -1034,6 +1047,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": "set",
                                     "rank_values": [
                                         -10000,
@@ -1078,8 +1092,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Protects the target with an earthen shield, increasing your healing on them by 20% and healing them for ≈87.6% of Spell Power when they take damage. This heal can only occur once every -1 sec. Lasts 3,600. Earth Shield can only be placed on the Shaman and one other target at a time. The Shaman can have up to two Elemental Shields active on them.",
-                            "uncertain": true
+                            "text": "Protects the target with an earthen shield, increasing your healing on them by 20% and healing them for ≈87.6% of Spell Power when they take damage. This heal can only occur once every 2 sec. Lasts 3,600. Earth Shield can only be placed on the Shaman and one other target at a time. The Shaman can have up to two Elemental Shields active on them.",
+                            "uncertain": false
                         },
                         "category": "Defensive",
                         "cooldown": {
@@ -1110,8 +1124,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Protects the target with an earthen shield, increasing your healing on them by 20% and healing them for ≈87.6% of Spell Power when they take damage. This heal can only occur once every -1 sec. Lasts 3,600. Earth Shield can only be placed on the Shaman and one other target at a time. The Shaman can have up to two Elemental Shields active on them.",
-                            "uncertain": true
+                            "text": "Protects the target with an earthen shield, increasing your healing on them by 20% and healing them for ≈87.6% of Spell Power when they take damage. This heal can only occur once every 2 sec. Lasts 3,600. Earth Shield can only be placed on the Shaman and one other target at a time. The Shaman can have up to two Elemental Shields active on them.",
+                            "uncertain": false
                         },
                         "category": "Defensive",
                         "cooldown": {
@@ -1158,7 +1172,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Lightning Bolt, Chain Lightning and Elemental Blast has a chance to unleash a Surging Bolt at your Surging Totem, increasing the totem's damage by 10%, and then redirecting the bolt to your target for (varies) Nature damage. The damage bonus effect can stack.",
+                            "text": "Lightning Bolt, Chain Lightning and Elemental Blast has a chance to unleash a Surging Bolt at your Surging Totem, increasing the totem's damage by 10%, and then redirecting the bolt to your target for ≈161% of Attack Power Nature damage. The damage bonus effect can stack.",
                             "uncertain": true
                         },
                         "category": "Defensive",
@@ -1322,7 +1336,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Lightning Bolt, Chain Lightning and Elemental Blast has a chance to unleash a Surging Bolt at your Surging Totem, increasing the totem's damage by 10%, and then redirecting the bolt to your target for (varies) Nature damage. The damage bonus effect can stack.",
+                            "text": "Lightning Bolt, Chain Lightning and Elemental Blast has a chance to unleash a Surging Bolt at your Surging Totem, increasing the totem's damage by 10%, and then redirecting the bolt to your target for ≈161% of Attack Power Nature damage. The damage bonus effect can stack.",
                             "uncertain": true
                         },
                         "category": "Other",
@@ -1402,7 +1416,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Lightning Bolt, Chain Lightning and Elemental Blast has a chance to unleash a Surging Bolt at your Surging Totem, increasing the totem's damage by 10%, and then redirecting the bolt to your target for (varies) Nature damage. The damage bonus effect can stack.",
+                            "text": "Lightning Bolt, Chain Lightning and Elemental Blast has a chance to unleash a Surging Bolt at your Surging Totem, increasing the totem's damage by 10%, and then redirecting the bolt to your target for ≈161% of Attack Power Nature damage. The damage bonus effect can stack.",
                             "uncertain": true
                         },
                         "category": "Other",
@@ -1719,7 +1733,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Lightning Bolt, Chain Lightning and Elemental Blast has a chance to unleash a Surging Bolt at your Surging Totem, increasing the totem's damage by 10%, and then redirecting the bolt to your target for (varies) Nature damage. The damage bonus effect can stack.",
+                            "text": "Lightning Bolt, Chain Lightning and Elemental Blast has a chance to unleash a Surging Bolt at your Surging Totem, increasing the totem's damage by 10%, and then redirecting the bolt to your target for ≈161% of Attack Power Nature damage. The damage bonus effect can stack.",
                             "uncertain": true
                         },
                         "category": "Defensive",
@@ -1751,7 +1765,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Devastate nearby enemies with a Primordial Storm, dealing (varies) Flamestrike, (varies) Froststrike, (varies) Stormstrike damage, and unleashing a Lightning Bolt or a Chain Lightning at 100% effectiveness. Deals reduced damage beyond 5 targets. Consumes Maelstrom Weapon for increased damage.",
+                            "text": "Devastate nearby enemies with a Primordial Storm, dealing ≈118.8% of Attack Power Flamestrike, ≈118.8% of Attack Power Froststrike, ≈118.8% of Attack Power Stormstrike damage, and unleashing a Lightning Bolt or a Chain Lightning at 100% effectiveness. Deals reduced damage beyond 5 targets. Consumes Maelstrom Weapon for increased damage.",
                             "uncertain": true
                         },
                         "category": "Other",
@@ -1767,7 +1781,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Sundering transforms into a single use Primordial Storm for 15 after it is cast. Primordial Storm Devastate nearby enemies with a Primordial Storm dealing (varies) Flamestrike, (varies) Froststrike, (varies) Stormstrike damage, and unleashing a Lightning Bolt or a Chain Lightning at 150% effectiveness. Deals reduced damage beyond 5 targets. Consumes Maelstrom Weapon for increased damage.",
+                            "text": "Sundering transforms into a single use Primordial Storm for 15 after it is cast. Primordial Storm Devastate nearby enemies with a Primordial Storm dealing ≈118.8% of Attack Power Flamestrike, ≈118.8% of Attack Power Froststrike, ≈118.8% of Attack Power Stormstrike damage, and unleashing a Lightning Bolt or a Chain Lightning at 150% effectiveness. Deals reduced damage beyond 5 targets. Consumes Maelstrom Weapon for increased damage.",
                             "uncertain": true
                         },
                         "category": "Other",
@@ -1879,7 +1893,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Sundering transforms into a single use Primordial Storm for 15 after it is cast. Primordial Storm Devastate nearby enemies with a Primordial Storm dealing (varies) Flamestrike, (varies) Froststrike, (varies) Stormstrike damage, and unleashing a Lightning Bolt or a Chain Lightning at 150% effectiveness. Deals reduced damage beyond 5 targets. Consumes Maelstrom Weapon for increased damage.",
+                            "text": "Sundering transforms into a single use Primordial Storm for 15 after it is cast. Primordial Storm Devastate nearby enemies with a Primordial Storm dealing ≈118.8% of Attack Power Flamestrike, ≈118.8% of Attack Power Froststrike, ≈118.8% of Attack Power Stormstrike damage, and unleashing a Lightning Bolt or a Chain Lightning at 150% effectiveness. Deals reduced damage beyond 5 targets. Consumes Maelstrom Weapon for increased damage.",
                             "uncertain": true
                         },
                         "category": "Other",
@@ -2043,7 +2057,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Lightning Bolt, Chain Lightning and Elemental Blast has a chance to unleash a Surging Bolt at your Surging Totem, increasing the totem's damage by 10%, and then redirecting the bolt to your target for (varies) Nature damage. The damage bonus effect can stack.",
+                            "text": "Lightning Bolt, Chain Lightning and Elemental Blast has a chance to unleash a Surging Bolt at your Surging Totem, increasing the totem's damage by 10%, and then redirecting the bolt to your target for ≈161% of Attack Power Nature damage. The damage bonus effect can stack.",
                             "uncertain": true
                         },
                         "category": "Other",
@@ -2059,7 +2073,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Lightning Bolt, Chain Lightning and Elemental Blast has a chance to unleash a Surging Bolt at your Surging Totem, increasing the totem's damage by 10%, and then redirecting the bolt to your target for (varies) Nature damage. The damage bonus effect can stack.",
+                            "text": "Lightning Bolt, Chain Lightning and Elemental Blast has a chance to unleash a Surging Bolt at your Surging Totem, increasing the totem's damage by 10%, and then redirecting the bolt to your target for ≈161% of Attack Power Nature damage. The damage bonus effect can stack.",
                             "uncertain": true
                         },
                         "category": "Other",
@@ -2665,8 +2679,8 @@
             "spellId": 10577,
             "category": "Other",
             "description": {
-                "text": "Each stack of Maelstrom Weapon consumed has a 0.6% chance to activate Ascendance for 6 sec. Ascendance Transform into an Air Ascendant for 15 and unleash Doom Winds, reducing the cooldown and cost of Stormstrike by 60%, and transforming your auto attack and Stormstrike into Wind attacks which bypass armor and have a (varies) yd range.",
-                "uncertain": true
+                "text": "Each stack of Maelstrom Weapon consumed has a 0.6% chance to activate Ascendance for 6 sec. Ascendance Transform into an Air Ascendant for 15 and unleash Doom Winds, reducing the cooldown and cost of Stormstrike by 60%, and transforming your auto attack and Stormstrike into Wind attacks which bypass armor and have a 30 yd range.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -2770,8 +2784,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Transform into an Air Ascendant for 15 and unleash Doom Winds, reducing the cooldown and cost of Stormstrike by 60%, and transforming your auto attack and Stormstrike into Wind attacks which bypass armor and have a (varies) yd range. Maelstrom Weapon spenders have a 0.5% chance to unleash Doom Winds per Maelstrom Weapon spent while Ascendance is not active.",
-                            "uncertain": true
+                            "text": "Transform into an Air Ascendant for 15 and unleash Doom Winds, reducing the cooldown and cost of Stormstrike by 60%, and transforming your auto attack and Stormstrike into Wind attacks which bypass armor and have a 30 yd range. Maelstrom Weapon spenders have a 0.5% chance to unleash Doom Winds per Maelstrom Weapon spent while Ascendance is not active.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -2790,6 +2804,7 @@
                                         "charges": null,
                                         "max_stacks": null,
                                         "proc_chance": null,
+                                        "proc_cooldown_seconds": null,
                                         "cooldown_seconds": null,
                                         "cooldown_scaling_note": null,
                                         "duration_seconds": null,
@@ -2838,8 +2853,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Transform into an Air Ascendant for 15 and unleash Doom Winds, reducing the cooldown and cost of Stormstrike by 60%, and transforming your auto attack and Stormstrike into Wind attacks which bypass armor and have a (varies) yd range. Maelstrom Weapon spenders have a 0.5% chance to unleash Doom Winds per Maelstrom Weapon spent while Ascendance is not active.",
-                            "uncertain": true
+                            "text": "Transform into an Air Ascendant for 15 and unleash Doom Winds, reducing the cooldown and cost of Stormstrike by 60%, and transforming your auto attack and Stormstrike into Wind attacks which bypass armor and have a 30 yd range. Maelstrom Weapon spenders have a 0.5% chance to unleash Doom Winds per Maelstrom Weapon spent while Ascendance is not active.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -2858,6 +2873,7 @@
                                         "charges": null,
                                         "max_stacks": null,
                                         "proc_chance": null,
+                                        "proc_cooldown_seconds": null,
                                         "cooldown_seconds": null,
                                         "cooldown_scaling_note": null,
                                         "duration_seconds": null,
@@ -2906,8 +2922,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "During Doom Winds or Ascendance, you generate 1 Maelstrom Weapon stack every (varies) sec.",
-                            "uncertain": true
+                            "text": "During Doom Winds or Ascendance, you generate 1 Maelstrom Weapon stack every 1 sec.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -2922,8 +2938,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Transform into an Air Ascendant for 15 and unleash Doom Winds, reducing the cooldown and cost of Stormstrike by 60%, and transforming your auto attack and Stormstrike into Wind attacks which bypass armor and have a (varies) yd range. Maelstrom Weapon spenders have a 0.5% chance to unleash Doom Winds per Maelstrom Weapon spent while Ascendance is not active.",
-                            "uncertain": true
+                            "text": "Transform into an Air Ascendant for 15 and unleash Doom Winds, reducing the cooldown and cost of Stormstrike by 60%, and transforming your auto attack and Stormstrike into Wind attacks which bypass armor and have a 30 yd range. Maelstrom Weapon spenders have a 0.5% chance to unleash Doom Winds per Maelstrom Weapon spent while Ascendance is not active.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -2942,6 +2958,7 @@
                                         "charges": null,
                                         "max_stacks": null,
                                         "proc_chance": null,
+                                        "proc_cooldown_seconds": null,
                                         "cooldown_seconds": null,
                                         "cooldown_scaling_note": null,
                                         "duration_seconds": null,
@@ -3118,8 +3135,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "During Doom Winds or Ascendance, you generate 1 Maelstrom Weapon stack every (varies) sec.",
-                            "uncertain": true
+                            "text": "During Doom Winds or Ascendance, you generate 1 Maelstrom Weapon stack every 1 sec.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -3266,8 +3283,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Each stack of Maelstrom Weapon consumed has a 0.6% chance to activate Ascendance for 6 sec. Ascendance Transform into an Air Ascendant for 15 and unleash Doom Winds, reducing the cooldown and cost of Stormstrike by 60%, and transforming your auto attack and Stormstrike into Wind attacks which bypass armor and have a (varies) yd range.",
-                            "uncertain": true
+                            "text": "Each stack of Maelstrom Weapon consumed has a 0.6% chance to activate Ascendance for 6 sec. Ascendance Transform into an Air Ascendant for 15 and unleash Doom Winds, reducing the cooldown and cost of Stormstrike by 60%, and transforming your auto attack and Stormstrike into Wind attacks which bypass armor and have a 30 yd range.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -3414,8 +3431,8 @@
             "spellId": 10456,
             "category": "Defensive",
             "description": {
-                "text": "Protects the target with an earthen shield, increasing your healing on them by 20% and healing them for ≈87.6% of Spell Power when they take damage. This heal can only occur once every -1 sec. Lasts 3,600. Earth Shield can only be placed on the Shaman and one other target at a time. The Shaman can have up to two Elemental Shields active on them.",
-                "uncertain": true
+                "text": "Protects the target with an earthen shield, increasing your healing on them by 20% and healing them for ≈87.6% of Spell Power when they take damage. This heal can only occur once every 2 sec. Lasts 3,600. Earth Shield can only be placed on the Shaman and one other target at a time. The Shaman can have up to two Elemental Shields active on them.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -3442,7 +3459,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Protects the target with an earthen shield, increasing your healing on them by 20% and healing them for ≈73.5% of Spell Power when they take damage. This heal can only occur once every -1 sec. Lasts (varies). Earth Shield can only be placed on the Shaman and one other target at a time. The Shaman can have up to two Elemental Shields active on them.",
+                            "text": "Protects the target with an earthen shield, increasing your healing on them by 20% and healing them for (varies) when they take damage. This heal can only occur once every -1 sec. Lasts (varies). Earth Shield can only be placed on the Shaman and one other target at a time. The Shaman can have up to two Elemental Shields active on them.",
                             "uncertain": true
                         },
                         "category": "Defensive",
@@ -3458,8 +3475,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Protects the target with an earthen shield, increasing your healing on them by 20% and healing them for ≈87.6% of Spell Power when they take damage. This heal can only occur once every -1 sec. Lasts 3,600. Earth Shield can only be placed on the Shaman and one other target at a time. The Shaman can have up to two Elemental Shields active on them.",
-                            "uncertain": true
+                            "text": "Protects the target with an earthen shield, increasing your healing on them by 20% and healing them for ≈87.6% of Spell Power when they take damage. This heal can only occur once every 2 sec. Lasts 3,600. Earth Shield can only be placed on the Shaman and one other target at a time. The Shaman can have up to two Elemental Shields active on them.",
+                            "uncertain": false
                         },
                         "category": "Defensive",
                         "cooldown": {
@@ -3574,8 +3591,8 @@
             "spellId": 10460,
             "category": "Crowd Control",
             "description": {
-                "text": "Summons a totem at the target location for 20. The totem pulses every (varies) sec, rooting all enemies within 8 yards for 8. Enemies previously rooted by the totem instead suffer 50% movement speed reduction.",
-                "uncertain": true
+                "text": "Summons a totem at the target location for 20. The totem pulses every 2 sec, rooting all enemies within 8 yards for 8. Enemies previously rooted by the totem instead suffer 50% movement speed reduction.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -4224,8 +4241,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Summons two Elemental Spirit Raptors that aid you in battle for 15. They are immune to movement-impairing effects, and each Elemental Feral Spirit summoned grants you 5% increased Physical and 5% increased Fire, Frost, or Nature damage dealt by your abilities. Feral Spirit generates one stack of Maelstrom Weapon immediately, and one stack every (varies) sec for 15.",
-                            "uncertain": true
+                            "text": "Summons two Elemental Spirit Raptors that aid you in battle for 15. They are immune to movement-impairing effects, and each Elemental Feral Spirit summoned grants you 5% increased Physical and 5% increased Fire, Frost, or Nature damage dealt by your abilities. Feral Spirit generates one stack of Maelstrom Weapon immediately, and one stack every 3 sec for 15.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -4240,8 +4257,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Summons two Elemental Spirit Raptors that aid you in battle for 15. They are immune to movement-impairing effects, and each Elemental Feral Spirit summoned grants you 5% increased Physical and 5% increased Fire, Frost, or Nature damage dealt by your abilities. Feral Spirit generates one stack of Maelstrom Weapon immediately, and one stack every (varies) sec for 15.",
-                            "uncertain": true
+                            "text": "Summons two Elemental Spirit Raptors that aid you in battle for 15. They are immune to movement-impairing effects, and each Elemental Feral Spirit summoned grants you 5% increased Physical and 5% increased Fire, Frost, or Nature damage dealt by your abilities. Feral Spirit generates one stack of Maelstrom Weapon immediately, and one stack every 3 sec for 15.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -4256,8 +4273,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Summons two Elemental Spirit Raptors that aid you in battle for 15. They are immune to movement-impairing effects, and each Elemental Feral Spirit summoned grants you 5% increased Physical and 5% increased Fire, Frost, or Nature damage dealt by your abilities. Feral Spirit generates one stack of Maelstrom Weapon immediately, and one stack every (varies) sec for 15.",
-                            "uncertain": true
+                            "text": "Summons two Elemental Spirit Raptors that aid you in battle for 15. They are immune to movement-impairing effects, and each Elemental Feral Spirit summoned grants you 5% increased Physical and 5% increased Fire, Frost, or Nature damage dealt by your abilities. Feral Spirit generates one stack of Maelstrom Weapon immediately, and one stack every 3 sec for 15.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -4272,8 +4289,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Summons two Elemental Spirit Raptors that aid you in battle for 15. They are immune to movement-impairing effects, and each Elemental Feral Spirit summoned grants you 5% increased Physical and 5% increased Fire, Frost, or Nature damage dealt by your abilities. Feral Spirit generates one stack of Maelstrom Weapon immediately, and one stack every (varies) sec for 15.",
-                            "uncertain": true
+                            "text": "Summons two Elemental Spirit Raptors that aid you in battle for 15. They are immune to movement-impairing effects, and each Elemental Feral Spirit summoned grants you 5% increased Physical and 5% increased Fire, Frost, or Nature damage dealt by your abilities. Feral Spirit generates one stack of Maelstrom Weapon immediately, and one stack every 3 sec for 15.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -4288,8 +4305,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Summons two Elemental Spirit Raptors that aid you in battle for 15. They are immune to movement-impairing effects, and each Elemental Feral Spirit summoned grants you 5% increased Physical and 5% increased Fire, Frost, or Nature damage dealt by your abilities. Feral Spirit generates one stack of Maelstrom Weapon immediately, and one stack every (varies) sec for 15.",
-                            "uncertain": true
+                            "text": "Summons two Elemental Spirit Raptors that aid you in battle for 15. They are immune to movement-impairing effects, and each Elemental Feral Spirit summoned grants you 5% increased Physical and 5% increased Fire, Frost, or Nature damage dealt by your abilities. Feral Spirit generates one stack of Maelstrom Weapon immediately, and one stack every 3 sec for 15.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -4304,8 +4321,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Summons two Elemental Spirit Raptors that aid you in battle for 15. They are immune to movement-impairing effects, and each Elemental Feral Spirit summoned grants you 5% increased Physical and 5% increased Fire, Frost, or Nature damage dealt by your abilities. Feral Spirit generates one stack of Maelstrom Weapon immediately, and one stack every (varies) sec for 15.",
-                            "uncertain": true
+                            "text": "Summons two Elemental Spirit Raptors that aid you in battle for 15. They are immune to movement-impairing effects, and each Elemental Feral Spirit summoned grants you 5% increased Physical and 5% increased Fire, Frost, or Nature damage dealt by your abilities. Feral Spirit generates one stack of Maelstrom Weapon immediately, and one stack every 3 sec for 15.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -4320,8 +4337,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Summons two Elemental Spirit Raptors that aid you in battle for 15. They are immune to movement-impairing effects, and each Elemental Feral Spirit summoned grants you 5% increased Physical and 5% increased Fire, Frost, or Nature damage dealt by your abilities. Feral Spirit generates one stack of Maelstrom Weapon immediately, and one stack every (varies) sec for 15.",
-                            "uncertain": true
+                            "text": "Summons two Elemental Spirit Raptors that aid you in battle for 15. They are immune to movement-impairing effects, and each Elemental Feral Spirit summoned grants you 5% increased Physical and 5% increased Fire, Frost, or Nature damage dealt by your abilities. Feral Spirit generates one stack of Maelstrom Weapon immediately, and one stack every 3 sec for 15.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -4336,8 +4353,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Summons two Elemental Spirit Raptors that aid you in battle for 15. They are immune to movement-impairing effects, and each Elemental Feral Spirit summoned grants you 5% increased Physical and 5% increased Fire, Frost, or Nature damage dealt by your abilities. Feral Spirit generates one stack of Maelstrom Weapon immediately, and one stack every (varies) sec for 15.",
-                            "uncertain": true
+                            "text": "Summons two Elemental Spirit Raptors that aid you in battle for 15. They are immune to movement-impairing effects, and each Elemental Feral Spirit summoned grants you 5% increased Physical and 5% increased Fire, Frost, or Nature damage dealt by your abilities. Feral Spirit generates one stack of Maelstrom Weapon immediately, and one stack every 3 sec for 15.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -4352,8 +4369,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Summons two Elemental Spirit Raptors that aid you in battle for 15. They are immune to movement-impairing effects, and each Elemental Feral Spirit summoned grants you 5% increased Physical and 5% increased Fire, Frost, or Nature damage dealt by your abilities. Feral Spirit generates one stack of Maelstrom Weapon immediately, and one stack every (varies) sec for 15.",
-                            "uncertain": true
+                            "text": "Summons two Elemental Spirit Raptors that aid you in battle for 15. They are immune to movement-impairing effects, and each Elemental Feral Spirit summoned grants you 5% increased Physical and 5% increased Fire, Frost, or Nature damage dealt by your abilities. Feral Spirit generates one stack of Maelstrom Weapon immediately, and one stack every 3 sec for 15.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -4368,8 +4385,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Summons two Elemental Spirit Raptors that aid you in battle for 15. They are immune to movement-impairing effects, and each Elemental Feral Spirit summoned grants you 5% increased Physical and 5% increased Fire, Frost, or Nature damage dealt by your abilities. Feral Spirit generates one stack of Maelstrom Weapon immediately, and one stack every (varies) sec for 15.",
-                            "uncertain": true
+                            "text": "Summons two Elemental Spirit Raptors that aid you in battle for 15. They are immune to movement-impairing effects, and each Elemental Feral Spirit summoned grants you 5% increased Physical and 5% increased Fire, Frost, or Nature damage dealt by your abilities. Feral Spirit generates one stack of Maelstrom Weapon immediately, and one stack every 3 sec for 15.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -4384,8 +4401,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Summons two Elemental Spirit Raptors that aid you in battle for 15. They are immune to movement-impairing effects, and each Elemental Feral Spirit summoned grants you 5% increased Physical and 5% increased Fire, Frost, or Nature damage dealt by your abilities. Feral Spirit generates one stack of Maelstrom Weapon immediately, and one stack every (varies) sec for 15.",
-                            "uncertain": true
+                            "text": "Summons two Elemental Spirit Raptors that aid you in battle for 15. They are immune to movement-impairing effects, and each Elemental Feral Spirit summoned grants you 5% increased Physical and 5% increased Fire, Frost, or Nature damage dealt by your abilities. Feral Spirit generates one stack of Maelstrom Weapon immediately, and one stack every 3 sec for 15.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -4400,8 +4417,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Summons two Elemental Spirit Raptors that aid you in battle for 15. They are immune to movement-impairing effects, and each Elemental Feral Spirit summoned grants you 5% increased Physical and 5% increased Fire, Frost, or Nature damage dealt by your abilities. Feral Spirit generates one stack of Maelstrom Weapon immediately, and one stack every (varies) sec for 15.",
-                            "uncertain": true
+                            "text": "Summons two Elemental Spirit Raptors that aid you in battle for 15. They are immune to movement-impairing effects, and each Elemental Feral Spirit summoned grants you 5% increased Physical and 5% increased Fire, Frost, or Nature damage dealt by your abilities. Feral Spirit generates one stack of Maelstrom Weapon immediately, and one stack every 3 sec for 15.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -5112,8 +5129,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Protects the target with an earthen shield, increasing your healing on them by 20% and healing them for ≈87.6% of Spell Power when they take damage. This heal can only occur once every -1 sec. Lasts 3,600. Earth Shield can only be placed on the Shaman and one other target at a time. The Shaman can have up to two Elemental Shields active on them.",
-                            "uncertain": true
+                            "text": "Protects the target with an earthen shield, increasing your healing on them by 20% and healing them for ≈87.6% of Spell Power when they take damage. This heal can only occur once every 2 sec. Lasts 3,600. Earth Shield can only be placed on the Shaman and one other target at a time. The Shaman can have up to two Elemental Shields active on them.",
+                            "uncertain": false
                         },
                         "category": "Defensive",
                         "cooldown": {
@@ -5160,8 +5177,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Protects the target with an earthen shield, increasing your healing on them by 20% and healing them for ≈87.6% of Spell Power when they take damage. This heal can only occur once every -1 sec. Lasts 3,600. Earth Shield can only be placed on the Shaman and one other target at a time. The Shaman can have up to two Elemental Shields active on them.",
-                            "uncertain": true
+                            "text": "Protects the target with an earthen shield, increasing your healing on them by 20% and healing them for ≈87.6% of Spell Power when they take damage. This heal can only occur once every 2 sec. Lasts 3,600. Earth Shield can only be placed on the Shaman and one other target at a time. The Shaman can have up to two Elemental Shields active on them.",
+                            "uncertain": false
                         },
                         "category": "Defensive",
                         "cooldown": {
@@ -5449,6 +5466,7 @@
                             "charges": null,
                             "max_stacks": null,
                             "proc_chance": null,
+                            "proc_cooldown_seconds": null,
                             "cooldown_seconds": null,
                             "cooldown_scaling_note": null,
                             "duration_seconds": null,
@@ -5496,6 +5514,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:23:23.000000Z",
@@ -5915,6 +5934,7 @@
                                         "charges": null,
                                         "max_stacks": null,
                                         "proc_chance": null,
+                                        "proc_cooldown_seconds": null,
                                         "cooldown_seconds": null,
                                         "cooldown_scaling_note": null,
                                         "duration_seconds": null,
@@ -6132,7 +6152,7 @@
             "spellId": 10466,
             "category": "Offensive",
             "description": {
-                "text": "Charges your off-hand weapon with lava and burns your target, dealing (varies) Fire damage. Damage is increased by 100% if your offhand weapon is imbued with Flametongue Weapon. Lava Lash will spread Flame Shock from your target to (varies) nearby targets. Lava Lash increases the damage of Flame Shock on its target by 100% for 20.",
+                "text": "Charges your off-hand weapon with lava and burns your target, dealing ≈322.3% of Attack Power Fire damage. Damage is increased by 100% if your offhand weapon is imbued with Flametongue Weapon. Lava Lash will spread Flame Shock from your target to (varies) nearby targets. Lava Lash increases the damage of Flame Shock on its target by 100% for 20.",
                 "uncertain": true
             },
             "formulaModifierSpellIds": [],
@@ -6737,6 +6757,7 @@
                             "charges": null,
                             "max_stacks": null,
                             "proc_chance": null,
+                            "proc_cooldown_seconds": null,
                             "cooldown_seconds": null,
                             "cooldown_scaling_note": null,
                             "duration_seconds": null,
@@ -6784,6 +6805,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:23:23.000000Z",
@@ -6802,6 +6824,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:23:23.000000Z",
@@ -6865,7 +6888,7 @@
             "spellId": 10075,
             "category": "Crowd Control",
             "description": {
-                "text": "Grips the target in lightning, stunning and dealing (varies) Nature damage over 5 while the target is lassoed. Can move while channeling.",
+                "text": "Grips the target in lightning, stunning and dealing ≈3,850% of Spell Power Nature damage over 5 while the target is lassoed. Can move while channeling.",
                 "uncertain": true
             },
             "formulaModifierSpellIds": [],
@@ -7016,8 +7039,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Summons two Elemental Spirit Raptors that aid you in battle for 15. They are immune to movement-impairing effects, and each Elemental Feral Spirit summoned grants you 5% increased Physical and 5% increased Fire, Frost, or Nature damage dealt by your abilities. Feral Spirit generates one stack of Maelstrom Weapon immediately, and one stack every (varies) sec for 15.",
-                            "uncertain": true
+                            "text": "Summons two Elemental Spirit Raptors that aid you in battle for 15. They are immune to movement-impairing effects, and each Elemental Feral Spirit summoned grants you 5% increased Physical and 5% increased Fire, Frost, or Nature damage dealt by your abilities. Feral Spirit generates one stack of Maelstrom Weapon immediately, and one stack every 3 sec for 15.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -7064,8 +7087,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Summons two Elemental Spirit Raptors that aid you in battle for 15. They are immune to movement-impairing effects, and each Elemental Feral Spirit summoned grants you 5% increased Physical and 5% increased Fire, Frost, or Nature damage dealt by your abilities. Feral Spirit generates one stack of Maelstrom Weapon immediately, and one stack every (varies) sec for 15.",
-                            "uncertain": true
+                            "text": "Summons two Elemental Spirit Raptors that aid you in battle for 15. They are immune to movement-impairing effects, and each Elemental Feral Spirit summoned grants you 5% increased Physical and 5% increased Fire, Frost, or Nature damage dealt by your abilities. Feral Spirit generates one stack of Maelstrom Weapon immediately, and one stack every 3 sec for 15.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -7080,8 +7103,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Summons two Elemental Spirit Raptors that aid you in battle for 15. They are immune to movement-impairing effects, and each Elemental Feral Spirit summoned grants you 5% increased Physical and 5% increased Fire, Frost, or Nature damage dealt by your abilities. Feral Spirit generates one stack of Maelstrom Weapon immediately, and one stack every (varies) sec for 15.",
-                            "uncertain": true
+                            "text": "Summons two Elemental Spirit Raptors that aid you in battle for 15. They are immune to movement-impairing effects, and each Elemental Feral Spirit summoned grants you 5% increased Physical and 5% increased Fire, Frost, or Nature damage dealt by your abilities. Feral Spirit generates one stack of Maelstrom Weapon immediately, and one stack every 3 sec for 15.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -7096,8 +7119,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Summons two Elemental Spirit Raptors that aid you in battle for 15. They are immune to movement-impairing effects, and each Elemental Feral Spirit summoned grants you 5% increased Physical and 5% increased Fire, Frost, or Nature damage dealt by your abilities. Feral Spirit generates one stack of Maelstrom Weapon immediately, and one stack every (varies) sec for 15.",
-                            "uncertain": true
+                            "text": "Summons two Elemental Spirit Raptors that aid you in battle for 15. They are immune to movement-impairing effects, and each Elemental Feral Spirit summoned grants you 5% increased Physical and 5% increased Fire, Frost, or Nature damage dealt by your abilities. Feral Spirit generates one stack of Maelstrom Weapon immediately, and one stack every 3 sec for 15.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -7112,8 +7135,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Summons two Elemental Spirit Raptors that aid you in battle for 15. They are immune to movement-impairing effects, and each Elemental Feral Spirit summoned grants you 5% increased Physical and 5% increased Fire, Frost, or Nature damage dealt by your abilities. Feral Spirit generates one stack of Maelstrom Weapon immediately, and one stack every (varies) sec for 15.",
-                            "uncertain": true
+                            "text": "Summons two Elemental Spirit Raptors that aid you in battle for 15. They are immune to movement-impairing effects, and each Elemental Feral Spirit summoned grants you 5% increased Physical and 5% increased Fire, Frost, or Nature damage dealt by your abilities. Feral Spirit generates one stack of Maelstrom Weapon immediately, and one stack every 3 sec for 15.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -7128,8 +7151,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Summons two Elemental Spirit Raptors that aid you in battle for 15. They are immune to movement-impairing effects, and each Elemental Feral Spirit summoned grants you 5% increased Physical and 5% increased Fire, Frost, or Nature damage dealt by your abilities. Feral Spirit generates one stack of Maelstrom Weapon immediately, and one stack every (varies) sec for 15.",
-                            "uncertain": true
+                            "text": "Summons two Elemental Spirit Raptors that aid you in battle for 15. They are immune to movement-impairing effects, and each Elemental Feral Spirit summoned grants you 5% increased Physical and 5% increased Fire, Frost, or Nature damage dealt by your abilities. Feral Spirit generates one stack of Maelstrom Weapon immediately, and one stack every 3 sec for 15.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -7144,8 +7167,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Summons two Elemental Spirit Raptors that aid you in battle for 15. They are immune to movement-impairing effects, and each Elemental Feral Spirit summoned grants you 5% increased Physical and 5% increased Fire, Frost, or Nature damage dealt by your abilities. Feral Spirit generates one stack of Maelstrom Weapon immediately, and one stack every (varies) sec for 15.",
-                            "uncertain": true
+                            "text": "Summons two Elemental Spirit Raptors that aid you in battle for 15. They are immune to movement-impairing effects, and each Elemental Feral Spirit summoned grants you 5% increased Physical and 5% increased Fire, Frost, or Nature damage dealt by your abilities. Feral Spirit generates one stack of Maelstrom Weapon immediately, and one stack every 3 sec for 15.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -7176,8 +7199,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Transform into an Air Ascendant for 15 and unleash Doom Winds, reducing the cooldown and cost of Stormstrike by 60%, and transforming your auto attack and Stormstrike into Wind attacks which bypass armor and have a (varies) yd range. Maelstrom Weapon spenders have a 0.5% chance to unleash Doom Winds per Maelstrom Weapon spent while Ascendance is not active.",
-                            "uncertain": true
+                            "text": "Transform into an Air Ascendant for 15 and unleash Doom Winds, reducing the cooldown and cost of Stormstrike by 60%, and transforming your auto attack and Stormstrike into Wind attacks which bypass armor and have a 30 yd range. Maelstrom Weapon spenders have a 0.5% chance to unleash Doom Winds per Maelstrom Weapon spent while Ascendance is not active.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -7196,6 +7219,7 @@
                                         "charges": null,
                                         "max_stacks": null,
                                         "proc_chance": null,
+                                        "proc_cooldown_seconds": null,
                                         "cooldown_seconds": null,
                                         "cooldown_scaling_note": null,
                                         "duration_seconds": null,
@@ -7244,8 +7268,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Summons two Elemental Spirit Raptors that aid you in battle for 15. They are immune to movement-impairing effects, and each Elemental Feral Spirit summoned grants you 5% increased Physical and 5% increased Fire, Frost, or Nature damage dealt by your abilities. Feral Spirit generates one stack of Maelstrom Weapon immediately, and one stack every (varies) sec for 15.",
-                            "uncertain": true
+                            "text": "Summons two Elemental Spirit Raptors that aid you in battle for 15. They are immune to movement-impairing effects, and each Elemental Feral Spirit summoned grants you 5% increased Physical and 5% increased Fire, Frost, or Nature damage dealt by your abilities. Feral Spirit generates one stack of Maelstrom Weapon immediately, and one stack every 3 sec for 15.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -7260,8 +7284,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Summons two Elemental Spirit Raptors that aid you in battle for 15. They are immune to movement-impairing effects, and each Elemental Feral Spirit summoned grants you 5% increased Physical and 5% increased Fire, Frost, or Nature damage dealt by your abilities. Feral Spirit generates one stack of Maelstrom Weapon immediately, and one stack every (varies) sec for 15.",
-                            "uncertain": true
+                            "text": "Summons two Elemental Spirit Raptors that aid you in battle for 15. They are immune to movement-impairing effects, and each Elemental Feral Spirit summoned grants you 5% increased Physical and 5% increased Fire, Frost, or Nature damage dealt by your abilities. Feral Spirit generates one stack of Maelstrom Weapon immediately, and one stack every 3 sec for 15.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -7276,8 +7300,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Summons two Elemental Spirit Raptors that aid you in battle for 15. They are immune to movement-impairing effects, and each Elemental Feral Spirit summoned grants you 5% increased Physical and 5% increased Fire, Frost, or Nature damage dealt by your abilities. Feral Spirit generates one stack of Maelstrom Weapon immediately, and one stack every (varies) sec for 15.",
-                            "uncertain": true
+                            "text": "Summons two Elemental Spirit Raptors that aid you in battle for 15. They are immune to movement-impairing effects, and each Elemental Feral Spirit summoned grants you 5% increased Physical and 5% increased Fire, Frost, or Nature damage dealt by your abilities. Feral Spirit generates one stack of Maelstrom Weapon immediately, and one stack every 3 sec for 15.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -7292,8 +7316,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Summons two Elemental Spirit Raptors that aid you in battle for 15. They are immune to movement-impairing effects, and each Elemental Feral Spirit summoned grants you 5% increased Physical and 5% increased Fire, Frost, or Nature damage dealt by your abilities. Feral Spirit generates one stack of Maelstrom Weapon immediately, and one stack every (varies) sec for 15.",
-                            "uncertain": true
+                            "text": "Summons two Elemental Spirit Raptors that aid you in battle for 15. They are immune to movement-impairing effects, and each Elemental Feral Spirit summoned grants you 5% increased Physical and 5% increased Fire, Frost, or Nature damage dealt by your abilities. Feral Spirit generates one stack of Maelstrom Weapon immediately, and one stack every 3 sec for 15.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -7324,8 +7348,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "During Doom Winds or Ascendance, you generate 1 Maelstrom Weapon stack every (varies) sec.",
-                            "uncertain": true
+                            "text": "During Doom Winds or Ascendance, you generate 1 Maelstrom Weapon stack every 1 sec.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -7404,8 +7428,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Summons two Elemental Spirit Raptors that aid you in battle for 15. They are immune to movement-impairing effects, and each Elemental Feral Spirit summoned grants you 5% increased Physical and 5% increased Fire, Frost, or Nature damage dealt by your abilities. Feral Spirit generates one stack of Maelstrom Weapon immediately, and one stack every (varies) sec for 15.",
-                            "uncertain": true
+                            "text": "Summons two Elemental Spirit Raptors that aid you in battle for 15. They are immune to movement-impairing effects, and each Elemental Feral Spirit summoned grants you 5% increased Physical and 5% increased Fire, Frost, or Nature damage dealt by your abilities. Feral Spirit generates one stack of Maelstrom Weapon immediately, and one stack every 3 sec for 15.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -7436,8 +7460,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Transform into an Air Ascendant for 15 and unleash Doom Winds, reducing the cooldown and cost of Stormstrike by 60%, and transforming your auto attack and Stormstrike into Wind attacks which bypass armor and have a (varies) yd range. Maelstrom Weapon spenders have a 0.5% chance to unleash Doom Winds per Maelstrom Weapon spent while Ascendance is not active.",
-                            "uncertain": true
+                            "text": "Transform into an Air Ascendant for 15 and unleash Doom Winds, reducing the cooldown and cost of Stormstrike by 60%, and transforming your auto attack and Stormstrike into Wind attacks which bypass armor and have a 30 yd range. Maelstrom Weapon spenders have a 0.5% chance to unleash Doom Winds per Maelstrom Weapon spent while Ascendance is not active.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -7456,6 +7480,7 @@
                                         "charges": null,
                                         "max_stacks": null,
                                         "proc_chance": null,
+                                        "proc_cooldown_seconds": null,
                                         "cooldown_seconds": null,
                                         "cooldown_scaling_note": null,
                                         "duration_seconds": null,
@@ -7520,7 +7545,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Devastate nearby enemies with a Primordial Storm, dealing (varies) Flamestrike, (varies) Froststrike, (varies) Stormstrike damage, and unleashing a Lightning Bolt or a Chain Lightning at 100% effectiveness. Deals reduced damage beyond 5 targets. Consumes Maelstrom Weapon for increased damage.",
+                            "text": "Devastate nearby enemies with a Primordial Storm, dealing ≈118.8% of Attack Power Flamestrike, ≈118.8% of Attack Power Froststrike, ≈118.8% of Attack Power Stormstrike damage, and unleashing a Lightning Bolt or a Chain Lightning at 100% effectiveness. Deals reduced damage beyond 5 targets. Consumes Maelstrom Weapon for increased damage.",
                             "uncertain": true
                         },
                         "category": "Other",
@@ -7536,7 +7561,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Sundering transforms into a single use Primordial Storm for 15 after it is cast. Primordial Storm Devastate nearby enemies with a Primordial Storm dealing (varies) Flamestrike, (varies) Froststrike, (varies) Stormstrike damage, and unleashing a Lightning Bolt or a Chain Lightning at 150% effectiveness. Deals reduced damage beyond 5 targets. Consumes Maelstrom Weapon for increased damage.",
+                            "text": "Sundering transforms into a single use Primordial Storm for 15 after it is cast. Primordial Storm Devastate nearby enemies with a Primordial Storm dealing ≈118.8% of Attack Power Flamestrike, ≈118.8% of Attack Power Froststrike, ≈118.8% of Attack Power Stormstrike damage, and unleashing a Lightning Bolt or a Chain Lightning at 150% effectiveness. Deals reduced damage beyond 5 targets. Consumes Maelstrom Weapon for increased damage.",
                             "uncertain": true
                         },
                         "category": "Other",
@@ -7632,8 +7657,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Transform into an Air Ascendant for 15 and unleash Doom Winds, reducing the cooldown and cost of Stormstrike by 60%, and transforming your auto attack and Stormstrike into Wind attacks which bypass armor and have a (varies) yd range. Maelstrom Weapon spenders have a 0.5% chance to unleash Doom Winds per Maelstrom Weapon spent while Ascendance is not active.",
-                            "uncertain": true
+                            "text": "Transform into an Air Ascendant for 15 and unleash Doom Winds, reducing the cooldown and cost of Stormstrike by 60%, and transforming your auto attack and Stormstrike into Wind attacks which bypass armor and have a 30 yd range. Maelstrom Weapon spenders have a 0.5% chance to unleash Doom Winds per Maelstrom Weapon spent while Ascendance is not active.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -7652,6 +7677,7 @@
                                         "charges": null,
                                         "max_stacks": null,
                                         "proc_chance": null,
+                                        "proc_cooldown_seconds": null,
                                         "cooldown_seconds": null,
                                         "cooldown_scaling_note": null,
                                         "duration_seconds": null,
@@ -7748,8 +7774,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "During Doom Winds or Ascendance, you generate 1 Maelstrom Weapon stack every (varies) sec.",
-                            "uncertain": true
+                            "text": "During Doom Winds or Ascendance, you generate 1 Maelstrom Weapon stack every 1 sec.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -7796,7 +7822,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Sundering transforms into a single use Primordial Storm for 15 after it is cast. Primordial Storm Devastate nearby enemies with a Primordial Storm dealing (varies) Flamestrike, (varies) Froststrike, (varies) Stormstrike damage, and unleashing a Lightning Bolt or a Chain Lightning at 150% effectiveness. Deals reduced damage beyond 5 targets. Consumes Maelstrom Weapon for increased damage.",
+                            "text": "Sundering transforms into a single use Primordial Storm for 15 after it is cast. Primordial Storm Devastate nearby enemies with a Primordial Storm dealing ≈118.8% of Attack Power Flamestrike, ≈118.8% of Attack Power Froststrike, ≈118.8% of Attack Power Stormstrike damage, and unleashing a Lightning Bolt or a Chain Lightning at 150% effectiveness. Deals reduced damage beyond 5 targets. Consumes Maelstrom Weapon for increased damage.",
                             "uncertain": true
                         },
                         "category": "Other",
@@ -8039,8 +8065,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Each stack of Maelstrom Weapon consumed has a 0.6% chance to activate Ascendance for 6 sec. Ascendance Transform into an Air Ascendant for 15 and unleash Doom Winds, reducing the cooldown and cost of Stormstrike by 60%, and transforming your auto attack and Stormstrike into Wind attacks which bypass armor and have a (varies) yd range.",
-                            "uncertain": true
+                            "text": "Each stack of Maelstrom Weapon consumed has a 0.6% chance to activate Ascendance for 6 sec. Ascendance Transform into an Air Ascendant for 15 and unleash Doom Winds, reducing the cooldown and cost of Stormstrike by 60%, and transforming your auto attack and Stormstrike into Wind attacks which bypass armor and have a 30 yd range.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -8579,7 +8605,7 @@
             "spellId": 10498,
             "category": "Other",
             "description": {
-                "text": "Summons a totem at your feet that removes all Poison effects from a nearby party or raid member within (varies) yards every (varies) sec for 6.",
+                "text": "Summons a totem at your feet that removes all Poison effects from a nearby party or raid member within (varies) yards every 1.5 sec for 6.",
                 "uncertain": true
             },
             "formulaModifierSpellIds": [],
@@ -8703,7 +8729,7 @@
             "spellId": 10592,
             "category": "Other",
             "description": {
-                "text": "Sundering transforms into a single use Primordial Storm for 15 after it is cast. Primordial Storm Devastate nearby enemies with a Primordial Storm dealing (varies) Flamestrike, (varies) Froststrike, (varies) Stormstrike damage, and unleashing a Lightning Bolt or a Chain Lightning at 150% effectiveness. Deals reduced damage beyond 5 targets. Consumes Maelstrom Weapon for increased damage.",
+                "text": "Sundering transforms into a single use Primordial Storm for 15 after it is cast. Primordial Storm Devastate nearby enemies with a Primordial Storm dealing ≈118.8% of Attack Power Flamestrike, ≈118.8% of Attack Power Froststrike, ≈118.8% of Attack Power Stormstrike damage, and unleashing a Lightning Bolt or a Chain Lightning at 150% effectiveness. Deals reduced damage beyond 5 targets. Consumes Maelstrom Weapon for increased damage.",
                 "uncertain": true
             },
             "formulaModifierSpellIds": [],
@@ -8763,7 +8789,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Devastate nearby enemies with a Primordial Storm, dealing (varies) Flamestrike, (varies) Froststrike, (varies) Stormstrike damage, and unleashing a Lightning Bolt or a Chain Lightning at 100% effectiveness. Deals reduced damage beyond 5 targets. Consumes Maelstrom Weapon for increased damage.",
+                            "text": "Devastate nearby enemies with a Primordial Storm, dealing ≈118.8% of Attack Power Flamestrike, ≈118.8% of Attack Power Froststrike, ≈118.8% of Attack Power Stormstrike damage, and unleashing a Lightning Bolt or a Chain Lightning at 100% effectiveness. Deals reduced damage beyond 5 targets. Consumes Maelstrom Weapon for increased damage.",
                             "uncertain": true
                         },
                         "category": "Other",
@@ -8779,7 +8805,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Sundering transforms into a single use Primordial Storm for 15 after it is cast. Primordial Storm Devastate nearby enemies with a Primordial Storm dealing (varies) Flamestrike, (varies) Froststrike, (varies) Stormstrike damage, and unleashing a Lightning Bolt or a Chain Lightning at 150% effectiveness. Deals reduced damage beyond 5 targets. Consumes Maelstrom Weapon for increased damage.",
+                            "text": "Sundering transforms into a single use Primordial Storm for 15 after it is cast. Primordial Storm Devastate nearby enemies with a Primordial Storm dealing ≈118.8% of Attack Power Flamestrike, ≈118.8% of Attack Power Froststrike, ≈118.8% of Attack Power Stormstrike damage, and unleashing a Lightning Bolt or a Chain Lightning at 150% effectiveness. Deals reduced damage beyond 5 targets. Consumes Maelstrom Weapon for increased damage.",
                             "uncertain": true
                         },
                         "category": "Other",
@@ -9151,8 +9177,8 @@
             "spellId": 10478,
             "category": "Defensive",
             "description": {
-                "text": "While transformed into a Ghost Wolf, you gain 5% increased movement speed and 5% damage reduction every (varies) sec, stacking up to 4 times.",
-                "uncertain": true
+                "text": "While transformed into a Ghost Wolf, you gain 5% increased movement speed and 5% damage reduction every 1 sec, stacking up to 4 times.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -9350,8 +9376,8 @@
             "spellId": 10585,
             "category": "Other",
             "description": {
-                "text": "During Doom Winds or Ascendance, you generate 1 Maelstrom Weapon stack every (varies) sec.",
-                "uncertain": true
+                "text": "During Doom Winds or Ascendance, you generate 1 Maelstrom Weapon stack every 1 sec.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -9679,8 +9705,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Transform into an Air Ascendant for 15 and unleash Doom Winds, reducing the cooldown and cost of Stormstrike by 60%, and transforming your auto attack and Stormstrike into Wind attacks which bypass armor and have a (varies) yd range. Maelstrom Weapon spenders have a 0.5% chance to unleash Doom Winds per Maelstrom Weapon spent while Ascendance is not active.",
-                            "uncertain": true
+                            "text": "Transform into an Air Ascendant for 15 and unleash Doom Winds, reducing the cooldown and cost of Stormstrike by 60%, and transforming your auto attack and Stormstrike into Wind attacks which bypass armor and have a 30 yd range. Maelstrom Weapon spenders have a 0.5% chance to unleash Doom Winds per Maelstrom Weapon spent while Ascendance is not active.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -9699,6 +9725,7 @@
                                         "charges": null,
                                         "max_stacks": null,
                                         "proc_chance": null,
+                                        "proc_cooldown_seconds": null,
                                         "cooldown_seconds": null,
                                         "cooldown_scaling_note": null,
                                         "duration_seconds": null,
@@ -9843,8 +9870,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Transform into an Air Ascendant for 15 and unleash Doom Winds, reducing the cooldown and cost of Stormstrike by 60%, and transforming your auto attack and Stormstrike into Wind attacks which bypass armor and have a (varies) yd range. Maelstrom Weapon spenders have a 0.5% chance to unleash Doom Winds per Maelstrom Weapon spent while Ascendance is not active.",
-                            "uncertain": true
+                            "text": "Transform into an Air Ascendant for 15 and unleash Doom Winds, reducing the cooldown and cost of Stormstrike by 60%, and transforming your auto attack and Stormstrike into Wind attacks which bypass armor and have a 30 yd range. Maelstrom Weapon spenders have a 0.5% chance to unleash Doom Winds per Maelstrom Weapon spent while Ascendance is not active.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -9863,6 +9890,7 @@
                                         "charges": null,
                                         "max_stacks": null,
                                         "proc_chance": null,
+                                        "proc_cooldown_seconds": null,
                                         "cooldown_seconds": null,
                                         "cooldown_scaling_note": null,
                                         "duration_seconds": null,
@@ -10071,8 +10099,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Transform into an Air Ascendant for 15 and unleash Doom Winds, reducing the cooldown and cost of Stormstrike by 60%, and transforming your auto attack and Stormstrike into Wind attacks which bypass armor and have a (varies) yd range. Maelstrom Weapon spenders have a 0.5% chance to unleash Doom Winds per Maelstrom Weapon spent while Ascendance is not active.",
-                            "uncertain": true
+                            "text": "Transform into an Air Ascendant for 15 and unleash Doom Winds, reducing the cooldown and cost of Stormstrike by 60%, and transforming your auto attack and Stormstrike into Wind attacks which bypass armor and have a 30 yd range. Maelstrom Weapon spenders have a 0.5% chance to unleash Doom Winds per Maelstrom Weapon spent while Ascendance is not active.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -10091,6 +10119,7 @@
                                         "charges": null,
                                         "max_stacks": null,
                                         "proc_chance": null,
+                                        "proc_cooldown_seconds": null,
                                         "cooldown_seconds": null,
                                         "cooldown_scaling_note": null,
                                         "duration_seconds": null,
@@ -10155,7 +10184,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Devastate nearby enemies with a Primordial Storm, dealing (varies) Flamestrike, (varies) Froststrike, (varies) Stormstrike damage, and unleashing a Lightning Bolt or a Chain Lightning at 100% effectiveness. Deals reduced damage beyond 5 targets. Consumes Maelstrom Weapon for increased damage.",
+                            "text": "Devastate nearby enemies with a Primordial Storm, dealing ≈118.8% of Attack Power Flamestrike, ≈118.8% of Attack Power Froststrike, ≈118.8% of Attack Power Stormstrike damage, and unleashing a Lightning Bolt or a Chain Lightning at 100% effectiveness. Deals reduced damage beyond 5 targets. Consumes Maelstrom Weapon for increased damage.",
                             "uncertain": true
                         },
                         "category": "Other",
@@ -10171,7 +10200,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Sundering transforms into a single use Primordial Storm for 15 after it is cast. Primordial Storm Devastate nearby enemies with a Primordial Storm dealing (varies) Flamestrike, (varies) Froststrike, (varies) Stormstrike damage, and unleashing a Lightning Bolt or a Chain Lightning at 150% effectiveness. Deals reduced damage beyond 5 targets. Consumes Maelstrom Weapon for increased damage.",
+                            "text": "Sundering transforms into a single use Primordial Storm for 15 after it is cast. Primordial Storm Devastate nearby enemies with a Primordial Storm dealing ≈118.8% of Attack Power Flamestrike, ≈118.8% of Attack Power Froststrike, ≈118.8% of Attack Power Stormstrike damage, and unleashing a Lightning Bolt or a Chain Lightning at 150% effectiveness. Deals reduced damage beyond 5 targets. Consumes Maelstrom Weapon for increased damage.",
                             "uncertain": true
                         },
                         "category": "Other",
@@ -10363,7 +10392,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Sundering transforms into a single use Primordial Storm for 15 after it is cast. Primordial Storm Devastate nearby enemies with a Primordial Storm dealing (varies) Flamestrike, (varies) Froststrike, (varies) Stormstrike damage, and unleashing a Lightning Bolt or a Chain Lightning at 150% effectiveness. Deals reduced damage beyond 5 targets. Consumes Maelstrom Weapon for increased damage.",
+                            "text": "Sundering transforms into a single use Primordial Storm for 15 after it is cast. Primordial Storm Devastate nearby enemies with a Primordial Storm dealing ≈118.8% of Attack Power Flamestrike, ≈118.8% of Attack Power Froststrike, ≈118.8% of Attack Power Stormstrike damage, and unleashing a Lightning Bolt or a Chain Lightning at 150% effectiveness. Deals reduced damage beyond 5 targets. Consumes Maelstrom Weapon for increased damage.",
                             "uncertain": true
                         },
                         "category": "Other",
@@ -10591,8 +10620,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Each stack of Maelstrom Weapon consumed has a 0.6% chance to activate Ascendance for 6 sec. Ascendance Transform into an Air Ascendant for 15 and unleash Doom Winds, reducing the cooldown and cost of Stormstrike by 60%, and transforming your auto attack and Stormstrike into Wind attacks which bypass armor and have a (varies) yd range.",
-                            "uncertain": true
+                            "text": "Each stack of Maelstrom Weapon consumed has a 0.6% chance to activate Ascendance for 6 sec. Ascendance Transform into an Air Ascendant for 15 and unleash Doom Winds, reducing the cooldown and cost of Stormstrike by 60%, and transforming your auto attack and Stormstrike into Wind attacks which bypass armor and have a 30 yd range.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -10625,6 +10654,7 @@
                             "charges": null,
                             "max_stacks": null,
                             "proc_chance": "101.00",
+                            "proc_cooldown_seconds": null,
                             "cooldown_seconds": null,
                             "cooldown_scaling_note": null,
                             "duration_seconds": null,
@@ -10672,6 +10702,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:23:23.000000Z",
@@ -10690,6 +10721,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:23:23.000000Z",
@@ -10708,6 +10740,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:23:23.000000Z",
@@ -10762,7 +10795,7 @@
             "spellId": 10567,
             "category": "Offensive",
             "description": {
-                "text": "Shatters a line of earth in front of you with your main hand weapon, causing (varies) Flamestrike damage to any enemy hit.",
+                "text": "Shatters a line of earth in front of you with your main hand weapon, causing ≈253.9% of Attack Power Flamestrike damage to any enemy hit.",
                 "uncertain": true
             },
             "formulaModifierSpellIds": [],
@@ -10982,7 +11015,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Sundering transforms into a single use Primordial Storm for 15 after it is cast. Primordial Storm Devastate nearby enemies with a Primordial Storm dealing (varies) Flamestrike, (varies) Froststrike, (varies) Stormstrike damage, and unleashing a Lightning Bolt or a Chain Lightning at 150% effectiveness. Deals reduced damage beyond 5 targets. Consumes Maelstrom Weapon for increased damage.",
+                            "text": "Sundering transforms into a single use Primordial Storm for 15 after it is cast. Primordial Storm Devastate nearby enemies with a Primordial Storm dealing ≈118.8% of Attack Power Flamestrike, ≈118.8% of Attack Power Froststrike, ≈118.8% of Attack Power Stormstrike damage, and unleashing a Lightning Bolt or a Chain Lightning at 150% effectiveness. Deals reduced damage beyond 5 targets. Consumes Maelstrom Weapon for increased damage.",
                             "uncertain": true
                         },
                         "category": "Other",
@@ -11046,7 +11079,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Sundering transforms into a single use Primordial Storm for 15 after it is cast. Primordial Storm Devastate nearby enemies with a Primordial Storm dealing (varies) Flamestrike, (varies) Froststrike, (varies) Stormstrike damage, and unleashing a Lightning Bolt or a Chain Lightning at 150% effectiveness. Deals reduced damage beyond 5 targets. Consumes Maelstrom Weapon for increased damage.",
+                            "text": "Sundering transforms into a single use Primordial Storm for 15 after it is cast. Primordial Storm Devastate nearby enemies with a Primordial Storm dealing ≈118.8% of Attack Power Flamestrike, ≈118.8% of Attack Power Froststrike, ≈118.8% of Attack Power Stormstrike damage, and unleashing a Lightning Bolt or a Chain Lightning at 150% effectiveness. Deals reduced damage beyond 5 targets. Consumes Maelstrom Weapon for increased damage.",
                             "uncertain": true
                         },
                         "category": "Other",
@@ -11368,7 +11401,7 @@
             "spellId": 10280,
             "category": "Other",
             "description": {
-                "text": "Summons a totem at the target location that creates a Tremor immediately and every (varies) sec for (varies) Flamestrike damage. Damage reduced beyond 5 targets. Lasts 25.",
+                "text": "Summons a totem at the target location that creates a Tremor immediately and every 6 sec for ≈122.4% of Attack Power Flamestrike damage. Damage reduced beyond 5 targets. Lasts 25.",
                 "uncertain": true
             },
             "formulaModifierSpellIds": [],
@@ -11396,7 +11429,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Lightning Bolt, Chain Lightning and Elemental Blast has a chance to unleash a Surging Bolt at your Surging Totem, increasing the totem's damage by 10%, and then redirecting the bolt to your target for (varies) Nature damage. The damage bonus effect can stack.",
+                            "text": "Lightning Bolt, Chain Lightning and Elemental Blast has a chance to unleash a Surging Bolt at your Surging Totem, increasing the totem's damage by 10%, and then redirecting the bolt to your target for ≈161% of Attack Power Nature damage. The damage bonus effect can stack.",
                             "uncertain": true
                         },
                         "category": "Defensive",
@@ -11447,7 +11480,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Lightning Bolt, Chain Lightning and Elemental Blast has a chance to unleash a Surging Bolt at your Surging Totem, increasing the totem's damage by 10%, and then redirecting the bolt to your target for (varies) Nature damage. The damage bonus effect can stack.",
+                            "text": "Lightning Bolt, Chain Lightning and Elemental Blast has a chance to unleash a Surging Bolt at your Surging Totem, increasing the totem's damage by 10%, and then redirecting the bolt to your target for ≈161% of Attack Power Nature damage. The damage bonus effect can stack.",
                             "uncertain": true
                         },
                         "category": "Other",
@@ -11495,7 +11528,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Lightning Bolt, Chain Lightning and Elemental Blast has a chance to unleash a Surging Bolt at your Surging Totem, increasing the totem's damage by 10%, and then redirecting the bolt to your target for (varies) Nature damage. The damage bonus effect can stack.",
+                            "text": "Lightning Bolt, Chain Lightning and Elemental Blast has a chance to unleash a Surging Bolt at your Surging Totem, increasing the totem's damage by 10%, and then redirecting the bolt to your target for ≈161% of Attack Power Nature damage. The damage bonus effect can stack.",
                             "uncertain": true
                         },
                         "category": "Other",
@@ -12309,8 +12342,8 @@
             "spellId": 10482,
             "category": "Other",
             "description": {
-                "text": "Ghost Wolf removes snares and increases your movement speed by an additional 25% for the first 3. May only occur once every (varies) sec.",
-                "uncertain": true
+                "text": "Ghost Wolf removes snares and increases your movement speed by an additional 25% for the first 3. May only occur once every 20 sec.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -12489,7 +12522,7 @@
             "spellId": 10636,
             "category": "Other",
             "description": {
-                "text": "Lightning Bolt, Chain Lightning and Elemental Blast has a chance to unleash a Surging Bolt at your Surging Totem, increasing the totem's damage by 10%, and then redirecting the bolt to your target for (varies) Nature damage. The damage bonus effect can stack.",
+                "text": "Lightning Bolt, Chain Lightning and Elemental Blast has a chance to unleash a Surging Bolt at your Surging Totem, increasing the totem's damage by 10%, and then redirecting the bolt to your target for ≈161% of Attack Power Nature damage. The damage bonus effect can stack.",
                 "uncertain": true
             },
             "formulaModifierSpellIds": [],
@@ -13074,8 +13107,8 @@
             "spellId": 10642,
             "category": "Defensive",
             "description": {
-                "text": "If you have a totem active, your totem grants you a shield absorbing (varies) damage for 30 every 30.",
-                "uncertain": true
+                "text": "If you have a totem active, your totem grants you a shield absorbing ≈6% of maximum health damage for 30 every 30.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -13449,8 +13482,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Transform into an Air Ascendant for 15 and unleash Doom Winds, reducing the cooldown and cost of Stormstrike by 60%, and transforming your auto attack and Stormstrike into Wind attacks which bypass armor and have a (varies) yd range. Maelstrom Weapon spenders have a 0.5% chance to unleash Doom Winds per Maelstrom Weapon spent while Ascendance is not active.",
-                            "uncertain": true
+                            "text": "Transform into an Air Ascendant for 15 and unleash Doom Winds, reducing the cooldown and cost of Stormstrike by 60%, and transforming your auto attack and Stormstrike into Wind attacks which bypass armor and have a 30 yd range. Maelstrom Weapon spenders have a 0.5% chance to unleash Doom Winds per Maelstrom Weapon spent while Ascendance is not active.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -13469,6 +13502,7 @@
                                         "charges": null,
                                         "max_stacks": null,
                                         "proc_chance": null,
+                                        "proc_cooldown_seconds": null,
                                         "cooldown_seconds": null,
                                         "cooldown_scaling_note": null,
                                         "duration_seconds": null,
@@ -13619,6 +13653,7 @@
                             "charges": null,
                             "max_stacks": null,
                             "proc_chance": "101.00",
+                            "proc_cooldown_seconds": null,
                             "cooldown_seconds": null,
                             "cooldown_scaling_note": null,
                             "duration_seconds": null,
@@ -13666,6 +13701,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:23:23.000000Z",
@@ -13684,6 +13720,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:23:23.000000Z",
@@ -13702,6 +13739,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:23:23.000000Z",

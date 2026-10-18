@@ -1,6 +1,6 @@
 {
-    "generatedAt": "2026-10-07T21:49:18+00:00",
-    "spellCacheVersion": 27,
+    "generatedAt": "2026-10-18T02:37:37+00:00",
+    "spellCacheVersion": 29,
     "codeFingerprint": "dev",
     "entries": [
         {
@@ -446,8 +446,8 @@
             "spellId": 1953,
             "category": "Other",
             "description": {
-                "text": "Every (varies) sec, Fiery Brand spreads to one nearby enemy.",
-                "uncertain": true
+                "text": "Every 1 sec, Fiery Brand spreads to one nearby enemy.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -686,7 +686,7 @@
             "spellId": 1759,
             "category": "Crowd Control",
             "description": {
-                "text": "Unleash an eruption of fel energy, dealing (varies) Chaos damage and stunning all nearby enemies for 3. Each enemy stunned by Chaos Nova has a 30% chance to generate a Lesser Soul Fragment.",
+                "text": "Unleash an eruption of fel energy, dealing ≈27.5% of Attack Power Chaos damage and stunning all nearby enemies for 3. Each enemy stunned by Chaos Nova has a 30% chance to generate a Lesser Soul Fragment.",
                 "uncertain": true
             },
             "formulaModifierSpellIds": [],
@@ -814,7 +814,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Brand yourself and an enemy target with demonic symbols, reducing the damage you take by (varies)% and instantly dealing 40 Fire damage and (varies) Fire damage over 12 to the enemy.",
+                            "text": "Brand yourself and an enemy target with demonic symbols, reducing the damage you take by (varies)% and instantly dealing 40 Fire damage and ≈386.4% of Attack Power Fire damage over 12 to the enemy.",
                             "uncertain": true
                         },
                         "category": "Defensive",
@@ -830,7 +830,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Brand yourself and an enemy target with demonic symbols, reducing the damage you take by (varies)% and instantly dealing 40 Fire damage and (varies) Fire damage over 12 to the enemy.",
+                            "text": "Brand yourself and an enemy target with demonic symbols, reducing the damage you take by (varies)% and instantly dealing 40 Fire damage and ≈386.4% of Attack Power Fire damage over 12 to the enemy.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -1118,8 +1118,8 @@
             "spellId": 1926,
             "category": "Other",
             "description": {
-                "text": "Your first Spirit Bomb after entering demon form causes a Shadowflame meteor shower to assault the area, dealing (varies) Shadowflame damage over 6 sec.",
-                "uncertain": true
+                "text": "Your first Spirit Bomb after entering demon form causes a Shadowflame meteor shower to assault the area, dealing ≈1,080% of Attack Power Shadowflame damage over 6 sec.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -1287,6 +1287,7 @@
                             "charges": null,
                             "max_stacks": null,
                             "proc_chance": null,
+                            "proc_cooldown_seconds": null,
                             "cooldown_seconds": null,
                             "cooldown_scaling_note": null,
                             "duration_seconds": null,
@@ -1334,6 +1335,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:22:05.000000Z",
@@ -1397,8 +1399,8 @@
             "spellId": 1149,
             "category": "Offensive",
             "description": {
-                "text": "Surge with fel power, increasing your Armor by (varies), and your Parry chance by 8%, for 12.",
-                "uncertain": true
+                "text": "Surge with fel power, increasing your Armor by ≈75% of Agility, and your Parry chance by 8%, for 12.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -1591,6 +1593,7 @@
                             "charges": null,
                             "max_stacks": null,
                             "proc_chance": null,
+                            "proc_cooldown_seconds": null,
                             "cooldown_seconds": null,
                             "cooldown_scaling_note": null,
                             "duration_seconds": null,
@@ -1638,6 +1641,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:22:05.000000Z",
@@ -1656,6 +1660,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:22:05.000000Z",
@@ -1929,7 +1934,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Brand yourself and an enemy target with demonic symbols, reducing the damage you take by (varies)% and instantly dealing 40 Fire damage and (varies) Fire damage over 12 to the enemy.",
+                            "text": "Brand yourself and an enemy target with demonic symbols, reducing the damage you take by (varies)% and instantly dealing 40 Fire damage and ≈386.4% of Attack Power Fire damage over 12 to the enemy.",
                             "uncertain": true
                         },
                         "category": "Defensive",
@@ -1945,7 +1950,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Brand yourself and an enemy target with demonic symbols, reducing the damage you take by (varies)% and instantly dealing 40 Fire damage and (varies) Fire damage over 12 to the enemy.",
+                            "text": "Brand yourself and an enemy target with demonic symbols, reducing the damage you take by (varies)% and instantly dealing 40 Fire damage and ≈386.4% of Attack Power Fire damage over 12 to the enemy.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -1997,6 +2002,7 @@
                                         "charges": null,
                                         "max_stacks": null,
                                         "proc_chance": null,
+                                        "proc_cooldown_seconds": null,
                                         "cooldown_seconds": null,
                                         "cooldown_scaling_note": null,
                                         "duration_seconds": null,
@@ -2382,8 +2388,8 @@
             "spellId": 1956,
             "category": "Defensive",
             "description": {
-                "text": "Unleash the fel within you, damaging enemies directly in front of you for (varies) Fire damage over 2. Causing damage also heals you for up to (varies) health.",
-                "uncertain": true
+                "text": "Unleash the fel within you, damaging enemies directly in front of you for ≈411% of Attack Power Fire damage over 2. Causing damage also heals you for up to ≈5,625% of Attack Power health.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -2863,7 +2869,7 @@
             "spellId": 1948,
             "category": "Offensive",
             "description": {
-                "text": "Brand yourself and an enemy target with demonic symbols, reducing the damage you take by (varies)% and instantly dealing 40 Fire damage and (varies) Fire damage over 12 to the enemy.",
+                "text": "Brand yourself and an enemy target with demonic symbols, reducing the damage you take by (varies)% and instantly dealing 40 Fire damage and ≈386.4% of Attack Power Fire damage over 12 to the enemy.",
                 "uncertain": true
             },
             "formulaModifierSpellIds": [],
@@ -2987,8 +2993,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "6% of your Fire damage shields you, up to a maximum of (varies). Shield and maximum values are doubled while Fiery Brand is active.",
-                            "uncertain": true
+                            "text": "6% of your Fire damage shields you, up to a maximum of ≈2,000% of maximum health. Shield and maximum values are doubled while Fiery Brand is active.",
+                            "uncertain": false
                         },
                         "category": "Defensive",
                         "cooldown": {
@@ -3003,8 +3009,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Every (varies) sec, Fiery Brand spreads to one nearby enemy.",
-                            "uncertain": true
+                            "text": "Every 1 sec, Fiery Brand spreads to one nearby enemy.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -3035,8 +3041,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "6% of your Fire damage shields you, up to a maximum of (varies). Shield and maximum values are doubled while Fiery Brand is active.",
-                            "uncertain": true
+                            "text": "6% of your Fire damage shields you, up to a maximum of ≈10% of maximum health. Shield and maximum values are doubled while Fiery Brand is active.",
+                            "uncertain": false
                         },
                         "category": "Defensive",
                         "cooldown": {
@@ -3103,7 +3109,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Brand yourself and an enemy target with demonic symbols, reducing the damage you take by (varies)% and instantly dealing 40 Fire damage and (varies) Fire damage over 12 to the enemy.",
+                            "text": "Brand yourself and an enemy target with demonic symbols, reducing the damage you take by (varies)% and instantly dealing 40 Fire damage and ≈386.4% of Attack Power Fire damage over 12 to the enemy.",
                             "uncertain": true
                         },
                         "category": "Defensive",
@@ -3119,7 +3125,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Brand yourself and an enemy target with demonic symbols, reducing the damage you take by (varies)% and instantly dealing 40 Fire damage and (varies) Fire damage over 12 to the enemy.",
+                            "text": "Brand yourself and an enemy target with demonic symbols, reducing the damage you take by (varies)% and instantly dealing 40 Fire damage and ≈386.4% of Attack Power Fire damage over 12 to the enemy.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -3135,7 +3141,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Fiery Brand deals (varies) Fire damage every (varies) sec.",
+                            "text": "Fiery Brand deals (varies) Fire damage every 1 sec.",
                             "uncertain": true
                         },
                         "category": "Other",
@@ -3164,6 +3170,7 @@
                             "charges": null,
                             "max_stacks": null,
                             "proc_chance": null,
+                            "proc_cooldown_seconds": null,
                             "cooldown_seconds": null,
                             "cooldown_scaling_note": null,
                             "duration_seconds": null,
@@ -3211,6 +3218,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:22:06.000000Z",
@@ -3229,6 +3237,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:22:06.000000Z",
@@ -3259,6 +3268,7 @@
                             "charges": null,
                             "max_stacks": null,
                             "proc_chance": null,
+                            "proc_cooldown_seconds": null,
                             "cooldown_seconds": null,
                             "cooldown_scaling_note": null,
                             "duration_seconds": null,
@@ -3306,6 +3316,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:22:06.000000Z",
@@ -3324,6 +3335,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:22:06.000000Z",
@@ -3960,7 +3972,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Fracture has a 35% chance to grant 1 stack of Voidfall. Upon reaching 3 stacks of Voidfall, Soul Cleave consumes a stack to reach into the Void and call down a meteor strike at your target's location, dealing (varies) Shadowflame damage to all enemies within (varies) yards. Damage reduced beyond 8 targets.",
+                            "text": "Fracture has a 35% chance to grant 1 stack of Voidfall. Upon reaching 3 stacks of Voidfall, Soul Cleave consumes a stack to reach into the Void and call down a meteor strike at your target's location, dealing ≈540% of Attack Power Shadowflame damage to all enemies within (varies) yards. Damage reduced beyond 8 targets.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -3976,7 +3988,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Fracture has a 35% chance to grant 1 stack of Voidfall. Upon reaching 3 stacks of Voidfall, Soul Cleave consumes a stack to reach into the Void and call down a meteor strike at your target's location, dealing (varies) Shadowflame damage to all enemies within (varies) yards. Damage reduced beyond 8 targets.",
+                            "text": "Fracture has a 35% chance to grant 1 stack of Voidfall. Upon reaching 3 stacks of Voidfall, Soul Cleave consumes a stack to reach into the Void and call down a meteor strike at your target's location, dealing ≈540% of Attack Power Shadowflame damage to all enemies within (varies) yards. Damage reduced beyond 8 targets.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -3992,7 +4004,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Fracture has a 35% chance to grant 1 stack of Voidfall. Upon reaching 3 stacks of Voidfall, Soul Cleave consumes a stack to reach into the Void and call down a meteor strike at your target's location, dealing (varies) Shadowflame damage to all enemies within (varies) yards. Damage reduced beyond 8 targets.",
+                            "text": "Fracture has a 35% chance to grant 1 stack of Voidfall. Upon reaching 3 stacks of Voidfall, Soul Cleave consumes a stack to reach into the Void and call down a meteor strike at your target's location, dealing ≈540% of Attack Power Shadowflame damage to all enemies within (varies) yards. Damage reduced beyond 8 targets.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -4008,7 +4020,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Fracture has a 10% chance to grant (varies) stacks of Voidfall. Upon reaching 3 stacks of Voidfall, Soul Cleave consumes a stack to reach into the Void and call down a meteor strike at your target's location, dealing (varies) Shadowflame damage to all enemies within (varies) yards. Damage reduced beyond 50 targets.",
+                            "text": "Fracture has a 10% chance to grant (varies) stacks of Voidfall. Upon reaching 3 stacks of Voidfall, Soul Cleave consumes a stack to reach into the Void and call down a meteor strike at your target's location, dealing ≈540% of Attack Power Shadowflame damage to all enemies within (varies) yards. Damage reduced beyond 50 targets.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -4024,7 +4036,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Fracture has a 10% chance to grant (varies) stacks of Voidfall. Upon reaching 3 stacks of Voidfall, Soul Cleave consumes a stack to reach into the Void and call down a meteor strike at your target's location, dealing (varies) Shadowflame damage to all enemies within (varies) yards. Damage reduced beyond 50 targets.",
+                            "text": "Fracture has a 10% chance to grant (varies) stacks of Voidfall. Upon reaching 3 stacks of Voidfall, Soul Cleave consumes a stack to reach into the Void and call down a meteor strike at your target's location, dealing ≈540% of Attack Power Shadowflame damage to all enemies within (varies) yards. Damage reduced beyond 50 targets.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -4040,7 +4052,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Fracture has a 35% chance to grant 1 stack of Voidfall. Upon reaching 3 stacks of Voidfall, Soul Cleave consumes a stack to reach into the Void and call down a meteor strike at your target's location, dealing (varies) Shadowflame damage to all enemies within (varies) yards. Damage reduced beyond 8 targets.",
+                            "text": "Fracture has a 35% chance to grant 1 stack of Voidfall. Upon reaching 3 stacks of Voidfall, Soul Cleave consumes a stack to reach into the Void and call down a meteor strike at your target's location, dealing ≈540% of Attack Power Shadowflame damage to all enemies within (varies) yards. Damage reduced beyond 8 targets.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -4460,7 +4472,7 @@
             "spellId": 1280,
             "category": "Defensive",
             "description": {
-                "text": "Engulf yourself in flames, instantly causing 15,000 Fire damage to enemies within 8 yards and radiating -90,000 Fire damage over 6. Generates 20 Fury over 6.",
+                "text": "Engulf yourself in flames, instantly causing 15,000 Fire damage to enemies within 8 yards and radiating ≈74.8% of Attack Power Fire damage over 6. Generates 20 Fury over 6.",
                 "uncertain": false
             },
             "formulaModifierSpellIds": [],
@@ -4488,7 +4500,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game) increases your armor by 20% and causes melee attackers to suffer 20 Chaos damage.",
+                            "text": "(varies by condition — check in-game) increases your armor by 20% and causes melee attackers to suffer ≈12% of Attack Power Chaos damage.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -4520,7 +4532,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game) increases your armor by 20% and causes melee attackers to suffer 20 Chaos damage.",
+                            "text": "(varies by condition — check in-game) increases your armor by 20% and causes melee attackers to suffer ≈12% of Attack Power Chaos damage.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -4664,8 +4676,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Immolation Aura has 10% increased critical strike chance and generates 3-3 Fury when it deals critical damage. This effect may only occur once per 0.1 sec.",
-                            "uncertain": true
+                            "text": "Immolation Aura has 10% increased critical strike chance and generates 3-3 Fury when it deals critical damage. This effect may only occur once per 1 sec.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -5080,7 +5092,7 @@
             "spellId": 1771,
             "category": "Offensive",
             "description": {
-                "text": "(varies by condition — check in-game) increases your armor by 20% and causes melee attackers to suffer 20 Chaos damage.",
+                "text": "(varies by condition — check in-game) increases your armor by 20% and causes melee attackers to suffer ≈12% of Attack Power Chaos damage.",
                 "uncertain": true
             },
             "formulaModifierSpellIds": [],
@@ -5110,7 +5122,7 @@
             "spellId": 1105,
             "category": "Mobility",
             "description": {
-                "text": "Leap through the air toward a targeted location, dealing (varies) Fire damage to all enemies within 6 yards.",
+                "text": "Leap through the air toward a targeted location, dealing ≈62.6% of Attack Power Fire damage to all enemies within 6 yards.",
                 "uncertain": true
             },
             "formulaModifierSpellIds": [],
@@ -5363,6 +5375,7 @@
                             "charges": null,
                             "max_stacks": null,
                             "proc_chance": null,
+                            "proc_cooldown_seconds": null,
                             "cooldown_seconds": null,
                             "cooldown_scaling_note": null,
                             "duration_seconds": null,
@@ -5410,6 +5423,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": "mul",
                                     "rank_values": [
                                         1,
@@ -5431,6 +5445,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": "mul",
                                     "rank_values": [
                                         1,
@@ -5452,6 +5467,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": "mul",
                                     "rank_values": [
                                         1,
@@ -5485,6 +5501,7 @@
                             "charges": null,
                             "max_stacks": null,
                             "proc_chance": null,
+                            "proc_cooldown_seconds": null,
                             "cooldown_seconds": null,
                             "cooldown_scaling_note": null,
                             "duration_seconds": null,
@@ -5532,6 +5549,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:22:05.000000Z",
@@ -5550,6 +5568,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:22:05.000000Z",
@@ -5568,6 +5587,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:22:05.000000Z",
@@ -6049,8 +6069,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Your first Spirit Bomb after entering demon form causes a Shadowflame meteor shower to assault the area, dealing (varies) Shadowflame damage over 40 sec.",
-                            "uncertain": true
+                            "text": "Your first Spirit Bomb after entering demon form causes a Shadowflame meteor shower to assault the area, dealing ≈7,200% of Attack Power Shadowflame damage over 40 sec.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -6081,8 +6101,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Your first Spirit Bomb after entering demon form causes a Shadowflame meteor shower to assault the area, dealing (varies) Shadowflame damage over 6 sec.",
-                            "uncertain": true
+                            "text": "Your first Spirit Bomb after entering demon form causes a Shadowflame meteor shower to assault the area, dealing ≈1,080% of Attack Power Shadowflame damage over 6 sec.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -6131,6 +6151,7 @@
                             "charges": null,
                             "max_stacks": 1,
                             "proc_chance": "100.00",
+                            "proc_cooldown_seconds": null,
                             "cooldown_seconds": null,
                             "cooldown_scaling_note": null,
                             "duration_seconds": "12.00",
@@ -6178,6 +6199,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:22:04.000000Z",
@@ -6196,6 +6218,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:22:04.000000Z",
@@ -6784,8 +6807,8 @@
             "spellId": 1964,
             "category": "Defensive",
             "description": {
-                "text": "6% of your Fire damage shields you, up to a maximum of (varies). Shield and maximum values are doubled while Fiery Brand is active.",
-                "uncertain": true
+                "text": "6% of your Fire damage shields you, up to a maximum of ≈10% of maximum health. Shield and maximum values are doubled while Fiery Brand is active.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -7102,6 +7125,7 @@
                             "charges": null,
                             "max_stacks": null,
                             "proc_chance": null,
+                            "proc_cooldown_seconds": null,
                             "cooldown_seconds": null,
                             "cooldown_scaling_note": null,
                             "duration_seconds": null,
@@ -7149,6 +7173,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:22:05.000000Z",
@@ -7167,6 +7192,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:22:05.000000Z",
@@ -7196,7 +7222,7 @@
             "spellId": 1167,
             "category": "Offensive",
             "description": {
-                "text": "Place a Sigil of Flame at the target location that activates after 2. Deals 25 Chaos damage, and an additional (varies) Chaos damage over 8, to all enemies affected by the sigil. Generates 25 Fury.",
+                "text": "Place a Sigil of Flame at the target location that activates after 2. Deals 25 Chaos damage, and an additional ≈200% of Attack Power Chaos damage over 8, to all enemies affected by the sigil. Generates 25 Fury.",
                 "uncertain": true
             },
             "formulaModifierSpellIds": [],
@@ -7372,7 +7398,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Place a Sigil of Flame at the target location that activates after 8. Deals 25 Chaos damage, and an additional (varies) Chaos damage over 8, to all enemies affected by the sigil. Generates 25 Fury.",
+                            "text": "Place a Sigil of Flame at the target location that activates after 8. Deals 25 Chaos damage, and an additional ≈200% of Attack Power Chaos damage over 8, to all enemies affected by the sigil. Generates 25 Fury.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -7388,7 +7414,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Sigil of Flame deals an additional (varies) Chaos damage over 8, to all enemies affected by the sigil.",
+                            "text": "Sigil of Flame deals an additional ≈200% of Attack Power Chaos damage over 8, to all enemies affected by the sigil.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -7404,7 +7430,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Place a Sigil of Flame at the target location that activates after (varies). Deals 25 Chaos damage, and an additional (varies) Chaos damage over 8, to all enemies affected by the sigil. Generates 25 Fury.",
+                            "text": "Place a Sigil of Flame at the target location that activates after (varies). Deals 25 Chaos damage, and an additional ≈200% of Attack Power Chaos damage over 8, to all enemies affected by the sigil. Generates 25 Fury.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -7553,6 +7579,7 @@
                                         "charges": null,
                                         "max_stacks": null,
                                         "proc_chance": null,
+                                        "proc_cooldown_seconds": null,
                                         "cooldown_seconds": null,
                                         "cooldown_scaling_note": null,
                                         "duration_seconds": null,
@@ -7621,6 +7648,7 @@
                                         "charges": null,
                                         "max_stacks": null,
                                         "proc_chance": null,
+                                        "proc_cooldown_seconds": null,
                                         "cooldown_seconds": null,
                                         "cooldown_scaling_note": null,
                                         "duration_seconds": null,
@@ -7717,6 +7745,7 @@
                             "charges": null,
                             "max_stacks": null,
                             "proc_chance": null,
+                            "proc_cooldown_seconds": null,
                             "cooldown_seconds": null,
                             "cooldown_scaling_note": null,
                             "duration_seconds": null,
@@ -7764,6 +7793,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:22:05.000000Z",
@@ -7782,6 +7812,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:22:05.000000Z",
@@ -7919,6 +7950,7 @@
                             "charges": null,
                             "max_stacks": null,
                             "proc_chance": null,
+                            "proc_cooldown_seconds": null,
                             "cooldown_seconds": null,
                             "cooldown_scaling_note": null,
                             "duration_seconds": null,
@@ -7966,6 +7998,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:22:05.000000Z",
@@ -7984,6 +8017,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:22:05.000000Z",
@@ -8177,8 +8211,8 @@
             "spellId": 1988,
             "category": "Defensive",
             "description": {
-                "text": "Spirit Bomb shields you for 10, absorbing (varies) damage plus (varies) for each Soul Fragment consumed.",
-                "uncertain": true
+                "text": "Spirit Bomb shields you for 10, absorbing ≈8% of maximum health damage plus ≈2% of maximum health for each Soul Fragment consumed.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -8207,7 +8241,7 @@
             "spellId": 1950,
             "category": "Offensive",
             "description": {
-                "text": "Carve into the soul of your target, dealing 5 Fire damage and an additional (varies) Fire damage over 3.  Immediately shatters 3 Soul Fragments from the target and 1 additional Soul Fragment  every (varies) sec.",
+                "text": "Carve into the soul of your target, dealing ≈927% of Attack Power Fire damage and an additional ≈300% of Attack Power Fire damage over 3.  Immediately shatters 3 Soul Fragments from the target and 1 additional Soul Fragment  every 1 sec.",
                 "uncertain": true
             },
             "formulaModifierSpellIds": [],
@@ -8319,7 +8353,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Brand yourself and an enemy target with demonic symbols, reducing the damage you take by (varies)% and instantly dealing 40 Fire damage and (varies) Fire damage over 12 to the enemy.",
+                            "text": "Brand yourself and an enemy target with demonic symbols, reducing the damage you take by (varies)% and instantly dealing 40 Fire damage and ≈386.4% of Attack Power Fire damage over 12 to the enemy.",
                             "uncertain": true
                         },
                         "category": "Defensive",
@@ -8335,7 +8369,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Brand yourself and an enemy target with demonic symbols, reducing the damage you take by (varies)% and instantly dealing 40 Fire damage and (varies) Fire damage over 12 to the enemy.",
+                            "text": "Brand yourself and an enemy target with demonic symbols, reducing the damage you take by (varies)% and instantly dealing 40 Fire damage and ≈386.4% of Attack Power Fire damage over 12 to the enemy.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -8510,8 +8544,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Spirit Bomb shields you for 10, absorbing (varies) damage plus (varies) for each Soul Fragment consumed.",
-                            "uncertain": true
+                            "text": "Spirit Bomb shields you for 10, absorbing ≈8% of maximum health damage plus ≈2% of maximum health for each Soul Fragment consumed.",
+                            "uncertain": false
                         },
                         "category": "Defensive",
                         "cooldown": {
@@ -8558,8 +8592,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "When consuming a Soul Fragment would heal you above full health it shields you instead, up to a maximum of (varies).",
-                            "uncertain": true
+                            "text": "When consuming a Soul Fragment would heal you above full health it shields you instead, up to a maximum of ≈10% of maximum health.",
+                            "uncertain": false
                         },
                         "category": "Defensive",
                         "cooldown": {
@@ -8734,7 +8768,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Unleash an eruption of fel energy, dealing (varies) Chaos damage and stunning all nearby enemies for 3. Each enemy stunned by Chaos Nova has a 30% chance to generate a Lesser Soul Fragment.",
+                            "text": "Unleash an eruption of fel energy, dealing ≈27.5% of Attack Power Chaos damage and stunning all nearby enemies for 3. Each enemy stunned by Chaos Nova has a 30% chance to generate a Lesser Soul Fragment.",
                             "uncertain": true
                         },
                         "category": "Crowd Control",
@@ -8878,7 +8912,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Carve into the soul of your target, dealing 5 Fire damage and an additional (varies) Fire damage over 3.  Immediately shatters 3 Soul Fragments from the target and 1 additional Soul Fragment  every (varies) sec.",
+                            "text": "Carve into the soul of your target, dealing ≈927% of Attack Power Fire damage and an additional ≈300% of Attack Power Fire damage over 3.  Immediately shatters 3 Soul Fragments from the target and 1 additional Soul Fragment  every 1 sec.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -8926,8 +8960,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "When consuming a Soul Fragment would heal you above full health it shields you instead, up to a maximum of (varies).",
-                            "uncertain": true
+                            "text": "When consuming a Soul Fragment would heal you above full health it shields you instead, up to a maximum of ≈10% of maximum health.",
+                            "uncertain": false
                         },
                         "category": "Defensive",
                         "cooldown": {
@@ -8942,8 +8976,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Spirit Bomb shields you for 10, absorbing (varies) damage plus (varies) for each Soul Fragment consumed.",
-                            "uncertain": true
+                            "text": "Spirit Bomb shields you for 10, absorbing ≈8% of maximum health damage plus ≈2% of maximum health for each Soul Fragment consumed.",
+                            "uncertain": false
                         },
                         "category": "Defensive",
                         "cooldown": {
@@ -8993,7 +9027,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Shears an enemy for (varies) Physical damage, and shatters two Lesser Soul Fragments from your target. Generates 10 Fury.",
+                            "text": "Shears an enemy for ≈63.3% of Attack Power Physical damage, and shatters two Lesser Soul Fragments from your target. Generates 10 Fury.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -9137,7 +9171,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Carve into the soul of your target, dealing 5 Fire damage and an additional (varies) Fire damage over (varies).  Immediately shatters 3 Soul Fragments from the target and 1 additional Soul Fragment  every (varies) sec.",
+                            "text": "Carve into the soul of your target, dealing ≈463.5% of Attack Power Fire damage and an additional (varies) Fire damage over (varies).  Immediately shatters 3 Soul Fragments from the target and 1 additional Soul Fragment  every (varies) sec.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -9249,7 +9283,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Viciously strike an enemy and all other enemies in front of you for 25 Physical damage and heal yourself for (varies). Deals reduced damage beyond 5 targets. Consumes up to 2 Soul Fragments, increasing damage by 20% per fragment consumed.",
+                            "text": "Viciously strike an enemy and all other enemies in front of you for 25 Physical damage and heal yourself for ≈300% of Attack Power. Deals reduced damage beyond 5 targets. Consumes up to 2 Soul Fragments, increasing damage by 20% per fragment consumed.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -9317,6 +9351,7 @@
                                         "charges": null,
                                         "max_stacks": null,
                                         "proc_chance": null,
+                                        "proc_cooldown_seconds": null,
                                         "cooldown_seconds": null,
                                         "cooldown_scaling_note": null,
                                         "duration_seconds": null,
@@ -9630,8 +9665,8 @@
             "spellId": 1969,
             "category": "Defensive",
             "description": {
-                "text": "When consuming a Soul Fragment would heal you above full health it shields you instead, up to a maximum of (varies).",
-                "uncertain": true
+                "text": "When consuming a Soul Fragment would heal you above full health it shields you instead, up to a maximum of ≈10% of maximum health.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -9720,6 +9755,7 @@
                             "charges": null,
                             "max_stacks": null,
                             "proc_chance": null,
+                            "proc_cooldown_seconds": null,
                             "cooldown_seconds": null,
                             "cooldown_scaling_note": null,
                             "duration_seconds": null,
@@ -9767,6 +9803,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:22:05.000000Z",
@@ -9785,6 +9822,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:22:05.000000Z",
@@ -9826,8 +9864,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Spirit Bomb shields you for 10, absorbing (varies) damage plus (varies) for each Soul Fragment consumed.",
-                            "uncertain": true
+                            "text": "Spirit Bomb shields you for 10, absorbing ≈8% of maximum health damage plus ≈2% of maximum health for each Soul Fragment consumed.",
+                            "uncertain": false
                         },
                         "category": "Defensive",
                         "cooldown": {
@@ -9890,8 +9928,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Spirit Bomb shields you for 10, absorbing (varies) damage plus (varies) for each Soul Fragment consumed.",
-                            "uncertain": true
+                            "text": "Spirit Bomb shields you for 10, absorbing ≈8% of maximum health damage plus ≈2% of maximum health for each Soul Fragment consumed.",
+                            "uncertain": false
                         },
                         "category": "Defensive",
                         "cooldown": {
@@ -9958,8 +9996,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Your first Spirit Bomb after entering demon form causes a Shadowflame meteor shower to assault the area, dealing (varies) Shadowflame damage over 40 sec.",
-                            "uncertain": true
+                            "text": "Your first Spirit Bomb after entering demon form causes a Shadowflame meteor shower to assault the area, dealing ≈7,200% of Attack Power Shadowflame damage over 40 sec.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -10022,8 +10060,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Your first Spirit Bomb after entering demon form causes a Shadowflame meteor shower to assault the area, dealing (varies) Shadowflame damage over 6 sec.",
-                            "uncertain": true
+                            "text": "Your first Spirit Bomb after entering demon form causes a Shadowflame meteor shower to assault the area, dealing ≈1,080% of Attack Power Shadowflame damage over 6 sec.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -10135,7 +10173,7 @@
             "spellId": 1939,
             "category": "Other",
             "description": {
-                "text": "Void Ray applies Student of Suffering to you, increasing Mastery by (varies)% and granting 5 Fury every (varies) sec, for 6.",
+                "text": "Void Ray applies Student of Suffering to you, increasing Mastery by (varies)% and granting 5 Fury every 2 sec, for 6.",
                 "uncertain": true
             },
             "formulaModifierSpellIds": [],
@@ -10912,7 +10950,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Brand yourself and an enemy target with demonic symbols, reducing the damage you take by (varies)% and instantly dealing 40 Fire damage and (varies) Fire damage over 12 to the enemy.",
+                            "text": "Brand yourself and an enemy target with demonic symbols, reducing the damage you take by (varies)% and instantly dealing 40 Fire damage and ≈386.4% of Attack Power Fire damage over 12 to the enemy.",
                             "uncertain": true
                         },
                         "category": "Defensive",
@@ -10928,7 +10966,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Brand yourself and an enemy target with demonic symbols, reducing the damage you take by (varies)% and instantly dealing 40 Fire damage and (varies) Fire damage over 12 to the enemy.",
+                            "text": "Brand yourself and an enemy target with demonic symbols, reducing the damage you take by (varies)% and instantly dealing 40 Fire damage and ≈386.4% of Attack Power Fire damage over 12 to the enemy.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -11080,7 +11118,7 @@
             "spellId": 1913,
             "category": "Offensive",
             "description": {
-                "text": "Fracture has a 35% chance to grant 1 stack of Voidfall. Upon reaching 3 stacks of Voidfall, Soul Cleave consumes a stack to reach into the Void and call down a meteor strike at your target's location, dealing (varies) Shadowflame damage to all enemies within (varies) yards. Damage reduced beyond 8 targets.",
+                "text": "Fracture has a 35% chance to grant 1 stack of Voidfall. Upon reaching 3 stacks of Voidfall, Soul Cleave consumes a stack to reach into the Void and call down a meteor strike at your target's location, dealing ≈540% of Attack Power Shadowflame damage to all enemies within (varies) yards. Damage reduced beyond 8 targets.",
                 "uncertain": true
             },
             "formulaModifierSpellIds": [],
@@ -11094,7 +11132,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Fracture has a 35% chance to grant 1 stack of Voidfall. Upon reaching 3 stacks of Voidfall, Soul Cleave consumes a stack to reach into the Void and call down a meteor strike at your target's location, dealing (varies) Shadowflame damage to all enemies within (varies) yards. Damage reduced beyond 8 targets.",
+                            "text": "Fracture has a 35% chance to grant 1 stack of Voidfall. Upon reaching 3 stacks of Voidfall, Soul Cleave consumes a stack to reach into the Void and call down a meteor strike at your target's location, dealing ≈540% of Attack Power Shadowflame damage to all enemies within (varies) yards. Damage reduced beyond 8 targets.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -11110,7 +11148,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Fracture has a 35% chance to grant 1 stack of Voidfall. Upon reaching 3 stacks of Voidfall, Soul Cleave consumes a stack to reach into the Void and call down a meteor strike at your target's location, dealing (varies) Shadowflame damage to all enemies within (varies) yards. Damage reduced beyond 8 targets.",
+                            "text": "Fracture has a 35% chance to grant 1 stack of Voidfall. Upon reaching 3 stacks of Voidfall, Soul Cleave consumes a stack to reach into the Void and call down a meteor strike at your target's location, dealing ≈540% of Attack Power Shadowflame damage to all enemies within (varies) yards. Damage reduced beyond 8 targets.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -11126,7 +11164,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Fracture has a 35% chance to grant 1 stack of Voidfall. Upon reaching 3 stacks of Voidfall, Soul Cleave consumes a stack to reach into the Void and call down a meteor strike at your target's location, dealing (varies) Shadowflame damage to all enemies within (varies) yards. Damage reduced beyond 8 targets.",
+                            "text": "Fracture has a 35% chance to grant 1 stack of Voidfall. Upon reaching 3 stacks of Voidfall, Soul Cleave consumes a stack to reach into the Void and call down a meteor strike at your target's location, dealing ≈540% of Attack Power Shadowflame damage to all enemies within (varies) yards. Damage reduced beyond 8 targets.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -11142,7 +11180,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Fracture has a 10% chance to grant (varies) stacks of Voidfall. Upon reaching 3 stacks of Voidfall, Soul Cleave consumes a stack to reach into the Void and call down a meteor strike at your target's location, dealing (varies) Shadowflame damage to all enemies within (varies) yards. Damage reduced beyond 50 targets.",
+                            "text": "Fracture has a 10% chance to grant (varies) stacks of Voidfall. Upon reaching 3 stacks of Voidfall, Soul Cleave consumes a stack to reach into the Void and call down a meteor strike at your target's location, dealing ≈540% of Attack Power Shadowflame damage to all enemies within (varies) yards. Damage reduced beyond 50 targets.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -11158,7 +11196,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Fracture has a 10% chance to grant (varies) stacks of Voidfall. Upon reaching 3 stacks of Voidfall, Soul Cleave consumes a stack to reach into the Void and call down a meteor strike at your target's location, dealing (varies) Shadowflame damage to all enemies within (varies) yards. Damage reduced beyond 50 targets.",
+                            "text": "Fracture has a 10% chance to grant (varies) stacks of Voidfall. Upon reaching 3 stacks of Voidfall, Soul Cleave consumes a stack to reach into the Void and call down a meteor strike at your target's location, dealing ≈540% of Attack Power Shadowflame damage to all enemies within (varies) yards. Damage reduced beyond 50 targets.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -11447,8 +11485,8 @@
             "spellId": 1981,
             "category": "Other",
             "description": {
-                "text": "Immolation Aura has 10% increased critical strike chance and generates 3-3 Fury when it deals critical damage. This effect may only occur once per 0.1 sec.",
-                "uncertain": true
+                "text": "Immolation Aura has 10% increased critical strike chance and generates 3-3 Fury when it deals critical damage. This effect may only occur once per 1 sec.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {

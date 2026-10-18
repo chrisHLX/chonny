@@ -1,6 +1,6 @@
 {
-    "generatedAt": "2026-10-07T21:48:54+00:00",
-    "spellCacheVersion": 27,
+    "generatedAt": "2026-10-18T02:37:10+00:00",
+    "spellCacheVersion": 29,
     "codeFingerprint": "dev",
     "entries": [
         {
@@ -335,7 +335,7 @@
             "spellId": 7888,
             "category": "Crowd Control",
             "description": {
-                "text": "Hurls your shield at an enemy target, dealing (varies) Holy damage, interrupting and silencing the non-Player target for 3, and then jumping to 2 additional nearby enemies.  Shields you for 8, absorbing 75% as much damage as it dealt. Deals 0.1 additional damage to all enemies within 5 yds of each target hit.",
+                "text": "Hurls your shield at an enemy target, dealing ≈200% of Attack Power Holy damage, interrupting and silencing the non-Player target for 3, and then jumping to 2 additional nearby enemies.  Shields you for 8, absorbing 75% as much damage as it dealt. Deals ≈12% of Attack Power additional damage to all enemies within 5 yds of each target hit.",
                 "uncertain": true
             },
             "formulaModifierSpellIds": [],
@@ -655,6 +655,7 @@
                                         "charges": null,
                                         "max_stacks": null,
                                         "proc_chance": null,
+                                        "proc_cooldown_seconds": null,
                                         "cooldown_seconds": null,
                                         "cooldown_scaling_note": null,
                                         "duration_seconds": null,
@@ -995,7 +996,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "After casting Divine Toll, you instantly cast (varies by condition — check in-game) every (varies) sec. This effect lasts 15 sec.",
+                            "text": "After casting Divine Toll, you instantly cast (varies by condition — check in-game) every 5 sec. This effect lasts 15 sec.",
                             "uncertain": true
                         },
                         "category": "Other",
@@ -1011,7 +1012,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "After casting Divine Toll, you instantly cast (varies by condition — check in-game) every (varies) sec. This effect lasts 15 sec.",
+                            "text": "After casting Divine Toll, you instantly cast (varies by condition — check in-game) every 5 sec. This effect lasts 15 sec.",
                             "uncertain": true
                         },
                         "category": "Other",
@@ -1027,7 +1028,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "After casting Divine Toll, you instantly cast (varies by condition — check in-game) every (varies) sec. This effect lasts 15 sec.",
+                            "text": "After casting Divine Toll, you instantly cast (varies by condition — check in-game) every 5 sec. This effect lasts 15 sec.",
                             "uncertain": true
                         },
                         "category": "Other",
@@ -1043,7 +1044,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "After casting Divine Toll, you instantly cast (varies by condition — check in-game) every (varies) sec. This effect lasts 15 sec.",
+                            "text": "After casting Divine Toll, you instantly cast (varies by condition — check in-game) every 5 sec. This effect lasts 15 sec.",
                             "uncertain": true
                         },
                         "category": "Other",
@@ -1059,7 +1060,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "After casting Divine Toll, you instantly cast (varies by condition — check in-game) every (varies) sec. This effect lasts 15 sec.",
+                            "text": "After casting Divine Toll, you instantly cast (varies by condition — check in-game) every 5 sec. This effect lasts 15 sec.",
                             "uncertain": true
                         },
                         "category": "Other",
@@ -1075,7 +1076,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Your Avenger's Shield is imbued with holy fire, causing it to deal 0.1 Holy damage to all enemies within 5 yards of each target hit.",
+                            "text": "Your Avenger's Shield is imbued with holy fire, causing it to deal ≈12% of Attack Power Holy damage to all enemies within 5 yards of each target hit.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -1155,7 +1156,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "After casting(varies by condition — check in-game) Divine Toll, you instantly cast (varies by condition — check in-game) every (varies) sec for 15 sec.",
+                            "text": "After casting(varies by condition — check in-game) Divine Toll, you instantly cast (varies by condition — check in-game) every 5 sec for 15 sec.",
                             "uncertain": true
                         },
                         "category": "Other",
@@ -1171,7 +1172,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "After casting(varies by condition — check in-game) Divine Toll, you instantly cast (varies by condition — check in-game) every (varies) sec for 15 sec.",
+                            "text": "After casting(varies by condition — check in-game) Divine Toll, you instantly cast (varies by condition — check in-game) every 5 sec for 15 sec.",
                             "uncertain": true
                         },
                         "category": "Other",
@@ -1187,7 +1188,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "After casting(varies by condition — check in-game) Divine Toll, you instantly cast (varies by condition — check in-game) every (varies) sec for 15 sec.",
+                            "text": "After casting(varies by condition — check in-game) Divine Toll, you instantly cast (varies by condition — check in-game) every 5 sec for 15 sec.",
                             "uncertain": true
                         },
                         "category": "Other",
@@ -1203,7 +1204,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "After casting(varies by condition — check in-game) Divine Toll, you instantly cast (varies by condition — check in-game) every (varies) sec for 15 sec.",
+                            "text": "After casting(varies by condition — check in-game) Divine Toll, you instantly cast (varies by condition — check in-game) every 5 sec for 15 sec.",
                             "uncertain": true
                         },
                         "category": "Other",
@@ -1219,7 +1220,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "After casting(varies by condition — check in-game) Divine Toll, you instantly cast (varies by condition — check in-game) every (varies) sec for 15 sec.",
+                            "text": "After casting(varies by condition — check in-game) Divine Toll, you instantly cast (varies by condition — check in-game) every 5 sec for 15 sec.",
                             "uncertain": true
                         },
                         "category": "Other",
@@ -1235,7 +1236,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Your Avenger's Shield is imbued with holy fire, causing it to deal 0.1 Holy damage to all enemies within 5 yards of each target hit.",
+                            "text": "Your Avenger's Shield is imbued with holy fire, causing it to deal ≈12% of Attack Power Holy damage to all enemies within 5 yards of each target hit.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -1283,7 +1284,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "After casting(varies by condition — check in-game) Divine Toll, you instantly cast (varies by condition — check in-game) every (varies) sec for 15 sec.",
+                            "text": "After casting(varies by condition — check in-game) Divine Toll, you instantly cast (varies by condition — check in-game) every 5 sec for 15 sec.",
                             "uncertain": true
                         },
                         "category": "Other",
@@ -1299,7 +1300,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Your Avenger's Shield is imbued with holy fire, causing it to deal 0.1 Holy damage to all enemies within 5 yards of each target hit.",
+                            "text": "Your Avenger's Shield is imbued with holy fire, causing it to deal ≈12% of Attack Power Holy damage to all enemies within 5 yards of each target hit.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -1347,7 +1348,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Your next cast of Shield of the Righteous after Vanguard deals 100% additional damage to your primary target and causes light to refract onto 4 other targets for (varies) Holy damage. During Avenging Wrath your Avenger's Shield always benefits from Vanguard.",
+                            "text": "Your next cast of Shield of the Righteous after Vanguard deals 100% additional damage to your primary target and causes light to refract onto 4 other targets for ≈500% of Attack Power Holy damage. During Avenging Wrath your Avenger's Shield always benefits from Vanguard.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -1607,7 +1608,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Your next cast of Shield of the Righteous after Vanguard deals 100% additional damage to your primary target and causes light to refract onto 4 other targets for (varies) Holy damage. During Avenging Wrath your Avenger's Shield always benefits from Vanguard.",
+                            "text": "Your next cast of Shield of the Righteous after Vanguard deals 100% additional damage to your primary target and causes light to refract onto 4 other targets for ≈500% of Attack Power Holy damage. During Avenging Wrath your Avenger's Shield always benefits from Vanguard.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -1734,8 +1735,8 @@
             "spellId": 7893,
             "category": "Offensive",
             "description": {
-                "text": "Throws a Blessed Hammer that spirals outward, dealing 30 Holy damage to enemies and reducing the next damage they deal to you by (varies). Generates 1 Holy Power.",
-                "uncertain": true
+                "text": "Throws a Blessed Hammer that spirals outward, dealing 30 Holy damage to enemies and reducing the next damage they deal to you by ≈30% of Attack Power. Generates 1 Holy Power.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -1794,8 +1795,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Throws a Blessed Hammer that spirals outward, dealing 30 Holy damage to enemies and reducing the next damage they deal to you by (varies). Generates 1 Holy Power.",
-                            "uncertain": true
+                            "text": "Throws a Blessed Hammer that spirals outward, dealing 30 Holy damage to enemies and reducing the next damage they deal to you by ≈30% of Attack Power. Generates 1 Holy Power.",
+                            "uncertain": false
                         },
                         "category": "Defensive",
                         "cooldown": {
@@ -1973,8 +1974,8 @@
             "spellId": 7719,
             "category": "Defensive",
             "description": {
-                "text": "While you are above 85% health, 5% of all damage taken by allies within 20 yds is redirected to you, up to a maximum of (varies) every 5 sec.",
-                "uncertain": true
+                "text": "While you are above 85% health, 5% of all damage taken by allies within 20 yds is redirected to you, up to a maximum of ≈5% of maximum health every 5 sec.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -2262,6 +2263,7 @@
                                         "charges": null,
                                         "max_stacks": null,
                                         "proc_chance": null,
+                                        "proc_cooldown_seconds": null,
                                         "cooldown_seconds": null,
                                         "cooldown_scaling_note": null,
                                         "duration_seconds": null,
@@ -2358,6 +2360,7 @@
                             "charges": null,
                             "max_stacks": null,
                             "proc_chance": null,
+                            "proc_cooldown_seconds": null,
                             "cooldown_seconds": null,
                             "cooldown_scaling_note": null,
                             "duration_seconds": null,
@@ -2405,6 +2408,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:22:58.000000Z",
@@ -2690,6 +2694,7 @@
                             "charges": null,
                             "max_stacks": null,
                             "proc_chance": null,
+                            "proc_cooldown_seconds": null,
                             "cooldown_seconds": null,
                             "cooldown_scaling_note": null,
                             "duration_seconds": null,
@@ -2737,6 +2742,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:22:58.000000Z",
@@ -2850,6 +2856,7 @@
                                         "charges": null,
                                         "max_stacks": null,
                                         "proc_chance": null,
+                                        "proc_cooldown_seconds": null,
                                         "cooldown_seconds": null,
                                         "cooldown_scaling_note": null,
                                         "duration_seconds": null,
@@ -2930,6 +2937,7 @@
                             "charges": null,
                             "max_stacks": null,
                             "proc_chance": null,
+                            "proc_cooldown_seconds": null,
                             "cooldown_seconds": null,
                             "cooldown_scaling_note": null,
                             "duration_seconds": null,
@@ -2977,6 +2985,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:22:58.000000Z",
@@ -3083,6 +3092,7 @@
                             "charges": null,
                             "max_stacks": null,
                             "proc_chance": null,
+                            "proc_cooldown_seconds": null,
                             "cooldown_seconds": null,
                             "cooldown_scaling_note": null,
                             "duration_seconds": null,
@@ -3130,6 +3140,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:22:58.000000Z",
@@ -3323,7 +3334,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "After (varies by condition — check in-game) successfully removes an effect from an ally, they are healed for ≈2,916% of Spell Power.",
+                            "text": "After (varies by condition — check in-game) successfully removes an effect from an ally, they are healed for (varies).",
                             "uncertain": true
                         },
                         "category": "Defensive",
@@ -3642,8 +3653,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Consecration heals you for (varies) every (varies) sec while standing within it.",
-                            "uncertain": true
+                            "text": "Consecration heals you for ≈2.5% of Attack Power every 1 sec while standing within it.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -3658,8 +3669,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Consecration heals you for (varies) every (varies) sec while standing within it.",
-                            "uncertain": true
+                            "text": "Consecration heals you for ≈0% of Attack Power every 1 sec while standing within it.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -3674,8 +3685,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Consecration heals you and 5 allies within it for 50 every (varies) sec.",
-                            "uncertain": true
+                            "text": "Consecration heals you and 5 allies within it for ≈6.3% of Attack Power every 1 sec.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -3738,8 +3749,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "For each Holy Power ability cast, your next Consecration deals (varies) damage immediately, split across all enemies. Up to 3 nearby allies are each healed for 30% of the damage amount.",
-                            "uncertain": true
+                            "text": "For each Holy Power ability cast, your next Consecration deals ≈212% of Spell Power damage immediately, split across all enemies. Up to 3 nearby allies are each healed for 30% of the damage amount.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -3754,8 +3765,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "For each Holy Power ability cast, your next Consecration deals (varies) damage immediately, split across all enemies. Up to 3 nearby allies are each healed for 30% of the damage amount.",
-                            "uncertain": true
+                            "text": "For each Holy Power ability cast, your next Consecration deals ≈212% of Spell Power damage immediately, split across all enemies. Up to 3 nearby allies are each healed for 30% of the damage amount.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -3770,8 +3781,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "For each Holy Power ability cast, your next Consecration deals (varies) damage immediately, split across all enemies. Up to 3 nearby allies are each healed for 30% of the damage amount.",
-                            "uncertain": true
+                            "text": "For each Holy Power ability cast, your next Consecration deals ≈212% of Spell Power damage immediately, split across all enemies. Up to 3 nearby allies are each healed for 30% of the damage amount.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -3786,8 +3797,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "For each Holy Power ability cast, your next Consecration deals (varies) damage immediately, split across all enemies. Up to 3 nearby allies are each healed for 30% of the damage amount.",
-                            "uncertain": true
+                            "text": "For each Holy Power ability cast, your next Consecration deals ≈212% of Spell Power damage immediately, split across all enemies. Up to 3 nearby allies are each healed for 30% of the damage amount.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -3802,8 +3813,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Consecration heals you and 5 allies within it for 50 every (varies) sec.",
-                            "uncertain": true
+                            "text": "Consecration heals you and 5 allies within it for ≈6.3% of Attack Power every 1 sec.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -3818,8 +3829,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "For each Holy Power ability cast, your next Consecration deals (varies) damage immediately, split across all enemies. Up to 3 nearby allies are each healed for 30% of the damage amount.",
-                            "uncertain": true
+                            "text": "For each Holy Power ability cast, your next Consecration deals ≈212% of Spell Power damage immediately, split across all enemies. Up to 3 nearby allies are each healed for 30% of the damage amount.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -3882,8 +3893,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "For each Holy Power ability cast, your next Consecration deals (varies) damage immediately, split across all enemies. Up to 3 nearby allies are each healed for 30% of the damage amount.",
-                            "uncertain": true
+                            "text": "For each Holy Power ability cast, your next Consecration deals ≈212% of Spell Power damage immediately, split across all enemies. Up to 3 nearby allies are each healed for 30% of the damage amount.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -4056,12 +4067,10 @@
             "spellId": 7805,
             "category": "Offensive",
             "description": {
-                "text": "For each Holy Power ability cast, your next Consecration deals (varies) damage immediately, split across all enemies. Up to 3 nearby allies are each healed for 30% of the damage amount.",
-                "uncertain": true
+                "text": "For each Holy Power ability cast, your next Consecration deals ≈212% of Spell Power damage immediately, split across all enemies. Up to 3 nearby allies are each healed for 30% of the damage amount.",
+                "uncertain": false
             },
-            "formulaModifierSpellIds": [
-                7012
-            ],
+            "formulaModifierSpellIds": [],
             "modifiers": {
                 "named": [],
                 "baseline": [
@@ -4119,7 +4128,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Hurls a divine hammer that strikes an enemy for 1,241,413 Holy damage. Generates 1 Holy Power.",
+                            "text": "Hurls a divine hammer that strikes an enemy for ≈215.8% of Attack Power Holy damage. Generates 1 Holy Power.",
                             "uncertain": false
                         },
                         "category": "Offensive",
@@ -4135,7 +4144,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Hurls a divine hammer that strikes an enemy for 1,241,413 Holy damage. Generates 1 Holy Power.",
+                            "text": "Hurls a divine hammer that strikes an enemy for ≈123.8% of Attack Power Holy damage. Generates 1 Holy Power.",
                             "uncertain": false
                         },
                         "category": "Offensive",
@@ -4151,7 +4160,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Hurls a divine hammer that strikes an enemy for 1,241,413 Holy damage. Generates 1 Holy Power.",
+                            "text": "Hurls a divine hammer that strikes an enemy for ≈215.8% of Attack Power Holy damage. Generates 1 Holy Power.",
                             "uncertain": false
                         },
                         "category": "Offensive",
@@ -4575,6 +4584,7 @@
                             "charges": null,
                             "max_stacks": null,
                             "proc_chance": null,
+                            "proc_cooldown_seconds": null,
                             "cooldown_seconds": null,
                             "cooldown_scaling_note": null,
                             "duration_seconds": null,
@@ -4622,6 +4632,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:22:58.000000Z",
@@ -4882,7 +4893,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Divine Toll is replaced with Hammer of Light for 20 after it is cast. Hammer of Light: Hammer down your enemy with the power of the Light, dealing 427,453 Holy damage and 427,453 Holy damage up to 7 nearby enemies. Additionally, calls down Empyrean Hammers from the sky to strike 3 nearby enemies for (varies) Holy damage each. Costs 5 Holy Power.",
+                            "text": "Divine Toll is replaced with Hammer of Light for 20 after it is cast. Hammer of Light: Hammer down your enemy with the power of the Light, dealing 427,453 Holy damage and 427,453 Holy damage up to 7 nearby enemies. Additionally, calls down Empyrean Hammers from the sky to strike 3 nearby enemies for ≈52.1% of Attack Power Holy damage each. Costs 5 Holy Power.",
                             "uncertain": true
                         },
                         "category": "Other",
@@ -5078,7 +5089,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "After casting Divine Toll, you instantly cast (varies by condition — check in-game) every (varies) sec. This effect lasts 15 sec.",
+                            "text": "After casting Divine Toll, you instantly cast (varies by condition — check in-game) every 5 sec. This effect lasts 15 sec.",
                             "uncertain": true
                         },
                         "category": "Other",
@@ -5094,7 +5105,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "After casting Divine Toll, you instantly cast (varies by condition — check in-game) every (varies) sec. This effect lasts 15 sec.",
+                            "text": "After casting Divine Toll, you instantly cast (varies by condition — check in-game) every 5 sec. This effect lasts 15 sec.",
                             "uncertain": true
                         },
                         "category": "Other",
@@ -5110,7 +5121,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "After casting Divine Toll, you instantly cast (varies by condition — check in-game) every (varies) sec. This effect lasts 15 sec.",
+                            "text": "After casting Divine Toll, you instantly cast (varies by condition — check in-game) every 5 sec. This effect lasts 15 sec.",
                             "uncertain": true
                         },
                         "category": "Other",
@@ -5126,7 +5137,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "After casting Divine Toll, you instantly cast (varies by condition — check in-game) every (varies) sec. This effect lasts 15 sec.",
+                            "text": "After casting Divine Toll, you instantly cast (varies by condition — check in-game) every 5 sec. This effect lasts 15 sec.",
                             "uncertain": true
                         },
                         "category": "Other",
@@ -5142,7 +5153,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "After casting Divine Toll, you instantly cast (varies by condition — check in-game) every (varies) sec. This effect lasts 15 sec.",
+                            "text": "After casting Divine Toll, you instantly cast (varies by condition — check in-game) every 5 sec. This effect lasts 15 sec.",
                             "uncertain": true
                         },
                         "category": "Other",
@@ -5206,7 +5217,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "After casting(varies by condition — check in-game) Divine Toll, you instantly cast (varies by condition — check in-game) every (varies) sec for 15 sec.",
+                            "text": "After casting(varies by condition — check in-game) Divine Toll, you instantly cast (varies by condition — check in-game) every 5 sec for 15 sec.",
                             "uncertain": true
                         },
                         "category": "Other",
@@ -5222,7 +5233,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "After casting(varies by condition — check in-game) Divine Toll, you instantly cast (varies by condition — check in-game) every (varies) sec for 15 sec.",
+                            "text": "After casting(varies by condition — check in-game) Divine Toll, you instantly cast (varies by condition — check in-game) every 5 sec for 15 sec.",
                             "uncertain": true
                         },
                         "category": "Other",
@@ -5238,7 +5249,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "After casting(varies by condition — check in-game) Divine Toll, you instantly cast (varies by condition — check in-game) every (varies) sec for 15 sec.",
+                            "text": "After casting(varies by condition — check in-game) Divine Toll, you instantly cast (varies by condition — check in-game) every 5 sec for 15 sec.",
                             "uncertain": true
                         },
                         "category": "Other",
@@ -5254,7 +5265,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "After casting(varies by condition — check in-game) Divine Toll, you instantly cast (varies by condition — check in-game) every (varies) sec for 15 sec.",
+                            "text": "After casting(varies by condition — check in-game) Divine Toll, you instantly cast (varies by condition — check in-game) every 5 sec for 15 sec.",
                             "uncertain": true
                         },
                         "category": "Other",
@@ -5270,7 +5281,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "After casting(varies by condition — check in-game) Divine Toll, you instantly cast (varies by condition — check in-game) every (varies) sec for 15 sec.",
+                            "text": "After casting(varies by condition — check in-game) Divine Toll, you instantly cast (varies by condition — check in-game) every 5 sec for 15 sec.",
                             "uncertain": true
                         },
                         "category": "Other",
@@ -5318,7 +5329,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "After casting(varies by condition — check in-game) Divine Toll, you instantly cast (varies by condition — check in-game) every (varies) sec for 15 sec.",
+                            "text": "After casting(varies by condition — check in-game) Divine Toll, you instantly cast (varies by condition — check in-game) every 5 sec for 15 sec.",
                             "uncertain": true
                         },
                         "category": "Other",
@@ -5363,6 +5374,7 @@
                             "charges": null,
                             "max_stacks": null,
                             "proc_chance": null,
+                            "proc_cooldown_seconds": null,
                             "cooldown_seconds": null,
                             "cooldown_scaling_note": null,
                             "duration_seconds": null,
@@ -5410,6 +5422,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:22:58.000000Z",
@@ -5428,6 +5441,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:22:58.000000Z",
@@ -5998,8 +6012,8 @@
             "spellId": 7732,
             "category": "Other",
             "description": {
-                "text": "Consecration heals you and 5 allies within it for 50 every (varies) sec.",
-                "uncertain": true
+                "text": "Consecration heals you and 5 allies within it for ≈6.3% of Attack Power every 1 sec.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -6248,6 +6262,7 @@
                             "charges": null,
                             "max_stacks": null,
                             "proc_chance": null,
+                            "proc_cooldown_seconds": null,
                             "cooldown_seconds": null,
                             "cooldown_scaling_note": null,
                             "duration_seconds": null,
@@ -6295,6 +6310,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:23:00.000000Z",
@@ -6313,6 +6329,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-28T04:33:44.000000Z",
@@ -6389,6 +6406,7 @@
                             "charges": null,
                             "max_stacks": null,
                             "proc_chance": null,
+                            "proc_cooldown_seconds": null,
                             "cooldown_seconds": null,
                             "cooldown_scaling_note": null,
                             "duration_seconds": null,
@@ -6436,6 +6454,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:23:00.000000Z",
@@ -6454,6 +6473,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-28T04:33:44.000000Z",
@@ -6478,8 +6498,8 @@
             "spellId": 7750,
             "category": "Other",
             "description": {
-                "text": "When your health is brought below 25%, you instantly cast a free Word of Glory at 60% effectiveness on yourself. Cannot occur more than once every (varies) sec.",
-                "uncertain": true
+                "text": "When your health is brought below 25%, you instantly cast a free Word of Glory at 60% effectiveness on yourself. Cannot occur more than once every 60 sec.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -6661,6 +6681,7 @@
                             "charges": null,
                             "max_stacks": null,
                             "proc_chance": null,
+                            "proc_cooldown_seconds": null,
                             "cooldown_seconds": null,
                             "cooldown_scaling_note": null,
                             "duration_seconds": null,
@@ -6708,6 +6729,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:22:58.000000Z",
@@ -7074,7 +7096,7 @@
             "spellId": 7642,
             "category": "Offensive",
             "description": {
-                "text": "Hurls a divine hammer that strikes an enemy for 1,241,413 Holy damage. Generates 1 Holy Power.",
+                "text": "Hurls a divine hammer that strikes an enemy for ≈123.8% of Attack Power Holy damage. Generates 1 Holy Power.",
                 "uncertain": false
             },
             "formulaModifierSpellIds": [],
@@ -7460,6 +7482,7 @@
                             "charges": null,
                             "max_stacks": null,
                             "proc_chance": null,
+                            "proc_cooldown_seconds": null,
                             "cooldown_seconds": null,
                             "cooldown_scaling_note": null,
                             "duration_seconds": null,
@@ -7507,6 +7530,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:23:00.000000Z",
@@ -7525,6 +7549,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:23:00.000000Z",
@@ -7703,7 +7728,7 @@
             "spellId": 7796,
             "category": "Defensive",
             "description": {
-                "text": "Will the Light to coalesce and become manifest as a Holy Armament, wielded by your friendly target. Holy Bulwark: While wielding a Holy Bulwark, gain an absorb shield for 15% of your max health and an additional 2% every (varies) sec. Lasts 20. Becomes Sacred Weapon after use.(varies by condition — check in-game)",
+                "text": "Will the Light to coalesce and become manifest as a Holy Armament, wielded by your friendly target. Holy Bulwark: While wielding a Holy Bulwark, gain an absorb shield for 15% of your max health and an additional 2% every 2 sec. Lasts 20. Becomes Sacred Weapon after use.(varies by condition — check in-game)",
                 "uncertain": true
             },
             "formulaModifierSpellIds": [],
@@ -7770,6 +7795,7 @@
                                         "charges": null,
                                         "max_stacks": null,
                                         "proc_chance": null,
+                                        "proc_cooldown_seconds": null,
                                         "cooldown_seconds": null,
                                         "cooldown_scaling_note": null,
                                         "duration_seconds": null,
@@ -7818,8 +7844,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "While wielding a Holy Bulwark, gain an absorb shield for 15% of your max health and an additional 2% every (varies) sec. Lasts 20.",
-                            "uncertain": true
+                            "text": "While wielding a Holy Bulwark, gain an absorb shield for 15% of your max health and an additional 2% every 2 sec. Lasts 20.",
+                            "uncertain": false
                         },
                         "category": "Defensive",
                         "cooldown": {
@@ -7959,6 +7985,7 @@
                             "charges": null,
                             "max_stacks": null,
                             "proc_chance": null,
+                            "proc_cooldown_seconds": null,
                             "cooldown_seconds": null,
                             "cooldown_scaling_note": null,
                             "duration_seconds": null,
@@ -8006,6 +8033,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:22:58.000000Z",
@@ -8024,6 +8052,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:22:58.000000Z",
@@ -8613,6 +8642,7 @@
                                         "charges": null,
                                         "max_stacks": null,
                                         "proc_chance": null,
+                                        "proc_cooldown_seconds": null,
                                         "cooldown_seconds": null,
                                         "cooldown_scaling_note": null,
                                         "duration_seconds": null,
@@ -9033,7 +9063,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "After casting(varies by condition — check in-game) Divine Toll, you instantly cast (varies by condition — check in-game) every (varies) sec for 15 sec.",
+                            "text": "After casting(varies by condition — check in-game) Divine Toll, you instantly cast (varies by condition — check in-game) every 5 sec for 15 sec.",
                             "uncertain": true
                         },
                         "category": "Other",
@@ -9049,7 +9079,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "After casting(varies by condition — check in-game) Divine Toll, you instantly cast (varies by condition — check in-game) every (varies) sec for 15 sec.",
+                            "text": "After casting(varies by condition — check in-game) Divine Toll, you instantly cast (varies by condition — check in-game) every 5 sec for 15 sec.",
                             "uncertain": true
                         },
                         "category": "Other",
@@ -9065,7 +9095,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "After casting(varies by condition — check in-game) Divine Toll, you instantly cast (varies by condition — check in-game) every (varies) sec for 15 sec.",
+                            "text": "After casting(varies by condition — check in-game) Divine Toll, you instantly cast (varies by condition — check in-game) every 5 sec for 15 sec.",
                             "uncertain": true
                         },
                         "category": "Other",
@@ -9081,7 +9111,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "After casting(varies by condition — check in-game) Divine Toll, you instantly cast (varies by condition — check in-game) every (varies) sec for 15 sec.",
+                            "text": "After casting(varies by condition — check in-game) Divine Toll, you instantly cast (varies by condition — check in-game) every 5 sec for 15 sec.",
                             "uncertain": true
                         },
                         "category": "Other",
@@ -9097,7 +9127,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "After casting(varies by condition — check in-game) Divine Toll, you instantly cast (varies by condition — check in-game) every (varies) sec for 15 sec.",
+                            "text": "After casting(varies by condition — check in-game) Divine Toll, you instantly cast (varies by condition — check in-game) every 5 sec for 15 sec.",
                             "uncertain": true
                         },
                         "category": "Other",
@@ -9337,7 +9367,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "After casting(varies by condition — check in-game) Divine Toll, you instantly cast (varies by condition — check in-game) every (varies) sec for 15 sec.",
+                            "text": "After casting(varies by condition — check in-game) Divine Toll, you instantly cast (varies by condition — check in-game) every 5 sec for 15 sec.",
                             "uncertain": true
                         },
                         "category": "Other",
@@ -9419,6 +9449,7 @@
                             "charges": null,
                             "max_stacks": null,
                             "proc_chance": null,
+                            "proc_cooldown_seconds": null,
                             "cooldown_seconds": null,
                             "cooldown_scaling_note": null,
                             "duration_seconds": null,
@@ -9466,6 +9497,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:23:00.000000Z",
@@ -9484,6 +9516,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:23:00.000000Z",
@@ -9907,7 +9940,7 @@
             "spellId": 7816,
             "category": "Other",
             "description": {
-                "text": "Divine Toll is replaced with Hammer of Light for 20 after it is cast. Hammer of Light: Hammer down your enemy with the power of the Light, dealing 427,453 Holy damage and 427,453 Holy damage up to 7 nearby enemies. Additionally, calls down Empyrean Hammers from the sky to strike 3 nearby enemies for (varies) Holy damage each. Costs 5 Holy Power.",
+                "text": "Divine Toll is replaced with Hammer of Light for 20 after it is cast. Hammer of Light: Hammer down your enemy with the power of the Light, dealing 427,453 Holy damage and 427,453 Holy damage up to 7 nearby enemies. Additionally, calls down Empyrean Hammers from the sky to strike 3 nearby enemies for ≈52.1% of Attack Power Holy damage each. Costs 5 Holy Power.",
                 "uncertain": true
             },
             "formulaModifierSpellIds": [],
@@ -10044,7 +10077,7 @@
             "spellId": 7748,
             "category": "Other",
             "description": {
-                "text": "Divine Storm heals you and up to 2 nearby allies for (varies).",
+                "text": "Divine Storm heals you and up to 2 nearby allies for ≈125% of Attack Power.",
                 "uncertain": true
             },
             "formulaModifierSpellIds": [],
@@ -10958,7 +10991,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Will the Light to coalesce and become manifest as a Holy Armament, wielded by your friendly target. Holy Bulwark: While wielding a Holy Bulwark, gain an absorb shield for 15% of your max health and an additional 2% every (varies) sec. Lasts 20. Becomes Sacred Weapon after use.(varies by condition — check in-game)",
+                            "text": "Will the Light to coalesce and become manifest as a Holy Armament, wielded by your friendly target. Holy Bulwark: While wielding a Holy Bulwark, gain an absorb shield for 15% of your max health and an additional 2% every 2 sec. Lasts 20. Becomes Sacred Weapon after use.(varies by condition — check in-game)",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -10974,7 +11007,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Will the Light to coalesce and become manifest as a Holy Armament, wielded by your friendly target. Holy Bulwark: While wielding a Holy Bulwark, gain an absorb shield for 15% of your max health and an additional 2% every (varies) sec. Lasts 20. Becomes Sacred Weapon after use.(varies by condition — check in-game)",
+                            "text": "Will the Light to coalesce and become manifest as a Holy Armament, wielded by your friendly target. Holy Bulwark: While wielding a Holy Bulwark, gain an absorb shield for 15% of your max health and an additional 2% every 2 sec. Lasts 20. Becomes Sacred Weapon after use.(varies by condition — check in-game)",
                             "uncertain": true
                         },
                         "category": "Defensive",
@@ -11086,7 +11119,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Will the Light to coalesce and become manifest as a Holy Armament, wielded by your friendly target. Holy Bulwark: While wielding a Holy Bulwark, gain an absorb shield for 15% of your max health and an additional 2% every (varies) sec. Lasts 20. Becomes Sacred Weapon after use.(varies by condition — check in-game)",
+                            "text": "Will the Light to coalesce and become manifest as a Holy Armament, wielded by your friendly target. Holy Bulwark: While wielding a Holy Bulwark, gain an absorb shield for 15% of your max health and an additional 2% every 2 sec. Lasts 20. Becomes Sacred Weapon after use.(varies by condition — check in-game)",
                             "uncertain": true
                         },
                         "category": "Defensive",
@@ -11106,6 +11139,7 @@
                                         "charges": null,
                                         "max_stacks": null,
                                         "proc_chance": null,
+                                        "proc_cooldown_seconds": null,
                                         "cooldown_seconds": null,
                                         "cooldown_scaling_note": null,
                                         "duration_seconds": null,
@@ -11215,6 +11249,7 @@
                             "charges": null,
                             "max_stacks": null,
                             "proc_chance": null,
+                            "proc_cooldown_seconds": null,
                             "cooldown_seconds": null,
                             "cooldown_scaling_note": null,
                             "duration_seconds": null,
@@ -11262,6 +11297,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:22:58.000000Z",
@@ -11280,6 +11316,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:22:58.000000Z",
@@ -12121,7 +12158,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Denounce heals you and up to 2 nearby allies for (varies).",
+                            "text": "Denounce heals you and up to 2 nearby allies for ≈125% of Attack Power.",
                             "uncertain": true
                         },
                         "category": "Other",
@@ -12169,7 +12206,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Denounce heals you and up to 2 nearby allies for (varies).",
+                            "text": "Denounce heals you and up to 2 nearby allies for ≈125% of Attack Power.",
                             "uncertain": true
                         },
                         "category": "Other",
@@ -12525,7 +12562,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Your next cast of Shield of the Righteous after Vanguard deals 100% additional damage to your primary target and causes light to refract onto 4 other targets for (varies) Holy damage. During Avenging Wrath your Avenger's Shield always benefits from Vanguard.",
+                            "text": "Your next cast of Shield of the Righteous after Vanguard deals 100% additional damage to your primary target and causes light to refract onto 4 other targets for ≈500% of Attack Power Holy damage. During Avenging Wrath your Avenger's Shield always benefits from Vanguard.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -12558,8 +12595,8 @@
             "spellId": 7775,
             "category": "Offensive",
             "description": {
-                "text": "Divine Protection reduces damage taken by an additional 30% and casts Shield of Vengeance. Shield of Vengeance Creates a barrier of holy light that absorbs (varies) damage for 10. When the shield expires, it bursts to inflict Holy damage equal to the total amount absorbed, divided among all nearby enemies.",
-                "uncertain": true
+                "text": "Divine Protection reduces damage taken by an additional 30% and casts Shield of Vengeance. Shield of Vengeance Creates a barrier of holy light that absorbs ≈30% of maximum health damage for 10. When the shield expires, it bursts to inflict Holy damage equal to the total amount absorbed, divided among all nearby enemies.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -13151,7 +13188,7 @@
             "spellId": 7903,
             "category": "Offensive",
             "description": {
-                "text": "Your Avenger's Shield is imbued with holy fire, causing it to deal 0.1 Holy damage to all enemies within 5 yards of each target hit.",
+                "text": "Your Avenger's Shield is imbued with holy fire, causing it to deal ≈12% of Attack Power Holy damage to all enemies within 5 yards of each target hit.",
                 "uncertain": true
             },
             "formulaModifierSpellIds": [],
@@ -13715,8 +13752,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "When your health is brought below 25%, you instantly cast a free Word of Glory at 60% effectiveness on yourself. Cannot occur more than once every (varies) sec.",
-                            "uncertain": true
+                            "text": "When your health is brought below 25%, you instantly cast a free Word of Glory at 60% effectiveness on yourself. Cannot occur more than once every 60 sec.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {

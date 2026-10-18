@@ -1,6 +1,6 @@
 {
-    "generatedAt": "2026-10-07T21:49:21+00:00",
-    "spellCacheVersion": 27,
+    "generatedAt": "2026-10-18T02:37:42+00:00",
+    "spellCacheVersion": 29,
     "codeFingerprint": "dev",
     "entries": [
         {
@@ -269,6 +269,7 @@
                                         "charges": null,
                                         "max_stacks": null,
                                         "proc_chance": null,
+                                        "proc_cooldown_seconds": null,
                                         "cooldown_seconds": null,
                                         "cooldown_scaling_note": null,
                                         "duration_seconds": null,
@@ -593,7 +594,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Summons an effigy of Xuen, the White Tiger for 20. Xuen attacks your primary target, and strikes 3 enemies within 10 yards every (varies) sec with Tiger Lightning for (varies) Nature damage. Every 4 sec, Xuen strikes your enemies with Empowered Tiger Lightning dealing 4% of the damage you have dealt to those targets in the last 4 sec.",
+                            "text": "Summons an effigy of Xuen, the White Tiger for 20. Xuen attacks your primary target, and strikes 3 enemies within 10 yards every 1 sec with Tiger Lightning for ≈25.7% of Attack Power Nature damage. Every 4 sec, Xuen strikes your enemies with Empowered Tiger Lightning dealing 4% of the damage you have dealt to those targets in the last 4 sec.",
                             "uncertain": true
                         },
                         "category": "Other",
@@ -689,7 +690,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Strike with the palm of your hand, dealing (varies) Physical damage. Tiger Palm has an (varies)% chance to make your next Blackout Kick cost no Chi. Generates (varies) Chi.",
+                            "text": "Strike with the palm of your hand, dealing ≈90% of Attack Power Physical damage. Tiger Palm has an (varies)% chance to make your next Blackout Kick cost no Chi. Generates (varies) Chi.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -833,7 +834,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Strike with the palm of your hand, dealing (varies) Physical damage. Tiger Palm has an (varies)% chance to make your next Blackout Kick cost no Chi. Generates (varies) Chi.",
+                            "text": "Strike with the palm of your hand, dealing ≈27% of Attack Power Physical damage. Tiger Palm has an (varies)% chance to make your next Blackout Kick cost no Chi. Generates (varies) Chi.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -1689,6 +1690,7 @@
                             "charges": null,
                             "max_stacks": null,
                             "proc_chance": null,
+                            "proc_cooldown_seconds": null,
                             "cooldown_seconds": null,
                             "cooldown_scaling_note": null,
                             "duration_seconds": null,
@@ -1736,6 +1738,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:22:48.000000Z",
@@ -1754,6 +1757,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:22:48.000000Z",
@@ -1778,6 +1782,7 @@
                             "charges": null,
                             "max_stacks": null,
                             "proc_chance": "100.00",
+                            "proc_cooldown_seconds": null,
                             "cooldown_seconds": null,
                             "cooldown_scaling_note": null,
                             "duration_seconds": null,
@@ -1825,6 +1830,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": 2,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:22:48.000000Z",
@@ -1855,6 +1861,7 @@
                             "charges": null,
                             "max_stacks": null,
                             "proc_chance": null,
+                            "proc_cooldown_seconds": null,
                             "cooldown_seconds": null,
                             "cooldown_scaling_note": null,
                             "duration_seconds": null,
@@ -1902,6 +1909,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:22:48.000000Z",
@@ -1920,6 +1928,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:22:48.000000Z",
@@ -2004,8 +2013,8 @@
             "spellId": 6634,
             "category": "Offensive",
             "description": {
-                "text": "Every (varies) sec, your next Rising Sun Kick or Vivify releases a wave of Chi energy that flows through friends and foes, dealing 7 Nature damage or 7 healing. Bounces up to 7 times to targets within 25 yards.",
-                "uncertain": true
+                "text": "Every 15 sec, your next Rising Sun Kick or Vivify releases a wave of Chi energy that flows through friends and foes, dealing 7 Nature damage or 7 healing. Bounces up to 7 times to targets within 25 yards.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -2094,7 +2103,7 @@
             "spellId": 6777,
             "category": "Other",
             "description": {
-                "text": "While out of combat, your Chi balances to 2 instead of depleting to empty. Your stamina is increased by 5% and every (varies) sec, your next Tiger Palm also casts Expel Harm. Expel Harm Expel negative chi from your body, healing for ≈120% of Spell Power and dealing 10% of the amount healed as Nature damage to an enemy within 20 yards. Generates 100 Chi.",
+                "text": "While out of combat, your Chi balances to 2 instead of depleting to empty. Your stamina is increased by 5% and every 15 sec, your next Tiger Palm also casts Expel Harm. Expel Harm Expel negative chi from your body, healing for ≈120% of Spell Power and dealing 10% of the amount healed as Nature damage to an enemy within 20 yards. Generates 100 Chi.",
                 "uncertain": true
             },
             "formulaModifierSpellIds": [],
@@ -3064,7 +3073,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Summons an effigy of Xuen, the White Tiger for 20. Xuen attacks your primary target, and strikes 3 enemies within 10 yards every (varies) sec with Tiger Lightning for (varies) Nature damage. Every 4 sec, Xuen strikes your enemies with Empowered Tiger Lightning dealing 4% of the damage you have dealt to those targets in the last 4 sec.",
+                            "text": "Summons an effigy of Xuen, the White Tiger for 20. Xuen attacks your primary target, and strikes 3 enemies within 10 yards every 1 sec with Tiger Lightning for ≈25.7% of Attack Power Nature damage. Every 4 sec, Xuen strikes your enemies with Empowered Tiger Lightning dealing 4% of the damage you have dealt to those targets in the last 4 sec.",
                             "uncertain": true
                         },
                         "category": "Other",
@@ -3127,7 +3136,7 @@
             "spellId": 6774,
             "category": "Offensive",
             "description": {
-                "text": "Pummels all targets in front of you, dealing 25 Physical damage to your primary target and 15 damage to all other enemies over 4. Deals reduced damage beyond 5 targets. Can be channeled while moving.",
+                "text": "Pummels all targets in front of you, dealing ≈1,304.1% of Attack Power Physical damage to your primary target and ≈782.5% of Attack Power damage to all other enemies over 4. Deals reduced damage beyond 5 targets. Can be channeled while moving.",
                 "uncertain": false
             },
             "formulaModifierSpellIds": [],
@@ -3207,6 +3216,7 @@
                                         "charges": null,
                                         "max_stacks": null,
                                         "proc_chance": null,
+                                        "proc_cooldown_seconds": null,
                                         "cooldown_seconds": null,
                                         "cooldown_scaling_note": null,
                                         "duration_seconds": null,
@@ -3435,7 +3445,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Summons an effigy of Xuen, the White Tiger for 20. Xuen attacks your primary target, and strikes 3 enemies within 10 yards every (varies) sec with Tiger Lightning for (varies) Nature damage. Every 4 sec, Xuen strikes your enemies with Empowered Tiger Lightning dealing 4% of the damage you have dealt to those targets in the last 4 sec.",
+                            "text": "Summons an effigy of Xuen, the White Tiger for 20. Xuen attacks your primary target, and strikes 3 enemies within 10 yards every 1 sec with Tiger Lightning for ≈25.7% of Attack Power Nature damage. Every 4 sec, Xuen strikes your enemies with Empowered Tiger Lightning dealing 4% of the damage you have dealt to those targets in the last 4 sec.",
                             "uncertain": true
                         },
                         "category": "Other",
@@ -3579,7 +3589,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Performs a devastating whirling upward strike, dealing 15 damage to all nearby enemies and an additional 5 damage to the first target struck. Damage reduced beyond 5 targets. Only usable while both Fists of Fury and Rising Sun Kick are on cooldown.",
+                            "text": "Performs a devastating whirling upward strike, dealing ≈941.9% of Attack Power damage to all nearby enemies and an additional 5 damage to the first target struck. Damage reduced beyond 5 targets. Only usable while both Fists of Fury and Rising Sun Kick are on cooldown.",
                             "uncertain": false
                         },
                         "category": "Offensive",
@@ -3599,6 +3609,7 @@
                                         "charges": null,
                                         "max_stacks": null,
                                         "proc_chance": null,
+                                        "proc_cooldown_seconds": null,
                                         "cooldown_seconds": null,
                                         "cooldown_scaling_note": null,
                                         "duration_seconds": null,
@@ -3647,7 +3658,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Performs a devastating whirling upward strike, dealing 15 damage to all nearby enemies and an additional 5 damage to the first target struck. Damage reduced beyond 5 targets. Only usable while both Fists of Fury and Rising Sun Kick are on cooldown.",
+                            "text": "Performs a devastating whirling upward strike, dealing ≈941.9% of Attack Power damage to all nearby enemies and an additional 5 damage to the first target struck. Damage reduced beyond 5 targets. Only usable while both Fists of Fury and Rising Sun Kick are on cooldown.",
                             "uncertain": false
                         },
                         "category": "Offensive",
@@ -3663,7 +3674,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Whenever you deal damage to a target with Fists of Fury, you gain a stack of Chi Energy up to a maximum of 30 stacks. Using Spinning Crane Kick will cause the energy to detonate in a Chi Explosion, dealing (varies) damage to all enemies within 8 yards. The damage is increased by (varies)% for each stack of Chi Energy.",
+                            "text": "Whenever you deal damage to a target with Fists of Fury, you gain a stack of Chi Energy up to a maximum of 30 stacks. Using Spinning Crane Kick will cause the energy to detonate in a Chi Explosion, dealing ≈65% of Attack Power damage to all enemies within 8 yards. The damage is increased by (varies)% for each stack of Chi Energy.",
                             "uncertain": true
                         },
                         "category": "Other",
@@ -3711,7 +3722,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Performs a devastating whirling upward strike, dealing 15 damage to all nearby enemies and an additional 5 damage to the first target struck. Damage reduced beyond 5 targets. Only usable while both Fists of Fury and Rising Sun Kick are on cooldown.",
+                            "text": "Performs a devastating whirling upward strike, dealing ≈941.9% of Attack Power damage to all nearby enemies and an additional 5 damage to the first target struck. Damage reduced beyond 5 targets. Only usable while both Fists of Fury and Rising Sun Kick are on cooldown.",
                             "uncertain": false
                         },
                         "category": "Offensive",
@@ -3731,6 +3742,7 @@
                                         "charges": null,
                                         "max_stacks": null,
                                         "proc_chance": null,
+                                        "proc_cooldown_seconds": null,
                                         "cooldown_seconds": null,
                                         "cooldown_scaling_note": null,
                                         "duration_seconds": null,
@@ -3795,7 +3807,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Your auto attacks have a chance to generate 1-2 Flurry Charges. When you cast (varies by condition — check in-game), unleash all Flurry Charges, dealing (varies) Physical damage per charge.",
+                            "text": "Your auto attacks have a chance to generate 1-2 Flurry Charges. When you cast (varies by condition — check in-game), unleash all Flurry Charges, dealing ≈60% of Attack Power Physical damage per charge.",
                             "uncertain": true
                         },
                         "category": "Other",
@@ -3859,7 +3871,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Your auto attacks have a chance to generate 1-2 Flurry Charges. When you cast (varies by condition — check in-game), unleash all Flurry Charges, dealing (varies) Physical damage per charge.",
+                            "text": "Your auto attacks have a chance to generate 1-2 Flurry Charges. When you cast (varies by condition — check in-game), unleash all Flurry Charges, dealing ≈60% of Attack Power Physical damage per charge.",
                             "uncertain": true
                         },
                         "category": "Other",
@@ -3891,7 +3903,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Performs a devastating whirling upward strike, dealing 15 damage to all nearby enemies and an additional 5 damage to the first target struck. Damage reduced beyond 5 targets. Only usable while both Fists of Fury and Rising Sun Kick are on cooldown.",
+                            "text": "Performs a devastating whirling upward strike, dealing ≈941.9% of Attack Power damage to all nearby enemies and an additional 5 damage to the first target struck. Damage reduced beyond 5 targets. Only usable while both Fists of Fury and Rising Sun Kick are on cooldown.",
                             "uncertain": false
                         },
                         "category": "Offensive",
@@ -3911,6 +3923,7 @@
                                         "charges": null,
                                         "max_stacks": null,
                                         "proc_chance": null,
+                                        "proc_cooldown_seconds": null,
                                         "cooldown_seconds": null,
                                         "cooldown_scaling_note": null,
                                         "duration_seconds": null,
@@ -4089,7 +4102,7 @@
             "spellId": 6807,
             "category": "Offensive",
             "description": {
-                "text": "Your spells and abilities have a chance to activate Flurry of Xuen, unleashing a barrage of deadly swipes to deal 100 Physical damage in a 10 yd cone, damage reduced beyond 5 targets. Invoking Xuen, the White Tiger activates Flurry of Xuen.",
+                "text": "Your spells and abilities have a chance to activate Flurry of Xuen, unleashing a barrage of deadly swipes to deal ≈548.8% of Attack Power Physical damage in a 10 yd cone, damage reduced beyond 5 targets. Invoking Xuen, the White Tiger activates Flurry of Xuen.",
                 "uncertain": false
             },
             "formulaModifierSpellIds": [],
@@ -4103,7 +4116,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Your spells and abilities have a chance to activate Flurry of Xuen, unleashing a barrage of deadly swipes to deal 100 Physical damage in a 10 yd cone, damage reduced beyond 5 targets. Invoking Xuen, the White Tiger activates Flurry of Xuen.",
+                            "text": "Your spells and abilities have a chance to activate Flurry of Xuen, unleashing a barrage of deadly swipes to deal ≈548.8% of Attack Power Physical damage in a 10 yd cone, damage reduced beyond 5 targets. Invoking Xuen, the White Tiger activates Flurry of Xuen.",
                             "uncertain": false
                         },
                         "category": "Offensive",
@@ -4119,8 +4132,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Your spells and abilities have a chance to activate Flurry of Xuen, unleashing a barrage of deadly swipes to deal 100 Physical damage in a 10 yd cone, damage reduced beyond 5 targets. Invoking Xuen, the White Tiger activates Flurry of Xuen.",
-                            "uncertain": false
+                            "text": "Your spells and abilities have a chance to activate Flurry of Xuen, unleashing a barrage of deadly swipes to deal (varies) Physical damage in a 10 yd cone, damage reduced beyond 5 targets. Invoking Xuen, the White Tiger activates Flurry of Xuen.",
+                            "uncertain": true
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -4152,7 +4165,7 @@
             "spellId": 6700,
             "category": "Other",
             "description": {
-                "text": "Your auto attacks have a chance to generate 1-2 Flurry Charges. When you cast (varies by condition — check in-game), unleash all Flurry Charges, dealing (varies) Physical damage per charge.",
+                "text": "Your auto attacks have a chance to generate 1-2 Flurry Charges. When you cast (varies by condition — check in-game), unleash all Flurry Charges, dealing ≈60% of Attack Power Physical damage per charge.",
                 "uncertain": true
             },
             "formulaModifierSpellIds": [],
@@ -4184,6 +4197,7 @@
                                         "charges": null,
                                         "max_stacks": null,
                                         "proc_chance": null,
+                                        "proc_cooldown_seconds": null,
                                         "cooldown_seconds": null,
                                         "cooldown_scaling_note": null,
                                         "duration_seconds": null,
@@ -4267,7 +4281,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Flurry Strikes deal (varies) Nature damage to all enemies within (varies) yds, reduced beyond 8 targets.",
+                            "text": "Flurry Strikes deal ≈52% of Attack Power Nature damage to all enemies within (varies) yds, reduced beyond 8 targets.",
                             "uncertain": true
                         },
                         "category": "Other",
@@ -4348,6 +4362,7 @@
                                         "charges": null,
                                         "max_stacks": null,
                                         "proc_chance": null,
+                                        "proc_cooldown_seconds": null,
                                         "cooldown_seconds": null,
                                         "cooldown_scaling_note": null,
                                         "duration_seconds": null,
@@ -4607,6 +4622,7 @@
                             "charges": null,
                             "max_stacks": null,
                             "proc_chance": null,
+                            "proc_cooldown_seconds": null,
                             "cooldown_seconds": null,
                             "cooldown_scaling_note": null,
                             "duration_seconds": null,
@@ -4654,6 +4670,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:22:47.000000Z",
@@ -4672,6 +4689,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:22:47.000000Z",
@@ -4690,6 +4708,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:22:47.000000Z",
@@ -4708,6 +4727,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:22:47.000000Z",
@@ -4726,6 +4746,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:22:47.000000Z",
@@ -4744,6 +4765,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:22:47.000000Z",
@@ -4762,6 +4784,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:22:47.000000Z",
@@ -4780,6 +4803,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:22:47.000000Z",
@@ -4798,6 +4822,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:22:47.000000Z",
@@ -4816,6 +4841,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:22:47.000000Z",
@@ -4834,6 +4860,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:22:47.000000Z",
@@ -4852,6 +4879,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:22:47.000000Z",
@@ -4870,6 +4898,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:22:47.000000Z",
@@ -4888,6 +4917,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:22:47.000000Z",
@@ -4906,6 +4936,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:22:47.000000Z",
@@ -4924,6 +4955,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:22:47.000000Z",
@@ -4942,6 +4974,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:22:47.000000Z",
@@ -4960,6 +4993,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:22:47.000000Z",
@@ -4978,6 +5012,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:22:47.000000Z",
@@ -4996,6 +5031,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:22:47.000000Z",
@@ -5014,6 +5050,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:22:47.000000Z",
@@ -5032,6 +5069,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:22:47.000000Z",
@@ -5050,6 +5088,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:22:47.000000Z",
@@ -5068,6 +5107,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:22:47.000000Z",
@@ -5423,7 +5463,7 @@
             "spellId": 6702,
             "category": "Offensive",
             "description": {
-                "text": "Enemies who die within 10 of being damaged by a Flurry Strike explode, dealing (varies) physical damage to uncontrolled enemies within 8 yds.",
+                "text": "Enemies who die within 10 of being damaged by a Flurry Strike explode, dealing ≈100% of Attack Power physical damage to uncontrolled enemies within 8 yds.",
                 "uncertain": true
             },
             "formulaModifierSpellIds": [],
@@ -5603,8 +5643,8 @@
             "spellId": 6674,
             "category": "Other",
             "description": {
-                "text": "You switch between alignments every (varies) sec, increasing a corresponding secondary stat by 2%. Crane Stance: Haste Tiger Stance: Critical Strike Ox Stance: Versatility Serpent Stance: Mastery",
-                "uncertain": true
+                "text": "You switch between alignments every 8 sec, increasing a corresponding secondary stat by 2%. Crane Stance: Haste Tiger Stance: Critical Strike Ox Stance: Versatility Serpent Stance: Mastery",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -5663,7 +5703,7 @@
             "spellId": 6662,
             "category": "Other",
             "description": {
-                "text": "Summons an effigy of Xuen, the White Tiger for 20. Xuen attacks your primary target, and strikes 3 enemies within 10 yards every (varies) sec with Tiger Lightning for (varies) Nature damage. Every 4 sec, Xuen strikes your enemies with Empowered Tiger Lightning dealing 4% of the damage you have dealt to those targets in the last 4 sec.",
+                "text": "Summons an effigy of Xuen, the White Tiger for 20. Xuen attacks your primary target, and strikes 3 enemies within 10 yards every 1 sec with Tiger Lightning for ≈25.7% of Attack Power Nature damage. Every 4 sec, Xuen strikes your enemies with Empowered Tiger Lightning dealing 4% of the damage you have dealt to those targets in the last 4 sec.",
                 "uncertain": true
             },
             "formulaModifierSpellIds": [],
@@ -5868,7 +5908,7 @@
             "spellId": 6791,
             "category": "Other",
             "description": {
-                "text": "Spinning Crane Kick detonates into a Chi Explosion, dealing (varies) Nature damage to all enemies within 8 yards, reduced beyond 5 targets.",
+                "text": "Spinning Crane Kick detonates into a Chi Explosion, dealing ≈351% of Attack Power Nature damage to all enemies within 8 yards, reduced beyond 5 targets.",
                 "uncertain": true
             },
             "formulaModifierSpellIds": [],
@@ -5898,7 +5938,7 @@
             "spellId": 6649,
             "category": "Other",
             "description": {
-                "text": "Thunder Focus Tea summons a Jade Serpent Statue at your location. When you channel Soothing Mist, the statue will also begin to channel Soothing Mist on your target, healing for (varies) over 8.",
+                "text": "Thunder Focus Tea summons a Jade Serpent Statue at your location. When you channel Soothing Mist, the statue will also begin to channel Soothing Mist on your target, healing for ≈560% of Spell Power over 8.",
                 "uncertain": true
             },
             "formulaModifierSpellIds": [],
@@ -6038,6 +6078,7 @@
                                         "charges": null,
                                         "max_stacks": null,
                                         "proc_chance": null,
+                                        "proc_cooldown_seconds": null,
                                         "cooldown_seconds": null,
                                         "cooldown_scaling_note": null,
                                         "duration_seconds": null,
@@ -6416,6 +6457,7 @@
                             "charges": null,
                             "max_stacks": null,
                             "proc_chance": null,
+                            "proc_cooldown_seconds": null,
                             "cooldown_seconds": null,
                             "cooldown_scaling_note": null,
                             "duration_seconds": null,
@@ -6463,6 +6505,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": "set",
                                     "rank_values": [
                                         -8000,
@@ -6484,6 +6527,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": "set",
                                     "rank_values": [
                                         -5000,
@@ -7021,6 +7065,7 @@
                             "charges": null,
                             "max_stacks": null,
                             "proc_chance": null,
+                            "proc_cooldown_seconds": null,
                             "cooldown_seconds": null,
                             "cooldown_scaling_note": null,
                             "duration_seconds": null,
@@ -7068,6 +7113,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": "set",
                                     "rank_values": [
                                         -8000,
@@ -7089,6 +7135,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": "set",
                                     "rank_values": [
                                         -5000,
@@ -7155,6 +7202,7 @@
                                         "charges": null,
                                         "max_stacks": null,
                                         "proc_chance": null,
+                                        "proc_cooldown_seconds": null,
                                         "cooldown_seconds": null,
                                         "cooldown_scaling_note": null,
                                         "duration_seconds": null,
@@ -7845,6 +7893,7 @@
                             "charges": null,
                             "max_stacks": null,
                             "proc_chance": null,
+                            "proc_cooldown_seconds": null,
                             "cooldown_seconds": null,
                             "cooldown_scaling_note": null,
                             "duration_seconds": null,
@@ -7892,6 +7941,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:22:48.000000Z",
@@ -7910,6 +7960,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:22:48.000000Z",
@@ -8127,6 +8178,7 @@
                                         "charges": null,
                                         "max_stacks": null,
                                         "proc_chance": null,
+                                        "proc_cooldown_seconds": null,
                                         "cooldown_seconds": null,
                                         "cooldown_scaling_note": null,
                                         "duration_seconds": null,
@@ -8627,7 +8679,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Performs a devastating whirling upward strike, dealing 15 damage to all nearby enemies and an additional 5 damage to the first target struck. Damage reduced beyond 5 targets. Only usable while both Fists of Fury and Rising Sun Kick are on cooldown.",
+                            "text": "Performs a devastating whirling upward strike, dealing ≈941.9% of Attack Power damage to all nearby enemies and an additional 5 damage to the first target struck. Damage reduced beyond 5 targets. Only usable while both Fists of Fury and Rising Sun Kick are on cooldown.",
                             "uncertain": false
                         },
                         "category": "Offensive",
@@ -8647,6 +8699,7 @@
                                         "charges": null,
                                         "max_stacks": null,
                                         "proc_chance": null,
+                                        "proc_cooldown_seconds": null,
                                         "cooldown_seconds": null,
                                         "cooldown_scaling_note": null,
                                         "duration_seconds": null,
@@ -8695,7 +8748,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Performs a devastating whirling upward strike, dealing 15 damage to all nearby enemies and an additional 5 damage to the first target struck. Damage reduced beyond 5 targets. Only usable while both Fists of Fury and Rising Sun Kick are on cooldown.",
+                            "text": "Performs a devastating whirling upward strike, dealing ≈941.9% of Attack Power damage to all nearby enemies and an additional 5 damage to the first target struck. Damage reduced beyond 5 targets. Only usable while both Fists of Fury and Rising Sun Kick are on cooldown.",
                             "uncertain": false
                         },
                         "category": "Offensive",
@@ -8791,7 +8844,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Performs a devastating whirling upward strike, dealing 15 damage to all nearby enemies and an additional 5 damage to the first target struck. Damage reduced beyond 5 targets. Only usable while both Fists of Fury and Rising Sun Kick are on cooldown.",
+                            "text": "Performs a devastating whirling upward strike, dealing ≈941.9% of Attack Power damage to all nearby enemies and an additional 5 damage to the first target struck. Damage reduced beyond 5 targets. Only usable while both Fists of Fury and Rising Sun Kick are on cooldown.",
                             "uncertain": false
                         },
                         "category": "Offensive",
@@ -8811,6 +8864,7 @@
                                         "charges": null,
                                         "max_stacks": null,
                                         "proc_chance": null,
+                                        "proc_cooldown_seconds": null,
                                         "cooldown_seconds": null,
                                         "cooldown_scaling_note": null,
                                         "duration_seconds": null,
@@ -8891,8 +8945,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Every (varies) sec, your next Rising Sun Kick or Vivify releases a wave of Chi energy that flows through friends and foes, dealing 7 Nature damage or 7 healing. Bounces up to 7 times to targets within 25 yards.",
-                            "uncertain": true
+                            "text": "Every 15 sec, your next Rising Sun Kick or Vivify releases a wave of Chi energy that flows through friends and foes, dealing 7 Nature damage or 7 healing. Bounces up to 7 times to targets within 25 yards.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -8939,7 +8993,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Performs a devastating whirling upward strike, dealing 15 damage to all nearby enemies and an additional 5 damage to the first target struck. Damage reduced beyond 5 targets. Only usable while both Fists of Fury and Rising Sun Kick are on cooldown.",
+                            "text": "Performs a devastating whirling upward strike, dealing ≈941.9% of Attack Power damage to all nearby enemies and an additional 5 damage to the first target struck. Damage reduced beyond 5 targets. Only usable while both Fists of Fury and Rising Sun Kick are on cooldown.",
                             "uncertain": false
                         },
                         "category": "Offensive",
@@ -8959,6 +9013,7 @@
                                         "charges": null,
                                         "max_stacks": null,
                                         "proc_chance": null,
+                                        "proc_cooldown_seconds": null,
                                         "cooldown_seconds": null,
                                         "cooldown_scaling_note": null,
                                         "duration_seconds": null,
@@ -9020,6 +9075,7 @@
                             "charges": null,
                             "max_stacks": null,
                             "proc_chance": null,
+                            "proc_cooldown_seconds": null,
                             "cooldown_seconds": null,
                             "cooldown_scaling_note": null,
                             "duration_seconds": null,
@@ -9067,6 +9123,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:22:49.000000Z",
@@ -9085,6 +9142,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:22:49.000000Z",
@@ -9115,6 +9173,7 @@
                             "charges": null,
                             "max_stacks": null,
                             "proc_chance": "100.00",
+                            "proc_cooldown_seconds": null,
                             "cooldown_seconds": null,
                             "cooldown_scaling_note": null,
                             "duration_seconds": "20.00",
@@ -9162,6 +9221,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-20T05:15:58.000000Z",
@@ -9180,6 +9240,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-20T05:15:58.000000Z",
@@ -9198,6 +9259,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": 0.5,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-20T05:15:58.000000Z",
@@ -9216,6 +9278,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": 0.5,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-20T05:15:58.000000Z",
@@ -9369,8 +9432,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Roll removes a snare effect once every (varies) sec.",
-                            "uncertain": true
+                            "text": "Roll removes a snare effect once every 30 sec.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -9440,6 +9503,7 @@
                                         "charges": null,
                                         "max_stacks": null,
                                         "proc_chance": null,
+                                        "proc_cooldown_seconds": null,
                                         "cooldown_seconds": null,
                                         "cooldown_scaling_note": null,
                                         "duration_seconds": null,
@@ -9491,6 +9555,7 @@
                                         "charges": null,
                                         "max_stacks": null,
                                         "proc_chance": "100.00",
+                                        "proc_cooldown_seconds": null,
                                         "cooldown_seconds": null,
                                         "cooldown_scaling_note": null,
                                         "duration_seconds": null,
@@ -9539,8 +9604,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Your heightened reflexes allow you to react swiftly to the presence of enemies, causing you to quickly lunge to the nearest enemy in front of you within (varies) yards after you Roll.",
-                            "uncertain": true
+                            "text": "Your heightened reflexes allow you to react swiftly to the presence of enemies, causing you to quickly lunge to the nearest enemy in front of you within 10 yards after you Roll.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -9587,7 +9652,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Enemies who die within 10 of being damaged by a Flurry Strike explode, dealing (varies) physical damage to uncontrolled enemies within 8 yds.",
+                            "text": "Enemies who die within 10 of being damaged by a Flurry Strike explode, dealing ≈100% of Attack Power physical damage to uncontrolled enemies within 8 yds.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -9603,7 +9668,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Enemies who die within 10 of being damaged by a Flurry Strike explode, dealing (varies) physical damage to uncontrolled enemies within 8 yds.",
+                            "text": "Enemies who die within 10 of being damaged by a Flurry Strike explode, dealing ≈100% of Attack Power physical damage to uncontrolled enemies within 8 yds.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -9619,8 +9684,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Your heightened reflexes allow you to react swiftly to the presence of enemies, causing you to quickly lunge to the nearest enemy in front of you within (varies) yards after you Roll.",
-                            "uncertain": true
+                            "text": "Your heightened reflexes allow you to react swiftly to the presence of enemies, causing you to quickly lunge to the nearest enemy in front of you within 10 yards after you Roll.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -9651,7 +9716,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Enemies who die within 10 of being damaged by a Flurry Strike explode, dealing (varies) physical damage to uncontrolled enemies within 8 yds.",
+                            "text": "Enemies who die within 10 of being damaged by a Flurry Strike explode, dealing ≈100% of Attack Power physical damage to uncontrolled enemies within 8 yds.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -9680,6 +9745,7 @@
                             "charges": null,
                             "max_stacks": null,
                             "proc_chance": null,
+                            "proc_cooldown_seconds": null,
                             "cooldown_seconds": null,
                             "cooldown_scaling_note": null,
                             "duration_seconds": null,
@@ -9727,6 +9793,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:22:48.000000Z",
@@ -9745,6 +9812,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:22:48.000000Z",
@@ -9769,6 +9837,7 @@
                             "charges": null,
                             "max_stacks": null,
                             "proc_chance": "100.00",
+                            "proc_cooldown_seconds": null,
                             "cooldown_seconds": null,
                             "cooldown_scaling_note": null,
                             "duration_seconds": null,
@@ -9816,6 +9885,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": 2,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:22:48.000000Z",
@@ -9846,6 +9916,7 @@
                             "charges": null,
                             "max_stacks": null,
                             "proc_chance": null,
+                            "proc_cooldown_seconds": null,
                             "cooldown_seconds": null,
                             "cooldown_scaling_note": null,
                             "duration_seconds": null,
@@ -9893,6 +9964,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:22:48.000000Z",
@@ -9911,6 +9983,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:22:48.000000Z",
@@ -9935,8 +10008,8 @@
             "spellId": 6632,
             "category": "Other",
             "description": {
-                "text": "Your heightened reflexes allow you to react swiftly to the presence of enemies, causing you to quickly lunge to the nearest enemy in front of you within (varies) yards after you Roll.",
-                "uncertain": true
+                "text": "Your heightened reflexes allow you to react swiftly to the presence of enemies, causing you to quickly lunge to the nearest enemy in front of you within 10 yards after you Roll.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -10093,6 +10166,7 @@
                                         "charges": null,
                                         "max_stacks": null,
                                         "proc_chance": null,
+                                        "proc_cooldown_seconds": null,
                                         "cooldown_seconds": null,
                                         "cooldown_scaling_note": null,
                                         "duration_seconds": null,
@@ -10350,6 +10424,7 @@
                             "charges": null,
                             "max_stacks": null,
                             "proc_chance": null,
+                            "proc_cooldown_seconds": null,
                             "cooldown_seconds": null,
                             "cooldown_scaling_note": null,
                             "duration_seconds": null,
@@ -10397,6 +10472,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:22:49.000000Z",
@@ -10415,6 +10491,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:22:49.000000Z",
@@ -10445,6 +10522,7 @@
                             "charges": null,
                             "max_stacks": null,
                             "proc_chance": "100.00",
+                            "proc_cooldown_seconds": null,
                             "cooldown_seconds": null,
                             "cooldown_scaling_note": null,
                             "duration_seconds": "20.00",
@@ -10492,6 +10570,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-20T05:15:58.000000Z",
@@ -10510,6 +10589,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-20T05:15:58.000000Z",
@@ -10528,6 +10608,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": 0.5,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-20T05:15:58.000000Z",
@@ -10546,6 +10627,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": 0.5,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-20T05:15:58.000000Z",
@@ -10665,7 +10747,7 @@
             "spellId": 6713,
             "category": "Other",
             "description": {
-                "text": "Flurry Strikes deal (varies) Nature damage to all enemies within (varies) yds, reduced beyond 8 targets.",
+                "text": "Flurry Strikes deal ≈52% of Attack Power Nature damage to all enemies within (varies) yds, reduced beyond 8 targets.",
                 "uncertain": true
             },
             "formulaModifierSpellIds": [],
@@ -10755,8 +10837,8 @@
             "spellId": 6652,
             "category": "Defensive",
             "description": {
-                "text": "While no enemies are within 15 yds, you heal for 15 every (varies) sec.",
-                "uncertain": true
+                "text": "While no enemies are within 15 yds, you heal for 15 every 3 sec.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -10877,6 +10959,7 @@
                                         "charges": null,
                                         "max_stacks": null,
                                         "proc_chance": null,
+                                        "proc_cooldown_seconds": null,
                                         "cooldown_seconds": null,
                                         "cooldown_scaling_note": null,
                                         "duration_seconds": null,
@@ -11088,7 +11171,7 @@
             "spellId": 6596,
             "category": "Defensive",
             "description": {
-                "text": "Heals the target for (varies) over 8. While channeling, Enveloping Mist, Surging Mist,, Zen Pulse, and Vivify may be cast instantly on the target.",
+                "text": "Heals the target for ≈1,680% of Spell Power over 8. While channeling, Enveloping Mist, Surging Mist,, Zen Pulse, and Vivify may be cast instantly on the target.",
                 "uncertain": true
             },
             "formulaModifierSpellIds": [],
@@ -11167,7 +11250,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Summons a Jade Serpent Statue at the target location. When you channel Soothing Mist, the statue will also begin to channel Soothing Mist on your target, healing for (varies) over 8.",
+                            "text": "Summons a Jade Serpent Statue at the target location. When you channel Soothing Mist, the statue will also begin to channel Soothing Mist on your target, healing for ≈560% of Spell Power over 8.",
                             "uncertain": true
                         },
                         "category": "Other",
@@ -11183,7 +11266,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Thunder Focus Tea summons a Jade Serpent Statue at your location. When you channel Soothing Mist, the statue will also begin to channel Soothing Mist on your target, healing for (varies) over 8.",
+                            "text": "Thunder Focus Tea summons a Jade Serpent Statue at your location. When you channel Soothing Mist, the statue will also begin to channel Soothing Mist on your target, healing for ≈560% of Spell Power over 8.",
                             "uncertain": true
                         },
                         "category": "Other",
@@ -11326,6 +11409,7 @@
                                         "charges": null,
                                         "max_stacks": null,
                                         "proc_chance": null,
+                                        "proc_cooldown_seconds": null,
                                         "cooldown_seconds": null,
                                         "cooldown_scaling_note": null,
                                         "duration_seconds": null,
@@ -11554,7 +11638,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Whenever you deal damage to a target with Fists of Fury, you gain a stack of Chi Energy up to a maximum of 30 stacks. Using Spinning Crane Kick will cause the energy to detonate in a Chi Explosion, dealing (varies) damage to all enemies within 8 yards. The damage is increased by (varies)% for each stack of Chi Energy.",
+                            "text": "Whenever you deal damage to a target with Fists of Fury, you gain a stack of Chi Energy up to a maximum of 30 stacks. Using Spinning Crane Kick will cause the energy to detonate in a Chi Explosion, dealing ≈65% of Attack Power damage to all enemies within 8 yards. The damage is increased by (varies)% for each stack of Chi Energy.",
                             "uncertain": true
                         },
                         "category": "Other",
@@ -11634,7 +11718,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Spinning Crane Kick detonates into a Chi Explosion, dealing (varies) Nature damage to all enemies within 8 yards, reduced beyond 5 targets.",
+                            "text": "Spinning Crane Kick detonates into a Chi Explosion, dealing ≈351% of Attack Power Nature damage to all enemies within 8 yards, reduced beyond 5 targets.",
                             "uncertain": true
                         },
                         "category": "Other",
@@ -11775,6 +11859,7 @@
                                         "charges": null,
                                         "max_stacks": null,
                                         "proc_chance": null,
+                                        "proc_cooldown_seconds": null,
                                         "cooldown_seconds": null,
                                         "cooldown_scaling_note": null,
                                         "duration_seconds": null,
@@ -11861,6 +11946,7 @@
                                         "charges": null,
                                         "max_stacks": null,
                                         "proc_chance": null,
+                                        "proc_cooldown_seconds": null,
                                         "cooldown_seconds": null,
                                         "cooldown_scaling_note": null,
                                         "duration_seconds": null,
@@ -12219,8 +12305,8 @@
             "spellId": 6793,
             "category": "Offensive",
             "description": {
-                "text": "Strike with both fists at all enemies in front of you, dealing 0 Physical damage and reducing movement speed by 50% for 6. Deals reduced damage to secondary targets.",
-                "uncertain": true
+                "text": "Strike with both fists at all enemies in front of you, dealing ≈1,512% of Attack Power Physical damage and reducing movement speed by 50% for 6. Deals reduced damage to secondary targets.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -12267,6 +12353,7 @@
                                         "charges": null,
                                         "max_stacks": null,
                                         "proc_chance": null,
+                                        "proc_cooldown_seconds": null,
                                         "cooldown_seconds": null,
                                         "cooldown_scaling_note": null,
                                         "duration_seconds": null,
@@ -12603,6 +12690,7 @@
                             "charges": null,
                             "max_stacks": null,
                             "proc_chance": null,
+                            "proc_cooldown_seconds": null,
                             "cooldown_seconds": null,
                             "cooldown_scaling_note": null,
                             "duration_seconds": null,
@@ -12650,6 +12738,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:22:49.000000Z",
@@ -12668,6 +12757,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:22:49.000000Z",
@@ -12731,7 +12821,7 @@
             "spellId": 6597,
             "category": "Other",
             "description": {
-                "text": "Summons a Jade Serpent Statue at the target location. When you channel Soothing Mist, the statue will also begin to channel Soothing Mist on your target, healing for (varies) over 8.",
+                "text": "Summons a Jade Serpent Statue at the target location. When you channel Soothing Mist, the statue will also begin to channel Soothing Mist on your target, healing for ≈560% of Spell Power over 8.",
                 "uncertain": true
             },
             "formulaModifierSpellIds": [],
@@ -12791,8 +12881,8 @@
             "spellId": 6646,
             "category": "Other",
             "description": {
-                "text": "Roll removes a snare effect once every (varies) sec.",
-                "uncertain": true
+                "text": "Roll removes a snare effect once every 30 sec.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -13136,7 +13226,7 @@
             "spellId": 5777,
             "category": "Offensive",
             "description": {
-                "text": "Strike with the palm of your hand, dealing (varies) Physical damage. Tiger Palm has an (varies)% chance to make your next Blackout Kick cost no Chi. Generates (varies) Chi.",
+                "text": "Strike with the palm of your hand, dealing ≈90% of Attack Power Physical damage. Tiger Palm has an (varies)% chance to make your next Blackout Kick cost no Chi. Generates (varies) Chi.",
                 "uncertain": true
             },
             "formulaModifierSpellIds": [
@@ -13266,6 +13356,7 @@
                                         "charges": null,
                                         "max_stacks": null,
                                         "proc_chance": null,
+                                        "proc_cooldown_seconds": null,
                                         "cooldown_seconds": null,
                                         "cooldown_scaling_note": null,
                                         "duration_seconds": null,
@@ -13362,7 +13453,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "While out of combat, your Chi balances to 1 instead of depleting to empty. Your stamina is increased by 5% and every (varies) sec, your next Tiger Palm also casts Expel Harm. Expel Harm Expel negative chi from your body, healing for ≈120% of Spell Power and dealing 10% of the amount healed as Nature damage to an enemy within 20 yards. Generates 100 Chi.",
+                            "text": "While out of combat, your Chi balances to 1 instead of depleting to empty. Your stamina is increased by 5% and every 6 sec, your next Tiger Palm also casts Expel Harm. Expel Harm Expel negative chi from your body, healing for ≈120% of Spell Power and dealing 10% of the amount healed as Nature damage to an enemy within 20 yards. Generates 100 Chi.",
                             "uncertain": true
                         },
                         "category": "Other",
@@ -13426,7 +13517,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "While out of combat, your Chi balances to 2 instead of depleting to empty. Your stamina is increased by 5% and every (varies) sec, your next Tiger Palm also casts Expel Harm. Expel Harm Expel negative chi from your body, healing for ≈120% of Spell Power and dealing 10% of the amount healed as Nature damage to an enemy within 20 yards. Generates 100 Chi.",
+                            "text": "While out of combat, your Chi balances to 2 instead of depleting to empty. Your stamina is increased by 5% and every 15 sec, your next Tiger Palm also casts Expel Harm. Expel Harm Expel negative chi from your body, healing for ≈120% of Spell Power and dealing 10% of the amount healed as Nature damage to an enemy within 20 yards. Generates 100 Chi.",
                             "uncertain": true
                         },
                         "category": "Other",
@@ -13510,7 +13601,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Summons an effigy of Xuen, the White Tiger for 20. Xuen attacks your primary target, and strikes 3 enemies within 10 yards every (varies) sec with Tiger Lightning for (varies) Nature damage. Every 4 sec, Xuen strikes your enemies with Empowered Tiger Lightning dealing 4% of the damage you have dealt to those targets in the last 4 sec.",
+                            "text": "Summons an effigy of Xuen, the White Tiger for 20. Xuen attacks your primary target, and strikes 3 enemies within 10 yards every 1 sec with Tiger Lightning for ≈25.7% of Attack Power Nature damage. Every 4 sec, Xuen strikes your enemies with Empowered Tiger Lightning dealing 4% of the damage you have dealt to those targets in the last 4 sec.",
                             "uncertain": true
                         },
                         "category": "Other",
@@ -13654,7 +13745,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Strike with the palm of your hand, dealing (varies) Physical damage. Tiger Palm has an (varies)% chance to make your next Blackout Kick cost no Chi. Generates (varies) Chi.",
+                            "text": "Strike with the palm of your hand, dealing ≈27% of Attack Power Physical damage. Tiger Palm has an (varies)% chance to make your next Blackout Kick cost no Chi. Generates (varies) Chi.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -14528,7 +14619,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Heals the target for (varies) over 8. While channeling, Enveloping Mist, Surging Mist,, Zen Pulse, and Vivify may be cast instantly on the target.",
+                            "text": "Heals the target for ≈1,680% of Spell Power over 8. While channeling, Enveloping Mist, Surging Mist,, Zen Pulse, and Vivify may be cast instantly on the target.",
                             "uncertain": true
                         },
                         "category": "Defensive",
@@ -14608,7 +14699,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Heals the target for (varies) over 8. While channeling, Enveloping Mist, Surging Mist,, Zen Pulse, and Vivify may be cast instantly on the target.",
+                            "text": "Heals the target for ≈560% of Spell Power over 8. While channeling, Enveloping Mist, Surging Mist,, Zen Pulse, and Vivify may be cast instantly on the target.",
                             "uncertain": true
                         },
                         "category": "Defensive",
@@ -14900,8 +14991,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Every (varies) sec, your next Rising Sun Kick or Vivify releases a wave of Chi energy that flows through friends and foes, dealing 7 Nature damage or 7 healing. Bounces up to 7 times to targets within 25 yards.",
-                            "uncertain": true
+                            "text": "Every 15 sec, your next Rising Sun Kick or Vivify releases a wave of Chi energy that flows through friends and foes, dealing 7 Nature damage or 7 healing. Bounces up to 7 times to targets within 25 yards.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -15057,7 +15148,7 @@
             "spellId": 6779,
             "category": "Offensive",
             "description": {
-                "text": "Performs a devastating whirling upward strike, dealing 15 damage to all nearby enemies and an additional 5 damage to the first target struck. Damage reduced beyond 5 targets. Only usable while both Fists of Fury and Rising Sun Kick are on cooldown.",
+                "text": "Performs a devastating whirling upward strike, dealing ≈941.9% of Attack Power damage to all nearby enemies and an additional 5 damage to the first target struck. Damage reduced beyond 5 targets. Only usable while both Fists of Fury and Rising Sun Kick are on cooldown.",
                 "uncertain": false
             },
             "formulaModifierSpellIds": [],
@@ -15325,6 +15416,7 @@
                             "charges": null,
                             "max_stacks": null,
                             "proc_chance": null,
+                            "proc_cooldown_seconds": null,
                             "cooldown_seconds": null,
                             "cooldown_scaling_note": null,
                             "duration_seconds": null,
@@ -15372,6 +15464,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:22:49.000000Z",
@@ -15390,6 +15483,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:22:49.000000Z",
@@ -15423,8 +15517,8 @@
             "spellId": 6708,
             "category": "Defensive",
             "description": {
-                "text": "When your health drops below 50%, summon Whirling Steel, increasing your parry chance and avoidance by 15% for 6. This effect can not occur more than once every (varies) sec.",
-                "uncertain": true
+                "text": "When your health drops below 50%, summon Whirling Steel, increasing your parry chance and avoidance by 15% for 6. This effect can not occur more than once every 180 sec.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -16105,6 +16199,7 @@
                             "charges": null,
                             "max_stacks": null,
                             "proc_chance": null,
+                            "proc_cooldown_seconds": null,
                             "cooldown_seconds": null,
                             "cooldown_scaling_note": null,
                             "duration_seconds": null,
@@ -16152,6 +16247,7 @@
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
+                                    "ap_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:22:49.000000Z",
