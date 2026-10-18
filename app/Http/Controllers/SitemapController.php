@@ -30,7 +30,6 @@ class SitemapController extends Controller
         '/sc2/quiz/terran' => ['monthly', '0.4'],
         '/sc2/quiz/protoss' => ['monthly', '0.4'],
         '/sc2/quiz/zerg' => ['monthly', '0.4'],
-        '/lol' => ['monthly', '0.4'],
         '/wow/comps' => ['daily', '0.9'],
         '/wow/matchup-lab' => ['weekly', '0.8'],
         '/browse-guides' => ['daily', '0.8'],

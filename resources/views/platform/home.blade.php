@@ -1,6 +1,6 @@
 {{-- MindCollector's home (PlatformController::home): what it is, and a card per game. --}}
 <x-app-layout title="MindCollector: understand your own games"
-              description="MindCollector reads the games you play and shows what happened in them, set against the players you actually meet. World of Warcraft arena now; StarCraft II and League of Legends next."
+              description="MindCollector reads the games you play and shows what happened in them, set against the players you actually meet. World of Warcraft arena now; StarCraft II next."
               og-image="/images/app/card.webp">
 <div class="max-w-5xl mx-auto px-4 py-6 sm:py-10 space-y-6">
 
@@ -16,11 +16,11 @@
 
     <section>
         <h2 class="text-[13px] font-bold text-ink-subtle uppercase tracking-[.12em] px-1 mb-3">Pick your game</h2>
-        <div class="grid md:grid-cols-3 gap-4">
+        <div class="grid {{ count($games) === 2 ? 'md:grid-cols-2' : 'md:grid-cols-3' }} gap-4">
             @foreach ($games as $slug => $g)
                 @php $live = $g['status'] === 'live'; @endphp
                 <a href="{{ route($g['route']) }}" wire:navigate
-                   class="linear-card group relative overflow-hidden p-5 flex flex-col {{ $live ? 'md:col-span-3 lg:col-span-1' : '' }} hover:-translate-y-0.5 transition-transform"
+                   class="linear-card group relative overflow-hidden p-5 flex flex-col {{ $live && count($games) !== 2 ? 'md:col-span-3 lg:col-span-1' : '' }} hover:-translate-y-0.5 transition-transform"
                    style="background: linear-gradient(160deg, {{ $g['color'] }}1f, transparent 55%)">
                     <div class="flex items-center justify-between">
                         <x-mc-icon :name="$g['icon']" class="w-11 h-11" style="color: {{ $g['color'] }}" />
@@ -51,8 +51,8 @@
         <ol class="grid sm:grid-cols-3 gap-4 mt-4">
             @foreach ([
                 ['Play as you normally do', 'The MindCollector app picks up each game when it ends. Nothing to start, nothing to export.'],
-                ['Every game gets read', 'Who died and why, what was left unused, and how you compare with players of your spec at your rating.'],
-                ['One thing to work on', 'The habit that costs you most, measured again next session so you can see it change.'],
+                ['Every game gets read', 'Who died and why, and what was left unused.'],
+                ['Where you stand', 'Your damage, defensives and crowd control set against other players of your spec, session by session, so you can see them move.'],
             ] as $i => [$title, $body])
                 <li class="rounded-xl bg-surface-2 p-4">
                     <span class="w-7 h-7 rounded-full bg-gold/15 text-gold text-[13px] font-bold flex items-center justify-center">{{ $i + 1 }}</span>

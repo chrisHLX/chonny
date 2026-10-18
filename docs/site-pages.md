@@ -115,6 +115,30 @@
   account when signed in, by email otherwise, with a hidden field against scripts; counts on
   `/admin/page-usage`). The sidebar has a game switcher; WoW's menu, its reference pages and its
   training show on WoW's pages only, and a coming game's page shows its own short menu.
+- **The 2026-10-18 pass on reading as one product** (Chriso: "Does the website look coherent enough
+  as a product?"; the review and its nine points are in the session, the fixes here):
+  - `/wow/sample` (`SampleGameController`): four real pages the app drew (a 3v3 game, a Solo
+    Shuffle, Improve, a comp) with every name swapped by `tools/app-pictures/anon.py`, committed in
+    `resources/sample/wow/`, in a frame with tabs. Anyone can open it. **"Your games" (`/wow/coach`)
+    sends a signed-out visitor there** rather than to a bare sign-in box, with "Sign in to see yours".
+    Tracked as `wow_sample`. Regenerate it the way the app's pictures are (`tools/app-pictures/README.md`).
+  - `/wow` (`Landing`) is the WoW hub: the sample and the app's page up top, then the planning
+    tools, "Learn the game" (basics check, class quizzes, spells) and the latest guides. The app's
+    pitch, slides and setup steps are `/wow/app`'s alone; the two pages were nearly the same.
+  - The WoW menu is grouped Plan (3v3 Comps, Matchup Lab), Guides (PvP Guides, Player guides),
+    Learn (Arena Kit, Class quizzes, Arena basics check); the lower panel's public links sit under
+    **Lab** (Claude's comp guides, Top Burst Windows, Top 10 CC Chains). "Your library" shows only
+    to a signed-in player. The Brain stays out of the menu (2026-10-05).
+  - 3v3 Comps and Matchup Lab still open with empty slots (WowComps::PRESET_COMPS says why), and
+    their empty state now offers the common comps one click away (Matchup Lab: "RMD against Jungle",
+    `applyMatchup()`, counted as two presets).
+  - Arena Kit (`components/spells/table.blade.php`): no raw spell ids under names; a modifier that
+    names the spell itself, or repeats one already listed (one per internal copy, rule 3), is shown
+    once. A signed-in player with Battle.net characters opens on their own spec. The "(varies)" text
+    is a resolver gap, counted in `knowledge-gaps.md`.
+  - League of Legends is unlisted (`config/platform.php` `listed => false`): off the home, the switcher
+    and the sitemap; `/lol` still answers. `/diagnostic`, the old cross-game picker with its own header,
+    redirects to `/`.
 - `/sc2/quiz`, `/sc2/quiz/{race}`, `/sc2/quiz/{race}/level/{level}`, `/sc2/diagnostic` (2026-10-18,
   Chriso: "do the diagnostic and game quizzes for sc2 so there is some content"). SC2's first
   content, listed as "Open now" on `/sc2` and in its sidebar (`config/platform.php` `now`,

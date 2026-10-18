@@ -96,7 +96,7 @@
     @endif
 </div>
 
-<div class="label">What to work on <span class="aside">your games against {{ $m['others'] }} other {{ $m['spec'] }}{{ $m['others'] === 1 ? '' : 's' }} in them ({{ $m['otherGames'] }} games, both teams). What decides games first: {{ $m['healer'] ? 'defensives, crowd control, then healing' : 'damage, defensives, then crowd control' }}.</span></div>
+<div class="label">Where you stand <span class="aside">your games against {{ $m['others'] }} other {{ $m['spec'] }}{{ $m['others'] === 1 ? '' : 's' }} in them ({{ $m['otherGames'] }} games, both teams). What decides games first: {{ $m['healer'] ? 'defensives, crowd control, then healing' : 'damage, defensives, then crowd control' }}.</span></div>
 
 @if ($m['v6'] < $m['games'])
     <div class="box small muted" style="margin-bottom: 4px">

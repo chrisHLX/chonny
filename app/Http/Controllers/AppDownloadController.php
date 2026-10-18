@@ -93,7 +93,7 @@ class AppDownloadController extends Controller
         return array_filter([
             '@type' => 'SoftwareApplication',
             'name' => 'MindCollector',
-            'description' => 'Reviews every WoW arena game you play: a card for each game, what to work on next, and how you compare with other players of your spec.',
+            'description' => 'Reviews every WoW arena game you play: a card for each game, and how you compare with other players of your spec.',
             'operatingSystem' => 'Windows 10, Windows 11',
             'applicationCategory' => 'GameApplication',
             'url' => route('app'),

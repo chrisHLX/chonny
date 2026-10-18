@@ -8,7 +8,7 @@
         ['death', 'Games', 'How each death happened', 'The killing blow, which abilities did the damage in the last 10 seconds, whether the healer was locked out, and every defensive pressed before it.'],
         ['basics', 'Games', 'Your goes and theirs', 'Whether your damage landed with their healer locked, and whether their goes met your defensives already down. Each is set against what kills across every game we have.'],
         ['damage', 'Games', 'Damage and healing', 'Everyone\'s damage, healing, absorbs and time spent pressing nothing. Open anyone for their abilities.'],
-        ['improve', 'Improve', 'One thing to work on', 'The habit you\'re furthest behind other players of your spec on, tracked session by session, so you can see it move.'],
+        ['improve', 'Improve', 'Where you stand', 'Your damage, defensives and crowd control set against other players of your spec, session by session, so you can see them move.'],
         ['comp', 'Comps', 'Know the comp you\'re facing', 'From your own games against them: when they go, what they go with, the crowd control they chain and who they kill.'],
         ['shuffle', 'Games', 'Solo Shuffle, round by round', 'All six rounds in one place, with the same read of every death and what each team still had.'],
     ];

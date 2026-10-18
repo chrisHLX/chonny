@@ -8,6 +8,21 @@ name is swapped for a label before a picture is taken: "You", "Your Rogue", "The
 Everything is written to `storage/app/app-pictures/` (gitignored), which holds real names until it is
 deleted. Only the finished WebP files in `public/images/app/` are committed.
 
+## The sample game (`/wow/sample`)
+
+The same four pages, anonymised the same way, are served whole at `/wow/sample` from
+`resources/sample/wow/` (`game.html`, `shuffle.html`, `improve.html`, `comp.html`;
+`SampleGameController`). Draw them with `--web` so images point at `/storage/...`, and copy the app's
+saved lookups in first, or every player reads "not looked up yet":
+
+```powershell
+python -c "import json,os;d=json.load(open(os.path.join(os.environ['APPDATA'],'MindCollector','cards','index.json'),encoding='utf-8'));json.dump({'experience':d['experience']},open('storage/app/app-pictures/pages/index.json','w',encoding='utf-8'))"
+php -d memory_limit=3G artisan wow:game-cards --dir="storage/app/app-pictures/pages" --fresh --web
+```
+
+then `allnames.php` and `anon.py` as below, both checks, and copy the four anonymised files over the
+sample's names. A page that has not been through `anon.py` never goes there.
+
 ## Taking them again (after a redesign of the app's pages)
 
 From the repo root, in PowerShell:

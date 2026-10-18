@@ -2,6 +2,8 @@
     // The game this page belongs to (2026-10-17, the platform): /sc2 and /lol are their own games;
     // everything else, the platform home included, shows WoW's menu, since WoW is the one game open.
     $navGames = config('platform.games');
+    // The switcher shows the listed games, plus an unlisted one while you are on its page.
+    $navSwitch = array_filter($navGames, fn ($g, $slug) => ($g['listed'] ?? true) || request()->is($slug, $slug.'/*'), ARRAY_FILTER_USE_BOTH);
     $navGame = request()->is('sc2', 'sc2/*') ? 'sc2' : (request()->is('lol', 'lol/*') ? 'lol' : 'wow');
 @endphp
 <aside class="fixed sm:relative inset-y-0 left-0 z-30
@@ -42,8 +44,8 @@
         </a>
 
         {{-- The games (config/platform.php): one tab each, the page's own game lit in its colour. --}}
-        <div class="grid grid-cols-3 gap-1 px-1 pt-2 pb-1">
-            @foreach ($navGames as $gSlug => $g)
+        <div class="grid {{ count($navSwitch) === 2 ? 'grid-cols-2' : 'grid-cols-3' }} gap-1 px-1 pt-2 pb-1">
+            @foreach ($navSwitch as $gSlug => $g)
                 @php $gOn = $navGame === $gSlug && ! request()->routeIs('home'); @endphp
                 <a href="{{ route($g['route']) }}" wire:navigate title="{{ $g['name'] }}{{ $g['status'] === 'soon' ? ' (coming soon)' : '' }}"
                    class="flex flex-col items-center gap-1 rounded-lg py-2 text-[11px] font-semibold transition-colors {{ $gOn ? 'bg-surface-2 text-ink' : 'text-ink-subtle hover:text-ink hover:bg-surface-1' }}">
@@ -59,7 +61,7 @@
         {{-- 2026-10-12: the player's games and the app first, then the planning tools. Guides keeps
              Claude's nested under it: NAV ONLY, the two listings stay separate pages (rule 30). --}}
         <a href="{{ route('coach') }}"
-           class="sidebar-item {{ request()->routeIs('coach') || request()->routeIs('game-review') ? 'active' : '' }}">
+           class="sidebar-item {{ request()->routeIs('coach', 'game-review', 'wow.sample') ? 'active' : '' }}">
             <svg class="w-[18px] h-[18px] shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 17v-6m3 6V7m3 10v-4M5 21h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v14a2 2 0 002 2z"/>
             </svg>
@@ -92,8 +94,10 @@
             Matchup Lab
         </a>
 
-        {{-- The spec guides counted from real games (/wow/pvp, 2026-10-16): every spec's PvP talents,
+        {{-- 2026-10-18: grouped Plan, Guides, Learn, so five guide-like links no longer sit in one list.
+             The spec guides counted from real games (/wow/pvp, 2026-10-16): every spec's PvP talents,
              goes, defensives, what to kick and comps. --}}
+        <p class="px-3 pt-3 pb-1 text-[11px] font-bold text-ink-subtle uppercase tracking-[.12em]">Guides</p>
         <a href="{{ route('spec-pvp.index') }}" wire:navigate
            class="sidebar-item {{ request()->routeIs('spec-pvp.*') ? 'active' : '' }}">
             <svg class="w-[18px] h-[18px] shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -102,6 +106,15 @@
             PvP Guides
         </a>
 
+        <a href="{{ route('guides.browse') }}" wire:navigate
+           class="sidebar-item {{ request()->routeIs('guides.browse') || request()->routeIs('guides.show') ? 'active' : '' }}">
+            <svg class="w-[18px] h-[18px] shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/>
+            </svg>
+            Player guides
+        </a>
+
+        <p class="px-3 pt-3 pb-1 text-[11px] font-bold text-ink-subtle uppercase tracking-[.12em]">Learn</p>
         {{-- One per-spec page for kits, burst, counters and spells (2026-09-07; see App\Livewire\PvpGuides).
              In the top panel since 2026-10-12, beside the other planning tools. Its pages are titled
              "Arena Kit" since 2026-10-16, so the menu says the same. --}}
@@ -113,18 +126,19 @@
             Arena Kit
         </a>
 
-        <a href="{{ route('guides.browse') }}" wire:navigate
-           class="sidebar-item {{ request()->routeIs('guides.browse') || request()->routeIs('guides.show') ? 'active' : '' }}">
+        <a href="{{ route('wow-quiz') }}" wire:navigate
+           class="sidebar-item {{ request()->routeIs('wow-quiz*') ? 'active' : '' }}">
             <svg class="w-[18px] h-[18px] shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/>
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
             </svg>
-            Guides
+            Class quizzes
         </a>
-
-        <a href="{{ route('guides.machine') }}" wire:navigate
-           class="sidebar-item text-[12px] {{ request()->routeIs('guides.machine') ? 'active !text-accent' : '' }}">
-            <span class="w-1 h-1 rounded-full bg-current shrink-0"></span>
-            Claude
+        <a href="{{ route('wow-basics') }}" wire:navigate
+           class="sidebar-item {{ request()->routeIs('wow-basics') ? 'active' : '' }}">
+            <svg class="w-[18px] h-[18px] shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4M7 4h10a2 2 0 012 2v12a2 2 0 01-2 2H7a2 2 0 01-2-2V6a2 2 0 012-2z"/>
+            </svg>
+            Arena basics check
         </a>
         @else
             {{-- A game that is not open yet: its page, what is open already, and what is coming. --}}
@@ -153,7 +167,7 @@
     </div>
 
     <div class="flex-1 min-h-0 flex flex-col rounded-lg bg-surface-0 overflow-hidden">
-    <p class="px-5 pt-4 pb-2 text-[13px] font-bold text-ink-muted">Your library</p>
+    @auth<p class="px-5 pt-4 pb-2 text-[13px] font-bold text-ink-muted">Your library</p>@endauth
     <!-- Scrollable nav body -->
     <div class="flex-1 overflow-y-auto py-2 px-2 space-y-0.5">
 
@@ -244,7 +258,14 @@
         @endguest
 
         @if ($navGame === 'wow')
-        <p class="px-3 pt-4 pb-1.5 text-[11px] font-bold text-ink-subtle uppercase tracking-[.12em]">More data</p>
+        {{-- Lab (2026-10-18): the experimental pages, apart from the product. Claude's guides are
+             drafted by a model to be corrected; the two top lists are raw reads of the archive. --}}
+        <p class="px-3 pt-4 pb-1.5 text-[11px] font-bold text-ink-subtle uppercase tracking-[.12em]">Lab</p>
+        <a href="{{ route('guides.machine') }}" wire:navigate
+           class="sidebar-item text-[12px] {{ request()->routeIs('guides.machine') ? 'active !text-accent' : '' }}">
+            <span class="w-1 h-1 rounded-full bg-current shrink-0"></span>
+            Claude's comp guides
+        </a>
 
 
         <a href="{{ route('top-damage-rotations') }}" wire:navigate
@@ -258,37 +279,6 @@
             Top 10 CC Chains
         </a>
 
-        {{-- Training: class quizzes. Open by default since 2026-09-17 (new persist key), when the
-             old module pages were hidden and this became the class quizzes' home. Always open while
-             you are on one of its own pages. --}}
-        @php $onTrainingPage = request()->routeIs('training') || request()->routeIs('modules.*') || request()->routeIs('collection.index') || request()->routeIs('wow-quiz*') || request()->routeIs('wow-basics'); @endphp
-        <div x-data="{ open: $persist(true).as('nav_training_open_v2') }">
-            <button type="button" @click="open = !open"
-                    class="w-full flex items-center justify-between px-3 pt-4 pb-1.5 text-[11px] font-bold text-ink-subtle uppercase tracking-[.12em] hover:text-ink-muted transition-colors">
-                Training
-                <svg :class="(open || {{ $onTrainingPage ? 'true' : 'false' }}) ? 'rotate-90' : ''"
-                     class="w-3 h-3 transition-transform duration-150" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
-                </svg>
-            </button>
-            <div x-show="open || {{ $onTrainingPage ? 'true' : 'false' }}" x-cloak class="space-y-0.5">
-                <a href="{{ route('wow-quiz') }}" wire:navigate
-                   class="sidebar-item text-[12px] {{ request()->routeIs('wow-quiz*') ? 'active !text-accent' : '' }}">
-                    <span class="w-1 h-1 rounded-full bg-current shrink-0"></span>
-                    Class quizzes
-                </a>
-                <a href="{{ route('wow-basics') }}" wire:navigate
-                   class="sidebar-item text-[12px] {{ request()->routeIs('wow-basics') ? 'active !text-accent' : '' }}">
-                    <span class="w-1 h-1 rounded-full bg-current shrink-0"></span>
-                    Arena basics check
-                </a>
-                {{-- Strategy and The Brain left the sidebar on 2026-10-05 (Chriso). Both pages still
-                     work: the basics check links each answer to its section of /brain. --}}
-                {{-- Diagnostic, Quizzes and Progress are hidden (2026-09-17): they belong to the old
-                     learning-module system. The routes still work; the links come back once class
-                     quizzes are built out. See CLAUDE.md, "Old Training pages hidden". --}}
-            </div>
-        </div>
         @endif
 
         @can('admin')

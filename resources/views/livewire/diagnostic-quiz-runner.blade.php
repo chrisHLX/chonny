@@ -172,16 +172,16 @@
                     </p>
                     @if ($growthAreaName)
                         <p class="text-[13px] text-ink-muted leading-relaxed mb-4">
-                            Your growth area is <span class="text-ink font-medium">{{ $growthAreaName }}</span>. Browse the available modules to find targeted training that addresses it directly.
+                            Your growth area is <span class="text-ink font-medium">{{ $growthAreaName }}</span>. {{ $nextUrl ? 'The quizzes are a good place to start: costs, timings and the tech tree, from the game\'s own data.' : 'Browse the available modules to find targeted training that addresses it directly.' }}
                         </p>
                     @else
                         <p class="text-[13px] text-ink-muted leading-relaxed mb-4">
                             Explore the available training modules and find one that matches what your profile revealed.
                         </p>
                     @endif
-                    <a href="{{ route('modules.index') }}"
+                    <a href="{{ $nextUrl ?? route('modules.index') }}"
                        class="inline-flex items-center justify-center gap-2 w-full py-2.5 text-[13px] font-semibold text-surface-0 bg-gold-gradient rounded-md hover:shadow-gold transition-all duration-200">
-                        Explore training modules
+                        {{ $nextUrl ? 'Try the StarCraft II quizzes' : 'Explore training modules' }}
                         <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
                         </svg>

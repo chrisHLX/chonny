@@ -257,7 +257,7 @@ class ImprovementTest extends TestCase
         // One session before it: too few to give a range, so no verdict on it either way.
         $this->assertStringContainsString('Last session (Fri 2 Oct, 1 game): 100% . Against 100% before it: too few sessions of 3+ games yet to say whether it stands out.', $page);
         $this->assertStringContainsString('Last session (Fri 2 Oct): 15.0s, against 15.0s before it.', $page, 'every habit carries its last session');
-        $this->assertLessThan(strpos($page, 'What to work on'), strpos($page, 'Your focus'), 'the focus comes first');
+        $this->assertLessThan(strpos($page, 'Where you stand'), strpos($page, 'Your focus'), 'the focus comes first');
     }
 
     public function test_a_session_is_read_against_the_range_of_the_sessions_before_it(): void
@@ -358,7 +358,7 @@ class ImprovementTest extends TestCase
             $index = json_decode(file_get_contents("{$dir}/index.json"), true);
             $c = $index['characters']['Healz-Realm-US'];
             $this->assertSame(['Healz', 'Discipline Priest', 1], [$c['name'], $c['spec'], $c['games']]);
-            $this->assertStringContainsString('What to work on', file_get_contents("{$dir}/{$c['file']}"));
+            $this->assertStringContainsString('Where you stand', file_get_contents("{$dir}/{$c['file']}"));
 
             // Nothing changed: not drawn again.
             $this->artisan('wow:game-cards', ['--dir' => $dir])->expectsOutputToContain('1 Improve page(s) unchanged');

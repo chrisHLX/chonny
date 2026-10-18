@@ -67,9 +67,9 @@ Route::post('/games/{game}/notify', [\App\Http\Controllers\PlatformController::c
 // Built from the database: every public page, every spec's guide page and every published guide.
 Route::get('/sitemap.xml', \App\Http\Controllers\SitemapController::class)->name('sitemap');
 
-Route::get('/diagnostic', function () {
-    return view('diagnostic');
-})->name('diagnostic');
+// The old cross-game diagnostic picker (WoW, League, StarCraft II, poker) is the platform home's job
+// since 2026-10-17; it had the old header and no sidebar. Each game's own diagnostic lives under it.
+Route::permanentRedirect('/diagnostic', '/')->name('diagnostic');
 
 Route::get('/terms', function () {
     return view('terms');
@@ -212,7 +212,11 @@ Route::prefix('wow')->group(function () {
     // "Your coach": the desktop app's pages (games, Improve, Comps) for a signed-in player, built on
     // the server from the games the app uploads. Private to the player: they name everyone in them.
     // See App\Http\Controllers\CoachController.
-    Route::get('/coach', [\App\Http\Controllers\CoachController::class, 'index'])->middleware('auth')->name('coach');
+    // Signed out, "Your games" opens the sample game (CoachController::index), not a bare sign-in box.
+    Route::get('/coach', [\App\Http\Controllers\CoachController::class, 'index'])->name('coach');
+    // A real game with the names hidden, for anyone (SampleGameController, 2026-10-18).
+    Route::get('/sample', [\App\Http\Controllers\SampleGameController::class, 'index'])->name('wow.sample');
+    Route::get('/sample/page/{tab}', [\App\Http\Controllers\SampleGameController::class, 'page'])->whereAlpha('tab')->name('wow.sample.page');
     Route::get('/coach/page/{file}', [\App\Http\Controllers\CoachController::class, 'page'])
         ->where('file', '[a-z0-9-]+\.html')->middleware('auth')->name('coach.page');
     Route::post('/coach/key', [\App\Http\Controllers\CoachController::class, 'key'])->middleware('auth')->name('coach.key');

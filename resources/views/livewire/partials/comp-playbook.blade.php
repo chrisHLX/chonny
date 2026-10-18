@@ -64,8 +64,24 @@
 
     @if ($part === 'basics')
     @elseif (! $playbook)
-        <div class="linear-card p-5 text-[13px] text-ink-muted">
-            Pick a spec for all three slots to see how that team plays: who locks their healer, which buttons go together, and what to save.
+        {{-- Empty slots stay empty on open (WowComps::PRESET_COMPS says why); the examples are one
+             click away instead, so the first look at the page can show it working (2026-10-18). --}}
+        <div class="linear-card p-5">
+            <p class="text-[13px] text-ink-muted">
+                Pick a spec for all three slots to see how that team plays: who locks their healer, which buttons go together, and what to save.
+            </p>
+            @if (! empty($presets))
+                <p class="text-[13px] text-ink mt-4">Or see a common comp now:</p>
+                <div class="flex flex-wrap gap-2 mt-2">
+                    @foreach ($presets as $preset)
+                        <button type="button" wire:click="applyPreset('{{ $preset['key'] }}')" wire:key="empty-preset-{{ $preset['key'] }}"
+                                class="btn-secondary !py-2 flex items-center gap-2">
+                            <span class="flex -space-x-1">@foreach ($preset['specs'] as $spec)<x-spec-icon :spec="$spec" size="w-5 h-5"/>@endforeach</span>
+                            {{ $preset['label'] }}
+                        </button>
+                    @endforeach
+                </div>
+            @endif
         </div>
     @else
         {{-- Your go, part 1: the crowd control. --}}

@@ -141,7 +141,6 @@
                                     <x-spell-icon :spell="$spell" size="w-8 h-8" />
                                     <div>
                                         <p class="text-[13px] font-semibold text-ink">{{ $spell->display_name }}</p>
-                                        <span class="block text-[10px] text-ink-subtle font-mono">#{{ $spell->spell_id }}</span>
                                         <span class="{{ $categoryBadge[$spellCategoryName] ?? 'badge-gray' }} mt-1">{{ $spellCategoryName }}</span>
                                         @if (($entry['source'] ?? null) === 'talent')
                                             <span class="badge-blue mt-1">Talent</span>
@@ -190,7 +189,16 @@
                                 @endif
                             </td>
                             <td class="pr-5 py-3 text-[12px]">
-                                @forelse ($entry['modifiers']['named'] as $mod)
+                                {{-- One line per thing a reader can tell apart (2026-10-18): the same talent arrives
+                                     once per internal copy of a spell (rule 3), and a spell listed as a proc of
+                                     itself says nothing. Blood DK's Dancing Rune Weapon listed Transfusion and
+                                     Blood Mist three times each. --}}
+                                @php
+                                    $namedMods = collect($entry['modifiers']['named'])
+                                        ->reject(fn ($mod) => $mod['spell']->display_name === $spell->display_name)
+                                        ->unique(fn ($mod) => $mod['relationship_type'].'|'.$mod['spell']->display_name.'|'.$mod['modifier_value'].'|'.$mod['modifier_unit']);
+                                @endphp
+                                @forelse ($namedMods as $mod)
                                     <div class="mb-1 last:mb-0 flex items-center gap-1.5 flex-wrap">
                                         <span class="{{ $relTypeBadge($mod['relationship_type']) }}">{{ $relTypeLabel($mod['relationship_type']) }}</span>
                                         <span class="text-ink-muted">{{ $mod['spell']->display_name }}</span>

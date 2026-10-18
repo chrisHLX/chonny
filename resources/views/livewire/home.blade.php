@@ -27,7 +27,7 @@
             <div class="flex-1 min-w-0">
                 <p class="page-eyebrow">MindCollector for Windows</p>
                 <p class="text-[22px] sm:text-[26px] font-extrabold text-ink leading-tight mt-1">Get every arena game you play reviewed</p>
-                <p class="text-[14px] text-ink-muted mt-1">The app sends each game here when it ends: who died, what killed them, and what to work on next.</p>
+                <p class="text-[14px] text-ink-muted mt-1">The app sends each game here when it ends: who died, what killed them, and where you stand.</p>
             </div>
             <span class="btn-primary shrink-0 group-hover:bg-gold-light">Get the app</span>
         </a>

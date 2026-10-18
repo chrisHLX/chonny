@@ -55,7 +55,7 @@
                 </p>
                 <a href="{{ route('app') }}" class="btn-primary !px-6 !py-2.5 mt-4 inline-flex">Get the app for Windows</a>
             </div>
-            <img src="/images/app/improve.webp" alt="What to work on, in the MindCollector app" loading="lazy"
+            <img src="/images/app/improve.webp" alt="Where you stand, in the MindCollector app" loading="lazy"
                  class="w-full rounded-xl border border-line shadow-2xl">
         </div>
     </section>

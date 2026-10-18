@@ -18,9 +18,11 @@ class PlatformTest extends TestCase
         $html = $this->get('/')->assertOk()->getContent();
 
         $this->assertStringContainsString('Understand your own games.', $html);
-        foreach (['World of Warcraft', 'StarCraft II', 'League of Legends'] as $game) {
+        foreach (['World of Warcraft', 'StarCraft II'] as $game) {
             $this->assertStringContainsString($game, $html);
         }
+        // League of Legends is unlisted until it has something to open (config/platform.php).
+        $this->assertStringNotContainsString('League of Legends', $html);
         $this->assertStringContainsString('href="'.route('wow.home').'"', $html);
         $this->assertStringContainsString('href="'.route('sc2').'"', $html);
         $this->assertSame(1, PageViewEvent::where('page', 'platform_home')->count());

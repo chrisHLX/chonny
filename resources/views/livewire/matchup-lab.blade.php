@@ -134,6 +134,19 @@
                 Every cooldown both teams hold goes on one six-minute clock. Where one side attacks and
                 nobody on the other side has a button left, that is a window.
             </p>
+            {{-- One click to a full matchup, so the first look can show the page working (2026-10-18). --}}
+            @php $byKey = collect($presets)->keyBy('key'); @endphp
+            @if ($byKey->has('rmp') && $byKey->has('jungle'))
+                <div class="flex flex-wrap gap-2 mt-4">
+                    @foreach ([['rmp', 'jungle'], ['turbo', 'rmp']] as [$a, $b])
+                        @if ($byKey->has($a) && $byKey->has($b))
+                            <button type="button" wire:click="applyMatchup('{{ $a }}', '{{ $b }}')" wire:key="try-{{ $a }}-{{ $b }}" class="btn-secondary !py-2">
+                                {{ $byKey[$a]['label'] }} against {{ $byKey[$b]['label'] }}
+                            </button>
+                        @endif
+                    @endforeach
+                </div>
+            @endif
         </div>
     @endif
 

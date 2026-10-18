@@ -612,3 +612,12 @@ Seen through `tools/match-review/describe.php` (so without a talent build):
   every 120–126 seconds for a player who uses it on cooldown. Inferred from that timing, not read
   from a cast event.
 - **Moment of Clarity:** "can accumulate up to (varies) charges".
+
+## 2026-10-18 — "(varies)" in spell descriptions, counted
+
+Arena Kit's descriptions show "(varies)" where the description resolver could not compute a value
+(it never invents one). Across the 40 precomputed kits: **734 of 6,189 entries**, and **297 of the
+1,116 spells with a cooldown** (Anti-Magic Shell's absorb, Anti-Magic Zone's reduction, Abomination
+Limb's pull interval). Each is already flagged `uncertain` and the page says so under it. Closing it
+is resolver work in the import pipeline (`game-data.md`): find which variable kinds produce most of
+them and compute those from the spell data, then regenerate the kits (rule 21).

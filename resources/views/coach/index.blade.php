@@ -32,7 +32,7 @@
         <div class="page-hero !py-6">
             <p class="page-eyebrow">Only you can see this page</p>
             <h1 class="page-title">Your games</h1>
-            <p class="text-[14px] text-ink-muted mt-3 max-w-3xl">Every game you've uploaded, what to work on next, the comps you've played against and the best player of each spec you've met.</p>
+            <p class="text-[14px] text-ink-muted mt-3 max-w-3xl">Every game you've uploaded, where you stand against players of your spec, the comps you've played against and the best player of each spec you've met.</p>
         </div>
 
         <div class="flex flex-wrap gap-2">

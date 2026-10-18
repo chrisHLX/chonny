@@ -154,6 +154,13 @@ class MatchupLab extends Component
         }
     }
 
+    /** Both sides at once, from the empty page's examples: a real choice, counted as two presets. */
+    public function applyMatchup(string $a, string $b): void
+    {
+        $this->applyPreset('a', $a);
+        $this->applyPreset('b', $b);
+    }
+
     public function setExecution(string $execution): void
     {
         if (! array_key_exists($execution, CooldownGraphService::EXECUTION_SETTINGS)) {

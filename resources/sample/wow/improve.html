@@ -1,0 +1,662 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap">
+<style>
+    html, body { margin: 0; padding: 0; background: #121212; color: #FFFFFF; }
+    /* IE's own scrollbar properties: the Dev app's browser control is IE11. */
+    html { scrollbar-face-color: #3E3E3E; scrollbar-track-color: #121212; scrollbar-arrow-color: #B3B3B3;
+        scrollbar-shadow-color: #3E3E3E; scrollbar-highlight-color: #3E3E3E; scrollbar-3dlight-color: #121212; scrollbar-darkshadow-color: #121212; }
+    ::-webkit-scrollbar { width: 12px; height: 12px; }
+    ::-webkit-scrollbar-thumb { background: rgba(255,255,255,.18); border: 3px solid #121212; border-radius: 8px; }
+    ::-webkit-scrollbar-thumb:hover { background: rgba(255,255,255,.32); }
+    body { font-family: 'Inter', 'Segoe UI', Arial, sans-serif; font-size: 13px; line-height: 1.5; padding: 0 24px 32px; }
+    table { border-collapse: collapse; }
+    img { border: 0; }
+    a { color: #FFFFFF; }
+    .muted { color: #B3B3B3; }
+    .subtle { color: #6A6A6A; }
+    .gold { color: #C8952C; }
+    .warn-text { color: #F28B82; }
+    .small { font-size: 12px; }
+
+    /* The page's title, on a wash of colour that fades into the page: gold by default, green for a
+       won game, red for a lost one. */
+    .head { margin: 0 -24px 20px; padding: 32px 24px 22px;
+        background: #2a2214; background: linear-gradient(to bottom, #3a2d12 0%, #1e1a12 60%, #121212 100%); }
+    .head.head-won { background: #17301f; background: linear-gradient(to bottom, #1d4a2c 0%, #16261b 60%, #121212 100%); }
+    .head.head-lost { background: #301717; background: linear-gradient(to bottom, #4a1d1d 0%, #261616 60%, #121212 100%); }
+    .head .title { font-size: 30px; font-weight: 800; letter-spacing: -.02em; margin: 0 10px 0 8px; vertical-align: middle; }
+    .head .when { vertical-align: middle; font-size: 13px; }
+    .head .mmr { float: right; margin-top: 10px; }
+
+    .chip { display: inline-block; padding: 2px 10px; border-radius: 12px; font-size: 11.5px; font-weight: 700; letter-spacing: .03em; vertical-align: middle; }
+    .won { background: #1db954; background: rgba(29,185,84,.18); color: #86efac; }
+    .lost { background: #3a1416; background: rgba(239,68,68,.18); color: #fca5a5; }
+    .good { background: #12301d; background: rgba(29,185,84,.18); color: #86efac; }
+    .bad { background: #3a1416; background: rgba(239,68,68,.18); color: #fca5a5; }
+    .warn { background: #33270c; background: rgba(245,158,11,.16); color: #fcd34d; }
+    .neutral { background: #2A2A2A; color: #B3B3B3; }
+    .glad { background: #2a2214; color: #E8B84B; border: 1px solid #6B4E1A; }
+
+    .section { margin-top: 26px; }
+    .label { font-size: 17px; font-weight: 700; letter-spacing: -.01em; color: #FFFFFF; margin-bottom: 10px; }
+    .label .aside { font-size: 12.5px; font-weight: 400; letter-spacing: 0; color: #B3B3B3; margin-left: 8px; }
+    .box { background: #181818; border-radius: 8px; padding: 12px 14px; }
+    .box:hover { background: #1f1f1f; }
+    .teams { width: 100%; }
+    .teams td.col { width: 50%; vertical-align: top; padding: 0; }
+    .teams td.col.left { padding-right: 8px; }
+    .teams td.col.right { padding-left: 8px; }
+    .roster { width: 100%; }
+    .roster td { padding: 6px 0; vertical-align: middle; }
+    .roster tr + tr td { border-top: 1px solid #282828; }
+    .roster .ic { width: 36px; }
+    .roster .xp { text-align: right; white-space: nowrap; }
+    .spec-ic { width: 28px; height: 28px; border-radius: 4px; vertical-align: middle; }
+    .spell-ic { width: 20px; height: 20px; border-radius: 4px; vertical-align: middle; margin-right: 6px; }
+    .ph { display: inline-block; width: 28px; height: 28px; border-radius: 4px; background: #2A2A2A; vertical-align: middle; }
+    .ph-s { display: inline-block; width: 20px; height: 20px; border-radius: 4px; background: #2A2A2A; vertical-align: middle; margin-right: 6px; }
+    .name { font-weight: 700; }
+    .you { font-size: 10.5px; color: #C8952C; margin-left: 4px; font-weight: 700; }
+    .death { margin-bottom: 8px; }
+    .death .who { font-size: 15px; }
+    .line { margin-top: 6px; }
+    .bar { width: 100%; height: 6px; border-radius: 3px; background: #3E3E3E; overflow: hidden; font-size: 0; margin: 6px 0 4px; white-space: nowrap; }
+    .bar span { display: inline-block; height: 6px; }
+    .legend span { margin-right: 10px; }
+    .def { display: inline-block; margin: 2px 10px 2px 0; white-space: nowrap; }
+    .stats { width: 100%; }
+    .stats td { padding: 6px 0; }
+    .stats tr + tr td { border-top: 1px solid #282828; }
+    .stats .n { width: 70px; text-align: right; font-weight: 700; }
+    .stats .better { color: #86efac; }
+    .stats .worse { color: #fca5a5; }
+    .look td { padding: 6px 0; vertical-align: top; }
+    .look .ic { width: 28px; }
+    .look .count { color: #B3B3B3; white-space: nowrap; padding-left: 8px; }
+    .dot { display: inline-block; width: 8px; height: 8px; border-radius: 4px; margin: 6px 6px 0 6px; }
+    .note { padding: 4px 0; }
+    .note .t { display: inline-block; width: 48px; color: #B3B3B3; }
+    .flag { color: #C8952C; font-weight: 700; }
+    .round { margin-top: 12px; }
+    .round .rh { margin-bottom: 6px; }
+    .round .rh b { font-size: 15px; margin-right: 8px; }
+    .foot { margin-top: 28px; color: #6A6A6A; font-size: 12px; }
+
+    /* Tabs: pills, the open one white (Spotify's chips). */
+    .tabs { margin: 0 0 18px; }
+    .tabs a { display: inline-block; padding: 6px 14px; margin: 0 8px 6px 0; border-radius: 16px; background: #2A2A2A;
+        color: #FFFFFF; text-decoration: none; font-weight: 600; font-size: 13px; cursor: pointer; }
+    .tabs a:hover { background: #333333; }
+    .tabs a.on { background: #FFFFFF; color: #000000; }
+    .tabs a .cnt { color: #B3B3B3; font-weight: 400; margin-left: 2px; }
+    .tabs a.on .cnt { color: #535353; }
+    .tab .section:first-child { margin-top: 0; }
+
+    .bd tr.pl td { cursor: pointer; }
+    .bd tr.pl:hover td { background: #232323; }
+    .bd td.abil { padding: 2px 0 10px 26px; }
+    .hpline { display: block; width: 100%; height: 64px; margin: 6px 0 2px; background: #181818; border-radius: 4px; }
+    .ab { width: 100%; }
+    .ab td { padding: 2px 0; }
+    .ab .sp { white-space: nowrap; padding-right: 10px; }
+    .ab .sh { width: 30%; }
+    .ab .n { width: 64px; text-align: right; padding-left: 8px; white-space: nowrap; }
+</style>
+<style>
+    .habit { margin-top: 12px; }
+    .habit .ht { font-size: 15px; font-weight: 600; margin-right: 8px; vertical-align: middle; }
+    .habit .what { margin: 4px 0 8px; }
+    .nums { width: 100%; }
+    .nums td { width: 22%; vertical-align: top; padding: 2px 0; }
+    .nums td.chart { width: 34%; }
+    .nums .v { font-size: 20px; font-weight: 600; }
+    .nums .k { font-size: 11px; font-weight: 700; letter-spacing: .09em; text-transform: uppercase; color: #B3B3B3; }
+    .habit .caveat { margin-top: 8px; color: #6A6A6A; font-size: 11.5px; }
+    .habit .why { margin-top: 8px; padding: 8px 10px; background: #1E150A; }
+    .rot td { padding: 3px 14px 3px 0; }
+    .habit .list { margin-top: 8px; }
+    .habit .list .def { color: #FFFFFF; }
+    .habit .list .def span { color: #B3B3B3; margin-left: 4px; }
+</style>
+</head>
+<body>
+
+
+<div class="head">
+    <span class="title" style="color: #FFFFFF">You</span>
+    <span class="when muted">Discipline Priest &nbsp;&middot;&nbsp; 262 games measured (142-120; a Solo Shuffle round counts as one) &nbsp;&middot;&nbsp; 2026-09-25 to 2026-10-17</span>
+</div>
+
+    <div class="small" style="margin: -4px 0 14px">
+        <span class="muted">Your record against teams that were</span>
+                    &nbsp;<span class="chip bad">harder</span> <b>37-52</b>
+                    &nbsp;<span class="chip neutral">even</span> <b>70-56</b>
+                    &nbsp;<span class="chip good">easier</span> <b>35-12</b>
+                <span class="subtle">&nbsp;Harder: their MMR 50+ above yours or 3+ more Gladiator seasons.</span>
+    </div>
+
+
+<div class="box" style="border-color: #6B4E1A; background: #1E150A; margin-bottom: 16px">
+    <div class="label" style="color: #E8B84B">Your focus</div>
+                        <div class="small">On what decides games most (defensives, crowd control and healing), you are level with or ahead of other Discipline Priests on 10 or more games.
+                Smaller gaps, lower down: Time not pressing anything, Dispels.</div>
+            </div>
+
+<div class="label">Where you stand <span class="aside">your games against 87 other Discipline Priests in them (307 games, both teams). What decides games first: defensives, crowd control, then healing.</span></div>
+
+
+    <div class="box habit">
+        <div>
+            <span class="ht">Deaths with a fitting defensive of yours ready</span>
+            
+                        <span class="chip neutral">About the same as other Discipline Priests</span>
+        </div>
+        <div class="what muted">Your team&#039;s first death in a round, with one of your defensives ready and never pressed that could have saved them: it reached them and covers the damage that killed. Counted only when you had time free to press it.</div>
+                <table class="nums"><tr>
+            <td><div class="k">You</div><div class="v">45%</div><div class="small subtle">120 games</div></td>
+            <td><div class="k">Other Discipline Priests</div><div class="v muted">55%</div><div class="small subtle">62 games</div></td>
+            <td>
+                                    <div class="k">Your last 20</div><div class="v">50%</div><div class="small subtle">45% before that</div>
+                            </td>
+            <td class="chart">
+                                    <div class="k">By session</div>
+                    <svg width="180" height="40" xmlns="http://www.w3.org/2000/svg" style="display: block">
+            <line x1="0" y1="18.8" x2="180" y2="18.8" stroke="#6A6A6A" stroke-width="1" stroke-dasharray="3,3"/>
+        <polyline fill="none" stroke="#C8952C" stroke-width="1.5" points="4,12.6 15.5,11.8 26.9,20.8 38.4,16.9 49.9,21.4 61.3,20 72.8,20 84.3,32.3 95.7,32.3 107.2,32.3 118.7,26.6 130.1,7.7 141.6,15.9 153.1,21.4 164.5,17.5 176,32.3"/>
+    <circle cx="176" cy="32.3" r="3" fill="#E8B84B"/>
+</svg>
+                    <div class="small subtle">25 Sep to 17 Oct &middot; dashed: others</div>
+                            </td>
+        </tr></table>
+                    <div class="line">In 8 of your last 15.</div>
+                            <div class="line small muted">Last session (Sat 17 Oct): 0%; your sessions before it ran 0% to 100%.
+                            </div>
+                                    <div class="list">
+                <span class="small muted">Ready most often:</span><br>
+                                    <span class="def"><img class="spell-ic" src="/storage/spell-icons/1060982.jpg" alt="">Ultimate Penitence<span>49 of 120</span></span>
+                                    <span class="def"><img class="spell-ic" src="/storage/spell-icons/spell_holy_painsupression.jpg" alt="">Pain Suppression<span>13 of 120</span></span>
+                                    <span class="def"><img class="spell-ic" src="/storage/spell-icons/spell_holy_divineillumination.jpg" alt="">Evangelism<span>1 of 120</span></span>
+                                    <span class="def"><img class="spell-ic" src="/storage/spell-icons/spell_holy_testoffaith.jpg" alt="">Desperate Prayer<span>1 of 120</span></span>
+                            </div>
+                <div class="caveat">It lists what was there, not what would have won: one kept for the go after can be the right hold. Each game card shows the go beside it.</div>
+    </div>
+    <div class="box habit">
+        <div>
+            <span class="ht">Big defensives when their go started</span>
+            
+                        <span class="chip neutral">About the same as other Discipline Priests</span>
+        </div>
+        <div class="what muted">Their goes that started with two or more of your team&#039;s big defensives (90s+) still on cooldown.</div>
+                    <div class="small subtle" style="margin-top: 2px">Across the archive: Goes into a team with a big defensive already spent killed 30% of the time, into a full set 20%.</div>
+                <table class="nums"><tr>
+            <td><div class="k">You</div><div class="v">41%</div><div class="small subtle">262 games</div></td>
+            <td><div class="k">Other Discipline Priests</div><div class="v muted">40%</div><div class="small subtle">307 games</div></td>
+            <td>
+                                    <div class="k">Your last 20</div><div class="v">43%</div><div class="small subtle">41% before that</div>
+                            </td>
+            <td class="chart">
+                                    <div class="k">By session</div>
+                    <svg width="180" height="40" xmlns="http://www.w3.org/2000/svg" style="display: block">
+            <line x1="0" y1="16.6" x2="180" y2="16.6" stroke="#6A6A6A" stroke-width="1" stroke-dasharray="3,3"/>
+        <polyline fill="none" stroke="#C8952C" stroke-width="1.5" points="4,15.9 14.8,16.3 25.5,18.8 36.3,12.6 47,8.4 57.8,22.5 68.5,16.1 79.3,17 90,11.9 100.8,15.6 111.5,14.5 122.3,32.3 133,7.7 143.8,24.2 154.5,20.8 165.3,13.4 176,14.4"/>
+    <circle cx="176" cy="14.4" r="3" fill="#E8B84B"/>
+</svg>
+                    <div class="small subtle">25 Sep to 17 Oct &middot; dashed: others</div>
+                            </td>
+        </tr></table>
+                    <div class="line">Their go killed one of you: none down 16% (48 of 299), one down 18% (18 of 101), two or more 36% (100 of 281).</div>
+                            <div class="line small muted">Last session (Sat 17 Oct): 45%; your sessions before it ran 21% to 63%.
+                            </div>
+                                <div class="caveat">With two big defensives down, play for time until they come back instead of starting a fight. This counts the whole team&#039;s defensives, and the log doesn&#039;t say who each one was used on.</div>
+    </div>
+    <div class="box habit">
+        <div>
+            <span class="ht">Defensives outside their goes</span>
+            
+                        <span class="chip neutral">About the same as other Discipline Priests</span>
+        </div>
+        <div class="what muted">Your defensives pressed while the other team was not in a go, before the first death.</div>
+                <table class="nums"><tr>
+            <td><div class="k">You</div><div class="v">10%</div><div class="small subtle">262 games</div></td>
+            <td><div class="k">Other Discipline Priests</div><div class="v muted">11%</div><div class="small subtle">307 games</div></td>
+            <td>
+                                    <div class="k">Your last 20</div><div class="v">4%</div><div class="small subtle">11% before that</div>
+                            </td>
+            <td class="chart">
+                                    <div class="k">By session</div>
+                    <svg width="180" height="40" xmlns="http://www.w3.org/2000/svg" style="display: block">
+            <line x1="0" y1="21.9" x2="180" y2="21.9" stroke="#6A6A6A" stroke-width="1" stroke-dasharray="3,3"/>
+        <polyline fill="none" stroke="#C8952C" stroke-width="1.5" points="4,24 14.8,18 25.5,25.2 36.3,22.3 47,15.5 57.8,24.7 68.5,24.1 79.3,26.3 90,21.6 100.8,20.2 111.5,22.8 122.3,7.7 133,14.9 143.8,21.9 154.5,17 165.3,23.5 176,32.3"/>
+    <circle cx="176" cy="32.3" r="3" fill="#E8B84B"/>
+</svg>
+                    <div class="small subtle">25 Sep to 17 Oct &middot; dashed: others</div>
+                            </td>
+        </tr></table>
+                    <div class="line">Pressed with the target in danger or to break crowd control: 42% of yours, 41% of theirs. The log can&#039;t tell us why the rest were pressed.</div>
+                    <div class="line">A teammate died while you were locked out with your Medallion ready: 8 times in 262 games.</div>
+                            <div class="line small muted">Last session (Sat 17 Oct): 0%; your sessions before it ran 6% to 18%.
+                                    <span class="chip good">your best session yet</span>
+                            </div>
+                                <div class="caveat">A defensive used to break crowd control outside a go may still have stopped one starting; the log cannot show that.</div>
+    </div>
+    <div class="box habit">
+        <div>
+            <span class="ht">Crowd control on their healer</span>
+            
+                        <span class="chip neutral">About the same as other Discipline Priests</span>
+        </div>
+        <div class="what muted">Your team&#039;s goes with your crowd control on their healer.</div>
+                    <div class="small subtle" style="margin-top: 2px">Across the archive: Goes with their healer locked out or kicked killed 33% of the time, without 25%.</div>
+                <table class="nums"><tr>
+            <td><div class="k">You</div><div class="v">44%</div><div class="small subtle">262 games</div></td>
+            <td><div class="k">Other Discipline Priests</div><div class="v muted">37%</div><div class="small subtle">307 games</div></td>
+            <td>
+                                    <div class="k">Your last 20</div><div class="v">49%</div><div class="small subtle">44% before that</div>
+                            </td>
+            <td class="chart">
+                                    <div class="k">By session</div>
+                    <svg width="180" height="40" xmlns="http://www.w3.org/2000/svg" style="display: block">
+            <line x1="0" y1="23" x2="180" y2="23" stroke="#6A6A6A" stroke-width="1" stroke-dasharray="3,3"/>
+        <polyline fill="none" stroke="#C8952C" stroke-width="1.5" points="4,26.2 14.8,10.4 25.5,22.9 36.3,13.5 47,15.6 57.8,32.3 68.5,17 79.3,25.1 90,17.6 100.8,16.1 111.5,11.8 122.3,14.9 133,13.3 143.8,18.6 154.5,21.3 165.3,15.6 176,7.7"/>
+    <circle cx="176" cy="7.7" r="3" fill="#E8B84B"/>
+</svg>
+                    <div class="small subtle">25 Sep to 17 Oct &middot; dashed: others</div>
+                            </td>
+        </tr></table>
+                    <div class="line">Your goes with it led to a kill 33% (104 of 319), without it 27% (111 of 404).</div>
+                            <div class="line small muted">Last session (Sat 17 Oct): 62%; your sessions before it ran 21% to 58%.
+                                    <span class="chip good">your best session yet</span>
+                            </div>
+                                    <div class="list">
+                <span class="small muted">What you put on their healer:</span><br>
+                                    <span class="def"><img class="spell-ic" src="/storage/spell-icons/spell_shadow_psychicscream.jpg" alt="">Psychic Scream<span>331×</span></span>
+                                    <span class="def"><img class="spell-ic" src="/storage/spell-icons/spell_shadow_shadowworddominate.jpg" alt="">Mind Control<span>26×</span></span>
+                            </div>
+                <div class="caveat">A go converts when the burst lands while their healer is locked out, not merely when they are CC&#039;d at some point in it.</div>
+    </div>
+    <div class="box habit">
+        <div>
+            <span class="ht">Time locked out</span>
+            
+                        <span class="chip neutral">About the same as other Discipline Priests</span>
+        </div>
+        <div class="what muted">Seconds a minute you spent stunned, silenced, disoriented or incapacitated.</div>
+                    <div class="small subtle" style="margin-top: 2px">Across the archive: Healers locked out less than their spec&#039;s middle won 61% of rounds, more 40%.</div>
+                <table class="nums"><tr>
+            <td><div class="k">You</div><div class="v">9.8s</div><div class="small subtle">262 games</div></td>
+            <td><div class="k">Other Discipline Priests</div><div class="v muted">9.0s</div><div class="small subtle">307 games</div></td>
+            <td>
+                                    <div class="k">Your last 20</div><div class="v">9.9s</div><div class="small subtle">9.8s before that</div>
+                            </td>
+            <td class="chart">
+                                    <div class="k">By session</div>
+                    <svg width="180" height="40" xmlns="http://www.w3.org/2000/svg" style="display: block">
+            <line x1="0" y1="21.6" x2="180" y2="21.6" stroke="#6A6A6A" stroke-width="1" stroke-dasharray="3,3"/>
+        <polyline fill="none" stroke="#C8952C" stroke-width="1.5" points="4,32.3 14.8,14.8 25.5,13.5 36.3,7.7 47,18.6 57.8,27.5 68.5,16.5 79.3,30.9 90,17.3 100.8,18.3 111.5,21.8 122.3,32 133,10.8 143.8,20.6 154.5,19.9 165.3,15.8 176,19.7"/>
+    <circle cx="176" cy="19.7" r="3" fill="#E8B84B"/>
+</svg>
+                    <div class="small subtle">25 Sep to 17 Oct &middot; dashed: others</div>
+                            </td>
+        </tr></table>
+                    <div class="line">In your wins 8.4s, in your losses 11.4s.</div>
+                            <div class="line small muted">Last session (Sat 17 Oct): 9.4s; your sessions before it ran 6.9s to 11.8s.
+                            </div>
+                                <div class="caveat">Stronger teams lock you out more, so part of this is who you played. Where you stand is the part the log cannot see.</div>
+    </div>
+    <div class="box habit">
+        <div>
+            <span class="ht">Healing</span>
+            
+                        <span class="chip neutral">About the same as other Discipline Priests</span>
+        </div>
+        <div class="what muted">Your healing and absorbs onto your team, as a share of the damage your team took.</div>
+                    <div class="small subtle" style="margin-top: 2px">Across the archive: Healers above their spec&#039;s middle on healing won 46% of rounds, below it 55%: more healing comes with more damage to heal, so this says as much about the pressure as the healer.</div>
+                <table class="nums"><tr>
+            <td><div class="k">You</div><div class="v">107%</div><div class="small subtle">262 games</div></td>
+            <td><div class="k">Other Discipline Priests</div><div class="v muted">118%</div><div class="small subtle">307 games</div></td>
+            <td>
+                                    <div class="k">Your last 20</div><div class="v">108%</div><div class="small subtle">107% before that</div>
+                            </td>
+            <td class="chart">
+                                    <div class="k">By session</div>
+                    <svg width="180" height="40" xmlns="http://www.w3.org/2000/svg" style="display: block">
+            <line x1="0" y1="7.7" x2="180" y2="7.7" stroke="#6A6A6A" stroke-width="1" stroke-dasharray="3,3"/>
+        <polyline fill="none" stroke="#C8952C" stroke-width="1.5" points="4,18 14.8,12 25.5,18.3 36.3,15.6 47,26.5 57.8,32.3 68.5,23.1 79.3,17.6 90,22.1 100.8,9.8 111.5,12.4 122.3,17.3 133,8.2 143.8,10.4 154.5,13.2 165.3,19.3 176,21.6"/>
+    <circle cx="176" cy="21.6" r="3" fill="#E8B84B"/>
+</svg>
+                    <div class="small subtle">25 Sep to 17 Oct &middot; dashed: others</div>
+                            </td>
+        </tr></table>
+                    <div class="line">4,452k a minute alive (4,484k for the others). Overhealing is not counted.</div>
+                            <div class="line small muted">Last session (Sat 17 Oct): 103%; your sessions before it ran 91% to 117%.
+                            </div>
+                                    <div class="list">
+                <span class="small muted">What it is made of, against other Discipline Priests:</span><br>
+                                    <span class="def"><img class="spell-ic" src="/storage/spell-icons/458720.jpg" alt="">Atonement<span>33% · others 25%</span></span>
+                                    <span class="def"><img class="spell-ic" src="/storage/spell-icons/inv12_apextalent_priest_voidshield.jpg" alt="">Void Shield<span>21% · others 20%</span></span>
+                                    <span class="def"><img class="spell-ic" src="/storage/spell-icons/237545.jpg" alt="">Penance<span>14% · others 18%</span></span>
+                                    <span class="def"><img class="spell-ic" src="/storage/spell-icons/135940.jpg" alt="">Power Word: Shield<span>11% · others 12%</span></span>
+                                    <span class="def"><img class="spell-ic" src="/storage/spell-icons/spell_priest_powerword.jpg" alt="">Power Word: Radiance<span>6% · others 6%</span></span>
+                                    <span class="def"><img class="spell-ic" src="/storage/spell-icons/136202.jpg" alt="">Shadow Mend<span>5% · others 2%</span></span>
+                            </div>
+                <div class="caveat">Over 100% is normal: healing lands on damage from before, and some damage taken is never meant to be healed.</div>
+    </div>
+    <div class="box habit">
+        <div>
+            <span class="ht">Your casts kicked</span>
+            
+                        <span class="chip good">Ahead of other Discipline Priests</span>
+        </div>
+        <div class="what muted">Your casts that were interrupted, per minute you were alive and free to act.</div>
+                    <div class="small subtle" style="margin-top: 2px">Across the archive: Rounds where the logging player was kicked often were won 47%, otherwise 53%.</div>
+                <table class="nums"><tr>
+            <td><div class="k">You</div><div class="v">0.17</div><div class="small subtle">262 games</div></td>
+            <td><div class="k">Other Discipline Priests</div><div class="v muted">0.25</div><div class="small subtle">307 games</div></td>
+            <td>
+                                    <div class="k">Your last 20</div><div class="v">0.32</div><div class="small subtle">0.15 before that</div>
+                            </td>
+            <td class="chart">
+                                    <div class="k">By session</div>
+                    <svg width="180" height="40" xmlns="http://www.w3.org/2000/svg" style="display: block">
+            <line x1="0" y1="29.8" x2="180" y2="29.8" stroke="#6A6A6A" stroke-width="1" stroke-dasharray="3,3"/>
+        <polyline fill="none" stroke="#C8952C" stroke-width="1.5" points="4,32.3 14.8,30.8 25.5,31 36.3,30.1 47,29.3 57.8,32.3 68.5,31.5 79.3,31.7 90,29.8 100.8,31.8 111.5,30.1 122.3,7.7 133,30.4 143.8,32.3 154.5,30.2 165.3,29.5 176,29.9"/>
+    <circle cx="176" cy="29.9" r="3" fill="#E8B84B"/>
+</svg>
+                    <div class="small subtle">25 Sep to 17 Oct &middot; dashed: others</div>
+                            </td>
+        </tr></table>
+                            <div class="line small muted">Last session (Sat 17 Oct): 0.24; your sessions before it ran 0.00 to 0.30.
+                            </div>
+                                <div class="caveat">Casting into a ready kick is the common cause; a cast started to draw the kick out and stopped is the answer. Fewer casts also means fewer kicks, so read it beside your damage.</div>
+    </div>
+    <div class="box habit">
+        <div>
+            <span class="ht">Time not pressing anything</span>
+            
+                        <span class="chip bad">Rogue other Discipline Priests</span>
+        </div>
+        <div class="what muted">Your time alive in gaps of more than 2.5s between casts, not counting time locked out.</div>
+                    <div class="small subtle" style="margin-top: 2px">Across the archive: Healers idle more than their spec&#039;s middle won 54% of rounds, less 48%: a healer idles when there is less to heal, so this says more about the pressure than the healer.</div>
+                <table class="nums"><tr>
+            <td><div class="k">You</div><div class="v">22%</div><div class="small subtle">262 games</div></td>
+            <td><div class="k">Other Discipline Priests</div><div class="v muted">17%</div><div class="small subtle">307 games</div></td>
+            <td>
+                                    <div class="k">Your last 20</div><div class="v">20%</div><div class="small subtle">22% before that</div>
+                            </td>
+            <td class="chart">
+                                    <div class="k">By session</div>
+                    <svg width="180" height="40" xmlns="http://www.w3.org/2000/svg" style="display: block">
+            <line x1="0" y1="32.3" x2="180" y2="32.3" stroke="#6A6A6A" stroke-width="1" stroke-dasharray="3,3"/>
+        <polyline fill="none" stroke="#C8952C" stroke-width="1.5" points="4,20.3 14.8,31.5 25.5,23.6 36.3,24.5 47,26.1 57.8,14.1 68.5,22.2 79.3,7.7 90,26.1 100.8,21.2 111.5,19.5 122.3,9.2 133,32.3 143.8,22 154.5,25.1 165.3,24.5 176,19.2"/>
+    <circle cx="176" cy="19.2" r="3" fill="#E8B84B"/>
+</svg>
+                    <div class="small subtle">25 Sep to 17 Oct &middot; dashed: others</div>
+                            </td>
+        </tr></table>
+                            <div class="line small muted">Last session (Sat 17 Oct): 25%; your sessions before it ran 17% to 31%.
+                            </div>
+                            <div class="why">
+                <div class="small" style="color: #E8B84B; font-weight: 600">Why yours is lower</div>
+                                    <div class="line">Seconds a minute pressing nothing: 14.3s in their goes, 15.5s in your team&#039;s goes, 4.9s outside any go. Theirs: 13.0s, 13.7s, 5.1s.</div>
+                                    <div class="line">Most of the difference is in your team&#039;s goes.</div>
+                            </div>
+                        <div class="caveat">A cast longer than 2.5s counts as a gap, and so does waiting out of sight on purpose.</div>
+    </div>
+    <div class="box habit">
+        <div>
+            <span class="ht">Dispels</span>
+            
+                        <span class="chip bad">Rogue other Discipline Priests</span>
+        </div>
+        <div class="what muted">Debuffs you dispelled off your team, per minute your team carried one that Discipline Priests were seen dispelling.</div>
+                    <div class="small subtle" style="margin-top: 2px">Across the archive: Not yet set against wins across the archive.</div>
+                <table class="nums"><tr>
+            <td><div class="k">You</div><div class="v">0.57</div><div class="small subtle">262 games</div></td>
+            <td><div class="k">Other Discipline Priests</div><div class="v muted">1.05</div><div class="small subtle">307 games</div></td>
+            <td>
+                                    <div class="k">Your last 20</div><div class="v">0.42</div><div class="small subtle">0.59 before that</div>
+                            </td>
+            <td class="chart">
+                                    <div class="k">By session</div>
+                    <svg width="180" height="40" xmlns="http://www.w3.org/2000/svg" style="display: block">
+            <line x1="0" y1="17.6" x2="180" y2="17.6" stroke="#6A6A6A" stroke-width="1" stroke-dasharray="3,3"/>
+        <polyline fill="none" stroke="#C8952C" stroke-width="1.5" points="4,26.1 14.8,28.6 25.5,28.2 36.3,28.1 47,24.6 57.8,11.9 68.5,20.5 79.3,27 90,7.7 100.8,28.3 111.5,23 122.3,32.3 133,22.3 143.8,25.5 154.5,23.4 165.3,27.1 176,23.7"/>
+    <circle cx="176" cy="23.7" r="3" fill="#E8B84B"/>
+</svg>
+                    <div class="small subtle">25 Sep to 17 Oct &middot; dashed: others</div>
+                            </td>
+        </tr></table>
+                    <div class="line">Your team carried one for 103s a minute (107s for the others).</div>
+                            <div class="line small muted">Last session (Sat 17 Oct): 0.62; your sessions before it ran 0.27 to 1.76.
+                            </div>
+                            <div class="why">
+                <div class="small" style="color: #E8B84B; font-weight: 600">Why yours is lower</div>
+                                    <div class="line">While a debuff you could dispel was on your team, you were locked out 19% of the time, they 18%.</div>
+                                    <div class="line">In that time your casts were mostly Penance (24%), Shadow Word: Pain (12%), Power Word: Shield (11%). Dispels were 2% of your casts then, 5% of theirs.</div>
+                            </div>
+                            <div class="list">
+                <span class="small muted">Left on your team most:</span><br>
+                                    <span class="def"><img class="spell-ic" src="/storage/spell-icons/136207.jpg" alt="">Shadow Word: Pain<span>45s a game</span></span>
+                                    <span class="def"><img class="spell-ic" src="/storage/spell-icons/ability_creature_disease_02.jpg" alt="">Virulent Plague<span>28s a game</span></span>
+                                    <span class="def"><img class="spell-ic" src="/storage/spell-icons/135813.jpg" alt="">Flame Shock<span>27s a game</span></span>
+                                    <span class="def"><img class="spell-ic" src="/storage/spell-icons/inv_ability_hellcallerwarlock_wither.jpg" alt="">Wither<span>25s a game</span></span>
+                                    <span class="def"><img class="spell-ic" src="/storage/spell-icons/1394971.jpg" alt="">Expurgation<span>24s a game</span></span>
+                                    <span class="def"><img class="spell-ic" src="/storage/spell-icons/236255.jpg" alt="">Judgment of Justice<span>23s a game</span></span>
+                            </div>
+                <div class="caveat">Only a dispel counts, not a shapeshift or Phantasm breaking a slow. Whether a dispel is worth a global is your call: it costs a heal, and some debuffs punish the dispeller (Unstable Affliction).</div>
+    </div>
+    <div class="box habit">
+        <div>
+            <span class="ht">Damage</span>
+            
+                        <span class="chip good">Ahead of other Discipline Priests</span>
+        </div>
+        <div class="what muted">Your damage onto the other team&#039;s players, per minute you were alive.</div>
+                <table class="nums"><tr>
+            <td><div class="k">You</div><div class="v">820k</div><div class="small subtle">262 games</div></td>
+            <td><div class="k">Other Discipline Priests</div><div class="v muted">582k</div><div class="small subtle">307 games</div></td>
+            <td>
+                                    <div class="k">Your last 20</div><div class="v">771k</div><div class="small subtle">824k before that</div>
+                            </td>
+            <td class="chart">
+                                    <div class="k">By session</div>
+                    <svg width="180" height="40" xmlns="http://www.w3.org/2000/svg" style="display: block">
+            <line x1="0" y1="32.3" x2="180" y2="32.3" stroke="#6A6A6A" stroke-width="1" stroke-dasharray="3,3"/>
+        <polyline fill="none" stroke="#C8952C" stroke-width="1.5" points="4,29.1 14.8,27 25.5,24.4 36.3,32.3 47,25.2 57.8,29.9 68.5,31.1 79.3,16.1 90,28.9 100.8,26.2 111.5,30.2 122.3,7.7 133,28.1 143.8,25.8 154.5,27.7 165.3,30.9 176,26.9"/>
+    <circle cx="176" cy="26.9" r="3" fill="#E8B84B"/>
+</svg>
+                    <div class="small subtle">25 Sep to 17 Oct &middot; dashed: others</div>
+                            </td>
+        </tr></table>
+                            <div class="line small muted">Last session (Sat 17 Oct): 826k; your sessions before it ran 583k to 1,312k.
+                            </div>
+                                    <div class="list">
+                <span class="small muted">What it is made of, against other Discipline Priests:</span><br>
+                                    <span class="def"><img class="spell-ic" src="/storage/spell-icons/237545.jpg" alt="">Penance<span>35% · others 40%</span></span>
+                                    <span class="def"><img class="spell-ic" src="/storage/spell-icons/136207.jpg" alt="">Shadow Word: Pain<span>25% · others 16%</span></span>
+                                    <span class="def"><img class="spell-ic" src="/storage/spell-icons/1060982.jpg" alt="">Ultimate Penitence<span>20% · others 19%</span></span>
+                                    <span class="def"><img class="spell-ic" src="/storage/spell-icons/237545.jpg" alt="">Searing Light<span>9% · others 6%</span></span>
+                                    <span class="def"><img class="spell-ic" src="/storage/spell-icons/inv12_apextalent_priest_voidshield.jpg" alt="">Void Shield<span>7% · others 9%</span></span>
+                                    <span class="def"><img class="spell-ic" src="/storage/spell-icons/spell_shadow_unholyfrenzy.jpg" alt="">Mind Blast<span>3% · others 3%</span></span>
+                            </div>
+                <div class="caveat">Damage depends on your comp and on whom you play: per minute alive takes game length out, not those. A finishing blow counts in full.</div>
+    </div>
+    <div class="box habit">
+        <div>
+            <span class="ht">Casts blocked by line of sight</span>
+            
+                        <span class="chip neutral">Yours only: read it against your sessions</span>
+        </div>
+        <div class="what muted">Your casts that failed because the target was out of sight, per minute free to act. Only yours: WoW logs no other player&#039;s failed casts.</div>
+                    <div class="small subtle" style="margin-top: 2px">Across the archive: Rounds with many casts blocked by line of sight were won 47%, otherwise 54%.</div>
+                <table class="nums"><tr>
+            <td><div class="k">You</div><div class="v">2.04</div><div class="small subtle">262 games</div></td>
+            <td><div class="k">Other Discipline Priests</div><div class="v muted">-</div><div class="small subtle">0 games</div></td>
+            <td>
+                                    <div class="k">Your last 20</div><div class="v">2.43</div><div class="small subtle">2.00 before that</div>
+                            </td>
+            <td class="chart">
+                                    <div class="k">By session</div>
+                    <svg width="180" height="40" xmlns="http://www.w3.org/2000/svg" style="display: block">
+        <polyline fill="none" stroke="#C8952C" stroke-width="1.5" points="4,21.8 14.8,24 25.5,13.5 36.3,9.7 47,19.1 57.8,20.2 68.5,16.5 79.3,18.6 90,25.9 100.8,23.2 111.5,23.2 122.3,32.3 133,8 143.8,13.7 154.5,20.5 165.3,19.2 176,7.7"/>
+    <circle cx="176" cy="7.7" r="3" fill="#E8B84B"/>
+</svg>
+                    <div class="small subtle">25 Sep to 17 Oct &middot; dashed: others</div>
+                            </td>
+        </tr></table>
+                            <div class="line small muted">Last session (Sat 17 Oct): 3.45; your sessions before it ran 0.89 to 3.41.
+                                    <span class="chip bad">your worst session yet</span>
+                            </div>
+                                <div class="caveat">Across the archive, rounds with many of these were won less often. A pillar between you and the target blocks heals and control alike: move before you press.</div>
+    </div>
+<div class="small subtle" style="margin: 4px 0 12px">"Across the archive" lines are every player in 1,064 recorded games, each set against the middle of their own spec. They show what goes with winning, not what causes it: a team that is winning also has more room to deal damage.</div>
+
+    <div class="label" style="margin-top: 18px">Your rotation <span class="aside">presses per minute you were free to act, against the other Discipline Priests in your games and the middle Discipline Priest of every game measured</span></div>
+    <div class="box">
+        <table class="stats rot">
+            <tr><td></td><td class="small muted">You</td><td class="small muted">In your games</td><td class="small muted">Every Discipline Priest</td><td></td></tr>
+                            <tr>
+                    <td><img class="spell-ic" src="/storage/spell-icons/237545.jpg" alt="" style="margin-right: 5px">Penance</td>
+                    <td><b>8.0</b></td>
+                    <td class="muted">7.5</td>
+                    <td class="muted">7.7</td>
+                    <td></td>
+                </tr>
+                            <tr>
+                    <td><img class="spell-ic" src="/storage/spell-icons/135940.jpg" alt="" style="margin-right: 5px">Power Word: Shield</td>
+                    <td><b>3.7</b></td>
+                    <td class="muted">4.0</td>
+                    <td class="muted">3.7</td>
+                    <td></td>
+                </tr>
+                            <tr>
+                    <td><img class="spell-ic" src="/storage/spell-icons/136207.jpg" alt="" style="margin-right: 5px">Shadow Word: Pain</td>
+                    <td><b>3.9</b></td>
+                    <td class="muted">3.1</td>
+                    <td class="muted">3.4</td>
+                    <td></td>
+                </tr>
+                            <tr>
+                    <td><img class="spell-ic" src="/storage/spell-icons/inv12_apextalent_priest_voidshield.jpg" alt="" style="margin-right: 5px">Void Shield</td>
+                    <td><b>3.1</b></td>
+                    <td class="muted">3.0</td>
+                    <td class="muted">3.0</td>
+                    <td></td>
+                </tr>
+                            <tr>
+                    <td><img class="spell-ic" src="/storage/spell-icons/spell_priest_powerword.jpg" alt="" style="margin-right: 5px">Power Word: Radiance</td>
+                    <td><b>2.8</b></td>
+                    <td class="muted">2.6</td>
+                    <td class="muted">2.7</td>
+                    <td></td>
+                </tr>
+                            <tr>
+                    <td><img class="spell-ic" src="/storage/spell-icons/spell_shadow_unholyfrenzy.jpg" alt="" style="margin-right: 5px">Mind Blast</td>
+                    <td><b>1.2</b></td>
+                    <td class="muted">1.3</td>
+                    <td class="muted">1.3</td>
+                    <td></td>
+                </tr>
+                            <tr>
+                    <td><img class="spell-ic" src="/storage/spell-icons/spell_holy_powerinfusion.jpg" alt="" style="margin-right: 5px">Power Infusion</td>
+                    <td><b>1.4</b></td>
+                    <td class="muted">1.1</td>
+                    <td class="muted">1.3</td>
+                    <td></td>
+                </tr>
+                            <tr>
+                    <td><img class="spell-ic" src="/storage/spell-icons/spell_holy_divineillumination.jpg" alt="" style="margin-right: 5px">Evangelism</td>
+                    <td><b>1.1</b></td>
+                    <td class="muted">1.0</td>
+                    <td class="muted">1.1</td>
+                    <td></td>
+                </tr>
+                            <tr>
+                    <td><img class="spell-ic" src="/storage/spell-icons/spell_shadow_psychicscream.jpg" alt="" style="margin-right: 5px">Psychic Scream</td>
+                    <td><b>1.0</b></td>
+                    <td class="muted">0.9</td>
+                    <td class="muted">1.0</td>
+                    <td></td>
+                </tr>
+                            <tr>
+                    <td><img class="spell-ic" src="/storage/spell-icons/136066.jpg" alt="" style="margin-right: 5px">Dispel Magic</td>
+                    <td><b>0.3</b></td>
+                    <td class="muted">0.9</td>
+                    <td class="muted">1.0</td>
+                    <td><span class="chip warn">you press it less</span></td>
+                </tr>
+                            <tr>
+                    <td><img class="spell-ic" src="/storage/spell-icons/136202.jpg" alt="" style="margin-right: 5px">Shadow Mend</td>
+                    <td><b>1.5</b></td>
+                    <td class="muted">0.9</td>
+                    <td class="muted">1.7</td>
+                    <td><span class="chip neutral">you press it more</span></td>
+                </tr>
+                            <tr>
+                    <td><img class="spell-ic" src="/storage/spell-icons/135924.jpg" alt="" style="margin-right: 5px">Smite</td>
+                    <td><b>0.0</b></td>
+                    <td class="muted">0.8</td>
+                    <td class="muted">1.0</td>
+                    <td><span class="chip warn">you press it less</span></td>
+                </tr>
+                    </table>
+            </div>
+            <div class="label" style="margin-top: 14px">The start of their goes <span class="aside">what you pressed in the first 4 seconds of their goes, per go: 681 of yours, 839 for the others</span></div>
+        <div class="box">
+            <table class="stats rot">
+                <tr><td></td><td class="small muted">You</td><td class="small muted">Other Discipline Priests</td></tr>
+                                    <tr>
+                        <td><img class="spell-ic" src="/storage/spell-icons/237545.jpg" alt="" style="margin-right: 5px">Penance</td>
+                        <td><b>37%</b></td>
+                        <td class="muted">31%</td>
+                    </tr>
+                                    <tr>
+                        <td><img class="spell-ic" src="/storage/spell-icons/136207.jpg" alt="" style="margin-right: 5px">Shadow Word: Pain</td>
+                        <td><b>21%</b></td>
+                        <td class="muted">18%</td>
+                    </tr>
+                                    <tr>
+                        <td><img class="spell-ic" src="/storage/spell-icons/inv12_apextalent_priest_voidshield.jpg" alt="" style="margin-right: 5px">Void Shield</td>
+                        <td><b>17%</b></td>
+                        <td class="muted">16%</td>
+                    </tr>
+                                    <tr>
+                        <td><img class="spell-ic" src="/storage/spell-icons/135940.jpg" alt="" style="margin-right: 5px">Power Word: Shield</td>
+                        <td><b>12%</b></td>
+                        <td class="muted">18%</td>
+                    </tr>
+                                    <tr>
+                        <td><img class="spell-ic" src="/storage/spell-icons/spell_shadow_unholyfrenzy.jpg" alt="" style="margin-right: 5px">Mind Blast</td>
+                        <td><b>10%</b></td>
+                        <td class="muted">8%</td>
+                    </tr>
+                                    <tr>
+                        <td><img class="spell-ic" src="/storage/spell-icons/spell_holy_powerinfusion.jpg" alt="" style="margin-right: 5px">Power Infusion</td>
+                        <td><b>9%</b></td>
+                        <td class="muted">5%</td>
+                    </tr>
+                                    <tr>
+                        <td><img class="spell-ic" src="/storage/spell-icons/135894.jpg" alt="" style="margin-right: 5px">Purify</td>
+                        <td><b>6%</b></td>
+                        <td class="muted">7%</td>
+                    </tr>
+                                    <tr>
+                        <td><img class="spell-ic" src="/storage/spell-icons/spell_priest_powerword.jpg" alt="" style="margin-right: 5px">Power Word: Radiance</td>
+                        <td><b>6%</b></td>
+                        <td class="muted">7%</td>
+                    </tr>
+                            </table>
+            <div class="small subtle" style="margin-top: 6px">A press counts once per go. Over 100% means more than one press of it per go. Each game's Moments tab shows these goes one by one.</div>
+        </div>
+    
+<div class="foot">
+    Every number is from your own games and the players in them. "Other Discipline Priests" are everyone of your spec you played with or against, so they share your rating range.
+    Under 10 games on either side a difference is a lead, not a finding. The log cannot see positioning, line of sight or calls.
+</div>
+
+</body>
+</html>

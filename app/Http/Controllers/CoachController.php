@@ -28,8 +28,12 @@ class CoachController extends Controller
 {
     public function index(Request $request)
     {
-        PageViewEvent::log('coach');
         $user = $request->user();
+        // Signed out: the sample game, which says what this page would hold and offers the sign-in.
+        if ($user === null) {
+            return redirect()->route('wow.sample');
+        }
+        PageViewEvent::log('coach');
         $path = BuildCoachPages::dir($user->id).'/index.json';
         $index = File::exists($path) ? (json_decode(File::get($path), true) ?: []) : [];
 

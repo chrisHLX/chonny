@@ -45,6 +45,9 @@ return [
             'short' => 'LoL',
             'status' => 'soon',
             'route' => 'lol',
+            // Off the home and the switcher until it has something to open (2026-10-18): a card with
+            // nothing behind it made the platform look thin. /lol still answers, for links already out.
+            'listed' => false,
             'icon' => 'badge-lol',
             'color' => '#0AC8B9',
             'tagline' => 'Ranked: your own games read the same way, against the players in your matches.',

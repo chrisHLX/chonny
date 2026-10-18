@@ -2,7 +2,7 @@
 @php
     $appSchema = \App\Http\Controllers\AppDownloadController::schema();
 @endphp
-<x-app-layout title="MindCollector for Windows: a review of every WoW arena game" description="Free Windows app for WoW arena. It sends your games to your page as you play, so every game gets a review: what killed you, what to work on next, and how you compare with players of your spec." og-image="/images/app/card.webp" :schema="$appSchema">
+<x-app-layout title="MindCollector for Windows: a review of every WoW arena game" description="Free Windows app for WoW arena. It sends your games to your page as you play, so every game gets a review: who died and why, and how you compare with players of your spec." og-image="/images/app/card.webp" :schema="$appSchema">
 <div class="max-w-4xl mx-auto px-4 py-6 sm:py-10">
 
     <section class="page-hero">
@@ -10,7 +10,7 @@
         <h1 class="page-title">See every arena game you play, reviewed.</h1>
         <p class="text-[15px] text-ink-muted mt-4 max-w-2xl">
             The MindCollector app watches your games while you play and sends each one to your page
-            when it ends. You get a card for every game, what to work on next, and how you compare with
+            when it ends. You get a card for every game, and a page that sets your play against
             other players of your spec.
         </p>
         <div class="flex flex-col sm:flex-row sm:items-center gap-3 mt-7">

@@ -216,16 +216,18 @@ test('the sidebar puts your own pages in one block, separate from the public sit
         // Spotify's layout (2026-10-11), the app first (2026-10-12): your games, the app and the
         // planning tools in the top panel, then the library: your space, social, more data, Training.
         // The spec guides joined the planning tools as "PvP Guides" (2026-10-16), and the kit pages
-        // are "Arena Kit" there, as their titles are.
+        // are "Arena Kit" there, as their titles are. Grouped Plan, Guides, Learn on 2026-10-18,
+        // with Claude's guides and the archive's top lists under Lab in the library panel.
         ->assertSeeInOrder([
-            'Home', 'Your games', 'Get the app', '3v3 Comps', 'Matchup Lab', 'PvP Guides', 'Arena Kit', 'Guides', 'Claude',
+            'Home', 'Your games', 'Get the app', 'Plan', '3v3 Comps', 'Matchup Lab',
+            'Guides', 'PvP Guides', 'Player guides', 'Learn', 'Arena Kit', 'Class quizzes', 'Arena basics check',
             'Your library', 'Your space', 'Newbie', 'My Guides', 'My Characters', 'Profile &amp; settings',
             'Social', 'Friends', 'Guilds',
-            'More data', 'Top Burst Windows', 'Training', 'Class quizzes', 'Arena basics check',
+            'Lab', "Claude's comp guides", 'Top Burst Windows', 'Top 10 CC Chains',
         ], false)
         ->assertDontSee('Your Profile')
         // Credits/XP live in the account menu now, which comes after everything above.
-        ->assertSeeInOrder(['Training', 'Feedback', 'Discord', 'Credits'], false);
+        ->assertSeeInOrder(['Top 10 CC Chains', 'Feedback', 'Discord', 'Credits'], false);
 });
 
 test('a signed-out visitor gets only the public side of the sidebar', function () {

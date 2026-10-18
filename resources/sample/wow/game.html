@@ -1,0 +1,1367 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap">
+<style>
+    html, body { margin: 0; padding: 0; background: #121212; color: #FFFFFF; }
+    /* IE's own scrollbar properties: the Dev app's browser control is IE11. */
+    html { scrollbar-face-color: #3E3E3E; scrollbar-track-color: #121212; scrollbar-arrow-color: #B3B3B3;
+        scrollbar-shadow-color: #3E3E3E; scrollbar-highlight-color: #3E3E3E; scrollbar-3dlight-color: #121212; scrollbar-darkshadow-color: #121212; }
+    ::-webkit-scrollbar { width: 12px; height: 12px; }
+    ::-webkit-scrollbar-thumb { background: rgba(255,255,255,.18); border: 3px solid #121212; border-radius: 8px; }
+    ::-webkit-scrollbar-thumb:hover { background: rgba(255,255,255,.32); }
+    body { font-family: 'Inter', 'Segoe UI', Arial, sans-serif; font-size: 13px; line-height: 1.5; padding: 0 24px 32px; }
+    table { border-collapse: collapse; }
+    img { border: 0; }
+    a { color: #FFFFFF; }
+    .muted { color: #B3B3B3; }
+    .subtle { color: #6A6A6A; }
+    .gold { color: #C8952C; }
+    .warn-text { color: #F28B82; }
+    .small { font-size: 12px; }
+
+    /* The page's title, on a wash of colour that fades into the page: gold by default, green for a
+       won game, red for a lost one. */
+    .head { margin: 0 -24px 20px; padding: 32px 24px 22px;
+        background: #2a2214; background: linear-gradient(to bottom, #3a2d12 0%, #1e1a12 60%, #121212 100%); }
+    .head.head-won { background: #17301f; background: linear-gradient(to bottom, #1d4a2c 0%, #16261b 60%, #121212 100%); }
+    .head.head-lost { background: #301717; background: linear-gradient(to bottom, #4a1d1d 0%, #261616 60%, #121212 100%); }
+    .head .title { font-size: 30px; font-weight: 800; letter-spacing: -.02em; margin: 0 10px 0 8px; vertical-align: middle; }
+    .head .when { vertical-align: middle; font-size: 13px; }
+    .head .mmr { float: right; margin-top: 10px; }
+
+    .chip { display: inline-block; padding: 2px 10px; border-radius: 12px; font-size: 11.5px; font-weight: 700; letter-spacing: .03em; vertical-align: middle; }
+    .won { background: #1db954; background: rgba(29,185,84,.18); color: #86efac; }
+    .lost { background: #3a1416; background: rgba(239,68,68,.18); color: #fca5a5; }
+    .good { background: #12301d; background: rgba(29,185,84,.18); color: #86efac; }
+    .bad { background: #3a1416; background: rgba(239,68,68,.18); color: #fca5a5; }
+    .warn { background: #33270c; background: rgba(245,158,11,.16); color: #fcd34d; }
+    .neutral { background: #2A2A2A; color: #B3B3B3; }
+    .glad { background: #2a2214; color: #E8B84B; border: 1px solid #6B4E1A; }
+
+    .section { margin-top: 26px; }
+    .label { font-size: 17px; font-weight: 700; letter-spacing: -.01em; color: #FFFFFF; margin-bottom: 10px; }
+    .label .aside { font-size: 12.5px; font-weight: 400; letter-spacing: 0; color: #B3B3B3; margin-left: 8px; }
+    .box { background: #181818; border-radius: 8px; padding: 12px 14px; }
+    .box:hover { background: #1f1f1f; }
+    .teams { width: 100%; }
+    .teams td.col { width: 50%; vertical-align: top; padding: 0; }
+    .teams td.col.left { padding-right: 8px; }
+    .teams td.col.right { padding-left: 8px; }
+    .roster { width: 100%; }
+    .roster td { padding: 6px 0; vertical-align: middle; }
+    .roster tr + tr td { border-top: 1px solid #282828; }
+    .roster .ic { width: 36px; }
+    .roster .xp { text-align: right; white-space: nowrap; }
+    .spec-ic { width: 28px; height: 28px; border-radius: 4px; vertical-align: middle; }
+    .spell-ic { width: 20px; height: 20px; border-radius: 4px; vertical-align: middle; margin-right: 6px; }
+    .ph { display: inline-block; width: 28px; height: 28px; border-radius: 4px; background: #2A2A2A; vertical-align: middle; }
+    .ph-s { display: inline-block; width: 20px; height: 20px; border-radius: 4px; background: #2A2A2A; vertical-align: middle; margin-right: 6px; }
+    .name { font-weight: 700; }
+    .you { font-size: 10.5px; color: #C8952C; margin-left: 4px; font-weight: 700; }
+    .death { margin-bottom: 8px; }
+    .death .who { font-size: 15px; }
+    .line { margin-top: 6px; }
+    .bar { width: 100%; height: 6px; border-radius: 3px; background: #3E3E3E; overflow: hidden; font-size: 0; margin: 6px 0 4px; white-space: nowrap; }
+    .bar span { display: inline-block; height: 6px; }
+    .legend span { margin-right: 10px; }
+    .def { display: inline-block; margin: 2px 10px 2px 0; white-space: nowrap; }
+    .stats { width: 100%; }
+    .stats td { padding: 6px 0; }
+    .stats tr + tr td { border-top: 1px solid #282828; }
+    .stats .n { width: 70px; text-align: right; font-weight: 700; }
+    .stats .better { color: #86efac; }
+    .stats .worse { color: #fca5a5; }
+    .look td { padding: 6px 0; vertical-align: top; }
+    .look .ic { width: 28px; }
+    .look .count { color: #B3B3B3; white-space: nowrap; padding-left: 8px; }
+    .dot { display: inline-block; width: 8px; height: 8px; border-radius: 4px; margin: 6px 6px 0 6px; }
+    .note { padding: 4px 0; }
+    .note .t { display: inline-block; width: 48px; color: #B3B3B3; }
+    .flag { color: #C8952C; font-weight: 700; }
+    .round { margin-top: 12px; }
+    .round .rh { margin-bottom: 6px; }
+    .round .rh b { font-size: 15px; margin-right: 8px; }
+    .foot { margin-top: 28px; color: #6A6A6A; font-size: 12px; }
+
+    /* Tabs: pills, the open one white (Spotify's chips). */
+    .tabs { margin: 0 0 18px; }
+    .tabs a { display: inline-block; padding: 6px 14px; margin: 0 8px 6px 0; border-radius: 16px; background: #2A2A2A;
+        color: #FFFFFF; text-decoration: none; font-weight: 600; font-size: 13px; cursor: pointer; }
+    .tabs a:hover { background: #333333; }
+    .tabs a.on { background: #FFFFFF; color: #000000; }
+    .tabs a .cnt { color: #B3B3B3; font-weight: 400; margin-left: 2px; }
+    .tabs a.on .cnt { color: #535353; }
+    .tab .section:first-child { margin-top: 0; }
+
+    .bd tr.pl td { cursor: pointer; }
+    .bd tr.pl:hover td { background: #232323; }
+    .bd td.abil { padding: 2px 0 10px 26px; }
+    .hpline { display: block; width: 100%; height: 64px; margin: 6px 0 2px; background: #181818; border-radius: 4px; }
+    .ab { width: 100%; }
+    .ab td { padding: 2px 0; }
+    .ab .sp { white-space: nowrap; padding-right: 10px; }
+    .ab .sh { width: 30%; }
+    .ab .n { width: 64px; text-align: right; padding-left: 8px; white-space: nowrap; }
+</style>
+<script>
+    // Tabs. The app reads the open tab from the title and opens the same one on the next card.
+    function showTab(name) {
+        var tabs = document.getElementsByClassName('tab'), found = false, i;
+        for (i = 0; i < tabs.length; i++) { if (tabs[i].id === 't-' + name) { found = true; } }
+        if (!found && tabs.length) { name = tabs[0].id.substring(2); }
+        for (i = 0; i < tabs.length; i++) {
+            var id = tabs[i].id.substring(2), b = document.getElementById('b-' + id);
+            tabs[i].style.display = id === name ? '' : 'none';
+            if (b) { b.className = id === name ? 'on' : ''; }
+        }
+        document.title = 'tab:' + name;
+    }
+</script>
+</head>
+<body onload="showTab('summary')">
+
+
+<div class="head head-won">
+            <span class="chip won">WON</span>
+        <span class="title">3v3</span>
+    <span class="when muted">Fri 9 Oct, 20:17 &nbsp;&middot;&nbsp; 0:43</span>
+            <span class="mmr muted">MMR <b style="color:#FFFFFF">2048</b> you &nbsp;&middot;&nbsp; <b style="color:#FFFFFF">2070</b> them</span>
+                <div class="small" style="margin-top: 6px"><span class="chip bad">Harder</span> <span class="muted">&nbsp;Their MMR 22 above yours, 21 Gladiator seasons to your 5</span></div>
+    </div>
+
+
+        <div class="tabs">
+        <a id="b-summary" onclick="showTab('summary')">Summary</a>
+        <a id="b-basics" onclick="showTab('basics')">Basics</a>
+        <a id="b-moments" onclick="showTab('moments')">Moments <span class="cnt">4</span></a>
+        <a id="b-damage" onclick="showTab('damage')">Damage &amp; healing</a>
+        <a id="b-numbers" onclick="showTab('numbers')">Numbers</a>
+        <a id="b-notes" onclick="showTab('notes')">Notes </a>
+    </div>
+
+    <div class="tab" id="t-summary">
+    
+    <table class="teams"><tr>
+                    <td class="col left">
+                <div class="label">Them <span class="aside">21 Gladiator seasons</span></div>
+                <div class="box">
+                    <table class="roster">
+            <tr>
+            <td class="ic">
+                                    <img class="spec-ic" src="/storage/spec-icons/spell_monk_mistweaver_spec.jpg" style="border:1px solid #00FF96">
+                            </td>
+            <td>
+                <span class="name" style="color: #00FF96">Their Mistweaver</span>                <div class="small muted">Mistweaver Monk &middot; healer                      &middot; CC'd 8.9s </div>
+            </td>
+            <td class="xp">
+                                                            <span class="chip glad">11&times; Glad</span>
+                                        <div class="small"><b>2413</b> <span class="muted">Legend</span></div>
+                            </td>
+        </tr>
+            <tr>
+            <td class="ic">
+                                    <img class="spec-ic" src="/storage/spec-icons/classicon_evoker_devastation.jpg" style="border:1px solid #33937F">
+                            </td>
+            <td>
+                <span class="name" style="color: #33937F">Their Evoker</span>                <div class="small muted">Devastation Evoker                     &middot; CC'd 3.4s </div>
+            </td>
+            <td class="xp">
+                                                            <span class="chip glad">3&times; Glad</span>
+                                        <div class="small"><b>2159</b> <span class="muted">Legend</span></div>
+                            </td>
+        </tr>
+            <tr>
+            <td class="ic">
+                                    <img class="spec-ic" src="/storage/spec-icons/spell_monk_windwalker_spec.jpg" style="border:1px solid #00FF96">
+                            </td>
+            <td>
+                <span class="name" style="color: #00FF96">Their Windwalker</span>                <div class="small muted">Windwalker Monk                     &middot; CC'd 8.8s </div>
+            </td>
+            <td class="xp">
+                                                            <span class="chip glad">7&times; Glad</span>
+                                        <div class="small"><b>2673</b> <span class="muted">Gladiator</span></div>
+                            </td>
+        </tr>
+    </table>
+                </div>
+            </td>
+                    <td class="col right">
+                <div class="label">Your team <span class="aside">5 Gladiator seasons</span></div>
+                <div class="box">
+                    <table class="roster">
+            <tr>
+            <td class="ic">
+                                    <img class="spec-ic" src="/storage/spec-icons/spell_holy_powerwordshield.jpg" style="border:1px solid #FFFFFF">
+                            </td>
+            <td>
+                <span class="name" style="color: #FFFFFF">You</span>                <div class="small muted">Discipline Priest &middot; healer                      &middot; CC'd 7.3s </div>
+            </td>
+            <td class="xp">
+                                                            <span class="chip glad">1&times; Glad</span>
+                                        <div class="small"><b>2243</b> <span class="muted">Legend</span></div>
+                            </td>
+        </tr>
+            <tr>
+            <td class="ic">
+                                    <img class="spec-ic" src="/storage/spec-icons/ability_rogue_deadlybrew.jpg" style="border:1px solid #FFF569">
+                            </td>
+            <td>
+                <span class="name" style="color: #FFF569">Your Rogue</span>                <div class="small muted">Assassination Rogue                     &middot; CC'd 3s </div>
+            </td>
+            <td class="xp">
+                                                            <span class="chip glad">4&times; Glad</span>
+                                        <div class="small"><b>2580</b> <span class="muted">Gladiator</span></div>
+                            </td>
+        </tr>
+            <tr>
+            <td class="ic">
+                                    <img class="spec-ic" src="/storage/spec-icons/spell_fire_firebolt02.jpg" style="border:1px solid #69CCF0">
+                            </td>
+            <td>
+                <span class="name" style="color: #69CCF0">Your Mage</span>                <div class="small muted">Fire Mage                     &middot; CC'd 1.9s </div>
+            </td>
+            <td class="xp">
+                                    <span class="small subtle">no public profile</span>
+                            </td>
+        </tr>
+    </table>
+                </div>
+            </td>
+            </tr></table>
+
+    
+    <div class="section">
+        <div class="label">How it ended</div>
+                    <div class="box death"><div class="who">
+    <img class="spec-ic" src="/storage/spec-icons/classicon_evoker_devastation.jpg" style="border:1px solid #33937F">    <span class="muted">&nbsp;0:21</span>&nbsp;
+    <span class="name" style="color: #33937F">Their Evoker</span> died
+    <span class="chip good">theirs</span>
+</div>
+
+    <div class="line">
+                    <span class="muted">Killing blow</span>&nbsp;
+            <img class="spell-ic" src="/storage/spell-icons/460687.jpg"><b>Sudden Demise</b>
+                            <div class="bar"><span style="width: 64%; background: #69CCF0"></span><span style="width: 26%; background: #FFF569"></span><span style="width: 10%; background: #FFFFFF"></span></div>
+            <div class="small legend"><span class="muted">Damage in the last 10s:</span>
+                <span><b style="color: #69CCF0">Your Mage</b> 64%</span><span><b style="color: #FFF569">Your Rogue</b> 26%</span><span><b style="color: #FFFFFF">You</b> 10%</span>            </div>
+            </div>
+
+
+    <table class="ab" style="margin-top: 8px">
+                    <tr>
+                <td class="sp"><img class="spell-ic" src="/storage/spell-icons/135808.jpg"><b>Pyroblast</b> <span class="small" style="color: #69CCF0">Your Mage</span></td>
+                <td class="sh"><div class="bar" style="margin:0"><span style="width: 33%; background: #69CCF0"></span></div></td>
+                <td class="n small muted">33%</td>
+            </tr>
+                    <tr>
+                <td class="sp"><img class="spell-ic" src="/storage/spell-icons/236205.jpg"><b>Arcane Barrage</b> <span class="small" style="color: #69CCF0">Your Mage</span></td>
+                <td class="sh"><div class="bar" style="margin:0"><span style="width: 15%; background: #69CCF0"></span></div></td>
+                <td class="n small muted">15%</td>
+            </tr>
+                    <tr>
+                <td class="sp"><img class="spell-ic" src="/storage/spell-icons/132302.jpg"><b>Rupture</b> <span class="small" style="color: #FFF569">Your Rogue</span></td>
+                <td class="sh"><div class="bar" style="margin:0"><span style="width: 10%; background: #FFF569"></span></div></td>
+                <td class="n small muted">10%</td>
+            </tr>
+                    <tr>
+                <td class="sp"><img class="spell-ic" src="/storage/spell-icons/460687.jpg"><b>Sudden Demise</b> <span class="small" style="color: #FFF569">Your Rogue</span></td>
+                <td class="sh"><div class="bar" style="margin:0"><span style="width: 9%; background: #FFF569"></span></div></td>
+                <td class="n small muted">9%</td>
+            </tr>
+                    <tr>
+                <td class="sp"><img class="spell-ic" src="/storage/spell-icons/237545.jpg"><b>Penance</b> <span class="small" style="color: #FFFFFF">You</span></td>
+                <td class="sh"><div class="bar" style="margin:0"><span style="width: 8%; background: #FFFFFF"></span></div></td>
+                <td class="n small muted">8%</td>
+            </tr>
+                    <tr>
+                <td class="sp"><img class="spell-ic" src="/storage/spell-icons/135807.jpg"><b>Fire Blast</b> <span class="small" style="color: #69CCF0">Your Mage</span></td>
+                <td class="sh"><div class="bar" style="margin:0"><span style="width: 8%; background: #69CCF0"></span></div></td>
+                <td class="n small muted">8%</td>
+            </tr>
+            </table>
+
+
+        <div class="line">
+        <div class="small"><span class="muted">Health, the last 14s:</span> 100% 14s before the death; under 35% for the last 1s.</div>
+        <svg class="hpline" viewBox="0 0 600 64" preserveAspectRatio="none" role="img" aria-label="Health over the last 14 seconds">
+            <rect x="17.1" y="0" width="188.6" height="64" fill="#fca5a5" fill-opacity="0.12"><title>Healer locked out</title></rect><rect x="458.6" y="0" width="124.3" height="64" fill="#fca5a5" fill-opacity="0.12"><title>Healer locked out</title></rect>            <line x1="0" x2="600" y1="41.6" y2="41.6" stroke="#6A6A6A" stroke-dasharray="4 4" stroke-width="1" vector-effect="non-scaling-stroke"/>
+            <polyline points="0,0 42.9,0 85.7,0 128.6,1.9 171.4,9 214.3,9 257.1,9 300,9.6 342.9,14.1 385.7,15.4 428.6,15.4 471.4,15.4 514.3,21.8 557.1,41.6 600,64" fill="none" stroke="#33937F" stroke-width="2" stroke-linejoin="round" vector-effect="non-scaling-stroke"/>
+            <line x1="171.4" x2="171.4" y1="0" y2="64" stroke="#C8952C" stroke-width="2" vector-effect="non-scaling-stroke"><title>Gladiator&#039;s Medallion, Their Evoker, 10s before</title></line><line x1="600" x2="600" y1="0" y2="64" stroke="#C8952C" stroke-width="2" vector-effect="non-scaling-stroke"><title>Life Cocoon, Their Mistweaver, 0s before</title></line>        </svg>
+        <div class="small subtle"><span style="float: right">the death</span>14s before</div>
+        <div class="small subtle">Dashed: 35%. Shaded: their healer locked out.  Gold: a defensive pressed on their side (hover for which). </div>
+    </div>
+
+    <div class="line">
+        <span class="muted">Their healer</span>&nbsp;
+        <span class="chip warn">lockout ended 9.2s before</span>
+        <span class="small muted">&nbsp;Medallion not used</span>
+    </div>
+
+<div class="line small">
+            <span class="muted">Your go had been running 13.6s.</span>
+                <div style="margin-top:4px"><span class="muted">Defensives in the last 30s:&nbsp;</span>
+                            <span class="def"><img class="spell-ic" src="/storage/spell-icons/ability_pvp_gladiatormedallion.jpg">Gladiator&#039;s Medallion <span class="muted">Their Evoker, 10s before</span></span>
+                            <span class="def"><img class="spell-ic" src="/storage/spell-icons/ability_monk_chicocoon.jpg">Life Cocoon <span class="muted">Their Mistweaver, 0s before</span></span>
+                    </div>
+    </div>
+
+
+</div>
+                    <div class="box death"><div class="who">
+    <img class="spec-ic" src="/storage/spec-icons/spell_monk_mistweaver_spec.jpg" style="border:1px solid #00FF96">    <span class="muted">&nbsp;0:40</span>&nbsp;
+    <span class="name" style="color: #00FF96">Their Mistweaver</span> died
+    <span class="chip good">theirs</span>
+</div>
+
+    <div class="line">
+                    <span class="muted">Killing blow</span>&nbsp;
+            <img class="spell-ic" src="/storage/spell-icons/inv_knife_1h_artifactgarona_d_01.jpg"><b>Kingsbane</b>
+                            <div class="bar"><span style="width: 98%; background: #FFF569"></span><span style="width: 2%; background: #FFFFFF"></span><span style="width: 0%; background: #69CCF0"></span></div>
+            <div class="small legend"><span class="muted">Damage in the last 10s:</span>
+                <span><b style="color: #FFF569">Your Rogue</b> 98%</span><span><b style="color: #FFFFFF">You</b> 2%</span><span><b style="color: #69CCF0">Your Mage</b> 0%</span>            </div>
+            </div>
+
+
+    <table class="ab" style="margin-top: 8px">
+                    <tr>
+                <td class="sp"><img class="spell-ic" src="/storage/spell-icons/inv_knife_1h_artifactgarona_d_01.jpg"><b>Kingsbane</b> <span class="small" style="color: #FFF569">Your Rogue</span></td>
+                <td class="sh"><div class="bar" style="margin:0"><span style="width: 28%; background: #FFF569"></span></div></td>
+                <td class="n small muted">28%</td>
+            </tr>
+                    <tr>
+                <td class="sp"><img class="spell-ic" src="/storage/spell-icons/7195162.jpg"><b>Garrote</b> <span class="small" style="color: #FFF569">Your Rogue</span></td>
+                <td class="sh"><div class="bar" style="margin:0"><span style="width: 15%; background: #FFF569"></span></div></td>
+                <td class="n small muted">15%</td>
+            </tr>
+                    <tr>
+                <td class="sp"><img class="spell-ic" src="/storage/spell-icons/132302.jpg"><b>Rupture</b> <span class="small" style="color: #FFF569">Your Rogue</span></td>
+                <td class="sh"><div class="bar" style="margin:0"><span style="width: 15%; background: #FFF569"></span></div></td>
+                <td class="n small muted">15%</td>
+            </tr>
+                    <tr>
+                <td class="sp"><span class="ph-s"></span><b>Implacable Strikes</b> <span class="small" style="color: #FFF569">Your Rogue</span></td>
+                <td class="sh"><div class="bar" style="margin:0"><span style="width: 14%; background: #FFF569"></span></div></td>
+                <td class="n small muted">14%</td>
+            </tr>
+                    <tr>
+                <td class="sp"><img class="spell-ic" src="/storage/spell-icons/132287.jpg"><b>Envenom</b> <span class="small" style="color: #FFF569">Your Rogue</span></td>
+                <td class="sh"><div class="bar" style="margin:0"><span style="width: 6%; background: #FFF569"></span></div></td>
+                <td class="n small muted">6%</td>
+            </tr>
+                    <tr>
+                <td class="sp"><img class="spell-ic" src="/storage/spell-icons/ability_rogue_deathmark.jpg"><b>Deathmark</b> <span class="small" style="color: #FFF569">Your Rogue</span></td>
+                <td class="sh"><div class="bar" style="margin:0"><span style="width: 5%; background: #FFF569"></span></div></td>
+                <td class="n small muted">5%</td>
+            </tr>
+            </table>
+
+
+        <div class="line">
+        <div class="small"><span class="muted">Health, the last 14s:</span> 90% 14s before the death; under 35% for the last 3s.</div>
+        <svg class="hpline" viewBox="0 0 600 64" preserveAspectRatio="none" role="img" aria-label="Health over the last 14 seconds">
+                        <line x1="0" x2="600" y1="41.6" y2="41.6" stroke="#6A6A6A" stroke-dasharray="4 4" stroke-width="1" vector-effect="non-scaling-stroke"/>
+            <polyline points="0,6.4 42.9,6.4 85.7,6.4 128.6,0 171.4,0 214.3,0 257.1,3.8 300,26.2 342.9,33.9 385.7,35.2 428.6,36.5 471.4,46.7 514.3,51.8 557.1,57 600,64" fill="none" stroke="#00FF96" stroke-width="2" stroke-linejoin="round" vector-effect="non-scaling-stroke"/>
+            <line x1="0" x2="0" y1="0" y2="64" stroke="#C8952C" stroke-width="2" vector-effect="non-scaling-stroke"><title>Fortifying Brew, Their Windwalker, 14s before</title></line>        </svg>
+        <div class="small subtle"><span style="float: right">the death</span>14s before</div>
+        <div class="small subtle">Dashed: 35%.  Gold: a defensive pressed on their side (hover for which). </div>
+    </div>
+
+
+<div class="line small">
+            <span class="muted">Your go had been running 13.2s.</span>
+                <div style="margin-top:4px"><span class="muted">Defensives in the last 30s:&nbsp;</span>
+                            <span class="def"><img class="spell-ic" src="/storage/spell-icons/ability_pvp_gladiatormedallion.jpg">Gladiator&#039;s Medallion <span class="muted">Their Evoker, 29s before</span></span>
+                            <span class="def"><img class="spell-ic" src="/storage/spell-icons/ability_monk_chicocoon.jpg">Life Cocoon <span class="muted">Their Mistweaver, 19s before</span></span>
+                            <span class="def"><img class="spell-ic" src="/storage/spell-icons/877514.jpg">Invoke Chi-Ji, the Red Crane <span class="muted">Their Mistweaver, 17s before</span></span>
+                            <span class="def"><img class="spell-ic" src="/storage/spell-icons/ability_monk_fortifyingale_new.jpg">Fortifying Brew <span class="muted">Their Windwalker, 14s before</span></span>
+                    </div>
+    </div>
+
+
+</div>
+            </div>
+
+    <div class="section">
+        <div class="label">Checks <span class="aside">what the log shows by itself, for your team</span></div>
+        <div class="box"><span class="muted">Nothing found: no offensive cooldown sat ready for a whole cooldown, and nothing went on an immune teammate.</span>
+</div>
+    </div>
+    </div>
+
+    <div class="tab" id="t-basics">
+        <div class="section">
+            <div class="label">Your team&#039;s goes</div>
+            <div class="box">
+                <table class="look">
+                                            <tr>
+                            <td class="ic" style="width: 70px">
+                                <span class="chip good">GOOD</span>
+                            </td>
+                            <td>
+                                <b>Their healer locked during your burst</b>&nbsp; <span class="gold">1 of 2</span>
+                                                                <div class="small muted" style="margin-top: 2px">Crowd control or a kick on their healer in the six seconds your damage peaked. Across the archive, goes like that killed 33% of the time, against 25% with her free.</div>
+                                                            </td>
+                        </tr>
+                                            <tr>
+                            <td class="ic" style="width: 70px">
+                                <span class="chip neutral">NOTE</span>
+                            </td>
+                            <td>
+                                <b>Crowd control on their healer per go</b>&nbsp; <span class="gold">2.0</span>
+                                                                <div class="small muted" style="margin-top: 2px">The more of the go their healer spends controlled, the more goes kill. In the archive, goes with none killed 21% of the time, with four or more 37%.</div>
+                                                            </td>
+                        </tr>
+                                            <tr>
+                            <td class="ic" style="width: 70px">
+                                <span class="chip good">GOOD</span>
+                            </td>
+                            <td>
+                                <b>Goes started with their defensives already down</b>&nbsp; <span class="gold">1 of 2</span>
+                                                                <div class="small muted" style="margin-top: 2px">At least one of their defensives on cooldown as your go began. A go into a full set of answers mostly strips them; the kill comes from the go after. In the archive, goes like that killed 30% of the time, against 20% into a full set, and it held at every stage of a game.</div>
+                                                            </td>
+                        </tr>
+                                            <tr>
+                            <td class="ic" style="width: 70px">
+                                <span class="chip good">GOOD</span>
+                            </td>
+                            <td>
+                                <b>Damage landed together, with their healer locked</b>&nbsp; <span class="gold">1 of 2</span>
+                                                                <div class="small muted" style="margin-top: 2px">Both damage dealers&#039; damage in the same six seconds while their healer could not act: the go that kills most (34% against 23% with neither). Yours shared the peak in 1 of 2.</div>
+                                                            </td>
+                        </tr>
+                                    </table>
+            </div>
+        </div>
+            <div class="section">
+            <div class="label">Your answers to their goes</div>
+            <div class="box">
+                <table class="look">
+                                            <tr>
+                            <td class="ic" style="width: 70px">
+                                <span class="chip good">GOOD</span>
+                            </td>
+                            <td>
+                                <b>Their goes that met two or more of your big defensives down</b>&nbsp; <span class="gold">0 of 2</span>
+                                                                <div class="small muted" style="margin-top: 2px">A trade is good when an answer is back for their next go. In your own games, their go killed 35–43% of the time with two or more big defensives down, 17–22% with one. Across the archive, goes into defensives already down killed 30% against 20%.</div>
+                                                            </td>
+                        </tr>
+                                            <tr>
+                            <td class="ic" style="width: 70px">
+                                <span class="chip neutral">NOTE</span>
+                            </td>
+                            <td>
+                                <b>Answers your team spent per go of theirs</b>&nbsp; <span class="gold">1.5</span>
+                                                                <div class="small muted" style="margin-top: 2px">This one isn&#039;t graded. Better teams spend more because their opponents hit harder, and at the same rating the sides that spent more per go won less. When they go often, spend one answer per go and keep the long ones for the go that comes with their big cooldowns. The Matchup Lab has a plan for each matchup.</div>
+                                                            </td>
+                        </tr>
+                                    </table>
+            </div>
+        </div>
+        <div class="small subtle" style="margin-top: 6px">Every figure against the archive is a correlation across 1,064 games and every player in them: it says what tends to go with winning, not what caused it.</div>
+    </div>
+
+    <div class="tab" id="t-moments">
+        <div class="section">
+                <div class="label">Crowd control through a big defensive <span class="aside">control landing while a big defensive was up: the seconds of it lost</span></div>
+                <div class="box">
+                    <table class="look">
+                                                    <tr>
+                                <td class="ic" style="width: 70px; vertical-align: top">
+                                    <span class="chip good">GOOD</span>
+                                </td>
+                                <td>
+                                    <span class="muted">0:27</span>&nbsp;
+                                    <b>Your team&#039;s Cheap Shot on their Their Windwalker through Fortifying Brew</b>
+                                                                            &nbsp;<img class="spell-ic" src="/storage/spell-icons/ability_cheapshot.jpg" style="margin-right: 3px"><img class="spell-ic" src="/storage/spell-icons/ability_monk_fortifyingale_new.jpg" style="margin-right: 3px">                                                                        <div class="small" style="margin-top: 3px">Your Assassination Rogue Your Rogue cast it while Fortifying Brew was up, and took away 4.0s of it. It ran its course or broke on damage.</div>
+                                                                            <div class="small muted" style="margin-top: 2px">Their Windwalker health: 100% at the start, 92% at the lowest.</div>
+                                                                                                                <table class="stats" style="margin-top: 6px; width: auto">
+                                                                                            <tr>
+                                                    <td class="small muted" style="padding: 1px 10px 1px 0">0:27</td>
+                                                    <td class="small" style="padding: 1px 8px 1px 0">Your Rogue</td>
+                                                    <td class="small" style="padding: 1px 8px 1px 0"><img class="spell-ic" src="/storage/spell-icons/ability_cheapshot.jpg" style="margin-right: 4px"><span  class="warn-text" >Cheap Shot</span></td>
+                                                    <td class="small muted" style="padding: 1px 0">on Their Windwalker</td>
+                                                </tr>
+                                                                                            <tr>
+                                                    <td class="small muted" style="padding: 1px 10px 1px 0">0:28</td>
+                                                    <td class="small" style="padding: 1px 8px 1px 0">Their Mistweaver</td>
+                                                    <td class="small" style="padding: 1px 8px 1px 0"><img class="spell-ic" src="/storage/spell-icons/574575.jpg" style="margin-right: 4px"><span >Blackout Kick</span></td>
+                                                    <td class="small muted" style="padding: 1px 0">on Your Mage</td>
+                                                </tr>
+                                                                                            <tr>
+                                                    <td class="small muted" style="padding: 1px 10px 1px 0">0:31</td>
+                                                    <td class="small" style="padding: 1px 8px 1px 0">Their Mistweaver</td>
+                                                    <td class="small" style="padding: 1px 8px 1px 0"><img class="spell-ic" src="/storage/spell-icons/7439207.jpg" style="margin-right: 4px"><span >Rushing Wind Kick</span></td>
+                                                    <td class="small muted" style="padding: 1px 0"></td>
+                                                </tr>
+                                                                                            <tr>
+                                                    <td class="small muted" style="padding: 1px 10px 1px 0">0:32</td>
+                                                    <td class="small" style="padding: 1px 8px 1px 0">Their Mistweaver</td>
+                                                    <td class="small" style="padding: 1px 8px 1px 0"><img class="spell-ic" src="/storage/spell-icons/7439208.jpg" style="margin-right: 4px"><span >Sheilun&#039;s Gift</span></td>
+                                                    <td class="small muted" style="padding: 1px 0">on Their Windwalker</td>
+                                                </tr>
+                                                                                    </table>
+                                                                                                        </td>
+                            </tr>
+                                                    <tr>
+                                <td class="ic" style="width: 70px; vertical-align: top">
+                                    <span class="chip good">GOOD</span>
+                                </td>
+                                <td>
+                                    <span class="muted">0:36</span>&nbsp;
+                                    <b>Your team&#039;s Garrote - Silence on their Their Windwalker through Fortifying Brew</b>
+                                                                            &nbsp;<img class="spell-ic" src="/storage/spell-icons/ability_rogue_garrote.jpg" style="margin-right: 3px"><img class="spell-ic" src="/storage/spell-icons/ability_monk_fortifyingale_new.jpg" style="margin-right: 3px">                                                                        <div class="small" style="margin-top: 3px">Your Assassination Rogue Your Rogue cast it while Fortifying Brew was up, and took away 3.1s of it. It ran its course or broke on damage.</div>
+                                                                            <div class="small muted" style="margin-top: 2px">Their Windwalker health: 80% at the start, 65% at the lowest.</div>
+                                                                                                                <table class="stats" style="margin-top: 6px; width: auto">
+                                                                                            <tr>
+                                                    <td class="small muted" style="padding: 1px 10px 1px 0">0:36</td>
+                                                    <td class="small" style="padding: 1px 8px 1px 0">Your Rogue</td>
+                                                    <td class="small" style="padding: 1px 8px 1px 0"><img class="spell-ic" src="/storage/spell-icons/ability_rogue_garrote.jpg" style="margin-right: 4px"><span  class="warn-text" >Garrote - Silence</span></td>
+                                                    <td class="small muted" style="padding: 1px 0">on Their Windwalker</td>
+                                                </tr>
+                                                                                    </table>
+                                                                                                        </td>
+                            </tr>
+                                            </table>
+                </div>
+            </div>
+                                                            <div class="section">
+                <div class="label">The start of their goes <span class="aside">your first casts, your first big defensive, and the target&#039;s health</span></div>
+                <div class="box">
+                    <table class="look">
+                                                    <tr>
+                                <td class="ic" style="width: 70px; vertical-align: top">
+                                    <span class="chip neutral">NOTE</span>
+                                </td>
+                                <td>
+                                    <span class="muted">0:11</span>&nbsp;
+                                    <b>Their go on Your Rogue</b>
+                                                                            &nbsp;<img class="spell-ic" src="/storage/spell-icons/136207.jpg" style="margin-right: 3px">                                                                        <div class="small" style="margin-top: 3px">Your Rogue went from 100% to 61%. Your first cast came after 1.0s: Shadow Word: Pain. No big defensive of yours went into it in its first 12 seconds.</div>
+                                                                            <div class="small muted" style="margin-top: 2px">Your Rogue health: 100% at the start, 61% at the lowest.</div>
+                                                                                                                <table class="stats" style="margin-top: 6px; width: auto">
+                                                                                            <tr>
+                                                    <td class="small muted" style="padding: 1px 10px 1px 0">0:10</td>
+                                                    <td class="small" style="padding: 1px 8px 1px 0">You</td>
+                                                    <td class="small" style="padding: 1px 8px 1px 0"><img class="spell-ic" src="/storage/spell-icons/spell_holy_powerinfusion.jpg" style="margin-right: 4px"><span >Power Infusion</span></td>
+                                                    <td class="small muted" style="padding: 1px 0">on Your Mage</td>
+                                                </tr>
+                                                                                            <tr>
+                                                    <td class="small muted" style="padding: 1px 10px 1px 0">0:12</td>
+                                                    <td class="small" style="padding: 1px 8px 1px 0">You</td>
+                                                    <td class="small" style="padding: 1px 8px 1px 0"><img class="spell-ic" src="/storage/spell-icons/136207.jpg" style="margin-right: 4px"><span >Shadow Word: Pain</span></td>
+                                                    <td class="small muted" style="padding: 1px 0">on Their Evoker</td>
+                                                </tr>
+                                                                                            <tr>
+                                                    <td class="small muted" style="padding: 1px 10px 1px 0">0:18</td>
+                                                    <td class="small" style="padding: 1px 8px 1px 0">You</td>
+                                                    <td class="small" style="padding: 1px 8px 1px 0"><img class="spell-ic" src="/storage/spell-icons/237545.jpg" style="margin-right: 4px"><span >Penance</span></td>
+                                                    <td class="small muted" style="padding: 1px 0">on Their Evoker</td>
+                                                </tr>
+                                                                                    </table>
+                                                                                                        </td>
+                            </tr>
+                                                    <tr>
+                                <td class="ic" style="width: 70px; vertical-align: top">
+                                    <span class="chip neutral">NOTE</span>
+                                </td>
+                                <td>
+                                    <span class="muted">0:32</span>&nbsp;
+                                    <b>Their go on Your Mage</b>
+                                                                            &nbsp;<img class="spell-ic" src="/storage/spell-icons/237545.jpg" style="margin-right: 3px">                                                                        <div class="small" style="margin-top: 3px">Your Mage went from 96% to 83%. Your first cast came after 1.8s: Penance. No big defensive of yours went into it in its first 12 seconds.</div>
+                                                                            <div class="small muted" style="margin-top: 2px">Your Mage health: 96% at the start, 83% at the lowest.</div>
+                                                                                                                <table class="stats" style="margin-top: 6px; width: auto">
+                                                                                            <tr>
+                                                    <td class="small muted" style="padding: 1px 10px 1px 0">0:32</td>
+                                                    <td class="small" style="padding: 1px 8px 1px 0">You</td>
+                                                    <td class="small" style="padding: 1px 8px 1px 0"><img class="spell-ic" src="/storage/spell-icons/inv12_apextalent_priest_voidshield.jpg" style="margin-right: 4px"><span >Void Shield</span></td>
+                                                    <td class="small muted" style="padding: 1px 0"></td>
+                                                </tr>
+                                                                                            <tr>
+                                                    <td class="small muted" style="padding: 1px 10px 1px 0">0:34</td>
+                                                    <td class="small" style="padding: 1px 8px 1px 0">You</td>
+                                                    <td class="small" style="padding: 1px 8px 1px 0"><img class="spell-ic" src="/storage/spell-icons/237545.jpg" style="margin-right: 4px"><span >Penance</span></td>
+                                                    <td class="small muted" style="padding: 1px 0">on Their Windwalker</td>
+                                                </tr>
+                                                                                            <tr>
+                                                    <td class="small muted" style="padding: 1px 10px 1px 0">0:38</td>
+                                                    <td class="small" style="padding: 1px 8px 1px 0">You</td>
+                                                    <td class="small" style="padding: 1px 8px 1px 0"><img class="spell-ic" src="/storage/spell-icons/inv12_apextalent_priest_voidshield.jpg" style="margin-right: 4px"><span >Void Shield</span></td>
+                                                    <td class="small muted" style="padding: 1px 0"></td>
+                                                </tr>
+                                                                                            <tr>
+                                                    <td class="small muted" style="padding: 1px 10px 1px 0">0:39</td>
+                                                    <td class="small" style="padding: 1px 8px 1px 0">You</td>
+                                                    <td class="small" style="padding: 1px 8px 1px 0"><img class="spell-ic" src="/storage/spell-icons/642580.jpg" style="margin-right: 4px"><span >Angelic Feather</span></td>
+                                                    <td class="small muted" style="padding: 1px 0"></td>
+                                                </tr>
+                                                                                            <tr>
+                                                    <td class="small muted" style="padding: 1px 10px 1px 0">0:40</td>
+                                                    <td class="small" style="padding: 1px 8px 1px 0">You</td>
+                                                    <td class="small" style="padding: 1px 8px 1px 0"><img class="spell-ic" src="/storage/spell-icons/237545.jpg" style="margin-right: 4px"><span >Penance</span></td>
+                                                    <td class="small muted" style="padding: 1px 0">on You</td>
+                                                </tr>
+                                                                                            <tr>
+                                                    <td class="small muted" style="padding: 1px 10px 1px 0">0:42</td>
+                                                    <td class="small" style="padding: 1px 8px 1px 0">You</td>
+                                                    <td class="small" style="padding: 1px 8px 1px 0"><img class="spell-ic" src="/storage/spell-icons/136207.jpg" style="margin-right: 4px"><span >Shadow Word: Pain</span></td>
+                                                    <td class="small muted" style="padding: 1px 0">on Their Windwalker</td>
+                                                </tr>
+                                                                                    </table>
+                                                                                                        </td>
+                            </tr>
+                                            </table>
+                </div>
+            </div>
+                <div class="small subtle" style="margin-top: 6px">A moment says what happened and when. What should have been pressed instead depends on what the log cannot see: positioning, calls, what your team was setting up.</div>
+    </div>
+
+    <div class="tab" id="t-damage">
+        <div class="section">
+    <div class="label">Damage and healing <span class="aside">onto players only, not pets or totems; click a player for their abilities</span></div>
+    <div class="box">
+                    <table class="stats bd">
+                <tr class="small muted"><td></td><td class="n">Damage</td><td class="n">Healing</td><td class="n">Absorbs</td><td class="n" title="Gaps over 2.5s between presses, not counting time crowd-controlled">Idle</td></tr>
+                                    <tr class="pl" onclick="var e=document.getElementById('b08788855');e.style.display=e.style.display==='none'?'':'none';">
+                        <td>
+                            <img class="spell-ic" src="/storage/spec-icons/spell_holy_powerwordshield.jpg" style="border:1px solid #FFFFFF">                            <span class="name" style="color: #FFFFFF">You</span>                                                    </td>
+                        <td class="n">368k</td>
+                        <td class="n">1.43M</td>
+                        <td class="n">1.08M</td>
+                        <td class="n worse">31%</td>
+                    </tr>
+                    <tr id="b08788855" style="">
+                        <td colspan="5" class="abil">
+                                                            <div class="small muted" style="margin:6px 0 2px">Damage <b style="color:#FFFFFF">368k</b> &middot; 9k a second alive</div>
+                                <table class="ab">
+                                                                            <tr>
+                                            <td class="sp"><img class="spell-ic" src="/storage/spell-icons/237545.jpg">Penance</td>
+                                            <td class="sh"><div class="bar"><span style="width: 55%; background: #FFFFFF"></span></div></td>
+                                            <td class="n">202k</td>
+                                            <td class="n muted">55%</td>
+                                            <td class="n muted small">10 hits</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td class="sp"><img class="spell-ic" src="/storage/spell-icons/inv12_apextalent_priest_voidshield.jpg">Void Shield</td>
+                                            <td class="sh"><div class="bar"><span style="width: 17%; background: #FFFFFF"></span></div></td>
+                                            <td class="n">62k</td>
+                                            <td class="n muted">17%</td>
+                                            <td class="n muted small">34 hits</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td class="sp"><img class="spell-ic" src="/storage/spell-icons/136207.jpg">Shadow Word: Pain</td>
+                                            <td class="sh"><div class="bar"><span style="width: 15%; background: #FFFFFF"></span></div></td>
+                                            <td class="n">57k</td>
+                                            <td class="n muted">15%</td>
+                                            <td class="n muted small">15 hits</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td class="sp"><img class="spell-ic" src="/storage/spell-icons/spell_shadow_unholyfrenzy.jpg">Mind Blast</td>
+                                            <td class="sh"><div class="bar"><span style="width: 6%; background: #FFFFFF"></span></div></td>
+                                            <td class="n">24k</td>
+                                            <td class="n muted">6%</td>
+                                            <td class="n muted small">1 hit</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td class="sp"><img class="spell-ic" src="/storage/spell-icons/237545.jpg">Searing Light</td>
+                                            <td class="sh"><div class="bar"><span style="width: 6%; background: #FFFFFF"></span></div></td>
+                                            <td class="n">23k</td>
+                                            <td class="n muted">6%</td>
+                                            <td class="n muted small">6 hits</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td class="sp"><span class="ph-s"></span>Touch of the Grave</td>
+                                            <td class="sh"><div class="bar"><span style="width: 1%; background: #FFFFFF"></span></div></td>
+                                            <td class="n">623</td>
+                                            <td class="n muted">0%</td>
+                                            <td class="n muted small">1 hit</td>
+                                        </tr>
+                                                                    </table>
+                                                            <div class="small muted" style="margin:6px 0 2px">Healing <b style="color:#FFFFFF">1.43M</b> &middot; 33k a second alive</div>
+                                <table class="ab">
+                                                                            <tr>
+                                            <td class="sp"><img class="spell-ic" src="/storage/spell-icons/458720.jpg">Atonement</td>
+                                            <td class="sh"><div class="bar"><span style="width: 51%; background: #FFFFFF"></span></div></td>
+                                            <td class="n">737k</td>
+                                            <td class="n muted">51%</td>
+                                            <td class="n muted small">307 hits &middot; 69% over </td>
+                                        </tr>
+                                                                            <tr>
+                                            <td class="sp"><img class="spell-ic" src="/storage/spell-icons/spell_priest_powerword.jpg">Power Word: Radiance</td>
+                                            <td class="sh"><div class="bar"><span style="width: 19%; background: #FFFFFF"></span></div></td>
+                                            <td class="n">272k</td>
+                                            <td class="n muted">19%</td>
+                                            <td class="n muted small">3 hits &middot; 0% over </td>
+                                        </tr>
+                                                                            <tr>
+                                            <td class="sp"><img class="spell-ic" src="/storage/spell-icons/237545.jpg">Penance</td>
+                                            <td class="sh"><div class="bar"><span style="width: 17%; background: #FFFFFF"></span></div></td>
+                                            <td class="n">239k</td>
+                                            <td class="n muted">17%</td>
+                                            <td class="n muted small">56 hits &middot; 75% over </td>
+                                        </tr>
+                                                                            <tr>
+                                            <td class="sp"><img class="spell-ic" src="/storage/spell-icons/5927641.jpg">Piety</td>
+                                            <td class="sh"><div class="bar"><span style="width: 10%; background: #FFFFFF"></span></div></td>
+                                            <td class="n">139k</td>
+                                            <td class="n muted">10%</td>
+                                            <td class="n muted small">32 hits &middot; 4% over </td>
+                                        </tr>
+                                                                            <tr>
+                                            <td class="sp"><img class="spell-ic" src="/storage/spell-icons/spell_holy_prayerofmendingtga.jpg">Prayer of Mending</td>
+                                            <td class="sh"><div class="bar"><span style="width: 3%; background: #FFFFFF"></span></div></td>
+                                            <td class="n">48k</td>
+                                            <td class="n muted">3%</td>
+                                            <td class="n muted small">6 hits &middot; 0% over </td>
+                                        </tr>
+                                                                            <tr>
+                                            <td class="sp"><span class="ph-s"></span>Touch of the Grave</td>
+                                            <td class="sh"><div class="bar"><span style="width: 1%; background: #FFFFFF"></span></div></td>
+                                            <td class="n">0</td>
+                                            <td class="n muted">0%</td>
+                                            <td class="n muted small">1 hit &middot; 100% over </td>
+                                        </tr>
+                                                                    </table>
+                                                            <div class="small muted" style="margin:6px 0 2px">Absorbs <b style="color:#FFFFFF">1.08M</b> &middot; 25k a second alive</div>
+                                <table class="ab">
+                                                                            <tr>
+                                            <td class="sp"><img class="spell-ic" src="/storage/spell-icons/inv12_apextalent_priest_voidshield.jpg">Void Shield</td>
+                                            <td class="sh"><div class="bar"><span style="width: 85%; background: #FFFFFF"></span></div></td>
+                                            <td class="n">922k</td>
+                                            <td class="n muted">85%</td>
+                                            <td class="n muted small">65 hits</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td class="sp"><img class="spell-ic" src="/storage/spell-icons/135940.jpg">Power Word: Shield</td>
+                                            <td class="sh"><div class="bar"><span style="width: 15%; background: #FFFFFF"></span></div></td>
+                                            <td class="n">163k</td>
+                                            <td class="n muted">15%</td>
+                                            <td class="n muted small">13 hits</td>
+                                        </tr>
+                                                                    </table>
+                                                    </td>
+                    </tr>
+                                    <tr class="pl" onclick="var e=document.getElementById('bd7876e85');e.style.display=e.style.display==='none'?'':'none';">
+                        <td>
+                            <img class="spell-ic" src="/storage/spec-icons/ability_rogue_deadlybrew.jpg" style="border:1px solid #FFF569">                            <span class="name" style="color: #FFF569">Your Rogue</span>                                                    </td>
+                        <td class="n">1.64M</td>
+                        <td class="n">79k</td>
+                        <td class="n">95k</td>
+                        <td class="n ">13%</td>
+                    </tr>
+                    <tr id="bd7876e85" style="display:none">
+                        <td colspan="5" class="abil">
+                                                            <div class="small muted" style="margin:6px 0 2px">Damage <b style="color:#FFFFFF">1.64M</b> &middot; 38k a second alive</div>
+                                <table class="ab">
+                                                                            <tr>
+                                            <td class="sp"><img class="spell-ic" src="/storage/spell-icons/132302.jpg">Rupture</td>
+                                            <td class="sh"><div class="bar"><span style="width: 20%; background: #FFF569"></span></div></td>
+                                            <td class="n">332k</td>
+                                            <td class="n muted">20%</td>
+                                            <td class="n muted small">13 hits</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td class="sp"><img class="spell-ic" src="/storage/spell-icons/inv_knife_1h_artifactgarona_d_01.jpg">Kingsbane</td>
+                                            <td class="sh"><div class="bar"><span style="width: 20%; background: #FFF569"></span></div></td>
+                                            <td class="n">321k</td>
+                                            <td class="n muted">20%</td>
+                                            <td class="n muted small">5 hits</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td class="sp"><img class="spell-ic" src="/storage/spell-icons/7195162.jpg">Garrote</td>
+                                            <td class="sh"><div class="bar"><span style="width: 14%; background: #FFF569"></span></div></td>
+                                            <td class="n">230k</td>
+                                            <td class="n muted">14%</td>
+                                            <td class="n muted small">9 hits</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td class="sp"><span class="ph-s"></span>Implacable Strikes</td>
+                                            <td class="sh"><div class="bar"><span style="width: 10%; background: #FFF569"></span></div></td>
+                                            <td class="n">163k</td>
+                                            <td class="n muted">10%</td>
+                                            <td class="n muted small">8 hits</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td class="sp"><img class="spell-ic" src="/storage/spell-icons/132287.jpg">Envenom</td>
+                                            <td class="sh"><div class="bar"><span style="width: 6%; background: #FFF569"></span></div></td>
+                                            <td class="n">106k</td>
+                                            <td class="n muted">6%</td>
+                                            <td class="n muted small">2 hits</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td class="sp"><img class="spell-ic" src="/storage/spell-icons/135274.jpg">Melee</td>
+                                            <td class="sh"><div class="bar"><span style="width: 6%; background: #FFF569"></span></div></td>
+                                            <td class="n">101k</td>
+                                            <td class="n muted">6%</td>
+                                            <td class="n muted small">33 hits</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td class="sp"><img class="spell-ic" src="/storage/spell-icons/236268.jpg">Internal Bleeding</td>
+                                            <td class="sh"><div class="bar"><span style="width: 6%; background: #FFF569"></span></div></td>
+                                            <td class="n">96k</td>
+                                            <td class="n muted">6%</td>
+                                            <td class="n muted small">14 hits</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td class="sp"><img class="spell-ic" src="/storage/spell-icons/460687.jpg">Sudden Demise</td>
+                                            <td class="sh"><div class="bar"><span style="width: 4%; background: #FFF569"></span></div></td>
+                                            <td class="n">68k</td>
+                                            <td class="n muted">4%</td>
+                                            <td class="n muted small">1 hit</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td class="sp"><img class="spell-ic" src="/storage/spell-icons/ability_rogue_deathmark.jpg">Deathmark</td>
+                                            <td class="sh"><div class="bar"><span style="width: 3%; background: #FFF569"></span></div></td>
+                                            <td class="n">53k</td>
+                                            <td class="n muted">3%</td>
+                                            <td class="n muted small">5 hits</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td class="sp"><img class="spell-ic" src="/storage/spell-icons/ability_rogue_dualweild.jpg">Deadly Poison</td>
+                                            <td class="sh"><div class="bar"><span style="width: 3%; background: #FFF569"></span></div></td>
+                                            <td class="n">47k</td>
+                                            <td class="n muted">3%</td>
+                                            <td class="n muted small">14 hits</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td class="sp"><span class="ph-s"></span>Other</td>
+                                            <td class="sh"><div class="bar"><span style="width: 8%; background: #FFF569"></span></div></td>
+                                            <td class="n">128k</td>
+                                            <td class="n muted">8%</td>
+                                            <td class="n muted small">62 hits</td>
+                                        </tr>
+                                                                    </table>
+                                                            <div class="small muted" style="margin:6px 0 2px">Healing <b style="color:#FFFFFF">79k</b> &middot; 2k a second alive</div>
+                                <table class="ab">
+                                                                            <tr>
+                                            <td class="sp"><img class="spell-ic" src="/storage/spell-icons/136223.jpg">Soothing Darkness</td>
+                                            <td class="sh"><div class="bar"><span style="width: 59%; background: #FFF569"></span></div></td>
+                                            <td class="n">46k</td>
+                                            <td class="n muted">59%</td>
+                                            <td class="n muted small">3 hits &middot; 67% over </td>
+                                        </tr>
+                                                                            <tr>
+                                            <td class="sp"><span class="ph-s"></span>Rune of Unleashed Fire</td>
+                                            <td class="sh"><div class="bar"><span style="width: 26%; background: #FFF569"></span></div></td>
+                                            <td class="n">21k</td>
+                                            <td class="n muted">26%</td>
+                                            <td class="n muted small">2 hits &middot; 0% over </td>
+                                        </tr>
+                                                                            <tr>
+                                            <td class="sp"><span class="ph-s"></span>Leech</td>
+                                            <td class="sh"><div class="bar"><span style="width: 9%; background: #FFF569"></span></div></td>
+                                            <td class="n">7k</td>
+                                            <td class="n muted">9%</td>
+                                            <td class="n muted small">10 hits &middot; 0% over </td>
+                                        </tr>
+                                                                            <tr>
+                                            <td class="sp"><span class="ph-s"></span>Rune of Lingering</td>
+                                            <td class="sh"><div class="bar"><span style="width: 6%; background: #FFF569"></span></div></td>
+                                            <td class="n">4k</td>
+                                            <td class="n muted">6%</td>
+                                            <td class="n muted small">11 hits &middot; 27% over </td>
+                                        </tr>
+                                                                    </table>
+                                                            <div class="small muted" style="margin:6px 0 2px">Absorbs <b style="color:#FFFFFF">95k</b> &middot; 2k a second alive</div>
+                                <table class="ab">
+                                                                            <tr>
+                                            <td class="sp"><img class="spell-ic" src="/storage/spell-icons/ability_rogue_wrongfullyaccused.jpg">Danger Sense</td>
+                                            <td class="sh"><div class="bar"><span style="width: 59%; background: #FFF569"></span></div></td>
+                                            <td class="n">56k</td>
+                                            <td class="n muted">59%</td>
+                                            <td class="n muted small">14 hits</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td class="sp"><img class="spell-ic" src="/storage/spell-icons/ability_rogue_sabreslash.jpg">Tempted Fate</td>
+                                            <td class="sh"><div class="bar"><span style="width: 41%; background: #FFF569"></span></div></td>
+                                            <td class="n">38k</td>
+                                            <td class="n muted">41%</td>
+                                            <td class="n muted small">25 hits</td>
+                                        </tr>
+                                                                    </table>
+                                                    </td>
+                    </tr>
+                                    <tr class="pl" onclick="var e=document.getElementById('b8185500e');e.style.display=e.style.display==='none'?'':'none';">
+                        <td>
+                            <img class="spell-ic" src="/storage/spec-icons/spell_fire_firebolt02.jpg" style="border:1px solid #69CCF0">                            <span class="name" style="color: #69CCF0">Your Mage</span>                                                    </td>
+                        <td class="n">1.27M</td>
+                        <td class="n">0</td>
+                        <td class="n">340k</td>
+                        <td class="n ">12%</td>
+                    </tr>
+                    <tr id="b8185500e" style="display:none">
+                        <td colspan="5" class="abil">
+                                                            <div class="small muted" style="margin:6px 0 2px">Damage <b style="color:#FFFFFF">1.27M</b> &middot; 30k a second alive</div>
+                                <table class="ab">
+                                                                            <tr>
+                                            <td class="sp"><img class="spell-ic" src="/storage/spell-icons/135808.jpg">Pyroblast</td>
+                                            <td class="sh"><div class="bar"><span style="width: 50%; background: #69CCF0"></span></div></td>
+                                            <td class="n">638k</td>
+                                            <td class="n muted">50%</td>
+                                            <td class="n muted small">6 hits</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td class="sp"><img class="spell-ic" src="/storage/spell-icons/ability_racial_magicalresistance.jpg">Overpowered Barrier</td>
+                                            <td class="sh"><div class="bar"><span style="width: 15%; background: #69CCF0"></span></div></td>
+                                            <td class="n">195k</td>
+                                            <td class="n muted">15%</td>
+                                            <td class="n muted small">8 hits</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td class="sp"><img class="spell-ic" src="/storage/spell-icons/236205.jpg">pet: Arcane Barrage</td>
+                                            <td class="sh"><div class="bar"><span style="width: 9%; background: #69CCF0"></span></div></td>
+                                            <td class="n">118k</td>
+                                            <td class="n muted">9%</td>
+                                            <td class="n muted small">2 hits</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td class="sp"><img class="spell-ic" src="/storage/spell-icons/135807.jpg">Fire Blast</td>
+                                            <td class="sh"><div class="bar"><span style="width: 9%; background: #69CCF0"></span></div></td>
+                                            <td class="n">113k</td>
+                                            <td class="n muted">9%</td>
+                                            <td class="n muted small">9 hits</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td class="sp"><span class="ph-s"></span>Ignite</td>
+                                            <td class="sh"><div class="bar"><span style="width: 6%; background: #69CCF0"></span></div></td>
+                                            <td class="n">81k</td>
+                                            <td class="n muted">6%</td>
+                                            <td class="n muted small">22 hits</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td class="sp"><img class="spell-ic" src="/storage/spell-icons/ability_mage_arcanesurge.jpg">pet: Arcane Surge</td>
+                                            <td class="sh"><div class="bar"><span style="width: 4%; background: #69CCF0"></span></div></td>
+                                            <td class="n">45k</td>
+                                            <td class="n muted">4%</td>
+                                            <td class="n muted small">1 hit</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td class="sp"><img class="spell-ic" src="/storage/spell-icons/135818.jpg">Intensifying Flame</td>
+                                            <td class="sh"><div class="bar"><span style="width: 2%; background: #69CCF0"></span></div></td>
+                                            <td class="n">27k</td>
+                                            <td class="n muted">2%</td>
+                                            <td class="n muted small">22 hits</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td class="sp"><img class="spell-ic" src="/storage/spell-icons/135808.jpg">pet: Pyroblast</td>
+                                            <td class="sh"><div class="bar"><span style="width: 2%; background: #69CCF0"></span></div></td>
+                                            <td class="n">25k</td>
+                                            <td class="n muted">2%</td>
+                                            <td class="n muted small">1 hit</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td class="sp"><img class="spell-ic" src="/storage/spell-icons/spell_fire_soulburn.jpg">Scorch</td>
+                                            <td class="sh"><div class="bar"><span style="width: 2%; background: #69CCF0"></span></div></td>
+                                            <td class="n">22k</td>
+                                            <td class="n muted">2%</td>
+                                            <td class="n muted small">1 hit</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td class="sp"><img class="spell-ic" src="/storage/spell-icons/132221.jpg">Blazing Barrier</td>
+                                            <td class="sh"><div class="bar"><span style="width: 1%; background: #69CCF0"></span></div></td>
+                                            <td class="n">3k</td>
+                                            <td class="n muted">0%</td>
+                                            <td class="n muted small">5 hits</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td class="sp"><span class="ph-s"></span>Other</td>
+                                            <td class="sh"><div class="bar"><span style="width: 1%; background: #69CCF0"></span></div></td>
+                                            <td class="n">3k</td>
+                                            <td class="n muted">0%</td>
+                                            <td class="n muted small">2 hits</td>
+                                        </tr>
+                                                                    </table>
+                                                            <div class="small muted" style="margin:6px 0 2px">Absorbs <b style="color:#FFFFFF">340k</b> &middot; 8k a second alive</div>
+                                <table class="ab">
+                                                                            <tr>
+                                            <td class="sp"><img class="spell-ic" src="/storage/spell-icons/132221.jpg">Blazing Barrier</td>
+                                            <td class="sh"><div class="bar"><span style="width: 100%; background: #69CCF0"></span></div></td>
+                                            <td class="n">340k</td>
+                                            <td class="n muted">100%</td>
+                                            <td class="n muted small">9 hits</td>
+                                        </tr>
+                                                                    </table>
+                                                    </td>
+                    </tr>
+                                    <tr class="pl" onclick="var e=document.getElementById('bde1e5fd9');e.style.display=e.style.display==='none'?'':'none';">
+                        <td>
+                            <img class="spell-ic" src="/storage/spec-icons/classicon_evoker_devastation.jpg" style="border:1px solid #33937F">                            <span class="name" style="color: #33937F">Their Evoker</span>                            <span class="small subtle">&nbsp;them</span>                        </td>
+                        <td class="n">841k</td>
+                        <td class="n">0</td>
+                        <td class="n">755k</td>
+                        <td class="n ">12%</td>
+                    </tr>
+                    <tr id="bde1e5fd9" style="display:none">
+                        <td colspan="5" class="abil">
+                                                            <div class="small muted" style="margin:6px 0 2px">Damage <b style="color:#FFFFFF">841k</b> &middot; 38k a second alive</div>
+                                <table class="ab">
+                                                                            <tr>
+                                            <td class="sp"><span class="ph-s"></span>Deep Breath</td>
+                                            <td class="sh"><div class="bar"><span style="width: 40%; background: #33937F"></span></div></td>
+                                            <td class="n">335k</td>
+                                            <td class="n muted">40%</td>
+                                            <td class="n muted small">16 hits</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td class="sp"><span class="ph-s"></span>Melt Armor</td>
+                                            <td class="sh"><div class="bar"><span style="width: 22%; background: #33937F"></span></div></td>
+                                            <td class="n">187k</td>
+                                            <td class="n muted">22%</td>
+                                            <td class="n muted small">19 hits</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td class="sp"><img class="spell-ic" src="/storage/spell-icons/4622468.jpg">Pyre</td>
+                                            <td class="sh"><div class="bar"><span style="width: 14%; background: #33937F"></span></div></td>
+                                            <td class="n">119k</td>
+                                            <td class="n muted">14%</td>
+                                            <td class="n muted small">3 hits</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td class="sp"><span class="ph-s"></span>Eternity Surge</td>
+                                            <td class="sh"><div class="bar"><span style="width: 11%; background: #33937F"></span></div></td>
+                                            <td class="n">89k</td>
+                                            <td class="n muted">11%</td>
+                                            <td class="n muted small">1 hit</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td class="sp"><img class="spell-ic" src="/storage/spell-icons/4622468.jpg">pet: Pyre</td>
+                                            <td class="sh"><div class="bar"><span style="width: 8%; background: #33937F"></span></div></td>
+                                            <td class="n">67k</td>
+                                            <td class="n muted">8%</td>
+                                            <td class="n muted small">12 hits</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td class="sp"><span class="ph-s"></span>Shattering Player</td>
+                                            <td class="sh"><div class="bar"><span style="width: 5%; background: #33937F"></span></div></td>
+                                            <td class="n">44k</td>
+                                            <td class="n muted">5%</td>
+                                            <td class="n muted small">1 hit</td>
+                                        </tr>
+                                                                    </table>
+                                                            <div class="small muted" style="margin:6px 0 2px">Absorbs <b style="color:#FFFFFF">755k</b> &middot; 34k a second alive</div>
+                                <table class="ab">
+                                                                            <tr>
+                                            <td class="sp"><img class="spell-ic" src="/storage/spell-icons/4622478.jpg">Stretch Time</td>
+                                            <td class="sh"><div class="bar"><span style="width: 100%; background: #33937F"></span></div></td>
+                                            <td class="n">755k</td>
+                                            <td class="n muted">100%</td>
+                                            <td class="n muted small">41 hits</td>
+                                        </tr>
+                                                                    </table>
+                                                    </td>
+                    </tr>
+                                    <tr class="pl" onclick="var e=document.getElementById('bbbd02afd');e.style.display=e.style.display==='none'?'':'none';">
+                        <td>
+                            <img class="spell-ic" src="/storage/spec-icons/spell_monk_windwalker_spec.jpg" style="border:1px solid #00FF96">                            <span class="name" style="color: #00FF96">Their Windwalker</span>                            <span class="small subtle">&nbsp;them</span>                        </td>
+                        <td class="n">638k</td>
+                        <td class="n">64k</td>
+                        <td class="n">428k</td>
+                        <td class="n ">11%</td>
+                    </tr>
+                    <tr id="bbbd02afd" style="display:none">
+                        <td colspan="5" class="abil">
+                                                            <div class="small muted" style="margin:6px 0 2px">Damage <b style="color:#FFFFFF">638k</b> &middot; 15k a second alive</div>
+                                <table class="ab">
+                                                                            <tr>
+                                            <td class="sp"><img class="spell-ic" src="/storage/spell-icons/574575.jpg">Blackout Kick</td>
+                                            <td class="sh"><div class="bar"><span style="width: 36%; background: #00FF96"></span></div></td>
+                                            <td class="n">232k</td>
+                                            <td class="n muted">36%</td>
+                                            <td class="n muted small">6 hits</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td class="sp"><img class="spell-ic" src="/storage/spell-icons/606551.jpg">Tiger Palm</td>
+                                            <td class="sh"><div class="bar"><span style="width: 24%; background: #00FF96"></span></div></td>
+                                            <td class="n">150k</td>
+                                            <td class="n muted">24%</td>
+                                            <td class="n muted small">3 hits</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td class="sp"><img class="spell-ic" src="/storage/spell-icons/inv_hand_1h_artifactskywall_d_01.jpg">Strike of the Windlord</td>
+                                            <td class="sh"><div class="bar"><span style="width: 18%; background: #00FF96"></span></div></td>
+                                            <td class="n">113k</td>
+                                            <td class="n muted">18%</td>
+                                            <td class="n muted small">2 hits</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td class="sp"><img class="spell-ic" src="/storage/spell-icons/135274.jpg">Melee</td>
+                                            <td class="sh"><div class="bar"><span style="width: 10%; background: #00FF96"></span></div></td>
+                                            <td class="n">62k</td>
+                                            <td class="n muted">10%</td>
+                                            <td class="n muted small">8 hits</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td class="sp"><span class="ph-s"></span>Flurry Strike</td>
+                                            <td class="sh"><div class="bar"><span style="width: 5%; background: #00FF96"></span></div></td>
+                                            <td class="n">30k</td>
+                                            <td class="n muted">5%</td>
+                                            <td class="n muted small">12 hits</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td class="sp"><img class="spell-ic" src="/storage/spell-icons/ability_monk_touchofkarma.jpg">Touch of Karma</td>
+                                            <td class="sh"><div class="bar"><span style="width: 3%; background: #00FF96"></span></div></td>
+                                            <td class="n">19k</td>
+                                            <td class="n muted">3%</td>
+                                            <td class="n muted small">1 hit</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td class="sp"><img class="spell-ic" src="/storage/spell-icons/627486.jpg">Expel Harm</td>
+                                            <td class="sh"><div class="bar"><span style="width: 2%; background: #00FF96"></span></div></td>
+                                            <td class="n">16k</td>
+                                            <td class="n muted">2%</td>
+                                            <td class="n muted small">3 hits</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td class="sp"><img class="spell-ic" src="/storage/spell-icons/606543.jpg">Spinning Crane Kick</td>
+                                            <td class="sh"><div class="bar"><span style="width: 2%; background: #00FF96"></span></div></td>
+                                            <td class="n">12k</td>
+                                            <td class="n muted">2%</td>
+                                            <td class="n muted small">1 hit</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td class="sp"><span class="ph-s"></span>Rune of Unleashed Fire</td>
+                                            <td class="sh"><div class="bar"><span style="width: 1%; background: #00FF96"></span></div></td>
+                                            <td class="n">5k</td>
+                                            <td class="n muted">1%</td>
+                                            <td class="n muted small">1 hit</td>
+                                        </tr>
+                                                                    </table>
+                                                            <div class="small muted" style="margin:6px 0 2px">Healing <b style="color:#FFFFFF">64k</b> &middot; 1k a second alive</div>
+                                <table class="ab">
+                                                                            <tr>
+                                            <td class="sp"><img class="spell-ic" src="/storage/spell-icons/627486.jpg">Expel Harm</td>
+                                            <td class="sh"><div class="bar"><span style="width: 100%; background: #00FF96"></span></div></td>
+                                            <td class="n">64k</td>
+                                            <td class="n muted">100%</td>
+                                            <td class="n muted small">3 hits &middot; 61% over </td>
+                                        </tr>
+                                                                    </table>
+                                                            <div class="small muted" style="margin:6px 0 2px">Absorbs <b style="color:#FFFFFF">428k</b> &middot; 10k a second alive</div>
+                                <table class="ab">
+                                                                            <tr>
+                                            <td class="sp"><img class="spell-ic" src="/storage/spell-icons/ability_monk_touchofkarma.jpg">Touch of Karma</td>
+                                            <td class="sh"><div class="bar"><span style="width: 92%; background: #00FF96"></span></div></td>
+                                            <td class="n">393k</td>
+                                            <td class="n muted">92%</td>
+                                            <td class="n muted small">68 hits</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td class="sp"><img class="spell-ic" src="/storage/spell-icons/574571.jpg">Yu&#039;lon&#039;s Grace</td>
+                                            <td class="sh"><div class="bar"><span style="width: 8%; background: #00FF96"></span></div></td>
+                                            <td class="n">35k</td>
+                                            <td class="n muted">8%</td>
+                                            <td class="n muted small">12 hits</td>
+                                        </tr>
+                                                                    </table>
+                                                    </td>
+                    </tr>
+                                    <tr class="pl" onclick="var e=document.getElementById('be42fd50e');e.style.display=e.style.display==='none'?'':'none';">
+                        <td>
+                            <img class="spell-ic" src="/storage/spec-icons/spell_monk_mistweaver_spec.jpg" style="border:1px solid #00FF96">                            <span class="name" style="color: #00FF96">Their Mistweaver</span>                            <span class="small subtle">&nbsp;them</span>                        </td>
+                        <td class="n">90k</td>
+                        <td class="n">836k</td>
+                        <td class="n">645k</td>
+                        <td class="n ">12%</td>
+                    </tr>
+                    <tr id="be42fd50e" style="display:none">
+                        <td colspan="5" class="abil">
+                                                            <div class="small muted" style="margin:6px 0 2px">Damage <b style="color:#FFFFFF">90k</b> &middot; 2k a second alive</div>
+                                <table class="ab">
+                                                                            <tr>
+                                            <td class="sp"><img class="spell-ic" src="/storage/spell-icons/574575.jpg">Blackout Kick</td>
+                                            <td class="sh"><div class="bar"><span style="width: 46%; background: #00FF96"></span></div></td>
+                                            <td class="n">42k</td>
+                                            <td class="n muted">46%</td>
+                                            <td class="n muted small">5 hits</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td class="sp"><img class="spell-ic" src="/storage/spell-icons/7439207.jpg">Rushing Wind Kick</td>
+                                            <td class="sh"><div class="bar"><span style="width: 37%; background: #00FF96"></span></div></td>
+                                            <td class="n">33k</td>
+                                            <td class="n muted">37%</td>
+                                            <td class="n muted small">1 hit</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td class="sp"><img class="spell-ic" src="/storage/spell-icons/135274.jpg">Melee</td>
+                                            <td class="sh"><div class="bar"><span style="width: 5%; background: #00FF96"></span></div></td>
+                                            <td class="n">5k</td>
+                                            <td class="n muted">5%</td>
+                                            <td class="n muted small">1 hit</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td class="sp"><span class="ph-s"></span>Rune of Unleashed Fire</td>
+                                            <td class="sh"><div class="bar"><span style="width: 5%; background: #00FF96"></span></div></td>
+                                            <td class="n">5k</td>
+                                            <td class="n muted">5%</td>
+                                            <td class="n muted small">1 hit</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td class="sp"><img class="spell-ic" src="/storage/spell-icons/897137.jpg">Overwhelming Force</td>
+                                            <td class="sh"><div class="bar"><span style="width: 3%; background: #00FF96"></span></div></td>
+                                            <td class="n">3k</td>
+                                            <td class="n muted">3%</td>
+                                            <td class="n muted small">4 hits</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td class="sp"><img class="spell-ic" src="/storage/spell-icons/135274.jpg">pet: Melee</td>
+                                            <td class="sh"><div class="bar"><span style="width: 2%; background: #00FF96"></span></div></td>
+                                            <td class="n">2k</td>
+                                            <td class="n muted">2%</td>
+                                            <td class="n muted small">4 hits</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td class="sp"><span class="ph-s"></span>Rune of Lingering</td>
+                                            <td class="sh"><div class="bar"><span style="width: 1%; background: #00FF96"></span></div></td>
+                                            <td class="n">1k</td>
+                                            <td class="n muted">1%</td>
+                                            <td class="n muted small">4 hits</td>
+                                        </tr>
+                                                                    </table>
+                                                            <div class="small muted" style="margin:6px 0 2px">Healing <b style="color:#FFFFFF">836k</b> &middot; 20k a second alive</div>
+                                <table class="ab">
+                                                                            <tr>
+                                            <td class="sp"><img class="spell-ic" src="/storage/spell-icons/7439208.jpg">Sheilun&#039;s Gift</td>
+                                            <td class="sh"><div class="bar"><span style="width: 30%; background: #00FF96"></span></div></td>
+                                            <td class="n">247k</td>
+                                            <td class="n muted">30%</td>
+                                            <td class="n muted small">2 hits &middot; 0% over </td>
+                                        </tr>
+                                                                            <tr>
+                                            <td class="sp"><span class="ph-s"></span>Gust of Mists</td>
+                                            <td class="sh"><div class="bar"><span style="width: 26%; background: #00FF96"></span></div></td>
+                                            <td class="n">215k</td>
+                                            <td class="n muted">26%</td>
+                                            <td class="n muted small">41 hits &middot; 76% over </td>
+                                        </tr>
+                                                                            <tr>
+                                            <td class="sp"><img class="spell-ic" src="/storage/spell-icons/133739.jpg">Ancient Teachings</td>
+                                            <td class="sh"><div class="bar"><span style="width: 13%; background: #00FF96"></span></div></td>
+                                            <td class="n">111k</td>
+                                            <td class="n muted">13%</td>
+                                            <td class="n muted small">6 hits &middot; 36% over </td>
+                                        </tr>
+                                                                            <tr>
+                                            <td class="sp"><img class="spell-ic" src="/storage/spell-icons/608939.jpg">Healing Elixir</td>
+                                            <td class="sh"><div class="bar"><span style="width: 12%; background: #00FF96"></span></div></td>
+                                            <td class="n">104k</td>
+                                            <td class="n muted">12%</td>
+                                            <td class="n muted small">2 hits &middot; 0% over </td>
+                                        </tr>
+                                                                            <tr>
+                                            <td class="sp"><img class="spell-ic" src="/storage/spell-icons/1360977.jpg">Coalescence</td>
+                                            <td class="sh"><div class="bar"><span style="width: 11%; background: #00FF96"></span></div></td>
+                                            <td class="n">95k</td>
+                                            <td class="n muted">11%</td>
+                                            <td class="n muted small">11 hits &middot; 0% over </td>
+                                        </tr>
+                                                                            <tr>
+                                            <td class="sp"><img class="spell-ic" src="/storage/spell-icons/627487.jpg">Renewing Mist</td>
+                                            <td class="sh"><div class="bar"><span style="width: 3%; background: #00FF96"></span></div></td>
+                                            <td class="n">26k</td>
+                                            <td class="n muted">3%</td>
+                                            <td class="n muted small">11 hits &middot; 20% over </td>
+                                        </tr>
+                                                                            <tr>
+                                            <td class="sp"><img class="spell-ic" src="/storage/spell-icons/1629910.jpg">Chi Warding</td>
+                                            <td class="sh"><div class="bar"><span style="width: 2%; background: #00FF96"></span></div></td>
+                                            <td class="n">20k</td>
+                                            <td class="n muted">2%</td>
+                                            <td class="n muted small">99 hits &middot; 10% over </td>
+                                        </tr>
+                                                                            <tr>
+                                            <td class="sp"><span class="ph-s"></span>Rune of Unleashed Fire</td>
+                                            <td class="sh"><div class="bar"><span style="width: 1%; background: #00FF96"></span></div></td>
+                                            <td class="n">9k</td>
+                                            <td class="n muted">1%</td>
+                                            <td class="n muted small">1 hit &middot; 0% over </td>
+                                        </tr>
+                                                                            <tr>
+                                            <td class="sp"><img class="spell-ic" src="/storage/spell-icons/606541.jpg">Chi Wave</td>
+                                            <td class="sh"><div class="bar"><span style="width: 1%; background: #00FF96"></span></div></td>
+                                            <td class="n">4k</td>
+                                            <td class="n muted">0%</td>
+                                            <td class="n muted small">5 hits &middot; 67% over </td>
+                                        </tr>
+                                                                            <tr>
+                                            <td class="sp"><img class="spell-ic" src="/storage/spell-icons/spell_monk_envelopingmist.jpg">Enveloping Mist</td>
+                                            <td class="sh"><div class="bar"><span style="width: 1%; background: #00FF96"></span></div></td>
+                                            <td class="n">3k</td>
+                                            <td class="n muted">0%</td>
+                                            <td class="n muted small">1 hit &middot; 0% over </td>
+                                        </tr>
+                                                                            <tr>
+                                            <td class="sp"><span class="ph-s"></span>Other</td>
+                                            <td class="sh"><div class="bar"><span style="width: 1%; background: #00FF96"></span></div></td>
+                                            <td class="n">3k</td>
+                                            <td class="n muted">0%</td>
+                                            <td class="n muted small">5 hits &middot; 21% over </td>
+                                        </tr>
+                                                                    </table>
+                                                            <div class="small muted" style="margin:6px 0 2px">Absorbs <b style="color:#FFFFFF">645k</b> &middot; 16k a second alive</div>
+                                <table class="ab">
+                                                                            <tr>
+                                            <td class="sp"><span class="ph-s"></span>Chi Cocoon</td>
+                                            <td class="sh"><div class="bar"><span style="width: 89%; background: #00FF96"></span></div></td>
+                                            <td class="n">571k</td>
+                                            <td class="n muted">89%</td>
+                                            <td class="n muted small">67 hits</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td class="sp"><img class="spell-ic" src="/storage/spell-icons/574571.jpg">Yu&#039;lon&#039;s Grace</td>
+                                            <td class="sh"><div class="bar"><span style="width: 9%; background: #00FF96"></span></div></td>
+                                            <td class="n">58k</td>
+                                            <td class="n muted">9%</td>
+                                            <td class="n muted small">19 hits</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td class="sp"><img class="spell-ic" src="/storage/spell-icons/ability_monk_chicocoon.jpg">Life Cocoon</td>
+                                            <td class="sh"><div class="bar"><span style="width: 2%; background: #00FF96"></span></div></td>
+                                            <td class="n">16k</td>
+                                            <td class="n muted">2%</td>
+                                            <td class="n muted small">1 hit</td>
+                                        </tr>
+                                                                    </table>
+                                                    </td>
+                    </tr>
+                            </table>
+                        </div>
+</div>
+    </div>
+
+    <div class="tab" id="t-numbers">
+    
+    <div class="section">
+        <div class="label">The game in numbers</div>
+        <div class="box">
+            <table class="stats">
+                <tr><td class="small muted"></td><td class="n small muted">You</td><td class="n small muted">Them</td></tr>
+                                                        <tr><td>Goes (bursts)</td><td class="n ">2</td><td class="n">2</td></tr>
+                                                        <tr><td>Tight goes (each link within 5s)</td><td class="n ">2</td><td class="n">2</td></tr>
+                                                        <tr><td>Goes that led to a kill</td><td class="n better">2</td><td class="n">0</td></tr>
+                                                        <tr><td>Defensives before the first death</td><td class="n ">2</td><td class="n">2</td></tr>
+                                                        <tr><td>Of those, outside the other side&#039;s goes</td><td class="n ">0</td><td class="n">0</td></tr>
+                                                        <tr><td>Interrupts</td><td class="n ">0</td><td class="n">0</td></tr>
+                                                        <tr><td>Interrupts on the healer</td><td class="n ">0</td><td class="n">0</td></tr>
+                            </table>
+        </div>
+    </div>
+
+    
+    </div>
+
+    <div class="tab" id="t-notes">
+                <div class="section">
+    <div class="label">Your notes</div>
+    <div class="box">
+                    <span class="muted">None. During a game the note box takes notes for that round, and Ctrl+Shift+M marks a moment to write about later.</span>
+            </div>
+</div>
+    </div>
+
+
+<div class="foot">Experience is each character as it is now; Gladiator seasons count across their whole account.
+ 1 player(s) have no experience on file and count as none.</div>
+
+</body>
+</html>

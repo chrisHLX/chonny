@@ -20,7 +20,7 @@ class PlatformController extends Controller
     {
         PageViewEvent::log('platform_home');
 
-        return view('platform.home', ['games' => config('platform.games')]);
+        return view('platform.home', ['games' => self::listed()]);
     }
 
     public function game(Request $request, string $game)
@@ -38,6 +38,12 @@ class PlatformController extends Controller
             'now' => self::openNow($game),
             'waiting' => $user !== null && GameInterest::where('game', $game)->where('user_id', $user->id)->exists(),
         ]);
+    }
+
+    /** The games shown on the home and in the sidebar's switcher (config `listed`, true unless set). */
+    public static function listed(): array
+    {
+        return array_filter(config('platform.games'), fn (array $g) => $g['listed'] ?? true);
     }
 
     /**

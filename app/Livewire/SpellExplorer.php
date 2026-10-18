@@ -84,6 +84,20 @@ class SpellExplorer extends Component
             return;
         }
 
+        // A signed-in player opens on their own character's spec (2026-10-18; the one they last
+        // logged out in, from Battle.net), everyone else on the first class alphabetically.
+        $own = auth()->check()
+            ? \App\Models\BattlenetCharacter::whereHas('account', fn ($q) => $q->where('user_id', auth()->id()))
+                ->whereNotNull('spec_id')->with('specialization')->latest('updated_at')->first()?->specialization
+            : null;
+        if ($own) {
+            $this->classId = $own->class_id;
+            $this->specId = $own->id;
+            PageViewEvent::log('spell_explorer');
+
+            return;
+        }
+
         $firstClass = GameClass::whereHas('game', fn ($q) => $q->where('slug', 'wow'))
             ->orderBy('name')
             ->first();
