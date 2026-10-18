@@ -43,6 +43,18 @@
                 Home
         </a>
 
+        {{-- One link for every admin page (2026-10-19): the pages themselves carry a tab strip
+             (admin.partials.tabs), so this replaces the collapsed group that sat below a scroll. --}}
+        @can('admin')
+            <a href="{{ route('admin.overview') }}" wire:navigate
+               class="sidebar-item {{ request()->routeIs('admin.*', 'jobs.dashboard', 'modules.manage', 'modules.create') ? 'active' : '' }}">
+                <svg class="w-[18px] h-[18px] shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/>
+                </svg>
+                Admin
+            </a>
+        @endcan
+
         {{-- The games (config/platform.php): one tab each, the page's own game lit in its colour. --}}
         <div class="grid {{ count($navSwitch) === 2 ? 'grid-cols-2' : 'grid-cols-3' }} gap-1 px-1 pt-2 pb-1">
             @foreach ($navSwitch as $gSlug => $g)
@@ -281,96 +293,6 @@
 
         @endif
 
-        @can('admin')
-        <!-- Creator -->
-        {{-- Admin only. Collapsed by default (new persist key, so it starts closed for everyone once). --}}
-        <div x-data="{ creatorOpen: $persist(false).as('nav_creator_open_v2') }" class="pt-3">
-            <button @click="creatorOpen = !creatorOpen"
-                    class="sidebar-item w-full justify-between">
-                <div class="flex items-center gap-2.5">
-                    <svg class="w-[18px] h-[18px] shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/>
-                    </svg>
-                    <span>Creator</span>
-                </div>
-                <svg :class="creatorOpen ? 'rotate-90' : ''"
-                     class="w-3 h-3 text-ink-subtle transition-transform duration-150 shrink-0"
-                     fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
-                </svg>
-            </button>
-
-            <div x-show="creatorOpen"
-                 x-transition:enter="transition ease-out duration-100"
-                 x-transition:enter-start="opacity-0 -translate-y-1"
-                 x-transition:enter-end="opacity-100 translate-y-0"
-                 x-transition:leave="transition ease-in duration-75"
-                 x-transition:leave-start="opacity-100 translate-y-0"
-                 x-transition:leave-end="opacity-0 -translate-y-1"
-                 class="pl-3 mt-0.5 space-y-0.5">
-                <a href="{{ route('modules.create') }}"
-                   class="sidebar-item text-[12px] {{ request()->routeIs('modules.create') ? 'active !text-accent' : '' }}">
-                    <span class="w-1 h-1 rounded-full bg-current shrink-0"></span>
-                    Create Module
-                </a>
-                <a href="{{ route('modules.manage') }}"
-                   class="sidebar-item text-[12px] {{ request()->routeIs('modules.manage') ? 'active !text-accent' : '' }}">
-                    <span class="w-1 h-1 rounded-full bg-current shrink-0"></span>
-                    Edit Modules
-                </a>
-
-                <div class="px-2.5 pt-2 pb-0.5">
-                    <p class="text-[10px] font-medium text-ink-subtle uppercase tracking-widest">Content</p>
-                </div>
-
-                <a href="{{ route('admin.content') }}"
-                   class="sidebar-item text-[12px] {{ request()->routeIs('admin.content') ? 'active !text-accent' : '' }}">
-                    <span class="w-1 h-1 rounded-full bg-current shrink-0"></span>
-                    Content Manager
-                </a>
-                <a href="{{ route('admin.api-usage') }}"
-                   class="sidebar-item text-[12px] {{ request()->routeIs('admin.api-usage') ? 'active !text-accent' : '' }}">
-                    <span class="w-1 h-1 rounded-full bg-current shrink-0"></span>
-                    API Usage
-                </a>
-                <a href="{{ route('admin.weak-areas') }}"
-                   class="sidebar-item text-[12px] {{ request()->routeIs('admin.weak-areas') ? 'active !text-accent' : '' }}">
-                    <span class="w-1 h-1 rounded-full bg-current shrink-0"></span>
-                    Weak Areas
-                </a>
-                <a href="{{ route('admin.diagnostic-stats') }}"
-                   class="sidebar-item text-[12px] {{ request()->routeIs('admin.diagnostic-stats') ? 'active !text-accent' : '' }}">
-                    <span class="w-1 h-1 rounded-full bg-current shrink-0"></span>
-                    Diagnostic Stats
-                </a>
-                <a href="{{ route('admin.matches') }}"
-                   class="sidebar-item text-[12px] {{ request()->routeIs('admin.matches') ? 'active !text-accent' : '' }}">
-                    <span class="w-1 h-1 rounded-full bg-current shrink-0"></span>
-                    Matches
-                </a>
-                <a href="{{ route('admin.search-pages') }}"
-                   class="sidebar-item text-[12px] {{ request()->routeIs('admin.search-pages') ? 'active !text-accent' : '' }}">
-                    <span class="w-1 h-1 rounded-full bg-current shrink-0"></span>
-                    Search Pages
-                </a>
-                <a href="{{ route('admin.page-usage') }}"
-                   class="sidebar-item text-[12px] {{ request()->routeIs('admin.page-usage') ? 'active !text-accent' : '' }}">
-                    <span class="w-1 h-1 rounded-full bg-current shrink-0"></span>
-                    Page Usage
-                </a>
-                <a href="{{ route('jobs.dashboard') }}"
-                   class="sidebar-item text-[12px] {{ request()->routeIs('jobs.dashboard') ? 'active !text-accent' : '' }}">
-                    <span class="w-1 h-1 rounded-full bg-current shrink-0"></span>
-                    Job Queue
-                </a>
-                <a href="{{ route('admin.logs') }}"
-                   class="sidebar-item text-[12px] {{ request()->routeIs('admin.logs') ? 'active !text-accent' : '' }}">
-                    <span class="w-1 h-1 rounded-full bg-current shrink-0"></span>
-                    Log Viewer
-                </a>
-            </div>
-        </div>
-        @endcan
 
     </div>
 

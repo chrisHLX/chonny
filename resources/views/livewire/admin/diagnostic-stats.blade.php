@@ -52,12 +52,14 @@
                     <p class="text-[11px] text-ink-muted mt-1">{{ $funnel['clickThroughRate'] }}% of profile views</p>
                 </div>
                 <div>
-                    <p class="text-[11px] text-ink-subtle uppercase tracking-wider mb-1.5">Signup started</p>
-                    <p class="text-[20px] font-semibold text-ink leading-none">{{ number_format($funnel['signupStarted']) }}</p>
+                    <p class="text-[11px] text-ink-subtle uppercase tracking-wider mb-1.5">Opened the sign-up form</p>
+                    <p class="text-[20px] font-semibold text-ink leading-none">{{ number_format($funnel['signupStartedPeople']) }}</p>
+                    <p class="text-[11px] text-ink-muted mt-1">people; {{ number_format($funnel['signupStarted']) }} page loads counting crawlers</p>
                 </div>
                 <div>
-                    <p class="text-[11px] text-ink-subtle uppercase tracking-wider mb-1.5">Signed up</p>
-                    <p class="text-[20px] font-semibold text-ink leading-none">{{ number_format($funnel['uniqueSignups']) }}</p>
+                    <p class="text-[11px] text-ink-subtle uppercase tracking-wider mb-1.5">Accounts created</p>
+                    <p class="text-[20px] font-semibold text-ink leading-none">{{ number_format($funnel['accountsCreated']) }}</p>
+                    <p class="text-[11px] text-ink-muted mt-1">any method; {{ number_format($funnel['uniqueSignups']) }} through the email form</p>
                 </div>
             </div>
 

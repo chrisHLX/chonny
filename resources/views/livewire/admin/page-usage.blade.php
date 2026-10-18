@@ -44,7 +44,7 @@
                         @endif
                     </div>
                     <p class="text-[12px] text-ink-muted mt-1">
-                        engaged visitors &mdash; signed in, or went past one page
+                        visitors &mdash; a browser ran a page, or signed in
                     </p>
                     <p class="text-[11px] text-ink-subtle mt-1"
                        title="A browser user agent is not proof of a person: scripts that send one drop their cookie every request, so each view is a new one-page session.">
@@ -100,7 +100,7 @@
                         </div>
                     @endforeach
                 </div>
-                <div class="flex gap-1.5 mt-1.5" title="Engaged visitors that day: signed in, or went past one page">
+                <div class="flex gap-1.5 mt-1.5" title="Visitors that day: a browser ran a page, or signed in">
                     @foreach ($daily as $d)
                         <span class="flex-1 text-center text-[10px] tabular-nums {{ $d['engaged'] > 0 ? 'text-ink' : 'text-ink-subtle' }}">{{ $d['engaged'] }}</span>
                     @endforeach
@@ -112,7 +112,7 @@
                 </div>
                 <div class="flex justify-between text-[10px] text-ink-subtle mt-1.5">
                     <span>{{ $daily->first()['day'] }}</span>
-                    <span>under each bar: engaged visitors, then <span class="text-violet">views seen by a browser</span></span>
+                    <span>under each bar: visitors, then <span class="text-violet">views seen by a browser</span></span>
                     <span>{{ $daily->last()['day'] }}</span>
                 </div>
             @endif
@@ -126,7 +126,7 @@
                     <thead>
                         <tr class="text-[10px] uppercase tracking-wide text-ink-subtle text-left">
                             <th class="font-medium py-1.5 pr-3">Page</th>
-                            <th class="font-medium py-1.5 px-3 text-right" title="Sessions that were signed in or went past one page">Engaged</th>
+                            <th class="font-medium py-1.5 px-3 text-right" title="Sessions where a browser ran a page, or someone was signed in">Visitors</th>
                             <th class="font-medium py-1.5 px-3 text-right" title="Views a browser confirmed by running the page, from 4 Oct 2026">Browser</th>
                             <th class="font-medium py-1.5 px-3 text-right">Views</th>
                             <th class="font-medium py-1.5 px-3 text-right">Sessions</th>
@@ -158,7 +158,7 @@
         <div class="linear-card p-5">
             <p class="text-[12px] font-medium text-ink mb-1">Referrers &mdash; last 30 days</p>
             <p class="text-[11px] text-ink-subtle mb-3">
-                Engaged visitors only &mdash; referrer spam arrives as one cookieless hit. Own-domain referrals are excluded: internal navigation is not a referral.
+                Visitors who arrived from another website. Most visitors carry no referrer (a typed address, a bookmark, a link from Discord or the app), so these rows do not add up to the visitor total; the Overview counts them as "Direct or an app link". Own-domain referrals are excluded.
             </p>
             @if ($referrers->isEmpty())
                 <p class="text-[12px] text-ink-subtle">Nothing yet. Referrers have only been recorded since 2026-09-24.</p>

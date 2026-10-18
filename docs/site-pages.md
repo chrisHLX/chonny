@@ -173,6 +173,16 @@
   no go section ("over 1 goes ... Touch of Death 100%" on Mistweaver), and the spec is named as a
   noun throughout ("a Fire Mage", not "a Fire"). **In the menu as "PvP Guides"** (under Plan, and
   the landing page's planning cards); the kit pages are "Arena Kit" there, as their titles are.
+- `/admin` (`Admin\Overview`, 2026-10-19, Chriso: "combine the analytics into one spot"): the
+  numbers in one place, people only. A visitor is a session where a browser ran a page
+  (`confirmed_at`) or someone was signed in; where they came from is each visitor's first outside
+  referrer or "Direct or an app link", so the rows sum to the total; the path from a visit to an
+  uploaded game; accounts by method; 14 days by day; crawlers and scripts counted apart. Every admin
+  page carries a tab strip (`admin/partials/tabs.blade.php`, shown by `layouts.app` on admin routes),
+  and the sidebar has one "Admin" link under Home instead of the collapsed group at the bottom.
+  Page usage's "engaged" now uses the same rule: it was "two or more rows", which one quiz load by
+  a crawler met (276 of 303 "engaged" sessions of 12-19 Oct never ran a page). Diagnostic stats'
+  sign-up form count shows people beside the raw page loads, and accounts created by any method.
 - Admin: `/admin/content`, `/admin/talent-builds`, `/admin/page-usage`, `/admin/weak-areas`,
   `/admin/diagnostic-stats`, `/admin/api-usage`, `/admin/matches`, `/admin/search-pages`.
 - `/admin/search-pages` (`Admin\SearchPages`) — how the spec guides do: readers (browser-confirmed

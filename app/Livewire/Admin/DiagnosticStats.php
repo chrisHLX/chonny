@@ -30,9 +30,20 @@ class DiagnosticStats extends Component
             ->groupBy('event')
             ->pluck('count', 'event');
 
-        $profileViewed  = (int) ($counts['profile_viewed'] ?? 0);
+        $profileViewed = (int) ($counts['profile_viewed'] ?? 0);
         $roadmapClicked = (int) ($counts['roadmap_clicked'] ?? 0);
-        $signupStarted  = (int) ($counts['signup_started'] ?? 0);
+        $signupStarted = (int) ($counts['signup_started'] ?? 0);
+
+        // "Signup started" is every load of /register, and crawlers follow the "Sign up free" link
+        // on every page: of 71 such sessions in the 30 days to 19 Oct, 1 had a browser run any page.
+        // So people are counted apart: register-page sessions in which a browser ran a page.
+        $startedSessions = FunnelEvent::where('event', 'signup_started')->whereNotNull('guest_session_id')->pluck('guest_session_id')->unique();
+        $signupStartedPeople = $startedSessions->isEmpty() ? 0 : \App\Models\PageViewEvent::whereIn('session_id', $startedSessions)
+            ->whereNotNull('confirmed_at')->distinct()->count('session_id');
+        // Every account made since the funnel began, by any method: signup_completed is only logged
+        // on the email form, so Google and Battle.net sign-ups never reached it.
+        $since = FunnelEvent::min('created_at');
+        $accountsCreated = $since ? \App\Models\User::where('created_at', '>=', $since)->count() : 0;
 
         $uniqueSignups = FunnelEvent::where('event', 'signup_completed')
             ->whereNotNull('user_id')
@@ -55,11 +66,13 @@ class DiagnosticStats extends Component
             : 0.0;
 
         return [
-            'profileViewed'     => $profileViewed,
-            'roadmapClicked'    => $roadmapClicked,
-            'signupStarted'     => $signupStarted,
-            'uniqueSignups'     => $uniqueSignups,
-            'clickThroughRate'  => $rate($roadmapClicked, $profileViewed),
+            'profileViewed' => $profileViewed,
+            'roadmapClicked' => $roadmapClicked,
+            'signupStarted' => $signupStarted,
+            'signupStartedPeople' => $signupStartedPeople,
+            'accountsCreated' => $accountsCreated,
+            'uniqueSignups' => $uniqueSignups,
+            'clickThroughRate' => $rate($roadmapClicked, $profileViewed),
             'signupsAfterClick' => $signupsAfterClick,
             'nonClickerSignups' => max(0, $uniqueSignups - $signupsAfterClick),
             'clickerSignupRate' => $rate($signupsAfterClick, $roadmapClicked),
@@ -105,22 +118,22 @@ class DiagnosticStats extends Component
         $engaged = DiagnosticAttempt::get(['module_id', 'user_id', 'session_id', 'completed_at'])
             ->filter(fn ($a) => $startedKeys->contains($this->identityKey($a->user_id, $a->session_id, $a->module_id)));
 
-        $started   = $engaged->count();
+        $started = $engaged->count();
         $completed = $engaged->whereNotNull('completed_at')->count();
 
-        $guestEngaged   = $engaged->whereNull('user_id');
-        $guestStarted   = $guestEngaged->count();
+        $guestEngaged = $engaged->whereNull('user_id');
+        $guestStarted = $guestEngaged->count();
         $guestCompleted = $guestEngaged->whereNotNull('completed_at')->count();
 
         return [
-            'pageViews'      => $pageViews,
-            'started'        => $started,
-            'completed'      => $completed,
-            'rate'           => $started > 0 ? round(($completed / $started) * 100, 1) : 0.0,
-            'guestStarted'   => $guestStarted,
+            'pageViews' => $pageViews,
+            'started' => $started,
+            'completed' => $completed,
+            'rate' => $started > 0 ? round(($completed / $started) * 100, 1) : 0.0,
+            'guestStarted' => $guestStarted,
             'guestCompleted' => $guestCompleted,
-            'authStarted'    => $started - $guestStarted,
-            'authCompleted'  => $completed - $guestCompleted,
+            'authStarted' => $started - $guestStarted,
+            'authCompleted' => $completed - $guestCompleted,
         ];
     }
 
@@ -146,12 +159,12 @@ class DiagnosticStats extends Component
 
         $max = max(array_column($days, 'started')) ?: 1;
 
-        return collect($days)->map(fn($counts, $date) => [
-            'date'      => $date,
-            'started'   => $counts['started'],
+        return collect($days)->map(fn ($counts, $date) => [
+            'date' => $date,
+            'started' => $counts['started'],
             'completed' => $counts['completed'],
-            'pct'       => (int) round(($counts['started'] / $max) * 100),
-            'label'     => Carbon::parse($date)->format('M j'),
+            'pct' => (int) round(($counts['started'] / $max) * 100),
+            'label' => Carbon::parse($date)->format('M j'),
         ])->values()->all();
     }
 
@@ -188,17 +201,17 @@ class DiagnosticStats extends Component
                     ->sortKeys();
 
                 $stuckOnQ1 = $group->filter(fn ($a) => $a->last_question_index === 0);
-                $neverStarted = $stuckOnQ1->filter(fn ($a) => !$startedKeys->contains($this->identityKey($a->user_id, $a->session_id, $a->module_id)))->count();
+                $neverStarted = $stuckOnQ1->filter(fn ($a) => ! $startedKeys->contains($this->identityKey($a->user_id, $a->session_id, $a->module_id)))->count();
 
                 return [
-                    'subject'         => $group->first()->subject?->name ?? '—',
-                    'incomplete'      => $group->count(),
+                    'subject' => $group->first()->subject?->name ?? '—',
+                    'incomplete' => $group->count(),
                     'total_questions' => $group->first()->total_questions,
-                    'byQuestion'      => $byQuestion,
-                    'worstQuestion'   => $byQuestion->sortDesc()->keys()->first(),
-                    'worstCount'      => $byQuestion->max(),
-                    'neverStarted'    => $neverStarted,
-                    'abandonedOnQ1'   => $stuckOnQ1->count() - $neverStarted,
+                    'byQuestion' => $byQuestion,
+                    'worstQuestion' => $byQuestion->sortDesc()->keys()->first(),
+                    'worstCount' => $byQuestion->max(),
+                    'neverStarted' => $neverStarted,
+                    'abandonedOnQ1' => $stuckOnQ1->count() - $neverStarted,
                 ];
             })
             ->sortByDesc('incomplete')
@@ -231,17 +244,17 @@ class DiagnosticStats extends Component
             ->unique();
 
         $buckets = [
-            'declared_with_variants'    => ['label' => 'Declared context, variants available', 'started' => 0, 'completed' => 0],
+            'declared_with_variants' => ['label' => 'Declared context, variants available', 'started' => 0, 'completed' => 0],
             'declared_without_variants' => ['label' => 'Declared context, no variants yet',     'started' => 0, 'completed' => 0],
-            'not_declared'              => ['label' => 'Did not declare context',               'started' => 0, 'completed' => 0],
+            'not_declared' => ['label' => 'Did not declare context',               'started' => 0, 'completed' => 0],
         ];
 
         DiagnosticAttempt::get(['module_id', 'user_id', 'session_id', 'subject_id', 'completed_at'])
             ->each(function ($attempt) use ($declaredKeys, $subjectsWithVariants, &$buckets) {
-                $key      = $this->identityKey($attempt->user_id, $attempt->session_id, $attempt->module_id);
+                $key = $this->identityKey($attempt->user_id, $attempt->session_id, $attempt->module_id);
                 $declared = $declaredKeys->contains($key);
 
-                $bucket = !$declared
+                $bucket = ! $declared
                     ? 'not_declared'
                     : ($subjectsWithVariants->contains($attempt->subject_id) ? 'declared_with_variants' : 'declared_without_variants');
 
@@ -252,10 +265,10 @@ class DiagnosticStats extends Component
             });
 
         return collect($buckets)->map(fn ($b) => [
-            'label'     => $b['label'],
-            'started'   => $b['started'],
+            'label' => $b['label'],
+            'started' => $b['started'],
             'completed' => $b['completed'],
-            'rate'      => $b['started'] > 0 ? round(($b['completed'] / $b['started']) * 100, 1) : 0.0,
+            'rate' => $b['started'] > 0 ? round(($b['completed'] / $b['started']) * 100, 1) : 0.0,
         ])->values()->all();
     }
 
@@ -265,14 +278,14 @@ class DiagnosticStats extends Component
             ->get(['subject_id', 'completed_at'])
             ->groupBy('subject_id')
             ->map(function ($group) {
-                $started   = $group->count();
+                $started = $group->count();
                 $completed = $group->whereNotNull('completed_at')->count();
 
                 return [
-                    'subject'   => $group->first()->subject?->name ?? '—',
-                    'started'   => $started,
+                    'subject' => $group->first()->subject?->name ?? '—',
+                    'started' => $started,
                     'completed' => $completed,
-                    'rate'      => $started > 0 ? round(($completed / $started) * 100, 1) : 0.0,
+                    'rate' => $started > 0 ? round(($completed / $started) * 100, 1) : 0.0,
                 ];
             })
             ->sortByDesc('started')
@@ -282,13 +295,13 @@ class DiagnosticStats extends Component
     public function render()
     {
         return view('livewire.admin.diagnostic-stats', [
-            'summary'          => $this->summary,
-            'funnel'           => $this->funnel,
-            'chartData'        => $this->chartData,
+            'summary' => $this->summary,
+            'funnel' => $this->funnel,
+            'chartData' => $this->chartData,
             'subjectBreakdown' => $this->subjectBreakdown,
-            'dropOff'          => $this->dropOff,
+            'dropOff' => $this->dropOff,
             'contextCompletion' => $this->contextCompletion,
-            'attempts'         => DiagnosticAttempt::with(['module', 'subject', 'user'])
+            'attempts' => DiagnosticAttempt::with(['module', 'subject', 'user'])
                 ->latest('started_at')
                 ->paginate(25),
         ])->layout('layouts.app');

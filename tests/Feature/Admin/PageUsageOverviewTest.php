@@ -92,24 +92,29 @@ class PageUsageOverviewTest extends TestCase
         $this->assertSame(1, $overview[7]['unclassified'], 'Pre-instrumentation rows are shown, never merged in.');
     }
 
-    public function test_engaged_visitors_exclude_one_row_cookieless_sessions(): void
+    public function test_engaged_visitors_are_sessions_a_browser_ran_or_someone_signed_in(): void
     {
-        // Measured 2026-09-29: 781 of 857 anonymous "human" sessions since 24 Sep held one row,
-        // and nginx showed 2-6 browser addresses a day doing anything at all.
+        // Measured 2026-09-29: 781 of 857 anonymous "human" sessions since 24 Sep held one row.
+        // Measured 2026-10-19: 276 of 303 "two or more rows" sessions never ran a page, because the
+        // quiz and basics pages log two rows for one load. So engaged now means a browser ran a page
+        // (confirmed_at) or someone was signed in.
         $admin = User::factory()->create(['is_admin' => true]);
         $member = User::factory()->create();
         $at = now()->subDay();
 
         PageViewEvent::insert([
-            // A browser that kept its cookie across two pages.
-            ['page' => 'landing', 'is_bot' => false, 'session_id' => 'kept', 'user_id' => null, 'referrer_host' => 'google.com', 'created_at' => $at],
-            ['page' => 'wow_comps', 'is_bot' => false, 'session_id' => 'kept', 'user_id' => null, 'referrer_host' => null, 'created_at' => $at],
+            // A browser that ran the page and went on to a second.
+            ['page' => 'landing', 'is_bot' => false, 'session_id' => 'kept', 'user_id' => null, 'referrer_host' => 'google.com', 'created_at' => $at, 'confirmed_at' => $at, 'slot' => null],
+            ['page' => 'wow_comps', 'is_bot' => false, 'session_id' => 'kept', 'user_id' => null, 'referrer_host' => null, 'created_at' => $at, 'confirmed_at' => null, 'slot' => null],
             // A signed-in visitor counts on one page.
-            ['page' => 'home', 'is_bot' => false, 'session_id' => 'member', 'user_id' => $member->id, 'referrer_host' => null, 'created_at' => $at],
+            ['page' => 'home', 'is_bot' => false, 'session_id' => 'member', 'user_id' => $member->id, 'referrer_host' => null, 'created_at' => $at, 'confirmed_at' => null, 'slot' => null],
             // Three one-hit scripts with browser agents, one carrying referrer spam.
-            ['page' => 'wow_quiz_play', 'is_bot' => false, 'session_id' => 's1', 'user_id' => null, 'referrer_host' => 'bestrankchecker.online', 'created_at' => $at],
-            ['page' => 'wow_quiz_play', 'is_bot' => false, 'session_id' => 's2', 'user_id' => null, 'referrer_host' => null, 'created_at' => $at],
-            ['page' => 'wow_quiz_play', 'is_bot' => false, 'session_id' => 's3', 'user_id' => null, 'referrer_host' => null, 'created_at' => $at],
+            ['page' => 'wow_quiz_play', 'is_bot' => false, 'session_id' => 's1', 'user_id' => null, 'referrer_host' => 'bestrankchecker.online', 'created_at' => $at, 'confirmed_at' => null, 'slot' => null],
+            ['page' => 'wow_quiz_play', 'is_bot' => false, 'session_id' => 's2', 'user_id' => null, 'referrer_host' => null, 'created_at' => $at, 'confirmed_at' => null, 'slot' => null],
+            ['page' => 'wow_quiz_play', 'is_bot' => false, 'session_id' => 's3', 'user_id' => null, 'referrer_host' => null, 'created_at' => $at, 'confirmed_at' => null, 'slot' => null],
+            // A crawler's single quiz load, logged as two rows: the old rule counted it as engaged.
+            ['page' => 'wow_quiz', 'is_bot' => false, 'session_id' => 's4', 'user_id' => null, 'referrer_host' => null, 'created_at' => $at, 'confirmed_at' => null, 'slot' => 'x'],
+            ['page' => 'wow_quiz', 'is_bot' => false, 'session_id' => 's4', 'user_id' => null, 'referrer_host' => null, 'created_at' => $at, 'confirmed_at' => null, 'slot' => 'y'],
         ]);
 
         $page = Livewire::actingAs($admin)->test(\App\Livewire\Admin\PageUsage::class)->instance();

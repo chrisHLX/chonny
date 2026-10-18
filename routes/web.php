@@ -394,6 +394,8 @@ Route::get('/admindash', [AdminController::class, 'index'])->name('admindash'); 
 
 // ------- Admin Content Management -------
 Route::middleware(['auth', 'can:admin'])->prefix('admin')->name('admin.')->group(function () {
+    // The site's numbers in one place, people only (Admin\Overview, 2026-10-19).
+    Route::get('/', \App\Livewire\Admin\Overview::class)->name('overview');
     Route::get('/content', ContentManager::class)->name('content');
     Route::get('/api-usage', ApiUsage::class)->name('api-usage');
     Route::get('/weak-areas', WeakAreas::class)->name('weak-areas');

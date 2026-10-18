@@ -148,6 +148,12 @@ class PageUsage extends Component
      *
      * @return array<string, mixed>
      */
+    /** The tracked pages' readable names, for the admin overview (Admin\Overview). */
+    public static function pageLabels(): array
+    {
+        return self::PAGES + ['desktop_app' => 'App download', 'app_connect' => 'App connect page', 'wow_comps_preset' => 'WoW Comps preset'];
+    }
+
     public function getOverviewProperty(): array
     {
         $window = fn (int $days, int $offset = 0) => [
@@ -211,11 +217,15 @@ class PageUsage extends Component
      */
     private static function engagedSessions(array $range): \Illuminate\Database\Eloquent\Builder
     {
-        return PageViewEvent::human()
+        // Since 2026-10-19: a browser ran a page in the session, or someone was signed in. It was
+        // "two or more rows", and the quiz and basics pages log two rows for ONE load, so a single
+        // crawler request counted: 276 of the 303 "engaged" sessions of 12-19 Oct never ran a page.
+        return PageViewEvent::query()
             ->whereBetween('created_at', $range)
+            ->whereNotNull('session_id')
             ->select('session_id')
             ->groupBy('session_id')
-            ->havingRaw('count(*) >= 2 or max(user_id) is not null');
+            ->havingRaw('max(confirmed_at) is not null or max(user_id) is not null');
     }
 
     /**
@@ -238,10 +248,10 @@ class PageUsage extends Component
         // Engaged sessions per day, grouped by the day of each session's first event.
         $engaged = DB::query()
             ->fromSub(
-                PageViewEvent::human()->where('created_at', '>=', $since)
+                PageViewEvent::query()->where('created_at', '>=', $since)->whereNotNull('session_id')
                     ->selectRaw('session_id, DATE(min(created_at)) as day')
                     ->groupBy('session_id')
-                    ->havingRaw('count(*) >= 2 or max(user_id) is not null'),
+                    ->havingRaw('max(confirmed_at) is not null or max(user_id) is not null'),
                 'e'
             )
             ->selectRaw('day, count(*) as c')

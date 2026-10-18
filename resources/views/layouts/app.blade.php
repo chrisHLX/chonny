@@ -149,6 +149,12 @@
                         @endif
                     @endauth
 
+                    @can('admin')
+                        @if (request()->routeIs('admin.*', 'jobs.dashboard', 'modules.manage', 'modules.create'))
+                            @include('admin.partials.tabs')
+                        @endif
+                    @endcan
+
                     {{ $slot }}
                 </main>
             </div>
