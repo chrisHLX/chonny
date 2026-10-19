@@ -14,6 +14,7 @@ use App\Models\TalentNodeEdge;
 use App\Models\TalentNodeEntry;
 use App\Models\TalentTree;
 use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\Cache;
 use Livewire\Attributes\Locked;
 use Livewire\Component;
 
@@ -609,19 +610,53 @@ class TalentSelector extends Component
     {
         $spellId = $entry->spell_id;
 
+        if (! $this->descriptionsLoaded) {
+            $this->descriptionsLoaded = true;
+            $this->resolvedDescriptionCache = Cache::get($this->descriptionCacheKey(), []);
+            $this->descriptionsFromCache = count($this->resolvedDescriptionCache);
+        }
+
         if (! array_key_exists($spellId, $this->resolvedDescriptionCache)) {
-            $build = new ModuleGameBuild([
+            // ONE service for the whole tree (2026-10-19). A fresh one per talent threw away its
+            // per-class memos 116 times a tree: 348 identical availability queries and ~3.5s of a
+            // 5s render, on every guide, character and player page that draws a tree.
+            $this->descriptionService ??= app(ModuleSpellReferenceService::class);
+            $this->descriptionBuild ??= new ModuleGameBuild([
                 'class_id' => $this->specialization?->class_id,
                 'specialization_id' => $this->specId,
                 'hero_talent_tree_id' => $this->heroTreeId,
             ]);
 
-            $this->resolvedDescriptionCache[$spellId] = app(ModuleSpellReferenceService::class)
-                ->resolveDescription($entry->spell, $build)['text'];
+            $this->resolvedDescriptionCache[$spellId] = $this->descriptionService->resolveDescription($entry->spell, $this->descriptionBuild)['text'];
         }
 
         return $this->resolvedDescriptionCache[$spellId];
     }
+
+    /**
+     * Resolved descriptions depend only on the spell data, the spec and the hero tree, so a tree's
+     * are kept between requests, keyed by the spell cache version (rule 17: bumped whenever the data
+     * changes). Written once a render has resolved anything new (render()).
+     */
+    private function descriptionCacheKey(): string
+    {
+        return 'talent_descriptions:v1:'.app(TalentSelectionService::class)->spellCacheVersion().':'.$this->specId.':'.($this->heroTreeId ?? 0);
+    }
+
+    private function saveDescriptions(): void
+    {
+        if ($this->descriptionsLoaded && count($this->resolvedDescriptionCache) > $this->descriptionsFromCache) {
+            Cache::put($this->descriptionCacheKey(), $this->resolvedDescriptionCache, now()->addDays(7));
+        }
+    }
+
+    private bool $descriptionsLoaded = false;
+
+    private int $descriptionsFromCache = 0;
+
+    private ?ModuleSpellReferenceService $descriptionService = null;
+
+    private ?ModuleGameBuild $descriptionBuild = null;
 
     private function currentPatchId(): ?int
     {
@@ -677,6 +712,11 @@ class TalentSelector extends Component
     private function forgetLookups(): void
     {
         $this->lookupMemo = [];
+        // The hero tree is part of a description's context and of its cache key.
+        $this->descriptionsLoaded = false;
+        $this->descriptionsFromCache = 0;
+        $this->resolvedDescriptionCache = [];
+        $this->descriptionBuild = null;
     }
 
     /** @var ?Collection<int, int> talent_node_id => rank */
@@ -990,5 +1030,11 @@ class TalentSelector extends Component
             'specPointsSpent' => $this->specPointsSpent,
             'heroPointsSpent' => $this->heroPointsSpent,
         ]);
+    }
+
+    /** Livewire's hook after the view is drawn: the descriptions it resolved are kept for the next request. */
+    public function rendered(): void
+    {
+        $this->saveDescriptions();
     }
 }

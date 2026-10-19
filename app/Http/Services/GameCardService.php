@@ -450,6 +450,9 @@ class GameCardService
                 'guid' => $p['guid'],
                 'name' => $this->short($p['name']),
                 'full' => $p['name'],
+                // Their public page on the site (/wow/player/...), absolute: the app shows a card as a
+                // page of its own and opens any other link in the browser.
+                'url' => \App\Support\PlayerUrl::fromLogName($p['name']),
                 'spec' => $p['spec'],
                 'side' => $p['side'],
                 'healer' => $p['healer'],

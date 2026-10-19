@@ -60,6 +60,8 @@
     .ph { display: inline-block; width: 28px; height: 28px; border-radius: 4px; background: #2A2A2A; vertical-align: middle; }
     .ph-s { display: inline-block; width: 20px; height: 20px; border-radius: 4px; background: #2A2A2A; vertical-align: middle; margin-right: 6px; }
     .name { font-weight: 700; }
+    a.name { text-decoration: none; }
+    a.name:hover { text-decoration: underline; }
     .you { font-size: 10.5px; color: #C8952C; margin-left: 4px; font-weight: 700; }
     .death { margin-bottom: 8px; }
     .death .who { font-size: 15px; }

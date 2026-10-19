@@ -57,9 +57,9 @@ class Show extends Component
     public ?int $specExternalId = null;
 
     /**
-     * The talent calculator is drawn only once a browser asks (wire:init): it costs about five
-     * seconds and 750 queries a character (TalentSelector, measured 2026-10-19), and a crawler
-     * reading every player page must not cost that.
+     * The talent calculator is drawn only once a browser asks (wire:init): about 330 KB of HTML a
+     * character, which a crawler reading every player page has no use for. It also cost 5s and 750
+     * queries before TalentSelector kept one description service per tree (2026-10-19); now ~0.2s.
      */
     public bool $talentsShown = false;
 

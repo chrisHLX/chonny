@@ -112,8 +112,9 @@
   character is a `battlenet_characters` row with no account (`looked_up_at` set), the same row its
   owner's link would find. The page serves what is stored; only a browser (`wire:init`) asks
   Blizzard, when nothing is stored or it is over 6 hours old, 15 lookups a minute per address. The
-  talent tree is drawn the same way, after load: `TalentSelector` costs about 5s and 750 queries a
-  character. Public data only, nothing says whether a character is linked here. Looked-up players
+  talent tree is drawn the same way, after load: ~330 KB of HTML a character (it was also 5s and
+  750 queries until `TalentSelector` kept one description service per tree, 2026-10-19; now
+  ~0.2s, its resolved descriptions cached per spell cache version). Public data only, nothing says whether a character is linked here. Looked-up players
   are in the sitemap; linked-only ones never are.
   Also on a player page, none of it asking Blizzard: their places on Blizzard's leaderboards
   (`pvp_leaderboard_entries`, pulled daily by cron, `wow:pvp-leaderboards`), their rating history
