@@ -8,6 +8,9 @@
 <head>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
+{{-- A phone renders a page with no viewport at ~980px and scales it down, which inside /wow/coach's frame
+     made every number too small to read. IE11 in the desktop app ignores this tag. --}}
+<meta name="viewport" content="width=device-width, initial-scale=1">
 @include('desktop.partials.styles')
 <style>
     .two { width: 100%; }
@@ -41,6 +44,13 @@
     .steps td { padding: 3px 0; vertical-align: middle; }
     .steps td.num { width: 20px; color: #E8B84B; font-weight: 600; }
     .steps td.on { text-align: right; white-space: nowrap; padding-left: 10px; }
+
+    /* The two experience columns: wide enough for "Under 3 seasons" on a desktop window, but a
+       phone has to fit both beside the label, so they narrow and the header wraps. */
+    .stats .exp { width: 170px; }
+    @media (max-width: 560px) {
+        .stats .exp { width: 86px; white-space: normal; }
+    }
 </style>
 <script>
     // A game's detail row opens and closes under it. IE11: no classList on table rows.
@@ -263,8 +273,8 @@
             <table class="stats">
                 <tr>
                     <td class="small muted"></td>
-                    <td class="n small muted" style="width: 170px">Under {{ $x['threshold'] }} season{{ $x['threshold'] === 1 ? '' : 's' }}</td>
-                    <td class="n small muted" style="width: 170px">{{ $x['threshold'] }} or more</td>
+                    <td class="n exp small muted">Under {{ $x['threshold'] }} season{{ $x['threshold'] === 1 ? '' : 's' }}</td>
+                    <td class="n exp small muted">{{ $x['threshold'] }} or more</td>
                 </tr>
                 @foreach ($x['lower'] as $label => $value)
                     <tr><td>{{ $label }}</td><td class="n">{{ $value }}</td><td class="n">{{ $x['higher'][$label] }}</td></tr>

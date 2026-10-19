@@ -8,6 +8,12 @@
     .sample-tab:hover { background: rgba(255,255,255,.12); }
     .sample-tab.on { color: #000000; background: #FFFFFF; }
     .sample-frame { width: 100%; height: calc(100vh - 260px); min-height: 560px; border: 0; border-radius: 8px; background: #121212; }
+    /* Phones: a 560px floor on a ~670px screen left almost nothing above the frame for the
+       tabs that switch it. Same proportions as the frame on /wow/coach. */
+    @media (max-width: 640px) {
+        .sample-tab { padding: 8px 14px; }
+        .sample-frame { height: 72vh; min-height: 440px; }
+    }
 </style>
 
 <div class="py-4 px-4 lg:px-6">

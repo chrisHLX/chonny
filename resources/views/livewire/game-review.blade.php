@@ -235,7 +235,7 @@
 
                 {{-- Output --}}
                 <div class="overflow-x-auto">
-                    <table class="w-full text-sm">
+                    <table class="w-full text-sm min-w-[420px]">
                         <thead>
                             <tr class="text-left text-ink-subtle border-b border-line">
                                 <th class="py-2 pr-4 font-medium">Output</th>
@@ -258,7 +258,7 @@
                 {{-- Per round --}}
                 @if (count($review['rounds']) > 1)
                     <div class="overflow-x-auto">
-                        <table class="w-full text-sm">
+                        <table class="w-full text-sm min-w-[520px]">
                             <thead>
                                 <tr class="text-left text-ink-subtle border-b border-line">
                                     <th class="py-2 pr-4 font-medium">Healing + absorbs by round</th>
@@ -385,7 +385,7 @@
         <section class="linear-card p-5 sm:p-6 space-y-4">
             <h2 class="page-section-title">Everyone in this game</h2>
             <div class="overflow-x-auto">
-                <table class="w-full text-sm">
+                <table class="w-full text-sm min-w-[640px]">
                     <thead>
                         <tr class="text-left text-ink-subtle border-b border-line">
                             <th class="py-2 pr-4 font-medium">Player</th>

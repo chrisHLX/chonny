@@ -3,6 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap">
 <style>
     html, body { margin: 0; padding: 0; background: #121212; color: #FFFFFF; }
@@ -105,6 +106,42 @@
     .ab .sp { white-space: nowrap; padding-right: 10px; }
     .ab .sh { width: 30%; }
     .ab .n { width: 64px; text-align: right; padding-left: 8px; white-space: nowrap; }
+    /* Phones (2026-10-20). These pages are read on a phone through /wow/coach's frame as well
+       as in the app, and every one was laid out for a desktop window: 24px gutters, two 50%
+       columns side by side, a 30px title with the MMR floated beside it. Below 560px that
+       leaves each team about 150px. Narrow gets one column, smaller gutters and no float.
+
+       A media query is IE11-safe (IE9+), and the desktop app's window never gets this narrow,
+       so the app keeps the wide layout it was drawn for. */
+    @media (max-width: 560px) {
+        body { padding: 0 14px 28px; }
+        .head { margin: 0 -14px 16px; padding: 20px 14px 16px; }
+        .head .title { font-size: 22px; margin: 0 6px 0 4px; }
+        .head .mmr { float: none; display: block; margin-top: 6px; }
+
+        /* Two columns side by side become one on top of the other. Both names are in use:
+           .teams on the game card, .two on Comps and the player page. */
+        .teams tr, .two tr { display: block; }
+        .teams td.col, .two td.col { display: block; width: auto; padding: 0 0 8px 0; }
+        .col:empty { display: none; }
+
+        .section { margin-top: 20px; }
+        .label { font-size: 15px; }
+        .label .aside { display: block; margin-left: 0; margin-top: 2px; }
+        .box { padding: 10px 11px; }
+
+        /* The numeric columns were sized for a wide table; this narrow they crowd out the name. */
+        .stats .n { width: 56px; }
+        .ab .sh { width: 22%; }
+        .ab .n { width: 54px; }
+        .note .t { width: 40px; }
+        .roster .ic { width: 30px; }
+
+        /* Basics and The moments: a GOOD / WORK ON chip in a 70px column beside the text. That
+           column is a fifth of a phone's width, so the chip goes above the line it labels. */
+        .look tr, .look td { display: block; }
+        .look .ic { padding-bottom: 0; }
+    }
 </style>
 <style>
     .two { width: 100%; }
@@ -138,6 +175,12 @@
     .steps td { padding: 3px 0; vertical-align: middle; }
     .steps td.num { width: 20px; color: #E8B84B; font-weight: 600; }
     .steps td.on { text-align: right; white-space: nowrap; padding-left: 10px; }
+    /* The two experience columns: wide enough for "Under 3 seasons" on a desktop window, but a
+       phone has to fit both beside the label, so they narrow and the header wraps. */
+    .stats .exp { width: 170px; }
+    @media (max-width: 560px) {
+        .stats .exp { width: 86px; white-space: normal; }
+    }
 </style>
 <script>
     // A game's detail row opens and closes under it. IE11: no classList on table rows.
@@ -301,8 +344,8 @@
                     <table class="stats">
                 <tr>
                     <td class="small muted"></td>
-                    <td class="n small muted" style="width: 170px">Under 2 seasons</td>
-                    <td class="n small muted" style="width: 170px">2 or more</td>
+                    <td class="n exp small muted">Under 2 seasons</td>
+                    <td class="n exp small muted">2 or more</td>
                 </tr>
                                     <tr><td>Games</td><td class="n">10</td><td class="n">10</td></tr>
                                     <tr><td>Your record</td><td class="n">3-7</td><td class="n">4-6</td></tr>

@@ -65,7 +65,7 @@
                 <p class="text-[11px] text-ink-subtle">Click a player to show only their games.</p>
             </div>
             <div class="overflow-x-auto">
-                <table class="w-full text-[12px]">
+                <table class="w-full text-[12px] min-w-[980px]">
                     <thead>
                         <tr class="text-[10px] uppercase tracking-wide text-ink-subtle text-left whitespace-nowrap">
                             <th class="font-medium py-1.5 pr-3">Player</th>
@@ -158,7 +158,7 @@
             </div>
 
             <div class="overflow-x-auto">
-                <table class="w-full text-[12px]">
+                <table class="w-full text-[12px] min-w-[1040px]">
                     <thead>
                         <tr class="text-[10px] uppercase tracking-wide text-ink-subtle text-left whitespace-nowrap">
                             <th class="font-medium py-1.5 pr-3">Played</th>
@@ -236,9 +236,9 @@
                                         </div>
 
                                         <div class="grid grid-cols-1 xl:grid-cols-2 gap-4">
-                                            <div>
+                                            <div class="overflow-x-auto">
                                                 <p class="text-[11px] text-ink-subtle uppercase tracking-wider mb-1.5">Rounds</p>
-                                                <table class="w-full text-[12px]">
+                                                <table class="w-full text-[12px] min-w-[420px]">
                                                     <thead>
                                                         <tr class="text-[10px] uppercase tracking-wide text-ink-subtle text-left whitespace-nowrap">
                                                             <th class="font-medium py-1 pr-2">#</th>
@@ -270,9 +270,9 @@
                                                 </table>
                                             </div>
 
-                                            <div>
+                                            <div class="overflow-x-auto">
                                                 <p class="text-[11px] text-ink-subtle uppercase tracking-wider mb-1.5">Players, whole game</p>
-                                                <table class="w-full text-[12px]">
+                                                <table class="w-full text-[12px] min-w-[440px]">
                                                     <thead>
                                                         <tr class="text-[10px] uppercase tracking-wide text-ink-subtle text-left whitespace-nowrap">
                                                             <th class="font-medium py-1 pr-2">Player</th>

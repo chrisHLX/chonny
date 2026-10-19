@@ -397,7 +397,7 @@
 
         <x-fold title="The numbers behind it">
             <div class="overflow-x-auto">
-                <table class="w-full text-[11px]">
+                <table class="w-full text-[11px] min-w-[620px]">
                     <thead>
                         <tr class="text-ink-subtle uppercase tracking-wide text-[10px] text-left">
                             <th class="font-medium py-1.5 pr-3">Player</th>

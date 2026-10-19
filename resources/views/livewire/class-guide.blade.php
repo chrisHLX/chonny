@@ -168,7 +168,7 @@
                 The sample: {{ $playstyle['sampleSize'] }} matches
             </summary>
             <div class="mt-3 overflow-x-auto">
-                <table class="w-full text-[11.5px]">
+                <table class="w-full text-[11.5px] min-w-[560px]">
                     <thead>
                         <tr class="text-ink-subtle text-left border-b border-line-soft">
                             <th class="py-1 pr-4 font-medium">Match</th>

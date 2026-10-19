@@ -8,7 +8,7 @@
     </div>
 
     <div class="overflow-x-auto">
-        <table class="w-full text-left border-collapse">
+        <table class="w-full text-left border-collapse min-w-[720px]">
             <x-admin.spell-table-head/>
             <tbody>
                 @forelse ($nodes as $node)

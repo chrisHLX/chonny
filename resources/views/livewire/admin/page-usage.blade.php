@@ -122,7 +122,7 @@
         <div class="linear-card p-5">
             <p class="text-[12px] font-medium text-ink mb-3">Pages, by real visitors &mdash; last 30 days</p>
             <div class="overflow-x-auto">
-                <table class="w-full text-[12px]">
+                <table class="w-full text-[12px] min-w-[760px]">
                     <thead>
                         <tr class="text-[10px] uppercase tracking-wide text-ink-subtle text-left">
                             <th class="font-medium py-1.5 pr-3">Page</th>
@@ -222,17 +222,19 @@
                     @if($topSpecs[$page]->isEmpty())
                         <p class="px-5 py-8 text-center text-[13px] text-ink-subtle">No selections recorded yet.</p>
                     @else
-                        <table class="w-full">
-                            <tbody>
-                                @foreach($topSpecs[$page] as $row)
-                                    <tr class="{{ !$loop->last ? 'border-b border-line' : '' }}">
-                                        <td class="px-5 py-2.5 text-[13px] text-ink">{{ $row->spec_name }}</td>
-                                        <td class="px-5 py-2.5 text-[12px] text-ink-subtle">{{ $row->class_name }}</td>
-                                        <td class="px-5 py-2.5 text-[13px] text-ink-muted text-right">{{ number_format($row->count) }}</td>
-                                    </tr>
-                                @endforeach
-                            </tbody>
-                        </table>
+                        <div class="overflow-x-auto">
+                            <table class="min-w-[420px] w-full">
+                                <tbody>
+                                    @foreach($topSpecs[$page] as $row)
+                                        <tr class="{{ !$loop->last ? 'border-b border-line' : '' }}">
+                                            <td class="px-5 py-2.5 text-[13px] text-ink">{{ $row->spec_name }}</td>
+                                            <td class="px-5 py-2.5 text-[12px] text-ink-subtle">{{ $row->class_name }}</td>
+                                            <td class="px-5 py-2.5 text-[13px] text-ink-muted text-right">{{ number_format($row->count) }}</td>
+                                        </tr>
+                                    @endforeach
+                                </tbody>
+                            </table>
+                        </div>
                     @endif
                 </div>
             @endforeach

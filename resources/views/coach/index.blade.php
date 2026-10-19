@@ -19,6 +19,15 @@
         .coach-list { max-height: 260px; }
         .coach-frame { height: 80vh; }
     }
+    /* Phones: the list was a 260px scroller stacked on an 80vh frame, which on a 670px screen left
+       the page itself a sliver. The picker shrinks to about four rows and the page gets the rest;
+       rows also grow to a thumb's height. */
+    @media (max-width: 640px) {
+        .coach-list { max-height: 34vh; padding: 6px; }
+        .coach-frame { height: 72vh; min-height: 440px; }
+        .coach-item { padding: 11px 12px; }
+        .coach-tab { padding: 8px 14px; }
+    }
 </style>
 
 @php

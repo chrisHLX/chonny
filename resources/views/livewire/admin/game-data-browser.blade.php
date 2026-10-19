@@ -84,7 +84,7 @@
                     <span class="text-[11px] text-ink-subtle">{{ $topCooldownSpells->count() }} spell(s)</span>
                 </div>
                 <div class="overflow-x-auto">
-                    <table class="w-full text-left border-collapse">
+                    <table class="w-full text-left border-collapse min-w-[720px]">
                         <x-admin.spell-table-head/>
                         <tbody>
                             @forelse ($topCooldownSpells as $tagged)
@@ -123,7 +123,7 @@
                     <span class="text-[11px] text-ink-subtle">{{ $pvpTalents->count() }} talent(s)</span>
                 </div>
                 <div class="overflow-x-auto">
-                    <table class="w-full text-left border-collapse">
+                    <table class="w-full text-left border-collapse min-w-[720px]">
                         <x-admin.spell-table-head/>
                         <tbody>
                             @forelse ($pvpTalents as $pvpTalent)
@@ -153,7 +153,7 @@
                         </p>
                     </div>
                     <div class="overflow-x-auto">
-                        <table class="w-full text-left border-collapse">
+                        <table class="w-full text-left border-collapse min-w-[720px]">
                             <x-admin.spell-table-head/>
                             <tbody>
                                 @foreach ($passiveLikeSpells as $tagged)

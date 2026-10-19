@@ -105,7 +105,7 @@
             <p class="text-ink-muted text-sm">No spells match these filters.</p>
         @else
             <div class="overflow-x-auto">
-                <table class="w-full text-sm">
+                <table class="w-full text-sm min-w-[860px]">
                     <thead>
                         <tr class="text-left text-ink-subtle border-b border-line">
                             <th class="py-1.5 pr-4"></th>

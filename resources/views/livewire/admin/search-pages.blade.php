@@ -49,7 +49,7 @@
         <div class="linear-card p-5">
             <p class="text-[12px] font-medium text-ink mb-3">Each spec guide</p>
             <div class="overflow-x-auto">
-                <table class="w-full text-[12px]">
+                <table class="w-full text-[12px] min-w-[640px]">
                     <thead>
                         <tr class="text-[10px] uppercase tracking-wide text-ink-subtle text-left whitespace-nowrap">
                             <th class="font-medium py-1.5 pr-3">Page</th>

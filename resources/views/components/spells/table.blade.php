@@ -24,7 +24,7 @@
         @endif
 
         <div class="overflow-x-auto">
-            <table class="w-full text-left border-collapse">
+            <table class="w-full text-left border-collapse min-w-[720px]">
                 <thead>
                     <tr class="border-b border-line-strong">
                         <th class="pl-5 pr-4 py-2 text-[10px] uppercase tracking-wide text-ink-subtle font-semibold">Spell</th>

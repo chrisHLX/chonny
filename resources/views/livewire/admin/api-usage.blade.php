@@ -72,24 +72,26 @@
             @if($purposeBreakdown->isEmpty())
                 <p class="px-5 py-8 text-center text-[13px] text-ink-subtle">No data yet.</p>
             @else
-                <table class="w-full">
-                    <thead>
-                        <tr class="border-b border-line">
-                            <th class="px-5 py-2.5 text-left text-[11px] font-medium text-ink-subtle uppercase tracking-wider">Purpose</th>
-                            <th class="px-5 py-2.5 text-right text-[11px] font-medium text-ink-subtle uppercase tracking-wider">Calls</th>
-                            <th class="px-5 py-2.5 text-right text-[11px] font-medium text-ink-subtle uppercase tracking-wider">Total cost</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach($purposeBreakdown as $row)
-                            <tr class="{{ !$loop->last ? 'border-b border-line' : '' }} hover:bg-surface-2 transition-colors">
-                                <td class="px-5 py-3 text-[13px] text-ink font-mono">{{ $row['purpose'] ?? '—' }}</td>
-                                <td class="px-5 py-3 text-[13px] text-ink-muted text-right">{{ number_format($row['calls']) }}</td>
-                                <td class="px-5 py-3 text-[13px] text-ink text-right">${{ number_format($row['cost'], 6) }}</td>
+                <div class="overflow-x-auto">
+                    <table class="min-w-[520px] w-full">
+                        <thead>
+                            <tr class="border-b border-line">
+                                <th class="px-5 py-2.5 text-left text-[11px] font-medium text-ink-subtle uppercase tracking-wider">Purpose</th>
+                                <th class="px-5 py-2.5 text-right text-[11px] font-medium text-ink-subtle uppercase tracking-wider">Calls</th>
+                                <th class="px-5 py-2.5 text-right text-[11px] font-medium text-ink-subtle uppercase tracking-wider">Total cost</th>
                             </tr>
-                        @endforeach
-                    </tbody>
-                </table>
+                        </thead>
+                        <tbody>
+                            @foreach($purposeBreakdown as $row)
+                                <tr class="{{ !$loop->last ? 'border-b border-line' : '' }} hover:bg-surface-2 transition-colors">
+                                    <td class="px-5 py-3 text-[13px] text-ink font-mono">{{ $row['purpose'] ?? '—' }}</td>
+                                    <td class="px-5 py-3 text-[13px] text-ink-muted text-right">{{ number_format($row['calls']) }}</td>
+                                    <td class="px-5 py-3 text-[13px] text-ink text-right">${{ number_format($row['cost'], 6) }}</td>
+                                </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                </div>
             @endif
         </div>
 

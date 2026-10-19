@@ -126,26 +126,28 @@
             @if($subjectBreakdown->isEmpty())
                 <p class="px-5 py-8 text-center text-[13px] text-ink-subtle">No data yet.</p>
             @else
-                <table class="w-full">
-                    <thead>
-                        <tr class="border-b border-line">
-                            <th class="px-5 py-2.5 text-left text-[11px] font-medium text-ink-subtle uppercase tracking-wider">Subject</th>
-                            <th class="px-5 py-2.5 text-right text-[11px] font-medium text-ink-subtle uppercase tracking-wider">Started</th>
-                            <th class="px-5 py-2.5 text-right text-[11px] font-medium text-ink-subtle uppercase tracking-wider">Completed</th>
-                            <th class="px-5 py-2.5 text-right text-[11px] font-medium text-ink-subtle uppercase tracking-wider">Rate</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach($subjectBreakdown as $row)
-                            <tr class="{{ !$loop->last ? 'border-b border-line' : '' }} hover:bg-surface-2 transition-colors">
-                                <td class="px-5 py-3 text-[13px] text-ink">{{ $row['subject'] }}</td>
-                                <td class="px-5 py-3 text-[13px] text-ink-muted text-right">{{ number_format($row['started']) }}</td>
-                                <td class="px-5 py-3 text-[13px] text-ink-muted text-right">{{ number_format($row['completed']) }}</td>
-                                <td class="px-5 py-3 text-[13px] text-ink text-right">{{ $row['rate'] }}%</td>
+                <div class="overflow-x-auto">
+                    <table class="min-w-[560px] w-full">
+                        <thead>
+                            <tr class="border-b border-line">
+                                <th class="px-5 py-2.5 text-left text-[11px] font-medium text-ink-subtle uppercase tracking-wider">Subject</th>
+                                <th class="px-5 py-2.5 text-right text-[11px] font-medium text-ink-subtle uppercase tracking-wider">Started</th>
+                                <th class="px-5 py-2.5 text-right text-[11px] font-medium text-ink-subtle uppercase tracking-wider">Completed</th>
+                                <th class="px-5 py-2.5 text-right text-[11px] font-medium text-ink-subtle uppercase tracking-wider">Rate</th>
                             </tr>
-                        @endforeach
-                    </tbody>
-                </table>
+                        </thead>
+                        <tbody>
+                            @foreach($subjectBreakdown as $row)
+                                <tr class="{{ !$loop->last ? 'border-b border-line' : '' }} hover:bg-surface-2 transition-colors">
+                                    <td class="px-5 py-3 text-[13px] text-ink">{{ $row['subject'] }}</td>
+                                    <td class="px-5 py-3 text-[13px] text-ink-muted text-right">{{ number_format($row['started']) }}</td>
+                                    <td class="px-5 py-3 text-[13px] text-ink-muted text-right">{{ number_format($row['completed']) }}</td>
+                                    <td class="px-5 py-3 text-[13px] text-ink text-right">{{ $row['rate'] }}%</td>
+                                </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                </div>
             @endif
         </div>
 

@@ -8,6 +8,9 @@
 <head>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
+{{-- A phone renders a page with no viewport at ~980px and scales it down, which inside /wow/coach's frame
+     made every number too small to read. IE11 in the desktop app ignores this tag. --}}
+<meta name="viewport" content="width=device-width, initial-scale=1">
 @include('desktop.partials.styles')
 <style>
     .habit { margin-top: 12px; }
@@ -24,6 +27,16 @@
     .habit .list { margin-top: 8px; }
     .habit .list .def { color: #FFFFFF; }
     .habit .list .def span { color: #B3B3B3; margin-left: 4px; }
+
+    /* Phones: the five numbers go two across instead of five, and the session chart drops below
+       the text rather than holding a 310px column open against it. See partials/styles. */
+    @media (max-width: 560px) {
+        .nums td, .nums td.chart { display: inline-block; width: 48%; vertical-align: top; padding: 4px 0; }
+        .focus tr { display: block; }
+        .focus td, .focus td.chartcol { display: block; width: auto; padding-left: 0; }
+        .focus td.chartcol { padding-top: 10px; }
+        svg { max-width: 100%; }
+    }
 </style>
 </head>
 <body>
@@ -58,7 +71,7 @@
 <div class="box" style="border-color: #6B4E1A; background: #1E150A; margin-bottom: 16px">
     <div class="label" style="color: #E8B84B">Your focus</div>
     @if ($f)
-        <table style="width: 100%"><tr>
+        <table class="focus" style="width: 100%"><tr>
         <td style="vertical-align: top">
             <div><span class="ht" style="font-size: 17px">{{ $f['title'] }}</span>
                 <span class="muted">&nbsp;you {{ $f['you'] }} against {{ $f['others'] }} for other {{ $m['spec'] }}s</span></div>
@@ -79,7 +92,7 @@
             <div class="small muted" style="margin-top: 6px">One thing at a time: of what decides games most ({{ $m['healer'] ? 'defensives, crowd control, then healing' : 'damage, defensives, then crowd control' }}), the first where you are behind the players you meet, on 10+ games on both sides. The detail is below.</div>
         </td>
         @if ($f['chartWide'])
-            <td style="width: 310px; vertical-align: top; padding-left: 12px">
+            <td class="chartcol" style="width: 310px; vertical-align: top; padding-left: 12px">
                 <div class="small subtle" style="margin-bottom: 2px">By session, {{ $f['chartWide']['from'] }} to {{ $f['chartWide']['to'] }}</div>
                 @include('desktop.partials.spark', ['s' => $f['chartWide']])
                 <div class="small subtle" style="margin-top: 2px">Dashed: other {{ $m['spec'] }}s</div>

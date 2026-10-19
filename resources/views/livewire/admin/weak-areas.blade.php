@@ -289,7 +289,7 @@
                             <p class="text-[12px] text-ink-subtle">No trait evidence recorded.</p>
                         @else
                             <div class="overflow-x-auto">
-                                <table class="w-full">
+                                <table class="w-full min-w-[640px]">
                                     <thead>
                                         <tr class="border-b border-line">
                                             <th class="px-3 py-2 text-left text-[11px] font-medium text-ink-subtle uppercase tracking-wider">Question</th>
@@ -324,7 +324,7 @@
                             <p class="text-[12px] text-ink-subtle">No survey evidence recorded.</p>
                         @else
                             <div class="overflow-x-auto">
-                                <table class="w-full">
+                                <table class="w-full min-w-[560px]">
                                     <thead>
                                         <tr class="border-b border-line">
                                             <th class="px-3 py-2 text-left text-[11px] font-medium text-ink-subtle uppercase tracking-wider">Question</th>
@@ -357,7 +357,7 @@
                             <p class="text-[12px] text-ink-subtle">No incorrect answers on record.</p>
                         @else
                             <div class="overflow-x-auto">
-                                <table class="w-full">
+                                <table class="w-full min-w-[720px]">
                                     <thead>
                                         <tr class="border-b border-line">
                                             <th class="px-3 py-2 text-left text-[11px] font-medium text-ink-subtle uppercase tracking-wider">Question</th>
@@ -414,48 +414,50 @@
                 @if($weakConcepts->isEmpty())
                     <p class="px-5 py-8 text-center text-[13px] text-ink-subtle">No concepts below {{ $threshold }}% yet.</p>
                 @else
-                    <table class="w-full">
-                        <thead>
-                            <tr class="border-b border-line">
-                                <th class="px-5 py-2.5 text-left text-[11px] font-medium text-ink-subtle uppercase tracking-wider">Concept</th>
-                                <th class="px-5 py-2.5 text-left text-[11px] font-medium text-ink-subtle uppercase tracking-wider hidden sm:table-cell">Subject</th>
-                                <th class="px-5 py-2.5 text-right text-[11px] font-medium text-ink-subtle uppercase tracking-wider">Avg mastery</th>
-                                <th class="px-5 py-2.5 text-right text-[11px] font-medium text-ink-subtle uppercase tracking-wider">Users</th>
-                                <th class="px-5 py-2.5 text-right text-[11px] font-medium text-ink-subtle uppercase tracking-wider">Struggling</th>
-                            </tr>
-                        </thead>
-                        <tbody class="divide-y divide-line">
-                            @foreach($weakConcepts as $row)
-                                <tr class="hover:bg-surface-2 transition-colors">
-                                    <td class="px-5 py-3">
-                                        <p class="text-[13px] font-medium text-ink">{{ $row->concept->name ?? '—' }}</p>
-                                    </td>
-                                    <td class="px-5 py-3 hidden sm:table-cell">
-                                        <p class="text-[12px] text-ink-muted">{{ $row->concept->subject->name ?? '—' }}</p>
-                                    </td>
-                                    <td class="px-5 py-3 text-right">
-                                        <span class="inline-flex items-center gap-1.5">
-                                            <span class="text-[13px] font-semibold {{ $row->avg_mastery < 30 ? 'text-red-400' : ($row->avg_mastery < 50 ? 'text-yellow-500' : 'text-ink') }}">
-                                                {{ $row->avg_mastery }}%
-                                            </span>
-                                        </span>
-                                    </td>
-                                    <td class="px-5 py-3 text-right text-[12px] text-ink-muted">
-                                        {{ $row->user_count }}
-                                    </td>
-                                    <td class="px-5 py-3 text-right">
-                                        @if($row->struggling_count > 0)
-                                            <span class="inline-block text-[11px] font-medium text-red-400 bg-red-400/10 rounded px-1.5 py-0.5">
-                                                {{ $row->struggling_count }}
-                                            </span>
-                                        @else
-                                            <span class="text-[12px] text-ink-subtle">0</span>
-                                        @endif
-                                    </td>
+                    <div class="overflow-x-auto">
+                        <table class="min-w-[640px] w-full">
+                            <thead>
+                                <tr class="border-b border-line">
+                                    <th class="px-5 py-2.5 text-left text-[11px] font-medium text-ink-subtle uppercase tracking-wider">Concept</th>
+                                    <th class="px-5 py-2.5 text-left text-[11px] font-medium text-ink-subtle uppercase tracking-wider hidden sm:table-cell">Subject</th>
+                                    <th class="px-5 py-2.5 text-right text-[11px] font-medium text-ink-subtle uppercase tracking-wider">Avg mastery</th>
+                                    <th class="px-5 py-2.5 text-right text-[11px] font-medium text-ink-subtle uppercase tracking-wider">Users</th>
+                                    <th class="px-5 py-2.5 text-right text-[11px] font-medium text-ink-subtle uppercase tracking-wider">Struggling</th>
                                 </tr>
-                            @endforeach
-                        </tbody>
-                    </table>
+                            </thead>
+                            <tbody class="divide-y divide-line">
+                                @foreach($weakConcepts as $row)
+                                    <tr class="hover:bg-surface-2 transition-colors">
+                                        <td class="px-5 py-3">
+                                            <p class="text-[13px] font-medium text-ink">{{ $row->concept->name ?? '—' }}</p>
+                                        </td>
+                                        <td class="px-5 py-3 hidden sm:table-cell">
+                                            <p class="text-[12px] text-ink-muted">{{ $row->concept->subject->name ?? '—' }}</p>
+                                        </td>
+                                        <td class="px-5 py-3 text-right">
+                                            <span class="inline-flex items-center gap-1.5">
+                                                <span class="text-[13px] font-semibold {{ $row->avg_mastery < 30 ? 'text-red-400' : ($row->avg_mastery < 50 ? 'text-yellow-500' : 'text-ink') }}">
+                                                    {{ $row->avg_mastery }}%
+                                                </span>
+                                            </span>
+                                        </td>
+                                        <td class="px-5 py-3 text-right text-[12px] text-ink-muted">
+                                            {{ $row->user_count }}
+                                        </td>
+                                        <td class="px-5 py-3 text-right">
+                                            @if($row->struggling_count > 0)
+                                                <span class="inline-block text-[11px] font-medium text-red-400 bg-red-400/10 rounded px-1.5 py-0.5">
+                                                    {{ $row->struggling_count }}
+                                                </span>
+                                            @else
+                                                <span class="text-[12px] text-ink-subtle">0</span>
+                                            @endif
+                                        </td>
+                                    </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
+                    </div>
                     <div class="px-5 py-3 border-t border-line">
                         {{ $weakConcepts->links() }}
                     </div>
@@ -475,50 +477,52 @@
                 @if($weakUsers->isEmpty())
                     <p class="px-5 py-8 text-center text-[13px] text-ink-subtle">No users with weak concepts found.</p>
                 @else
-                    <table class="w-full">
-                        <thead>
-                            <tr class="border-b border-line">
-                                <th class="px-5 py-2.5 text-left text-[11px] font-medium text-ink-subtle uppercase tracking-wider">User</th>
-                                <th class="px-5 py-2.5 text-right text-[11px] font-medium text-ink-subtle uppercase tracking-wider">Avg mastery</th>
-                                <th class="px-5 py-2.5 text-right text-[11px] font-medium text-ink-subtle uppercase tracking-wider">Concepts tracked</th>
-                                <th class="px-5 py-2.5 text-right text-[11px] font-medium text-ink-subtle uppercase tracking-wider">Weak (&lt;50%)</th>
-                                <th class="px-5 py-2.5 text-right text-[11px] font-medium text-ink-subtle uppercase tracking-wider"></th>
-                            </tr>
-                        </thead>
-                        <tbody class="divide-y divide-line">
-                            @foreach($weakUsers as $row)
-                                <tr class="hover:bg-surface-2 transition-colors">
-                                    <td class="px-5 py-3">
-                                        <p class="text-[13px] font-medium text-ink">{{ $row->user->name ?? '—' }}</p>
-                                        <p class="text-[11px] text-ink-subtle">{{ $row->user->email ?? '' }}</p>
-                                    </td>
-                                    <td class="px-5 py-3 text-right">
-                                        <span class="text-[13px] font-semibold {{ $row->avg_mastery < 30 ? 'text-red-400' : ($row->avg_mastery < 50 ? 'text-yellow-500' : 'text-ink') }}">
-                                            {{ $row->avg_mastery }}%
-                                        </span>
-                                    </td>
-                                    <td class="px-5 py-3 text-right text-[12px] text-ink-muted">
-                                        {{ $row->concept_count }}
-                                    </td>
-                                    <td class="px-5 py-3 text-right">
-                                        @if($row->weak_count > 0)
-                                            <span class="inline-block text-[11px] font-medium text-red-400 bg-red-400/10 rounded px-1.5 py-0.5">
-                                                {{ $row->weak_count }}
-                                            </span>
-                                        @else
-                                            <span class="text-[12px] text-ink-subtle">0</span>
-                                        @endif
-                                    </td>
-                                    <td class="px-5 py-3 text-right">
-                                        <button wire:click="viewUser({{ $row->user_id }})"
-                                                class="text-[12px] font-medium text-accent hover:text-accent-hover transition-colors">
-                                            View
-                                        </button>
-                                    </td>
+                    <div class="overflow-x-auto">
+                        <table class="min-w-[640px] w-full">
+                            <thead>
+                                <tr class="border-b border-line">
+                                    <th class="px-5 py-2.5 text-left text-[11px] font-medium text-ink-subtle uppercase tracking-wider">User</th>
+                                    <th class="px-5 py-2.5 text-right text-[11px] font-medium text-ink-subtle uppercase tracking-wider">Avg mastery</th>
+                                    <th class="px-5 py-2.5 text-right text-[11px] font-medium text-ink-subtle uppercase tracking-wider">Concepts tracked</th>
+                                    <th class="px-5 py-2.5 text-right text-[11px] font-medium text-ink-subtle uppercase tracking-wider">Weak (&lt;50%)</th>
+                                    <th class="px-5 py-2.5 text-right text-[11px] font-medium text-ink-subtle uppercase tracking-wider"></th>
                                 </tr>
-                            @endforeach
-                        </tbody>
-                    </table>
+                            </thead>
+                            <tbody class="divide-y divide-line">
+                                @foreach($weakUsers as $row)
+                                    <tr class="hover:bg-surface-2 transition-colors">
+                                        <td class="px-5 py-3">
+                                            <p class="text-[13px] font-medium text-ink">{{ $row->user->name ?? '—' }}</p>
+                                            <p class="text-[11px] text-ink-subtle">{{ $row->user->email ?? '' }}</p>
+                                        </td>
+                                        <td class="px-5 py-3 text-right">
+                                            <span class="text-[13px] font-semibold {{ $row->avg_mastery < 30 ? 'text-red-400' : ($row->avg_mastery < 50 ? 'text-yellow-500' : 'text-ink') }}">
+                                                {{ $row->avg_mastery }}%
+                                            </span>
+                                        </td>
+                                        <td class="px-5 py-3 text-right text-[12px] text-ink-muted">
+                                            {{ $row->concept_count }}
+                                        </td>
+                                        <td class="px-5 py-3 text-right">
+                                            @if($row->weak_count > 0)
+                                                <span class="inline-block text-[11px] font-medium text-red-400 bg-red-400/10 rounded px-1.5 py-0.5">
+                                                    {{ $row->weak_count }}
+                                                </span>
+                                            @else
+                                                <span class="text-[12px] text-ink-subtle">0</span>
+                                            @endif
+                                        </td>
+                                        <td class="px-5 py-3 text-right">
+                                            <button wire:click="viewUser({{ $row->user_id }})"
+                                                    class="text-[12px] font-medium text-accent hover:text-accent-hover transition-colors">
+                                                View
+                                            </button>
+                                        </td>
+                                    </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
+                    </div>
                     <div class="px-5 py-3 border-t border-line">
                         {{ $weakUsers->links() }}
                     </div>

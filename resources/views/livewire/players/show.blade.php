@@ -148,7 +148,7 @@
                             </button>
 
                             <div x-show="open" x-cloak class="mt-2 overflow-x-auto">
-                                <table class="w-full text-[12px] tabular-nums">
+                                <table class="w-full text-[12px] tabular-nums min-w-[640px]">
                                     <thead class="text-ink-subtle text-[10.5px] uppercase tracking-wider">
                                         <tr>
                                             <th class="text-left font-normal py-1 pr-3">Player</th>

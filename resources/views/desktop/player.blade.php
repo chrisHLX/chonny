@@ -9,6 +9,9 @@
 <head>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
+{{-- A phone renders a page with no viewport at ~980px and scales it down, which inside /wow/coach's frame
+     made every number too small to read. IE11 in the desktop app ignores this tag. --}}
+<meta name="viewport" content="width=device-width, initial-scale=1">
 @include('desktop.partials.styles')
 <style>
     .two { width: 100%; }

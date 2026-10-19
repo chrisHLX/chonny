@@ -22,7 +22,7 @@
                     <h3 class="text-sm font-semibold text-ink-muted uppercase tracking-wide mb-2">{{ $specName }} <span class="text-ink-subtle normal-case">({{ $specGroup['spells']->count() }})</span></h3>
 
                     <div class="overflow-x-auto">
-                        <table class="w-full text-sm">
+                        <table class="w-full text-sm min-w-[760px]">
                             <thead>
                                 <tr class="text-left text-ink-subtle border-b border-line">
                                     <th class="py-1.5 pr-4">Spell</th>
