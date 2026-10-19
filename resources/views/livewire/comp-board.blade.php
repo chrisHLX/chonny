@@ -20,7 +20,7 @@
         <p class="text-[13px] text-ink-subtle">No 3v3 games uploaded yet this season.</p>
     @else
         <div class="overflow-x-auto">
-            <table class="w-full text-[13px] tabular-nums">
+            <table class="w-full text-[13px] tabular-nums min-w-[720px]">
                 <thead class="text-[10.5px] uppercase tracking-wider text-ink-subtle">
                     <tr>
                         <th class="text-left font-normal py-1.5 pr-2 w-8">#</th>
