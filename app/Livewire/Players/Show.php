@@ -4,8 +4,13 @@ namespace App\Livewire\Players;
 
 use App\Http\Services\BattlenetCharacterSyncService;
 use App\Http\Services\CharacterTalentResolver;
+use App\Http\Services\PlayerGamesService;
+use App\Http\Services\PvpLeaderboardService;
+use App\Http\Services\RealmDirectory;
 use App\Models\BattlenetCharacter;
 use App\Models\PageViewEvent;
+use App\Models\PlayerRatingHistory;
+use App\Models\PvpLeaderboardEntry;
 use Illuminate\Support\Facades\RateLimiter;
 use Livewire\Attributes\Computed;
 use Livewire\Attributes\Locked;
@@ -58,6 +63,11 @@ class Show extends Component
      */
     public bool $talentsShown = false;
 
+    /** How many of the games we have seen to list; "Show more" adds GAMES_STEP. */
+    public int $gamesShown = self::GAMES_STEP;
+
+    public const GAMES_STEP = 20;
+
     public function mount(string $region, string $realm, string $name): void
     {
         abort_unless(in_array($region, Search::regions(), true), 404);
@@ -73,6 +83,29 @@ class Show extends Component
 
         $c = $this->character;
         PageViewEvent::log('player_profile', $c?->class_id, $c?->spec_id);
+    }
+
+    public function moreGames(): void
+    {
+        $this->gamesShown = min($this->gamesShown + self::GAMES_STEP, 500);
+    }
+
+    /** This character's places on Blizzard's leaderboards this season, highest rating first (the daily pull). */
+    #[Computed]
+    public function leaderboard()
+    {
+        return PvpLeaderboardEntry::query()
+            ->where('region', $this->region)->where('realm_slug', $this->realm)->where('name', $this->name)
+            ->orderByDesc('rating')
+            ->get()
+            ->map(fn ($e) => $e->setAttribute('label', app(PvpLeaderboardService::class)->label($e->bracket)));
+    }
+
+    /** Every uploaded game this player was in, whoever uploaded it (PlayerGamesService). */
+    #[Computed]
+    public function games(): array
+    {
+        return app(PlayerGamesService::class)->for($this->region, RealmDirectory::key($this->realm), $this->name, $this->gamesShown);
     }
 
     #[Computed]
@@ -141,7 +174,7 @@ class Show extends Component
             $this->error = 'Too many lookups from here in the last minute. Try again shortly.';
         }
 
-        unset($this->character, $this->talentView, $this->history);
+        unset($this->character, $this->talentView, $this->history, $this->leaderboard);
     }
 
     #[Computed]
@@ -160,22 +193,22 @@ class Show extends Component
     public function history(): array
     {
         $c = $this->character;
-        if (! $c) {
+        $board = $this->leaderboard->first();
+        $blizzardId = $c?->blizzard_character_id ?? $board?->blizzard_character_id;
+        if (! $blizzardId) {
             return [];
         }
 
-        $labels = collect($c->ratings ?? [])->mapWithKeys(fn ($r) => [$r['key'] => $r['label'].(in_array($r['label'], ['Solo Shuffle', 'Blitz']) && $r['spec_name'] ? ' · '.$r['spec_name'] : '')]);
-        $season = collect($c->ratings ?? [])->firstWhere('current', true)['season'] ?? null;
+        $labels = app(PvpLeaderboardService::class);
+        $season = collect($c?->ratings ?? [])->firstWhere('current', true)['season'] ?? $board?->season;
 
-        return $c->ratingSnapshots()
+        return PlayerRatingHistory::query()
+            ->where('region', $this->region)->where('blizzard_character_id', $blizzardId)
             ->when($season, fn ($q) => $q->where('season', $season))
             ->get()
-            ->groupBy('bracket')
-            ->filter(fn ($rows) => $rows->count() > 1)
-            ->map(fn ($rows, $bracket) => [
-                'label' => $labels[$bracket] ?? $bracket,
-                'points' => $rows->map(fn ($s) => ['rating' => $s->rating, 'at' => $s->recorded_at])->all(),
-            ])
+            ->filter(fn ($h) => count($h->points ?? []) > 1)
+            ->sortByDesc(fn ($h) => \Illuminate\Support\Arr::last($h->points ?? [])[1] ?? 0)
+            ->map(fn ($h) => ['label' => $labels->label($h->bracket), 'points' => $h->pointList()])
             ->values()
             ->all();
     }
@@ -186,22 +219,31 @@ class Show extends Component
         // Not from the realm list: a page nobody's browser ran must cost no Blizzard call.
         $realmName = $c?->realm_name ?? mb_convert_case(str_replace('-', ' ', $this->realm), MB_CASE_TITLE);
 
+        $games = $this->games;
+        $known = $c?->synced_at || $this->leaderboard->isNotEmpty() || $games['total'] > 0;
+
         return view('livewire.players.show', [
             'character' => $c,
             'realmName' => $realmName,
             'needsFetch' => $this->needsFetch(),
+            'board' => $this->leaderboard,
+            'games' => $games,
+            'classColors' => config('wow_classes.colors', []),
         ])->layout('layouts.app', [
             'title' => "{$this->name}-{$realmName} ".strtoupper($this->region).' PvP profile | MindCollector',
             'description' => $this->describe($c, $realmName),
-            // Nothing stored means nothing to index: an unknown name is a page of its own only once Blizzard has one.
-            'robots' => $c?->synced_at ? null : 'noindex',
+            // Nothing stored means nothing to index: a name is a page of its own once Blizzard's
+            // profile, a leaderboard or an uploaded game has it.
+            'robots' => $known ? null : 'noindex',
         ]);
     }
 
     private function describe(?BattlenetCharacter $c, string $realmName): string
     {
         if (! $c?->synced_at) {
-            return "{$this->name} on {$realmName}: World of Warcraft arena and Solo Shuffle ratings, exp, titles and talents.";
+            $top = $this->leaderboard->take(3)->map(fn ($e) => "{$e->label} {$e->rating}")->implode(', ');
+
+            return "{$this->name} on {$realmName}: ".($top !== '' ? $top.'. ' : '').'World of Warcraft arena and Solo Shuffle ratings, exp, titles and talents.';
         }
 
         $parts = [trim("{$c->name} on {$realmName} (".strtoupper($c->region).'): '.trim(($c->specialization?->name ?? '').' '.($c->gameClass?->name ?? '')))];

@@ -6,7 +6,7 @@ use App\Livewire\Players\Search;
 use App\Livewire\Players\Show;
 use App\Models\BattlenetAccount;
 use App\Models\BattlenetCharacter;
-use App\Models\PlayerRatingSnapshot;
+use App\Models\PlayerRatingHistory;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Cache;
@@ -28,6 +28,7 @@ class PlayerLookupTest extends TestCase
         parent::setUp();
         config(['services.battlenet.client_id' => 'id', 'services.battlenet.client_secret' => 'secret']);
         Cache::flush();
+        \App\Http\Services\RealmDirectory::forget();
     }
 
     private function fakeBlizzard(int $rating = 1850, bool $exists = true): void
@@ -96,7 +97,7 @@ class PlayerLookupTest extends TestCase
         $c = BattlenetCharacter::sole();
         $this->assertNull($c->battlenet_account_id);
         $this->assertNotNull($c->looked_up_at);
-        $this->assertSame(1, PlayerRatingSnapshot::count());
+        $this->assertSame([1850], array_column(PlayerRatingHistory::sole()->points, 1));
 
         // Stored and fresh: the page now serves it with no call, and is indexable.
         Http::fake();
@@ -117,11 +118,11 @@ class PlayerLookupTest extends TestCase
         Livewire::test(Show::class, ['region' => 'us', 'realm' => 'tichondrius', 'name' => 'skylake'])
             ->call('load')
             ->assertSeeInOrder(['Rating this season', '1800', '1850']);
-        $this->assertSame(2, PlayerRatingSnapshot::count());
+        $this->assertSame([1800, 1850], array_column(PlayerRatingHistory::sole()->points, 1));
 
         BattlenetCharacter::query()->update(['synced_at' => now()->subDay()]);
         Livewire::test(Show::class, ['region' => 'us', 'realm' => 'tichondrius', 'name' => 'skylake'])->call('load');
-        $this->assertSame(2, PlayerRatingSnapshot::count(), 'the same rating again is not a new point');
+        $this->assertCount(2, PlayerRatingHistory::sole()->points, 'the same rating again is not a new point');
     }
 
     public function test_a_character_blizzard_has_no_profile_for_says_so(): void

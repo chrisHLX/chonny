@@ -18,6 +18,7 @@ class PlayerExperienceLookupTest extends TestCase
         parent::setUp();
         config(['services.battlenet.client_id' => 'id', 'services.battlenet.client_secret' => 'secret']);
         Cache::flush();
+        \App\Http\Services\RealmDirectory::forget();
     }
 
     private function realmList(): array

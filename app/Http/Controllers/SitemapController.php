@@ -82,9 +82,19 @@ class SitemapController extends Controller
             }
         }
 
-        // Players someone looked up (/wow/players) and Blizzard answered for: only those, never a
-        // character that is here only because its owner linked it.
+        // Player pages (/wow/players): looked up and answered for, on the 3v3, 2v2 or RBG
+        // leaderboards (about 20,000; Shuffle's per-spec boards would be ten times that), or seen in
+        // an uploaded game. Never a character that is here only because its owner linked it. One
+        // file holds 50,000 URLs, so this stays well inside it.
         $urls[] = ['loc' => route('players.search'), 'freq' => 'daily', 'priority' => '0.8'];
+        foreach (\App\Models\PvpLeaderboardEntry::whereIn('bracket', ['3v3', '2v2', 'rbg'])
+            ->selectRaw('region, realm_slug, name, max(rating) as rating')->groupBy('region', 'realm_slug', 'name')
+            ->orderByDesc('rating')->limit(30000)->get() as $e) {
+            $urls[] = ['loc' => route('players.show', ['region' => $e->region, 'realm' => $e->realm_slug, 'name' => mb_strtolower($e->name)]), 'freq' => 'daily', 'priority' => '0.5'];
+        }
+        foreach (\App\Models\ArenaRoundPlayer::selectRaw('region, realm, name')->groupBy('region', 'realm', 'name')->limit(10000)->get() as $p) {
+            $urls[] = ['loc' => \App\Support\PlayerUrl::to($p->region, $p->realm, $p->name), 'freq' => 'weekly', 'priority' => '0.4'];
+        }
         foreach (\App\Models\BattlenetCharacter::whereNotNull('looked_up_at')->whereNotNull('synced_at')->whereNull('sync_error')
             ->latest('looked_up_at')->limit(20000)->get(['region', 'realm_slug', 'name', 'synced_at']) as $c) {
             $urls[] = [

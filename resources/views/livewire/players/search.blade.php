@@ -17,11 +17,36 @@
                     @endforeach
                 </select>
             </div>
-            <div>
+            {{-- Suggestions as you type (Search::suggestions()). Arrow keys move, Enter opens the
+                 highlighted one, or looks up what is typed when none is. --}}
+            <div class="relative" x-data="{ open: false, i: -1 }" @click.outside="open = false">
                 <label for="lookup-name" class="block text-[11px] uppercase tracking-wider text-ink-subtle mb-1">Character</label>
-                <input id="lookup-name" type="text" wire:model="name" class="form-input w-full" autocomplete="off"
-                       placeholder="Name, or Name-Realm" autofocus>
+                <input id="lookup-name" type="text" wire:model.live.debounce.250ms="name" class="form-input w-full" autocomplete="off"
+                       placeholder="Name, or Name-Realm" autofocus
+                       @focus="open = true" @input="open = true; i = -1"
+                       @keydown.arrow-down.prevent="open = true; i = Math.min(i + 1, $refs.list ? $refs.list.children.length - 1 : -1)"
+                       @keydown.arrow-up.prevent="i = Math.max(i - 1, -1)"
+                       @keydown.escape="open = false"
+                       @keydown.enter="if (open && i >= 0 && $refs.list) { $event.preventDefault(); $refs.list.children[i].querySelector('a').click() }">
                 @error('name') <p class="text-[12px] text-red-300 mt-1">{{ $message }}</p> @enderror
+
+                @if ($suggestions !== [])
+                    <ul x-ref="list" x-show="open" x-cloak
+                        class="absolute z-30 left-0 right-0 sm:right-auto sm:w-[32rem] mt-1 bg-surface-3 rounded-lg shadow-lg py-1 max-h-80 overflow-y-auto">
+                        @foreach ($suggestions as $k => $s)
+                            <li>
+                                <a href="{{ $s['url'] }}" wire:navigate
+                                   class="flex items-baseline gap-2 px-3 py-1.5 text-[13px] hover:bg-surface-2"
+                                   :class="i === {{ $k }} && 'bg-surface-2'" @mouseenter="i = {{ $k }}">
+                                    <span class="font-semibold" style="color: {{ $classColors[$s['class']] ?? '#E5E5E5' }}">{{ $s['name'] }}</span>
+                                    <span class="text-ink-muted truncate">{{ $s['realm'] }}</span>
+                                    <span class="text-[10.5px] uppercase text-ink-subtle">{{ $s['region'] }}</span>
+                                    <span class="ml-auto text-[11.5px] text-ink-subtle whitespace-nowrap">{{ $s['detail'] }}</span>
+                                </a>
+                            </li>
+                        @endforeach
+                    </ul>
+                @endif
             </div>
             <div>
                 <label for="lookup-realm" class="block text-[11px] uppercase tracking-wider text-ink-subtle mb-1">Realm</label>

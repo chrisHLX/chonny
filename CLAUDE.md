@@ -180,7 +180,7 @@ exactly how the Matchup Lab shipped its first green test run (2026-09-23). A `$t
 
 Linux, Nginx + PHP-FPM, 2 Supervisor workers on the default queue (90s timeout each), same
 Redis/MySQL/env requirements. **No scheduler runs** — anything scheduled must be triggered
-another way.
+another way. The one cron line is the daily leaderboard pull (`wow:pvp-leaderboards`, DEPLOY.md).
 
 **Box, measured: 1 vCPU, ~1,958 MB RAM, 5.3 GB swap.** The single core is the throughput ceiling
 and it is the thing to remember before tuning anything else: `/` and `/wow-comps` are ~0.12s of
@@ -211,7 +211,7 @@ there: `DEPLOY.md`, "Working from Claude Code". The essentials:
   remote command with `cd`, so git-bash does not rewrite the path.
 - **Deploy only with `./deploy.sh`, never a bare `git pull`** (OPcache keeps old bytecode).
 - One-off production DB writes are blocked: hand the user a ready-to-paste command. Never add an
-  allow rule for yourself. Redis cache is DB 1. No scheduler runs.
+  allow rule for yourself. Redis cache is DB 1. No scheduler runs; cron runs only the leaderboard pull.
 
 ### Required environment variables
 

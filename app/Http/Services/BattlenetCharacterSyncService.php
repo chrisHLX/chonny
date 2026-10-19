@@ -5,7 +5,7 @@ namespace App\Http\Services;
 use App\Models\BattlenetAccount;
 use App\Models\BattlenetCharacter;
 use App\Models\GameClass;
-use App\Models\PlayerRatingSnapshot;
+use App\Models\PlayerRatingHistory;
 use App\Models\Specialization;
 use App\Models\User;
 use Illuminate\Support\Facades\Cache;
@@ -305,31 +305,34 @@ class BattlenetCharacterSyncService
      */
     private function recordRatings(BattlenetCharacter $c, array $ratings): void
     {
-        $last = PlayerRatingSnapshot::where('battlenet_character_id', $c->id)
-            ->orderBy('recorded_at')->orderBy('id')
+        // By Blizzard's id, not the row: the daily leaderboard pull writes the same history.
+        $last = PlayerRatingHistory::where('region', $c->region)->where('blizzard_character_id', $c->blizzard_character_id)
             ->get()
-            ->keyBy(fn ($s) => $s->bracket.'|'.$s->season);
+            ->mapWithKeys(fn ($h) => [$h->bracket.'|'.$h->season => \Illuminate\Support\Arr::last($h->points ?? [])]);
 
+        $changed = [];
         foreach ($ratings as $r) {
-            if (($r['rating'] ?? 0) <= 0 || empty($r['key'])) {
+            if (($r['rating'] ?? 0) <= 0 || empty($r['key']) || empty($r['season'])) {
                 continue;
             }
 
-            $prev = $last[$r['key'].'|'.($r['season'] ?? '')] ?? null;
-            if ($prev && $prev->rating === $r['rating'] && $prev->won === $r['won'] && $prev->lost === $r['lost']) {
+            $prev = $last[$r['key'].'|'.$r['season']] ?? null;
+            if ($prev && $prev[1] === $r['rating'] && $prev[2] === $r['won'] && $prev[3] === $r['lost']) {
                 continue;
             }
 
-            PlayerRatingSnapshot::create([
-                'battlenet_character_id' => $c->id,
+            $changed[] = [
+                'region' => $c->region,
+                'blizzard_character_id' => $c->blizzard_character_id,
                 'bracket' => $r['key'],
-                'season' => $r['season'] ?? null,
+                'season' => $r['season'],
                 'rating' => $r['rating'],
                 'won' => $r['won'],
                 'lost' => $r['lost'],
-                'recorded_at' => now(),
-            ]);
+            ];
         }
+
+        PlayerRatingHistory::record($changed);
     }
 
     /** Every bracket the character has an entry for, each fetched for its rating. */

@@ -72,12 +72,6 @@ class BattlenetCharacter extends Model
         return $this->belongsTo(Specialization::class, 'spec_id');
     }
 
-    /** Each rating a sync saw change, oldest first: the only rating history there is (see the 2026-10-19 migration). */
-    public function ratingSnapshots()
-    {
-        return $this->hasMany(PlayerRatingSnapshot::class)->orderBy('recorded_at');
-    }
-
     public function guides()
     {
         return $this->hasMany(UserGuide::class);

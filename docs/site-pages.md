@@ -114,8 +114,15 @@
   Blizzard, when nothing is stored or it is over 6 hours old, 15 lookups a minute per address. The
   talent tree is drawn the same way, after load: `TalentSelector` costs about 5s and 750 queries a
   character. Public data only, nothing says whether a character is linked here. Looked-up players
-  are in the sitemap; linked-only ones never are. Not shown yet: the games we have seen a player
-  in, which come from other people's uploads.
+  are in the sitemap; linked-only ones never are.
+  Also on a player page, none of it asking Blizzard: their places on Blizzard's leaderboards
+  (`pvp_leaderboard_entries`, pulled daily by cron, `wow:pvp-leaderboards`), their rating history
+  (`player_rating_history`: one row per character, bracket and season, a point per change, written
+  by both the pull and a lookup), and every uploaded game they were in, whoever uploaded it
+  (`arena_round_players`, indexed whenever a round's payload is saved; Chriso 2026-10-19: "just
+  show everything for now"). So a leaderboard player or one seen in a game has an indexable page
+  before anyone looks them up. The search box suggests names as you type from all three
+  (`Search::suggestions()`), the way Check-PvP does.
 - `/top-damage-rotations`, `/cc-chains`, `/cc-review`, `/friends`, `/guilds`, `/profile`.
 - `/`, `/wow`, `/sc2`, `/lol` (2026-10-17, Chriso: "look more like a platform"). `/` is MindCollector's
   home (`PlatformController::home`): what it is, and a card per game from `config/platform.php`

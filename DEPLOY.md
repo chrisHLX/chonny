@@ -263,8 +263,20 @@ so re-create the helper with the Write tool if it's missing.
   relative to `/var/www/mindcollector`: git-bash rewrites an argument starting with `/`.
 
 **Queue workers:** 2 Supervisor-managed (`laravel-worker_00`, `mindcollector-worker`), 90s timeout
-each, default queue, restarted by `deploy.sh`. **No scheduler:** root's crontab is empty, so every
-`Schedule::command(...)` in `routes/console.php` (e.g. `next-steps:expire`) is inert on live.
+each, default queue, restarted by `deploy.sh`. **No scheduler:** `schedule:run` is not in cron, so
+every `Schedule::command(...)` in `routes/console.php` (e.g. `next-steps:expire`) is inert on live.
+
+**Cron (2026-10-19): one line, the daily leaderboard pull.** In root's crontab, deliberately a
+direct command rather than `schedule:run`, which would also wake every scheduled command above that
+has never run here:
+
+```
+0 18 * * * cd /var/www/mindcollector && nice -n 15 sudo -u www-data php -d memory_limit=512M artisan wow:pvp-leaderboards >> storage/logs/leaderboards.log 2>&1
+```
+
+18:00 UTC (5am in Sydney). Every PvP leaderboard of the season for US and EU: ~170 Blizzard calls,
+~380,000 entries, a few minutes (`PvpLeaderboardService`). As www-data, so the files it writes are
+the site's own (a root-run job left `storage/app/population` unwritable on 17 Oct).
 
 **Performance ceiling:** the 1 vCPU is the bottleneck, not RAM. `/` and `/wow-comps` take about
 0.12s of CPU and `/spell-counters` about 0.57s. Latency scales linearly under concurrency.

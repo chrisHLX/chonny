@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 /**
  * One uploaded arena round, already derived, waiting to be assembled into a review.
@@ -24,8 +25,27 @@ class ArenaRound extends Model
         'sequence' => 'int',
     ];
 
+    /**
+     * Every save that changes the payload re-indexes the round's players (arena_round_players), so
+     * a player page reads its games without decoding payloads, whoever wrote the round: an upload,
+     * a re-measure, a test.
+     */
+    protected static function booted(): void
+    {
+        static::saved(function (ArenaRound $round) {
+            if ($round->wasRecentlyCreated || $round->wasChanged('payload')) {
+                app(\App\Http\Services\RoundPlayerIndexer::class)->index($round);
+            }
+        });
+    }
+
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);
+    }
+
+    public function players(): HasMany
+    {
+        return $this->hasMany(ArenaRoundPlayer::class);
     }
 }
