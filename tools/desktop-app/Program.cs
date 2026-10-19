@@ -14,7 +14,15 @@ internal static class Program
         // build (under bin) and a test run (MINDCOLLECTOR_DATA) never install themselves over the real one.
         var testData = Environment.GetEnvironmentVariable("MINDCOLLECTOR_DATA");
         var fromBuild = Environment.ProcessPath?.Contains(Path.DirectorySeparatorChar + "bin" + Path.DirectorySeparatorChar, StringComparison.OrdinalIgnoreCase) == true;
+#if STORE
+        // The Store installs and updates it (StoreStartup): nothing to copy anywhere.
+        var startHidden = StoreStartup.LaunchedAtSignIn();
+        var firstRun = !fromBuild && testData == null && !AppSettings.Exists();
+#else
         if (!fromBuild && testData == null && Installer.InstallIfNeeded(fromUpdate: args.Contains("--update"))) return 0;
+        var startHidden = args.Contains("--minimized");
+        var firstRun = args.Contains("--first-run");
+#endif
 
         // One app per Windows user; a test run with its own data folder is its own app.
         var name = @"Local\MindCollectorDesktop" + (testData == null ? "" : "-" + Convert.ToHexString(System.Security.Cryptography.SHA1.HashData(System.Text.Encoding.UTF8.GetBytes(testData)))[..12]);
@@ -28,7 +36,7 @@ internal static class Program
         }
 
         ApplicationConfiguration.Initialize();
-        var form = new MainForm(startHidden: args.Contains("--minimized"), firstRun: args.Contains("--first-run"));
+        var form = new MainForm(startHidden: startHidden, firstRun: firstRun);
         var watcher = new Thread(() =>
         {
             while (show.WaitOne())

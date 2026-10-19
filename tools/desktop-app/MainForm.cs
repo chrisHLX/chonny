@@ -348,6 +348,10 @@ internal sealed class MainForm : Form
     /// </summary>
     private async Task CheckForUpdateAsync()
     {
+#if STORE
+        await Task.CompletedTask;   // the Store keeps it up to date
+        return;
+#endif
         if (_busy || Syncer.WowRunning() || Environment.GetEnvironmentVariable("MINDCOLLECTOR_DATA") != null) return;
         try
         {

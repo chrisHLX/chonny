@@ -14,7 +14,7 @@
     <RootNamespace>MindCollector.Desktop</RootNamespace>
     <AssemblyName>MindCollector</AssemblyName>
     <ApplicationIcon>mindcollector.ico</ApplicationIcon>
-    <Version>0.5.4</Version>
+    <Version>0.5.5</Version>
     <Product>MindCollector</Product>
     <Company>MindCollector</Company>
     <!-- What Windows shows in the file's Properties and in its install and SmartScreen prompts. -->
@@ -30,6 +30,23 @@
     <!-- 155 MB uncompressed (2026-10-08); compressed inside the exe for sending to testers. -->
     <EnableCompressionInSingleFile>true</EnableCompressionInSingleFile>
     <DebugType>none</DebugType>
+  </PropertyGroup>
+
+  <!--
+    The Microsoft Store build (2026-10-19): `dotnet publish -p:Store=true`, packaged by
+    store/build-store.ps1. The Store signs it, so Windows trusts it, and keeps it up to date, so
+    the STORE constant leaves out the self-install (Installer) and the self-update (Updater), and
+    starting with Windows is the package's StartupTask instead of the registry Run key, which a
+    packaged app cannot rely on. The Windows 10 target is what reaches the StartupTask API.
+    A folder, not one exe: the package itself is the single file.
+  -->
+  <PropertyGroup Condition="'$(Store)' == 'true'">
+    <DefineConstants>$(DefineConstants);STORE</DefineConstants>
+    <TargetFramework>net8.0-windows10.0.19041.0</TargetFramework>
+    <SupportedOSPlatformVersion>10.0.17763.0</SupportedOSPlatformVersion>
+    <PublishSingleFile>false</PublishSingleFile>
+    <EnableCompressionInSingleFile>false</EnableCompressionInSingleFile>
+    <IncludeNativeLibrariesForSelfExtract>false</IncludeNativeLibrariesForSelfExtract>
   </PropertyGroup>
 
   <ItemGroup>

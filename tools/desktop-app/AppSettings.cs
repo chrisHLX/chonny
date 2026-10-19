@@ -59,6 +59,9 @@ public sealed class AppSettings
         }
     }
 
+    /// <summary>Whether this Windows user has run the app before (the Store build's first run goes straight to Connect).</summary>
+    public static bool Exists() => File.Exists(FilePath);
+
     public static AppSettings Load()
     {
         AppSettings s;

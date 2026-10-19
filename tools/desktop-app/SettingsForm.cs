@@ -1,13 +1,8 @@
-using Microsoft.Win32;
-
 namespace MindCollector.Desktop;
 
 /// <summary>The key from mindcollector.com/wow/coach, the folders, and whether to start with Windows.</summary>
 internal sealed class SettingsForm : Form
 {
-    private const string RunKey = @"Software\Microsoft\Windows\CurrentVersion\Run";
-    private const string RunName = "MindCollector";
-
     private readonly AppSettings _settings;
     private readonly TextBox _server = Box();
     private readonly TextBox _key = Box();
@@ -38,7 +33,14 @@ internal sealed class SettingsForm : Form
         _wow.Text = settings.WowLogsDir ?? "";
         _move.Text = settings.MoveTo ?? "";
         _moveLogs.Checked = settings.MoveLogs;
-        using (var run = Registry.CurrentUser.OpenSubKey(RunKey)) _startup.Checked = run?.GetValue(RunName) != null;
+        _startup.Checked = Installer.StartsWithWindows();
+#if STORE
+        if (StoreStartup.State() == Windows.ApplicationModel.StartupTaskState.DisabledByUser)
+        {
+            _startup.Enabled = false;
+            _startup.Text = "Start MindCollector when Windows starts (turned off in Task Manager > Startup apps; turn it on there)";
+        }
+#endif
 
         var grid = new TableLayoutPanel { Dock = DockStyle.Fill, ColumnCount = 3, AutoSize = true };
         grid.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 150));
@@ -101,7 +103,7 @@ internal sealed class SettingsForm : Form
         // Check the key against the website before keeping it, so a typo shows here and not later.
         if (!string.IsNullOrWhiteSpace(_key.Text))
         {
-            _status.Text = "Checking the key with the website…";
+            _status.Text = "Checking the key with the websiteâ€¦";
             _status.ForeColor = Theme.Muted;
             try
             {
@@ -147,7 +149,7 @@ internal sealed class SettingsForm : Form
 
     private static Button Browse(TextBox target)
     {
-        var b = Theme.Button("Browse…");
+        var b = Theme.Button("Browseâ€¦");
         b.Click += (_, _) =>
         {
             using var d = new FolderBrowserDialog();

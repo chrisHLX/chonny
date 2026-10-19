@@ -131,3 +131,23 @@ Chriso's PC, turn this app's "Move logs" off.** The PowerShell app moves each lo
 `D:\MindCollector\wow-logs` after its own sync, possibly before this app has read it, and it already
 sends his games to the site (`wow:push-rounds`). Both sending the same round is harmless, because
 the server keys a round by its match and measures it again, but it is wasted work.
+
+## The Microsoft Store build (2026-10-19)
+
+The downloaded exe is not code-signed, so Windows warns about it. The Store version is signed by
+Microsoft when it is published, so it installs with no warning. Individual developer accounts are
+free; the account and the reserved name "MindCollector" are Chriso's (Partner Center, Product
+identity), and `store/AppxManifest.xml` carries its three identity values, which must match exactly.
+
+- **Build:** `powershell -ExecutionPolicy Bypass -File tools\desktop-app\store\build-store.ps1`
+  gives `store\out\MindCollector-<version>.msix` to upload. Needs the .NET 8 SDK and makeappx /
+  makepri (the Windows SDK, or the Microsoft.Windows.SDK.BuildTools NuGet package, passed as
+  `-Tools`). Each upload needs a higher `<Version>` in the csproj.
+- **What differs (`-p:Store=true`, the `STORE` constant):** no self-install (`Installer`) and no
+  self-update (`Updater`): the Store installs and updates it. Starting with Windows is the package's
+  StartupTask (`StoreStartup`), on from the first launch; one the player turns off in Task Manager
+  can only be turned on there again. The first launch goes straight to Connect, as `--first-run`
+  does for the download. Settings and the WebView2 data stay in %APPDATA%, which Windows keeps
+  per package.
+- **Not tested on this PC:** an unsigned package installs only with Developer Mode on, which is
+  off here. The Store's certification runs it before publishing.

@@ -48,8 +48,23 @@ internal static class Installer
         }
     }
 
+    /// <summary>Whether the app starts with Windows: the Store build's StartupTask, or the Run key.</summary>
+    public static bool StartsWithWindows()
+    {
+#if STORE
+        return StoreStartup.IsOn();
+#else
+        using var run = Registry.CurrentUser.OpenSubKey(RunKey);
+        return run?.GetValue(RunName) != null;
+#endif
+    }
+
     public static void StartWithWindows(bool on)
     {
+#if STORE
+        StoreStartup.Set(on);
+        return;
+#endif
         using var run = Registry.CurrentUser.OpenSubKey(RunKey, writable: true);
         if (on) run?.SetValue(RunName, $"\"{InstalledExeOrSelf()}\" --minimized");
         else run?.DeleteValue(RunName, throwOnMissingValue: false);
