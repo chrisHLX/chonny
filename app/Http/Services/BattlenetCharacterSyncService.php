@@ -5,6 +5,7 @@ namespace App\Http\Services;
 use App\Models\BattlenetAccount;
 use App\Models\BattlenetCharacter;
 use App\Models\GameClass;
+use App\Models\PlayerRatingSnapshot;
 use App\Models\Specialization;
 use App\Models\User;
 use Illuminate\Support\Facades\Cache;
@@ -203,6 +204,37 @@ class BattlenetCharacterSyncService
         }
     }
 
+    /**
+     * Any public character, by region, Blizzard's realm slug and name: the player lookup
+     * (/wow/players). Null when Blizzard has no public profile for it. Throws when Blizzard does
+     * not answer, so the page can say so rather than say "no such character".
+     *
+     * Found by Blizzard's character id, so a character that is already a row (linked by its owner,
+     * or looked up before under another spelling) is that row: it is refreshed, never copied, and
+     * keeps its account.
+     */
+    public function lookupPublic(string $region, string $realmSlug, string $name): ?BattlenetCharacter
+    {
+        $summary = $this->client->characterMany($region, $realmSlug, $name, ['summary' => ''])['summary'] ?? null;
+
+        if (! isset($summary['id'], $summary['name'], $summary['realm']['slug'])) {
+            return null;
+        }
+
+        $character = BattlenetCharacter::firstOrNew(['region' => $region, 'blizzard_character_id' => (int) $summary['id']]);
+        $character->forceFill([
+            'name' => $summary['name'],
+            'realm_slug' => $summary['realm']['slug'],
+            'realm_name' => $summary['realm']['name'] ?? $summary['realm']['slug'],
+            'level' => (int) ($summary['level'] ?? 0),
+            'looked_up_at' => now(),
+        ])->save();
+
+        $this->doSyncDetails($character);
+
+        return $character->fresh();
+    }
+
     private function doSyncDetails(BattlenetCharacter $c): void
     {
         // Six independent reads, sent together — see BattlenetClient::characterMany().
@@ -262,6 +294,42 @@ class BattlenetCharacterSyncService
             'synced_at' => now(),
             'sync_error' => null,
         ])->save();
+
+        $this->recordRatings($c, $ratings);
+    }
+
+    /**
+     * A snapshot of each bracket whose rating or record changed since the last one: Blizzard keeps
+     * no rating history, so this is where a character's comes from. Past seasons are written once,
+     * as they stand, and never change again.
+     */
+    private function recordRatings(BattlenetCharacter $c, array $ratings): void
+    {
+        $last = PlayerRatingSnapshot::where('battlenet_character_id', $c->id)
+            ->orderBy('recorded_at')->orderBy('id')
+            ->get()
+            ->keyBy(fn ($s) => $s->bracket.'|'.$s->season);
+
+        foreach ($ratings as $r) {
+            if (($r['rating'] ?? 0) <= 0 || empty($r['key'])) {
+                continue;
+            }
+
+            $prev = $last[$r['key'].'|'.($r['season'] ?? '')] ?? null;
+            if ($prev && $prev->rating === $r['rating'] && $prev->won === $r['won'] && $prev->lost === $r['lost']) {
+                continue;
+            }
+
+            PlayerRatingSnapshot::create([
+                'battlenet_character_id' => $c->id,
+                'bracket' => $r['key'],
+                'season' => $r['season'] ?? null,
+                'rating' => $r['rating'],
+                'won' => $r['won'],
+                'lost' => $r['lost'],
+                'recorded_at' => now(),
+            ]);
+        }
     }
 
     /** Every bracket the character has an entry for, each fetched for its rating. */

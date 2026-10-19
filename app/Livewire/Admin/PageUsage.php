@@ -79,6 +79,8 @@ class PageUsage extends Component
         'guild_show' => 'Guild (read)',
         'battlenet_characters' => 'Your Characters',
         'battlenet_character' => 'Character Detail',
+        'player_search' => 'Player Lookup',
+        'player_profile' => 'Player Profile (public)',
         'wow_quiz' => 'Class Quizzes',
         'wow_quiz_play' => 'Class Quiz (playing)',
         'concept_drill_play' => 'Concept Drill (playing)',

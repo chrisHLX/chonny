@@ -89,6 +89,15 @@
             Get the app
         </a>
 
+        {{-- Player lookup (2026-10-19): any character's ratings, exp, gear and talents. --}}
+        <a href="{{ route('players.search') }}" wire:navigate
+           class="sidebar-item {{ request()->routeIs('players.*') ? 'active' : '' }}">
+            <svg class="w-[18px] h-[18px] shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-4.35-4.35M10.5 18a7.5 7.5 0 100-15 7.5 7.5 0 000 15z"/>
+            </svg>
+            Player lookup
+        </a>
+
         <p class="px-3 pt-3 pb-1 text-[11px] font-bold text-ink-subtle uppercase tracking-[.12em]">Plan</p>
         <a href="{{ route('wow-comps') }}" wire:navigate
            class="sidebar-item {{ request()->routeIs('wow-comps') ? 'active' : '' }}">

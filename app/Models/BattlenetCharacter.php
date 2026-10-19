@@ -42,6 +42,7 @@ class BattlenetCharacter extends Model
         'equipment',
         'last_login_at',
         'synced_at',
+        'looked_up_at',
         'sync_error',
     ];
 
@@ -52,6 +53,7 @@ class BattlenetCharacter extends Model
         'equipment' => 'array',
         'last_login_at' => 'datetime',
         'synced_at' => 'datetime',
+        'looked_up_at' => 'datetime',
     ];
 
     public function account()
@@ -68,6 +70,12 @@ class BattlenetCharacter extends Model
     public function specialization()
     {
         return $this->belongsTo(Specialization::class, 'spec_id');
+    }
+
+    /** Each rating a sync saw change, oldest first: the only rating history there is (see the 2026-10-19 migration). */
+    public function ratingSnapshots()
+    {
+        return $this->hasMany(PlayerRatingSnapshot::class)->orderBy('recorded_at');
     }
 
     public function guides()

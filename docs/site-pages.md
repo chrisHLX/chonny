@@ -106,6 +106,16 @@
   concept → `brain.md` sections → types, and names why four of the seven concepts have none.
   Drill results are **never** written to `UserConceptMastery` — see the Rules.
 - `/characters` — `Battlenet\Characters` / `CharacterShow`.
+- `/wow/players` and `/wow/player/{region}/{realm}/{name}` (`Players\Search`, `Players\Show`,
+  2026-10-19, Chriso: "build our own version of check pvp"): any character's exp, titles, ratings,
+  the rating history this site has seen (`player_rating_snapshots`), gear and talents. A looked-up
+  character is a `battlenet_characters` row with no account (`looked_up_at` set), the same row its
+  owner's link would find. The page serves what is stored; only a browser (`wire:init`) asks
+  Blizzard, when nothing is stored or it is over 6 hours old, 15 lookups a minute per address. The
+  talent tree is drawn the same way, after load: `TalentSelector` costs about 5s and 750 queries a
+  character. Public data only, nothing says whether a character is linked here. Looked-up players
+  are in the sitemap; linked-only ones never are. Not shown yet: the games we have seen a player
+  in, which come from other people's uploads.
 - `/top-damage-rotations`, `/cc-chains`, `/cc-review`, `/friends`, `/guilds`, `/profile`.
 - `/`, `/wow`, `/sc2`, `/lol` (2026-10-17, Chriso: "look more like a platform"). `/` is MindCollector's
   home (`PlatformController::home`): what it is, and a card per game from `config/platform.php`

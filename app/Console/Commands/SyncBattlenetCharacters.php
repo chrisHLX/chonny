@@ -25,7 +25,9 @@ class SyncBattlenetCharacters extends Command
 
     public function handle(BattlenetCharacterSyncService $sync): int
     {
+        // Linked characters only: one looked up on /wow/players is refreshed when someone views it.
         $query = BattlenetCharacter::query()
+            ->whereNotNull('battlenet_account_id')
             ->where('level', '>=', (int) config('services.battlenet.detail_min_level', 70))
             ->where(fn ($q) => $q->whereNull('synced_at')
                 ->orWhere('synced_at', '<', now()->subHours((int) $this->option('stale-hours'))))

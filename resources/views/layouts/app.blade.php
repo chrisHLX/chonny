@@ -54,6 +54,9 @@
         <title>{{ $seoTitle }}</title>
         <meta name="description" content="{{ $seoDescription }}">
         <link rel="canonical" href="{{ $seoCanonical }}">
+        @if (! empty($robots ?? null))
+            <meta name="robots" content="{{ $robots }}">
+        @endif
 
         <meta property="og:type" content="website">
         <meta property="og:site_name" content="MindCollector">

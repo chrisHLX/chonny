@@ -82,6 +82,17 @@ class SitemapController extends Controller
             }
         }
 
+        // Players someone looked up (/wow/players) and Blizzard answered for: only those, never a
+        // character that is here only because its owner linked it.
+        $urls[] = ['loc' => route('players.search'), 'freq' => 'daily', 'priority' => '0.8'];
+        foreach (\App\Models\BattlenetCharacter::whereNotNull('looked_up_at')->whereNotNull('synced_at')->whereNull('sync_error')
+            ->latest('looked_up_at')->limit(20000)->get(['region', 'realm_slug', 'name', 'synced_at']) as $c) {
+            $urls[] = [
+                'loc' => route('players.show', ['region' => $c->region, 'realm' => $c->realm_slug, 'name' => mb_strtolower($c->name)]),
+                'freq' => 'weekly', 'priority' => '0.4', 'lastmod' => $c->synced_at->toDateString(),
+            ];
+        }
+
         $body = collect($urls)->unique('loc')->map(fn ($u) => '    <url>'
             .'<loc>'.e($u['loc']).'</loc>'
             .(isset($u['lastmod']) ? '<lastmod>'.$u['lastmod'].'</lastmod>' : '')

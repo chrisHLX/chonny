@@ -226,6 +226,13 @@ Route::prefix('wow')->group(function () {
     // it is connected to an account), and connecting it from the browser. See AppDownloadController.
     Route::get('/coach/app', [\App\Http\Controllers\DesktopAppController::class, 'download'])->middleware('throttle:20,1,app-download')->name('coach.app');
     Route::get('/app', [\App\Http\Controllers\AppDownloadController::class, 'page'])->name('app');
+
+    // Player lookup (2026-10-19): any character's ratings, exp, titles, gear and talents, as on
+    // Check-PvP. The page serves what is stored; only a browser asks Blizzard (Players\Show).
+    Route::get('/players', \App\Livewire\Players\Search::class)->name('players.search');
+    Route::get('/player/{region}/{realm}/{name}', \App\Livewire\Players\Show::class)
+        ->where(['region' => '[a-z]{2}', 'realm' => '[^/]+', 'name' => '[^/]+'])
+        ->name('players.show');
     Route::get('/app/connect', [\App\Http\Controllers\AppDownloadController::class, 'connect'])->middleware('auth')->name('app.connect');
     Route::post('/app/connect', [\App\Http\Controllers\AppDownloadController::class, 'approve'])->middleware(['auth', 'throttle:10,1,app-connect'])->name('app.connect.approve');
     Route::get('/spells', SpellExplorer::class)->name('spells.explore');

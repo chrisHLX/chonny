@@ -27,7 +27,7 @@ class PlayerExperienceService
 
     private const NOT_FOUND_TTL_HOURS = 24;
 
-    public function __construct(private BattlenetClient $client, private BattlenetCharacterSyncService $sync) {}
+    public function __construct(private BattlenetClient $client, private BattlenetCharacterSyncService $sync, private RealmDirectory $realms) {}
 
     /** What is cached for this character, or null if it has not been looked up yet. */
     public function cached(string $fullName): ?array
@@ -113,63 +113,18 @@ class PlayerExperienceService
 
     /**
      * Blizzard's realm slug from the log's realm name, which has its spaces and hyphens taken out
-     * (BleedingHollow, AzjolNerub, Jubei'Thos).
-     *
-     * Read from Blizzard's own realm list for the region when there is one: the log name cannot be
-     * split back reliably. Splitting at capitals got 24 US and 38 EU realms wrong (2026-10-19:
-     * Azjol-Nerub is azjolnerub, Altar of Storms is altar-of-storms, DieewigeWacht is
-     * die-ewige-wacht), and a player on one read as having no profile. The capitals rule remains
-     * for when the list cannot be had: right for the common realms, measured on the 26 Sep games.
+     * (BleedingHollow, AzjolNerub, Jubei'Thos): from the region's realm list (RealmDirectory, where
+     * a player on Azjol-Nerub stopped reading as having no profile, 2026-10-19). Splitting at
+     * capitals remains for when the list cannot be had: right for the common realms, measured on
+     * the 26 Sep games.
      */
     public function realmSlug(string $realm, ?string $region = null): string
     {
-        if ($region !== null && ($slug = $this->realmSlugs($region)[self::realmKey($realm)] ?? null)) {
+        if ($region !== null && ($slug = $this->realms->slugFor($realm, $region))) {
             return $slug;
         }
 
         return strtolower(preg_replace(['/(?<=[a-z])(?=[A-Z0-9])/', '/\s+/', "/'-?/"], ['-', '-', ''], $realm));
-    }
-
-    /**
-     * Every realm in the region, its name as a key (realmKey) to its slug. Cached for a week; a
-     * failed fetch is not cached and gives an empty list, so the capitals rule answers until it works.
-     *
-     * @return array<string, string>
-     */
-    private function realmSlugs(string $region): array
-    {
-        $key = 'battlenet:realm_slugs:v1:'.$region;
-
-        if (is_array($hit = Cache::get($key))) {
-            return $hit;
-        }
-
-        try {
-            $realms = $this->client->gameData($region, '/data/wow/realm/index', 'dynamic')['realms'] ?? [];
-        } catch (\Throwable $e) {
-            Log::warning('Realm list lookup failed', ['region' => $region, 'error' => $e->getMessage()]);
-
-            return [];
-        }
-
-        $slugs = [];
-        foreach ($realms as $realm) {
-            if (! empty($realm['name']) && ! empty($realm['slug'])) {
-                $slugs[self::realmKey($realm['name'])] = $realm['slug'];
-            }
-        }
-
-        if ($slugs !== []) {
-            Cache::put($key, $slugs, now()->addDays(7));
-        }
-
-        return $slugs;
-    }
-
-    /** A realm name with everything but its letters and digits taken out, lowercased: the log's name and Blizzard's meet here. */
-    private static function realmKey(string $name): string
-    {
-        return mb_strtolower(preg_replace('/[^\p{L}\p{N}]/u', '', $name));
     }
 
     private function key(string $fullName): string
