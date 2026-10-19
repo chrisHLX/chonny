@@ -92,7 +92,7 @@ class ArenaUploadController extends Controller
 
         // The same pages the desktop app's upload builds (Your games), so a player who uploads in
         // the browser, with nothing installed, gets Games, Improve and Comps too.
-        BuildCoachPages::dispatch($user->id);
+        BuildCoachPages::cardsFirst($user->id);
 
         return response()->json(['status' => 'ok', 'assembled' => $assembled]);
     }

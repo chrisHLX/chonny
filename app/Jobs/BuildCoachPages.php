@@ -15,23 +15,43 @@ use Illuminate\Support\Facades\Artisan;
  * so opening a page costs nothing: a full build peaked at 324 MB for 186 games (2026-10-05), which
  * no page view could afford on a 2 GB, one-core box.
  *
- * Unique until it starts, so a second upload while one builds queues one more build, never a pile.
- * It must finish inside the queue's 90s retry_after or Redis hands it out twice; only changed games
- * are drawn again, and a first full build is about 30s.
+ * IN TWO PARTS (2026-10-19). A game's arrival builds its card alone (`cardsOnly`, about a second
+ * whatever the account's size), on the `cards` queue, which both workers take before `default`, so
+ * a burst of Battle.net syncs or player lookups cannot get in front of a finished game. That job
+ * then queues the full build (Improve, Comps and Classes, 15-35s on a 400-game account) on
+ * `default`. Before, every upload and every finished player lookup redrew all of it, twice a game:
+ * the largest account's cards came about two minutes after the game, and its builds hit the
+ * timeout 25 times in one re-measure.
+ *
+ * Unique until it starts, per player and part, so uploads during a build queue one more of each,
+ * never a pile. It must finish inside the queue's 90s retry_after or Redis hands it out twice.
  */
 class BuildCoachPages implements ShouldBeUniqueUntilProcessing, ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable;
 
+    public const CARDS_QUEUE = 'cards';
+
     public int $tries = 1;
 
     public int $timeout = 85;
 
-    public function __construct(public int $userId) {}
+    public function __construct(public int $userId, public bool $cardsOnly = false)
+    {
+        if ($cardsOnly) {
+            $this->onQueue(self::CARDS_QUEUE);
+        }
+    }
+
+    /** A game's card first, then the rest: what an upload or a finished lookup asks for. */
+    public static function cardsFirst(int $userId): void
+    {
+        static::dispatch($userId, true);
+    }
 
     public function uniqueId(): string
     {
-        return (string) $this->userId;
+        return $this->userId.($this->cardsOnly ? ':cards' : ':all');
     }
 
     public static function dir(int $userId): string
@@ -41,6 +61,15 @@ class BuildCoachPages implements ShouldBeUniqueUntilProcessing, ShouldQueue
 
     public function handle(): void
     {
-        Artisan::call('wow:game-cards', ['--user' => $this->userId, '--dir' => self::dir($this->userId), '--web' => true]);
+        Artisan::call('wow:game-cards', array_filter([
+            '--user' => $this->userId,
+            '--dir' => self::dir($this->userId),
+            '--web' => true,
+            '--cards-only' => $this->cardsOnly,
+        ]));
+
+        if ($this->cardsOnly) {
+            static::dispatch($this->userId);
+        }
     }
 }

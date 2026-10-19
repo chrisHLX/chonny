@@ -9,6 +9,7 @@ use App\Http\Services\ImprovementService;
 use App\Models\ArenaRound;
 use App\Models\User;
 use Illuminate\Console\Command;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\File;
 
 /**
@@ -37,6 +38,7 @@ class BuildGameCards extends Command
         {--user= : Whose games (id or email). Defaults to the only user who has any.}
         {--notes= : The notes file the desktop app writes, to put your notes on each game}
         {--fresh : Redraw every card, not just the ones that changed}
+        {--cards-only : Only the game cards: leave Improve, Comps and Classes as they are}
         {--web : Point images at /storage/... for the website (/wow/coach) instead of file:/// paths}';
 
     protected $description = 'Write a summary card for each synced game, for the MindCollector Logs desktop app';
@@ -88,6 +90,17 @@ class BuildGameCards extends Command
                     File::delete($file);
                 }
             }
+        }
+
+        // --cards-only (2026-10-19): a new game's card first, in about a second whatever the account's
+        // size. Improve, Comps and Classes redraw every game's worth of data (15-35s on a 400-game
+        // account) and follow in their own job (BuildCoachPages).
+        if ($this->option('cards-only')) {
+            $games = array_map(fn ($g) => array_diff_key($g, ['html' => true]), $built['games']);
+            $this->writeIndex($dir, ['generatedAt' => now()->toIso8601String(), 'games' => $games, 'experience' => $built['experience']]);
+            $this->info(sprintf('%d game card(s); %d drawn, %d unchanged. Cards only.', count($games), $drawn, count($games) - $drawn));
+
+            return self::SUCCESS;
         }
 
         // The Improve page, one per character you have played (ImprovementService). Drawn again only
@@ -169,25 +182,45 @@ class BuildGameCards extends Command
         }
 
         $games = array_map(fn ($g) => array_diff_key($g, ['html' => true]), $built['games']);
-        $json = json_encode([
+        $parts = [
             'generatedAt' => now()->toIso8601String(), 'games' => $games, 'experience' => $built['experience'],
             'characters' => $characters, 'improveSig' => $improveSig,
             'comps' => $comps, 'compSig' => $compSig,
             'classes' => $classes, 'classSig' => $classSig,
-        ], JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT);
+        ];
 
         if (! $dir) {
-            $this->line($json);
+            $this->line(json_encode($parts, JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT));
 
             return self::SUCCESS;
         }
 
-        File::put("{$dir}/index.json", $json);
+        $this->writeIndex($dir, $parts);
         $this->info(sprintf('%d game card(s); %d drawn, %d unchanged. %d Improve page(s) %s. %d comp page(s) %s. %d player page(s) %s. In %s',
             count($games), $drawn, count($games) - $drawn, count($characters), $improveDrawn ? 'drawn' : 'unchanged',
             count($comps), $compsDrawn ? 'drawn' : 'unchanged', count($classes), $playersDrawn ? 'drawn' : 'unchanged', $dir));
 
         return self::SUCCESS;
+    }
+
+    /**
+     * Merge these keys into index.json, read again under a lock: a cards-only build and a full one
+     * for the same player can run side by side on the two workers, and neither may put back what
+     * the other has just replaced.
+     */
+    private function writeIndex(?string $dir, array $parts): void
+    {
+        if (! $dir) {
+            $this->line(json_encode($parts, JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT));
+
+            return;
+        }
+
+        File::ensureDirectoryExists($dir);
+        Cache::lock('coach-index:'.md5($dir), 30)->block(20, function () use ($dir, $parts) {
+            $now = File::exists("{$dir}/index.json") ? (json_decode(File::get("{$dir}/index.json"), true) ?: []) : [];
+            File::put("{$dir}/index.json", json_encode(array_replace($now, $parts), JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT));
+        });
     }
 
     private function resolveUser(): ?User

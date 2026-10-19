@@ -262,8 +262,12 @@ so re-create the helper with the Write tool if it's missing.
   (`prod_upload.py`, a sibling of `prod_ssh.py` in the scratchpad), and pass the remote path
   relative to `/var/www/mindcollector`: git-bash rewrites an argument starting with `/`.
 
-**Queue workers:** 2 Supervisor-managed (`laravel-worker_00`, `mindcollector-worker`), 90s timeout
-each, default queue, restarted by `deploy.sh`. **No scheduler:** `schedule:run` is not in cron, so
+**Queue workers:** 2 Supervisor-managed (`laravel-worker_00`, `mindcollector-worker`), restarted by
+`deploy.sh`, each running `queue:work --queue=cards,default` (2026-10-19; configs in
+/etc/supervisor/conf.d, the previous ones in /root/*.bak-20261019). `cards` is a game's card alone
+(`BuildCoachPages` with `cardsOnly`), taken before anything on `default`, so syncs and player
+lookups never wait in front of a finished game. A job on a queue no worker reads never runs:
+a new queue name needs this line changed first. **No scheduler:** `schedule:run` is not in cron, so
 every `Schedule::command(...)` in `routes/console.php` (e.g. `next-steps:expire`) is inert on live.
 
 **Cron (2026-10-19): one line, the daily leaderboard pull.** In root's crontab, deliberately a

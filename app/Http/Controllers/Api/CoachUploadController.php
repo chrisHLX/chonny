@@ -156,7 +156,7 @@ class CoachUploadController extends Controller
         foreach ($ingest->lobbiesNeedingAssembly($user) as $lobbyId) {
             $assembled += $ingest->assembleLobby($user, $lobbyId) ? 1 : 0;
         }
-        BuildCoachPages::dispatch($user->id);
+        BuildCoachPages::cardsFirst($user->id);
         // Every upload feeds the shared norms by default (2026-10-10); one rebuild per burst.
         \App\Jobs\RefreshPopulationNorms::dispatch()->delay(now()->addSeconds(\App\Jobs\RefreshPopulationNorms::DELAY_SECONDS));
 

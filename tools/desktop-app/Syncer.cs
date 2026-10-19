@@ -7,7 +7,8 @@ namespace MindCollector.Desktop;
 /// is done, and move logs that are fully sent out of WoW's folder. The rules are the PowerShell app's
 /// (tools/log-manager), which ran for weeks on real games:
 ///
-/// - A log that changed in the last 20 seconds is being written; wait.
+/// - A log that changed in the last 8 seconds is being written; wait. (20 until 2026-10-19: safe to
+///   shorten because a live log is read only to its last finished round, and it saves ~12s a game.)
 /// - The newest log while WoW runs is read only up to the last finished round, and the batch is only
 ///   finished ("done", which assembles lobbies) when its last arena marker is an END: a Solo Shuffle
 ///   writes a START per round and one END per lobby, so that is true only between lobbies.
@@ -16,7 +17,7 @@ namespace MindCollector.Desktop;
 /// </summary>
 public sealed class Syncer
 {
-    private static readonly TimeSpan Quiet = TimeSpan.FromSeconds(20);
+    private static readonly TimeSpan Quiet = TimeSpan.FromSeconds(8);
 
     /** How often the server's measure version is asked when no log has anything new. */
     private static readonly TimeSpan VersionEvery = TimeSpan.FromHours(1);

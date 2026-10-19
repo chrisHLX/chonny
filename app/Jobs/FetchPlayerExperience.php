@@ -61,7 +61,7 @@ class FetchPlayerExperience implements ShouldBeUnique, ShouldQueue
         }
 
         if ($new > 0 && $this->rebuildFor !== null && is_dir(BuildCoachPages::dir($this->rebuildFor))) {
-            BuildCoachPages::dispatch($this->rebuildFor);
+            BuildCoachPages::cardsFirst($this->rebuildFor);
         }
     }
 }
