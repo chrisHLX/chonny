@@ -81,6 +81,8 @@ class PageUsage extends Component
         'battlenet_character' => 'Character Detail',
         'player_search' => 'Player Lookup',
         'player_profile' => 'Player Profile (public)',
+        'comp_board' => 'Comps This Season (board)',
+        'comp_played' => 'Comp Card (from the board)',
         'wow_quiz' => 'Class Quizzes',
         'wow_quiz_play' => 'Class Quiz (playing)',
         'concept_drill_play' => 'Concept Drill (playing)',

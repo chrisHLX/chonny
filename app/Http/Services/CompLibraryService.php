@@ -61,13 +61,46 @@ class CompLibraryService
     {
         $rounds = ArenaRound::where('user_id', $user->id)->orderBy('id')->get(['id', 'updated_at'])
             ->map(fn ($r) => $r->id.':'.$r->updated_at)->implode(',');
-        $code = implode('|', array_map(fn ($f) => $f.':'.filemtime($f), [__FILE__, resource_path('views/desktop/comp.blade.php'), resource_path('views/desktop/partials/styles.blade.php'), app_path('Support/SpellTips.php')]))
+
+        return md5($rounds.'|'.md5(json_encode(array_map(fn ($x) => $x['gladSeasons'] ?? null, $xp))).'|'.$this->codeSignature());
+    }
+
+    /** What changes every page's drawing: this code, its view, the kick lists and the spell data. */
+    public function codeSignature(): string
+    {
+        return implode('|', array_map(fn ($f) => $f.':'.filemtime($f), [__FILE__, resource_path('views/desktop/comp.blade.php'), resource_path('views/desktop/partials/styles.blade.php'), app_path('Support/SpellTips.php')]))
             // What to kick on them reads the priority files (KickPriorities).
             .'|kicks:'.KickPriorities::signature()
             // Tooltips come from the spell data.
             .'|spells:'.app(TalentSelectionService::class)->spellCacheVersion();
+    }
 
-        return md5($rounds.'|'.md5(json_encode(array_map(fn ($x) => $x['gladSeasons'] ?? null, $xp))).'|'.$code);
+    /** A comp's nickname from its DPS class pair ("mage+rogue") and healer class, where a guide uses one. */
+    public static function nicknameFor(string $classPair, ?string $healerClass): ?string
+    {
+        return self::NICKNAMES[$classPair] ?? (self::BY_HEALER[$classPair][$healerClass] ?? null);
+    }
+
+    /** Drawing the website's pooled card (buildPool): every name stays out. */
+    private bool $pool = false;
+
+    /**
+     * One comp's page from every uploader's games against it, for the website's comp board
+     * (CompLeaderboardService::card()). The games come already read from the side that faced the
+     * comp, with nobody the logger; here every player's name is replaced by their spec, and no
+     * game says whose upload it was. Experience stays (a Gladiator count names no one).
+     */
+    public function buildPool(Collection $games, string $title, ?string $nick, array $xp): string
+    {
+        $this->xp = $xp;
+        $this->pool = true;
+        try {
+            $model = $this->model('pool', $games);
+        } finally {
+            $this->pool = false;
+        }
+
+        return view('desktop.comp', ['c' => ['name' => $title, 'nick' => $nick, 'pool' => true] + $model])->render();
     }
 
     /**
@@ -226,8 +259,8 @@ class CompLibraryService
                 $xp = $this->xp[$x['name']] ?? null;
 
                 return [
-                    'name' => explode('-', $x['name'])[0],
-                    'spec' => $x['spec'],
+                    'name' => $this->pool ? $x['spec'] : explode('-', $x['name'])[0],
+                    'spec' => $this->pool ? '' : $x['spec'],
                     'color' => $colors[$x['classSlug'] ?? ''] ?? '#B3B3B3',
                     'you' => ! empty($x['logger']),
                     'xp' => match (true) {
@@ -262,7 +295,7 @@ class CompLibraryService
                 ], fn ($v) => $v !== null),
 
                 'when' => $g['r']->played_at?->format('D j M, H:i'),
-                'who' => explode('-', collect($g['a']['players'])->first(fn ($x) => ! empty($x['logger']))['name'] ?? '?')[0],
+                'who' => $this->pool ? '' : explode('-', collect($g['a']['players'])->first(fn ($x) => ! empty($x['logger']))['name'] ?? '?')[0],
                 'won' => $g['a']['won'],
                 'mmr' => isset($g['a']['mmr']['us'], $g['a']['mmr']['them']) ? $g['a']['mmr']['us'].' / '.$g['a']['mmr']['them'] : null,
                 'glad' => $gladOf($g),
@@ -285,8 +318,8 @@ class CompLibraryService
             'last' => (string) $games->last()['r']->played_at,
             'from' => substr((string) $games->first()['r']->played_at, 0, 10),
             'to' => substr((string) $games->last()['r']->played_at, 0, 10),
-            'characters' => $characters,
-            'byCharacter' => $chars->map(fn ($gs, $full) => ['name' => explode('-', $full)[0], 'won' => $gs->filter(fn ($g) => $g['a']['won'])->count(), 'lost' => $gs->reject(fn ($g) => $g['a']['won'])->count()])->values()->all(),
+            'characters' => $this->pool ? [] : $characters,
+            'byCharacter' => $this->pool ? [] : $chars->map(fn ($gs, $full) => ['name' => explode('-', $full)[0], 'won' => $gs->filter(fn ($g) => $g['a']['won'])->count(), 'lost' => $gs->reject(fn ($g) => $g['a']['won'])->count()])->values()->all(),
             'healers' => $healers->map(fn ($n, $spec) => ['spec' => $spec, 'games' => $n])->values()->all(),
             'difficulty' => $difficulty->all(),
             'goes' => [

@@ -60,6 +60,19 @@
   and default since 2026-10-05), **Basics**, Offensive/Defensive Cooldowns, Mobility, Crowd Control, PvP Talents,
   Burst Window. Since 2026-10-05 the eight basics are their own **Basics** tab, so "How to play
   it" starts with the team's plan (Chriso: people had to scroll past the basics to reach it).
+  - **Comps this season, from real games** (`CompBoard`, lazy, below the three slots; 2026-10-19,
+    Chriso: "a leaderboard of comps similar to how check pvp and arena logs work except this is
+    seasonal and updated from our mindcollector"). Every 3v3 comp in the games uploaded since the
+    PvP season began (Blizzard's season start, cached a day), by its three classes (RMP and RMD
+    apart), both teams of every game, a game uploaded twice counted once: record, win rate, the
+    teams' MMR and exp, the line-ups it was played as, and its record against each comp it met.
+    No player named. `CompLeaderboardService`, read from `arena_round_players`.
+  - **A comp's card** (`/wow/comps/played/{comp}/{vs?}`, `CompsPlayed`): the desktop app's comp
+    page (`CompLibraryService::buildPool()`) from every uploader's games against it, each read from
+    the side that faced it (`CompLeaderboardService::flip()`), every name replaced by its spec.
+    Chriso: to see it "they need to install the app and sign up": signed out, a sign-up overlay;
+    signed in without the app, a get-the-app overlay; both over the sample comp page, blurred. The
+    card itself is served only to an account with the app connected (`CompCardController`).
   - **How to play it** (`CompPlaybookService`, `livewire/partials/comp-playbook.blade.php`) is a
     plain guide for a player new to arena, so someone can be sent to the page: eight basics (shown
     alone before anything is picked, with a link to the basics check), then for the three specs:

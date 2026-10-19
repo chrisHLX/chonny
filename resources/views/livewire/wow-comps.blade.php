@@ -228,6 +228,10 @@
         @endforeach
     </div>
 
+    {{-- Comps this season, from the games uploaded to MindCollector (2026-10-19): lazy, so the
+         builder above draws first; each comp's card opens on its own page (CompsPlayed). --}}
+    <livewire:comp-board />
+
     {{-- Class/spec picker modal — a full grid of every class (2-column, class-colored headers)
          and its specs, replacing the old per-slot inline flyout (2026-08-16, direct request with
          a reference screenshot of the desired layout). `classPickerSlot` (root x-data) holds

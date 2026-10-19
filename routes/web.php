@@ -159,6 +159,12 @@ Route::prefix('wow')->group(function () {
     // Signed-in players are sent on to Home (the dashboard), as before. See App\Livewire\Landing.
     Route::get('/', \App\Livewire\Landing::class)->name('wow.home');
     Route::get('/comps', \App\Livewire\WowComps::class)->name('wow-comps');
+    // The comp board's cards (2026-10-19): the record for anyone, the card for an account with
+    // the app connected (CompsPlayed, CompLeaderboardService).
+    Route::get('/comps/played/{key}/{vs?}', \App\Livewire\CompsPlayed::class)
+        ->where(['key' => '[a-z]+(-[a-z]+){2,3}', 'vs' => '[a-z]+(-[a-z]+){2,3}'])->name('comps.played');
+    Route::get('/comps/played-card/{key}/{vs?}', \App\Http\Controllers\CompCardController::class)
+        ->where(['key' => '[a-z]+(-[a-z]+){2,3}', 'vs' => '[a-z]+(-[a-z]+){2,3}'])->middleware('throttle:60,1,comp-card')->name('comps.played.card');
 
     // Two comps on one clock — whose kill window opens first, and why. The first page here that
     // answers a question about a MATCHUP rather than about one spec or one comp, which is the

@@ -93,15 +93,27 @@
 <div class="head">
     @if ($c['nick'])<span class="chip glad">{{ $c['nick'] }}</span>@endif
     <span class="title">{{ $c['name'] }}</span>
-    <span class="when muted">{{ $c['games'] }} game{{ $c['games'] === 1 ? '' : 's' }} ({{ $c['record'][0] }}-{{ $c['record'][1] }}) &nbsp;&middot;&nbsp; {{ $c['from'] }} to {{ $c['to'] }}</span>
+    @if ($c['pool'] ?? false)
+        {{-- The website's comp board: the comp's own record, from every uploader's games. --}}
+        <span class="when muted">{{ $c['games'] }} game{{ $c['games'] === 1 ? '' : 's' }} this season, they won {{ $c['record'][1] }} and lost {{ $c['record'][0] }} &nbsp;&middot;&nbsp; {{ $c['from'] }} to {{ $c['to'] }}</span>
+    @else
+        <span class="when muted">{{ $c['games'] }} game{{ $c['games'] === 1 ? '' : 's' }} ({{ $c['record'][0] }}-{{ $c['record'][1] }}) &nbsp;&middot;&nbsp; {{ $c['from'] }} to {{ $c['to'] }}</span>
+    @endif
 </div>
 
+@if ($c['pool'] ?? false)
+    <div class="box small">From every game uploaded to MindCollector this season. Each game is read from the side of the team that played them, so "you" and "your" on this page are that team. No player is named.</div>
+@endif
+
 <div class="small sub">
-    <span class="muted">You played them on</span>
-    @foreach ($c['byCharacter'] as $ch)
-        <b>{{ $ch['name'] }}</b> {{ $ch['won'] }}-{{ $ch['lost'] }}@if (! $loop->last),@endif
-    @endforeach
-    <span class="muted">&nbsp;&middot;&nbsp; healed by</span>
+    @if ($c['byCharacter'])
+        <span class="muted">You played them on</span>
+        @foreach ($c['byCharacter'] as $ch)
+            <b>{{ $ch['name'] }}</b> {{ $ch['won'] }}-{{ $ch['lost'] }}@if (! $loop->last),@endif
+        @endforeach
+        <span class="muted">&nbsp;&middot;&nbsp;</span>
+    @endif
+    <span class="muted">healed by</span>
     @foreach ($c['healers'] as $h)
         {{ $h['spec'] }} <span class="muted">({{ $h['games'] }})</span>@if (! $loop->last),@endif
     @endforeach
@@ -274,12 +286,12 @@
     <div class="label">Every game against them <span class="aside">click a game for every player's experience and the game's numbers</span></div>
     <div class="box">
         <table class="stats">
-            <tr><td class="arrow"></td><td class="small muted">Played</td><td class="small muted">You</td><td class="small muted">Result</td><td class="small muted">MMR (you / them)</td><td class="small muted">Their Gladiator seasons</td><td class="small muted">First death</td></tr>
+            <tr><td class="arrow"></td><td class="small muted">Played</td>@unless ($c['pool'] ?? false)<td class="small muted">You</td>@endunless<td class="small muted">Result</td><td class="small muted">MMR (you / them)</td><td class="small muted">Their Gladiator seasons</td><td class="small muted">First death</td></tr>
             @foreach ($c['list'] as $row)
                 <tr class="game" onclick="toggle('{{ $row['id'] }}')">
                     <td class="arrow" id="{{ $row['id'] }}-a">&#9656;</td>
                     <td>{{ $row['when'] }}</td>
-                    <td>{{ $row['who'] }}</td>
+                    @unless ($c['pool'] ?? false)<td>{{ $row['who'] }}</td>@endunless
                     <td><span class="chip {{ $row['won'] ? 'won' : 'lost' }}">{{ $row['won'] ? 'WON' : 'LOST' }}</span></td>
                     <td class="muted">{{ $row['mmr'] ?? 'none in Solo Shuffle' }}</td>
                     <td>{{ $row['glad'] ?? 'not looked up' }}</td>
@@ -288,7 +300,7 @@
                 <tr class="more" id="{{ $row['id'] }}" style="display: none"><td colspan="7">
                     <table class="two"><tr>
                         <td class="col left">
-                            @foreach (['them' => 'Them', 'us' => 'Your team'] as $side => $title)
+                            @foreach (['them' => 'Them', 'us' => ($c['pool'] ?? false) ? 'Against them' : 'Your team'] as $side => $title)
                                 <div class="label" style="margin-top: 6px">{{ $title }}</div>
                                 <table class="who">
                                     @foreach ($row['players'][$side] as $pl)
