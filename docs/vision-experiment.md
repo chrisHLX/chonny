@@ -248,3 +248,112 @@ consistent with the Cyclone cast read in frame 1.
 
 **This reorders the work.** Colour-to-class and OCR of names and numbers are cheap, robust and
 nearly free. Icon matching is the expensive, fragile part and should not be the first thing built.
+
+## Who else is doing this (2026-10-21)
+
+### arenacoach.gg — the same product idea, built on the log
+
+A shipped WoW PvP desktop app doing roughly what a MindCollector overlay would do. Everything
+below is from their own marketing copy via search: the site sits behind Cloudflare and refuses
+automated fetches, and nobody here has used the product. Treat the numbers as self-reported.
+
+| Piece | What they do |
+|---|---|
+| Recording | Desktop app, **OBS-powered**, NVENC/AMD hardware encoding. Detects WoW, runs in background, records from queue to match end. |
+| Analysis source | **The combat log, not vision.** "Rebuilds the full game state from your combat log." Logs uploaded as `.txt`, stored per account. |
+| The overlay | Mistakes, cooldowns and kills **timestamped onto the recorded replay**, plus an events timeline — click a mistake, jump to it. Not a live in-game overlay. |
+| Detection | A "scenario engine" over DR levels, CC usage, cooldown availability, health thresholds, kill conditions. Categories: interrupts, defensives, CC/DR, kill windows. Labelled BETA. |
+| Headline mistake | "Deaths With Defensives Up" — claimed the most common mistake at every bracket. They say they check the player was not in CC. |
+| Pricing | Free: 5 analyses/week, 2v2 and skirmishes always free. Full mistake analysis is Premium. |
+
+Their own materials disagree on scale — "40+ mistake patterns" in one article whose own table
+lists 17 types.
+
+**What it means for this project.**
+
+1. **It confirms the recording architecture.** OBS with hardware encoding, app-driven start/stop on
+   queue — the approach recommended here before this product was known about. The app owning the
+   recorder is also what makes sync free: it holds the wall-clock anchor. Do not build a recorder.
+2. **Nobody is doing the vision half.** Their video is a playback surface; all analysis comes from
+   the log. The frame-reading question is unexplored rather than table stakes, which argues for
+   keeping it research and shipping the overlay on log data.
+3. **The differentiator is goes, and it is sharper than it first sounds.** "Died with a defensive
+   up" is a per-event check: one death, one availability lookup. A go is a structured *window* of
+   coordinated cooldowns across players — a higher-order object their per-event engine does not
+   appear to model. `wow:go-cooldowns` and `ArenaMomentService` already build these from the
+   cooldowns themselves rather than a fixed slice of clock.
+4. **Their headline feature is the thing CLAUDE.md warns against.** "Never call a count a fault,"
+   and defensives are read through the three questions. Availability is not obligation: the player
+   may be right to hold it, the damage may be unavoidable, or the real error may be thirty seconds
+   earlier. They mitigate the CC case and apparently nothing else.
+5. **Population norms are the moat.** A read of "behind other players of your spec" needs a corpus
+   (1,297 games / 7,071 player-rounds / 1,864 players / 34 specs at last run). Corpora take time to
+   accumulate and cannot be copied from a landing page.
+
+Unverified and worth an evening on the free tier: whether their defensive check has a real "should
+have pressed" model or is pure availability, and what Premium costs.
+
+### Prior art worth stealing from
+
+Nobody found doing *domain-model-over-screenshot* for WoW. But two mature fields solve the same
+shape of problem, and between them they name every failure in the spike above.
+
+**1. Detect, then reason — never let the model identify (OmniParser, Set-of-Mark).**
+Microsoft's OmniParser splits screen understanding into a perception stage (a detector fine-tuned
+on 67,000 screenshots finds interactable regions, plus OCR and a caption model) and a reasoning
+stage, where the VLM is shown numbered boxes and asked to name an **ID**, never raw coordinates or
+an identity. This is the tiered architecture proposed here, independently arrived at and
+benchmarked: screenshot-only OmniParser beat GPT-4V baselines that were given extra non-screenshot
+information.
+
+**2. Synthetic training data from the game's own assets (LeagueAI, arXiv 1905.13546).**
+The most directly applicable paper found. It builds training images by compositing the game's own
+assets over captured screenshots, explicitly including *masked UI elements and cursors*, so the
+detector learns how overlap affects objects and stops firing on UI. With domain randomization.
+
+> This converts the spike's failure into training signal. Cooldown swipe wedges, burned-in timer
+> text, desaturation, borders, scaling and stream compression are not obstacles to engineer around
+> — they are augmentations to synthesise. The corpus is already owned: **2,544 unique icons** can
+> generate effectively unlimited labelled examples with exactly the corruptions that broke the
+> hand-designed descriptor. Train a small classifier instead of hand-tuning a distance metric.
+
+**3. The generalisation warning (PandaScore, on DeepLeague).**
+DeepLeague trained an SSD detector on 100,000 labelled League minimap images. PandaScore found it
+worked on the held-out test set but **did not generalise to champions absent from the training
+set**. The WoW analogue is exact and worse: a detector trained only on icons observed in played
+games will fail on everything else, and every patch adds spells. The mitigation is the same as
+above — synthesise from the *whole* corpus, not from what has been observed. Recent work
+(GIST / AAAI 2026) does precisely this, combining synthetic data with a subset of real replay data
+via transfer learning, aimed at small objects, fast movement and occlusion.
+
+**4. Calibrate the geometry before recognising anything (sports broadcast tracking).**
+SoccerNet game-state reconstruction and the commercial trackers do not guess where things are.
+They fit a camera model to the *known pitch geometry* — projecting candidate line sets and
+choosing the one with least L2 distance to the ideal model — then project detections into pitch
+coordinates. Per-frame homography, with optical flow for camera motion between frames.
+
+> The spike's second-worst failure was hand-placing cell coordinates by eye. The UI analogue of a
+> homography is: detect a few anchor elements, solve the layout transform once, then read every
+> other element at a known offset. Never slide a window and hope.
+
+**5. Temporal consistency (all of the above).**
+Sports pipelines use per-frame calibration plus re-identification across frames; the esports work
+targets occlusion and fast movement the same way. Single-frame reads are noisy in a way sequences
+are not: a health bar cannot jump, a spell cannot be cast twice inside a GCD, a player cannot
+teleport. **The entire spike above was single-frame**, which is the weakest possible setting.
+
+**Where the analogy breaks, and it matters.** A football pitch is always the same size; the League
+minimap is always the same layout. **A WoW UI is user-configurable** — addons, profiles, scale,
+bar arrangement. So calibration cannot be solved once globally the way homography is. The useful
+decomposition: **icon identity is universal** (the assets are fixed and already owned), **icon
+location is per-player** (calibrate per UI, or per stream). That split is what makes the problem
+tractable at all, and it is the reason the colour-to-class route is worth building first — it
+needs no layout knowledge whatsoever.
+
+### Sources
+
+- arenacoach.gg: site, `/coaching`, `/faq`, `/privacy`, `/guides/top-10-arena-mistakes-holding-you-back`
+- OmniParser: arXiv 2408.00203
+- LeagueAI: arXiv 1905.13546
+- DeepLeague: Farza Majeed, and PandaScore's write-up on its generalisation limits
+- SoccerNet game state reconstruction: arXiv 2504.06357
