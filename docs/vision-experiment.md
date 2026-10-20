@@ -357,3 +357,46 @@ needs no layout knowledge whatsoever.
 - LeagueAI: arXiv 1905.13546
 - DeepLeague: Farza Majeed, and PandaScore's write-up on its generalisation limits
 - SoccerNet game state reconstruction: arXiv 2504.06357
+
+## Correction (2026-10-21): do not train a model yet
+
+The section above ends by recommending a synthetic generator and a trained classifier as the next
+step. **That was premature and is withdrawn.** The reasoning it rests on does not hold up.
+
+The only evidence that classical matching fails is one spike that used a 12x12 RGB cosine
+descriptor -- close to average colour -- on the worst available frame, with cell coordinates
+placed by eye. Its four diagnosed failures were: guessed grid geometry, cooldown text and wedge
+over the art, a descriptor too weak to discriminate, and a single frame. **None of those requires
+machine learning to fix.** They describe an implementation that took every shortcut, not a method
+that has been shown to be inadequate.
+
+**The analogy was over-transferred.** DeepLeague and LeagueAI solve object detection and
+localisation in a rendered 3D scene: champions at arbitrary positions, moving, occluded, partly
+off-minimap. Learned features are genuinely needed there. This problem is "which of 2,544 fixed
+sprites occupies this rectangle", where the asset is pixel-identical to a file already on disk.
+That is sprite matching in a constrained grid -- a materially easier problem. Their solution was
+imported without checking that their problem had been.
+
+**And it trades away the point.** The argument for looking icons up rather than asking a vision
+model was: deterministic, auditable, calibrated. A trained classifier surrenders two of those. It
+is still better than a general VLM -- closed label set, calibratable reject threshold -- but it
+moves back along the exact axis the approach was chosen to optimise, and it needs retraining every
+patch.
+
+### The order to actually work in
+
+1. **Colour to class.** A 13-way lookup against `config/wow_classes.php`. No computer vision at
+   all, no layout knowledge, survives compression. Highest value per hour by a wide margin.
+2. **OCR** for names, numbers and timers. Off the shelf.
+3. **Classical icon matching, properly built.** Detect the grid rather than guessing it. The timer
+   text occupies a known central region: mask it. The cooldown wedge is a computable geometric
+   shape: detect its angle and match only the unobscured sector. Normalise brightness to remove
+   the dimming. Then a real descriptor -- gradient or edge based, not mean colour -- on what
+   survives, with top-k plus domain constraints (a candidate no spec present can press is
+   eliminated) and a calibrated reject threshold so "unknown" is a real output.
+4. **Only if 3 plateaus**, the synthetic generator and a small classifier. The LeagueAI technique
+   is the right one to reach for at that point and the notes above stand; it is just not the
+   next step.
+
+Step 3 is roughly a day, preserves determinism and auditability, and must be shown to fail before
+step 4 is justified. The spike was not step 3. It was a sketch of step 3 with every shortcut taken.
