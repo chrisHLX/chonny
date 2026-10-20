@@ -21,6 +21,7 @@ heading. Rules are still cited by number and still mean the same rule.
 | `match-review-tools.md` | current | Every research tool in `tools/match-review/`, what it answers, and the one-off scripts worth rewriting. Read before writing a new analysis script. |
 | `tools/log-manager/README.md` | current | The desktop app (MindCollector Logs): every page, where its files live, how it syncs. |
 | `tools/app-pictures/README.md` | current | The pictures of the app on the front page and `/wow/app`: real pages with every name swapped out, and the two checks before committing new ones. |
+| `vision-experiment.md` | open experiment | Reading a game from the screen: what a frame alone can say, the [READ]/[INFER]/[PRIOR]/[UNKNOWN] protocol that keeps the answer honest, and frame 1's result. n=1, nothing diffed against a log yet. |
 | `guides-from-play.md` | current | How played games become guides, and the level-of-play rule. Read before drafting a guide from match data. |
 | `addon-upgrades.md` | current | What Chriso wants next from the capture side. Wants, not design. |
 | `docs/reviews/` | history | One-off reviews of a session (2026-10-01: Disc with LFG partners). |
