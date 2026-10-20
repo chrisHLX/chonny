@@ -60,13 +60,25 @@
   and default since 2026-10-05), **Basics**, Offensive/Defensive Cooldowns, Mobility, Crowd Control, PvP Talents,
   Burst Window. Since 2026-10-05 the eight basics are their own **Basics** tab, so "How to play
   it" starts with the team's plan (Chriso: people had to scroll past the basics to reach it).
-  - **Comps this season, from real games** (`CompBoard`, lazy, below the three slots; 2026-10-19,
-    Chriso: "a leaderboard of comps similar to how check pvp and arena logs work except this is
-    seasonal and updated from our mindcollector"). Every 3v3 comp in the games uploaded since the
-    PvP season began (Blizzard's season start, cached a day), by its three classes (RMP and RMD
-    apart), both teams of every game, a game uploaded twice counted once: record, win rate, the
-    teams' MMR and exp, the line-ups it was played as, and its record against each comp it met.
-    No player named. `CompLeaderboardService`, read from `arena_round_players`.
+  - **This season's top comps** (`CompBoard`, lazy, below the three slots). From 2026-10-19 to
+    10-21 this was the whole board; now it is a preview of the leaderboard (Chriso: "just the top
+    5 different comps and MMR as a preview that allows people to then click the comps
+    leaderboard"). **The page is for choosing and learning a comp; the leaderboard is for real
+    games**, and the preview follows that: with no comp picked it is the top five (games, win
+    rate, MMR), and a row loads that comp's most-played line-up into the slots
+    (`WowComps::pickLineup()`, the `pick-lineup` event); once a comp is picked it is one line,
+    that comp in real games, with "See its games" (its card) and the leaderboard. Remounted by
+    its `:key` when the comp changes (`WowComps::boardKey()`).
+  - **The comp leaderboard** (`/wow/comps/leaderboard`, `CompLeaderboard`, 2026-10-21; Chriso:
+    "comps with exp and mmr and then matches ... just comp filtered by EXP"). Every 3v3 comp in
+    the games uploaded since the PvP season began (Blizzard's season start, cached a day), by its
+    three classes (RMP and RMD apart), both teams of every game, a game uploaded twice counted
+    once: games, record, win rate, the teams' MMR and exp, its most-played line-up. Filtered by
+    the team's experience (`CompLeaderboardService::EXP_BANDS`: 1800, 2100, 2400, the rating
+    milestones players name; `?exp=` in the URL); a team whose experience Blizzard cannot give is
+    left out of a filter, and the page says how many are known. No comp-vs-comp: the record
+    against each comp stays in the board's data (a `/vs` card still opens) but is not drawn. No
+    player named. `CompLeaderboardService`, read from `arena_round_players`.
   - **A comp's card** (`/wow/comps/played/{comp}/{vs?}`, `CompsPlayed`): the desktop app's comp
     page (`CompLibraryService::buildPool()`) from every uploader's games against it, each read from
     the side that faced it (`CompLeaderboardService::flip()`), every name replaced by its spec.

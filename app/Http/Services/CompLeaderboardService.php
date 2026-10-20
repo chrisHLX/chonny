@@ -28,6 +28,14 @@ class CompLeaderboardService
     /** Cached this long; the key also changes with every new upload. */
     private const TTL_MINUTES = 30;
 
+    /**
+     * The leaderboard's experience filter (2026-10-21, Chriso: "the comps with exp and mmr and then
+     * matches ... just comp filtered by EXP"): the team's experience at least this, by the rating
+     * milestones players already name. A team's experience is its players' best 3v3 rating ever,
+     * averaged over those Blizzard has a profile for.
+     */
+    public const EXP_BANDS = [1800 => 'Rival', 2100 => 'Duelist', 2400 => 'Gladiator rating'];
+
     public function __construct(private BattlenetClient $client, private CompLibraryService $library) {}
 
     /**
@@ -122,25 +130,35 @@ class CompLeaderboardService
 
     /**
      * The board: every comp with its record, the average MMR and experience of the teams that
-     * played it, its usual specs, and its record against each comp it met.
+     * played it, its usual specs, and its record against each comp it met. With $minExp (a key of
+     * EXP_BANDS), only the teams whose experience is known and at least that; any other value is
+     * the whole board.
      *
-     * @return array{season: array, games: int, comps: list<array>}
+     * @return array{season: array, games: int, teams: int, known: int, minExp: ?int, comps: list<array>}
      */
-    public function board(): array
+    public function board(?int $minExp = null): array
     {
+        $minExp = isset(self::EXP_BANDS[$minExp]) ? $minExp : null;
         $teams = $this->teams();
         $signature = $teams->count().':'.$teams->max('round');
 
-        return Cache::remember('comp-board:v2:'.$signature, now()->addMinutes(self::TTL_MINUTES), function () use ($teams) {
+        return Cache::remember('comp-board:v3:'.$signature.':'.($minExp ?? 'all'), now()->addMinutes(self::TTL_MINUTES), function () use ($teams, $minExp) {
             $xp = app(PlayerExperienceService::class)->cachedMany($teams->pluck('names')->flatten()->unique()->values()->all());
             $specs = app(PlayerGamesService::class);
             $labels = $teams->pluck('key')->unique()->mapWithKeys(fn ($k) => [$k => self::label($k)]);
 
-            $comps = $teams->groupBy('key')->map(function (Collection $games, string $key) use ($xp, $specs, $labels) {
+            // A team's experience: its best 3v3 rating ever, averaged over the players Blizzard has.
+            $teams = $teams->map(fn ($t) => $t + ['exp' => collect($t['names'])->map(fn ($n) => $xp[$n]['exp3v3'] ?? null)->filter()->avg()]);
+            $known = $teams->whereNotNull('exp')->count();
+            $all = $teams->count();
+            if ($minExp) {
+                $teams = $teams->filter(fn ($t) => $t['exp'] !== null && $t['exp'] >= $minExp);
+            }
+
+            $comps = $teams->groupBy('key')->map(function (Collection $games, string $key) use ($specs, $labels) {
                 $won = $games->where('won', true)->count();
                 $lost = $games->where('won', false)->count();
-                // A team's experience: its best 3v3 rating ever, averaged over the players Blizzard has.
-                $exp = $games->map(fn ($g) => collect($g['names'])->map(fn ($n) => $xp[$n]['exp3v3'] ?? null)->filter()->avg())->filter();
+                $exp = $games->pluck('exp')->filter();
 
                 return [
                     'key' => $key,
@@ -155,7 +173,12 @@ class CompLeaderboardService
                     'last' => $games->max('at'),
                     // The line-ups it was played as, most common first: "Subtlety Rogue, Frost Mage, Discipline Priest".
                     'lineups' => $games->countBy(fn ($g) => implode(',', $g['specs']))->sortDesc()->take(3)
-                        ->map(fn ($n, $ids) => ['specs' => collect(explode(',', $ids))->filter()->map(fn ($id) => $specs->spec((int) $id))->values()->all(), 'games' => $n])
+                        ->map(fn ($n, $ids) => [
+                            'specs' => collect(explode(',', $ids))->filter()->map(fn ($id) => $specs->spec((int) $id))->values()->all(),
+                            // Blizzard's spec ids, so the comps page can load the line-up into its slots.
+                            'ids' => collect(explode(',', $ids))->filter()->map(fn ($id) => (int) $id)->values()->all(),
+                            'games' => $n,
+                        ])
                         ->values()->all(),
                     'matchups' => $games->groupBy('vs')->map(fn (Collection $g, string $vs) => [
                         'key' => $vs,
@@ -168,7 +191,7 @@ class CompLeaderboardService
                 ];
             })->sortByDesc(fn ($c) => [$c['games'], $c['rate'] ?? 0])->values()->all();
 
-            return ['games' => $teams->pluck('match')->unique()->count(), 'comps' => $comps];
+            return ['games' => $teams->pluck('match')->unique()->count(), 'teams' => $all, 'known' => $known, 'minExp' => $minExp, 'comps' => $comps];
         }) + ['season' => $this->season()];
     }
 

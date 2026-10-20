@@ -3,11 +3,17 @@
 namespace Tests\Feature;
 
 use App\Http\Services\CompLeaderboardService;
+use App\Livewire\CompBoard;
+use App\Livewire\WowComps;
 use App\Models\ArenaRound;
+use App\Models\Game;
+use App\Models\GameClass;
+use App\Models\Specialization;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Http;
+use Livewire\Livewire;
 use Tests\TestCase;
 
 /**
@@ -109,5 +115,80 @@ class CompBoardTest extends TestCase
         $this->actingAs($player)->get('/wow/comps/played-card/mage-rogue-priest')->assertOk()->assertDontSee('Rogueguy');
 
         $this->get('/wow/comps/played/warrior-warrior-warrior')->assertNotFound();
+    }
+
+    /** A character's experience as PlayerExperienceService caches it after a lookup. */
+    private function experience(string $fullName, int $best3v3): void
+    {
+        Cache::put('player_experience:v1:'.md5(mb_strtolower($fullName)), ['found' => true, 'exp3v3' => $best3v3], now()->addDay());
+    }
+
+    public function test_the_leaderboard_filters_comps_by_the_teams_experience(): void
+    {
+        $this->game(User::factory()->create(), 'm1', true);
+        $this->game(User::factory()->create(), 'm2', true);   // 2-0, so RMP sorts first on the tie in games
+        // RMP's players are known, 2500 on average; Jungle's have no profile.
+        $this->experience('Rogueguy-Area52-US', 2600);
+        $this->experience('Mageguy-Area52-US', 2500);
+        $this->experience('Priestguy-Area52-US', 2400);
+
+        $svc = app(CompLeaderboardService::class);
+        $all = $svc->board();
+        $this->assertSame(['mage-rogue-priest', 'druid-hunter-priest'], array_column($all['comps'], 'key'));
+        $this->assertSame([4, 2], [$all['teams'], $all['known']]);
+
+        $top = $svc->board(2400);
+        $this->assertSame(['mage-rogue-priest'], array_column($top['comps'], 'key'), 'a team of unknown experience is left out of a filter');
+        $this->assertSame([2500, 2, 2400], [$top['comps'][0]['exp'], $top['games'], $top['minExp']]);
+        $this->assertCount(2, $svc->board(2401)['comps'], 'a number that is not a band is the whole board');
+
+        $this->get('/wow/comps/leaderboard')->assertOk()->assertSee('RMP')->assertSee('Jungle')->assertSee('Known for 2 of 4 teams');
+        $this->get('/wow/comps/leaderboard?exp=2400')->assertOk()->assertSee('RMP')->assertDontSee('Jungle');
+        $this->get('/wow/comps/leaderboard?exp=junk')->assertOk()->assertSee('Jungle');
+    }
+
+    public function test_the_preview_shows_the_top_comps_then_only_the_picked_one(): void
+    {
+        $this->game(User::factory()->create(), 'm1', true);
+
+        Livewire::withoutLazyLoading()->test(CompBoard::class)
+            ->assertSee('top comps')->assertSee('RMP')->assertSee('Jungle')
+            ->assertSee('/wow/comps/leaderboard', false)
+            ->call('pick', 'mage-rogue-priest')
+            ->assertDispatched('pick-lineup', specs: [63, 256, 259]);
+    }
+
+    public function test_the_preview_of_a_picked_comp_is_one_line_with_its_games(): void
+    {
+        $this->game(User::factory()->create(), 'm1', true);
+
+        // Its own test: only the first Livewire::test() of a component in a process returns full HTML.
+        Livewire::withoutLazyLoading()->test(CompBoard::class, ['selected' => 'mage-rogue-priest'])
+            ->assertSee('in real games this season')->assertDontSee('Jungle')
+            ->assertSee('/wow/comps/played/mage-rogue-priest', false);
+    }
+
+    public function test_a_line_up_from_the_preview_fills_the_comps_page_slots_healer_first(): void
+    {
+        $game = Game::create(['slug' => 'wow', 'name' => 'World of Warcraft']);
+        $spec = function (string $class, string $slug, int $external) use ($game) {
+            $c = GameClass::firstOrCreate(['game_id' => $game->id, 'slug' => $class], ['name' => ucfirst($class)]);
+
+            return Specialization::create(['class_id' => $c->id, 'name' => ucfirst($slug), 'slug' => $slug, 'external_spec_id' => $external]);
+        };
+        $disc = $spec('priest', 'discipline', 256);
+        $fire = $spec('mage', 'fire', 63);
+        $sin = $spec('rogue', 'assassination', 259);
+        $spec('priest', 'holy', 257);
+
+        $page = Livewire::test(WowComps::class)
+            ->call('pickLineup', [256, 257, 63])   // two healers: not a line-up
+            ->assertSet('slots.0.specId', null)
+            ->call('pickLineup', [63, 256, 259])
+            ->assertSet('slots.0.specId', $disc->id)
+            ->assertSet('slots.1.specId', $fire->id)
+            ->assertSet('slots.2.specId', $sin->id);
+
+        $this->assertSame('mage-rogue-priest', $page->instance()->boardKey());
     }
 }

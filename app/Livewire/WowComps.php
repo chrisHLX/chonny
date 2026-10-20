@@ -20,6 +20,7 @@ use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Cache;
 use Livewire\Attributes\Computed;
 use Livewire\Attributes\Locked;
+use Livewire\Attributes\On;
 use Livewire\Component;
 
 /**
@@ -296,6 +297,55 @@ class WowComps extends Component
         }
 
         PageViewEvent::log('wow_comps_preset', slot: $key);
+    }
+
+    /**
+     * Loads a line-up from this season's top comps (CompBoard's preview, 2026-10-21) into the three
+     * slots: Blizzard's spec ids, the healer into the Healer slot. Like applyPreset() it is
+     * all-or-nothing, and its argument comes from the browser, so anything but three known specs
+     * with exactly one healer is a silent no-op. Each slot goes through selectSpec(), so the pick
+     * is counted like one made by hand; CompBoard counts which row it came from.
+     *
+     * @param  array<int, int|string>  $specs
+     */
+    #[On('pick-lineup')]
+    public function pickLineup(array $specs): void
+    {
+        $ids = array_values(array_unique(array_filter(array_map('intval', $specs))));
+        if (count($ids) !== 3) {
+            return;
+        }
+
+        $found = Specialization::with('gameClass')->whereIn('external_spec_id', $ids)->get();
+        if ($found->count() !== 3) {
+            return;
+        }
+
+        [$healers, $dps] = $found->partition(fn (Specialization $s) => self::roleOf((string) $s->gameClass?->slug, $s->slug) === 'healer');
+        if ($healers->count() !== 1) {
+            return;
+        }
+
+        foreach ($healers->concat($dps)->values() as $i => $spec) {
+            $this->selectSpec($i, $spec->class_id, $spec->id);
+        }
+    }
+
+    /**
+     * The comp board's key for the comp in the slots ("mage-rogue-priest": the two DPS classes
+     * sorted, then the healer's; CompLeaderboardService::keyOf()), or null until all three are
+     * picked. The board counts a comp by its classes, so any specs of them match.
+     */
+    public function boardKey(): ?string
+    {
+        if (! $this->compIsComplete()) {
+            return null;
+        }
+
+        $slugs = GameClass::whereIn('id', collect($this->slots)->pluck('classId'))->pluck('slug', 'id');
+        $dps = collect($this->slots)->slice(1)->map(fn ($slot) => $slugs[$slot['classId']] ?? 'unknown')->sort()->values();
+
+        return $dps->implode('-').'-'.($slugs[$this->slots[0]['classId']] ?? 'unknown');
     }
 
     /**
@@ -1003,6 +1053,7 @@ class WowComps extends Component
             'suggestedChain' => $this->suggestedChain,
             'drCategoryLegend' => $this->drCategoryLegend,
             'offensiveRotations' => $this->offensiveRotations,
+            'boardKey' => $this->boardKey(),
         ])->layout('layouts.app', [
             'title' => 'MindCollector — WoW 3v3 Arena Comp Builder & Game Plans',
             'description' => 'Build a 3v3 arena team and compare every spec\'s spell kit side by side — crowd-control chains, cooldowns, burst windows and counters — then turn it into a game plan you can share with your team.',

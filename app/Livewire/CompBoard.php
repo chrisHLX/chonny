@@ -6,33 +6,51 @@ use App\Http\Services\CompLeaderboardService;
 use App\Models\GameClass;
 use App\Models\PageViewEvent;
 use Livewire\Attributes\Lazy;
+use Livewire\Attributes\Locked;
 use Livewire\Component;
 
 /**
- * "Comps this season" on the 3v3 comps page (/wow/comps, 2026-10-19): every 3v3 comp in the games
- * uploaded to MindCollector this season, with its record, the MMR and experience of the teams that
- * played it, and how it did against each comp it met (CompLeaderboardService). No player is named.
+ * "This season's top comps" on the 3v3 comps page (/wow/comps): a preview of the comp leaderboard
+ * (CompLeaderboard, /wow/comps/leaderboard), from the games uploaded to MindCollector this season.
  *
- * Open to everyone; a comp's card (its goes, CC chains, deaths and every game) opens on its own
- * page, which asks for an account with the app connected (CompsPlayed). Lazy, so the comps page,
- * already the heaviest on the site, draws first and a crawler never computes the board.
+ * Until 2026-10-21 this was the whole board, every comp with its matchups, between the slots and
+ * the comp's guide. Chriso: show "just the top 5 different comps and MMR as a preview that allows
+ * people to then click the comps leaderboard". The page is for choosing and learning a comp, so
+ * the preview serves that: before a comp is picked it is the top five, and a row loads that comp's
+ * usual line-up into the slots; once a comp is picked it is one line, that comp in real games,
+ * with the way to its card (CompsPlayed) and to the leaderboard. The leaderboard is where real
+ * games are browsed.
+ *
+ * Lazy, so the comps page, already the heaviest on the site, draws first and a crawler never
+ * computes the board.
  */
 #[Lazy]
 class CompBoard extends Component
 {
-    /** Comps shown before "Show every comp". */
-    public const SHOWN = 15;
+    /** Comps in the preview. */
+    public const SHOWN = 5;
 
-    public bool $all = false;
+    /** The comp in the page's slots, as a board key; the parent remounts this when it changes. */
+    #[Locked]
+    public ?string $selected = null;
 
-    public function mount(): void
+    public function mount(?string $selected = null): void
     {
+        $this->selected = $selected;
         PageViewEvent::log('comp_board');
     }
 
-    public function showAll(): void
+    /** A row picked: count it, then hand its line-up to the page (WowComps::pickLineup()). */
+    public function pick(string $key): void
     {
-        $this->all = true;
+        $comp = collect(app(CompLeaderboardService::class)->board()['comps'])->firstWhere('key', $key);
+        $ids = $comp['lineups'][0]['ids'] ?? [];
+        if (count($ids) !== 3) {
+            return;
+        }
+
+        PageViewEvent::log('comp_board', null, null, 'pick');
+        $this->dispatch('pick-lineup', specs: $ids);
     }
 
     public function placeholder(): string
@@ -46,9 +64,10 @@ class CompBoard extends Component
 
         return view('livewire.comp-board', [
             'board' => $board,
-            'comps' => $this->all ? $board['comps'] : array_slice($board['comps'], 0, self::SHOWN),
+            'comps' => array_slice($board['comps'], 0, self::SHOWN),
+            'picked' => $this->selected ? collect($board['comps'])->firstWhere('key', $this->selected) : null,
+            'pickedLabel' => $this->selected ? CompLeaderboardService::label($this->selected) : null,
             'classes' => GameClass::whereHas('game', fn ($q) => $q->where('slug', 'wow'))->get()->keyBy('slug'),
-            'colors' => config('wow_classes.colors', []),
         ]);
     }
 }

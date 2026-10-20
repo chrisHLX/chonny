@@ -229,8 +229,11 @@
     </div>
 
     {{-- Comps this season, from the games uploaded to MindCollector (2026-10-19): lazy, so the
-         builder above draws first; each comp's card opens on its own page (CompsPlayed). --}}
-    <livewire:comp-board />
+         builder above draws first. Since 2026-10-21 a preview: the top five until a comp is
+         picked (a row loads it into the slots), then one line for the picked comp's real games.
+         The full board is its own page (CompLeaderboard). The key remounts it when the comp
+         changes, the only prop it takes. --}}
+    <livewire:comp-board :selected="$boardKey" :key="'comp-board-'.($boardKey ?? 'none')" />
 
     {{-- Class/spec picker modal — a full grid of every class (2-column, class-colored headers)
          and its specs, replacing the old per-slot inline flyout (2026-08-16, direct request with

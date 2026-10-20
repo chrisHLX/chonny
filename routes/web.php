@@ -161,6 +161,8 @@ Route::prefix('wow')->group(function () {
     Route::get('/comps', \App\Livewire\WowComps::class)->name('wow-comps');
     // The comp board's cards (2026-10-19): the record for anyone, the card for an account with
     // the app connected (CompsPlayed, CompLeaderboardService).
+    // Every comp this season, filtered by the teams' experience (2026-10-21); /wow/comps keeps its top five.
+    Route::get('/comps/leaderboard', \App\Livewire\CompLeaderboard::class)->name('comps.leaderboard');
     Route::get('/comps/played/{key}/{vs?}', \App\Livewire\CompsPlayed::class)
         ->where(['key' => '[a-z]+(-[a-z]+){2,3}', 'vs' => '[a-z]+(-[a-z]+){2,3}'])->name('comps.played');
     Route::get('/comps/played-card/{key}/{vs?}', \App\Http\Controllers\CompCardController::class)
