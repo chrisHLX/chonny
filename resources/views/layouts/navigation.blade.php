@@ -107,6 +107,17 @@
             3v3 Comps
         </a>
 
+        {{-- Leaderboards (2026-10-21): every comp this season from real games by experience, and
+             Blizzard's 3v3 ladder with the comps each player was seen on. Lit on a comp's card too,
+             which is where its rows lead. --}}
+        <a href="{{ route('leaderboards') }}" wire:navigate
+           class="sidebar-item {{ request()->routeIs('leaderboards', 'comps.played') ? 'active' : '' }}">
+            <svg class="w-[18px] h-[18px] shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 20V10m6 10V4m6 16v-7m4 7H2"/>
+            </svg>
+            Leaderboards
+        </a>
+
         <a href="{{ route('matchup-lab') }}" wire:navigate
            class="sidebar-item {{ request()->routeIs('matchup-lab') ? 'active' : '' }}">
             <svg class="w-[18px] h-[18px] shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">

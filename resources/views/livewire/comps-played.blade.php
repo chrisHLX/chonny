@@ -1,5 +1,5 @@
 <div class="max-w-[1400px] mx-auto px-4 py-8">
-    <a href="{{ route('comps.leaderboard') }}" wire:navigate class="text-[12px] text-ink-subtle hover:text-gold transition-colors">&larr; Comp leaderboard</a>
+    <a href="{{ route('leaderboards') }}" wire:navigate class="text-[12px] text-ink-subtle hover:text-gold transition-colors">&larr; Leaderboards</a>
 
     <div class="flex flex-wrap items-center gap-3 mt-3 mb-5">
         <span class="flex -space-x-1">

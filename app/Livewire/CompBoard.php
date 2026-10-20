@@ -10,8 +10,8 @@ use Livewire\Attributes\Locked;
 use Livewire\Component;
 
 /**
- * "This season's top comps" on the 3v3 comps page (/wow/comps): a preview of the comp leaderboard
- * (CompLeaderboard, /wow/comps/leaderboard), from the games uploaded to MindCollector this season.
+ * "This season's top comps" on the 3v3 comps page (/wow/comps): a preview of the Leaderboards
+ * page's comps tab (Leaderboards, /wow/leaderboards), from the games uploaded this season.
  *
  * Until 2026-10-21 this was the whole board, every comp with its matchups, between the slots and
  * the comp's guide. Chriso: show "just the top 5 different comps and MMR as a preview that allows

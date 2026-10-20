@@ -30,7 +30,7 @@
                 @if ($picked)
                     <a href="{{ route('comps.played', ['key' => $picked['key']]) }}" wire:navigate class="btn-secondary text-[12.5px]">See its games</a>
                 @endif
-                <a href="{{ route('comps.leaderboard') }}" wire:navigate class="btn-ghost text-[12.5px]">Comp leaderboard &rarr;</a>
+                <a href="{{ route('leaderboards') }}" wire:navigate class="btn-ghost text-[12.5px]">Leaderboards &rarr;</a>
             </span>
         </div>
     @else
@@ -68,7 +68,7 @@
                     </button>
                 @endforeach
             </div>
-            <a href="{{ route('comps.leaderboard') }}" wire:navigate class="btn-secondary inline-flex mt-4 text-[12.5px]">
+            <a href="{{ route('leaderboards') }}" wire:navigate class="btn-secondary inline-flex mt-4 text-[12.5px]">
                 See all {{ count($board['comps']) }} comps on the leaderboard &rarr;
             </a>
         @endif

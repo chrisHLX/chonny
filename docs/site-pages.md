@@ -69,16 +69,29 @@
     (`WowComps::pickLineup()`, the `pick-lineup` event); once a comp is picked it is one line,
     that comp in real games, with "See its games" (its card) and the leaderboard. Remounted by
     its `:key` when the comp changes (`WowComps::boardKey()`).
-  - **The comp leaderboard** (`/wow/comps/leaderboard`, `CompLeaderboard`, 2026-10-21; Chriso:
-    "comps with exp and mmr and then matches ... just comp filtered by EXP"). Every 3v3 comp in
-    the games uploaded since the PvP season began (Blizzard's season start, cached a day), by its
-    three classes (RMP and RMD apart), both teams of every game, a game uploaded twice counted
-    once: games, record, win rate, the teams' MMR and exp, its most-played line-up. Filtered by
-    the team's experience (`CompLeaderboardService::EXP_BANDS`: 1800, 2100, 2400, the rating
-    milestones players name; `?exp=` in the URL); a team whose experience Blizzard cannot give is
-    left out of a filter, and the page says how many are known. No comp-vs-comp: the record
-    against each comp stays in the board's data (a `/vs` card still opens) but is not drawn. No
-    player named. `CompLeaderboardService`, read from `arena_round_players`.
+  - **Leaderboards** (`/wow/leaderboards`, `Leaderboards`, in the sidebar under Plan, 2026-10-21).
+    Two tabs (`?tab=players`):
+    - **Comps** (Chriso: "comps with exp and mmr and then matches ... just comp filtered by
+      EXP"). Every 3v3 comp in the games uploaded since the PvP season began (Blizzard's season
+      start, cached a day), by its three classes (RMP and RMD apart), both teams of every game, a
+      game uploaded twice counted once: games, record, win rate, the teams' MMR and exp, its
+      most-played line-up, and the three highest-rated players on Blizzard's 3v3 ladder seen
+      playing it ("Played by", each linked to their player page). Filtered by the team's
+      experience (`CompLeaderboardService::EXP_BANDS`: 1800, 2100, 2400, the rating milestones
+      players name; `?exp=`); a team whose experience Blizzard cannot give is left out of a
+      filter, and the page says how many are known. No comp-vs-comp: the record against each comp
+      stays in the board's data (a `/vs` card still opens) but is not drawn. Read from
+      `arena_round_players`.
+    - **Players** (Chriso: "integrate the comps to player leaderboard"). Blizzard's 3v3 ladder
+      for a region (`?region=`, `pvp_leaderboard_entries`, pulled daily), 100 at a time to 1,000,
+      each player with the comps they were seen playing in uploaded games, linked to the comp's
+      card; "Seen in uploaded games" keeps only those. Blizzard's ladder names no team, so "seen
+      on" is only ever what uploads show, and the page says how many ladder players have any. A
+      3v3 entry names no spec, so a player's class comes from their Shuffle or Blitz entry, else
+      from their games. Matched on region, realm (`RealmDirectory::key()`) and name
+      (`CompLeaderboardService::whoKey()`).
+    Players are named here, where the comp card names no one: only players on Blizzard's public
+    ladder, and the same games already show on their public player page.
   - **A comp's card** (`/wow/comps/played/{comp}/{vs?}`, `CompsPlayed`): the desktop app's comp
     page (`CompLibraryService::buildPool()`) from every uploader's games against it, each read from
     the side that faced it (`CompLeaderboardService::flip()`), every name replaced by its spec.

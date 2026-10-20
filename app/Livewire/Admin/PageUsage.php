@@ -82,7 +82,7 @@ class PageUsage extends Component
         'player_search' => 'Player Lookup',
         'player_profile' => 'Player Profile (public)',
         'comp_board' => 'Top Comps (preview on 3v3 Comps)',
-        'comp_leaderboard' => 'Comp Leaderboard',
+        'leaderboards' => 'Leaderboards (comps and players)',
         'comp_played' => 'Comp Card (from the board)',
         'wow_quiz' => 'Class Quizzes',
         'wow_quiz_play' => 'Class Quiz (playing)',

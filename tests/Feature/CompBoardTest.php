@@ -8,6 +8,7 @@ use App\Livewire\WowComps;
 use App\Models\ArenaRound;
 use App\Models\Game;
 use App\Models\GameClass;
+use App\Models\PvpLeaderboardEntry;
 use App\Models\Specialization;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
@@ -142,9 +143,45 @@ class CompBoardTest extends TestCase
         $this->assertSame([2500, 2, 2400], [$top['comps'][0]['exp'], $top['games'], $top['minExp']]);
         $this->assertCount(2, $svc->board(2401)['comps'], 'a number that is not a band is the whole board');
 
-        $this->get('/wow/comps/leaderboard')->assertOk()->assertSee('RMP')->assertSee('Jungle')->assertSee('Known for 2 of 4 teams');
-        $this->get('/wow/comps/leaderboard?exp=2400')->assertOk()->assertSee('RMP')->assertDontSee('Jungle');
-        $this->get('/wow/comps/leaderboard?exp=junk')->assertOk()->assertSee('Jungle');
+        $this->get('/wow/leaderboards')->assertOk()->assertSee('RMP')->assertSee('Jungle')->assertSee('Known for 2 of 4 teams');
+        $this->get('/wow/leaderboards?exp=2400')->assertOk()->assertSee('RMP')->assertDontSee('Jungle');
+        $this->get('/wow/leaderboards?exp=junk')->assertOk()->assertSee('Jungle');
+    }
+
+    public function test_the_players_tab_is_blizzards_ladder_with_the_comps_each_player_was_seen_on(): void
+    {
+        $this->game(User::factory()->create(), 'm1', true);
+        $this->game(User::factory()->create(), 'm2', true);
+        $row = fn (int $id, string $name, string $realm, int $rank, int $rating, string $bracket = '3v3', ?string $class = null, int $season = 40) => [
+            'region' => 'us', 'season' => $season, 'bracket' => $bracket, 'blizzard_character_id' => $id, 'name' => $name, 'realm_slug' => $realm,
+            'class_slug' => $class, 'rank' => $rank, 'rating' => $rating, 'won' => 50, 'lost' => 40, 'seen_at' => now(),
+        ];
+        PvpLeaderboardEntry::query()->insert([
+            $row(1, 'Rogueguy', 'area-52', 1, 2850),
+            $row(2, 'Stranger', 'stormrage', 2, 2800),
+            $row(3, 'Mageguy', 'area-52', 3, 2600),
+            $row(2, 'Stranger', 'stormrage', 9, 2400, 'shuffle-warrior-arms', 'warrior'),
+            $row(4, 'Druidguy', 'tichondrius', 1, 2900, '3v3', null, 39),   // last season's ladder
+        ]);
+
+        $svc = app(CompLeaderboardService::class);
+        $ladder = $svc->ladder('us');
+        $this->assertSame([3, 2], [$ladder['total'], $ladder['seen']]);
+        $this->assertSame(['Rogueguy', 'Stranger', 'Mageguy'], array_column($ladder['players'], 'name'));
+        $this->assertSame(['mage-rogue-priest', 2], [$ladder['players'][0]['comps'][0]['key'], $ladder['players'][0]['comps'][0]['games']]);
+        $this->assertSame([[], 'warrior', 'rogue'], [$ladder['players'][1]['comps'], $ladder['players'][1]['class'], $ladder['players'][0]['class']]);
+        $this->assertSame(['Rogueguy', 'Mageguy'], array_column($svc->ladder('us', true)['players'], 'name'));
+        $this->assertNull($svc->ladder('eu')['season']);
+
+        // Each comp names the best-rated ladder players seen on it; last season's ladder does not count.
+        $board = collect($svc->board()['comps'])->keyBy('key');
+        $this->assertSame([['Rogueguy', 2850], ['Mageguy', 2600]], array_map(fn ($p) => [$p['name'], $p['rating']], $board['mage-rogue-priest']['top']));
+        $this->assertSame([], $board['druid-hunter-priest']['top']);
+
+        $this->get('/wow/leaderboards')->assertOk()->assertSee('Played by')->assertSee('/wow/player/us/area-52/rogueguy', false);
+        $this->get('/wow/leaderboards?tab=players')->assertOk()->assertSee('Stranger')->assertSee('2 of its 3 players are in an uploaded game')
+            ->assertSee('/wow/comps/played/mage-rogue-priest', false);
+        $this->get('/wow/leaderboards?tab=players&region=junk')->assertOk()->assertSee('Stranger');
     }
 
     public function test_the_preview_shows_the_top_comps_then_only_the_picked_one(): void
@@ -153,7 +190,7 @@ class CompBoardTest extends TestCase
 
         Livewire::withoutLazyLoading()->test(CompBoard::class)
             ->assertSee('top comps')->assertSee('RMP')->assertSee('Jungle')
-            ->assertSee('/wow/comps/leaderboard', false)
+            ->assertSee('/wow/leaderboards', false)
             ->call('pick', 'mage-rogue-priest')
             ->assertDispatched('pick-lineup', specs: [63, 256, 259]);
     }

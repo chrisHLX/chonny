@@ -231,7 +231,7 @@
     {{-- Comps this season, from the games uploaded to MindCollector (2026-10-19): lazy, so the
          builder above draws first. Since 2026-10-21 a preview: the top five until a comp is
          picked (a row loads it into the slots), then one line for the picked comp's real games.
-         The full board is its own page (CompLeaderboard). The key remounts it when the comp
+         The full board is the Leaderboards page's comps tab. The key remounts it when the comp
          changes, the only prop it takes. --}}
     <livewire:comp-board :selected="$boardKey" :key="'comp-board-'.($boardKey ?? 'none')" />
 
