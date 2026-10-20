@@ -1,7 +1,8 @@
 # Reading a game from the screen: the vision experiment
 
-**Status: open experiment, n=1, nothing proven.** Started 2026-10-20. This file is the context a
-new session needs to continue it. Nothing here has been checked against a combat log yet.
+**Status: open experiment. Two frames read, one matching spike run and failed.** Started 2026-10-20.
+This file is the context a new session needs to continue it. Both frames are Twitch stills with no
+combat log, so nothing here is scored against ground truth.
 
 ## The question
 
@@ -171,3 +172,79 @@ points at the overlay being a join between two sources rather than a video featu
 - `RoundAnalysisService::timeline()` — the 0.1s-resolution series (casts, health readings, deaths)
   a vision timeline would be diffed against. `CombatLogIngestService::timestampMs()` gives
   millisecond absolute time per log line, which is what makes alignment possible at all.
+
+## Icon matching: the first spike, and why it failed (2026-10-20)
+
+The idea: a screen icon is not something a vision model should *recognise*, it is something to
+**look up** against a corpus this repo already owns. Deterministic, auditable, calibrated, and it
+returns a `spell_id` that joins into everything else.
+
+```
+storage/app/public/spell-icons/   3,969 files, 56x56 native, 17 MB
+data/spelldata/icon-manifest.json 9,414 spell_id -> filename mappings
+config/wow_classes.php            Blizzard's exact RAID_CLASS_COLORS, 13 classes
+```
+
+**First corpus finding: 3,969 files are only 2,544 unique pictures.** 1,425 are content
+duplicates — Blizzard ships icons under both a numeric FileDataID and a human name, and both were
+fetched. Dedupe by pixel hash before building any index, or an icon competes with itself and every
+confidence margin reads 0.000. That is exactly what v1 of the spike reported.
+
+**The spike:** 12x12 RGB descriptor, mean-removed, L2-normalised, cosine similarity, two variants
+per icon (full, and the central 80% for UIs that zoom the border away), searched over +/-5px of
+offset and five sizes per cell. Ten action-bar cells from frame 1.
+
+**Result: scores 0.608-0.829, margins 0.024-0.119, and the matches are mostly WRONG.** Judged by
+rendering each screen crop above its matched template and looking. A grey icon reading "28" matched
+dark red spikes; a purple icon reading "30" matched an orange starburst.
+
+> **The finding that matters: the similarity score did not predict correctness.** An
+> implementation that thresholded at 0.8 cosine would have emitted confident, wrong `spell_id`s
+> with no signal that anything was wrong — the silent-failure mode this whole protocol exists to
+> catch, reproduced in the first hour of trying.
+
+Why it failed, worst first:
+
+1. **Cooldown overlays destroy the descriptor.** The timer text ("2m", "28", "30") is burned over
+   the art and the swipe darkens it. The match is being driven by text and dimming, not the spell.
+2. **Guessed grid geometry.** Cell coordinates were estimated by eye; several crops straddle two
+   icons or include borders. Detect the grid from edges; never hand-place cells.
+3. **The descriptor is too weak.** 12x12 RGB cosine is close to average-colour layout, so unrelated
+   icons that share a palette score 0.8.
+4. **Stream compression** at roughly 38px per icon.
+
+**What to try next, in order.** Detect the icon grid rather than guessing it; detect and skip cells
+on cooldown, or mask the centre where the timer sits; move to a gradient/edge descriptor that is
+insensitive to brightness; and run on a clean PNG before concluding anything about the method. This
+spike used the worst available frame deliberately — a compressed Twitch still. The honest read is
+**not** "icon matching does not work", it is "this implementation does not, and the score lied
+about it".
+
+Harness: `iconmatch2.py` in the session scratchpad (not committed; a throwaway).
+
+## Correction to frame 1's provenance
+
+Frame 1 is a still from a **Twitch stream**, not the user's own gameplay. Two consequences:
+
+- **There is no combat log for it.** It cannot be scored against ground truth. "Diff frame 1
+  against its log" is struck from the next steps; it needs a frame from a game in the archive.
+- **It was already a different player's UI**, so the UI-dependence test has partly happened by
+  accident. The reads that worked did so on a stranger's addon layout.
+
+## Frame 2 (2026-10-20): a prediction that held, and a class-colour result
+
+A cleaner still, same six players, different round and map (The Tiger's Peak).
+
+**The frame-1 inference about the damage meter was confirmed.** Frame 1's meter listed Addarray,
+Wutainx and Longtimenose — on neither team — and was called as an out-of-scope segment. Frame 2's
+meter lists Soulrulerxc, Dzdv, Daveportnoy, Jocheolbong, Bluegator and Umoongzin-Tichon: exactly
+the six players present. The trap is real and now demonstrated in both directions.
+
+**Health bars are class-coloured, not health-coloured.** Umoongzin sits at 100% health with an
+*orange* bar; a health gradient would be green. So bar colour is a 13-way lookup against
+`config/wow_classes.php`, not a 2,544-way one against the icon corpus — far cheaper and far more
+robust than icon matching, and it survives compression. Orange is `#FF7D0A`, Druid, which is
+consistent with the Cyclone cast read in frame 1.
+
+**This reorders the work.** Colour-to-class and OCR of names and numbers are cheap, robust and
+nearly free. Icon matching is the expensive, fragile part and should not be the first thing built.
