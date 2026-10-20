@@ -13,10 +13,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 @include('desktop.partials.styles')
 <style>
-    .two { width: 100%; }
-    .two td.col { width: 50%; vertical-align: top; padding: 0; }
-    .two td.col.left { padding-right: 6px; }
-    .two td.col.right { padding-left: 6px; }
     .rows { width: 100%; }
     .rows td { padding: 3px 0; vertical-align: middle; }
     .rows tr + tr td { border-top: 1px solid #282828; }

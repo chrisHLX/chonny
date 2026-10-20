@@ -50,6 +50,13 @@
     .teams td.col { width: 50%; vertical-align: top; padding: 0; }
     .teams td.col.left { padding-right: 8px; }
     .teams td.col.right { padding-left: 8px; }
+    /* Comps' and the player page's two columns. Kept here, before the phone query, and never
+       redefined in a page's own <style>: a later rule of the same weight undid the query's
+       width: auto, so on a phone the columns stacked but each stayed half the screen wide. */
+    .two { width: 100%; }
+    .two td.col { width: 50%; vertical-align: top; padding: 0; }
+    .two td.col.left { padding-right: 6px; }
+    .two td.col.right { padding-left: 6px; }
     .roster { width: 100%; }
     .roster td { padding: 6px 0; vertical-align: middle; }
     .roster tr + tr td { border-top: 1px solid #282828; }
@@ -123,8 +130,11 @@
 
         /* Two columns side by side become one on top of the other. Both names are in use:
            .teams on the game card, .two on Comps and the player page. */
-        .teams tr, .two tr { display: block; }
-        .teams td.col, .two td.col { display: block; width: auto; padding: 0 0 8px 0; }
+        /* The outer table's own rows only (the parser adds the tbody): a bare `.two tr` also
+           matched the tables inside each column, and their values lost their column. */
+        .teams > tbody > tr, .two > tbody > tr { display: block; }
+        .teams td.col, .teams td.col.left, .teams td.col.right,
+        .two td.col, .two td.col.left, .two td.col.right { display: block; width: auto; padding: 0 0 8px 0; }
         .col:empty { display: none; }
 
         .section { margin-top: 20px; }
