@@ -50,7 +50,9 @@ class CompLibraryService
     ];
 
     /** Whom a crowd-control step landed on, in words (RoundAnalysisService's link roles). */
-    private const ROLE_TEXT = ['healer' => 'your healer', 'target' => 'their kill target', 'cross' => 'your other DPS'];
+    // Whom a step of their crowd control landed on, always named from your side (2026-10-21: "their
+    // kill target" read as a player on THEIR team).
+    private const ROLE_TEXT = ['healer' => 'your healer', 'target' => "your DPS they're killing", 'cross' => 'your other DPS'];
 
     private array $xp = [];
 
@@ -203,7 +205,7 @@ class CompLibraryService
         arsort($runs);
         $runs = array_filter($runs, fn ($v) => $v >= 2);
         $ccOnHealer = $chains->flatten()->filter(fn ($s) => str_ends_with($s, '> healer'))->map(fn ($s) => substr($s, 0, -9))->countBy()->sortDesc();
-        $targets = $theirGoes->map(fn ($go) => $nameOf($go['_g'], $go['target'] ?? null))->filter()->map(fn ($p) => $p['healer'] ? 'your healer' : $p['spec'])->countBy()->sortDesc();
+        $targets = $theirGoes->map(fn ($go) => $nameOf($go['_g'], $go['target'] ?? null))->filter()->map(fn ($p) => $p['healer'] ? 'your healer' : 'your '.$p['spec'])->countBy()->sortDesc();
         $theirKills = $theirGoes->filter(fn ($go) => $go['kill'] || $go['killLater'])->count();
 
         // ---- who dies
@@ -211,11 +213,11 @@ class CompLibraryService
         $firstDeath = fn (array $g, string $side) => ($d = collect($g['a']['deaths'])->where('side', $side)->sortBy('t')->first()) ? $d + ['_g' => $g] : null;
         $ourDeaths = $games->reject(fn ($g) => $g['a']['won'])->map(fn ($g) => $firstDeath($g, 'us'))->filter();
         $theirDeaths = $games->filter(fn ($g) => $g['a']['won'])->map(fn ($g) => $firstDeath($g, 'them'))->filter();
-        $whoDied = $ourDeaths->map(fn ($d) => ($p = $nameOf($d['_g'], $d['who'])) ? ($p['healer'] ? 'your healer ('.$p['spec'].')' : $p['spec'].($p['logger'] ? ' (you)' : '')) : '?')->countBy()->sortDesc();
+        $whoDied = $ourDeaths->map(fn ($d) => ($p = $nameOf($d['_g'], $d['who'])) ? ($p['healer'] ? 'your healer ('.$p['spec'].')' : 'your '.$p['spec'].($p['logger'] ? ' (you)' : '')) : '?')->countBy()->sortDesc();
         $killBlows = $ourDeaths->map(fn ($d) => $d['killingBlow']['spell'] ?? null)->filter()->countBy()->sortDesc();
         $healerLocked = $ourDeaths->filter(fn ($d) => in_array($d['healer']['state'] ?? '', ['locked'], true) || (($d['healer']['state'] ?? '') === 'ended' && ($d['healer']['endedAgo'] ?? 99) <= 1))->count();
         $deathAfter = $ourDeaths->map(fn ($d) => $d['goStartedAgo'])->filter(fn ($v) => $v !== null)->values();
-        $theyLost = $theirDeaths->map(fn ($d) => ($p = $nameOf($d['_g'], $d['who'])) ? ($p['healer'] ? 'their healer ('.$p['spec'].')' : $p['spec']) : '?')->countBy()->sortDesc();
+        $theyLost = $theirDeaths->map(fn ($d) => ($p = $nameOf($d['_g'], $d['who'])) ? ($p['healer'] ? 'their healer ('.$p['spec'].')' : 'their '.$p['spec']) : '?')->countBy()->sortDesc();
 
         // ---- defensives traded
         $theirAnswers = $ourGoes->flatMap(fn ($go) => collect($go['forced'] ?? [])->pluck('spell'))->countBy()->sortDesc();

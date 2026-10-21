@@ -108,7 +108,13 @@
 </div>
 
 @if ($c['pool'] ?? false)
-    <div class="box small">From every game uploaded to MindCollector this season. Each game is read from the side of the team that played them, so "you" and "your" on this page are that team. No player is named.</div>
+    {{-- One perspective for the whole page (2026-10-21, Chriso: "I dont understand what perspective to
+         read the guide from"): a scouting report, read as the team playing against the comp. --}}
+    <div class="box usual small">
+        <b style="color: #E8B84B">How to read this page.</b> It is a scouting report on {{ $c['nick'] ?? $c['name'] }}, written for the team playing against them.
+        <b>"You" and "your"</b> are always the team facing {{ $c['nick'] ?? 'this comp' }}; <b>"they" and "their"</b> are always {{ $c['nick'] ?? 'this comp' }}.
+        So "you won" means {{ $c['nick'] ?? 'this comp' }} lost. From every game uploaded to MindCollector against them this season; no player is named.
+    </div>
 @endif
 
 <div class="small sub">
@@ -197,16 +203,16 @@
     <div class="label">Who dies</div>
     <table class="two"><tr>
         <td class="col left"><div class="box">
-            <div class="label">Yours, in {{ $d['losses'] }} loss{{ $d['losses'] === 1 ? '' : 'es' }}</div>
+            <div class="label">Your first death <span class="aside">in {{ $d['losses'] }} game{{ $d['losses'] === 1 ? '' : 's' }} you lost</span></div>
             {!! $list($d['who']) !!}
             @if ($d['losses'])
-                <div class="line small">Your healer locked out at it: {{ $d['healerLocked'] }}.@if ($d['after'] !== null) Their go had been running {{ $d['after'] }}s (median).@endif</div>
-                <div class="label" style="margin-top: 10px">Killing blows</div>
+                <div class="line small">Your healer was locked out when it happened: {{ $d['healerLocked'] }}.@if ($d['after'] !== null) Their go had been running {{ $d['after'] }}s (median).@endif</div>
+                <div class="label" style="margin-top: 10px">Their killing blows</div>
                 {!! $list($d['blows']) !!}
             @endif
         </div></td>
         <td class="col right"><div class="box">
-            <div class="label">Theirs, in {{ $d['wins'] }} win{{ $d['wins'] === 1 ? '' : 's' }}</div>
+            <div class="label">Their first death <span class="aside">in {{ $d['wins'] }} game{{ $d['wins'] === 1 ? '' : 's' }} you won</span></div>
             {!! $list($d['theirs']) !!}
         </div></td>
     </tr></table>
@@ -217,13 +223,13 @@
     <div class="label">Defensives traded</div>
     <table class="two"><tr>
         <td class="col left"><div class="box">
-            <div class="label">What they answer your goes with <span class="aside">{{ $t['perOurGo'] }} a go, over {{ $t['ourGoes'] }}</span></div>
+            <div class="label">When you go: their defensives <span class="aside">{{ $t['perOurGo'] }} a go, over your {{ $t['ourGoes'] }} goes</span></div>
             {!! $list($t['theirAnswers']) !!}
             <div class="line small">Your goes led to a kill {{ $t['ourKill'] }}.
                 With 0-1 of their defensives already down: {{ $t['drain']['low'][0] }} of {{ $t['drain']['low'][1] }}; with 2 or more: {{ $t['drain']['high'][0] }} of {{ $t['drain']['high'][1] }}.</div>
         </div></td>
         <td class="col right"><div class="box">
-            <div class="label">What their goes force from you <span class="aside">{{ $t['perTheirGo'] }} a go</span></div>
+            <div class="label">When they go: your defensives <span class="aside">{{ $t['perTheirGo'] }} a go</span></div>
             {!! $list($t['ourAnswers']) !!}
             @if ($t['cover'])
                 <div class="line small">Their go killed one of you with none of your big defensives down {{ $t['cover']['none'] }}, one down {{ $t['cover']['one'] }}, two or more {{ $t['cover']['two'] }}.</div>
@@ -292,7 +298,7 @@
     <div class="label">Every game against them <span class="aside">click a game for every player's experience and the game's numbers</span></div>
     <div class="box">
         <table class="stats">
-            <tr><td class="arrow"></td><td class="small muted">Played</td>@unless ($c['pool'] ?? false)<td class="small muted">You</td>@endunless<td class="small muted">Result</td><td class="small muted">MMR (you / them)</td><td class="small muted">Their Gladiator seasons</td><td class="small muted">First death</td></tr>
+            <tr><td class="arrow"></td><td class="small muted">Played</td>@unless ($c['pool'] ?? false)<td class="small muted">You</td>@endunless<td class="small muted">{{ ($c['pool'] ?? false) ? 'Your result' : 'Result' }}</td><td class="small muted">MMR (you / them)</td><td class="small muted">Their Gladiator seasons</td><td class="small muted">First death</td></tr>
             @foreach ($c['list'] as $row)
                 <tr class="game" onclick="toggle('{{ $row['id'] }}')">
                     <td class="arrow" id="{{ $row['id'] }}-a">&#9656;</td>
@@ -306,7 +312,7 @@
                 <tr class="more" id="{{ $row['id'] }}" style="display: none"><td colspan="7">
                     <table class="two"><tr>
                         <td class="col left">
-                            @foreach (['them' => 'Them', 'us' => ($c['pool'] ?? false) ? 'Against them' : 'Your team'] as $side => $title)
+                            @foreach (['them' => 'Them', 'us' => ($c['pool'] ?? false) ? 'You (the team facing them)' : 'Your team'] as $side => $title)
                                 <div class="label" style="margin-top: 6px">{{ $title }}</div>
                                 <table class="who">
                                     @foreach ($row['players'][$side] as $pl)
@@ -342,7 +348,11 @@
 @endif
 
 <div class="foot">
-    Every number is from your own games against this pair of DPS specs, with any healer. It is what these teams did against you, not what the comp always does.
+    @if ($c['pool'] ?? false)
+        Every number is from the games uploaded to MindCollector against {{ $c['nick'] ?? 'this comp' }} this season, each read from the side that faced them. It is what these teams did, not what the comp always does.
+    @else
+        Every number is from your own games against this pair of DPS specs, with any healer. It is what these teams did against you, not what the comp always does.
+    @endif
     The log cannot see positioning, line of sight or calls.
 </div>
 

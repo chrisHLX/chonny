@@ -86,11 +86,11 @@ class CompLibraryTest extends TestCase
         $this->assertStringContainsString('They go once a game, the first at about 8s.', $page);
         $this->assertStringContainsString('Their go is usually Army of the Dead with Avatar (2 of 2 goes) .', $page);
         $this->assertStringContainsString('Their crowd control that repeats most: Storm Bolt on your healer, then Strangulate on your healer (2 goes) .', $page);
-        $this->assertStringContainsString('Whom their goes were on Balance Druid 100% (2 of 2)', $page);
-        $this->assertStringContainsString('Yours, in 1 loss Balance Druid 100% (1 of 1)', $page);
-        $this->assertStringContainsString('Your healer locked out at it: 100% (1 of 1)', $page);
-        $this->assertStringContainsString('Theirs, in 1 win Arms Warrior 100% (1 of 1)', $page);
-        $this->assertStringContainsString('What their goes force from you 1 a go Pain Suppression 2×', $page);
+        $this->assertStringContainsString('Whom their goes were on your Balance Druid 100% (2 of 2)', $page);
+        $this->assertStringContainsString('Your first death in 1 game you lost your Balance Druid 100% (1 of 1)', $page);
+        $this->assertStringContainsString('Your healer was locked out when it happened: 100% (1 of 1)', $page);
+        $this->assertStringContainsString('Their first death in 1 game you won their Arms Warrior 100% (1 of 1)', $page);
+        $this->assertStringContainsString('When they go: your defensives 1 a go Pain Suppression 2×', $page);
         $this->assertStringContainsString('Desperate Prayer (you) 1 of 1', $page);
         $this->assertStringContainsString('Fewer than 10 games', $page);
     }

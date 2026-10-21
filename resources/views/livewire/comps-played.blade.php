@@ -16,10 +16,11 @@
             </span>
         @endif
         <div>
+            <p class="text-[11px] font-semibold tracking-widest text-gold uppercase">Playing against</p>
             <h1 class="font-display text-2xl text-ink leading-tight">{{ $title }}</h1>
             <p class="text-[12.5px] text-ink-muted">
-                {{ $record[2] }} {{ \Illuminate\Support\Str::plural('game', $record[2]) }} this season, won {{ $record[0] }}, lost {{ $record[1] }}.
-                From the games uploaded to MindCollector; no player is named.
+                They won {{ $record[0] }} and lost {{ $record[1] }} of {{ $record[2] }} {{ \Illuminate\Support\Str::plural('game', $record[2]) }} this season.
+                Read as the team facing them: "you" is that team, "they" is {{ $comp['nick'] ?? 'this comp' }}. No player is named.
             </p>
         </div>
     </div>
