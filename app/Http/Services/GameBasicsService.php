@@ -113,28 +113,27 @@ class GameBasicsService
                     'value' => "{$locked} of {$n}",
                     'tone' => $locked * 2 >= $n ? 'good' : 'warn',
                     'text' => ($mistimed
-                        ? 'Your control did reach the enemy healer, but your damage peaked while the enemy healer was free in most goes: press the cooldowns as the control lands, not before it or after it.'
-                        : 'Crowd control or a kick on the enemy healer in the six seconds your damage peaked.')
-                        .$this->evidence('healerLockedInPeak', ' Across the archive, goes like that killed {with}% of the time, against {without}% with the enemy healer free.'),
+                        ? 'Your control reached the enemy healer, but your damage peaked while they were free in most goes.'
+                        : '')
+                        .$this->evidence('healerLockedInPeak', 'Across the archive, goes like that killed {with}% of the time, against {without}% with the enemy healer free.'),
                 ],
                 [
                     'label' => 'Crowd control on the enemy healer per go',
                     'value' => $n ? number_format($healerCc / $n, 1) : '0',
                     'tone' => $healerCc / $n >= 3 ? 'good' : ($healerCc / $n >= 1.5 ? 'neutral' : 'warn'),
-                    'text' => 'The more of the go the enemy healer spends controlled, the more goes kill.'.$this->evidence('healerControlDose', ' In the archive, goes with none killed {without}% of the time, with four or more {with}%.'),
+                    'text' => $this->evidence('healerControlDose', 'In the archive, goes with none killed {without}% of the time, with four or more {with}%.'),
                 ],
                 [
                     'label' => 'Goes started with enemy defensives already down',
                     'value' => "{$intoDown} of {$n}",
                     'tone' => $intoDown * 2 >= $n ? 'good' : 'neutral',
-                    'text' => 'At least one enemy defensive on cooldown as your go began. A go into a full set of answers mostly strips them; the kill comes from the go after.'
-                        .$this->evidence('theirDefensivesDown', ' In the archive, goes like that killed {with}% of the time, against {without}% into a full set, and it held at every stage of a game.'),
+                    'text' => $this->evidence('theirDefensivesDown', 'In the archive, goes like that killed {with}% of the time, against {without}% into a full set, and it held at every stage of a game.'),
                 ],
                 [
                     'label' => 'Damage landed together, enemy healer locked',
                     'value' => "{$jointLocked} of {$n}",
                     'tone' => $jointLocked * 2 >= $n ? 'good' : ($jointLocked > 0 || $joint > 0 ? 'neutral' : 'warn'),
-                    'text' => "Both damage dealers' damage in the same six seconds while the enemy healer could not act: the go that kills most".$this->evidence('jointWithHealerLocked', ' ({with}% against {without}% with neither)').". Yours shared the peak in {$joint} of {$n}.",
+                    'text' => $this->evidence('jointWithHealerLocked', 'Goes where the damage landed together with the healer locked killed {with}%, against {without}% with neither.')." Yours shared the peak in {$joint} of {$n}.",
                 ],
             ],
         ];
@@ -168,7 +167,7 @@ class GameBasicsService
                 'label' => 'Enemy goes that met two or more of your big defensives down',
                 'value' => "{$twoDown} of {$covered->count()}",
                 'tone' => $twoDown === 0 ? 'good' : ($twoDown * 3 >= $covered->count() ? 'warn' : 'neutral'),
-                'text' => 'A trade is good when an answer is back for the next enemy go. In your own games, the enemy go killed 35–43% of the time with two or more big defensives down, 17–22% with one.'
+                'text' => 'In your own games, the enemy go killed 35–43% of the time with two or more big defensives down, 17–22% with one.'
                     .$this->evidence('theirDefensivesDown', ' Across the archive, goes into defensives already down killed {with}% against {without}%.'),
             ];
         }
@@ -177,7 +176,7 @@ class GameBasicsService
             'label' => 'Answers your team spent per enemy go',
             'value' => number_format($perGo, 1),
             'tone' => 'neutral',
-            'text' => 'This one isn\'t graded. Better teams spend more because better opponents hit harder, and at the same rating the sides that spent more per go won less. When they go often, spend one answer per go and keep the long ones for the go that comes with the enemy big cooldowns. The Matchup Lab has a plan for each matchup.',
+            'text' => 'Not graded. At the same rating, the sides that spent more per go won less.',
         ];
 
         return ['title' => 'Your answers to enemy goes', 'rows' => $rows];
@@ -295,7 +294,7 @@ class GameBasicsService
                 'label' => 'Where your crowd control went in your goes',
                 'value' => "{$roles['healer']} healer · {$roles['target']} kill target · {$roles['cross']} other",
                 'tone' => 'neutral',
-                'text' => 'The enemy healer is where control turns a go into a kill; stuns that hold through damage are the ones to spend on the kill target.',
+                'text' => '',
             ];
         }
         $kickedTotal = array_sum($kicked);
@@ -318,7 +317,7 @@ class GameBasicsService
                 'label' => 'Control and kicks on someone you were not hitting',
                 'value' => "{$offTarget} of {$control}",
                 'tone' => 'neutral',
-                'text' => 'Each of those is two target swaps unless it is on a macro: a focus macro, or one per arena frame, casts it on the enemy healer while you keep your target.'.$this->evidence('offTargetControl', ' Players who put most of their control on someone other than their target won {with}% of rounds against {without}%; a macro makes that one button.'),
+                'text' => ''.$this->evidence('offTargetControl', ' Players who put most of their control on someone other than their target won {with}% of rounds against {without}%; a macro makes that one button.'),
                 'macro' => $spell,
             ];
         }
@@ -461,7 +460,7 @@ class GameBasicsService
                 'label' => 'Buttons you pressed less than most '.$label.'s',
                 'value' => implode(' · ', array_map(fn ($u) => "{$u['name']} {$u['mine']} a minute (most {$u['p50']})", $under)),
                 'tone' => 'warn',
-                'text' => 'Per minute free to act, against the median player of your spec in the archive. Usually a button forgotten in the rotation, or saved too long.',
+                'text' => 'Per minute free to act, against the median player of your spec in the archive.',
                 'spells' => array_column($under, 'name'),
             ];
         }
@@ -535,7 +534,7 @@ class GameBasicsService
                 'label' => 'Medallion pressed while it was down',
                 'value' => (string) $trinket,
                 'tone' => 'warn',
-                'text' => 'Track it: when it is down, the next stun has to be answered another way (a defensive, line of sight, or your healer).'.$this->evidence('trinketNotReady', ' Rounds with this won {with}% against {without}%, which is mostly the round going badly already.'),
+                'text' => $this->evidence('trinketNotReady', ' Rounds with this won {with}% against {without}%, which is mostly the round going badly already.'),
             ];
         }
 
@@ -544,7 +543,7 @@ class GameBasicsService
                 'label' => 'Your pet on your target',
                 'value' => round($pet[0] / $pet[1] * 100).'% of its hits',
                 'tone' => 'neutral',
-                'text' => 'A pet left on another target is damage outside your go. Put /petattack in the macro of your main attack.',
+                'text' => 'A pet left on another target is damage outside your go.',
             ];
         }
 
