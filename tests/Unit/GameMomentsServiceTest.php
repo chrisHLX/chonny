@@ -100,7 +100,7 @@ class GameMomentsServiceTest extends TestCase
         $moments = app(GameMomentsService::class)->forRound($round, ['Discipline Priest' => ['Mind Control' => true]]);
         $dispel = collect($moments)->firstWhere('kind', 'dispel');
 
-        $this->assertSame('Mind Control on Terrorizer in their go', $dispel['title']);
+        $this->assertSame('Mind Control on Terrorizer in an enemy go', $dispel['title']);
         $this->assertStringContainsString('It was not dispelled by you', $dispel['text']);
         $this->assertSame('warn', $dispel['tone']);
     }

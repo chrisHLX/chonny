@@ -129,7 +129,7 @@ class GameMomentsService
                 'tone' => $ours ? 'warn' : 'good',
                 'title' => $ours
                     ? "{$spell} on {$this->short($victim['name'])} through {$defs}"
-                    : "Your team's {$spell} on their {$this->short($victim['name'])} through {$defs}",
+                    : "Your team's {$spell} on {$this->short($victim['name'])} through {$defs}",
                 'text' => sprintf('%s cast it while %s %s up, and %s %s of %s. %s',
                     $this->who($caster, $me, $ours ? 'Their' : 'Your'), $defs, count($spent) > 1 ? 'were' : 'was',
                     $ours ? 'lost' : 'took away', $this->secs($lost), count($spent) > 1 ? 'each' : 'it',
@@ -197,8 +197,8 @@ class GameMomentsService
                 't' => $cFrom,
                 'clock' => $this->clock($cFrom),
                 'tone' => $delay !== null && $delay <= 1.5 ? 'good' : ($delay === null ? 'warn' : 'neutral'),
-                'title' => "{$spell} on {$this->short($mate['name'])} in their go",
-                'text' => sprintf('%s was %s for %s inside their go on %s, and you were free to act for %s of it. %s',
+                'title' => "{$spell} on {$this->short($mate['name'])} in an enemy go",
+                'text' => sprintf('%s was %s for %s inside the enemy go on %s, and you were free to act for %s of it. %s',
                     $this->short($mate['name']), $spell === 'Mind Control' ? 'mind controlled' : 'controlled', $this->secs($cTo - $cFrom), $target, $this->secs($free),
                     $delay === null ? 'It was not dispelled by you: '.lcfirst($this->howEnded($a, $on, $spell, $cTo, $me)) : ($delay <= 0.2 ? 'You dispelled it at once.' : "You dispelled it after {$this->secs($delay)}.")),
                 'spells' => [$spell],

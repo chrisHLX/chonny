@@ -11,7 +11,7 @@
             </td>
             <td>
                 @if ($p['url'] ?? null)
-                    <a class="name" href="{{ $p['url'] }}" target="_blank" rel="noopener" title="{{ $p['full'] }}: their ratings, history and games" style="color: {{ $p['color'] }}">{{ $p['name'] }}</a>@if ($p['you'])<span class="you">YOU</span>@endif
+                    <a class="name" href="{{ $p['url'] }}" target="_blank" rel="noopener" title="{{ $p['full'] }}: ratings, history and games" style="color: {{ $p['color'] }}">{{ $p['name'] }}</a>@if ($p['you'])<span class="you">YOU</span>@endif
                 @else
                     <span class="name" style="color: {{ $p['color'] }}">{{ $p['name'] }}</span>@if ($p['you'])<span class="you">YOU</span>@endif
                 @endif
