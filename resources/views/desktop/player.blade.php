@@ -145,7 +145,7 @@
 {{-- ============================== output --}}
 @if ($m['output'])
     <div class="section">
-        <div class="label">Their output and habits <span class="aside">against the median {{ $specShort }} in the archive{{ $m['youPlay'] ? ', and you on the spec' : '' }}</span></div>
+        <div class="label">Enemy output and habits <span class="aside">against the median {{ $specShort }} in the archive{{ $m['youPlay'] ? ', and you on the spec' : '' }}</span></div>
         <div class="box">
             <table class="stats">
                 <tr><td class="small muted"></td><td class="n small muted" style="width: 90px">Them</td><td class="n small muted" style="width: 90px">Most</td><td class="n small muted" style="width: 90px">You</td></tr>
@@ -161,14 +161,14 @@
 <div class="section">
     <table class="two"><tr>
         <td class="col left"><div class="box">
-            <div class="label">In their team's goes <span class="aside">{{ $m['goes']['count'] }} go{{ $m['goes']['count'] === 1 ? '' : 'es' }}; they pressed an offensive cooldown in {{ $m['goes']['pressedIn'] }}; killed one of you {{ $m['goes']['killed'] }}</span></div>
+            <div class="label">In the enemy team's goes <span class="aside">{{ $m['goes']['count'] }} go{{ $m['goes']['count'] === 1 ? '' : 'es' }}; they pressed an offensive cooldown in {{ $m['goes']['pressedIn'] }}; killed one of you {{ $m['goes']['killed'] }}</span></div>
             {!! $list($m['goes']['offensive'], 'No offensive cooldown of theirs in a go.') !!}
-            <div class="label" style="margin-top: 10px">Their crowd control on you in those goes</div>
-            {!! $list($m['goes']['control'], 'None of their crowd control was part of a go.') !!}
+            <div class="label" style="margin-top: 10px">Enemy crowd control on you in those goes</div>
+            {!! $list($m['goes']['control'], 'None of enemy crowd control was part of a go.') !!}
         </div></td>
         <td class="col right"><div class="box">
             @php $d = $m['defensives']; @endphp
-            <div class="label">Their defensives <span class="aside">{{ $d['count'] }} before the first death, {{ $d['perRound'] }} a round{{ $d['hp'] !== null ? ', at '.$d['hp'].'% health (median)' : '' }}; {{ $d['outside'] }} outside your goes</span></div>
+            <div class="label">Enemy defensives <span class="aside">{{ $d['count'] }} before the first death, {{ $d['perRound'] }} a round{{ $d['hp'] !== null ? ', at '.$d['hp'].'% health (median)' : '' }}; {{ $d['outside'] }} outside your goes</span></div>
             {!! $list($d['rows'], 'None pressed before the first death.') !!}
             <div class="label" style="margin-top: 10px">Their casts your team kicked</div>
             {!! $list($m['kickedOf'], 'None kicked.') !!}
@@ -179,7 +179,7 @@
 {{-- ============================== damage and healing --}}
 @if ($m['breakdown'])
     <div class="section">
-        <div class="label">Where their output came from <span class="aside">share of their total onto players, every round summed</span></div>
+        <div class="label">Where enemy output came from <span class="aside">share of their total onto players, every round summed</span></div>
         <table class="two"><tr>
             @foreach ($m['breakdown'] as $i => $bd)
                 <td class="col {{ $i === 0 ? 'left' : 'right' }}"><div class="box">

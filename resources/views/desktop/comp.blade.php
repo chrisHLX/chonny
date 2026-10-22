@@ -31,7 +31,7 @@
     tr.tip td { padding: 0 0 6px 0; border-top: 0 !important; }
     .tipbox { background: #181818; border: 1px solid #3E3E3E; border-radius: 4px; padding: 6px 9px; font-size: 12px; color: #C9C9D2; line-height: 1.45; }
     .tipbox .facts { color: #E8B84B; font-size: 11.5px; margin-top: 3px; }
-    /* Their usual go, in sentences. */
+    /* The enemy usual go, in sentences. */
     .usual { border-color: #6B4E1A; background: #1E150A; margin-bottom: 12px; }
     .usual .line { margin: 3px 0; }
     /* A crowd-control run: numbered steps, each with whom it landed on. */
@@ -89,7 +89,7 @@
 
         return $html.'</table>';
     };
-    $roleChip = ['your healer' => 'warn', 'their kill target' => 'bad', 'your other DPS' => 'neutral'];
+    $roleChip = ['your healer' => 'warn', 'enemy kill target' => 'bad', 'your other DPS' => 'neutral'];
     $b = fn (array $spells) => implode(' with ', array_map(fn ($s) => '<b>'.e($s).'</b>', $spells));
     $g = $c['goes'];
     $d = $c['deaths'];
@@ -111,9 +111,9 @@
     {{-- One perspective for the whole page (2026-10-21, Chriso: "I dont understand what perspective to
          read the guide from"): a scouting report, read as the team playing against the comp. --}}
     <div class="box usual small">
-        <b style="color: #E8B84B">How to read this page.</b> It is a scouting report on {{ $c['nick'] ?? $c['name'] }}, written for the team playing against them.
-        <b>"You" and "your"</b> are always the team facing {{ $c['nick'] ?? 'this comp' }}; <b>"they" and "their"</b> are always {{ $c['nick'] ?? 'this comp' }}.
-        So "you won" means {{ $c['nick'] ?? 'this comp' }} lost. From every game uploaded to MindCollector against them this season; no player is named.
+        A scouting report on {{ $c['nick'] ?? $c['name'] }}, read as the team playing against it:
+        <b>enemy</b> is always {{ $c['nick'] ?? 'this comp' }}, <b>your</b> is always the side facing it.
+        From every game uploaded to MindCollector against this comp this season; no player is named.
     </div>
 @endif
 
@@ -140,19 +140,19 @@
     <div class="box small muted">Fewer than 10 games: every pattern on this page is a lead from these games, not a rule about the comp.</div>
 @endif
 
-{{-- ============================== their goes --}}
+{{-- ============================== enemy goes --}}
 <div class="section">
-    <div class="label">Their goes <span class="aside">{{ $g['count'] }} in all, {{ $g['perGame'] }} a game{{ $g['firstAt'] !== null ? ', the first at '.$g['firstAt'].'s (median)' : '' }}. Killed one of you: {{ $g['killed'] }}</span></div>
+    <div class="label">Enemy goes <span class="aside">{{ $g['count'] }} in all, {{ $g['perGame'] }} a game{{ $g['firstAt'] !== null ? ', the first at '.$g['firstAt'].'s (median)' : '' }}. Killed one of you: {{ $g['killed'] }}</span></div>
     @php $u = $g['usual']; @endphp
     @if ($g['count'])
         <div class="box usual">
             <div class="label" style="color: #E8B84B">What to expect</div>
             <div class="line">&bull; They go {{ $g['perGame'] == 1 ? 'once' : $g['perGame'].' times' }} a game{{ $g['firstAt'] !== null ? ', the first at about '.$g['firstAt'].'s' : '' }}.</div>
             @if ($u['set'])
-                <div class="line">&bull; Their go is usually {!! $b($u['set']['spells']) !!} <span class="muted">({{ $u['set']['n'] }} of {{ $g['count'] }} goes)</span>.</div>
+                <div class="line">&bull; Enemy go is usually {!! $b($u['set']['spells']) !!} <span class="muted">({{ $u['set']['n'] }} of {{ $g['count'] }} goes)</span>.</div>
             @endif
             @if ($u['chain'])
-                <div class="line">&bull; Their crowd control that repeats most:
+                <div class="line">&bull; Enemy crowd control that repeats most:
                     @foreach ($u['chain']['steps'] as $st)
                         {{ $loop->first ? '' : 'then ' }}<b>{{ $st['label'] }}</b> on {{ $st['on'] }}{{ $loop->last ? '' : ',' }}
                     @endforeach
@@ -162,14 +162,14 @@
                 <div class="line">&bull; On your healer most: {!! implode(' and ', array_map(fn ($s) => '<b>'.e($s).'</b>', $u['healerCc'])) !!}.</div>
             @endif
             @if ($u['target'])
-                <div class="line">&bull; They went on <b>{{ $u['target']['who'] }}</b> most <span class="muted">({{ $u['target']['n'] }} of {{ $g['count'] }})</span>, and {{ $u['kills'] }} of their {{ $g['count'] }} goes killed one of you.</div>
+                <div class="line">&bull; They went on <b>{{ $u['target']['who'] }}</b> most <span class="muted">({{ $u['target']['n'] }} of {{ $g['count'] }})</span>, and {{ $u['kills'] }} of {{ $g['count'] }} enemy goes killed one of you.</div>
             @endif
             <div class="small muted" style="margin-top: 4px">Click any spell below for what it does.</div>
         </div>
     @endif
     <table class="two"><tr>
         <td class="col left"><div class="box">
-            <div class="label">Offensive cooldowns <span class="aside">share of their goes with it</span></div>
+            <div class="label">Offensive cooldowns <span class="aside">share of enemy goes with it</span></div>
             {!! $list($g['offensive']) !!}
             @if ($g['sets'])
                 <div class="label" style="margin-top: 10px">Pressed together</div>
@@ -177,7 +177,7 @@
             @endif
         </div></td>
         <td class="col right"><div class="box">
-            <div class="label">Crowd control on you <span class="aside">the same order seen in 2+ of their goes</span></div>
+            <div class="label">Crowd control on you <span class="aside">the same order seen in 2+ of enemy goes</span></div>
             @forelse ($g['chains'] as $ch)
                 <div class="run">
                     <div class="head2">Seen in <b style="color: #FFFFFF">{{ $ch['n'] }} goes</b></div>
@@ -192,7 +192,7 @@
             @endforelse
             <div class="label" style="margin-top: 10px">On your healer</div>
             {!! $list($g['onHealer']) !!}
-            <div class="label" style="margin-top: 10px">Whom their goes were on</div>
+            <div class="label" style="margin-top: 10px">Whom enemy goes were on</div>
             {!! $list($g['targets']) !!}
         </div></td>
     </tr></table>
@@ -206,13 +206,13 @@
             <div class="label">Your first death <span class="aside">in {{ $d['losses'] }} game{{ $d['losses'] === 1 ? '' : 's' }} you lost</span></div>
             {!! $list($d['who']) !!}
             @if ($d['losses'])
-                <div class="line small">Your healer was locked out when it happened: {{ $d['healerLocked'] }}.@if ($d['after'] !== null) Their go had been running {{ $d['after'] }}s (median).@endif</div>
-                <div class="label" style="margin-top: 10px">Their killing blows</div>
+                <div class="line small">Your healer was locked out when it happened: {{ $d['healerLocked'] }}.@if ($d['after'] !== null) Enemy go had been running {{ $d['after'] }}s (median).@endif</div>
+                <div class="label" style="margin-top: 10px">Enemy killing blows</div>
                 {!! $list($d['blows']) !!}
             @endif
         </div></td>
         <td class="col right"><div class="box">
-            <div class="label">Their first death <span class="aside">in {{ $d['wins'] }} game{{ $d['wins'] === 1 ? '' : 's' }} you won</span></div>
+            <div class="label">Enemy first death <span class="aside">in {{ $d['wins'] }} game{{ $d['wins'] === 1 ? '' : 's' }} you won</span></div>
             {!! $list($d['theirs']) !!}
         </div></td>
     </tr></table>
@@ -223,16 +223,16 @@
     <div class="label">Defensives traded</div>
     <table class="two"><tr>
         <td class="col left"><div class="box">
-            <div class="label">When you go: their defensives <span class="aside">{{ $t['perOurGo'] }} a go, over your {{ $t['ourGoes'] }} goes</span></div>
+            <div class="label">When you go: enemy defensives <span class="aside">{{ $t['perOurGo'] }} a go, over your {{ $t['ourGoes'] }} goes</span></div>
             {!! $list($t['theirAnswers']) !!}
             <div class="line small">Your goes led to a kill {{ $t['ourKill'] }}.
-                With 0-1 of their defensives already down: {{ $t['drain']['low'][0] }} of {{ $t['drain']['low'][1] }}; with 2 or more: {{ $t['drain']['high'][0] }} of {{ $t['drain']['high'][1] }}.</div>
+                With 0-1 of enemy defensives already down: {{ $t['drain']['low'][0] }} of {{ $t['drain']['low'][1] }}; with 2 or more: {{ $t['drain']['high'][0] }} of {{ $t['drain']['high'][1] }}.</div>
         </div></td>
         <td class="col right"><div class="box">
             <div class="label">When they go: your defensives <span class="aside">{{ $t['perTheirGo'] }} a go</span></div>
             {!! $list($t['ourAnswers']) !!}
             @if ($t['cover'])
-                <div class="line small">Their go killed one of you with none of your big defensives down {{ $t['cover']['none'] }}, one down {{ $t['cover']['one'] }}, two or more {{ $t['cover']['two'] }}.</div>
+                <div class="line small">Enemy go killed one of you with none of your big defensives down {{ $t['cover']['none'] }}, one down {{ $t['cover']['one'] }}, two or more {{ $t['cover']['two'] }}.</div>
             @endif
         </div></td>
     </tr></table>
@@ -269,7 +269,7 @@
 {{-- ============================== by their experience --}}
 @php $x = $c['byExperience']; @endphp
 <div class="section">
-    <div class="label">Less against more experienced teams <span class="aside">counted by their Gladiator seasons, since MMR runs low early in a season and Solo Shuffle doesn't show it</span></div>
+    <div class="label">Less against more experienced teams <span class="aside">counted by enemy Gladiator seasons, since MMR runs low early in a season and Solo Shuffle doesn't show it</span></div>
     <div class="box">
         @if ($x['state'] === 'split')
             <table class="stats">
@@ -312,7 +312,7 @@
                 <tr class="more" id="{{ $row['id'] }}" style="display: none"><td colspan="7">
                     <table class="two"><tr>
                         <td class="col left">
-                            @foreach (['them' => 'Them', 'us' => ($c['pool'] ?? false) ? 'You (the team facing them)' : 'Your team'] as $side => $title)
+                            @foreach (['them' => 'Enemy team', 'us' => 'Your team'] as $side => $title)
                                 <div class="label" style="margin-top: 6px">{{ $title }}</div>
                                 <table class="who">
                                     @foreach ($row['players'][$side] as $pl)

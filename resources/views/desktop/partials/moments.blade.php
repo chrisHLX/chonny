@@ -6,7 +6,7 @@
 @php
     $kinds = [
         'control' => ['Crowd control through a big defensive', 'control landing while a big defensive was up: the seconds of it lost'],
-        'dispel' => ['Crowd control on a teammate in their go', 'what you could dispel while their go was on, and what happened'],
+        'dispel' => ['Crowd control on a teammate in their go', 'what you could dispel while enemy go was on, and what happened'],
         'opening' => ['The start of enemy goes', 'your first casts, your first big defensive, and the target\'s health'],
     ];
     $chip = ['warn' => ['warn', 'LOOK'], 'good' => ['good', 'GOOD'], 'neutral' => ['neutral', 'NOTE']];
@@ -14,7 +14,7 @@
 @if ($m === null)
     <div class="box muted">Moments need this game measured at the latest version: it is measured again when the app next sends it.</div>
 @elseif ($m === [])
-    <div class="box muted">Nothing in this game matched a moment: no crowd control through a big defensive, no control on a teammate in their goes you could have dispelled, and no go of theirs to read.</div>
+    <div class="box muted">Nothing in this game matched a moment: no crowd control through a big defensive, no control on a teammate in enemy goes you could have dispelled, and no enemy go to read.</div>
 @else
     @foreach ($kinds as $kind => [$title, $about])
         @php $rows = array_values(array_filter($m, fn ($x) => $x['kind'] === $kind)); @endphp

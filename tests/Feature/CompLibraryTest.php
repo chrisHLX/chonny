@@ -84,12 +84,12 @@ class CompLibraryTest extends TestCase
         $this->assertStringContainsString('Seen in 2 goes 1 Storm Bolt your healer 2 Strangulate your healer', $page);
         // And in the summary that opens the section.
         $this->assertStringContainsString('They go once a game, the first at about 8s.', $page);
-        $this->assertStringContainsString('Their go is usually Army of the Dead with Avatar (2 of 2 goes) .', $page);
-        $this->assertStringContainsString('Their crowd control that repeats most: Storm Bolt on your healer, then Strangulate on your healer (2 goes) .', $page);
-        $this->assertStringContainsString('Whom their goes were on your Balance Druid 100% (2 of 2)', $page);
+        $this->assertStringContainsString('Enemy go is usually Army of the Dead with Avatar (2 of 2 goes) .', $page);
+        $this->assertStringContainsString('Enemy crowd control that repeats most: Storm Bolt on your healer, then Strangulate on your healer (2 goes) .', $page);
+        $this->assertStringContainsString('Whom enemy goes were on your Balance Druid 100% (2 of 2)', $page);
         $this->assertStringContainsString('Your first death in 1 game you lost your Balance Druid 100% (1 of 1)', $page);
         $this->assertStringContainsString('Your healer was locked out when it happened: 100% (1 of 1)', $page);
-        $this->assertStringContainsString('Their first death in 1 game you won their Arms Warrior 100% (1 of 1)', $page);
+        $this->assertStringContainsString('Enemy first death in 1 game you won enemy Arms Warrior 100% (1 of 1)', $page);
         $this->assertStringContainsString('When they go: your defensives 1 a go Pain Suppression 2×', $page);
         $this->assertStringContainsString('Desperate Prayer (you) 1 of 1', $page);
         $this->assertStringContainsString('Fewer than 10 games', $page);
@@ -113,14 +113,14 @@ class CompLibraryTest extends TestCase
         $this->assertStringContainsString('Less against more experienced teams', $page);
         $this->assertStringContainsString('Under 12 seasons 12 or more', $page);
         $this->assertStringContainsString('Your record 2-0 0-2', $page);
-        $this->assertStringContainsString('Their Gladiator seasons, median 0 12', $page);
+        $this->assertStringContainsString('Enemy Gladiator seasons, median 0 12', $page);
         $this->assertStringContainsString('4 games with experience on file: a lead', $page);
         $this->assertStringContainsString('Every game against them', $page);
         $this->assertStringContainsString('2000 / 2000 12', $page, 'each game with its MMR and their seasons');
         // Clicking a game opens every player's experience and the game's numbers.
         $this->assertStringContainsString('Glad Restoration Druid 12× Glad · best ?', $page);
         $this->assertStringContainsString('Healz YOU Discipline Priest not looked up', $page);
-        $this->assertStringContainsString('Goes that killed, yours / theirs 0 / 1', $page);
+        $this->assertStringContainsString('Goes that killed, yours / enemy 0 / 1', $page);
         $this->assertStringContainsString('Difficulty Harder (12 Gladiator seasons vs your 0)', $page);
     }
 
@@ -149,7 +149,7 @@ class CompLibraryTest extends TestCase
             $c = $index['comps']['Arms Warrior+Unholy Death Knight'];
             $this->assertSame('TSG', $c['nick']);
             $this->assertArrayNotHasKey('html', $c, 'the index stays small');
-            $this->assertStringContainsString('Their goes', file_get_contents("{$dir}/{$c['file']}"));
+            $this->assertStringContainsString('Enemy goes', file_get_contents("{$dir}/{$c['file']}"));
             $this->artisan('wow:game-cards', ['--dir' => $dir])->expectsOutputToContain('1 comp page(s) unchanged');
         } finally {
             array_map('unlink', glob("{$dir}/*") ?: []);

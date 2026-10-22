@@ -151,11 +151,11 @@ class ImprovementTest extends TestCase
         // Locked out 15s a minute against 3s.
         $this->assertStringContainsString('Time locked out Behind other Discipline Priests', $page);
         $this->assertStringContainsString('You 15.0s', $page);
-        $this->assertStringContainsString('Their go killed one of you: none down no goes, one down no goes, two or more 100% (10 of 10).', $page);
+        $this->assertStringContainsString('The enemy go killed one of you: none down no goes, one down no goes, two or more 100% (10 of 10).', $page);
         $this->assertStringContainsString('A teammate died while you were locked out with your Medallion ready: 10 times in 10 games.', $page);
-        $this->assertStringContainsString('Pressed with the target in danger or to break crowd control: 100% of yours, 0% of theirs', $page, 'version 9: was it needed');
+        $this->assertStringContainsString('Pressed with the target in danger or to break crowd control: 100% of yours, 0% of the enemy', $page, 'version 9: was it needed');
         $this->assertStringContainsString('Psychic Scream 10×', $page);
-        $this->assertStringContainsString('Crowd control on their healer Ahead of other Discipline Priests', $page, 'any against their none is ahead, not level');
+        $this->assertStringContainsString('Crowd control on the enemy healer Ahead of other Discipline Priests', $page, 'any against their none is ahead, not level');
         $this->assertLessThan(strpos($page, 'Ahead of other'), strpos($page, 'Behind other'), 'behind first');
         $this->assertStringContainsString('10 games measured (0-10; a Solo Shuffle round counts as one)', $page);
 
@@ -253,7 +253,7 @@ class ImprovementTest extends TestCase
 
         // Their goes started with two big defensives down in all of yours and none of theirs: any
         // against the others' none is the furthest behind, so it is the one focus.
-        $this->assertStringContainsString('Your focus Big defensives when their go started you 100% against 0% for other Discipline Priests', $page);
+        $this->assertStringContainsString('Your focus Big defensives when the enemy go started you 100% against 0% for other Discipline Priests', $page);
         // One session before it: too few to give a range, so no verdict on it either way.
         $this->assertStringContainsString('Last session (Fri 2 Oct, 1 game): 100% . Against 100% before it: too few sessions of 3+ games yet to say whether it stands out.', $page);
         $this->assertStringContainsString('Last session (Fri 2 Oct): 15.0s, against 15.0s before it.', $page, 'every habit carries its last session');

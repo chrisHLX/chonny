@@ -46,7 +46,7 @@
             @foreach ($g['presses'] as $p)<line x1="{{ $p['x'] }}" x2="{{ $p['x'] }}" y1="0" y2="{{ $g['h'] }}" stroke="#C8952C" stroke-width="2" vector-effect="non-scaling-stroke"><title>{{ $p['label'] }}</title></line>@endforeach
         </svg>
         <div class="small subtle"><span style="float: right">the death</span>{{ $g['seconds'] }}s before</div>
-        <div class="small subtle">Dashed: 35%. @if ($g['locked'])Shaded: their healer locked out. @endif @if ($g['presses'])Gold: a defensive pressed on their side (hover for which). @endif</div>
+        <div class="small subtle">Dashed: 35%. @if ($g['locked'])Shaded: the enemy healer locked out. @endif @if ($g['presses'])Gold: a defensive pressed on their side (hover for which). @endif</div>
     </div>
 @endif
 
@@ -73,11 +73,11 @@
     @endif
 </div>
 
-{{-- The answer sheet (RoundAnalysisService version 7): their go beside every button your team had for it. --}}
+{{-- The answer sheet (RoundAnalysisService version 7): enemy go beside every button your team had for it. --}}
 @if (! empty($d['answers']))
     @php $s = $d['answers']; @endphp
     <div class="answers">
-        <div class="label" style="margin-top: 12px">What your team had for their go <span class="aside">from {{ $s['from'] }} to the death: what was there, not what would have won</span></div>
+        <div class="label" style="margin-top: 12px">What your team had for the enemy go <span class="aside">from {{ $s['from'] }} to the death: what was there, not what would have won</span></div>
 
         @if ($s['offensive'])
             <div class="line small"><span class="muted">Their offensive cooldowns:&nbsp;</span>
@@ -87,7 +87,7 @@
             </div>
         @endif
         @if ($s['control'])
-            <div class="line small"><span class="muted">Their crowd control on you:&nbsp;</span>
+            <div class="line small"><span class="muted">Enemy crowd control on you:&nbsp;</span>
                 @foreach ($s['control'] as $x)
                     <span class="def">@if ($x['icon'])<img class="spell-ic" src="{{ $x['icon'] }}">@endif{{ $x['spell'] }} <span class="muted">on {{ $x['on'] }}, {{ $x['clock'] }}</span></span>
                 @endforeach

@@ -62,7 +62,7 @@
         @foreach ($m['byDifficulty'] as $label => $wl)
             &nbsp;<span class="chip {{ $label === 'Harder' ? 'bad' : ($label === 'Easier' ? 'good' : 'neutral') }}">{{ strtolower($label) }}</span> <b>{{ $wl[0] }}-{{ $wl[1] }}</b>
         @endforeach
-        <span class="subtle">&nbsp;Harder: their MMR 50+ above yours or 3+ more Gladiator seasons.</span>
+        <span class="subtle">&nbsp;Harder: enemy MMR 50+ above yours or 3+ more Gladiator seasons.</span>
     </div>
 @endif
 
@@ -200,7 +200,7 @@
         @endif
     </div>
     @if ($o = $m['rotation']['opening'])
-        <div class="label" style="margin-top: 14px">The start of their goes <span class="aside">what you pressed in the first 4 seconds of their goes, per go: {{ $o['goes'] }} of yours, {{ $o['theirGoes'] }} for the others</span></div>
+        <div class="label" style="margin-top: 14px">The start of enemy goes <span class="aside">what you pressed in the first 4 seconds of enemy goes, per go: {{ $o['goes'] }} of yours, {{ $o['theirGoes'] }} for the others</span></div>
         <div class="box">
             <table class="stats rot">
                 <tr><td></td><td class="small muted">You</td><td class="small muted">Other {{ $m['spec'] }}s</td></tr>

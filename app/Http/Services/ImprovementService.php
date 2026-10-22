@@ -515,8 +515,8 @@ class ImprovementService
                 }
             }
             arsort($spells);
-            $habits[] = $this->habit('cc', 'Crowd control on their healer', true,
-                "Your team's goes with your crowd control on their healer.",
+            $habits[] = $this->habit('cc', 'Crowd control on the enemy healer', true,
+                "Your team's goes with your crowd control on the enemy healer.",
                 $share($mine), $share($others), $mine->count(), $others->count(), 0, '%',
                 [
                     sprintf('Your goes with it led to a kill %s, without it %s.',
@@ -524,7 +524,7 @@ class ImprovementService
                 ],
                 $trend($share),
                 'A go converts when the burst lands while their healer is locked out, not merely when they are CC\'d at some point in it.',
-                $this->iconRows(array_map(fn ($n) => $n.'×', array_slice($spells, 0, 5, true)), 'What you put on their healer'),
+                $this->iconRows(array_map(fn ($n) => $n.'×', array_slice($spells, 0, 5, true)), 'What you put on the enemy healer'),
             );
         }
 
@@ -533,11 +533,11 @@ class ImprovementService
         if ($cover->isNotEmpty()) {
             $bucket = fn ($lo, $hi) => $cover->filter(fn ($c) => $c['bigDown'] >= $lo && $c['bigDown'] <= $hi);
             $twoPlus = fn (Collection $rs) => ($c = $rs->where('v6', true)->flatMap(fn ($r) => $r['cover']))->isNotEmpty() ? $c->where('bigDown', '>=', 2)->count() / $c->count() : null;
-            $habits[] = $this->habit('cover', 'Big defensives when their go started', false,
+            $habits[] = $this->habit('cover', 'Big defensives when the enemy go started', false,
                 "Their goes that started with two or more of your team's big defensives (90s+) still on cooldown.",
                 $twoPlus($mine), $twoPlus($others), $mine->where('v6', true)->count(), $others->where('v6', true)->count(), 0, '%',
                 [
-                    'Their go killed one of you: '
+                    'The enemy go killed one of you: '
                     .'none down '.$this->pctOf($bucket(0, 0)->where('kill', true)->count(), $bucket(0, 0)->count())
                     .', one down '.$this->pctOf($bucket(1, 1)->where('kill', true)->count(), $bucket(1, 1)->count())
                     .', two or more '.$this->pctOf($bucket(2, 99)->where('kill', true)->count(), $bucket(2, 99)->count()).'.',
@@ -553,14 +553,14 @@ class ImprovementService
             $lines = [];
             $needed = fn (Collection $rs) => ($n = $rs->sum('defsWarranted')) > 0 ? $rs->sum('defsNeeded') / $n : null;
             if ($mine->sum('defsWarranted') > 0) {
-                $lines[] = sprintf('Pressed with the target in danger or to break crowd control: %s of yours, %s of theirs. The log can\'t tell us why the rest were pressed.',
+                $lines[] = sprintf('Pressed with the target in danger or to break crowd control: %s of yours, %s of the enemy. The log can\'t tell us why the rest were pressed.',
                     $this->pct($needed($mine)), $this->pct($needed($others)));
             }
             if ($mine->first()['healer']) {
                 $faults = $mine->where('medallionFault', true)->count();
                 $lines[] = sprintf('A teammate died while you were locked out with your Medallion ready: %d time%s in %d games.', $faults, $faults === 1 ? '' : 's', $mine->count());
             }
-            $habits[] = $this->habit('defensives', 'Defensives outside their goes', false,
+            $habits[] = $this->habit('defensives', 'Defensives outside enemy goes', false,
                 'Your defensives pressed while the other team was not in a go, before the first death.',
                 $outside($mine), $outside($others), $mine->count(), $others->count(), 0, '%', $lines, $trend($outside),
                 'A defensive used to break crowd control outside a go may still have stopped one starting; the log cannot show that.',
@@ -886,7 +886,7 @@ class ImprovementService
         $worst = collect($a)->map(fn ($v, $k) => $v - $b[$k])->sortDesc()->keys()->first();
 
         return [
-            sprintf('Seconds a minute pressing nothing: %s in their goes, %s in your team\'s goes, %s outside any go. Theirs: %s, %s, %s.',
+            sprintf('Seconds a minute pressing nothing: %s in enemy goes, %s in your team\'s goes, %s outside any go. Enemy: %s, %s, %s.',
                 $this->num($a['theirs'], 1, 's'), $this->num($a['ours'], 1, 's'), $this->num($a['none'], 1, 's'),
                 $this->num($b['theirs'], 1, 's'), $this->num($b['ours'], 1, 's'), $this->num($b['none'], 1, 's')),
             sprintf('Most of the difference is %s.', $label[$worst]),

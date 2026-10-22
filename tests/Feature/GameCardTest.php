@@ -245,9 +245,9 @@ class GameCardTest extends TestCase
         $card = $this->text(app(GameCardService::class)->build($user), 'm1');
 
         $this->assertStringContainsString('Harder Enemy MMR +186, 0 Gladiator seasons vs your 0', $card);
-        $this->assertStringContainsString('What your team had for their go from 0:07 to the death', $card);
+        $this->assertStringContainsString('What your team had for the enemy go from 0:07 to the death', $card);
         $this->assertStringContainsString('Their offensive cooldowns: Bladestorm Lock', $card);
-        $this->assertStringContainsString('Their crowd control on you: Holy Word: Chastise on Healz, 0:15', $card);
+        $this->assertStringContainsString('Enemy crowd control on you: Holy Word: Chastise on Healz, 0:15', $card);
         $this->assertStringContainsString('Healz locked out 8.6s of it, the longest stretch 8.9s from 0:15. Free 0:14 to 0:15 just before it', $card);
         // The dying Hunter's own defensives first, then the healer's, with the refused press.
         $this->assertStringContainsString('Ready, and could have saved them', $card);
@@ -278,7 +278,7 @@ class GameCardTest extends TestCase
         $html = $built['games']['m1']['html'];
 
         $this->assertStringContainsString('Health, the last 10s: 100% 10s before the death; under 35% for the last 3s.', $card);
-        $this->assertStringContainsString('Shaded: their healer locked out.', $card);
+        $this->assertStringContainsString('Shaded: the enemy healer locked out.', $card);
         $this->assertStringContainsString('<title>Feint, Hunter, 4s before</title>', $html, 'a defensive inside the line is marked on it');
         $this->assertStringNotContainsString('Barkskin, Hunter, 25s before</title>', $html, 'one before the line starts is not');
         $this->assertStringContainsString('points="0,0 60,0 120,0 180,0 240,6.4 300,25.6 360,32 420,44.8 480,51.2 540,58.2 600,64"', $html);

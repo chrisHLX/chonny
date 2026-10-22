@@ -519,7 +519,7 @@ class GameCardService
                 'ended' => ['label' => 'lockout ended '.$h['endedAgo'].'s before', 'tone' => $h['endedAgo'] <= 1 ? 'bad' : 'warn'],
                 default => ['label' => 'free', 'tone' => 'good'],
             };
-            $healer['whose'] = $d['side'] === 'us' ? 'Your healer' : 'Their healer';
+            $healer['whose'] = $d['side'] === 'us' ? 'Your healer' : 'Enemy healer';
             $healer['medallion'] = $h['medallionUsedAt'] ? 'Medallion used at '.collect($h['medallionUsedAt'])->map(fn ($t) => $this->clock($t))->implode(', ') : 'Medallion not used';
         }
 

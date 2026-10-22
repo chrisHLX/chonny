@@ -217,7 +217,7 @@ class CompLibraryService
         $killBlows = $ourDeaths->map(fn ($d) => $d['killingBlow']['spell'] ?? null)->filter()->countBy()->sortDesc();
         $healerLocked = $ourDeaths->filter(fn ($d) => in_array($d['healer']['state'] ?? '', ['locked'], true) || (($d['healer']['state'] ?? '') === 'ended' && ($d['healer']['endedAgo'] ?? 99) <= 1))->count();
         $deathAfter = $ourDeaths->map(fn ($d) => $d['goStartedAgo'])->filter(fn ($v) => $v !== null)->values();
-        $theyLost = $theirDeaths->map(fn ($d) => ($p = $nameOf($d['_g'], $d['who'])) ? ($p['healer'] ? 'their healer ('.$p['spec'].')' : 'their '.$p['spec']) : '?')->countBy()->sortDesc();
+        $theyLost = $theirDeaths->map(fn ($d) => ($p = $nameOf($d['_g'], $d['who'])) ? ($p['healer'] ? 'the enemy healer ('.$p['spec'].')' : 'enemy '.$p['spec']) : '?')->countBy()->sortDesc();
 
         // ---- defensives traded
         $theirAnswers = $ourGoes->flatMap(fn ($go) => collect($go['forced'] ?? [])->pluck('spell'))->countBy()->sortDesc();
@@ -289,10 +289,10 @@ class CompLibraryService
                     'Length' => $this->clock($g['seconds']),
                     'Difficulty' => GameCardService::difficultyOf((int) (($a['mmr']['them'] ?? 0) - ($a['mmr']['us'] ?? 0)), isset($a['mmr']['us'], $a['mmr']['them']), $sum('them'), $sum('us'))['label']
                         .' ('.$sum('them').' Gladiator seasons vs your '.$sum('us').')',
-                    'Goes, yours / theirs' => $goes->where('side', 'us')->count().' / '.$goes->where('side', 'them')->count(),
-                    'Goes that killed, yours / theirs' => $goes->where('side', 'us')->filter(fn ($x) => $x['kill'] || $x['killLater'])->count().' / '.$goes->where('side', 'them')->filter(fn ($x) => $x['kill'] || $x['killLater'])->count(),
-                    'Defensives before the first death, yours / theirs' => ($a['defensives']['us']['spent'] ?? 0).' / '.($a['defensives']['them']['spent'] ?? 0),
-                    'Interrupts, yours / theirs' => $kicks->where('side', 'us')->count().' / '.$kicks->where('side', 'them')->count(),
+                    'Goes, yours / enemy' => $goes->where('side', 'us')->count().' / '.$goes->where('side', 'them')->count(),
+                    'Goes that killed, yours / enemy' => $goes->where('side', 'us')->filter(fn ($x) => $x['kill'] || $x['killLater'])->count().' / '.$goes->where('side', 'them')->filter(fn ($x) => $x['kill'] || $x['killLater'])->count(),
+                    'Defensives before the first death, yours / enemy' => ($a['defensives']['us']['spent'] ?? 0).' / '.($a['defensives']['them']['spent'] ?? 0),
+                    'Interrupts, yours / enemy' => $kicks->where('side', 'us')->count().' / '.$kicks->where('side', 'them')->count(),
                     'Your healer locked out' => $healer ? round($a['lockout'][$healer['guid']] ?? 0, 1).'s' : null,
                 ], fn ($v) => $v !== null),
 
@@ -301,7 +301,7 @@ class CompLibraryService
                 'won' => $g['a']['won'],
                 'mmr' => isset($g['a']['mmr']['us'], $g['a']['mmr']['them']) ? $g['a']['mmr']['us'].' / '.$g['a']['mmr']['them'] : null,
                 'glad' => $gladOf($g),
-                'death' => $p ? ($p['side'] === 'us' ? 'yours: ' : 'theirs: ').($p['healer'] ? 'healer ('.$p['spec'].')' : $p['spec']).' at '.$this->clock($first['t']) : null,
+                'death' => $p ? ($p['side'] === 'us' ? 'yours: ' : 'enemy: ').($p['healer'] ? 'healer ('.$p['spec'].')' : $p['spec']).' at '.$this->clock($first['t']) : null,
             ];
         })->values()->all();
 
@@ -497,14 +497,14 @@ class CompLibraryService
             return [
                 'Games' => $set->count(),
                 'Your record' => $won.'-'.($set->count() - $won),
-                'Their Gladiator seasons, median' => (int) $set->pluck('_glad')->sort()->values()->median(),
-                'Their goes a game' => number_format($theirGoes->count() / max(1, $set->count()), 1),
-                'Their first go' => $median($firstGo),
-                'Their goes that killed one of you' => $pct($theirGoes->filter(fn ($go) => $go['kill'] || $go['killLater'])->count(), $theirGoes->count()),
+                'Enemy Gladiator seasons, median' => (int) $set->pluck('_glad')->sort()->values()->median(),
+                'Enemy goes a game' => number_format($theirGoes->count() / max(1, $set->count()), 1),
+                'Enemy first go' => $median($firstGo),
+                'Enemy goes that killed one of you' => $pct($theirGoes->filter(fn ($go) => $go['kill'] || $go['killLater'])->count(), $theirGoes->count()),
                 'Your first death, in losses' => $median($deathAt),
                 'Your goes that killed' => $pct($ourGoes->filter(fn ($go) => $go['kill'] || $go['killLater'])->count(), $ourGoes->count()),
-                'Their answers to your go, each' => number_format($ourGoes->sum(fn ($go) => count($go['forced'] ?? [])) / max(1, $ourGoes->count()), 1),
-                'Their offensive cooldowns, most used' => $offensive->take(3)->keys()->implode(', ') ?: '-',
+                'Enemy answers to your go, each' => number_format($ourGoes->sum(fn ($go) => count($go['forced'] ?? [])) / max(1, $ourGoes->count()), 1),
+                'Enemy offensive cooldowns, most used' => $offensive->take(3)->keys()->implode(', ') ?: '-',
                 'What they answered your goes with' => $answers->take(3)->keys()->implode(', ') ?: '-',
             ];
         };
