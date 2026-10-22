@@ -534,7 +534,7 @@ class ImprovementService
             $bucket = fn ($lo, $hi) => $cover->filter(fn ($c) => $c['bigDown'] >= $lo && $c['bigDown'] <= $hi);
             $twoPlus = fn (Collection $rs) => ($c = $rs->where('v6', true)->flatMap(fn ($r) => $r['cover']))->isNotEmpty() ? $c->where('bigDown', '>=', 2)->count() / $c->count() : null;
             $habits[] = $this->habit('cover', 'Big defensives when the enemy go started', false,
-                "Their goes that started with two or more of your team's big defensives (90s+) still on cooldown.",
+                "Enemy goes that started with two or more of your team's big defensives (90s+) still on cooldown.",
                 $twoPlus($mine), $twoPlus($others), $mine->where('v6', true)->count(), $others->where('v6', true)->count(), 0, '%',
                 [
                     'The enemy go killed one of you: '

@@ -246,7 +246,7 @@ class GameCardTest extends TestCase
 
         $this->assertStringContainsString('Harder Enemy MMR +186, 0 Gladiator seasons vs your 0', $card);
         $this->assertStringContainsString('What your team had for the enemy go from 0:07 to the death', $card);
-        $this->assertStringContainsString('Their offensive cooldowns: Bladestorm Lock', $card);
+        $this->assertStringContainsString('Enemy offensive cooldowns: Bladestorm Lock', $card);
         $this->assertStringContainsString('Enemy crowd control on you: Holy Word: Chastise on Healz, 0:15', $card);
         $this->assertStringContainsString('Healz locked out 8.6s of it, the longest stretch 8.9s from 0:15. Free 0:14 to 0:15 just before it', $card);
         // The dying Hunter's own defensives first, then the healer's, with the refused press.

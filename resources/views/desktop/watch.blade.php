@@ -150,7 +150,7 @@
                     @php $w = max(0.4, $pct((float) $g['to']) - $pct((float) $g['from'])); @endphp
                     <div class="go {{ $g['side'] }}{{ ! empty($g['kill']) ? ' kill' : '' }}"
                          style="left: {{ $pct((float) $g['from']) }}%; width: {{ $w }}%"
-                         title="{{ $g['side'] === 'us' ? 'Your go' : 'Their go' }} — {{ $clock($g['from']) }} to {{ $clock($g['to']) }}{{ ! empty($g['chain']) ? ' — '.$g['chain'] : '' }}"></div>
+                         title="{{ $g['side'] === 'us' ? 'Your go' : 'Enemy go' }} — {{ $clock($g['from']) }} to {{ $clock($g['to']) }}{{ ! empty($g['chain']) ? ' — '.$g['chain'] : '' }}"></div>
                 @endforeach
                 @foreach ($r['deaths'] as $d)
                     <div class="death" style="left: {{ $pct((float) $d['t']) }}%"></div>

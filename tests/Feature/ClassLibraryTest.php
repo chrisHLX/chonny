@@ -120,7 +120,7 @@ class ClassLibraryTest extends TestCase
         $this->assertStringContainsString('Icy Veins 100% of goes', $page);
         $this->assertStringContainsString('Ice Block 2×, at 22% health', $page);
         $this->assertStringContainsString('2 outside your goes', $page);
-        $this->assertStringContainsString('Their casts your team kicked Polymorph 2×', $page);
+        $this->assertStringContainsString('Enemy casts your team kicked Polymorph 2×', $page);
         $this->assertStringContainsString('Damage Frostbolt 75%', $page);
     }
 

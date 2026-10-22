@@ -80,7 +80,7 @@
         <div class="label" style="margin-top: 12px">What your team had for the enemy go <span class="aside">from {{ $s['from'] }} to the death: what was there, not what would have won</span></div>
 
         @if ($s['offensive'])
-            <div class="line small"><span class="muted">Their offensive cooldowns:&nbsp;</span>
+            <div class="line small"><span class="muted">Enemy offensive cooldowns:&nbsp;</span>
                 @foreach ($s['offensive'] as $x)
                     <span class="def">@if ($x['icon'])<img class="spell-ic" src="{{ $x['icon'] }}">@endif{{ $x['spell'] }} <span style="color: {{ $x['color'] }}">{{ $x['name'] }}</span></span>
                 @endforeach

@@ -85,7 +85,7 @@ class GameMomentsServiceTest extends TestCase
         $moments = app(GameMomentsService::class)->forRound($this->round());
         $opening = collect($moments)->firstWhere('kind', 'opening');
 
-        $this->assertSame('Their go on Terrorizer', $opening['title']);
+        $this->assertSame('Enemy go on Terrorizer', $opening['title']);
         $this->assertStringContainsString('went from 30% to 20%', $opening['text']);
         $this->assertStringContainsString('Your first cast came after 0.6s: Shadow Word: Pain and Pain Suppression', $opening['text']);
         // Pain Suppression is a big defensive; Fade (30s) is not.

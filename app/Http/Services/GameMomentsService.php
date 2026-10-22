@@ -240,7 +240,7 @@ class GameMomentsService
                 't' => $gFrom,
                 'clock' => $this->clock($gFrom),
                 'tone' => $killed ? 'warn' : 'neutral',
-                'title' => "Their go on {$target}".($killed ? ': it killed' : ''),
+                'title' => "Enemy go on {$target}".($killed ? ': it killed' : ''),
                 'text' => sprintf('%s went from %d%% to %d%%. %s %s',
                     $target, $hp['start'] ?? 100, $hp['low'] ?? 100,
                     $first ? 'Your first cast came '.($lead <= 0.1 ? 'as it started' : "after {$this->secs($lead)}").': '.$this->list(array_map(fn ($c) => $c[1], $first)).'.' : 'You cast nothing in its first '.(int) self::OPENING.' seconds.',

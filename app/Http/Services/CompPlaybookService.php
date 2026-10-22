@@ -194,7 +194,7 @@ class CompPlaybookService
             };
 
             if (isset(self::DAMAGE_IMMUNE[$spell->spell_id])) {
-                $notes[] = 'Their healer cannot be hit or healed while it holds.';
+                $notes[] = 'The enemy healer cannot be hit or healed while it holds.';
             } elseif (in_array($dr, self::BREAKS_ON_DAMAGE, true)) {
                 $notes[] = 'Breaks if their healer takes damage.';
             }

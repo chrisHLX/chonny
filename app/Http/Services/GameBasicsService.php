@@ -226,7 +226,7 @@ class GameBasicsService
                 'label' => 'Heavy enemy goes met with nothing pressed, your big defensives already down',
                 'value' => "{$held} of {$drained->count()}",
                 'tone' => $held === 0 ? 'good' : 'warn',
-                'text' => "Their go came with two or more of your big defensives on cooldown, and two of them pressing or your healer locked. Across every go like it, a defender died {$none}% of the time when nothing was pressed, against {$spent}% when two or more answers went out. What is left by then is usually the short ones, and in goes like this they were worth pressing.",
+                'text' => "The enemy go came with two or more of your big defensives on cooldown, and two of them pressing or your healer locked. Across every go like it, a defender died {$none}% of the time when nothing was pressed, against {$spent}% when two or more answers went out. What is left by then is usually the short ones, and in goes like this they were worth pressing.",
             ];
         }
 

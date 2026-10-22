@@ -298,7 +298,7 @@
     <div class="label">Every game against them <span class="aside">click a game for every player's experience and the game's numbers</span></div>
     <div class="box">
         <table class="stats">
-            <tr><td class="arrow"></td><td class="small muted">Played</td>@unless ($c['pool'] ?? false)<td class="small muted">You</td>@endunless<td class="small muted">{{ ($c['pool'] ?? false) ? 'Your result' : 'Result' }}</td><td class="small muted">MMR (you / them)</td><td class="small muted">Their Gladiator seasons</td><td class="small muted">First death</td></tr>
+            <tr><td class="arrow"></td><td class="small muted">Played</td>@unless ($c['pool'] ?? false)<td class="small muted">You</td>@endunless<td class="small muted">{{ ($c['pool'] ?? false) ? 'Your result' : 'Result' }}</td><td class="small muted">MMR (you / them)</td><td class="small muted">Enemy Gladiator seasons</td><td class="small muted">First death</td></tr>
             @foreach ($c['list'] as $row)
                 <tr class="game" onclick="toggle('{{ $row['id'] }}')">
                     <td class="arrow" id="{{ $row['id'] }}-a">&#9656;</td>

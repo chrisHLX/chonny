@@ -170,7 +170,7 @@
             @php $d = $m['defensives']; @endphp
             <div class="label">Enemy defensives <span class="aside">{{ $d['count'] }} before the first death, {{ $d['perRound'] }} a round{{ $d['hp'] !== null ? ', at '.$d['hp'].'% health (median)' : '' }}; {{ $d['outside'] }} outside your goes</span></div>
             {!! $list($d['rows'], 'None pressed before the first death.') !!}
-            <div class="label" style="margin-top: 10px">Their casts your team kicked</div>
+            <div class="label" style="margin-top: 10px">Enemy casts your team kicked</div>
             {!! $list($m['kickedOf'], 'None kicked.') !!}
         </div></td>
     </tr></table>
