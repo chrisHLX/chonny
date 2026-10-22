@@ -36,7 +36,7 @@
                                     @endif
                                     <div class="small" style="margin-top: 3px">{{ $x['text'] }}</div>
                                     @if (($x['hp']['start'] ?? null) !== null)
-                                        <div class="small muted" style="margin-top: 2px">{{ $x['hpOf'] ?? 'Their' }} health: {{ $x['hp']['start'] }}% at the start, {{ $x['hp']['low'] }}% at the lowest.</div>
+                                        <div class="small muted" style="margin-top: 2px">{{ $x['hpOf'] ?? 'Enemy' }} health: {{ $x['hp']['start'] }}% at the start, {{ $x['hp']['low'] }}% at the lowest.</div>
                                     @endif
                                     @if (! empty($x['steps']))
                                         <table class="stats" style="margin-top: 6px; width: auto">

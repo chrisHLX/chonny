@@ -547,7 +547,7 @@ class GameCardService
             ], array_values(array_filter($d['abilities'] ?? [], fn ($a) => $a['pct'] >= 3))),
             'healer' => $healer,
             'goStartedAgo' => $d['goStartedAgo'],
-            'goWhose' => $d['side'] === 'us' ? 'Their' : 'Your',
+            'goWhose' => $d['side'] === 'us' ? 'Enemy' : 'Your',
             'defensives' => array_map(fn ($x) => [
                 'spell' => $x['spell'], 'icon' => $this->spellIcon($icons, $x['spell']),
                 'who' => $this->short($x['who']), 'ago' => $x['ago'],

@@ -131,7 +131,7 @@ class GameMomentsService
                     ? "{$spell} on {$this->short($victim['name'])} through {$defs}"
                     : "Your team's {$spell} on {$this->short($victim['name'])} through {$defs}",
                 'text' => sprintf('%s cast it while %s %s up, and %s %s of %s. %s',
-                    $this->who($caster, $me, $ours ? 'Their' : 'Your'), $defs, count($spent) > 1 ? 'were' : 'was',
+                    $this->who($caster, $me, $ours ? 'Enemy' : 'Your'), $defs, count($spent) > 1 ? 'were' : 'was',
                     $ours ? 'lost' : 'took away', $this->secs($lost), count($spent) > 1 ? 'each' : 'it',
                     $this->howEnded($a, $on, $spell, $to, $me)),
                 'spells' => array_merge([$spell], array_keys($spent)),
@@ -368,11 +368,11 @@ class GameMomentsService
         return array_slice($moments, 0, self::PER_KIND);
     }
 
-    /** "You", or "Their Discipline Priest Bigchalupaz". */
+    /** "You", or "Enemy Discipline Priest Bigchalupaz". */
     private function who(?array $p, array $me, string $team): string
     {
         if ($p === null) {
-            return $team === 'Their' ? 'They' : 'Your team';
+            return $team === 'Enemy' ? 'They' : 'Your team';
         }
 
         return $p['guid'] === $me['guid'] ? 'You' : $team.' '.$p['spec'].' '.$this->short($p['name']);
