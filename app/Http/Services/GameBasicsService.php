@@ -426,7 +426,7 @@ class GameBasicsService
                     'value' => round($share * 100).'% (most '.$label.'s '.round($p50 * 100).'%)',
                     'tone' => $share > ($norm['lockedShare']['p75'] ?? 1) ? 'warn' : ($share <= $p50 ? 'good' : 'neutral'),
                     'text' => $this->evidence('healerControlledLess', 'Across every healer in the archive, a healer controlled more than most of their spec won {without}% of rounds, less {with}%. ')
-                        .'Line of sight their casters, stand out of melee stun range, and keep the Medallion for the control that would lose the round.',
+                        .'Line of sight enemy casters, stand out of melee stun range, and keep the Medallion for the control that would lose the round.',
                 ];
             }
         } else {

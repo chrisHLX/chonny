@@ -30,7 +30,7 @@
                                 @endif
                                 @if (! empty($row['macro']))
                                     <div class="small" style="margin-top: 4px; font-family: Consolas, monospace; color: #E8B84B">#showtooltip<br>/cast [@focus] {{ $row['macro'] }}</div>
-                                    <div class="small muted" style="margin-top: 2px">or one each for <span style="font-family: Consolas, monospace">[@arena1]</span>, <span style="font-family: Consolas, monospace">[@arena2]</span>, <span style="font-family: Consolas, monospace">[@arena3]</span>. Set your focus on their healer as the gates open.</div>
+                                    <div class="small muted" style="margin-top: 2px">or one each for <span style="font-family: Consolas, monospace">[@arena1]</span>, <span style="font-family: Consolas, monospace">[@arena2]</span>, <span style="font-family: Consolas, monospace">[@arena3]</span>. Set your focus on the enemy healer as the gates open.</div>
                                 @endif
                             </td>
                         </tr>

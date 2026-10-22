@@ -3,7 +3,7 @@
     @if ($d['icon'])<img class="spec-ic" src="{{ $d['icon'] }}" style="border:1px solid {{ $d['color'] }}">@endif
     <span class="muted">&nbsp;{{ $d['clock'] }}</span>&nbsp;
     <span class="name" style="color: {{ $d['color'] }}">{{ $d['name'] }}</span> died
-    <span class="chip {{ $d['ours'] ? 'bad' : 'good' }}">{{ $d['ours'] ? 'yours' : 'theirs' }}</span>
+    <span class="chip {{ $d['ours'] ? 'bad' : 'good' }}">{{ $d['ours'] ? 'yours' : 'enemy' }}</span>
 </div>
 
 @if ($d['killingBlow'] || $d['shares'])
@@ -46,7 +46,7 @@
             @foreach ($g['presses'] as $p)<line x1="{{ $p['x'] }}" x2="{{ $p['x'] }}" y1="0" y2="{{ $g['h'] }}" stroke="#C8952C" stroke-width="2" vector-effect="non-scaling-stroke"><title>{{ $p['label'] }}</title></line>@endforeach
         </svg>
         <div class="small subtle"><span style="float: right">the death</span>{{ $g['seconds'] }}s before</div>
-        <div class="small subtle">Dashed: 35%. @if ($g['locked'])Shaded: the enemy healer locked out. @endif @if ($g['presses'])Gold: a defensive pressed on their side (hover for which). @endif</div>
+        <div class="small subtle">Dashed: 35%. @if ($g['locked'])Shaded: the enemy healer locked out. @endif @if ($g['presses'])Gold: a defensive pressed on that side (hover for which). @endif</div>
     </div>
 @endif
 
@@ -131,7 +131,7 @@
             </div>
         @endif
         @if ($s['pressed'])
-            <div class="line"><span class="chip neutral">Pressed in their go</span></div>
+            <div class="line"><span class="chip neutral">Pressed in the enemy go</span></div>
             <div class="line small">
                 @foreach ($s['pressed'] as $x)
                     <span class="def">@if ($x['icon'])<img class="spell-ic" src="{{ $x['icon'] }}">@endif{{ $x['spell'] }} <span style="color: {{ $x['color'] }}">{{ $x['name'] }}</span> <span class="muted">{{ $x['clock'] }}</span></span>

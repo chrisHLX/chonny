@@ -253,7 +253,7 @@ class GameCardTest extends TestCase
         $this->assertStringContainsString('Ready, and could have saved them', $card);
         $this->assertLessThan(strpos($card, 'Pain Suppression Healz'), strpos($card, 'Roar of Sacrifice Hunter'));
         $this->assertStringContainsString('Pain Suppression Healz tried 0:19 (while fleeing)', $card);
-        $this->assertStringContainsString("Pressed in their go Gladiator's Medallion Healz 0:14", $card);
+        $this->assertStringContainsString("Pressed in the enemy go Gladiator's Medallion Healz 0:14", $card);
         $this->assertStringContainsString('On cooldown when it began Camouflage Hunter back at 1:00', $card);
         $this->assertStringNotContainsString('Barkskin while they were not in a go', $card, 'pressed just before a lockout is not a fault');
     }

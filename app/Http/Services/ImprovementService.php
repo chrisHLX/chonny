@@ -442,7 +442,7 @@ class ImprovementService
             }
         }
 
-        // Your team's goes without your control on their healer.
+        // Your team's goes without your control on the enemy healer.
         $missed = $goes->where('side', $side)->reject(fn ($g) => in_array($guid, $g['healerCcBy'] ?? [], true));
 
         return [
@@ -523,7 +523,7 @@ class ImprovementService
                         $this->pctOf($mine->sum('ccGoesKilled'), $with), $this->pctOf($mine->sum('goesKilled') - $mine->sum('ccGoesKilled'), $without)),
                 ],
                 $trend($share),
-                'A go converts when the burst lands while their healer is locked out, not merely when they are CC\'d at some point in it.',
+                'A go converts when the burst lands while the enemy healer is locked out, not merely when they are CC\'d at some point in it.',
                 $this->iconRows(array_map(fn ($n) => $n.'×', array_slice($spells, 0, 5, true)), 'What you put on the enemy healer'),
             );
         }
@@ -584,7 +584,7 @@ class ImprovementService
                 "Your team's losses that began with you dying.",
                 $first($mine), $first($others), $mine->where('teamLost', true)->count(), $others->where('teamLost', true)->count(), 0, '%',
                 [], $trend($first),
-                'The big defensive pressed when their cooldowns go out, not at the bottom of your health, was the clearest fix on 30 Sep.',
+                'The big defensive pressed when the enemy cooldowns go out, not at the bottom of your health, was the clearest fix on 30 Sep.',
             );
         }
 
@@ -831,7 +831,7 @@ class ImprovementService
             return [];
         }
 
-        return [sprintf('Your team took %s a minute, theirs %s. %s', $this->num($x, 0, 'k'), $this->num($y, 0, 'k'),
+        return [sprintf('Your team took %s a minute, the enemy %s. %s', $this->num($x, 0, 'k'), $this->num($y, 0, 'k'),
             $x > $y * 1.1 ? 'More damage to heal brings the share down even at the same healing.' : ($x < $y * 0.9 ? 'Less damage to heal, so this gap is not about how hard it was.' : 'About the same pressure, so the gap is in the healing.'))];
     }
 
@@ -860,7 +860,7 @@ class ImprovementService
         }
         $top = collect($a['casts'])->take(3)->map(fn ($n, $s) => "{$s} (".$this->pct($n / $a['total']).')')->implode(', ');
         if ($top !== '') {
-            $out[] = sprintf('In that time your casts were mostly %s. Dispels were %s of your casts then, %s of theirs.', $top, $this->pct($a['dispelShare']), $this->pct($b['dispelShare']));
+            $out[] = sprintf('In that time your casts were mostly %s. Dispels were %s of your casts then, %s of the enemy.', $top, $this->pct($a['dispelShare']), $this->pct($b['dispelShare']));
         }
 
         return $out;
@@ -882,7 +882,7 @@ class ImprovementService
         };
         $a = $split($mine);
         $b = $split($others);
-        $label = ['theirs' => 'in their goes', 'ours' => 'in your team\'s goes', 'none' => 'outside any go'];
+        $label = ['theirs' => 'in enemy goes', 'ours' => 'in your team\'s goes', 'none' => 'outside any go'];
         $worst = collect($a)->map(fn ($v, $k) => $v - $b[$k])->sortDesc()->keys()->first();
 
         return [
@@ -893,7 +893,7 @@ class ImprovementService
         ];
     }
 
-    /** The team's goes without your control on their healer, and how many you began locked out. */
+    /** The team's goes without your control on the enemy healer, and how many you began locked out. */
     private function ccWhy(Collection $mine, Collection $others): array
     {
         $missed = $mine->sum(fn ($r) => $r['v16']['ccMissed']);
@@ -904,7 +904,7 @@ class ImprovementService
         $theirMissed = $others->filter(fn ($r) => $r['v16'] !== null)->sum(fn ($r) => $r['v16']['ccMissed']);
         $theirLocked = $others->filter(fn ($r) => $r['v16'] !== null)->sum(fn ($r) => $r['v16']['ccMissedLocked']);
 
-        return [sprintf('Of your team\'s %d goes without your control on their healer, you were locked out as %d of them started (%s)%s. The rest you began free to act.',
+        return [sprintf('Of your team\'s %d goes without your control on the enemy healer, you were locked out as %d of them started (%s)%s. The rest you began free to act.',
             $missed, $locked, $this->pct($locked / $missed),
             $theirMissed > 0 ? '; for them '.$this->pct($theirLocked / $theirMissed) : '')];
     }
@@ -1059,7 +1059,7 @@ class ImprovementService
                 ? (($s = $split('idleShare', 'above')) ? "Healers idle more than their spec's middle won {$s[0]} of rounds, less {$s[1]}: a healer idles when there is less to heal, so this says more about the pressure than the healer." : null)
                 : (($s = $split('idleShare', 'below')) ? "{$who} idle less than their spec's middle won {$s[0]} of rounds, more {$s[1]}." : null),
             'healing' => $healer && ($s = $split('healingPerFreeMinute', 'above')) ? "Healers above their spec's middle on healing won {$s[0]} of rounds, below it {$s[1]}: more healing comes with more damage to heal, so this says as much about the pressure as the healer." : null,
-            'cc' => ($s = $pair('healerLockedInPeak')) ? "Goes with their healer locked out or kicked killed {$s[0]} of the time, without {$s[1]}." : null,
+            'cc' => ($s = $pair('healerLockedInPeak')) ? "Goes with the enemy healer locked out or kicked killed {$s[0]} of the time, without {$s[1]}." : null,
             'cover' => ($s = $pair('theirDefensivesDown')) ? "Goes into a team with a big defensive already spent killed {$s[0]} of the time, into a full set {$s[1]}." : null,
             'kicked' => ($s = $pair('castsInterrupted')) ? "Rounds where the logging player was kicked often were won {$s[0]}, otherwise {$s[1]}." : null,
             'los' => ($s = $pair('lineOfSightFailures')) ? "Rounds with many casts blocked by line of sight were won {$s[0]}, otherwise {$s[1]}." : null,

@@ -6,7 +6,7 @@
 @php
     $kinds = [
         'control' => ['Crowd control through a big defensive', 'control landing while a big defensive was up: the seconds of it lost'],
-        'dispel' => ['Crowd control on a teammate in their go', 'what you could dispel while enemy go was on, and what happened'],
+        'dispel' => ['Crowd control on a teammate in an enemy go', 'what you could dispel while enemy go was on, and what happened'],
         'opening' => ['The start of enemy goes', 'your first casts, your first big defensive, and the target\'s health'],
     ];
     $chip = ['warn' => ['warn', 'LOOK'], 'good' => ['good', 'GOOD'], 'neutral' => ['neutral', 'NOTE']];

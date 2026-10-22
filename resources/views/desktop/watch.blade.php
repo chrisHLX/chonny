@@ -113,7 +113,7 @@
         <button type="button" id="here" title="Use the video's current position as the start of round 1">set from playhead</button>
     </div>
     <div class="legend">
-        <b style="background:#2f7d4f"></b> your goes <b style="background:#8c3b3b"></b> theirs
+        <b style="background:#2f7d4f"></b> your goes <b style="background:#8c3b3b"></b> enemy
         <b style="background:#F28B82"></b> a death
         <span class="subtle">&nbsp;&middot;&nbsp; gold edge = the go killed someone. Click a rail or a row to jump. Later rounds are placed from the real time between them.</span>
     </div>

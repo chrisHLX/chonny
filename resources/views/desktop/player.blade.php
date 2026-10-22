@@ -162,7 +162,7 @@
     <table class="two"><tr>
         <td class="col left"><div class="box">
             <div class="label">In the enemy team's goes <span class="aside">{{ $m['goes']['count'] }} go{{ $m['goes']['count'] === 1 ? '' : 'es' }}; they pressed an offensive cooldown in {{ $m['goes']['pressedIn'] }}; killed one of you {{ $m['goes']['killed'] }}</span></div>
-            {!! $list($m['goes']['offensive'], 'No offensive cooldown of theirs in a go.') !!}
+            {!! $list($m['goes']['offensive'], 'No enemy offensive cooldown in a go.') !!}
             <div class="label" style="margin-top: 10px">Enemy crowd control on you in those goes</div>
             {!! $list($m['goes']['control'], 'None of enemy crowd control was part of a go.') !!}
         </div></td>
@@ -179,7 +179,7 @@
 {{-- ============================== damage and healing --}}
 @if ($m['breakdown'])
     <div class="section">
-        <div class="label">Where enemy output came from <span class="aside">share of their total onto players, every round summed</span></div>
+        <div class="label">Where enemy output came from <span class="aside">share of the enemy total onto players, every round summed</span></div>
         <table class="two"><tr>
             @foreach ($m['breakdown'] as $i => $bd)
                 <td class="col {{ $i === 0 ? 'left' : 'right' }}"><div class="box">

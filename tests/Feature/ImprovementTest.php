@@ -205,7 +205,7 @@ class ImprovementTest extends TestCase
         $this->assertStringContainsString('Why yours is lower Penance: 150k a minute against 600k for them. You press it 3.3 times a free minute, they press it 7.9.', $page);
         // Dispels: locked out half the minute of Polymorph; their free time went on Purify.
         $this->assertStringContainsString('While a debuff you could dispel was on your team, you were locked out 50% of the time, they 0%.', $page);
-        $this->assertStringContainsString('In that time your casts were mostly Penance (75%), Purify (25%). Dispels were 25% of your casts then, 100% of theirs.', $page);
+        $this->assertStringContainsString('In that time your casts were mostly Penance (75%), Purify (25%). Dispels were 25% of your casts then, 100% of the enemy.', $page);
         // The rotation: presses per minute free, Penance marked.
         $this->assertStringContainsString('Your rotation', $page);
         // The third column is the spec's middle player in the norms (the committed or live file).
