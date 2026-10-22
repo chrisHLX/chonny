@@ -71,6 +71,10 @@ class BuildGameCards extends Command
         if (($path = $this->option('notes')) && File::exists($path)) {
             $notes = json_decode(File::get($path), true)['notes'] ?? [];
         }
+        // Notes written from the browser (arena_notes) sit alongside the app's notes.json rather
+        // than replacing it: a player can write from either, and both end up on the same card.
+        // These already name their game, so attachNotes() files them without timestamp matching.
+        $notes = array_merge($notes, \App\Models\ArenaNote::forCards($user->id));
 
         $built = $cards->build($user, $index['experience'] ?? [], $notes, $known);
 

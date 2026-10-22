@@ -86,4 +86,40 @@ class CoachController extends Controller
     {
         return redirect()->route('coach')->with('coach_key', $request->user()->issueCoachToken());
     }
+
+    /**
+     * Write a note on one of your own games, from the browser (2026-10-22).
+     *
+     * Deliberately unstructured: a note is whatever the player noticed while reviewing, and
+     * giving it fields now would decide what is worth noticing before anyone has noticed
+     * anything. The desktop app writes notes too (notes.json); both land on the same card.
+     *
+     * The lobby is checked against the viewer's own rounds, not trusted from the form -- a lobby
+     * id is guessable and a note is the first thing on this page that writes.
+     */
+    public function note(Request $request)
+    {
+        $data = $request->validate([
+            'lobby' => ['required', 'string', 'max:191'],
+            'body' => ['required', 'string', 'max:4000'],
+        ]);
+
+        $user = $request->user();
+        abort_unless(
+            \App\Models\ArenaRound::where('user_id', $user->id)->where('lobby_id', $data['lobby'])->exists(),
+            404,
+        );
+
+        \App\Models\ArenaNote::create([
+            'user_id' => $user->id,
+            'lobby_id' => $data['lobby'],
+            'body' => trim($data['body']),
+        ]);
+
+        // The card embeds its notes, and a note changes the game's signature, so the page is
+        // redrawn rather than patched. Cards first: that queue is the one the workers take first.
+        BuildCoachPages::dispatch($user->id, cardsOnly: true);
+
+        return redirect()->route('coach')->with('note_status', 'Note saved. The card redraws in a moment.');
+    }
 }

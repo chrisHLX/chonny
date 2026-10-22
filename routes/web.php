@@ -229,6 +229,10 @@ Route::prefix('wow')->group(function () {
     Route::get('/coach/page/{file}', [\App\Http\Controllers\CoachController::class, 'page'])
         ->where('file', '[a-z0-9-]+\.html')->middleware('auth')->name('coach.page');
     Route::post('/coach/key', [\App\Http\Controllers\CoachController::class, 'key'])->middleware('auth')->name('coach.key');
+    // A note written on a game from the browser (CoachController::note). Throttled and named, so
+    // it never shares a counter with another route (CLAUDE.md, the throttle trap).
+    Route::post('/coach/note', [\App\Http\Controllers\CoachController::class, 'note'])
+        ->middleware(['auth', 'throttle:30,1,coach-note'])->name('coach.note');
     Route::post('/coach/pool', [\App\Http\Controllers\CoachController::class, 'pool'])->middleware('auth')->name('coach.pool');
     // The desktop app's download: unlisted while two players test it. See DesktopAppController.
     // The desktop app (2026-10-11): a public download page and download (the app does nothing until

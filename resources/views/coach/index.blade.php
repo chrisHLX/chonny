@@ -108,7 +108,33 @@
                             @endforelse
                         </div>
                     </div>
-                    <iframe class="coach-frame" :src="file ? '/wow/coach/page/' + file : 'about:blank'" title="The selected page"></iframe>
+                    <div>
+                        <iframe class="coach-frame" :src="file ? '/wow/coach/page/' + file : 'about:blank'" title="The selected page"></iframe>
+
+                        {{-- A note on the game you are looking at (CoachController::note). Only on
+                             the Games tab: the other tabs are about a character or a comp, not one
+                             game, so there is nothing for a note to attach to. The lobby id is the
+                             card's filename without .html, which is what the index is keyed by. --}}
+                        <div x-show="tab === 'games' && file" x-cloak class="linear-card p-4 mt-2">
+                            <form method="POST" action="{{ route('coach.note') }}">
+                                @csrf
+                                <input type="hidden" name="lobby" :value="file ? file.replace('.html','') : ''">
+                                <label for="note-body" class="block text-[13px] text-ink font-bold">Your note on this game</label>
+                                <p class="text-[12px] text-ink-subtle mt-0.5 mb-2">
+                                    Whatever you noticed watching it back. It goes on the card, and only you can see it.
+                                </p>
+                                <textarea id="note-body" name="body" rows="3" maxlength="4000" required
+                                          class="form-textarea w-full !text-[13px]"
+                                          placeholder="They opened on the healer every round and we never peeled the first stun&hellip;"></textarea>
+                                <div class="flex items-center gap-3 mt-2">
+                                    <button type="submit" class="btn-primary text-[13px]">Save note</button>
+                                    @if (session('note_status'))
+                                        <span class="text-[12.5px] text-emerald-300">{{ session('note_status') }}</span>
+                                    @endif
+                                </div>
+                            </form>
+                        </div>
+                    </div>
                 </div>
             @endif
         </div>
