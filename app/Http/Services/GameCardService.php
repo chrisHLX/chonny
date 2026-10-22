@@ -494,9 +494,9 @@ class GameCardService
         $easier = ($haveMmr && $mmrGap <= -50) || $ourGlad - $theirGlad >= 3;
         $parts = [];
         if ($haveMmr && abs($mmrGap) >= 10) {
-            $parts[] = sprintf('their MMR %d %s yours', abs($mmrGap), $mmrGap > 0 ? 'above' : 'below');
+            $parts[] = sprintf('enemy MMR %s%d', $mmrGap > 0 ? '+' : '-', abs($mmrGap));
         }
-        $parts[] = sprintf('%d Gladiator season%s to your %d', $theirGlad, $theirGlad === 1 ? '' : 's', $ourGlad);
+        $parts[] = sprintf('%d Gladiator season%s vs your %d', $theirGlad, $theirGlad === 1 ? '' : 's', $ourGlad);
 
         return match (true) {
             $harder && ! $easier => ['label' => 'Harder', 'tone' => 'bad', 'text' => ucfirst(implode(', ', $parts))],

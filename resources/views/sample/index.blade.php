@@ -20,8 +20,10 @@
     <div class="mx-auto space-y-4" style="max-width: 1400px" x-data="{ tab: 'game' }">
         <div class="page-hero !py-6 flex flex-col lg:flex-row lg:items-end gap-4">
             <div class="flex-1 min-w-0">
-                <p class="page-eyebrow">A real game, names hidden</p>
-                <h1 class="page-title">What you get for every game</h1>
+                <p class="page-eyebrow">Post arena match &middot; player names hidden</p>
+                @foreach ($pages as $key => [$file, $label, $what, $heading])
+                    <h1 class="page-title" x-show="tab === '{{ $key }}'" @if ($key !== 'game') x-cloak @endif>{{ $heading }}</h1>
+                @endforeach
                 @foreach ($pages as $key => [$file, $label, $what])
                     <p class="text-[14px] text-ink-muted mt-3 max-w-3xl" x-show="tab === '{{ $key }}'" @if ($key !== 'game') x-cloak @endif>{{ $what }}</p>
                 @endforeach

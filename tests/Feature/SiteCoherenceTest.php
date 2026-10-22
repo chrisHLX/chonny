@@ -9,7 +9,7 @@ use App\Models\PageViewEvent;
  * menu, League of Legends unlisted, and the old cross-game diagnostic retired.
  */
 it('shows a real game with the names hidden to anyone', function () {
-    $this->get('/wow/sample')->assertOk()->assertSee('A real game, names hidden')->assertSee('Sign in to see yours');
+    $this->get('/wow/sample')->assertOk()->assertSee('Post arena match')->assertSee('3v3 Post-Match Analysis')->assertSee('Sign in to see yours');
     expect(PageViewEvent::where('page', 'wow_sample')->count())->toBe(1);
 
     foreach (array_keys(SampleGameController::PAGES) as $tab) {

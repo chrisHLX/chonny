@@ -16,12 +16,19 @@ use App\Models\PageViewEvent;
  */
 class SampleGameController extends Controller
 {
-    /** Tab => [file, label, what it is]. */
+    /**
+     * Tab => [file, label, what it is, the page's own title].
+     *
+     * The title is per tab because the page shows four different reports and a single heading has
+     * to be either wrong or vague for three of them. It names the report rather than selling it:
+     * the surrounding page already does the selling, and a demonstration of an analytical tool
+     * reads as marketing copy if it is given a marketing voice (Chriso, 2026-10-22).
+     */
     public const PAGES = [
-        'game' => ['game.html', 'A 3v3 game', 'Every game you play gets a card like this about a minute after it ends: who you played, how each death happened, both teams\' goes, and everyone\'s damage and healing.'],
-        'shuffle' => ['shuffle.html', 'A Solo Shuffle', 'A Solo Shuffle lobby, round by round: who you were with, who died first, and how each round was won or lost.'],
-        'improve' => ['improve.html', 'Where you stand', 'Each character gets a page like this: your damage, defensives and crowd control set against every other player of your spec in your games, session by session.'],
-        'comp' => ['comp.html', 'A comp you met', 'Every comp you have played against, from your own games with them: when they go, what they go with, the crowd control they chain and who they kill.'],
+        'game' => ['game.html', 'A 3v3 game', 'Every game you play gets a card like this about a minute after it ends: who you played, how each death happened, both teams\' goes, and everyone\'s damage and healing.', '3v3 Post-Match Analysis'],
+        'shuffle' => ['shuffle.html', 'A Solo Shuffle', 'A Solo Shuffle lobby, round by round: who you were with, who died first, and how each round was won or lost.', 'Solo Shuffle Post-Match Analysis'],
+        'improve' => ['improve.html', 'Where you stand', 'Each character gets a page like this: your damage, defensives and crowd control set against every other player of your spec in your games, session by session.', 'Where You Stand'],
+        'comp' => ['comp.html', 'A comp you met', 'Every comp you have played against, from your own games with them: when they go, what they go with, the crowd control they chain and who they kill.', 'Enemy Comp Report'],
     ];
 
     public function index()

@@ -59,8 +59,8 @@ class GameBasicsTest extends TestCase
         $rows = fn (string $title) => collect($sections[$title]['rows'])->keyBy('label');
 
         $goes = $rows("Your team's goes");
-        $this->assertSame('1 of 2', $goes['Their healer locked during your burst']['value'], 'only your side\'s goes count');
-        $this->assertSame('2.0', $goes['Crowd control on their healer per go']['value']);
+        $this->assertSame('1 of 2', $goes['Enemy healer locked during your burst']['value'], 'only your side\'s goes count');
+        $this->assertSame('2.0', $goes['Crowd control on the enemy healer per go']['value']);
 
         $casts = $rows('Your crowd control and casts');
         $this->assertSame('5', $casts['Your casts that were kicked']['value']);
@@ -167,14 +167,14 @@ class GameBasicsTest extends TestCase
     public function test_the_basics_set_your_answers_against_goes_like_them(): void
     {
         $b = app(GameBasicsService::class)->forRounds([$this->decisionRound()]);
-        $rows = collect(collect($b['sections'])->firstWhere('title', 'Your answers to their goes')['rows'])->keyBy('label');
+        $rows = collect(collect($b['sections'])->firstWhere('title', 'Your answers to enemy goes')['rows'])->keyBy('label');
 
-        $drained = $rows['Heavy goes of theirs met with nothing pressed, your big defensives already down'] ?? null;
+        $drained = $rows['Heavy enemy goes met with nothing pressed, your big defensives already down'] ?? null;
         $this->assertNotNull($drained, 'the committed norms hold the drained-and-heavy cell');
         $this->assertSame('1 of 2', $drained['value'], 'the forced go is in the count but not held against you');
         $this->assertMatchesRegularExpression('/died \d+% of the time when nothing was pressed, against \d+%/', $drained['text']);
 
-        $light = $rows['Light goes of theirs that drew two or more answers'] ?? null;
+        $light = $rows['Light enemy goes that drew two or more answers'] ?? null;
         $this->assertNotNull($light);
         $this->assertSame('1 of 1', $light['value']);
     }

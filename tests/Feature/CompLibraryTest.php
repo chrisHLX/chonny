@@ -121,7 +121,7 @@ class CompLibraryTest extends TestCase
         $this->assertStringContainsString('Glad Restoration Druid 12× Glad · best ?', $page);
         $this->assertStringContainsString('Healz YOU Discipline Priest not looked up', $page);
         $this->assertStringContainsString('Goes that killed, yours / theirs 0 / 1', $page);
-        $this->assertStringContainsString('Difficulty Harder (12 Gladiator seasons to your 0)', $page);
+        $this->assertStringContainsString('Difficulty Harder (12 Gladiator seasons vs your 0)', $page);
     }
 
     public function test_solo_shuffle_never_counts_toward_a_3v3_comp(): void

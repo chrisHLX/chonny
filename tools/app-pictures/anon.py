@@ -1,4 +1,4 @@
-# Copy the app's pages with every player's name swapped for a label ("Their Rogue", "Your Warlock",
+# Copy the app's pages with every player's name swapped for a label ("Enemy Rogue", "Your Warlock",
 # "You"), so screenshots of them can go on the public site. Names come from every card's rosters and
 # from names.txt beside the pages folder (allnames.php). Prints, per page, any name still in it: every
 # list must be empty before a picture is taken. See README.md.
@@ -16,7 +16,7 @@ def rosters(text):
     """[(name, class, side, is_you)] from a card's team tables; side 'them' or 'us'."""
     rows = []
     for chunk in re.split(r'<div class="label">', text)[1:]:
-        side = 'them' if chunk.startswith('Them') else 'us' if chunk.startswith('Your team') else 'any'
+        side = 'them' if chunk.startswith(('Enemy team', 'Them')) else 'us' if chunk.startswith('Your team') else 'any'
         body = chunk.split('<div class="label">')[0]
         for m in NAME.finditer(body):
             spec = html.unescape(m.group(3)).strip()
@@ -63,7 +63,7 @@ def label_map(text, own_as_spec=False):
         word = known[name]
         if count.get(key(name), 0) > 1 and name in specs and specs[name] != word:
             word = specs[name] + ('' if len(s) == 1 else ' ' + known[name])  # two of one class: by spec
-        base = ('Their ' if s == {'them'} else 'Your ' if s == {'us'} else '') + word
+        base = ('Enemy ' if s == {'them'} else 'Your ' if s == {'us'} else '') + word
         used[base] = used.get(base, 0) + 1
         labels[name] = base if used[base] == 1 else f'{base} {used[base]}'
     return labels

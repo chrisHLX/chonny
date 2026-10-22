@@ -288,7 +288,7 @@ class CompLibraryService
                 'stats' => array_filter([
                     'Length' => $this->clock($g['seconds']),
                     'Difficulty' => GameCardService::difficultyOf((int) (($a['mmr']['them'] ?? 0) - ($a['mmr']['us'] ?? 0)), isset($a['mmr']['us'], $a['mmr']['them']), $sum('them'), $sum('us'))['label']
-                        .' ('.$sum('them').' Gladiator seasons to your '.$sum('us').')',
+                        .' ('.$sum('them').' Gladiator seasons vs your '.$sum('us').')',
                     'Goes, yours / theirs' => $goes->where('side', 'us')->count().' / '.$goes->where('side', 'them')->count(),
                     'Goes that killed, yours / theirs' => $goes->where('side', 'us')->filter(fn ($x) => $x['kill'] || $x['killLater'])->count().' / '.$goes->where('side', 'them')->filter(fn ($x) => $x['kill'] || $x['killLater'])->count(),
                     'Defensives before the first death, yours / theirs' => ($a['defensives']['us']['spent'] ?? 0).' / '.($a['defensives']['them']['spent'] ?? 0),

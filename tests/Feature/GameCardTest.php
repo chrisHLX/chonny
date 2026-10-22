@@ -244,7 +244,7 @@ class GameCardTest extends TestCase
 
         $card = $this->text(app(GameCardService::class)->build($user), 'm1');
 
-        $this->assertStringContainsString('Harder Their MMR 186 above yours, 0 Gladiator seasons to your 0', $card);
+        $this->assertStringContainsString('Harder Enemy MMR +186, 0 Gladiator seasons vs your 0', $card);
         $this->assertStringContainsString('What your team had for their go from 0:07 to the death', $card);
         $this->assertStringContainsString('Their offensive cooldowns: Bladestorm Lock', $card);
         $this->assertStringContainsString('Their crowd control on you: Holy Word: Chastise on Healz, 0:15', $card);

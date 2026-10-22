@@ -109,32 +109,32 @@ class GameBasicsService
             'title' => 'Your team\'s goes',
             'rows' => [
                 [
-                    'label' => 'Their healer locked during your burst',
+                    'label' => 'Enemy healer locked during your burst',
                     'value' => "{$locked} of {$n}",
                     'tone' => $locked * 2 >= $n ? 'good' : 'warn',
                     'text' => ($mistimed
-                        ? 'Your control did reach their healer, but your damage peaked while she was free in most goes: press the cooldowns as the control lands, not before it or after it.'
-                        : 'Crowd control or a kick on their healer in the six seconds your damage peaked.')
-                        .$this->evidence('healerLockedInPeak', ' Across the archive, goes like that killed {with}% of the time, against {without}% with her free.'),
+                        ? 'Your control did reach the enemy healer, but your damage peaked while the enemy healer was free in most goes: press the cooldowns as the control lands, not before it or after it.'
+                        : 'Crowd control or a kick on the enemy healer in the six seconds your damage peaked.')
+                        .$this->evidence('healerLockedInPeak', ' Across the archive, goes like that killed {with}% of the time, against {without}% with the enemy healer free.'),
                 ],
                 [
-                    'label' => 'Crowd control on their healer per go',
+                    'label' => 'Crowd control on the enemy healer per go',
                     'value' => $n ? number_format($healerCc / $n, 1) : '0',
                     'tone' => $healerCc / $n >= 3 ? 'good' : ($healerCc / $n >= 1.5 ? 'neutral' : 'warn'),
-                    'text' => 'The more of the go their healer spends controlled, the more goes kill.'.$this->evidence('healerControlDose', ' In the archive, goes with none killed {without}% of the time, with four or more {with}%.'),
+                    'text' => 'The more of the go the enemy healer spends controlled, the more goes kill.'.$this->evidence('healerControlDose', ' In the archive, goes with none killed {without}% of the time, with four or more {with}%.'),
                 ],
                 [
-                    'label' => 'Goes started with their defensives already down',
+                    'label' => 'Goes started with enemy defensives already down',
                     'value' => "{$intoDown} of {$n}",
                     'tone' => $intoDown * 2 >= $n ? 'good' : 'neutral',
-                    'text' => 'At least one of their defensives on cooldown as your go began. A go into a full set of answers mostly strips them; the kill comes from the go after.'
+                    'text' => 'At least one enemy defensive on cooldown as your go began. A go into a full set of answers mostly strips them; the kill comes from the go after.'
                         .$this->evidence('theirDefensivesDown', ' In the archive, goes like that killed {with}% of the time, against {without}% into a full set, and it held at every stage of a game.'),
                 ],
                 [
-                    'label' => 'Damage landed together, with their healer locked',
+                    'label' => 'Damage landed together, enemy healer locked',
                     'value' => "{$jointLocked} of {$n}",
                     'tone' => $jointLocked * 2 >= $n ? 'good' : ($jointLocked > 0 || $joint > 0 ? 'neutral' : 'warn'),
-                    'text' => "Both damage dealers' damage in the same six seconds while their healer could not act: the go that kills most".$this->evidence('jointWithHealerLocked', ' ({with}% against {without}% with neither)').". Yours shared the peak in {$joint} of {$n}.",
+                    'text' => "Both damage dealers' damage in the same six seconds while the enemy healer could not act: the go that kills most".$this->evidence('jointWithHealerLocked', ' ({with}% against {without}% with neither)').". Yours shared the peak in {$joint} of {$n}.",
                 ],
             ],
         ];
@@ -165,22 +165,22 @@ class GameBasicsService
         $rows = [];
         if ($covered->isNotEmpty()) {
             $rows[] = [
-                'label' => 'Their goes that met two or more of your big defensives down',
+                'label' => 'Enemy goes that met two or more of your big defensives down',
                 'value' => "{$twoDown} of {$covered->count()}",
                 'tone' => $twoDown === 0 ? 'good' : ($twoDown * 3 >= $covered->count() ? 'warn' : 'neutral'),
-                'text' => 'A trade is good when an answer is back for their next go. In your own games, their go killed 35–43% of the time with two or more big defensives down, 17–22% with one.'
+                'text' => 'A trade is good when an answer is back for the next enemy go. In your own games, the enemy go killed 35–43% of the time with two or more big defensives down, 17–22% with one.'
                     .$this->evidence('theirDefensivesDown', ' Across the archive, goes into defensives already down killed {with}% against {without}%.'),
             ];
         }
         array_push($rows, ...$this->decisionRows($analyses));
         $rows[] = [
-            'label' => 'Answers your team spent per go of theirs',
+            'label' => 'Answers your team spent per enemy go',
             'value' => number_format($perGo, 1),
             'tone' => 'neutral',
-            'text' => 'This one isn\'t graded. Better teams spend more because their opponents hit harder, and at the same rating the sides that spent more per go won less. When they go often, spend one answer per go and keep the long ones for the go that comes with their big cooldowns. The Matchup Lab has a plan for each matchup.',
+            'text' => 'This one isn\'t graded. Better teams spend more because better opponents hit harder, and at the same rating the sides that spent more per go won less. When they go often, spend one answer per go and keep the long ones for the go that comes with the enemy big cooldowns. The Matchup Lab has a plan for each matchup.',
         ];
 
-        return ['title' => 'Your answers to their goes', 'rows' => $rows];
+        return ['title' => 'Your answers to enemy goes', 'rows' => $rows];
     }
 
     /**
@@ -224,7 +224,7 @@ class GameBasicsService
         if ($drained->isNotEmpty() && $none !== null && $spent !== null) {
             $held = $drained->where('choice', 'none')->count();
             $rows[] = [
-                'label' => 'Heavy goes of theirs met with nothing pressed, your big defensives already down',
+                'label' => 'Heavy enemy goes met with nothing pressed, your big defensives already down',
                 'value' => "{$held} of {$drained->count()}",
                 'tone' => $held === 0 ? 'good' : 'warn',
                 'text' => "Their go came with two or more of your big defensives on cooldown, and two of them pressing or your healer locked. Across every go like it, a defender died {$none}% of the time when nothing was pressed, against {$spent}% when two or more answers went out. What is left by then is usually the short ones, and in goes like this they were worth pressing.",
@@ -238,7 +238,7 @@ class GameBasicsService
         if ($light->isNotEmpty() && $holdWon !== null && $spendWon !== null) {
             $over = $light->where('count', 2)->count();
             $rows[] = [
-                'label' => 'Light goes of theirs that drew two or more answers',
+                'label' => 'Light enemy goes that drew two or more answers',
                 'value' => "{$over} of {$light->count()}",
                 'tone' => $over === 0 ? 'good' : 'neutral',
                 'text' => "A light go: one player's cooldowns, your healer free. Across every go like it, the side that pressed nothing won {$holdWon}% of rounds, against {$spendWon}% when two or more answers went out. A go that drew two may have hit harder than it looked, so check the replay before reading much into it.",
@@ -295,7 +295,7 @@ class GameBasicsService
                 'label' => 'Where your crowd control went in your goes',
                 'value' => "{$roles['healer']} healer · {$roles['target']} kill target · {$roles['cross']} other",
                 'tone' => 'neutral',
-                'text' => 'Their healer is where control turns a go into a kill; stuns that hold through damage are the ones to spend on the kill target.',
+                'text' => 'The enemy healer is where control turns a go into a kill; stuns that hold through damage are the ones to spend on the kill target.',
             ];
         }
         $kickedTotal = array_sum($kicked);
@@ -305,7 +305,7 @@ class GameBasicsService
                 'label' => 'Your casts that were kicked',
                 'value' => (string) $kickedTotal,
                 'tone' => $kickedTotal >= self::FAIL_MIN ? 'warn' : 'neutral',
-                'text' => "{$top}. Start the casts that matter when their kicker has just used their kick, or start one and stop it to draw the kick out.".$this->evidence('castsInterrupted', ' Rounds with many casts interrupted won {with}% against {without}% in the archive.'),
+                'text' => "{$top}. Start the casts that matter when the enemy kicker has just used it, or start one and stop it to draw the kick out.".$this->evidence('castsInterrupted', ' Rounds with many casts interrupted won {with}% against {without}% in the archive.'),
                 'spells' => array_keys(array_slice($kicked, 0, 3, true)),
             ];
         }
@@ -318,7 +318,7 @@ class GameBasicsService
                 'label' => 'Control and kicks on someone you were not hitting',
                 'value' => "{$offTarget} of {$control}",
                 'tone' => 'neutral',
-                'text' => 'Each of those is two target swaps unless it is on a macro: a focus macro, or one per arena frame, casts it on their healer while you keep your target.'.$this->evidence('offTargetControl', ' Players who put most of their control on someone other than their target won {with}% of rounds against {without}%; a macro makes that one button.'),
+                'text' => 'Each of those is two target swaps unless it is on a macro: a focus macro, or one per arena frame, casts it on the enemy healer while you keep your target.'.$this->evidence('offTargetControl', ' Players who put most of their control on someone other than their target won {with}% of rounds against {without}%; a macro makes that one button.'),
                 'macro' => $spell,
             ];
         }
@@ -345,7 +345,7 @@ class GameBasicsService
             : 'Nothing worth a kick went through while yours was ready.';
         if ($norm && ($norm['n'] ?? 0) >= 20 && $norm['p50'] !== null && $prio['highChances'] >= 3) {
             // The middle player of many specs stops none in a round: "stop 0%" reads as a broken number.
-            $most = $norm['p50'] > 0 ? 'stop '.round($norm['p50'] * 100).'% of the high-priority casts they meet with their kick ready' : 'stop none of the high-priority casts they meet in a round';
+            $most = $norm['p50'] > 0 ? 'stop '.round($norm['p50'] * 100).'% of the high-priority casts they meet with a kick ready' : 'stop none of the high-priority casts they meet in a round';
             $text .= ' Most '.$label.' players '.$most.'; you stopped '.round(100 * $prio['highMine'] / $prio['highChances']).'% here.';
         }
         $text .= ' A chance means you were alive, free to act, had your kick off cooldown and stood within its range as the cast began. Line of sight is not in the log, so a pillar may have been in the way.';

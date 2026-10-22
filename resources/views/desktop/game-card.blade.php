@@ -39,7 +39,7 @@
     <span class="title">{{ $g['bracket'] }}</span>
     <span class="when muted">{{ $g['playedAt'] }}@if ($g['kind'] === 'game') &nbsp;&middot;&nbsp; {{ $g['duration'] }}@endif</span>
     @if ($g['kind'] === 'game' && ($g['mmr']['us'] ?? null))
-        <span class="mmr muted">MMR <b style="color:#FFFFFF">{{ $g['mmr']['us'] }}</b> you &nbsp;&middot;&nbsp; <b style="color:#FFFFFF">{{ $g['mmr']['them'] ?? '?' }}</b> them</span>
+        <span class="mmr muted">MMR you <b style="color:#FFFFFF">{{ $g['mmr']['us'] }}</b> &nbsp;&middot;&nbsp; enemy <b style="color:#FFFFFF">{{ $g['mmr']['them'] ?? '?' }}</b></span>
     @endif
     @if ($g['kind'] === 'game' && ! empty($g['difficulty']))
         <div class="small" style="margin-top: 6px"><span class="chip {{ $g['difficulty']['tone'] }}">{{ $g['difficulty']['label'] }}</span> <span class="muted">&nbsp;{{ $g['difficulty']['text'] }}</span></div>
@@ -61,7 +61,7 @@
     <div class="tab" id="t-summary">
     {{-- ============================== teams --}}
     <table class="teams"><tr>
-        @foreach (['them' => 'Them', 'us' => 'Your team'] as $side => $title)
+        @foreach (['them' => 'Enemy team', 'us' => 'Your team'] as $side => $title)
             <td class="col {{ $side === 'them' ? 'left' : 'right' }}">
                 <div class="label">{{ $title }} <span class="aside">{{ $g['glad'][$side] }} Gladiator season{{ $g['glad'][$side] === 1 ? '' : 's' }}</span></div>
                 <div class="box">
@@ -105,7 +105,7 @@
         <div class="label">The game in numbers</div>
         <div class="box">
             <table class="stats">
-                <tr><td class="small muted"></td><td class="n small muted">You</td><td class="n small muted">Them</td></tr>
+                <tr><td class="small muted"></td><td class="n small muted">You</td><td class="n small muted">Enemy</td></tr>
                 @foreach ($g['stats'] as [$label, $us, $them, $moreIsBetter])
                     @php
                         // Green where you came out ahead, red where they did; neutral rows stay plain.
