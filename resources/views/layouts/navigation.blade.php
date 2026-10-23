@@ -43,6 +43,19 @@
                 Home
         </a>
 
+        {{-- Training (2026-10-23): reasoning lessons across every game, so here beside Home rather than in
+             the game switcher. The number is what is waiting for a revisit today. No wire:navigate: the
+             lesson page's scripts expect a full page load. --}}
+        @php $navTrainingDue = auth()->check() ? auth()->user()->trainingDueCount() : 0; @endphp
+        <a href="{{ route('training') }}"
+           class="sidebar-item {{ request()->routeIs('training', 'training.*') ? 'active' : '' }}">
+            <svg class="w-[18px] h-[18px] shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/>
+            </svg>
+            Training
+            @if ($navTrainingDue)<span class="ml-auto text-[10.5px] font-bold rounded-full bg-gold text-black px-1.5 leading-[18px] min-w-[18px] text-center" title="Waiting for a revisit">{{ $navTrainingDue }}</span>@endif
+        </a>
+
         {{-- One link for every admin page (2026-10-19): the pages themselves carry a tab strip
              (admin.partials.tabs), so this replaces the collapsed group that sat below a scroll. --}}
         @can('admin')

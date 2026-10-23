@@ -64,6 +64,31 @@ Route::get('/sc2/diagnostic', [\App\Http\Controllers\PlatformController::class, 
 Route::post('/games/{game}/notify', [\App\Http\Controllers\PlatformController::class, 'notify'])
     ->whereIn('game', ['sc2', 'lol'])->middleware('throttle:10,1,game-notify')->name('game.notify');
 
+// Training (2026-10-23): reasoning lessons with notes that come back for a revisit, across every
+// game, so not a game in the switcher. /training says what it is to a visitor; the rest is a
+// signed-in player's own work. docs/training.md. (The dormant learning profile that used to be at
+// /training is /learning-profile.)
+Route::get('/training', [\App\Http\Controllers\Training\TrainingController::class, 'home'])->name('training');
+Route::middleware('auth')->prefix('training')->name('training.')->group(function () {
+    Route::get('/subjects/{subject}', [\App\Http\Controllers\Training\TrainingController::class, 'subject'])->name('subject');
+    Route::get('/lessons/{lesson}', [\App\Http\Controllers\Training\TrainingController::class, 'lesson'])->name('lesson');
+    Route::post('/lessons/{lesson}/responses', [\App\Http\Controllers\Training\ResponseController::class, 'store'])->name('responses.store');
+    Route::post('/lessons/{lesson}/notes', [\App\Http\Controllers\Training\NoteController::class, 'store'])->name('notes.store');
+    Route::patch('/notes/{note}', [\App\Http\Controllers\Training\NoteController::class, 'update'])->name('notes.update');
+    Route::delete('/notes/{note}', [\App\Http\Controllers\Training\NoteController::class, 'destroy'])->name('notes.destroy');
+    Route::post('/notes/{note}/revisits', [\App\Http\Controllers\Training\NoteController::class, 'revisit'])->name('notes.revisit');
+    Route::get('/notebook', [\App\Http\Controllers\Training\TrainingController::class, 'notebook'])->name('notebook');
+    Route::get('/progress', [\App\Http\Controllers\Training\TrainingController::class, 'progress'])->name('progress');
+    Route::get('/claims', [\App\Http\Controllers\Training\ClaimController::class, 'index'])->name('claims.index');
+    Route::get('/claims/new', [\App\Http\Controllers\Training\ClaimController::class, 'create'])->name('claims.create');
+    Route::post('/claims', [\App\Http\Controllers\Training\ClaimController::class, 'store'])->name('claims.store');
+    Route::get('/claims/{claim}', [\App\Http\Controllers\Training\ClaimController::class, 'show'])->name('claims.show');
+    Route::patch('/claims/{claim}', [\App\Http\Controllers\Training\ClaimController::class, 'update'])->name('claims.update');
+    Route::get('/check/{form}', [\App\Http\Controllers\Training\CheckController::class, 'show'])->name('check');
+    Route::post('/check/{form}', [\App\Http\Controllers\Training\CheckController::class, 'store'])->name('check.store');
+    Route::get('/course-feedback', [\App\Http\Controllers\Training\TrainingController::class, 'feedback'])->name('feedback')->can('admin');
+});
+
 // Built from the database: every public page, every spec's guide page and every published guide.
 Route::get('/sitemap.xml', \App\Http\Controllers\SitemapController::class)->name('sitemap');
 
@@ -91,8 +116,9 @@ Route::middleware('auth')->group(function () {
     Route::get('/dashboard', \App\Livewire\Home::class)->name('dashboard');
 
     // The learning profile that used to BE the dashboard — diagnostic, concept mastery, quizzes.
-    // Unchanged, one link away from Home. See App\Livewire\Home's docblock.
-    Route::get('/training', [DashboardController::class, 'index'])->name('training');
+    // Dormant. It was at /training until 2026-10-23, when that address went to Training (the
+    // reasoning lessons, App\Http\Controllers\Training); nothing in the sidebar linked to it.
+    Route::get('/learning-profile', [DashboardController::class, 'index'])->name('learning-profile');
 
     Route::get('/friends', \App\Livewire\Friends::class)->name('friends.index');
 });

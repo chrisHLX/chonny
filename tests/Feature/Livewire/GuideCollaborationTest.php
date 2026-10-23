@@ -405,12 +405,12 @@ test('signing in lands on the arena home with the three main actions', function 
         ->assertSee('aria-label="Main"', false);
 });
 
-test('the old learning profile still renders, at /training', function () {
+test('the old learning profile still renders, at /learning-profile', function () {
     // DashboardController assumes at least one category exists (Category::first()->id), which is
     // always true in a real environment and never in an empty test database.
     \App\Models\Category::create(['name' => 'Games']);
 
-    $this->actingAs(User::factory()->create())->get(route('training'))->assertOk();
+    $this->actingAs(User::factory()->create())->get(route('learning-profile'))->assertOk();
 });
 
 test('home starts a guide and goes to the builder', function () {

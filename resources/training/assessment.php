@@ -1,0 +1,106 @@
+<?php
+
+// The reasoning check. Form A is taken before the course, form B later. Each concept has one item
+// per form, set in a different situation, so B measures whether the idea transferred.
+return [
+    'A' => [
+        'a-base-rates' => [
+            'concept' => 'base-rates', 'domain' => 'Everyday life',
+            'scenario' => 'A lock shop advertises: "90% of bikes stolen in this town were locked with a cable lock. Upgrade to a D-lock."',
+            'question' => 'What would you most need to know to judge whether cable locks are riskier?',
+            'options' => ['Nothing more: 90% is decisive.', 'What share of all bikes in town are locked with cable locks.', 'How much the shop charges for D-locks.', 'Whether the thefts were reported to police.'],
+            'answer' => 1,
+            'explanation' => 'If 90% of all bikes use cable locks, you would expect about 90% of stolen bikes to use them even if cable locks were no worse. The share of thefts only means something against the share of bikes.',
+        ],
+        'a-confounding' => [
+            'concept' => 'confounding', 'domain' => 'Education',
+            'scenario' => 'Students who eat breakfast every day get better grades than those who don\'t. A school proposes free breakfasts to raise grades.',
+            'question' => 'What is the main reason to be cautious about the proposal?',
+            'options' => ['Breakfast has no effect on concentration.', 'Families that make sure of a daily breakfast may differ in other ways that also affect grades.', 'Grades are not a good measure of learning.', 'The school can\'t afford it.'],
+            'answer' => 1,
+            'explanation' => 'Home routine, income or parental involvement could drive both regular breakfasts and grades. Free breakfasts change only one of those, so the gain may be smaller than the comparison suggests.',
+        ],
+        'a-regression' => [
+            'concept' => 'regression-to-mean', 'domain' => 'Business',
+            'scenario' => 'A retail chain gives a "most improved" award to the store whose sales rose most this quarter. Last quarter, that store had its worst result in years.',
+            'question' => 'What is the most careful reading of the award?',
+            'options' => ['The store manager made major improvements.', 'Some of the rise was likely a return to normal after an unusually bad quarter.', 'Sales figures are unreliable.', 'The other stores got worse.'],
+            'answer' => 1,
+            'explanation' => 'Starting from an extreme low, the next result tends to be more ordinary regardless of anything done. Improvement from a low point overstates the effect of whatever changed.',
+        ],
+        'a-simpsons' => [
+            'concept' => 'simpsons-paradox', 'domain' => 'Health',
+            'scenario' => 'Surgeon X has a lower overall success rate than Surgeon Y. Surgeon X takes most of the high-risk cases.',
+            'question' => 'What should you do before concluding Surgeon Y is better?',
+            'options' => ['Nothing; the overall rate settles it.', 'Compare success rates within each risk level.', 'Count how many operations each has done in total.', 'Ask other surgeons for their opinion.'],
+            'answer' => 1,
+            'explanation' => 'The overall rate mixes easy and hard cases. Surgeon X may be better at every risk level and still look worse overall because of the harder mix.',
+        ],
+        'a-goodhart' => [
+            'concept' => 'goodhart', 'domain' => 'Education',
+            'scenario' => 'A school starts paying teachers bonuses based on their students\' test scores.',
+            'question' => 'What is the most likely unintended effect?',
+            'options' => ['Teachers stop caring about scores.', 'Teaching shifts toward test technique and likely topics, so scores rise faster than learning.', 'Students learn more in every subject.', 'Nothing changes.'],
+            'answer' => 1,
+            'explanation' => 'Once the score is the target, effort flows to whatever raises the score most cheaply, which is not always learning. The score stops measuring what it used to.',
+        ],
+        'a-second-order' => [
+            'concept' => 'second-order', 'domain' => 'Cities',
+            'scenario' => 'A city widens a congested road to reduce traffic jams.',
+            'question' => 'What is the most important longer-term effect to consider?',
+            'options' => ['The road will be more expensive to maintain.', 'Easier driving attracts more traffic, which can bring congestion back.', 'Construction will cause delays for a year.', 'The road will look different.'],
+            'answer' => 1,
+            'explanation' => 'Faster journeys change behaviour: more people drive, at more times, by that route. Over time the added capacity fills up. This is called induced demand.',
+        ],
+    ],
+    'B' => [
+        'b-base-rates' => [
+            'concept' => 'base-rates', 'domain' => 'Health',
+            'scenario' => 'A screening test for a rare disease is 95% accurate. Most people who test positive turn out not to have the disease.',
+            'question' => 'What best explains this?',
+            'options' => ['The test is faulty.', 'When a disease is rare, the false positives from the many healthy people outnumber the true positives.', 'Patients are lying about symptoms.', 'Accuracy figures are always exaggerated.'],
+            'answer' => 1,
+            'explanation' => 'If 1 in 1,000 people has the disease, a 5% false-positive rate flags about 50 healthy people for every 1 who is ill. The base rate decides what a positive result means.',
+        ],
+        'b-confounding' => [
+            'concept' => 'confounding', 'domain' => 'Competitive games',
+            'scenario' => 'Players who use a popular cooldown-tracking addon have higher ratings than players who don\'t.',
+            'question' => 'What is the strongest reason not to conclude that the addon raises rating?',
+            'options' => ['Addons are against the rules.', 'Players who install addons may be more invested and experienced, which could explain both.', 'Rating is random.', 'The addon is popular.'],
+            'answer' => 1,
+            'explanation' => 'Commitment to the game could lead both to installing tools and to playing better. The comparison can\'t separate the addon\'s effect from who chooses to use it.',
+        ],
+        'b-regression' => [
+            'concept' => 'regression-to-mean', 'domain' => 'Work',
+            'scenario' => 'After a team\'s worst week in a year, the manager bans meetings on Fridays. The next week is much better.',
+            'question' => 'What is the most careful conclusion?',
+            'options' => ['The ban worked.', 'An unusually bad week is likely to be followed by a more ordinary one regardless; it needs more weeks to judge.', 'Meetings are always harmful.', 'The team worked harder out of fear.'],
+            'answer' => 1,
+            'explanation' => 'The change was made at an extreme low, so improvement was likely anyway. Judging the ban needs several weeks compared with the team\'s usual range.',
+        ],
+        'b-simpsons' => [
+            'concept' => 'simpsons-paradox', 'domain' => 'Customer service',
+            'scenario' => 'A support team\'s average satisfaction score fell this quarter, even though satisfaction rose for both phone calls and live chat.',
+            'question' => 'How can that happen?',
+            'options' => ['The survey was broken.', 'More customers moved to the channel with lower satisfaction, so the mix pulled the average down.', 'Satisfaction can\'t be measured.', 'It can\'t happen; the figures must be wrong.'],
+            'answer' => 1,
+            'explanation' => 'If chat scores lower than phone and more contacts moved to chat, the overall average can fall while each channel improves.',
+        ],
+        'b-goodhart' => [
+            'concept' => 'goodhart', 'domain' => 'Software',
+            'scenario' => 'A company starts rewarding engineers for the number of lines of code they write.',
+            'question' => 'What is the most likely result?',
+            'options' => ['Better software, faster.', 'Longer, more verbose code without more being achieved.', 'Engineers ignore the reward.', 'Fewer bugs.'],
+            'answer' => 1,
+            'explanation' => 'Lines of code is easy to increase without adding value. Rewarding it changes what engineers optimise, and the count stops meaning productivity.',
+        ],
+        'b-second-order' => [
+            'concept' => 'second-order', 'domain' => 'Competitive games',
+            'scenario' => 'A game\'s designers weaken one very strong ability to stop a single team composition from dominating.',
+            'question' => 'What is the most likely next effect?',
+            'options' => ['Every composition becomes equally strong.', 'Players move to the next-strongest composition, which may dominate in turn.', 'Nobody plays that class again.', 'The game becomes easier.'],
+            'answer' => 1,
+            'explanation' => 'Players respond to the change. The pressure that made one composition dominant now finds the next best option, so the problem can move rather than disappear.',
+        ],
+    ],
+];

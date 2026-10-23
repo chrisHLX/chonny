@@ -206,6 +206,17 @@
   (`app.screener_sc2_module_id`) at SC2's own address, so the sidebar stays on SC2; its result now
   points at the SC2 quizzes. Tracked as `sc2_quiz`, `sc2_quiz_play` (slot `race:level`),
   `sc2_diagnostic`.
+- `/training` and everything under it (`Training\*` controllers, 2026-10-23, Chriso: "our steersman
+  will be part of mindcollector under training") — **Training**: reasoning lessons (cybernetics,
+  causal reasoning, statistics, systems, decisions, epistemology, experiments, incentives, AI,
+  human factors) where the problem comes first, notes on any passage come back for a revisit, and
+  mastery counts only new situations. Beside Home in the sidebar, not in the game switcher: it spans
+  every game; the number on the link is what is due today. `/training` is public (what Training
+  is); `/training/lessons/{slug}`, `/notebook`, `/progress`, `/claims`, `/check/{A|B}` need an
+  account; `/training/course-feedback` is admin. Plain controllers and Blade, not Livewire: the
+  lesson's scripts (`public/js/training/`) expect a full page load, so the sidebar link has no
+  `wire:navigate`. Took the `/training` address from the dormant learning profile, now
+  `/learning-profile`. Tracked as `training_*` (ten keys). Everything else: `docs/training.md`.
 - `/wow/pvp` and `/wow/pvp/{class}/{spec}` (`SpecPvpController`, 2026-10-16) — the spec guides
   written for search. Each answers what players type into Google ("ret paladin pvp talents",
   "disc priest pvp guide midnight": the autocomplete research is in the commit) with numbers counted

@@ -288,6 +288,35 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->hasMany(PreviousUsername::class);
     }
 
+    // Training (2026-10-23): the reasoning lessons, their notes and answers. App\Training.
+
+    public function trainingNotes(): \Illuminate\Database\Eloquent\Relations\HasMany
+    {
+        return $this->hasMany(Training\Note::class);
+    }
+
+    public function trainingResponses(): \Illuminate\Database\Eloquent\Relations\HasMany
+    {
+        return $this->hasMany(Training\Response::class);
+    }
+
+    public function trainingClaims(): \Illuminate\Database\Eloquent\Relations\HasMany
+    {
+        return $this->hasMany(Training\Claim::class);
+    }
+
+    public function trainingCheckAnswers(): \Illuminate\Database\Eloquent\Relations\HasMany
+    {
+        return $this->hasMany(Training\CheckAnswer::class);
+    }
+
+    /** Notes and claims waiting for a revisit: the number on the sidebar's Training link. */
+    public function trainingDueCount(): int
+    {
+        return $this->trainingNotes()->due()->count()
+            + $this->trainingClaims()->whereNull('outcome')->whereDate('revisit_on', '<=', today())->count();
+    }
+
     public function hasVerifiedEmail(): bool
     {
         if (! app()->isProduction()) {

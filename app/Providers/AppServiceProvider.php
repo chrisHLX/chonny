@@ -18,8 +18,8 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
-        //
-
+        // Training's lesson files, read once per request (App\Training\Curriculum).
+        $this->app->singleton(\App\Training\Curriculum::class);
     }
 
     /**

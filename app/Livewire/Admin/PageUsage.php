@@ -87,6 +87,16 @@ class PageUsage extends Component
         'wow_quiz' => 'Class Quizzes',
         'wow_quiz_play' => 'Class Quiz (playing)',
         'concept_drill_play' => 'Concept Drill (playing)',
+        'training_home' => 'Training (/training)',
+        'training_subject' => 'Training: a subject',
+        'training_lesson' => 'Training: a lesson',
+        'training_notebook' => 'Training: notebook',
+        'training_progress' => 'Training: progress',
+        'training_claims' => 'Training: claims',
+        'training_claim_new' => 'Training: examine a claim',
+        'training_claim' => 'Training: one claim',
+        'training_check' => 'Training: reasoning check',
+        'training_feedback' => 'Training: course feedback (admin)',
     ];
 
     /**

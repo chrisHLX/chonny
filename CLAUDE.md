@@ -28,6 +28,12 @@ in the match review and the desktop app: **`match-review.md`** is its map. Game 
 remain, as the baseline a player is measured against, and the spell/talent/match-data pipeline
 underneath must stay correct: every read sees a button only through it.
 
+**Validation is part of the product** (2026-10-23, `VISION.md` "What building it has taught"). A read
+has three separate tests: is it right, does it change what the player does, does that change improve
+results. A rating gain proves none of them. **Training** (`/training`, built 2026-10-23, beside Home
+in the sidebar, across every game): reasoning lessons with notes that come back for a revisit, a
+before-and-after reasoning check, claims with calibration. `docs/training.md`.
+
 ### Before you start: read the docs for the task
 
 Find the task below and read its files **before** writing anything. Each is there because a
@@ -46,6 +52,7 @@ never have to remind you of these.
 | **Spell data, import, a patch** | `game-data.md`, `spell-acquisition-model.md`, rules 1–11 | `knowledge-gaps.md`; `dr-categories-reference.md` is stale, a hint only |
 | **A page of the site** | `docs/site-pages.md`, the Web/Livewire rules (22–30) | Check the real URL serves (Environment, "Looking at a page") |
 | **Deploy or check production** | `DEPLOY.md`, "Working from Claude Code" | Production runs whatever branch is checked out there; push it, then `./deploy.sh` |
+| **Training**: a lesson, notes and revisits, the reasoning check, claims | `docs/training.md`, `VISION.md` "What building it has taught" | Label invented figures as illustrative; a claim about the game cites the archive. Lesson files need no front-end build |
 | **Quizzes, modules, diagnostics** (dormant platform) | `system-integration.md`, rules 35–38 | `docs/archive/` for how the old pieces work |
 | **Product, usage, pricing** | `VISION.md`, `monetisation-read.md` | |
 
@@ -320,7 +327,9 @@ the player's key or from the browser, plus the same-spec reviews at `/wow/game-r
 `/wow/match-analysis` redirects there) — a signed-in player's OWN games: auth,
 scoped to the viewer, never public · the guide builder and readers
 (`/guides/{slug}/edit`, `/g/{user}/{slug}`, `/browse-guides`, `/claudes-comp-guides`) ·
-`/pvp-guides/{class}/{spec}` · `/spell/{id}` · `/wow/quiz` · `/characters` · admin pages.
+`/pvp-guides/{class}/{spec}` · `/spell/{id}` · `/wow/quiz` · `/characters` · admin pages ·
+`/training` (Training: reasoning lessons with notes that come back, beside Home in the sidebar,
+across every game; `docs/training.md`).
 What each does, and the decisions behind it: `docs/site-pages.md`.
 
 ### Guides
@@ -354,7 +363,8 @@ about them is in `docs/machine-guides.md`. The rules that bite:
 
 Categories → Subjects → Modules → Questions, quizzes, credits, AI generation, diagnostics, the
 Next Step / Reflection loop, roadmaps. **Still live code, not the current direction.** It lives
-at `/training`, `/modules`, `/collection` and is deliberately unlinked from the sidebar. See the
+at `/learning-profile` (at `/training` until 2026-10-23, when that address went to Training, which
+is a separate system: `docs/training.md`), `/modules`, `/collection` and is deliberately unlinked from the sidebar. See the
 history log for its full design. If you return to any of it, decide first whether it should
 become part of class quizzes rather than restoring it as it was.
 

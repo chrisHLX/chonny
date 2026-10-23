@@ -31,6 +31,7 @@ heading. Rules are still cited by number and still mean the same rule.
 | `docs/testers/how-to-test.md` | current | How a tester runs the app. |
 | `docs/combat-log-ingest.md` | reference | How a combat log becomes archive games: team ids, Solo Shuffle, Feign Death, the checks behind each (rule 12 in full). |
 | `.claude/skills/review-games/SKILL.md` | current | The project skill for reviewing games: loads itself on a "look at my games" request. |
+| `docs/training.md` | current | Training (`/training`): reasoning lessons with notes that come back for a revisit, the reasoning check, claims, the course-feedback page; how to write a lesson. |
 
 ## The arena model
 
@@ -92,6 +93,7 @@ heading. Rules are still cited by number and still mean the same rule.
 
 | File | Status | What it is |
 |---|---|---|
-| `VISION.md` | current | The vision and its history (stage 5, 2026-10-02: a coach for one player). |
+| `VISION.md` | current | The vision and its history (stage 7, 2026-10-23: improvement as a validated feedback loop; Training built). |
+| `docs/vision/feedback-loops-2026-10-23.md` | history | Chriso's account, verbatim, of what building MindCollector taught about feedback, cause and validation. Condensed in `VISION.md`. |
 | `docs/future-plan.md` | current | Ideas flagged for later, deliberately not built. |
 | `docs/history/engineering-log-2026.md` | history | The archive: every dated write-up, bug trace and reversal through 2026-09-18 (790KB, the old CLAUDE.md). Search it for the *why*. |
