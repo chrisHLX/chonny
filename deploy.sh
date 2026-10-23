@@ -228,6 +228,14 @@ SMOKE_URLS=(
     "https://mindcollector.com/wow/spells"
     "https://mindcollector.com/browse-guides"
     "https://mindcollector.com/wow-comps"
+    # /training shipped on 2026-10-23 with five new tables of its own. It is signed-out readable,
+    # so it belongs here: a break in it would otherwise pass every check in this script.
+    "https://mindcollector.com/training"
+    # The sample is the one page a visitor sees before installing anything, and it serves four
+    # committed HTML snapshots rather than rendering them — so it can break without any template
+    # changing, which nothing else here would catch.
+    "https://mindcollector.com/wow/sample"
+    "https://mindcollector.com/wow/app"
 )
 SMOKE_FAILED=0
 for url in "${SMOKE_URLS[@]}"; do
