@@ -13,8 +13,22 @@
             when it ends. You get a card for every game, and a page that sets your play against
             other players of your spec.
         </p>
+        {{-- The Store first when there is a listing (MICROSOFT_STORE_URL): it is signed, so Windows
+             raises nothing, and the direct download becomes the fallback for people who want the
+             file. With no listing set, the plain download stands alone exactly as before. --}}
+        @php $store = config('services.microsoft_store.url'); @endphp
         <div class="flex flex-col sm:flex-row sm:items-center gap-3 mt-7">
-            @if ($available)
+            @if (filled($store))
+                <a href="{{ $store }}" target="_blank" rel="noopener"
+                   class="btn-primary !px-8 !py-3 !text-[15px]">
+                    <svg class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M3 3h8.5v8.5H3V3zm9.5 0H21v8.5h-8.5V3zM3 12.5h8.5V21H3v-8.5zm9.5 0H21V21h-8.5v-8.5z"/></svg>
+                    Get it from the Microsoft Store
+                </a>
+                @if ($available)
+                    <a href="{{ route('coach.app') }}" download class="btn-secondary !px-5 !py-3 !text-[14px]">Download the file instead</a>
+                @endif
+                <span class="text-[13px] text-ink-subtle">Signed by the Store, so Windows installs it without a warning.</span>
+            @elseif ($available)
                 <a href="{{ route('coach.app') }}" download class="btn-primary !px-8 !py-3 !text-[15px]">
                     <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4v12m0 0l-5-5m5 5l5-5M5 20h14"/></svg>
                     Download for Windows
@@ -33,12 +47,19 @@
         <li class="linear-card p-5 flex gap-4">
             <span class="w-9 h-9 rounded-full bg-gold text-black font-bold flex items-center justify-center shrink-0">1</span>
             <div>
-                <p class="text-[16px] font-bold text-ink">Open the file you downloaded</p>
+                <p class="text-[16px] font-bold text-ink">Install it</p>
                 <p class="text-[14px] text-ink-muted mt-1">
-                    The app isn't signed by Microsoft yet, so Windows may show a blue box saying it
-                    "protected your PC". Click <span class="text-ink font-semibold">More info</span>, then
-                    <span class="text-ink font-semibold">Run anyway</span>. The app installs itself and adds
-                    a shortcut to your Start menu and desktop.
+                    @if (filled($store))
+                        From the Store it installs like any other app, and Windows raises nothing.
+                        If you took the file instead, Windows may show a blue box saying it
+                        "protected your PC": click <span class="text-ink font-semibold">More info</span>,
+                        then <span class="text-ink font-semibold">Run anyway</span>.
+                    @else
+                        The app isn't signed by Microsoft yet, so Windows may show a blue box saying it
+                        "protected your PC". Click <span class="text-ink font-semibold">More info</span>, then
+                        <span class="text-ink font-semibold">Run anyway</span>.
+                    @endif
+                    It adds a shortcut to your Start menu and desktop.
                 </p>
             </div>
         </li>

@@ -48,6 +48,21 @@ return [
         'url' => env('BUYMEACOFFEE_URL'),
     ],
 
+    // The app's Microsoft Store listing (2026-10-23). Unset = the Store button is hidden and the
+    // page offers the plain download alone, so a half-finished listing is never linked.
+    //
+    // Why it matters: the direct download is an unsigned 68.7 MB exe, so Windows shows the
+    // "protected your PC" box and the page has to coach people past it. That reads as malware to
+    // anyone who does not already trust the author, and it is the step the funnel currently dies
+    // at -- 13 sessions reached this page in a fortnight against 3 app connections ever. The Store
+    // signs the package, so the warning goes away.
+    //
+    // Set it to the public listing URL from Partner Center (Product identity), which looks like
+    // https://apps.microsoft.com/detail/9NXXXXXXXXXX
+    'microsoft_store' => [
+        'url' => env('MICROSOFT_STORE_URL'),
+    ],
+
     'recaptcha' => [
         'site_key' => env('RECAPTCHA_SITE_KEY'),
         'secret_key' => env('RECAPTCHA_SECRET_KEY'),
