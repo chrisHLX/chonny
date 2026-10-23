@@ -6,6 +6,9 @@
         <h1 class="font-display font-extrabold tracking-tight text-ink text-3xl sm:text-4xl leading-[1.05]">{{ $subject['title'] }}</h1>
         <p class="text-[15.5px] text-ink-muted">{{ $subject['summary'] }}</p>
         <p class="text-[14px] text-ink-subtle italic">The practical question: {{ $subject['question'] }}</p>
+        @if ($subject['slug'] === 'cybernetics')
+            <p class="text-[14px] text-ink-muted">The material to read is in the <a class="text-gold hover:text-gold-light" href="{{ route('training.reading', 'steering-by-feedback') }}">field manual, Steering by Feedback</a>. These lessons test the same ideas on situations you haven't seen.</p>
+        @endif
     </header>
     <div class="grid gap-3 sm:grid-cols-2">
         @foreach ($lessons as $l)

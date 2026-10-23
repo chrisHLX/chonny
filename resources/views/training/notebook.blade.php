@@ -20,10 +20,10 @@
     <section class="space-y-3">
         <div class="flex items-baseline justify-between gap-3"><h2 class="text-ink font-bold text-xl">Due for a revisit</h2><span class="text-[12px] text-ink-subtle">{{ $due->count() }} waiting</span></div>
         @forelse ($due as $a)
-            @php($lesson = $curriculum->lesson($a->lesson_slug))
+            @php($page = $curriculum->page($a->lesson_slug))
             <article class="linear-card !bg-surface-1 p-4 grid gap-4 md:grid-cols-2">
                 <div class="space-y-3 min-w-0">
-                    <div class="flex flex-wrap items-center gap-2"><span class="kind kind-{{ $a->kind->value }}">{{ $a->kind->label() }}</span><span class="text-[12px] text-ink-subtle">{{ $lesson['title'] ?? $a->lesson_slug }} · marked {{ $a->created_at->format('j M') }}</span></div>
+                    <div class="flex flex-wrap items-center gap-2"><span class="kind kind-{{ $a->kind->value }}">{{ $a->kind->label() }}</span><span class="text-[12px] text-ink-subtle">{{ $page['title'] ?? $a->lesson_slug }} · marked {{ $a->created_at->format('j M') }}</span></div>
                     <p class="text-[14.5px] text-ink-muted border-l-2 border-line-strong pl-3">“{{ $a->quote }}”</p>
                     @if ($a->body)<p class="text-[14px] text-ink"><b>You wrote:</b> {{ $a->body }}</p>@endif
                     @if ($a->revisits->isNotEmpty())
@@ -31,7 +31,7 @@
                             @foreach ($a->revisits as $r)<li><span class="text-ink-subtle tabular-nums">{{ $r->created_at->format('j M') }}</span> · <b class="text-ink">{{ $r->outcome->label() }}.</b> {{ $r->reflection }}</li>@endforeach
                         </ul>
                     @endif
-                    @if ($lesson)<a class="text-[13px] text-gold hover:text-gold-light" href="{{ route('training.lesson', $a->lesson_slug) }}">Reread it in the lesson</a>@endif
+                    @if ($page)<a class="text-[13px] text-gold hover:text-gold-light" href="{{ $page['url'] }}">Reread it in context</a>@endif
                 </div>
                 <form method="post" action="{{ route('training.notes.revisit', $a) }}" class="space-y-3">
                     @csrf
@@ -58,7 +58,7 @@
         </form>
         <div class="grid gap-3 md:grid-cols-2">
             @forelse ($notes as $a)
-                @php($lesson = $curriculum->lesson($a->lesson_slug))
+                @php($page = $curriculum->page($a->lesson_slug))
                 <div class="n-item">
                     <div class="meta">
                         <span class="kind kind-{{ $a->kind->value }}">{{ $a->kind->label() }}</span><span>{{ ucfirst($a->status) }}</span>
@@ -68,7 +68,7 @@
                     <div class="quote">“{{ $a->quote }}”</div>
                     @if ($a->body)<div class="body">{{ $a->body }}</div>@endif
                     @if ($a->revisits->isNotEmpty())<div class="text-[12.5px] text-ink-subtle">Latest: <b class="text-ink-muted">{{ $a->revisits->last()->outcome->label() }}</b>{{ $a->revisits->last()->reflection ? ' · '.Str::limit($a->revisits->last()->reflection, 120) : '' }}</div>@endif
-                    @if ($lesson)<a class="text-[12.5px] text-gold hover:text-gold-light" href="{{ route('training.lesson', $a->lesson_slug) }}">{{ $lesson['title'] }}</a>@endif
+                    @if ($page)<a class="text-[12.5px] text-gold hover:text-gold-light" href="{{ $page['url'] }}">{{ $page['title'] }}</a>@endif
                 </div>
             @empty
                 <p class="text-[14px] text-ink-muted">No notes match. Select text in any lesson to add one.</p>

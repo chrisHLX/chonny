@@ -13,6 +13,9 @@ class Response extends Model
 
     public const WRITTEN = ['interpretation', 'evidence', 'reflection'];
 
+    /** Saved state on a reading page (JSON in body): the loop worksheet, and subject marks. */
+    public const SAVED = ['worksheet', 'marks'];
+
     protected $table = 'training_responses';
 
     protected $fillable = ['lesson_slug', 'exercise', 'choice', 'body', 'correct', 'attempt'];

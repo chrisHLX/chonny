@@ -72,6 +72,7 @@ Route::get('/training', [\App\Http\Controllers\Training\TrainingController::clas
 Route::middleware('auth')->prefix('training')->name('training.')->group(function () {
     Route::get('/subjects/{subject}', [\App\Http\Controllers\Training\TrainingController::class, 'subject'])->name('subject');
     Route::get('/lessons/{lesson}', [\App\Http\Controllers\Training\TrainingController::class, 'lesson'])->name('lesson');
+    Route::get('/read/{reading}', [\App\Http\Controllers\Training\TrainingController::class, 'reading'])->name('reading');
     Route::post('/lessons/{lesson}/responses', [\App\Http\Controllers\Training\ResponseController::class, 'store'])->name('responses.store');
     Route::post('/lessons/{lesson}/notes', [\App\Http\Controllers\Training\NoteController::class, 'store'])->name('notes.store');
     Route::patch('/notes/{note}', [\App\Http\Controllers\Training\NoteController::class, 'update'])->name('notes.update');

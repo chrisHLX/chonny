@@ -195,7 +195,7 @@ function metaFor(a) {
 function renderRail(focusId) {
   const list = [...notes.values()].sort((x, y) => docOrder(x) - docOrder(y));
   $('#noteCount').textContent = list.length ? `${list.length}` : '';
-  if (!list.length) { rail.innerHTML = '<p class="t-small">No notes on this lesson yet.</p>'; return; }
+  if (!list.length) { rail.innerHTML = '<p class="t-small">No notes on this page yet.</p>'; return; }
   rail.innerHTML = list.map(({ data: a, loc }) => `
     <div class="n-item ${loc ? '' : 'orphan'} ${a.id === focusId ? 'focus' : ''}" data-id="${a.id}">
       <div class="meta"><span class="kind kind-${a.kind}">${esc(a.kindLabel)}</span><span>${metaFor(a)}</span>${a.revisits ? `<span>${a.revisits} ${a.revisits === 1 ? 'revisit' : 'revisits'}</span>` : ''}</div>

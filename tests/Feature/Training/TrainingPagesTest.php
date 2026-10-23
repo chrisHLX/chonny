@@ -7,6 +7,7 @@ test('training says what it is to a visitor, and the rest needs an account', fun
     $this->get('/training')->assertOk()->assertSee('Learn to steer by evidence.');
     $this->get('/training/lessons/the-control-loop')->assertRedirect('/login');
     $this->get('/training/notebook')->assertRedirect('/login');
+    $this->get('/training/read/steering-by-feedback')->assertRedirect('/login');
 });
 
 test('every subject and lesson page renders, through the real route', function () {
@@ -82,4 +83,26 @@ test('answer options are a fixed shuffle per question', function () {
     foreach ($one as $pos => $item) {
         expect(['a', 'b', 'c', 'd'][$from[$pos]])->toBe($item);
     }
+});
+
+test('the reading pages render through their real routes, with the original material', function () {
+    $user = User::factory()->create();
+
+    $this->actingAs($user)->get(route('training.reading', 'steering-by-feedback'))->assertOk()
+        ->assertSee('Steering by Feedback')
+        ->assertSee('κυβερνήτης', false)
+        ->assertSee('data-sim="thermostat"', false)
+        ->assertSee('data-sim="polarity"', false)
+        ->assertSee('Shifting the burden')
+        ->assertSee('The power to transcend paradigms')
+        ->assertSee('data-block="m9-0"', false);
+    $this->actingAs($user)->get(route('training.reading', 'what-to-learn'))->assertOk()
+        ->assertSee('What to learn for the AI era')
+        ->assertSee('Specifying and evaluating AI systems');
+    $this->actingAs($user)->get('/training/read/nope')->assertNotFound();
+});
+
+test('the reading page is in the page-usage list', function () {
+    $pages = (new ReflectionClassConstant(\App\Livewire\Admin\PageUsage::class, 'PAGES'))->getValue();
+    expect($pages)->toHaveKey('training_reading');
 });

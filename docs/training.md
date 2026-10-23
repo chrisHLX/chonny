@@ -11,6 +11,27 @@ spans every game. `/training` itself is public (it says what Training is); every
 an account and is the player's own work. The dormant learning profile that used to be at `/training`
 is `/learning-profile`.
 
+## Two kinds of page
+
+- **Lessons** (`/training/lessons/{slug}`): problem first, then the principle, then a new situation.
+  What mastery counts. Content in `resources/training/lessons/`.
+- **Readings** (`/training/read/{slug}`, 2026-10-23, Chriso: "it felt a lot better because it
+  actually had material to read"): the long reads from the original Steering by Feedback page.
+  - `steering-by-feedback`, the **field manual**: nine modules (history, the control loop,
+    balancing and reinforcing loops, gain and delay, variety, learning loops, the traps, Meadows'
+    leverage points, a loop worksheet), with the models and a self-check after each module. The
+    "Field manual" tab in Training opens it.
+  - `what-to-learn`: fifteen subjects for the AI era, each markable want / learning / have it.
+
+  Readings are listed in `resources/training/readings.php`; their content is hand-written Blade in
+  `resources/views/training/readings/` (data in `manual.php` and `ai-era.php`). Notes work on them
+  like on lessons: every readable block has a `data-block` id (`m3-4` is module 3, block 4), so
+  **don't renumber blocks** or notes lose their anchor (they fall back to searching the page for
+  the quoted text). The worksheet and the subject marks save to the account (`training_responses`,
+  exercises `worksheet` / `marks`, JSON). The module self-checks are recall checks with their
+  answers in the page, kept in the browser; they are not mastery and never count as it.
+  `public/js/training/reading.js` runs them.
+
 ## The two loops
 
 **The player's loop.** Select any passage in a lesson to highlight it or attach a note (Note,

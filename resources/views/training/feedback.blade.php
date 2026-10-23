@@ -8,7 +8,7 @@
     </header>
     @forelse ($rows as $row)
         <section class="space-y-3">
-            <h2 class="text-ink font-bold text-lg"><a class="hover:text-gold" href="{{ route('training.lesson', $row['lesson']['slug']) }}">{{ $row['lesson']['title'] }}</a></h2>
+            <h2 class="text-ink font-bold text-lg"><a class="hover:text-gold" href="{{ $row['lesson']['url'] ?? route('training.lesson', $row['lesson']['slug']) }}">{{ $row['lesson']['title'] }}</a></h2>
             @if ($row['passages'])
                 <div class="grid gap-3 md:grid-cols-2">
                     @foreach ($row['passages'] as $p)

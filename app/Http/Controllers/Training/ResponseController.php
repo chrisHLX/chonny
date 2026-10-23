@@ -13,11 +13,22 @@ class ResponseController extends Controller
 {
     public function store(Request $request, string $lesson, Curriculum $curriculum)
     {
-        $l = $curriculum->lesson($lesson) ?? abort(404);
+        $page = $curriculum->page($lesson) ?? abort(404);
         $exercise = $request->validate([
-            'exercise' => ['required', Rule::in([...Response::CHOICE, ...Response::WRITTEN])],
+            'exercise' => ['required', Rule::in([...Response::CHOICE, ...Response::WRITTEN, ...Response::SAVED])],
         ])['exercise'];
         $user = $request->user();
+
+        // A reading page saves its worksheet or subject marks as one JSON document.
+        if (in_array($exercise, Response::SAVED, true)) {
+            abort_unless($page['kind'] === 'reading', 404);
+            $data = $request->validate(['data' => ['required', 'array', 'max:40'], 'data.*' => ['nullable', 'string', 'max:2000']])['data'];
+            $user->trainingResponses()->updateOrCreate(['lesson_slug' => $lesson, 'exercise' => $exercise], ['body' => json_encode($data)]);
+
+            return response()->json(['saved' => true]);
+        }
+        abort_unless($page['kind'] === 'lesson', 404);
+        $l = $curriculum->lesson($lesson);
 
         if (in_array($exercise, Response::WRITTEN, true)) {
             $body = $request->validate(['body' => ['required', 'string', 'max:5000']])['body'];

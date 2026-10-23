@@ -21,10 +21,16 @@ class Curriculum
     /** @var array<string, array> */
     private array $concepts;
 
+    /** @var array<string, array> long-form reading pages (readings.php) */
+    private array $readings = [];
+
     public function __construct(?string $path = null)
     {
         $path ??= resource_path('training');
         $this->concepts = require $path.'/concepts.php';
+        foreach (require $path.'/readings.php' as $reading) {
+            $this->readings[$reading['slug']] = $reading;
+        }
 
         $n = 0;
         foreach (require $path.'/subjects.php' as $i => $subject) {
@@ -88,6 +94,35 @@ class Curriculum
     public function concept(string $slug): ?array
     {
         return $this->concepts[$slug] ?? null;
+    }
+
+    /** @return array<string, array> */
+    public function readings(): array
+    {
+        return $this->readings;
+    }
+
+    public function reading(string $slug): ?array
+    {
+        return $this->readings[$slug] ?? null;
+    }
+
+    /**
+     * Any page a note or a saved answer can belong to: a lesson or a reading. Notes are keyed by
+     * this slug, so the notebook can name and link the page whichever kind it is.
+     *
+     * @return array{kind: string, title: string, url: string}|null
+     */
+    public function page(string $slug): ?array
+    {
+        if ($l = $this->lesson($slug)) {
+            return ['kind' => 'lesson', 'title' => $l['title'], 'url' => route('training.lesson', $slug)];
+        }
+        if ($r = $this->reading($slug)) {
+            return ['kind' => 'reading', 'title' => $r['title'], 'url' => route('training.reading', $slug)];
+        }
+
+        return null;
     }
 
     /** The multiple-choice question behind a lesson's 'case' or 'transfer' exercise. */

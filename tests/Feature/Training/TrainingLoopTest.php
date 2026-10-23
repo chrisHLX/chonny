@@ -143,3 +143,30 @@ test('a claim is examined, comes back, is resolved, and stays private', function
     $this->actingAs($user)->patch("/training/claims/{$claim->id}", ['outcome' => 'failed', 'outcome_note' => 'Confounded.'])->assertRedirect();
     $this->actingAs($user)->get('/training/progress')->assertSee('0 / 1');
 });
+
+test('notes work on a reading page and the notebook links back to it', function () {
+    $user = User::factory()->create();
+    $this->actingAs($user)->postJson(route('training.notes.store', 'steering-by-feedback'), [
+        'block' => 'm3-4', 'quote' => 'The lever is whatever sets the limit', 'offset' => 300, 'kind' => 'question', 'body' => 'Which limit is mine?',
+    ])->assertCreated();
+
+    $this->actingAs($user)->get('/training/notebook')->assertOk()
+        ->assertSee('Steering by Feedback')
+        ->assertSee(route('training.reading', 'steering-by-feedback'), false);
+});
+
+test('a reading saves its worksheet and subject marks, and only a reading can', function () {
+    $user = User::factory()->create();
+    $url = route('training.responses.store', 'steering-by-feedback');
+
+    $this->actingAs($user)->postJson($url, ['exercise' => 'worksheet', 'data' => ['sys' => 'My games', 'goal' => 'Survive bursts']])->assertOk();
+    $this->actingAs($user)->postJson($url, ['exercise' => 'worksheet', 'data' => ['sys' => 'My games, again']])->assertOk();
+    expect($user->trainingResponses()->where('exercise', 'worksheet')->count())->toBe(1);
+    $this->actingAs($user)->get(route('training.reading', 'steering-by-feedback'))->assertSee('My games, again');
+
+    $this->actingAs($user)->postJson(route('training.responses.store', 'what-to-learn'), ['exercise' => 'marks', 'data' => ['3' => 'want']])->assertOk();
+
+    // A reading has no questions, and a lesson has no worksheet.
+    $this->actingAs($user)->postJson($url, ['exercise' => 'case', 'choice' => 0])->assertNotFound();
+    $this->actingAs($user)->postJson(route('training.responses.store', 'base-rates'), ['exercise' => 'worksheet', 'data' => ['sys' => 'x']])->assertNotFound();
+});

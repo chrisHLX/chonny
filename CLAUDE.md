@@ -210,12 +210,10 @@ bumps the spell cache version, regenerates the spell kits, runs a smoke test, an
 **When asked to deploy or check something live, do it.** The full method, and why each step is
 there: `DEPLOY.md`, "Working from Claude Code". The essentials:
 - Ubuntu on Vultr, `45.76.116.44` (`mindcollector.com`), `root`, code at `/var/www/mindcollector`.
-  The password is in `C:\Users\chris\Desktop\mytho\MINDCOLLECTOR.txt`; the local key is not accepted.
-- Connect with paramiko through `prod_ssh.py` in the scratchpad (re-create it each session with
-  the Write tool). SFTP is broken: upload by base64 over exec.
-- **The Bash command must START with `python`** to match the user's allow rules
-  (`python "<scratchpad>/prod_ssh.py" "cd /var/www/mindcollector && ./deploy.sh" 600`). Start the
-  remote command with `cd`, so git-bash does not rewrite the path.
+- **Connect with the deploy key** (2026-10-23), never the password:
+  `ssh -i ~/.ssh/mindcollector_deploy -o BatchMode=yes root@45.76.116.44 "cd /var/www/mindcollector && ./deploy.sh"`.
+  Start the remote command with `cd`, so git-bash does not rewrite the path. SFTP is broken: upload
+  by base64 over exec. (The older paramiko-and-password method is in `DEPLOY.md` as a record.)
 - **Deploy only with `./deploy.sh`, never a bare `git pull`** (OPcache keeps old bytecode).
 - One-off production DB writes are blocked: hand the user a ready-to-paste command. Never add an
   allow rule for yourself. Redis cache is DB 1. No scheduler runs; cron runs only the leaderboard pull.

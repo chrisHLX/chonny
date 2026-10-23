@@ -15,9 +15,9 @@ class NoteController extends Controller
 {
     public function store(Request $request, string $lesson, Curriculum $curriculum)
     {
-        $curriculum->lesson($lesson) ?? abort(404);
+        $curriculum->page($lesson) ?? abort(404);
         $data = $request->validate([
-            'block' => ['required', 'string', 'max:40', 'regex:/^[a-z]+-\d+$/'],
+            'block' => ['required', 'string', 'max:40', 'regex:/^[a-z0-9]+-\d+$/'],
             'quote' => ['required', 'string', 'max:2000'],
             'prefix' => ['nullable', 'string', 'max:64'],
             'suffix' => ['nullable', 'string', 'max:64'],

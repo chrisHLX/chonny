@@ -91,6 +91,43 @@ class TrainingController extends Controller
         ]);
     }
 
+    /**
+     * A long-form reading page (readings.php): the field manual, or the subjects for the AI era.
+     * Notes work on it as on a lesson; its worksheet and subject marks save to the account.
+     */
+    public function reading(Request $request, string $reading)
+    {
+        $r = $this->curriculum->reading($reading) ?? abort(404);
+        PageViewEvent::log('training_reading');
+        $user = $request->user();
+
+        $notes = $user->trainingNotes()->where('lesson_slug', $reading)->withCount('revisits')->orderBy('id')->get();
+        $kinds = collect(NoteKind::cases())->map(fn ($k) => ['value' => $k->value, 'label' => $k->label(), 'prompt' => $k->prompt(), 'days' => $k->revisitAfterDays()])->values();
+        $saved = $user->trainingResponses()->where('lesson_slug', $reading)->whereIn('exercise', Response::SAVED)->get()
+            ->mapWithKeys(fn ($row) => [$row->exercise => json_decode($row->body ?? '[]', true) ?: []]);
+        $empty = ['attempts' => [], 'solved' => false, 'firstTry' => null];
+
+        return view('training.readings.'.$reading, [
+            'reading' => $r,
+            'kinds' => $kinds,
+            'client' => [
+                'slug' => $reading,
+                // A reading has no steps; the lesson script reads this shape, so it gets an empty one.
+                'state' => ['interpretation' => null, 'case' => $empty, 'transfer' => $empty, 'evidence' => null, 'reflection' => null],
+                'notes' => $notes->map->toClient()->values(),
+                'kinds' => $kinds,
+                'saved' => ['worksheet' => $saved['worksheet'] ?? null, 'marks' => $saved['marks'] ?? null],
+                'user' => $user->id,
+                'urls' => [
+                    'responses' => route('training.responses.store', $reading),
+                    'notes' => route('training.notes.store', $reading),
+                    'note' => url('/training/notes'),
+                    'notebook' => route('training.notebook'),
+                ],
+            ],
+        ]);
+    }
+
     public function notebook(Request $request)
     {
         PageViewEvent::log('training_notebook');
@@ -197,6 +234,22 @@ class TrainingController extends Controller
             }
             if ($passages || $questions) {
                 $rows[] = compact('lesson', 'passages', 'questions');
+            }
+        }
+        // Reading pages have passages but no questions.
+        foreach ($this->curriculum->readings() as $slug => $reading) {
+            $passages = collect($flags->get($slug, []))
+                ->groupBy(fn ($a) => $a->block_id.'|'.mb_strtolower(trim($a->quote)))
+                ->map(fn ($g) => [
+                    'quote' => $g->first()->quote,
+                    'block' => $g->first()->block_id,
+                    'learners' => $g->pluck('user_id')->unique()->count(),
+                    'kinds' => $g->countBy(fn ($a) => $a->kind->value)->all(),
+                    'bodies' => $g->pluck('body')->filter()->take(5)->values()->all(),
+                ])
+                ->sortByDesc('learners')->take(6)->values()->all();
+            if ($passages) {
+                $rows[] = ['lesson' => $reading + ['url' => route('training.reading', $slug)], 'passages' => $passages, 'questions' => []];
             }
         }
 

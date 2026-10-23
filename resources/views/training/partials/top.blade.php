@@ -5,6 +5,7 @@
     @php
         $trTabs = [
             ['training', 'Today', ['training']],
+            ['training.reading:steering-by-feedback', 'Field manual', ['training.reading']],
             ['training.notebook', 'Notebook', ['training.notebook']],
             ['training.claims.index', 'Claims', ['training.claims.*']],
             ['training.progress', 'Progress', ['training.progress', 'training.check']],
@@ -12,7 +13,7 @@
     @endphp
     <nav class="flex flex-wrap gap-2 mb-6" aria-label="Training">
         @foreach ($trTabs as [$r, $label, $active])
-            <a href="{{ route($r) }}" class="tab-btn {{ request()->routeIs(...$active) ? 'tab-active' : 'tab-inactive' }}">{{ $label }}</a>
+            <a href="{{ str_contains($r, ':') ? route(...explode(':', $r)) : route($r) }}" class="tab-btn {{ request()->routeIs(...$active) ? 'tab-active' : 'tab-inactive' }}">{{ $label }}</a>
         @endforeach
         @can('admin')
             <a href="{{ route('training.feedback') }}" class="tab-btn {{ request()->routeIs('training.feedback') ? 'tab-active' : 'tab-inactive' }}">Course feedback</a>

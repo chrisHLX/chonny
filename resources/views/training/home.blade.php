@@ -73,6 +73,22 @@
 
     <section>
         <div class="flex items-baseline justify-between gap-3 mb-3">
+            <h2 class="text-ink font-bold text-xl">Read</h2>
+            <span class="text-[12px] text-ink-subtle">the material behind the lessons</span>
+        </div>
+        <div class="grid gap-3 sm:grid-cols-2">
+            @foreach ($curriculum->readings() as $r)
+                <a class="linear-card p-5 space-y-2 block" href="{{ auth()->check() ? route('training.reading', $r['slug']) : route('login') }}">
+                    <p class="text-[11px] font-bold uppercase tracking-[.12em] text-gold">{{ $r['slug'] === 'steering-by-feedback' ? 'Field manual' : 'Reading' }} · about {{ $r['minutes'] >= 60 ? round($r['minutes'] / 60).' h' : $r['minutes'].' min' }}</p>
+                    <h3 class="text-ink font-bold text-lg">{{ $r['title'] }}</h3>
+                    <p class="text-[14px] text-ink-muted">{{ $r['summary'] }}</p>
+                </a>
+            @endforeach
+        </div>
+    </section>
+
+    <section>
+        <div class="flex items-baseline justify-between gap-3 mb-3">
             <h2 class="text-ink font-bold text-xl">Subjects</h2>
             <span class="text-[12px] text-ink-subtle">{{ count($curriculum->subjects()) }} subjects · {{ count($curriculum->lessons()) }} lessons</span>
         </div>

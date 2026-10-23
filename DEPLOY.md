@@ -203,11 +203,23 @@ Don't stop at "I can't SSH from here".
 
 **The box:** Ubuntu 22.04 on Vultr, `45.76.116.44` (== `mindcollector.com`), `root`, code at
 `/var/www/mindcollector`, deployed from `github.com/chrisHLX/chonny` (no CI/CD — push to GitHub,
-then run `deploy.sh` on the server). The password is in
-`C:\Users\chris\Desktop\mytho\MINDCOLLECTOR.txt`. Read that file; don't guess usernames or keys.
-The local `id_ed25519` key is **not** accepted.
+then run `deploy.sh` on the server).
 
-**How to connect — paramiko, not `ssh`.** The Bash tool's native `ssh`/`scp` can't answer a
+**How to connect — the deploy key (from 2026-10-23).** A key made for this, on the PC at
+`C:\Users\chris\.ssh\mindcollector_deploy` (no passphrase), is in the server's
+`/root/.ssh/authorized_keys` (comment `mindcollector-deploy@chris-pc`). Claude sessions connect
+with it and never handle the password:
+
+```bash
+ssh -i ~/.ssh/mindcollector_deploy -o BatchMode=yes root@45.76.116.44 "cd /var/www/mindcollector && ./deploy.sh"
+```
+
+Start the remote command with `cd` so git-bash doesn't rewrite the path. To revoke the key, delete
+that line from `authorized_keys`; the root password doesn't change. The paramiko and password
+method below is how deploys were done before the key; it stays here as a record.
+
+**Before the key: paramiko, not `ssh`.** The password is in
+`C:\Users\chris\Desktop\mytho\MINDCOLLECTOR.txt`. The Bash tool's native `ssh`/`scp` can't answer a
 password prompt. Use `python -m pip install paramiko` and a small helper, `prod_ssh.py`, in the
 scratchpad. It takes `(command, exec_timeout_seconds)` as argv, uses password auth, and prints
 stdout and stderr. Put `sys.stdout.reconfigure(encoding="utf-8", errors="replace")` at the top,

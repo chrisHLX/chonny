@@ -90,6 +90,7 @@ class PageUsage extends Component
         'training_home' => 'Training (/training)',
         'training_subject' => 'Training: a subject',
         'training_lesson' => 'Training: a lesson',
+        'training_reading' => 'Training: a reading (field manual, what to learn)',
         'training_notebook' => 'Training: notebook',
         'training_progress' => 'Training: progress',
         'training_claims' => 'Training: claims',
