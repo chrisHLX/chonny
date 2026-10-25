@@ -10,6 +10,9 @@ internal sealed class SettingsForm : Form
     private readonly TextBox _move = Box();
     private readonly CheckBox _moveLogs = Check("Move each combat log out of WoW's folder once all of it is sent (after WoW closes)");
     private readonly CheckBox _startup = Check("Start MindCollector when Windows starts (in the tray)");
+    private readonly CheckBox _record = Check("Record each arena game with OBS: it starts as you zone in and stops when the game ends");
+    private readonly TextBox _videos = Box();
+    private readonly TextBox _limit = Box();
     private readonly Label _status = new() { AutoSize = true, ForeColor = Theme.Muted, Margin = new Padding(0, 10, 0, 0) };
 
     public SettingsForm(AppSettings settings)
@@ -24,7 +27,7 @@ internal sealed class SettingsForm : Form
         StartPosition = FormStartPosition.CenterParent;
         FormBorderStyle = FormBorderStyle.FixedDialog;
         MaximizeBox = MinimizeBox = false;
-        ClientSize = new Size(760, 480);
+        ClientSize = new Size(760, 640);
         Padding = new Padding(16);
 
         _server.Text = settings.ServerUrl;
@@ -34,6 +37,9 @@ internal sealed class SettingsForm : Form
         _move.Text = settings.MoveTo ?? "";
         _moveLogs.Checked = settings.MoveLogs;
         _startup.Checked = Installer.StartsWithWindows();
+        _record.Checked = settings.RecordGames;
+        _videos.Text = Recorder.VideosDir(settings);
+        _limit.Text = settings.VideoLimitGb.ToString();
 #if STORE
         if (StoreStartup.State() == Windows.ApplicationModel.StartupTaskState.DisabledByUser)
         {
@@ -59,6 +65,10 @@ internal sealed class SettingsForm : Form
         Row(grid, "Move logs to", _move, Browse(_move), "Logs go here once every round in them is sent, so WoW's folder stays small.");
         grid.Controls.Add(new Label()); grid.Controls.Add(_moveLogs); grid.Controls.Add(new Label());
         grid.Controls.Add(new Label()); grid.Controls.Add(_startup); grid.Controls.Add(new Label());
+        grid.Controls.Add(new Label { Text = "Recording", AutoSize = true, Margin = new Padding(0, 10, 8, 0) });
+        grid.Controls.Add(_record); grid.Controls.Add(new Label());
+        Row(grid, "Save videos to", _videos, Browse(_videos), "Each game's video, with a small file beside it that lines the video up with the game.");
+        Row(grid, "Keep up to (GB)", _limit, null, "Past this the oldest videos the app recorded are deleted. 0 keeps them all.");
         Row(grid, "Website", _server, null, "Leave as it is unless told otherwise.");
 
         var install = Theme.Button("Install the addon");
@@ -77,12 +87,15 @@ internal sealed class SettingsForm : Form
             }
         };
 
+        var obs = Theme.Button("Set up OBS");
+        obs.Click += async (_, _) => await SetUpObsAsync(obs);
+
         var save = Theme.Button("Save", primary: true);
         var cancel = Theme.Button("Cancel");
         save.Click += async (_, _) => await SaveAsync();
         cancel.Click += (_, _) => Close();
         var buttons = new FlowLayoutPanel { Dock = DockStyle.Bottom, FlowDirection = FlowDirection.RightToLeft, AutoSize = true };
-        buttons.Controls.AddRange([cancel, save, install]);
+        buttons.Controls.AddRange([cancel, save, install, obs]);
         grid.Controls.Add(new Label()); grid.Controls.Add(_status); grid.Controls.Add(new Label());
 
         Controls.Add(grid);
@@ -103,7 +116,7 @@ internal sealed class SettingsForm : Form
         // Check the key against the website before keeping it, so a typo shows here and not later.
         if (!string.IsNullOrWhiteSpace(_key.Text))
         {
-            _status.Text = "Checking the key with the websiteâ€¦";
+            _status.Text = "Checking the key with the website…";
             _status.ForeColor = Theme.Muted;
             try
             {
@@ -129,12 +142,60 @@ internal sealed class SettingsForm : Form
         _settings.WowLogsDir = string.IsNullOrWhiteSpace(_wow.Text) ? null : _wow.Text.Trim();
         _settings.MoveTo = _move.Text.Trim();
         _settings.MoveLogs = _moveLogs.Checked;
+        _settings.RecordGames = _record.Checked;
+        _settings.VideosDir = string.IsNullOrWhiteSpace(_videos.Text) ? null : _videos.Text.Trim();
+        _settings.VideoLimitGb = int.TryParse(_limit.Text.Trim(), out var gb) && gb >= 0 ? gb : _settings.VideoLimitGb;
         _settings.Save();
 
         Installer.StartWithWindows(_startup.Checked);
 
         DialogResult = DialogResult.OK;
         Close();
+    }
+
+    /// <summary>
+    /// Turns on OBS's remote control (or says how), opens OBS, connects, and checks it records into
+    /// a file the app can play. Ticks "Record each arena game" when it all works.
+    /// </summary>
+    private async Task SetUpObsAsync(Button button)
+    {
+        button.Enabled = false;
+        _status.Text = "Setting up OBS…";
+        _status.ForeColor = Theme.Muted;
+        try
+        {
+            var (client, message) = await ObsSetup.ConnectAsync(openIfClosed: true, CancellationToken.None);
+            if (client == null)
+            {
+                _status.Text = message;
+                _status.ForeColor = Theme.Lost;
+                return;
+            }
+            await using (client)
+            {
+                var format = await ObsSetup.RecordFormatAsync(client, CancellationToken.None);
+                _record.Checked = true;
+                if (ObsSetup.Playable(format))
+                {
+                    _status.Text = $"{message} Each arena game will be recorded{(format != null ? $" as {format}" : "")}. Click Save.";
+                    _status.ForeColor = Theme.Won;
+                }
+                else
+                {
+                    _status.Text = $"{message} It records as {format}, which the app cannot play: in OBS, set Settings > Output > Recording Format to MP4 (or Hybrid MP4). Then click Save.";
+                    _status.ForeColor = Theme.Gold;
+                }
+            }
+        }
+        catch (Exception e)
+        {
+            _status.Text = $"Could not set up OBS: {e.Message}";
+            _status.ForeColor = Theme.Lost;
+        }
+        finally
+        {
+            button.Enabled = true;
+        }
     }
 
     private static void Row(TableLayoutPanel grid, string label, TextBox box, Button? browse, string hint)
@@ -149,7 +210,7 @@ internal sealed class SettingsForm : Form
 
     private static Button Browse(TextBox target)
     {
-        var b = Theme.Button("Browseâ€¦");
+        var b = Theme.Button("Browse…");
         b.Click += (_, _) =>
         {
             using var d = new FolderBrowserDialog();

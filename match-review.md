@@ -25,7 +25,10 @@ stored, what to re-run after a change, and which docs hold the detail.
 WoW, with the MindCollectorArenaLog addon (turns combat logging on in arena, Advanced logging on)
   │  WoWCombatLog-*.txt
   ▼
-Desktop app (tools/log-manager/MindCollectorLogs.ps1) watches the Logs folder; when an arena ends:
+Desktop app watches the Logs folder; when an arena ends (since 2026-10-25 the downloadable app,
+tools/desktop-app, runs the first two steps in its developer mode; the site builds the pages from
+the rounds it sends. tools/log-manager/MindCollectorLogs.ps1, which ran all three, is retired from
+Chriso's PC; see tools/desktop-app/README.md, "Developer mode"):
   ├─ php artisan wow:ingest-combatlog  → CombatLogIngestService → the ARCHIVE
   │     D:/MindCollector/arena-logs/raw/{match}.log.gz + metadata/{match}.json  (gitignored)
   ├─ php artisan wow:sync --skip-ingest  → SyncArena

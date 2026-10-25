@@ -1,5 +1,12 @@
 # MindCollector Dev (was MindCollector Logs)
 
+**Retired from Chriso's PC on 2026-10-25.** The downloadable app (`tools/desktop-app`) does its jobs:
+it sends the games, moves the logs to `D:\MindCollector\wow-logs`, keeps the local archive and
+database in its developer mode (the same `wow:ingest-combatlog` and `wow:sync --skip-ingest`), and has
+"This game", notes, Ctrl+Shift+M marks and the character picker (its README). Its notes.json was
+brought over. The code stays here; `Install-Shortcuts.ps1` puts it back if it is ever wanted. Do not
+run both: each would send every round, and this one could move a log before the other has read it.
+
 A small Windows program that moves your arena games from WoW into the archive for you. Named
 **MindCollector Dev** since 2026-10-10 (it was MindCollector Logs), to tell it apart from the
 downloadable app testers use (`tools/desktop-app`, "MindCollector"), which needs no copy of this

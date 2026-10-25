@@ -16,8 +16,10 @@ use Illuminate\Support\Facades\File;
  * inside the recording comes from the wall-clock gap between the rounds' `played_at` values, which
  * includes the prep time between them for free.
  *
- * Nothing is recorded or uploaded. The page reads a local file through a picker; this command only
- * draws the timeline beside it. docs/vision-experiment.md says why recording comes last.
+ * Nothing is uploaded. The page reads a local file through a picker; this command only draws the
+ * timeline beside it. A video the desktop app recorded through OBS (2026-10-25) has a timing file
+ * beside it, and its page opens the video by itself, already lined up (videos(), and
+ * tools/desktop-app/README.md, "Recording").
  *
  *   php artisan wow:watch-page --user=1                      every lobby that user has
  *   php artisan wow:watch-page --user=1 --lobby=abc123
@@ -103,6 +105,25 @@ class BuildWatchPage extends Command
         $first = $rounds->first();
         $zero = $first->played_at ? Carbon::parse($first->played_at)->getTimestamp() : null;
 
+        // Recorded by the app: its timing file holds each round's start to the millisecond, on the
+        // log's own clock, so every rail is placed from it and round 1's position needs no lining up.
+        $recorded = $zero !== null ? $this->recordingOf($videos, $zero) : null;
+        $precise = function ($playedAt) use ($recorded): ?float {
+            if (! $playedAt) {
+                return null;
+            }
+            $at = (float) Carbon::parse($playedAt)->getTimestamp();
+            foreach ($recorded['rounds'] ?? [] as $r) {
+                // played_at is the same ARENA_MATCH_START, cut to the second.
+                if ($r >= $at - 0.5 && $r < $at + 1.5) {
+                    return $r;
+                }
+            }
+
+            return $at;
+        };
+        $zeroPrecise = $precise($first->played_at);
+
         $model = [];
         foreach ($rounds as $i => $round) {
             $p = is_string($round->payload) ? json_decode($round->payload, true) : (array) $round->payload;
@@ -120,11 +141,16 @@ class BuildWatchPage extends Command
                 $last = max($last, (float) ($d['t'] ?? 0));
             }
 
+            $startOffset = $zero !== null && $at !== null ? max(0, $at - $zero) : 0;
+            if ($recorded !== null && $zeroPrecise !== null && ($p = $precise($round->played_at)) !== null) {
+                $startOffset = round(max(0, $p - $zeroPrecise), 2);
+            }
+
             $model[] = [
                 'label' => $rounds->count() > 1 ? 'Round '.($i + 1) : 'The game',
                 'result' => isset($analysis['won']) ? ($analysis['won'] ? 'won' : 'lost') : null,
                 'duration' => (int) ceil(max((float) ($round->duration_seconds ?? 0), $last + 8)),
-                'startOffset' => $zero !== null && $at !== null ? max(0, $at - $zero) : 0,
+                'startOffset' => $startOffset,
                 'goes' => array_values($analysis['goes'] ?? []),
                 'deaths' => array_values($analysis['deaths'] ?? []),
             ];
@@ -139,7 +165,12 @@ class BuildWatchPage extends Command
         return [
             'title' => trim(($first->bracket ?? 'Game').' · '.($playedAt?->format('j M Y, H:i') ?? '')),
             'playedAt' => $playedAt?->format('j M Y, H:i'),
-            'suggest' => $playedAt ? $this->match($videos, $playedAt->getTimestamp()) : null,
+            'suggest' => $recorded === null && $playedAt ? $this->match($videos, $playedAt->getTimestamp()) : null,
+            'video' => $recorded !== null && $zeroPrecise !== null ? [
+                'name' => $recorded['name'],
+                'url' => $this->fileUrl($recorded['path']),
+                'offset' => round($zeroPrecise - $recorded['started'], 2),
+            ] : null,
             'rounds' => $model,
         ];
     }
@@ -150,7 +181,12 @@ class BuildWatchPage extends Command
      * we do not know without decoding, so it is approximated generously and the match is a hint on
      * the page, never an automatic alignment.
      *
-     * @return array<int, array{name: string, from: int, to: int}>
+     * A video the desktop app recorded (2026-10-25, tools/desktop-app/Recorder.cs) has a timing file
+     * beside it, "<video>.mindcollector.json": the instant its first frame was recorded and each
+     * round's ARENA_MATCH_START, on this PC's clock, which is the combat log's clock too. Its window
+     * is exact, so it is lined up automatically rather than suggested.
+     *
+     * @return array<int, array{name: string, from: float, to: float, path?: string, started?: float, rounds?: array<int, float>}>
      */
     private function videos(?string $folder): array
     {
@@ -163,6 +199,20 @@ class BuildWatchPage extends Command
             if (! in_array(strtolower($f->getExtension()), ['mp4', 'mkv', 'mov', 'flv', 'avi', 'webm'], true)) {
                 continue;
             }
+            $timing = $f->getPathname().'.mindcollector.json';
+            $t = File::exists($timing) ? json_decode(File::get($timing), true) : null;
+            if (is_array($t) && isset($t['recordingStarted'], $t['recordingStopped'])) {
+                $out[] = [
+                    'name' => $f->getFilename(),
+                    'path' => $f->getPathname(),
+                    'from' => $this->clock($t['recordingStarted']),
+                    'to' => $this->clock($t['recordingStopped']),
+                    'started' => $this->clock($t['recordingStarted']),
+                    'rounds' => array_map(fn ($r) => $this->clock($r), $t['rounds'] ?? []),
+                ];
+
+                continue;
+            }
             $end = $f->getMTime();
             // Assume no single recording runs longer than three hours.
             $out[] = ['name' => $f->getFilename(), 'from' => $end - 10800, 'to' => $end];
@@ -171,7 +221,36 @@ class BuildWatchPage extends Command
         return $out;
     }
 
-    /** @param  array<int, array{name: string, from: int, to: int}>  $videos */
+    /** A timing file's "2026-10-25 11:05:40.063" as seconds, read the way played_at is (the log's wall clock, in the app's zone). */
+    private function clock(string $at): float
+    {
+        return (float) Carbon::parse($at)->format('U.v');
+    }
+
+    /** @param  array<int, array<string, mixed>>  $videos */
+    private function recordingOf(array $videos, int $startedAt): ?array
+    {
+        foreach ($videos as $v) {
+            if (isset($v['started']) && $startedAt >= $v['from'] - 1 && $startedAt <= $v['to']) {
+                return $v;
+            }
+        }
+
+        return null;
+    }
+
+    /** file:///D:/MindCollector/videos/2026-10-25%2011-04-41.mp4 */
+    private function fileUrl(string $path): string
+    {
+        $parts = explode('/', str_replace('\\', '/', $path));
+
+        return 'file:///'.implode('/', array_map(
+            fn ($p) => preg_match('/^[A-Za-z]:$/', $p) ? $p : rawurlencode($p),
+            $parts,
+        ));
+    }
+
+    /** @param  array<int, array{name: string, from: int|float, to: int|float}>  $videos */
     private function match(array $videos, int $startedAt): ?string
     {
         $fits = array_values(array_filter($videos, fn ($v) => $startedAt >= $v['from'] && $startedAt <= $v['to']));

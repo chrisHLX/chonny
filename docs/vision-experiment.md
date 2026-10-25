@@ -274,6 +274,8 @@ lists 17 types.
 1. **It confirms the recording architecture.** OBS with hardware encoding, app-driven start/stop on
    queue — the approach recommended here before this product was known about. The app owning the
    recorder is also what makes sync free: it holds the wall-clock anchor. Do not build a recorder.
+   **Built that way on 2026-10-25:** the desktop app drives the player's OBS through obs-websocket
+   and writes each video's first-frame time beside it (`tools/desktop-app/README.md`, "Recording").
 2. **Nobody is doing the vision half.** Their video is a playback surface; all analysis comes from
    the log. The frame-reading question is unexplored rather than table stakes, which argues for
    keeping it research and shipping the overlay on log data.

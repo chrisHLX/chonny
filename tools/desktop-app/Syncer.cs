@@ -138,9 +138,130 @@ public sealed class Syncer
             _log("Nothing new to send.");
         }
 
+        // Developer mode: the local archive between lobbies, never mid-shuffle (a part-lobby would
+        // be stored and never rebuilt), and whenever WoW is closed.
+        if (!string.IsNullOrEmpty(_settings.LocalSyncDir) && (lobbyFinished || !wow))
+            await LocalSyncAsync(logs, ct);
+
         if (_settings.MoveLogs) MoveFinishedLogs(wow, newest);
         return new(sent, skipped, failed, calledDone);
     }
+
+    // ------------------------------------------------------------------ developer mode
+
+    /// <summary>A line from the local sync worth a balloon: a new patch, mostly ("WARNING: A new patch, 12.1.5 ...").</summary>
+    public event Action<string>? Warning;
+
+    /// <summary>
+    /// The developer app's job (2026-10-25): every log with rounds sent since, read into this
+    /// project's local archive (`wow:ingest-combatlog`), then the reviews and measures
+    /// (`wow:sync --skip-ingest`), then the Watch pages when the app records. The same two steps the
+    /// developer app ran (tools/log-manager), so the archive, the local database and the research
+    /// tools stay as they were. A log is moved only once the archive has it (MoveFinishedLogs).
+    /// </summary>
+    internal async Task LocalSyncAsync(List<FileInfo> logs, CancellationToken ct)
+    {
+        var since = _settings.LocalSyncSince ?? DateTime.MinValue;
+        var ingested = 0;
+        foreach (var f in logs)
+        {
+            f.Refresh();
+            if (!f.Exists || f.LastWriteTime < since) continue;
+            if (!_settings.Files.TryGetValue(f.FullName, out var p) || p.Offset <= p.LocalOffset) continue;
+
+            var target = p.Offset;
+            var (ok, output) = await ArtisanAsync($"wow:ingest-combatlog \"{f.FullName}\"", ct);
+            if (!ok)
+            {
+                _log($"Local archive: could not read {f.Name} (is Herd's MySQL running?). {LastLine(output)}");
+                return;
+            }
+            p.LocalOffset = target;
+            _settings.Save();
+            ingested++;
+            Warn(output);
+        }
+        if (ingested == 0) return;
+
+        var (synced, syncOut) = await ArtisanAsync("wow:sync --skip-ingest", ct);
+        _log(synced ? $"Local archive: {ingested} log(s) read, reviews built. {LastLine(syncOut)}" : $"Local archive: building reviews failed. {LastLine(syncOut)}");
+        Warn(syncOut);
+
+        if (synced && _settings.RecordGames && _settings.LocalSyncUser is { } user)
+        {
+            var (watched, watchOut) = await ArtisanAsync($"wow:watch-page --user={user} --videos=\"{Recorder.VideosDir(_settings)}\"", ct);
+            if (watched) _log($"Watch pages: {LastLine(watchOut)}");
+        }
+    }
+
+    /// <summary>
+    /// php.exe: on the PATH, or named inside Herd's php.bat, which is what Herd puts on the PATH
+    /// (`"C:\Users\...\herd\bin\php83\php.exe" %*`). Starting a process finds only an .exe, so the
+    /// batch file has to be read, as the developer app did (Resolve-PhpExe).
+    /// </summary>
+    private static string? PhpExe()
+    {
+        foreach (var dir in (Environment.GetEnvironmentVariable("PATH") ?? "").Split(';', StringSplitOptions.RemoveEmptyEntries))
+        {
+            try
+            {
+                var exe = Path.Combine(dir.Trim(), "php.exe");
+                if (File.Exists(exe)) return exe;
+                foreach (var script in new[] { "php.bat", "php.cmd" })
+                {
+                    var bat = Path.Combine(dir.Trim(), script);
+                    if (!File.Exists(bat)) continue;
+                    var m = System.Text.RegularExpressions.Regex.Match(File.ReadAllText(bat), "\"([^\"]+php\\.exe)\"");
+                    if (m.Success && File.Exists(m.Groups[1].Value)) return m.Groups[1].Value;
+                }
+            }
+            catch { /* a PATH entry that is not a folder */ }
+        }
+        return null;
+    }
+
+    private async Task<(bool Ok, string Output)> ArtisanAsync(string args, CancellationToken ct)
+    {
+        try
+        {
+            if (PhpExe() is not { } php) return (false, "php was not found on the PATH (Herd puts it there).");
+            var psi = new ProcessStartInfo(php, $"-d memory_limit=2G artisan {args}")
+            {
+                WorkingDirectory = _settings.LocalSyncDir!,
+                UseShellExecute = false,
+                CreateNoWindow = true,
+                RedirectStandardOutput = true,
+                RedirectStandardError = true,
+            };
+            using var proc = Process.Start(psi)!;
+            var stdout = proc.StandardOutput.ReadToEndAsync(ct);
+            var stderr = proc.StandardError.ReadToEndAsync(ct);
+            using var timeout = CancellationTokenSource.CreateLinkedTokenSource(ct);
+            timeout.CancelAfter(TimeSpan.FromMinutes(15));
+            try { await proc.WaitForExitAsync(timeout.Token); }
+            catch (OperationCanceledException)
+            {
+                try { proc.Kill(entireProcessTree: true); } catch { }
+                return (false, "it ran for 15 minutes and was stopped");
+            }
+            var output = await stdout + await stderr;
+            return (proc.ExitCode == 0, output);
+        }
+        catch (Exception e) when (e is not OperationCanceledException)
+        {
+            return (false, $"php could not be started: {e.Message}");
+        }
+    }
+
+    /// <summary>The ingest's own warnings (a new patch or log version, docs/combat-log-ingest.md), as the developer app showed them.</summary>
+    private void Warn(string output)
+    {
+        foreach (var line in output.Split('\n').Select(l => l.Trim()).Where(l => l.StartsWith("WARNING", StringComparison.Ordinal)).Distinct())
+            Warning?.Invoke(line);
+    }
+
+    private static string LastLine(string output) =>
+        output.Split('\n').Select(l => l.Trim()).LastOrDefault(l => l.Length > 0) ?? "";
 
     private List<FileInfo> LogFiles()
     {
@@ -161,6 +282,8 @@ public sealed class Syncer
         {
             if (wow && f.FullName == newest) continue;
             if (!_settings.Files.TryGetValue(f.FullName, out var p) || p.Offset < f.Length) continue;
+            // Developer mode: not before the local archive has read it.
+            if (!string.IsNullOrEmpty(_settings.LocalSyncDir) && f.LastWriteTime >= (_settings.LocalSyncSince ?? DateTime.MinValue) && p.LocalOffset < p.Offset) continue;
             if (!OpensExclusively(f.FullName)) continue;
 
             Directory.CreateDirectory(_settings.MoveTo);
@@ -178,7 +301,7 @@ public sealed class Syncer
 
                 var moved = new FileInfo(target);
                 _settings.Files.Remove(f.FullName);
-                _settings.Files[target] = new FileProgress { Offset = moved.Length, SeenLength = moved.Length, SeenWriteTicks = moved.LastWriteTimeUtc.Ticks };
+                _settings.Files[target] = new FileProgress { Offset = moved.Length, SeenLength = moved.Length, SeenWriteTicks = moved.LastWriteTimeUtc.Ticks, LocalOffset = moved.Length };
                 _settings.Save();
                 _log($"Moved {f.Name} ({f.Length / 1048576:N0} MB) to {_settings.MoveTo}.");
             }

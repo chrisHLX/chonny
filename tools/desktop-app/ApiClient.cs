@@ -14,6 +14,8 @@ namespace MindCollector.Desktop;
 ///   GET  /api/coach/version  the measure version the server stores
 ///   GET  /api/coach/index    the player's games, characters, comps and classes
 ///   GET  /api/coach/page/x   one page, with an ETag so an unchanged page is not fetched twice
+///   POST /api/coach/note     a note or a Ctrl+Shift+M mark (CoachAppController)
+///   POST /api/coach/players  the experience of the players in the game being played
 /// The server measures every round itself (CoachUploadController); the app never sends a
 /// measurement, only the log text of a finished round.
 /// </summary>
@@ -125,6 +127,63 @@ public sealed class ApiClient : IDisposable
         if (res.StatusCode == HttpStatusCode.Unauthorized) throw new KeyRejectedException();
         res.EnsureSuccessStatusCode();
         return JsonDocument.Parse(await res.Content.ReadAsStringAsync(ct));
+    }
+
+    public enum NoteOutcome { Stored, Refused, Later }
+
+    /// <summary>
+    /// POST /api/coach/note (CoachAppController). Refused is final (the website does not know the
+    /// game, or the note is not one); Later is anything else, including a website not yet deployed
+    /// with the endpoint, so the note waits rather than being lost.
+    /// </summary>
+    public async Task<(NoteOutcome Outcome, string? Reason)> NoteAsync(AppNote note, CancellationToken ct)
+    {
+        var body = JsonSerializer.Serialize(new Dictionary<string, string?>
+        {
+            ["id"] = note.Id, ["kind"] = note.Kind, ["text"] = note.Text, ["at"] = note.At,
+            ["roundStart"] = note.RoundStart, ["lobby"] = note.Lobby,
+        });
+        using var content = new StringContent(body, Encoding.UTF8, "application/json");
+        using var res = await _http.PostAsync($"{_base}/api/coach/note", content, ct);
+        if (res.StatusCode == HttpStatusCode.Unauthorized) throw new KeyRejectedException();
+        var text = await res.Content.ReadAsStringAsync(ct);
+        string? status = null, reason = null;
+        try
+        {
+            using var doc = JsonDocument.Parse(text);
+            status = doc.RootElement.TryGetProperty("status", out var s) ? s.GetString() : null;
+            reason = doc.RootElement.TryGetProperty("reason", out var r) ? r.GetString() : null;
+        }
+        catch { }
+        // Only the website saying "stored" counts: a PHP error page also arrives as 200 OK, and a
+        // note taken as sent on one of those would be lost.
+        return status switch
+        {
+            "stored" when res.IsSuccessStatusCode => (NoteOutcome.Stored, null),
+            "unknown-game" => (NoteOutcome.Refused, "the website does not have that game"),
+            "rejected" => (NoteOutcome.Refused, reason ?? "the website would not take it"),
+            _ => (NoteOutcome.Later, $"the website said {(int)res.StatusCode}"),
+        };
+    }
+
+    /// <summary>
+    /// POST /api/coach/players: the experience of the players in the game being played. Known ones
+    /// come back now; the rest are looked up on the website and come back on a later ask.
+    /// </summary>
+    public async Task<(Dictionary<string, JsonElement> Known, List<string> Pending)> PlayersAsync(IEnumerable<string> names, CancellationToken ct)
+    {
+        using var content = new StringContent(JsonSerializer.Serialize(new { players = names }), Encoding.UTF8, "application/json");
+        using var res = await _http.PostAsync($"{_base}/api/coach/players", content, ct);
+        if (res.StatusCode == HttpStatusCode.Unauthorized) throw new KeyRejectedException();
+        res.EnsureSuccessStatusCode();
+        using var doc = JsonDocument.Parse(await res.Content.ReadAsStringAsync(ct));
+        var known = new Dictionary<string, JsonElement>();
+        if (doc.RootElement.TryGetProperty("players", out var p) && p.ValueKind == JsonValueKind.Object)
+            foreach (var x in p.EnumerateObject()) known[x.Name] = x.Value.Clone();
+        var pending = doc.RootElement.TryGetProperty("pending", out var q) && q.ValueKind == JsonValueKind.Array
+            ? q.EnumerateArray().Select(e => e.GetString() ?? "").Where(s => s != "").ToList()
+            : [];
+        return (known, pending);
     }
 
     /// <summary>A page, from the local copy when the server says it has not changed.</summary>

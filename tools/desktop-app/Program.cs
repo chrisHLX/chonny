@@ -9,6 +9,11 @@ internal static class Program
         if (args.Length >= 2 && args[0] == "--check-log") return Diagnostics.CheckLog(args[1]);
         if (args.Length >= 1 && args[0] == "--sync-once") return Diagnostics.SyncOnce(args);
         if (args.Length >= 3 && args[0] == "--install-addon") return Diagnostics.InstallAddon(args[2], replace: args.Contains("--replace"));
+        if (args.Length >= 2 && args[0] == "--check-recorder") return Diagnostics.CheckRecorder(args.Skip(1));
+        if (args.Length >= 1 && args[0] == "--obs-test") return Diagnostics.ObsTest(args);
+        if (args.Length >= 1 && args[0] == "--check-notes") return Diagnostics.CheckNotes(args);
+        if (args.Length >= 2 && args[0] == "--local-sync-once") return Diagnostics.LocalSyncOnce(args);
+        if (args.Length >= 2 && args[0] == "--check-live") return Diagnostics.CheckLive(args[1], args.Length > 2 && int.TryParse(args[2], out var from) ? from : 0);
 
         // Opened from Downloads: install, open the installed copy, and leave (Installer). A development
         // build (under bin) and a test run (MINDCOLLECTOR_DATA) never install themselves over the real one.

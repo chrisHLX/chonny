@@ -2,6 +2,9 @@
 
 namespace Tests\Feature;
 
+use App\Models\ArenaRound;
+use App\Models\User;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\File;
 use Tests\TestCase;
 
@@ -16,6 +19,8 @@ use Tests\TestCase;
  */
 class WatchPageTest extends TestCase
 {
+    use RefreshDatabase;
+
     private function round(array $over = []): array
     {
         return array_merge([
@@ -106,5 +111,63 @@ class WatchPageTest extends TestCase
         $this->assertStringContainsString('class="go ', File::get($path));
 
         File::deleteDirectory(base_path($dir));
+    }
+
+    public function test_a_recording_made_by_the_app_opens_itself_already_lined_up(): void
+    {
+        $html = $this->render([$this->round()], ['video' => [
+            'name' => '2026-10-25 11-04-41.mp4', 'url' => 'file:///D:/MindCollector/videos/2026-10-25%2011-04-41.mp4', 'offset' => 58.86,
+        ]]);
+
+        $this->assertStringContainsString('"offset":58.86', $html);
+        $this->assertStringContainsString('2026-10-25%2011-04-41.mp4', $html);
+        $this->assertStringContainsString('from MindCollector\'s recording', $html);
+        // Still never uploaded, and the picker stays for a file that has moved.
+        $this->assertStringNotContainsString('<form', $html);
+        $this->assertStringContainsString('Choose a video', $html);
+    }
+
+    /**
+     * The timing file the desktop app writes beside each video (tools/desktop-app/Recorder.cs),
+     * in its real shape, with the 25 Oct shuffle's own ARENA_MATCH_START times. Round 1 sits at
+     * its START minus the recording's first frame; round 2 at the gap between the two STARTs to
+     * the millisecond, where played_at alone would have cut it to the second.
+     */
+    public function test_the_command_lines_a_lobby_up_from_the_apps_timing_file(): void
+    {
+        $user = User::factory()->create();
+        foreach (['2026-10-25 11:05:40', '2026-10-25 11:07:27'] as $i => $at) {
+            ArenaRound::create([
+                'user_id' => $user->id, 'lobby_id' => 'lobby-1', 'match_id' => 'm'.$i, 'roster_key' => 'r',
+                'bracket' => 'Rated Solo Shuffle', 'sequence' => $i + 1, 'played_at' => $at,
+                'payload' => ['analysis' => ['won' => true, 'goes' => [], 'deaths' => [['t' => 60.0, 'side' => 'them', 'name' => 'X-Realm']]]],
+            ]);
+        }
+
+        $videos = storage_path('app/testing-watch-videos');
+        File::ensureDirectoryExists($videos);
+        File::put($videos.'/2026-10-25 11-04-41.mp4', 'not really a video');
+        File::put($videos.'/2026-10-25 11-04-41.mp4.mindcollector.json', json_encode([
+            'format' => 1,
+            'video' => '2026-10-25 11-04-41.mp4',
+            'recordingStarted' => '2026-10-25 11:04:41.200',
+            'recordingStopped' => '2026-10-25 11:16:02.900',
+            'bracket' => 'Rated Solo Shuffle',
+            'rounds' => ['2026-10-25 11:05:40.063', '2026-10-25 11:07:27.502'],
+        ]));
+
+        $out = 'storage/app/testing-watch';
+        $this->artisan('wow:watch-page', ['--user' => $user->id, '--videos' => $videos, '--out' => $out])->assertSuccessful();
+        $html = File::get(base_path($out.'/watch-lobby-1.html'));
+
+        // 11:05:40.063 - 11:04:41.200 = 58.863s
+        $this->assertStringContainsString('"offset":58.86', $html);
+        // 11:07:27.502 - 11:05:40.063 = 107.439s, not the 107 that played_at would give
+        $this->assertStringContainsString('data-start="107.44"', $html);
+        $this->assertStringContainsString('2026-10-25%2011-04-41.mp4', $html);
+        $this->assertStringNotContainsString('Probably <code>', $html, 'an exact recording is not a guess');
+
+        File::deleteDirectory(base_path($out));
+        File::deleteDirectory($videos);
     }
 }

@@ -14,6 +14,10 @@ Route::get('/coach/connect/{code}', [\App\Http\Controllers\AppDownloadController
 // Which version of the app the website serves, so the app can update itself (AppDownloadController).
 Route::get('/coach/app-version', [\App\Http\Controllers\AppDownloadController::class, 'appVersion'])->middleware('throttle:60,1,app-version')->name('api.coach.app-version');
 
+// Notes, Ctrl+Shift+M marks, and the players in the game being played, from the app (CoachAppController).
+Route::post('/coach/note', [\App\Http\Controllers\Api\CoachAppController::class, 'note'])->name('api.coach.note');
+Route::post('/coach/players', [\App\Http\Controllers\Api\CoachAppController::class, 'players'])->name('api.coach.players');
+
 // The desktop app reading the player's pages back, with the same key. See CoachPagesController.
 Route::get('/coach/index', [CoachPagesController::class, 'index'])->name('api.coach.index');
 Route::get('/coach/page/{file}', [CoachPagesController::class, 'page'])

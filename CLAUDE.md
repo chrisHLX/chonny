@@ -257,8 +257,11 @@ Battle.net and Google OAuth need their redirect URLs registered with the provide
 Your own combat log → `wow:ingest-combatlog` → the archive (`D:/MindCollector/arena-logs`,
 gitignored) → `wow:sync` → `RoundAnalysisService` measures each round once into
 `arena_rounds.payload` (at `RoundAnalysisService::VERSION`) → `wow:game-cards` renders the desktop app's pages (game cards,
-Improve per character, the comp library) as HTML files → the app
-(`tools/log-manager/MindCollectorLogs.ps1`) shows them. `/wow/match-analysis` reads the same
+Improve per character, the comp library) as HTML files → the app shows them. **Since 2026-10-25 the
+app on Chriso's PC is the downloadable one (`tools/desktop-app`)**: it sends games to the site, which
+builds the same pages, and in developer mode (`LocalSyncDir` in its settings.json) runs the ingest and
+`wow:sync` locally after each game, the job `tools/log-manager/MindCollectorLogs.ps1` did. That
+PowerShell app is retired from the PC but kept in the repo. `/wow/match-analysis` reads the same
 payloads on the site. **Read `match-review.md` before changing any of it**: what to re-run after a
 change, the data files that decide what is seen, the reading rules and the traps.
 

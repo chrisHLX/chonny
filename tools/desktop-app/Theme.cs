@@ -154,6 +154,10 @@ internal sealed class NavItem : Control
 {
     private bool _hover;
     public bool Active { get; set; }
+
+    /// <summary>A gold dot after the name: something is happening there now ("This game" in an arena).</summary>
+    public bool Dot { get; set; }
+
     public string Glyph { get; }
 
     public NavItem(string glyph, string text)
@@ -185,5 +189,11 @@ internal sealed class NavItem : Control
         var color = Active || _hover ? Theme.Ink : Theme.Muted;
         TextRenderer.DrawText(g, Glyph, Theme.Icons, new Rectangle(14, 0, 28, Height), color, TextFormatFlags.VerticalCenter | TextFormatFlags.HorizontalCenter);
         TextRenderer.DrawText(g, Text, Font, new Rectangle(52, 0, Width - 56, Height), color, TextFormatFlags.VerticalCenter | TextFormatFlags.EndEllipsis);
+        if (Dot)
+        {
+            var x = 52 + TextRenderer.MeasureText(g, Text, Font).Width + 4;
+            using var dot = new SolidBrush(Theme.Gold);
+            g.FillEllipse(dot, x, Height / 2 - 4, 8, 8);
+        }
     }
 }

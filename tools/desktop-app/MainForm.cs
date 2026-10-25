@@ -18,6 +18,18 @@ internal sealed class MainForm : Form
 {
     private readonly AppSettings _settings = AppSettings.Load();
     private readonly Syncer _syncer;
+    private readonly Recorder _recorder;
+    private readonly LiveGame _live = new();
+    private readonly NoteBook _notes;
+    private readonly System.Windows.Forms.Timer _liveTimer = new() { Interval = 1000 };
+    private readonly ComboBox _character = new() { Dock = DockStyle.Top, DropDownStyle = ComboBoxStyle.DropDownList, FlatStyle = FlatStyle.Flat, BackColor = Theme.Raised, ForeColor = Theme.Ink, Visible = false };
+    private readonly Dictionary<string, System.Text.Json.JsonElement> _experience = new();
+    private readonly Dictionary<string, int> _asked = new();
+    private DateTime _nextPlayersAsk;
+    private int _sentVersion = -1;
+    private bool _notesChanged;
+    private readonly HashSet<string> _warned = [];
+    private bool _recording;
     private readonly LibraryList _list = new();
     private readonly Label _libTitle = new() { Dock = DockStyle.Top, Height = 44, Font = Theme.Heading, ForeColor = Theme.Ink, BackColor = Theme.Panel, TextAlign = ContentAlignment.MiddleLeft, Padding = new Padding(10, 0, 0, 0) };
     private readonly WebView2 _view = new();
@@ -41,6 +53,20 @@ internal sealed class MainForm : Form
         _startHidden = startHidden;
         _firstRun = firstRun;
         _syncer = new Syncer(_settings, Log);
+        _syncer.Warning += text => BeginInvoke(() =>
+        {
+            if (_warned.Add(text)) _tray.ShowBalloonTip(8000, "Check before trusting new games", text.Replace("WARNING: ", ""), ToolTipIcon.Warning);
+        });
+        _notes = new NoteBook(_settings, Log);
+        _notes.Changed += () => _notesChanged = true;
+        _live.RoundStarted += (visit, start) => _notes.OnRoundStarted(visit, start);
+        _recorder = new Recorder(_settings, Log, _live);
+        _recorder.RecordingChanged += on => BeginInvoke(() =>
+        {
+            _recording = on;
+            _tray.Text = on ? "MindCollector: recording this game" : "MindCollector";
+            SetStatus(on ? "Recording this game with OBS" : WatchingText());
+        });
 
         Text = "MindCollector";
         Icon = Theme.AppIcon();
@@ -79,6 +105,7 @@ internal sealed class MainForm : Form
     /// <summary>What each library is called, and the icon (Segoe Fluent / MDL2) beside it.</summary>
     private static readonly (string Name, string Glyph, string Title)[] Pages =
     [
+        ("This game", "", "The game you're in"),
         ("Games", "", "Your games"),
         ("Improve", "", "What to work on"),
         ("Comps", "", "Comps you've played"),
@@ -101,7 +128,12 @@ internal sealed class MainForm : Form
         foreach (var (name, glyph, _) in Pages.Reverse())
         {
             var item = new NavItem(glyph, name) { Dock = DockStyle.Top };
-            item.Click += (_, _) => { _tab = name; FillList(); };
+            item.Click += (_, _) =>
+            {
+                _tab = name;
+                FillList();
+                if (name == "This game") ShowThisGame();
+            };
             _tabs[name] = item;
             nav.Controls.Add(item);
         }
@@ -114,7 +146,16 @@ internal sealed class MainForm : Form
         };
         var library = new RoundPanel { Dock = DockStyle.Fill, Padding = new Padding(8, 6, 8, 8) };
         library.Controls.Add(_list);
+        library.Controls.Add(_character);
         library.Controls.Add(_libTitle);
+        // The character picker (the developer app's): the Games list shows one character's games.
+        _character.SelectedIndexChanged += (_, _) =>
+        {
+            if (_filling) return;
+            _settings.Character = _character.SelectedIndex <= 0 ? null : _character.SelectedItem as string;
+            _settings.Save();
+            FillList();
+        };
 
         var left = new Panel { Dock = DockStyle.Left, Width = 380, BackColor = Theme.Frame, Padding = new Padding(8, 8, 0, 0) };
         left.Controls.Add(library);
@@ -167,9 +208,11 @@ internal sealed class MainForm : Form
         _tray.Visible = true;
         var menu = new ContextMenuStrip();
         menu.Items.Add("Open", null, (_, _) => ShowWindow());
+        menu.Items.Add("Show this game", null, (_, _) => { ShowWindow(); _tab = "This game"; FillList(); ShowThisGame(); });
+        menu.Items.Add("Mark this moment (Ctrl+Shift+M)", null, (_, _) => AddMark());
         menu.Items.Add("Sync now", null, async (_, _) => await SyncAsync(manual: true));
         menu.Items.Add("-");
-        menu.Items.Add("Exit", null, (_, _) => { _exiting = true; _tray.Visible = false; Application.Exit(); });
+        menu.Items.Add("Exit", null, (_, _) => { _exiting = true; _tray.Visible = false; _recorder.Dispose(); Application.Exit(); });
         _tray.ContextMenuStrip = menu;
         _tray.DoubleClick += (_, _) => ShowWindow();
     }
@@ -196,7 +239,12 @@ internal sealed class MainForm : Form
         _view.CoreWebView2.Settings.AreDevToolsEnabled = false;
         _view.CoreWebView2.NavigationStarting += OnNavigationStarting;
         _view.CoreWebView2.NewWindowRequested += (_, e) => { e.Handled = true; OpenUrl(e.Uri); };
+        _view.CoreWebView2.WebMessageReceived += OnPageMessage;
+        _view.CoreWebView2.NavigationCompleted += (_, _) => { if (_tab == "This game") { _sentVersion = -1; SendLiveState(); } };
         CheckAddon();
+        _notes.ImportDevNotes();
+        _liveTimer.Tick += async (_, _) => await LiveTickAsync();
+        _liveTimer.Start();
 
         if (string.IsNullOrEmpty(_settings.Key))
         {
@@ -214,6 +262,7 @@ internal sealed class MainForm : Form
         }
 
         _timer.Start();
+        _recorder.Start();
         CleanUpOldUpdates();
         await CheckForUpdateAsync();
     }
@@ -376,6 +425,7 @@ internal sealed class MainForm : Form
             await RefreshIndexAsync();
         }
         await SyncAsync(manual: false);
+        await FlushNotesAsync();
     }
 
     private async Task SyncAsync(bool manual)
@@ -399,7 +449,7 @@ internal sealed class MainForm : Form
             }
             SetStatus(result.Failed > 0
                 ? $"{result.Failed} round(s) could not be sent; will try again. See Activity."
-                : WatchingText());
+                : _recording ? "Recording this game with OBS" : WatchingText());
         }
         catch (ApiClient.KeyRejectedException e)
         {
@@ -461,11 +511,20 @@ internal sealed class MainForm : Form
         {
             switch (_tab)
             {
-                case "Games": rows.AddRange(GameRows(r)); break;
+                case "This game": break;
+                case "Games": rows.AddRange(GameRows(r).Where(g => _settings.Character == null || g.Title.StartsWith(_settings.Character + " ·", StringComparison.Ordinal))); break;
                 case "Improve": rows.AddRange(SimpleRows(r, "characters", e => (Str(e, "name"), $"{Str(e, "spec")} · {Str(e, "games")} games", null, 0))); break;
                 case "Comps": rows.AddRange(SimpleRows(r, "comps", e => (Str(e, "name"), $"{Str(e, "games")} games", $"{Str(e, "won")}-{Str(e, "lost")}", Math.Sign(Num(e, "won") - Num(e, "lost"))))); break;
                 case "Classes": rows.AddRange(SimpleRows(r, "classes", e => (Str(e, "name"), $"{Str(e, "spec")} · {Str(e, "why")}", null, 0))); break;
             }
+        }
+
+        if (_tab == "This game")
+        {
+            rows.Clear();
+            rows.Add(_live.Active
+                ? new LibraryRow(string.Join(" · ", new[] { _live.Zone, _live.Bracket }.Where(s => s != "")) is { Length: > 0 } t ? t : "In an arena", _live.Round > 0 ? $"Round {_live.Round}" : "In the prep room")
+                : new LibraryRow("Not in an arena", "Ctrl+Shift+M marks a moment from inside WoW"));
         }
 
         var title = Pages.First(p => p.Name == _tab).Title;
@@ -473,6 +532,7 @@ internal sealed class MainForm : Form
         _libTitle.Text = count > 0 ? $"{title}   {count}" : title;
 
         _filling = true;
+        FillCharacters(root);
         _list.BeginUpdate();
         _list.Items.Clear();
         foreach (var row in rows) _list.Items.Add(row);
@@ -543,6 +603,14 @@ internal sealed class MainForm : Form
 
             // The pages use site-relative image paths (/storage/...): give them the site as their base.
             var withBase = html.Replace("<head>", $"<head><base href=\"{_settings.ServerUrl}/\">", StringComparison.OrdinalIgnoreCase);
+            // A game's card (its file is the website's lobby id): the note box underneath.
+            if (System.Text.RegularExpressions.Regex.Match(file, "^([0-9a-f]{32})\\.html$") is { Success: true } game)
+            {
+                var at = withBase.LastIndexOf("</body>", StringComparison.OrdinalIgnoreCase);
+                var bar = ThisGamePage.NoteBar(game.Groups[1].Value);
+                withBase = at >= 0 ? withBase.Insert(at, bar) : withBase + bar;
+            }
+            _shownFile = file;
             Show(withBase);
         }
         catch (Exception e)
@@ -578,6 +646,8 @@ internal sealed class MainForm : Form
     }
 
     private string? _shown;
+    private string? _shownFile;
+    private DateTime? _reloadAt;
 
     /// <summary>Draws a page, unless it is the one already showing (no flash, no jump to the top).</summary>
     private void Show(string html)
@@ -585,6 +655,188 @@ internal sealed class MainForm : Form
         if (_view.CoreWebView2 == null || html == _shown) return;
         _shown = html;
         _view.CoreWebView2.NavigateToString(html);
+    }
+
+    // ------------------------------------------------------------------ this game, notes and marks (2026-10-25)
+
+    private void ShowThisGame()
+    {
+        _shownFile = null;
+        _sentVersion = -1;
+        Show(ThisGamePage.Html());
+        SendLiveState();
+    }
+
+    /// <summary>Once a second: the nav's dot, the status line, the players' experience, and "This game" when it changed.</summary>
+    private async Task LiveTickAsync()
+    {
+        var active = _live.Active;
+        if (_tabs.TryGetValue("This game", out var nav) && nav.Dot != active)
+        {
+            nav.Dot = active;
+            nav.Invalidate();
+            _sentVersion = -1;   // in or out of a game is a change of time, not of the log
+            if (_tab == "This game") FillList();
+            if (!_recording) SetStatus(active ? "In an arena" : WatchingText());
+        }
+        if (_tab == "This game") SendLiveState();
+        if (_reloadAt is { } due && DateTime.Now >= due)
+        {
+            _reloadAt = null;
+            if (_shownFile != null) await ShowPageAsync(_shownFile);
+        }
+        if (active && DateTime.Now >= _nextPlayersAsk) await AskPlayersAsync();
+    }
+
+    /// <summary>The state to "This game", only when something on it changed (the clock runs in the page).</summary>
+    private void SendLiveState()
+    {
+        if (_view.CoreWebView2 == null || _tab != "This game") return;
+        if (_live.Version == _sentVersion && !_notesChanged) return;
+        _sentVersion = _live.Version;
+        _notesChanged = false;
+
+        var state = _live.Snapshot(_experience);
+        if (!_live.Active) state["state"] = "idle";
+        var start = _live.RoundStart;
+        var notes = new System.Text.Json.Nodes.JsonArray();
+        foreach (var n in _notes.ForVisit(_live.Visit))
+        {
+            var when = n.Kind == "next" ? "next game" : n.RoundStart is { } rs && DateTime.TryParse(rs, out var r) && DateTime.TryParse(n.At, out var a)
+                ? (a >= r ? $"{(n.Round > 1 ? $"R{n.Round} " : "")}{(int)(a - r).TotalMinutes}:{(a - r).Seconds:00}" : "prep")
+                : "prep";
+            notes.Add(new System.Text.Json.Nodes.JsonObject { ["id"] = n.Id, ["kind"] = n.Kind, ["text"] = n.Text, ["when"] = when, ["sent"] = n.Sent });
+        }
+        state["notes"] = notes;
+        state["waiting"] = new System.Text.Json.Nodes.JsonArray(_notes.Waiting(start).Select(n => (System.Text.Json.Nodes.JsonNode)n.Text).ToArray());
+        state["type"] = "state";
+        try { _view.CoreWebView2.PostWebMessageAsJson(state.ToJsonString()); } catch { }
+    }
+
+    /// <summary>
+    /// The experience of everyone named in the game (Gladiator seasons, best 3v3), from the website:
+    /// what it already knows now, the rest a little later once it has looked them up.
+    /// </summary>
+    private async Task AskPlayersAsync()
+    {
+        _nextPlayersAsk = DateTime.Now.AddSeconds(15);
+        if (string.IsNullOrEmpty(_settings.Key)) return;
+        var names = _live.Names().Where(n => !_experience.ContainsKey(n) && _asked.GetValueOrDefault(n) < 6).ToList();
+        if (names.Count == 0) return;
+        foreach (var n in names) _asked[n] = _asked.GetValueOrDefault(n) + 1;
+        try
+        {
+            using var api = new ApiClient(_settings.ServerUrl, _settings.Key);
+            var (known, _) = await api.PlayersAsync(names, CancellationToken.None);
+            foreach (var (name, x) in known) _experience[name] = x;
+            if (known.Count > 0) _sentVersion = -1;
+        }
+        catch { /* the website without the endpoint yet, or offline: the names still show */ }
+    }
+
+    /// <summary>Messages from the app's own pages (ThisGamePage): a note, or a mark.</summary>
+    private void OnPageMessage(object? sender, CoreWebView2WebMessageReceivedEventArgs e)
+    {
+        try
+        {
+            using var doc = JsonDocument.Parse(e.WebMessageAsJson);
+            var m = doc.RootElement;
+            var type = Str(m, "type");
+            if (type == "mark") { AddMark(); return; }
+            if (type != "note") return;
+
+            var text = Str(m, "text").Trim();
+            if (text.Length == 0) return;
+            var target = Str(m, "target");
+            var markId = Str(m, "mark");
+            if (target == "live" && markId != "") _notes.Write(markId, text);
+            else if (target == "next") _notes.Add("next", text);
+            else if (target == "game" && Str(m, "lobby") is { Length: 32 } lobby)
+            {
+                _notes.Add("note", text, lobby: lobby);
+                _reloadAt = DateTime.Now.AddSeconds(20);   // the card redraws on the website with the note
+            }
+            else _notes.Add("note", text, live: _live.Active || _live.State == "ended" ? _live : null);
+
+            _view.CoreWebView2.PostWebMessageAsJson("{\"type\":\"saved\"}");
+            _ = FlushNotesAsync();
+        }
+        catch (Exception ex) { Log($"Could not save the note: {ex.Message}"); }
+    }
+
+    /// <summary>Ctrl+Shift+M (or the button): the moment, marked, with a sound and nothing else.</summary>
+    private void AddMark()
+    {
+        var note = _notes.Add("mark", "", live: _live.Active || _live.State == "ended" ? _live : null);
+        System.Media.SystemSounds.Asterisk.Play();
+        Log(_live.Round > 0 && note.RoundStart != null ? $"Marked a moment in round {_live.Round}." : "Marked a moment.");
+        _ = FlushNotesAsync();
+    }
+
+    private bool _flushing;
+
+    private async Task FlushNotesAsync()
+    {
+        if (_flushing || string.IsNullOrEmpty(_settings.Key)) return;
+        _flushing = true;
+        try
+        {
+            using var api = new ApiClient(_settings.ServerUrl, _settings.Key);
+            await _notes.FlushAsync(api, CancellationToken.None);
+        }
+        catch (Exception e) when (e is HttpRequestException or TaskCanceledException) { /* offline: next tick */ }
+        catch (ApiClient.KeyRejectedException) { }
+        finally { _flushing = false; }
+    }
+
+    /// <summary>The character picker over the Games list: every character in the games, once there are two.</summary>
+    private void FillCharacters(JsonElement? root)
+    {
+        var names = new List<string>();
+        if (root is { } r && r.TryGetProperty("games", out var games) && games.ValueKind == JsonValueKind.Object)
+            names = games.EnumerateObject().Select(g => Str(g.Value, "you")).Where(s => s != "").Distinct().OrderBy(s => s).ToList();
+        _character.Visible = _tab == "Games" && names.Count > 1;
+        var items = new List<string> { "All characters" };
+        items.AddRange(names);
+        if (!_character.Items.Cast<string>().SequenceEqual(items))
+        {
+            _character.Items.Clear();
+            foreach (var i in items) _character.Items.Add(i);
+        }
+        var at = _settings.Character != null ? items.IndexOf(_settings.Character) : 0;
+        _character.SelectedIndex = Math.Max(0, at);
+    }
+
+    // ------------------------------------------------------------------ the hotkey
+
+    [System.Runtime.InteropServices.DllImport("user32.dll")]
+    private static extern bool RegisterHotKey(IntPtr hWnd, int id, uint modifiers, uint vk);
+
+    [System.Runtime.InteropServices.DllImport("user32.dll")]
+    private static extern bool UnregisterHotKey(IntPtr hWnd, int id);
+
+    private const int HotkeyId = 0x4D43;   // "MC"
+
+    /// <summary>Ctrl+Shift+M from anywhere, WoW included (the developer app's hotkey).</summary>
+    protected override void OnHandleCreated(EventArgs e)
+    {
+        base.OnHandleCreated(e);
+        if (!_settings.MarkHotkey) return;
+        const uint ctrl = 0x2, shift = 0x4, noRepeat = 0x4000;
+        if (!RegisterHotKey(Handle, HotkeyId, ctrl | shift | noRepeat, (uint)Keys.M))
+            Log("Ctrl+Shift+M is taken by another program, so it cannot mark moments. The tray menu's \"Mark this moment\" still does.");
+    }
+
+    protected override void OnHandleDestroyed(EventArgs e)
+    {
+        UnregisterHotKey(Handle, HotkeyId);
+        base.OnHandleDestroyed(e);
+    }
+
+    protected override void WndProc(ref Message m)
+    {
+        if (m.Msg == 0x0312 && m.WParam.ToInt32() == HotkeyId) AddMark();
+        base.WndProc(ref m);
     }
 
     private void Blank(string message) =>
@@ -687,7 +939,7 @@ internal sealed class MainForm : Form
 
     protected override void Dispose(bool disposing)
     {
-        if (disposing) { _timer.Dispose(); _tray.Dispose(); _index?.Dispose(); }
+        if (disposing) { _timer.Dispose(); _liveTimer.Dispose(); _recorder.Dispose(); _tray.Dispose(); _index?.Dispose(); }
         base.Dispose(disposing);
     }
 }

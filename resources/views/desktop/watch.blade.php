@@ -8,8 +8,11 @@
     nudgeable; only round one's position has to be set by hand.
 
     The video is a file the player already has (OBS, ShadowPlay, Game Bar), chosen with a picker
-    and read through a blob URL. It is never uploaded and never leaves the machine. Nothing here
-    records anything -- docs/vision-experiment.md says why recording comes last.
+    and read through a blob URL. It is never uploaded and never leaves the machine.
+
+    A video the desktop app recorded through OBS (2026-10-25) comes with its own timing, so the
+    command passes `$video` (its file:/// address and round 1's exact position) and the page opens
+    it and lines it up by itself. The picker stays, for when the file has moved.
 
     What is drawn is what RoundAnalysisService already measured: goes as WINDOWS (from/to seconds),
     not as points. A go is a structured stretch of coordinated cooldowns, so it is a block on a
@@ -96,7 +99,9 @@
         <b>Open your recording of this game</b>
         <span class="muted small">Your own capture from OBS, ShadowPlay or Game Bar. It stays on this machine &mdash; the file is read in the page and never uploaded.</span>
         <label class="pick">Choose a video<input id="file" type="file" accept="video/*" style="display:none"></label>
-        @if (! empty($suggest))
+        @if (! empty($video))
+            <div class="hint" id="moved">MindCollector recorded this game as <code>{{ $video['name'] }}</code>, but it could not be opened from where it was saved. Choose it if it has moved.</div>
+        @elseif (! empty($suggest))
             <div class="hint">Probably <code>{{ $suggest }}</code> &mdash; the file whose time best fits this game.</div>
         @elseif (! empty($playedAt))
             <div class="hint">This game started around <code>{{ $playedAt }}</code>. Look for the recording covering that time.</div>
@@ -105,9 +110,13 @@
     </div>
 
     <div class="offset">
-        Line up: where round 1 starts in the video
+        @if (! empty($video))
+            Round 1 starts this far into the video, from MindCollector's recording
+        @else
+            Line up: where round 1 starts in the video
+        @endif
         <button type="button" id="minus">&minus;1s</button>
-        <input id="off" type="range" min="-60" max="900" step="0.5" value="0">
+        <input id="off" type="range" min="-60" max="900" step="0.1" value="0">
         <button type="button" id="plus">+1s</button>
         <span class="v" id="offv">0.0s</span>
         <button type="button" id="here" title="Use the video's current position as the start of round 1">set from playhead</button>
@@ -178,9 +187,14 @@
     @endforeach
 
     <div class="foot">
-        Round times are the game's own clock, from the combat log. The video is lined up by hand
-        because nothing here started the recording; once the app does, it will know the wall-clock
-        instant of the first frame and line itself up.
+        @if (! empty($video))
+            Round times are the game's own clock, from the combat log. The app started this recording,
+            so it knows when the first frame was taken on the same clock, and each round is placed from that.
+        @else
+            Round times are the game's own clock, from the combat log. The video is lined up by hand
+            because nothing here started the recording. Games the MindCollector app records through OBS
+            line themselves up.
+        @endif
     </div>
 </div>
 
@@ -211,7 +225,7 @@
     }
 
     function setOffset(v) {
-        offset = Math.round(v * 2) / 2;
+        offset = Math.round(v * 10) / 10;
         off.value = offset;
         offv.textContent = offset.toFixed(1) + 's';
     }
@@ -222,6 +236,21 @@
         stage.style.display = 'block';
         drop.style.display = 'none';
     });
+
+    // Recorded by the app: open it from where it was saved, already lined up. If it cannot be
+    // opened (moved, deleted, or a browser that will not read local files), ask for it instead.
+    var recorded = @json($video ?? null);
+    if (recorded) {
+        vid.addEventListener('error', function () {
+            if (vid.src.indexOf('blob:') === 0) { return; }
+            vid.removeAttribute('src');
+            stage.style.display = 'none';
+            drop.style.display = 'block';
+        });
+        vid.src = recorded.url;
+        stage.style.display = 'block';
+        drop.style.display = 'none';
+    }
 
     off.addEventListener('input', function () { setOffset(parseFloat(off.value) || 0); });
     document.getElementById('minus').addEventListener('click', function () { setOffset(offset - 1); });
@@ -267,7 +296,7 @@
         })(rounds[j]);
     }
 
-    setOffset(0);
+    setOffset(recorded ? recorded.offset : 0);
 })();
 </script>
 </body>

@@ -31,8 +31,121 @@ is, for the archive and the research tools.
    checks the size, then deletes. Moved logs are kept. When the site's measure version goes up, the
    app sends every kept log again so old games are measured with the new code.
 
-Not in this version: the live game column, notes and the Ctrl+Shift+M hotkey (the PowerShell app
-has them), and linking one game logged by two players.
+7. **Records each arena game with OBS** (0.5.6, 2026-10-25, off until turned on in Settings). See
+   "Recording" below.
+
+8. **This game, notes and marks** (0.5.7, 2026-10-25, from the developer app). See "This game"
+   below.
+9. **A character picker** over the Games list, once the games hold two characters (remembered).
+
+Not in this version: linking one game logged by two players.
+
+## This game, notes and marks (0.5.7, 2026-10-25)
+
+What the developer app (`tools/log-manager`) had beside its matches, brought here so it could be
+retired:
+
+- **"This game"** (first in the navigation, with a gold dot while you are in an arena): the arena,
+  the bracket and round, a clock from the gates, and both teams in class colours with each player's
+  Gladiator seasons and best 3v3. `LiveGame` reads the log as the Recorder follows it (once a
+  second, whether or not recording is on); the experience comes from the website
+  (`POST /api/coach/players`, known players at once, the rest looked up and asked again 15s later).
+  The enemy team appears as the gates open: until then the log holds only your own team, and WoW
+  often writes the prep only at the gates. Checked on the 25 Oct 11:41 shuffle with
+  `--check-live`: every round's two teams and specs match the arena frames in that game's video.
+- **Notes:** the box on "This game" writes to the round being played (a prep-room note joins the
+  round that follows), and a box under every game's card writes to that game. Either can keep a
+  note "for next game". **Ctrl+Shift+M** from inside WoW marks the moment with a sound; click the
+  mark on "This game" afterwards to write what happened (Settings has no switch: `MarkHotkey` in
+  settings.json turns it off). The tray menu has "Mark this moment" too.
+- **Where notes go:** `POST /api/coach/note` (CoachAppController) into `arena_notes`. A note during
+  a game has no game yet, so it carries its time (and round) and the website files it by time when
+  the cards are built, the rule the developer app's notes.json used (GameCardService::attachNotes).
+  Notes are kept in settings.json until the website answers "stored" (a PHP error page arrives as
+  200 OK and must not count), so none is lost offline or before the website has the endpoint. The
+  app's own id makes a retry or a written-up mark update in place. The developer app's notes.json
+  is brought over once.
+
+## Developer mode (2026-10-25): the local archive without the developer app
+
+On the developer's PC this app does the developer app's other job: after each lobby is sent, it
+reads the logs into this project's local archive and database with the same two commands the
+developer app ran (`wow:ingest-combatlog "<log>"`, then `wow:sync --skip-ingest`), then rebuilds the
+Watch pages when the app records. The research tools, `wow:population` and the Watch page read what
+these write. It is set in settings.json only, never in Settings, because a player has no copy of
+the project:
+
+```json
+"LocalSyncDir": "C:\\Users\\chris\\Herd\\chonny",
+"LocalSyncUser": 2,
+"LocalSyncSince": "2026-10-25T13:40:00"
+```
+
+- `php` must be on the PATH (Herd puts it there) and Herd's MySQL running; a failed run is logged
+  and tried again after the next game or when WoW closes.
+- A log is moved out of WoW's folder only once the local archive has read it, so "Move logs" can be
+  on (Chriso's PC: to `D:\MindCollector\wow-logs`, where the developer app put them).
+- `WARNING:` lines from the ingest (a new patch or log version) come up as a tray balloon, as they
+  did in the developer app.
+- Logs last written before `LocalSyncSince` are left alone: the developer app had read them.
+- **Trap (2026-10-25):** "Move logs to" is also read for logs to send, so pointing it at a folder of
+  logs another app already sent sends them all again (it did: about 95 rounds re-measured on the
+  one-core server before it was stopped). Mark such logs as sent first: a `Files` entry per log with
+  `Offset` and `LocalOffset` at its length.
+
+## Recording (0.5.6, 2026-10-25)
+
+The app drives the player's own OBS; it does not record anything itself (docs/vision-experiment.md:
+"do not build a recorder"). OBS has a remote control built in since 28, obs-websocket 5 on
+127.0.0.1:4455, and the app talks to it with no library (`ObsClient`).
+
+- **Setting it up:** Settings > Set up OBS. It reads OBS's port and password from OBS's own
+  settings file (`%APPDATA%\obs-studio\plugin_config\obs-websocket\config.json`), so nothing is typed
+  or kept here; turns the server on in that file if it is off and OBS is closed (an open OBS writes
+  its own copy back on exit, so then it says where to turn it on); opens OBS in the tray; connects;
+  and checks the recording format, since WebView2 plays MP4 but not MKV. (`ObsSetup`)
+- **When:** `GameTrigger` decides, `Recorder` reads the newest log once a second. It starts when you
+  zone into an arena, so the prep is in the video: a new log appearing (the addon turns logging on as
+  you zone in) or a `ZONE_CHANGE` naming an arena's instance id, for a log left on all session.
+  `ARENA_MATCH_START`, written as the gates open about a minute later, starts it too if nothing did,
+  and marks each round. It stops 8s after `ARENA_MATCH_END` (one per shuffle lobby, so a shuffle is
+  one video), or when WoW closes, after 90 minutes, or for a game that never wrote its END, at the
+  next game's START or after 20 minutes with nothing written. A video with no game in it after 4
+  minutes is deleted. OBS is opened if it is closed.
+- **WoW writes its log in bursts**, so the file goes quiet mid-game: on 25 Oct round 6 ran 3.5
+  minutes with nothing reaching the disk, and a "3 minutes quiet" stop cut that video 35s short.
+  Quiet is now a sign only before a game. The same buffering held the zone-in back until round 1's
+  START, so the prep is recorded only when the arena opens a new log (the first arena of a WoW
+  session); later arenas in that session start at their gates, about 0.4s after the START line.
+- **OBS is left as found.** Its folder is pointed at the videos folder only while a recording starts
+  and put straight back; a recording the player started is never touched; only the app's own videos
+  are ever deleted (Settings: "Keep up to (GB)", 100 by default, oldest first).
+- **Each video has a timing file** beside it, `<video>.mindcollector.json`: the wall-clock time of the
+  first frame (OBS's RecordStateChanged STARTED event) and each round's `ARENA_MATCH_START`, both on
+  this PC's clock, which is the combat log's clock too. RoundAnalysisService's clock is zero at the
+  START line, so round n is (its START minus the first frame) seconds into the video, to the
+  millisecond. `php artisan wow:watch-page --user=N --videos=FOLDER` reads it, opens the video by
+  itself and places every round with no lining up by hand.
+
+**Checked 2026-10-25:**
+- `--check-recorder` over the 19 Oct log (two shuffles, 28 3v3s, logging on all session) and the
+  25 Oct shuffle (its own log): 31 videos, all 40 STARTs placed, about 53s of prep before every 3v3
+  and 59s before each shuffle (the replay reads line times, so it cannot show the buffering below).
+  The one 3v3 with no END runs 24 minutes, to the 20-minute rule: a long video, but a whole one.
+- `--obs-test 6` against OBS 32.2.2 (obs-websocket 5.7.4) on Chriso's PC: the server turned on, OBS
+  opened in the tray, a 6s MP4 written into the videos folder, and OBS's own folder (`D:/`) put back.
+  The timing file's first frame was 11:21:31.280; OBS's own log says "Recording Start" at
+  11:21:31.289. A cold OBS took about 6s from the request to the first frame, well inside the prep.
+- A page opened from disk (as the Watch page is) loads the video by its `file:///` address in Edge.
+- **The first real game (25 Oct, 11:41 shuffle):** recorded from 0.4s after round 1's START, all six
+  rounds in the timing file, 851.8s of video against 852.1s between the file's start and stop.
+  Frames pulled at the page's computed positions: 2-4s before round 1's measured death the teammate
+  is alive and 2.5s after it "Round Lost / Phergo has died" is on screen; round 4, eight minutes
+  later, the same 2.5s to "Round Won" with the warrior skulled. The same lag in both means no drift.
+  That game is also where the buffering above was found (it stopped on the old quiet rule).
+
+Not yet: the Watch page inside this app's window (its pages come from the website, and a local video
+needs a local page), and the prep for later arenas of a session.
 
 ## Getting it (2026-10-11): one file, one click
 
@@ -91,7 +204,7 @@ Windows 11. The exe is not code-signed, so Windows SmartScreen warns on first ru
 
 ## Checking it without the window
 
-Both switches write their report to the app's data folder (`%APPDATA%\MindCollector Desktop`, or
+Each switch writes its report to the app's data folder (`%APPDATA%\MindCollector Desktop`, or
 `MINDCOLLECTOR_DATA` when set, which tests use so a real install is never touched):
 
 - `MindCollector.exe --check-log "path\to\WoWCombatLog-....txt"` lists every round the app would
@@ -103,6 +216,18 @@ Both switches write their report to the app's data folder (`%APPDATA%\MindCollec
   with `--replace`, and writes nothing to a folder that is not WoW.
 - `MindCollector.exe --sync-once --server URL --key KEY --logs FOLDER [--move FOLDER]` runs one sync
   pass (`sync-once.txt`).
+- `MindCollector.exe --check-recorder LOG [LOG...]` replays logs through the recording rules and lists
+  where each video would start and stop and where each round falls in it (`check-recorder.txt`).
+  Records nothing.
+- `MindCollector.exe --check-live LOG [FROM-LINE]` replays a log as "This game" reads it and lists each
+  round's two teams, specs and which player is you (`check-live.txt`).
+- `MindCollector.exe --check-notes --server URL --key KEY [--players NAME...]` brings the developer
+  app's notes over, writes a note, a mark and a next-game note, sends them, and asks about the
+  players (`check-notes.txt`). Run it with `MINDCOLLECTOR_DATA` set, against a local server.
+- `MindCollector.exe --obs-test [SECONDS]` finds and opens OBS, connects, and reports what it records;
+  with SECONDS it records that long into the videos folder as a game would (`obs-test.txt`). Run it
+  with `MINDCOLLECTOR_DATA` set to keep the clip out of the real videos folder. From PowerShell, do
+  not use `Start-Process -Wait`: it also waits for the OBS the test opened.
 
 **Checked 2026-10-08:**
 - `--check-log` on the 30 Sep shuffle log found the same 6 rounds, with the same start times, as
@@ -126,11 +251,11 @@ answers any `.html` path as a missing static file and never reaches the API.
 - `activity.log`: what the app did, rolled over at 1 MB.
 - `WebView2\`: the browser control's own cache.
 
-It is separate from the PowerShell app's `%APPDATA%\MindCollector`, so both can run on one PC. **On
-Chriso's PC, turn this app's "Move logs" off.** The PowerShell app moves each log to
-`D:\MindCollector\wow-logs` after its own sync, possibly before this app has read it, and it already
-sends his games to the site (`wow:push-rounds`). Both sending the same round is harmless, because
-the server keys a round by its match and measures it again, but it is wasted work.
+It is separate from the PowerShell app's `%APPDATA%\MindCollector`. **Since 2026-10-25 the PowerShell
+app no longer runs on Chriso's PC:** this app sends the games, moves the logs to
+`D:\MindCollector\wow-logs`, and keeps the local archive in developer mode. Running both again would
+send every round twice (harmless, as the server keys a round by its match, but wasted work) and the
+PowerShell app could move a log before this one has read it.
 
 ## The Microsoft Store build (2026-10-19)
 
