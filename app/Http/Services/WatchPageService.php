@@ -77,7 +77,7 @@ class WatchPageService
                 'result' => isset($analysis['won']) ? ($analysis['won'] ? 'won' : 'lost') : null,
                 'duration' => (int) ceil(max((float) ($round->duration_seconds ?? 0), $last + 8)),
                 'startOffset' => $startOffset,
-                'goes' => array_values($analysis['goes'] ?? []),
+                'goes' => $this->goes($analysis),
                 'deaths' => array_values($analysis['deaths'] ?? []),
                 'defensives' => $this->defensives($analysis),
             ];
@@ -103,15 +103,39 @@ class WatchPageService
     }
 
     /**
+     * The goes, with their target by name: the analysis names it by GUID ("Go on Player-11-0E64C085").
+     *
+     * @return array<int, array<string, mixed>>
+     */
+    private function goes(array $analysis): array
+    {
+        $names = $this->names($analysis);
+
+        return array_map(function ($g) use ($names) {
+            if (isset($g['target']) && isset($names[$g['target']])) {
+                $g['target'] = $names[$g['target']];
+            }
+
+            return $g;
+        }, array_values($analysis['goes'] ?? []));
+    }
+
+    /** @return array<string, string> GUID => the name without its realm */
+    private function names(array $analysis): array
+    {
+        return collect($analysis['players'] ?? [])
+            ->mapWithKeys(fn ($p) => [$p['guid'] ?? '' => Str::before($p['name'] ?? '?', '-')])
+            ->all();
+    }
+
+    /**
      * Every defensive either side pressed, by name: who, on whom when it was someone else, and when.
      *
      * @return array<int, array{t: float, side: string, spell: string, who: string, on: ?string}>
      */
     private function defensives(array $analysis): array
     {
-        $names = collect($analysis['players'] ?? [])
-            ->mapWithKeys(fn ($p) => [$p['guid'] ?? '' => Str::before($p['name'] ?? '?', '-')])
-            ->all();
+        $names = $this->names($analysis);
 
         $out = [];
         foreach (['us', 'them'] as $side) {

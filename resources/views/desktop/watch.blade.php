@@ -31,7 +31,9 @@
 @include('desktop.partials.styles')
 <style>
     .wrap { max-width: 1180px; }
-    .stage { background: #000000; border-radius: 8px; overflow: hidden; position: sticky; top: 0; z-index: 5; }
+    .stage { background: #000000; border-radius: 8px; overflow: hidden; position: sticky; top: 0; z-index: 5;
+        /* covers the page around it, so the timeline's edge labels do not show beside it when scrolled */
+        box-shadow: 0 0 0 16px #121212; }
     .stage video { display: block; width: 100%; max-height: 56vh; background: #000000; }
     .drop { padding: 40px 20px; text-align: center; background: #181818; border: 1px dashed #3E3E3E; border-radius: 8px; }
     .drop b { display: block; font-size: 15px; margin-bottom: 4px; }

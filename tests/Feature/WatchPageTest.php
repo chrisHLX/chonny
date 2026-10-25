@@ -196,7 +196,8 @@ class WatchPageTest extends TestCase
         ArenaRound::create([
             'user_id' => $user->id, 'lobby_id' => $lobby, 'match_id' => 'm', 'roster_key' => 'r',
             'bracket' => '3v3', 'sequence' => 1, 'played_at' => '2026-10-25 16:15:07',
-            'payload' => ['analysis' => ['won' => true, 'goes' => [], 'deaths' => [],
+            'payload' => ['analysis' => ['won' => true, 'deaths' => [],
+                'goes' => [['side' => 'us', 'from' => 20.4, 'to' => 40.0, 'target' => 'P-2', 'chain' => 'Rake']],
                 'players' => [['guid' => 'P-1', 'name' => 'Crawlordx-Frostmourne-US'], ['guid' => 'P-2', 'name' => 'Nearó-Barthilas-US']],
                 'defensives' => ['us' => ['rows' => [['t' => 40.3, 'spell' => 'Pain Suppression', 'who' => 'P-2', 'on' => 'P-1']]], 'them' => ['rows' => []]]]],
         ]);
@@ -207,6 +208,7 @@ class WatchPageTest extends TestCase
         $this->assertStringContainsString('https:\/\/videos.mindcollector.invalid\/2026-10-25%2016-15-08.mp4', $html);
         $this->assertStringContainsString('"offset":-0.58', $html);
         $this->assertStringContainsString('Nearó on Crawlordx', $html);
+        $this->assertStringContainsString('Go on Nearó', $html, 'a go names its target, not its GUID');
         $this->assertStringContainsString('mc-app://game/'.$lobby, $html);
 
         // Only the key's own games.
