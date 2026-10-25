@@ -51,16 +51,50 @@ internal sealed class LibraryList : ListBox
         try { SetWindowTheme(Handle, "DarkMode_Explorer", null); } catch { }
     }
 
+    /// <summary>
+    /// The list is a native control, so double buffering it does nothing: Windows wipes it, then each
+    /// row paints its background, its hover fill and its text straight onto the screen, and moving the
+    /// mouse between rows flickered (2026-10-25). Each row is drawn off-screen and copied in one go,
+    /// and the wipe covers only the empty space under the last row.
+    /// </summary>
+    protected override void WndProc(ref Message m)
+    {
+        const int WM_ERASEBKGND = 0x0014;
+        if (m.Msg == WM_ERASEBKGND)
+        {
+            var bottom = Items.Count == 0 ? 0 : GetItemRectangle(Items.Count - 1).Bottom;
+            if (bottom < ClientSize.Height)
+            {
+                using var g = Graphics.FromHdc(m.WParam);
+                using var bg = new SolidBrush(Theme.Panel);
+                g.FillRectangle(bg, 0, Math.Max(0, bottom), ClientSize.Width, ClientSize.Height - Math.Max(0, bottom));
+            }
+            m.Result = 1;
+            return;
+        }
+        base.WndProc(ref m);
+    }
+
     protected override void OnDrawItem(DrawItemEventArgs e)
     {
-        var g = e.Graphics;
-        g.SmoothingMode = SmoothingMode.AntiAlias;
-        using (var bg = new SolidBrush(Theme.Panel)) g.FillRectangle(bg, e.Bounds);
-        if (e.Index < 0 || e.Index >= Items.Count || Items[e.Index] is not LibraryRow row) return;
+        if (e.Bounds.Width <= 0 || e.Bounds.Height <= 0) return;
+        using var buffer = BufferedGraphicsManager.Current.Allocate(e.Graphics, e.Bounds);
+        DrawRow(buffer.Graphics, e.Bounds, e.Index, e.State);
+        buffer.Render(e.Graphics);
+    }
 
-        var selected = (e.State & DrawItemState.Selected) != 0;
-        var box = new Rectangle(e.Bounds.X, e.Bounds.Y + 1, e.Bounds.Width - 1, e.Bounds.Height - 3);
-        if (selected || e.Index == _hover)
+    /// <summary>The buffer draws a row through a translation, which TextRenderer ignores unless told (rows after the first lost their text).</summary>
+    private const TextFormatFlags Buffered = TextFormatFlags.PreserveGraphicsTranslateTransform | TextFormatFlags.PreserveGraphicsClipping;
+
+    private void DrawRow(Graphics g, Rectangle bounds, int index, DrawItemState state)
+    {
+        g.SmoothingMode = SmoothingMode.AntiAlias;
+        using (var bg = new SolidBrush(Theme.Panel)) g.FillRectangle(bg, bounds);
+        if (index < 0 || index >= Items.Count || Items[index] is not LibraryRow row) return;
+
+        var selected = (state & DrawItemState.Selected) != 0;
+        var box = new Rectangle(bounds.X, bounds.Y + 1, bounds.Width - 1, bounds.Height - 3);
+        if (selected || index == _hover)
         {
             using var path = Theme.Rounded(box, 6);
             using var fill = new SolidBrush(selected ? Theme.Selected : Theme.Raised);
@@ -82,13 +116,13 @@ internal sealed class LibraryList : ListBox
             using var fill = new SolidBrush(row.Tone > 0 ? Theme.WonBg : row.Tone < 0 ? Theme.LostBg : Theme.Selected);
             g.FillPath(fill, path);
             TextRenderer.DrawText(g, row.Badge, Theme.Small, pill, row.Tone > 0 ? Theme.Won : row.Tone < 0 ? Theme.Lost : Theme.Muted,
-                TextFormatFlags.HorizontalCenter | TextFormatFlags.VerticalCenter | TextFormatFlags.NoPadding);
+                TextFormatFlags.HorizontalCenter | TextFormatFlags.VerticalCenter | TextFormatFlags.NoPadding | Buffered);
         }
 
         var textWidth = box.Width - 24 - (badgeWidth > 0 ? badgeWidth + 16 : 0);
         TextRenderer.DrawText(g, row.Title, Theme.Bold, new Rectangle(box.X + 14, box.Y + 9, textWidth, 22), Theme.Ink,
-            TextFormatFlags.EndEllipsis | TextFormatFlags.NoPrefix);
+            TextFormatFlags.EndEllipsis | TextFormatFlags.NoPrefix | Buffered);
         TextRenderer.DrawText(g, row.Sub, Theme.Small, new Rectangle(box.X + 14, box.Y + 31, textWidth, 20), Theme.Muted,
-            TextFormatFlags.EndEllipsis | TextFormatFlags.NoPrefix);
+            TextFormatFlags.EndEllipsis | TextFormatFlags.NoPrefix | Buffered);
     }
 }

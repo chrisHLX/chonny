@@ -227,11 +227,25 @@ class BuildWatchPage extends Command
         return (float) Carbon::parse($at)->format('U.v');
     }
 
-    /** @param  array<int, array<string, mixed>>  $videos */
+    /**
+     * The app's recording of a game whose round 1 started at $startedAt (played_at, cut to the
+     * second). Matched by the round starts in its timing file first: a recording that starts at the
+     * gates has its first frame up to about 1s AFTER the START line (16:15:07.822 against a first
+     * frame of 16:15:08.405 on 25 Oct), so a window from the first frame missed half of them.
+     *
+     * @param  array<int, array<string, mixed>>  $videos
+     */
     private function recordingOf(array $videos, int $startedAt): ?array
     {
         foreach ($videos as $v) {
-            if (isset($v['started']) && $startedAt >= $v['from'] - 1 && $startedAt <= $v['to']) {
+            foreach ($v['rounds'] ?? [] as $r) {
+                if ($r >= $startedAt - 0.5 && $r < $startedAt + 1.5) {
+                    return $v;
+                }
+            }
+        }
+        foreach ($videos as $v) {
+            if (isset($v['started']) && $startedAt >= $v['from'] - 2 && $startedAt <= $v['to']) {
                 return $v;
             }
         }

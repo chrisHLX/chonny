@@ -66,6 +66,7 @@ internal sealed class MainForm : Form
             _recording = on;
             _tray.Text = on ? "MindCollector: recording this game" : "MindCollector";
             SetStatus(on ? "Recording this game with OBS" : WatchingText());
+            if (!on && _tab is "Videos" or "Games") FillList();
         });
 
         Text = "MindCollector";
@@ -107,6 +108,7 @@ internal sealed class MainForm : Form
     [
         ("This game", "", "The game you're in"),
         ("Games", "", "Your games"),
+        ("Videos", "\uE714", "Your videos"),
         ("Improve", "", "What to work on"),
         ("Comps", "", "Comps you've played"),
         ("Classes", "", "Players you've met"),
@@ -142,7 +144,9 @@ internal sealed class MainForm : Form
         _list.Dock = DockStyle.Fill;
         _list.SelectedIndexChanged += async (_, _) =>
         {
-            if (!_filling && _list.SelectedFile is { } file) await ShowPageAsync(file);
+            if (_filling || _list.SelectedFile is not { } file) return;
+            if (file.StartsWith(VideoPrefix, StringComparison.Ordinal)) ShowVideo(file[VideoPrefix.Length..]);
+            else await ShowPageAsync(file);
         };
         var library = new RoundPanel { Dock = DockStyle.Fill, Padding = new Padding(8, 6, 8, 8) };
         library.Controls.Add(_list);
@@ -240,6 +244,7 @@ internal sealed class MainForm : Form
         _view.CoreWebView2.NavigationStarting += OnNavigationStarting;
         _view.CoreWebView2.NewWindowRequested += (_, e) => { e.Handled = true; OpenUrl(e.Uri); };
         _view.CoreWebView2.WebMessageReceived += OnPageMessage;
+        MapVideos();
         _view.CoreWebView2.NavigationCompleted += (_, _) => { if (_tab == "This game") { _sentVersion = -1; SendLiveState(); } };
         CheckAddon();
         _notes.ImportDevNotes();
@@ -512,11 +517,21 @@ internal sealed class MainForm : Form
             switch (_tab)
             {
                 case "This game": break;
-                case "Games": rows.AddRange(GameRows(r).Where(g => _settings.Character == null || g.Title.StartsWith(_settings.Character + " ·", StringComparison.Ordinal))); break;
+                case "Games": LoadVideos(); rows.AddRange(GameRows(r, VideoFor).Where(g => _settings.Character == null || g.Title.StartsWith(_settings.Character + " ·", StringComparison.Ordinal))); break;
                 case "Improve": rows.AddRange(SimpleRows(r, "characters", e => (Str(e, "name"), $"{Str(e, "spec")} · {Str(e, "games")} games", null, 0))); break;
                 case "Comps": rows.AddRange(SimpleRows(r, "comps", e => (Str(e, "name"), $"{Str(e, "games")} games", $"{Str(e, "won")}-{Str(e, "lost")}", Math.Sign(Num(e, "won") - Num(e, "lost"))))); break;
                 case "Classes": rows.AddRange(SimpleRows(r, "classes", e => (Str(e, "name"), $"{Str(e, "spec")} · {Str(e, "why")}", null, 0))); break;
             }
+        }
+
+        if (_tab == "Videos")
+        {
+            rows.Clear();
+            rows.AddRange(VideoRows());
+            if (rows.Count == 0)
+                rows.Add(_settings.RecordGames
+                    ? new LibraryRow("No videos yet", "Each arena game you play is recorded with OBS")
+                    : new LibraryRow("Recording is off", "Settings > Recording records each arena game with OBS"));
         }
 
         if (_tab == "This game")
@@ -543,7 +558,7 @@ internal sealed class MainForm : Form
         _filling = false;
     }
 
-    private static IEnumerable<LibraryRow> GameRows(JsonElement r)
+    private static IEnumerable<LibraryRow> GameRows(JsonElement r, Func<string, VideoEntry?> video)
     {
         if (!r.TryGetProperty("games", out var games)) yield break;
         var rows = games.EnumerateObject()
@@ -561,6 +576,7 @@ internal sealed class MainForm : Form
             var you = Str(g, "you");
             var title = string.IsNullOrEmpty(you) ? bracket : $"{you} · {bracket}";
             var sub = string.IsNullOrEmpty(against) ? played : $"{played} · vs {against}";
+            if (video(at) != null) sub = Recorded + sub;
             yield return new LibraryRow(title, sub, badge, Math.Sign(won - lost), lobby + ".html");
         }
     }
@@ -608,6 +624,7 @@ internal sealed class MainForm : Form
             {
                 var at = withBase.LastIndexOf("</body>", StringComparison.OrdinalIgnoreCase);
                 var bar = ThisGamePage.NoteBar(game.Groups[1].Value);
+                if (GamePlayedAt(game.Groups[1].Value) is { } played && VideoFor(played) is { } video) bar += VideoLibrary.WatchBar(video.Name);
                 withBase = at >= 0 ? withBase.Insert(at, bar) : withBase + bar;
             }
             _shownFile = file;
@@ -633,6 +650,9 @@ internal sealed class MainForm : Form
                 case "connect": await ConnectAsync(); break;
                 case "open": if (_connectUrl != null) OpenUrl(_connectUrl); break;
                 case "settings": OpenSettings(); break;
+                case "video": ShowVideo(Uri.UnescapeDataString(uri.AbsolutePath.Trim('/'))); break;
+                case "game": OpenGame(uri.AbsolutePath.Trim('/')); break;
+                case "folder": ShowInFolder(Uri.UnescapeDataString(uri.AbsolutePath.Trim('/'))); break;
             }
             return;
         }
@@ -655,6 +675,85 @@ internal sealed class MainForm : Form
         if (_view.CoreWebView2 == null || html == _shown) return;
         _shown = html;
         _view.CoreWebView2.NavigateToString(html);
+    }
+
+    // ------------------------------------------------------------------ videos (2026-10-25, VideoLibrary)
+
+    private const string VideoPrefix = "video:";
+    /// <summary>Starts a game row's second line when the game has a video.</summary>
+    private const string Recorded = "▶ ";
+    private List<VideoEntry> _videos = [];
+    private string? _mappedVideos;
+
+    /// <summary>Serves the videos folder to the pages under VideoLibrary.Host; again whenever Settings may have moved it.</summary>
+    private void MapVideos()
+    {
+        if (_view.CoreWebView2 == null) return;
+        var dir = Recorder.VideosDir(_settings);
+        if (dir == _mappedVideos) return;
+        try
+        {
+            Directory.CreateDirectory(dir);
+            if (_mappedVideos != null) _view.CoreWebView2.ClearVirtualHostNameToFolderMapping(VideoLibrary.Host);
+            _view.CoreWebView2.SetVirtualHostNameToFolderMapping(VideoLibrary.Host, dir, CoreWebView2HostResourceAccessKind.Allow);
+            _mappedVideos = dir;
+        }
+        catch (Exception e) { Log($"Could not open the videos folder {dir}: {e.Message}"); }
+    }
+
+    private List<VideoEntry> LoadVideos() => _videos = VideoLibrary.Load(Recorder.VideosDir(_settings));
+
+    private VideoEntry? VideoFor(string playedAt) => VideoLibrary.ForGame(_videos, playedAt);
+
+    private string? GamePlayedAt(string lobby) =>
+        _index?.RootElement is { } r && r.TryGetProperty("games", out var games) && games.ValueKind == JsonValueKind.Object
+            && games.TryGetProperty(lobby, out var g) ? Str(g, "playedAt") : null;
+
+    /// <summary>The game a video is of, from the index: its lobby, and its row as the Games tab draws it.</summary>
+    private (string Lobby, LibraryRow Row)? GameOf(VideoEntry v)
+    {
+        if (v.Rounds.Count == 0 || _index?.RootElement is not { } r) return null;
+        foreach (var row in GameRows(r, at => VideoLibrary.ForGame([v], at)))
+            if (row.Sub.StartsWith(Recorded, StringComparison.Ordinal) && row.File is { } f)
+                return (f[..^".html".Length], row);
+        return null;
+    }
+
+    private IEnumerable<LibraryRow> VideoRows()
+    {
+        foreach (var v in LoadVideos())
+        {
+            var line = v.Started.ToString("ddd d MMM, HH:mm") + (v.Length is { } l ? $" · {VideoLibrary.Duration(l)}" : "");
+            yield return GameOf(v) is { } g
+                ? new LibraryRow(g.Row.Title, line, g.Row.Badge, g.Row.Tone, VideoPrefix + v.Name)
+                : new LibraryRow((v.Bracket ?? "Video").Replace("Rated ", ""), line, null, 0, VideoPrefix + v.Name);
+        }
+    }
+
+    private void ShowVideo(string name)
+    {
+        if (_view.CoreWebView2 == null) return;
+        MapVideos();
+        var v = _videos.FirstOrDefault(x => x.Name == name) ?? LoadVideos().FirstOrDefault(x => x.Name == name);
+        if (v == null) { Blank("That video is no longer in the videos folder."); return; }
+        var game = GameOf(v);
+        _shownFile = null;
+        Show(VideoLibrary.Page(v, game?.Row.Title ?? (v.Bracket ?? "Video").Replace("Rated ", ""), game?.Lobby));
+    }
+
+    private async void OpenGame(string lobby)
+    {
+        if (!System.Text.RegularExpressions.Regex.IsMatch(lobby, "^[0-9a-f]{32}$")) return;
+        _tab = "Games";
+        FillList();
+        await ShowPageAsync(lobby + ".html");
+    }
+
+    private void ShowInFolder(string name)
+    {
+        var path = Path.Combine(Recorder.VideosDir(_settings), Path.GetFileName(name));
+        try { System.Diagnostics.Process.Start("explorer.exe", File.Exists(path) ? $"/select,\"{path}\"" : $"\"{Path.GetDirectoryName(path)}\""); }
+        catch (Exception e) { Log($"Could not open the folder: {e.Message}"); }
     }
 
     // ------------------------------------------------------------------ this game, notes and marks (2026-10-25)
@@ -859,6 +958,8 @@ internal sealed class MainForm : Form
         {
             SetStatus(WatchingText());
             CheckAddon();
+            MapVideos();
+            if (_tab == "Videos") FillList();
             _ = RefreshIndexAsync();
         }
     }

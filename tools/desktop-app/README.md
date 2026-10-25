@@ -144,7 +144,14 @@ The app drives the player's own OBS; it does not record anything itself (docs/vi
   later, the same 2.5s to "Round Won" with the warrior skulled. The same lag in both means no drift.
   That game is also where the buffering above was found (it stopped on the old quiet rule).
 
-Not yet: the Watch page inside this app's window (its pages come from the website, and a local video
+**The Videos tab (2026-10-25, `VideoLibrary`):** every video in the videos folder, newest first, named
+after its game when its round 1 matches a game on the website (the index's `playedAt` is that START
+cut to the second). It plays in the window: WebView2 serves the folder under a made-up host
+(`SetVirtualHostNameToFolderMapping`), so nothing is copied and no file:/// address is needed. A
+button per round jumps to its start, from the timing file. A game with a video shows ▶ in the Games
+list and a "Watch the video" button on its card; the video page links back to the game.
+
+Not yet: the Watch page (the timeline under the video) inside this app's window (its pages come from the website, and a local video
 needs a local page), and the prep for later arenas of a session.
 
 ## Getting it (2026-10-11): one file, one click

@@ -170,4 +170,39 @@ class WatchPageTest extends TestCase
         File::deleteDirectory(base_path($out));
         File::deleteDirectory($videos);
     }
+
+    /**
+     * A recording started at the gates has its first frame after the START line (25 Oct 16:15: START
+     * 07.822, first frame 08.405), so it is found by its rounds, not by its first frame.
+     */
+    public function test_a_recording_that_starts_just_after_the_gates_is_still_found(): void
+    {
+        $user = User::factory()->create();
+        ArenaRound::create([
+            'user_id' => $user->id, 'lobby_id' => 'lobby-2', 'match_id' => 'm', 'roster_key' => 'r',
+            'bracket' => '3v3', 'sequence' => 1, 'played_at' => '2026-10-25 16:15:07',
+            'payload' => ['analysis' => ['won' => true, 'goes' => [], 'deaths' => []]],
+        ]);
+
+        $videos = storage_path('app/testing-watch-videos');
+        File::ensureDirectoryExists($videos);
+        File::put($videos.'/2026-10-25 16-15-08.mp4', 'not really a video');
+        File::put($videos.'/2026-10-25 16-15-08.mp4.mindcollector.json', json_encode([
+            'format' => 1,
+            'recordingStarted' => '2026-10-25 16:15:08.405',
+            'recordingStopped' => '2026-10-25 16:16:40.651',
+            'bracket' => '3v3',
+            'rounds' => ['2026-10-25 16:15:07.822'],
+        ]));
+
+        $out = 'storage/app/testing-watch';
+        $this->artisan('wow:watch-page', ['--user' => $user->id, '--videos' => $videos, '--out' => $out])->assertSuccessful();
+        $html = File::get(base_path($out.'/watch-lobby-2.html'));
+
+        $this->assertStringContainsString('2026-10-25%2016-15-08.mp4', $html);
+        $this->assertStringContainsString('"offset":-0.58', $html);
+
+        File::deleteDirectory(base_path($out));
+        File::deleteDirectory($videos);
+    }
 }
