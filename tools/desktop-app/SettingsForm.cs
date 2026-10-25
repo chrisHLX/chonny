@@ -27,7 +27,7 @@ internal sealed class SettingsForm : Form
         StartPosition = FormStartPosition.CenterParent;
         FormBorderStyle = FormBorderStyle.FixedDialog;
         MaximizeBox = MinimizeBox = false;
-        ClientSize = new Size(760, 640);
+        ClientSize = new Size(760, 680);
         Padding = new Padding(16);
 
         _server.Text = settings.ServerUrl;
@@ -67,6 +67,9 @@ internal sealed class SettingsForm : Form
         grid.Controls.Add(new Label()); grid.Controls.Add(_startup); grid.Controls.Add(new Label());
         grid.Controls.Add(new Label { Text = "Recording", AutoSize = true, Margin = new Padding(0, 10, 8, 0) });
         grid.Controls.Add(_record); grid.Controls.Add(new Label());
+        grid.Controls.Add(new Label());
+        grid.Controls.Add(new Label { Text = "Needs OBS Studio (free, obsproject.com). Install it, then click Set up OBS below: it does the rest.", AutoSize = true, ForeColor = Theme.Muted, Margin = new Padding(0, 0, 0, 6) });
+        grid.Controls.Add(new Label());
         Row(grid, "Save videos to", _videos, Browse(_videos), "Each game's video, with a small file beside it that lines the video up with the game.");
         Row(grid, "Keep up to (GB)", _limit, null, "Past this the oldest videos the app recorded are deleted. 0 keeps them all.");
         Row(grid, "Website", _server, null, "Leave as it is unless told otherwise.");
@@ -173,6 +176,8 @@ internal sealed class SettingsForm : Form
             }
             await using (client)
             {
+                var added = await ObsSetup.EnsureWowCaptureAsync(client, CancellationToken.None);
+                if (added != null) message = $"{message} {added}";
                 var format = await ObsSetup.RecordFormatAsync(client, CancellationToken.None);
                 _record.Checked = true;
                 if (ObsSetup.Playable(format))

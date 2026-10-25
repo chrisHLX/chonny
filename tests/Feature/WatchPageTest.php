@@ -171,6 +171,50 @@ class WatchPageTest extends TestCase
         File::deleteDirectory($videos);
     }
 
+    public function test_defensives_are_drawn_and_listed_by_name(): void
+    {
+        $html = $this->render([$this->round(['duration' => 100, 'defensives' => [
+            ['t' => 40.3, 'side' => 'us', 'spell' => 'Pain Suppression', 'who' => 'Nearó', 'on' => 'Crawlordx'],
+            ['t' => 59.67, 'side' => 'them', 'spell' => 'Blur', 'who' => 'Mioly', 'on' => null],
+        ]])]);
+
+        $this->assertStringContainsString('class="def us" style="left: 40.3%"', $html);
+        $this->assertStringContainsString('class="def them"', $html);
+        $this->assertStringContainsString('Nearó on Crawlordx', $html);
+        $this->assertStringContainsString('data-kind="def"', $html);
+    }
+
+    /**
+     * The app's Videos tab asks the website for a game's page with what the video's timing file
+     * says, and plays the video from the player's own disk (never uploaded) under a made-up host.
+     */
+    public function test_the_app_gets_a_games_watch_page_lined_up_with_its_video(): void
+    {
+        $user = User::factory()->create();
+        $token = $user->issueCoachToken();
+        $lobby = str_repeat('ab', 16);
+        ArenaRound::create([
+            'user_id' => $user->id, 'lobby_id' => $lobby, 'match_id' => 'm', 'roster_key' => 'r',
+            'bracket' => '3v3', 'sequence' => 1, 'played_at' => '2026-10-25 16:15:07',
+            'payload' => ['analysis' => ['won' => true, 'goes' => [], 'deaths' => [],
+                'players' => [['guid' => 'P-1', 'name' => 'Crawlordx-Frostmourne-US'], ['guid' => 'P-2', 'name' => 'Nearó-Barthilas-US']],
+                'defensives' => ['us' => ['rows' => [['t' => 40.3, 'spell' => 'Pain Suppression', 'who' => 'P-2', 'on' => 'P-1']]], 'them' => ['rows' => []]]]],
+        ]);
+        $query = ['video' => '2026-10-25 16-15-08.mp4', 'started' => '2026-10-25 16:15:08.405', 'rounds' => ['2026-10-25 16:15:07.822']];
+
+        $html = $this->withToken($token)->get(route('api.coach.watch', $lobby).'?'.http_build_query($query))->assertOk()->getContent();
+
+        $this->assertStringContainsString('https:\/\/videos.mindcollector.invalid\/2026-10-25%2016-15-08.mp4', $html);
+        $this->assertStringContainsString('"offset":-0.58', $html);
+        $this->assertStringContainsString('Nearó on Crawlordx', $html);
+        $this->assertStringContainsString('mc-app://game/'.$lobby, $html);
+
+        // Only the key's own games.
+        $other = User::factory()->create()->issueCoachToken();
+        $this->withToken($other)->get(route('api.coach.watch', $lobby))->assertNotFound();
+        $this->withToken('mc_wrong')->get(route('api.coach.watch', $lobby))->assertUnauthorized();
+    }
+
     /**
      * A recording started at the gates has its first frame after the START line (25 Oct 16:15: START
      * 07.822, first frame 08.405), so it is found by its rounds, not by its first frame.

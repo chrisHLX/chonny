@@ -3,10 +3,13 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Http\Services\WatchPageService;
 use App\Jobs\BuildCoachPages;
+use App\Models\ArenaRound;
 use App\Models\User;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\File;
 use Symfony\Component\HttpFoundation\Response;
 
@@ -60,5 +63,59 @@ class CoachPagesController extends Controller
         }
 
         return response(File::get($path), 200, $headers + ['Content-Type' => 'text/html; charset=UTF-8']);
+    }
+
+    /**
+     * The host the desktop app serves its videos folder under (tools/desktop-app/VideoLibrary.cs,
+     * SetVirtualHostNameToFolderMapping). The page plays the video from the player's own disk; it is
+     * never uploaded.
+     */
+    public const VIDEO_HOST = 'videos.mindcollector.invalid';
+
+    /**
+     * One game's Watch page for the app's Videos tab (2026-10-26): the video the app recorded, with
+     * the game's goes, deaths and defensives under it. The app sends what the video's timing file
+     * says (its name, its first frame, each round's START, on the PC's clock, which is the combat
+     * log's clock and so played_at's), so each round is placed in the video exactly.
+     */
+    public function watch(Request $request, string $lobby): Response
+    {
+        $user = User::forCoachToken($request->bearerToken());
+        if (! $user) {
+            return response()->json(['status' => 'unauthorised'], 401);
+        }
+
+        $rounds = ArenaRound::where('user_id', $user->id)->where('lobby_id', $lobby)->get();
+        abort_if($rounds->isEmpty(), 404);
+
+        $recording = null;
+        $video = basename((string) $request->query('video', ''));
+        $clock = function ($at): ?float {
+            try {
+                return is_string($at) && $at !== '' ? (float) Carbon::parse($at)->format('U.v') : null;
+            } catch (\Throwable) {
+                return null;
+            }
+        };
+        if ($video !== '' && ($started = $clock($request->query('started'))) !== null) {
+            $recording = [
+                'name' => $video,
+                'url' => 'https://'.self::VIDEO_HOST.'/'.rawurlencode($video),
+                'started' => $started,
+                'rounds' => array_values(array_filter(array_map($clock, array_slice((array) $request->query('rounds', []), 0, 12)), fn ($t) => $t !== null)),
+            ];
+        }
+
+        $page = app(WatchPageService::class)->page($rounds, $recording);
+        abort_if($page === null, 404);
+        $page['app'] = [
+            'game' => 'mc-app://game/'.$lobby,
+            'folder' => $video !== '' ? 'mc-app://folder/'.rawurlencode($video) : null,
+        ];
+
+        return response(view('desktop.watch', $page)->render(), 200, [
+            'Content-Type' => 'text/html; charset=UTF-8',
+            'Cache-Control' => 'private, no-cache',
+        ]);
     }
 }

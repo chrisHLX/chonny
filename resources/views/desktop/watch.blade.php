@@ -45,12 +45,25 @@
     .rnd { margin-top: 18px; }
     .rnd .rh { margin-bottom: 4px; }
     .rnd .rh b { font-size: 14px; margin-right: 8px; }
-    .rail { position: relative; height: 52px; background: #181818; border-radius: 6px; overflow: hidden; cursor: pointer; }
+    .rail { position: relative; height: 64px; background: #181818; border-radius: 6px; overflow: hidden; cursor: pointer; }
     .go { position: absolute; height: 19px; border-radius: 3px; opacity: .92; }
     .go.us { background: #2f7d4f; top: 6px; }
     .go.them { background: #8c3b3b; top: 28px; }
     .go.kill { box-shadow: inset 0 0 0 2px #E8B84B; }
     .death { position: absolute; top: 0; width: 2px; height: 100%; background: #F28B82; }
+    .def { position: absolute; top: 51px; width: 3px; height: 10px; border-radius: 1px; }
+    .def.us { background: #86efac; }
+    .def.them { background: #fca5a5; }
+    .ev tr.now td { background: #232323; }
+    .ev tr.hide { display: none; }
+    .jump { display: flex; gap: 6px; flex-wrap: wrap; align-items: center; margin: 12px 0 2px; font-size: 12.5px; color: #B3B3B3; }
+    .jump button { background: #2A2A2A; color: #FFFFFF; border: 0; border-radius: 9999px; padding: 6px 12px; cursor: pointer; font-size: 12.5px; font-weight: 700; }
+    .jump button:hover { background: #3E3E3E; }
+    .jump button.off { background: transparent; color: #6A6A6A; box-shadow: inset 0 0 0 1px #3E3E3E; }
+    .jump .sep { width: 10px; }
+    .applinks { float: right; margin-top: 2px; }
+    .applinks a { display: inline-block; margin-left: 6px; padding: 6px 14px; border-radius: 9999px; background: #2A2A2A; color: #FFFFFF; font-weight: 700; font-size: 12.5px; text-decoration: none; }
+    .applinks a.gold { background: #C8952C; color: #000000; }
     .head2 { position: absolute; top: 0; width: 2px; height: 100%; background: #FFFFFF; display: none; pointer-events: none; }
     .ticks { position: relative; height: 14px; color: #6A6A6A; font-size: 10.5px; }
     .ticks span { position: absolute; transform: translateX(-50%); }
@@ -87,6 +100,12 @@
 @endphp
 
 <div class="head">
+    @if (! empty($app))
+        <span class="applinks">
+            @if (! empty($app['game']))<a class="gold" href="{{ $app['game'] }}">Open this game</a>@endif
+            @if (! empty($app['folder']))<a href="{{ $app['folder'] }}">Show in folder</a>@endif
+        </span>
+    @endif
     <span class="title">Watch</span>
     <span class="when muted">{{ $title ?? '' }}</span>
 </div>
@@ -121,10 +140,20 @@
         <span class="v" id="offv">0.0s</span>
         <button type="button" id="here" title="Use the video's current position as the start of round 1">set from playhead</button>
     </div>
+    <div class="jump">
+        <button type="button" id="prev" title="The event before this point (,)">&larr; Previous</button>
+        <button type="button" id="next" title="The next event after this point (.)">Next &rarr;</button>
+        <span class="sep"></span>
+        Show
+        <button type="button" data-kind="go">Goes</button>
+        <button type="button" data-kind="death">Deaths</button>
+        <button type="button" data-kind="def">Defensives</button>
+    </div>
     <div class="legend">
         <b style="background:#2f7d4f"></b> your goes <b style="background:#8c3b3b"></b> enemy
         <b style="background:#F28B82"></b> a death
-        <span class="subtle">&nbsp;&middot;&nbsp; gold edge = the go killed someone. Click a rail or a row to jump. Later rounds are placed from the real time between them.</span>
+        <b style="background:#86efac"></b> your defensive <b style="background:#fca5a5"></b> theirs
+        <span class="subtle">&nbsp;&middot;&nbsp; gold edge = the go killed someone. Click the timeline to go to that point, or an event to see it from 3s before. Later rounds are placed from the real time between them.</span>
     </div>
 
     @foreach ($rounds as $i => $r)
@@ -133,14 +162,19 @@
             $pct = fn ($s) => max(0, min(100, 100 * $s / $dur));
             $events = [];
             foreach ($r['goes'] as $g) {
-                $events[] = ['t' => (float) $g['from'], 'side' => $g['side'],
+                $events[] = ['kind' => 'go', 't' => (float) $g['from'], 'side' => $g['side'],
                     'label' => 'Go on '.($g['target'] ?? '?').(! empty($g['kill']) ? ' — killed' : ''),
                     'detail' => $g['chain'] ?? ''];
             }
             foreach ($r['deaths'] as $d) {
-                $events[] = ['t' => (float) $d['t'], 'side' => $d['side'] ?? null,
+                $events[] = ['kind' => 'death', 't' => (float) $d['t'], 'side' => $d['side'] ?? null,
                     'label' => 'Death: '.\Illuminate\Support\Str::before($d['name'] ?? ($d['who'] ?? '?'), '-'),
                     'detail' => $d['killingBlow']['spell'] ?? ''];
+            }
+            foreach ($r['defensives'] ?? [] as $d) {
+                $events[] = ['kind' => 'def', 't' => (float) $d['t'], 'side' => $d['side'],
+                    'label' => $d['spell'],
+                    'detail' => $d['who'].(! empty($d['on']) ? ' on '.$d['on'] : '')];
             }
             usort($events, fn ($a, $b) => $a['t'] <=> $b['t']);
         @endphp
@@ -164,6 +198,9 @@
                 @foreach ($r['deaths'] as $d)
                     <div class="death" style="left: {{ $pct((float) $d['t']) }}%"></div>
                 @endforeach
+                @foreach ($r['defensives'] ?? [] as $d)
+                    <div class="def {{ $d['side'] }}" style="left: {{ $pct((float) $d['t']) }}%" title="{{ $d['spell'] }} ({{ $d['who'] }}{{ ! empty($d['on']) ? ' on '.$d['on'] : '' }}) at {{ $clock($d['t']) }}"></div>
+                @endforeach
                 <div class="head2"></div>
             </div>
             <div class="ticks">
@@ -174,7 +211,7 @@
 
             <table class="ev">
                 @forelse ($events as $e)
-                    <tr data-t="{{ $e['t'] }}">
+                    <tr data-t="{{ $e['t'] }}" data-kind="{{ $e['kind'] }}">
                         <td class="t">{{ $clock($e['t']) }}</td>
                         <td class="w">@if ($e['side'])<span class="pill {{ $e['side'] }}">{{ $e['side'] === 'us' ? 'you' : 'them' }}</span>@endif</td>
                         <td><b>{{ $e['label'] }}</b>@if ($e['detail'])<div class="small subtle">{{ $e['detail'] }}</div>@endif</td>
@@ -259,11 +296,63 @@
         if (vid.src) { setOffset(vid.currentTime); }
     });
 
+    var LEAD = 3;   // an event is shown from a few seconds before, so what led to it is seen
+
     /** round index + seconds within that round -> video seconds */
     function seek(r, t) {
         if (!vid.src) { return; }
         vid.currentTime = Math.max(0, offset + r.start + t);
         vid.play().catch(function () {});
+    }
+
+    // Every shown event row, in video order: what Previous and Next step through.
+    var hidden = {};
+    function eventList() {
+        var list = [];
+        for (var i = 0; i < rounds.length; i++) {
+            var rows = rounds[i].el.querySelectorAll('tr[data-t]');
+            for (var k = 0; k < rows.length; k++) {
+                if (hidden[rows[k].getAttribute('data-kind')]) { continue; }
+                list.push({ r: rounds[i], t: parseFloat(rows[k].getAttribute('data-t')) });
+            }
+        }
+        list.sort(function (a, b) { return (a.r.start + a.t) - (b.r.start + b.t); });
+        return list;
+    }
+    var events = eventList();
+
+    function step(dir) {
+        if (!vid.src || events.length === 0) { return; }
+        // The playhead as the event it was jumped to: a jump lands LEAD seconds early.
+        var here = vid.currentTime - offset + LEAD;
+        var pick = null;
+        for (var i = 0; i < events.length; i++) {
+            var at = events[i].r.start + events[i].t;
+            if (dir > 0 && at > here + 0.5) { pick = events[i]; break; }
+            if (dir < 0 && at < here - 0.5) { pick = events[i]; }
+        }
+        if (pick) { seek(pick.r, pick.t - LEAD); }
+    }
+    document.getElementById('next').addEventListener('click', function () { step(1); });
+    document.getElementById('prev').addEventListener('click', function () { step(-1); });
+    document.addEventListener('keydown', function (e) {
+        if (e.target && /input|textarea/i.test(e.target.tagName)) { return; }
+        if (e.key === '.') { step(1); }
+        if (e.key === ',') { step(-1); }
+    });
+
+    var kinds = document.querySelectorAll('.jump button[data-kind]');
+    for (var q = 0; q < kinds.length; q++) {
+        kinds[q].addEventListener('click', function () {
+            var kind = this.getAttribute('data-kind');
+            hidden[kind] = !hidden[kind];
+            this.className = hidden[kind] ? 'off' : '';
+            var rows = document.querySelectorAll('tr[data-kind="' + kind + '"]');
+            for (var k = 0; k < rows.length; k++) { rows[k].className = hidden[kind] ? 'hide' : ''; }
+            var marks = document.querySelectorAll(kind === 'def' ? '.def' : (kind === 'death' ? '.death' : '.go'));
+            for (var m = 0; m < marks.length; m++) { marks[m].style.visibility = hidden[kind] ? 'hidden' : ''; }
+            events = eventList();
+        });
     }
 
     vid.addEventListener('timeupdate', function () {
@@ -276,6 +365,13 @@
             } else {
                 r.head.style.display = 'none';
             }
+            var rows = r.el.querySelectorAll('tr[data-t]'), now = null;
+            for (var k = 0; k < rows.length; k++) {
+                if (rows[k].className === 'hide') { continue; }
+                if (rows[k].className === 'now') { rows[k].className = ''; }
+                if (into <= r.dur && parseFloat(rows[k].getAttribute('data-t')) <= into) { now = rows[k]; }
+            }
+            if (now) { now.className = 'now'; }
         }
     });
 
@@ -290,7 +386,7 @@
                 (function (row) {
                     var t = row.getAttribute('data-t');
                     if (t === null) { return; }
-                    row.addEventListener('click', function () { seek(r, parseFloat(t)); });
+                    row.addEventListener('click', function () { seek(r, parseFloat(t) - LEAD); });
                 })(rows[k]);
             }
         })(rounds[j]);

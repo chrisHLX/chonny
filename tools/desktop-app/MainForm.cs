@@ -730,7 +730,11 @@ internal sealed class MainForm : Form
         }
     }
 
-    private void ShowVideo(string name)
+    /// <summary>
+    /// A video: on its game's Watch page from the website when it is of a game the website holds (the
+    /// timeline of goes, deaths and defensives under it), otherwise the plain player.
+    /// </summary>
+    private async void ShowVideo(string name)
     {
         if (_view.CoreWebView2 == null) return;
         MapVideos();
@@ -738,6 +742,19 @@ internal sealed class MainForm : Form
         if (v == null) { Blank("That video is no longer in the videos folder."); return; }
         var game = GameOf(v);
         _shownFile = null;
+        if (game is { } g && !string.IsNullOrEmpty(_settings.Key))
+        {
+            try
+            {
+                using var api = new ApiClient(_settings.ServerUrl, _settings.Key);
+                if (await api.WatchPageAsync(g.Lobby, v, CancellationToken.None) is { } html)
+                {
+                    Show(html.Replace("<head>", $"<head><base href=\"{_settings.ServerUrl}/\">", StringComparison.OrdinalIgnoreCase));
+                    return;
+                }
+            }
+            catch (Exception e) { Log($"Could not load this game's timeline: {e.Message}"); }
+        }
         Show(VideoLibrary.Page(v, game?.Row.Title ?? (v.Bracket ?? "Video").Replace("Rated ", ""), game?.Lobby));
     }
 

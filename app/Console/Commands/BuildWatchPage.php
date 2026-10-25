@@ -2,6 +2,7 @@
 
 namespace App\Console\Commands;
 
+use App\Http\Services\WatchPageService;
 use App\Models\ArenaRound;
 use App\Models\User;
 use Illuminate\Console\Command;
@@ -93,86 +94,29 @@ class BuildWatchPage extends Command
     }
 
     /**
-     * One lobby as the page's model. Round n's offset into the recording is the real time since
-     * round 1 began, so the prep between rounds is included without being measured separately.
+     * One lobby as the page's model (WatchPageService), with the recording that covers it: the app's
+     * own, lined up by its timing file, or otherwise a guess by file time, offered and never loaded.
      *
      * @param  \Illuminate\Support\Collection<int, ArenaRound>  $rounds
-     * @param  array<int, array{name: string, from: int, to: int}>  $videos
+     * @param  array<int, array<string, mixed>>  $videos
      * @return array<string, mixed>|null
      */
     private function lobbyPage($rounds, array $videos): ?array
     {
         $first = $rounds->first();
-        $zero = $first->played_at ? Carbon::parse($first->played_at)->getTimestamp() : null;
-
-        // Recorded by the app: its timing file holds each round's start to the millisecond, on the
-        // log's own clock, so every rail is placed from it and round 1's position needs no lining up.
+        $zero = $first?->played_at ? Carbon::parse($first->played_at)->getTimestamp() : null;
         $recorded = $zero !== null ? $this->recordingOf($videos, $zero) : null;
-        $precise = function ($playedAt) use ($recorded): ?float {
-            if (! $playedAt) {
-                return null;
-            }
-            $at = (float) Carbon::parse($playedAt)->getTimestamp();
-            foreach ($recorded['rounds'] ?? [] as $r) {
-                // played_at is the same ARENA_MATCH_START, cut to the second.
-                if ($r >= $at - 0.5 && $r < $at + 1.5) {
-                    return $r;
-                }
-            }
 
-            return $at;
-        };
-        $zeroPrecise = $precise($first->played_at);
-
-        $model = [];
-        foreach ($rounds as $i => $round) {
-            $p = is_string($round->payload) ? json_decode($round->payload, true) : (array) $round->payload;
-            $analysis = $p['analysis'] ?? $p;
-            if (! is_array($analysis) || $analysis === []) {
-                continue;
-            }
-
-            $at = $round->played_at ? Carbon::parse($round->played_at)->getTimestamp() : null;
-            $last = 0.0;
-            foreach ($analysis['goes'] ?? [] as $g) {
-                $last = max($last, (float) ($g['to'] ?? 0));
-            }
-            foreach ($analysis['deaths'] ?? [] as $d) {
-                $last = max($last, (float) ($d['t'] ?? 0));
-            }
-
-            $startOffset = $zero !== null && $at !== null ? max(0, $at - $zero) : 0;
-            if ($recorded !== null && $zeroPrecise !== null && ($p = $precise($round->played_at)) !== null) {
-                $startOffset = round(max(0, $p - $zeroPrecise), 2);
-            }
-
-            $model[] = [
-                'label' => $rounds->count() > 1 ? 'Round '.($i + 1) : 'The game',
-                'result' => isset($analysis['won']) ? ($analysis['won'] ? 'won' : 'lost') : null,
-                'duration' => (int) ceil(max((float) ($round->duration_seconds ?? 0), $last + 8)),
-                'startOffset' => $startOffset,
-                'goes' => array_values($analysis['goes'] ?? []),
-                'deaths' => array_values($analysis['deaths'] ?? []),
-            ];
-        }
-
-        if ($model === []) {
-            return null;
-        }
-
-        $playedAt = $first->played_at ? Carbon::parse($first->played_at) : null;
-
-        return [
-            'title' => trim(($first->bracket ?? 'Game').' · '.($playedAt?->format('j M Y, H:i') ?? '')),
-            'playedAt' => $playedAt?->format('j M Y, H:i'),
-            'suggest' => $recorded === null && $playedAt ? $this->match($videos, $playedAt->getTimestamp()) : null,
-            'video' => $recorded !== null && $zeroPrecise !== null ? [
+        return app(WatchPageService::class)->page(
+            $rounds,
+            $recorded === null ? null : [
                 'name' => $recorded['name'],
                 'url' => $this->fileUrl($recorded['path']),
-                'offset' => round($zeroPrecise - $recorded['started'], 2),
-            ] : null,
-            'rounds' => $model,
-        ];
+                'started' => $recorded['started'],
+                'rounds' => $recorded['rounds'],
+            ],
+            $recorded === null && $zero !== null ? $this->match($videos, $zero) : null,
+        );
     }
 
     /**

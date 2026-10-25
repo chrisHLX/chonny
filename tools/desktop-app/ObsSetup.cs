@@ -168,6 +168,38 @@ public static class ObsSetup
         return (null, last);
     }
 
+    /// <summary>
+    /// A fresh OBS has an empty scene and records black (2026-10-26). When the scene OBS is showing
+    /// has nothing in it, this adds a Game Capture of WoW: window mode, matched by Wow.exe when the
+    /// title or class differ (priority 2), so it finds the game however its window is named. A scene
+    /// that has anything in it is the player's own setup and is left alone. Null when nothing changed.
+    /// </summary>
+    public static async Task<string?> EnsureWowCaptureAsync(ObsClient obs, CancellationToken ct)
+    {
+        var current = await obs.TryRequestAsync("GetCurrentProgramScene", null, ct);
+        var scene = current is { } c && c.TryGetProperty("currentProgramSceneName", out var n) ? n.GetString()
+            : current is { } c2 && c2.TryGetProperty("sceneName", out var n2) ? n2.GetString() : null;
+        if (string.IsNullOrEmpty(scene)) return null;
+
+        var items = await obs.TryRequestAsync("GetSceneItemList", new JsonObject { ["sceneName"] = scene }, ct);
+        if (items is not { } list || !list.TryGetProperty("sceneItems", out var arr) || arr.GetArrayLength() > 0) return null;
+
+        await obs.RequestAsync("CreateInput", new JsonObject
+        {
+            ["sceneName"] = scene,
+            ["inputName"] = "World of Warcraft",
+            ["inputKind"] = "game_capture",
+            ["inputSettings"] = new JsonObject
+            {
+                ["capture_mode"] = "window",
+                ["window"] = "World of Warcraft:waApplication Window:Wow.exe",
+                ["priority"] = 2,
+            },
+            ["sceneItemEnabled"] = true,
+        }, ct);
+        return "Added a Game Capture of WoW to OBS, since its scene was empty.";
+    }
+
     /// <summary>The container OBS records into (mp4, hybrid_mp4, mkv, ...), or null when it would not say.</summary>
     public static async Task<string?> RecordFormatAsync(ObsClient obs, CancellationToken ct)
     {

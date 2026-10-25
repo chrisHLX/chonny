@@ -217,6 +217,22 @@ public sealed class ApiClient : IDisposable
         }
     }
 
+    /// <summary>
+    /// A game's Watch page (CoachPagesController::watch): its goes, deaths and defensives under the
+    /// video, lined up from what the video's timing file says. Null when the website has no such page
+    /// (an older website, or a game it does not hold), so the plain player shows instead.
+    /// </summary>
+    public async Task<string?> WatchPageAsync(string lobby, VideoEntry video, CancellationToken ct)
+    {
+        static string Clock(DateTime t) => t.ToString("yyyy-MM-dd HH:mm:ss.fff", System.Globalization.CultureInfo.InvariantCulture);
+        var query = new List<string> { "video=" + Uri.EscapeDataString(video.Name), "started=" + Uri.EscapeDataString(Clock(video.Started)) };
+        query.AddRange(video.Rounds.Select(r => "rounds[]=" + Uri.EscapeDataString(Clock(r))));
+        using var res = await _http.GetAsync($"{_base}/api/coach/watch/{lobby}?{string.Join("&", query)}", ct);
+        if (res.StatusCode == HttpStatusCode.Unauthorized) throw new KeyRejectedException();
+        if (!res.IsSuccessStatusCode) return null;
+        return await res.Content.ReadAsStringAsync(ct);
+    }
+
     private static double RetryAfter(HttpResponseMessage res, string body)
     {
         if (res.Headers.RetryAfter?.Delta is { } d) return Math.Max(1, d.TotalSeconds);

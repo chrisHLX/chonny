@@ -5,7 +5,7 @@ using System.Text.Json;
 namespace MindCollector.Desktop;
 
 /// <summary>One video in the videos folder, with what its timing file says (Recorder.WriteSidecar), if it has one.</summary>
-internal sealed record VideoEntry(string Name, DateTime Started, DateTime? Stopped, string? Bracket, IReadOnlyList<DateTime> Rounds, long Bytes)
+public sealed record VideoEntry(string Name, DateTime Started, DateTime? Stopped, string? Bracket, IReadOnlyList<DateTime> Rounds, long Bytes)
 {
     public TimeSpan? Length => Stopped is { } s && s > Started ? s - Started : null;
 }

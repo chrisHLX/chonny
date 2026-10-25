@@ -22,3 +22,6 @@ Route::post('/coach/players', [\App\Http\Controllers\Api\CoachAppController::cla
 Route::get('/coach/index', [CoachPagesController::class, 'index'])->name('api.coach.index');
 Route::get('/coach/page/{file}', [CoachPagesController::class, 'page'])
     ->where('file', '[a-z0-9-]+\.html')->name('api.coach.page');
+// One game's Watch page for the app's Videos tab: its timeline under the video the app recorded.
+Route::get('/coach/watch/{lobby}', [CoachPagesController::class, 'watch'])
+    ->where('lobby', '[0-9a-f]{32}')->middleware('throttle:60,1,app-watch')->name('api.coach.watch');
