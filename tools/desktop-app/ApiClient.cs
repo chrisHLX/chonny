@@ -70,7 +70,7 @@ public sealed class ApiClient : IDisposable
                     continue;
                 }
                 if (res.StatusCode == HttpStatusCode.RequestEntityTooLarge)
-                    return new SendResult("failed", "Too large for the server to accept (its upload limit).", bytes.Length);
+                    return new SendResult("rejected", "Too large for the server to accept (its upload limit).", bytes.Length);
                 if ((int)res.StatusCode >= 500 && attempt < 3)
                 {
                     await Task.Delay(TimeSpan.FromSeconds(10 * (attempt + 1)), ct);
@@ -78,6 +78,8 @@ public sealed class ApiClient : IDisposable
                 }
 
                 var body = await res.Content.ReadAsStringAsync(ct);
+                // 422 is the server refusing this round as it is (bad gzip, bad headers): final, like "rejected".
+                if (res.StatusCode == HttpStatusCode.UnprocessableEntity) return new SendResult("rejected", $"Server said 422: {body}", bytes.Length);
                 if (!res.IsSuccessStatusCode) return new SendResult("failed", $"Server said {(int)res.StatusCode}.", bytes.Length);
                 last = JsonDocument.Parse(body).RootElement.Clone();
                 break;

@@ -6,7 +6,8 @@ namespace MindCollector.Desktop;
 /// Finds finished arena rounds in a combat log, from where the last read stopped.
 ///
 /// The same rule as the website's browser upload (game-review-upload.blade.php): a round starts at
-/// ARENA_MATCH_START and ends at ARENA_MATCH_END or at the next ARENA_MATCH_START. A Solo Shuffle
+/// ARENA_MATCH_START and ends at ARENA_MATCH_END, at the next ARENA_MATCH_START, or when the player
+/// leaves the arena (ZONE_CHANGE). A Solo Shuffle
 /// lobby writes a START per round and one END for the lobby, so a new START closes the round before
 /// it. Nothing outside a round is kept. Every piece of interpretation (teams, specs, who won) stays
 /// on the server, because all of it has been wrong at least once and the server can be fixed
@@ -19,6 +20,7 @@ public static class RoundScanner
 {
     private const string Start = "ARENA_MATCH_START,";
     private const string End = "ARENA_MATCH_END,";
+    private const string Zone = "  ZONE_CHANGE,";
     private const int ReadSize = 4 * 1024 * 1024;
 
     public sealed record Round(string Text, long StartOffset);
@@ -82,6 +84,20 @@ public static class RoundScanner
                 }
 
                 if (current == null) continue;
+
+                // Leaving the arena ends a round that never wrote its END (0.6.2, 2026-10-27). Without
+                // this a round with no END ran on to the next START, through whatever was logged in
+                // between: a player in China sent rounds past the server's 24 MB, which were refused,
+                // and the app re-sent the whole log every pass. In 38 logs of ours every ZONE_CHANGE
+                // inside a round was the player leaving (to Silvermoon), never one mid-round.
+                if (line.Contains(Zone, StringComparison.Ordinal))
+                {
+                    rounds.Add(new Round(current.ToString(), currentStart));
+                    current = null;
+                    lastMarkerIsEnd = true;
+                    continue;
+                }
+
                 current.Append('\n').Append(line);
 
                 if (line.Contains(End, StringComparison.Ordinal))

@@ -132,6 +132,13 @@ public sealed class Syncer
                         if (todo.Count > 1 && sent % 5 == 0) Progress?.Invoke(new(logsDone, todo.Count, sent, false));
                         break;
                     case "skipped": skipped++; break;
+                    // Refused for good (0.6.2): sending it again gets the same answer, so it does not
+                    // hold the log back. Before this one refused round re-sent its whole log every
+                    // pass, and the server measured every other round in it again each time.
+                    case "rejected":
+                        skipped++;
+                        _log($"  A round was refused: {result.Reason ?? "no reason given"}");
+                        break;
                     default:
                         failed++;
                         failedHere++;

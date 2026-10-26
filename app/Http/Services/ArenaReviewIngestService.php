@@ -40,10 +40,31 @@ use Illuminate\Support\Facades\DB;
 class ArenaReviewIngestService
 {
     /**
-     * A round's slice of a combat log, once decompressed. Generous next to the ~2MB a 260-second
-     * round actually produces, and a hard stop on a request that is not a round at all.
+     * A round's slice of a combat log, once decompressed: a hard stop on a request that is not a
+     * round at all. Raised from 24 MB (2026-10-27): rounds are far bigger than the ~2 MB once noted
+     * here. Chriso's 25 Oct 3v3s ran 1 to 17 MB (17.3 MB for 6.5 minutes), so a long dampened game
+     * passes 24 MB with nothing wrong in it. Measured on a dev PC, rolled back: 17 MB took 168 MB
+     * and 3.6s to store, 34 MB 246 MB and 5.5s, so 48 MB sits inside roomToMeasure()'s 512 MB.
      */
-    public const MAX_ROUND_BYTES = 24 * 1024 * 1024;
+    public const MAX_ROUND_BYTES = 48 * 1024 * 1024;
+
+    /**
+     * A round ends where the player leaves the arena (2026-10-27). A round with no ARENA_MATCH_END
+     * used to run on to the next START through everything logged in between; a player in China
+     * sent rounds past MAX_ROUND_BYTES that way, and their app (before 0.6.2) re-sent its whole log
+     * every pass. In 38 of our logs every ZONE_CHANGE inside a round was the player leaving.
+     */
+    public static function untilLeaving(string $raw): string
+    {
+        $at = strpos($raw, '  ZONE_CHANGE,');
+        if ($at === false) {
+            return $raw;
+        }
+        $lineStart = $at > 0 ? strrpos($raw, "\n", $at - strlen($raw) - 1) : false;
+
+        // A ZONE_CHANGE on the round's own first line is not a round at all; leave it to be refused.
+        return $lineStart === false ? $raw : substr($raw, 0, $lineStart);
+    }
 
     /**
      * How far apart two rounds of one lobby can be. Six rounds plus their ~35s intermissions run
@@ -65,8 +86,12 @@ class ArenaReviewIngestService
      */
     public function ingestRound(User $user, string $rawRound): array
     {
+        $rawRound = self::untilLeaving($rawRound);
+
+        // Skipped, not rejected: apps before 0.6.2 re-send a whole log while any round in it is
+        // rejected, and a round this size gets the same answer every time.
         if (strlen($rawRound) > self::MAX_ROUND_BYTES) {
-            return ['status' => 'rejected', 'reason' => 'That round is larger than a round can be.'];
+            return ['status' => 'skipped', 'reason' => 'That round is larger than a round can be.'];
         }
 
         $lines = preg_split('/\r\n|\n|\r/', trim($rawRound)) ?: [];

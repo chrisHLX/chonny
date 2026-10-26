@@ -181,6 +181,21 @@ its paths are plain text: on Chriso's PC it gives `C:/World of Warcraft`), the u
 fixed drive at the top and one folder down. While WoW is still missing the app looks again: the
 running game every tick, the whole search every minute, so starting WoW afterwards fixes it.
 
+## A round that never ends, and a refused round (0.6.2, 2026-10-27)
+
+A player in China sent 130 rounds in 1,434 uploads. Two causes, both fixed:
+- **A round with no ARENA_MATCH_END ran on to the next START**, through whatever was logged in
+  between, past the server's 24 MB. `RoundScanner` now also ends a round at a ZONE_CHANGE (leaving
+  the arena). In 38 of Chriso's logs every ZONE_CHANGE inside a round was the player leaving for
+  Silvermoon, never one mid-round; the two such 3v3s of 25 Oct still read with all six specs. The
+  server cuts at the same place (`ArenaReviewIngestService::untilLeaving`) for older apps.
+- **A refused round held its whole log back.** `Syncer` treated "rejected" like a network failure,
+  so the log's offset never moved and every round in it was sent, and measured, again each pass.
+  "rejected" and a 422 are now final: logged in Activity and passed over. The server also answers
+  a round too large even after the cut with "skipped", which older apps already pass over.
+- **The server's limit was too low anyway:** 24 MB, against real 3v3s of up to 17 MB for 6.5 minutes.
+  It is 48 MB now (memory measured in `ArenaReviewIngestService::MAX_ROUND_BYTES`).
+
 ## YouTube uploads (2026-10-26, shown once the website has it set up)
 
 The Videos tab's first row, **Upload to YouTube…**, opens `YouTubeQueueForm`: the recordings matched
