@@ -107,6 +107,13 @@ class BuildGameCards extends Command
             return self::SUCCESS;
         }
 
+        // Each section saves itself to the index as it finishes (2026-10-26). The queue gives this
+        // build 85s; a first build, or one after the pages' code changed, can need longer (about
+        // 110s for a 61-game account), and saving only at the end meant a timed-out build threw
+        // away the sections it had finished and started from nothing again at the next upload.
+        $took = [];
+        $clock = microtime(true);
+
         // The Improve page, one per character you have played (ImprovementService). Drawn again only
         // when a round or the page's code changed: notes and experience do not move it.
         $characters = $index['characters'] ?? [];
@@ -130,8 +137,11 @@ class BuildGameCards extends Command
                         File::delete($file);
                     }
                 }
+                $this->writeIndex($dir, ['characters' => $characters, 'improveSig' => $improveSig]);
             }
         }
+        $took['improve'] = microtime(true) - $clock;
+        $clock = microtime(true);
 
         // The comp library: one page per enemy comp (CompLibraryService), drawn again only when a
         // round, the page's code or anyone's experience changed.
@@ -156,8 +166,11 @@ class BuildGameCards extends Command
                         File::delete($file);
                     }
                 }
+                $this->writeIndex($dir, ['comps' => $comps, 'compSig' => $compSig]);
             }
         }
+        $took['comps'] = microtime(true) - $clock;
+        $clock = microtime(true);
 
         // The Classes page: the strongest player of each spec you met (ClassLibraryService), drawn
         // again only when a round, the page's code, the norms or anyone's experience changed.
@@ -184,6 +197,7 @@ class BuildGameCards extends Command
                 }
             }
         }
+        $took['classes'] = microtime(true) - $clock;
 
         $games = array_map(fn ($g) => array_diff_key($g, ['html' => true]), $built['games']);
         $parts = [
@@ -200,9 +214,10 @@ class BuildGameCards extends Command
         }
 
         $this->writeIndex($dir, $parts);
-        $this->info(sprintf('%d game card(s); %d drawn, %d unchanged. %d Improve page(s) %s. %d comp page(s) %s. %d player page(s) %s. In %s',
+        $this->info(sprintf('%d game card(s); %d drawn, %d unchanged. %d Improve page(s) %s. %d comp page(s) %s. %d player page(s) %s. In %s (Improve %.1fs, Comps %.1fs, Classes %.1fs)',
             count($games), $drawn, count($games) - $drawn, count($characters), $improveDrawn ? 'drawn' : 'unchanged',
-            count($comps), $compsDrawn ? 'drawn' : 'unchanged', count($classes), $playersDrawn ? 'drawn' : 'unchanged', $dir));
+            count($comps), $compsDrawn ? 'drawn' : 'unchanged', count($classes), $playersDrawn ? 'drawn' : 'unchanged', $dir,
+            $took['improve'], $took['comps'], $took['classes']));
 
         return self::SUCCESS;
     }
