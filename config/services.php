@@ -95,6 +95,15 @@ return [
     // Battle.net OAuth (account linking) + the WoW profile API. The same client the data scripts
     // (fetch-talent-trees.php, fetch-spell-icons.php) already use — its Redirect URLs in the
     // Blizzard developer portal must include this app's /auth/battlenet/callback, exactly.
+    // Uploading the app's recordings to the player's own YouTube channel (2026-10-26). Its own OAuth
+    // client in the same Google Cloud project as sign-in, so sign-in never asks for YouTube. Register
+    // https://mindcollector.com/auth/youtube/callback and https://www.mindcollector.com/auth/youtube/callback
+    // (and the local .test host). Scope youtube.upload only. Hidden until both are set.
+    'youtube' => [
+        'client_id' => env('YOUTUBE_CLIENT_ID'),
+        'client_secret' => env('YOUTUBE_CLIENT_SECRET'),
+    ],
+
     'battlenet' => [
         'client_id' => env('BLIZZARD_CLIENT_ID'),
         'client_secret' => env('BLIZZARD_CLIENT_SECRET'),

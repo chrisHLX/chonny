@@ -99,6 +99,7 @@ class WatchPageService
             'video' => $recording !== null && $zeroPrecise !== null ? [
                 'name' => $recording['name'],
                 'url' => $recording['url'],
+                'youtube' => $recording['youtube'] ?? null,
                 'offset' => round($zeroPrecise - $recording['started'], 2),
             ] : null,
             'rounds' => $model,
@@ -147,6 +148,19 @@ class WatchPageService
         }
         // Icons as /storage/...: these pages are shown with the site as their base (DesktopAsset).
         config(['desktop.web_assets' => true]);
+        // Uploaded to the player's YouTube channel from the app (2026-10-26): played from YouTube,
+        // placed by the recording's timing file the app sent with it.
+        if ($recording === null && ($yt = \App\Models\YoutubeVideo::where('user_id', $userId)->where('lobby_id', $lobby)->first())) {
+            $clock = fn (?string $at) => $at ? (float) Carbon::parse($at)->format('U.v') : null;
+            $first = $rounds->sortBy(fn (ArenaRound $r) => (string) $r->played_at)->first();
+            $recording = [
+                'name' => 'YouTube',
+                'url' => null,
+                'youtube' => $yt->video_id,
+                'started' => $clock($yt->started) ?? ($first?->played_at ? (float) Carbon::parse($first->played_at)->getTimestamp() : 0.0),
+                'rounds' => array_values(array_filter(array_map($clock, $yt->rounds ?? []))),
+            ];
+        }
         $page = $this->page($rounds, $recording);
         if ($page === null) {
             return null;

@@ -50,7 +50,7 @@
         <div class="w-full max-w-2xl">
 
             <h1 class="font-display text-3xl sm:text-4xl font-bold text-ink mb-2">Privacy Policy</h1>
-            <p class="text-[12px] text-gold font-semibold uppercase tracking-wide mb-10">Version 1.0 — July 21, 2026</p>
+            <p class="text-[12px] text-gold font-semibold uppercase tracking-wide mb-10">Version 1.1 — October 26, 2026</p>
 
             <div class="linear-card p-8 space-y-8 text-[14px] text-ink-muted leading-relaxed">
 
@@ -139,7 +139,38 @@
                 </section>
 
                 <section>
-                    <h2 class="font-display text-[17px] font-semibold text-ink mb-2">4. How We Store &amp; Protect Data</h2>
+                    <h2 class="font-display text-[17px] font-semibold text-ink mb-2">4. The Desktop App, Your Games &amp; YouTube</h2>
+                    <h3 class="text-[13px] font-semibold text-ink mt-4 mb-1">Your games</h3>
+                    <p>
+                        The MindCollector app reads your World of Warcraft combat log on your PC and sends us the arena
+                        games in it, which we measure to build your game pages. A combat log names every player in the
+                        game. Your game pages, notes and videos are visible only to you. The players in your games, you
+                        included, appear on our public player pages with each game's date, the two teams, their ratings,
+                        and each player's damage, healing and talents.
+                    </p>
+                    <h3 class="text-[13px] font-semibold text-ink mt-4 mb-1">Recordings</h3>
+                    <p>
+                        If you turn on recording, the app records your arena games with OBS on your own PC. The videos
+                        stay on your PC. We never receive, store or host them.
+                    </p>
+                    <h3 class="text-[13px] font-semibold text-ink mt-4 mb-1">YouTube API Services</h3>
+                    <p>
+                        If you choose to link your YouTube account, MindCollector uses YouTube API Services to upload the
+                        recordings you pick to your own YouTube channel. By linking it you agree to the
+                        <a href="https://www.youtube.com/t/terms" target="_blank" rel="noopener noreferrer" class="text-gold hover:text-gold-light transition-colors">YouTube Terms of Service</a>,
+                        and Google's handling of your data is covered by the
+                        <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer" class="text-gold hover:text-gold-light transition-colors">Google Privacy Policy</a>.
+                    </p>
+                    <ul class="list-disc pl-5 mt-2 space-y-1">
+                        <li><span class="text-ink">What we ask for:</span> permission to upload videos to your channel, and nothing else.</li>
+                        <li><span class="text-ink">What we store:</span> the access token Google gives us, encrypted, and the ID and privacy setting of each video you upload with the app, so its page can play it. Never the video itself: the app sends it straight from your PC to YouTube.</li>
+                        <li><span class="text-ink">How it is used:</span> only to upload the videos you pick, with the title and description the app writes for each game. Nothing is uploaded unless you choose it.</li>
+                        <li><span class="text-ink">How to stop it:</span> click Disconnect YouTube on Your games, which revokes our access with Google and deletes the token. You can also remove MindCollector at any time from your <a href="https://myaccount.google.com/permissions" target="_blank" rel="noopener noreferrer" class="text-gold hover:text-gold-light transition-colors">Google account's security settings</a>.</li>
+                    </ul>
+                </section>
+
+                <section>
+                    <h2 class="font-display text-[17px] font-semibold text-ink mb-2">5. How We Store &amp; Protect Data</h2>
                     <p>
                         Your data is stored in our database and cache infrastructure with reasonable technical
                         safeguards. No method of storage or transmission is perfectly secure, and we can't guarantee
@@ -148,15 +179,16 @@
                 </section>
 
                 <section>
-                    <h2 class="font-display text-[17px] font-semibold text-ink mb-2">5. Data Sharing</h2>
+                    <h2 class="font-display text-[17px] font-semibold text-ink mb-2">6. Data Sharing</h2>
                     <p>
                         We do not sell your personal information. We share it only with the AI subprocessors listed
-                        above, to the extent needed to provide the Service, and if required to comply with the law.
+                        above, to the extent needed to provide the Service, with YouTube when you choose to upload a
+                        video to it, and if required to comply with the law.
                     </p>
                 </section>
 
                 <section>
-                    <h2 class="font-display text-[17px] font-semibold text-ink mb-2">6. Data Retention</h2>
+                    <h2 class="font-display text-[17px] font-semibold text-ink mb-2">7. Data Retention</h2>
                     <p>
                         We keep your account data for as long as your account is active. Guest (pre-signup) data is
                         temporary, as described above. You can request deletion of your account and associated data
@@ -165,7 +197,7 @@
                 </section>
 
                 <section>
-                    <h2 class="font-display text-[17px] font-semibold text-ink mb-2">7. Your Choices</h2>
+                    <h2 class="font-display text-[17px] font-semibold text-ink mb-2">8. Your Choices</h2>
                     <p>
                         Declared context (class/race/role/rating/goals) can be changed or updated by you at any time.
                         You can decline to answer optional self-report questions — this only means recommendations
@@ -175,7 +207,7 @@
                 </section>
 
                 <section>
-                    <h2 class="font-display text-[17px] font-semibold text-ink mb-2">8. Children's Privacy</h2>
+                    <h2 class="font-display text-[17px] font-semibold text-ink mb-2">9. Children's Privacy</h2>
                     <p>
                         MindCollector is not directed at children under 13, and we do not knowingly collect personal
                         information from anyone under 13.
@@ -183,7 +215,7 @@
                 </section>
 
                 <section>
-                    <h2 class="font-display text-[17px] font-semibold text-ink mb-2">9. Changes to This Policy</h2>
+                    <h2 class="font-display text-[17px] font-semibold text-ink mb-2">10. Changes to This Policy</h2>
                     <p>
                         If we make a material change to how we handle your data, we'll update the version number and
                         date at the top of this page.
@@ -191,7 +223,7 @@
                 </section>
 
                 <section>
-                    <h2 class="font-display text-[17px] font-semibold text-ink mb-2">10. Contact</h2>
+                    <h2 class="font-display text-[17px] font-semibold text-ink mb-2">11. Contact</h2>
                     <p>
                         Questions about this policy, or want to request your data or deletion? Reach us through our
                         <a href="https://discord.gg/Bk7wEvPRt" target="_blank" rel="noopener noreferrer" class="text-gold hover:text-gold-light transition-colors">Discord community</a>.

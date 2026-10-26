@@ -54,6 +54,8 @@ class CoachController extends Controller
             'keyMadeAt' => $user->coach_token_at,
             'newKey' => session('coach_key'),
             'pooled' => $user->pool_opt_out_at === null,
+            // Linking YouTube for the app's uploads (2026-10-26); hidden until the site has its client.
+            'youtube' => ['configured' => app(\App\Http\Services\YouTubeService::class)->configured(), 'linked' => $user->youtube_linked_at !== null && $user->youtube_token !== null],
         ]);
     }
 

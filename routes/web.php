@@ -516,6 +516,14 @@ Route::middleware(['guest', 'throttle:20,1,google'])->group(function () {
     Route::get('/auth/google/callback', [\App\Http\Controllers\Auth\GoogleAuthController::class, 'callback'])->name('google.callback');
 });
 
+// Linking YouTube for the app's uploads (YouTubeLinkController, 2026-10-26). Signed in: it links a
+// channel to the account, it never signs anyone in.
+Route::middleware(['auth', 'throttle:20,1,youtube-link'])->group(function () {
+    Route::get('/auth/youtube', [\App\Http\Controllers\YouTubeLinkController::class, 'redirect'])->name('youtube.link');
+    Route::get('/auth/youtube/callback', [\App\Http\Controllers\YouTubeLinkController::class, 'callback'])->name('youtube.callback');
+    Route::post('/auth/youtube/disconnect', [\App\Http\Controllers\YouTubeLinkController::class, 'disconnect'])->name('youtube.disconnect');
+});
+
 Route::middleware('auth')->group(function () {
     Route::delete('/auth/battlenet', [\App\Http\Controllers\BattlenetController::class, 'destroy'])->name('battlenet.unlink');
     Route::get('/characters', \App\Livewire\Battlenet\Characters::class)->name('characters.index');

@@ -41,6 +41,7 @@ class User extends Authenticatable implements MustVerifyEmail
         'password',
         'remember_token',
         'coach_token_hash',
+        'youtube_token',
     ];
 
     /**
@@ -69,6 +70,9 @@ class User extends Authenticatable implements MustVerifyEmail
     {
         return [
             'email_verified_at' => 'datetime',
+            // The YouTube refresh token (scope youtube.upload), encrypted at rest (2026-10-26).
+            'youtube_token' => 'encrypted',
+            'youtube_linked_at' => 'datetime',
             'tos_accepted_at' => 'datetime',
             'password' => 'hashed',
             'is_admin' => 'boolean',

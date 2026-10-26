@@ -213,6 +213,39 @@
                     <button type="submit" class="btn-secondary text-[13px]">{{ $pooled ? 'Leave mine out' : 'Count mine again' }}</button>
                 </form>
             </div>
+
+            {{-- Linking YouTube for the app's uploads (YouTubeLinkController, 2026-10-26). Shown once the
+                 site has its Google client. --}}
+            @if ($youtube['configured'])
+                <div id="youtube" class="linear-card p-4 flex flex-col sm:flex-row sm:items-center gap-3">
+                    <div class="flex-1">
+                        <p class="text-[14px] text-ink font-bold">YouTube</p>
+                        <p class="text-[13px] text-ink-muted">
+                            @if ($youtube['linked'])
+                                Linked. In the app's Videos tab, pick the games you want and it uploads them to your
+                                channel with a title and chapters, unlisted unless you choose otherwise. They go straight
+                                from your PC to YouTube.
+                            @else
+                                Link your channel and the app can upload the games you pick, with a title and chapters
+                                written from the game, straight from your PC to YouTube. Nothing is uploaded unless you
+                                choose it.
+                            @endif
+                            By linking you agree to the <a href="https://www.youtube.com/t/terms" target="_blank" rel="noopener" class="text-gold hover:underline">YouTube Terms of Service</a>
+                            and the <a href="https://policies.google.com/privacy" target="_blank" rel="noopener" class="text-gold hover:underline">Google Privacy Policy</a>
+                            (and <a href="{{ route('privacy') }}" class="text-gold hover:underline">ours</a>).
+                        </p>
+                        @if (session('youtube_status'))<p class="text-[13px] text-emerald-300 mt-1">{{ session('youtube_status') }}</p>@endif
+                    </div>
+                    @if ($youtube['linked'])
+                        <form method="POST" action="{{ route('youtube.disconnect') }}">
+                            @csrf
+                            <button type="submit" class="btn-secondary text-[13px]">Disconnect YouTube</button>
+                        </form>
+                    @else
+                        <a href="{{ route('youtube.link') }}" class="btn-primary text-[13px]">Connect YouTube</a>
+                    @endif
+                </div>
+            @endif
         </div>
     </div>
 </div>

@@ -431,6 +431,49 @@
 
     // No recording: a clock with the video's API (currentTime, paused, play, pause, events), so the
     // rails, the frames, the casts line and Previous/Next run exactly as they do over a video.
+    // Uploaded to YouTube (2026-10-26): its player wrapped in the video's API (currentTime, paused,
+    // play, pause, events), so the rails, frames, casts line and Previous/Next follow it unchanged.
+    var recordedEarly = @json($video ?? null);
+    if (recordedEarly && recordedEarly.youtube) {
+        var holder = document.createElement('div');
+        holder.id = 'yt';
+        holder.style.cssText = 'width:100%;aspect-ratio:16/9;max-height:46vh;background:#000';
+        vid.parentNode.insertBefore(holder, vid);
+        vid.style.display = 'none';
+        var ytPlayer = null, ytTimer = null;
+        var ytv = { paused: true, src: 'youtube', _h: {},
+            addEventListener: function (n, f) { (this._h[n] = this._h[n] || []).push(f); },
+            emit: function (n) { (this._h[n] || []).forEach(function (f) { f(); }); },
+            play: function () { if (ytPlayer) { ytPlayer.playVideo(); } return Promise.resolve(); },
+            pause: function () { if (ytPlayer) { ytPlayer.pauseVideo(); } }
+        };
+        Object.defineProperty(ytv, 'currentTime', {
+            get: function () { return ytPlayer && ytPlayer.getCurrentTime ? ytPlayer.getCurrentTime() : 0; },
+            set: function (t) { if (ytPlayer && ytPlayer.seekTo) { ytPlayer.seekTo(Math.max(0, t), true); ytv.emit('seeked'); ytv.emit('timeupdate'); } }
+        });
+        window.onYouTubeIframeAPIReady = function () {
+            ytPlayer = new YT.Player('yt', {
+                videoId: recordedEarly.youtube,
+                playerVars: { rel: 0, playsinline: 1, modestbranding: 1 },
+                events: {
+                    onReady: function () { ytv.emit('loadedmetadata'); ytv.emit('timeupdate'); },
+                    onStateChange: function (e) {
+                        ytv.paused = e.data !== 1;
+                        clearInterval(ytTimer);
+                        if (!ytv.paused) { ytTimer = setInterval(function () { ytv.emit('timeupdate'); }, 250); }
+                        ytv.emit(ytv.paused ? 'pause' : 'play');
+                    }
+                }
+            });
+        };
+        var api = document.createElement('script');
+        api.src = 'https://www.youtube.com/iframe_api';
+        document.head.appendChild(api);
+        vid = ytv;
+        stage.style.display = 'block';
+        drop.style.display = 'none';
+    }
+
     if (blankMode && rounds.length) {
         var last = rounds[rounds.length - 1];
         var total = last.start + last.dur + 5;
@@ -493,7 +536,7 @@
     // Recorded by the app: open it from where it was saved, already lined up. If it cannot be
     // opened (moved, deleted, or a browser that will not read local files), ask for it instead.
     var recorded = @json($video ?? null);
-    if (recorded) {
+    if (recorded && !recorded.youtube) {
         vid.addEventListener('error', function () {
             if (vid.src.indexOf('blob:') === 0) { return; }
             vid.removeAttribute('src');

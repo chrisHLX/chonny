@@ -17,6 +17,9 @@ Route::get('/coach/app-version', [\App\Http\Controllers\AppDownloadController::c
 // Notes, Ctrl+Shift+M marks, and the players in the game being played, from the app (CoachAppController).
 Route::post('/coach/note', [\App\Http\Controllers\Api\CoachAppController::class, 'note'])->name('api.coach.note');
 Route::post('/coach/players', [\App\Http\Controllers\Api\CoachAppController::class, 'players'])->name('api.coach.players');
+// Uploading a game to the player's own YouTube channel (CoachYouTubeController, 2026-10-26).
+Route::post('/coach/youtube/prepare', [\App\Http\Controllers\Api\CoachYouTubeController::class, 'prepare'])->middleware('throttle:30,1,app-youtube')->name('api.coach.youtube.prepare');
+Route::post('/coach/youtube/uploaded', [\App\Http\Controllers\Api\CoachYouTubeController::class, 'uploaded'])->middleware('throttle:30,1,app-youtube')->name('api.coach.youtube.uploaded');
 
 // The desktop app reading the player's pages back, with the same key. See CoachPagesController.
 Route::get('/coach/index', [CoachPagesController::class, 'index'])->name('api.coach.index');
