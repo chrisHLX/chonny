@@ -48,8 +48,8 @@ class WatchPageTest extends TestCase
         $this->assertStringContainsString('left: 4.4444444444444%; width: 10.833333333333%', $html);
         // 90/180 = 50%, 18/180 = 10%
         $this->assertStringContainsString('left: 50%; width: 10%', $html);
-        $this->assertStringContainsString('class="go us"', $html);
-        $this->assertStringContainsString('class="go them kill"', $html, 'a go that killed is marked');
+        $this->assertStringContainsString('class="go old us"', $html);
+        $this->assertStringContainsString('class="go old them kill"', $html, 'a go that killed is marked');
     }
 
     public function test_later_rounds_carry_their_offset_into_the_recording(): void
@@ -171,6 +171,23 @@ class WatchPageTest extends TestCase
         File::deleteDirectory($videos);
     }
 
+    public function test_falls_are_drawn_by_kind_and_listed_with_their_sync(): void
+    {
+        $html = $this->render([$this->round(['duration' => 100, 'falls' => [
+            ['side' => 'them', 'on' => 'Doubletapz', 'from' => 68.0, 'to' => 84.0, 'high' => 100, 'low' => 41, 'died' => false,
+                'kind' => 'control', 'intensity' => 5, 'sync' => 'Kidney Shot on Doubletapz, Polymorph on the healer, 1.1s apart',
+                'cooldowns' => [], 'control' => ['Kidney Shot on Doubletapz', 'Polymorph on Nearó'], 'answers' => []],
+        ], 'unmoved' => [['t' => 10.1, 'side' => 'us', 'spell' => 'Feral Frenzy', 'by' => 'Crawlordx', 'alone' => true]]])]);
+
+        // A control-led fall is striped, and as dark as its intensity.
+        $this->assertStringContainsString('class="fall them control"', $html);
+        $this->assertStringContainsString('left: 68%; width: 16%; opacity: 1', $html);
+        $this->assertStringContainsString('Doubletapz 100% → 41% · control, no cooldown', $html);
+        $this->assertStringContainsString('Kidney Shot on Doubletapz, Polymorph on the healer, 1.1s apart', $html);
+        $this->assertStringContainsString('Feral Frenzy moved nobody', $html);
+        $this->assertStringContainsString('class="unmoved" style="left: 10.1%"', $html);
+    }
+
     public function test_defensives_are_drawn_and_listed_by_name(): void
     {
         $html = $this->render([$this->round(['duration' => 100, 'defensives' => [
@@ -208,7 +225,7 @@ class WatchPageTest extends TestCase
         $this->assertStringContainsString('https:\/\/videos.mindcollector.invalid\/2026-10-25%2016-15-08.mp4', $html);
         $this->assertStringContainsString('"offset":-0.58', $html);
         $this->assertStringContainsString('Nearó on Crawlordx', $html);
-        $this->assertStringContainsString('Go on Nearó', $html, 'a go names its target, not its GUID');
+        $this->assertStringContainsString('Old go on Nearó', $html, 'a go names its target, not its GUID');
         $this->assertStringContainsString('mc-app://game/'.$lobby, $html);
 
         // Only the key's own games.

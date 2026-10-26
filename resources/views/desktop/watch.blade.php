@@ -54,6 +54,15 @@
     .go.kill { box-shadow: inset 0 0 0 2px #E8B84B; }
     .death { position: absolute; top: 0; width: 2px; height: 100%; background: #F28B82; }
     .def { position: absolute; top: 51px; width: 3px; height: 10px; border-radius: 1px; }
+    .fall { position: absolute; height: 19px; border-radius: 3px; }
+    .fall.us { background: #2f7d4f; top: 6px; }
+    .fall.them { background: #c0392b; top: 28px; }
+    .fall.control { background-image: repeating-linear-gradient(135deg, rgba(0,0,0,.35) 0 4px, transparent 4px 8px); }
+    .fall.died { box-shadow: inset 0 0 0 2px #E8B84B; }
+    .unmoved { position: absolute; top: 0; width: 3px; height: 5px; background: #B3B3B3; border-radius: 1px; }
+    .go.old { opacity: .5; height: 6px; }
+    .go.old.us { top: 1px; }
+    .go.old.them { top: 49px; }
     .def.us { background: #86efac; }
     .def.them { background: #fca5a5; }
     .ev tr.now td { background: #232323; }
@@ -147,15 +156,18 @@
         <button type="button" id="next" title="The next event after this point (.)">Next &rarr;</button>
         <span class="sep"></span>
         Show
-        <button type="button" data-kind="go">Goes</button>
+        <button type="button" data-kind="fall">Falls</button>
         <button type="button" data-kind="death">Deaths</button>
         <button type="button" data-kind="def">Defensives</button>
+        <button type="button" data-kind="unmoved">Moved nobody</button>
+        <button type="button" data-kind="go" class="off" title="The go rule before falls, to compare">Old goes</button>
     </div>
     <div class="legend">
-        <b style="background:#2f7d4f"></b> your goes <b style="background:#8c3b3b"></b> enemy
+        <b style="background:#2f7d4f"></b> they fell to your pressure <b style="background:#c0392b"></b> you fell to theirs
         <b style="background:#F28B82"></b> a death
         <b style="background:#86efac"></b> your defensive <b style="background:#fca5a5"></b> theirs
-        <span class="subtle">&nbsp;&middot;&nbsp; gold edge = the go killed someone. Click the timeline to go to that point, or an event to see it from 3s before. Later rounds are placed from the real time between them.</span>
+        <b style="background:#B3B3B3"></b> a cooldown that moved nobody
+        <span class="subtle">&nbsp;&middot;&nbsp; A fall is someone's health dropping 20+ and the cooldowns and control that did it. Darker = more stacked; striped = control with no cooldown; gold edge = they died. Click the timeline to go to that point, or an event to see it from 3s before.</span>
     </div>
 
     @foreach ($rounds as $i => $r)
@@ -165,8 +177,25 @@
             $events = [];
             foreach ($r['goes'] as $g) {
                 $events[] = ['kind' => 'go', 't' => (float) $g['from'], 'side' => $g['side'],
-                    'label' => 'Go on '.($g['target'] ?? '?').(! empty($g['kill']) ? ' — killed' : ''),
+                    'label' => 'Old go on '.($g['target'] ?? '?').(! empty($g['kill']) ? ' — killed' : ''),
                     'detail' => $g['chain'] ?? ''];
+            }
+            $kinds = ['cooldown' => 'cooldowns', 'control' => 'control, no cooldown', 'damage' => 'damage only'];
+            foreach ($r['falls'] ?? [] as $f) {
+                $lines = array_filter([
+                    $f['sync'],
+                    $f['cooldowns'] ? 'Cooldowns: '.implode(', ', $f['cooldowns']) : null,
+                    $f['control'] ? 'Control: '.implode(', ', $f['control']) : null,
+                    $f['answers'] ? 'Answered with: '.implode(', ', $f['answers']) : null,
+                ]);
+                $events[] = ['kind' => 'fall', 't' => (float) $f['from'], 'side' => $f['side'],
+                    'label' => $f['on'].' '.$f['high'].'% → '.($f['died'] ? 'died' : $f['low'].'%').' · '.$kinds[$f['kind']],
+                    'detail' => implode("\n", $lines)];
+            }
+            foreach ($r['unmoved'] ?? [] as $u) {
+                $events[] = ['kind' => 'unmoved', 't' => (float) $u['t'], 'side' => $u['side'],
+                    'label' => $u['spell'].' moved nobody',
+                    'detail' => $u['by'].($u['alone'] ? ', pressed with no control within 5s' : '')];
             }
             foreach ($r['deaths'] as $d) {
                 $events[] = ['kind' => 'death', 't' => (float) $d['t'], 'side' => $d['side'] ?? null,
@@ -191,9 +220,18 @@
             </div>
 
             <div class="rail">
+                @foreach ($r['falls'] ?? [] as $f)
+                    @php $w = max(0.4, $pct((float) $f['to']) - $pct((float) $f['from'])); @endphp
+                    <div class="fall {{ $f['side'] }} {{ $f['kind'] }}{{ $f['died'] ? ' died' : '' }}"
+                         style="left: {{ $pct((float) $f['from']) }}%; width: {{ $w }}%; opacity: {{ min(1, 0.35 + 0.15 * $f['intensity']) }}"
+                         title="{{ $f['on'] }} {{ $f['high'] }}% to {{ $f['died'] ? 'dead' : $f['low'].'%' }}, {{ $clock($f['from']) }} to {{ $clock($f['to']) }}{{ $f['sync'] ? ' — '.$f['sync'] : '' }}"></div>
+                @endforeach
+                @foreach ($r['unmoved'] ?? [] as $u)
+                    <div class="unmoved" style="left: {{ $pct((float) $u['t']) }}%" title="{{ $u['spell'] }} ({{ $u['by'] }}) at {{ $clock($u['t']) }} moved nobody"></div>
+                @endforeach
                 @foreach ($r['goes'] as $g)
                     @php $w = max(0.4, $pct((float) $g['to']) - $pct((float) $g['from'])); @endphp
-                    <div class="go {{ $g['side'] }}{{ ! empty($g['kill']) ? ' kill' : '' }}"
+                    <div class="go old {{ $g['side'] }}{{ ! empty($g['kill']) ? ' kill' : '' }}"
                          style="left: {{ $pct((float) $g['from']) }}%; width: {{ $w }}%"
                          title="{{ $g['side'] === 'us' ? 'Your go' : 'Enemy go' }} — {{ $clock($g['from']) }} to {{ $clock($g['to']) }}{{ ! empty($g['chain']) ? ' — '.$g['chain'] : '' }}"></div>
                 @endforeach
@@ -216,7 +254,7 @@
                     <tr data-t="{{ $e['t'] }}" data-kind="{{ $e['kind'] }}">
                         <td class="t">{{ $clock($e['t']) }}</td>
                         <td class="w">@if ($e['side'])<span class="pill {{ $e['side'] }}">{{ $e['side'] === 'us' ? 'you' : 'them' }}</span>@endif</td>
-                        <td><b>{{ $e['label'] }}</b>@if ($e['detail'])<div class="small subtle">{{ $e['detail'] }}</div>@endif</td>
+                        <td><b>{{ $e['label'] }}</b>@if ($e['detail'])<div class="small subtle">{!! nl2br(e($e['detail'])) !!}</div>@endif</td>
                     </tr>
                 @empty
                     <tr><td class="muted small">Nothing measured in this round.</td></tr>
@@ -321,6 +359,12 @@
         list.sort(function (a, b) { return (a.r.start + a.t) - (b.r.start + b.t); });
         return list;
     }
+    // The old goes start hidden: falls replaced them (2026-10-26); the button shows them to compare.
+    hidden.go = true;
+    var oldRows = document.querySelectorAll('tr[data-kind="go"]');
+    for (var oi = 0; oi < oldRows.length; oi++) { oldRows[oi].className = 'hide'; }
+    var oldMarks = document.querySelectorAll('.go');
+    for (var om = 0; om < oldMarks.length; om++) { oldMarks[om].style.visibility = 'hidden'; }
     var events = eventList();
 
     function step(dir) {
@@ -351,7 +395,7 @@
             this.className = hidden[kind] ? 'off' : '';
             var rows = document.querySelectorAll('tr[data-kind="' + kind + '"]');
             for (var k = 0; k < rows.length; k++) { rows[k].className = hidden[kind] ? 'hide' : ''; }
-            var marks = document.querySelectorAll(kind === 'def' ? '.def' : (kind === 'death' ? '.death' : '.go'));
+            var marks = document.querySelectorAll({ def: '.def', death: '.death', go: '.go', fall: '.fall', unmoved: '.unmoved' }[kind]);
             for (var m = 0; m < marks.length; m++) { marks[m].style.visibility = hidden[kind] ? 'hidden' : ''; }
             events = eventList();
         });

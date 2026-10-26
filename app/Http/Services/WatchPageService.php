@@ -80,6 +80,7 @@ class WatchPageService
                 'goes' => $this->goes($analysis),
                 'deaths' => array_values($analysis['deaths'] ?? []),
                 'defensives' => $this->defensives($analysis),
+                ...$this->falls($analysis),
             ];
         }
 
@@ -126,6 +127,44 @@ class WatchPageService
         return collect($analysis['players'] ?? [])
             ->mapWithKeys(fn ($p) => [$p['guid'] ?? '' => Str::before($p['name'] ?? '?', '-')])
             ->all();
+    }
+
+    /**
+     * The round's falls (FallsService, 2026-10-26): goes found from pressure first, by name, for the
+     * timeline and the event list; and the offensive cooldowns that moved nobody.
+     *
+     * @return array{falls: array<int, array<string, mixed>>, unmoved: array<int, array<string, mixed>>}
+     */
+    private function falls(array $analysis): array
+    {
+        $names = $this->names($analysis);
+        $name = fn (?string $g) => $g === null ? '?' : ($names[$g] ?? '?');
+        $read = app(FallsService::class)->read($analysis);
+
+        $falls = array_map(function ($f) use ($name) {
+            $offs = array_values(array_filter($f['links'], fn ($l) => $l['cat'] === 'offensive'));
+            $ccs = array_values(array_filter($f['links'], fn ($l) => $l['cat'] === 'control'));
+
+            return [
+                'side' => $f['side'],
+                'on' => $name($f['on']),
+                'from' => $f['from'],
+                'to' => $f['to'],
+                'high' => $f['high'],
+                'low' => $f['low'],
+                'died' => $f['died'],
+                'kind' => $f['kind'],
+                'intensity' => $f['intensity'],
+                'sync' => $f['sync'] ? sprintf('%s on %s, %s on the healer, %ss apart', $f['sync']['targetBy'], $name($f['on']), $f['sync']['healerBy'], $f['sync']['gap']) : null,
+                'cooldowns' => array_map(fn ($l) => $l['spell'].' ('.$name($l['by']).')', $offs),
+                'control' => array_map(fn ($l) => $l['spell'].' on '.$name($l['on']), $ccs),
+                'answers' => array_map(fn ($a) => $a['spell'].' ('.$name($a['who']).')', $f['answers']),
+            ];
+        }, $read['falls']);
+
+        $unmoved = array_map(fn ($u) => ['t' => $u['t'], 'side' => $u['side'], 'spell' => $u['spell'], 'by' => $name($u['by']), 'alone' => $u['alone']], $read['unmoved']);
+
+        return ['falls' => $falls, 'unmoved' => $unmoved];
     }
 
     /**
