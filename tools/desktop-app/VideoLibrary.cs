@@ -5,7 +5,7 @@ using System.Text.Json;
 namespace MindCollector.Desktop;
 
 /// <summary>One video in the videos folder, with what its timing file says (Recorder.WriteSidecar), if it has one.</summary>
-public sealed record VideoEntry(string Name, DateTime Started, DateTime? Stopped, string? Bracket, IReadOnlyList<DateTime> Rounds, long Bytes)
+public sealed record VideoEntry(string Name, DateTime Started, DateTime? Stopped, string? Bracket, IReadOnlyList<DateTime> Rounds, long Bytes, string? YouTubeId = null)
 {
     public TimeSpan? Length => Stopped is { } s && s > Started ? s - Started : null;
 }
@@ -36,6 +36,7 @@ internal static class VideoLibrary
                 DateTime started = info.CreationTime;
                 DateTime? stopped = null;
                 string? bracket = null;
+                string? youtube = null;
                 var rounds = new List<DateTime>();
                 var sidecar = path + Recorder.SidecarSuffix;
                 if (File.Exists(sidecar))
@@ -45,15 +46,33 @@ internal static class VideoLibrary
                     if (Clock(r, "recordingStarted") is { } s) started = s;
                     stopped = Clock(r, "recordingStopped");
                     bracket = r.TryGetProperty("bracket", out var b) ? b.GetString() : null;
+                    youtube = r.TryGetProperty("youtube", out var y) && y.ValueKind == JsonValueKind.Object && y.TryGetProperty("id", out var yid) ? yid.GetString() : null;
                     if (r.TryGetProperty("rounds", out var rs) && rs.ValueKind == JsonValueKind.Array)
                         foreach (var x in rs.EnumerateArray())
                             if (DateTime.TryParse(x.GetString(), CultureInfo.InvariantCulture, DateTimeStyles.None, out var t)) rounds.Add(t);
                 }
-                list.Add(new VideoEntry(info.Name, started, stopped, bracket, rounds, info.Length));
+                list.Add(new VideoEntry(info.Name, started, stopped, bracket, rounds, info.Length, youtube));
             }
             catch { /* a video still being written, or a broken timing file: leave it out this time */ }
         }
         return list.OrderByDescending(v => v.Started).ToList();
+    }
+
+    /// <summary>
+    /// Notes in the video's timing file that it is on YouTube (2026-10-26), so it is never uploaded
+    /// twice and the list can say so. A video with no timing file gets one holding only this.
+    /// </summary>
+    public static void MarkUploaded(string dir, string name, string id, string privacy)
+    {
+        var sidecar = Path.Combine(dir, name) + Recorder.SidecarSuffix;
+        var node = File.Exists(sidecar) ? System.Text.Json.Nodes.JsonNode.Parse(File.ReadAllText(sidecar)) as System.Text.Json.Nodes.JsonObject ?? new() : new();
+        node["youtube"] = new System.Text.Json.Nodes.JsonObject
+        {
+            ["id"] = id,
+            ["privacy"] = privacy,
+            ["at"] = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss", CultureInfo.InvariantCulture),
+        };
+        File.WriteAllText(sidecar, node.ToJsonString(new JsonSerializerOptions { WriteIndented = true }));
     }
 
     /// <summary>The video whose round 1 started at playedAt (the START line, cut to the second).</summary>

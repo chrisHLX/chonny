@@ -171,6 +171,19 @@ before it asked the website for pages ("done" came only after the last log), so 
 Checked: `--sync-once` against a local site with three copied logs: progress at 5, 6, 10, 14, 15
 rounds, pages asked for after logs 1 and 2, done at the end, 15 sent, none failed.
 
+## YouTube uploads (2026-10-26, not released yet)
+
+The Videos tab's first row, **Upload to YouTube…**, opens `YouTubeQueueForm`: the recordings matched
+to a game and not on YouTube yet, the last day's ticked, and who can see them (unlisted unless the
+player picks otherwise). For each ticked game the website's `/api/coach/youtube/prepare` gives a
+short-lived token and the title and chapters (written from the game, specs never names), then
+`YouTubeUploader` sends the file straight to YouTube (resumable, 8 MB pieces, resumes after a drop,
+a fresh token after an hour), reports the id to `/uploaded` (the game's Watch page then plays it from
+YouTube) and notes it in the video's timing file (`"youtube": {id, privacy, at}`), so it is never sent
+twice and the list says "on YouTube". The player links the channel on the website (Your games >
+YouTube). Held back from a release until the Google client is set up and one upload is checked on a
+real channel; until then the website answers "not set up yet".
+
 ## Getting it (2026-10-11): one file, one click
 
 A new player is sent to **mindcollector.com/wow/app** (public, unlisted): what the app does and three

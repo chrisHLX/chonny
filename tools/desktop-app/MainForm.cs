@@ -155,6 +155,7 @@ internal sealed class MainForm : Form
         _list.SelectedIndexChanged += async (_, _) =>
         {
             if (_filling || _list.SelectedFile is not { } file) return;
+            if (file == YouTubeAction) { OpenYouTubeQueue(); return; }
             if (file.StartsWith(SamplePrefix, StringComparison.Ordinal)) await ShowSampleAsync(file[SamplePrefix.Length..]);
             else if (file.StartsWith(VideoPrefix, StringComparison.Ordinal)) ShowVideo(file[VideoPrefix.Length..]);
             else await ShowPageAsync(file);
@@ -552,6 +553,7 @@ internal sealed class MainForm : Form
         {
             rows.Clear();
             rows.AddRange(VideoRows());
+            if (rows.Count > 0) rows.Insert(0, new LibraryRow("Upload to YouTube…", "Pick games to send to your channel, with titles and chapters", null, 0, YouTubeAction));
             if (rows.Count == 0)
                 rows.Add(_settings.RecordGames
                     ? new LibraryRow("No videos yet", "Each arena game you play is recorded with OBS")
@@ -770,7 +772,7 @@ internal sealed class MainForm : Form
     {
         foreach (var v in LoadVideos())
         {
-            var line = v.Started.ToString("ddd d MMM, HH:mm") + (v.Length is { } l ? $" · {VideoLibrary.Duration(l)}" : "");
+            var line = v.Started.ToString("ddd d MMM, HH:mm") + (v.Length is { } l ? $" · {VideoLibrary.Duration(l)}" : "") + (v.YouTubeId != null ? " · on YouTube" : "");
             yield return GameOf(v) is { } g
                 ? new LibraryRow(g.Row.Title, line, g.Row.Badge, g.Row.Tone, VideoPrefix + v.Name)
                 : new LibraryRow((v.Bracket ?? "Video").Replace("Rated ", ""), line, null, 0, VideoPrefix + v.Name);
@@ -781,6 +783,25 @@ internal sealed class MainForm : Form
     /// A video: on its game's Watch page from the website when it is of a game the website holds (the
     /// timeline of goes, deaths and defensives under it), otherwise the plain player.
     /// </summary>
+    private const string YouTubeAction = "action:youtube";
+
+    /// <summary>The upload picker (YouTubeQueueForm): recordings matched to a game and not on YouTube yet.</summary>
+    private void OpenYouTubeQueue()
+    {
+        var items = LoadVideos()
+            .Where(v => v.YouTubeId == null)
+            .Select(v => (Video: v, Game: GameOf(v)))
+            .Where(x => x.Game != null)
+            .Select(x => new YouTubeQueueForm.Item(x.Video, x.Game!.Value.Lobby, $"{x.Game.Value.Row.Title} {x.Game.Value.Row.Badge}".Trim()))
+            .ToList();
+        using var form = new YouTubeQueueForm(_settings, items, Log);
+        form.ShowDialog(this);
+        _filling = true;
+        _list.ClearSelected();
+        _filling = false;
+        FillList();
+    }
+
     private async void ShowVideo(string name)
     {
         if (_view.CoreWebView2 == null) return;

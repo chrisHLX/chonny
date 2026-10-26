@@ -186,6 +186,39 @@ public sealed class ApiClient : IDisposable
         return (known, pending);
     }
 
+    /// <summary>What the website says for one upload to YouTube (CoachYouTubeController::prepare).</summary>
+    public sealed record YouTubePrep(string Status, string? Token, string? Title, string? Description, List<string> Tags, string? Connect, string? Reason);
+
+    /// <summary>
+    /// A short-lived YouTube access token and the upload's title, description and chapters for one
+    /// game, worked out by the website from the game and the video's timing file (2026-10-26).
+    /// Status "not-linked" with the page to link YouTube on, or "unavailable" before the site has it.
+    /// </summary>
+    public async Task<YouTubePrep> PrepareYouTubeAsync(string lobby, VideoEntry video, CancellationToken ct)
+    {
+        static string Clock(DateTime t) => t.ToString("yyyy-MM-dd HH:mm:ss.fff", System.Globalization.CultureInfo.InvariantCulture);
+        var body = JsonSerializer.Serialize(new { lobby, started = Clock(video.Started), rounds = video.Rounds.Select(Clock).ToArray() });
+        using var content = new StringContent(body, Encoding.UTF8, "application/json");
+        using var res = await _http.PostAsync($"{_base}/api/coach/youtube/prepare", content, ct);
+        if (res.StatusCode == HttpStatusCode.Unauthorized) throw new KeyRejectedException();
+        using var doc = JsonDocument.Parse(await res.Content.ReadAsStringAsync(ct));
+        var r = doc.RootElement;
+        string? S(string k) => r.TryGetProperty(k, out var v) && v.ValueKind == JsonValueKind.String ? v.GetString() : null;
+        var tags = r.TryGetProperty("tags", out var t) && t.ValueKind == JsonValueKind.Array ? t.EnumerateArray().Select(x => x.GetString() ?? "").Where(x => x != "").ToList() : [];
+        return new YouTubePrep(S("status") ?? $"error {(int)res.StatusCode}", S("accessToken"), S("title"), S("description"), tags, S("connect"), S("reason"));
+    }
+
+    /// <summary>Tell the website a game's video is on YouTube, so its Watch page plays it.</summary>
+    public async Task UploadedYouTubeAsync(string lobby, string videoId, string privacy, VideoEntry video, CancellationToken ct)
+    {
+        static string Clock(DateTime t) => t.ToString("yyyy-MM-dd HH:mm:ss.fff", System.Globalization.CultureInfo.InvariantCulture);
+        var body = JsonSerializer.Serialize(new { lobby, videoId, privacy, started = Clock(video.Started), rounds = video.Rounds.Select(Clock).ToArray() });
+        using var content = new StringContent(body, Encoding.UTF8, "application/json");
+        using var res = await _http.PostAsync($"{_base}/api/coach/youtube/uploaded", content, ct);
+        if (res.StatusCode == HttpStatusCode.Unauthorized) throw new KeyRejectedException();
+        res.EnsureSuccessStatusCode();
+    }
+
     /// <summary>A page, from the local copy when the server says it has not changed.</summary>
     public async Task<string?> PageAsync(string file, CancellationToken ct)
     {
