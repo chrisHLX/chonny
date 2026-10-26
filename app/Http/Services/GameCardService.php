@@ -153,7 +153,10 @@ class GameCardService
         // GameMomentsService draws the Moments tab.
         $files = array_merge([__FILE__, app_path('Http/Services/GameBasicsService.php'), app_path('Http/Services/GameMomentsService.php'), \App\Console\Commands\BuildPopulation::normsPath(),
             app_path('Support/DefensiveFit.php'), DefensiveFit::path()],
-            glob(resource_path('views/desktop/*.blade.php')), glob(resource_path('views/desktop/partials/*.blade.php')));
+            // The Watch page is a desktop view but no card draws it (2026-10-26: every change to it
+            // redrew every player's cards, and the largest account's build timed out after deploys).
+            array_filter(glob(resource_path('views/desktop/*.blade.php')), fn ($f) => basename($f) !== 'watch.blade.php'),
+            glob(resource_path('views/desktop/partials/*.blade.php')));
         $files = array_values(array_filter($files, 'file_exists'));
         sort($files);
 
