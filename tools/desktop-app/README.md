@@ -154,6 +154,23 @@ list and a "Watch the video" button on its card; the video page links back to th
 Not yet: the Watch page (the timeline under the video) inside this app's window (its pages come from the website, and a local video
 needs a local page), and the prep for later arenas of a session.
 
+## A first sync, and an empty list (0.6.0, 2026-10-26)
+
+The first stranger to connect (26 Oct) sent 113 rounds from two weeks of logs over eight minutes
+while the window said only "Watching your WoW logs" and the list stayed empty, and the app stopped
+before it asked the website for pages ("done" came only after the last log), so they had none.
+
+- **Progress:** `Syncer.Progress` after every 5 rounds and each log; the status line and the empty
+  list say "Sending your games from the last two weeks: 45 sent so far, log 3 of 9. Keep the app open".
+- **Pages as it goes:** "done" after each finished log of a catch-up, and the list refreshes while
+  the sync is still running, so games appear as they are built. The website also builds pages two
+  minutes after any upload (`BuildCoachPages::backup`), for apps older than this.
+- **Samples:** an empty Games list shows "Your games arrive here" and the website's three samples
+  (`/wow/sample/page/{game,shuffle,watch}`: real games, names hidden), opened in the window.
+
+Checked: `--sync-once` against a local site with three copied logs: progress at 5, 6, 10, 14, 15
+rounds, pages asked for after logs 1 and 2, done at the end, 15 sent, none failed.
+
 ## Getting it (2026-10-11): one file, one click
 
 A new player is sent to **mindcollector.com/wow/app** (public, unlisted): what the app does and three

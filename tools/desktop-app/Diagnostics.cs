@@ -68,6 +68,7 @@ internal static class Diagnostics
         try
         {
             var syncer = new Syncer(settings, line => log.AppendLine(line));
+            syncer.Progress += p => log.AppendLine($"  progress: log {p.LogsDone} of {p.LogsTotal}, {p.Sent} sent{(p.PagesAsked ? ", pages asked for" : "")}");
             var result = syncer.RunAsync(manual: true, CancellationToken.None).GetAwaiter().GetResult();
             log.AppendLine($"Result: sent {result.Sent}, skipped {result.Skipped}, failed {result.Failed}, done called: {result.CalledDone}");
             Write("sync-once.txt", log.ToString());

@@ -35,6 +35,16 @@ public sealed class Syncer
 
     public sealed record PassResult(int Sent, int Skipped, int Failed, bool CalledDone);
 
+    /// <summary>
+    /// How a pass is going (0.6.0, 2026-10-26): the first stranger's first sync sent 113 rounds over
+    /// eight minutes while the window said only "Watching your WoW logs" and the list stayed empty,
+    /// and the app stopped before the pages were asked for. Raised after every few rounds and after
+    /// each log; PagesAsked when the server was just asked to build what has arrived.
+    /// </summary>
+    public sealed record SyncProgress(int LogsDone, int LogsTotal, int Sent, bool PagesAsked);
+
+    public event Action<SyncProgress>? Progress;
+
     public static bool WowRunning() =>
         Process.GetProcessesByName("Wow").Length > 0 || Process.GetProcessesByName("WowT").Length > 0 || Process.GetProcessesByName("WowB").Length > 0;
 
@@ -82,10 +92,13 @@ public sealed class Syncer
         var newest = logs.FirstOrDefault()?.FullName;
         int sent = 0, skipped = 0, failed = 0;
         bool lobbyFinished = false, anySent = false;
+        var sentSinceDone = 0;
+        var calledDone = false;
 
+        // The logs this pass reads, decided before reading any, so progress can say "log 3 of 9".
+        var todo = new List<FileInfo>();
         foreach (var f in logs)
         {
-            ct.ThrowIfCancellationRequested();
             f.Refresh();
             if (f.LastWriteTime < _settings.SendSince) continue;   // older than the first sync's two weeks
             var progress = _settings.Files.TryGetValue(f.FullName, out var p) ? p : new FileProgress();
@@ -93,6 +106,14 @@ public sealed class Syncer
             if (unchanged && progress.Offset >= f.Length) continue;
             if (!manual && unchanged) continue;
             if (!manual && DateTime.Now - f.LastWriteTime < Quiet) continue;
+            todo.Add(f);
+        }
+        var logsDone = 0;
+
+        foreach (var f in todo)
+        {
+            ct.ThrowIfCancellationRequested();
+            var progress = _settings.Files.TryGetValue(f.FullName, out var p) ? p : new FileProgress();
 
             // The log can still grow only if it is the newest one and WoW is running.
             var live = wow && f.FullName == newest;
@@ -104,7 +125,12 @@ public sealed class Syncer
                 var result = await api.SendRoundAsync(round.Text, ct);
                 switch (result.Status)
                 {
-                    case "stored": sent++; anySent = true; break;
+                    case "stored":
+                        sent++;
+                        sentSinceDone++;
+                        anySent = true;
+                        if (todo.Count > 1 && sent % 5 == 0) Progress?.Invoke(new(logsDone, todo.Count, sent, false));
+                        break;
                     case "skipped": skipped++; break;
                     default:
                         failed++;
@@ -124,10 +150,22 @@ public sealed class Syncer
             if (scan.Rounds.Count > 0)
                 _log($"{f.Name}: {scan.Rounds.Count} round(s) read, {sent} sent so far{(scan.OpenRound ? "; a game is still in progress" : "")}.");
             if (!live || scan.LastMarkerIsEnd) lobbyFinished = true;
+            logsDone++;
+
+            // A long catch-up asks for its pages log by log, so games appear while the rest is sent
+            // and an app closed halfway has still had its pages built (the server also builds two
+            // minutes after any upload, for apps older than this).
+            var asked = false;
+            if (sentSinceDone > 0 && !live && logsDone < todo.Count)
+            {
+                await api.DoneAsync(ct);
+                sentSinceDone = 0;
+                calledDone = asked = true;
+            }
+            if (todo.Count > 1 || sent > 0) Progress?.Invoke(new(logsDone, todo.Count, sent, asked));
         }
 
-        var calledDone = false;
-        if (anySent && lobbyFinished)
+        if (anySent && lobbyFinished && sentSinceDone > 0)
         {
             var assembled = await api.DoneAsync(ct);
             calledDone = true;

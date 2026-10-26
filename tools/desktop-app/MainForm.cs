@@ -53,6 +53,16 @@ internal sealed class MainForm : Form
         _startHidden = startHidden;
         _firstRun = firstRun;
         _syncer = new Syncer(_settings, Log);
+        _syncer.Progress += p => BeginInvoke(() =>
+        {
+            if (p.LogsTotal > 1)
+            {
+                _syncNote = $"Sending your games from the last two weeks: {p.Sent} sent so far, log {Math.Min(p.LogsDone + 1, p.LogsTotal)} of {p.LogsTotal}. Keep the app open; your games show up here as they're done.";
+                SetStatus(_syncNote);
+                if (!_list.Items.OfType<LibraryRow>().Any(r => r.File != null && !r.File.StartsWith(SamplePrefix, StringComparison.Ordinal))) FillList();
+            }
+            if (p.PagesAsked) _refreshesLeft = 6;
+        });
         _syncer.Warning += text => BeginInvoke(() =>
         {
             if (_warned.Add(text)) _tray.ShowBalloonTip(8000, "Check before trusting new games", text.Replace("WARNING: ", ""), ToolTipIcon.Warning);
@@ -145,7 +155,8 @@ internal sealed class MainForm : Form
         _list.SelectedIndexChanged += async (_, _) =>
         {
             if (_filling || _list.SelectedFile is not { } file) return;
-            if (file.StartsWith(VideoPrefix, StringComparison.Ordinal)) ShowVideo(file[VideoPrefix.Length..]);
+            if (file.StartsWith(SamplePrefix, StringComparison.Ordinal)) await ShowSampleAsync(file[SamplePrefix.Length..]);
+            else if (file.StartsWith(VideoPrefix, StringComparison.Ordinal)) ShowVideo(file[VideoPrefix.Length..]);
             else await ShowPageAsync(file);
         };
         var library = new RoundPanel { Dock = DockStyle.Fill, Padding = new Padding(8, 6, 8, 8) };
@@ -376,7 +387,7 @@ internal sealed class MainForm : Form
             title = "You're all set";
             body = Syncer.WowRunning()
                 ? "WoW is open, so type /reload once to load the MindCollector addon. Then play arena: each game shows up here about a minute after it ends."
-                : "Play arena: each game shows up here about a minute after it ends. Keep the app running in the tray while you play.";
+                : "Play arena: each game shows up here about a minute after it ends. Keep the app running in the tray while you play. Meanwhile, open a sample on the left to see what you'll get.";
         }
         Show($$"""
             <!doctype html><html><head><meta charset="utf-8"><style>
@@ -424,7 +435,7 @@ internal sealed class MainForm : Form
     private async Task TickAsync()
     {
         if (++_ticks % 1080 == 0) await CheckForUpdateAsync();   // every three hours at ten seconds a tick
-        if (_refreshesLeft > 0 && !_busy)
+        if (_refreshesLeft > 0)
         {
             _refreshesLeft--;
             await RefreshIndexAsync();
@@ -447,6 +458,7 @@ internal sealed class MainForm : Form
             if (manual) SetStatus("Looking for new games…");
             // Off the window's thread: a long log is read and sent without freezing the app.
             var result = await Task.Run(() => _syncer.RunAsync(manual, CancellationToken.None));
+            _syncNote = null;
             if (result.Sent > 0)
             {
                 _tray.ShowBalloonTip(4000, $"{result.Sent} round(s) sent", "Your pages are being built on the website; they appear here in a minute or so.", ToolTipIcon.Info);
@@ -491,7 +503,7 @@ internal sealed class MainForm : Form
             _index = fresh;
             FillList();
             // No games yet: say what to do next. The first time there are games, open the newest.
-            var hasGames = _list.Items.OfType<LibraryRow>().Any(r => r.File != null);
+            var hasGames = _list.Items.OfType<LibraryRow>().Any(r => r.File != null && !r.File.StartsWith(SamplePrefix, StringComparison.Ordinal));
             if (!hasGames && _list.SelectedFile == null) ShowWelcome();
             else if (hasGames && !_pageShown && _tab == "Games") _list.SelectedIndex = 0;
         }
@@ -524,6 +536,18 @@ internal sealed class MainForm : Form
             }
         }
 
+        // No games yet (0.6.0): what to expect, and the website's samples to look at meanwhile.
+        if (_tab == "Games" && !rows.Any(x => x.File != null))
+        {
+            rows.Clear();
+            rows.Add(_syncNote != null
+                ? new LibraryRow("Sending your games", _syncNote)
+                : new LibraryRow("Your games arrive here", "About a minute after each arena game ends"));
+            rows.Add(new LibraryRow("Sample · a 3v3 game", "A real game, names hidden", null, 0, SamplePrefix + "game"));
+            rows.Add(new LibraryRow("Sample · a Solo Shuffle", "Round by round", null, 0, SamplePrefix + "shuffle"));
+            rows.Add(new LibraryRow("Sample · watch a game", "Play it back with everyone's cooldowns", null, 0, SamplePrefix + "watch"));
+        }
+
         if (_tab == "Videos")
         {
             rows.Clear();
@@ -543,7 +567,7 @@ internal sealed class MainForm : Form
         }
 
         var title = Pages.First(p => p.Name == _tab).Title;
-        var count = rows.Count(x => x.File != null);
+        var count = rows.Count(x => x.File != null && !x.File.StartsWith(SamplePrefix, StringComparison.Ordinal));
         _libTitle.Text = count > 0 ? $"{title}   {count}" : title;
 
         _filling = true;
@@ -675,6 +699,29 @@ internal sealed class MainForm : Form
         if (_view.CoreWebView2 == null || html == _shown) return;
         _shown = html;
         _view.CoreWebView2.NavigateToString(html);
+    }
+
+    // ------------------------------------------------------------------ samples (0.6.0)
+
+    private const string SamplePrefix = "sample:";
+    private string? _syncNote;
+
+    /// <summary>The website's sample pages (/wow/sample): real games with every name hidden.</summary>
+    private async Task ShowSampleAsync(string tab)
+    {
+        if (_view.CoreWebView2 == null) return;
+        try
+        {
+            using var http = new HttpClient { Timeout = TimeSpan.FromSeconds(20) };
+            http.DefaultRequestHeaders.UserAgent.ParseAdd($"MindCollector-Desktop/{Application.ProductVersion}");
+            var html = await http.GetStringAsync($"{_settings.ServerUrl}/wow/sample/page/{Uri.EscapeDataString(tab)}");
+            _shownFile = null;
+            Show(html.Replace("<head>", $"<head><base href=\"{_settings.ServerUrl}/\">", StringComparison.OrdinalIgnoreCase));
+        }
+        catch (Exception e)
+        {
+            Blank($"Could not load the sample: {e.Message}");
+        }
     }
 
     // ------------------------------------------------------------------ videos (2026-10-25, VideoLibrary)
