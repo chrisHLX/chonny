@@ -81,7 +81,7 @@ class WatchPageService
                 'deaths' => array_values($analysis['deaths'] ?? []),
                 'defensives' => $this->defensives($analysis),
                 ...$this->falls($analysis),
-                'frames' => $this->abilities($analysis),
+                ...$this->abilities($analysis),
             ];
         }
 
@@ -140,7 +140,7 @@ class WatchPageService
      * the frame says so. A press only shows what was pressed: a button never pressed reads ready, and
      * cooldown reduction from spending is not in the data, so "back in" is the latest it can be.
      *
-     * @return array<int, array<string, mixed>>
+     * @return array{frames: array<int, array<string, mixed>>, castIcons: array<string, string>}
      */
     private function abilities(array $analysis): array
     {
@@ -152,6 +152,26 @@ class WatchPageService
         foreach ($analysis['deaths'] ?? [] as $d) {
             if (isset($d['who'], $d['t'])) {
                 $died[$d['who']] ??= (float) $d['t'];
+            }
+        }
+
+        $names = [];
+        foreach ($analysis['players'] ?? [] as $p) {
+            if (isset($p['guid'])) {
+                $names[$p['guid']] = explode('-', $p['name'] ?? '?')[0];
+            }
+        }
+        // Every spell anyone cast, for the casts line under each frame.
+        $castNames = [];
+        foreach ($casts as $list) {
+            foreach ($list as $c) {
+                $castNames[$c[1]] = true;
+            }
+        }
+        $castIcons = [];
+        foreach (app(SpellIconIndex::class)->for(array_keys($castNames)) as $spell => $model) {
+            if ($model?->icon_name) {
+                $castIcons[$spell] = \App\Support\DesktopAsset::icon($model->icon_name);
             }
         }
 
@@ -200,6 +220,8 @@ class WatchPageService
                 'usual' => ! $own,
                 'died' => $died[$p['guid']] ?? null,
                 'locked' => $locked,
+                // Every successful cast, in order: time, spell, its icon, whom it went on.
+                'casts' => array_map(fn ($c) => [(float) $c[0], $c[1], isset($c[2]) ? ($names[$c[2]] ?? null) : null], $casts[$p['guid']] ?? []),
                 'abilities' => array_map(fn ($a) => $a + [
                     'icon' => isset($icons[$a['name']]) ? \App\Support\DesktopAsset::icon($icons[$a['name']]) : null,
                     'presses' => $pressed[$a['name']] ?? [],
@@ -207,7 +229,7 @@ class WatchPageService
             ];
         }
 
-        return $out;
+        return ['frames' => $out, 'castIcons' => $castIcons];
     }
 
     /** Presses closer than this are one press logged twice. */

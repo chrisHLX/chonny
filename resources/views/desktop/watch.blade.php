@@ -34,7 +34,15 @@
     .stage { background: #000000; border-radius: 8px; overflow: hidden; position: sticky; top: 0; z-index: 5;
         /* covers the page around it, so the timeline's edge labels do not show beside it when scrolled */
         box-shadow: 0 0 0 16px #121212; }
-    .stage video { display: block; width: 100%; max-height: 50vh; background: #000000; }
+    .stage video { display: block; width: 100%; max-height: 46vh; background: #000000; }
+    .pl-wrap { padding: 1px 0 3px; }
+    .rib { position: relative; height: 20px; margin-left: 2px; background: #181818; border-radius: 4px; overflow: hidden; }
+    .rib .now { position: absolute; right: 0; top: 0; width: 2px; height: 100%; background: #FFFFFF; opacity: .5; }
+    .rib .c { position: absolute; top: 1px; width: 18px; height: 18px; border-radius: 3px; overflow: hidden; background: #2A2A2A; margin-left: -9px; }
+    .rib .c img { width: 100%; height: 100%; display: block; }
+    .rib .c.big { box-shadow: 0 0 0 1.5px #E8B84B; z-index: 2; }
+    .rib .c .lt { display: block; font-size: 8px; color: #B3B3B3; text-align: center; line-height: 18px; }
+    .rib .sec { position: absolute; top: 0; height: 100%; width: 1px; background: #232323; }
     .frames { display: none; gap: 14px; padding: 8px 10px 6px; background: #121212; }
     .frames .side { flex: 1; min-width: 0; }
     .frames .who { font-size: 10.5px; color: #6A6A6A; font-weight: 700; text-transform: uppercase; letter-spacing: .06em; margin-bottom: 2px; }
@@ -231,7 +239,7 @@
         @endphp
 
         <div class="rnd" data-start="{{ $r['startOffset'] }}" data-dur="{{ $dur }}">
-            <script type="application/json" class="frames-data">@json($r['frames'] ?? [])</script>
+            <script type="application/json" class="frames-data">@json(['players' => $r['frames'] ?? [], 'icons' => (object) ($r['castIcons'] ?? [])])</script>
             <div class="rh">
                 <b>{{ $r['label'] }}</b>
                 @if (! empty($r['result']))
@@ -425,7 +433,9 @@
     // Arena frames at the playhead (2026-10-26): each player's buttons, ready or coming back.
     for (var fi = 0; fi < rounds.length; fi++) {
         var fd = rounds[fi].el.querySelector('.frames-data');
-        rounds[fi].frames = fd ? JSON.parse(fd.textContent || '[]') : [];
+        var fdata = fd ? JSON.parse(fd.textContent || '{}') : {};
+        rounds[fi].frames = fdata.players || [];
+        rounds[fi].castIcons = fdata.icons || {};
     }
     var framesEl = document.getElementById('frames'), framesNote = document.getElementById('frames-note');
     var shownRound = null, cells = [];
@@ -450,9 +460,33 @@
         return { ready: charges, max: max, back: charges < max && back !== null ? back - t : null };
     }
 
+    var RIBBON = 12, ribbons = [];
+
+    /** The casts line: what each player pressed in the RIBBON seconds before t, placed by time. */
+    function drawRibbons(t) {
+        ribbons.forEach(function (rb) {
+            var html = '<span class="now"></span>';
+            for (var s = Math.ceil(t - RIBBON); s < t; s++) {
+                html += '<span class="sec" style="left:' + (100 * (s - (t - RIBBON)) / RIBBON) + '%"></span>';
+            }
+            var list = rb.p.casts;
+            for (var i = 0; i < list.length; i++) {
+                var c = list[i];
+                if (c[0] > t) { break; }
+                if (c[0] < t - RIBBON) { continue; }
+                var left = 100 * (c[0] - (t - RIBBON)) / RIBBON, icon = shownRound.castIcons[c[1]];
+                var tip = c[1] + ' at ' + Math.floor(c[0] / 60) + ':' + ('0' + Math.floor(c[0] % 60)).slice(-2) + (c[2] ? ' on ' + c[2] : '');
+                html += '<span class="c' + (rb.tracked[c[1]] ? ' big' : '') + '" style="left:' + left + '%" title="' + tip.replace(/"/g, '&quot;') + '">'
+                    + (icon ? '<img src="' + icon + '" alt="">' : '<span class="lt">' + c[1].substr(0, 2) + '</span>') + '</span>';
+            }
+            rb.el.innerHTML = html;
+        });
+    }
+
     function buildFrames(r) {
         framesEl.innerHTML = '';
         cells = [];
+        ribbons = [];
         var usual = false;
         ['us', 'them'].forEach(function (side) {
             var col = document.createElement('div');
@@ -460,9 +494,19 @@
             col.innerHTML = '<div class="who">' + (side === 'us' ? 'Your team' : 'Their team') + '</div>';
             r.frames.filter(function (p) { return p.side === side; }).forEach(function (p) {
                 usual = usual || p.usual;
+                var wrap = document.createElement('div');
+                wrap.className = 'pl-wrap';
                 var row = document.createElement('div');
                 row.className = 'pl';
                 row.innerHTML = '<span class="nm" style="color:' + p.color + '" title="' + p.spec + '">' + p.name + '</span><span class="st"></span><span class="abs"></span>';
+                var rib = document.createElement('div');
+                rib.className = 'rib';
+                rib.title = 'What ' + p.name + ' pressed in the last ' + RIBBON + 's, newest at the right';
+                wrap.appendChild(row);
+                wrap.appendChild(rib);
+                var tracked = {};
+                p.abilities.forEach(function (a) { tracked[a.name] = true; });
+                ribbons.push({ p: p, el: rib, tracked: tracked, row: row });
                 var abs = row.querySelector('.abs'), last = null;
                 p.abilities.forEach(function (a) {
                     if (last !== null && a.kind !== last) { var g = document.createElement('span'); g.className = 'gap'; abs.appendChild(g); }
@@ -473,7 +517,7 @@
                     abs.appendChild(b);
                     cells.push({ a: a, el: b, p: p, row: row });
                 });
-                col.appendChild(row);
+                col.appendChild(wrap);
             });
             framesEl.appendChild(col);
         });
@@ -496,6 +540,7 @@
             c.el.title = c.a.name + ' (' + Math.round(c.a.cd) + 's): ' + (cooling ? 'back in ' + Math.ceil(s.back) + 's at the latest' : 'ready') + (c.a.charges > 1 ? ', ' + s.ready + ' of ' + c.a.charges + ' charges' : '');
             if (rows.indexOf(c.row) < 0) { rows.push(c.row); c.row.p = c.p; }
         });
+        drawRibbons(t);
         rows.forEach(function (row) {
             var p = row.p, st = row.querySelector('.st'), cc = null;
             p.locked.forEach(function (l) { if (t >= l[0] && t < l[1]) { cc = l; } });
@@ -505,6 +550,11 @@
         });
     }
     vid.addEventListener('timeupdate', function () { drawFrames(vid.currentTime); });
+    // The casts line slides smoothly while the video plays (timeupdate fires only about 4 times a second).
+    (function slide() {
+        if (!vid.paused && shownRound) { drawRibbons(vid.currentTime - offset - shownRound.start); }
+        window.requestAnimationFrame(slide);
+    })();
     vid.addEventListener('seeked', function () { drawFrames(vid.currentTime); });
     vid.addEventListener('loadedmetadata', function () { drawFrames(vid.currentTime); });
 
