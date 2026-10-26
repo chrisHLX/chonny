@@ -212,6 +212,11 @@ class WatchPageService
                     $locked[] = [(float) $from, (float) $to, $spell];
                 }
             }
+            // The usual build guesses at talents: a talent never pressed in this game may not have
+            // been taken (Crawlordx was shown Typhoon on 19:11 and had not taken it). Pressed, it was.
+            $spec = $own ? null : $this->spec($p);
+            $kit = array_map(fn ($a) => $a + ['unsure' => $spec !== null && empty($pressed[$a['name']]) && $ledger->isTalent($a['name'], $spec)], $kit);
+
             $out[] = [
                 'name' => explode('-', $p['name'])[0],
                 'side' => $p['side'],
@@ -265,10 +270,16 @@ class WatchPageService
     /** The spec's slug (its profile's file name), from the spec id the round stored. */
     private function specSlug(array $player): ?string
     {
-        static $slugs = [];
+        return $this->spec($player)?->slug;
+    }
+
+    /** The round's player's spec, from the spec id it stored. */
+    private function spec(array $player): ?\App\Models\Specialization
+    {
+        static $specs = [];
         $id = (string) ($player['specExternalId'] ?? '');
 
-        return $id === '' ? null : ($slugs[$id] ??= app(\App\Http\Services\ArenaLogService::class)->specForExternalId($id)?->slug);
+        return $id === '' ? null : ($specs[$id] ??= app(ArenaLogService::class)->specForExternalId($id));
     }
 
     /**

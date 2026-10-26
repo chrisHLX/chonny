@@ -114,6 +114,18 @@ class CooldownLedgerService
         return ! isset($this->talentNames[$spec->id][$name]) || in_array($name, $build['names'], true);
     }
 
+    /**
+     * Whether $name is a talent or PvP talent for this spec (something a player may not have taken),
+     * rather than a baseline spell. The Watch page marks such a button on a round stored without the
+     * player's own talents, unless the game shows them pressing it.
+     */
+    public function isTalent(string $name, Specialization $spec): bool
+    {
+        $this->talentNames[$spec->id] ??= $this->loadTalentNames($spec);
+
+        return isset($this->talentNames[$spec->id][$name]);
+    }
+
     /** @return array<string, true> */
     private function loadTalentNames(Specialization $spec): array
     {
