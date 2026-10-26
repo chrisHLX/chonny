@@ -1787,3 +1787,53 @@ set Cindogz against.
 **Not measurable.** "Follows my lead" and "can't adapt when it is unstructured" are comms and
 decisions; the log holds neither (Part 14.2, 20.5). Casts a minute by phase was tried as an
 "unstructured play" proxy and dropped: short windows and automatic casts made it meaningless.
+
+### 26 Oct: the go model against the video, one game (RMD, 25 Oct 19:11)
+
+The first game read against its own recording (the app's Videos tab, version 0.5.9). Crawlordx
+(Feral), Doubletapz (BM), Nearó (Disc) against Noitabretsam (Fire), Christopher (Subtlety), Netsirk
+(Resto Druid); lost. One game: a lead about the measure, not a finding about play.
+`tools/match-review/goread.php "2026-10-25 19:1" 0-40 50-80`.
+
+**A go's start is its setup, not its pressure.** Their first go starts at 5.2s, the Sap on Nearó.
+Doubletapz is at 100% until the Kidney Shot at 21.1s (Shadow Blades 14.5s, Combustion 22.1s) and
+at 70% by 25s. The definition (28 Sep: links joined from the chain's end, so an opening healer CC
+belongs) puts 16s of setup in front of the damage. Chriso, watching it: the go should read from
+the Kidney Shot, or the health spike. Both are true: the Sap is part of the go and the pressure
+starts later. A go needs two times, its setup and its pressure.
+
+**Goes run too long.** Our go #1 runs 55.3s to 160.6s, 105 seconds, holding three Feral Frenzies,
+two Bestial Wraths and an Incarnation. Each offensive cooldown counts as ending 5s after its press
+and joins anything within 10s, so a team pressing a cooldown every 10 to 13 seconds never ends a
+go. All six of our goes run past 20 seconds (21s to 105s), and four of their six.
+
+**What happened at 55s, as Chriso read it from the video, and the log agrees:**
+- Feral Frenzy at 55.3s with no control on anyone. Noitabretsam 84% to 80%, back to 99% by 58s.
+  Ring of Frost on Crawlordx at 57.2s.
+- Three controls on Netsirk in 1.4s: Binding Shot (stun, 60.4 to 63.5), Psychic Scream (disorient,
+  61.4 to 67.4), Freezing Trap (incapacitate, 61.8 to 67.8). Three diminishing returns, 7.4s of
+  lockout; chained, about 15s.
+- Their answer inside that window, with no offensive cooldown and so no "go" in our model: Ring of
+  Frost on Doubletapz (62.1 to 67.7), Cheap Shot on Nearó (64.9) and on Crawlordx (65.9), Kidney
+  Shot on Doubletapz (67.4 to 71.9). Noitabretsam stays at 89% or more while their healer is
+  locked. Our damage lands after Bestial Wrath at 73.9s, once the healer is free and Nearó is under
+  Polymorph, Blind and Cyclone (66 to 78): Noitabretsam to 42% at 77s, full at 80s.
+
+**What the model does not show.** Control without an offensive cooldown is never a go, so the
+answer that ended our go is invisible on the Watch page and the card. The timeline holds every
+lockout span (version 16), so drawing them is a page change, not a re-measure.
+
+**Not in the log:** whether Feral Frenzy was early or the control late (comms, positions), and
+whether the Trap was meant to follow the Fear.
+
+**Checked on video by Chriso, the same day.** The two control-led falls pressureread.php found
+(Doubletapz to 41% at 69-84s, to 5% at 163-190s, no offensive cooldown in either) are "100% goes".
+What he saw in them:
+- The Kidney Shot on the kill target lands almost exactly as the control lands on our healer. The
+  sync is the go; they seem to go off their control whenever they get it, not off cooldowns.
+- The chain: Cheap Shot, Kidney Shot, then Polymorph, Maim, Cyclone from the Resto Druid. "If they
+  had offensive cooldowns I wonder if they kill." The Rogue's Shadow Dance is visible in the second.
+- "I'm free, I should have stopped the Cyclone": a cast on our healer, with Crawlordx not locked out.
+- Diminishing returns, and well-timed immunities (Fade, a trinket) are worth a great deal in these
+  moments.
+"Those 2 moments are rich with mistakes and good plays": the falls are the unit worth reviewing.

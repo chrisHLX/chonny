@@ -336,6 +336,64 @@ a team will react, which the go on its own never can.
 comparison. For a game's detail (`killread.php 20:13`) each go prints as its chain, with CC marked
 `*`, each CC labelled `> healer`, `> target` or `> cross`, and every gap written `-3.2s->`.
 
+#### The go, revised: commitment and pressure (Chriso, 2026-10-26; being checked against video)
+
+Watching 25 Oct 19:11 on video against the page showed two faults in the rule above. A go's start
+was its setup, 16s before any damage (the opening Sap), and goes ran far too long: a team pressing
+something every 10-13s never ends a chain, so one "go" held 105s (26% of all goes ran past 45s).
+Agreed with Chriso: a go is two separate things, measured apart.
+
+1. **Commitment: what a side put in.** Its offensive cooldowns while they are live, and its
+   lockout control on the other team. A go is a stretch of commitment holding at least one
+   offensive cooldown; it stays one go while anything is live, so cooldowns pressed apart read as
+   **one go, spread**, and it ends when nothing has been live for about 5s. The setup (control
+   before the first cooldown) is part of it.
+2. **Intensity: how tightly it was stacked.** Cooldowns and control live at once. Drawn darker
+   when stacked, paler when spread.
+3. **Pressure: what it did.** The other team's **health actually lost**, second by second, net of
+   healing, because that is what pressure feels like. It starts at the first loss after the first
+   cooldown and has its own peak. Healing that makes health dip and recover is pressure answered;
+   health that does not move is a go that failed.
+4. **Why a go failed, from the log:** the attackers locked out while their cooldowns were live,
+   the defenders' defensives, their healer free and healing. When none of these explains it, the
+   page says the log cannot see why (kiting, line of sight, range), and does not guess.
+5. **Pressed alone:** an offensive cooldown with nothing else live is not a go. It is flagged as
+   pressed alone, out of sync with the team, for a look, never as a fault.
+
+**Working means the player watches the video and agrees with what the page says.** It must hold
+across comps (TSG, Ret/War, casters), which is checked comp by comp before it replaces the rule
+above. `tools/match-review/gorule.php` and `pressure.php` were the prototypes.
+
+**What the tests showed (2026-10-26, 688 stored rounds).** Cutting goes by cooldown timing fails
+whichever way it is done, because a team presses something every 10-20s:
+- *A stretch of anything live* never ends: arena control never runs dry, and one go held 76s
+  (`gomodel.php`).
+- *Cooldowns within 10s of the last* split Feral Frenzy from the Bestial Wrath 18s later, which
+  Chriso reads as one spread go (`gorule.php`).
+- *Cooldowns within 20s of the first* pair whatever falls near an arbitrary anchor: a Bestial Wrath
+  that closed one go started the next and took in a Feral Frenzy 16s later (`gomodel.php --anchor`).
+
+**Pressure first works** (`pressureread.php`): find where a player's health fell (20+ points, until
+back within 10, or dead), then attach the commitment from 10s before. On 19:11 the opener starts at
+23s, the fall, not the Sap; episodes run a median 14s; 95% of all offensive cooldowns land inside
+one, leaving a short list that moved nobody. And it found what the cooldown rule never could: their
+three worst falls on Doubletapz (to 41%, 5% and 32%) came with **no offensive cooldown**, control
+on all three of us and a Kidney Shot, so under the rule above they were not goes at all.
+
+**Built as `FallsService` (2026-10-26)**, after Chriso watched both control-led falls on video:
+"100% they are goes". It reads a stored round (version 16) when a page is drawn rather than being
+measured: everything a fall needs is already stored (health a second at a time, every control
+span, the offensive presses in the goes' links, the defensives), and a measure version bump would
+have made every player's app send all its games to the one-core server again. Reading also lets the
+thresholds change per comp with nothing re-measured. The Kidney Shot on the kill
+target lands with the control on the healer; that sync is stored per fall. The old `goes` stay
+beside them, because twenty pages and tools read them (the card, Improve, the comp library,
+population norms, the spec guides); each moves to falls on its own, checked, and the old rule goes
+when the last one has. Falls do not need an offensive cooldown, so the comp-by-comp check is a
+check of the thresholds (20 down, back within 10, 10s lead), not of the idea. Over 688 stored
+rounds: 10,594 falls, 89% cooldown-led, 10% control-led, 2% damage; 763 offensive cooldowns moved
+nobody, 272 of them pressed alone.
+
 #### Definitions that were tried and are wrong
 
 - **Anything on a 60s+ cooldown that is not defensive** (the first pass). This let a lone Tremor
