@@ -266,6 +266,32 @@ class WatchPageTest extends TestCase
     }
 
     /**
+     * A game with no recording still gets its timeline (2026-10-26): the card's "Timeline" opens
+     * watch-{lobby}.html, built from the stored rounds and run on the game's own clock.
+     */
+    public function test_a_game_without_a_video_gets_its_timeline_on_the_games_own_clock(): void
+    {
+        $user = User::factory()->create();
+        $token = $user->issueCoachToken();
+        $lobby = str_repeat('cd', 16);
+        ArenaRound::create([
+            'user_id' => $user->id, 'lobby_id' => $lobby, 'match_id' => 'm', 'roster_key' => 'r',
+            'bracket' => '3v3', 'sequence' => 1, 'played_at' => '2026-10-26 20:00:00',
+            'payload' => ['analysis' => ['won' => true, 'deaths' => [], 'players' => [],
+                'goes' => [['side' => 'us', 'from' => 20.0, 'to' => 40.0, 'target' => null, 'chain' => 'Rake']]]],
+        ]);
+
+        $html = $this->withToken($token)->get(route('api.coach.page', "watch-{$lobby}.html"))->assertOk()->getContent();
+        $this->assertStringContainsString('var blankMode = true', $html);
+        $this->assertStringContainsString('No recording of this game', $html);
+        $this->assertStringContainsString('href="'.$lobby.'.html"', $html, 'back to the game card');
+
+        // Only the key's own games, and the browser serves the same page to its owner.
+        $this->withToken(User::factory()->create()->issueCoachToken())->get(route('api.coach.page', "watch-{$lobby}.html"))->assertNotFound();
+        $this->actingAs($user)->get(route('coach.page', "watch-{$lobby}.html"))->assertOk()->assertSee('No recording of this game');
+    }
+
+    /**
      * A recording started at the gates has its first frame after the START line (25 Oct 16:15: START
      * 07.822, first frame 08.405), so it is found by its rounds, not by its first frame.
      */

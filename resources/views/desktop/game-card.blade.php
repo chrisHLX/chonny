@@ -36,6 +36,9 @@
     @else
         <span class="chip {{ $g['won'] ? 'won' : 'lost' }}">{{ $g['won'] ? 'WON' : 'LOST' }}</span>
     @endif
+    @if (! empty($g['watch']))
+        <a href="{{ $g['watch'] }}" style="float: right; margin-left: 10px; background: #FFFFFF; color: #000000; border-radius: 9999px; padding: 6px 14px; font-weight: 700; font-size: 12.5px; text-decoration: none">&#9654; Timeline</a>
+    @endif
     <span class="title">{{ $g['bracket'] }}</span>
     <span class="when muted">{{ $g['playedAt'] }}@if ($g['kind'] === 'game') &nbsp;&middot;&nbsp; {{ $g['duration'] }}@endif</span>
     @if ($g['kind'] === 'game' && ($g['mmr']['us'] ?? null))

@@ -43,6 +43,14 @@
     .rib .c.big { box-shadow: 0 0 0 1.5px #E8B84B; z-index: 2; }
     .rib .c .lt { display: block; font-size: 8px; color: #B3B3B3; text-align: center; line-height: 18px; }
     .rib .sec { position: absolute; top: 0; height: 100%; width: 1px; background: #232323; }
+    .blank { display: none; height: 22vh; min-height: 120px; background: #000000; color: #6A6A6A; align-items: center; justify-content: center; flex-direction: column; gap: 6px; }
+    .blank .big { font-size: 34px; font-weight: 800; color: #FFFFFF; font-variant-numeric: tabular-nums; }
+    .blank .small { font-size: 12px; }
+    .bar { display: none; align-items: center; gap: 10px; padding: 8px 10px; background: #121212; }
+    .bar button { background: #FFFFFF; color: #000000; border: 0; border-radius: 9999px; width: 34px; height: 34px; font-size: 14px; font-weight: 800; cursor: pointer; }
+    .bar input[type=range] { flex: 1; }
+    .bar .tm { font-size: 12.5px; color: #B3B3B3; font-variant-numeric: tabular-nums; min-width: 84px; text-align: right; }
+    .bar select { background: #2A2A2A; color: #FFFFFF; border: 0; border-radius: 6px; padding: 4px 6px; font-size: 12px; }
     .frames { display: none; gap: 14px; padding: 8px 10px 6px; background: #121212; }
     .frames .side { flex: 1; min-width: 0; }
     .frames .who { font-size: 10.5px; color: #6A6A6A; font-weight: 700; text-transform: uppercase; letter-spacing: .06em; margin-bottom: 2px; }
@@ -149,6 +157,14 @@
 <div class="wrap">
 
     <div id="stage" class="stage" style="display:none"><video id="vid" controls preload="metadata"></video>
+        {{-- No recording of this game (2026-10-26): a clock drives everything the video's time does. --}}
+        <div id="blank" class="blank"><span class="big" id="blank-t">0:00</span><span class="small">No recording of this game: press play to run the game's own clock</span></div>
+        <div id="bar" class="bar">
+            <button type="button" id="bar-play" title="Play or pause (space)">&#9654;</button>
+            <input type="range" id="bar-seek" min="0" max="100" step="0.1" value="0">
+            <span class="tm" id="bar-tm">0:00 / 0:00</span>
+            <select id="bar-speed" title="Speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select>
+        </div>
         <div id="frames" class="frames"></div>
         <div id="frames-note" class="frames-note">This game was stored before each player's own talents were kept: it shows each spec's usual buttons, leaving out talents nobody pressed in it. Games from 26 Oct on show each player's own talents.</div>
     </div>
@@ -319,6 +335,7 @@
         return;
     }
 
+    var blankMode = @json(! empty($noVideo));
     var blocks = document.getElementsByClassName('rnd');
     for (var i = 0; i < blocks.length; i++) {
         rounds.push({
@@ -334,6 +351,60 @@
         offset = Math.round(v * 10) / 10;
         off.value = offset;
         offv.textContent = offset.toFixed(1) + 's';
+    }
+
+    // No recording: a clock with the video's API (currentTime, paused, play, pause, events), so the
+    // rails, the frames, the casts line and Previous/Next run exactly as they do over a video.
+    if (blankMode && rounds.length) {
+        var last = rounds[rounds.length - 1];
+        var total = last.start + last.dur + 5;
+        var clock = { currentTime: 0, paused: true, src: 'clock', duration: total, rate: 1, _h: {}, _at: 0,
+            addEventListener: function (n, f) { (this._h[n] = this._h[n] || []).push(f); },
+            emit: function (n) { (this._h[n] || []).forEach(function (f) { f(); }); },
+            play: function () {
+                var self = this;
+                if (!self.paused) { return Promise.resolve(); }
+                if (self.currentTime >= self.duration) { self.currentTime = 0; }
+                self.paused = false;
+                self._at = performance.now();
+                (function tick(now) {
+                    if (self.paused) { return; }
+                    self.currentTime = Math.min(self.duration, self.currentTime + self.rate * (now - self._at) / 1000);
+                    self._at = now;
+                    self.emit('timeupdate');
+                    if (self.currentTime >= self.duration) { self.pause(); return; }
+                    window.requestAnimationFrame(tick);
+                })(self._at);
+                self.emit('play');
+                return Promise.resolve();
+            },
+            pause: function () { this.paused = true; this.emit('pause'); }
+        };
+        vid = clock;
+        var fmt = function (s) { s = Math.max(0, s); return Math.floor(s / 60) + ':' + ('0' + Math.floor(s % 60)).slice(-2); };
+        var seekBar = document.getElementById('bar-seek'), playBtn = document.getElementById('bar-play');
+        seekBar.max = total;
+        clock.addEventListener('timeupdate', function () {
+            seekBar.value = clock.currentTime;
+            document.getElementById('blank-t').textContent = fmt(clock.currentTime);
+            document.getElementById('bar-tm').textContent = fmt(clock.currentTime) + ' / ' + fmt(total);
+        });
+        clock.addEventListener('play', function () { playBtn.innerHTML = '&#10074;&#10074;'; });
+        clock.addEventListener('pause', function () { playBtn.innerHTML = '&#9654;'; });
+        playBtn.addEventListener('click', function () { clock.paused ? clock.play() : clock.pause(); });
+        seekBar.addEventListener('input', function () { clock.currentTime = parseFloat(seekBar.value) || 0; clock.emit('timeupdate'); clock.emit('seeked'); });
+        document.getElementById('bar-speed').addEventListener('change', function () { clock.rate = parseFloat(this.value) || 1; });
+        document.addEventListener('keydown', function (e) {
+            if (e.key === ' ' && !(e.target && /input|textarea|select|button/i.test(e.target.tagName))) { e.preventDefault(); clock.paused ? clock.play() : clock.pause(); }
+        });
+        document.getElementById('vid').style.display = 'none';
+        document.getElementById('blank').style.display = 'flex';
+        document.getElementById('bar').style.display = 'flex';
+        stage.style.display = 'block';
+        drop.style.display = 'none';
+        var offRow = document.querySelector('.offset');
+        if (offRow) { offRow.style.display = 'none'; }
+        window.setTimeout(function () { clock.emit('timeupdate'); }, 0);
     }
 
     file.addEventListener('change', function () {

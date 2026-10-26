@@ -118,6 +118,9 @@ class GameCardService
 
             $vm = $shuffle ? $this->shuffleModel($rounds, $xp, $notesByRound) : $this->gameModel($rounds->first(), $xp, $notesByRound);
             $vm['gameNotes'] = $this->gameNoteRows($notesByGame[$lobby] ?? []);
+            // The website's cards (app and browser) open the game's timeline page; the local IE11
+            // cards cannot draw it.
+            $vm['watch'] = config('desktop.web_assets') ? "watch-{$lobby}.html" : null;
 
             $games[$lobby] = $entry + ['html' => view('desktop.game-card', ['g' => $vm])->render()];
         }

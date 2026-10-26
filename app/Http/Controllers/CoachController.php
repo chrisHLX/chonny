@@ -60,6 +60,14 @@ class CoachController extends Controller
     /** One page, from the viewer's own folder only. */
     public function page(Request $request, string $file)
     {
+        // A game's timeline (2026-10-26), built from the stored rounds when asked.
+        if (preg_match('/^watch-([0-9a-f]{32})\.html$/', $file, $m)) {
+            $html = app(\App\Http\Services\WatchPageService::class)->html($request->user()->id, $m[1], null, ['game' => $m[1].'.html', 'folder' => null]);
+            abort_if($html === null, 404);
+
+            return response($html, 200, ['Content-Type' => 'text/html; charset=UTF-8', 'Cache-Control' => 'private, no-cache']);
+        }
+
         $path = BuildCoachPages::dir($request->user()->id).'/'.$file;
         abort_unless(File::exists($path), 404);
 

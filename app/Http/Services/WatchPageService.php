@@ -131,6 +131,30 @@ class WatchPageService
     }
 
     /**
+     * One lobby's Watch page as HTML for a player's own games, or null when they have no such lobby.
+     * With no recording it runs on the game's own clock (`noVideo`): every game gets the timeline,
+     * the frames and the casts line, recorded or not (2026-10-26).
+     *
+     * @param  array{name: string, url: string, started: float, rounds?: array<int, float>}|null  $recording
+     * @param  array<string, ?string>|null  $app  the desktop app's links (mc-app://...)
+     */
+    public function html(int $userId, string $lobby, ?array $recording = null, ?array $app = null): ?string
+    {
+        $rounds = ArenaRound::where('user_id', $userId)->where('lobby_id', $lobby)->get();
+        if ($rounds->isEmpty()) {
+            return null;
+        }
+        // Icons as /storage/...: these pages are shown with the site as their base (DesktopAsset).
+        config(['desktop.web_assets' => true]);
+        $page = $this->page($rounds, $recording);
+        if ($page === null) {
+            return null;
+        }
+
+        return view('desktop.watch', $page + ['app' => $app, 'noVideo' => $recording === null])->render();
+    }
+
+    /**
      * Arena frames that follow the video (2026-10-26): every player's buttons with their cooldowns,
      * when each was pressed, when the player was locked out and when they died. The page works out
      * at each moment which are ready and which are coming back (and in how long).

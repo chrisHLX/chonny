@@ -50,6 +50,15 @@ class CoachPagesController extends Controller
             return response()->json(['status' => 'unauthorised'], 401);
         }
 
+        // A game's timeline, with no recording (2026-10-26): built from the stored rounds when asked,
+        // so the card's "Watch the timeline" opens in the app like any other page.
+        if (preg_match('/^watch-([0-9a-f]{32})\.html$/', $file, $m)) {
+            $html = app(WatchPageService::class)->html($user->id, $m[1], null, ['game' => $m[1].'.html', 'folder' => null]);
+            abort_if($html === null, 404);
+
+            return response($html, 200, ['Content-Type' => 'text/html; charset=UTF-8', 'Cache-Control' => 'private, no-cache', 'ETag' => '"'.md5($html).'"']);
+        }
+
         $path = BuildCoachPages::dir($user->id).'/'.$file;
         abort_unless(File::exists($path), 404);
 
