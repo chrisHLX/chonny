@@ -116,8 +116,8 @@ class CooldownLedgerService
 
     /**
      * Whether $name is a talent or PvP talent for this spec (something a player may not have taken),
-     * rather than a baseline spell. The Watch page marks such a button on a round stored without the
-     * player's own talents, unless the game shows them pressing it.
+     * rather than a baseline spell. The Watch page leaves such a button out on a round stored without
+     * the player's own talents, unless the game shows them pressing it.
      */
     public function isTalent(string $name, Specialization $spec): bool
     {

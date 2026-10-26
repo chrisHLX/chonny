@@ -213,9 +213,12 @@ class WatchPageService
                 }
             }
             // The usual build guesses at talents: a talent never pressed in this game may not have
-            // been taken (Crawlordx was shown Typhoon on 19:11 and had not taken it). Pressed, it was.
+            // been taken (Crawlordx was shown Typhoon on 19:11 and had not taken it), so it is left
+            // out. Pressed, it was taken. Chriso, 26 Oct: no marking, only what is right.
             $spec = $own ? null : $this->spec($p);
-            $kit = array_map(fn ($a) => $a + ['unsure' => $spec !== null && empty($pressed[$a['name']]) && $ledger->isTalent($a['name'], $spec)], $kit);
+            if ($spec !== null) {
+                $kit = array_values(array_filter($kit, fn ($a) => ! empty($pressed[$a['name']]) || ! $ledger->isTalent($a['name'], $spec)));
+            }
 
             $out[] = [
                 'name' => explode('-', $p['name'])[0],

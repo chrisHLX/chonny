@@ -57,7 +57,6 @@
     .ab img { width: 100%; height: 100%; display: block; }
     .ab .lt { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; font-size: 9px; color: #B3B3B3; }
     .ab.cd img { filter: grayscale(1) brightness(.4); }
-    .ab.unsure { opacity: .45; box-shadow: inset 0 0 0 1.5px #B3B3B3; outline: 1px dashed #B3B3B3; outline-offset: -1px; }
     .ab .cdt { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; font-size: 10.5px; font-weight: 800; color: #FFFFFF; text-shadow: 0 0 3px #000, 0 0 2px #000; }
     .ab .ch { position: absolute; right: 1px; bottom: -1px; font-size: 9.5px; color: #E8B84B; font-weight: 800; text-shadow: 0 0 2px #000; }
     .frames-note { display: none; padding: 0 10px 6px; font-size: 11px; color: #6A6A6A; background: #121212; }
@@ -151,7 +150,7 @@
 
     <div id="stage" class="stage" style="display:none"><video id="vid" controls preload="metadata"></video>
         <div id="frames" class="frames"></div>
-        <div id="frames-note" class="frames-note">Buttons from each spec's usual build: this game was stored before each player's own talents were kept. A dashed button is a talent nobody saw pressed in this game, so they may not have taken it. Games from 26 Oct on show each player's own talents.</div>
+        <div id="frames-note" class="frames-note">This game was stored before each player's own talents were kept: it shows each spec's usual buttons, leaving out talents nobody pressed in it. Games from 26 Oct on show each player's own talents.</div>
     </div>
 
     <div id="drop" class="drop">
@@ -535,11 +534,10 @@
         cells.forEach(function (c) {
             var s = stateAt(c.a, t);
             var cooling = s.ready === 0;
-            c.el.className = 'ab' + (cooling ? ' cd' : '') + (c.a.unsure ? ' unsure' : '');
+            c.el.className = cooling ? 'ab cd' : 'ab';
             c.el.querySelector('.cdt').textContent = cooling && s.back !== null ? Math.ceil(s.back) : '';
             c.el.querySelector('.ch').textContent = c.a.charges > 1 ? s.ready : '';
-            c.el.title = c.a.name + ' (' + Math.round(c.a.cd) + 's): ' + (cooling ? 'back in ' + Math.ceil(s.back) + 's at the latest' : 'ready') + (c.a.charges > 1 ? ', ' + s.ready + ' of ' + c.a.charges + ' charges' : '')
-                + (c.a.unsure ? '. A talent never pressed in this game: they may not have taken it' : '');
+            c.el.title = c.a.name + ' (' + Math.round(c.a.cd) + 's): ' + (cooling ? 'back in ' + Math.ceil(s.back) + 's at the latest' : 'ready') + (c.a.charges > 1 ? ', ' + s.ready + ' of ' + c.a.charges + ' charges' : '');
             if (rows.indexOf(c.row) < 0) { rows.push(c.row); c.row.p = c.p; }
         });
         drawRibbons(t);
