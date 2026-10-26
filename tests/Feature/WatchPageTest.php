@@ -289,6 +289,11 @@ class WatchPageTest extends TestCase
         // Only the key's own games, and the browser serves the same page to its owner.
         $this->withToken(User::factory()->create()->issueCoachToken())->get(route('api.coach.page', "watch-{$lobby}.html"))->assertNotFound();
         $this->actingAs($user)->get(route('coach.page', "watch-{$lobby}.html"))->assertOk()->assertSee('No recording of this game');
+
+        // And an admin opening the player's card from /admin/matches follows its Timeline link too.
+        $admin = tap(User::factory()->create())->forceFill(['is_admin' => true]);
+        $admin->save();
+        $this->actingAs($admin)->get(route('admin.matches.card', [$user->id, "watch-{$lobby}.html"]))->assertOk()->assertSee('No recording of this game');
     }
 
     /**
