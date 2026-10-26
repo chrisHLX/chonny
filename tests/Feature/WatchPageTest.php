@@ -188,6 +188,37 @@ class WatchPageTest extends TestCase
         $this->assertStringContainsString('class="unmoved" style="left: 10.1%"', $html);
     }
 
+    /**
+     * Arena frames: each player's buttons, from their own kit when the round stored it. A button the
+     * data gives a cooldown but the player pressed again and again before it could be back is not a
+     * cooldown for them (Pyroblast "30s", 36 presses on 19:11), and one press logged twice is one.
+     */
+    public function test_the_frames_keep_real_cooldowns_and_count_a_press_logged_twice_once(): void
+    {
+        $user = User::factory()->create();
+        $round = ArenaRound::create([
+            'user_id' => $user->id, 'lobby_id' => 'lobby-f', 'match_id' => 'm', 'roster_key' => 'r',
+            'bracket' => '3v3', 'sequence' => 1, 'played_at' => '2026-10-25 19:10:59',
+            'payload' => ['analysis' => ['version' => 16, 'won' => false, 'goes' => [], 'deaths' => [['t' => 90.0, 'who' => 'E-1', 'side' => 'them']],
+                'players' => [['guid' => 'E-1', 'name' => 'Christopher-Realm-US', 'spec' => 'Subtlety Rogue', 'classSlug' => 'rogue', 'side' => 'them',
+                    'kit' => [['name' => 'Kidney Shot', 'kind' => 'control', 'cd' => 30.0, 'charges' => 1], ['name' => 'Pyroblast', 'kind' => 'offensive', 'cd' => 30.0, 'charges' => 1],
+                        ['name' => 'Cheap Shot', 'kind' => 'control', 'cd' => 12.0, 'charges' => 2]]]],
+                'timeline' => ['hp' => [], 'control' => [['E-1', 'P-1', 'Freezing Trap', 'Incapacitate', 40.0, 46.0]],
+                    'casts' => ['E-1' => [[21.0, 'Kidney Shot', null], [21.4, 'Kidney Shot', null], [67.0, 'Kidney Shot', null],
+                        [10.0, 'Pyroblast', null], [14.0, 'Pyroblast', null], [19.0, 'Pyroblast', null], [25.0, 'Pyroblast', null]]]]]],
+        ]);
+
+        $page = app(\App\Http\Services\WatchPageService::class)->page(collect([$round]));
+        $frame = $page['rounds'][0]['frames'][0];
+
+        $this->assertFalse($frame['usual'], "the round stored this player's own kit");
+        $this->assertSame(['Kidney Shot'], array_column($frame['abilities'], 'name'), 'Pyroblast pressed before it could be back; Cheap Shot under 15s');
+        $this->assertSame([21.0, 67.0], $frame['abilities'][0]['presses'], 'two presses 0.4s apart are one');
+        $this->assertSame([[40.0, 46.0, 'Freezing Trap']], $frame['locked']);
+        $this->assertSame(90.0, $frame['died']);
+        $this->assertStringContainsString('class="frames-data"', view('desktop.watch', $page)->render());
+    }
+
     public function test_defensives_are_drawn_and_listed_by_name(): void
     {
         $html = $this->render([$this->round(['duration' => 100, 'defensives' => [

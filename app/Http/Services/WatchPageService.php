@@ -81,6 +81,7 @@ class WatchPageService
                 'deaths' => array_values($analysis['deaths'] ?? []),
                 'defensives' => $this->defensives($analysis),
                 ...$this->falls($analysis),
+                'frames' => $this->abilities($analysis),
             ];
         }
 
@@ -127,6 +128,125 @@ class WatchPageService
         return collect($analysis['players'] ?? [])
             ->mapWithKeys(fn ($p) => [$p['guid'] ?? '' => Str::before($p['name'] ?? '?', '-')])
             ->all();
+    }
+
+    /**
+     * Arena frames that follow the video (2026-10-26): every player's buttons with their cooldowns,
+     * when each was pressed, when the player was locked out and when they died. The page works out
+     * at each moment which are ready and which are coming back (and in how long).
+     *
+     * The buttons are the player's own, from their talents, when the round stored them
+     * (RoundAnalysisService::abilities(), `players[].kit`); otherwise their spec's usual build, and
+     * the frame says so. A press only shows what was pressed: a button never pressed reads ready, and
+     * cooldown reduction from spending is not in the data, so "back in" is the latest it can be.
+     *
+     * @return array<int, array<string, mixed>>
+     */
+    private function abilities(array $analysis): array
+    {
+        $ledger = app(CooldownLedgerService::class);
+        $colors = config('wow_classes.colors', []);
+        $casts = $analysis['timeline']['casts'] ?? [];
+        $lockout = ['Stun', 'Silence', 'Disorient', 'Incapacitate'];
+        $died = [];
+        foreach ($analysis['deaths'] ?? [] as $d) {
+            if (isset($d['who'], $d['t'])) {
+                $died[$d['who']] ??= (float) $d['t'];
+            }
+        }
+
+        $out = [];
+        foreach ($analysis['players'] ?? [] as $p) {
+            if (! isset($p['guid'], $p['side'])) {
+                continue;
+            }
+            $profile = $ledger->profile($p['classSlug'] ?? null, $this->specSlug($p));
+            $icons = [];
+            $defaults = [];
+            foreach (['offensive', 'answers', 'control', 'interrupts'] as $kind) {
+                foreach ($profile[$kind] ?? [] as $a) {
+                    $icons[$a['name']] ??= $a['icon'] ?? null;
+                    if (($a['cooldown'] ?? 0) > 0 && ! isset($defaults[$a['name']])) {
+                        $defaults[$a['name']] = ['name' => $a['name'], 'kind' => $kind, 'cd' => (float) $a['cooldown'], 'charges' => (int) ($a['charges'] ?? 1) ?: 1];
+                    }
+                }
+            }
+            $own = is_array($p['kit'] ?? null);
+            $kit = $own ? $p['kit'] : array_values($defaults);
+            // One press logged twice (on two targets, or by clones) within a moment is one press.
+            $pressed = [];
+            foreach ($casts[$p['guid']] ?? [] as [$t, $spell]) {
+                $last = $pressed[$spell][count($pressed[$spell] ?? []) - 1] ?? null;
+                if ($last === null || (float) $t - $last > self::SAME_PRESS) {
+                    $pressed[$spell][] = (float) $t;
+                }
+            }
+            // Only real cooldowns: one the data gives a cooldown but this player pressed again and
+            // again before it could be back is not one for them (Pyroblast "30s", pressed 36 times
+            // in five minutes on 19:11), and showing it coming back would be wrong.
+            $kit = array_values(array_filter($kit, fn ($a) => $a['cd'] >= self::MIN_COOLDOWN
+                && $this->earlyPresses($pressed[$a['name']] ?? [], (float) $a['cd'], (int) $a['charges']) <= max(1, 0.25 * count($pressed[$a['name']] ?? []))));
+            $locked = [];
+            foreach ($analysis['timeline']['control'] ?? [] as [$on, , $spell, $dr, $from, $to]) {
+                if ($on === $p['guid'] && in_array($dr, $lockout, true)) {
+                    $locked[] = [(float) $from, (float) $to, $spell];
+                }
+            }
+            $out[] = [
+                'name' => explode('-', $p['name'])[0],
+                'side' => $p['side'],
+                'spec' => $p['spec'],
+                'color' => $colors[$p['classSlug'] ?? ''] ?? '#B3B3B3',
+                'usual' => ! $own,
+                'died' => $died[$p['guid']] ?? null,
+                'locked' => $locked,
+                'abilities' => array_map(fn ($a) => $a + [
+                    'icon' => isset($icons[$a['name']]) ? \App\Support\DesktopAsset::icon($icons[$a['name']]) : null,
+                    'presses' => $pressed[$a['name']] ?? [],
+                ], $kit),
+            ];
+        }
+
+        return $out;
+    }
+
+    /** Presses closer than this are one press logged twice. */
+    private const SAME_PRESS = 1.5;
+
+    /** Shorter cooldowns are rotation, not a button worth tracking in the frames. */
+    private const MIN_COOLDOWN = 15.0;
+
+    /** Presses made while every charge should still have been cooling. */
+    private function earlyPresses(array $presses, float $cd, int $charges): int
+    {
+        $max = max(1, $charges);
+        $ready = $max;
+        $back = null;
+        $early = 0;
+        foreach ($presses as $t) {
+            while ($ready < $max && $back !== null && $back <= $t) {
+                $ready++;
+                $back = $ready < $max ? $back + $cd : null;
+            }
+            if ($ready < 1) {
+                $early++;
+                $ready = 1;
+                $back = $ready < $max ? $back : null;
+            }
+            $ready--;
+            $back ??= $t + $cd;
+        }
+
+        return $early;
+    }
+
+    /** The spec's slug (its profile's file name), from the spec id the round stored. */
+    private function specSlug(array $player): ?string
+    {
+        static $slugs = [];
+        $id = (string) ($player['specExternalId'] ?? '');
+
+        return $id === '' ? null : ($slugs[$id] ??= app(\App\Http\Services\ArenaLogService::class)->specForExternalId($id)?->slug);
     }
 
     /**

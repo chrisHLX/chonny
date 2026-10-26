@@ -34,7 +34,24 @@
     .stage { background: #000000; border-radius: 8px; overflow: hidden; position: sticky; top: 0; z-index: 5;
         /* covers the page around it, so the timeline's edge labels do not show beside it when scrolled */
         box-shadow: 0 0 0 16px #121212; }
-    .stage video { display: block; width: 100%; max-height: 56vh; background: #000000; }
+    .stage video { display: block; width: 100%; max-height: 50vh; background: #000000; }
+    .frames { display: none; gap: 14px; padding: 8px 10px 6px; background: #121212; }
+    .frames .side { flex: 1; min-width: 0; }
+    .frames .who { font-size: 10.5px; color: #6A6A6A; font-weight: 700; text-transform: uppercase; letter-spacing: .06em; margin-bottom: 2px; }
+    .pl { display: flex; align-items: center; gap: 4px; padding: 2px 0; }
+    .pl .nm { width: 96px; flex: none; font-weight: 700; font-size: 12px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .pl .st { width: 74px; flex: none; font-size: 10.5px; color: #fca5a5; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .pl .abs { display: flex; gap: 3px; flex-wrap: wrap; }
+    .pl .gap { width: 6px; }
+    .pl.locked .abs { opacity: .4; }
+    .pl.dead { opacity: .25; }
+    .ab { position: relative; width: 24px; height: 24px; border-radius: 4px; overflow: hidden; background: #2A2A2A; flex: none; }
+    .ab img { width: 100%; height: 100%; display: block; }
+    .ab .lt { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; font-size: 9px; color: #B3B3B3; }
+    .ab.cd img { filter: grayscale(1) brightness(.4); }
+    .ab .cdt { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; font-size: 10.5px; font-weight: 800; color: #FFFFFF; text-shadow: 0 0 3px #000, 0 0 2px #000; }
+    .ab .ch { position: absolute; right: 1px; bottom: -1px; font-size: 9.5px; color: #E8B84B; font-weight: 800; text-shadow: 0 0 2px #000; }
+    .frames-note { display: none; padding: 0 10px 6px; font-size: 11px; color: #6A6A6A; background: #121212; }
     .drop { padding: 40px 20px; text-align: center; background: #181818; border: 1px dashed #3E3E3E; border-radius: 8px; }
     .drop b { display: block; font-size: 15px; margin-bottom: 4px; }
     .pick { display: inline-block; margin-top: 10px; padding: 8px 16px; border-radius: 9999px;
@@ -123,7 +140,10 @@
 
 <div class="wrap">
 
-    <div id="stage" class="stage" style="display:none"><video id="vid" controls preload="metadata"></video></div>
+    <div id="stage" class="stage" style="display:none"><video id="vid" controls preload="metadata"></video>
+        <div id="frames" class="frames"></div>
+        <div id="frames-note" class="frames-note">Buttons from each spec's usual build: this game was stored before each player's own talents were kept.</div>
+    </div>
 
     <div id="drop" class="drop">
         <b>Open your recording of this game</b>
@@ -211,6 +231,7 @@
         @endphp
 
         <div class="rnd" data-start="{{ $r['startOffset'] }}" data-dur="{{ $dur }}">
+            <script type="application/json" class="frames-data">@json($r['frames'] ?? [])</script>
             <div class="rh">
                 <b>{{ $r['label'] }}</b>
                 @if (! empty($r['result']))
@@ -400,6 +421,92 @@
             events = eventList();
         });
     }
+
+    // Arena frames at the playhead (2026-10-26): each player's buttons, ready or coming back.
+    for (var fi = 0; fi < rounds.length; fi++) {
+        var fd = rounds[fi].el.querySelector('.frames-data');
+        rounds[fi].frames = fd ? JSON.parse(fd.textContent || '[]') : [];
+    }
+    var framesEl = document.getElementById('frames'), framesNote = document.getElementById('frames-note');
+    var shownRound = null, cells = [];
+
+    /** A button's state at round time t: charges ready, or seconds until one is back. */
+    function stateAt(a, t) {
+        var max = a.charges || 1, charges = max, back = null;
+        function settle(until) {
+            while (charges < max && back !== null && back <= until) {
+                charges++;
+                back = charges < max ? back + a.cd : null;
+            }
+        }
+        for (var i = 0; i < a.presses.length && a.presses[i] <= t; i++) {
+            settle(a.presses[i]);
+            // Pressed with nothing ready: something cut the cooldown (the data holds no such cuts).
+            if (charges < 1) { charges = 1; back = charges < max ? back : null; }
+            charges--;
+            if (back === null) { back = a.presses[i] + a.cd; }
+        }
+        settle(t);
+        return { ready: charges, max: max, back: charges < max && back !== null ? back - t : null };
+    }
+
+    function buildFrames(r) {
+        framesEl.innerHTML = '';
+        cells = [];
+        var usual = false;
+        ['us', 'them'].forEach(function (side) {
+            var col = document.createElement('div');
+            col.className = 'side';
+            col.innerHTML = '<div class="who">' + (side === 'us' ? 'Your team' : 'Their team') + '</div>';
+            r.frames.filter(function (p) { return p.side === side; }).forEach(function (p) {
+                usual = usual || p.usual;
+                var row = document.createElement('div');
+                row.className = 'pl';
+                row.innerHTML = '<span class="nm" style="color:' + p.color + '" title="' + p.spec + '">' + p.name + '</span><span class="st"></span><span class="abs"></span>';
+                var abs = row.querySelector('.abs'), last = null;
+                p.abilities.forEach(function (a) {
+                    if (last !== null && a.kind !== last) { var g = document.createElement('span'); g.className = 'gap'; abs.appendChild(g); }
+                    last = a.kind;
+                    var b = document.createElement('span');
+                    b.className = 'ab';
+                    b.innerHTML = (a.icon ? '<img src="' + a.icon + '" alt="">' : '<span class="lt">' + a.name.substr(0, 2) + '</span>') + '<span class="cdt"></span><span class="ch"></span>';
+                    abs.appendChild(b);
+                    cells.push({ a: a, el: b, p: p, row: row });
+                });
+                col.appendChild(row);
+            });
+            framesEl.appendChild(col);
+        });
+        framesEl.style.display = r.frames.length ? 'flex' : 'none';
+        framesNote.style.display = usual ? 'block' : 'none';
+    }
+
+    function drawFrames(v) {
+        var r = null;
+        for (var i = 0; i < rounds.length; i++) { if (v - offset >= rounds[i].start - 60) { r = rounds[i]; } }
+        if (!r || !r.frames.length) { framesEl.style.display = 'none'; return; }
+        if (r !== shownRound) { buildFrames(r); shownRound = r; }
+        var t = v - offset - r.start, rows = [];
+        cells.forEach(function (c) {
+            var s = stateAt(c.a, t);
+            var cooling = s.ready === 0;
+            c.el.className = cooling ? 'ab cd' : 'ab';
+            c.el.querySelector('.cdt').textContent = cooling && s.back !== null ? Math.ceil(s.back) : '';
+            c.el.querySelector('.ch').textContent = c.a.charges > 1 ? s.ready : '';
+            c.el.title = c.a.name + ' (' + Math.round(c.a.cd) + 's): ' + (cooling ? 'back in ' + Math.ceil(s.back) + 's at the latest' : 'ready') + (c.a.charges > 1 ? ', ' + s.ready + ' of ' + c.a.charges + ' charges' : '');
+            if (rows.indexOf(c.row) < 0) { rows.push(c.row); c.row.p = c.p; }
+        });
+        rows.forEach(function (row) {
+            var p = row.p, st = row.querySelector('.st'), cc = null;
+            p.locked.forEach(function (l) { if (t >= l[0] && t < l[1]) { cc = l; } });
+            var dead = p.died !== null && t >= p.died;
+            row.className = 'pl' + (dead ? ' dead' : (cc ? ' locked' : ''));
+            st.textContent = dead ? 'dead' : (cc ? cc[2] + ' ' + Math.ceil(cc[1] - t) + 's' : '');
+        });
+    }
+    vid.addEventListener('timeupdate', function () { drawFrames(vid.currentTime); });
+    vid.addEventListener('seeked', function () { drawFrames(vid.currentTime); });
+    vid.addEventListener('loadedmetadata', function () { drawFrames(vid.currentTime); });
 
     vid.addEventListener('timeupdate', function () {
         var v = vid.currentTime - offset;

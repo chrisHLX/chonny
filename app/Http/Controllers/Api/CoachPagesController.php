@@ -106,6 +106,8 @@ class CoachPagesController extends Controller
             ];
         }
 
+        // Icons as /storage/... : the app shows this page with the site as its base (DesktopAsset).
+        config(['desktop.web_assets' => true]);
         $page = app(WatchPageService::class)->page($rounds, $recording);
         abort_if($page === null, 404);
         $page['app'] = [

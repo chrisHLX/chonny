@@ -657,6 +657,38 @@ class RoundAnalysisService
     }
 
     /**
+     * The buttons a player had, from THEIR talents (2026-10-26): every offensive cooldown, answer,
+     * control and interrupt in their spec's profile that they took, with the cooldown and charges
+     * their build gives it. The Watch page draws them as arena frames that follow the video
+     * (WatchPageService::abilities()). Stored beside the measure without a version bump, so no app
+     * has to send its games again: a round measured before it has no `kit`, and the page falls back
+     * to the spec's usual build.
+     *
+     * @return array<int, array{name: string, kind: string, cd: float, charges: int}>
+     */
+    private function abilities(\App\Models\Specialization $spec, array $build): array
+    {
+        $profile = $this->ledger->profile($spec->gameClass?->slug, $spec->slug);
+        $out = [];
+        foreach (['offensive', 'answers', 'control', 'interrupts'] as $kind) {
+            foreach ($profile[$kind] ?? [] as $a) {
+                $name = $a['name'] ?? null;
+                if (! $name || isset($out[$name]) || ! $this->ledger->takes($name, $spec, $build)) {
+                    continue;
+                }
+                $cd = $this->ledger->cooldown($name, $spec, $build);
+                $seconds = $cd['cd'] ?? (float) ($a['cooldown'] ?? 0);
+                if ($seconds <= 0) {
+                    continue;
+                }
+                $out[$name] = ['name' => $name, 'kind' => $kind, 'cd' => $seconds, 'charges' => (int) ($cd['charges'] ?? $a['charges'] ?? 1) ?: 1];
+            }
+        }
+
+        return array_values($out);
+    }
+
+    /**
      * A function from (side, moment) to that side's damage defensives back at that moment. Null when
      * the cooldowns cannot be resolved; a round is never left unanalysed because of the ledger.
      */
@@ -681,7 +713,8 @@ class RoundAnalysisService
                 }
                 $combatant = $this->arena->extractCombatantInfoFromLog($raw, $guid) ?? [];
                 $build = $this->ledger->build($combatant, $spec);
-                $kit[$guid] = ['ilvl' => $combatant['gear']['median'] ?? null, 'pvpTalents' => array_column($build['pvp'] ?? [], 'name')];
+                $kit[$guid] = ['ilvl' => $combatant['gear']['median'] ?? null, 'pvpTalents' => array_column($build['pvp'] ?? [], 'name'),
+                    'abilities' => $this->abilities($spec, $build)];
                 $names = array_unique(array_merge($this->ledger->profileAnswers($spec->gameClass?->slug, $spec->slug), array_keys($presses[$guid] ?? [])));
                 foreach ($names as $name) {
                     if ($cd = $this->ledger->cooldown($name, $spec, $build)) {
@@ -1804,6 +1837,7 @@ class RoundAnalysisService
                 'logger' => $u['id'] === $logger,
                 'ilvl' => $kit[$u['id']]['ilvl'] ?? null,
                 'pvpTalents' => $kit[$u['id']]['pvpTalents'] ?? [],
+                'kit' => $kit[$u['id']]['abilities'] ?? null,
             ];
         }
 
