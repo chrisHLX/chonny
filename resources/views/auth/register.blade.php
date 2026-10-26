@@ -77,12 +77,26 @@
         document.getElementById('register-form').addEventListener('submit', function (e) {
             e.preventDefault();
             var form = this;
+            // One submit (2026-10-26): reCAPTCHA takes about a second before the form goes, and a second
+            // press in that time sent it twice; the first signed in and replaced the token, and the
+            // second showed "419 Page Expired" over a sign-in that had worked.
+            if (form.dataset.sending) { return; }
+            form.dataset.sending = '1';
+            var button = form.querySelector('button[type="submit"], button:not([type])');
+            if (button) { button.disabled = true; button.style.opacity = '.6'; }
             grecaptcha.ready(function () {
                 grecaptcha.execute('{{ config('services.recaptcha.site_key') }}', {action: 'register'}).then(function (token) {
                     document.getElementById('g-recaptcha-response-register').value = token;
                     form.submit();
                 });
             });
+        });
+        // Back to this page from the browser's cache: the form can be sent again.
+        window.addEventListener('pageshow', function () {
+            var f = document.getElementById('register-form');
+            delete f.dataset.sending;
+            var b = f.querySelector('button[type="submit"], button:not([type])');
+            if (b) { b.disabled = false; b.style.opacity = ''; }
         });
     </script>
 </x-guest-layout>
