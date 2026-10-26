@@ -171,7 +171,17 @@ before it asked the website for pages ("done" came only after the last log), so 
 Checked: `--sync-once` against a local site with three copied logs: progress at 5, 6, 10, 14, 15
 rounds, pages asked for after logs 1 and 2, done at the end, 15 sent, none failed.
 
-## YouTube uploads (2026-10-26, not released yet)
+## Finding WoW (0.6.1, 2026-10-26)
+
+A player in China connected and the app never read a log: it had looked for WoW in two registry keys
+and six folders, once, at start. `AppSettings.DetectWowLogs()` now tries, in order: the running game
+itself (`Wow.exe`'s folder), every uninstall entry naming World of Warcraft or 魔兽世界 (32- and 64-bit
+views, and this user), Battle.net's installed-games list (`ProgramData\Battle.net\Agent\product.db`,
+its paths are plain text: on Chriso's PC it gives `C:/World of Warcraft`), the usual folders, then every
+fixed drive at the top and one folder down. While WoW is still missing the app looks again: the
+running game every tick, the whole search every minute, so starting WoW afterwards fixes it.
+
+## YouTube uploads (2026-10-26, shown once the website has it set up)
 
 The Videos tab's first row, **Upload to YouTube…**, opens `YouTubeQueueForm`: the recordings matched
 to a game and not on YouTube yet, the last day's ticked, and who can see them (unlisted unless the
@@ -181,8 +191,8 @@ short-lived token and the title and chapters (written from the game, specs never
 a fresh token after an hour), reports the id to `/uploaded` (the game's Watch page then plays it from
 YouTube) and notes it in the video's timing file (`"youtube": {id, privacy, at}`), so it is never sent
 twice and the list says "on YouTube". The player links the channel on the website (Your games >
-YouTube). Held back from a release until the Google client is set up and one upload is checked on a
-real channel; until then the website answers "not set up yet".
+YouTube). The row appears only when the website's index says `youtube: true` (its Google client set
+up); shipped in 0.6.1 hidden, and to be checked with one real upload before it is relied on.
 
 ## Getting it (2026-10-11): one file, one click
 

@@ -134,8 +134,26 @@ public sealed class AppSettings
         }
     }
 
-    /// <summary>WoW's usual install places; the first that exists. The player can change it in Settings.</summary>
-    private static string? DetectWowLogs()
+    /// <summary>
+    /// Where WoW is, found without asking (0.6.1, 2026-10-26: a player in China connected and the app
+    /// found no WoW, so it never read a log; it had looked in two registry keys and six folders, once).
+    /// In order: the running game itself, every uninstall entry naming WoW (any registry view, this
+    /// user too, 魔兽世界 as well), Battle.net's own list of installed games, the usual folders, then
+    /// every drive at the top and one folder down. The player can still choose it in Settings.
+    /// </summary>
+    public static string? DetectWowLogs()
+    {
+        foreach (var retail in WowRegistry.RunningRetail().Concat(WowRegistry.RetailFolders()).Concat(WowRegistry.BattleNetFolders()))
+        {
+            if (!Directory.Exists(retail)) continue;
+            var logs = Path.Combine(retail, "Logs");
+            try { Directory.CreateDirectory(logs); } catch { continue; }
+            return logs;
+        }
+        return DetectWowLogsOld() ?? WowRegistry.DriveScan();
+    }
+
+    private static string? DetectWowLogsOld()
     {
         // Where Battle.net says WoW is (2026-10-11): finds a game on any drive, not only the usual
         // folders below. The Logs folder appears the first time WoW writes a log, so it is made here
@@ -169,16 +187,90 @@ public sealed class AppSettings
 /// <summary>WoW's _retail_ folder as Battle.net records it in the registry.</summary>
 internal static class WowRegistry
 {
+    /// <summary>The running game's own folder: wherever and however WoW is installed.</summary>
+    public static IEnumerable<string> RunningRetail()
+    {
+        var found = new List<string>();
+        foreach (var name in new[] { "Wow", "WowT", "WowB" })
+        {
+            foreach (var p in System.Diagnostics.Process.GetProcessesByName(name))
+            {
+                try { if (p.MainModule?.FileName is { } exe && Path.GetDirectoryName(exe) is { } dir) found.Add(dir); }
+                catch { /* another user's process, or no access: skip it */ }
+                finally { p.Dispose(); }
+            }
+        }
+        return found;
+    }
+
+    /// <summary>
+    /// Battle.net's list of installed games (ProgramData\Battle.net\Agent\product.db): each game's
+    /// folder is in it as plain text, so any path naming World of Warcraft is taken.
+    /// </summary>
+    public static IEnumerable<string> BattleNetFolders()
+    {
+        var found = new List<string>();
+        try
+        {
+            var db = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData), "Battle.net", "Agent", "product.db");
+            if (!File.Exists(db)) return found;
+            var text = System.Text.Encoding.UTF8.GetString(File.ReadAllBytes(db));
+            foreach (System.Text.RegularExpressions.Match m in System.Text.RegularExpressions.Regex.Matches(text, @"[A-Za-z]:[\\/][^\x00-\x1f""<>|]*?World of Warcraft"))
+                found.Add(Path.Combine(m.Value.Replace('/', '\\'), "_retail_"));
+        }
+        catch { }
+        return found.Distinct(StringComparer.OrdinalIgnoreCase).ToList();
+    }
+
+    /// <summary>Every fixed drive, at the top and one folder down, for "World of Warcraft\_retail_\Logs".</summary>
+    public static string? DriveScan()
+    {
+        try
+        {
+            foreach (var drive in DriveInfo.GetDrives().Where(d => d.DriveType == DriveType.Fixed && d.IsReady))
+            {
+                var roots = new List<string> { drive.RootDirectory.FullName };
+                try { roots.AddRange(Directory.GetDirectories(drive.RootDirectory.FullName).Where(d => !Path.GetFileName(d).StartsWith('$'))); } catch { }
+                foreach (var root in roots)
+                {
+                    var retail = Path.Combine(root, "World of Warcraft", "_retail_");
+                    if (!Directory.Exists(retail)) continue;
+                    var logs = Path.Combine(retail, "Logs");
+                    try { Directory.CreateDirectory(logs); return logs; } catch { }
+                }
+            }
+        }
+        catch { }
+        return null;
+    }
+
     public static IEnumerable<string> RetailFolders()
     {
         var values = new List<string?>();
-        try
+        foreach (var (hive, view) in new[]
         {
-            using var lm = Microsoft.Win32.RegistryKey.OpenBaseKey(Microsoft.Win32.RegistryHive.LocalMachine, Microsoft.Win32.RegistryView.Registry32);
-            values.Add(lm.OpenSubKey(@"SOFTWARE\Blizzard Entertainment\World of Warcraft")?.GetValue("InstallPath") as string);
-            values.Add(lm.OpenSubKey(@"SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\World of Warcraft")?.GetValue("InstallLocation") as string);
+            (Microsoft.Win32.RegistryHive.LocalMachine, Microsoft.Win32.RegistryView.Registry32),
+            (Microsoft.Win32.RegistryHive.LocalMachine, Microsoft.Win32.RegistryView.Registry64),
+            (Microsoft.Win32.RegistryHive.CurrentUser, Microsoft.Win32.RegistryView.Default),
+        })
+        {
+            try
+            {
+                using var key = Microsoft.Win32.RegistryKey.OpenBaseKey(hive, view);
+                values.Add(key.OpenSubKey(@"SOFTWARE\Blizzard Entertainment\World of Warcraft")?.GetValue("InstallPath") as string);
+                // Every uninstall entry naming WoW, whatever its key is called (a localised Battle.net
+                // names it 魔兽世界, and the key is not always "World of Warcraft").
+                using var uninstall = key.OpenSubKey(@"SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall");
+                foreach (var sub in uninstall?.GetSubKeyNames() ?? [])
+                {
+                    using var app = uninstall!.OpenSubKey(sub);
+                    var name = app?.GetValue("DisplayName") as string ?? sub;
+                    if (name.Contains("World of Warcraft", StringComparison.OrdinalIgnoreCase) || name.Contains("魔兽世界") || name.Contains("魔獸世界"))
+                        values.Add(app?.GetValue("InstallLocation") as string);
+                }
+            }
+            catch { }
         }
-        catch { }
         foreach (var v in values)
         {
             if (string.IsNullOrWhiteSpace(v)) continue;
