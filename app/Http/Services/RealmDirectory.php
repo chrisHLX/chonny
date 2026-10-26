@@ -14,8 +14,8 @@ use Illuminate\Support\Facades\Log;
  * (2026-10-19: Azjol-Nerub is azjolnerub, Altar of Storms is altar-of-storms, DieewigeWacht is
  * die-ewige-wacht). Names are matched with everything but letters and digits taken out.
  *
- * Cached a week per region. A failed fetch is not cached and gives an empty list, so callers fall
- * back to their own rule until it works.
+ * Cached a week per region. A failed fetch gives an empty list, so callers fall back to their own
+ * rule, and is tried again after 15 minutes.
  */
 class RealmDirectory
 {
@@ -34,10 +34,19 @@ class RealmDirectory
             return $hit;
         }
 
+        // A region Blizzard's API does not serve (China has its own host) is never asked, and a failed
+        // fetch is not tried again for a while (2026-10-26: a Chinese player's game cards linked every
+        // player, each asked cn.api.blizzard.com, which does not exist, retried and waited, and every
+        // build timed out with the player's games waiting).
+        if (! in_array($region, config('services.battlenet.regions', []), true) || Cache::has($key.':failed')) {
+            return [];
+        }
+
         try {
             $list = $this->client->gameData($region, '/data/wow/realm/index', 'dynamic')['realms'] ?? [];
         } catch (\Throwable $e) {
             Log::warning('Realm list lookup failed', ['region' => $region, 'error' => $e->getMessage()]);
+            Cache::put($key.':failed', true, now()->addMinutes(15));
 
             return [];
         }
