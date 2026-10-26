@@ -182,6 +182,9 @@
     arena frames and the casts line, names swapped at the source by `tools/app-pictures/watchsample.php`
     and checked against every name held. `/wow/sample?tab=watch` opens on it; `/wow/app`'s "Watch any
     game back" section links there, and its new optional step sets up OBS recording.
+    **"If something isn't working"** (`/wow/app#help`, 2026-10-26): the install problems the first
+    players hit (Windows or antivirus, Connect, WoW not found, no games, old games, where to ask), in
+    the app's own words. Keep it matching the app's labels when they change.
   - `/wow` (`Landing`) is the WoW hub: the sample and the app's page up top, then the planning
     tools, "Learn the game" (basics check, class quizzes, spells) and the latest guides. The app's
     pitch, slides and setup steps are `/wow/app`'s alone; the two pages were nearly the same.

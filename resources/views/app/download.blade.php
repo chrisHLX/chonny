@@ -116,8 +116,85 @@
 
     <p class="text-[13px] text-ink-subtle mt-6">
         The app sits in the tray by the clock and starts with Windows, so it's there when you play. You can
-        turn that off in its Settings.
+        turn that off in its Settings. Stuck on a step? See <a href="#help" class="text-gold hover:underline">If something isn't working</a>.
     </p>
+
+    {{-- Install help (2026-10-26): the problems first players actually hit. A player in China connected
+         and no games arrived because the app never found WoW; another closed the app mid-catch-up.
+         The wording matches what the app itself says at each point (MainForm, SettingsForm). --}}
+    <h2 id="help" class="text-[22px] font-bold text-ink mt-10 mb-3">If something isn't working</h2>
+    <div class="space-y-2">
+        <details class="linear-card p-5">
+            <summary class="cursor-pointer text-[15px] font-bold text-ink">Windows or my antivirus won't let it run</summary>
+            <div class="text-[14px] text-ink-muted mt-3 space-y-2">
+                <p>The app isn't signed by Microsoft yet, so Windows may say it "protected your PC". Click
+                    <span class="text-ink font-semibold">More info</span>, then <span class="text-ink font-semibold">Run anyway</span>.</p>
+                <p>Some antivirus programs remove new unsigned apps the first time they see them. If the file
+                    disappears after downloading, restore it from your antivirus's quarantine and allow it, then
+                    open it again.</p>
+            </div>
+        </details>
+        <details class="linear-card p-5">
+            <summary class="cursor-pointer text-[15px] font-bold text-ink">The browser didn't open, or Connect didn't finish</summary>
+            <div class="text-[14px] text-ink-muted mt-3 space-y-2">
+                <p>In the app, click <span class="text-ink font-semibold">The page didn't open? Open it again</span>,
+                    sign in, and click <span class="text-ink font-semibold">Connect</span>. If the app says connecting
+                    took too long, open <span class="text-ink font-semibold">Settings</span> and click
+                    <span class="text-ink font-semibold">Connect your account</span> to start again.</p>
+                <p>If that still doesn't work, copy your key from <a href="{{ route('coach') }}" class="text-gold hover:underline">Your games</a>
+                    (under Upload), paste it into <span class="text-ink font-semibold">Website key</span> in the app's
+                    Settings, and click <span class="text-ink font-semibold">Save</span>.</p>
+            </div>
+        </details>
+        <details class="linear-card p-5">
+            <summary class="cursor-pointer text-[15px] font-bold text-ink">The app says it couldn't find World of Warcraft</summary>
+            <div class="text-[14px] text-ink-muted mt-3 space-y-2">
+                <p>Start WoW with the app open and it usually finds the game by itself. If not, open
+                    <span class="text-ink font-semibold">Settings</span>, click <span class="text-ink font-semibold">Browse…</span> beside
+                    <span class="text-ink font-semibold">WoW's Logs folder</span>, and pick the
+                    <span class="text-ink font-semibold">Logs</span> folder inside
+                    <span class="text-ink font-semibold">World of Warcraft\_retail_</span>. On most PCs that is
+                    <code class="text-gold">C:\Program Files (x86)\World of Warcraft\_retail_\Logs</code>.
+                    If there is no Logs folder yet, pick <span class="text-ink font-semibold">_retail_</span> and add
+                    <code class="text-gold">\Logs</code> to the end.</p>
+                <p>Not sure where WoW is? In the Battle.net app, click the cog next to Play, then
+                    <span class="text-ink font-semibold">Show in Explorer</span>.</p>
+                <p>Then click <span class="text-ink font-semibold">Install the addon</span> and
+                    <span class="text-ink font-semibold">Save</span>.</p>
+            </div>
+        </details>
+        <details class="linear-card p-5">
+            <summary class="cursor-pointer text-[15px] font-bold text-ink">I played arena but no games showed up</summary>
+            <div class="text-[14px] text-ink-muted mt-3 space-y-2">
+                <p>Games show up about a minute after each one ends, while the app is running (it sits in the tray
+                    by the clock).</p>
+                <p>Check the addon is on: on WoW's character screen click <span class="text-ink font-semibold">AddOns</span>
+                    and make sure <span class="text-ink font-semibold">MindCollector Arena Log</span> is ticked. If WoW
+                    was open when you installed the app, type <code class="text-gold">/reload</code> once. Without the
+                    addon, WoW doesn't write a combat log, so there's nothing for the app to read.</p>
+                <p>Click <span class="text-ink font-semibold">Activity</span> at the top of the app to see what it has
+                    been doing. It says when it can't reach the website or a game couldn't be sent, and tries again
+                    by itself.</p>
+            </div>
+        </details>
+        <details class="linear-card p-5">
+            <summary class="cursor-pointer text-[15px] font-bold text-ink">Will it pick up games I played before installing it?</summary>
+            <div class="text-[14px] text-ink-muted mt-3 space-y-2">
+                <p>Yes, if WoW's Logs folder still has their combat logs. The first time it runs, the app sends every
+                    arena game it finds in them, so with a lot of old logs the first sync can take a while. Leave
+                    the app open and your games appear as each log is done.</p>
+            </div>
+        </details>
+        <details class="linear-card p-5">
+            <summary class="cursor-pointer text-[15px] font-bold text-ink">Still stuck?</summary>
+            <div class="text-[14px] text-ink-muted mt-3 space-y-2">
+                <p>Tell us on <a href="https://discord.gg/Bk7wEvPRt" target="_blank" rel="noopener noreferrer" class="text-gold hover:underline">Discord</a>
+                    or through the <a href="{{ route('feedback.create') }}" class="text-gold hover:underline">feedback page</a>.
+                    It helps a lot to include the last few lines from the app's <span class="text-ink font-semibold">Activity</span>
+                    window. They're also saved in <code class="text-gold">%APPDATA%\MindCollector Desktop\activity.log</code>.</p>
+            </div>
+        </details>
+    </div>
 
     {{-- What it reads and what happens to it (2026-10-12), said before anyone installs it. --}}
     <h2 class="text-[22px] font-bold text-ink mt-10 mb-3">What it reads, and what happens to it</h2>
