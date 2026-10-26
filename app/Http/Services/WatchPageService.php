@@ -80,8 +80,9 @@ class WatchPageService
                 'goes' => $this->goes($analysis),
                 'deaths' => array_values($analysis['deaths'] ?? []),
                 'defensives' => $this->defensives($analysis),
-                ...$this->falls($analysis),
-                ...$this->abilities($analysis),
+                ...$this->falls($analysis, ($abilities = $this->abilities($analysis))['byGuid']),
+                'frames' => $abilities['frames'],
+                'castIcons' => $abilities['castIcons'],
             ];
         }
 
@@ -164,7 +165,7 @@ class WatchPageService
      * the frame says so. A press only shows what was pressed: a button never pressed reads ready, and
      * cooldown reduction from spending is not in the data, so "back in" is the latest it can be.
      *
-     * @return array{frames: array<int, array<string, mixed>>, castIcons: array<string, string>}
+     * @return array{frames: array<int, array<string, mixed>>, castIcons: array<string, string>, byGuid: array<string, array<string, mixed>>}
      */
     private function abilities(array $analysis): array
     {
@@ -244,7 +245,7 @@ class WatchPageService
                 $kit = array_values(array_filter($kit, fn ($a) => ! empty($pressed[$a['name']]) || ! $ledger->isTalent($a['name'], $spec)));
             }
 
-            $out[] = [
+            $out[$p['guid']] = [
                 'name' => explode('-', $p['name'])[0],
                 'side' => $p['side'],
                 'spec' => $p['spec'],
@@ -261,7 +262,7 @@ class WatchPageService
             ];
         }
 
-        return ['frames' => $out, 'castIcons' => $castIcons];
+        return ['frames' => array_values($out), 'castIcons' => $castIcons, 'byGuid' => $out];
     }
 
     /** Presses closer than this are one press logged twice. */
@@ -311,17 +312,19 @@ class WatchPageService
 
     /**
      * The round's falls (FallsService, 2026-10-26): goes found from pressure first, by name, for the
-     * timeline and the event list; and the offensive cooldowns that moved nobody.
+     * timeline and the event list, each with its breakdown from the arena frames; and the offensive
+     * cooldowns that moved nobody.
      *
      * @return array{falls: array<int, array<string, mixed>>, unmoved: array<int, array<string, mixed>>}
      */
-    private function falls(array $analysis): array
+    private function falls(array $analysis, array $frames = []): array
     {
         $names = $this->names($analysis);
         $name = fn (?string $g) => $g === null ? '?' : ($names[$g] ?? '?');
         $read = app(FallsService::class)->read($analysis);
+        $breakdown = app(FallBreakdownService::class);
 
-        $falls = array_map(function ($f) use ($name) {
+        $falls = array_map(function ($f) use ($name, $names, $analysis, $frames, $breakdown) {
             $offs = array_values(array_filter($f['links'], fn ($l) => $l['cat'] === 'offensive'));
             $ccs = array_values(array_filter($f['links'], fn ($l) => $l['cat'] === 'control'));
 
@@ -339,6 +342,9 @@ class WatchPageService
                 'cooldowns' => array_map(fn ($l) => $l['spell'].' ('.$name($l['by']).')', $offs),
                 'control' => array_map(fn ($l) => $l['spell'].' on '.$name($l['on']), $ccs),
                 'answers' => array_map(fn ($a) => $a['spell'].' ('.$name($a['who']).')', $f['answers']),
+                // The fall broken down (FallBreakdownService): the chain in order with diminishing
+                // returns, kick chances, the falling side at the start and what each side spent.
+                'breakdown' => $frames ? $breakdown->for($f, $analysis, $frames, $names) : null,
             ];
         }, $read['falls']);
 

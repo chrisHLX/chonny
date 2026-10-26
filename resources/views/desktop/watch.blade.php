@@ -99,6 +99,25 @@
     .def.us { background: #86efac; }
     .def.them { background: #fca5a5; }
     .ev tr.now td { background: #232323; }
+    .bd-toggle { margin-top: 6px; background: #2A2A2A; color: #FFFFFF; border: 0; border-radius: 9999px; padding: 4px 12px; font-size: 12px; font-weight: 700; cursor: pointer; }
+    .bd-toggle:hover { background: #3E3E3E; }
+    .fb { display: none; margin: 8px 0 4px; padding: 10px 12px; background: #181818; border-radius: 8px; cursor: default; }
+    .fb.open { display: block; }
+    .fb .fb-h { font-size: 11px; font-weight: 700; color: #B3B3B3; text-transform: uppercase; letter-spacing: .06em; margin: 10px 0 4px; }
+    .fb .fb-h:first-child { margin-top: 0; }
+    .fb table { width: 100%; border-collapse: collapse; }
+    .fb td { padding: 3px 0; border-top: 0 !important; vertical-align: top; font-size: 12.5px; }
+    .fb tr[data-st] { cursor: pointer; }
+    .fb tr[data-st]:hover td { background: #232323; }
+    .fb td.at { width: 58px; color: #B3B3B3; font-variant-numeric: tabular-nums; }
+    .fb .drl { display: inline-block; margin-left: 6px; font-size: 11px; color: #B3B3B3; }
+    .fb .drl.half { color: #E8B84B; }
+    .fb .drl.immune { color: #fca5a5; }
+    .fb .kick { margin-top: 2px; font-size: 12px; color: #86efac; }
+    .fb .kick.none { color: #6A6A6A; }
+    .fb .who { margin: 3px 0; font-size: 12.5px; }
+    .fb .who b { margin-right: 6px; }
+    .fb .note { margin-top: 10px; font-size: 11px; color: #6A6A6A; }
     .ev tr.hide { display: none; }
     .jump { display: flex; gap: 6px; flex-wrap: wrap; align-items: center; margin: 12px 0 2px; font-size: 12.5px; color: #B3B3B3; }
     .jump button { background: #2A2A2A; color: #FFFFFF; border: 0; border-radius: 9999px; padding: 6px 12px; cursor: pointer; font-size: 12.5px; font-weight: 700; }
@@ -252,7 +271,7 @@
                 ]);
                 $events[] = ['kind' => 'fall', 't' => (float) $f['from'], 'side' => $f['side'],
                     'label' => $f['on'].' '.$f['high'].'% → '.($f['died'] ? 'died' : $f['low'].'%').' · '.$kinds[$f['kind']],
-                    'detail' => implode("\n", $lines)];
+                    'detail' => implode("\n", $lines), 'bd' => $f['breakdown'] ?? null];
             }
             foreach ($r['unmoved'] ?? [] as $u) {
                 $events[] = ['kind' => 'unmoved', 't' => (float) $u['t'], 'side' => $u['side'],
@@ -317,7 +336,46 @@
                     <tr data-t="{{ $e['t'] }}" data-kind="{{ $e['kind'] }}">
                         <td class="t">{{ $clock($e['t']) }}</td>
                         <td class="w">@if ($e['side'])<span class="pill {{ $e['side'] }}">{{ $e['side'] === 'us' ? 'you' : 'them' }}</span>@endif</td>
-                        <td><b>{{ $e['label'] }}</b>@if ($e['detail'])<div class="small subtle">{!! nl2br(e($e['detail'])) !!}</div>@endif</td>
+                        <td><b>{{ $e['label'] }}</b>@if ($e['detail'])<div class="small subtle">{!! nl2br(e($e['detail'])) !!}</div>@endif
+                            @if (! empty($e['bd']))
+                                @php $bd = $e['bd']; $theirs = $e['side'] === 'us'; @endphp
+                                <button type="button" class="bd-toggle">Breakdown</button>
+                                <div class="fb">
+                                    <div class="fb-h">How it was built</div>
+                                    <table>
+                                        @foreach ($bd['steps'] as $st)
+                                            @php $drLevel = str_ends_with($st['dr'] ?? '', 'half') ? 'half' : (str_ends_with($st['dr'] ?? '', 'immune') ? 'immune' : 'full'); @endphp
+                                            <tr data-st="{{ $st['t'] }}">
+                                                <td class="at">{{ sprintf('%+.1fs', $st['at']) }}</td>
+                                                <td>{{ $st['text'] }} <span class="subtle">by {{ $st['by'] }}</span>
+                                                    @if (! empty($st['dr']))<span class="drl {{ $drLevel }}">{{ $st['dr'] }}</span>@endif
+                                                    @if (array_key_exists('kick', $st))
+                                                        @if ($st['kick'])
+                                                            <div class="kick">A cast worth a kick: {{ implode(', ', $st['kick']) }} free as it came in</div>
+                                                        @else
+                                                            <div class="kick none">A cast worth a kick: nobody on {{ $theirs ? 'their' : 'your' }} side was free with an interrupt ready</div>
+                                                        @endif
+                                                    @endif
+                                                </td>
+                                            </tr>
+                                        @endforeach
+                                    </table>
+                                    <div class="fb-h">{{ $theirs ? 'Their side' : 'Your side' }} as it started</div>
+                                    @foreach ($bd['defenders'] as $d)
+                                        <div class="who"><b style="color: {{ $d['color'] }}">{{ $d['name'] }}</b>
+                                            <span class="{{ $d['state'] === 'free' ? '' : 'subtle' }}">{{ $d['state'] === 'free' ? 'free' : ($d['state'] === 'dead' ? 'dead' : 'locked: '.$d['state']) }}</span>
+                                            @if ($d['ready']['answers'])<div class="small subtle">Defensives ready: {{ implode(', ', $d['ready']['answers']) }}</div>@endif
+                                            @if ($d['ready']['interrupts'])<div class="small subtle">Interrupt ready: {{ implode(', ', $d['ready']['interrupts']) }}</div>@endif
+                                            @if ($d['ready']['control'])<div class="small subtle">Control ready: {{ implode(', ', $d['ready']['control']) }}</div>@endif
+                                        </div>
+                                    @endforeach
+                                    <div class="fb-h">Spent</div>
+                                    <div class="small">Cooldowns: {{ $bd['spent'] ? implode(', ', $bd['spent']) : 'none, all control' }}</div>
+                                    <div class="small">Answered with: {{ $bd['answered'] ? implode(', ', $bd['answered']) : 'nothing' }}</div>
+                                    <div class="note">Click a step to see it from just before. Diminishing returns: a second control of a kind lasts half as long, a third does nothing, until 20 seconds pass without one. "Ready" means not pressed within its cooldown, so it could have been back sooner. Whether a kick was in range or in sight, the log cannot say.</div>
+                                </div>
+                            @endif
+                        </td>
                     </tr>
                 @empty
                     <tr><td class="muted small">Nothing measured in this round.</td></tr>
@@ -666,6 +724,30 @@
             if (now) { now.className = 'now'; }
         }
     });
+
+    // A fall's breakdown: the button opens it; a step jumps to just before it; nothing in it seeks
+    // to the fall itself as a click on the row would.
+    var toggles = document.querySelectorAll('.bd-toggle');
+    for (var bt = 0; bt < toggles.length; bt++) {
+        toggles[bt].addEventListener('click', function (e) {
+            e.stopPropagation();
+            var box = this.nextElementSibling;
+            box.className = box.className.indexOf('open') >= 0 ? 'fb' : 'fb open';
+            this.textContent = box.className === 'fb open' ? 'Hide breakdown' : 'Breakdown';
+        });
+    }
+    var boxes = document.querySelectorAll('.fb');
+    for (var bx = 0; bx < boxes.length; bx++) {
+        boxes[bx].addEventListener('click', function (e) {
+            e.stopPropagation();
+            var row = e.target.closest ? e.target.closest('tr[data-st]') : null;
+            if (!row) { return; }
+            var el = row.closest('.rnd');
+            for (var k = 0; k < rounds.length; k++) {
+                if (rounds[k].el === el) { seek(rounds[k], parseFloat(row.getAttribute('data-st')) - 1); }
+            }
+        });
+    }
 
     for (var j = 0; j < rounds.length; j++) {
         (function (r) {
