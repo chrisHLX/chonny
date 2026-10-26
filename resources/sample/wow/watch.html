@@ -1,0 +1,1514 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Watch &mdash; 3v3 · 25 Oct 2026, 19:10</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap">
+<style>
+    html, body { margin: 0; padding: 0; background: #121212; color: #FFFFFF; }
+    /* IE's own scrollbar properties: the Dev app's browser control is IE11. */
+    html { scrollbar-face-color: #3E3E3E; scrollbar-track-color: #121212; scrollbar-arrow-color: #B3B3B3;
+        scrollbar-shadow-color: #3E3E3E; scrollbar-highlight-color: #3E3E3E; scrollbar-3dlight-color: #121212; scrollbar-darkshadow-color: #121212; }
+    ::-webkit-scrollbar { width: 12px; height: 12px; }
+    ::-webkit-scrollbar-thumb { background: rgba(255,255,255,.18); border: 3px solid #121212; border-radius: 8px; }
+    ::-webkit-scrollbar-thumb:hover { background: rgba(255,255,255,.32); }
+    body { font-family: 'Inter', 'Segoe UI', Arial, sans-serif; font-size: 13px; line-height: 1.5; padding: 0 24px 32px; }
+    table { border-collapse: collapse; }
+    img { border: 0; }
+    a { color: #FFFFFF; }
+    .muted { color: #B3B3B3; }
+    .subtle { color: #6A6A6A; }
+    .gold { color: #C8952C; }
+    .warn-text { color: #F28B82; }
+    .small { font-size: 12px; }
+
+    /* The page's title, on a wash of colour that fades into the page: gold by default, green for a
+       won game, red for a lost one. */
+    .head { margin: 0 -24px 20px; padding: 32px 24px 22px;
+        background: #2a2214; background: linear-gradient(to bottom, #3a2d12 0%, #1e1a12 60%, #121212 100%); }
+    .head.head-won { background: #17301f; background: linear-gradient(to bottom, #1d4a2c 0%, #16261b 60%, #121212 100%); }
+    .head.head-lost { background: #301717; background: linear-gradient(to bottom, #4a1d1d 0%, #261616 60%, #121212 100%); }
+    .head .title { font-size: 30px; font-weight: 800; letter-spacing: -.02em; margin: 0 10px 0 8px; vertical-align: middle; }
+    .head .when { vertical-align: middle; font-size: 13px; }
+    .head .mmr { float: right; margin-top: 10px; }
+
+    .chip { display: inline-block; padding: 2px 10px; border-radius: 12px; font-size: 11.5px; font-weight: 700; letter-spacing: .03em; vertical-align: middle; }
+    .won { background: #1db954; background: rgba(29,185,84,.18); color: #86efac; }
+    .lost { background: #3a1416; background: rgba(239,68,68,.18); color: #fca5a5; }
+    .good { background: #12301d; background: rgba(29,185,84,.18); color: #86efac; }
+    .bad { background: #3a1416; background: rgba(239,68,68,.18); color: #fca5a5; }
+    .warn { background: #33270c; background: rgba(245,158,11,.16); color: #fcd34d; }
+    .neutral { background: #2A2A2A; color: #B3B3B3; }
+    .glad { background: #2a2214; color: #E8B84B; border: 1px solid #6B4E1A; }
+
+    .section { margin-top: 26px; }
+    .label { font-size: 17px; font-weight: 700; letter-spacing: -.01em; color: #FFFFFF; margin-bottom: 10px; }
+    .label .aside { font-size: 12.5px; font-weight: 400; letter-spacing: 0; color: #B3B3B3; margin-left: 8px; }
+    .box { background: #181818; border-radius: 8px; padding: 12px 14px; }
+    .box:hover { background: #1f1f1f; }
+    .teams { width: 100%; }
+    .teams td.col { width: 50%; vertical-align: top; padding: 0; }
+    .teams td.col.left { padding-right: 8px; }
+    .teams td.col.right { padding-left: 8px; }
+    /* Comps' and the player page's two columns. Kept here, before the phone query, and never
+       redefined in a page's own <style>: a later rule of the same weight undid the query's
+       width: auto, so on a phone the columns stacked but each stayed half the screen wide. */
+    .two { width: 100%; }
+    .two td.col { width: 50%; vertical-align: top; padding: 0; }
+    .two td.col.left { padding-right: 6px; }
+    .two td.col.right { padding-left: 6px; }
+    .roster { width: 100%; }
+    .roster td { padding: 6px 0; vertical-align: middle; }
+    .roster tr + tr td { border-top: 1px solid #282828; }
+    .roster .ic { width: 36px; }
+    .roster .xp { text-align: right; white-space: nowrap; }
+    .spec-ic { width: 28px; height: 28px; border-radius: 4px; vertical-align: middle; }
+    .spell-ic { width: 20px; height: 20px; border-radius: 4px; vertical-align: middle; margin-right: 6px; }
+    .ph { display: inline-block; width: 28px; height: 28px; border-radius: 4px; background: #2A2A2A; vertical-align: middle; }
+    .ph-s { display: inline-block; width: 20px; height: 20px; border-radius: 4px; background: #2A2A2A; vertical-align: middle; margin-right: 6px; }
+    .name { font-weight: 700; }
+    a.name { text-decoration: none; }
+    a.name:hover { text-decoration: underline; }
+    .you { font-size: 10.5px; color: #C8952C; margin-left: 4px; font-weight: 700; }
+    .death { margin-bottom: 8px; }
+    .death .who { font-size: 15px; }
+    .line { margin-top: 6px; }
+    .bar { width: 100%; height: 6px; border-radius: 3px; background: #3E3E3E; overflow: hidden; font-size: 0; margin: 6px 0 4px; white-space: nowrap; }
+    .bar span { display: inline-block; height: 6px; }
+    .legend span { margin-right: 10px; }
+    .def { display: inline-block; margin: 2px 10px 2px 0; white-space: nowrap; }
+    .stats { width: 100%; }
+    .stats td { padding: 6px 0; }
+    .stats tr + tr td { border-top: 1px solid #282828; }
+    .stats .n { width: 70px; text-align: right; font-weight: 700; }
+    .stats .better { color: #86efac; }
+    .stats .worse { color: #fca5a5; }
+    .look td { padding: 6px 0; vertical-align: top; }
+    .look .ic { width: 28px; }
+    .look .count { color: #B3B3B3; white-space: nowrap; padding-left: 8px; }
+    .dot { display: inline-block; width: 8px; height: 8px; border-radius: 4px; margin: 6px 6px 0 6px; }
+    .note { padding: 4px 0; }
+    .note .t { display: inline-block; width: 48px; color: #B3B3B3; }
+    .flag { color: #C8952C; font-weight: 700; }
+    .round { margin-top: 12px; }
+    .round .rh { margin-bottom: 6px; }
+    .round .rh b { font-size: 15px; margin-right: 8px; }
+    .foot { margin-top: 28px; color: #6A6A6A; font-size: 12px; }
+
+    /* Tabs: pills, the open one white (Spotify's chips). */
+    .tabs { margin: 0 0 18px; }
+    .tabs a { display: inline-block; padding: 6px 14px; margin: 0 8px 6px 0; border-radius: 16px; background: #2A2A2A;
+        color: #FFFFFF; text-decoration: none; font-weight: 600; font-size: 13px; cursor: pointer; }
+    .tabs a:hover { background: #333333; }
+    .tabs a.on { background: #FFFFFF; color: #000000; }
+    .tabs a .cnt { color: #B3B3B3; font-weight: 400; margin-left: 2px; }
+    .tabs a.on .cnt { color: #535353; }
+    .tab .section:first-child { margin-top: 0; }
+
+    .bd tr.pl td { cursor: pointer; }
+    .bd tr.pl:hover td { background: #232323; }
+    .bd td.abil { padding: 2px 0 10px 26px; }
+    .hpline { display: block; width: 100%; height: 64px; margin: 6px 0 2px; background: #181818; border-radius: 4px; }
+    .ab { width: 100%; }
+    .ab td { padding: 2px 0; }
+    .ab .sp { white-space: nowrap; padding-right: 10px; }
+    .ab .sh { width: 30%; }
+    .ab .n { width: 64px; text-align: right; padding-left: 8px; white-space: nowrap; }
+
+    /* Phones (2026-10-20). These pages are read on a phone through /wow/coach's frame as well
+       as in the app, and every one was laid out for a desktop window: 24px gutters, two 50%
+       columns side by side, a 30px title with the MMR floated beside it. Below 560px that
+       leaves each team about 150px. Narrow gets one column, smaller gutters and no float.
+
+       A media query is IE11-safe (IE9+), and the desktop app's window never gets this narrow,
+       so the app keeps the wide layout it was drawn for. */
+    @media (max-width: 560px) {
+        body { padding: 0 14px 28px; }
+        .head { margin: 0 -14px 16px; padding: 20px 14px 16px; }
+        .head .title { font-size: 22px; margin: 0 6px 0 4px; }
+        .head .mmr { float: none; display: block; margin-top: 6px; }
+
+        /* Two columns side by side become one on top of the other. Both names are in use:
+           .teams on the game card, .two on Comps and the player page. */
+        /* The outer table's own rows only (the parser adds the tbody): a bare `.two tr` also
+           matched the tables inside each column, and their values lost their column. */
+        .teams > tbody > tr, .two > tbody > tr { display: block; }
+        .teams td.col, .teams td.col.left, .teams td.col.right,
+        .two td.col, .two td.col.left, .two td.col.right { display: block; width: auto; padding: 0 0 8px 0; }
+        .col:empty { display: none; }
+
+        .section { margin-top: 20px; }
+        .label { font-size: 15px; }
+        .label .aside { display: block; margin-left: 0; margin-top: 2px; }
+        .box { padding: 10px 11px; }
+
+        /* The numeric columns were sized for a wide table; this narrow they crowd out the name. */
+        .stats .n { width: 56px; }
+        .ab .sh { width: 22%; }
+        .ab .n { width: 54px; }
+        .note .t { width: 40px; }
+        .roster .ic { width: 30px; }
+
+        /* Basics and The moments: a GOOD / WORK ON chip in a 70px column beside the text. That
+           column is a fifth of a phone's width, so the chip goes above the line it labels. */
+        .look tr, .look td { display: block; }
+        .look .ic { padding-bottom: 0; }
+    }
+</style>
+<style>
+    .wrap { max-width: 1180px; }
+    .stage { background: #000000; border-radius: 8px; overflow: hidden; position: sticky; top: 0; z-index: 5;
+        /* covers the page around it, so the timeline's edge labels do not show beside it when scrolled */
+        box-shadow: 0 0 0 16px #121212; }
+    .stage video { display: block; width: 100%; max-height: 46vh; background: #000000; }
+    .pl-wrap { padding: 1px 0 3px; }
+    .rib { position: relative; height: 20px; margin-left: 2px; background: #181818; border-radius: 4px; overflow: hidden; }
+    .rib .now { position: absolute; right: 0; top: 0; width: 2px; height: 100%; background: #FFFFFF; opacity: .5; }
+    .rib .c { position: absolute; top: 1px; width: 18px; height: 18px; border-radius: 3px; overflow: hidden; background: #2A2A2A; margin-left: -9px; }
+    .rib .c img { width: 100%; height: 100%; display: block; }
+    .rib .c.big { box-shadow: 0 0 0 1.5px #E8B84B; z-index: 2; }
+    .rib .c .lt { display: block; font-size: 8px; color: #B3B3B3; text-align: center; line-height: 18px; }
+    .rib .sec { position: absolute; top: 0; height: 100%; width: 1px; background: #232323; }
+    .blank { display: none; height: 22vh; min-height: 120px; background: #000000; color: #6A6A6A; align-items: center; justify-content: center; flex-direction: column; gap: 6px; }
+    .blank .big { font-size: 34px; font-weight: 800; color: #FFFFFF; font-variant-numeric: tabular-nums; }
+    .blank .small { font-size: 12px; }
+    .bar { display: none; align-items: center; gap: 10px; padding: 8px 10px; background: #121212; }
+    .bar button { background: #FFFFFF; color: #000000; border: 0; border-radius: 9999px; width: 34px; height: 34px; font-size: 14px; font-weight: 800; cursor: pointer; }
+    .bar input[type=range] { flex: 1; }
+    .bar .tm { font-size: 12.5px; color: #B3B3B3; font-variant-numeric: tabular-nums; min-width: 84px; text-align: right; }
+    .bar select { background: #2A2A2A; color: #FFFFFF; border: 0; border-radius: 6px; padding: 4px 6px; font-size: 12px; }
+    .frames { display: none; gap: 14px; padding: 8px 10px 6px; background: #121212; }
+    .frames .side { flex: 1; min-width: 0; }
+    .frames .who { font-size: 10.5px; color: #6A6A6A; font-weight: 700; text-transform: uppercase; letter-spacing: .06em; margin-bottom: 2px; }
+    .pl { display: flex; align-items: center; gap: 4px; padding: 2px 0; }
+    .pl .nm { width: 96px; flex: none; font-weight: 700; font-size: 12px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .pl .st { width: 74px; flex: none; font-size: 10.5px; color: #fca5a5; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .pl .abs { display: flex; gap: 3px; flex-wrap: wrap; }
+    .pl .gap { width: 6px; }
+    .pl.locked .abs { opacity: .4; }
+    .pl.dead { opacity: .25; }
+    .ab { position: relative; width: 24px; height: 24px; border-radius: 4px; overflow: hidden; background: #2A2A2A; flex: none; }
+    .ab img { width: 100%; height: 100%; display: block; }
+    .ab .lt { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; font-size: 9px; color: #B3B3B3; }
+    .ab.cd img { filter: grayscale(1) brightness(.4); }
+    .ab .cdt { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; font-size: 10.5px; font-weight: 800; color: #FFFFFF; text-shadow: 0 0 3px #000, 0 0 2px #000; }
+    .ab .ch { position: absolute; right: 1px; bottom: -1px; font-size: 9.5px; color: #E8B84B; font-weight: 800; text-shadow: 0 0 2px #000; }
+    .frames-note { display: none; padding: 0 10px 6px; font-size: 11px; color: #6A6A6A; background: #121212; }
+    .drop { padding: 40px 20px; text-align: center; background: #181818; border: 1px dashed #3E3E3E; border-radius: 8px; }
+    .drop b { display: block; font-size: 15px; margin-bottom: 4px; }
+    .pick { display: inline-block; margin-top: 10px; padding: 8px 16px; border-radius: 9999px;
+        background: #C8952C; color: #000000; font-weight: 700; font-size: 13px; cursor: pointer; }
+    .pick:hover { background: #E8B84B; }
+    .nosupport { display: none; }
+    .hint { margin-top: 10px; font-size: 12px; color: #B3B3B3; }
+    .hint code { color: #E8B84B; }
+
+    .rnd { margin-top: 18px; }
+    .rnd .rh { margin-bottom: 4px; }
+    .rnd .rh b { font-size: 14px; margin-right: 8px; }
+    .rail { position: relative; height: 64px; background: #181818; border-radius: 6px; overflow: hidden; cursor: pointer; }
+    .go { position: absolute; height: 19px; border-radius: 3px; opacity: .92; }
+    .go.us { background: #2f7d4f; top: 6px; }
+    .go.them { background: #8c3b3b; top: 28px; }
+    .go.kill { box-shadow: inset 0 0 0 2px #E8B84B; }
+    .death { position: absolute; top: 0; width: 2px; height: 100%; background: #F28B82; }
+    .def { position: absolute; top: 51px; width: 3px; height: 10px; border-radius: 1px; }
+    .fall { position: absolute; height: 19px; border-radius: 3px; }
+    .fall.us { background: #2f7d4f; top: 6px; }
+    .fall.them { background: #c0392b; top: 28px; }
+    .fall.control { background-image: repeating-linear-gradient(135deg, rgba(0,0,0,.35) 0 4px, transparent 4px 8px); }
+    .fall.died { box-shadow: inset 0 0 0 2px #E8B84B; }
+    .unmoved { position: absolute; top: 0; width: 3px; height: 5px; background: #B3B3B3; border-radius: 1px; }
+    .go.old { opacity: .5; height: 6px; }
+    .go.old.us { top: 1px; }
+    .go.old.them { top: 49px; }
+    .def.us { background: #86efac; }
+    .def.them { background: #fca5a5; }
+    .ev tr.now td { background: #232323; }
+    .ev tr.hide { display: none; }
+    .jump { display: flex; gap: 6px; flex-wrap: wrap; align-items: center; margin: 12px 0 2px; font-size: 12.5px; color: #B3B3B3; }
+    .jump button { background: #2A2A2A; color: #FFFFFF; border: 0; border-radius: 9999px; padding: 6px 12px; cursor: pointer; font-size: 12.5px; font-weight: 700; }
+    .jump button:hover { background: #3E3E3E; }
+    .jump button.off { background: transparent; color: #6A6A6A; box-shadow: inset 0 0 0 1px #3E3E3E; }
+    .jump .sep { width: 10px; }
+    .applinks { float: right; margin-top: 2px; }
+    .applinks a { display: inline-block; margin-left: 6px; padding: 6px 14px; border-radius: 9999px; background: #2A2A2A; color: #FFFFFF; font-weight: 700; font-size: 12.5px; text-decoration: none; }
+    .applinks a.gold { background: #C8952C; color: #000000; }
+    .head2 { position: absolute; top: 0; width: 2px; height: 100%; background: #FFFFFF; display: none; pointer-events: none; }
+    .ticks { position: relative; height: 14px; color: #6A6A6A; font-size: 10.5px; }
+    .ticks span { position: absolute; transform: translateX(-50%); }
+
+    .legend { font-size: 11.5px; color: #B3B3B3; margin: 10px 0 2px; }
+    .legend b { display: inline-block; width: 9px; height: 9px; border-radius: 2px; margin: 0 4px 0 12px; }
+    .legend b:first-child { margin-left: 0; }
+
+    .offset { margin: 12px 0 4px; font-size: 12.5px; color: #B3B3B3; }
+    .offset input[type=range] { vertical-align: middle; width: 240px; margin: 0 8px; }
+    .offset .v { color: #FFFFFF; font-weight: 700; font-variant-numeric: tabular-nums; }
+    .offset button { background: #2A2A2A; color: #FFFFFF; border: 0; border-radius: 4px; padding: 3px 9px; cursor: pointer; font-size: 12px; margin-left: 4px; }
+    .offset button:hover { background: #3E3E3E; }
+
+    .ev { width: 100%; }
+    .ev td { padding: 4px 0; vertical-align: top; border-top: 1px solid #282828; cursor: pointer; }
+    .ev tr:hover td { background: #1f1f1f; }
+    .ev .t { width: 54px; color: #B3B3B3; font-variant-numeric: tabular-nums; }
+    .ev .w { width: 70px; }
+    .pill { display: inline-block; padding: 1px 7px; border-radius: 10px; font-size: 10.5px; font-weight: 700; }
+    .pill.us { background: rgba(47,125,79,.25); color: #86efac; }
+    .pill.them { background: rgba(140,59,59,.25); color: #fca5a5; }
+    @media (max-width: 560px) {
+        .stage { position: static; }
+        .ev .w { width: 54px; }
+        .offset input[type=range] { width: 140px; }
+    }
+</style>
+</head>
+<body>
+
+
+<div class="head">
+        <span class="title">Watch</span>
+    <span class="when muted">3v3 · 25 Oct 2026, 19:10</span>
+</div>
+
+<div class="wrap">
+
+    <div id="stage" class="stage" style="display:none"><video id="vid" controls preload="metadata"></video>
+        
+        <div id="blank" class="blank"><span class="big" id="blank-t">0:00</span><span class="small">No recording of this game: press play to run the game's own clock</span></div>
+        <div id="bar" class="bar">
+            <button type="button" id="bar-play" title="Play or pause (space)">&#9654;</button>
+            <input type="range" id="bar-seek" min="0" max="100" step="0.1" value="0">
+            <span class="tm" id="bar-tm">0:00 / 0:00</span>
+            <select id="bar-speed" title="Speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select>
+        </div>
+        <div id="frames" class="frames"></div>
+        <div id="frames-note" class="frames-note">This game was stored before each player's own talents were kept: it shows each spec's usual buttons, leaving out talents nobody pressed in it. Games from 26 Oct on show each player's own talents.</div>
+    </div>
+
+    <div id="drop" class="drop">
+        <b>Open your recording of this game</b>
+        <span class="muted small">Your own capture from OBS, ShadowPlay or Game Bar. It stays on this machine &mdash; the file is read in the page and never uploaded.</span>
+        <label class="pick">Choose a video<input id="file" type="file" accept="video/*" style="display:none"></label>
+                    <div class="hint">This game started around <code>25 Oct 2026, 19:10</code>. Look for the recording covering that time.</div>
+                <div class="nosupport small subtle" style="margin-top:10px">This view needs a newer browser. The timelines below still work.</div>
+    </div>
+
+    <div class="offset">
+                    Line up: where round 1 starts in the video
+                <button type="button" id="minus">&minus;1s</button>
+        <input id="off" type="range" min="-60" max="900" step="0.1" value="0">
+        <button type="button" id="plus">+1s</button>
+        <span class="v" id="offv">0.0s</span>
+        <button type="button" id="here" title="Use the video's current position as the start of round 1">set from playhead</button>
+    </div>
+    <div class="jump">
+        <button type="button" id="prev" title="The event before this point (,)">&larr; Previous</button>
+        <button type="button" id="next" title="The next event after this point (.)">Next &rarr;</button>
+        <span class="sep"></span>
+        Show
+        <button type="button" data-kind="fall">Falls</button>
+        <button type="button" data-kind="death">Deaths</button>
+        <button type="button" data-kind="def">Defensives</button>
+        <button type="button" data-kind="unmoved">Moved nobody</button>
+        <button type="button" data-kind="go" class="off" title="The go rule before falls, to compare">Old goes</button>
+    </div>
+    <div class="legend">
+        <b style="background:#2f7d4f"></b> they fell to your pressure <b style="background:#c0392b"></b> you fell to theirs
+        <b style="background:#F28B82"></b> a death
+        <b style="background:#86efac"></b> your defensive <b style="background:#fca5a5"></b> theirs
+        <b style="background:#B3B3B3"></b> a cooldown that moved nobody
+        <span class="subtle">&nbsp;&middot;&nbsp; A fall is someone's health dropping 20+ and the cooldowns and control that did it. Darker = more stacked; striped = control with no cooldown; gold edge = they died. Click the timeline to go to that point, or an event to see it from 3s before.</span>
+    </div>
+
+            
+        <div class="rnd" data-start="0" data-dur="334">
+            <script type="application/json" class="frames-data">{"players":[{"name":"Their Mage","side":"them","spec":"Fire Mage","color":"#69CCF0","usual":false,"died":null,"locked":[[8.9,9.6,"Rake"],[22.5,23.5,"Rake"],[61.4,62.6,"Psychic Scream"],[62.9,63.6,"Maim"],[107.2,109.4,"Psychic Scream"],[122.1,122.8,"Rake"],[137.2,138.1,"Psychic Scream"],[145.9,150.9,"Maim"],[187.4,188,"Maim"],[215.4,216.6,"Rake"],[229.7,230.5,"Incapacitating Roar"],[234.4,235.5,"Psychic Scream"],[277.9,283,"Cyclone"],[284.5,285.2,"Maim"],[304.2,305.4,"Psychic Scream"]],"casts":[[9.6,"Blink",null],[10.9,"Dragon's Breath",null],[12.6,"Fire Blast","You"],[13.1,"Fire Blast","You"],[13.3,"Pyroblast","You"],[16.6,"Fire Blast","You"],[17.7,"Frost Nova",null],[19,"Pyroblast","You"],[20.4,"Alter Time",null],[22.1,"Combustion",null],[23.5,"Blink",null],[24,"Fire Blast","Your Hunter"],[24.5,"Fire Blast","Your Hunter"],[24.7,"Pyroblast","Your Hunter"],[25.6,"Fire Blast","Your Hunter"],[25.9,"Pyroblast","Your Hunter"],[28.8,"Fire Blast","Your Hunter"],[29.1,"Pyroblast","Your Hunter"],[30,"Fire Blast","Your Hunter"],[31.4,"Blazing Barrier",null],[32.2,"Blazing Barrier",null],[33,"Frost Nova",null],[34.6,"Ice Nova","Your Hunter"],[37.4,"Greater Invisibility",null],[40.3,"Pyroblast","You"],[41.1,"Fire Blast","You"],[41.9,"Fire Blast","You"],[42.2,"Pyroblast","You"],[44,"Spellsteal","Your Hunter"],[45.4,"Fire Blast","Your Hunter"],[46.7,"Frost Nova",null],[48,"Spellsteal","Your Hunter"],[53.7,"Ring of Frost",null],[55.4,"Mass Invisibility",null],[60.8,"Polymorph","Your Priest"],[63.6,"Blink",null],[66.3,"Polymorph","Your Priest"],[68.5,"Fire Blast","Your Hunter"],[69,"Fire Blast","Your Hunter"],[69.2,"Scorch","Your Hunter"],[69.2,"Pyroblast","Your Hunter"],[69.9,"Fire Blast","Your Hunter"],[70.6,"Scorch","Your Hunter"],[74.7,"Polymorph","Your Priest"],[75.4,"Pyroblast","Your Hunter"],[76.1,"Fire Blast","Your Hunter"],[77,"Blazing Barrier",null],[77.7,"Counterspell","You"],[78.6,"Frost Nova",null],[80.6,"Alter Time",null],[80.8,"Blink",null],[82,"Fire Blast","Your Hunter"],[82.4,"Pyroblast","Your Hunter"],[89.7,"Alter Time",null],[91.4,"Blazing Barrier",null],[94.2,"Frost Nova",null],[96.3,"Dragon's Breath",null],[100.2,"Greater Invisibility",null],[102.5,"Fire Blast","Your Hunter"],[103,"Fire Blast","Your Hunter"],[105.8,"Ring of Frost",null],[112.9,"Ice Nova","Your Hunter"],[116.3,"Pyroblast","Your Hunter"],[117,"Fire Blast","Your Hunter"],[119.3,"Fire Blast","Your Hunter"],[119.7,"Pyroblast","Your Hunter"],[122.8,"Blink",null],[124.3,"Alter Time",null],[127.3,"Scorch","Your Hunter"],[128.8,"Pyroblast","Your Hunter"],[130.5,"Alter Time",null],[131.9,"Frost Nova",null],[133.3,"Blazing Barrier",null],[134.4,"Combustion",null],[134.6,"Scorch","Your Hunter"],[135.3,"Fire Blast","Your Hunter"],[135.8,"Fire Blast","Your Hunter"],[138.3,"Will of the Forsaken",null],[142.5,"Polymorph","Your Priest"],[143.6,"Blink",null],[144.7,"Pyroblast","Your Hunter"],[145.2,"Fire Blast","Your Hunter"],[145.9,"Pyroblast","Your Hunter"],[152.5,"Dragon's Breath",null],[155.4,"Ring of Frost",null],[155.4,"Blazing Barrier",null],[156.6,"Scorch","Your Hunter"],[157.5,"Fire Blast","Your Hunter"],[157.9,"Pyroblast","Your Hunter"],[159.1,"Fire Blast","Your Hunter"],[159.4,"Pyroblast","Your Hunter"],[160.4,"Fire Blast","Your Hunter"],[160.9,"Pyroblast","Your Hunter"],[162.3,"Blink",null],[164.9,"Polymorph","Your Priest"],[165.1,"Scorch","Your Hunter"],[166.3,"Pyroblast","Your Hunter"],[167.4,"Fire Blast","Your Hunter"],[170.8,"Fire Blast","Your Hunter"],[171.3,"Pyroblast","Your Hunter"],[172.8,"Ice Nova","Your Hunter"],[174.1,"Fire Blast","Your Hunter"],[176.1,"Frost Nova",null],[180.3,"Spellsteal","Your Hunter"],[182,"Blink",null],[183.2,"Scorch","Your Hunter"],[183.9,"Fire Blast","Your Hunter"],[184.4,"Pyroblast","Your Hunter"],[185.8,"Blazing Barrier",null],[188,"Blink",null],[190.4,"Frost Nova",null],[190.8,"Counterspell","You"],[199.1,"Polymorph","Your Priest"],[201.2,"Fire Blast","Your Hunter"],[202.1,"Alter Time",null],[203.1,"Scorch","Your Hunter"],[205.2,"Mass Invisibility",null],[207,"Fire Blast","Your Hunter"],[208,"Fire Blast","Your Hunter"],[208.3,"Pyroblast","Your Hunter"],[209.3,"Alter Time",null],[211.4,"Blazing Barrier",null],[213.7,"Polymorph","You"],[214.8,"Fire Blast","Your Hunter"],[215.4,"Pyroblast","Your Hunter"],[216.6,"Blink",null],[218.2,"Greater Invisibility",null],[221.7,"Scorch","Your Hunter"],[223.5,"Pyroblast","Your Hunter"],[228.6,"Ring of Frost",null],[234.1,"Polymorph","Your Priest"],[235.5,"Gladiator's Medallion",null],[236.5,"Dragon's Breath",null],[240.7,"Frost Nova",null],[243.8,"Frost Nova",null],[245.3,"Alter Time",null],[246.1,"Blazing Barrier",null],[249.3,"Polymorph","Your Priest"],[250.6,"Polymorph","Your Priest"],[257.7,"Ice Nova","Your Hunter"],[261.9,"Fire Blast","You"],[262.5,"Combustion",null],[262.8,"Scorch","You"],[263.3,"Fire Blast","You"],[264,"Pyroblast","You"],[264.6,"Fire Blast","You"],[265.2,"Pyroblast","You"],[267.1,"Fire Blast","Your Hunter"],[267.4,"Pyroblast","Your Hunter"],[268,"Fire Blast","Your Hunter"],[268.5,"Pyroblast","Your Hunter"],[269.4,"Counterspell","You"],[270.4,"Fire Blast","Your Hunter"],[270.6,"Pyroblast","Your Hunter"],[272.8,"Fire Blast","Your Hunter"],[273.1,"Pyroblast","Your Hunter"],[274.2,"Blink",null],[274.9,"Fire Blast","Your Hunter"],[275.4,"Pyroblast","Your Hunter"],[275.9,"Fire Blast","Your Hunter"],[276.5,"Pyroblast","Your Hunter"],[277.6,"Pyroblast","Your Hunter"],[283.1,"Pyroblast","Your Hunter"],[283.8,"Fire Blast","Your Hunter"],[285.2,"Blink",null],[285.5,"Fire Blast","Your Hunter"],[286.3,"Pyroblast","Your Hunter"],[287,"Fire Blast","Your Hunter"],[288,"Ice Nova","Your Hunter"],[289.2,"Blazing Barrier",null],[290.1,"Greater Invisibility",null],[294.5,"Dragon's Breath",null],[297.9,"Ring of Frost",null],[299.1,"Fire Blast","Your Hunter"],[299.7,"Fire Blast","Your Hunter"],[300.2,"Pyroblast","Your Hunter"],[303.4,"Frost Nova",null],[305.4,"Will of the Forsaken",null],[308.4,"Fire Blast","Your Hunter"],[310.5,"Scorch","Your Hunter"],[312.4,"Polymorph","Your Priest"]],"abilities":[{"name":"Combustion","kind":"offensive","cd":60,"charges":1,"icon":"\/storage\/spell-icons\/spell_fire_sealoffire.jpg","presses":[22.1,134.4,262.5]},{"name":"Ice Block","kind":"answers","cd":210,"charges":1,"icon":"\/storage\/spell-icons\/spell_frost_frost.jpg","presses":[]},{"name":"Gladiator's Medallion","kind":"answers","cd":120,"charges":1,"icon":"\/storage\/spell-icons\/ability_pvp_gladiatormedallion.jpg","presses":[235.5]},{"name":"Greater Invisibility","kind":"answers","cd":60,"charges":1,"icon":"\/storage\/spell-icons\/ability_mage_greaterinvisibility.jpg","presses":[37.4,100.2,218.2,290.1]},{"name":"Blazing Barrier","kind":"answers","cd":30,"charges":2,"icon":"\/storage\/spell-icons\/ability_mage_moltenarmor.jpg","presses":[31.4,77,91.4,133.3,155.4,185.8,211.4,246.1,289.2]},{"name":"Dragon's Breath","kind":"control","cd":40,"charges":1,"icon":"\/storage\/spell-icons\/inv_misc_head_dragon_01.jpg","presses":[10.9,96.3,152.5,236.5,294.5]},{"name":"Ring of Frost","kind":"control","cd":40,"charges":1,"icon":"\/storage\/spell-icons\/spell_frost_ringoffrost.jpg","presses":[53.7,105.8,155.4,228.6,297.9]},{"name":"Ice Nova","kind":"control","cd":20,"charges":1,"icon":"\/storage\/spell-icons\/spell_mage_icenova.jpg","presses":[34.6,112.9,172.8,257.7,288]},{"name":"Frost Nova","kind":"control","cd":25,"charges":2,"icon":"\/storage\/spell-icons\/spell_frost_frostnova.jpg","presses":[17.7,33,46.7,78.6,94.2,131.9,176.1,190.4,240.7,243.8,303.4]},{"name":"Counterspell","kind":"interrupts","cd":23,"charges":1,"icon":"\/storage\/spell-icons\/135856.jpg","presses":[77.7,190.8,269.4]}]},{"name":"Their Druid","side":"them","spec":"Restoration Druid","color":"#FF7D0A","usual":false,"died":null,"locked":[[26.6,29.6,"Intimidation"],[28.7,34.6,"Freezing Trap"],[60.4,63.5,"Binding Shot"],[61.4,67.4,"Psychic Scream"],[61.8,67.8,"Freezing Trap"],[112.1,115.1,"Intimidation"],[114.6,115.3,"Freezing Trap"],[147.9,153.9,"Freezing Trap"],[181.5,182.9,"Psychic Scream"],[197.5,200.4,"Binding Shot"],[212.9,217.9,"Cyclone"],[296.3,297.3,"Freezing Trap"],[294.4,297.3,"Intimidation"]],"casts":[[3.2,"Lifebloom","Their Mage"],[4.4,"Rejuvenation","Their Mage"],[4.5,"Prowl",null],[11.3,"Rake","You"],[12.2,"Rake","You"],[14.2,"Incarnation: Tree of Life",null],[15.4,"Swiftmend","Their Mage"],[17.1,"Nature's Cure","Their Rogue"],[18.3,"Rejuvenation","Their Mage"],[19.5,"Lifebloom","Their Mage"],[20.7,"Rejuvenation (Germination)","Their Rogue"],[20.7,"Rejuvenation","Their Rogue"],[22.2,"Wild Growth",null],[35,"Lifebloom","Their Mage"],[36.2,"Rejuvenation","Their Mage"],[37.4,"Wild Growth",null],[40.3,"Cyclone","Your Priest"],[40.9,"Swiftmend","Their Mage"],[46,"Starsurge",null],[47.2,"Innervate","Their Druid"],[47.6,"Rejuvenation (Germination)","Their Mage"],[47.6,"Rejuvenation","Their Rogue"],[49,"Wild Growth",null],[50.2,"Lifebloom","Their Mage"],[51.4,"Rejuvenation","Their Mage"],[57.3,"Swiftmend","Their Mage"],[59.7,"Regrowth","Their Mage"],[59.7,"Rejuvenation","Their Mage"],[67.9,"Lifebloom","Their Mage"],[69.1,"Wild Growth",null],[72.1,"Rejuvenation","Their Rogue"],[75.4,"Cyclone","Your Priest"],[76.3,"Ursol's Vortex",null],[77.9,"Rejuvenation","Their Mage"],[78.4,"Ironbark","Their Mage"],[79.2,"Swiftmend","Their Mage"],[80.4,"Rejuvenation (Germination)","Their Rogue"],[80.4,"Rejuvenation","Their Mage"],[81.6,"Wild Growth",null],[82.8,"Lifebloom","Their Mage"],[90.2,"Rejuvenation (Germination)","Their Druid"],[90.2,"Rejuvenation","Their Druid"],[91.4,"Rejuvenation","Their Druid"],[93,"Wild Growth",null],[94.2,"Rejuvenation","Their Rogue"],[95.5,"Rejuvenation (Germination)","Their Rogue"],[95.5,"Rejuvenation","Their Rogue"],[98.9,"Lifebloom","Their Mage"],[100,"Rejuvenation","Their Mage"],[101.3,"Swiftmend","Their Mage"],[102.5,"Rejuvenation","Their Mage"],[104.1,"Swiftmend","Their Mage"],[105.3,"Rejuvenation (Germination)","Their Rogue"],[105.3,"Rejuvenation","Their Mage"],[106.5,"Rejuvenation (Germination)","Their Mage"],[106.5,"Rejuvenation","Their Mage"],[108.9,"Regrowth","Their Mage"],[108.9,"Wild Growth",null],[111.1,"Lifebloom","Their Mage"],[115.4,"Starsurge","Your Hunter"],[117.7,"Wrath","Your Hunter"],[118.7,"Wrath","Your Hunter"],[120.6,"Incarnation: Tree of Life",null],[122,"Rejuvenation","Their Mage"],[123.3,"Swiftmend","Their Mage"],[124.5,"Rejuvenation (Germination)","Their Mage"],[124.5,"Rejuvenation","Their Mage"],[125.7,"Regrowth","Their Mage"],[126.9,"Wild Growth",null],[128.7,"Mighty Bash","Your Priest"],[132.2,"Cyclone","Your Priest"],[133.3,"Rejuvenation","Their Mage"],[135.5,"Starsurge","Your Hunter"],[137.8,"Ursol's Vortex",null],[139.6,"Lifebloom","Their Mage"],[140.8,"Rejuvenation (Germination)","Their Mage"],[140.8,"Rejuvenation","Their Mage"],[142.1,"Swiftmend","Their Mage"],[143.3,"Rejuvenation","Their Mage"],[144.8,"Wild Growth",null],[146.2,"Starsurge","Your Hunter"],[147.4,"Rejuvenation (Germination)","Their Rogue"],[147.4,"Rejuvenation","Their Rogue"],[154,"Lifebloom","Their Mage"],[155.3,"Rejuvenation (Germination)","Their Mage"],[155.3,"Rejuvenation","Their Mage"],[156.5,"Regrowth","Their Mage"],[157.7,"Wild Growth",null],[161.3,"Cyclone","You"],[162.3,"Rejuvenation","Their Rogue"],[163.9,"Cat Form",null],[165.2,"Dash",null],[168.6,"Rake","You"],[172.2,"Maim","Your Priest"],[174.6,"Cyclone","Your Priest"],[179.6,"Cyclone","Your Priest"],[182.9,"Gladiator's Medallion",null],[183,"Rejuvenation","Their Mage"],[183.7,"Nature's Swiftness",null],[184.2,"Rejuvenation (Germination)","Their Mage"],[184.2,"Regrowth","Their Mage"],[186.7,"Cat Form",null],[188.5,"Ironbark","Their Mage"],[189.2,"Wild Growth",null],[191.1,"Shadowmeld",null],[207.5,"Rejuvenation","Their Mage"],[208.7,"Swiftmend","Their Mage"],[209.9,"Rejuvenation","Their Mage"],[211.1,"Swiftmend","Their Mage"],[212.3,"Rejuvenation (Germination)","Their Rogue"],[212.3,"Rejuvenation","Their Mage"],[218,"Swiftmend","Their Rogue"],[219.2,"Rejuvenation (Germination)","Their Mage"],[219.2,"Rejuvenation","Their Rogue"],[220.5,"Wild Growth",null],[221.7,"Lifebloom","Their Mage"],[223.4,"Starsurge","You"],[228.2,"Cyclone","Your Priest"],[237.4,"Rejuvenation","Their Rogue"],[241.5,"Cyclone","You"],[241.5,"Rejuvenation","Their Mage"],[243,"Lifebloom","Their Mage"],[244.2,"Incarnation: Tree of Life",null],[245.4,"Swiftmend","Their Mage"],[246.7,"Rejuvenation (Germination)","Their Rogue"],[246.7,"Rejuvenation","Their Mage"],[247.8,"Regrowth","Their Mage"],[248.9,"Innervate","Their Druid"],[249.6,"Starsurge","Your Priest"],[251.7,"Rejuvenation","Their Rogue"],[252.9,"Swiftmend","Their Rogue"],[254.2,"Lifebloom","Their Rogue"],[255.5,"Wild Growth",null],[258.2,"Swiftmend","Their Mage"],[259.4,"Rejuvenation","Their Mage"],[261.1,"Wrath","You"],[262.3,"Starsurge","You"],[263.5,"Wrath","You"],[264.7,"Rejuvenation","Their Druid"],[265.9,"Rejuvenation (Germination)","Their Druid"],[265.9,"Rejuvenation","Their Druid"],[268.7,"Lifebloom","Their Rogue"],[269.9,"Rejuvenation (Germination)","Their Rogue"],[269.9,"Rejuvenation","Their Rogue"],[275.4,"Nature's Cure","Their Rogue"],[276.6,"Cat Form",null],[279.1,"Mighty Bash","Your Priest"],[282.1,"Cyclone","Your Priest"],[283.2,"Rejuvenation","Their Mage"],[284.4,"Lifebloom","Their Rogue"],[287.8,"Cat Form",null],[297.3,"Gladiator's Medallion",null],[297.6,"Maim","Your Hunter"],[299,"Lifebloom","Their Mage"],[300.3,"Rejuvenation","Their Mage"],[301.5,"Swiftmend","Their Mage"],[302.7,"Wild Growth",null],[303.4,"Ironbark","Their Mage"],[304.1,"Rejuvenation","Their Mage"],[306.9,"Cyclone","Your Priest"],[308,"Rejuvenation (Germination)","Their Mage"],[308,"Rejuvenation","Their Mage"],[311.7,"Lifebloom","Their Mage"],[312.9,"Wild Growth",null],[314.7,"Rejuvenation","Their Mage"]],"abilities":[{"name":"Gladiator's Medallion","kind":"answers","cd":120,"charges":1,"icon":"\/storage\/spell-icons\/ability_pvp_gladiatormedallion.jpg","presses":[182.9,297.3]},{"name":"Ironbark","kind":"answers","cd":70,"charges":1,"icon":"\/storage\/spell-icons\/spell_druid_ironbark.jpg","presses":[78.4,188.5,303.4]},{"name":"Barkskin","kind":"answers","cd":60,"charges":1,"icon":"\/storage\/spell-icons\/spell_nature_stoneclawtotem.jpg","presses":[]},{"name":"Frenzied Regeneration","kind":"answers","cd":36,"charges":2,"icon":"\/storage\/spell-icons\/ability_bullrush.jpg","presses":[]},{"name":"Maim","kind":"control","cd":30,"charges":1,"icon":"\/storage\/spell-icons\/ability_druid_mangle.jpg","presses":[172.2,297.6]},{"name":"Wild Charge","kind":"control","cd":15,"charges":1,"icon":"\/storage\/spell-icons\/spell_druid_wildcharge.jpg","presses":[]},{"name":"Typhoon","kind":"control","cd":30,"charges":1,"icon":"\/storage\/spell-icons\/ability_druid_typhoon.jpg","presses":[]},{"name":"Ursol's Vortex","kind":"control","cd":60,"charges":1,"icon":"\/storage\/spell-icons\/spell_druid_ursolsvortex.jpg","presses":[76.3,137.8]}]},{"name":"You","side":"us","spec":"Feral Druid","color":"#FF7D0A","usual":false,"died":null,"locked":[[10.9,12.2,"Dragon's Breath"],[11.2,15.2,"Rake"],[38.7,42.7,"Cheap Shot"],[57.2,59.9,"Ring of Frost"],[65.9,69.9,"Cheap Shot"],[81.9,84.9,"Gouge"],[96.3,99.3,"Dragon's Breath"],[104.5,109.5,"Kidney Shot"],[110.7,116.7,"Ring of Frost"],[124.1,125.6,"Gouge"],[131.9,135.9,"Cheap Shot"],[152.5,155.5,"Dragon's Breath"],[155.5,161.5,"Ring of Frost"],[161.3,163.8,"Cyclone"],[169.1,173.1,"Cheap Shot"],[196.7,200.7,"Cheap Shot"],[223.8,227.9,"Cheap Shot"],[234,240,"Ring of Frost"],[241.5,242.5,"Cyclone"],[259.6,263.7,"Cheap Shot"],[294.5,297.5,"Dragon's Breath"],[298,299.1,"Ring of Frost"]],"casts":[[5.6,"Dash",null],[8.6,"Tiger's Fury",null],[8.9,"Rake","Their Mage"],[10.1,"Feral Frenzy","Their Mage"],[16.3,"Maim","Their Rogue"],[17.5,"Incarnation: Avatar of Ashamane",null],[19.4,"Rejuvenation","You"],[21,"Prowl",null],[21.2,"Prowl",null],[22.5,"Rake","Their Mage"],[23.5,"Rip","Their Mage"],[25.9,"Regrowth","Your Priest"],[26.9,"Ferocious Bite","Their Mage"],[27.9,"Regrowth","Your Hunter"],[29,"Shred","Their Mage"],[30,"Shred","Their Mage"],[33.2,"Cat Form",null],[34.6,"Ferocious Bite","Their Mage"],[36,"Rake","Their Mage"],[40,"Barkskin",null],[43.1,"Regrowth","You"],[44.3,"Rake","Their Rogue"],[45.3,"Rip","Their Rogue"],[46.3,"Regrowth","Your Hunter"],[47.3,"Rake","Their Druid"],[49.9,"Rejuvenation","You"],[51.1,"Skull Bash","Their Mage"],[52.1,"Rake","Their Mage"],[53.3,"Shred","Their Mage"],[53.7,"Tiger's Fury",null],[54.3,"Rip","Their Mage"],[55.3,"Feral Frenzy","Their Mage"],[60.5,"Shred","Their Mage"],[61.6,"Rake","Their Mage"],[62.9,"Maim","Their Mage"],[63.9,"Shred","Their Mage"],[64.9,"Shred","Their Mage"],[70.1,"Regrowth","Your Priest"],[71.2,"Rake","Their Mage"],[72.2,"Ferocious Bite","Their Mage"],[72.9,"Skull Bash","Their Mage"],[74,"Shred","Their Mage"],[75,"Shred","Their Mage"],[76,"Regrowth","Your Priest"],[79.5,"Regrowth","Your Priest"],[86.7,"Cyclone","Their Rogue"],[87,"Cat Form",null],[88.3,"Wild Charge","Their Mage"],[88.6,"Tiger's Fury",null],[88.9,"Rake","Their Mage"],[91.7,"Ursol's Vortex",null],[93.3,"Rip","Their Mage"],[94.4,"Feral Frenzy","Their Mage"],[100.1,"Ferocious Bite","Their Mage"],[101.6,"Shred","Their Mage"],[102.3,"Skull Bash","Their Mage"],[103.4,"Rake","Their Mage"],[106.2,"Barkskin",null],[117.1,"Wild Charge","Their Rogue"],[117.5,"Rake","Their Rogue"],[118.5,"Rip","Their Rogue"],[118.8,"Skull Bash","Their Druid"],[120.7,"Rake","Their Mage"],[121.1,"Tiger's Fury",null],[121.6,"Incarnation: Avatar of Ashamane",null],[121.8,"Prowl",null],[122.1,"Rake","Their Mage"],[126,"Rake","Their Rogue"],[129,"Rip","Their Mage"],[130.3,"Ferocious Bite","Their Mage"],[131.8,"Feral Frenzy","Their Mage"],[136.4,"Regrowth","Your Hunter"],[138,"Ferocious Bite","Their Mage"],[139,"Regrowth","Your Hunter"],[139.6,"Skull Bash","Their Mage"],[140.4,"Rake","Their Mage"],[141.4,"Ferocious Bite","Their Mage"],[142.4,"Regrowth","Your Hunter"],[143.4,"Rake","Their Mage"],[144.9,"Wild Charge","Their Mage"],[145.9,"Maim","Their Mage"],[146.9,"Shred","Their Mage"],[147.9,"Shred","Their Mage"],[148.9,"Rip","Their Mage"],[149.9,"Shred","Their Mage"],[150.9,"Ferocious Bite","Their Mage"],[151.9,"Shred","Their Mage"],[165.5,"Incapacitating Roar",null],[173.6,"Cat Form",null],[174.4,"Tiger's Fury",null],[175.2,"Rake","Their Mage"],[176.2,"Rip","Their Mage"],[177.6,"Regrowth","You"],[178.9,"Bear Form",null],[181.3,"Rake","Their Mage"],[185.2,"Wild Charge","Their Mage"],[185.9,"Feral Frenzy","Their Mage"],[187.4,"Maim","Their Mage"],[188.9,"Entangling Roots","Their Rogue"],[195,"Rake","Their Rogue"],[196,"Shred","Their Rogue"],[204.4,"Cyclone","Their Rogue"],[205,"Cat Form",null],[207.5,"Tiger's Fury",null],[208,"Rake","Their Mage"],[209,"Rip","Their Mage"],[210.6,"Entangling Roots","Their Druid"],[212.9,"Cyclone","Their Druid"],[213,"Cat Form",null],[214.3,"Wild Charge","Their Mage"],[214.9,"Incarnation: Avatar of Ashamane",null],[215.2,"Prowl",null],[215.4,"Rake","Their Mage"],[216.4,"Shred","Their Mage"],[218.5,"Ursol's Vortex",null],[220,"Rake","Their Rogue"],[221,"Rip","Their Rogue"],[222.5,"Ferocious Bite","Their Mage"],[223.7,"Ferocious Bite","Their Mage"],[229.7,"Incapacitating Roar",null],[240.3,"Cat Form",null],[241,"Tiger's Fury",null],[242.5,"Gladiator's Medallion",null],[243.4,"Rip","Their Mage"],[244.6,"Rake","Their Mage"],[245.6,"Feral Frenzy","Their Mage"],[246.6,"Bear Form",null],[247.9,"Rake","Their Rogue"],[249.3,"Rip","Their Rogue"],[250.3,"Shred","Their Rogue"],[251.3,"Shred","Their Rogue"],[252.3,"Shred","Their Rogue"],[253.8,"Maim","Their Rogue"],[255.4,"Entangling Roots","Their Druid"],[256.7,"Rake","Their Druid"],[257.7,"Ferocious Bite","Their Druid"],[258.7,"Shred","Their Druid"],[262.7,"Barkskin",null],[264.4,"Rake","Their Rogue"],[266.9,"Incapacitating Roar",null],[267.8,"Strength of the Wild",null],[271.6,"Cat Form",null],[273.2,"Rake","Their Druid"],[273.6,"Skull Bash","Their Druid"],[277.9,"Cyclone","Their Mage"],[279.2,"Regrowth","Your Priest"],[279.8,"Regrowth","Your Priest"],[280.9,"Regrowth","Your Priest"],[282,"Regrowth","Your Hunter"],[282.8,"Cat Form",null],[284.5,"Maim","Their Mage"],[285.9,"Regrowth","Your Priest"],[287.2,"Rake","Their Mage"],[287.8,"Tiger's Fury",null],[288.4,"Feral Frenzy","Their Mage"],[290.3,"Bear Form",null],[292.4,"Skull Bash","Their Mage"],[294,"Rake","Their Mage"],[299.4,"Rip","Their Mage"],[300.4,"Shred","Their Mage"],[301.4,"Shred","Their Mage"],[302.4,"Regrowth","Your Priest"],[304,"Regrowth","Your Hunter"],[305.4,"Regrowth","Your Hunter"],[306.7,"Regrowth","Your Hunter"],[309.4,"Cat Form",null],[310.4,"Tiger's Fury",null],[310.7,"Incarnation: Avatar of Ashamane",null],[311.1,"Prowl",null],[311.6,"Rake","Their Rogue"],[312.6,"Rip","Their Rogue"]],"abilities":[{"name":"Feral Frenzy","kind":"offensive","cd":30,"charges":1,"icon":"\/storage\/spell-icons\/ability_druid_rake.jpg","presses":[10.1,55.3,94.4,131.8,185.9,245.6,288.4]},{"name":"Tiger's Fury","kind":"offensive","cd":30,"charges":1,"icon":"\/storage\/spell-icons\/ability_mount_jungletiger.jpg","presses":[8.6,53.7,88.6,121.1,174.4,207.5,241,287.8,310.4]},{"name":"Survival Instincts","kind":"answers","cd":180,"charges":1,"icon":"\/storage\/spell-icons\/ability_druid_tigersroar.jpg","presses":[]},{"name":"Gladiator's Medallion","kind":"answers","cd":120,"charges":1,"icon":"\/storage\/spell-icons\/ability_pvp_gladiatormedallion.jpg","presses":[242.5]},{"name":"Barkskin","kind":"answers","cd":60,"charges":1,"icon":"\/storage\/spell-icons\/spell_nature_stoneclawtotem.jpg","presses":[40,106.2,262.7]},{"name":"Frenzied Regeneration","kind":"answers","cd":36,"charges":1,"icon":"\/storage\/spell-icons\/ability_bullrush.jpg","presses":[]},{"name":"Incapacitating Roar","kind":"control","cd":30,"charges":1,"icon":"\/storage\/spell-icons\/ability_druid_demoralizingroar.jpg","presses":[165.5,229.7,266.9]},{"name":"Maim","kind":"control","cd":30,"charges":1,"icon":"\/storage\/spell-icons\/ability_druid_mangle.jpg","presses":[16.3,62.9,145.9,187.4,253.8,284.5]},{"name":"Wild Charge","kind":"control","cd":15,"charges":1,"icon":"\/storage\/spell-icons\/spell_druid_wildcharge.jpg","presses":[88.3,117.1,144.9,185.2,214.3]},{"name":"Ursol's Vortex","kind":"control","cd":60,"charges":1,"icon":"\/storage\/spell-icons\/spell_druid_ursolsvortex.jpg","presses":[91.7,218.5]},{"name":"Skull Bash","kind":"interrupts","cd":15,"charges":1,"icon":"\/storage\/spell-icons\/inv_bone_skull_04.jpg","presses":[51.1,72.9,102.3,118.8,139.6,273.6,292.4]}]},{"name":"Your Priest","side":"us","spec":"Discipline Priest","color":"#FFFFFF","usual":false,"died":null,"locked":[[5.2,11.3,"Sap"],[37.5,41.1,"Cheap Shot"],[40.3,41.2,"Cyclone"],[64.9,68.5,"Cheap Shot"],[66.3,72.3,"Polymorph"],[70.5,75.5,"Blind"],[74.7,77.7,"Polymorph"],[75.4,77.9,"Cyclone"],[99.1,102.7,"Cheap Shot"],[128.7,132.3,"Mighty Bash"],[132.2,133.3,"Cyclone"],[142.5,143.2,"Polymorph"],[161,164.6,"Cheap Shot"],[164.9,170.9,"Polymorph"],[172.2,174.5,"Maim"],[174.6,179.6,"Cyclone"],[195.7,199.3,"Cheap Shot"],[199.1,205.1,"Polymorph"],[225,228.6,"Cheap Shot"],[228.2,233.2,"Cyclone"],[236.5,238,"Dragon's Breath"],[249.3,250.2,"Polymorph"],[250.6,253.6,"Polymorph"],[263.9,268.9,"Blind"],[279.1,280.1,"Mighty Bash"],[281.6,284.6,"Gouge"],[282.1,284.6,"Cyclone"],[306.9,311.9,"Cyclone"],[312.4,316.3,"Polymorph"]],"casts":[[1.6,"Power Word: Shield","You"],[2.9,"Plea","Your Hunter"],[4.4,"Plea","Your Priest"],[11.5,"Penance","Their Mage"],[13.5,"Shadow Word: Pain","Their Mage"],[15.7,"Psychic Scream",null],[17,"Void Shield",null],[18.3,"Power Word: Radiance","You"],[18.3,"Evangelism","You"],[22.5,"Penance","Their Rogue"],[24.6,"Blood Fury",null],[24.7,"Power Infusion","You"],[25.6,"Power Word: Shield","Your Hunter"],[26.4,"Leap of Faith","Your Hunter"],[26.9,"Penance","Your Hunter"],[29.8,"Void Shield",null],[31.3,"Fade",null],[32.4,"Penance","Your Hunter"],[34.4,"Shadow Word: Pain","Their Rogue"],[41.2,"Gladiator's Medallion",null],[41.5,"Power Word: Shield","You"],[42.8,"Penance","You"],[44.4,"Shadow Word: Pain","Their Rogue"],[45.9,"Shadow Word: Pain","Their Druid"],[47.3,"Shadow Word: Pain","Their Mage"],[48.7,"Purify","Your Priest"],[50.1,"Power Word: Radiance","Your Hunter"],[57.6,"Penance","Their Rogue"],[59.9,"Purify","You"],[60.4,"Fade",null],[61.4,"Psychic Scream",null],[62.8,"Void Shield",null],[78.2,"Power Word: Shield","Your Hunter"],[79.4,"Power Word: Radiance","Your Hunter"],[80.7,"Power Word: Radiance","Your Hunter"],[80.7,"Evangelism","Your Hunter"],[82,"Penance","Your Hunter"],[83.9,"Shadow Word: Pain","Their Rogue"],[87.7,"Ultimate Penitence","Their Rogue"],[95.5,"Purify","Your Hunter"],[97.4,"Penance","Their Rogue"],[102.9,"Pain Suppression","Your Hunter"],[103.2,"Power Word: Shield","Your Hunter"],[104.5,"Power Word: Radiance","Your Hunter"],[105.7,"Power Word: Radiance","Your Hunter"],[107.2,"Psychic Scream",null],[108.5,"Penance","Your Hunter"],[109.9,"Purify","Your Hunter"],[111.2,"Shadow Word: Pain","Their Mage"],[112.6,"Shadow Word: Pain","Their Rogue"],[115.4,"Mind Blast","Their Mage"],[115.4,"Penance","Their Mage"],[117.5,"Void Shield",null],[120.3,"Shadow Word: Pain","Their Druid"],[121.8,"Penance","Their Rogue"],[123.6,"Angelic Feather",null],[126.8,"Shadow Word: Death","Their Mage"],[128.4,"Void Shield",null],[133.3,"Gladiator's Medallion",null],[134.5,"Purify","You"],[135.9,"Power Word: Shield","Your Hunter"],[136,"Fade",null],[137.2,"Psychic Scream",null],[138.5,"Penance","Your Hunter"],[140.8,"Shadow Word: Pain","Their Mage"],[142.2,"Shadow Word: Death","Their Mage"],[144.9,"Power Word: Shield","Your Hunter"],[145.6,"Power Infusion","You"],[145.6,"Blood Fury",null],[146.7,"Penance","Their Rogue"],[147.9,"Shadow Word: Pain","Their Rogue"],[149,"Shadow Word: Pain","Their Mage"],[150.1,"Power Word: Shield","Your Hunter"],[151.5,"Power Word: Radiance","Your Hunter"],[151.5,"Evangelism","Your Hunter"],[153.1,"Penance","Their Druid"],[156,"Mind Control","Their Rogue"],[158.3,"Power Word: Shield","Your Hunter"],[171.3,"Power Word: Shield","Your Hunter"],[173.2,"Pain Suppression","Your Hunter"],[181.5,"Psychic Scream",null],[182.9,"Penance","Your Hunter"],[184.3,"Void Shield",null],[185.6,"Power Word: Radiance","Your Hunter"],[186.8,"Power Word: Radiance","Your Hunter"],[188.1,"Penance","Your Hunter"],[189.5,"Shadow Word: Pain","Their Rogue"],[192.9,"Purify","You"],[194.3,"Power Word: Shield","Your Hunter"],[205.4,"Power Word: Shield","Your Hunter"],[206.7,"Power Word: Radiance","Your Hunter"],[206.7,"Evangelism","Your Hunter"],[208.7,"Penance","Their Mage"],[210.9,"Shadow Word: Pain","Their Rogue"],[212.3,"Shadow Word: Pain","Their Druid"],[213.7,"Power Word: Shield","Your Hunter"],[214.9,"Power Word: Radiance","Your Hunter"],[217.4,"Penance","Their Rogue"],[220.2,"Shadow Word: Pain","Their Mage"],[221.7,"Void Shield",null],[224.5,"Mind Blast","Their Rogue"],[224.7,"Penance","Their Rogue"],[233.5,"Fade",null],[234.4,"Psychic Scream",null],[235.8,"Penance","Your Hunter"],[238.5,"Void Shield",null],[240.5,"Power Word: Radiance","Your Hunter"],[241.8,"Purify","Your Priest"],[243.7,"Power Word: Shield","Your Hunter"],[249.2,"Shadow Word: Death","Their Rogue"],[254.8,"Evangelism","Your Hunter"],[256.2,"Power Word: Radiance","Your Hunter"],[257.6,"Penance","Their Rogue"],[259.2,"Shadow Word: Pain","Their Mage"],[260.6,"Shadow Word: Death","Their Mage"],[262.3,"Power Word: Shield","You"],[263.5,"Penance","You"],[269.8,"Leap of Faith","Your Hunter"],[270,"Power Infusion","You"],[270.1,"Power Infusion","Your Priest"],[270.1,"Blood Fury",null],[270.1,"Pain Suppression","Your Hunter"],[270.6,"Void Shield",null],[272.7,"Penance","You"],[274,"Psychic Scream",null],[275.7,"Fade",null],[276.1,"Penance","You"],[277.4,"Power Word: Radiance","You"],[280.1,"Gladiator's Medallion",null],[280.5,"Power Word: Shield","You"],[285,"Penance","Your Hunter"],[286.1,"Power Word: Shield","Your Hunter"],[288.6,"Flash Heal","Your Hunter"],[289.7,"Flash Heal","Your Hunter"],[290.8,"Flash Heal","Your Hunter"],[292.1,"Penance","Your Hunter"],[293.9,"Shadow Word: Pain","Their Rogue"],[295.2,"Shadow Word: Pain","Their Druid"],[296.6,"Shadow Word: Pain","Their Mage"],[299.1,"Purify","You"],[301.1,"Fade",null],[303,"Power Word: Shield","Your Hunter"],[304.2,"Psychic Scream",null]],"abilities":[{"name":"Ultimate Penitence","kind":"offensive","cd":240,"charges":1,"icon":"\/storage\/spell-icons\/ability_priest_ascendance.jpg","presses":[87.7]},{"name":"Power Infusion","kind":"offensive","cd":120,"charges":1,"icon":"\/storage\/spell-icons\/spell_holy_powerinfusion.jpg","presses":[24.7,145.6,270]},{"name":"Mind Blast","kind":"offensive","cd":28,"charges":1,"icon":"\/storage\/spell-icons\/spell_shadow_unholyfrenzy.jpg","presses":[115.4,224.5]},{"name":"Pain Suppression","kind":"answers","cd":180,"charges":2,"icon":"\/storage\/spell-icons\/spell_holy_painsupression.jpg","presses":[102.9,173.2,270.1]},{"name":"Gladiator's Medallion","kind":"answers","cd":120,"charges":1,"icon":"\/storage\/spell-icons\/ability_pvp_gladiatormedallion.jpg","presses":[41.2,133.3,280.1]},{"name":"Desperate Prayer","kind":"answers","cd":90,"charges":1,"icon":"\/storage\/spell-icons\/spell_holy_testoffaith.jpg","presses":[]},{"name":"Leap of Faith","kind":"answers","cd":45,"charges":2,"icon":"\/storage\/spell-icons\/priest_spell_leapoffaith_a.jpg","presses":[26.4,269.8]},{"name":"Fade","kind":"answers","cd":20,"charges":1,"icon":"\/storage\/spell-icons\/spell_magic_lesserinvisibilty.jpg","presses":[31.3,60.4,136,233.5,275.7,301.1]},{"name":"Psychic Scream","kind":"control","cd":30,"charges":1,"icon":"\/storage\/spell-icons\/spell_shadow_psychicscream.jpg","presses":[15.7,61.4,107.2,137.2,181.5,234.4,274,304.2]}]},{"name":"Your Hunter","side":"us","spec":"Beast Mastery Hunter","color":"#ABD473","usual":false,"died":310.54,"locked":[[12.1,18.2,"Sap"],[21.1,25.6,"Kidney Shot"],[62.1,67.7,"Ring of Frost"],[67.4,71.9,"Kidney Shot"],[100.3,103.9,"Cheap Shot"],[105.9,109.9,"Ring of Frost"],[133.6,137.2,"Cheap Shot"],[162.8,167.3,"Kidney Shot"],[197.8,198.9,"Kidney Shot"],[230.5,234.1,"Cheap Shot"],[244.1,247.1,"Gouge"],[265.6,270.1,"Kidney Shot"],[297.6,302.1,"Maim"]],"casts":[[1.6,"Camouflage",null],[7,"Flare",null],[11.5,"Hunter's Mark","Their Mage"],[18.5,"Barbed Shot","Their Mage"],[19.9,"Kill Command","Their Mage"],[26.6,"Intimidation","Their Druid"],[28.3,"Freezing Trap",null],[30.2,"Cobra Shot","Their Mage"],[33.5,"Barbed Shot","Their Mage"],[34.8,"Kill Command","Their Mage"],[37.5,"Cobra Shot","Their Mage"],[39.2,"Bestial Wrath",null],[39.2,"Blood Fury",null],[40.6,"Kill Command","Their Mage"],[44.6,"Flare",null],[44.9,"Dire Beast",null],[46.8,"Kill Command","Their Mage"],[48.5,"Chimaeral Sting","Their Druid"],[51.5,"Counter Shot","Their Mage"],[52,"Cobra Shot","Their Mage"],[53.4,"Kill Command","Their Mage"],[54.8,"Barbed Shot","Their Mage"],[57.7,"Cobra Shot","Their Mage"],[59.5,"Binding Shot",null],[61.7,"Freezing Trap",null],[73.9,"Bestial Wrath",null],[75.3,"Kill Command","Their Mage"],[75.3,"Dire Beast",null],[75.9,"Survival of the Fittest","Their Mage"],[76.7,"Barbed Shot","Their Mage"],[78.1,"Cobra Shot","Their Mage"],[80.8,"Cobra Shot","Their Mage"],[82.2,"Barbed Shot","Their Mage"],[83.6,"Kill Command","Their Rogue"],[85.8,"Cobra Shot","Their Rogue"],[87.4,"Flare",null],[89.8,"Cobra Shot","Their Mage"],[93.5,"Cobra Shot","Their Mage"],[94.9,"Hunter's Mark","Their Mage"],[97,"Barbed Shot","Their Mage"],[98.4,"Cobra Shot","Their Mage"],[98.7,"Counter Shot","Their Mage"],[99.8,"Kill Command","Their Mage"],[112,"Intimidation","Their Druid"],[113.8,"Freezing Trap",null],[115.3,"Cobra Shot","Their Mage"],[116.7,"Kill Command","Their Mage"],[118.1,"Barbed Shot","Their Mage"],[119.5,"Kill Command","Their Mage"],[120.9,"Cobra Shot","Their Mage"],[122.6,"Flare",null],[124.5,"Cobra Shot","Their Mage"],[125.9,"Tranquilizing Shot","Their Mage"],[126.4,"Dire Beast",null],[127.2,"Counter Shot","Their Mage"],[127.9,"Kill Command","Their Mage"],[127.9,"Dire Beast",null],[129.2,"Cobra Shot","Their Mage"],[130.6,"Barbed Shot","Their Mage"],[139,"Bestial Wrath",null],[140.4,"Kill Command","Their Mage"],[143.9,"Binding Shot",null],[147.6,"Freezing Trap",null],[150.6,"Cobra Shot","Their Mage"],[152,"Kill Command","Their Mage"],[153.8,"Flare",null],[155.5,"Survival of the Fittest","Their Mage"],[156.6,"Barbed Shot","Their Mage"],[158,"Cobra Shot","Their Mage"],[160,"Cobra Shot","Their Rogue"],[162,"Kill Command","Their Mage"],[169.8,"Disengage",null],[171,"Dire Beast",null],[171.2,"Exhilaration",null],[173.7,"Aspect of the Turtle",null],[175.3,"Flare",null],[182.1,"Cobra Shot","Their Rogue"],[188.9,"Kill Command","Their Mage"],[190.3,"Barbed Shot","Their Mage"],[197.1,"Binding Shot",null],[198.4,"Dire Beast",null],[198.9,"Gladiator's Medallion",null],[199.5,"Freezing Trap",null],[201.1,"Counter Shot","Their Mage"],[201.5,"Bestial Wrath",null],[201.5,"Blood Fury",null],[202.8,"Kill Command","Their Mage"],[202.8,"Dire Beast",null],[204.2,"Tranquilizing Shot","Their Mage"],[206.6,"Flare",null],[208.3,"Cobra Shot","Their Mage"],[209.7,"Kill Command","Their Mage"],[211.5,"Barbed Shot","Their Rogue"],[212.9,"Cobra Shot","Their Rogue"],[214.3,"Kill Command","Their Rogue"],[216.1,"Cobra Shot","Their Rogue"],[217.5,"Hunter's Mark","Their Rogue"],[218.9,"Barbed Shot","Their Rogue"],[221.9,"Kill Command","Their Mage"],[223.3,"Cobra Shot","Their Mage"],[229.2,"Flare",null],[234.5,"Scatter Shot","Their Rogue"],[237,"Exhilaration",null],[239.4,"Cobra Shot","Their Mage"],[242.3,"Bestial Wrath",null],[243.6,"Kill Command","Their Mage"],[243.7,"Dire Beast",null],[247.5,"Cobra Shot","Their Rogue"],[249.9,"Kill Command","Their Rogue"],[251.2,"Hunter's Mark","Their Rogue"],[253.1,"Flare",null],[254.5,"Kill Command","Their Rogue"],[254.5,"Dire Beast",null],[255.9,"Cobra Shot","Their Rogue"],[259.5,"Hunter's Mark","Their Druid"],[260.8,"Barbed Shot","Their Druid"],[262.1,"Kill Command","Their Druid"],[263.7,"Cobra Shot","Their Druid"],[265.3,"Cobra Shot","Their Druid"],[274.4,"Barbed Shot","Their Rogue"],[276,"Cobra Shot","Their Mage"],[276.5,"Dire Beast",null],[277.6,"Survival of the Fittest","Their Mage"],[278.6,"Roar of Sacrifice","Your Hunter"],[281.2,"Cobra Shot","Their Rogue"],[282.9,"Flare",null],[283.7,"Disengage",null],[284.4,"Kill Command","Their Rogue"],[285.7,"Survival of the Fittest","Their Rogue"],[286.2,"Cobra Shot","Their Rogue"],[288.6,"Scatter Shot","Their Rogue"],[292.1,"Cobra Shot","Their Druid"],[294.4,"Intimidation","Their Druid"],[296,"Freezing Trap",null],[297.4,"Kill Command","Their Mage"],[307.3,"Cobra Shot","Their Mage"],[307.8,"Counter Shot","Their Mage"],[309.4,"Bestial Wrath",null]],"abilities":[{"name":"Bestial Wrath","kind":"offensive","cd":30,"charges":1,"icon":"\/storage\/spell-icons\/ability_druid_ferociousbite.jpg","presses":[39.2,73.9,139,201.5,242.3,309.4]},{"name":"Aspect of the Turtle","kind":"answers","cd":135,"charges":1,"icon":"\/storage\/spell-icons\/132199.jpg","presses":[173.7]},{"name":"Gladiator's Medallion","kind":"answers","cd":120,"charges":1,"icon":"\/storage\/spell-icons\/ability_pvp_gladiatormedallion.jpg","presses":[198.9]},{"name":"Survival of the Fittest","kind":"answers","cd":90,"charges":2,"icon":"\/storage\/spell-icons\/spell_nature_spiritarmor.jpg","presses":[75.9,155.5,277.6,285.7]},{"name":"Camouflage","kind":"answers","cd":60,"charges":1,"icon":"\/storage\/spell-icons\/ability_hunter_camouflage.jpg","presses":[1.6]},{"name":"Exhilaration","kind":"answers","cd":60,"charges":1,"icon":"\/storage\/spell-icons\/461117.jpg","presses":[171.2,237]},{"name":"Freezing Trap","kind":"control","cd":25,"charges":1,"icon":"\/storage\/spell-icons\/spell_frost_chainsofice.jpg","presses":[28.3,61.7,113.8,147.6,199.5,296]},{"name":"Intimidation","kind":"control","cd":40,"charges":1,"icon":"\/storage\/spell-icons\/ability_devour.jpg","presses":[26.6,112,294.4]},{"name":"Binding Shot","kind":"control","cd":45,"charges":1,"icon":"\/storage\/spell-icons\/spell_shaman_bindelemental.jpg","presses":[59.5,143.9,197.1]},{"name":"Chimaeral Sting","kind":"control","cd":60,"charges":1,"icon":"\/storage\/spell-icons\/ability_hunter_snaketrap.jpg","presses":[48.5]}]},{"name":"Their Rogue","side":"them","spec":"Subtlety Rogue","color":"#FFF569","usual":false,"died":null,"locked":[[15.7,17.1,"Psychic Scream"],[16.3,20.8,"Maim"],[86.7,91.7,"Cyclone"],[107.2,110.2,"Psychic Scream"],[156,158.3,"Mind Control"],[165.5,166.2,"Incapacitating Roar"],[181.5,187.5,"Psychic Scream"],[198.7,201.4,"Binding Shot"],[204.4,206.9,"Cyclone"],[234.6,237.6,"Scatter Shot"],[234.4,240.5,"Psychic Scream"],[253.8,258.3,"Maim"],[266.9,267.5,"Incapacitating Roar"],[274,275.4,"Psychic Scream"],[288.7,291.7,"Scatter Shot"],[304.2,305,"Psychic Scream"],[311.6,315.2,"Rake"]],"casts":[[14.1,"Shadow Dance",null],[14.5,"Gladiator's Badge",null],[14.5,"Blood Fury",null],[14.5,"Shadow Blades",null],[14.8,"Shadowstrike","You"],[21,"Shadowstep","Your Hunter"],[21.1,"Kidney Shot","Your Hunter"],[21.5,"Shadow Dance",null],[22.1,"Secret Technique","Your Hunter"],[22.7,"Secret Technique",null],[23.1,"Shadowstrike","Your Hunter"],[23.4,"Secret Technique",null],[24.1,"Eviscerate","Your Hunter"],[25.1,"Shadowstrike","Your Hunter"],[32,"Coup de Grace","You"],[33.3,"Backstab","You"],[34.2,"Backstab","You"],[35.4,"Backstab","You"],[37,"Shadow Dance",null],[37.5,"Cheap Shot","Your Priest"],[38.7,"Cheap Shot","You"],[39.7,"Eviscerate","You"],[40.7,"Shadowstrike","You"],[41.7,"Dismantle","Your Hunter"],[42.7,"Eviscerate","Your Hunter"],[44.3,"Backstab","Your Hunter"],[45.7,"Backstab","Your Hunter"],[46.7,"Eviscerate","Your Hunter"],[47.7,"Backstab","Your Hunter"],[49.8,"Eviscerate","Your Hunter"],[50.7,"Backstab","Your Hunter"],[64.1,"Shadow Dance",null],[64.9,"Cheap Shot","Your Priest"],[65.9,"Cheap Shot","You"],[67.4,"Kidney Shot","Your Hunter"],[68.4,"Secret Technique","Your Hunter"],[69,"Secret Technique",null],[69.4,"Shadowstrike","Your Hunter"],[69.7,"Secret Technique",null],[70.5,"Blind","Your Priest"],[71.6,"Coup de Grace","Your Hunter"],[73.5,"Backstab","You"],[74.5,"Eviscerate","You"],[75.6,"Backstab","Your Hunter"],[76.6,"Eviscerate","Your Hunter"],[77.6,"Backstab","Your Hunter"],[78,"Shadow Dance",null],[78.6,"Shadowstrike","Your Hunter"],[81.9,"Gouge","You"],[83.3,"Coup de Grace","Your Hunter"],[84.5,"Backstab","Your Hunter"],[85.5,"Eviscerate","Your Hunter"],[86.1,"Kick","Your Priest"],[92.6,"Sprint",null],[93.6,"Feint",null],[94.4,"Crimson Vial",null],[98.5,"Shadow Dance",null],[99,"Cheap Shot","Your Priest"],[100.3,"Cheap Shot","Your Hunter"],[100.8,"Gladiator's Badge",null],[101.3,"Secret Technique","Your Hunter"],[101.8,"Secret Technique",null],[101.9,"Secret Technique",null],[102.3,"Shadowstrike","Your Hunter"],[103.3,"Eviscerate","Your Hunter"],[104.5,"Kidney Shot","You"],[105.3,"Shadow Blades",null],[105.6,"Backstab","You"],[106.6,"Eviscerate","You"],[113.7,"Eviscerate","Your Hunter"],[114.7,"Backstab","Your Hunter"],[115.7,"Coup de Grace","Your Hunter"],[116.9,"Backstab","Your Hunter"],[117.9,"Backstab","Your Hunter"],[118.9,"Backstab","Your Hunter"],[122.8,"Backstab","You"],[124.1,"Gouge","You"],[127.4,"Eviscerate","You"],[128.4,"Backstab","You"],[129.5,"Shadow Dance",null],[131.9,"Cheap Shot","You"],[133.6,"Cheap Shot","Your Hunter"],[134.5,"Secret Technique","Your Hunter"],[135.2,"Secret Technique",null],[135.9,"Secret Technique",null],[136.7,"Backstab","Your Hunter"],[137.7,"Eviscerate","Your Hunter"],[140.8,"Backstab","You"],[141.8,"Eviscerate","You"],[142.9,"Feint",null],[144.3,"Dismantle","Your Hunter"],[146,"Backstab","Your Hunter"],[147,"Backstab","Your Hunter"],[148,"Backstab","Your Hunter"],[149.9,"Backstab","Your Hunter"],[153.8,"Eviscerate","Your Hunter"],[154.8,"Backstab","Your Hunter"],[155.8,"Backstab","Your Hunter"],[159.5,"Sprint",null],[160.1,"Shadow Dance",null],[161,"Cheap Shot","Your Priest"],[162.8,"Kidney Shot","Your Hunter"],[163.5,"Gladiator's Badge",null],[163.5,"Blood Fury",null],[163.8,"Secret Technique","Your Hunter"],[164.4,"Secret Technique",null],[164.8,"Shadowstrike","Your Hunter"],[165.1,"Secret Technique",null],[166.2,"Gladiator's Medallion",null],[166.4,"Smoke Bomb",null],[166.8,"Shadow Dance",null],[167.4,"Coup de Grace","Your Hunter"],[169.1,"Cheap Shot","You"],[170.1,"Eviscerate","Your Hunter"],[171.1,"Shadowstrike","Your Hunter"],[172.1,"Eviscerate","Your Hunter"],[173.1,"Eviscerate","Your Hunter"],[174.1,"Backstab","Your Hunter"],[190.2,"Feint",null],[195.3,"Shadow Dance",null],[195.7,"Cheap Shot","Your Priest"],[196.7,"Cheap Shot","You"],[197.7,"Shadowstep","Your Hunter"],[197.8,"Kidney Shot","Your Hunter"],[198.2,"Shadow Blades",null],[201.8,"Secret Technique","Your Hunter"],[202.3,"Secret Technique",null],[202.4,"Secret Technique",null],[202.8,"Dismantle","Your Hunter"],[203.8,"Shadowstep","You"],[208.9,"Eviscerate","Your Hunter"],[209.7,"Kick","Your Priest"],[210.7,"Backstab","Your Hunter"],[211.8,"Eviscerate","Your Hunter"],[212.8,"Eviscerate","Your Hunter"],[213.8,"Backstab","Your Hunter"],[214.8,"Eviscerate","Your Hunter"],[215.7,"Evasion",null],[216.2,"Crimson Vial",null],[217.7,"Backstab","Your Priest"],[218.7,"Eviscerate","Your Priest"],[219.7,"Backstab","Your Priest"],[223.6,"Shadow Dance",null],[223.8,"Cheap Shot","You"],[225,"Cheap Shot","Your Priest"],[230.1,"Gladiator's Badge",null],[230.1,"Shadow Dance",null],[230.5,"Cheap Shot","Your Hunter"],[231.5,"Secret Technique","Your Hunter"],[232,"Secret Technique",null],[232.1,"Secret Technique",null],[232.5,"Shadowstrike","Your Hunter"],[233.5,"Coup de Grace","Your Hunter"],[241.1,"Sprint",null],[241.9,"Backstab","Your Hunter"],[244.1,"Gouge","Your Hunter"],[248,"Dismantle","Your Hunter"],[248.9,"Eviscerate","Your Hunter"],[249.9,"Eviscerate","Your Hunter"],[251,"Feint",null],[259,"Shadowstep","You"],[259.3,"Shadow Dance",null],[259.6,"Cheap Shot","You"],[260.7,"Secret Technique","You"],[261.3,"Secret Technique",null],[261.7,"Shadowstrike","You"],[263.9,"Blind","Your Priest"],[265.4,"Shadowstep","Your Hunter"],[265.6,"Kidney Shot","Your Hunter"],[266.7,"Shadow Dance",null],[266.9,"Shadowstrike","Your Hunter"],[267.9,"Coup de Grace","Your Hunter"],[269.1,"Eviscerate","Your Hunter"],[272.4,"Shadowstrike","Your Hunter"],[276.7,"Kick","Your Priest"],[277.6,"Eviscerate","Your Hunter"],[278.6,"Backstab","Your Hunter"],[279.1,"Vanish",null],[280.1,"Cheap Shot","Your Priest"],[281.6,"Gouge","Your Priest"],[282.6,"Shadowstrike","Your Hunter"],[283.6,"Coup de Grace","Your Hunter"],[284.6,"Shadow Dance",null],[284.9,"Shadowstep","Your Hunter"],[284.9,"Shadowstrike","Your Hunter"],[286.2,"Eviscerate","Your Hunter"],[287.2,"Shadowstrike","Your Hunter"],[288.2,"Eviscerate","Your Hunter"],[292.6,"Backstab","Your Hunter"],[297.9,"Backstab","Your Hunter"],[298.9,"Smoke Bomb",null],[299,"Gladiator's Badge",null],[299,"Blood Fury",null],[299,"Shadow Blades",null],[299.9,"Secret Technique","Your Hunter"],[300.5,"Secret Technique",null],[300.9,"Backstab","Your Hunter"],[301.2,"Secret Technique",null],[301.9,"Eviscerate","Your Hunter"],[302.9,"Vanish",null],[305,"Gladiator's Medallion",null],[305.3,"Backstab","Your Hunter"],[306.3,"Coup de Grace","Your Hunter"],[307.5,"Backstab","Your Hunter"],[308.2,"Kick","You"],[308.9,"Eviscerate","Your Hunter"],[309.5,"Shadow Dance",null],[309.9,"Shadowstrike","Your Hunter"]],"abilities":[{"name":"Shadow Blades","kind":"offensive","cd":90,"charges":1,"icon":"\/storage\/spell-icons\/inv_knife_1h_grimbatolraid_d_03.jpg","presses":[14.5,105.3,198.2,299]},{"name":"Secret Technique","kind":"offensive","cd":25,"charges":1,"icon":"\/storage\/spell-icons\/ability_rogue_sinistercalling.jpg","presses":[22.1,68.4,101.3,134.5,163.8,201.8,231.5,260.7,299.9]},{"name":"Smoke Bomb","kind":"answers","cd":120,"charges":1,"icon":"\/storage\/spell-icons\/ability_rogue_smoke.jpg","presses":[166.4,298.9]},{"name":"Cloak of Shadows","kind":"answers","cd":120,"charges":1,"icon":"\/storage\/spell-icons\/spell_shadow_nethercloak.jpg","presses":[]},{"name":"Evasion","kind":"answers","cd":120,"charges":1,"icon":"\/storage\/spell-icons\/spell_shadow_shadowward.jpg","presses":[215.7]},{"name":"Gladiator's Medallion","kind":"answers","cd":120,"charges":1,"icon":"\/storage\/spell-icons\/ability_pvp_gladiatormedallion.jpg","presses":[166.2,305]},{"name":"Crimson Vial","kind":"answers","cd":60,"charges":1,"icon":"\/storage\/spell-icons\/1373904.jpg","presses":[94.4,216.2]},{"name":"Feint","kind":"answers","cd":15,"charges":2,"icon":"\/storage\/spell-icons\/ability_rogue_feint.jpg","presses":[93.6,142.9,190.2,251]},{"name":"Gouge","kind":"control","cd":25,"charges":1,"icon":"\/storage\/spell-icons\/ability_gouge.jpg","presses":[81.9,124.1,244.1,281.6]},{"name":"Kidney Shot","kind":"control","cd":30,"charges":1,"icon":"\/storage\/spell-icons\/ability_rogue_kidneyshot.jpg","presses":[21.1,67.4,104.5,162.8,197.8,265.6]},{"name":"Blind","kind":"control","cd":120,"charges":1,"icon":"\/storage\/spell-icons\/spell_shadow_mindsteal.jpg","presses":[70.5,263.9]},{"name":"Dismantle","kind":"control","cd":45,"charges":1,"icon":"\/storage\/spell-icons\/ability_rogue_dismantle.jpg","presses":[41.7,144.3,202.8,248]},{"name":"Kick","kind":"interrupts","cd":15,"charges":1,"icon":"\/storage\/spell-icons\/ability_kick.jpg","presses":[86.1,209.7,276.7,308.2]}]}],"icons":{"Power Word: Shield":"\/storage\/spell-icons\/135940.jpg","Plea":"\/storage\/spell-icons\/1538777.jpg","Penance":"\/storage\/spell-icons\/237545.jpg","Shadow Word: Pain":"\/storage\/spell-icons\/136207.jpg","Psychic Scream":"\/storage\/spell-icons\/spell_shadow_psychicscream.jpg","Void Shield":"\/storage\/spell-icons\/inv12_apextalent_priest_voidshield.jpg","Power Word: Radiance":"\/storage\/spell-icons\/spell_priest_powerword.jpg","Evangelism":"\/storage\/spell-icons\/spell_holy_divineillumination.jpg","Power Infusion":"\/storage\/spell-icons\/spell_holy_powerinfusion.jpg","Leap of Faith":"\/storage\/spell-icons\/463835.jpg","Fade":"\/storage\/spell-icons\/spell_magic_lesserinvisibilty.jpg","Gladiator's Medallion":"\/storage\/spell-icons\/ability_pvp_gladiatormedallion.jpg","Purify":"\/storage\/spell-icons\/135894.jpg","Ultimate Penitence":"\/storage\/spell-icons\/1060982.jpg","Pain Suppression":"\/storage\/spell-icons\/spell_holy_painsupression.jpg","Mind Blast":"\/storage\/spell-icons\/spell_shadow_unholyfrenzy.jpg","Angelic Feather":"\/storage\/spell-icons\/642580.jpg","Shadow Word: Death":"\/storage\/spell-icons\/136149.jpg","Mind Control":"\/storage\/spell-icons\/spell_shadow_shadowworddominate.jpg","Flash Heal":"\/storage\/spell-icons\/135907.jpg","Camouflage":"\/storage\/spell-icons\/ability_hunter_camouflage.jpg","Flare":"\/storage\/spell-icons\/135815.jpg","Hunter's Mark":"\/storage\/spell-icons\/236188.jpg","Barbed Shot":"\/storage\/spell-icons\/ability_hunter_barbedshot.jpg","Kill Command":"\/storage\/spell-icons\/132176.jpg","Intimidation":"\/storage\/spell-icons\/132111.jpg","Freezing Trap":"\/storage\/spell-icons\/135834.jpg","Cobra Shot":"\/storage\/spell-icons\/ability_hunter_cobrashot.jpg","Bestial Wrath":"\/storage\/spell-icons\/132127.jpg","Dire Beast":"\/storage\/spell-icons\/236186.jpg","Chimaeral Sting":"\/storage\/spell-icons\/ability_hunter_snaketrap.jpg","Counter Shot":"\/storage\/spell-icons\/inv_ammo_arrow_03.jpg","Binding Shot":"\/storage\/spell-icons\/462650.jpg","Survival of the Fittest":"\/storage\/spell-icons\/spell_nature_spiritarmor.jpg","Tranquilizing Shot":"\/storage\/spell-icons\/136020.jpg","Disengage":"\/storage\/spell-icons\/132294.jpg","Exhilaration":"\/storage\/spell-icons\/461117.jpg","Aspect of the Turtle":"\/storage\/spell-icons\/132199.jpg","Scatter Shot":"\/storage\/spell-icons\/132153.jpg","Roar of Sacrifice":"\/storage\/spell-icons\/464604.jpg","Lifebloom":"\/storage\/spell-icons\/134206.jpg","Rejuvenation":"\/storage\/spell-icons\/inv12_spell_nature_rejuvenation_empowered.jpg","Prowl":"\/storage\/spell-icons\/514640.jpg","Rake":"\/storage\/spell-icons\/7195159.jpg","Incarnation: Tree of Life":"\/storage\/spell-icons\/132145.jpg","Swiftmend":"\/storage\/spell-icons\/inv_relics_idolofrejuvenation.jpg","Nature's Cure":"\/storage\/spell-icons\/236288.jpg","Rejuvenation (Germination)":"\/storage\/spell-icons\/spell_druid_germination.jpg","Wild Growth":"\/storage\/spell-icons\/ability_druid_flourish.jpg","Cyclone":"\/storage\/spell-icons\/spell_nature_earthbind.jpg","Starsurge":"\/storage\/spell-icons\/135730.jpg","Innervate":"\/storage\/spell-icons\/spell_nature_lightning.jpg","Regrowth":"\/storage\/spell-icons\/136085.jpg","Ursol's Vortex":"\/storage\/spell-icons\/571588.jpg","Ironbark":"\/storage\/spell-icons\/spell_druid_ironbark.jpg","Wrath":"\/storage\/spell-icons\/535045.jpg","Mighty Bash":"\/storage\/spell-icons\/ability_druid_bash.jpg","Cat Form":"\/storage\/spell-icons\/132115.jpg","Dash":"\/storage\/spell-icons\/ability_druid_dash.jpg","Maim":"\/storage\/spell-icons\/ability_druid_mangle.jpg","Nature's Swiftness":"\/storage\/spell-icons\/spell_nature_ravenform.jpg","Tiger's Fury":"\/storage\/spell-icons\/ability_mount_jungletiger.jpg","Feral Frenzy":"\/storage\/spell-icons\/132140.jpg","Incarnation: Avatar of Ashamane":"\/storage\/spell-icons\/571586.jpg","Rip":"\/storage\/spell-icons\/inv12_ability_ghoulfrenzy_empowered.jpg","Ferocious Bite":"\/storage\/spell-icons\/132127.jpg","Shred":"\/storage\/spell-icons\/136231.jpg","Barkskin":"\/storage\/spell-icons\/spell_nature_stoneclawtotem.jpg","Skull Bash":"\/storage\/spell-icons\/inv_bone_skull_04.jpg","Wild Charge":"\/storage\/spell-icons\/spell_druid_wildcharge.jpg","Incapacitating Roar":"\/storage\/spell-icons\/ability_druid_demoralizingroar.jpg","Bear Form":"\/storage\/spell-icons\/135881.jpg","Entangling Roots":"\/storage\/spell-icons\/136100.jpg","Strength of the Wild":"\/storage\/spell-icons\/ability_druid_protectorofthepack.jpg","Blink":"\/storage\/spell-icons\/spell_arcane_blink.jpg","Dragon's Breath":"\/storage\/spell-icons\/inv_misc_head_dragon_01.jpg","Fire Blast":"\/storage\/spell-icons\/135807.jpg","Pyroblast":"\/storage\/spell-icons\/135808.jpg","Frost Nova":"\/storage\/spell-icons\/spell_frost_frostnova.jpg","Alter Time":"\/storage\/spell-icons\/609811.jpg","Combustion":"\/storage\/spell-icons\/spell_fire_sealoffire.jpg","Blazing Barrier":"\/storage\/spell-icons\/132221.jpg","Ice Nova":"\/storage\/spell-icons\/spell_mage_icenova.jpg","Greater Invisibility":"\/storage\/spell-icons\/575584.jpg","Spellsteal":"\/storage\/spell-icons\/135729.jpg","Ring of Frost":"\/storage\/spell-icons\/464484.jpg","Mass Invisibility":"\/storage\/spell-icons\/ability_mage_massinvisibility.jpg","Polymorph":"\/storage\/spell-icons\/spell_nature_polymorph.jpg","Scorch":"\/storage\/spell-icons\/spell_fire_soulburn.jpg","Counterspell":"\/storage\/spell-icons\/135856.jpg","Shadow Dance":"\/storage\/spell-icons\/ability_rogue_shadowdance.jpg","Shadow Blades":"\/storage\/spell-icons\/376022.jpg","Shadowstrike":"\/storage\/spell-icons\/1373912.jpg","Shadowstep":"\/storage\/spell-icons\/132303.jpg","Kidney Shot":"\/storage\/spell-icons\/ability_rogue_kidneyshot.jpg","Secret Technique":"\/storage\/spell-icons\/ability_rogue_sinistercalling.jpg","Eviscerate":"\/storage\/spell-icons\/132292.jpg","Coup de Grace":"\/storage\/spell-icons\/5927656.jpg","Backstab":"\/storage\/spell-icons\/132090.jpg","Cheap Shot":"\/storage\/spell-icons\/ability_cheapshot.jpg","Dismantle":"\/storage\/spell-icons\/ability_rogue_dismantle.jpg","Blind":"\/storage\/spell-icons\/136175.jpg","Gouge":"\/storage\/spell-icons\/ability_gouge.jpg","Kick":"\/storage\/spell-icons\/ability_kick.jpg","Sprint":"\/storage\/spell-icons\/ability_rogue_sprint.jpg","Feint":"\/storage\/spell-icons\/ability_rogue_feint.jpg","Crimson Vial":"\/storage\/spell-icons\/1373904.jpg","Smoke Bomb":"\/storage\/spell-icons\/458733.jpg","Evasion":"\/storage\/spell-icons\/136205.jpg","Vanish":"\/storage\/spell-icons\/ability_vanish.jpg"}}</script>
+            <div class="rh">
+                <b>The game</b>
+                                    <span class="lost small">lost</span>
+                                <span class="subtle small">&nbsp;5:34</span>
+            </div>
+
+            <div class="rail">
+                                                        <div class="fall them cooldown"
+                         style="left: 6.8862275449102%; width: 1.7964071856287%; opacity: 0.8"
+                         title="Your Hunter 100% to 58%, 0:23 to 0:29"></div>
+                                                        <div class="fall us cooldown"
+                         style="left: 8.0838323353293%; width: 1.1976047904192%; opacity: 0.8"
+                         title="Their Mage 99% to 78%, 0:27 to 0:31 — Rake on Their Mage, Intimidation on the healer, 4.1s apart"></div>
+                                                        <div class="fall them control"
+                         style="left: 9.8802395209581%; width: 3.2934131736527%; opacity: 0.8"
+                         title="You 100% to 75%, 0:33 to 0:44 — Cheap Shot on You, Cheap Shot on the healer, 1.2s apart"></div>
+                                                        <div class="fall us cooldown"
+                         style="left: 10.479041916168%; width: 2.6946107784431%; opacity: 0.65"
+                         title="Their Mage 100% to 75%, 0:35 to 0:44"></div>
+                                                        <div class="fall us cooldown"
+                         style="left: 13.173652694611%; width: 1.7964071856287%; opacity: 0.5"
+                         title="Their Mage 100% to 73%, 0:44 to 0:50"></div>
+                                                        <div class="fall them control"
+                         style="left: 13.473053892216%; width: 4.1916167664671%; opacity: 0.8"
+                         title="Your Hunter 100% to 74%, 0:45 to 0:59"></div>
+                                                        <div class="fall us cooldown"
+                         style="left: 14.97005988024%; width: 2.3952095808383%; opacity: 0.5"
+                         title="Their Mage 100% to 80%, 0:50 to 0:58"></div>
+                                                        <div class="fall us cooldown"
+                         style="left: 17.065868263473%; width: 4.7904191616766%; opacity: 1"
+                         title="Their Rogue 100% to 80%, 0:57 to 1:13"></div>
+                                                        <div class="fall us cooldown"
+                         style="left: 20.359281437126%; width: 3.5928143712575%; opacity: 0.95"
+                         title="Their Mage 99% to 42%, 1:08 to 1:20 — Psychic Scream on Their Mage, Psychic Scream on the healer, 0s apart"></div>
+                                                        <div class="fall them control"
+                         style="left: 20.658682634731%; width: 4.4910179640719%; opacity: 1"
+                         title="Your Hunter 100% to 41%, 1:09 to 1:24 — Kidney Shot on Your Hunter, Polymorph on the healer, 1.1s apart"></div>
+                                                        <div class="fall us cooldown"
+                         style="left: 24.850299401198%; width: 3.8922155688623%; opacity: 0.65"
+                         title="Their Rogue 100% to 76%, 1:23 to 1:36"></div>
+                                                        <div class="fall us cooldown"
+                         style="left: 26.347305389222%; width: 2.9940119760479%; opacity: 0.65"
+                         title="Their Druid 100% to 75%, 1:28 to 1:38"></div>
+                                                        <div class="fall us cooldown"
+                         style="left: 28.14371257485%; width: 3.5928143712575%; opacity: 0.65"
+                         title="Their Mage 100% to 40%, 1:34 to 1:46"></div>
+                                                        <div class="fall them cooldown"
+                         style="left: 29.940119760479%; width: 2.9940119760479%; opacity: 0.8"
+                         title="Your Hunter 100% to 58%, 1:40 to 1:50 — Cheap Shot on Your Hunter, Cheap Shot on the healer, 1.2s apart"></div>
+                                                        <div class="fall us cooldown"
+                         style="left: 34.431137724551%; width: 2.6946107784431%; opacity: 0.65"
+                         title="Their Mage 100% to 80%, 1:55 to 2:04 — Psychic Scream on Their Mage, Intimidation on the healer, 4.9s apart"></div>
+                                                        <div class="fall us cooldown"
+                         style="left: 41.017964071856%; width: 5.9880239520958%; opacity: 0.95"
+                         title="Their Mage 100% to 41%, 2:17 to 2:37 — Maim on Their Mage, Freezing Trap on the healer, 2s apart"></div>
+                                                        <div class="fall us cooldown"
+                         style="left: 42.215568862275%; width: 2.6946107784431%; opacity: 0.95"
+                         title="Their Rogue 99% to 72%, 2:21 to 2:30"></div>
+                                                        <div class="fall them cooldown"
+                         style="left: 42.814371257485%; width: 2.6946107784431%; opacity: 0.65"
+                         title="Your Hunter 100% to 79%, 2:23 to 2:32 — Cheap Shot on Your Hunter, Polymorph on the healer, 8.9s apart"></div>
+                                                        <div class="fall them control"
+                         style="left: 48.802395209581%; width: 8.0838323353293%; opacity: 0.8"
+                         title="Your Hunter 100% to 5%, 2:43 to 3:10 — Kidney Shot on Your Hunter, Cheap Shot on the healer, 1.8s apart"></div>
+                                                        <div class="fall us cooldown"
+                         style="left: 51.497005988024%; width: 4.7904191616766%; opacity: 0.65"
+                         title="Their Mage 99% to 60%, 2:52 to 3:08 — Maim on Their Mage, Psychic Scream on the healer, 5.9s apart"></div>
+                                                        <div class="fall us cooldown"
+                         style="left: 59.880239520958%; width: 3.8922155688623%; opacity: 0.65"
+                         title="Their Mage 100% to 43%, 3:20 to 3:33"></div>
+                                                        <div class="fall us cooldown"
+                         style="left: 61.976047904192%; width: 3.8922155688623%; opacity: 0.8"
+                         title="Their Rogue 99% to 71%, 3:27 to 3:40 — Binding Shot on Their Rogue, Binding Shot on the healer, 1.2s apart"></div>
+                                                        <div class="fall them control"
+                         style="left: 68.862275449102%; width: 6.2874251497006%; opacity: 0.65"
+                         title="Your Hunter 100% to 32%, 3:50 to 4:11 — Cheap Shot on Your Hunter, Cyclone on the healer, 2.3s apart"></div>
+                                                        <div class="fall us cooldown"
+                         style="left: 71.556886227545%; width: 2.6946107784431%; opacity: 0.8"
+                         title="Their Mage 100% to 54%, 3:59 to 4:08"></div>
+                                                        <div class="fall us cooldown"
+                         style="left: 72.754491017964%; width: 3.8922155688623%; opacity: 0.8"
+                         title="Their Rogue 100% to 65%, 4:03 to 4:16"></div>
+                                                        <div class="fall us cooldown"
+                         style="left: 76.347305389222%; width: 1.1976047904192%; opacity: 0.65"
+                         title="Their Mage 100% to 54%, 4:15 to 4:19"></div>
+                                                        <div class="fall them cooldown"
+                         style="left: 78.14371257485%; width: 1.1976047904192%; opacity: 0.65"
+                         title="You 100% to 73%, 4:21 to 4:25 — Cheap Shot on You, Blind on the healer, 4.3s apart"></div>
+                                                        <div class="fall them cooldown died"
+                         style="left: 79.640718562874%; width: 13.473053892216%; opacity: 0.8"
+                         title="Your Hunter 100% to dead, 4:26 to 5:11 — Kidney Shot on Your Hunter, Blind on the healer, 1.7s apart"></div>
+                                                        <div class="fall us cooldown"
+                         style="left: 85.928143712575%; width: 5.0898203592814%; opacity: 0.8"
+                         title="Their Druid 99% to 78%, 4:47 to 5:04"></div>
+                                                        <div class="fall us cooldown"
+                         style="left: 87.724550898204%; width: 3.5928143712575%; opacity: 0.8"
+                         title="Their Mage 99% to 63%, 4:53 to 5:05 — Psychic Scream on Their Mage, Freezing Trap on the healer, 7.9s apart"></div>
+                                                    <div class="unmoved" style="left: 3.0239520958084%" title="Feral Frenzy (You) at 0:10 moved nobody"></div>
+                                    <div class="unmoved" style="left: 59.341317365269%" title="Shadow Blades (Their Rogue) at 3:18 moved nobody"></div>
+                                    <div class="unmoved" style="left: 80.838323353293%" title="Power Infusion (Your Priest) at 4:30 moved nobody"></div>
+                                    <div class="unmoved" style="left: 92.634730538922%" title="Bestial Wrath (Your Hunter) at 5:09 moved nobody"></div>
+                                    <div class="unmoved" style="left: 93.023952095808%" title="Incarnation: Avatar of Ashamane (You) at 5:10 moved nobody"></div>
+                                                                        <div class="go old us"
+                         style="left: 2.6706586826347%; width: 13.547904191617%"
+                         title="Your go — 0:08 to 0:54 — Rake &gt; target, Feral Frenzy, Psychic Scream &gt; cross, Maim &gt; cross, Incarnation: Avatar of Ashamane, Rake &gt; target, Power Infusion, Intimidation &gt; healer, Freezing Trap &gt; healer, Bestial Wrath"></div>
+                                                        <div class="go old us"
+                         style="left: 16.565868263473%; width: 31.523952095808%"
+                         title="Your go — 0:55 to 2:40 — Feral Frenzy, Binding Shot &gt; healer, Psychic Scream &gt; healer, Psychic Scream &gt; target, Freezing Trap &gt; healer, Maim &gt; target, Bestial Wrath, Cyclone &gt; cross, Ultimate Penitence, Feral Frenzy, Psychic Scream &gt; target, Psychic Scream &gt; cross, Intimidation &gt; healer, Freezing Trap &gt; healer, Incarnation: Avatar of Ashamane, Rake &gt; target, Feral Frenzy, Psychic Scream &gt; target, Bestial Wrath, Power Infusion, Maim &gt; target, Freezing Trap &gt; healer, Mind Control &gt; cross"></div>
+                                                        <div class="go old us"
+                         style="left: 54.350299401198%; width: 10.455089820359%"
+                         title="Your go — 3:01 to 3:36 — Psychic Scream &gt; healer, Psychic Scream &gt; cross, Feral Frenzy, Maim &gt; target, Binding Shot &gt; healer, Binding Shot &gt; cross, Bestial Wrath, Cyclone &gt; cross"></div>
+                                                        <div class="go old us"
+                         style="left: 63.736526946108%; width: 14.290419161677%"
+                         title="Your go — 3:32 to 4:20 — Cyclone &gt; healer, Incarnation: Avatar of Ashamane, Rake &gt; target, Incapacitating Roar &gt; target, Psychic Scream &gt; target, Psychic Scream &gt; cross, Scatter Shot &gt; cross, Bestial Wrath, Feral Frenzy, Maim &gt; cross"></div>
+                                                        <div class="go old us"
+                         style="left: 79.922155688623%; width: 10.907185628743%"
+                         title="Your go — 4:26 to 5:03 — Incapacitating Roar &gt; cross, Power Infusion, Psychic Scream &gt; cross, Cyclone &gt; target, Maim &gt; target, Feral Frenzy, Scatter Shot &gt; cross, Intimidation &gt; healer, Freezing Trap &gt; healer"></div>
+                                                        <div class="go old us"
+                         style="left: 91.089820359281%; width: 6.4311377245509%"
+                         title="Your go — 5:04 to 5:25 — Psychic Scream &gt; cross, Psychic Scream &gt; target, Bestial Wrath, Incarnation: Avatar of Ashamane, Rake &gt; cross"></div>
+                                                        <div class="go old them"
+                         style="left: 1.5658682634731%; width: 9.5538922155689%"
+                         title="Enemy go — 0:05 to 0:37 — Sap &gt; healer, Dragon&#039;s Breath &gt; cross, Rake &gt; cross, Sap &gt; target, Shadow Blades, Kidney Shot &gt; target, Combustion"></div>
+                                                        <div class="go old them"
+                         style="left: 28.829341317365%; width: 7.2005988023952%"
+                         title="Enemy go — 1:36 to 2:00 — Dragon&#039;s Breath &gt; cross, Cheap Shot &gt; healer, Cheap Shot &gt; target, Kidney Shot &gt; cross, Shadow Blades, Ring of Frost &gt; target, Ring of Frost &gt; cross"></div>
+                                                        <div class="go old them"
+                         style="left: 37.146706586826%; width: 7.5688622754491%"
+                         title="Enemy go — 2:04 to 2:29 — Gouge &gt; cross, Mighty Bash &gt; healer, Cheap Shot &gt; cross, Cyclone &gt; healer, Cheap Shot &gt; target, Combustion, Polymorph &gt; healer"></div>
+                                                        <div class="go old them"
+                         style="left: 58.59880239521%; width: 5.2425149700599%"
+                         title="Enemy go — 3:15 to 3:33 — Cheap Shot &gt; healer, Cheap Shot &gt; cross, Kidney Shot &gt; target, Shadow Blades, Polymorph &gt; healer"></div>
+                                                        <div class="go old them"
+                         style="left: 77.736526946108%; width: 5.3383233532934%"
+                         title="Enemy go — 4:19 to 4:37 — Cheap Shot &gt; cross, Combustion, Blind &gt; healer, Kidney Shot &gt; target"></div>
+                                                        <div class="go old them kill"
+                         style="left: 88.176646706587%; width: 6.5149700598802%"
+                         title="Enemy go — 4:54 to 5:16 — Dragon&#039;s Breath &gt; cross, Maim &gt; target, Ring of Frost &gt; cross, Shadow Blades, Cyclone &gt; healer, Polymorph &gt; healer"></div>
+                                                    <div class="death" style="left: 92.976047904192%"></div>
+                                                    <div class="def us" style="left: 0.47005988023952%" title="Camouflage (Your Hunter) at 0:01"></div>
+                                    <div class="def them" style="left: 4.2425149700599%" title="Incarnation: Tree of Life (Their Druid) at 0:14"></div>
+                                    <div class="def them" style="left: 6.0988023952096%" title="Alter Time (Their Mage) at 0:20"></div>
+                                    <div class="def us" style="left: 7.8922155688623%" title="Leap of Faith (Your Priest on Your Hunter) at 0:26"></div>
+                                    <div class="def us" style="left: 9.3592814371257%" title="Fade (Your Priest) at 0:31"></div>
+                                    <div class="def them" style="left: 11.191616766467%" title="Greater Invisibility (Their Mage) at 0:37"></div>
+                                    <div class="def us" style="left: 11.976047904192%" title="Barkskin (You) at 0:40"></div>
+                                    <div class="def us" style="left: 12.329341317365%" title="Gladiator&#039;s Medallion (Your Priest) at 0:41"></div>
+                                    <div class="def them" style="left: 16.583832335329%" title="Mass Invisibility (Their Mage) at 0:55"></div>
+                                    <div class="def us" style="left: 18.089820359281%" title="Fade (Your Priest) at 1:00"></div>
+                                    <div class="def us" style="left: 22.724550898204%" title="Survival of the Fittest (Your Hunter) at 1:15"></div>
+                                    <div class="def them" style="left: 23.48502994012%" title="Ironbark (Their Druid on Their Mage) at 1:18"></div>
+                                    <div class="def them" style="left: 24.140718562874%" title="Alter Time (Their Mage) at 1:20"></div>
+                                    <div class="def them" style="left: 28.011976047904%" title="Feint (Their Rogue) at 1:33"></div>
+                                    <div class="def them" style="left: 28.25748502994%" title="Crimson Vial (Their Rogue) at 1:34"></div>
+                                    <div class="def them" style="left: 29.994011976048%" title="Greater Invisibility (Their Mage) at 1:40"></div>
+                                    <div class="def us" style="left: 30.796407185629%" title="Pain Suppression (Your Priest on Your Hunter) at 1:42"></div>
+                                    <div class="def us" style="left: 31.802395209581%" title="Barkskin (You) at 1:46"></div>
+                                    <div class="def them" style="left: 36.095808383234%" title="Incarnation: Tree of Life (Their Druid) at 2:00"></div>
+                                    <div class="def them" style="left: 37.212574850299%" title="Alter Time (Their Mage) at 2:04"></div>
+                                    <div class="def us" style="left: 39.913173652695%" title="Gladiator&#039;s Medallion (Your Priest) at 2:13"></div>
+                                    <div class="def us" style="left: 40.715568862275%" title="Fade (Your Priest) at 2:15"></div>
+                                    <div class="def them" style="left: 42.775449101796%" title="Feint (Their Rogue) at 2:22"></div>
+                                    <div class="def us" style="left: 46.565868263473%" title="Survival of the Fittest (Your Hunter) at 2:35"></div>
+                                    <div class="def them" style="left: 49.77245508982%" title="Gladiator&#039;s Medallion (Their Rogue) at 2:46"></div>
+                                    <div class="def them" style="left: 49.820359281437%" title="Smoke Bomb (Their Rogue) at 2:46"></div>
+                                    <div class="def us" style="left: 51.25748502994%" title="Exhilaration (Your Hunter) at 2:51"></div>
+                                    <div class="def us" style="left: 51.868263473054%" title="Pain Suppression (Your Priest on Your Hunter) at 2:53"></div>
+                                    <div class="def us" style="left: 52.011976047904%" title="Aspect of the Turtle (Your Hunter) at 2:53"></div>
+                                    <div class="def them" style="left: 54.748502994012%" title="Gladiator&#039;s Medallion (Their Druid) at 3:02"></div>
+                                    <div class="def them" style="left: 56.449101796407%" title="Ironbark (Their Druid on Their Mage) at 3:08"></div>
+                                    <div class="def them" style="left: 56.931137724551%" title="Feint (Their Rogue) at 3:10"></div>
+                                    <div class="def us" style="left: 59.544910179641%" title="Gladiator&#039;s Medallion (Your Hunter) at 3:18"></div>
+                                    <div class="def them" style="left: 60.517964071856%" title="Alter Time (Their Mage) at 3:22"></div>
+                                    <div class="def them" style="left: 61.425149700599%" title="Mass Invisibility (Their Mage) at 3:25"></div>
+                                    <div class="def us" style="left: 61.895209580838%" title="Evangelism (Your Priest on Your Hunter) at 3:26"></div>
+                                    <div class="def them" style="left: 64.583832335329%" title="Evasion (Their Rogue) at 3:35"></div>
+                                    <div class="def them" style="left: 64.721556886228%" title="Crimson Vial (Their Rogue) at 3:36"></div>
+                                    <div class="def them" style="left: 65.329341317365%" title="Greater Invisibility (Their Mage) at 3:38"></div>
+                                    <div class="def us" style="left: 69.90119760479%" title="Fade (Your Priest) at 3:53"></div>
+                                    <div class="def them" style="left: 70.505988023952%" title="Gladiator&#039;s Medallion (Their Mage) at 3:55"></div>
+                                    <div class="def us" style="left: 70.952095808383%" title="Exhilaration (Your Hunter) at 3:56"></div>
+                                    <div class="def us" style="left: 72.616766467066%" title="Gladiator&#039;s Medallion (You) at 4:02"></div>
+                                    <div class="def them" style="left: 73.11377245509%" title="Incarnation: Tree of Life (Their Druid) at 4:04"></div>
+                                    <div class="def them" style="left: 73.434131736527%" title="Alter Time (Their Mage) at 4:05"></div>
+                                    <div class="def them" style="left: 75.14371257485%" title="Feint (Their Rogue) at 4:10"></div>
+                                    <div class="def us" style="left: 78.64371257485%" title="Barkskin (You) at 4:22"></div>
+                                    <div class="def us" style="left: 80.775449101796%" title="Leap of Faith (Your Priest on Your Hunter) at 4:29"></div>
+                                    <div class="def us" style="left: 80.85628742515%" title="Pain Suppression (Your Priest on Your Hunter) at 4:30"></div>
+                                    <div class="def us" style="left: 82.532934131737%" title="Fade (Your Priest) at 4:35"></div>
+                                    <div class="def us" style="left: 83.11377245509%" title="Survival of the Fittest (Your Hunter) at 4:37"></div>
+                                    <div class="def us" style="left: 83.416167664671%" title="Roar of Sacrifice (Your Hunter) at 4:38"></div>
+                                    <div class="def them" style="left: 83.574850299401%" title="Vanish (Their Rogue) at 4:39"></div>
+                                    <div class="def us" style="left: 83.868263473054%" title="Gladiator&#039;s Medallion (Your Priest) at 4:40"></div>
+                                    <div class="def us" style="left: 85.538922155689%" title="Survival of the Fittest (Your Hunter) at 4:45"></div>
+                                    <div class="def them" style="left: 86.847305389222%" title="Greater Invisibility (Their Mage) at 4:50"></div>
+                                    <div class="def them" style="left: 89.020958083832%" title="Gladiator&#039;s Medallion (Their Druid) at 4:57"></div>
+                                    <div class="def them" style="left: 89.491017964072%" title="Smoke Bomb (Their Rogue) at 4:58"></div>
+                                    <div class="def us" style="left: 90.137724550898%" title="Fade (Your Priest) at 5:01"></div>
+                                    <div class="def them" style="left: 90.823353293413%" title="Ironbark (Their Druid on Their Mage) at 5:03"></div>
+                                    <div class="def them" style="left: 91.302395209581%" title="Gladiator&#039;s Medallion (Their Rogue) at 5:04"></div>
+                                <div class="head2"></div>
+            </div>
+            <div class="ticks">
+                                    <span style="left: 0%">0:00</span>
+                                    <span style="left: 8.9820359281437%">0:30</span>
+                                    <span style="left: 17.964071856287%">1:00</span>
+                                    <span style="left: 26.946107784431%">1:30</span>
+                                    <span style="left: 35.928143712575%">2:00</span>
+                                    <span style="left: 44.910179640719%">2:30</span>
+                                    <span style="left: 53.892215568862%">3:00</span>
+                                    <span style="left: 62.874251497006%">3:30</span>
+                                    <span style="left: 71.85628742515%">4:00</span>
+                                    <span style="left: 80.838323353293%">4:30</span>
+                                    <span style="left: 89.820359281437%">5:00</span>
+                                    <span style="left: 98.802395209581%">5:30</span>
+                            </div>
+
+            <table class="ev">
+                                    <tr data-t="1.57" data-kind="def">
+                        <td class="t">0:01</td>
+                        <td class="w"><span class="pill us">you</span></td>
+                        <td><b>Camouflage</b><div class="small subtle">Your Hunter</div></td>
+                    </tr>
+                                    <tr data-t="5.23" data-kind="go">
+                        <td class="t">0:05</td>
+                        <td class="w"><span class="pill them">them</span></td>
+                        <td><b>Old go on Your Hunter</b><div class="small subtle">Sap &gt; healer, Dragon&#039;s Breath &gt; cross, Rake &gt; cross, Sap &gt; target, Shadow Blades, Kidney Shot &gt; target, Combustion</div></td>
+                    </tr>
+                                    <tr data-t="8.92" data-kind="go">
+                        <td class="t">0:08</td>
+                        <td class="w"><span class="pill us">you</span></td>
+                        <td><b>Old go on Their Mage</b><div class="small subtle">Rake &gt; target, Feral Frenzy, Psychic Scream &gt; cross, Maim &gt; cross, Incarnation: Avatar of Ashamane, Rake &gt; target, Power Infusion, Intimidation &gt; healer, Freezing Trap &gt; healer, Bestial Wrath</div></td>
+                    </tr>
+                                    <tr data-t="10.1" data-kind="unmoved">
+                        <td class="t">0:10</td>
+                        <td class="w"><span class="pill us">you</span></td>
+                        <td><b>Feral Frenzy moved nobody</b><div class="small subtle">You</div></td>
+                    </tr>
+                                    <tr data-t="14.17" data-kind="def">
+                        <td class="t">0:14</td>
+                        <td class="w"><span class="pill them">them</span></td>
+                        <td><b>Incarnation: Tree of Life</b><div class="small subtle">Their Druid</div></td>
+                    </tr>
+                                    <tr data-t="20.37" data-kind="def">
+                        <td class="t">0:20</td>
+                        <td class="w"><span class="pill them">them</span></td>
+                        <td><b>Alter Time</b><div class="small subtle">Their Mage</div></td>
+                    </tr>
+                                    <tr data-t="23" data-kind="fall">
+                        <td class="t">0:23</td>
+                        <td class="w"><span class="pill them">them</span></td>
+                        <td><b>Your Hunter 100% → 58% · cooldowns</b><div class="small subtle">Cooldowns: Shadow Blades (Their Rogue), Combustion (Their Mage)<br />
+Control: Kidney Shot on Your Hunter<br />
+Answered with: Leap of Faith (Your Priest)</div></td>
+                    </tr>
+                                    <tr data-t="26.36" data-kind="def">
+                        <td class="t">0:26</td>
+                        <td class="w"><span class="pill us">you</span></td>
+                        <td><b>Leap of Faith</b><div class="small subtle">Your Priest on Your Hunter</div></td>
+                    </tr>
+                                    <tr data-t="27" data-kind="fall">
+                        <td class="t">0:27</td>
+                        <td class="w"><span class="pill us">you</span></td>
+                        <td><b>Their Mage 99% → 78% · cooldowns</b><div class="small subtle">Rake on Their Mage, Intimidation on the healer, 4.1s apart<br />
+Cooldowns: Incarnation: Avatar of Ashamane (You), Power Infusion (Your Priest)<br />
+Control: Rake on Their Mage, Intimidation on Their Druid, Freezing Trap on Their Druid</div></td>
+                    </tr>
+                                    <tr data-t="31.26" data-kind="def">
+                        <td class="t">0:31</td>
+                        <td class="w"><span class="pill us">you</span></td>
+                        <td><b>Fade</b><div class="small subtle">Your Priest</div></td>
+                    </tr>
+                                    <tr data-t="33" data-kind="fall">
+                        <td class="t">0:33</td>
+                        <td class="w"><span class="pill them">them</span></td>
+                        <td><b>You 100% → 75% · control, no cooldown</b><div class="small subtle">Cheap Shot on You, Cheap Shot on the healer, 1.2s apart<br />
+Control: Cheap Shot on Your Priest, Cheap Shot on You, Cyclone on Your Priest<br />
+Answered with: Fade (Your Priest), Barkskin (You), Gladiator&#039;s Medallion (Your Priest)</div></td>
+                    </tr>
+                                    <tr data-t="35" data-kind="fall">
+                        <td class="t">0:35</td>
+                        <td class="w"><span class="pill us">you</span></td>
+                        <td><b>Their Mage 100% → 75% · cooldowns</b><div class="small subtle">Cooldowns: Bestial Wrath (Your Hunter)<br />
+Control: Intimidation on Their Druid, Freezing Trap on Their Druid<br />
+Answered with: Greater Invisibility (Their Mage)</div></td>
+                    </tr>
+                                    <tr data-t="37.38" data-kind="def">
+                        <td class="t">0:37</td>
+                        <td class="w"><span class="pill them">them</span></td>
+                        <td><b>Greater Invisibility</b><div class="small subtle">Their Mage</div></td>
+                    </tr>
+                                    <tr data-t="40" data-kind="def">
+                        <td class="t">0:40</td>
+                        <td class="w"><span class="pill us">you</span></td>
+                        <td><b>Barkskin</b><div class="small subtle">You</div></td>
+                    </tr>
+                                    <tr data-t="41.18" data-kind="def">
+                        <td class="t">0:41</td>
+                        <td class="w"><span class="pill us">you</span></td>
+                        <td><b>Gladiator&#039;s Medallion</b><div class="small subtle">Your Priest</div></td>
+                    </tr>
+                                    <tr data-t="44" data-kind="fall">
+                        <td class="t">0:44</td>
+                        <td class="w"><span class="pill us">you</span></td>
+                        <td><b>Their Mage 100% → 73% · cooldowns</b><div class="small subtle">Cooldowns: Bestial Wrath (Your Hunter)</div></td>
+                    </tr>
+                                    <tr data-t="45" data-kind="fall">
+                        <td class="t">0:45</td>
+                        <td class="w"><span class="pill them">them</span></td>
+                        <td><b>Your Hunter 100% → 74% · control, no cooldown</b><div class="small subtle">Control: Cheap Shot on Your Priest, Cheap Shot on You, Cyclone on Your Priest, Ring of Frost on You</div></td>
+                    </tr>
+                                    <tr data-t="50" data-kind="fall">
+                        <td class="t">0:50</td>
+                        <td class="w"><span class="pill us">you</span></td>
+                        <td><b>Their Mage 100% → 80% · cooldowns</b><div class="small subtle">Cooldowns: Feral Frenzy (You)<br />
+Answered with: Mass Invisibility (Their Mage)</div></td>
+                    </tr>
+                                    <tr data-t="55.33" data-kind="go">
+                        <td class="t">0:55</td>
+                        <td class="w"><span class="pill us">you</span></td>
+                        <td><b>Old go on Their Mage</b><div class="small subtle">Feral Frenzy, Binding Shot &gt; healer, Psychic Scream &gt; healer, Psychic Scream &gt; target, Freezing Trap &gt; healer, Maim &gt; target, Bestial Wrath, Cyclone &gt; cross, Ultimate Penitence, Feral Frenzy, Psychic Scream &gt; target, Psychic Scream &gt; cross, Intimidation &gt; healer, Freezing Trap &gt; healer, Incarnation: Avatar of Ashamane, Rake &gt; target, Feral Frenzy, Psychic Scream &gt; target, Bestial Wrath, Power Infusion, Maim &gt; target, Freezing Trap &gt; healer, Mind Control &gt; cross</div></td>
+                    </tr>
+                                    <tr data-t="55.39" data-kind="def">
+                        <td class="t">0:55</td>
+                        <td class="w"><span class="pill them">them</span></td>
+                        <td><b>Mass Invisibility</b><div class="small subtle">Their Mage</div></td>
+                    </tr>
+                                    <tr data-t="57" data-kind="fall">
+                        <td class="t">0:57</td>
+                        <td class="w"><span class="pill us">you</span></td>
+                        <td><b>Their Rogue 100% → 80% · cooldowns</b><div class="small subtle">Cooldowns: Feral Frenzy (You)<br />
+Control: Binding Shot on Their Druid, Psychic Scream on Their Mage, Psychic Scream on Their Druid, Freezing Trap on Their Druid, Maim on Their Mage<br />
+Answered with: Mass Invisibility (Their Mage)</div></td>
+                    </tr>
+                                    <tr data-t="60.42" data-kind="def">
+                        <td class="t">1:00</td>
+                        <td class="w"><span class="pill us">you</span></td>
+                        <td><b>Fade</b><div class="small subtle">Your Priest</div></td>
+                    </tr>
+                                    <tr data-t="68" data-kind="fall">
+                        <td class="t">1:08</td>
+                        <td class="w"><span class="pill us">you</span></td>
+                        <td><b>Their Mage 99% → 42% · cooldowns</b><div class="small subtle">Psychic Scream on Their Mage, Psychic Scream on the healer, 0s apart<br />
+Cooldowns: Bestial Wrath (Your Hunter)<br />
+Control: Binding Shot on Their Druid, Psychic Scream on Their Mage, Psychic Scream on Their Druid, Freezing Trap on Their Druid, Maim on Their Mage<br />
+Answered with: Ironbark (Their Druid)</div></td>
+                    </tr>
+                                    <tr data-t="69" data-kind="fall">
+                        <td class="t">1:09</td>
+                        <td class="w"><span class="pill them">them</span></td>
+                        <td><b>Your Hunter 100% → 41% · control, no cooldown</b><div class="small subtle">Kidney Shot on Your Hunter, Polymorph on the healer, 1.1s apart<br />
+Control: Ring of Frost on Your Hunter, Cheap Shot on Your Priest, Cheap Shot on You, Polymorph on Your Priest, Kidney Shot on Your Hunter, Blind on Your Priest, Polymorph on Your Priest, Cyclone on Your Priest, Gouge on You<br />
+Answered with: Survival of the Fittest (Your Hunter)</div></td>
+                    </tr>
+                                    <tr data-t="75.9" data-kind="def">
+                        <td class="t">1:15</td>
+                        <td class="w"><span class="pill us">you</span></td>
+                        <td><b>Survival of the Fittest</b><div class="small subtle">Your Hunter</div></td>
+                    </tr>
+                                    <tr data-t="78.44" data-kind="def">
+                        <td class="t">1:18</td>
+                        <td class="w"><span class="pill them">them</span></td>
+                        <td><b>Ironbark</b><div class="small subtle">Their Druid on Their Mage</div></td>
+                    </tr>
+                                    <tr data-t="80.63" data-kind="def">
+                        <td class="t">1:20</td>
+                        <td class="w"><span class="pill them">them</span></td>
+                        <td><b>Alter Time</b><div class="small subtle">Their Mage</div></td>
+                    </tr>
+                                    <tr data-t="83" data-kind="fall">
+                        <td class="t">1:23</td>
+                        <td class="w"><span class="pill us">you</span></td>
+                        <td><b>Their Rogue 100% → 76% · cooldowns</b><div class="small subtle">Cooldowns: Bestial Wrath (Your Hunter), Ultimate Penitence (Your Priest), Feral Frenzy (You)<br />
+Control: Cyclone on Their Rogue<br />
+Answered with: Feint (Their Rogue), Crimson Vial (Their Rogue)</div></td>
+                    </tr>
+                                    <tr data-t="88" data-kind="fall">
+                        <td class="t">1:28</td>
+                        <td class="w"><span class="pill us">you</span></td>
+                        <td><b>Their Druid 100% → 75% · cooldowns</b><div class="small subtle">Cooldowns: Ultimate Penitence (Your Priest), Feral Frenzy (You)<br />
+Control: Cyclone on Their Rogue<br />
+Answered with: Feint (Their Rogue), Crimson Vial (Their Rogue)</div></td>
+                    </tr>
+                                    <tr data-t="93.56" data-kind="def">
+                        <td class="t">1:33</td>
+                        <td class="w"><span class="pill them">them</span></td>
+                        <td><b>Feint</b><div class="small subtle">Their Rogue</div></td>
+                    </tr>
+                                    <tr data-t="94" data-kind="fall">
+                        <td class="t">1:34</td>
+                        <td class="w"><span class="pill us">you</span></td>
+                        <td><b>Their Mage 100% → 40% · cooldowns</b><div class="small subtle">Cooldowns: Ultimate Penitence (Your Priest), Feral Frenzy (You)<br />
+Control: Cyclone on Their Rogue<br />
+Answered with: Feint (Their Rogue), Crimson Vial (Their Rogue), Greater Invisibility (Their Mage)</div></td>
+                    </tr>
+                                    <tr data-t="94.38" data-kind="def">
+                        <td class="t">1:34</td>
+                        <td class="w"><span class="pill them">them</span></td>
+                        <td><b>Crimson Vial</b><div class="small subtle">Their Rogue</div></td>
+                    </tr>
+                                    <tr data-t="96.29" data-kind="go">
+                        <td class="t">1:36</td>
+                        <td class="w"><span class="pill them">them</span></td>
+                        <td><b>Old go on Your Hunter</b><div class="small subtle">Dragon&#039;s Breath &gt; cross, Cheap Shot &gt; healer, Cheap Shot &gt; target, Kidney Shot &gt; cross, Shadow Blades, Ring of Frost &gt; target, Ring of Frost &gt; cross</div></td>
+                    </tr>
+                                    <tr data-t="100" data-kind="fall">
+                        <td class="t">1:40</td>
+                        <td class="w"><span class="pill them">them</span></td>
+                        <td><b>Your Hunter 100% → 58% · cooldowns</b><div class="small subtle">Cheap Shot on Your Hunter, Cheap Shot on the healer, 1.2s apart<br />
+Cooldowns: Shadow Blades (Their Rogue)<br />
+Control: Dragon&#039;s Breath on You, Cheap Shot on Your Priest, Cheap Shot on Your Hunter, Kidney Shot on You, Ring of Frost on Your Hunter<br />
+Answered with: Pain Suppression (Your Priest), Barkskin (You)</div></td>
+                    </tr>
+                                    <tr data-t="100.18" data-kind="def">
+                        <td class="t">1:40</td>
+                        <td class="w"><span class="pill them">them</span></td>
+                        <td><b>Greater Invisibility</b><div class="small subtle">Their Mage</div></td>
+                    </tr>
+                                    <tr data-t="102.86" data-kind="def">
+                        <td class="t">1:42</td>
+                        <td class="w"><span class="pill us">you</span></td>
+                        <td><b>Pain Suppression</b><div class="small subtle">Your Priest on Your Hunter</div></td>
+                    </tr>
+                                    <tr data-t="106.22" data-kind="def">
+                        <td class="t">1:46</td>
+                        <td class="w"><span class="pill us">you</span></td>
+                        <td><b>Barkskin</b><div class="small subtle">You</div></td>
+                    </tr>
+                                    <tr data-t="115" data-kind="fall">
+                        <td class="t">1:55</td>
+                        <td class="w"><span class="pill us">you</span></td>
+                        <td><b>Their Mage 100% → 80% · cooldowns</b><div class="small subtle">Psychic Scream on Their Mage, Intimidation on the healer, 4.9s apart<br />
+Cooldowns: Incarnation: Avatar of Ashamane (You)<br />
+Control: Psychic Scream on Their Mage, Psychic Scream on Their Rogue, Intimidation on Their Druid, Freezing Trap on Their Druid, Rake on Their Mage<br />
+Answered with: Incarnation: Tree of Life (Their Druid)</div></td>
+                    </tr>
+                                    <tr data-t="120.56" data-kind="def">
+                        <td class="t">2:00</td>
+                        <td class="w"><span class="pill them">them</span></td>
+                        <td><b>Incarnation: Tree of Life</b><div class="small subtle">Their Druid</div></td>
+                    </tr>
+                                    <tr data-t="124.07" data-kind="go">
+                        <td class="t">2:04</td>
+                        <td class="w"><span class="pill them">them</span></td>
+                        <td><b>Old go on Your Hunter</b><div class="small subtle">Gouge &gt; cross, Mighty Bash &gt; healer, Cheap Shot &gt; cross, Cyclone &gt; healer, Cheap Shot &gt; target, Combustion, Polymorph &gt; healer</div></td>
+                    </tr>
+                                    <tr data-t="124.29" data-kind="def">
+                        <td class="t">2:04</td>
+                        <td class="w"><span class="pill them">them</span></td>
+                        <td><b>Alter Time</b><div class="small subtle">Their Mage</div></td>
+                    </tr>
+                                    <tr data-t="133.31" data-kind="def">
+                        <td class="t">2:13</td>
+                        <td class="w"><span class="pill us">you</span></td>
+                        <td><b>Gladiator&#039;s Medallion</b><div class="small subtle">Your Priest</div></td>
+                    </tr>
+                                    <tr data-t="135.99" data-kind="def">
+                        <td class="t">2:15</td>
+                        <td class="w"><span class="pill us">you</span></td>
+                        <td><b>Fade</b><div class="small subtle">Your Priest</div></td>
+                    </tr>
+                                    <tr data-t="137" data-kind="fall">
+                        <td class="t">2:17</td>
+                        <td class="w"><span class="pill us">you</span></td>
+                        <td><b>Their Mage 100% → 41% · cooldowns</b><div class="small subtle">Maim on Their Mage, Freezing Trap on the healer, 2s apart<br />
+Cooldowns: Feral Frenzy (You), Bestial Wrath (Your Hunter), Power Infusion (Your Priest)<br />
+Control: Psychic Scream on Their Mage, Maim on Their Mage, Freezing Trap on Their Druid, Mind Control on Their Rogue<br />
+Answered with: Feint (Their Rogue)</div></td>
+                    </tr>
+                                    <tr data-t="141" data-kind="fall">
+                        <td class="t">2:21</td>
+                        <td class="w"><span class="pill us">you</span></td>
+                        <td><b>Their Rogue 99% → 72% · cooldowns</b><div class="small subtle">Cooldowns: Feral Frenzy (You), Bestial Wrath (Your Hunter), Power Infusion (Your Priest)<br />
+Control: Psychic Scream on Their Mage, Maim on Their Mage, Freezing Trap on Their Druid<br />
+Answered with: Feint (Their Rogue)</div></td>
+                    </tr>
+                                    <tr data-t="142.87" data-kind="def">
+                        <td class="t">2:22</td>
+                        <td class="w"><span class="pill them">them</span></td>
+                        <td><b>Feint</b><div class="small subtle">Their Rogue</div></td>
+                    </tr>
+                                    <tr data-t="143" data-kind="fall">
+                        <td class="t">2:23</td>
+                        <td class="w"><span class="pill them">them</span></td>
+                        <td><b>Your Hunter 100% → 79% · cooldowns</b><div class="small subtle">Cheap Shot on Your Hunter, Polymorph on the healer, 8.9s apart<br />
+Cooldowns: Combustion (Their Mage)<br />
+Control: Cheap Shot on Your Hunter, Polymorph on Your Priest</div></td>
+                    </tr>
+                                    <tr data-t="155.53" data-kind="def">
+                        <td class="t">2:35</td>
+                        <td class="w"><span class="pill us">you</span></td>
+                        <td><b>Survival of the Fittest</b><div class="small subtle">Your Hunter</div></td>
+                    </tr>
+                                    <tr data-t="163" data-kind="fall">
+                        <td class="t">2:43</td>
+                        <td class="w"><span class="pill them">them</span></td>
+                        <td><b>Your Hunter 100% → 5% · control, no cooldown</b><div class="small subtle">Kidney Shot on Your Hunter, Cheap Shot on the healer, 1.8s apart<br />
+Control: Ring of Frost on You, Cheap Shot on Your Priest, Cyclone on You, Kidney Shot on Your Hunter, Polymorph on Your Priest, Cheap Shot on You, Maim on Your Priest, Cyclone on Your Priest<br />
+Answered with: Exhilaration (Your Hunter), Pain Suppression (Your Priest), Aspect of the Turtle (Your Hunter)</div></td>
+                    </tr>
+                                    <tr data-t="166.24" data-kind="def">
+                        <td class="t">2:46</td>
+                        <td class="w"><span class="pill them">them</span></td>
+                        <td><b>Gladiator&#039;s Medallion</b><div class="small subtle">Their Rogue</div></td>
+                    </tr>
+                                    <tr data-t="166.4" data-kind="def">
+                        <td class="t">2:46</td>
+                        <td class="w"><span class="pill them">them</span></td>
+                        <td><b>Smoke Bomb</b><div class="small subtle">Their Rogue</div></td>
+                    </tr>
+                                    <tr data-t="171.2" data-kind="def">
+                        <td class="t">2:51</td>
+                        <td class="w"><span class="pill us">you</span></td>
+                        <td><b>Exhilaration</b><div class="small subtle">Your Hunter</div></td>
+                    </tr>
+                                    <tr data-t="172" data-kind="fall">
+                        <td class="t">2:52</td>
+                        <td class="w"><span class="pill us">you</span></td>
+                        <td><b>Their Mage 99% → 60% · cooldowns</b><div class="small subtle">Maim on Their Mage, Psychic Scream on the healer, 5.9s apart<br />
+Cooldowns: Feral Frenzy (You)<br />
+Control: Incapacitating Roar on Their Rogue, Psychic Scream on Their Druid, Psychic Scream on Their Rogue, Maim on Their Mage<br />
+Answered with: Gladiator&#039;s Medallion (Their Druid)</div></td>
+                    </tr>
+                                    <tr data-t="173.24" data-kind="def">
+                        <td class="t">2:53</td>
+                        <td class="w"><span class="pill us">you</span></td>
+                        <td><b>Pain Suppression</b><div class="small subtle">Your Priest on Your Hunter</div></td>
+                    </tr>
+                                    <tr data-t="173.72" data-kind="def">
+                        <td class="t">2:53</td>
+                        <td class="w"><span class="pill us">you</span></td>
+                        <td><b>Aspect of the Turtle</b><div class="small subtle">Your Hunter</div></td>
+                    </tr>
+                                    <tr data-t="181.53" data-kind="go">
+                        <td class="t">3:01</td>
+                        <td class="w"><span class="pill us">you</span></td>
+                        <td><b>Old go on Their Mage</b><div class="small subtle">Psychic Scream &gt; healer, Psychic Scream &gt; cross, Feral Frenzy, Maim &gt; target, Binding Shot &gt; healer, Binding Shot &gt; cross, Bestial Wrath, Cyclone &gt; cross</div></td>
+                    </tr>
+                                    <tr data-t="182.86" data-kind="def">
+                        <td class="t">3:02</td>
+                        <td class="w"><span class="pill them">them</span></td>
+                        <td><b>Gladiator&#039;s Medallion</b><div class="small subtle">Their Druid</div></td>
+                    </tr>
+                                    <tr data-t="188.54" data-kind="def">
+                        <td class="t">3:08</td>
+                        <td class="w"><span class="pill them">them</span></td>
+                        <td><b>Ironbark</b><div class="small subtle">Their Druid on Their Mage</div></td>
+                    </tr>
+                                    <tr data-t="190.15" data-kind="def">
+                        <td class="t">3:10</td>
+                        <td class="w"><span class="pill them">them</span></td>
+                        <td><b>Feint</b><div class="small subtle">Their Rogue</div></td>
+                    </tr>
+                                    <tr data-t="195.72" data-kind="go">
+                        <td class="t">3:15</td>
+                        <td class="w"><span class="pill them">them</span></td>
+                        <td><b>Old go on Your Hunter</b><div class="small subtle">Cheap Shot &gt; healer, Cheap Shot &gt; cross, Kidney Shot &gt; target, Shadow Blades, Polymorph &gt; healer</div></td>
+                    </tr>
+                                    <tr data-t="198.2" data-kind="unmoved">
+                        <td class="t">3:18</td>
+                        <td class="w"><span class="pill them">them</span></td>
+                        <td><b>Shadow Blades moved nobody</b><div class="small subtle">Their Rogue</div></td>
+                    </tr>
+                                    <tr data-t="198.88" data-kind="def">
+                        <td class="t">3:18</td>
+                        <td class="w"><span class="pill us">you</span></td>
+                        <td><b>Gladiator&#039;s Medallion</b><div class="small subtle">Your Hunter</div></td>
+                    </tr>
+                                    <tr data-t="200" data-kind="fall">
+                        <td class="t">3:20</td>
+                        <td class="w"><span class="pill us">you</span></td>
+                        <td><b>Their Mage 100% → 43% · cooldowns</b><div class="small subtle">Cooldowns: Bestial Wrath (Your Hunter)<br />
+Control: Binding Shot on Their Druid, Binding Shot on Their Rogue, Cyclone on Their Rogue, Cyclone on Their Druid<br />
+Answered with: Alter Time (Their Mage), Mass Invisibility (Their Mage)</div></td>
+                    </tr>
+                                    <tr data-t="202.13" data-kind="def">
+                        <td class="t">3:22</td>
+                        <td class="w"><span class="pill them">them</span></td>
+                        <td><b>Alter Time</b><div class="small subtle">Their Mage</div></td>
+                    </tr>
+                                    <tr data-t="205.16" data-kind="def">
+                        <td class="t">3:25</td>
+                        <td class="w"><span class="pill them">them</span></td>
+                        <td><b>Mass Invisibility</b><div class="small subtle">Their Mage</div></td>
+                    </tr>
+                                    <tr data-t="206.73" data-kind="def">
+                        <td class="t">3:26</td>
+                        <td class="w"><span class="pill us">you</span></td>
+                        <td><b>Evangelism</b><div class="small subtle">Your Priest on Your Hunter</div></td>
+                    </tr>
+                                    <tr data-t="207" data-kind="fall">
+                        <td class="t">3:27</td>
+                        <td class="w"><span class="pill us">you</span></td>
+                        <td><b>Their Rogue 99% → 71% · cooldowns</b><div class="small subtle">Binding Shot on Their Rogue, Binding Shot on the healer, 1.2s apart<br />
+Cooldowns: Bestial Wrath (Your Hunter), Incarnation: Avatar of Ashamane (You)<br />
+Control: Binding Shot on Their Druid, Binding Shot on Their Rogue, Cyclone on Their Rogue, Cyclone on Their Druid, Rake on Their Mage<br />
+Answered with: Mass Invisibility (Their Mage), Evasion (Their Rogue), Crimson Vial (Their Rogue), Greater Invisibility (Their Mage)</div></td>
+                    </tr>
+                                    <tr data-t="212.88" data-kind="go">
+                        <td class="t">3:32</td>
+                        <td class="w"><span class="pill us">you</span></td>
+                        <td><b>Old go on Their Mage</b><div class="small subtle">Cyclone &gt; healer, Incarnation: Avatar of Ashamane, Rake &gt; target, Incapacitating Roar &gt; target, Psychic Scream &gt; target, Psychic Scream &gt; cross, Scatter Shot &gt; cross, Bestial Wrath, Feral Frenzy, Maim &gt; cross</div></td>
+                    </tr>
+                                    <tr data-t="215.71" data-kind="def">
+                        <td class="t">3:35</td>
+                        <td class="w"><span class="pill them">them</span></td>
+                        <td><b>Evasion</b><div class="small subtle">Their Rogue</div></td>
+                    </tr>
+                                    <tr data-t="216.17" data-kind="def">
+                        <td class="t">3:36</td>
+                        <td class="w"><span class="pill them">them</span></td>
+                        <td><b>Crimson Vial</b><div class="small subtle">Their Rogue</div></td>
+                    </tr>
+                                    <tr data-t="218.2" data-kind="def">
+                        <td class="t">3:38</td>
+                        <td class="w"><span class="pill them">them</span></td>
+                        <td><b>Greater Invisibility</b><div class="small subtle">Their Mage</div></td>
+                    </tr>
+                                    <tr data-t="230" data-kind="fall">
+                        <td class="t">3:50</td>
+                        <td class="w"><span class="pill them">them</span></td>
+                        <td><b>Your Hunter 100% → 32% · control, no cooldown</b><div class="small subtle">Cheap Shot on Your Hunter, Cyclone on the healer, 2.3s apart<br />
+Control: Cheap Shot on You, Cheap Shot on Your Priest, Cyclone on Your Priest, Cheap Shot on Your Hunter, Ring of Frost on You, Dragon&#039;s Breath on Your Priest, Cyclone on You, Gouge on Your Hunter, Polymorph on Your Priest, Polymorph on Your Priest<br />
+Answered with: Fade (Your Priest), Exhilaration (Your Hunter), Gladiator&#039;s Medallion (You)</div></td>
+                    </tr>
+                                    <tr data-t="233.47" data-kind="def">
+                        <td class="t">3:53</td>
+                        <td class="w"><span class="pill us">you</span></td>
+                        <td><b>Fade</b><div class="small subtle">Your Priest</div></td>
+                    </tr>
+                                    <tr data-t="235.49" data-kind="def">
+                        <td class="t">3:55</td>
+                        <td class="w"><span class="pill them">them</span></td>
+                        <td><b>Gladiator&#039;s Medallion</b><div class="small subtle">Their Mage</div></td>
+                    </tr>
+                                    <tr data-t="236.98" data-kind="def">
+                        <td class="t">3:56</td>
+                        <td class="w"><span class="pill us">you</span></td>
+                        <td><b>Exhilaration</b><div class="small subtle">Your Hunter</div></td>
+                    </tr>
+                                    <tr data-t="239" data-kind="fall">
+                        <td class="t">3:59</td>
+                        <td class="w"><span class="pill us">you</span></td>
+                        <td><b>Their Mage 100% → 54% · cooldowns</b><div class="small subtle">Cooldowns: Bestial Wrath (Your Hunter), Feral Frenzy (You)<br />
+Control: Incapacitating Roar on Their Mage, Psychic Scream on Their Mage, Psychic Scream on Their Rogue, Scatter Shot on Their Rogue<br />
+Answered with: Incarnation: Tree of Life (Their Druid), Alter Time (Their Mage)</div></td>
+                    </tr>
+                                    <tr data-t="242.54" data-kind="def">
+                        <td class="t">4:02</td>
+                        <td class="w"><span class="pill us">you</span></td>
+                        <td><b>Gladiator&#039;s Medallion</b><div class="small subtle">You</div></td>
+                    </tr>
+                                    <tr data-t="243" data-kind="fall">
+                        <td class="t">4:03</td>
+                        <td class="w"><span class="pill us">you</span></td>
+                        <td><b>Their Rogue 100% → 65% · cooldowns</b><div class="small subtle">Cooldowns: Bestial Wrath (Your Hunter), Feral Frenzy (You)<br />
+Control: Psychic Scream on Their Mage, Psychic Scream on Their Rogue, Scatter Shot on Their Rogue, Maim on Their Rogue<br />
+Answered with: Incarnation: Tree of Life (Their Druid), Alter Time (Their Mage), Feint (Their Rogue)</div></td>
+                    </tr>
+                                    <tr data-t="244.2" data-kind="def">
+                        <td class="t">4:04</td>
+                        <td class="w"><span class="pill them">them</span></td>
+                        <td><b>Incarnation: Tree of Life</b><div class="small subtle">Their Druid</div></td>
+                    </tr>
+                                    <tr data-t="245.27" data-kind="def">
+                        <td class="t">4:05</td>
+                        <td class="w"><span class="pill them">them</span></td>
+                        <td><b>Alter Time</b><div class="small subtle">Their Mage</div></td>
+                    </tr>
+                                    <tr data-t="250.98" data-kind="def">
+                        <td class="t">4:10</td>
+                        <td class="w"><span class="pill them">them</span></td>
+                        <td><b>Feint</b><div class="small subtle">Their Rogue</div></td>
+                    </tr>
+                                    <tr data-t="255" data-kind="fall">
+                        <td class="t">4:15</td>
+                        <td class="w"><span class="pill us">you</span></td>
+                        <td><b>Their Mage 100% → 54% · cooldowns</b><div class="small subtle">Cooldowns: Feral Frenzy (You)<br />
+Control: Maim on Their Rogue</div></td>
+                    </tr>
+                                    <tr data-t="259.64" data-kind="go">
+                        <td class="t">4:19</td>
+                        <td class="w"><span class="pill them">them</span></td>
+                        <td><b>Old go on Your Hunter</b><div class="small subtle">Cheap Shot &gt; cross, Combustion, Blind &gt; healer, Kidney Shot &gt; target</div></td>
+                    </tr>
+                                    <tr data-t="261" data-kind="fall">
+                        <td class="t">4:21</td>
+                        <td class="w"><span class="pill them">them</span></td>
+                        <td><b>You 100% → 73% · cooldowns</b><div class="small subtle">Cheap Shot on You, Blind on the healer, 4.3s apart<br />
+Cooldowns: Combustion (Their Mage)<br />
+Control: Cheap Shot on You, Blind on Your Priest<br />
+Answered with: Barkskin (You)</div></td>
+                    </tr>
+                                    <tr data-t="262.67" data-kind="def">
+                        <td class="t">4:22</td>
+                        <td class="w"><span class="pill us">you</span></td>
+                        <td><b>Barkskin</b><div class="small subtle">You</div></td>
+                    </tr>
+                                    <tr data-t="266" data-kind="fall">
+                        <td class="t">4:26</td>
+                        <td class="w"><span class="pill them">them</span></td>
+                        <td><b>Your Hunter 100% → died · cooldowns</b><div class="small subtle">Kidney Shot on Your Hunter, Blind on the healer, 1.7s apart<br />
+Cooldowns: Combustion (Their Mage), Shadow Blades (Their Rogue)<br />
+Control: Cheap Shot on You, Blind on Your Priest, Kidney Shot on Your Hunter, Mighty Bash on Your Priest, Gouge on Your Priest, Cyclone on Your Priest, Dragon&#039;s Breath on You, Maim on Your Hunter, Ring of Frost on You, Cyclone on Your Priest<br />
+Answered with: Leap of Faith (Your Priest), Pain Suppression (Your Priest), Fade (Your Priest), Survival of the Fittest (Your Hunter), Roar of Sacrifice (Your Hunter), Gladiator&#039;s Medallion (Your Priest), Survival of the Fittest (Your Hunter), Fade (Your Priest)</div></td>
+                    </tr>
+                                    <tr data-t="266.94" data-kind="go">
+                        <td class="t">4:26</td>
+                        <td class="w"><span class="pill us">you</span></td>
+                        <td><b>Old go on Their Mage</b><div class="small subtle">Incapacitating Roar &gt; cross, Power Infusion, Psychic Scream &gt; cross, Cyclone &gt; target, Maim &gt; target, Feral Frenzy, Scatter Shot &gt; cross, Intimidation &gt; healer, Freezing Trap &gt; healer</div></td>
+                    </tr>
+                                    <tr data-t="269.79" data-kind="def">
+                        <td class="t">4:29</td>
+                        <td class="w"><span class="pill us">you</span></td>
+                        <td><b>Leap of Faith</b><div class="small subtle">Your Priest on Your Hunter</div></td>
+                    </tr>
+                                    <tr data-t="270" data-kind="unmoved">
+                        <td class="t">4:30</td>
+                        <td class="w"><span class="pill us">you</span></td>
+                        <td><b>Power Infusion moved nobody</b><div class="small subtle">Your Priest</div></td>
+                    </tr>
+                                    <tr data-t="270.06" data-kind="def">
+                        <td class="t">4:30</td>
+                        <td class="w"><span class="pill us">you</span></td>
+                        <td><b>Pain Suppression</b><div class="small subtle">Your Priest on Your Hunter</div></td>
+                    </tr>
+                                    <tr data-t="275.66" data-kind="def">
+                        <td class="t">4:35</td>
+                        <td class="w"><span class="pill us">you</span></td>
+                        <td><b>Fade</b><div class="small subtle">Your Priest</div></td>
+                    </tr>
+                                    <tr data-t="277.6" data-kind="def">
+                        <td class="t">4:37</td>
+                        <td class="w"><span class="pill us">you</span></td>
+                        <td><b>Survival of the Fittest</b><div class="small subtle">Your Hunter</div></td>
+                    </tr>
+                                    <tr data-t="278.61" data-kind="def">
+                        <td class="t">4:38</td>
+                        <td class="w"><span class="pill us">you</span></td>
+                        <td><b>Roar of Sacrifice</b><div class="small subtle">Your Hunter</div></td>
+                    </tr>
+                                    <tr data-t="279.14" data-kind="def">
+                        <td class="t">4:39</td>
+                        <td class="w"><span class="pill them">them</span></td>
+                        <td><b>Vanish</b><div class="small subtle">Their Rogue</div></td>
+                    </tr>
+                                    <tr data-t="280.12" data-kind="def">
+                        <td class="t">4:40</td>
+                        <td class="w"><span class="pill us">you</span></td>
+                        <td><b>Gladiator&#039;s Medallion</b><div class="small subtle">Your Priest</div></td>
+                    </tr>
+                                    <tr data-t="285.7" data-kind="def">
+                        <td class="t">4:45</td>
+                        <td class="w"><span class="pill us">you</span></td>
+                        <td><b>Survival of the Fittest</b><div class="small subtle">Your Hunter</div></td>
+                    </tr>
+                                    <tr data-t="287" data-kind="fall">
+                        <td class="t">4:47</td>
+                        <td class="w"><span class="pill us">you</span></td>
+                        <td><b>Their Druid 99% → 78% · cooldowns</b><div class="small subtle">Cooldowns: Feral Frenzy (You)<br />
+Control: Cyclone on Their Mage, Maim on Their Mage, Scatter Shot on Their Rogue, Intimidation on Their Druid, Freezing Trap on Their Druid<br />
+Answered with: Greater Invisibility (Their Mage), Gladiator&#039;s Medallion (Their Druid), Smoke Bomb (Their Rogue), Ironbark (Their Druid)</div></td>
+                    </tr>
+                                    <tr data-t="290.07" data-kind="def">
+                        <td class="t">4:50</td>
+                        <td class="w"><span class="pill them">them</span></td>
+                        <td><b>Greater Invisibility</b><div class="small subtle">Their Mage</div></td>
+                    </tr>
+                                    <tr data-t="293" data-kind="fall">
+                        <td class="t">4:53</td>
+                        <td class="w"><span class="pill us">you</span></td>
+                        <td><b>Their Mage 99% → 63% · cooldowns</b><div class="small subtle">Psychic Scream on Their Mage, Freezing Trap on the healer, 7.9s apart<br />
+Cooldowns: Feral Frenzy (You)<br />
+Control: Maim on Their Mage, Scatter Shot on Their Rogue, Intimidation on Their Druid, Freezing Trap on Their Druid, Psychic Scream on Their Rogue, Psychic Scream on Their Mage<br />
+Answered with: Gladiator&#039;s Medallion (Their Druid), Smoke Bomb (Their Rogue), Ironbark (Their Druid), Gladiator&#039;s Medallion (Their Rogue)</div></td>
+                    </tr>
+                                    <tr data-t="294.51" data-kind="go">
+                        <td class="t">4:54</td>
+                        <td class="w"><span class="pill them">them</span></td>
+                        <td><b>Old go on Your Hunter — killed</b><div class="small subtle">Dragon&#039;s Breath &gt; cross, Maim &gt; target, Ring of Frost &gt; cross, Shadow Blades, Cyclone &gt; healer, Polymorph &gt; healer</div></td>
+                    </tr>
+                                    <tr data-t="297.33" data-kind="def">
+                        <td class="t">4:57</td>
+                        <td class="w"><span class="pill them">them</span></td>
+                        <td><b>Gladiator&#039;s Medallion</b><div class="small subtle">Their Druid</div></td>
+                    </tr>
+                                    <tr data-t="298.9" data-kind="def">
+                        <td class="t">4:58</td>
+                        <td class="w"><span class="pill them">them</span></td>
+                        <td><b>Smoke Bomb</b><div class="small subtle">Their Rogue</div></td>
+                    </tr>
+                                    <tr data-t="301.06" data-kind="def">
+                        <td class="t">5:01</td>
+                        <td class="w"><span class="pill us">you</span></td>
+                        <td><b>Fade</b><div class="small subtle">Your Priest</div></td>
+                    </tr>
+                                    <tr data-t="303.35" data-kind="def">
+                        <td class="t">5:03</td>
+                        <td class="w"><span class="pill them">them</span></td>
+                        <td><b>Ironbark</b><div class="small subtle">Their Druid on Their Mage</div></td>
+                    </tr>
+                                    <tr data-t="304.24" data-kind="go">
+                        <td class="t">5:04</td>
+                        <td class="w"><span class="pill us">you</span></td>
+                        <td><b>Old go on Their Mage</b><div class="small subtle">Psychic Scream &gt; cross, Psychic Scream &gt; target, Bestial Wrath, Incarnation: Avatar of Ashamane, Rake &gt; cross</div></td>
+                    </tr>
+                                    <tr data-t="304.95" data-kind="def">
+                        <td class="t">5:04</td>
+                        <td class="w"><span class="pill them">them</span></td>
+                        <td><b>Gladiator&#039;s Medallion</b><div class="small subtle">Their Rogue</div></td>
+                    </tr>
+                                    <tr data-t="309.4" data-kind="unmoved">
+                        <td class="t">5:09</td>
+                        <td class="w"><span class="pill us">you</span></td>
+                        <td><b>Bestial Wrath moved nobody</b><div class="small subtle">Your Hunter</div></td>
+                    </tr>
+                                    <tr data-t="310.54" data-kind="death">
+                        <td class="t">5:10</td>
+                        <td class="w"><span class="pill us">you</span></td>
+                        <td><b>Death: Player</b><div class="small subtle">Melee</div></td>
+                    </tr>
+                                    <tr data-t="310.7" data-kind="unmoved">
+                        <td class="t">5:10</td>
+                        <td class="w"><span class="pill us">you</span></td>
+                        <td><b>Incarnation: Avatar of Ashamane moved nobody</b><div class="small subtle">You</div></td>
+                    </tr>
+                            </table>
+        </div>
+    
+    <div class="foot">
+                    Round times are the game's own clock, from the combat log. The video is lined up by hand
+            because nothing here started the recording. Games the MindCollector app records through OBS
+            line themselves up.
+            </div>
+</div>
+
+<script>
+(function () {
+    var vid = document.getElementById('vid'), stage = document.getElementById('stage'),
+        drop = document.getElementById('drop'), file = document.getElementById('file'),
+        off = document.getElementById('off'), offv = document.getElementById('offv');
+    var offset = 0;   // video seconds at which round 1 begins
+    var rounds = [];
+
+    var ok = !!(window.URL && window.URL.createObjectURL && vid && vid.canPlayType && window.addEventListener);
+    if (!ok) {
+        var ns = document.querySelector('.nosupport'); if (ns) { ns.style.display = 'block'; }
+        var pk = document.querySelector('.pick'); if (pk) { pk.style.display = 'none'; }
+        return;
+    }
+
+    var blankMode = true;
+    var blocks = document.getElementsByClassName('rnd');
+    for (var i = 0; i < blocks.length; i++) {
+        rounds.push({
+            el: blocks[i],
+            start: parseFloat(blocks[i].getAttribute('data-start')) || 0,
+            dur: parseFloat(blocks[i].getAttribute('data-dur')) || 1,
+            rail: blocks[i].getElementsByClassName('rail')[0],
+            head: blocks[i].getElementsByClassName('head2')[0]
+        });
+    }
+
+    function setOffset(v) {
+        offset = Math.round(v * 10) / 10;
+        off.value = offset;
+        offv.textContent = offset.toFixed(1) + 's';
+    }
+
+    // No recording: a clock with the video's API (currentTime, paused, play, pause, events), so the
+    // rails, the frames, the casts line and Previous/Next run exactly as they do over a video.
+    if (blankMode && rounds.length) {
+        var last = rounds[rounds.length - 1];
+        var total = last.start + last.dur + 5;
+        var clock = { currentTime: 0, paused: true, src: 'clock', duration: total, rate: 1, _h: {}, _at: 0,
+            addEventListener: function (n, f) { (this._h[n] = this._h[n] || []).push(f); },
+            emit: function (n) { (this._h[n] || []).forEach(function (f) { f(); }); },
+            play: function () {
+                var self = this;
+                if (!self.paused) { return Promise.resolve(); }
+                if (self.currentTime >= self.duration) { self.currentTime = 0; }
+                self.paused = false;
+                self._at = performance.now();
+                (function tick(now) {
+                    if (self.paused) { return; }
+                    self.currentTime = Math.min(self.duration, self.currentTime + self.rate * (now - self._at) / 1000);
+                    self._at = now;
+                    self.emit('timeupdate');
+                    if (self.currentTime >= self.duration) { self.pause(); return; }
+                    window.requestAnimationFrame(tick);
+                })(self._at);
+                self.emit('play');
+                return Promise.resolve();
+            },
+            pause: function () { this.paused = true; this.emit('pause'); }
+        };
+        vid = clock;
+        var fmt = function (s) { s = Math.max(0, s); return Math.floor(s / 60) + ':' + ('0' + Math.floor(s % 60)).slice(-2); };
+        var seekBar = document.getElementById('bar-seek'), playBtn = document.getElementById('bar-play');
+        seekBar.max = total;
+        clock.addEventListener('timeupdate', function () {
+            seekBar.value = clock.currentTime;
+            document.getElementById('blank-t').textContent = fmt(clock.currentTime);
+            document.getElementById('bar-tm').textContent = fmt(clock.currentTime) + ' / ' + fmt(total);
+        });
+        clock.addEventListener('play', function () { playBtn.innerHTML = '&#10074;&#10074;'; });
+        clock.addEventListener('pause', function () { playBtn.innerHTML = '&#9654;'; });
+        playBtn.addEventListener('click', function () { clock.paused ? clock.play() : clock.pause(); });
+        seekBar.addEventListener('input', function () { clock.currentTime = parseFloat(seekBar.value) || 0; clock.emit('timeupdate'); clock.emit('seeked'); });
+        document.getElementById('bar-speed').addEventListener('change', function () { clock.rate = parseFloat(this.value) || 1; });
+        document.addEventListener('keydown', function (e) {
+            if (e.key === ' ' && !(e.target && /input|textarea|select|button/i.test(e.target.tagName))) { e.preventDefault(); clock.paused ? clock.play() : clock.pause(); }
+        });
+        document.getElementById('vid').style.display = 'none';
+        document.getElementById('blank').style.display = 'flex';
+        document.getElementById('bar').style.display = 'flex';
+        stage.style.display = 'block';
+        drop.style.display = 'none';
+        var offRow = document.querySelector('.offset');
+        if (offRow) { offRow.style.display = 'none'; }
+        window.setTimeout(function () { clock.emit('timeupdate'); }, 0);
+    }
+
+    file.addEventListener('change', function () {
+        if (!file.files || !file.files[0]) { return; }
+        vid.src = URL.createObjectURL(file.files[0]);
+        stage.style.display = 'block';
+        drop.style.display = 'none';
+    });
+
+    // Recorded by the app: open it from where it was saved, already lined up. If it cannot be
+    // opened (moved, deleted, or a browser that will not read local files), ask for it instead.
+    var recorded = null;
+    if (recorded) {
+        vid.addEventListener('error', function () {
+            if (vid.src.indexOf('blob:') === 0) { return; }
+            vid.removeAttribute('src');
+            stage.style.display = 'none';
+            drop.style.display = 'block';
+        });
+        vid.src = recorded.url;
+        stage.style.display = 'block';
+        drop.style.display = 'none';
+    }
+
+    off.addEventListener('input', function () { setOffset(parseFloat(off.value) || 0); });
+    document.getElementById('minus').addEventListener('click', function () { setOffset(offset - 1); });
+    document.getElementById('plus').addEventListener('click', function () { setOffset(offset + 1); });
+    document.getElementById('here').addEventListener('click', function () {
+        if (vid.src) { setOffset(vid.currentTime); }
+    });
+
+    var LEAD = 3;   // an event is shown from a few seconds before, so what led to it is seen
+
+    /** round index + seconds within that round -> video seconds */
+    function seek(r, t) {
+        if (!vid.src) { return; }
+        vid.currentTime = Math.max(0, offset + r.start + t);
+        vid.play().catch(function () {});
+    }
+
+    // Every shown event row, in video order: what Previous and Next step through.
+    var hidden = {};
+    function eventList() {
+        var list = [];
+        for (var i = 0; i < rounds.length; i++) {
+            var rows = rounds[i].el.querySelectorAll('tr[data-t]');
+            for (var k = 0; k < rows.length; k++) {
+                if (hidden[rows[k].getAttribute('data-kind')]) { continue; }
+                list.push({ r: rounds[i], t: parseFloat(rows[k].getAttribute('data-t')) });
+            }
+        }
+        list.sort(function (a, b) { return (a.r.start + a.t) - (b.r.start + b.t); });
+        return list;
+    }
+    // The old goes start hidden: falls replaced them (2026-10-26); the button shows them to compare.
+    hidden.go = true;
+    var oldRows = document.querySelectorAll('tr[data-kind="go"]');
+    for (var oi = 0; oi < oldRows.length; oi++) { oldRows[oi].className = 'hide'; }
+    var oldMarks = document.querySelectorAll('.go');
+    for (var om = 0; om < oldMarks.length; om++) { oldMarks[om].style.visibility = 'hidden'; }
+    var events = eventList();
+
+    function step(dir) {
+        if (!vid.src || events.length === 0) { return; }
+        // The playhead as the event it was jumped to: a jump lands LEAD seconds early.
+        var here = vid.currentTime - offset + LEAD;
+        var pick = null;
+        for (var i = 0; i < events.length; i++) {
+            var at = events[i].r.start + events[i].t;
+            if (dir > 0 && at > here + 0.5) { pick = events[i]; break; }
+            if (dir < 0 && at < here - 0.5) { pick = events[i]; }
+        }
+        if (pick) { seek(pick.r, pick.t - LEAD); }
+    }
+    document.getElementById('next').addEventListener('click', function () { step(1); });
+    document.getElementById('prev').addEventListener('click', function () { step(-1); });
+    document.addEventListener('keydown', function (e) {
+        if (e.target && /input|textarea/i.test(e.target.tagName)) { return; }
+        if (e.key === '.') { step(1); }
+        if (e.key === ',') { step(-1); }
+    });
+
+    var kinds = document.querySelectorAll('.jump button[data-kind]');
+    for (var q = 0; q < kinds.length; q++) {
+        kinds[q].addEventListener('click', function () {
+            var kind = this.getAttribute('data-kind');
+            hidden[kind] = !hidden[kind];
+            this.className = hidden[kind] ? 'off' : '';
+            var rows = document.querySelectorAll('tr[data-kind="' + kind + '"]');
+            for (var k = 0; k < rows.length; k++) { rows[k].className = hidden[kind] ? 'hide' : ''; }
+            var marks = document.querySelectorAll({ def: '.def', death: '.death', go: '.go', fall: '.fall', unmoved: '.unmoved' }[kind]);
+            for (var m = 0; m < marks.length; m++) { marks[m].style.visibility = hidden[kind] ? 'hidden' : ''; }
+            events = eventList();
+        });
+    }
+
+    // Arena frames at the playhead (2026-10-26): each player's buttons, ready or coming back.
+    for (var fi = 0; fi < rounds.length; fi++) {
+        var fd = rounds[fi].el.querySelector('.frames-data');
+        var fdata = fd ? JSON.parse(fd.textContent || '{}') : {};
+        rounds[fi].frames = fdata.players || [];
+        rounds[fi].castIcons = fdata.icons || {};
+    }
+    var framesEl = document.getElementById('frames'), framesNote = document.getElementById('frames-note');
+    var shownRound = null, cells = [];
+
+    /** A button's state at round time t: charges ready, or seconds until one is back. */
+    function stateAt(a, t) {
+        var max = a.charges || 1, charges = max, back = null;
+        function settle(until) {
+            while (charges < max && back !== null && back <= until) {
+                charges++;
+                back = charges < max ? back + a.cd : null;
+            }
+        }
+        for (var i = 0; i < a.presses.length && a.presses[i] <= t; i++) {
+            settle(a.presses[i]);
+            // Pressed with nothing ready: something cut the cooldown (the data holds no such cuts).
+            if (charges < 1) { charges = 1; back = charges < max ? back : null; }
+            charges--;
+            if (back === null) { back = a.presses[i] + a.cd; }
+        }
+        settle(t);
+        return { ready: charges, max: max, back: charges < max && back !== null ? back - t : null };
+    }
+
+    var RIBBON = 12, ribbons = [];
+
+    /** The casts line: what each player pressed in the RIBBON seconds before t, placed by time. */
+    function drawRibbons(t) {
+        ribbons.forEach(function (rb) {
+            var html = '<span class="now"></span>';
+            for (var s = Math.ceil(t - RIBBON); s < t; s++) {
+                html += '<span class="sec" style="left:' + (100 * (s - (t - RIBBON)) / RIBBON) + '%"></span>';
+            }
+            var list = rb.p.casts;
+            for (var i = 0; i < list.length; i++) {
+                var c = list[i];
+                if (c[0] > t) { break; }
+                if (c[0] < t - RIBBON) { continue; }
+                var left = 100 * (c[0] - (t - RIBBON)) / RIBBON, icon = shownRound.castIcons[c[1]];
+                var tip = c[1] + ' at ' + Math.floor(c[0] / 60) + ':' + ('0' + Math.floor(c[0] % 60)).slice(-2) + (c[2] ? ' on ' + c[2] : '');
+                html += '<span class="c' + (rb.tracked[c[1]] ? ' big' : '') + '" style="left:' + left + '%" title="' + tip.replace(/"/g, '&quot;') + '">'
+                    + (icon ? '<img src="' + icon + '" alt="">' : '<span class="lt">' + c[1].substr(0, 2) + '</span>') + '</span>';
+            }
+            rb.el.innerHTML = html;
+        });
+    }
+
+    function buildFrames(r) {
+        framesEl.innerHTML = '';
+        cells = [];
+        ribbons = [];
+        var usual = false;
+        ['us', 'them'].forEach(function (side) {
+            var col = document.createElement('div');
+            col.className = 'side';
+            col.innerHTML = '<div class="who">' + (side === 'us' ? 'Your team' : 'Their team') + '</div>';
+            r.frames.filter(function (p) { return p.side === side; }).forEach(function (p) {
+                usual = usual || p.usual;
+                var wrap = document.createElement('div');
+                wrap.className = 'pl-wrap';
+                var row = document.createElement('div');
+                row.className = 'pl';
+                row.innerHTML = '<span class="nm" style="color:' + p.color + '" title="' + p.spec + '">' + p.name + '</span><span class="st"></span><span class="abs"></span>';
+                var rib = document.createElement('div');
+                rib.className = 'rib';
+                rib.title = 'What ' + p.name + ' pressed in the last ' + RIBBON + 's, newest at the right';
+                wrap.appendChild(row);
+                wrap.appendChild(rib);
+                var tracked = {};
+                p.abilities.forEach(function (a) { tracked[a.name] = true; });
+                ribbons.push({ p: p, el: rib, tracked: tracked, row: row });
+                var abs = row.querySelector('.abs'), last = null;
+                p.abilities.forEach(function (a) {
+                    if (last !== null && a.kind !== last) { var g = document.createElement('span'); g.className = 'gap'; abs.appendChild(g); }
+                    last = a.kind;
+                    var b = document.createElement('span');
+                    b.className = 'ab';
+                    b.innerHTML = (a.icon ? '<img src="' + a.icon + '" alt="">' : '<span class="lt">' + a.name.substr(0, 2) + '</span>') + '<span class="cdt"></span><span class="ch"></span>';
+                    abs.appendChild(b);
+                    cells.push({ a: a, el: b, p: p, row: row });
+                });
+                col.appendChild(wrap);
+            });
+            framesEl.appendChild(col);
+        });
+        framesEl.style.display = r.frames.length ? 'flex' : 'none';
+        framesNote.style.display = usual ? 'block' : 'none';
+    }
+
+    function drawFrames(v) {
+        var r = null;
+        for (var i = 0; i < rounds.length; i++) { if (v - offset >= rounds[i].start - 60) { r = rounds[i]; } }
+        if (!r || !r.frames.length) { framesEl.style.display = 'none'; return; }
+        if (r !== shownRound) { buildFrames(r); shownRound = r; }
+        var t = v - offset - r.start, rows = [];
+        cells.forEach(function (c) {
+            var s = stateAt(c.a, t);
+            var cooling = s.ready === 0;
+            c.el.className = cooling ? 'ab cd' : 'ab';
+            c.el.querySelector('.cdt').textContent = cooling && s.back !== null ? Math.ceil(s.back) : '';
+            c.el.querySelector('.ch').textContent = c.a.charges > 1 ? s.ready : '';
+            c.el.title = c.a.name + ' (' + Math.round(c.a.cd) + 's): ' + (cooling ? 'back in ' + Math.ceil(s.back) + 's at the latest' : 'ready') + (c.a.charges > 1 ? ', ' + s.ready + ' of ' + c.a.charges + ' charges' : '');
+            if (rows.indexOf(c.row) < 0) { rows.push(c.row); c.row.p = c.p; }
+        });
+        drawRibbons(t);
+        rows.forEach(function (row) {
+            var p = row.p, st = row.querySelector('.st'), cc = null;
+            p.locked.forEach(function (l) { if (t >= l[0] && t < l[1]) { cc = l; } });
+            var dead = p.died !== null && t >= p.died;
+            row.className = 'pl' + (dead ? ' dead' : (cc ? ' locked' : ''));
+            st.textContent = dead ? 'dead' : (cc ? cc[2] + ' ' + Math.ceil(cc[1] - t) + 's' : '');
+        });
+    }
+    vid.addEventListener('timeupdate', function () { drawFrames(vid.currentTime); });
+    // The casts line slides smoothly while the video plays (timeupdate fires only about 4 times a second).
+    (function slide() {
+        if (!vid.paused && shownRound) { drawRibbons(vid.currentTime - offset - shownRound.start); }
+        window.requestAnimationFrame(slide);
+    })();
+    vid.addEventListener('seeked', function () { drawFrames(vid.currentTime); });
+    vid.addEventListener('loadedmetadata', function () { drawFrames(vid.currentTime); });
+
+    vid.addEventListener('timeupdate', function () {
+        var v = vid.currentTime - offset;
+        for (var i = 0; i < rounds.length; i++) {
+            var r = rounds[i], into = v - r.start;
+            if (into >= 0 && into <= r.dur) {
+                r.head.style.display = 'block';
+                r.head.style.left = (100 * into / r.dur) + '%';
+            } else {
+                r.head.style.display = 'none';
+            }
+            var rows = r.el.querySelectorAll('tr[data-t]'), now = null;
+            for (var k = 0; k < rows.length; k++) {
+                if (rows[k].className === 'hide') { continue; }
+                if (rows[k].className === 'now') { rows[k].className = ''; }
+                if (into <= r.dur && parseFloat(rows[k].getAttribute('data-t')) <= into) { now = rows[k]; }
+            }
+            if (now) { now.className = 'now'; }
+        }
+    });
+
+    for (var j = 0; j < rounds.length; j++) {
+        (function (r) {
+            r.rail.addEventListener('click', function (e) {
+                var box = r.rail.getBoundingClientRect();
+                seek(r, r.dur * (e.clientX - box.left) / box.width);
+            });
+            var rows = r.el.getElementsByTagName('tr');
+            for (var k = 0; k < rows.length; k++) {
+                (function (row) {
+                    var t = row.getAttribute('data-t');
+                    if (t === null) { return; }
+                    row.addEventListener('click', function () { seek(r, parseFloat(t) - LEAD); });
+                })(rows[k]);
+            }
+        })(rounds[j]);
+    }
+
+    setOffset(recorded ? recorded.offset : 0);
+})();
+</script>
+</body>
+</html>

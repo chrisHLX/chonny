@@ -16,8 +16,9 @@
             <p class="page-eyebrow">World of Warcraft arena</p>
             <h1 class="page-title max-w-3xl">Every arena game you play, reviewed.</h1>
             <p class="text-[16px] text-ink-muted mt-4 max-w-2xl">
-                The free MindCollector app sends each game here when it ends. You get a card for every game,
-                who died and why, and where you stand against the players of your spec you actually meet.
+                The free MindCollector app sends each game here when it ends. You get a card for every game with
+                who died and why, a timeline you can play back with every player's cooldowns, and where you stand
+                against the players of your spec you actually meet.
             </p>
             <div class="flex flex-col sm:flex-row sm:items-center gap-3 mt-7">
                 <a href="{{ route('wow.sample') }}" class="btn-primary !px-7 !py-3 !text-[15px]">See a real game</a>

@@ -2,7 +2,7 @@
 @php
     $appSchema = \App\Http\Controllers\AppDownloadController::schema();
 @endphp
-<x-app-layout title="MindCollector for Windows: a review of every WoW arena game" description="Free Windows app for WoW arena. It sends your games to your page as you play, so every game gets a review: who died and why, and how you compare with players of your spec." og-image="/images/app/card.webp" :schema="$appSchema">
+<x-app-layout title="MindCollector for Windows: a review of every WoW arena game" description="Free Windows app for WoW arena. Every game you play gets a review and a timeline you can play back: who fell and why, every player's cooldowns at each moment, and how you compare with players of your spec." og-image="/images/app/card.webp" :schema="$appSchema">
 <div class="max-w-4xl mx-auto px-4 py-6 sm:py-10">
 
     <section class="page-hero">
@@ -10,8 +10,8 @@
         <h1 class="page-title">See every arena game you play, reviewed.</h1>
         <p class="text-[15px] text-ink-muted mt-4 max-w-2xl">
             The MindCollector app watches your games while you play and sends each one to your page
-            when it ends. You get a card for every game, and a page that sets your play against
-            other players of your spec.
+            when it ends. You get a card for every game, a timeline you can play back, and a page
+            that sets your play against other players of your spec.
         </p>
         {{-- The Store first when there is a listing (MICROSOFT_STORE_URL): it is signed, so Windows
              raises nothing, and the direct download becomes the fallback for people who want the
@@ -41,6 +41,20 @@
     </section>
 
     <x-app-showcase class="mt-8"/>
+
+    {{-- The Watch page (2026-10-26): falls, arena frames, the casts line, OBS recording. --}}
+    <h2 class="text-[22px] font-bold text-ink mt-10 mb-3">Watch any game back</h2>
+    <div class="linear-card p-5 space-y-3 text-[14px] text-ink-muted">
+        <p>Every game gets a timeline you can play like a video. Each time someone's health fell, it shows
+            what the other team used to do it: their cooldowns, the stun on the target, the crowd control on
+            the healer, and how close together they landed.</p>
+        <p>Under it, each player's buttons light up when they're ready and count down after they're used, so
+            you can see what everyone had at any moment. A line under each player shows every button they
+            pressed, in order.</p>
+        <p>If you use OBS, the app can record each arena game for you. The recording plays above the
+            timeline, already lined up with it.</p>
+        <a href="{{ route('wow.sample') }}?tab=watch" wire:navigate class="btn-secondary !px-5 !py-2.5 inline-flex mt-1">Try it on a real game</a>
+    </div>
 
     <h2 class="text-[22px] font-bold text-ink mt-10 mb-4">Three steps</h2>
     <ol class="space-y-3">
@@ -87,6 +101,19 @@
         </li>
     </ol>
 
+    <div class="linear-card p-5 flex gap-4 mt-3">
+        <span class="w-9 h-9 rounded-full bg-surface-3 text-ink font-bold flex items-center justify-center shrink-0 text-[13px]">+</span>
+        <div>
+            <p class="text-[16px] font-bold text-ink">Record your games (optional)</p>
+            <p class="text-[14px] text-ink-muted mt-1">
+                Install <a href="https://obsproject.com" target="_blank" rel="noopener" class="text-gold hover:underline">OBS Studio</a>
+                (free). Then in the app open <span class="text-ink font-semibold">Settings</span> and click
+                <span class="text-ink font-semibold">Set up OBS</span>. It turns on what the app needs in OBS, adds a
+                capture of WoW if you don't have one, and records each arena game from then on.
+            </p>
+        </div>
+    </div>
+
     <p class="text-[13px] text-ink-subtle mt-6">
         The app sits in the tray by the clock and starts with Windows, so it's there when you play. You can
         turn that off in its Settings.
@@ -99,6 +126,8 @@
             (WoWCombatLog.txt), and it only sends the arena games in it. Nothing else on your PC.</p>
         <p><span class="text-ink font-semibold">Your games are yours.</span> Each game's page names the
             players in it, so only you can see it.</p>
+        <p><span class="text-ink font-semibold">Your videos stay on your PC.</span> The app plays them from your
+            own disk and never uploads them.</p>
         <p><span class="text-ink font-semibold">The averages.</span> Unless you opt out, your games are also
             counted, without any names, in the averages everyone is compared with. You can leave them out
             any time on <a href="{{ route('coach') }}#privacy" class="text-gold hover:underline">Your games</a>, under Upload.</p>

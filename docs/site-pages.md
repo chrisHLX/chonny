@@ -178,6 +178,10 @@
     `resources/sample/wow/`, in a frame with tabs. Anyone can open it. **"Your games" (`/wow/coach`)
     sends a signed-out visitor there** rather than to a bare sign-in box, with "Sign in to see yours".
     Tracked as `wow_sample`. Regenerate it the way the app's pictures are (`tools/app-pictures/README.md`).
+    **"Watch a game"** (2026-10-26) is the Watch page of 25 Oct 19:11 on the game's own clock: falls,
+    arena frames and the casts line, names swapped at the source by `tools/app-pictures/watchsample.php`
+    and checked against every name held. `/wow/sample?tab=watch` opens on it; `/wow/app`'s "Watch any
+    game back" section links there, and its new optional step sets up OBS recording.
   - `/wow` (`Landing`) is the WoW hub: the sample and the app's page up top, then the planning
     tools, "Learn the game" (basics check, class quizzes, spells) and the latest guides. The app's
     pitch, slides and setup steps are `/wow/app`'s alone; the two pages were nearly the same.
