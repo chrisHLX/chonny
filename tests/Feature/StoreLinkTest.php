@@ -22,7 +22,7 @@ class StoreLinkTest extends TestCase
 
     public function test_the_store_is_the_main_button_when_a_listing_is_configured(): void
     {
-        config(['services.microsoft_store.url' => 'https://apps.microsoft.com/detail/9NTESTTEST12']);
+        config(['services.microsoft_store.url' => 'https://apps.microsoft.com/detail/9NTESTTEST12', 'services.microsoft_store.current' => true]);
 
         $html = $this->get('/wow/app')->assertOk()->getContent();
 
@@ -32,6 +32,22 @@ class StoreLinkTest extends TestCase
         // The Store install raises nothing, so the SmartScreen coaching is now conditional on
         // having taken the file instead, rather than the first thing step 1 says.
         $this->assertStringContainsString('If you took the file instead', $html);
+    }
+
+    /**
+     * A Store copy does not update itself, and an update waits on Microsoft's review: on 26 Oct the
+     * listing held 0.5.5 while the download was 0.5.9, with recording and the Videos tab. Until the
+     * Store is marked current, people get the download, the same app the developer runs.
+     */
+    public function test_a_listing_behind_the_download_is_not_offered(): void
+    {
+        config(['services.microsoft_store.url' => 'https://apps.microsoft.com/detail/9NTESTTEST12', 'services.microsoft_store.current' => false]);
+
+        $html = $this->get('/wow/app')->assertOk()->getContent();
+
+        $this->assertStringNotContainsString('apps.microsoft.com', $html);
+        $this->assertStringNotContainsString('Get it from the Microsoft Store', $html);
+        $this->assertStringContainsString('Run anyway', $html);
     }
 
     public function test_nothing_store_shaped_appears_when_it_is_unset(): void

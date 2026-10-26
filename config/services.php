@@ -61,6 +61,11 @@ return [
     // https://apps.microsoft.com/detail/9NXXXXXXXXXX
     'microsoft_store' => [
         'url' => env('MICROSOFT_STORE_URL'),
+        // The Store copy does not update itself; a new version waits on Microsoft's review. Only when
+        // the Store holds the same version as the download does the app page lead with it
+        // (2026-10-26: the listing held 0.5.5 while the download was 0.5.9, with recording and the
+        // Videos tab). Set MICROSOFT_STORE_CURRENT=true once Partner Center publishes the update.
+        'current' => (bool) env('MICROSOFT_STORE_CURRENT', false),
     ],
 
     'recaptcha' => [

@@ -16,7 +16,7 @@
         {{-- The Store first when there is a listing (MICROSOFT_STORE_URL): it is signed, so Windows
              raises nothing, and the direct download becomes the fallback for people who want the
              file. With no listing set, the plain download stands alone exactly as before. --}}
-        @php $store = config('services.microsoft_store.url'); @endphp
+        @php $store = config('services.microsoft_store.current') ? config('services.microsoft_store.url') : null; @endphp
         <div class="flex flex-col sm:flex-row sm:items-center gap-3 mt-7">
             @if (filled($store))
                 <a href="{{ $store }}" target="_blank" rel="noopener"
@@ -124,8 +124,12 @@
     <div class="linear-card p-5 space-y-2.5 text-[14px] text-ink-muted">
         <p><span class="text-ink font-semibold">It reads one thing:</span> your WoW combat log
             (WoWCombatLog.txt), and it only sends the arena games in it. Nothing else on your PC.</p>
-        <p><span class="text-ink font-semibold">Your games are yours.</span> Each game's page names the
+        <p><span class="text-ink font-semibold">Your game pages are private.</span> Each game's page names the
             players in it, so only you can see it.</p>
+        <p><span class="text-ink font-semibold">Player pages are public.</span> Everyone in your games, you
+            included, shows up on the site's public player pages, the way armory sites list characters: each
+            game's date, the two teams, their ratings, and each player's damage, healing and talents. Your
+            notes, videos and game pages are never on them.</p>
         <p><span class="text-ink font-semibold">Your videos stay on your PC.</span> The app plays them from your
             own disk and never uploads them.</p>
         <p><span class="text-ink font-semibold">The averages.</span> Unless you opt out, your games are also

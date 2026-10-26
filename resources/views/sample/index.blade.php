@@ -49,7 +49,7 @@
 
         <p class="text-[12.5px] text-ink-subtle">
             These are pages the MindCollector app drew from real games, with every player's name swapped for a label.
-            Yours show your own games, and only you can see them.
+            Yours show your own games, and only you can see these pages.
         </p>
     </div>
 </div>
