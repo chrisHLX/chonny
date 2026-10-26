@@ -32,6 +32,25 @@ class CoachPagesQueueTest extends TestCase
         File::deleteDirectory(BuildCoachPages::dir($user->id));
     }
 
+    /**
+     * 26 Oct: a first sync sent 113 rounds and stopped before "done", and the player had no pages.
+     * Every upload now queues a backup two minutes on, under its own unique id so a normal "done"
+     * is never held behind it; running, it asks for the usual build.
+     */
+    public function test_an_upload_queues_a_backup_build_that_never_holds_up_done(): void
+    {
+        Queue::fake();
+        BuildCoachPages::backup(7);
+
+        Queue::assertPushed(BuildCoachPages::class, fn ($job) => $job->userId === 7 && $job->backup && $job->delay !== null);
+        $backup = new BuildCoachPages(7, false, true);
+        $this->assertSame('7:backup', $backup->uniqueId());
+        $this->assertNotSame($backup->uniqueId(), (new BuildCoachPages(7, true))->uniqueId());
+
+        $backup->handle();
+        Queue::assertPushedOn(BuildCoachPages::CARDS_QUEUE, BuildCoachPages::class, fn ($job) => $job->userId === 7 && $job->cardsOnly && ! $job->backup);
+    }
+
     public function test_a_cards_only_build_leaves_the_other_pages_in_the_index(): void
     {
         $user = User::factory()->create();

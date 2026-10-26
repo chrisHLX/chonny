@@ -115,6 +115,10 @@ class CoachUploadController extends Controller
         if (($result['status'] ?? null) === 'stored' && preg_match('/^[a-f0-9]{32}$/', $lobby)) {
             ArenaRound::where('user_id', $user->id)->where('match_id', $result['matchId'])->update(['lobby_id' => $lobby]);
         }
+        // The pages get built even if the app stops before it says "done" (BuildCoachPages::backup).
+        if (($result['status'] ?? null) === 'stored') {
+            BuildCoachPages::backup($user->id);
+        }
 
         return response()->json(array_diff_key($result, ['review' => true]));
     }
