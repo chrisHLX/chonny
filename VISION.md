@@ -120,6 +120,45 @@ business, and a player's own games are both the examples and the test. How it wo
 - Not built yet: notes on match findings in the same notebook (`ArenaNote` holds notes on games), a
   games context that opens a lesson on the player's own round, and a business context.
 
+## A library of how arena is played (2026-10-26)
+
+**The bigger product may be the best players' games made searchable and understandable, with a
+player's own analysis as one feature of it.** Players want to improve, and to see what better players
+do in their exact situation: "five games of Discipline Priest against Rogue Mage around 2,600, which
+were won, what they ran, when they traded cooldowns, what happened in the decisive moments". Today
+that is scattered across Check-PvP and Drustvar (rankings), Twitch and YouTube (footage), ArenaLogs
+(combat data) and Skill Capped (teaching), with nothing joining the question to the game that answers
+it. YouTube organises video around creators, Twitch around broadcasters; this organises it around
+the competitive situation, and can sit on top of video hosted anywhere.
+
+What MindCollector already has is the hard part: each game's comps, specs, ratings, result, talents,
+every cooldown press, and its falls (where health dropped, what caused it, how in sync the control
+landed), which become a video's chapters and a library's index. The footage is the evidence; the
+analysis adds to it instead of having to carry the whole proposition. "Watch high-rated players play
+your exact matchup" is understood at once; "trust an AI's read of your play" asks for more.
+
+How it fits together:
+- **Your own games are how the library fills.** A library game needs its combat log, so it can only
+  come from a player running the app (no third-party log feeds: rule 12). Nobody installs a desktop app
+  to feed someone else's library; they install it for their own reviews, and publishing is one press on
+  top. Personal value, then installs, then footage, then the library, then visitors, then installs.
+- **Publishing is per game and opt-in.** Nobody has to show every loss or experiment.
+- **Hosting is interchangeable.** A game carries a video id and a provider (YouTube first; Cloudflare
+  Stream, Bunny or Mux later if the economics fit). Timelines, search and leaderboards never depend on
+  where the video lives.
+- **Leaderboards and player pages are the way in:** a top Discipline Priest's page leads to their
+  published games, and a high-rated player's real games become their public profile, without editing
+  or streaming.
+- **Decided before the library is public:** how much of each opponent (their talents, cooldown timing,
+  rating) shows beside a published game.
+
+**Prove the behaviour before building more.** The experiment is about a hundred properly indexed
+games from high-rated players (recruited to run the app with OBS for a week or two), searchable by spec,
+comp against comp, rating and result, each with its timeline, put in front of r/worldofpvp. Then
+watch what people do, not what they say: do they search their own matchup, watch more than one game,
+come back, share links to moments, upload their own? If they do, invest in recording, uploading,
+analysis and a larger library. Don't charge for the library early; its value depends on people using it.
+
 ## The current focus
 
 Getting the spell data confidently correct — accurate cooldowns, charges, talent modifiers, CC durations, and mechanics, presented cleanly. Every `(varies)`, every unresolved `$s1`/`${...}` token, every duplicate spell row, every missing icon is a defect to close, not a limitation to accept. Where a real value genuinely cannot be computed yet, the answer is to get the data — never to ship a placeholder, and never to fabricate a number.
@@ -142,4 +181,5 @@ Sections in `CLAUDE.md` and elsewhere describing the older learning-platform dir
 4. **WoW arena spell data** — a fast, clean, accurate reference for class/spell/talent/mechanics data plus player and match insight, aimed squarely at players pushing for Gladiator.
 5. **A coach for one player (2026-10-02)** — the player's own games read against the players they meet, through the spell data, the arena model and the desktop app. Diagnostics return (stage 2), now with evidence from the combat log rather than self-report.
 6. **A platform for more than one game (2026-10-17)** — the same coach, game by game: WoW arena open, StarCraft II next, League of Legends shown as coming.
-7. **Improvement as a validated feedback loop (current, 2026-10-23)** — the coach is judged by whether its reads are right, change what a player does, and improve results, not by how good its explanations sound. The reasoning behind it becomes Training, a section across every game.
+7. **Improvement as a validated feedback loop (2026-10-23)** — the coach is judged by whether its reads are right, change what a player does, and improve results, not by how good its explanations sound. The reasoning behind it becomes Training, a section across every game.
+8. **A library of how arena is played (current, 2026-10-26)** — the best players' games made searchable by competitive situation, with their timelines and video; a player's own analysis is how the library fills. To be proved with about a hundred high-rated games before more is built.
