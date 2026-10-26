@@ -135,6 +135,24 @@
         .ev .w { width: 54px; }
         .offset input[type=range] { width: 140px; }
     }
+    /* Phones and narrow frames (2026-10-26): side by side, each team had half a phone's width and a
+       player's buttons stacked one per line. The teams stack instead, and each player's buttons wrap
+       across the whole width under their name. */
+    @media (max-width: 760px) {
+        .frames { flex-direction: column; gap: 10px; padding: 8px; }
+        .pl { flex-wrap: wrap; row-gap: 3px; }
+        .pl .nm { width: auto; max-width: 60%; }
+        .pl .st { width: auto; margin-left: 6px; }
+        .pl .abs { flex: 1 1 100%; }
+        .ab { width: 22px; height: 22px; }
+        .rib { margin-left: 0; }
+        .blank { height: 14vh; min-height: 90px; }
+        .blank .big { font-size: 26px; }
+        .bar { flex-wrap: wrap; gap: 8px; }
+        .bar input[type=range] { order: 5; flex: 1 1 100%; }
+        .jump { gap: 5px; }
+        .legend { font-size: 11px; }
+    }
 </style>
 </head>
 <body>
