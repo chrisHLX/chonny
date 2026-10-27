@@ -29,7 +29,7 @@ class RefreshKits extends Command
         [$seen, $changed] = [0, 0];
         ArenaRound::query()
             ->when($this->option('user'), fn ($q, $user) => $q->where('user_id', (int) $user))
-            ->select(['id', 'payload'])
+            // Every column: a saved payload re-indexes the players from the round's user, match and date.
             ->chunkById(25, function ($rounds) use ($analysis, $arena, &$seen, &$changed) {
                 foreach ($rounds as $round) {
                     $p = is_string($round->payload) ? json_decode($round->payload, true) : (array) $round->payload;
