@@ -39,6 +39,31 @@ class ArenaRound extends Model
         });
     }
 
+    /**
+     * A player's rounds in the order played, each with only what $keep takes from its payload, read 50
+     * at a time (2026-10-28). The page builds held every round decoded at once: 1.3 GB at peak for a
+     * 700-round account on a 2 GB box. Each round comes back without its payload; $keep returns null
+     * to leave a round out.
+     *
+     * @param  callable(array $payload, ArenaRound $round): mixed  $keep
+     * @return list<array{0: ArenaRound, 1: mixed}>
+     */
+    public static function readSlim(int $userId, callable $keep): array
+    {
+        $out = [];
+        foreach (static::where('user_id', $userId)->lazyById(50) as $r) {
+            $kept = $keep($r->payload ?? [], $r);
+            $r->setRawAttributes(array_diff_key($r->getAttributes(), ['payload' => true]), true);
+            if ($kept !== null) {
+                $out[] = [$r, $kept];
+            }
+        }
+        // By time, as the builds read them; usort is stable, so a tie keeps the order stored.
+        usort($out, fn ($x, $y) => strcmp((string) $x[0]->played_at, (string) $y[0]->played_at));
+
+        return $out;
+    }
+
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);

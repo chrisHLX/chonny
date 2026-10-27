@@ -112,13 +112,11 @@ class CompLibraryService
     {
         $this->xp = $xp;
         $groups = [];
-        foreach (ArenaRound::where('user_id', $user->id)->orderBy('played_at')->get() as $r) {
-            // Decoded once: Eloquent's array cast decodes the whole payload on every access.
-            $payload = $r->payload ?? [];
-            $a = $payload['analysis'] ?? null;
-            if (! $a || empty($a['players'])) {
-                continue;
-            }
+        // 50 rounds at a time, without the timeline this page never reads (2026-10-28, ArenaRound::readSlim).
+        $read = ArenaRound::readSlim($user->id, fn (array $p) => empty($p['analysis']['players']) ? null
+            : ['analysis' => array_diff_key($p['analysis'], ['timeline' => true]), 'metadata' => ['durationInSeconds' => $p['metadata']['durationInSeconds'] ?? 0]]);
+        foreach ($read as [$r, $payload]) {
+            $a = $payload['analysis'];
             $them = collect($a['players'])->where('side', 'them');
             $dps = $them->where('healer', false)->sortBy('spec')->values();
             if ($dps->isEmpty()) {

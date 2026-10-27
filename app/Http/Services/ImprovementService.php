@@ -115,33 +115,28 @@ class ImprovementService
     public function build(User $user, array $xp = []): array
     {
         $this->xp = $xp;
-        $rounds = ArenaRound::where('user_id', $user->id)->orderBy('played_at')->get()
-            ->map(function (ArenaRound $r) {
-                // Decoded once: Eloquent's array cast decodes the whole payload on every access.
-                $payload = $r->payload ?? [];
-
-                return [
-                    'at' => (string) $r->played_at,
-                    'mins' => max(0.1, (float) ($payload['metadata']['durationInSeconds'] ?? 0) / 60),
-                    'a' => $payload['analysis'] ?? null,
-                    // Each player's damage taken (CombatantThroughputService), for healing against it.
-                    'taken' => array_map(fn ($p) => (int) ($p['damageTaken'] ?? 0), $payload['throughput']['players'] ?? []),
-                ];
-            })
-            ->filter(fn ($r) => $r['a'] !== null && ! empty($r['a']['players']))
-            ->values();
-
+        // Two reads, 50 rounds at a time (2026-10-28), so no more than a batch is ever decoded: what
+        // each spec's dispels removed, from every round, and then each round measured into its rows and
+        // let go. All of them held at once peaked near 600 MB for a 700-round account.
         $this->dispelSpells = $this->dispelSpells();
-        $dispelSets = $this->dispelSets($rounds);
+        $dispelSets = $this->dispelSets(collect(ArenaRound::readSlim($user->id, fn (array $payload) => empty($payload['analysis']['players']) ? null
+            : ['a' => ['players' => $payload['analysis']['players'], 'dispels' => $payload['analysis']['dispels'] ?? []]]))->map(fn ($x) => $x[1]));
 
         // One row per (round, player): every player in every stored round, both teams.
-        $rows = [];
-        foreach ($rounds as $r) {
-            foreach ($r['a']['players'] as $p) {
-                $rows[] = $this->measure($r, $p, $dispelSets[$p['spec']] ?? []);
+        $rows = collect(ArenaRound::readSlim($user->id, function (array $payload, ArenaRound $round) use ($dispelSets) {
+            if (empty($payload['analysis']['players'])) {
+                return null;
             }
-        }
-        $rows = collect($rows);
+            $r = [
+                'at' => (string) $round->played_at,
+                'mins' => max(0.1, (float) ($payload['metadata']['durationInSeconds'] ?? 0) / 60),
+                'a' => $payload['analysis'],
+                // Each player's damage taken (CombatantThroughputService), for healing against it.
+                'taken' => array_map(fn ($p) => (int) ($p['damageTaken'] ?? 0), $payload['throughput']['players'] ?? []),
+            ];
+
+            return array_map(fn ($p) => $this->measure($r, $p, $dispelSets[$p['spec']] ?? []), $r['a']['players']);
+        }))->flatMap(fn ($x) => $x[1]);
 
         $out = [];
         foreach ($rows->where('you', true)->groupBy('full') as $full => $mine) {

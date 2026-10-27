@@ -39,9 +39,13 @@ class BuildGameCards extends Command
         {--notes= : The notes file the desktop app writes, to put your notes on each game}
         {--fresh : Redraw every card, not just the ones that changed}
         {--cards-only : Only the game cards: leave Improve, Comps and Classes as they are}
-        {--web : Point images at /storage/... for the website (/wow/coach) instead of file:/// paths}';
+        {--web : Point images at /storage/... for the website (/wow/coach) instead of file:/// paths}
+        {--budget= : Seconds to work before saving what is done and stopping, with exit code 3 (the queue)}';
 
     protected $description = 'Write a summary card for each synced game, for the MindCollector Logs desktop app';
+
+    /** The exit code of a build that ran out of --budget: what it drew is saved, the rest is next time. */
+    public const UNFINISHED = 3;
 
     public function handle(GameCardService $cards, ImprovementService $improve, CompLibraryService $library, ClassLibraryService $classLibrary): int
     {
@@ -76,7 +80,8 @@ class BuildGameCards extends Command
         // These already name their game, so attachNotes() files them without timestamp matching.
         $notes = array_merge($notes, \App\Models\ArenaNote::forCards($user->id));
 
-        $built = $cards->build($user, $index['experience'] ?? [], $notes, $known);
+        $deadline = $this->option('budget') ? microtime(true) + (float) $this->option('budget') : null;
+        $built = $cards->build($user, $index['experience'] ?? [], $notes, $known, $deadline);
 
         $drawn = 0;
         if ($dir) {
@@ -107,6 +112,24 @@ class BuildGameCards extends Command
             return self::SUCCESS;
         }
 
+        // Out of time with cards still to draw (--budget): save the ones drawn, so the next build
+        // carries on from them rather than starting again from nothing.
+        $overBudget = fn () => $deadline !== null && microtime(true) > $deadline;
+        $stop = function (string $where) use ($dir, $built, $drawn) {
+            $games = array_map(fn ($g) => array_diff_key($g, ['html' => true]), $built['games']);
+            $this->writeIndex($dir, ['generatedAt' => now()->toIso8601String(), 'games' => $games, 'experience' => $built['experience']]);
+            $this->info(sprintf('%d game card(s); %d drawn, %d left for next time. Out of time before %s.', count($games), $drawn, $built['unfinished'], $where));
+
+            return self::UNFINISHED;
+        };
+        if ($built['unfinished'] > 0) {
+            return $stop('the rest of the cards');
+        }
+        if ($dir && $drawn > 0) {
+            // Saved now, like each section below: a build stopped later keeps the cards it drew.
+            $this->writeIndex($dir, ['games' => array_map(fn ($g) => array_diff_key($g, ['html' => true]), $built['games']), 'experience' => $built['experience']]);
+        }
+
         // Each section saves itself to the index as it finishes (2026-10-26). The queue gives this
         // build 85s; a first build, or one after the pages' code changed, can need longer (about
         // 110s for a 61-game account), and saving only at the end meant a timed-out build threw
@@ -121,6 +144,9 @@ class BuildGameCards extends Command
         $improveDrawn = 0;
         $have = $dir && ($index['improveSig'] ?? null) === $improveSig && ! $this->option('fresh')
             && collect($characters)->every(fn ($c) => File::exists("{$dir}/{$c['file']}"));
+        if (! $have && $overBudget()) {
+            return $stop('Improve');
+        }
         if (! $have) {
             $characters = [];
             foreach ($improve->build($user, $built['experience']) as $full => $c) {
@@ -150,6 +176,9 @@ class BuildGameCards extends Command
         $compsDrawn = 0;
         $haveComps = $dir && ($index['compSig'] ?? null) === $compSig && ! $this->option('fresh')
             && collect($comps)->every(fn ($c) => File::exists("{$dir}/{$c['file']}"));
+        if (! $haveComps && $overBudget()) {
+            return $stop('Comps');
+        }
         if (! $haveComps) {
             $comps = [];
             foreach ($library->build($user, $built['experience']) as $key => $c) {
@@ -179,6 +208,9 @@ class BuildGameCards extends Command
         $playersDrawn = 0;
         $haveClasses = $dir && ($index['classSig'] ?? null) === $classSig && ! $this->option('fresh')
             && collect($classes)->every(fn ($c) => File::exists("{$dir}/{$c['file']}"));
+        if (! $haveClasses && $overBudget()) {
+            return $stop('Classes');
+        }
         if (! $haveClasses) {
             $classes = [];
             foreach ($classLibrary->build($user, $built['experience']) as $full => $c) {

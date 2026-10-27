@@ -51,6 +51,18 @@ class BuildCoachPages implements ShouldBeUniqueUntilProcessing, ShouldQueue
      */
     public bool $backup = false;
 
+    /**
+     * Seconds of drawing before a build saves what it has and queues the next part (2026-10-28). The
+     * 85s timeout killed a 700-round account's build after a card-code change every time, and nothing
+     * it drew was kept. One section after this is at most ~15s on the server.
+     */
+    public const BUDGET = 50;
+
+    /** Which part of one build this is; a build that keeps running out stops after MAX_PARTS. */
+    public int $part = 1;
+
+    public const MAX_PARTS = 12;
+
     public function __construct(public int $userId, public bool $cardsOnly = false, bool $backup = false)
     {
         $this->backup = $backup;
@@ -89,15 +101,21 @@ class BuildCoachPages implements ShouldBeUniqueUntilProcessing, ShouldQueue
             return;
         }
 
-        Artisan::call('wow:game-cards', array_filter([
+        $code = Artisan::call('wow:game-cards', array_filter([
             '--user' => $this->userId,
             '--dir' => self::dir($this->userId),
             '--web' => true,
             '--cards-only' => $this->cardsOnly,
+            '--budget' => self::BUDGET,
         ]));
 
+        // A card left over by a cards-only build is drawn by the full one queued here.
         if ($this->cardsOnly) {
             static::dispatch($this->userId);
+        } elseif ($code === \App\Console\Commands\BuildGameCards::UNFINISHED && $this->part < self::MAX_PARTS) {
+            $next = new static($this->userId);
+            $next->part = $this->part + 1;
+            dispatch($next);
         }
     }
 }

@@ -57,20 +57,27 @@ class GameCardService
      * @param  array<string, string>  $known  lobby id => the signature of the card already drawn
      * @return array{games: array<string, array>, experience: array<string, array>}
      */
-    public function build(User $user, array $remembered = [], array $notes = [], array $known = []): array
+    public function build(User $user, array $remembered = [], array $notes = [], array $known = [], ?float $deadline = null): array
     {
         $this->payloads = [];
 
-        $lobbies = ArenaRound::query()
-            ->where('user_id', $user->id)
-            ->orderBy('played_at')
-            ->get()
-            ->filter(fn (ArenaRound $r) => isset($this->payload($r)['analysis']))
-            ->groupBy('lobby_id');
+        // Each round's list entry and signature need only its players, result, dispels and length
+        // (2026-10-28): every round decoded and kept for the whole build was 650 MB for a 700-round
+        // account. A card being drawn reads its own rounds in full, one game at a time.
+        $this->summaries = [];
+        $slim = ArenaRound::readSlim($user->id, fn (array $p) => isset($p['analysis']) ? [
+            'analysis' => ['players' => $p['analysis']['players'] ?? [], 'won' => $p['analysis']['won'] ?? false, 'dispels' => $p['analysis']['dispels'] ?? []],
+            'metadata' => ['durationInSeconds' => $p['metadata']['durationInSeconds'] ?? 0],
+        ] : null);
+        foreach ($slim as [$r, $summary]) {
+            $this->summaries[$r->id] = $summary;
+        }
+        $lobbies = (new \Illuminate\Database\Eloquent\Collection(array_column($slim, 0)))->groupBy('lobby_id');
+        unset($slim);
 
-        $names = $lobbies->flatten(1)->flatMap(fn (ArenaRound $r) => array_column($this->payload($r)['analysis']['players'], 'name'))->unique()->values()->all();
+        $names = $lobbies->flatten(1)->flatMap(fn (ArenaRound $r) => array_column($this->summary($r)['analysis']['players'], 'name'))->unique()->values()->all();
         // What each spec's dispels remove, from every stored round: one definition with Improve.
-        $this->dispellable = $this->improvement->dispellable($lobbies->flatten(1)->map(fn (ArenaRound $r) => $this->payload($r)['analysis'])->all());
+        $this->dispellable = $this->improvement->dispellable($lobbies->flatten(1)->map(fn (ArenaRound $r) => $this->summary($r)['analysis'])->all());
         $xp = [];
         foreach ($this->experience->cachedMany($names) as $name => $hit) {
             $hit ??= $remembered[$name] ?? null;
@@ -83,11 +90,12 @@ class GameCardService
 
         $code = $this->codeFingerprint();
         $games = [];
+        $draw = [];
         foreach ($lobbies as $lobby => $rounds) {
             // By time: `sequence` is 1 on every round wow:sync stores, so it cannot order a lobby.
             $rounds = $rounds->sortBy(fn (ArenaRound $r) => (string) $r->played_at)->values();
             $roundNotes = $rounds->mapWithKeys(fn (ArenaRound $r) => [$r->id => $notesByRound[$r->id] ?? []])->all();
-            $names = $rounds->flatMap(fn (ArenaRound $r) => array_column($this->payload($r)['analysis']['players'], 'name'))->unique()->sort()->values();
+            $names = $rounds->flatMap(fn (ArenaRound $r) => array_column($this->summary($r)['analysis']['players'], 'name'))->unique()->sort()->values();
             $sig = md5(json_encode([
                 $code,
                 $rounds->map(fn (ArenaRound $r) => [$r->id, (string) $r->updated_at])->all(),
@@ -96,9 +104,9 @@ class GameCardService
                 $names->mapWithKeys(fn ($n) => [$n => $xp[$n] ?? null])->all(),
             ]));
             $shuffle = $rounds->count() > 1 || str_contains($rounds->first()->bracket, 'Shuffle');
-            $first = $this->payload($rounds->first())['analysis'];
+            $first = $this->summary($rounds->first())['analysis'];
             $me = collect($first['players'])->firstWhere('logger', true);
-            $won = $rounds->filter(fn (ArenaRound $r) => $this->payload($r)['analysis']['won'])->count();
+            $won = $rounds->filter(fn (ArenaRound $r) => $this->summary($r)['analysis']['won'])->count();
             $entry = [
                 'playedAt' => (string) $rounds->first()->played_at,
                 'bracket' => $rounds->first()->bracket,
@@ -110,22 +118,35 @@ class GameCardService
                 'against' => $shuffle ? [] : collect($first['players'])->where('side', 'them')->pluck('spec')->sort()->values()->all(),
             ];
 
-            if (($known[$lobby] ?? null) === $sig) {
-                $games[$lobby] = $entry + ['html' => null];
+            $games[$lobby] = $entry + ['html' => null];
+            if (($known[$lobby] ?? null) !== $sig) {
+                $draw[$lobby] = [$rounds, $shuffle];
+            }
+        }
+
+        // Newest first, and only until $deadline (2026-10-28): a build in the queue has 85s, and after
+        // the card code changes a 470-game account needs about 100s to redraw them all. A card left
+        // over keeps the signature it had, so the next build draws it, and a game just played is never
+        // the one left over.
+        $unfinished = 0;
+        foreach (array_reverse($draw, true) as $lobby => [$rounds, $shuffle]) {
+            if ($deadline !== null && microtime(true) > $deadline) {
+                $games[$lobby]['sig'] = $known[$lobby] ?? null;
+                $unfinished++;
 
                 continue;
             }
-
             $vm = $shuffle ? $this->shuffleModel($rounds, $xp, $notesByRound) : $this->gameModel($rounds->first(), $xp, $notesByRound);
             $vm['gameNotes'] = $this->gameNoteRows($notesByGame[$lobby] ?? []);
             // The website's cards (app and browser) open the game's timeline page; the local IE11
             // cards cannot draw it.
             $vm['watch'] = config('desktop.web_assets') ? "watch-{$lobby}.html" : null;
 
-            $games[$lobby] = $entry + ['html' => view('desktop.game-card', ['g' => $vm])->render()];
+            $games[$lobby]['html'] = view('desktop.game-card', ['g' => $vm])->render();
+            $this->payloads = [];
         }
 
-        return ['games' => $games, 'experience' => $xp];
+        return ['games' => $games, 'experience' => $xp, 'unfinished' => $unfinished];
     }
 
     /** Drawing the website's pooled card (pooled()): no names, no player's own tabs. */
@@ -232,8 +253,23 @@ class GameCardService
      */
     private function payload(ArenaRound $r): array
     {
-        // Only the two parts a card reads; combatants and moments are half the bulk and unused here.
-        return $this->payloads[$r->id] ??= array_intersect_key($r->payload ?? [], ['analysis' => true, 'metadata' => true]);
+        if (! isset($this->payloads[$r->id])) {
+            // A round from build() comes without its payload (ArenaRound::readSlim) and is read again here.
+            $stored = array_key_exists('payload', $r->getAttributes()) ? $r->payload : ArenaRound::whereKey($r->id)->value('payload');
+            // Only the two parts a card reads; combatants and moments are half the bulk and unused here.
+            $this->payloads[$r->id] = array_intersect_key($stored ?? [], ['analysis' => true, 'metadata' => true]);
+        }
+
+        return $this->payloads[$r->id];
+    }
+
+    /** @var array<int, array> round id => the parts of its payload build() lists every game by */
+    private array $summaries = [];
+
+    /** What build() read of a round for the list: its players, result, dispels and length. */
+    private function summary(ArenaRound $r): array
+    {
+        return $this->summaries[$r->id] ?? $this->payload($r);
     }
 
     /**
@@ -832,7 +868,7 @@ class GameCardService
         $spans = $rounds->filter(fn (ArenaRound $r) => $r->played_at !== null)->map(fn (ArenaRound $r) => [
             'id' => $r->id,
             'from' => $r->played_at->getTimestamp(),
-            'to' => $r->played_at->getTimestamp() + (int) ($this->payload($r)['metadata']['durationInSeconds'] ?? 0),
+            'to' => $r->played_at->getTimestamp() + (int) ($this->summary($r)['metadata']['durationInSeconds'] ?? 0),
         ])->sortBy('from')->values();
 
         foreach ($notes as $note) {

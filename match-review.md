@@ -58,8 +58,11 @@ page, drawn for two readers:
   `wow:sync`, so the server measures it exactly as the PC does. The server never takes a measurement
   from the client.
 - **Build:** `/api/coach/done` queues `BuildCoachPages`, which runs `wow:game-cards --web` into
-  `storage/app/coach/{user}`. A full build peaked at 324 MB, so it never runs inside a page view. It
-  must finish inside the queue's 90s `retry_after`.
+  `storage/app/coach/{user}`. It never runs inside a page view. It must finish inside the queue's 90s
+  `retry_after`, so it runs with `--budget=50` (2026-10-28): out of time, it saves what it drew (newest
+  games first) and queues the next part, up to 12. Before, a 700-round account timed out on every build
+  after a card-code change and kept nothing. Every builder reads rounds 50 at a time
+  (`ArenaRound::readSlim()`): 400 MB at the highest stage for 700 rounds, from 1.3 GB.
 - **Serve:** the page lists the games, characters and comps from that folder's `index.json`, and
   shows each page in a frame, read only from the viewer's own folder.
 - **What a change needs:** a page or service change reaches the app at the next card build and the

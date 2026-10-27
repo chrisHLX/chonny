@@ -85,12 +85,10 @@ class ClassLibraryService
         $this->xp = $xp;
         $met = [];      // full name => their rounds
         $mine = [];     // spec id => the logging player's own rounds of that spec
-        foreach (ArenaRound::where('user_id', $user->id)->orderBy('played_at')->get() as $r) {
-            $payload = $r->payload ?? [];
-            $a = $payload['analysis'] ?? null;
-            if (! $a || empty($a['players'])) {
-                continue;
-            }
+        // 50 rounds at a time, without the timeline this page never reads (2026-10-28, ArenaRound::readSlim).
+        $read = ArenaRound::readSlim($user->id, fn (array $p) => empty($p['analysis']['players']) ? null
+            : array_diff_key($p['analysis'], ['timeline' => true]));
+        foreach ($read as [$r, $a]) {
             foreach ($a['players'] as $p) {
                 if ($p['side'] === 'them' && ($p['specExternalId'] ?? 0) > 0) {
                     $met[$p['name']][] = ['r' => $r, 'a' => $a, 'p' => $p];
