@@ -249,7 +249,7 @@ class CoachTest extends TestCase
 
         // A guest is sent to sign in first, and comes back to the same page after.
         $this->get("/wow/app/connect?code={$code}")->assertRedirect(route('login'));
-        $this->actingAs($user)->get("/wow/app/connect?code={$code}")->assertOk()->assertSee('Connect the app on this PC?');
+        $this->actingAs($user)->get("/wow/app/connect?code={$code}")->assertOk()->assertSee('Connect the app to your account')->assertSee('Connect this PC');
         $this->actingAs($user)->get('/wow/app/connect?code=nonsense')->assertOk()->assertSee('This link has expired');
 
         $this->actingAs($user)->post('/wow/app/connect', ['code' => $code])->assertOk()->assertSee("You're connected", false);
