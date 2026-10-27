@@ -42,6 +42,10 @@ class YouTubeUploadTest extends TestCase
 
         $this->withToken($admin->issueCoachToken())->getJson(route('api.coach.index'))->assertJsonPath('youtube', true);
         $this->actingAs($admin)->get(route('youtube.link'))->assertRedirect();
+
+        // A named tester (YOUTUBE_TESTERS) is offered it too.
+        config(['services.youtube.testers' => [$player->id]]);
+        $this->withToken($player->issueCoachToken())->getJson(route('api.coach.index'))->assertJsonPath('youtube', true);
     }
 
     /** A 3v3 shaped like 25 Oct 19:11: Jungle against RMD, lost, with a fall at 69s. */

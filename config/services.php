@@ -105,6 +105,9 @@ return [
         // Off until Google has verified the app (2026-10-27): before that only the project's test
         // users can link, so everyone else would meet Google's "access blocked". Admins see it either way.
         'public' => (bool) env('YOUTUBE_PUBLIC', false),
+        // Accounts offered it before then besides admins, by user id ("8,12"): the accounts whose Google
+        // logins are the project's test users. Chriso's app sends to account 8, not his admin account.
+        'testers' => array_values(array_filter(array_map('intval', explode(',', (string) env('YOUTUBE_TESTERS', ''))))),
     ],
 
     'battlenet' => [

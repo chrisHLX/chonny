@@ -198,6 +198,11 @@ A player in China sent 130 rounds in 1,434 uploads. Two causes, both fixed:
 
 ## YouTube uploads (2026-10-26, shown once the website has it set up)
 
+**Who sees it (2026-10-27):** until Google verifies the app only its test users can link, so the
+website offers YouTube (and the index's `youtube` flag shows the app's row) only to admins and to the
+accounts in `YOUTUBE_TESTERS` (user ids; Chriso's app sends to account 8). `YOUTUBE_PUBLIC=true` opens
+it to everyone once Google has approved. Google project: `mindcollector-youtube`.
+
 The Videos tab's first row, **Upload to YouTube…**, opens `YouTubeQueueForm`: the recordings matched
 to a game and not on YouTube yet, the last day's ticked, and who can see them (unlisted unless the
 player picks otherwise). For each ticked game the website's `/api/coach/youtube/prepare` gives a
@@ -208,6 +213,15 @@ YouTube) and notes it in the video's timing file (`"youtube": {id, privacy, at}`
 twice and the list says "on YouTube". The player links the channel on the website (Your games >
 YouTube). The row appears only when the website's index says `youtube: true` (its Google client set
 up); shipped in 0.6.1 hidden, and to be checked with one real upload before it is relied on.
+
+## To improve later
+
+- **A card sooner after a game (noted 2026-10-27, held until it is quieter).** Measured on Sean's game
+  of 27 Oct 01:56:38 UTC: sent and "done" at 01:57:01, card written 01:57:03, opened 01:57:25. Of the
+  ~25s, the server takes 2; the rest is the app waiting for the log to be quiet (`Syncer.Quiet`, 8s)
+  and for its next tick (`MainForm._timer`, 10s). Send a round as soon as its ARENA_MATCH_END (or
+  ZONE_CHANGE) is in the log, for example with a FileSystemWatcher on the live log, instead of
+  waiting for the quiet period and the tick: about 5-10s from the end of a game to its card.
 
 ## Getting it (2026-10-11): one file, one click
 
