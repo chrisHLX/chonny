@@ -255,7 +255,7 @@ class RoundAnalysisService
             'checks' => $this->checks($tl, $roster, $sideOf, $deaths, $metadata, $this->overlaps($tl, $buffs, $sideOf, $firstDeath)),
             'dispels' => $this->dispels($dispelEvents, $sideOf, $credit),
             'debuffs' => $this->debuffs($debuffSpans, $sideOf, $credit),
-            'timeline' => $this->timeline($named, $roster, $tl, $buffs, $heals, $credit),
+            'timeline' => $this->timeline($named, $roster, $tl, $buffs, $heals, $credit, $interrupts, $ccMap),
             'habits' => $this->priorityKicks(
                 $this->habits($roster, $sideOf, $credit, $named, $dmg, $interrupts, $failed, $locked, $deaths, $metadata, $ccMap),
                 $metadata, $sideOf, $credit, $starts, $named, $interrupts, $locked, $deaths, $pos,
@@ -392,7 +392,7 @@ class RoundAnalysisService
      *  - defUp: [[on, by, spell, from, to], ...], every buff on a player the classification calls only
      *    defensive and that lasted 2s or more (a proc or a one-tick shield is not a defensive window).
      */
-    private function timeline(array $named, array $roster, array $tl, array $buffs, array $heals, callable $credit): array
+    private function timeline(array $named, array $roster, array $tl, array $buffs, array $heals, callable $credit, array $interrupts = [], array $ccMap = []): array
     {
         $casts = [];
         $seen = [];
@@ -470,7 +470,24 @@ class RoundAnalysisService
             }
         }
 
-        return ['casts' => $casts, 'hp' => $hp, 'control' => $control, 'defUp' => $defUp];
+        // Offensive cooldowns as spans (2026-10-28): how long Avatar was really up, so a peel can say
+        // how much of it crowd control took away. Mixed ones (Avatar) count: they are damage windows.
+        $offUp = [];
+        foreach ($buffs as $b) {
+            $e = $classes['byName'][$b['name']] ?? $classes['byName'][strtolower($b['name'])] ?? [];
+            if ($b['to'] - $b['from'] >= 2.0 && ($e['offensive'] ?? false)) {
+                $offUp[] = [$b['on'], $b['name'], round($b['from'], 1), round($b['to'], 1)];
+            }
+        }
+
+        // Every interrupt with what it stopped, and that spell's crowd control kind when it is one
+        // (2026-10-28): "you kicked their Polymorph while your healer was in a stun".
+        $kicks = [];
+        foreach ($interrupts as $x) {
+            $kicks[] = [round($x['t'], 1), $credit($x['src']), $x['dst'], $x['spell'], $x['stopped'], $ccMap[$x['stoppedId']] ?? null];
+        }
+
+        return ['casts' => $casts, 'hp' => $hp, 'control' => $control, 'defUp' => $defUp, 'offUp' => $offUp, 'kicks' => $kicks];
     }
 
     /**
@@ -654,6 +671,18 @@ class RoundAnalysisService
         }
 
         return $kits;
+    }
+
+    /**
+     * A player's buttons from the talents a stored round kept (`combatants`), as a round measured now
+     * would store them in `players[].kit`. For wow:refresh-kits after a change to how talents resolve.
+     *
+     * @param  array{talents?: array, pvpTalentIds?: array}  $combatant
+     * @return array<int, array{name: string, kind: string, cd: float, charges: int}>
+     */
+    public function kitFor(array $combatant, \App\Models\Specialization $spec): array
+    {
+        return $this->abilities($spec, $this->ledger->build($combatant, $spec));
     }
 
     /**

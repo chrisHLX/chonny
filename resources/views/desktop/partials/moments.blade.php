@@ -5,7 +5,12 @@
 --}}
 @php
     $kinds = [
-        'control' => ['Crowd control through a big defensive', 'control landing while a big defensive was up: the seconds of it lost'],
+        'best' => ['Your best go', 'the biggest fall your team caused: what did it, what saved them, and what was left unpressed'],
+        'window' => ['A window to kill', 'an enemy with every big defensive that could save them on cooldown'],
+        'peel' => ['Crowd control on their damage cooldowns', 'control on an enemy while their cooldown ran, and how much of it that took'],
+        'kick' => ['Their crowd control interrupted', 'an interrupt that stopped a crowd control cast'],
+        'avoid' => ['Their crowd control avoided', 'crowd control that never landed, and what was pressed just before it'],
+        'control' => ['Cyclone or Mind Control through a big defensive', 'no heal reaches them, so the defensive runs out while they stay low'],
         'dispel' => ['Crowd control on a teammate in an enemy go', 'what you could dispel while enemy go was on, and what happened'],
         'opening' => ['The start of enemy goes', 'your first casts, your first big defensive, and the target\'s health'],
     ];
@@ -14,7 +19,7 @@
 @if ($m === null)
     <div class="box muted">Moments need this game measured at the latest version: it is measured again when the app next sends it.</div>
 @elseif ($m === [])
-    <div class="box muted">Nothing in this game matched a moment: no crowd control through a big defensive, no control on a teammate in enemy goes you could have dispelled, and no enemy go to read.</div>
+    <div class="box muted">Nothing in this game matched a moment: no fall your team caused, no window with their big defensives down, no crowd control that took a cooldown or was stopped, and no enemy go to read.</div>
 @else
     @foreach ($kinds as $kind => [$title, $about])
         @php $rows = array_values(array_filter($m, fn ($x) => $x['kind'] === $kind)); @endphp
@@ -44,11 +49,14 @@
                                                 <tr>
                                                     <td class="small muted" style="padding: 1px 10px 1px 0">{{ $st['clock'] }}</td>
                                                     <td class="small" style="padding: 1px 8px 1px 0">{{ $st['who'] }}</td>
-                                                    <td class="small" style="padding: 1px 8px 1px 0">@if ($st['icon'])<img class="spell-ic" src="{{ $st['icon'] }}" style="margin-right: 4px">@endif<span @if (($st['mark'] ?? null) === 'control') class="warn-text" @elseif (($st['mark'] ?? null) === 'dispel') class="gold" @endif>{{ $st['spell'] }}</span></td>
+                                                    <td class="small" style="padding: 1px 8px 1px 0">@if ($st['icon'])<img class="spell-ic" src="{{ $st['icon'] }}" style="margin-right: 4px">@endif<span @if (($st['mark'] ?? null) === 'control') class="warn-text" @elseif (($st['mark'] ?? null) === 'dispel') class="gold" @elseif (($st['mark'] ?? null) === 'answer') class="muted" @endif>{{ $st['spell'] }}</span></td>
                                                     <td class="small muted" style="padding: 1px 0">@if ($st['on'])on {{ $st['on'] }}@endif</td>
                                                 </tr>
                                             @endforeach
                                         </table>
+                                    @endif
+                                    @if (! empty($x['extra']))
+                                        <div class="small" style="margin-top: 6px">{{ $x['extra'] }}</div>
                                     @endif
                                     @if (! empty($x['caveat']))
                                         <div class="small subtle" style="margin-top: 4px">{{ $x['caveat'] }}</div>

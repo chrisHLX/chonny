@@ -181,7 +181,7 @@ class WatchPageService
      *
      * @return array{frames: array<int, array<string, mixed>>, castIcons: array<string, string>, byGuid: array<string, array<string, mixed>>}
      */
-    private function abilities(array $analysis): array
+    private function abilities(array $analysis, bool $icons = true): array
     {
         $ledger = app(CooldownLedgerService::class);
         $colors = config('wow_classes.colors', []);
@@ -209,7 +209,7 @@ class WatchPageService
         }
         $english = app(SpellNameTranslations::class)->english(array_keys($castNames));
         $castIcons = [];
-        foreach (app(SpellIconIndex::class)->for(array_keys($castNames)) as $spell => $model) {
+        foreach ($icons ? app(SpellIconIndex::class)->for(array_keys($castNames)) : [] as $spell => $model) {
             if ($model?->icon_name) {
                 $castIcons[$spell] = \App\Support\DesktopAsset::icon($model->icon_name);
             }
@@ -270,6 +270,8 @@ class WatchPageService
                 'usual' => ! $own,
                 'died' => $died[$p['guid']] ?? null,
                 'locked' => $locked,
+                // Health a second at a time (2026-10-28): a bar beside the crowd control on the frame.
+                'hp' => array_values($analysis['timeline']['hp'][$p['guid']] ?? []),
                 // Every successful cast, in order: time, spell, its icon, whom it went on.
                 'casts' => array_map(fn ($c) => [(float) $c[0], $c[1], isset($c[2]) ? ($names[$c[2]] ?? null) : null], $casts[$p['guid']] ?? []),
                 'abilities' => array_map(fn ($a) => $a + [
@@ -280,6 +282,17 @@ class WatchPageService
         }
 
         return ['frames' => array_values($out), 'castIcons' => $castIcons, 'byGuid' => $out];
+    }
+
+    /**
+     * Each player's arena frame for a round, by guid: their buttons with every press, crowd control
+     * spans, health and death (GameMomentsService reads which buttons were ready at a moment).
+     *
+     * @return array<string, array<string, mixed>>
+     */
+    public function frames(array $analysis): array
+    {
+        return $this->abilities($analysis, icons: false)['byGuid'];
     }
 
     /** Presses closer than this are one press logged twice. */

@@ -717,6 +717,29 @@ class ArenaLogService
      *   pvpTalents: array<int, array{name:string, spellId:int, pvpTalentId:?int}>
      * }
      */
+    /**
+     * The (stored - raw) offset of the unambiguous entry whose raw id is nearest $entryId, when one is
+     * within LOCAL_OFFSET_REACH of it; null otherwise (the caller falls back to the tree's median). A
+     * far neighbour is in another block: Dragon's Breath's raw id had its nearest 2,448 away, at an
+     * offset that picked Supernova for Mages who pressed Dragon's Breath.
+     *
+     * @param  array<int, int>  $offsetAt  raw entry id => its offset
+     */
+    private function localOffset(array $offsetAt, int $entryId): ?int
+    {
+        $best = null;
+        foreach ($offsetAt as $raw => $offset) {
+            if ($best === null || abs($raw - $entryId) < abs($best[0] - $entryId)) {
+                $best = [$raw, $offset];
+            }
+        }
+
+        return $best !== null && abs($best[0] - $entryId) <= self::LOCAL_OFFSET_REACH ? $best[1] : null;
+    }
+
+    /** How far apart in the log's numbering a neighbour may be to set a choice node's offset. */
+    private const LOCAL_OFFSET_REACH = 50;
+
     public function resolveCombatantTalents(array $combatantInfo, int $specId): array
     {
         $spec = Specialization::find($specId);
@@ -751,6 +774,7 @@ class ArenaLogService
         // lines the log happened to emit for it.
         $talentsByNodeId = [];
         $offsets = [];
+        $offsetAt = [];
 
         // Pass 1 — unambiguous nodes: only one distinct real spell among the node's entries,
         // so no entry-id matching is needed at all. Also collects this call's own
@@ -786,6 +810,7 @@ class ArenaLogService
                 ];
             }
             $offsets[] = $entry->external_talent_id - $t['entryId'];
+            $offsetAt[$t['entryId']] = $entry->external_talent_id - $t['entryId'];
         }
 
         sort($offsets);
@@ -810,8 +835,15 @@ class ArenaLogService
                     continue;
                 }
 
+                // The offset of the unambiguous entries nearest this one in the log's numbering, not
+                // the tree's median. Ids come in blocks with offsets a few apart (5003, 4780, 4772 in one
+                // Frost Mage's tree), and a choice node's options are often one apart: Glacial Bulwark
+                // 138960, Cold Snap 138961. The median (5003) picked Cold Snap for a Mage whose two Ice
+                // Blocks 45s apart prove Bulwark; every neighbour of that node sat at exactly 4780
+                // (2026-10-28, round 1192).
+                $local = $this->localOffset($offsetAt, (int) $t['entryId']) ?? $medianOffset;
                 $best = $distinctEntries
-                    ->sortBy(fn ($e) => abs(($e->external_talent_id - $t['entryId']) - $medianOffset))
+                    ->sortBy(fn ($e) => [abs(($e->external_talent_id - $t['entryId']) - $local), abs(($e->external_talent_id - $t['entryId']) - $medianOffset)])
                     ->first();
 
                 if ($best && $best->spell) {

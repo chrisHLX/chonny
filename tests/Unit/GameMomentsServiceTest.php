@@ -3,6 +3,7 @@
 namespace Tests\Unit;
 
 use App\Http\Services\GameMomentsService;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
 /**
@@ -12,6 +13,8 @@ use Tests\TestCase;
  */
 class GameMomentsServiceTest extends TestCase
 {
+    use RefreshDatabase;
+
     private function round(): array
     {
         $hp = fn (int $low) => array_merge(array_fill(0, 90, 90), [30, 26, 26, 26, 26, 26, 26, 26, $low, 40, 55, 60], array_fill(0, 20, 80));
@@ -68,7 +71,8 @@ class GameMomentsServiceTest extends TestCase
         $this->assertCount(1, $control, 'the Storm Bolt through a Leap of Faith is not a moment');
         $m = $control[0];
         $this->assertSame('Mind Control on Terrorizer through Pain Suppression and Die by the Sword', $m['title']);
-        $this->assertStringContainsString('lost 3.4s of each', $m['text']);
+        $this->assertStringContainsString('No heal could reach them for 3.4s', $m['text']);
+        $this->assertStringContainsString('and Pain Suppression had run out and Die by the Sword had 0.7s left when it ended', $m['text']);
         $this->assertStringContainsString('You dispelled it (Dispel Magic)', $m['text']);
         $this->assertStringContainsString('You were free to act for 3.4s of it', $m['text'], 'the in-their-go reading folds into it');
         $this->assertStringNotContainsString('Rallying Cry', $m['title']);
@@ -78,6 +82,77 @@ class GameMomentsServiceTest extends TestCase
         $this->assertCount(0, collect($moments)->where('kind', 'dispel'));
         // The Dispel Magic logged twice at 99.6 shows once in the steps.
         $this->assertSame(1, collect($m['steps'])->where('spell', 'Dispel Magic')->count());
+    }
+
+    /** Chriso, 28 Oct: a stun through a defensive is not the play; their healer heals through it. */
+    public function test_only_control_that_stops_healing_counts_through_a_defensive(): void
+    {
+        $round = $this->round();
+        $round['timeline']['control'] = [['war', 'pri', 'Kidney Shot', 'Stun', 93.0, 97.0]];
+
+        $this->assertCount(0, collect(app(GameMomentsService::class)->forRound($round))->where('kind', 'control'));
+    }
+
+    public function test_a_peel_says_how_much_of_their_cooldown_it_took(): void
+    {
+        $round = $this->round();
+        // Our Warrior's Storm Bolt (30.0 to 34.0) lands on their Balance Druid in Incarnation.
+        $round['timeline']['offUp'] = [['dru', 'Incarnation: Chosen of Elune', 28.0, 48.0]];
+        $peel = collect(app(GameMomentsService::class)->forRound($round))->firstWhere('kind', 'peel');
+
+        $this->assertSame('Storm Bolt on Dogcarryme during Incarnation: Chosen of Elune', $peel['title']);
+        $this->assertStringContainsString('2.0s after Incarnation: Chosen of Elune began: 4.0s of its 20.0s went by in it', $peel['text']);
+        $this->assertSame('good', $peel['tone']);
+    }
+
+    public function test_an_interrupted_crowd_control_and_one_avoided_are_good_moments(): void
+    {
+        $round = $this->round();
+        $round['timeline']['control'][] = ['me', 'pri', 'Psychic Scream', 'Disorient', 49.0, 53.0];
+        $round['timeline']['control'][] = ['war', 'dru', 'Cyclone', 'Disorient', 10.0, 13.0];
+        $round['timeline']['kicks'] = [[50.0, 'dk', 'dru', 'Mind Freeze', 'Cyclone', 'Disorient'], [70.0, 'dk', 'dru', 'Mind Freeze', 'Wrath', null]];
+        $round['timeline']['casts']['dru'] = [[60.0, 'Cyclone', 'me']];
+        $round['timeline']['casts']['me'][] = [59.6, 'Fade', null];
+        $moments = collect(app(GameMomentsService::class)->forRound($round));
+
+        $kicks = $moments->where('kind', 'kick')->values();
+        $this->assertCount(1, $kicks, 'a kicked Wrath is not crowd control');
+        $this->assertSame('Your Unholy Death Knight Marciral interrupted their Balance Druid Dogcarryme\'s Cyclone with Mind Freeze, while you were in Psychic Scream.', $kicks[0]['text']);
+
+        $avoid = $moments->firstWhere('kind', 'avoid');
+        $this->assertSame('Cyclone on you avoided with Fade', $avoid['title']);
+        $this->assertStringContainsString('You pressed Fade 0.4s before it', $avoid['text']);
+    }
+
+    public function test_the_best_go_and_a_window_to_kill(): void
+    {
+        $round = $this->round();
+        // Our go on their Druid at 1:00: Avatar, their healer in Strangulate, the Druid to 40%.
+        $round['goes'][] = ['side' => 'us', 'from' => 58.0, 'to' => 70.0, 'target' => 'dru', 'kill' => null,
+            'links' => [['t' => 0.0, 'spell' => 'Avatar', 'cat' => 'offensive', 'by' => 'war']]];
+        $round['timeline']['control'][] = ['pri', 'dk', 'Strangulate', 'Silence', 61.0, 65.0];
+        $round['timeline']['hp']['dru'] = array_merge(array_fill(0, 60, 100), [90, 75, 60, 45, 40, 55, 80, 95], array_fill(0, 60, 100));
+        // Their Barkskin at 0:25 and Pain Suppression on the Druid at 0:20; their healer's trinket at 0:22.
+        $round['players'][3]['kit'] = [['name' => 'Pain Suppression', 'kind' => 'answers', 'cd' => 180.0, 'charges' => 1], ['name' => "Gladiator's Medallion", 'kind' => 'answers', 'cd' => 120.0, 'charges' => 1]];
+        $round['players'][4]['kit'] = [['name' => 'Barkskin', 'kind' => 'answers', 'cd' => 60.0, 'charges' => 1]];
+        $round['players'][1]['kit'] = [['name' => 'Avatar', 'kind' => 'offensive', 'cd' => 90.0, 'charges' => 1], ['name' => 'Storm Bolt', 'kind' => 'control', 'cd' => 30.0, 'charges' => 1]];
+        $round['timeline']['casts']['pri'][] = [20.0, 'Pain Suppression', 'dru'];
+        $round['timeline']['casts']['pri'][] = [22.0, "Gladiator's Medallion", null];
+        $round['timeline']['casts']['dru'] = [[25.0, 'Barkskin', null]];
+        $round['timeline']['casts']['war'] = [[58.0, 'Avatar', null]];
+        $moments = collect(app(GameMomentsService::class)->forRound($round));
+
+        $best = $moments->firstWhere('kind', 'best');
+        $this->assertSame('Your best go: Dogcarryme (Balance Druid) to 40%', $best['title']);
+        $this->assertStringContainsString("Cooldowns in it: Terrorizer's Avatar.", $best['text']);
+        $this->assertStringContainsString('Their healer Bigchalupaz was crowd controlled for 4.0s in a row (Strangulate).', $best['text']);
+        $this->assertStringContainsString("Terrorizer's Storm Bolt", (string) $best['extra'], 'ready and not pressed in it');
+
+        $window = $moments->firstWhere('kind', 'window');
+        $this->assertSame('Dogcarryme (Balance Druid) with no big defensive for 60s', $window['title']);
+        $this->assertStringContainsString("From 0:25 to 1:25, Dogcarryme had none of Bigchalupaz's Pain Suppression and Barkskin ready, and their healer's trinket was down.", $window['text']);
+        $this->assertStringContainsString("Your team pressed Terrorizer's Avatar in it.", $window['text']);
+        $this->assertSame('neutral', $window['tone']);
     }
 
     public function test_the_start_of_their_go_says_what_was_pressed_and_what_answered_it(): void

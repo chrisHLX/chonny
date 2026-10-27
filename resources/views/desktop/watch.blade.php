@@ -56,6 +56,11 @@
     .frames .who { font-size: 10.5px; color: #6A6A6A; font-weight: 700; text-transform: uppercase; letter-spacing: .06em; margin-bottom: 2px; }
     .pl { display: flex; align-items: center; gap: 4px; padding: 2px 0; }
     .pl .nm { width: 96px; flex: none; font-weight: 700; font-size: 12px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .pl .hp { position: relative; width: 58px; height: 14px; flex: none; border-radius: 3px; overflow: hidden; background: #2A2A2A; }
+    .pl .hp .f { position: absolute; left: 0; top: 0; bottom: 0; background: #22C55E; }
+    .pl .hp .f.mid { background: #F59E0B; }
+    .pl .hp .f.low { background: #EF4444; }
+    .pl .hp .v { position: absolute; left: 0; right: 0; top: 0; text-align: center; font-size: 9.5px; line-height: 14px; font-weight: 800; color: #FFFFFF; text-shadow: 0 0 2px #000, 0 0 2px #000; }
     .pl .st { width: 74px; flex: none; font-size: 10.5px; color: #fca5a5; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
     .pl .abs { display: flex; gap: 3px; flex-wrap: wrap; }
     .pl .gap { width: 6px; }
@@ -688,7 +693,9 @@
                 wrap.className = 'pl-wrap';
                 var row = document.createElement('div');
                 row.className = 'pl';
-                row.innerHTML = '<span class="nm" style="color:' + p.color + '" title="' + p.spec + '">' + p.name + '</span><span class="st"></span><span class="abs"></span>';
+                row.innerHTML = '<span class="nm" style="color:' + p.color + '" title="' + p.spec + '">' + p.name + '</span>'
+                    + (p.hp && p.hp.length ? '<span class="hp" title="Health"><span class="f"></span><span class="v"></span></span>' : '')
+                    + '<span class="st"></span><span class="abs"></span>';
                 var rib = document.createElement('div');
                 rib.className = 'rib';
                 rib.title = 'What ' + p.name + ' pressed in the last ' + RIBBON + 's, newest at the right';
@@ -731,12 +738,23 @@
             if (rows.indexOf(c.row) < 0) { rows.push(c.row); c.row.p = c.p; }
         });
         drawRibbons(t);
+        // Every player's row, also one with no button to track: its health and control still show.
+        ribbons.forEach(function (rb) { if (rows.indexOf(rb.row) < 0) { rows.push(rb.row); rb.row.p = rb.p; } });
         rows.forEach(function (row) {
             var p = row.p, st = row.querySelector('.st'), cc = null;
             p.locked.forEach(function (l) { if (t >= l[0] && t < l[1]) { cc = l; } });
             var dead = p.died !== null && t >= p.died;
             row.className = 'pl' + (dead ? ' dead' : (cc ? ' locked' : ''));
             st.textContent = dead ? 'dead' : (cc ? cc[2] + ' ' + Math.ceil(cc[1] - t) + 's' : '');
+            // Health, a reading a second (timeline.hp): green, amber under 50%, red under 25%.
+            var bar = row.querySelector('.hp');
+            if (bar) {
+                var hp = dead ? 0 : p.hp[Math.max(0, Math.min(p.hp.length - 1, Math.floor(t)))];
+                var fill = bar.querySelector('.f');
+                fill.style.width = hp + '%';
+                fill.className = 'f' + (hp < 25 ? ' low' : (hp < 50 ? ' mid' : ''));
+                bar.querySelector('.v').textContent = hp + '%';
+            }
         });
     }
     vid.addEventListener('timeupdate', function () { drawFrames(vid.currentTime); });

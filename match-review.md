@@ -77,6 +77,7 @@ how a page looks needs only `wow:game-cards`.
 | `RoundAnalysisService`, `ArenaMomentService`, `CooldownLedgerService`, a classification file | `php -d memory_limit=2G artisan wow:sync --skip-ingest --fresh` (about 8 minutes for 260 rounds), then `wow:game-cards` |
 | A classification file (it also feeds the site) | first bump the spell cache version, then `wow:precompute-spell-kits`, then `wow:build-matchup-profiles` (rules 17, 19, 31), then re-measure |
 | A desktop view, `GameCardService`, `ImprovementService`, `CompLibraryService`, `ClassLibraryService` | `wow:game-cards` (it notices the code change); `--fresh` redraws everything |
+| How talents resolve (`ArenaLogService::resolveCombatantTalents()`), or a spec's profile | `php -d memory_limit=2G artisan wow:refresh-kits` (the stored rounds' buttons from their stored talents; no re-measure, no re-send), then redraw the pages |
 | `MindCollectorLogs.ps1` | restart the app: tray icon, **Exit**, reopen |
 | Anything the website's `/wow/coach` shows | deploy (`./deploy.sh`); the next upload redraws a player's pages |
 | A re-measure, a measure change, or a big batch of new games | `php -d memory_limit=3G artisan wow:population` (every archived game, both sides; `--fresh` after a VERSION change, about 8 minutes), then commit `data/population/norms.json`: the Basics tab's norms and the evidence every tip quotes (`docs/learning/population-findings-2026-10-06.md`) |
@@ -114,11 +115,61 @@ player's side. Its `VERSION` says what a stored round holds:
 | The loss rules | `MatchAnalysisService::lossItems()`, `FAULT_WEIGHTS` | "worth a look" items. The overlap rule was removed on 2026-10-03 |
 | Difficulty | `GameCardService::difficultyOf()` | harder: their MMR 50+ above yours, or 3+ more Gladiator seasons |
 | Experience | `PlayerExperienceService` | Blizzard profile lookups, cached 7 days; the index keeps older ones |
-| Moments | `GameMomentsService` (version 16) | situations a player would recognise, with what was up, what was pressed and what it cost: control through one of a player's own big defensives (45s+, not team-wide, not a grip), control on a teammate in their go that the player's spec dispels, and a healer's first casts and first big defensive in each of their goes. On each card's Moments tab |
+| Moments | `GameMomentsService` (version 16) | situations a player would recognise, to repeat or a chance that was there (reworked 28 Oct): your best go, a window to kill, crowd control that worked (peels, interrupted and avoided crowd control), Cyclone or Mind Control through a big defensive, control on a teammate in their go that the player's spec dispels, and a healer's first casts in each of their goes. The rules: "Where the rules for the cards and the timeline live" below. On each card's Moments tab |
 | Fall breakdown | `FallBreakdownService` (read when a page is drawn) | each fall on the Watch page, opened from its row (2026-10-26): what the attacking side did in order, timed from the fall; each control's diminishing returns on that player (full, half, immune, reset after 20s: the rule `CcChainBuilder` and the Basics check state); a control that is a cast worth a kick for its caster's spec (`data/kick-priorities`, counted and not a channel) with each player of the falling side free with their interrupt ready a second before it landed; the falling side as it started (free or locked, defensives, interrupts and control ready, from the arena frames); what was spent and answered. Range and sight are not in the stored round, so a kick chance is never called a miss |
 | Arena frames | `RoundAnalysisService::abilities()` (`players[].kit`), `WatchPageService::abilities()` | every player's buttons at each moment of the Watch page's video (2026-10-26): offensive cooldowns, answers, control and interrupts from their spec's profile that they took, with the cooldown and charges THEIR talents give (the cooldown ledger). Stored beside the measure without a version bump, so rounds measured before it fall back to the spec's usual build and the page says so. Presses come from `timeline.casts` (two within 1.5s are one); a button pressed before it could be back in over a quarter of its presses is not a cooldown for that player and is left out (Pyroblast's "30s"); under 15s is left out. Known gap: Alter Time's return is logged as a second press, so it drops out. Under each frame, a casts line: every successful cast of the last 12s placed by time from `timeline.casts`, tracked cooldowns outlined, icons by name (`SpellIconIndex`; racials and Gladiator's Badge have none in the spell data and show two letters) |
 | Falls | `FallsService` (version 16, read when a page is drawn) | goes found from pressure first (2026-10-26): every drop of 20+ points on a player until back within 10 (or dead), with what the other side committed from 10s before it, as cooldown-led, control-led (no offensive cooldown: a Kidney Shot synced with control on the healer) or damage; its intensity; `sync`, the closest control on that player and on their healer; their defensives. And `unmoved`, offensive cooldowns inside no fall, `alone` when none of their side's control landed within 5s. Read, not measured, so no app re-sends its games and the thresholds can be tuned per comp. Checked on video by Chriso (25 Oct 19:11); the old `goes` stay until each page moves over |
 | Why, and the rotation | `ImprovementService::why()`, `rotation()` | under a measure that is behind: damage and healing by ability (pressed less, or less per press), the damage there was to heal, lockout while something was dispellable and what was cast instead, where idle time fell, lockout as the team's goes started; and presses per ability per free minute against the players met and the spec's norms, with a healer's opening casts in their goes |
+
+## Where the rules for the cards and the timeline live
+
+Every rule a game card or the Watch page (the timeline) applies, by where it is decided. Measured
+rules run once per round when it arrives and need a re-measure (or `wow:refresh-kits` for the
+buttons) to change a stored game; read rules run when a page is drawn and change at the next build.
+
+**Measured (when a round arrives)**
+- `RoundAnalysisService`: goes, deaths and how they ended, the answer sheet, defensives and
+  whether each was needed, kicks, dispels, the Basics habits, and the `timeline` the read rules use
+  (casts, health a second, crowd control spans, defensive spans; from 28 Oct also offensive
+  cooldown spans `offUp` and every interrupt with what it stopped, `kicks`, stored without a
+  `VERSION` bump, so older games simply lack them).
+- `ArenaMomentService::readTimeline()`: which casts are commitments (45s+, plus `short-defensives.json`).
+- `ArenaLogService::resolveCombatantTalents()` and `CooldownLedgerService`: each player's talents,
+  and the cooldowns and charges they give, which become `players[].kit` (the frames' buttons).
+- The data files below decide what any of it can see.
+
+**Read (when a page is drawn)**
+- The card (`resources/views/desktop/game-card.blade.php`, `GameCardService`): the summary,
+  difficulty (`difficultyOf()`), the roster and experience, deaths (`partials/death`, with
+  `DefensiveFit` sorting the ready defensives), the breakdown and checks.
+- Basics tab: `GameBasicsService` against `data/population/norms.json`.
+- Moments tab: `GameMomentsService` (rules in its header; kinds below), drawn by `partials/moments`.
+- "Worth a look" items: `MatchAnalysisService::lossItems()`, `FAULT_WEIGHTS`.
+- Improve and the comp pages: `ImprovementService`, `CompLibraryService`.
+- The Watch page (`resources/views/desktop/watch.blade.php`, `WatchPageService`): the falls
+  (`FallsService`: a drop of 20 points until back within 10), each fall's breakdown
+  (`FallBreakdownService`: order, diminishing returns, kick chances, what was ready), the arena
+  frames (`WatchPageService::abilities()`: buttons from the kit, presses from the casts, a button
+  pressed early in over a quarter of its presses dropped, under 15s left out; health bar and crowd
+  control beside each name), the casts line, and the old goes.
+
+**The Moments, 28 Oct 2026** (Chriso's review of the cards): a moment is something to repeat or a
+chance that was there.
+- *Your best go*: the biggest fall your team caused (a kill first, then the deepest): the cooldowns
+  in it, the longest crowd control chain on their healer in it, what they answered with, and what
+  your side had ready and did not press.
+- *A window to kill*: an enemy with every big defensive (45s+) that could save them on cooldown,
+  theirs and their team's by `DefensiveFit` reach, for 6s or more; their trinkets; what your team
+  pressed or had ready. "Back" is the latest it can be, so a window can be shorter than shown.
+- *Crowd control that worked*: a peel (lockout on an enemy while their damage cooldown ran, the
+  seconds of it taken; the cooldown's real span from `offUp`, or the spell data's duration as "up
+  to" for older games), an interrupt that stopped their crowd control (new games only), and their
+  crowd control that never landed with Fade, Shadow Word: Death, a redirect or an immunity pressed
+  just before (not when diminishing returns made the target immune).
+- *Cyclone or Mind Control through a big defensive*, and nothing else: no heal reaches the target,
+  so the defensive runs out while they stay low. A stun through a defensive is not the play, because
+  their healer heals through it. The 17 Oct rule (any lockout through any big defensive) was wrong.
+- Kept: crowd control on a teammate in their go that you could dispel, and a healer's opening casts.
 
 ## The data files that decide what is seen
 
