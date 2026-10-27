@@ -91,6 +91,9 @@ class GameMomentsService
     /** @var array<string, int>|null name => cooldown seconds, the big defensives */
     private ?array $big = null;
 
+    /** @var array<string, int>|null name => cooldown seconds, the big damage cooldowns */
+    private ?array $bigOff = null;
+
     /** @var array<string, string>|null crowd control name => its kind */
     private ?array $cc = null;
 
@@ -377,7 +380,9 @@ class GameMomentsService
     /** Your team's control on an enemy while their damage cooldown ran: the seconds of it taken away. */
     private function peels(array $a, $players, array $me, array $falls): array
     {
-        $spans = $this->offensiveSpans($a, $players);
+        // Damage cooldowns of BIG_COOLDOWN or more: a peel on Flurry (30s) took nothing worth saying.
+        $big = $this->bigOffensives();
+        $spans = array_values(array_filter($this->offensiveSpans($a, $players), fn ($s) => isset($big[$s[1]])));
         $out = [];
         foreach ($a['timeline']['control'] as [$on, $by, $spell, $dr, $from, $to]) {
             $caster = $players[$by] ?? null;
@@ -772,6 +777,24 @@ class GameMomentsService
         }
 
         return $this->big;
+    }
+
+    /** name => cooldown, every offensive or mixed cooldown in the classification of BIG_COOLDOWN or more. */
+    private function bigOffensives(): array
+    {
+        if ($this->bigOff !== null) {
+            return $this->bigOff;
+        }
+        $this->bigOff = [];
+        foreach (['offensive-spells.json', 'offensive-buffs.json', 'mixed-cooldowns.json'] as $file) {
+            foreach (json_decode((string) @file_get_contents(base_path('data/arena-logs/spell-classification/'.$file)), true) ?: [] as $e) {
+                if (($e['cooldownSeconds'] ?? 0) >= self::BIG_COOLDOWN) {
+                    $this->bigOff[$e['name']] = (int) $e['cooldownSeconds'];
+                }
+            }
+        }
+
+        return $this->bigOff;
     }
 
     /** The big defensive spans that were one player's own cover: not cast on several players at once. */
