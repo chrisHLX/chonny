@@ -95,9 +95,11 @@
   - **A comp's card** (`/wow/comps/played/{comp}/{vs?}`, `CompsPlayed`): the desktop app's comp
     page (`CompLibraryService::buildPool()`) from every uploader's games against it, each read from
     the side that faced it (`CompLeaderboardService::flip()`), every name replaced by its spec.
-    Chriso: to see it "they need to install the app and sign up": signed out, a sign-up overlay;
-    signed in without the app, a get-the-app overlay; both over the sample comp page, blurred. The
-    card itself is served only to an account with the app connected (`CompCardController`).
+    Signed out, a sign-up overlay over the sample comp page, blurred; any account opens the card
+    (`CompsPlayed::canOpen()`, `CompCardController`). Until 2026-10-27 it needed the app connected
+    too (Chriso: "they need to install the app and sign up"); in that month 16 of 17 visitors who
+    opened a card hit the wall and none got through, and since the card names no one, the sign-up
+    is now the whole ask. The app opens a player's own games.
   - **How to play it** (`CompPlaybookService`, `livewire/partials/comp-playbook.blade.php`) is a
     plain guide for a player new to arena, so someone can be sent to the page: eight basics (shown
     alone before anything is picked, with a link to the basics check), then for the three specs:
@@ -188,10 +190,12 @@
   - `/wow` (`Landing`) is the WoW hub: the sample and the app's page up top, then the planning
     tools, "Learn the game" (basics check, class quizzes, spells) and the latest guides. The app's
     pitch, slides and setup steps are `/wow/app`'s alone; the two pages were nearly the same.
-  - The WoW menu is grouped Plan (3v3 Comps, Matchup Lab), Guides (PvP Guides, Player guides),
-    Learn (Arena Kit, Class quizzes, Arena basics check); the lower panel's public links sit under
-    **Lab** (Claude's comp guides, Top Burst Windows, Top 10 CC Chains). "Your library" shows only
-    to a signed-in player. The Brain stays out of the menu (2026-10-05).
+  - The WoW menu (2026-10-27): Your games, Get the app, Leaderboards, Player lookup; then Plan
+    (3v3 Comps, Matchup Lab), Guides (PvP Guides, Player guides), Learn (Class quizzes, Arena basics
+    check). Arena Kit left the menu: its pages stay, reached from each PvP guide's "talents and kit"
+    link, and PvP Guides is lit on them. **Lab** (Claude's comp guides, Top Burst Windows, Top 10 CC
+    Chains) and Training show for admins only, at about 10 sessions a month each; their pages stay
+    up. "Your library" shows only to a signed-in player. The Brain stays out of the menu (2026-10-05).
   - 3v3 Comps and Matchup Lab still open with empty slots (WowComps::PRESET_COMPS says why), and
     their empty state now offers the common comps one click away (Matchup Lab: "RMD against Jungle",
     `applyMatchup()`, counted as two presets).
@@ -218,7 +222,8 @@
   causal reasoning, statistics, systems, decisions, epistemology, experiments, incentives, AI,
   human factors) where the problem comes first, notes on any passage come back for a revisit, and
   mastery counts only new situations. Beside Home in the sidebar, not in the game switcher: it spans
-  every game; the number on the link is what is due today. `/training` is public (what Training
+  every game; the number on the link is what is due today. The link shows for admins only since
+  2026-10-27 (Chriso's own test; the page stays public). `/training` is public (what Training
   is); `/training/lessons/{slug}`, `/notebook`, `/progress`, `/claims`, `/check/{A|B}` need an
   account; `/training/course-feedback` is admin. Plain controllers and Blade, not Livewire: the
   lesson's scripts (`public/js/training/`) expect a full page load, so the sidebar link has no
