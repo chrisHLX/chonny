@@ -24,6 +24,9 @@
     .who td { padding: 2px 14px 2px 0; }
     .arrow { color: #6A6A6A; width: 14px; }
     .sub { margin: 2px 0 8px; }
+    .head .jump { display: inline-block; vertical-align: middle; margin-left: 10px; padding: 4px 12px; border-radius: 14px;
+                  background: #2A2A2A; color: #FFFFFF; font-size: 12.5px; font-weight: 700; text-decoration: none; }
+    .head .jump:hover { background: #3E3E3E; }
     /* A spell you can click for its tooltip. */
     tr.spell td { cursor: pointer; }
     tr.spell:hover td { background: #181818; }
@@ -105,6 +108,10 @@
     @else
         <span class="when muted">{{ $c['games'] }} game{{ $c['games'] === 1 ? '' : 's' }} ({{ $c['record'][0] }}-{{ $c['record'][1] }}) &nbsp;&middot;&nbsp; {{ $c['from'] }} to {{ $c['to'] }}</span>
     @endif
+    {{-- The games themselves sit at the foot of a long page (2026-10-27, Chriso: put the link to the
+         matches higher up). scrollIntoView rather than the fragment alone, so in the site's frame the
+         page around it scrolls too. --}}
+    <a href="#games" class="jump" onclick="document.getElementById('games').scrollIntoView(); return false">Every game ({{ $c['games'] }}) &#8595;</a>
 </div>
 
 @if ($c['pool'] ?? false)
@@ -294,7 +301,7 @@
 </div>
 
 {{-- ============================== every game --}}
-<div class="section">
+<div class="section" id="games">
     <div class="label">Every game against them <span class="aside">click a game for every player's experience and the game's numbers</span></div>
     <div class="box">
         <table class="stats">

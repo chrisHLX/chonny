@@ -13,9 +13,11 @@
        :class="sidebarOpen ? 'translate-x-0' : '-translate-x-full'">
     {{-- Spotify's layout (2026-10-11): two rounded panels on black. The top one holds the brand and
          the places everyone goes; the one below is the player's library and the reference pages. --}}
-    <div class="shrink-0 rounded-lg bg-surface-0 px-2 pb-2">
+    {{-- 2026-10-27: this panel shrinks and scrolls below the brand rather than squeezing the library
+         panel under it to a sliver on a short screen; the library keeps a floor of its own. --}}
+    <div class="flex flex-col min-h-0 shrink rounded-lg bg-surface-0">
     <!-- App name -->
-    <div class="flex items-center px-3 h-14 shrink-0">
+    <div class="flex items-center px-5 h-12 shrink-0">
         <a href="{{ route('home') }}" wire:navigate
            class="flex items-center gap-2 hover:opacity-90 transition-opacity">
             <svg class="w-6 h-6 text-gold shrink-0" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -30,7 +32,7 @@
         </a>
     </div>
 
-    <nav class="space-y-0.5">
+    <nav class="min-h-0 overflow-y-auto sidebar-scroll px-2 pb-2 space-y-px">
         {{-- Explore: the public site, identical for every visitor. --}}
 
         {{-- A visitor's home is the public front page; a signed-in player's is in "Your space". --}}
@@ -69,19 +71,20 @@
         @endcan
 
         {{-- The games (config/platform.php): one tab each, the page's own game lit in its colour. --}}
-        <div class="grid {{ count($navSwitch) === 2 ? 'grid-cols-2' : 'grid-cols-3' }} gap-1 px-1 pt-2 pb-1">
+        {{-- One row of pills (2026-10-27): the stacked icon-over-name tiles took two rows' height. --}}
+        <div class="grid {{ count($navSwitch) === 2 ? 'grid-cols-2' : 'grid-cols-3' }} gap-1 p-1 mt-2 mx-1 rounded-full bg-surface-1">
             @foreach ($navSwitch as $gSlug => $g)
                 @php $gOn = $navGame === $gSlug && ! request()->routeIs('home'); @endphp
                 <a href="{{ route($g['route']) }}" wire:navigate title="{{ $g['name'] }}{{ $g['status'] === 'soon' ? ' (coming soon)' : '' }}"
-                   class="flex flex-col items-center gap-1 rounded-lg py-2 text-[11px] font-semibold transition-colors {{ $gOn ? 'bg-surface-2 text-ink' : 'text-ink-subtle hover:text-ink hover:bg-surface-1' }}">
-                    <x-mc-icon :name="$g['icon']" class="w-6 h-6" style="color: {{ $gOn || $g['status'] === 'live' ? $g['color'] : '#6A6A6A' }}" />
+                   class="flex items-center justify-center gap-1.5 rounded-full py-1.5 text-[12px] font-semibold transition-colors {{ $gOn ? 'bg-surface-3 text-ink' : 'text-ink-subtle hover:text-ink' }}">
+                    <x-mc-icon :name="$g['icon']" class="w-[18px] h-[18px] shrink-0" style="color: {{ $gOn || $g['status'] === 'live' ? $g['color'] : '#6A6A6A' }}" />
                     {{ $g['short'] }}
                 </a>
             @endforeach
         </div>
 
         @if ($navGame === 'wow')
-        <p class="px-3 pt-2 pb-1 text-[11px] font-bold uppercase tracking-[.12em]" style="color: {{ $navGames['wow']['color'] }}">World of Warcraft</p>
+        <p class="px-3 pt-3 pb-1 text-[11px] font-bold uppercase tracking-[.12em]" style="color: {{ $navGames['wow']['color'] }}">World of Warcraft</p>
 
         {{-- 2026-10-12: the player's games and the app first, then the planning tools. Guides keeps
              Claude's nested under it: NAV ONLY, the two listings stay separate pages (rule 30). --}}
@@ -111,7 +114,7 @@
             Player lookup
         </a>
 
-        <p class="px-3 pt-3 pb-1 text-[11px] font-bold text-ink-subtle uppercase tracking-[.12em]">Plan</p>
+        <p class="px-3 pt-2.5 pb-0.5 text-[11px] font-bold text-ink-subtle uppercase tracking-[.12em]">Plan</p>
         <a href="{{ route('wow-comps') }}" wire:navigate
            class="sidebar-item {{ request()->routeIs('wow-comps') ? 'active' : '' }}">
             <svg class="w-[18px] h-[18px] shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -142,7 +145,7 @@
         {{-- 2026-10-18: grouped Plan, Guides, Learn, so five guide-like links no longer sit in one list.
              The spec guides counted from real games (/wow/pvp, 2026-10-16): every spec's PvP talents,
              goes, defensives, what to kick and comps. --}}
-        <p class="px-3 pt-3 pb-1 text-[11px] font-bold text-ink-subtle uppercase tracking-[.12em]">Guides</p>
+        <p class="px-3 pt-2.5 pb-0.5 text-[11px] font-bold text-ink-subtle uppercase tracking-[.12em]">Guides</p>
         <a href="{{ route('spec-pvp.index') }}" wire:navigate
            class="sidebar-item {{ request()->routeIs('spec-pvp.*') ? 'active' : '' }}">
             <svg class="w-[18px] h-[18px] shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -159,7 +162,7 @@
             Player guides
         </a>
 
-        <p class="px-3 pt-3 pb-1 text-[11px] font-bold text-ink-subtle uppercase tracking-[.12em]">Learn</p>
+        <p class="px-3 pt-2.5 pb-0.5 text-[11px] font-bold text-ink-subtle uppercase tracking-[.12em]">Learn</p>
         {{-- One per-spec page for kits, burst, counters and spells (2026-09-07; see App\Livewire\PvpGuides).
              In the top panel since 2026-10-12, beside the other planning tools. Its pages are titled
              "Arena Kit" since 2026-10-16, so the menu says the same. --}}
@@ -211,10 +214,10 @@
     </nav>
     </div>
 
-    <div class="flex-1 min-h-0 flex flex-col rounded-lg bg-surface-0 overflow-hidden">
-    @auth<p class="px-5 pt-4 pb-2 text-[13px] font-bold text-ink-muted">Your library</p>@endauth
+    <div class="flex-1 min-h-[15rem] flex flex-col rounded-lg bg-surface-0 overflow-hidden">
+    @auth<p class="px-5 pt-3.5 pb-1 text-[13px] font-bold text-ink-muted">Your library</p>@endauth
     <!-- Scrollable nav body -->
-    <div class="flex-1 overflow-y-auto py-2 px-2 space-y-0.5">
+    <div class="flex-1 min-h-0 overflow-y-auto sidebar-scroll py-1 px-2 space-y-px">
 
         {{-- SIMPLIFIED, 2026-09-14. Every link in this sidebar says "this is something you should
              understand", so it carries only what the site is now about: game plans. Five short
@@ -232,20 +235,9 @@
                 $navMe = auth()->user();
                 $navPendingFriends = $navMe->pendingFriendRequestCount();
             @endphp
-            <div class="pb-1">
-                <div class="flex items-center gap-2 px-2 pt-1.5 pb-2">
-                    <div class="w-6 h-6 rounded-full bg-gold/15 border border-gold/30 flex items-center justify-center text-[11px] font-semibold text-gold shrink-0">
-                        {{ strtoupper(substr($navMe->name ?? 'U', 0, 1)) }}
-                    </div>
-                    <div class="min-w-0">
-                        <p class="text-[11px] font-bold text-ink-subtle uppercase tracking-[.12em] leading-none">Your space</p>
-                        <p class="text-[12px] text-ink truncate leading-tight mt-1">
-                            {{ $navMe->name }}@if ($navMe->username)<span class="text-ink-subtle"> &middot; &#64;{{ $navMe->username }}</span>@endif
-                        </p>
-                    </div>
-                </div>
-
-
+            {{-- The name block that headed this list went 2026-10-27: the account menu at the
+                 foot of this panel already carries the name, and it cost the list a row. --}}
+            <div class="space-y-px">
                 <a href="{{ route('guides.index') }}" wire:navigate
                    class="sidebar-item {{ request()->routeIs('guides.index') || request()->routeIs('guides.edit') ? 'active' : '' }}">
                     <svg class="w-[18px] h-[18px] shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -274,7 +266,7 @@
         @endauth
 
         @auth
-            <p class="px-3 pt-4 pb-1.5 text-[11px] font-bold text-ink-subtle uppercase tracking-[.12em]">Social</p>
+            <p class="px-3 pt-3 pb-0.5 text-[11px] font-bold text-ink-subtle uppercase tracking-[.12em]">Social</p>
 
             <a href="{{ route('friends.index') }}" wire:navigate
                class="sidebar-item {{ request()->routeIs('friends.*') ? 'active' : '' }}">
@@ -305,7 +297,7 @@
         @if ($navGame === 'wow')
         {{-- Lab (2026-10-18): the experimental pages, apart from the product. Claude's guides are
              drafted by a model to be corrected; the two top lists are raw reads of the archive. --}}
-        <p class="px-3 pt-4 pb-1.5 text-[11px] font-bold text-ink-subtle uppercase tracking-[.12em]">Lab</p>
+        <p class="px-3 pt-3 pb-0.5 text-[11px] font-bold text-ink-subtle uppercase tracking-[.12em]">Lab</p>
         <a href="{{ route('guides.machine') }}" wire:navigate
            class="sidebar-item text-[12px] {{ request()->routeIs('guides.machine') ? 'active !text-accent' : '' }}">
             <span class="w-1 h-1 rounded-full bg-current shrink-0"></span>
@@ -333,7 +325,7 @@
          They are real, and worth one click, but not worth competing with the site's own pages.
          The coffee link replaced a Stripe checkout button (2026-09-14) and shows for everyone,
          signed in or not, but only once BUYMEACOFFEE_URL is set. --}}
-    <div class="shrink-0 px-3 py-2 flex items-center gap-3 flex-wrap text-[11.5px] text-ink-subtle">
+    <div class="shrink-0 px-5 py-1.5 flex items-center gap-3 flex-wrap text-[11.5px] text-ink-subtle">
         <a href="{{ route('feedback.create') }}" wire:navigate class="hover:text-ink transition-colors {{ request()->routeIs('feedback.*') ? 'text-gold' : '' }}">Feedback</a>
         <a href="https://discord.gg/Bk7wEvPRt" target="_blank" rel="noopener noreferrer" class="hover:text-ink transition-colors">Discord</a>
         @if (filled(config('services.buymeacoffee.url')))
@@ -345,7 +337,7 @@
     <div class="shrink-0 border-t border-line/60">
         @auth
         <!-- User menu -->
-        <div x-data="{ open: false }" class="relative px-2 py-2">
+        <div x-data="{ open: false }" class="relative px-2 py-1.5">
             <button @click="open = !open" class="sidebar-item w-full justify-between">
                 <div class="flex items-center gap-2 min-w-0">
                     <div class="w-5 h-5 rounded-full bg-gold/10 flex items-center justify-center text-[10px] font-semibold text-gold shrink-0">
