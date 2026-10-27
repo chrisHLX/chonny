@@ -125,6 +125,7 @@ php -d memory_limit=2G artisan wow:sync --skip-ingest --fresh   # re-measure eve
 php artisan wow:game-cards --dir="$APPDATA/MindCollector/cards" --notes="$APPDATA/MindCollector/notes.json"   # the app's pages
 php -d memory_limit=3G tools/match-review/tagaudit.php    # tags against how spells are pressed; proposes only
 php -d memory_limit=2G artisan wow:go-cooldowns          # what each spec presses in its goes -> the comp page's "How to play it"; commit the file
+php artisan wow:translate-spell-names               # Chinese/Korean spell names in stored rounds -> English, for icons and frames (docs/international.md)
 php -d memory_limit=3G artisan wow:population           # every archived game, every player -> data/population/norms.json (Basics tab norms + evidence); --fresh after VERSION changes
 ```
 

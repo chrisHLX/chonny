@@ -151,6 +151,15 @@ class BattlenetClient
     }
 
     /**
+     * GET one Game Data endpoint with no locale asked for, so every name comes back in every
+     * language ({"en_US": "Riptide", "zh_CN": "激流", ...}); $query adds search filters.
+     */
+    public function gameDataAllLocales(string $region, string $path, array $query = [], string $namespace = 'static'): ?array
+    {
+        return $this->appGet("https://{$region}.api.blizzard.com{$path}", ['namespace' => "{$namespace}-{$region}"] + $query);
+    }
+
+    /**
      * Several character endpoints at once, CONCURRENTLY. Blizzard answers each request in ~0.8s
      * (measured 2026-09-12), so the nine a warm sync needs took 7.5s one after another — too slow
      * behind a Refresh button. None depends on another, so they go out together.

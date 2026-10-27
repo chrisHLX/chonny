@@ -207,6 +207,7 @@ class WatchPageService
                 $castNames[$c[1]] = true;
             }
         }
+        $english = app(SpellNameTranslations::class)->english(array_keys($castNames));
         $castIcons = [];
         foreach (app(SpellIconIndex::class)->for(array_keys($castNames)) as $spell => $model) {
             if ($model?->icon_name) {
@@ -233,8 +234,10 @@ class WatchPageService
             $own = is_array($p['kit'] ?? null);
             $kit = $own ? $p['kit'] : array_values($defaults);
             // One press logged twice (on two targets, or by clones) within a moment is one press.
+            // Under its English name, the kit's: a Chinese log's 激流 is the kit's Riptide.
             $pressed = [];
             foreach ($casts[$p['guid']] ?? [] as [$t, $spell]) {
+                $spell = $english[$spell] ?? $spell;
                 $last = $pressed[$spell][count($pressed[$spell] ?? []) - 1] ?? null;
                 if ($last === null || (float) $t - $last > self::SAME_PRESS) {
                     $pressed[$spell][] = (float) $t;

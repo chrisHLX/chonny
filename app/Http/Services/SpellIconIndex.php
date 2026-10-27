@@ -39,12 +39,14 @@ class SpellIconIndex
                 $this->cache[$name] = $rows->firstWhere('name', $name);
             }
 
-            // A log's names are not always spell names: "Melee" is the auto attack (the data's "Attack", 88163), and a variant
-            // carries a suffix ("Dread Plague (Erupt)"). Retry those under the name the data uses.
+            // A log's names are not always spell names: "Melee" is the auto attack (the data's "Attack", 88163), a variant
+            // carries a suffix ("Dread Plague (Erupt)"), and a Chinese client logs 激流 for Riptide (SpellNameTranslations).
+            // Retry those under the name the data uses.
+            $english = app(SpellNameTranslations::class)->english(array_filter($missing, fn ($n) => $this->cache[$n] === null));
             $alias = [];
             foreach ($missing as $name) {
                 if ($this->cache[$name] === null) {
-                    $base = $name === 'Melee' ? 'Attack' : trim(preg_replace('/\s*\([^)]*\)$/', '', $name));
+                    $base = $english[$name] ?? ($name === 'Melee' ? 'Attack' : trim(preg_replace('/\s*\([^)]*\)$/', '', $name)));
                     if ($base !== $name) {
                         $alias[$name] = $base;
                     }

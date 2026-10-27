@@ -16,7 +16,7 @@ What is **not** from the log stays English: class and spec (from `COMBATANT_INFO
 in our data), each player's kit in the arena frames (built from our spell data), and every word of the
 page itself.
 
-## What is broken for a Chinese player today (verified 2026-10-27)
+## What was broken for a Chinese player (verified 2026-10-27; 1 and 2 fixed the same day by the name table below)
 
 The stored payload keeps a spell **by its name only**, never its id (`timeline.casts` rows are
 `[t, name, target]`; go links, defensives and control rows carry `spell` as the log's name). Classification
@@ -54,14 +54,31 @@ The lasting fix is to store the id beside every name, at measure time, and look 
 - That is a measure change: bump `VERSION`, and every app re-sends. Do it together with other measure
   changes, not alone.
 
-Until then, two smaller steps fix the Watch page without a re-measure:
+Until then, a name table fixes icons and the frames without a re-measure.
 
-- **A Chinese-to-English name table.** Each Chinese game's log pairs every name with its id, and our
-  spell data holds the id's English name. The app could send the pairs, or the server could build them
-  from Blizzard's localized spell names (the Game Data API returns names per locale; **to check**
-  whether `zh_CN` names come from the global API or only from China's). With the table, the Watch page
-  maps 激流 to Riptide before it looks up icons and matches presses.
-- **The frames by id.** The same table lets the frames match presses by id.
+### The name table (built 2026-10-27)
+
+`spell_name_translations` maps a log's non-English spell name to our English name, by Blizzard's
+spell id (`SpellNameTranslations`). It is filled two ways:
+
+- **On arrival.** `ArenaReviewIngestService` reads each uploaded round's lines for `,<id>,"<name>",0x`
+  pairs whose name has a non-ASCII character, and stores each under the id's name in our spell data.
+  Free, exact, and every new Chinese game teaches its own names.
+- **For rounds stored before:** `php artisan wow:translate-spell-names` searches Blizzard's Game Data
+  API for each unknown name and keeps the exact match. **Verified 2026-10-27: the global API returns
+  every locale's name, `zh_CN` and `ko_KR` included** (`/data/wow/spell/61295` with no `locale` gives
+  `"zh_CN":"激流"`), and its search accepts `name.zh_CN=`. The search matches words inside longer
+  names (激流 also finds 战争前线：激流堡之战), so only an exact match counts. Safe to run again.
+
+What reads it: `SpellIconIndex` (every icon on the cards, Improve, the comp library and the Watch
+page) retries a name it cannot find under its English name; `WatchPageService::abilities()` counts a
+press under the English name, so the frames show 激流 as Riptide used, and a talent pressed under its
+Chinese name is no longer dropped as "never pressed". The casts line still shows the name the
+player's client used. Only names with a non-ASCII character are kept, so English games are untouched
+and an unaccented German or French name is not caught.
+
+After a backfill, rebuild the player's pages (`BuildCoachPages`) so their cards draw the icons; the
+Watch page reads the table every time it is drawn.
 
 ## The pages in Chinese
 
@@ -107,8 +124,8 @@ do that region-locked sites cannot:
 
 ## The order to do it in
 
-1. Fix the Watch page for Chinese games with a name table: icons, and frames that show buttons used.
-   Wrong frames are the most serious problem.
+1. ~~Fix the Watch page for Chinese games with a name table: icons, and frames that show buttons used.~~
+   Built 2026-10-27 ("The name table" above).
 2. Check every by-name lookup (Improve, the averages, the comp library) and list what else needs the id.
 3. Keep the spell id at measure time, with the next `VERSION` bump.
 4. Make sign-up reliable from China (reCAPTCHA from recaptcha.net, self-hosted font), once a Chinese

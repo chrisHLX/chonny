@@ -146,6 +146,10 @@ class ArenaReviewIngestService
             ]
         );
 
+        // A Chinese (or any non-English) client's spell names, learned from this round's own lines
+        // while they are here: the stored round keeps only the names, and the text is not kept.
+        app(SpellNameTranslations::class)->learn($rawRound);
+
         // Every player's experience, looked up in the background for "Your analysis" (Blizzard
         // takes about a second a character, which a page must never wait on).
         $players = array_column($derived['analysis']['players'] ?? [], 'name');
