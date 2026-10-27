@@ -102,6 +102,9 @@ return [
     'youtube' => [
         'client_id' => env('YOUTUBE_CLIENT_ID'),
         'client_secret' => env('YOUTUBE_CLIENT_SECRET'),
+        // Off until Google has verified the app (2026-10-27): before that only the project's test
+        // users can link, so everyone else would meet Google's "access blocked". Admins see it either way.
+        'public' => (bool) env('YOUTUBE_PUBLIC', false),
     ],
 
     'battlenet' => [

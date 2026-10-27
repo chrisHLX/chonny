@@ -25,8 +25,23 @@ class YouTubeUploadTest extends TestCase
     protected function setUp(): void
     {
         parent::setUp();
-        config(['services.youtube.client_id' => 'yt-client', 'services.youtube.client_secret' => 'yt-secret']);
+        config(['services.youtube.client_id' => 'yt-client', 'services.youtube.client_secret' => 'yt-secret', 'services.youtube.public' => true]);
         $this->lobby = str_repeat('ab', 16);
+    }
+
+    /** Until Google verifies the app only test users can link, so only an admin is offered it (2026-10-27). */
+    public function test_before_it_is_public_only_an_admin_is_offered_youtube(): void
+    {
+        config(['services.youtube.public' => false]);
+        $player = User::factory()->create();
+        $admin = tap(User::factory()->create())->forceFill(['is_admin' => true]);
+        $admin->save();
+
+        $this->withToken($player->issueCoachToken())->getJson(route('api.coach.index'))->assertJsonPath('youtube', false);
+        $this->actingAs($player)->get(route('youtube.link'))->assertNotFound();
+
+        $this->withToken($admin->issueCoachToken())->getJson(route('api.coach.index'))->assertJsonPath('youtube', true);
+        $this->actingAs($admin)->get(route('youtube.link'))->assertRedirect();
     }
 
     /** A 3v3 shaped like 25 Oct 19:11: Jungle against RMD, lost, with a fall at 69s. */

@@ -40,7 +40,7 @@ class CoachPagesController extends Controller
             'built' => $index !== [],
             'builtAt' => File::exists($path) ? date(DATE_ATOM, File::lastModified($path)) : null,
             // Whether the website can take YouTube uploads (2026-10-26): the app shows its upload row only then.
-            'youtube' => app(\App\Http\Services\YouTubeService::class)->configured(),
+            'youtube' => app(\App\Http\Services\YouTubeService::class)->availableTo($user),
         ] + $index);
     }
 

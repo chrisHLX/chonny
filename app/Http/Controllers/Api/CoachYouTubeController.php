@@ -23,7 +23,7 @@ class CoachYouTubeController extends Controller
         if (! $user) {
             return response()->json(['status' => 'unauthorised'], 401);
         }
-        if (! $youtube->configured()) {
+        if (! $youtube->availableTo($user)) {
             return response()->json(['status' => 'unavailable', 'reason' => 'YouTube uploads are not set up on the website yet.'], 503);
         }
         $lobby = (string) $request->input('lobby');

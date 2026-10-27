@@ -48,6 +48,12 @@ class YouTubeService
         return filled(config('services.youtube.client_id')) && filled(config('services.youtube.client_secret'));
     }
 
+    /** Whether this player is offered YouTube: set up, and either open to everyone (YOUTUBE_PUBLIC) or an admin testing it. */
+    public function availableTo(?User $user): bool
+    {
+        return $this->configured() && $user !== null && (config('services.youtube.public') || $user->is_admin);
+    }
+
     /** The callback on whichever host the player is on: both are registered with Google. */
     public function redirectUri(): string
     {

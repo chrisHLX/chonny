@@ -15,7 +15,7 @@ class YouTubeLinkController extends Controller
 {
     public function redirect(Request $request, YouTubeService $youtube): RedirectResponse
     {
-        abort_unless($youtube->configured(), 404);
+        abort_unless($youtube->availableTo($request->user()), 404);
         $state = Str::random(40);
         $request->session()->put('youtube_state', $state);
 
@@ -24,7 +24,7 @@ class YouTubeLinkController extends Controller
 
     public function callback(Request $request, YouTubeService $youtube): RedirectResponse
     {
-        abort_unless($youtube->configured(), 404);
+        abort_unless($youtube->availableTo($request->user()), 404);
         $back = redirect()->to(route('coach').'#youtube');
         if (! hash_equals((string) $request->session()->pull('youtube_state'), (string) $request->query('state'))) {
             return $back->with('youtube_status', 'That link had expired. Click Connect YouTube to try again.');
