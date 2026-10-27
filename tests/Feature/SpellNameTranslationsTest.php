@@ -75,6 +75,35 @@ class SpellNameTranslationsTest extends TestCase
         $this->assertSame('肾击', $frame['casts'][0][1], 'the casts line keeps the name the player\'s client uses');
     }
 
+    public function test_a_hand_entry_wins_and_the_report_lists_only_what_is_left(): void
+    {
+        SpellNameTranslations::$handPath = tempnam(sys_get_temp_dir(), 'names');
+        file_put_contents(SpellNameTranslations::$handPath, "# a comment\n法术封锁|Spell Lock|19647\n激流|Hand Riptide|61295\n");
+        app(SpellNameTranslations::class)->learn(',61295,"激流",0x8,');
+        $user = User::factory()->create();
+        ArenaRound::create([
+            'user_id' => $user->id, 'lobby_id' => 'l', 'match_id' => 'm', 'roster_key' => 'r', 'bracket' => '3v3', 'sequence' => 1,
+            'payload' => ['analysis' => ['players' => [['guid' => 'P-1', 'spec' => 'Destruction Warlock'], ['guid' => 'P-2', 'spec' => 'Restoration Shaman']],
+                'timeline' => ['control' => [], 'casts' => [
+                    'P-1' => [[1.0, '法术封锁', null], [2.0, '恶魔治疗石', null], [3.0, '恶魔治疗石', null]],
+                    'P-2' => [[4.0, 'pet: 激流', null], [5.0, '激流', null]],
+                ]]]],
+        ]);
+
+        $this->assertSame(['法术封锁' => 'Spell Lock', '激流' => 'Hand Riptide', 'pet: 激流' => 'pet: Hand Riptide'],
+            app(SpellNameTranslations::class)->english(['法术封锁', '激流', 'pet: 激流']), 'the hand file wins over what a round taught');
+
+        $this->artisan('wow:translate-spell-names', ['--report' => true])->assertSuccessful();
+        $report = file_get_contents(storage_path(\App\Console\Commands\TranslateSpellNames::REPORT));
+        $this->assertStringContainsString('| 2 | 2 | 恶魔治疗石 | Destruction Warlock 2 | `恶魔治疗石||` |', $report);
+        $this->assertStringNotContainsString('法术封锁 |', $report);
+        $this->assertStringNotContainsString('激流 |', $report);
+        Http::assertNothingSent();
+
+        @unlink(SpellNameTranslations::$handPath);
+        SpellNameTranslations::$handPath = null;
+    }
+
     public function test_stored_rounds_are_translated_from_blizzards_localized_names(): void
     {
         config(['services.battlenet.client_id' => 'id', 'services.battlenet.client_secret' => 'secret']);

@@ -1,0 +1,36 @@
+# Spell names in another language's combat log, to the English name, added BY HAND.
+# docs/international.md, "The name table". Read by SpellNameTranslations::english().
+#
+# Nothing ever writes this file. The automatic sources (each uploaded round's own lines, and
+# wow:translate-spell-names from Blizzard's localized names) write only the spell_name_translations
+# table, and a line here wins over the table, so no automated run can overwrite a hand entry.
+#
+# What to add: storage/app/spell-names-to-add.md on the server (rewritten on every deploy, and by
+# `php artisan wow:translate-spell-names --report`) lists every name still untranslated, how often it
+# was pressed and by which specs. Blizzard's API does not hold every spell (Spell Lock is not in it),
+# so those names wait here until a round teaches them, or until someone adds them.
+#
+# Format: log name|English name as our kits and spell data spell it|Blizzard spell id (optional)
+#
+# 2026-10-27, user 20's games (Chinese client), at Chriso's request. Each checked against the specs
+# that pressed it in those games (Spell Lock: Destruction and Affliction Warlocks only).
+虚空齐射|Void Volley|1242173
+角斗士的勋章|Gladiator's Medallion|336126
+恶魔法阵：传送|Demonic Circle: Teleport|48020
+死灵缠绕|Necrotic Coil|1242172
+法术封锁|Spell Lock|19647
+回春术（萌芽）|Rejuvenation (Germination)|155777
+英勇打击|Heroic Strike|1269383
+恶魔治疗石|Demonic Healthstone|452930
+角斗士徽章|Gladiator's Badge|345228
+虚空之盾|Void Shield|1253593
+死亡横扫|Death Sweep|210152
+治疗石|Healthstone|6262
+收割者战刃|Reaver's Glaive|442294
+勇士之跃|Heroic Leap|6544
+月蚀|Lunar Eclipse|1233272
+日蚀|Solar Eclipse|1233346
+诱惑|Seduction|6358
+魂体双分：转移|Transcendence: Transfer|119996
+圣洁武器|Sacred Weapon|432502
+冰川尖刺|Glacial Spike|199786

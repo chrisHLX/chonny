@@ -80,6 +80,24 @@ and an unaccented German or French name is not caught.
 After a backfill, rebuild the player's pages (`BuildCoachPages`) so their cards draw the icons; the
 Watch page reads the table every time it is drawn.
 
+**The first backfill (user 20's 130 games):** 914 names; 744 found at Blizzard, and 93% of 113,098
+presses translated. Blizzard's API does not hold every spell: Spell Lock (19647) is missing from both
+`/data/wow/spell/` and the search, and so were Gladiator's Medallion's Chinese name, Demonic
+Healthstone and Void Volley, the misses that left frames reading "never pressed".
+
+### By hand, and the list of what is left
+
+- **`data/spelldata/spell-name-translations.txt`**: `log name|English name|spell id`, one a line.
+  Nothing automated writes it, and a line there wins over the table, so a backfill or an upload can
+  never overwrite a hand entry. 20 entries on 2026-10-27, each checked against the specs that pressed
+  it in user 20's games (法术封锁 only by Warlocks before it was called Spell Lock).
+- **`storage/app/spell-names-to-add.md`** on the server: every name still untranslated, most pressed
+  first, with the specs that pressed it and a line ready to paste. Every deploy rewrites it
+  (`wow:translate-spell-names --report`, no Blizzard calls) and prints the count and the top five, so
+  the list comes back without anyone asking. A full `wow:translate-spell-names` writes it too.
+- A pet's casts (`pet: 熔岩爆裂`) translate through the name after the prefix.
+- Most misses fill themselves in: the next uploaded round that casts one teaches it with its id.
+
 ## The pages in Chinese
 
 Today every page is English and spell names show in whatever language the log used. Steps, smallest

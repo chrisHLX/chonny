@@ -18,11 +18,25 @@ use Illuminate\Support\Facades\DB;
  *  - fromBlizzard(): the Game Data API's localized names, for rounds stored before (the command
  *    wow:translate-spell-names). Its global API returns every locale, China's included.
  *
+ * And by hand: data/spelldata/spell-name-translations.txt, for spells Blizzard's API does not hold
+ * (Spell Lock). Code never writes that file and its lines win over the table, so no automated run
+ * overwrites a hand entry. What is still missing is listed by wow:translate-spell-names --report.
+ *
  * Only names with a non-ASCII character are kept: an English log's names are never touched. A German
  * or French name with no accent in it is not caught, which no player has needed yet.
  */
 class SpellNameTranslations
 {
+    public const HAND_FILE = 'data/spelldata/spell-name-translations.txt';
+
+    /** Another file in place of HAND_FILE (tests). */
+    public static ?string $handPath = null;
+
+    /** @var array<string, string>|null */
+    private static ?array $hand = null;
+
+    private static ?string $handStamp = null;
+
     /** Search Blizzard in these locales, by the name's script. */
     private const LOCALES = [
         '/\p{Hangul}/u' => ['ko_KR'],
@@ -50,6 +64,15 @@ class SpellNameTranslations
     public function english(array $names): array
     {
         $names = array_values(array_unique(array_filter($names, fn ($n) => is_string($n) && self::foreign($n))));
+        // A pet's cast is stored as "pet: <name>": translate the name after it.
+        $pets = [];
+        foreach ($names as $name) {
+            if (str_starts_with($name, 'pet: ')) {
+                $pets[$name] = substr($name, 5);
+            }
+        }
+        $asked = $names;
+        $names = array_values(array_unique(array_merge($names, array_values($pets))));
         $missing = array_values(array_diff($names, array_keys($this->cache)));
         if ($missing !== []) {
             // The column compares without case or accents (MySQL's collation), so match exactly here.
@@ -64,7 +87,45 @@ class SpellNameTranslations
             }
         }
 
-        return array_filter(array_intersect_key($this->cache, array_flip($names)));
+        $wanted = array_flip($names);
+        $found = array_intersect_key(self::hand(), $wanted) + array_filter(array_intersect_key($this->cache, $wanted));
+        foreach ($pets as $name => $base) {
+            if (! isset($found[$name]) && isset($found[$base])) {
+                $found[$name] = 'pet: '.$found[$base];
+            }
+        }
+
+        return array_intersect_key($found, array_flip($asked));
+    }
+
+    /**
+     * The hand file's entries, log name => English name.
+     *
+     * @return array<string, string>
+     */
+    public static function hand(): array
+    {
+        // Read again when the file changes: a data-only deploy does not restart the queue workers.
+        $path = self::$handPath ?? base_path(self::HAND_FILE);
+        clearstatcache(true, $path);
+        $stamp = $path.'@'.(is_file($path) ? filemtime($path) : 0);
+        if (self::$hand !== null && self::$handStamp === $stamp) {
+            return self::$hand;
+        }
+        self::$handStamp = $stamp;
+        $out = [];
+        foreach (is_file($path) ? file($path, FILE_IGNORE_NEW_LINES) : [] as $line) {
+            $line = trim($line);
+            if ($line === '' || str_starts_with($line, '#')) {
+                continue;
+            }
+            [$name, $english] = array_map('trim', explode('|', $line)) + [1 => ''];
+            if ($name !== '' && $english !== '') {
+                $out[$name] = $english;
+            }
+        }
+
+        return self::$hand = $out;
     }
 
     /**
