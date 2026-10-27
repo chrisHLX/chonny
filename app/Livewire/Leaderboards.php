@@ -23,6 +23,10 @@ use Livewire\Component;
  * "integrate the comps to player leaderboard". Blizzard's ladder names no team, so "seen on" is
  * only ever what uploaded games show, and most players have none.
  *
+ * GAMES (2026-10-27): every 3v3 game uploaded this season, newest first, each opening its own card
+ * with no one named (CompGame). Chriso: "Can we also have in leaderboard individual matches so we
+ * can click on the match card".
+ *
  * The 3v3 comps page keeps a top-five preview of the comps tab (CompBoard).
  */
 class Leaderboards extends Component
@@ -35,7 +39,12 @@ class Leaderboards extends Component
 
     public const LADDER_MAX = 1000;
 
-    /** 'comps' | 'players'. Client-writable like every filter here, so read through tab(). */
+    /** Games a page of the Games tab, and the most "Show more" reaches. */
+    public const GAMES_STEP = 50;
+
+    public const GAMES_MAX = 500;
+
+    /** 'comps' | 'games' | 'players'. Client-writable like every filter here, so read through tab(). */
     #[Url(except: 'comps')]
     public string $tab = 'comps';
 
@@ -56,6 +65,8 @@ class Leaderboards extends Component
 
     public int $ladderShown = self::LADDER_STEP;
 
+    public int $gamesShown = self::GAMES_STEP;
+
     public function mount(): void
     {
         PageViewEvent::log('leaderboards');
@@ -64,7 +75,7 @@ class Leaderboards extends Component
     /** A tab, band, region or filter chosen on the page: the attributed counts (one arriving in a link is not a choice). */
     public function setTab(string $tab): void
     {
-        $this->tab = $tab === 'players' ? 'players' : 'comps';
+        $this->tab = in_array($tab, ['players', 'games'], true) ? $tab : 'comps';
         PageViewEvent::log('leaderboards', null, null, 'tab:'.$this->tab);
     }
 
@@ -99,6 +110,11 @@ class Leaderboards extends Component
         $this->ladderShown = min(self::LADDER_MAX, max(self::LADDER_STEP, $this->ladderShown) + self::LADDER_STEP);
     }
 
+    public function showMoreGames(): void
+    {
+        $this->gamesShown = min(self::GAMES_MAX, max(self::GAMES_STEP, $this->gamesShown) + self::GAMES_STEP);
+    }
+
     /** @return list<string> */
     public static function regions(): array
     {
@@ -108,12 +124,13 @@ class Leaderboards extends Component
     public function render()
     {
         $service = app(CompLeaderboardService::class);
-        $tab = $this->tab === 'players' ? 'players' : 'comps';
+        $tab = in_array($this->tab, ['players', 'games'], true) ? $this->tab : 'comps';
         $region = in_array($this->region, self::regions(), true) ? $this->region : 'us';
         $board = $service->board(ctype_digit((string) $this->exp) ? (int) $this->exp : null);
         $ladder = $tab === 'players'
             ? $service->ladder($region, $this->seenOnly, max(self::LADDER_STEP, min(self::LADDER_MAX, $this->ladderShown)))
             : null;
+        $games = $tab === 'games' ? $service->recentGames(max(self::GAMES_STEP, min(self::GAMES_MAX, $this->gamesShown))) : null;
 
         return view('livewire.leaderboards', [
             'tabNow' => $tab,
@@ -124,6 +141,7 @@ class Leaderboards extends Component
             'regions' => self::regions(),
             'board' => $board,
             'ladder' => $ladder,
+            'games' => $games,
             'bands' => CompLeaderboardService::EXP_BANDS,
             'comps' => $this->all ? $board['comps'] : array_slice($board['comps'], 0, self::SHOWN),
             'classes' => GameClass::whereHas('game', fn ($q) => $q->where('slug', 'wow'))->get()->keyBy('slug'),

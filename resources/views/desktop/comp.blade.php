@@ -20,7 +20,9 @@
     .big { font-size: 20px; font-weight: 600; }
     tr.game td { cursor: pointer; }
     tr.game:hover td { background: #282828; }
-    tr.more td { padding: 4px 0 12px 22px; }
+    /* The row's own cell only: a bare `tr.more td` also padded every cell of the tables inside it,
+       and outranked .who td, so each player's row was indented and padded past a phone's edge. */
+    tr.more > td { padding: 4px 0 12px 22px; }
     .who td { padding: 2px 14px 2px 0; }
     .arrow { color: #6A6A6A; width: 14px; }
     .sub { margin: 2px 0 8px; }
@@ -47,8 +49,22 @@
     /* The two experience columns: wide enough for "Under 3 seasons" on a desktop window, but a
        phone has to fit both beside the label, so they narrow and the header wraps. */
     .stats .exp { width: 170px; }
+    /* A game's own card (the website's board): a white pill, the one thing to press in the row. */
+    a.open { display: inline-block; margin: 4px 0 6px; padding: 6px 14px; border-radius: 16px; background: #FFFFFF; color: #000000;
+             font-weight: 700; font-size: 12.5px; text-decoration: none; }
+    a.open:hover { background: #E8E8E8; }
+    tr.narrow { display: none; }
     @media (max-width: 560px) {
         .stats .exp { width: 86px; white-space: normal; }
+        /* Every game, on a phone (2026-10-27, Chriso's screenshot): seven columns ran off the right
+           edge and the open game's players with them. The experience and first-death columns move
+           into the open game's numbers, and its panel loses the indent. */
+        .games td.wide { display: none; }
+        .games tr.narrow { display: table-row; }
+        .games > tbody > tr > td { padding-right: 6px; }
+        tr.more > td { padding: 4px 0 12px 0; }
+        .who td { padding: 2px 8px 2px 0; }
+        .who td.small { text-align: right; }
     }
 </style>
 <script>
@@ -302,10 +318,10 @@
 
 {{-- ============================== every game --}}
 <div class="section" id="games">
-    <div class="label">Every game against them <span class="aside">click a game for every player's experience and the game's numbers</span></div>
+    <div class="label">Every game against them <span class="aside">{{ ($c['pool'] ?? false) ? 'tap a game for its players, then open its card' : "click a game for every player's experience and the game's numbers" }}</span></div>
     <div class="box">
-        <table class="stats">
-            <tr><td class="arrow"></td><td class="small muted">Played</td>@unless ($c['pool'] ?? false)<td class="small muted">You</td>@endunless<td class="small muted">{{ ($c['pool'] ?? false) ? 'Your result' : 'Result' }}</td><td class="small muted">MMR (you / them)</td><td class="small muted">Enemy Gladiator seasons</td><td class="small muted">First death</td></tr>
+        <table class="stats games">
+            <tr><td class="arrow"></td><td class="small muted">Played</td>@unless ($c['pool'] ?? false)<td class="small muted">You</td>@endunless<td class="small muted">{{ ($c['pool'] ?? false) ? 'Your result' : 'Result' }}</td><td class="small muted">MMR (you / them)</td><td class="small muted wide">Enemy Gladiator seasons</td><td class="small muted wide">First death</td></tr>
             @foreach ($c['list'] as $row)
                 <tr class="game" onclick="toggle('{{ $row['id'] }}')">
                     <td class="arrow" id="{{ $row['id'] }}-a">&#9656;</td>
@@ -313,10 +329,14 @@
                     @unless ($c['pool'] ?? false)<td>{{ $row['who'] }}</td>@endunless
                     <td><span class="chip {{ $row['won'] ? 'won' : 'lost' }}">{{ $row['won'] ? 'WON' : 'LOST' }}</span></td>
                     <td class="muted">{{ $row['mmr'] ?? 'none in Solo Shuffle' }}</td>
-                    <td>{{ $row['glad'] ?? 'not looked up' }}</td>
-                    <td class="muted">{{ $row['death'] ?? '-' }}</td>
+                    <td class="wide">{{ $row['glad'] ?? 'not looked up' }}</td>
+                    <td class="muted wide">{{ $row['death'] ?? '-' }}</td>
                 </tr>
                 <tr class="more" id="{{ $row['id'] }}" style="display: none"><td colspan="7">
+                    @if (! empty($row['href']))
+                        {{-- _top: out of the site's frame, onto the game's own page (CompGame). --}}
+                        <a class="open" href="{{ $row['href'] }}" target="_top">Open this game &rarr;</a>
+                    @endif
                     <table class="two"><tr>
                         <td class="col left">
                             @foreach (['them' => 'Enemy team', 'us' => 'Your team'] as $side => $title)
@@ -335,6 +355,8 @@
                         <td class="col right">
                             <div class="label" style="margin-top: 6px">The game</div>
                             <table class="rows">
+                                <tr class="narrow"><td class="small">First death</td><td class="v">{{ $row['death'] ?? '-' }}</td></tr>
+                                <tr class="narrow"><td class="small">Enemy Gladiator seasons</td><td class="v">{{ $row['glad'] ?? 'not looked up' }}</td></tr>
                                 @foreach ($row['stats'] as $label => $value)
                                     <tr><td class="small">{{ $label }}</td><td class="v">{{ $value }}</td></tr>
                                 @endforeach

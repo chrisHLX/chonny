@@ -61,7 +61,8 @@ class CompBoardTest extends TestCase
                 'metadata' => ['durationInSeconds' => 140],
                 'throughput' => ['players' => []],
                 'analysis' => ['won' => $rmpWon, 'mmr' => ['us' => 2100, 'them' => 2050], 'players' => $players,
-                    'goes' => [], 'deaths' => [], 'kicks' => [], 'lockout' => [], 'defensives' => []],
+                    'goes' => [], 'deaths' => [], 'kicks' => [], 'lockout' => [],
+                    'defensives' => ['us' => ['spent' => 2, 'outsideTheirGoes' => 0], 'them' => ['spent' => 1, 'outsideTheirGoes' => 0]]],
             ],
         ]);
     }
@@ -114,6 +115,55 @@ class CompBoardTest extends TestCase
         $this->actingAs($player)->get('/wow/comps/played-card/mage-rogue-priest')->assertOk()->assertDontSee('Rogueguy');
 
         $this->get('/wow/comps/played/warrior-warrior-warrior')->assertNotFound();
+    }
+
+    public function test_a_game_opens_from_the_board_with_no_one_named_and_a_way_back(): void
+    {
+        $this->game(User::factory()->create(), 'm1', true);
+        $round = ArenaRound::first()->id;
+
+        // The comp card links each game, read from the side that faced the comp: RMP uploaded it.
+        $this->assertStringContainsString("/wow/comps/game/{$round}?as=them&amp;from=mage-rogue-priest", app(CompLeaderboardService::class)->card('mage-rogue-priest'));
+
+        $this->get("/wow/comps/game/{$round}")->assertOk()->assertSee('Sign up to open this game')->assertDontSee('game-card/');
+        $this->get("/wow/comps/game-card/{$round}")->assertForbidden();
+
+        $player = User::factory()->create();
+        $this->actingAs($player)->get("/wow/comps/game/{$round}?as=them&from=mage-rogue-priest")->assertOk()
+            ->assertSee("game-card/{$round}?as=them", false)
+            ->assertSee('/wow/comps/played/mage-rogue-priest#games', false)
+            ->assertSee('Read as the Jungle team');
+        $this->actingAs($player)->get("/wow/comps/game/{$round}")->assertOk()->assertSee('/wow/leaderboards?tab=games', false);
+
+        $theirs = $this->actingAs($player)->get("/wow/comps/game-card/{$round}?as=them")->assertOk()->getContent();
+        $ours = $this->actingAs($player)->get("/wow/comps/game-card/{$round}")->assertOk()->getContent();
+        $this->assertStringContainsString('>LOST<', $theirs);
+        $this->assertStringContainsString('>WON<', $ours);
+        foreach ([$theirs, $ours] as $html) {
+            foreach (['Rogueguy', 'Mageguy', 'Priestguy', 'Druidguy', 'Hunterguy', 'Healguy'] as $name) {
+                $this->assertStringNotContainsString($name, $html);
+            }
+            $this->assertStringNotContainsString('class="you"', $html);
+            $this->assertStringNotContainsString('id="b-notes"', $html, "the uploader's own tabs stay off");
+        }
+
+        $this->actingAs($player)->get('/wow/comps/game/999999')->assertNotFound();
+        $this->actingAs($player)->get('/wow/comps/game-card/999999')->assertNotFound();
+    }
+
+    public function test_the_games_tab_lists_every_game_newest_first(): void
+    {
+        $this->game(User::factory()->create(), 'm1', true);
+        $this->game(User::factory()->create(), 'm1', true);   // a teammate's upload of the same game
+        $this->game(User::factory()->create(), 'm2', false);
+
+        $games = app(CompLeaderboardService::class)->recentGames();
+        $this->assertSame(2, $games['total']);
+        $this->assertSame(['RMP', 'Jungle'], [$games['games'][0]['us']['nick'], $games['games'][0]['them']['nick']]);
+
+        $this->get('/wow/leaderboards?tab=games')->assertOk()
+            ->assertSee('/wow/comps/game/'.$games['games'][0]['round'], false)
+            ->assertSee('/wow/comps/game/'.$games['games'][1]['round'], false);
     }
 
     /** A character's experience as PlayerExperienceService caches it after a lookup. */

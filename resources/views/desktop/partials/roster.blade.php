@@ -15,8 +15,12 @@
                 @else
                     <span class="name" style="color: {{ $p['color'] }}">{{ $p['name'] }}</span>@if ($p['you'])<span class="you">YOU</span>@endif
                 @endif
-                <div class="small muted">{{ $p['spec'] }}@if ($p['healer']) &middot; healer @endif
-                    @if ($showCc && $p['lockout'] !== null) &middot; CC'd {{ $p['lockout'] }}s @endif</div>
+                {{-- A pooled card names each player by their spec, so the spec is not said twice. --}}
+                <div class="small muted">{!! implode(' &middot; ', array_map('e', array_filter([
+                    $p['spec'] !== $p['name'] ? $p['spec'] : null,
+                    $p['healer'] ? 'healer' : null,
+                    $showCc && $p['lockout'] !== null ? "CC'd ".$p['lockout'].'s' : null,
+                ]))) !!}</div>
             </td>
             <td class="xp">
                 @if ($p['xp']['state'] === 'ok')

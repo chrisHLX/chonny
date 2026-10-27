@@ -16,10 +16,11 @@
 
     <div class="flex gap-2 mb-5">
         <button type="button" wire:click="setTab('comps')" class="tab-btn {{ $tabNow === 'comps' ? 'tab-active' : 'tab-inactive' }}">Comps</button>
+        <button type="button" wire:click="setTab('games')" class="tab-btn {{ $tabNow === 'games' ? 'tab-active' : 'tab-inactive' }}">Games</button>
         <button type="button" wire:click="setTab('players')" class="tab-btn {{ $tabNow === 'players' ? 'tab-active' : 'tab-inactive' }}">Players</button>
     </div>
 
-    <div wire:loading.class="opacity-60" wire:target="setTab,setExp,setRegion,toggleSeen,showMorePlayers">
+    <div wire:loading.class="opacity-60" wire:target="setTab,setExp,setRegion,toggleSeen,showMorePlayers,showMoreGames">
     @if ($tabNow === 'comps')
         {{-- The experience filter: a team's best 3v3 rating ever, averaged over its players. --}}
         <div class="flex flex-wrap items-center gap-2 mb-2">
@@ -36,7 +37,7 @@
                 Experience is a team's players' best 3v3 rating ever, averaged.
             @endif
             Known for {{ number_format($board['known']) }} of {{ number_format($board['teams']) }} teams, where Blizzard has a profile; the others are left out of a filter.
-            Both teams of every game count. Open a comp to see its games.
+            Both teams of every game count. Open a comp to see its games, or see every game in the Games tab.
         </p>
 
         <div class="linear-card p-0 overflow-hidden">
@@ -104,6 +105,54 @@
 
         @if (! $all && count($board['comps']) > count($comps))
             <button type="button" wire:click="showAll" class="btn-ghost mt-3 text-[12.5px]">Show every comp ({{ count($board['comps']) }})</button>
+        @endif
+    @elseif ($tabNow === 'games')
+        <p class="text-[12px] text-ink-subtle mb-4">
+            Every 3v3 game uploaded to MindCollector this season, newest first. Open one for both teams, how each death happened
+            and everyone's damage and healing. No player is named; the first team is the one that uploaded it.
+        </p>
+
+        <div class="linear-card p-0 overflow-hidden">
+            @if ($games['games'] === [])
+                <p class="p-5 text-[13px] text-ink-subtle">No 3v3 games uploaded yet this season.</p>
+            @else
+                <ul class="divide-y divide-line">
+                    @foreach ($games['games'] as $gm)
+                        <li>
+                            <a href="{{ route('comps.game', ['round' => $gm['round']]) }}" wire:navigate
+                               class="flex items-center gap-3 px-3 sm:px-4 py-2.5 hover:bg-surface-2 transition-colors">
+                                <span class="w-14 sm:w-20 shrink-0 text-[11.5px] leading-tight text-ink-subtle tabular-nums">
+                                    {{ $gm['at']?->format('D j M') }}<span class="block">{{ $gm['at']?->format('H:i') }}</span>
+                                </span>
+                                <span class="flex-1 min-w-0 space-y-1">
+                                    @foreach (['us', 'them'] as $side)
+                                        @php $t = $gm[$side]; @endphp
+                                        <span class="flex items-center gap-2 min-w-0">
+                                            <span class="flex -space-x-1 shrink-0">
+                                                @foreach ($t['classes'] as $slug)
+                                                    @if ($classes[$slug] ?? null) <x-class-icon :class="$classes[$slug]" size="w-5 h-5"/> @endif
+                                                @endforeach
+                                            </span>
+                                            <span class="truncate text-[13px] {{ $t['won'] ? 'text-ink font-semibold' : 'text-ink-muted' }}">{{ $name($t) }}</span>
+                                            @if ($t['won'])
+                                                <span class="shrink-0 rounded-full bg-green-500/15 text-green-300 text-[10.5px] font-bold px-2 py-px">WON</span>
+                                            @endif
+                                            @if ($t['mmr'])
+                                                <span class="ml-auto shrink-0 text-[12px] text-ink-subtle tabular-nums">{{ $t['mmr'] }}</span>
+                                            @endif
+                                        </span>
+                                    @endforeach
+                                </span>
+                                <span class="shrink-0 text-ink-subtle" aria-hidden="true">&rsaquo;</span>
+                            </a>
+                        </li>
+                    @endforeach
+                </ul>
+            @endif
+        </div>
+
+        @if (count($games['games']) < $games['total'] && count($games['games']) < \App\Livewire\Leaderboards::GAMES_MAX)
+            <button type="button" wire:click="showMoreGames" class="btn-ghost mt-3 text-[12.5px]">Show more games ({{ number_format($games['total'] - count($games['games'])) }} more)</button>
         @endif
     @else
         <div class="flex flex-wrap items-center gap-2 mb-2">

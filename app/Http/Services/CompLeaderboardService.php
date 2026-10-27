@@ -340,7 +340,7 @@ class CompLeaderboardService
             return null;
         }
 
-        $cacheKey = 'comp-board:card:v2:'.md5($key.'|'.$vs.'|'.$teams->pluck('round')->implode(',').'|'.$this->library->codeSignature());
+        $cacheKey = 'comp-board:card:v3:'.md5($key.'|'.$vs.'|'.$teams->pluck('round')->implode(',').'|'.$this->library->codeSignature());
 
         return Cache::remember($cacheKey, now()->addHours(12), function () use ($teams, $key, $vs) {
             // Drawn for the website: icons at /storage/..., not this machine's file:/// paths.
@@ -372,6 +372,8 @@ class CompLeaderboardService
                 $games->push([
                     'r' => $r,
                     'a' => $a,
+                    // The game's own card, read from the same side as this one: the team facing the comp.
+                    'href' => route('comps.game', array_filter(['round' => $r->id, 'as' => $t['side'] === 'us' ? 'them' : null, 'from' => $key, 'vs' => $vs])),
                     'seconds' => (float) $r->seconds,
                     'prefix' => '',
                     'dps' => $them->where('healer', false)->sortBy('spec')->values()->all(),
@@ -392,6 +394,72 @@ class CompLeaderboardService
 
             return $this->library->buildPool($games->sortBy(fn ($g) => (string) $g['r']->played_at)->values(), $title, $label['nick'], $xp);
         });
+    }
+
+    /**
+     * Every 3v3 game this season, newest first, one row per match (Leaderboards' Games tab), each
+     * with both teams as the uploader's card reads them: `us` is the team that uploaded it.
+     *
+     * @return array{total: int, games: list<array>}
+     */
+    public function recentGames(int $limit = 50): array
+    {
+        $teams = $this->teams();
+        $matches = $teams->groupBy('match')->filter(fn (Collection $sides) => $sides->count() === 2)
+            ->sortByDesc(fn (Collection $sides) => (string) $sides->first()['at']);
+        $specs = app(PlayerGamesService::class);
+        $side = function (array $t) use ($specs) {
+            $label = self::label($t['key']);
+
+            return [
+                'key' => $t['key'], 'nick' => $label['nick'], 'classes' => $label['classes'],
+                'specs' => array_map(fn ($id) => $specs->spec($id), $t['specs']),
+                'won' => $t['won'], 'mmr' => $t['mmr'],
+            ];
+        };
+
+        return [
+            'total' => $matches->count(),
+            'games' => $matches->take($limit)->map(fn (Collection $sides) => [
+                'round' => $sides->first()['round'],
+                'at' => $sides->first()['at'],
+                'us' => $side($sides->firstWhere('side', 'us')),
+                'them' => $side($sides->firstWhere('side', 'them')),
+            ])->values()->all(),
+        ];
+    }
+
+    /**
+     * One game's card for the website (CompGame): only a 3v3 game of this season's board, read as
+     * the uploader's team or, with $as 'them', as the team they played. Null for any other round.
+     */
+    public function game(int $round, string $as = 'us'): ?string
+    {
+        $sides = $this->teams()->where('round', $round)->keyBy('side');
+        if ($sides->count() !== 2) {
+            return null;
+        }
+        $flip = $as === 'them';
+        $r = ArenaRound::find($round);
+        if ($r === null) {
+            return null;
+        }
+        $cards = app(GameCardService::class);
+        $name = function (string $key) {
+            $label = self::label($key);
+
+            return $label['nick'] ?? implode(' + ', array_map(fn ($c) => self::className($c), $label['classes']));
+        };
+
+        return Cache::remember('comp-board:game:v1:'.$round.':'.($flip ? 'them' : 'us').':'.$r->updated_at?->timestamp.':'.$cards->codeFingerprint(),
+            now()->addHours(12), function () use ($cards, $r, $flip, $sides, $name) {
+                config(['desktop.web_assets' => true]);
+
+                return $cards->pooled($r, $flip, [
+                    'us' => $name($sides[$flip ? 'them' : 'us']['key']),
+                    'them' => $name($sides[$flip ? 'us' : 'them']['key']),
+                ]);
+            });
     }
 
     /**

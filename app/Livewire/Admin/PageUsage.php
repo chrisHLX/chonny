@@ -84,6 +84,7 @@ class PageUsage extends Component
         'comp_board' => 'Top Comps (preview on 3v3 Comps)',
         'leaderboards' => 'Leaderboards (comps and players)',
         'comp_played' => 'Comp Card (from the board)',
+        'comp_game' => 'One game (from a comp card or Leaderboards\' Games)',
         'wow_quiz' => 'Class Quizzes',
         'wow_quiz_play' => 'Class Quiz (playing)',
         'concept_drill_play' => 'Concept Drill (playing)',

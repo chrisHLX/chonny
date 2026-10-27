@@ -44,6 +44,10 @@
     @if ($g['kind'] === 'game' && ($g['mmr']['us'] ?? null))
         <span class="mmr muted">MMR you <b style="color:#FFFFFF">{{ $g['mmr']['us'] }}</b> &nbsp;&middot;&nbsp; enemy <b style="color:#FFFFFF">{{ $g['mmr']['them'] ?? '?' }}</b></span>
     @endif
+    @if (! empty($g['pool']))
+        {{-- The website's comp board (GameCardService::pooled()): someone else's game, no one named. --}}
+        <div class="small muted" style="margin-top: 6px">Read as <b style="color: #FFFFFF">{{ $g['pool']['us'] }}</b>, against {{ $g['pool']['them'] }}: "your team" is {{ $g['pool']['us'] }}. No player is named.</div>
+    @endif
     @if ($g['kind'] === 'game' && ! empty($g['difficulty']))
         <div class="small" style="margin-top: 6px"><span class="chip {{ $g['difficulty']['tone'] }}">{{ $g['difficulty']['label'] }}</span> <span class="muted">&nbsp;{{ $g['difficulty']['text'] }}</span></div>
     @endif
@@ -54,11 +58,12 @@
     @php $noteCount = count($g['notes']) + count($g['gameNotes']); @endphp
     <div class="tabs">
         <a id="b-summary" onclick="showTab('summary')">Summary</a>
-        <a id="b-basics" onclick="showTab('basics')">Basics</a>
-        <a id="b-moments" onclick="showTab('moments')">Moments @if (! empty($g['moments']))<span class="cnt">{{ count($g['moments']) }}</span>@endif</a>
+        {{-- Basics, Moments and Notes are about the uploader's own play: not on a pooled card. --}}
+        @if (empty($g['pool']))<a id="b-basics" onclick="showTab('basics')">Basics</a>
+        <a id="b-moments" onclick="showTab('moments')">Moments @if (! empty($g['moments']))<span class="cnt">{{ count($g['moments']) }}</span>@endif</a>@endif
         <a id="b-damage" onclick="showTab('damage')">Damage &amp; healing</a>
         <a id="b-numbers" onclick="showTab('numbers')">Numbers</a>
-        <a id="b-notes" onclick="showTab('notes')">Notes @if ($noteCount)<span class="cnt">{{ $noteCount }}</span>@endif</a>
+        @if (empty($g['pool']))<a id="b-notes" onclick="showTab('notes')">Notes @if ($noteCount)<span class="cnt">{{ $noteCount }}</span>@endif</a>@endif
     </div>
 
     <div class="tab" id="t-summary">
@@ -84,12 +89,15 @@
         @endforelse
     </div>
 
+    @if (empty($g['pool']))
     <div class="section">
         <div class="label">Checks <span class="aside">what the log shows by itself, for your team</span></div>
         <div class="box">@include('desktop.partials.checks', ['checks' => $g['checks']])</div>
     </div>
+    @endif
     </div>
 
+    @if (empty($g['pool']))
     <div class="tab" id="t-basics">
         @include('desktop.partials.basics', ['b' => $g['basics'] ?? null])
     </div>
@@ -97,6 +105,7 @@
     <div class="tab" id="t-moments">
         @include('desktop.partials.moments', ['m' => $g['moments'] ?? null])
     </div>
+    @endif
 
     <div class="tab" id="t-damage">
         @include('desktop.partials.breakdown', ['b' => $g['breakdown']])
@@ -132,10 +141,12 @@
 
     </div>
 
+    @if (empty($g['pool']))
     <div class="tab" id="t-notes">
         @include('desktop.partials.game-notes', ['notes' => $g['gameNotes']])
         @include('desktop.partials.notes', ['notes' => $g['notes']])
     </div>
+    @endif
 
 @else
 

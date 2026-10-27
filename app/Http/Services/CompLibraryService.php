@@ -281,6 +281,8 @@ class CompLibraryService
 
             return [
                 'id' => 'g'.substr(md5((string) $g['r']->id), 0, 8),
+                // The website's comp board: the game's own card (CompLeaderboardService::card()).
+                'href' => $g['href'] ?? null,
                 'players' => [
                     'them' => collect($a['players'])->where('side', 'them')->sortByDesc('healer')->map($player)->values()->all(),
                     'us' => collect($a['players'])->where('side', 'us')->sortByDesc('healer')->map($player)->values()->all(),

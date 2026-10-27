@@ -195,6 +195,10 @@ Route::prefix('wow')->group(function () {
         ->where(['key' => '[a-z]+(-[a-z]+){2,3}', 'vs' => '[a-z]+(-[a-z]+){2,3}'])->name('comps.played');
     Route::get('/comps/played-card/{key}/{vs?}', \App\Http\Controllers\CompCardController::class)
         ->where(['key' => '[a-z]+(-[a-z]+){2,3}', 'vs' => '[a-z]+(-[a-z]+){2,3}'])->middleware('throttle:60,1,comp-card')->name('comps.played.card');
+    // One game from the board (2026-10-27): the app's game card with no names, for any account (CompGame).
+    Route::get('/comps/game/{round}', \App\Livewire\CompGame::class)->whereNumber('round')->name('comps.game');
+    Route::get('/comps/game-card/{round}', [\App\Http\Controllers\CompCardController::class, 'game'])
+        ->whereNumber('round')->middleware('throttle:60,1,comp-card')->name('comps.game.card');
 
     // Two comps on one clock — whose kill window opens first, and why. The first page here that
     // answers a question about a MATCHUP rather than about one spec or one comp, which is the

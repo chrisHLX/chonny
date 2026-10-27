@@ -1,4 +1,4 @@
-<div class="max-w-[1400px] mx-auto px-4 py-8">
+<div class="max-w-[1400px] mx-auto px-3 sm:px-4 py-6 sm:py-8">
     <a href="{{ route('leaderboards') }}" wire:navigate class="text-[12px] text-ink-subtle hover:text-gold transition-colors">&larr; Leaderboards</a>
 
     <div class="flex flex-wrap items-center gap-3 mt-3 mb-5">
@@ -26,10 +26,12 @@
     </div>
 
     @if ($state === 'open')
-        {{-- The app's own comp page, drawn as its own document: its styles stay its own. --}}
+        {{-- The app's own comp page, drawn as its own document: its styles stay its own. The frame
+             grows as games open (a phone scrolled inside it before), and coming back from a game
+             (#games, CompGame's back link) lands on the list of games. --}}
         <iframe src="{{ route('comps.played.card', array_filter(['key' => $comp['key'], 'vs' => $match['key'] ?? null])) }}"
                 class="w-full rounded-xl bg-surface-0" style="min-height: 80vh; border: 0"
-                onload="try { this.style.height = (this.contentDocument.documentElement.scrollHeight + 20) + 'px' } catch (e) {}"
+                onload="try { var f = this, b = f.contentDocument.body, fit = function () { f.style.height = (b.offsetHeight + 24) + 'px' }; fit(); if (window.ResizeObserver) { new ResizeObserver(fit).observe(b) } if (location.hash === '#games') { f.contentDocument.getElementById('games').scrollIntoView() } } catch (e) {}"
                 title="{{ $title }}"></iframe>
     @else
         <div class="relative rounded-xl overflow-hidden" style="height: 70vh">

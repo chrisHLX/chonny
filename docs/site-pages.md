@@ -70,7 +70,9 @@
     that comp in real games, with "See its games" (its card) and the leaderboard. Remounted by
     its `:key` when the comp changes (`WowComps::boardKey()`).
   - **Leaderboards** (`/wow/leaderboards`, `Leaderboards`, in the sidebar under Plan, 2026-10-21).
-    Two tabs (`?tab=players`):
+    Three tabs (`?tab=games`, `?tab=players`). **Games** (2026-10-27, Chriso: "have in leaderboard
+    individual matches so we can click on the match card"): every 3v3 game this season, newest
+    first, one row a match (`CompLeaderboardService::recentGames()`), each opening its own card.
     - **Comps** (Chriso: "comps with exp and mmr and then matches ... just comp filtered by
       EXP"). Every 3v3 comp in the games uploaded since the PvP season began (Blizzard's season
       start, cached a day), by its three classes (RMP and RMD apart), both teams of every game, a
@@ -100,6 +102,16 @@
     too (Chriso: "they need to install the app and sign up"); in that month 16 of 17 visitors who
     opened a card hit the wall and none got through, and since the card names no one, the sign-up
     is now the whole ask. The app opens a player's own games.
+  - **One game** (`/wow/comps/game/{round}`, `CompGame`, 2026-10-27): the app's game card for one
+    game of the board, every name swapped for its spec before it is drawn and the page checked for
+    any name left (`GameCardService::pooled()`; it is not shown if one is). Basics, Moments, Checks,
+    Worth a look, notes and the timeline stay off: they are about the uploader's own play. Opened from
+    each game on a comp card ("Open this game", read as the team facing the comp, `?as=them` when
+    that is the side the uploader played) and from the Games tab (read as the uploader's team).
+    `?from`/`?vs` name the comp card the back link returns to, landing on its games (`#games`);
+    without them it goes back to the Games tab. Same access rule as a comp card. Both frames grow
+    with their page (a ResizeObserver), so a phone never scrolls inside a frame; the comp card's
+    open game no longer ran off a phone's edge once `tr.more td` stopped padding the tables inside it.
   - **How to play it** (`CompPlaybookService`, `livewire/partials/comp-playbook.blade.php`) is a
     plain guide for a player new to arena, so someone can be sent to the page: eight basics (shown
     alone before anything is picked, with a link to the basics check), then for the three specs:

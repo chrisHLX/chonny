@@ -128,6 +128,100 @@ class GameCardService
         return ['games' => $games, 'experience' => $xp];
     }
 
+    /** Drawing the website's pooled card (pooled()): no names, no player's own tabs. */
+    private bool $pool = false;
+
+    /**
+     * One 3v3 game for the website's comp board (2026-10-27, Chriso: "have in leaderboard individual
+     * matches so we can click on the match card"): the card the app draws, read from the side given,
+     * with every name swapped for its spec at the source, the way CompLibraryService::buildPool()
+     * draws a comp. What only the uploader's own card should carry stays out: Basics and Moments
+     * (both about the uploader's own buttons), Checks, Worth a look, notes and the timeline.
+     *
+     * $flip reads it from the other team's side (CompLeaderboardService::flip()); that team's deaths
+     * then have no answer sheet, which is only ever measured for the uploader's team. Null when the
+     * round was never measured, or when a name is still on the drawn page: it is never shown then.
+     *
+     * @param  array{us: string, them: string}  $sides  each team's comp name, for the line under the title
+     */
+    public function pooled(ArenaRound $round, bool $flip, array $sides): ?string
+    {
+        $this->payloads = [];
+        $stored = $this->payload($round);
+        $a = $stored['analysis'] ?? null;
+        if (! is_array($a) || empty($a['players'])) {
+            return null;
+        }
+        $names = array_column($a['players'], 'name');
+        $hits = $this->experience->cachedMany($names);
+        if ($flip) {
+            $a = CompLeaderboardService::flip($a);
+            foreach ($a['deaths'] as $i => $d) {
+                unset($a['deaths'][$i]['answers']);
+            }
+        }
+
+        // Each player is their spec; "Your" or "Enemy" in front only where both teams have it.
+        $count = array_count_values(array_column($a['players'], 'spec'));
+        $labels = [];
+        foreach ($a['players'] as $p) {
+            $label = ($count[$p['spec']] ?? 0) > 1 ? ($p['side'] === 'us' ? 'Your ' : 'Enemy ').$p['spec'] : $p['spec'];
+            for ($n = 2; in_array($label, $labels, true); $n++) {
+                $label = preg_replace('/ \d+$/', '', $label).' '.$n;
+            }
+            $labels[$p['name']] = $label;
+        }
+        $rename = function ($v) use (&$rename, $labels) {
+            if (is_string($v)) {
+                return $labels[$v] ?? $v;
+            }
+            if (! is_array($v)) {
+                return $v;
+            }
+            $out = [];
+            foreach ($v as $k => $x) {
+                $out[is_string($k) ? ($labels[$k] ?? $k) : $k] = $rename($x);
+            }
+
+            return $out;
+        };
+        $a = $rename($a);
+        foreach ($a['players'] as $i => $p) {
+            $a['players'][$i]['logger'] = false;
+        }
+        $xp = [];
+        foreach ($labels as $name => $label) {
+            if (($hits[$name] ?? null) !== null) {
+                $xp[$label] = $hits[$name];
+            }
+        }
+
+        $this->payloads[$round->id] = ['analysis' => $a, 'metadata' => $stored['metadata'] ?? []];
+        $this->pool = true;
+        try {
+            $vm = $this->gameModel($round, $xp, []);
+        } finally {
+            $this->pool = false;
+            $this->payloads = [];
+        }
+        $vm['gameNotes'] = [];
+        $vm['watch'] = null;
+        $vm['pool'] = $sides;
+        $html = view('desktop.game-card', ['g' => $vm])->render();
+
+        // The check anon.py makes for the sample pages: no player's name anywhere on the page.
+        foreach ($names as $full) {
+            $short = $this->short($full);
+            if (mb_strlen($short) >= 3 && preg_match('/\b'.preg_quote($short, '/').'\b/u', $html)) {
+                \Illuminate\Support\Facades\Log::warning('Pooled game card held a name; not shown', ['round' => $round->id]);
+
+                return null;
+            }
+        }
+
+        return $html;
+    }
+
     /** @var array<int, array> round id => its decoded payload, for one build */
     private array $payloads = [];
 
@@ -146,7 +240,7 @@ class GameCardService
      * Changes when the card's own code does: this class and every template under desktop/. A
      * change to the spell data behind an icon does not move it; a full redraw is `--fresh`.
      */
-    private function codeFingerprint(): string
+    public function codeFingerprint(): string
     {
         // GameBasicsService and the norms it reads draw the Basics tab, so they redraw it too.
         // The defensive tags sort each death's ready defensives (DefensiveFit), so a tag change redraws.
@@ -196,12 +290,12 @@ class GameCardService
                 ['Interrupts', $kicks->where('side', 'us')->count(), $kicks->where('side', 'them')->count(), true],
                 ['Interrupts on the healer', $kicks->where('side', 'us')->where('onHealer', true)->count(), $kicks->where('side', 'them')->where('onHealer', true)->count(), true],
             ],
-            'look' => $a['won'] ? null : $this->look($this->analysis->lossItems($a, $xp), $players),
+            'look' => $a['won'] || $this->pool ? null : $this->look($this->analysis->lossItems($a, $xp), $players),
             'breakdown' => $this->breakdownModel(collect([$round]), $players),
-            'checks' => $this->checkRows($a['checks'] ?? null, $players),
+            'checks' => $this->pool ? null : $this->checkRows($a['checks'] ?? null, $players),
             'notes' => $this->noteRows($notes[$round->id] ?? [], $round),
-            'basics' => $this->basicsModel([$a]),
-            'moments' => $this->momentsModel([[null, $a]]),
+            'basics' => $this->pool ? null : $this->basicsModel([$a]),
+            'moments' => $this->pool ? null : $this->momentsModel([[null, $a]]),
         ];
     }
 
@@ -458,7 +552,7 @@ class GameCardService
                 'full' => $p['name'],
                 // Their public page on the site (/wow/player/...), absolute: the app shows a card as a
                 // page of its own and opens any other link in the browser.
-                'url' => \App\Support\PlayerUrl::fromLogName($p['name']),
+                'url' => $this->pool ? null : \App\Support\PlayerUrl::fromLogName($p['name']),
                 'spec' => $p['spec'],
                 'side' => $p['side'],
                 'healer' => $p['healer'],
