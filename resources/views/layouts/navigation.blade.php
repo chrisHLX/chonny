@@ -47,8 +47,11 @@
 
         {{-- Training (2026-10-23): reasoning lessons across every game, so here beside Home rather than in
              the game switcher. The number is what is waiting for a revisit today. No wire:navigate: the
-             lesson page's scripts expect a full page load. --}}
-        @php $navTrainingDue = auth()->check() ? auth()->user()->trainingDueCount() : 0; @endphp
+             lesson page's scripts expect a full page load. Admins only since 2026-10-27: it was Chriso's
+             own test, and 10 of its 11 sessions that month were visitors opening it from the menu. The
+             page itself stays open to anyone with the link. --}}
+        @can('admin')
+        @php $navTrainingDue = auth()->user()->trainingDueCount(); @endphp
         <a href="{{ route('training') }}"
            class="sidebar-item {{ request()->routeIs('training', 'training.*') ? 'active' : '' }}">
             <svg class="w-[18px] h-[18px] shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -57,6 +60,7 @@
             Training
             @if ($navTrainingDue)<span class="ml-auto text-[10.5px] font-bold rounded-full bg-gold text-black px-1.5 leading-[18px] min-w-[18px] text-center" title="Waiting for a revisit">{{ $navTrainingDue }}</span>@endif
         </a>
+        @endcan
 
         {{-- One link for every admin page (2026-10-19): the pages themselves carry a tab strip
              (admin.partials.tabs), so this replaces the collapsed group that sat below a scroll. --}}
@@ -105,6 +109,19 @@
             Get the app
         </a>
 
+        {{-- Leaderboards (2026-10-21): every comp this season from real games by experience, and
+             Blizzard's 3v3 ladder with the comps each player was seen on. Lit on a comp's card too,
+             which is where its rows lead. Beside Your games since 2026-10-27: its comps lead to real
+             games, and the games are what people come for (the sample game was the second most opened
+             page that week). --}}
+        <a href="{{ route('leaderboards') }}" wire:navigate
+           class="sidebar-item {{ request()->routeIs('leaderboards', 'comps.played') ? 'active' : '' }}">
+            <svg class="w-[18px] h-[18px] shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 20V10m6 10V4m6 16v-7m4 7H2"/>
+            </svg>
+            Leaderboards
+        </a>
+
         {{-- Player lookup (2026-10-19): any character's ratings, exp, gear and talents. --}}
         <a href="{{ route('players.search') }}" wire:navigate
            class="sidebar-item {{ request()->routeIs('players.*') ? 'active' : '' }}">
@@ -123,17 +140,6 @@
             3v3 Comps
         </a>
 
-        {{-- Leaderboards (2026-10-21): every comp this season from real games by experience, and
-             Blizzard's 3v3 ladder with the comps each player was seen on. Lit on a comp's card too,
-             which is where its rows lead. --}}
-        <a href="{{ route('leaderboards') }}" wire:navigate
-           class="sidebar-item {{ request()->routeIs('leaderboards', 'comps.played') ? 'active' : '' }}">
-            <svg class="w-[18px] h-[18px] shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 20V10m6 10V4m6 16v-7m4 7H2"/>
-            </svg>
-            Leaderboards
-        </a>
-
         <a href="{{ route('matchup-lab') }}" wire:navigate
            class="sidebar-item {{ request()->routeIs('matchup-lab') ? 'active' : '' }}">
             <svg class="w-[18px] h-[18px] shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -144,10 +150,12 @@
 
         {{-- 2026-10-18: grouped Plan, Guides, Learn, so five guide-like links no longer sit in one list.
              The spec guides counted from real games (/wow/pvp, 2026-10-16): every spec's PvP talents,
-             goes, defensives, what to kick and comps. --}}
+             goes, defensives, what to kick and comps. Arena Kit left the menu 2026-10-27, as most of
+             it repeats these; its pages stay, reached from each guide's "talents and kit" link, and this
+             item is lit on them. --}}
         <p class="px-3 pt-2.5 pb-0.5 text-[11px] font-bold text-ink-subtle uppercase tracking-[.12em]">Guides</p>
         <a href="{{ route('spec-pvp.index') }}" wire:navigate
-           class="sidebar-item {{ request()->routeIs('spec-pvp.*') ? 'active' : '' }}">
+           class="sidebar-item {{ request()->routeIs('spec-pvp.*', 'pvp-guides', 'class-guide', 'burst-guides', 'claudes-counters', 'spells.explore') ? 'active' : '' }}">
             <svg class="w-[18px] h-[18px] shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/>
             </svg>
@@ -163,17 +171,6 @@
         </a>
 
         <p class="px-3 pt-2.5 pb-0.5 text-[11px] font-bold text-ink-subtle uppercase tracking-[.12em]">Learn</p>
-        {{-- One per-spec page for kits, burst, counters and spells (2026-09-07; see App\Livewire\PvpGuides).
-             In the top panel since 2026-10-12, beside the other planning tools. Its pages are titled
-             "Arena Kit" since 2026-10-16, so the menu says the same. --}}
-        <a href="{{ route('pvp-guides') }}" wire:navigate
-           class="sidebar-item {{ request()->routeIs('pvp-guides') || request()->routeIs('class-guide') || request()->routeIs('burst-guides') || request()->routeIs('claudes-counters') || request()->routeIs('spells.explore') ? 'active' : '' }}">
-            <svg class="w-[18px] h-[18px] shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h10"/>
-            </svg>
-            Arena Kit
-        </a>
-
         <a href="{{ route('wow-quiz') }}" wire:navigate
            class="sidebar-item {{ request()->routeIs('wow-quiz*') ? 'active' : '' }}">
             <svg class="w-[18px] h-[18px] shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -289,14 +286,14 @@
         @endauth
 
         @guest
-            @if ($navGame !== 'wow')
-                <p class="px-3 pt-1 text-[12px] text-ink-subtle">Your games, guides and characters live here once you sign in.</p>
-            @endif
+            <p class="px-3 pt-3 text-[12px] text-ink-subtle">Your games, guides and characters live here once you sign in.</p>
         @endguest
 
-        @if ($navGame === 'wow')
+        @if ($navGame === 'wow' && auth()->user()?->can('admin'))
         {{-- Lab (2026-10-18): the experimental pages, apart from the product. Claude's guides are
-             drafted by a model to be corrected; the two top lists are raw reads of the archive. --}}
+             drafted by a model to be corrected; the two top lists are raw reads of the archive.
+             Admins only since 2026-10-27: about 10 sessions a month each, none signed in. The pages
+             stay up. --}}
         <p class="px-3 pt-3 pb-0.5 text-[11px] font-bold text-ink-subtle uppercase tracking-[.12em]">Lab</p>
         <a href="{{ route('guides.machine') }}" wire:navigate
            class="sidebar-item text-[12px] {{ request()->routeIs('guides.machine') ? 'active !text-accent' : '' }}">

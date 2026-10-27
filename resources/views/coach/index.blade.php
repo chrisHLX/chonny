@@ -42,6 +42,16 @@
             <p class="page-eyebrow">Only you can see this page</p>
             <h1 class="page-title">Your games</h1>
             <p class="text-[14px] text-ink-muted mt-3 max-w-3xl">Every game you've uploaded, where you stand against players of your spec, the comps you've played against and the best player of each spec you've met.</p>
+            {{-- Nothing uploaded yet (2026-10-27): real games to open meanwhile, rather than a page that
+                 reads as empty. --}}
+            @unless ($built)
+                <p class="text-[14px] text-ink mt-3 max-w-3xl">
+                    Nothing uploaded yet. Meanwhile you can open
+                    <a href="{{ route('wow.sample') }}" class="text-gold hover:text-gold-light underline underline-offset-2">an example game</a>,
+                    or any comp's games on the
+                    <a href="{{ route('leaderboards') }}" wire:navigate class="text-gold hover:text-gold-light underline underline-offset-2">Leaderboards</a>.
+                </p>
+            @endunless
         </div>
 
         <div class="flex flex-wrap gap-2">

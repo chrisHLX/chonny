@@ -15,6 +15,10 @@ use Livewire\Component;
  * only for an account with the MindCollector app connected. Chriso: "when they click it they have
  * to sign up to see the card and player data ... in order for people to see it they need to install
  * the app and sign up." Everyone else sees an example card, blurred, under what to do next.
+ *
+ * 2026-10-27: any account opens it, the app connected or not. Of 17 visitors who opened a card in
+ * a month, 16 hit the blurred wall and none got through, and the card names nobody, so the sign-up
+ * is the whole ask. Connecting the app is what opens a player's OWN games.
  */
 class CompsPlayed extends Component
 {
@@ -37,10 +41,10 @@ class CompsPlayed extends Component
         PageViewEvent::log('comp_played', null, null, $vs ? 'matchup' : 'comp');
     }
 
-    /** Who may open a comp card: an account with the app connected (or an admin). */
+    /** Who may open a comp card: any account. */
     public static function canOpen(?User $user): bool
     {
-        return $user !== null && ($user->coach_token_at !== null || $user->is_admin);
+        return $user !== null;
     }
 
     public function render()
@@ -60,11 +64,7 @@ class CompsPlayed extends Component
             'match' => $match,
             'title' => $title,
             'record' => $match ? [$match['won'], $match['lost'], $match['games']] : [$comp['won'], $comp['lost'], $comp['games']],
-            'state' => match (true) {
-                self::canOpen($user) => 'open',
-                $user !== null => 'app',
-                default => 'guest',
-            },
+            'state' => self::canOpen($user) ? 'open' : 'guest',
             'classes' => GameClass::whereHas('game', fn ($q) => $q->where('slug', 'wow'))->get()->keyBy('slug'),
         ])->layout('layouts.app', [
             'title' => $title.' this season: 3v3 comp review | MindCollector',

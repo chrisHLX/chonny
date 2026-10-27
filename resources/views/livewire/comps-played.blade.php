@@ -39,24 +39,15 @@
             <div class="absolute inset-0 bg-black/40"></div>
             <div class="absolute inset-0 flex items-center justify-center p-4">
                 <div class="linear-card bg-surface-1 p-6 max-w-md text-center shadow-2xl">
-                    @if ($state === 'guest')
-                        <h2 class="font-display text-xl text-ink mb-2">Sign up to open the {{ $title }} card</h2>
-                        <p class="text-[13.5px] text-ink-muted mb-5">
-                            Their goes, the crowd control they chain, who they kill and every game this season, from real 3v3 games.
-                            It's free: make an account and connect the MindCollector app, and your own games join the board too.
-                        </p>
-                        <div class="flex flex-wrap justify-center gap-2">
-                            <a href="{{ route('register') }}" class="btn-primary">Sign up free</a>
-                            <a href="{{ route('login') }}" class="btn-secondary">Sign in</a>
-                        </div>
-                    @else
-                        <h2 class="font-display text-xl text-ink mb-2">Connect the app to open the {{ $title }} card</h2>
-                        <p class="text-[13.5px] text-ink-muted mb-5">
-                            Comp cards are for players who share their games: install the MindCollector app and connect it, and this
-                            card opens, with every comp on the board.
-                        </p>
-                        <a href="{{ route('app') }}" wire:navigate class="btn-primary">Get the app</a>
-                    @endif
+                    <h2 class="font-display text-xl text-ink mb-2">Sign up to open the {{ $title }} card</h2>
+                    <p class="text-[13.5px] text-ink-muted mb-5">
+                        Their goes, the crowd control they chain, who they kill and every game this season, from real 3v3 games.
+                        It's free, and no player is named. Connect the MindCollector app later and your own games open too.
+                    </p>
+                    <div class="flex flex-wrap justify-center gap-2">
+                        <a href="{{ route('register') }}" class="btn-primary">Sign up free</a>
+                        <a href="{{ route('login') }}" class="btn-secondary">Sign in</a>
+                    </div>
                 </div>
             </div>
         </div>

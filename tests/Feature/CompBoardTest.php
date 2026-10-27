@@ -100,18 +100,16 @@ class CompBoardTest extends TestCase
         $this->assertStringNotContainsString('file:///', $html, 'drawn for the website');
     }
 
-    public function test_the_card_needs_an_account_with_the_app_connected(): void
+    public function test_the_card_needs_an_account(): void
     {
         $this->game(User::factory()->create(), 'm1', true);
 
         $this->get('/wow/comps/played/mage-rogue-priest')->assertOk()->assertSee('Sign up to open the RMP card')->assertDontSee('played-card');
         $this->get('/wow/comps/played-card/mage-rogue-priest')->assertForbidden();
 
+        // Any account opens it since 2026-10-27, the app connected or not.
         $player = User::factory()->create();
-        $this->actingAs($player)->get('/wow/comps/played/mage-rogue-priest/druid-hunter-priest')->assertOk()->assertSee('Connect the app to open the RMP vs Jungle card');
-        $this->actingAs($player)->get('/wow/comps/played-card/mage-rogue-priest')->assertForbidden();
-
-        $player->forceFill(['coach_token_at' => now()])->save();
+        $this->actingAs($player)->get('/wow/comps/played/mage-rogue-priest/druid-hunter-priest')->assertOk()->assertSee('played-card/mage-rogue-priest/druid-hunter-priest', false);
         $this->actingAs($player)->get('/wow/comps/played/mage-rogue-priest')->assertOk()->assertSee('played-card/mage-rogue-priest', false);
         $this->actingAs($player)->get('/wow/comps/played-card/mage-rogue-priest')->assertOk()->assertDontSee('Rogueguy');
 

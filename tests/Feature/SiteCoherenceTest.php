@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\SampleGameController;
 use App\Models\PageViewEvent;
+use App\Models\User;
 
 /**
  * The 2026-10-18 pass on how the site reads as one product: a sample game anyone can open, "Your
@@ -31,12 +32,19 @@ it('makes /wow a hub that sends people to the sample and the app, not a copy of 
         ->not->toContain('Set up in a minute')->not->toContain('what to work on next');
 });
 
-it('groups the menu and keeps the lab apart', function () {
+it('groups the menu and keeps the lab for admins', function () {
     $html = $this->get('/wow/comps')->assertOk()->getContent();
-    foreach (['>Plan<', '>Guides<', '>Learn<', '>Lab<', 'Player guides', "Claude's comp guides", 'Class quizzes'] as $needle) {
+    foreach (['>Plan<', '>Guides<', '>Learn<', 'Player guides', 'Class quizzes'] as $needle) {
         expect($html)->toContain($needle);
     }
-    expect($html)->not->toContain('Your library');   // a visitor has no library
+    expect($html)->not->toContain('Your library')   // a visitor has no library
+        ->and($html)->not->toContain('>Lab<')        // the Lab is admins' only since 2026-10-27
+        ->and($html)->not->toContain("Claude's comp guides");
+
+    $admin = User::factory()->create();
+    $admin->forceFill(['is_admin' => true])->save();
+    expect($this->actingAs($admin)->get('/wow/comps')->assertOk()->getContent())
+        ->toContain('>Lab<')->toContain("Claude's comp guides");
 });
 
 it('lists League of Legends only on its own page and retires the old diagnostic picker', function () {
