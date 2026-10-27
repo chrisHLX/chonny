@@ -25,6 +25,7 @@ heading. Rules are still cited by number and still mean the same rule.
 | `guides-from-play.md` | current | How played games become guides, and the level-of-play rule. Read before drafting a guide from match data. |
 | `addon-upgrades.md` | current | What Chriso wants next from the capture side. Wants, not design. |
 | `docs/reviews/` | history | One-off reviews of a session (2026-10-01: Disc with LFG partners). |
+| `docs/international.md` | current | Players from other regions, China first: why their games show Chinese, what that breaks (no icons; arena frames that never show a button used), the fix (keep the spell id), reaching the site from China, and bringing the regions together. |
 | `docs/achievements.md` | proposal | Achievements and rewards (AI credits) for improving, not grinding: the rules, the kinds, the data model, and a first pass on Disc Priest dispels with real numbers. Not built. |
 | `docs/sc2/plan.md` | research | StarCraft II: where its game knowledge comes from (the game's data files, replays; Blizzard's API has no unit data), WoW's pieces mapped to SC2's, and a first build planner. Built so far: the unit data (`data/sc2/`) and the quizzes on it. |
 | `docs/ai/ask-about-this-game.md` | proposal | "Ask about this game": a model answering from stored measurements. Not built. |

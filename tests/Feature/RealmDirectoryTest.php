@@ -23,7 +23,7 @@ class RealmDirectoryTest extends TestCase
     {
         Http::fake();
 
-        $url = PlayerUrl::fromLogName('Ayniah-死亡之翼-CN', absolute: false);
+        $url = PlayerUrl::fromLogName('Zhanshi-死亡之翼-CN', absolute: false);
 
         $this->assertStringStartsWith('/wow/player/cn/', $url);
         Http::assertNothingSent();

@@ -216,7 +216,7 @@ up); shipped in 0.6.1 hidden, and to be checked with one real upload before it i
 
 ## To improve later
 
-- **A card sooner after a game (noted 2026-10-27, held until it is quieter).** Measured on Sean's game
+- **A card sooner after a game (noted 2026-10-27, held until it is quieter).** Measured on a player's game
   of 27 Oct 01:56:38 UTC: sent and "done" at 01:57:01, card written 01:57:03, opened 01:57:25. Of the
   ~25s, the server takes 2; the rest is the app waiting for the log to be quiet (`Syncer.Quiet`, 8s)
   and for its next tick (`MainForm._timer`, 10s). Send a round as soon as its ARENA_MATCH_END (or
