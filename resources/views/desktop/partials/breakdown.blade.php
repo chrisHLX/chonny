@@ -47,4 +47,5 @@
             @endif
         @endif
     </div>
+    <div class="small subtle" style="margin-top:6px">How it is counted: damage is every hit onto the other team's players, with a pet's hits counted to its owner. Damage a shield absorbed and damage onto pets and totems are left out, so it reads lower than in-game meters, most against a Disc Priest. Healing is what landed on your team without overhealing. Absorbs are shields that took damage.</div>
 </div>

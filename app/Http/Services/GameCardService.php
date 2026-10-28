@@ -40,6 +40,8 @@ class GameCardService
         private GameBasicsService $basics,
         private GameMomentsService $moments,
         private ImprovementService $improvement,
+        private CooldownLedgerService $ledger,
+        private ArenaLogService $arena,
     ) {}
 
     /** @var array<string, array<string, true>> spec => what its dispels were seen removing, for the moments */
@@ -256,8 +258,9 @@ class GameCardService
         if (! isset($this->payloads[$r->id])) {
             // A round from build() comes without its payload (ArenaRound::readSlim) and is read again here.
             $stored = array_key_exists('payload', $r->getAttributes()) ? $r->payload : ArenaRound::whereKey($r->id)->value('payload');
-            // Only the two parts a card reads; combatants and moments are half the bulk and unused here.
-            $this->payloads[$r->id] = array_intersect_key($stored ?? [], ['analysis' => true, 'metadata' => true]);
+            // The parts a card reads; moments are unused here. Combatants (talents) are for a shuffle's
+            // talent changes between rounds.
+            $this->payloads[$r->id] = array_intersect_key($stored ?? [], ['analysis' => true, 'metadata' => true, 'combatants' => true]);
         }
 
         return $this->payloads[$r->id];
@@ -373,6 +376,7 @@ class GameCardService
         $all = $rounds->flatMap(fn (ArenaRound $r) => $this->payload($r)['analysis']['players'])->unique('guid')->values()->all();
         $roster = $this->players($all, $xp, [])->sortByDesc('you')->values();
 
+        $talents = $this->talentChanges($rounds);
         $rows = [];
         foreach ($rounds as $i => $round) {
             $a = $this->payload($round)['analysis'];
@@ -394,6 +398,7 @@ class GameCardService
                 'with' => $ps->where('side', 'us')->where('you', false)->values()->all(),
                 'against' => $ps->where('side', 'them')->values()->all(),
                 'death' => isset($a['deaths'][0]) ? $this->death($a['deaths'][0], $ps, $a['goes']) : null,
+                'talents' => array_map(fn ($c) => $c + ['color' => $ps->firstWhere('guid', $c['guid'])['color'] ?? '#B3B3B3'], $talents[$i] ?? []),
                 'look' => $look,
                 // Your own only, like $look: the other players change every round.
                 'checks' => $this->checkRows(isset($a['checks']) ? array_values(array_filter($a['checks'], fn ($c) => $c['who'] === ($you['guid'] ?? null))) : null, $ps),
@@ -411,9 +416,90 @@ class GameCardService
             'rounds' => $rows,
             // The same six players all lobby, so their output adds up across the rounds.
             'breakdown' => $this->breakdownModel($rounds, $roster, teams: false),
+            'byRound' => $this->byRoundModel($rounds, $roster),
             'basics' => $this->basicsModel($rounds->map(fn (ArenaRound $r) => $this->payload($r)['analysis'])->all()),
             'moments' => $this->momentsModel($rounds->values()->map(fn (ArenaRound $r, $i) => ['Round '.($i + 1), $this->payload($r)['analysis']])->all()),
         ];
+    }
+
+    /**
+     * Each player's damage and healing (absorbs in it) round by round (2026-10-28, Chriso: "in the
+     * solo shuffle can we do damage and healing by rounds"), from the same breakdown as the lobby's
+     * totals under it, with the rounds each player was on your team marked.
+     */
+    private function byRoundModel(Collection $rounds, Collection $roster): ?array
+    {
+        $cells = [];
+        $cols = [];
+        foreach ($rounds->values() as $i => $round) {
+            $a = $this->payload($round)['analysis'];
+            $cols[] = ['n' => $i + 1, 'won' => $a['won']];
+            $side = array_column($a['players'], 'side', 'guid');
+            foreach ($a['breakdown'] ?? [] as $guid => $b) {
+                $sum = fn (string $kind) => array_sum(array_column($b[$kind] ?? [], 'amount'));
+                $cells[$guid][$i] = [
+                    'damage' => $this->amount($sum('damage')),
+                    'healing' => $this->amount($sum('healing') + $sum('absorbs')),
+                    'with' => ($side[$guid] ?? null) === 'us',
+                ];
+            }
+        }
+        if ($cells === []) {
+            return null;
+        }
+
+        $rows = [];
+        foreach ($roster as $p) {
+            if (isset($cells[$p['guid']])) {
+                $rows[] = [
+                    'name' => $p['name'], 'color' => $p['color'], 'you' => $p['you'], 'healer' => $p['healer'],
+                    'cells' => array_map(fn ($i) => $cells[$p['guid']][$i] ?? null, array_keys($cols)),
+                ];
+            }
+        }
+
+        return ['rounds' => $cols, 'players' => $rows];
+    }
+
+    /**
+     * What each player changed in their talents since their last round of the lobby: a shuffle allows
+     * a change between rounds. Read from the talents the round stored (`combatants`), named the way
+     * the cooldown ledger names a build. Round index => [guid, name, took, dropped].
+     *
+     * @return array<int, list<array{guid: string, name: string, took: list<string>, dropped: list<string>}>>
+     */
+    private function talentChanges(Collection $rounds): array
+    {
+        $out = [];
+        $last = [];     // guid => the talents of their last round, as stored
+        foreach ($rounds->values() as $i => $round) {
+            $p = $this->payload($round);
+            foreach ($p['analysis']['players'] as $pl) {
+                $now = $p['combatants'][$pl['guid']] ?? null;
+                if (! $now) {
+                    continue;
+                }
+                $before = $last[$pl['guid']] ?? null;
+                $last[$pl['guid']] = $now;
+                $raw = fn ($c) => json_encode([$c['talents'] ?? [], $c['pvpTalentIds'] ?? []]);
+                if ($before === null || $raw($before) === $raw($now)) {
+                    continue;
+                }
+                $spec = $this->arena->specForExternalId((string) ($pl['specExternalId'] ?? ''));
+                if (! $spec) {
+                    continue;
+                }
+                $was = $this->ledger->build($before, $spec)['names'] ?? [];
+                $is = $this->ledger->build($now, $spec)['names'] ?? [];
+                $took = array_values(array_diff($is, $was));
+                $dropped = array_values(array_diff($was, $is));
+                if ($took || $dropped) {
+                    $out[$i][] = ['guid' => $pl['guid'], 'name' => ($pl['logger'] ?? false) ? 'You' : $this->short($pl['name']), 'took' => $took, 'dropped' => $dropped];
+                }
+            }
+        }
+
+        return $out;
     }
 
     // ------------------------------------------------------------------ the basics (version 10)

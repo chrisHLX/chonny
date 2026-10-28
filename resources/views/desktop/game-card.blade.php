@@ -189,6 +189,16 @@
                     <span class="name" style="color: {{ $p['color'] }}">{{ $p['name'] }}</span>@if (! $loop->last), @endif
                 @endforeach
             </div>
+            @if (! empty($r['talents']))
+                <div class="small" style="margin-top: 4px">
+                    <span class="muted">Talents changed since their last round:</span>
+                    @foreach ($r['talents'] as $c)
+                        <span class="name" style="color: {{ $c['color'] }}">{{ $c['name'] }}</span>
+                        @if ($c['took'])took {{ implode(', ', $c['took']) }}@endif{{ $c['took'] && $c['dropped'] ? ',' : '' }}
+                        @if ($c['dropped'])dropped {{ implode(', ', $c['dropped']) }}@endif{{ $loop->last ? '' : ';' }}
+                    @endforeach
+                </div>
+            @endif
             @if ($r['death'])
                 <div class="line">@include('desktop.partials.death', ['d' => $r['death']])</div>
             @endif
@@ -217,6 +227,35 @@
     </div>
 
     <div class="tab" id="t-damage">
+        @if (! empty($g['byRound']))
+            <div class="section">
+                <div class="label">By round <span class="aside">damage, then healing with absorbs; shaded where they were on your team</span></div>
+                <div class="box">
+                    <table class="stats">
+                        <tr class="small muted">
+                            <td></td>
+                            @foreach ($g['byRound']['rounds'] as $c)
+                                <td class="n">Round {{ $c['n'] }} <span style="color: {{ $c['won'] ? '#86efac' : '#F28B82' }}">{{ $c['won'] ? 'W' : 'L' }}</span></td>
+                            @endforeach
+                        </tr>
+                        @foreach ($g['byRound']['players'] as $p)
+                            <tr>
+                                <td><span class="name" style="color: {{ $p['color'] }}">{{ $p['name'] }}</span>@if ($p['you'])<span class="you">YOU</span>@endif</td>
+                                @foreach ($p['cells'] as $cell)
+                                    <td class="n" style="{{ $cell && $cell['with'] ? 'background: #232323;' : '' }} padding: 3px 6px">
+                                        @if ($cell)
+                                            {{ $cell['damage'] }}<br><span class="small muted">{{ $cell['healing'] }}</span>
+                                        @else
+                                            <span class="muted">&ndash;</span>
+                                        @endif
+                                    </td>
+                                @endforeach
+                            </tr>
+                        @endforeach
+                    </table>
+                </div>
+            </div>
+        @endif
         @include('desktop.partials.breakdown', ['b' => $g['breakdown']])
     </div>
 
