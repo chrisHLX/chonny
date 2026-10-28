@@ -30,11 +30,42 @@
 <title>Watch &mdash; {{ $title ?? 'Game' }}</title>
 @include('desktop.partials.styles')
 <style>
-    .wrap { max-width: 1180px; }
-    .stage { background: #000000; border-radius: 8px; overflow: hidden; position: sticky; top: 0; z-index: 5;
+    .wrap { max-width: 1680px; }
+    body.bare { padding: 10px 12px 28px; }
+    .stage { background: #121212; position: sticky; top: 0; z-index: 5; margin-bottom: 16px;
         /* covers the page around it, so the timeline's edge labels do not show beside it when scrolled */
         box-shadow: 0 0 0 16px #121212; }
-    .stage video { display: block; width: 100%; max-height: 46vh; background: #000000; }
+    /* The video and the players (2026-10-29). --vh is the video's height, set by the size buttons. On a
+       wide window the players sit beside the video, which is as wide as its height allows; on a narrow
+       one they sit under it in a box of their own that scrolls. Either way the players fold away. */
+    .stage-in { display: flex; flex-direction: column; }
+    .screen { background: #000000; border-radius: 8px; overflow: hidden; width: calc(var(--vh, 50vh) * 16 / 9); max-width: 100%; margin: 0 auto; }
+    .screen video, .screen #yt { display: block; width: 100%; height: auto; aspect-ratio: 16 / 9; border: 0; background: #000000; object-fit: contain; }
+    .stage.clockonly .screen { width: 100%; }
+    .panel { max-height: 30vh; overflow-y: auto; }
+    .stage.beside .stage-in { flex-direction: row; align-items: stretch; }
+    .stage.beside .screen { flex: none; margin: 0; max-width: calc(100% - 380px); }
+    /* Beside the video the players take its height and scroll inside it, never making the row taller. */
+    .stage.beside .panel { flex: 1 1 380px; min-width: 0; max-height: none; overflow: visible; position: relative; margin-left: 4px; }
+    .stage.beside .panel-in { position: absolute; top: 0; right: 0; bottom: 0; left: 0; overflow-y: auto; }
+    .stage.beside .frames { flex-direction: column; gap: 12px; }
+    .stage.noplayers .panel { display: none; }
+    .stage.noplayers .screen { max-width: 100%; margin: 0 auto; }
+    .stagebar { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 12px; padding: 8px 0 6px; }
+    .stagebar .jump { margin: 0; flex: 1 1 auto; }
+    .views { display: flex; gap: 6px; flex-wrap: wrap; align-items: center; }
+    .views button { background: transparent; color: #B3B3B3; border: 0; box-shadow: inset 0 0 0 1px #3E3E3E; border-radius: 9999px; padding: 5px 12px; cursor: pointer; font-size: 12px; font-weight: 700; }
+    .views button:hover { color: #FFFFFF; box-shadow: inset 0 0 0 1px #6A6A6A; }
+    .views button[disabled] { opacity: .35; cursor: default; }
+    .views .sz { width: 30px; padding: 5px 0; }
+    /* What folds: how to read it and the line-up, and each round's moments. */
+    details.fold > summary, details.evs > summary { display: inline-block; list-style: none; cursor: pointer; margin: 8px 0 4px;
+        padding: 5px 12px; border-radius: 9999px; background: #2A2A2A; color: #FFFFFF; font-size: 12.5px; font-weight: 700; }
+    details.fold > summary:hover, details.evs > summary:hover { background: #3E3E3E; }
+    details.fold > summary::-webkit-details-marker, details.evs > summary::-webkit-details-marker { display: none; }
+    details.fold > summary::before, details.evs > summary::before { content: '\25B8'; margin-right: 6px; color: #B3B3B3; }
+    details.fold[open] > summary::before, details.evs[open] > summary::before { content: '\25BE'; }
+    details.fold .explain { font-size: 11.5px; color: #6A6A6A; margin: 6px 0 2px; }
     .pl-wrap { padding: 1px 0 3px; }
     .rib { position: relative; height: 20px; margin-left: 2px; background: #181818; border-radius: 4px; overflow: hidden; }
     .rib .now { position: absolute; right: 0; top: 0; width: 2px; height: 100%; background: #FFFFFF; opacity: .5; }
@@ -124,7 +155,7 @@
     .fb .who b { margin-right: 6px; }
     .fb .note { margin-top: 10px; font-size: 11px; color: #6A6A6A; }
     .ev tr.hide { display: none; }
-    .jump { display: flex; gap: 6px; flex-wrap: wrap; align-items: center; margin: 12px 0 2px; font-size: 12.5px; color: #B3B3B3; }
+    .jump { display: flex; gap: 6px; flex-wrap: wrap; align-items: center; font-size: 12.5px; color: #B3B3B3; }
     .jump button { background: #2A2A2A; color: #FFFFFF; border: 0; border-radius: 9999px; padding: 6px 12px; cursor: pointer; font-size: 12.5px; font-weight: 700; }
     .jump button:hover { background: #3E3E3E; }
     .jump button.off { background: transparent; color: #6A6A6A; box-shadow: inset 0 0 0 1px #3E3E3E; }
@@ -179,12 +210,14 @@
     }
 </style>
 </head>
-<body>
+<body class="{{ ! empty($public) ? 'bare' : '' }}">
 
 @php
     $clock = fn ($s) => sprintf('%d:%02d', intdiv((int) $s, 60), (int) $s % 60);
 @endphp
 
+{{-- The public page (/wow/videos/{id}) has its own heading above the frame, so this one is left out. --}}
+@if (empty($public))
 <div class="head">
     @if (! empty($app))
         <span class="applinks">
@@ -195,20 +228,47 @@
     <span class="title">Watch</span>
     <span class="when muted">{{ $title ?? '' }}</span>
 </div>
+@endif
 
 <div class="wrap">
 
-    <div id="stage" class="stage" style="display:none"><video id="vid" controls preload="metadata"></video>
-        {{-- No recording of this game (2026-10-26): a clock drives everything the video's time does. --}}
-        <div id="blank" class="blank"><span class="big" id="blank-t">0:00</span><span class="small">No recording of this game: press play to run the game's own clock</span></div>
-        <div id="bar" class="clockbar">
-            <button type="button" id="bar-play" title="Play or pause (space)">&#9654;</button>
-            <input type="range" id="bar-seek" min="0" max="100" step="0.1" value="0">
-            <span class="tm" id="bar-tm">0:00 / 0:00</span>
-            <select id="bar-speed" title="Speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select>
+    <div id="stage" class="stage" style="display:none">
+        <div class="stage-in">
+            <div class="screen"><video id="vid" controls preload="metadata"></video>
+                {{-- No recording of this game (2026-10-26): a clock drives everything the video's time does. --}}
+                <div id="blank" class="blank"><span class="big" id="blank-t">0:00</span><span class="small">No recording of this game: press play to run the game's own clock</span></div>
+                <div id="bar" class="clockbar">
+                    <button type="button" id="bar-play" title="Play or pause (space)">&#9654;</button>
+                    <input type="range" id="bar-seek" min="0" max="100" step="0.1" value="0">
+                    <span class="tm" id="bar-tm">0:00 / 0:00</span>
+                    <select id="bar-speed" title="Speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option><option value="4">4x</option></select>
+                </div>
+            </div>
+            <div id="panel" class="panel"><div class="panel-in">
+                <div id="frames" class="frames"></div>
+                <div id="frames-note" class="frames-note">This game was stored before each player's own talents were kept: it shows each spec's usual buttons, leaving out talents nobody pressed in it. Games from 26 Oct on show each player's own talents.</div>
+            </div></div>
         </div>
-        <div id="frames" class="frames"></div>
-        <div id="frames-note" class="frames-note">This game was stored before each player's own talents were kept: it shows each spec's usual buttons, leaving out talents nobody pressed in it. Games from 26 Oct on show each player's own talents.</div>
+        {{-- Under the video and staying with it as the page scrolls: stepping through moments, what shows, and the layout. --}}
+        <div class="stagebar">
+            <div class="jump">
+                <button type="button" id="prev" title="The moment before this point (,)">&larr; Previous</button>
+                <button type="button" id="next" title="The next moment after this point (.)">Next &rarr;</button>
+                <span class="sep"></span>
+                Show
+                <button type="button" data-kind="fall">Falls</button>
+                <button type="button" data-kind="death">Deaths</button>
+                <button type="button" data-kind="def">Defensives</button>
+                <button type="button" data-kind="unmoved">Moved nobody</button>
+                <button type="button" data-kind="go" class="off" title="The go rule before falls, to compare">Old goes</button>
+            </div>
+            <div class="views">
+                <button type="button" id="v-players">Hide players</button>
+                <button type="button" id="v-place">Players under the video</button>
+                <button type="button" id="v-smaller" class="sz" title="Smaller video">&minus;</button>
+                <button type="button" id="v-bigger" class="sz" title="Bigger video">+</button>
+            </div>
+        </div>
     </div>
 
     <div id="drop" class="drop">
@@ -225,36 +285,29 @@
         <div class="nosupport small subtle" style="margin-top:10px">This view needs a newer browser. The timelines below still work.</div>
     </div>
 
-    <div class="offset">
-        @if (! empty($video))
-            Round 1 starts this far into the video, from MindCollector's recording
-        @else
-            Line up: where round 1 starts in the video
-        @endif
-        <button type="button" id="minus">&minus;1s</button>
-        <input id="off" type="range" min="-60" max="900" step="0.1" value="0">
-        <button type="button" id="plus">+1s</button>
-        <span class="v" id="offv">0.0s</span>
-        <button type="button" id="here" title="Use the video's current position as the start of round 1">set from playhead</button>
-    </div>
-    <div class="jump">
-        <button type="button" id="prev" title="The event before this point (,)">&larr; Previous</button>
-        <button type="button" id="next" title="The next event after this point (.)">Next &rarr;</button>
-        <span class="sep"></span>
-        Show
-        <button type="button" data-kind="fall">Falls</button>
-        <button type="button" data-kind="death">Deaths</button>
-        <button type="button" data-kind="def">Defensives</button>
-        <button type="button" data-kind="unmoved">Moved nobody</button>
-        <button type="button" data-kind="go" class="off" title="The go rule before falls, to compare">Old goes</button>
-    </div>
     <div class="legend">
         <b style="background:#2f7d4f"></b> they fell to your pressure <b style="background:#c0392b"></b> you fell to theirs
         <b style="background:#F28B82"></b> a death
         <b style="background:#86efac"></b> your defensive <b style="background:#fca5a5"></b> theirs
         <b style="background:#B3B3B3"></b> a cooldown that moved nobody
-        <span class="subtle">&nbsp;&middot;&nbsp; A fall is someone's health dropping 20+ and the cooldowns and control that did it. Darker = more stacked; striped = control with no cooldown; gold edge = they died. Click the timeline to go to that point, or an event to see it from 3s before.</span>
     </div>
+    {{-- Open only when the video has to be lined up by hand; a recording the app made, or a YouTube upload, knows its own start. --}}
+    <details class="fold" {{ empty($video) && empty($noVideo) ? 'open' : '' }}>
+        <summary>{{ empty($noVideo) ? 'How to read it, and lining up the video' : 'How to read it' }}</summary>
+        <div class="explain">A fall is someone's health dropping 20+ and the cooldowns and control that did it. Darker = more stacked; striped = control with no cooldown; gold edge = they died. Click the timeline to go to that point, or a moment to see it from 3s before. The , and . keys step back and forward.</div>
+        <div class="offset">
+            @if (! empty($video))
+                Round 1 starts this far into the video, from MindCollector's recording
+            @else
+                Line up: where round 1 starts in the video
+            @endif
+            <button type="button" id="minus">&minus;1s</button>
+            <input id="off" type="range" min="-60" max="900" step="0.1" value="0">
+            <button type="button" id="plus">+1s</button>
+            <span class="v" id="offv">0.0s</span>
+            <button type="button" id="here" title="Use the video's current position as the start of round 1">set from playhead</button>
+        </div>
+    </details>
 
     @foreach ($rounds as $i => $r)
         @php
@@ -336,6 +389,9 @@
                 @endfor
             </div>
 
+            {{-- One round: its moments open. Several (a Solo Shuffle): each opens as the video reaches it. --}}
+            <details class="evs" {{ count($rounds) === 1 ? 'open' : '' }}>
+            <summary>Moments ({{ collect($events)->where('kind', '!=', 'go')->count() }})</summary>
             <table class="ev">
                 @forelse ($events as $e)
                     <tr data-t="{{ $e['t'] }}" data-kind="{{ $e['kind'] }}">
@@ -386,6 +442,7 @@
                     <tr><td class="muted small">Nothing measured in this round.</td></tr>
                 @endforelse
             </table>
+            </details>
         </div>
     @endforeach
 
@@ -442,7 +499,6 @@
     if (recordedEarly && recordedEarly.youtube) {
         var holder = document.createElement('div');
         holder.id = 'yt';
-        holder.style.cssText = 'width:100%;aspect-ratio:16/9;max-height:46vh;background:#000';
         vid.parentNode.insertBefore(holder, vid);
         vid.style.display = 'none';
         var ytPlayer = null, ytTimer = null;
@@ -530,6 +586,40 @@
         if (offRow) { offRow.style.display = 'none'; }
         window.setTimeout(function () { clock.emit('timeupdate'); }, 0);
     }
+
+    // The layout (2026-10-29): the video's height, and the players beside it, under it, or folded
+    // away. Remembered per viewer; a window too narrow for them beside puts them under.
+    var SIZES = [40, 50, 60, 70, 82];
+    var view = {};
+    try { view = JSON.parse(window.localStorage.getItem('watch-view') || '{}') || {}; } catch (e) { view = {}; }
+    var vPlayers = document.getElementById('v-players'), vPlace = document.getElementById('v-place'),
+        vSmaller = document.getElementById('v-smaller'), vBigger = document.getElementById('v-bigger');
+    function layout() {
+        var roomy = !blankMode && stage.parentNode.clientWidth >= 1100;
+        var beside = roomy && view.place !== 'under';
+        var size = typeof view.size === 'number' ? view.size : (beside ? 2 : 1);
+        size = Math.max(0, Math.min(SIZES.length - 1, size));
+        stage.className = 'stage' + (beside ? ' beside' : '') + (blankMode ? ' clockonly' : '') + (view.players === false ? ' noplayers' : '');
+        document.documentElement.style.setProperty('--vh', SIZES[size] + 'vh');
+        vPlayers.textContent = view.players === false ? 'Show players' : 'Hide players';
+        vPlace.style.display = roomy && view.players !== false ? '' : 'none';
+        vPlace.textContent = beside ? 'Players under the video' : 'Players beside the video';
+        vSmaller.style.display = vBigger.style.display = blankMode ? 'none' : '';
+        vSmaller.disabled = size === 0;
+        vBigger.disabled = size === SIZES.length - 1;
+        return size;
+    }
+    function remember(change) {
+        for (var k in change) { view[k] = change[k]; }
+        try { window.localStorage.setItem('watch-view', JSON.stringify(view)); } catch (e) {}
+        layout();
+    }
+    vPlayers.addEventListener('click', function () { remember({ players: view.players === false }); });
+    vPlace.addEventListener('click', function () { remember({ place: stage.className.indexOf('beside') >= 0 ? 'under' : 'beside', size: undefined }); });
+    vSmaller.addEventListener('click', function () { remember({ size: layout() - 1 }); });
+    vBigger.addEventListener('click', function () { remember({ size: layout() + 1 }); });
+    window.addEventListener('resize', layout);
+    layout();
 
     file.addEventListener('change', function () {
         if (!file.files || !file.files[0]) { return; }
@@ -773,8 +863,11 @@
             if (into >= 0 && into <= r.dur) {
                 r.head.style.display = 'block';
                 r.head.style.left = (100 * into / r.dur) + '%';
+                // Reaching a round opens its moments, once each time it is reached; closing it stays closed.
+                if (!r.reached) { r.reached = true; r.el.querySelector('details.evs').open = true; }
             } else {
                 r.head.style.display = 'none';
+                r.reached = false;
             }
             var rows = r.el.querySelectorAll('tr[data-t]'), now = null;
             for (var k = 0; k < rows.length; k++) {

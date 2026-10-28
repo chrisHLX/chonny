@@ -68,7 +68,9 @@ class VideoController extends Controller
         $v = $this->find($request, $video);
         abort_unless($v->watchable() || $this->owns($request, $v), 404);
         $measured = (string) ArenaRound::where('user_id', $v->user_id)->where('lobby_id', $v->lobby_id)->max('updated_at');
-        $html = Cache::remember('video-timeline:'.$v->id.':'.md5($measured.'|'.$v->updated_at), now()->addHours(6),
+        // The view's own time is in the key, so a changed page is drawn afresh after a deploy.
+        $view = (string) @filemtime(resource_path('views/desktop/watch.blade.php'));
+        $html = Cache::remember('video-timeline:'.$v->id.':'.md5($measured.'|'.$v->updated_at.'|'.$view), now()->addHours(6),
             fn () => $watch->html($v->user_id, $v->lobby_id, null, null, public: true));
         abort_if($html === null, 404);
 

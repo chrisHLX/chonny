@@ -62,6 +62,15 @@
   set on the owner's page or Your games > Videos). What YouTube says (privacy, processing, views) is
   asked by `YouTubeVideoService::refresh`: the owner's upload link if Google lets that scope read, a
   plain API key (`YOUTUBE_API_KEY`) if set, else oEmbed (playable or not, no views).
+  **Layout (2026-10-29):** the page's heading is two short lines and on a wide screen the frame takes
+  the rest of the window, because watching and reading the timeline at once was hard under the old
+  tall heading. Inside the Watch page the players sit beside the video when the window is 1,100px+
+  wide, under it in their own scrolling box otherwise, and fold away; the video's height has five
+  steps. All of that is remembered per viewer (`localStorage` `watch-view`) and applies to every Watch
+  page, the app's and Your games' too. Previous/Next and the Show filters stay under the video as it
+  scrolls; how to read it and the line-up fold, open only when the video must be lined up by hand; a
+  round's moments fold, and in a Solo Shuffle each opens as the video reaches it. The timeline's cache
+  key carries the view file's time, so a deploy redraws it.
 - `/wow/match-analysis` — **redirects to `/wow/coach` since 2026-10-05** (Improve replaces it; the
   component and its service are kept, unrouted). Before that `MatchAnalysis`, **"Your analysis"**: a player's own uploaded games combined
   into the wins-against-losses read (review table, who you played, what differed, a takeaway for your

@@ -55,7 +55,7 @@ class VideoPagesTest extends TestCase
         $this->video($owner, 'pubVideo001', 'public', str_repeat('a', 32));
 
         $page = $this->get(route('videos.show', 'pubVideo001'))->assertOk();
-        $page->assertSee('Disc Priest', false)->assertSee('Copy link')->assertDontSee('Your video.');
+        $page->assertSee('Disc Priest', false)->assertSee('Copy link')->assertDontSee('Change it on YouTube');
         $timeline = $this->get(route('videos.timeline', 'pubVideo001'))->assertOk()->getContent();
         foreach (self::NAMES as $name) {
             $this->assertStringNotContainsString($name, $timeline, "{$name} is on the public timeline");
@@ -84,7 +84,7 @@ class VideoPagesTest extends TestCase
         // Someone else cannot change it.
         $this->actingAs(User::factory()->create())->post(route('coach.videos.listed', 'unlVideo001'), ['listed' => 1])->assertNotFound();
 
-        $this->actingAs($owner)->get(route('videos.show', 'unlVideo001'))->assertSee('Your video.')->assertSee('Unlisted on YouTube');
+        $this->actingAs($owner)->get(route('videos.show', 'unlVideo001'))->assertSee('Change it on YouTube')->assertSee('Unlisted on YouTube');
         $this->actingAs($owner)->post(route('coach.videos.listed', 'unlVideo001'), ['listed' => 1])->assertRedirect();
         $this->get(route('videos'))->assertSee('unlVideo001');
     }
