@@ -619,7 +619,9 @@ class GameCardService
             ];
         }
 
-        return ['players' => $rows, 'partial' => $with->count() < $rounds->count()];
+        return ['players' => $rows, 'partial' => $with->count() < $rounds->count(),
+            // Counted as WoW's meter counts damage (RoundAnalysisService version 17) in every round shown.
+            'meter' => $with->every(fn (ArenaRound $r) => ($this->payload($r)['analysis']['version'] ?? 0) >= 17)];
     }
 
     /**

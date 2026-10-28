@@ -3,7 +3,7 @@
     player; clicking it opens their abilities. IE11: the toggle is plain onclick and style.display.
 --}}
 <div class="section">
-    <div class="label">Damage and healing <span class="aside">onto players only, not pets or totems; click a player for their abilities</span></div>
+    <div class="label">Damage and healing <span class="aside">click a player for their abilities</span></div>
     <div class="box">
         @if ($b === null)
             <span class="muted">Not measured for this game yet. Run a sync with <b>--fresh</b> to measure older games again.</span>
@@ -47,5 +47,9 @@
             @endif
         @endif
     </div>
-    <div class="small subtle" style="margin-top:6px">How it is counted: damage is every hit onto the other team's players, with a pet's hits counted to its owner. Damage a shield absorbed and damage onto pets and totems are left out, so it reads lower than in-game meters, most against a Disc Priest. Healing is what landed on your team without overhealing. Absorbs are shields that took damage.</div>
+    @if ($b === null || $b['meter'])
+        <div class="small subtle" style="margin-top:6px">How it is counted: damage is every hit on the other team, as WoW's damage meter counts it. Hits a shield soaked count, and so do hits on their pets and totems. A pet's damage goes to its owner. Healing is what landed on your team without overhealing. Absorbs are shields that took damage.</div>
+    @else
+        <div class="small subtle" style="margin-top:6px">How it is counted: this game was measured before 28 Oct, when damage left out hits a shield soaked and hits on pets and totems, so it reads lower than WoW's meter. Healing is what landed on your team without overhealing. Absorbs are shields that took damage.</div>
+    @endif
 </div>

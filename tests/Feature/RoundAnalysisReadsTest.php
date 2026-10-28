@@ -103,6 +103,42 @@ class RoundAnalysisReadsTest extends TestCase
         $this->assertContains('alone', $rows['Frenzied Regeneration']['reasons'], 'pressed while the healer was locked out');
     }
 
+    public function test_damage_is_counted_as_the_meter_counts_it(): void
+    {
+        $at = fn (string $clock, string $event) => "10/28/2026 14:51:{$clock}  {$event}";
+        $me = 'Player-1-AAA';
+        $them = 'Player-2-BBB';
+        $enemy = "{$them},\"Enemy-Realm-US\",0x548,0x80000000";
+        $onMe = "{$me},\"Me-Realm-US\",0x512,0x80000000";
+        $lines = [
+            // 1,000 to health and 200 into a shield.
+            $at('01.000', "SPELL_DAMAGE,{$enemy},{$onMe},458128,\"Festering Scythe\",0x20,{$me},0000000000000000,1111805,1115920,794,3819,3162,3359,0,2091,0,245744,273000,0,1310.52,805.23,0,2.5993,344,1000,1300,-1,32,0,0,200,nil,nil,nil,AOE"),
+            // A hit a shield took whole.
+            $at('02.000', "SPELL_MISSED,{$enemy},{$onMe},52212,\"Death and Decay\",0x20,ABSORB,nil,500,557,nil,AOE"),
+            // Onto a pet on our side (friendly to the logger).
+            $at('03.000', "SPELL_DAMAGE,{$enemy},Creature-0-1-1-1-1-0000AAAA,\"Spirit Wolf\",0x1114,0x80000000,52212,\"Death and Decay\",0x20,Creature-0-1-1-1-1-0000AAAA,{$me},546780,560600,12681,12681,2481,0,0,0,3,100,100,0,1310.50,810.69,0,0.7438,344,300,400,-1,32,0,0,0,nil,nil,nil,AOE"),
+            // One swing a shield took whole, logged both ways: counted once.
+            $at('04.000', "SWING_MISSED,{$enemy},{$onMe},ABSORB,nil,700,900,nil"),
+            $at('04.000', "SWING_DAMAGE_LANDED,{$enemy},{$onMe},{$me},0000000000000000,1138473,1138473,466,4197,2218,3605,0,149339,0,226808,250000,0,1314.04,813.39,0,3.1954,340,0,900,-1,1,0,0,700,nil,nil,nil"),
+            // A pet's swing logged only as the miss.
+            $at('05.000', "SWING_MISSED,Pet-0-1-1-1-1-0000BBBB,\"Ghoul\",0x1148,0x80000000,{$onMe},ABSORB,nil,50,60,nil"),
+            // Ours onto their totem (hostile to the logger).
+            $at('06.000', "SPELL_DAMAGE,{$me},\"Me-Realm-US\",0x512,0x80000000,Creature-0-1-1-1-2-0000CCCC,\"Totem\",0x2148,0x80000000,51505,\"Lava Burst\",0x4,Creature-0-1-1-1-2-0000CCCC,{$them},5000,5000,0,0,0,0,0,0,3,100,100,0,1310.50,810.69,0,0.7438,344,400,400,-1,4,0,0,0,nil,nil,nil,ST"),
+        ];
+        $roster = [$me => [], $them => []];
+        $sideOf = fn (?string $g) => $g === $me ? 'us' : ($g === $them ? 'them' : null);
+        $credit = fn (string $src) => str_starts_with($src, 'Pet-') ? $them : $src;
+
+        $read = $this->invokePrivate('secondPass', [$lines, $roster]);
+        [$dmg, , , , , $heals, $absorbs, $casts, $swingOnly] = $read;
+        $out = $this->invokePrivate('breakdown', [$roster, $sideOf, $credit, array_merge($dmg, $swingOnly), $read[15], $heals, $absorbs, $casts, [], [], ['durationInSeconds' => 60]]);
+
+        $by = fn (string $g) => array_column($out[$g]['damage'], 'amount', 'spell');
+        $this->assertSame(['Festering Scythe' => 1200, 'Death and Decay' => 800, 'Melee' => 700, 'pet: Melee' => 50], $by($them));
+        $this->assertSame(['Lava Burst' => 400], $by($me));
+        $this->assertSame(1000, $dmg[0]['amount'], 'every other measure still reads only what reached health');
+    }
+
     public function test_habits_read_off_target_control_kicks_a_pets_target_and_failed_casts(): void
     {
         $roster = ['P-1' => [], 'P-2' => [], 'E-1' => [], 'E-2' => []];

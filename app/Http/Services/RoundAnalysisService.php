@@ -87,8 +87,12 @@ class RoundAnalysisService
      * again (timeline()): every player's casts (time, spell, the player it went on), each player's
      * health a second at a time from damage and heal events, every crowd control span, and every
      * defensive buff span on a player (tagged defensive and not also offensive, 2s or longer).
+     * 17 (2026-10-28): the breakdown's damage is counted as WoW's meter counts it (breakdown()): the
+     * part of each hit a shield took, hits a shield took whole, and damage onto the other team's
+     * pets, totems and summons. Damage totals, by round and in the population norms, read higher
+     * than version 16, most against a Disc Priest. Every other measure is unchanged.
      */
-    public const VERSION = 16;
+    public const VERSION = 17;
 
     /** A priority cast is taken as stopped or finished when that happens this long after it began. */
     private const CAST_WINDOW = 3.5;
@@ -168,7 +172,7 @@ class RoundAnalysisService
         }
         unset($c);
 
-        [$dmg, $owner, $buffs, $interrupts, $end, $heals, $absorbs, $casts, $swingOnly, $dispelEvents, $debuffSpans, $named, $failed, $starts, $pos] = $this->secondPass($lines, $roster);
+        [$dmg, $owner, $buffs, $interrupts, $end, $heals, $absorbs, $casts, $swingOnly, $dispelEvents, $debuffSpans, $named, $failed, $starts, $pos, $meter] = $this->secondPass($lines, $roster);
         $this->classifyContextual($tl, $dmg, $sideOf);
         $credit = function (string $src) use ($roster, $owner) {
             for ($i = 0; $i < 3 && ! isset($roster[$src]) && isset($owner[$src]); $i++) {
@@ -251,7 +255,7 @@ class RoundAnalysisService
             'overlaps' => $this->overlaps($tl, $buffs, $sideOf, $firstDeath),
             'kicks' => $this->kicks($interrupts, $sideOf, $credit, $healers, $goes),
             'lockout' => array_map(fn ($iv) => round($this->len($iv), 1), $locked),
-            'breakdown' => $this->breakdown($roster, $sideOf, $credit, array_merge($dmg, $swingOnly), $heals, $absorbs, $casts, $locked, $deaths, $metadata),
+            'breakdown' => $this->breakdown($roster, $sideOf, $credit, array_merge($dmg, $swingOnly), $meter, $heals, $absorbs, $casts, $locked, $deaths, $metadata),
             'checks' => $this->checks($tl, $roster, $sideOf, $deaths, $metadata, $this->overlaps($tl, $buffs, $sideOf, $firstDeath)),
             'dispels' => $this->dispels($dispelEvents, $sideOf, $credit),
             'debuffs' => $this->debuffs($debuffSpans, $sideOf, $credit),
@@ -786,6 +790,23 @@ class RoundAnalysisService
         // CombatantThroughputService does.
         $landed = [];
         $swingOnly = [];
+        // What only the breakdown counts, as a damage meter does (version 17): hits a shield took
+        // whole, and damage onto the other team's pets, totems and summons. Kept apart from $dmg,
+        // which every other measure reads as damage that reached a player's health.
+        $meter = [];
+        $swingOther = [];
+        // A swing a shield took whole is logged as SWING_MISSED ABSORB, as a swing damage line of 0
+        // with the absorbed amount, or as both (908 of 1,945 misses had the twin, over 40 logs; pets'
+        // swings only ever the miss). The damage line counts; a miss counts only without one.
+        $swingMissed = [];
+        $swingSeen = [];
+        // A unit that is not a player is on a side by its reaction to the logging player: hostile
+        // (0x40) is the other team, friendly (0x10) ours, the same 'us' and 'them' as $sideOf.
+        $sideByFlags = function (string $flags): ?string {
+            $f = hexdec($flags);
+
+            return ($f & 0x40) ? 'them' : (($f & 0x10) ? 'us' : null);
+        };
         $dispels = [];
         $debuffs = [];
         $openDebuffs = [];
@@ -931,8 +952,31 @@ class RoundAnalysisService
                 $f = str_getcsv($body);
                 $place($f, 9);
                 $amount = $f[count($f) - 10] ?? null;
+                $absorbed = (int) ($f[count($f) - 4] ?? 0);
+                $key = strtok($line, ' ').'|'.$s.'|'.$f[1].'|'.$f[5].'|'.$amount;
+                $swingSeen[strtok($line, ' ').'|'.$s.'|'.$f[1].'|'.$f[5]] = true;
                 if (is_numeric($amount) && isset($roster[$f[5]]) && $f[1] !== $f[5]) {
-                    $swingOnly[strtok($line, ' ').'|'.$s.'|'.$f[1].'|'.$f[5].'|'.$amount] = ['t' => $t, 'src' => $f[1], 'dst' => $f[5], 'amount' => (int) $amount, 'spell' => 'Melee'];
+                    $swingOnly[$key] = ['t' => $t, 'src' => $f[1], 'dst' => $f[5], 'amount' => (int) $amount, 'absorbed' => $absorbed, 'spell' => 'Melee'];
+                } elseif (is_numeric($amount) && ! isset($roster[$f[5]]) && ($side = $sideByFlags($f[7] ?? '0')) !== null) {
+                    $swingOther[$key] = ['src' => $f[1], 'dst' => $f[5], 'dstSide' => $side, 'amount' => (int) $amount + $absorbed, 'spell' => 'Melee'];
+                }
+
+                continue;
+            }
+            if (in_array($event, ['SPELL_MISSED', 'SPELL_PERIODIC_MISSED', 'RANGE_MISSED', 'SWING_MISSED'], true) && str_contains($body, ',ABSORB,')) {
+                // ...,ABSORB,isOffHand,amount absorbed,... (the miss type is field 9 on a swing, 12 on a spell)
+                $f = str_getcsv($body);
+                $swing = $event === 'SWING_MISSED';
+                $at = $swing ? 9 : 12;
+                $amount = $f[$at + 2] ?? null;
+                if (($f[$at] ?? '') === 'ABSORB' && is_numeric($amount) && $f[1] !== $f[5]) {
+                    $side = isset($roster[$f[5]]) ? null : $sideByFlags($f[7] ?? '0');
+                    $hit = ['src' => $f[1], 'dst' => $f[5], 'dstSide' => $side, 'amount' => (int) $amount, 'spell' => $swing ? 'Melee' : $f[10]];
+                    if ($swing && (isset($roster[$f[5]]) || $side !== null)) {
+                        $swingMissed[strtok($line, ' ').'|'.$s.'|'.$f[1].'|'.$f[5]] = $hit;
+                    } elseif (isset($roster[$f[5]]) || $side !== null) {
+                        $meter[] = $hit;
+                    }
                 }
 
                 continue;
@@ -944,17 +988,25 @@ class RoundAnalysisService
             $swing = str_starts_with($event, 'SWING');
             $place($f, $swing ? 9 : 12);
             $amount = $f[count($f) - ($swing ? 10 : 11)] ?? null;
-            if (! is_numeric($amount) || ! isset($roster[$f[5]]) || $f[1] === $f[5]) {
+            // The part of the hit a shield took (a meter counts it; health did not lose it).
+            $absorbed = (int) ($f[count($f) - ($swing ? 4 : 5)] ?? 0);
+            if ($swing && is_numeric($amount)) {
+                $landed[strtok($line, ' ').'|'.$s.'|'.$f[1].'|'.$f[5].'|'.$amount] = true;
+                $swingSeen[strtok($line, ' ').'|'.$s.'|'.$f[1].'|'.$f[5]] = true;
+            }
+            if (is_numeric($amount) && ! isset($roster[$f[5]]) && $f[1] !== $f[5] && ($side = $sideByFlags($f[7] ?? '0')) !== null) {
+                $meter[] = ['src' => $f[1], 'dst' => $f[5], 'dstSide' => $side, 'amount' => (int) $amount + $absorbed, 'spell' => $swing ? 'Melee' : $f[10]];
+
                 continue;
             }
-            if ($swing) {
-                $landed[strtok($line, ' ').'|'.$s.'|'.$f[1].'|'.$f[5].'|'.$amount] = true;
+            if (! is_numeric($amount) || ! isset($roster[$f[5]]) || $f[1] === $f[5]) {
+                continue;
             }
             $base = $swing ? 9 : 12;
             $cur = $f[$base + 2] ?? null;
             $max = $f[$base + 3] ?? null;
             $dmg[] = [
-                't' => $t, 'src' => $f[1], 'dst' => $f[5], 'amount' => (int) $amount,
+                't' => $t, 'src' => $f[1], 'dst' => $f[5], 'amount' => (int) $amount, 'absorbed' => $absorbed,
                 'spell' => $swing ? 'Melee' : $f[10],
                 // The spell's school mask (1 physical; any other bit magic). A melee swing is physical.
                 'school' => $swing ? 1 : (int) hexdec((string) ($f[11] ?? '0x1')),
@@ -965,23 +1017,29 @@ class RoundAnalysisService
         }
 
         $swingOnly = array_values(array_diff_key($swingOnly, $landed));
+        $meter = array_merge($meter, array_values(array_diff_key($swingOther, $landed)), array_values(array_diff_key($swingMissed, $swingSeen)));
         // A debuff still up when the log stops ran to the end of the round.
         foreach ($openDebuffs as $o) {
             $debuffs[] = $o + ['to' => $t];
         }
 
-        return [$dmg, $owner, $buffs, $interrupts, $end, $heals, $absorbs, $casts, $swingOnly, $dispels, $debuffs, $named, $failed, $starts, $pos];
+        return [$dmg, $owner, $buffs, $interrupts, $end, $heals, $absorbs, $casts, $swingOnly, $dispels, $debuffs, $named, $failed, $starts, $pos, $meter];
     }
 
     // ------------------------------------------------------------------ breakdown and checks
 
     /**
-     * Each player's output by ability: damage onto the other team's players, healing (effective and
-     * overheal) and absorbs onto their own team, and time spent not pressing anything. A pet's
-     * ability is credited to its owner as "pet: Name". The top abilities are kept and the rest summed,
-     * so a stored round stays small.
+     * Each player's output by ability: damage onto the other team, healing (effective and overheal)
+     * and absorbs onto their own team, and time spent not pressing anything. A pet's ability is
+     * credited to its owner as "pet: Name". The top abilities are kept and the rest summed, so a
+     * stored round stays small.
+     *
+     * Damage is counted as an in-game meter counts it (version 17): the part of each hit a shield
+     * took, hits a shield took whole, and damage onto the other team's pets, totems and summons
+     * ($meter). Until version 16 it was only what reached a player's health, which read far under
+     * the meter against a Disc Priest.
      */
-    private function breakdown(array $roster, callable $sideOf, callable $credit, array $dmg, array $heals, array $absorbs,
+    private function breakdown(array $roster, callable $sideOf, callable $credit, array $dmg, array $meter, array $heals, array $absorbs,
         array $casts, array $locked, array $deaths, array $metadata): array
     {
         $out = [];
@@ -996,6 +1054,13 @@ class RoundAnalysisService
         foreach ($dmg as $x) {
             $who = $credit($x['src']);
             if (isset($roster[$who]) && $sideOf($x['dst']) !== null && $sideOf($x['dst']) !== $sideOf($who)) {
+                $add($who, 'damage', $label($x['src'], $x['spell']), $x['amount'] + ($x['absorbed'] ?? 0));
+            }
+        }
+        foreach ($meter as $x) {
+            $who = $credit($x['src']);
+            $side = $x['dstSide'] ?? $sideOf($x['dst']);
+            if (isset($roster[$who]) && $side !== null && $side !== $sideOf($who)) {
                 $add($who, 'damage', $label($x['src'], $x['spell']), $x['amount']);
             }
         }
