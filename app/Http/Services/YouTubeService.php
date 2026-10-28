@@ -163,9 +163,15 @@ class YouTubeService
             $theirs = $this->comp($players->where('side', 'them'));
             $won = (bool) ($first['won'] ?? false);
             $mmr = $first['mmr']['us'] ?? null;
-            $title = implode(' · ', array_filter([
-                "{$ours} vs {$theirs}", $mmr ? number_format((int) $mmr).' MMR' : null, $pov, $won ? 'Win' : 'Loss',
-            ]));
+            // YouTube takes 100 characters: three specs a side can fill them, so the POV goes first and
+            // then the MMR, rather than cutting off the result (28 Oct: "... · Disc POV ·").
+            $parts = ['comp' => "{$ours} vs {$theirs}", 'mmr' => $mmr ? number_format((int) $mmr).' MMR' : null, 'pov' => $pov, 'result' => $won ? 'Win' : 'Loss'];
+            foreach (['pov', 'mmr'] as $drop) {
+                if (mb_strlen(implode(' · ', array_filter($parts))) > 100) {
+                    $parts[$drop] = null;
+                }
+            }
+            $title = implode(' · ', array_filter($parts));
             $summary = $this->specs($players->where('side', 'us')).' vs '.$this->specs($players->where('side', 'them'))
                 .', '.($rounds->first()->bracket ?? '3v3').', '.($won ? 'won' : 'lost')
                 .($playedAt ? ' · '.$playedAt->format('j M Y') : '')
@@ -257,7 +263,7 @@ class YouTubeService
     }
 
     /** "Beast Mastery Hunter" -> "BM", or "BM Hunter" with its class. */
-    private function short(string $spec, bool $withClass = false): string
+    public function short(string $spec, bool $withClass = false): string
     {
         foreach (['Death Knight', 'Demon Hunter', 'Druid', 'Evoker', 'Hunter', 'Mage', 'Monk', 'Paladin', 'Priest', 'Rogue', 'Shaman', 'Warlock', 'Warrior'] as $class) {
             if (str_ends_with($spec, ' '.$class)) {

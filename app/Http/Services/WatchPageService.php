@@ -139,13 +139,15 @@ class WatchPageService
      *
      * @param  array{name: string, url: string, started: float, rounds?: array<int, float>}|null  $recording
      * @param  array<string, ?string>|null  $app  the desktop app's links (mc-app://...)
+     * @param  bool  $public  for anyone (a shared video, VideoController): every name swapped for its spec
      */
-    public function html(int $userId, string $lobby, ?array $recording = null, ?array $app = null): ?string
+    public function html(int $userId, string $lobby, ?array $recording = null, ?array $app = null, bool $public = false): ?string
     {
         $rounds = ArenaRound::where('user_id', $userId)->where('lobby_id', $lobby)->get();
         if ($rounds->isEmpty()) {
             return null;
         }
+        $names = $public ? $this->relabel($rounds) : [];
         // Icons as /storage/...: these pages are shown with the site as their base (DesktopAsset).
         config(['desktop.web_assets' => true]);
         // Uploaded to the player's YouTube channel from the app (2026-10-26): played from YouTube,
@@ -166,7 +168,88 @@ class WatchPageService
             return null;
         }
 
-        return view('desktop.watch', $page + ['app' => $app, 'noVideo' => $recording === null])->render();
+        $html = view('desktop.watch', $page + ['app' => $app, 'noVideo' => $recording === null, 'public' => $public])->render();
+
+        return $public ? $this->scrub($html, $names) : $html;
+    }
+
+    /**
+     * A page anyone can open names specs, never players, as the video's own title does (2026-10-28):
+     * each round's players are relabelled in memory before anything reads them ("Disc Priest", and
+     * "Their Disc Priest" when both teams have one). Nothing is saved.
+     *
+     * @param  Collection<int, ArenaRound>  $rounds
+     * @return array<string, array{label: string, spells: array<string, bool>}> each real name (whole and first), for scrub()
+     */
+    private function relabel(Collection $rounds): array
+    {
+        $youtube = app(YouTubeService::class);
+        $names = [];
+        foreach ($rounds as $round) {
+            $p = is_string($round->payload) ? json_decode($round->payload, true) : (array) $round->payload;
+            $nested = isset($p['analysis']);
+            $a = $nested ? $p['analysis'] : $p;
+            if (! is_array($a) || empty($a['players'])) {
+                continue;
+            }
+            $base = array_map(fn ($pl) => $youtube->short((string) ($pl['spec'] ?? '?'), true), $a['players']);
+            $counts = array_count_values($base);
+            $labels = [];
+            $taken = [];
+            foreach ($a['players'] as $i => $pl) {
+                $label = $counts[$base[$i]] > 1 && ($pl['side'] ?? null) === 'them' ? 'Their '.$base[$i] : $base[$i];
+                for ($n = 2; isset($taken[$label]); $n++) {
+                    $label = $base[$i].' '.$n;
+                }
+                $taken[$label] = true;
+                $real = (string) ($pl['name'] ?? '');
+                $labels[$real] = $label;
+                $labels[explode('-', $real)[0]] = $label;
+                $a['players'][$i]['name'] = $label;
+            }
+            foreach ($a['deaths'] ?? [] as $d => $death) {
+                foreach ($death['defensives30s'] ?? [] as $k => $row) {
+                    if (isset($row['who'], $labels[$row['who']])) {
+                        $a['deaths'][$d]['defensives30s'][$k]['who'] = $labels[$row['who']];
+                    }
+                }
+            }
+            // Words of the spells pressed in the round: a player called "Bear" must not turn Bear Form into a label.
+            $spells = [];
+            foreach ($a['timeline']['casts'] ?? [] as $list) {
+                foreach ($list as $c) {
+                    foreach (preg_split('/[^\pL]+/u', (string) ($c[1] ?? '')) as $w) {
+                        $spells[$w] = true;
+                    }
+                }
+            }
+            foreach ($labels as $real => $label) {
+                if ($real !== '') {
+                    $names[$real] = ['label' => $label, 'spells' => $spells];
+                }
+            }
+            $round->payload = $nested ? ['analysis' => $a] + $p : $a;
+        }
+
+        return $names;
+    }
+
+    /** Any real name the relabelling missed, swapped on the finished page: whole names always, a first name unless a spell uses the word. */
+    private function scrub(string $html, array $names): string
+    {
+        uksort($names, fn ($a, $b) => strlen($b) <=> strlen($a));
+        foreach ($names as $real => ['label' => $label, 'spells' => $spells]) {
+            if (mb_strlen($real) < 3 || (! str_contains($real, '-') && isset($spells[$real]))) {
+                continue;
+            }
+            $html = preg_replace('/(?<![\pL\pN])'.preg_quote($real, '/').'(?![\pL\pN])/u', $label, $html);
+            // Inside the page's JSON a name with accents is escaped: "Nearó" is "Nearó".
+            if (($escaped = trim(json_encode($real), '"')) !== $real) {
+                $html = str_replace($escaped, $label, $html);
+            }
+        }
+
+        return $html;
     }
 
     /**

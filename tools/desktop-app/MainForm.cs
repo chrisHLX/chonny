@@ -566,7 +566,7 @@ internal sealed class MainForm : Form
             rows.AddRange(VideoRows());
             // Only once the website has YouTube set up (its index says so): until then it could only say "not yet".
             if (rows.Count > 0 && _index?.RootElement is { } ix && ix.TryGetProperty("youtube", out var yt) && yt.ValueKind == System.Text.Json.JsonValueKind.True)
-                rows.Insert(0, new LibraryRow("Upload to YouTube…", "Pick games to send to your channel, with titles and chapters", null, 0, YouTubeAction));
+                rows.Insert(0, new LibraryRow("YouTube: upload and share…", "Send games to your channel, and see who can watch the ones there, their views and their pages", null, 0, YouTubeAction));
             if (rows.Count == 0)
                 rows.Add(_settings.RecordGames
                     ? new LibraryRow("No videos yet", "Each arena game you play is recorded with OBS")

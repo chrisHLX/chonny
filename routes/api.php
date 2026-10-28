@@ -20,6 +20,7 @@ Route::post('/coach/players', [\App\Http\Controllers\Api\CoachAppController::cla
 // Uploading a game to the player's own YouTube channel (CoachYouTubeController, 2026-10-26).
 Route::post('/coach/youtube/prepare', [\App\Http\Controllers\Api\CoachYouTubeController::class, 'prepare'])->middleware('throttle:30,1,app-youtube')->name('api.coach.youtube.prepare');
 Route::post('/coach/youtube/uploaded', [\App\Http\Controllers\Api\CoachYouTubeController::class, 'uploaded'])->middleware('throttle:30,1,app-youtube')->name('api.coach.youtube.uploaded');
+Route::get('/coach/youtube/videos', [\App\Http\Controllers\Api\CoachYouTubeController::class, 'videos'])->middleware('throttle:30,1,app-youtube-videos')->name('api.coach.youtube.videos');
 
 // The desktop app reading the player's pages back, with the same key. See CoachPagesController.
 Route::get('/coach/index', [CoachPagesController::class, 'index'])->name('api.coach.index');

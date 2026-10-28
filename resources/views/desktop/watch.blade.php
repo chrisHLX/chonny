@@ -686,7 +686,7 @@
         ['us', 'them'].forEach(function (side) {
             var col = document.createElement('div');
             col.className = 'side';
-            col.innerHTML = '<div class="who">' + (side === 'us' ? 'Your team' : 'Their team') + '</div>';
+            col.innerHTML = '<div class="who">' + (side === 'us' ? @js(! empty($public) ? 'Recording team' : 'Your team') : 'Their team') + '</div>';
             r.frames.filter(function (p) { return p.side === side; }).forEach(function (p) {
                 usual = usual || p.usual;
                 var wrap = document.createElement('div');

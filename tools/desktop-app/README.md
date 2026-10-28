@@ -214,6 +214,14 @@ twice and the list says "on YouTube". The player links the channel on the websit
 YouTube). The row appears only when the website's index says `youtube: true` (its Google client set
 up); shipped in 0.6.1 hidden, and to be checked with one real upload before it is relied on.
 
+**Sharing (2026-10-28).** The row is now **YouTube: upload and share…**, and the window has a second
+half, **On your channel**: each uploaded video as the website last heard from YouTube
+(`/api/coach/youtube/videos`): public, unlisted, private or gone, still processing, in the video
+library, its views. **Open its page** and **Copy link** give the game's page on the website
+(`/wow/videos/{id}`, the video with its timeline, names hidden), the one to send to people; **Manage on
+the website** opens Your games > Videos. Each privacy choice says under it what it means for that page:
+a private video plays for nobody else, on YouTube or on the website.
+
 ## To improve later
 
 - **A card sooner after a game (noted 2026-10-27, held until it is quieter).** Measured on a player's game

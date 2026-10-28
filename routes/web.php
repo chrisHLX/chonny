@@ -265,6 +265,16 @@ Route::prefix('wow')->group(function () {
     Route::post('/coach/note', [\App\Http\Controllers\CoachController::class, 'note'])
         ->middleware(['auth', 'throttle:30,1,coach-note'])->name('coach.note');
     Route::post('/coach/pool', [\App\Http\Controllers\CoachController::class, 'pool'])->middleware('auth')->name('coach.pool');
+    // Games on video (VideoController, 2026-10-28): the games players uploaded to YouTube from the app,
+    // each with its timeline, and a library filtered by comp. Public: a page exists only while YouTube
+    // lets others watch the video, and names specs, never players.
+    Route::get('/videos', [\App\Http\Controllers\VideoController::class, 'index'])->name('videos');
+    Route::get('/videos/{video}', [\App\Http\Controllers\VideoController::class, 'show'])
+        ->where('video', '[A-Za-z0-9_-]{6,20}')->middleware('throttle:60,1,videos')->name('videos.show');
+    Route::get('/videos/{video}/timeline', [\App\Http\Controllers\VideoController::class, 'timeline'])
+        ->where('video', '[A-Za-z0-9_-]{6,20}')->middleware('throttle:60,1,videos-timeline')->name('videos.timeline');
+    Route::post('/coach/videos/{video}/listed', [\App\Http\Controllers\VideoController::class, 'listed'])
+        ->where('video', '[A-Za-z0-9_-]{6,20}')->middleware('auth')->name('coach.videos.listed');
     // The desktop app's download: unlisted while two players test it. See DesktopAppController.
     // The desktop app (2026-10-11): a public download page and download (the app does nothing until
     // it is connected to an account), and connecting it from the browser. See AppDownloadController.

@@ -37,7 +37,8 @@
 @endphp
 
 <div class="min-h-full py-4 px-4 lg:px-6">
-    <div class="mx-auto space-y-4" style="max-width: 1500px" x-data="{ tab: @js($startTab), file: @js($games[0]['file'] ?? null) }">
+    <div class="mx-auto space-y-4" style="max-width: 1500px" x-data="{ tab: @js($startTab), file: @js($games[0]['file'] ?? null) }"
+         x-init="if (location.hash === '#videos') tab = 'videos'">
         <div class="page-hero !py-6">
             <p class="page-eyebrow">Only you can see this page</p>
             <h1 class="page-title">Your games</h1>
@@ -55,7 +56,7 @@
         </div>
 
         <div class="flex flex-wrap gap-2">
-            @foreach ($pageTabs + ['mirror' => 'Same spec', 'upload' => 'Upload'] as $key => $label)
+            @foreach ($pageTabs + ['mirror' => 'Same spec'] + ($videos->isNotEmpty() || $youtube['configured'] ? ['videos' => 'Videos'] : []) + ['upload' => 'Upload'] as $key => $label)
                 <button type="button" class="coach-tab" :class="tab === '{{ $key }}' && 'on'" @click="tab = '{{ $key }}'">{{ $label }}</button>
             @endforeach
         </div>
@@ -161,6 +162,55 @@
                 </a>
             @empty
                 <p class="text-[13px] text-ink-subtle">No Solo Shuffle lobbies yet. They'll show up once you upload a log with one in it.</p>
+            @endforelse
+        </div>
+
+        {{-- Videos (2026-10-28): the games the app uploaded to YouTube, who can watch each, its views,
+             its page to share, and whether it is in the video library (VideoController). --}}
+        <div x-show="tab === 'videos'" x-cloak class="space-y-2" id="videos">
+            <div class="linear-card p-4">
+                <p class="text-[13px] text-ink-muted">
+                    Each game you upload from the app gets a page with the video and its timeline, which you can send to anyone:
+                    unlisted and public videos play for everyone, private ones only for you. Public ones also go in the
+                    <a href="{{ route('videos') }}" class="text-gold hover:underline">video library</a>, and you can put any
+                    unlisted one there too. Those pages show specs, never names.
+                </p>
+                @if (session('videos_status'))<p class="text-[13px] text-emerald-300 mt-1">{{ session('videos_status') }}</p>@endif
+            </div>
+            @forelse ($videos as $v)
+                <div class="linear-card p-3 flex flex-col md:flex-row gap-3" x-data="{ copied: false }">
+                    <a href="{{ route('videos.show', $v->video_id) }}" class="shrink-0 block rounded-md overflow-hidden bg-black" style="width: 200px; aspect-ratio: 16 / 9">
+                        <img src="https://i.ytimg.com/vi/{{ $v->video_id }}/mqdefault.jpg" alt="" loading="lazy" class="w-full h-full object-cover">
+                    </a>
+                    <div class="flex-1 min-w-0 space-y-1">
+                        <a href="{{ route('videos.show', $v->video_id) }}" class="block text-[14px] text-ink font-bold hover:text-gold-light">{{ $v->game['title'] ?? $v->title ?? 'Arena game' }}</a>
+                        <p class="text-[12.5px] text-ink-muted">@include('videos.partials.meta', ['v' => $v]) &middot; uploaded {{ $v->created_at->diffForHumans() }}</p>
+                        <p class="text-[13px] {{ $v->watchable() ? 'text-ink' : 'text-amber-300' }}">{{ $v->shareLine() }}</p>
+                        @if ($v->views === null && $v->watchable())
+                            <p class="text-[12px] text-ink-subtle">Views show once YouTube has been asked about this video.</p>
+                        @endif
+                    </div>
+                    <div class="flex flex-wrap md:flex-col gap-2 shrink-0 md:items-end">
+                        <a href="{{ route('videos.show', $v->video_id) }}" class="btn-primary text-[13px]">Open its page</a>
+                        @if ($v->watchable())
+                            <button type="button" class="btn-secondary text-[13px]"
+                                    @click="navigator.clipboard.writeText(@js(route('videos.show', $v->video_id))).then(() => { copied = true; setTimeout(() => copied = false, 2000) })">
+                                <span x-show="! copied">Copy link</span><span x-show="copied" x-cloak>Copied</span>
+                            </button>
+                            <form method="POST" action="{{ route('coach.videos.listed', $v->video_id) }}">
+                                @csrf
+                                <input type="hidden" name="listed" value="{{ $v->inLibrary() ? '0' : '1' }}">
+                                <button type="submit" class="btn-ghost text-[13px]">{{ $v->inLibrary() ? 'Take out of the library' : 'Put in the library' }}</button>
+                            </form>
+                        @endif
+                        <a href="https://studio.youtube.com/video/{{ $v->video_id }}/edit" target="_blank" rel="noopener" class="btn-ghost text-[13px]">Change on YouTube &#8599;</a>
+                    </div>
+                </div>
+            @empty
+                <div class="linear-card p-6">
+                    <p class="text-[16px] text-ink font-bold">No videos yet</p>
+                    <p class="text-[14px] text-ink-muted mt-1">In the app's Videos tab, click Upload to YouTube and pick the games to send. They show here once they're up.</p>
+                </div>
             @endforelse
         </div>
 

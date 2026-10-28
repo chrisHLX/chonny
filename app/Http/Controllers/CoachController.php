@@ -40,6 +40,11 @@ class CoachController extends Controller
         $games = collect($index['games'] ?? [])->map(fn ($g, $lobby) => $g + ['file' => $lobby.'.html'])
             ->sortByDesc('playedAt')->values()->all();
         $comps = collect($index['comps'] ?? [])->map(fn ($c, $key) => $c + ['key' => $key])->sortByDesc('games')->values();
+        // The games the app uploaded to YouTube (2026-10-28), with who can watch each and its views.
+        $videos = \App\Models\YoutubeVideo::where('user_id', $user->id)->latest()->get();
+        $service = app(\App\Http\Services\YouTubeVideoService::class);
+        $service->refresh($videos);
+        $videos->each(fn ($v) => $service->ensureSummary($v));
 
         return view('coach.index', [
             'built' => $index !== [],
@@ -56,6 +61,7 @@ class CoachController extends Controller
             'pooled' => $user->pool_opt_out_at === null,
             // Linking YouTube for the app's uploads (2026-10-26); hidden until the site has its client.
             'youtube' => ['configured' => app(\App\Http\Services\YouTubeService::class)->availableTo($user), 'linked' => $user->youtube_linked_at !== null && $user->youtube_token !== null],
+            'videos' => $videos,
         ]);
     }
 

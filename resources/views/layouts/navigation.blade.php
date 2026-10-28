@@ -122,6 +122,15 @@
             Leaderboards
         </a>
 
+        {{-- Games on video (2026-10-28): players' uploaded games with their timelines, filtered by comp. --}}
+        <a href="{{ route('videos') }}"
+           class="sidebar-item {{ request()->routeIs('videos', 'videos.show') ? 'active' : '' }}">
+            <svg class="w-[18px] h-[18px] shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M15 10l4.55-2.28A1 1 0 0121 8.62v6.76a1 1 0 01-1.45.9L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"/>
+            </svg>
+            Videos
+        </a>
+
         {{-- Player lookup (2026-10-19): any character's ratings, exp, gear and talents. --}}
         <a href="{{ route('players.search') }}" wire:navigate
            class="sidebar-item {{ request()->routeIs('players.*') ? 'active' : '' }}">

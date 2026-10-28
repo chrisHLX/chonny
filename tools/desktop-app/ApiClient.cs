@@ -16,6 +16,7 @@ namespace MindCollector.Desktop;
 ///   GET  /api/coach/page/x   one page, with an ETag so an unchanged page is not fetched twice
 ///   POST /api/coach/note     a note or a Ctrl+Shift+M mark (CoachAppController)
 ///   POST /api/coach/players  the experience of the players in the game being played
+///   POST /api/coach/youtube/prepare, /uploaded, GET /videos   uploading to the player's YouTube channel
 /// The server measures every round itself (CoachUploadController); the app never sends a
 /// measurement, only the log text of a finished round.
 /// </summary>
@@ -219,6 +220,30 @@ public sealed class ApiClient : IDisposable
         using var res = await _http.PostAsync($"{_base}/api/coach/youtube/uploaded", content, ct);
         if (res.StatusCode == HttpStatusCode.Unauthorized) throw new KeyRejectedException();
         res.EnsureSuccessStatusCode();
+    }
+
+    /// <summary>One of the player's videos on YouTube, as the website last heard from YouTube (CoachYouTubeController::videos).</summary>
+    public sealed record YouTubeVideoInfo(string VideoId, string? Title, string Privacy, bool Processing, bool Watchable, bool InLibrary, long? Views, string Line, string Page);
+
+    /// <summary>
+    /// The player's videos on YouTube (2026-10-28): who can watch each, its views and its page to
+    /// share on the website; and the website's page for managing them.
+    /// </summary>
+    public async Task<(List<YouTubeVideoInfo> Videos, string? Manage)> YouTubeVideosAsync(CancellationToken ct)
+    {
+        using var res = await _http.GetAsync($"{_base}/api/coach/youtube/videos", ct);
+        if (res.StatusCode == HttpStatusCode.Unauthorized) throw new KeyRejectedException();
+        res.EnsureSuccessStatusCode();
+        using var doc = JsonDocument.Parse(await res.Content.ReadAsStringAsync(ct));
+        var r = doc.RootElement;
+        static string? S(JsonElement e, string k) => e.TryGetProperty(k, out var v) && v.ValueKind == JsonValueKind.String ? v.GetString() : null;
+        static bool B(JsonElement e, string k) => e.TryGetProperty(k, out var v) && v.ValueKind == JsonValueKind.True;
+        var list = new List<YouTubeVideoInfo>();
+        if (r.TryGetProperty("videos", out var vs) && vs.ValueKind == JsonValueKind.Array)
+            foreach (var v in vs.EnumerateArray())
+                list.Add(new YouTubeVideoInfo(S(v, "videoId") ?? "", S(v, "title"), S(v, "privacy") ?? "", B(v, "processing"), B(v, "watchable"), B(v, "inLibrary"),
+                    v.TryGetProperty("views", out var n) && n.ValueKind == JsonValueKind.Number ? n.GetInt64() : null, S(v, "line") ?? "", S(v, "page") ?? ""));
+        return (list, S(r, "manage"));
     }
 
     /// <summary>A page, from the local copy when the server says it has not changed.</summary>

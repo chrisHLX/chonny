@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Http\Services\YouTubeService;
+use App\Http\Services\YouTubeVideoService;
 use App\Jobs\BuildCoachPages;
 use App\Models\User;
 use App\Models\YoutubeVideo;
@@ -56,13 +57,46 @@ class CoachYouTubeController extends Controller
             'rounds' => ['nullable', 'array', 'max:12'],
             'rounds.*' => ['string', 'max:32'],
         ]);
-        YoutubeVideo::updateOrCreate(
+        $video = YoutubeVideo::updateOrCreate(
             ['user_id' => $user->id, 'lobby_id' => $data['lobby']],
-            ['video_id' => $data['videoId'], 'privacy' => $data['privacy'], 'started' => $data['started'] ?? null, 'rounds' => $data['rounds'] ?? []],
+            ['video_id' => $data['videoId'], 'privacy' => $data['privacy'], 'started' => $data['started'] ?? null, 'rounds' => $data['rounds'] ?? [],
+                // What YouTube says is asked later (YouTubeVideoService::refresh); until then, what was chosen.
+                'status' => $data['privacy'], 'listed' => null],
         );
+        $video->forceFill(['checked_at' => null, 'game' => null])->save();
+        app(YouTubeVideoService::class)->ensureSummary($video);
         // The game's card and the list say it is on YouTube (its signature carries the video).
         BuildCoachPages::dispatch($user->id, cardsOnly: true);
 
-        return response()->json(['status' => 'ok']);
+        return response()->json(['status' => 'ok', 'page' => route('videos.show', $video->video_id)]);
+    }
+
+    /**
+     * The player's videos for the app's upload window (2026-10-28): for each, who can watch it, its
+     * views, and its page to share. YouTube is asked again about any not asked for ten minutes.
+     */
+    public function videos(Request $request, YouTubeVideoService $service): JsonResponse
+    {
+        $user = User::forCoachToken($request->bearerToken());
+        if (! $user) {
+            return response()->json(['status' => 'unauthorised'], 401);
+        }
+        $videos = YoutubeVideo::where('user_id', $user->id)->latest()->limit(100)->get();
+        $service->refresh($videos);
+
+        return response()->json(['status' => 'ok', 'library' => route('videos'), 'manage' => route('coach').'#videos',
+            'videos' => $videos->map(fn (YoutubeVideo $v) => [
+                'lobby' => $v->lobby_id,
+                'videoId' => $v->video_id,
+                'title' => $v->game['title'] ?? $v->title,
+                'privacy' => $v->currentPrivacy(),
+                'processing' => $v->processing,
+                'watchable' => $v->watchable(),
+                'inLibrary' => $v->inLibrary(),
+                'views' => $v->views,
+                'line' => $v->shareLine(),
+                'page' => route('videos.show', $v->video_id),
+                'uploadedAt' => $v->created_at?->toIso8601String(),
+            ])->values()]);
     }
 }

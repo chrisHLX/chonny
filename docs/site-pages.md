@@ -50,6 +50,18 @@
   Comps, Shuffle) for a signed-in player, built on the server from the games the app uploads with the
   player's key (made on this page, shown once). Auth, read only from the viewer's own folder. One copy
   of every page with the app; see `match-review.md`, "The same pages on the website".
+- `/wow/videos` and `/wow/videos/{youtube id}` — `VideoController`, **games on video** (2026-10-28).
+  The games players uploaded to their own YouTube channel from the app, each on a page with the video
+  and the game's timeline under it (the Watch page in a frame, `/wow/videos/{id}/timeline`), and a
+  library filtered by what the log knows exactly: a spec in the game, the recording player's spec, a
+  class against them, bracket, result, MMR. **Public, and that is deliberate:** a page exists only while
+  YouTube lets others watch the video (unlisted or public; a private video's page is its owner's
+  alone), and it names specs, never players: `WatchPageService::html(public: true)` relabels each
+  round's players in memory ("Disc Priest", "Their Disc Priest") and scrubs any name left on the page.
+  The library holds videos public on YouTube unless the owner chose otherwise (`youtube_videos.listed`,
+  set on the owner's page or Your games > Videos). What YouTube says (privacy, processing, views) is
+  asked by `YouTubeVideoService::refresh`: the owner's upload link if Google lets that scope read, a
+  plain API key (`YOUTUBE_API_KEY`) if set, else oEmbed (playable or not, no views).
 - `/wow/match-analysis` — **redirects to `/wow/coach` since 2026-10-05** (Improve replaces it; the
   component and its service are kept, unrouted). Before that `MatchAnalysis`, **"Your analysis"**: a player's own uploaded games combined
   into the wins-against-losses read (review table, who you played, what differed, a takeaway for your
