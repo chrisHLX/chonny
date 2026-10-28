@@ -222,6 +222,11 @@ library, its views. **Open its page** and **Copy link** give the game's page on 
 the website** opens Your games > Videos. Each privacy choice says under it what it means for that page:
 a private video plays for nobody else, on YouTube or on the website.
 
+**Picking (2026-10-29).** The upload list holds every recorded game, the ones on YouTube marked "on
+YouTube" and never tickable. A character picker (shown once there are two characters, starting on the
+Games tab's) narrows it, **Tick all** and **Untick all** act on what it shows, and the button says how
+many go ("Upload 3 games"). Only shown games stay ticked, so the count is what is sent.
+
 ## To improve later
 
 - **A card sooner after a game (noted 2026-10-27, held until it is quieter).** Measured on a player's game

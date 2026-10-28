@@ -798,16 +798,21 @@ internal sealed class MainForm : Form
     /// </summary>
     private const string YouTubeAction = "action:youtube";
 
-    /// <summary>The upload picker (YouTubeQueueForm): recordings matched to a game and not on YouTube yet.</summary>
+    /// <summary>The upload picker (YouTubeQueueForm): recordings matched to a game, those on YouTube already among them, marked.</summary>
     private void OpenYouTubeQueue()
     {
         var items = LoadVideos()
-            .Where(v => v.YouTubeId == null)
             .Select(v => (Video: v, Game: GameOf(v)))
             .Where(x => x.Game != null)
-            .Select(x => new YouTubeQueueForm.Item(x.Video, x.Game!.Value.Lobby, $"{x.Game.Value.Row.Title} {x.Game.Value.Row.Badge}".Trim()))
+            .Select(x =>
+            {
+                // The row's title is "Character · 3v3", or only the bracket when the game has no "you".
+                var title = x.Game!.Value.Row.Title;
+                var at = title.IndexOf(" · ", StringComparison.Ordinal);
+                return new YouTubeQueueForm.Item(x.Video, x.Game.Value.Lobby, $"{title} {x.Game.Value.Row.Badge}".Trim(), at > 0 ? title[..at] : null);
+            })
             .ToList();
-        using var form = new YouTubeQueueForm(_settings, items, Log);
+        using var form = new YouTubeQueueForm(_settings, items.OrderByDescending(i => i.Video.Started).ToList(), Log);
         form.ShowDialog(this);
         _filling = true;
         _list.ClearSelected();

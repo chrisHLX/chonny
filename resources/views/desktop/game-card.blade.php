@@ -27,7 +27,9 @@
     }
 </script>
 </head>
-<body onload="showTab('summary')">
+{{-- Moments open first when there are any (2026-10-29): of everything on the card, they are what testers
+     said changes how the next game is played. --}}
+<body onload="showTab('{{ ! empty($g['moments']) && empty($g['pool']) ? 'moments' : 'summary' }}')">
 
 {{-- ============================== header --}}
 <div class="head {{ $g['won'] ? 'head-won' : 'head-lost' }}">
@@ -63,10 +65,10 @@
 
     @php $noteCount = count($g['notes']) + count($g['gameNotes']); @endphp
     <div class="tabs">
-        <a id="b-summary" onclick="showTab('summary')">Summary</a>
         {{-- Basics, Moments and Notes are about the uploader's own play: not on a pooled card. --}}
-        @if (empty($g['pool']))<a id="b-basics" onclick="showTab('basics')">Basics</a>
-        <a id="b-moments" onclick="showTab('moments')">Moments @if (! empty($g['moments']))<span class="cnt">{{ count($g['moments']) }}</span>@endif</a>@endif
+        @if (empty($g['pool']))<a id="b-moments" onclick="showTab('moments')">Moments @if (! empty($g['moments']))<span class="cnt">{{ count($g['moments']) }}</span>@endif</a>@endif
+        <a id="b-summary" onclick="showTab('summary')">Summary</a>
+        @if (empty($g['pool']))<a id="b-basics" onclick="showTab('basics')">Basics</a>@endif
         <a id="b-damage" onclick="showTab('damage')">Damage &amp; healing</a>
         <a id="b-numbers" onclick="showTab('numbers')">Numbers</a>
         @if (empty($g['pool']))<a id="b-notes" onclick="showTab('notes')">Notes @if ($noteCount)<span class="cnt">{{ $noteCount }}</span>@endif</a>@endif
@@ -159,9 +161,9 @@
     {{-- ============================== a shuffle lobby --}}
     @php $noteCount = count($g['gameNotes']) + collect($g['rounds'])->sum(fn ($r) => count($r['notes'])); @endphp
     <div class="tabs">
+        <a id="b-moments" onclick="showTab('moments')">Moments @if (! empty($g['moments']))<span class="cnt">{{ count($g['moments']) }}</span>@endif</a>
         <a id="b-summary" onclick="showTab('summary')">Rounds</a>
         <a id="b-basics" onclick="showTab('basics')">Basics</a>
-        <a id="b-moments" onclick="showTab('moments')">Moments @if (! empty($g['moments']))<span class="cnt">{{ count($g['moments']) }}</span>@endif</a>
         <a id="b-damage" onclick="showTab('damage')">Damage &amp; healing</a>
         <a id="b-notes" onclick="showTab('notes')">Notes @if ($noteCount)<span class="cnt">{{ $noteCount }}</span>@endif</a>
     </div>
@@ -208,13 +210,18 @@
             @if ($r['death'])
                 <div class="line">@include('desktop.partials.death', ['d' => $r['death']])</div>
             @endif
-            @if ($r['look'])
-                <div class="line"><div class="label" style="margin-top:8px">Your buttons <span class="aside">an estimate, not a verdict</span></div>
-                @include('desktop.partials.look', ['items' => $r['look']])</div>
-            @endif
-            @if ($r['checks'])
-                <div class="line"><div class="label" style="margin-top:8px">Checks <span class="aside">your buttons, from the log alone</span></div>
-                @include('desktop.partials.checks', ['checks' => $r['checks']])</div>
+            @if ($r['look'] || $r['checks'])
+                <details class="more">
+                <summary>Your buttons this round</summary>
+                @if ($r['look'])
+                    <div class="line"><div class="label" style="margin-top:8px">Your buttons <span class="aside">an estimate, not a verdict</span></div>
+                    @include('desktop.partials.look', ['items' => $r['look']])</div>
+                @endif
+                @if ($r['checks'])
+                    <div class="line"><div class="label" style="margin-top:8px">Checks <span class="aside">your buttons, from the log alone</span></div>
+                    @include('desktop.partials.checks', ['checks' => $r['checks']])</div>
+                @endif
+                </details>
             @endif
             @if ($r['notes'])
                 <div class="line small gold">{{ count($r['notes']) }} note{{ count($r['notes']) === 1 ? '' : 's' }} on this round, under Notes</div>

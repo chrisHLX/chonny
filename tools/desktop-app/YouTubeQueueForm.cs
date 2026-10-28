@@ -10,15 +10,26 @@ namespace MindCollector.Desktop;
 /// Since 2026-10-28 it also lists what is already on the channel, as the website last heard from
 /// YouTube (ApiClient.YouTubeVideosAsync): who can watch each video, its views, and its page on the
 /// website to send to people. Each privacy choice says what it means for that page.
+///
+/// Since 2026-10-29 the games already on YouTube stay in the list, marked and never ticked, so the
+/// list is every recorded game; a character picker narrows it, and Tick all / Untick all act on what
+/// it shows. Only what is shown can be ticked, so the Upload button's count is what goes.
 /// </summary>
 internal sealed class YouTubeQueueForm : Form
 {
-    public sealed record Item(VideoEntry Video, string Lobby, string Title);
+    public sealed record Item(VideoEntry Video, string Lobby, string Title, string? Character);
 
     private readonly AppSettings _settings;
     private readonly Action<string> _log;
     private readonly List<Item> _items;
     private readonly CheckedListBox _list = new() { Dock = DockStyle.Fill, BorderStyle = BorderStyle.None, BackColor = Theme.Raised, ForeColor = Theme.Ink, CheckOnClick = true };
+    private readonly ComboBox _character = new() { DropDownStyle = ComboBoxStyle.DropDownList, Width = 180, FlatStyle = FlatStyle.Flat, BackColor = Theme.Raised, ForeColor = Theme.Ink };
+    private readonly Button _all = Theme.Button("Tick all");
+    private readonly Button _none = Theme.Button("Untick all");
+    private readonly List<Item> _shown = [];
+    private readonly HashSet<Item> _ticked = [];
+    private readonly HashSet<Item> _uploadedHere = [];
+    private bool _filling;
     private readonly ComboBox _privacy = new() { DropDownStyle = ComboBoxStyle.DropDownList, Width = 140, FlatStyle = FlatStyle.Flat, BackColor = Theme.Raised, ForeColor = Theme.Ink };
     private readonly Label _privacyMeans = new() { Dock = DockStyle.Fill, ForeColor = Theme.Muted, Font = Theme.Small, Padding = new Padding(0, 4, 0, 0) };
     private readonly ProgressBar _bar = new() { Dock = DockStyle.Fill, Height = 8, Maximum = 1000, Visible = false };
@@ -55,7 +66,36 @@ internal sealed class YouTubeQueueForm : Form
 
         var cutoff = DateTime.Now.AddDays(-1);
         foreach (var it in items)
-            _list.Items.Add($"{it.Title}   ·   {it.Video.Started:ddd d MMM, HH:mm}{(it.Video.Length is { } l ? $"   ·   {VideoLibrary.Duration(l)}" : "")}", it.Video.Started >= cutoff);
+            if (it.Video.Started >= cutoff && !OnYouTube(it)) _ticked.Add(it);
+
+        // The character picker, once the games hold two; it starts on the one the Games tab shows.
+        var characters = items.Select(i => i.Character).OfType<string>().Distinct().OrderBy(c => c).ToList();
+        _character.Items.Add("All characters");
+        foreach (var c in characters) _character.Items.Add(c);
+        _character.SelectedIndex = Math.Max(0, settings.Character is { } mine ? _character.Items.IndexOf(mine) : 0);
+        _character.Visible = characters.Count > 1;
+        _ticked.RemoveWhere(i => !Matches(i));
+        _character.SelectedIndexChanged += (_, _) =>
+        {
+            _ticked.RemoveWhere(i => !Matches(i));   // what is ticked is always what is shown
+            Fill();
+        };
+        _list.ItemCheck += (_, e) =>
+        {
+            if (_filling || e.Index < 0 || e.Index >= _shown.Count) return;
+            var it = _shown[e.Index];
+            if (e.NewValue == CheckState.Checked && OnYouTube(it))
+            {
+                e.NewValue = CheckState.Unchecked;
+                _status.ForeColor = Theme.Muted;
+                _status.Text = "That game is on your channel already: it is listed below, under On your channel.";
+                return;
+            }
+            if (e.NewValue == CheckState.Checked) _ticked.Add(it); else _ticked.Remove(it);
+            Count();
+        };
+        _all.Click += (_, _) => { foreach (var it in _shown) if (!OnYouTube(it)) _ticked.Add(it); Fill(); };
+        _none.Click += (_, _) => { foreach (var it in _shown) _ticked.Remove(it); Fill(); };
 
         _privacy.Items.AddRange(["Unlisted", "Public", "Private"]);
         _privacy.SelectedIndexChanged += (_, _) => _privacyMeans.Text = Means(_privacy.SelectedItem?.ToString());
@@ -74,9 +114,14 @@ internal sealed class YouTubeQueueForm : Form
             c.Margin = new Padding(0, 2, 0, 2);
             grid.Controls.Add(c);
         }
+        var pickRow = new FlowLayoutPanel { Dock = DockStyle.Fill, FlowDirection = FlowDirection.LeftToRight, BackColor = Theme.Frame, Margin = Padding.Empty };
+        _character.Margin = new Padding(0, 6, 12, 0);
+        pickRow.Controls.AddRange([_character, _all, _none]);
+
         Add(Heading("To upload"), SizeType.Absolute, 28);
         Add(new Label { Dock = DockStyle.Fill, ForeColor = Theme.Muted, Text = "Tick the games to send to your YouTube channel. Each gets a title and chapters written from the game, "
-            + "and goes straight from this PC to YouTube. Games from the last day are ticked." }, SizeType.Absolute, 40);
+            + "and goes straight from this PC to YouTube. Games from the last day are ticked; ones already on YouTube say so." }, SizeType.Absolute, 40);
+        Add(pickRow, SizeType.Absolute, 42);
         Add(_list, SizeType.Percent, 50);
         Add(privacyRow, SizeType.Absolute, 40);
         Add(_privacyMeans, SizeType.Absolute, 40);
@@ -91,8 +136,12 @@ internal sealed class YouTubeQueueForm : Form
 
         if (items.Count == 0)
         {
-            _status.Text = "No recorded games to upload yet: a video shows here once its game is on the website and it isn't on YouTube already.";
+            _status.Text = "No recorded games yet: a video shows here once its game is on the website.";
             _upload.Enabled = false;
+        }
+        else if (items.All(OnYouTube))
+        {
+            _status.Text = "Every recorded game is on YouTube already.";
         }
         _upload.Click += async (_, _) => await RunAsync();
         _close.Click += (_, _) => Close();
@@ -108,6 +157,40 @@ internal sealed class YouTubeQueueForm : Form
         Shown += async (_, _) => await LoadChannelAsync();
         FormClosing += (_, _) => _running?.Cancel();
         ShowSelected();
+        Fill();
+    }
+
+    private bool OnYouTube(Item it) => it.Video.YouTubeId != null || _uploadedHere.Contains(it);
+
+    private bool Matches(Item it) => _character.SelectedIndex <= 0 || it.Character == _character.SelectedItem as string;
+
+    /// <summary>The list as the picker shows it, newest first, the ticks kept.</summary>
+    private void Fill()
+    {
+        _filling = true;
+        _list.BeginUpdate();
+        _list.Items.Clear();
+        _shown.Clear();
+        foreach (var it in _items.Where(Matches))
+        {
+            _shown.Add(it);
+            var length = it.Video.Length is { } l ? $"   ·   {VideoLibrary.Duration(l)}" : "";
+            var mark = OnYouTube(it) ? "   ·   on YouTube" : "";
+            _list.Items.Add($"{it.Title}   ·   {it.Video.Started:ddd d MMM, HH:mm}{length}{mark}", _ticked.Contains(it));
+        }
+        _list.EndUpdate();
+        _filling = false;
+        Count();
+    }
+
+    /// <summary>The Upload button says how many will go; Tick all and Untick all only when they would change something.</summary>
+    private void Count()
+    {
+        var n = _ticked.Count;
+        _upload.Text = n == 0 ? "Upload" : $"Upload {n} game{(n == 1 ? "" : "s")}";
+        _upload.Width = TextRenderer.MeasureText(_upload.Text, _upload.Font).Width + 40;
+        _all.Enabled = _running == null && _shown.Any(i => !OnYouTube(i) && !_ticked.Contains(i));
+        _none.Enabled = _running == null && _shown.Any(_ticked.Contains);
     }
 
     private static Label Heading(string text) => new() { Dock = DockStyle.Fill, Text = text, Font = Theme.Heading, ForeColor = Theme.Ink };
@@ -168,15 +251,17 @@ internal sealed class YouTubeQueueForm : Form
 
     private async Task RunAsync()
     {
-        var picked = _list.CheckedIndices.Cast<int>().Select(i => _items[i]).ToList();
+        var picked = _shown.Where(_ticked.Contains).ToList();
         if (picked.Count == 0) { _status.Text = "Tick at least one game."; return; }
         if (string.IsNullOrEmpty(_settings.Key)) { _status.Text = "Connect the app to your account first."; return; }
 
         var privacy = _privacy.SelectedItem?.ToString()?.ToLowerInvariant() ?? "unlisted";
         _upload.Enabled = false;
         _list.Enabled = false;
+        _character.Enabled = false;
         _bar.Visible = true;
         _running = new CancellationTokenSource();
+        Count();
         var ct = _running.Token;
         var done = 0;
         try
@@ -218,7 +303,9 @@ internal sealed class YouTubeQueueForm : Form
                 _log($"Uploaded to YouTube ({privacy}): {prep.Title} https://youtu.be/{id}");
                 done++;
                 Uploaded = true;
-                _list.SetItemChecked(_items.IndexOf(it), false);
+                _uploadedHere.Add(it);
+                _ticked.Remove(it);
+                Fill();
             }
             _status.ForeColor = Theme.Won;
             _status.Text = privacy == "private"
@@ -240,7 +327,9 @@ internal sealed class YouTubeQueueForm : Form
             _running = null;
             _upload.Enabled = true;
             _list.Enabled = true;
+            _character.Enabled = true;
             _bar.Visible = false;
+            if (!IsDisposed) Count();
         }
         if (done > 0 && !IsDisposed) await LoadChannelAsync();
     }

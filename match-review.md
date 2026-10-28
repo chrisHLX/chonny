@@ -145,7 +145,10 @@ buttons) to change a stored game; read rules run when a page is drawn and change
 **Read (when a page is drawn)**
 - The card (`resources/views/desktop/game-card.blade.php`, `GameCardService`): the summary,
   difficulty (`difficultyOf()`), the roster and experience, deaths (`partials/death`, with
-  `DefensiveFit` sorting the ready defensives), the breakdown and checks.
+  `DefensiveFit` sorting the ready defensives), the breakdown and checks. Since 2026-10-29 the card
+  opens on Moments when it has any (testers: Moments change the next game, the rest reads as a wall of
+  text), and each death shows who, what killed, the healer and the defensives, with the abilities, the
+  health line and the answer sheet folded under "The full read". A shuffle round's buttons and checks fold too.
 - Basics tab: `GameBasicsService` against `data/population/norms.json`.
 - Moments tab: `GameMomentsService` (rules in its header; kinds below), drawn by `partials/moments`.
 - "Worth a look" items: `MatchAnalysisService::lossItems()`, `FAULT_WEIGHTS`.

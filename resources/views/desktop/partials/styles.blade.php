@@ -105,6 +105,14 @@
     .tabs a.on .cnt { color: #535353; }
     .tab .section:first-child { margin-top: 0; }
 
+    /* The detail a reader opens when they want it (2026-10-29): a death's full read, a round's buttons. */
+    details.more { margin-top: 10px; }
+    details.more > summary { cursor: pointer; color: #B3B3B3; font-size: 12.5px; font-weight: 600; list-style: none; }
+    details.more > summary::-webkit-details-marker { display: none; }
+    details.more > summary:before { content: '\25B8'; display: inline-block; width: 14px; }
+    details.more[open] > summary:before { content: '\25BE'; }
+    details.more > summary:hover { color: #FFFFFF; }
+
     .bd tr.pl td { cursor: pointer; }
     .bd tr.pl:hover td { background: #232323; }
     .bd td.abil { padding: 2px 0 10px 26px; }

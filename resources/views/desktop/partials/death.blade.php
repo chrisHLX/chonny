@@ -21,6 +21,35 @@
     </div>
 @endif
 
+@if ($d['healer'])
+    <div class="line">
+        <span class="muted">{{ $d['healer']['whose'] }}</span>&nbsp;
+        <span class="chip {{ $d['healer']['tone'] }}">{{ $d['healer']['label'] }}</span>
+        <span class="small muted">&nbsp;{{ $d['healer']['medallion'] }}</span>
+    </div>
+@endif
+
+<div class="line small">
+    @if ($d['goStartedAgo'] !== null)
+        <span class="muted">{{ $d['goWhose'] }} go had been running {{ $d['goStartedAgo'] }}s.</span>
+    @endif
+    @if ($d['defensives'])
+        <div style="margin-top:4px"><span class="muted">Defensives in the last 30s:&nbsp;</span>
+            @foreach ($d['defensives'] as $x)
+                <span class="def">@if ($x['icon'])<img class="spell-ic" src="{{ $x['icon'] }}">@endif{{ $x['spell'] }} <span class="muted">{{ $x['who'] }}, {{ $x['ago'] }}s before</span></span>
+            @endforeach
+        </div>
+    @else
+        <span class="muted">No defensives in the last 30s.</span>
+    @endif
+</div>
+
+
+{{-- The rest folds (2026-10-29): read in full it was a wall of text that changed little about the
+     next game, so the death says who, what killed and what was pressed, and the reader opens the rest. --}}
+@if (! empty($d['abilities']) || ! empty($d['health']) || ! empty($d['answers']))
+<details class="more">
+<summary>The full read: what did the damage, their health, what your team had</summary>
 {{-- What did the damage in those ten seconds, biggest first (RoundAnalysisService version 13). --}}
 @if (! empty($d['abilities']))
     <table class="ab" style="margin-top: 8px">
@@ -49,29 +78,6 @@
         <div class="small subtle">Dashed: 35%. @if ($g['locked'])Shaded: the enemy healer locked out. @endif @if ($g['presses'])Gold: a defensive pressed on that side (hover for which). @endif</div>
     </div>
 @endif
-
-@if ($d['healer'])
-    <div class="line">
-        <span class="muted">{{ $d['healer']['whose'] }}</span>&nbsp;
-        <span class="chip {{ $d['healer']['tone'] }}">{{ $d['healer']['label'] }}</span>
-        <span class="small muted">&nbsp;{{ $d['healer']['medallion'] }}</span>
-    </div>
-@endif
-
-<div class="line small">
-    @if ($d['goStartedAgo'] !== null)
-        <span class="muted">{{ $d['goWhose'] }} go had been running {{ $d['goStartedAgo'] }}s.</span>
-    @endif
-    @if ($d['defensives'])
-        <div style="margin-top:4px"><span class="muted">Defensives in the last 30s:&nbsp;</span>
-            @foreach ($d['defensives'] as $x)
-                <span class="def">@if ($x['icon'])<img class="spell-ic" src="{{ $x['icon'] }}">@endif{{ $x['spell'] }} <span class="muted">{{ $x['who'] }}, {{ $x['ago'] }}s before</span></span>
-            @endforeach
-        </div>
-    @else
-        <span class="muted">No defensives in the last 30s.</span>
-    @endif
-</div>
 
 {{-- The answer sheet (RoundAnalysisService version 7): enemy go beside every button your team had for it. --}}
 @if (! empty($d['answers']))
@@ -147,4 +153,6 @@
             </div>
         @endif
     </div>
+@endif
+</details>
 @endif
