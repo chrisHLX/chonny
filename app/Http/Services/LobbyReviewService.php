@@ -57,13 +57,23 @@ class LobbyReviewService
      */
     public function index(User $user): array
     {
-        $rows = ArenaReview::query()
-            ->where('user_id', $user->id)
-            ->orderByDesc('played_at')
-            ->get();
-
-        // Decoded once per review: Eloquent's array cast decodes the whole payload on every access.
-        $payloads = $rows->mapWithKeys(fn (ArenaReview $r) => [$r->id => $r->payload ?? []])->all();
+        // 50 reviews at a time, keeping only what the list reads (2026-10-28): every review decoded at
+        // once ran a 474-game account out of the page's 128 MB, and /wow/coach answered with a 500.
+        $rows = collect();
+        $payloads = [];
+        foreach (ArenaReview::query()->where('user_id', $user->id)->lazyById(50) as $r) {
+            $p = $r->payload ?? [];
+            $payloads[$r->id] = [
+                'players' => array_map(fn ($pl) => [
+                    'name' => $pl['name'] ?? null, 'isYou' => $pl['isYou'] ?? false,
+                    'spec' => ['label' => $pl['spec']['label'] ?? null], 'teamByRound' => $pl['teamByRound'] ?? [],
+                ], $p['players'] ?? []),
+                'rounds' => array_map(fn ($round) => ['sequence' => $round['sequence'] ?? null], $p['rounds'] ?? []),
+            ];
+            $r->setRawAttributes(array_diff_key($r->getAttributes(), ['payload' => true]), true);
+            $rows->push($r);
+        }
+        $rows = $rows->sortByDesc(fn (ArenaReview $r) => (string) $r->played_at)->values();
 
         // One cache read for every player on the list, not one per player per game.
         $xp = $this->experience->cachedMany(collect($payloads)
