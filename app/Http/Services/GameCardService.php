@@ -91,6 +91,8 @@ class GameCardService
         [$notesByRound, $notesByGame] = $this->attachNotes($lobbies, $notes);
 
         $code = $this->codeFingerprint();
+        // Games the app uploaded to the player's YouTube channel (2026-10-28): the card and the list say so.
+        $videos = \App\Models\YoutubeVideo::where('user_id', $user->id)->pluck('video_id', 'lobby_id')->all();
         $games = [];
         $draw = [];
         foreach ($lobbies as $lobby => $rounds) {
@@ -104,6 +106,7 @@ class GameCardService
                 $roundNotes,
                 $notesByGame[$lobby] ?? [],
                 $names->mapWithKeys(fn ($n) => [$n => $xp[$n] ?? null])->all(),
+                $videos[$lobby] ?? null,
             ]));
             $shuffle = $rounds->count() > 1 || str_contains($rounds->first()->bracket, 'Shuffle');
             $first = $this->summary($rounds->first())['analysis'];
@@ -118,6 +121,7 @@ class GameCardService
                 'you' => $me ? explode('-', $me['name'])[0] : null,
                 'record' => [$won, $rounds->count() - $won],
                 'against' => $shuffle ? [] : collect($first['players'])->where('side', 'them')->pluck('spec')->sort()->values()->all(),
+                'youtube' => isset($videos[$lobby]),
             ];
 
             $games[$lobby] = $entry + ['html' => null];
@@ -143,6 +147,7 @@ class GameCardService
             // The website's cards (app and browser) open the game's timeline page; the local IE11
             // cards cannot draw it.
             $vm['watch'] = config('desktop.web_assets') ? "watch-{$lobby}.html" : null;
+            $vm['youtube'] = $videos[$lobby] ?? null;
 
             $games[$lobby]['html'] = view('desktop.game-card', ['g' => $vm])->render();
             $this->payloads = [];

@@ -37,7 +37,11 @@
         <span class="chip {{ $g['won'] ? 'won' : 'lost' }}">{{ $g['won'] ? 'WON' : 'LOST' }}</span>
     @endif
     @if (! empty($g['watch']))
-        <a href="{{ $g['watch'] }}" style="float: right; margin-left: 10px; background: #FFFFFF; color: #000000; border-radius: 9999px; padding: 6px 14px; font-weight: 700; font-size: 12.5px; text-decoration: none">&#9654; Timeline</a>
+        <a href="{{ $g['watch'] }}" style="float: right; margin-left: 10px; background: #FFFFFF; color: #000000; border-radius: 9999px; padding: 6px 14px; font-weight: 700; font-size: 12.5px; text-decoration: none">&#9654; {{ ! empty($g['youtube']) ? 'Watch the video' : 'Timeline' }}</a>
+    @endif
+    @if (! empty($g['youtube']))
+        {{-- Uploaded from the app (2026-10-28): the Watch button plays it with the timeline under it. --}}
+        <a href="https://youtu.be/{{ $g['youtube'] }}" target="_blank" rel="noopener" style="float: right; margin-left: 10px; color: #B3B3B3; font-size: 12.5px; padding: 6px 0; text-decoration: none">On your YouTube channel &#8599;</a>
     @endif
     <span class="title">{{ $g['bracket'] }}</span>
     <span class="when muted">{{ $g['playedAt'] }}@if ($g['kind'] === 'game') &nbsp;&middot;&nbsp; {{ $g['duration'] }}@endif</span>

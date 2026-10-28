@@ -80,7 +80,7 @@
                                     @if (isset($g['record']))
                                         &middot; <span class="{{ $g['record'][0] > $g['record'][1] ? 'won' : 'lost' }}">{{ count($g['against'] ?? []) ? ($g['record'][0] ? 'Won' : 'Lost') : $g['record'][0].'-'.$g['record'][1] }}</span>
                                     @endif
-                                    <span class="sub">{{ $g['you'] ?? '' }} &middot; {{ str_replace('Rated ', '', $g['bracket']) }}{{ ! empty($g['against']) ? ' vs '.implode(', ', $g['against']) : '' }}</span>
+                                    <span class="sub">@if (! empty($g['youtube']))<span class="text-gold">&#9654; Video</span> &middot; @endif{{ $g['you'] ?? '' }} &middot; {{ str_replace('Rated ', '', $g['bracket']) }}{{ ! empty($g['against']) ? ' vs '.implode(', ', $g['against']) : '' }}</span>
                                 </button>
                             @endforeach
                         </div>

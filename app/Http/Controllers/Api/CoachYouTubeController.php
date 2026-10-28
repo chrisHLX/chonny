@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Http\Services\YouTubeService;
+use App\Jobs\BuildCoachPages;
 use App\Models\User;
 use App\Models\YoutubeVideo;
 use Illuminate\Http\JsonResponse;
@@ -59,6 +60,8 @@ class CoachYouTubeController extends Controller
             ['user_id' => $user->id, 'lobby_id' => $data['lobby']],
             ['video_id' => $data['videoId'], 'privacy' => $data['privacy'], 'started' => $data['started'] ?? null, 'rounds' => $data['rounds'] ?? []],
         );
+        // The game's card and the list say it is on YouTube (its signature carries the video).
+        BuildCoachPages::dispatch($user->id, cardsOnly: true);
 
         return response()->json(['status' => 'ok']);
     }

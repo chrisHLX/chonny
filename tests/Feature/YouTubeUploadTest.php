@@ -128,12 +128,15 @@ class YouTubeUploadTest extends TestCase
         $user = User::factory()->create();
         $key = $user->issueCoachToken();
         $this->game($user);
+        \Illuminate\Support\Facades\Queue::fake();
 
         $this->withToken($key)->postJson(route('api.coach.youtube.uploaded'), [
             'lobby' => $this->lobby, 'videoId' => 'dQw4w9WgXcQ', 'privacy' => 'unlisted',
             'started' => '2026-10-25 19:10:59.300', 'rounds' => ['2026-10-25 19:10:59.100'],
         ])->assertOk();
         $this->assertSame('dQw4w9WgXcQ', YoutubeVideo::where('user_id', $user->id)->value('video_id'));
+        // The card is drawn again, so it and the list say the game is on YouTube.
+        \Illuminate\Support\Facades\Queue::assertPushed(\App\Jobs\BuildCoachPages::class, fn ($job) => $job->userId === $user->id && $job->cardsOnly);
 
         $html = $this->withToken($key)->get(route('api.coach.page', "watch-{$this->lobby}.html"))->assertOk()->getContent();
         $this->assertStringContainsString('"youtube":"dQw4w9WgXcQ"', $html);

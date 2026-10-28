@@ -321,6 +321,26 @@ class GameCardTest extends TestCase
         $this->assertStringNotContainsString('Health, the last', $this->text(app(GameCardService::class)->build($user), 'm1'));
     }
 
+    public function test_a_game_on_youtube_says_so_on_its_card_and_in_the_list(): void
+    {
+        $user = User::factory()->create();
+        $this->storeRound($user, 'm1', 'm1', '3v3', '2026-10-01 14:43:00', false, $this->threes());
+        $this->storeRound($user, 'm2', 'm2', '3v3', '2026-10-01 15:00:00', true, $this->threes());
+        config(['desktop.web_assets' => true]);
+        $before = app(GameCardService::class)->build($user);
+        \App\Models\YoutubeVideo::create(['user_id' => $user->id, 'lobby_id' => 'm1', 'video_id' => 'dQw4w9WgXcQ', 'privacy' => 'unlisted']);
+
+        $built = app(GameCardService::class)->build($user);
+
+        $this->assertStringContainsString('Watch the video', $this->text($built, 'm1'));
+        $this->assertStringContainsString('https://youtu.be/dQw4w9WgXcQ', $built['games']['m1']['html']);
+        $this->assertTrue($built['games']['m1']['youtube']);
+        $this->assertNotSame($before['games']['m1']['sig'], $built['games']['m1']['sig'], 'the upload redraws its card');
+        $this->assertStringContainsString('Timeline', $this->text($built, 'm2'));
+        $this->assertFalse($built['games']['m2']['youtube']);
+        $this->assertSame($before['games']['m2']['sig'], $built['games']['m2']['sig']);
+    }
+
     public function test_a_game_measured_before_the_breakdown_says_how_to_get_it(): void
     {
         $user = User::factory()->create();
