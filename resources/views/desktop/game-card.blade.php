@@ -50,8 +50,10 @@
                 @else
                     <span class="chip {{ $g['won'] ? 'won' : 'lost' }}">{{ $g['won'] ? 'WON' : 'LOST' }}</span>
                 @endif
-                @if ($g['kind'] === 'game' && ($g['mmr']['us'] ?? null))
-                    <span class="big">{{ $g['mmr']['us'] }} <span class="small muted" style="font-weight: 400; letter-spacing: 0">MMR</span></span>
+                {{-- Both sides' MMR on the title line (2026-10-29, Chriso: the opposition's rating visible
+                     without scrolling): the Opponent box wraps below the line-up in a narrow window. --}}
+                @if ($g['kind'] === 'game' && (($g['mmr']['us'] ?? null) || ($g['mmr']['them'] ?? null)))
+                    <span class="big">{{ $g['mmr']['us'] ?? '?' }} <span class="small muted" style="font-weight: 400; letter-spacing: 0">vs</span> {{ $g['mmr']['them'] ?? '?' }}<span class="small muted" style="font-weight: 400; letter-spacing: 0">MMR</span></span>
                 @endif
             </div>
             @if ($lineup)
