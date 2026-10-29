@@ -1,7 +1,7 @@
 {{--
     One game's card for the MindCollector Logs desktop app (tools/log-manager), built by
-    GameCardService. Shown in Windows' built-in browser control, which renders as IE11: no CSS
-    variables, no grid, no flex gap. Colours are the site's tokens written out (tailwind.config.js).
+    GameCardService. Shown in the app (WebView2) and on the site; the layout uses grid and flex since
+    2026-10-29 (desktop.partials.styles). Colours are the site's tokens written out (tailwind.config.js).
 --}}
 <!doctype html>
 <html>
@@ -31,34 +31,69 @@
      come for. Moments sit right beside it, ahead of the rest. --}}
 <body onload="showTab('summary')">
 
-{{-- ============================== header --}}
+{{-- ============================== header (2026-10-29, the dashboard layout): your side on the left with
+     its line-up, the other side and the buttons in a box on the right. --}}
+@php
+    $lineup = $g['kind'] === 'game' ? $g['teams']['us'] : array_values(array_filter($g['roster'], fn ($p) => $p['you']));
+    $lead = collect($lineup)->firstWhere('you', true) ?? ($lineup[0] ?? null);
+@endphp
 <div class="head {{ $g['won'] ? 'head-won' : 'head-lost' }}">
-    @if ($g['kind'] === 'shuffle')
-        <span class="chip {{ $g['won'] ? 'won' : 'lost' }}">{{ $g['record'][0] }}-{{ $g['record'][1] }}</span>
-    @else
-        <span class="chip {{ $g['won'] ? 'won' : 'lost' }}">{{ $g['won'] ? 'WON' : 'LOST' }}</span>
-    @endif
-    @if (! empty($g['watch']))
-        <a href="{{ $g['watch'] }}" style="float: right; margin-left: 10px; background: #FFFFFF; color: #000000; border-radius: 9999px; padding: 6px 14px; font-weight: 700; font-size: 12.5px; text-decoration: none">&#9654; {{ ! empty($g['youtube']) ? 'Watch the video' : 'Timeline' }}</a>
-    @endif
-    @if (! empty($g['youtube']))
-        {{-- Uploaded from the app (2026-10-28): the Watch button plays it with the timeline under it,
-             and its public page (VideoController, names hidden) is the one to send to people. --}}
-        <a href="https://youtu.be/{{ $g['youtube'] }}" target="_blank" rel="noopener" style="float: right; margin-left: 10px; color: #B3B3B3; font-size: 12.5px; padding: 6px 0; text-decoration: none">YouTube &#8599;</a>
-        <a href="https://mindcollector.com/wow/videos/{{ $g['youtube'] }}" target="_blank" rel="noopener" style="float: right; margin-left: 10px; color: #E8B84B; font-size: 12.5px; padding: 6px 0; text-decoration: none">Page to share &#8599;</a>
-    @endif
-    <span class="title">{{ $g['bracket'] }}</span>
-    <span class="when muted">{{ $g['playedAt'] }}@if ($g['kind'] === 'game') &nbsp;&middot;&nbsp; {{ $g['duration'] }}@endif</span>
-    @if ($g['kind'] === 'game' && ($g['mmr']['us'] ?? null))
-        <span class="mmr muted">MMR you <b style="color:#FFFFFF">{{ $g['mmr']['us'] }}</b> &nbsp;&middot;&nbsp; enemy <b style="color:#FFFFFF">{{ $g['mmr']['them'] ?? '?' }}</b></span>
-    @endif
-    @if (! empty($g['pool']))
-        {{-- The website's comp board (GameCardService::pooled()): someone else's game, no one named. --}}
-        <div class="small muted" style="margin-top: 6px">Read as <b style="color: #FFFFFF">{{ $g['pool']['us'] }}</b>, against {{ $g['pool']['them'] }}: "your team" is {{ $g['pool']['us'] }}. No player is named.</div>
-    @endif
-    @if ($g['kind'] === 'game' && ! empty($g['difficulty']))
-        <div class="small" style="margin-top: 6px"><span class="chip {{ $g['difficulty']['tone'] }}">{{ $g['difficulty']['label'] }}</span> <span class="muted">&nbsp;{{ $g['difficulty']['text'] }}</span></div>
-    @endif
+<div class="hero">
+    <div class="hero-main">
+        @if ($lead && $lead['icon'])<img class="hero-ic" src="{{ $lead['icon'] }}" alt="">@endif
+        <div style="min-width: 0">
+            <div class="eyebrow">{{ $g['playedAt'] }}@if ($g['kind'] === 'game') &nbsp;&middot;&nbsp; {{ $g['duration'] }}@endif</div>
+            <div style="margin-top: 2px">
+                <span class="title">{{ $g['bracket'] }}</span>
+                @if ($g['kind'] === 'shuffle')
+                    <span class="chip {{ $g['won'] ? 'won' : 'lost' }}">{{ $g['record'][0] }}-{{ $g['record'][1] }}</span>
+                @else
+                    <span class="chip {{ $g['won'] ? 'won' : 'lost' }}">{{ $g['won'] ? 'WON' : 'LOST' }}</span>
+                @endif
+                @if ($g['kind'] === 'game' && ($g['mmr']['us'] ?? null))
+                    <span class="big">{{ $g['mmr']['us'] }} <span class="small muted" style="font-family: Inter, sans-serif">MMR</span></span>
+                @endif
+            </div>
+            @if ($lineup)
+                <div class="lineup">
+                    @foreach ($lineup as $p)
+                        <span class="p">@if ($p['icon'])<img src="{{ $p['icon'] }}" alt="">@endif<span class="name" style="color: {{ $p['color'] }}">{{ $p['name'] }}</span>@if ($p['you'])<span class="you">YOU</span>@endif @if ($p['spec'] !== $p['name'])<span class="muted">&nbsp;{{ $p['spec'] }}</span>@endif</span>
+                    @endforeach
+                </div>
+            @endif
+            @if (! empty($g['pool']))
+                {{-- The website's comp board (GameCardService::pooled()): someone else's game, no one named. --}}
+                <div class="small muted" style="margin-top: 6px">Read as <b style="color: #FFFFFF">{{ $g['pool']['us'] }}</b>, against {{ $g['pool']['them'] }}: "your team" is {{ $g['pool']['us'] }}. No player is named.</div>
+            @endif
+        </div>
+    </div>
+    <div class="opp">
+        @if ($g['kind'] === 'game')
+            <div class="k">Opponent</div>
+            <div class="v">{{ $g['mmr']['them'] ?? '?' }} <span class="small muted" style="font-family: Inter, sans-serif">MMR</span></div>
+            <div class="small muted">{{ $g['glad']['them'] }} Gladiator season{{ $g['glad']['them'] === 1 ? '' : 's' }}, yours {{ $g['glad']['us'] }}</div>
+            @if (! empty($g['difficulty']))
+                <div class="small" style="margin-top: 6px"><span class="chip {{ $g['difficulty']['tone'] }}">{{ $g['difficulty']['label'] }}</span> <span class="muted">&nbsp;{{ $g['difficulty']['text'] }}</span></div>
+            @endif
+        @else
+            <div class="k">Solo Shuffle</div>
+            <div class="v">{{ $g['record'][0] }} won, {{ $g['record'][1] }} lost</div>
+        @endif
+        @if (! empty($g['watch']) || ! empty($g['youtube']))
+            <div class="actions">
+                @if (! empty($g['watch']))
+                    <a class="primary" href="{{ $g['watch'] }}">@include('desktop.partials.icon', ['n' => 'play']) {{ ! empty($g['youtube']) ? 'Watch the video' : 'Timeline' }}</a>
+                @endif
+                @if (! empty($g['youtube']))
+                    {{-- Uploaded from the app (2026-10-28): the Watch button plays it with the timeline under it,
+                         and its public page (VideoController, names hidden) is the one to send to people. --}}
+                    <a class="plain" href="https://mindcollector.com/wow/videos/{{ $g['youtube'] }}" target="_blank" rel="noopener">Page to share &#8599;</a>
+                    <a class="plain" href="https://youtu.be/{{ $g['youtube'] }}" target="_blank" rel="noopener">YouTube &#8599;</a>
+                @endif
+            </div>
+        @endif
+    </div>
+</div>
 </div>
 
 @if ($g['kind'] === 'game')
@@ -75,34 +110,83 @@
     </div>
 
     <div class="tab" id="t-summary">
-    {{-- ============================== teams --}}
-    <table class="teams"><tr>
-        @foreach (['them' => 'Enemy team', 'us' => 'Your team'] as $side => $title)
-            <td class="col {{ $side === 'them' ? 'left' : 'right' }}">
-                <div class="label">{{ $title }} <span class="aside">{{ $g['glad'][$side] }} Gladiator season{{ $g['glad'][$side] === 1 ? '' : 's' }}</span></div>
-                <div class="box">
-                    @include('desktop.partials.roster', ['players' => $g['teams'][$side], 'showCc' => true])
+    {{-- The Summary as panels (2026-10-29, the dashboard layout): how it ended and the numbers first, the
+         teams, the game on one line of time, then every death in full. Every figure is one the other
+         tabs already show; this is where the eye lands. --}}
+    @php $first = $g['deaths'][0] ?? null; @endphp
+    <div class="grid2 lead">
+        <div class="card headline">
+            <div class="kicker">@include('desktop.partials.icon', ['n' => 'skull'])How it ended</div>
+            @if ($first)
+                <div class="t"><span style="color: {{ $first['color'] }}">{{ $first['name'] }}</span> died at {{ $first['clock'] }}</div>
+                <div class="line small">
+                    @if ($first['killingBlow'])Killing blow @if ($first['killingBlow']['icon'])<img class="spell-ic" src="{{ $first['killingBlow']['icon'] }}" alt="">@endif<b style="color: #FFFFFF">{{ $first['killingBlow']['spell'] }}</b>. @endif
+                    @if ($first['healer']){{ $first['healer']['whose'] }} <span class="chip {{ $first['healer']['tone'] }}">{{ $first['healer']['label'] }}</span>, {{ lcfirst($first['healer']['medallion']) }}. @endif
+                    @if ($first['goStartedAgo'] !== null){{ $first['goWhose'] }} go had been running {{ $first['goStartedAgo'] }}s.@endif
                 </div>
-            </td>
+                <div class="line"><a href="#deaths" onclick="document.getElementById('deaths').scrollIntoView(); return false">Read {{ count($g['deaths']) === 1 ? 'the death' : 'every death' }} &#8595;</a></div>
+            @else
+                <div class="t">No one died</div>
+                <div class="line small">The game ended another way.</div>
+            @endif
+        </div>
+        <div class="card">
+            <div class="kicker">@include('desktop.partials.icon', ['n' => 'chart'])The game in numbers</div>
+            <div class="tiles">
+                @foreach ($g['tiles'] ?? [] as $t)
+                    <div class="tile">
+                        <div class="k">@include('desktop.partials.icon', ['n' => $t['icon']]){{ $t['label'] }}</div>
+                        <div class="v">{{ $t['value'] }}</div>
+                        @if ($t['sub'])<div class="s">{{ $t['sub'] }}</div>@endif
+                    </div>
+                @endforeach
+            </div>
+        </div>
+    </div>
+
+    {{-- ============================== teams: yours first, the way the header reads --}}
+    <div class="grid2">
+        @foreach (['us' => 'Your team', 'them' => 'Enemy team'] as $side => $title)
+            <div class="card">
+                <div class="kicker">@include('desktop.partials.icon', ['n' => 'users']){{ $title }} <span style="text-transform: none; letter-spacing: 0; font-weight: 400">&nbsp;&middot; {{ $g['glad'][$side] }} Gladiator season{{ $g['glad'][$side] === 1 ? '' : 's' }}@if ($g['mmr'][$side] ?? null) &middot; {{ $g['mmr'][$side] }} MMR @endif</span></div>
+                @include('desktop.partials.roster', ['players' => $g['teams'][$side], 'showCc' => true])
+            </div>
         @endforeach
-    </tr></table>
+    </div>
+
+    {{-- ============================== the game on one line of time, and the checks beside it --}}
+    <div class="grid2 top">
+        <div class="card" @if (! empty($g['pool'])) style="grid-column: 1 / -1" @endif>
+            <div class="kicker">@include('desktop.partials.icon', ['n' => 'clock'])Key events</div>
+            <div class="events">
+                @forelse ($g['events'] ?? [] as $e)
+                    <div class="ev {{ $e['kind'] }} {{ $e['ours'] ? 'ours' : 'theirs' }}">
+                        <span class="t">{{ $e['clock'] }}</span>
+                        <span class="dot">@if ($e['icon'])<img src="{{ $e['icon'] }}" alt="">@else @include('desktop.partials.icon', ['n' => ['go' => 'swords', 'kill' => 'swords', 'death' => 'skull', 'end' => 'trophy', 'medallion' => 'shield'][$e['kind']] ?? 'bolt'])@endif</span>
+                        <span class="x">{{ $e['text'] }}</span>
+                    </div>
+                @empty
+                    <div class="small muted">Nothing measured for this game.</div>
+                @endforelse
+            </div>
+        </div>
+        @if (empty($g['pool']))
+            <div class="card">
+                <div class="kicker">@include('desktop.partials.icon', ['n' => 'target'])Checks <span style="text-transform: none; letter-spacing: 0; font-weight: 400">&nbsp;&middot; what the log shows by itself, for your team</span></div>
+                @include('desktop.partials.checks', ['checks' => $g['checks']])
+            </div>
+        @endif
+    </div>
 
     {{-- ============================== deaths --}}
-    <div class="section">
-        <div class="label">How it ended</div>
+    <div class="section" id="deaths">
+        <div class="label">@include('desktop.partials.icon', ['n' => 'skull']){{ count($g['deaths']) === 1 ? 'The death' : 'Every death' }}</div>
         @forelse ($g['deaths'] as $d)
             <div class="box death">@include('desktop.partials.death', ['d' => $d])</div>
         @empty
             <div class="box muted">No one died; the game ended another way.</div>
         @endforelse
     </div>
-
-    @if (empty($g['pool']))
-    <div class="section">
-        <div class="label">Checks <span class="aside">what the log shows by itself, for your team</span></div>
-        <div class="box">@include('desktop.partials.checks', ['checks' => $g['checks']])</div>
-    </div>
-    @endif
     </div>
 
     @if (empty($g['pool']))

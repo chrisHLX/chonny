@@ -91,7 +91,12 @@
     that comp in real games, with "See its games" (its card) and the leaderboard. Remounted by
     its `:key` when the comp changes (`WowComps::boardKey()`).
   - **Leaderboards** (`/wow/leaderboards`, `Leaderboards`, in the sidebar under Plan, 2026-10-21).
-    Three tabs (`?tab=games`, `?tab=players`). **Games** (2026-10-27, Chriso: "have in leaderboard
+    Three tabs (`?tab=games`, `?tab=players`). Since 2026-10-29 the dashboard layout: a header with
+    an icon, each comp's most-played line-up as spec icons, the team's experience as a badge (the
+    board's bands: Rival 1800+, Duelist 2100+, 2400+; "R1" and Gladiator titles cannot be read from a
+    best rating), a spec filter (`?spec=`, Blizzard's id, `CompLeaderboardService::board($exp, $spec)`),
+    and a side column with the newest games, the top US ladder players seen in uploads and the app.
+    **Games** (2026-10-27, Chriso: "have in leaderboard
     individual matches so we can click on the match card"): every 3v3 game this season, newest
     first, one row a match (`CompLeaderboardService::recentGames()`), each opening its own card.
     - **Comps** (Chriso: "comps with exp and mmr and then matches ... just comp filtered by

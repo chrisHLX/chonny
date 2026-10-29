@@ -80,7 +80,7 @@ class GameCardTest extends TestCase
 
         $card = $this->text(app(GameCardService::class)->build($user), 'm1');
 
-        $this->assertStringContainsString('LOST 3v3', $card);
+        $this->assertStringContainsString('3v3 LOST', $card);
         $this->assertStringContainsString('1:32 Hunter died yours', $card);
         $this->assertStringContainsString('Killing blow Unstable Affliction', $card);
         $this->assertStringContainsString('Damage in the last 10s: Lock 69%', $card);
@@ -95,6 +95,11 @@ class GameCardTest extends TestCase
         $this->assertStringContainsString('not looked up yet', $card, 'experience nobody has looked up is said, not shown as zero');
         $this->assertStringContainsString('Marksmanship Hunter Camouflage while they were not in a go', $card);
         $this->assertStringContainsString('an estimate, not a verdict', $card);
+        // The Summary's panels (2026-10-29): the death as the headline, the game on one line of time.
+        $this->assertStringContainsString('Hunter died at 1:32 Killing blow Unstable Affliction', $card);
+        $this->assertStringContainsString('1:32 Hunter dies to Unstable Affliction', $card);
+        $this->assertStringContainsString('Your team loses', $card);
+        $this->assertStringContainsString('Defensives before the first death', $card);
     }
 
     public function test_experience_seen_on_an_earlier_run_outlives_its_cache(): void
@@ -121,7 +126,7 @@ class GameCardTest extends TestCase
 
         $card = $this->text(app(GameCardService::class)->build($user), 'lobby');
 
-        $this->assertStringContainsString('1-1 Rated Solo Shuffle', $card);
+        $this->assertStringContainsString('Rated Solo Shuffle 1-1', $card);
         $this->assertLessThan(strpos($card, 'Round 2 LOST'), strpos($card, 'Round 1 WON'));
         $this->assertStringNotContainsString('Camouflage', $card, "a teammate's button is not yours to fix in a shuffle");
     }

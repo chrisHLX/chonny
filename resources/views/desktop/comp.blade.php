@@ -165,7 +165,7 @@
 
 {{-- ============================== enemy goes --}}
 <div class="section">
-    <div class="label">Enemy goes <span class="aside">{{ $g['count'] }} in all, {{ $g['perGame'] }} a game{{ $g['firstAt'] !== null ? ', the first at '.$g['firstAt'].'s (median)' : '' }}. Killed one of you: {{ $g['killed'] }}</span></div>
+    <div class="label">@include('desktop.partials.icon', ['n' => 'swords'])Enemy goes <span class="aside">{{ $g['count'] }} in all, {{ $g['perGame'] }} a game{{ $g['firstAt'] !== null ? ', the first at '.$g['firstAt'].'s (median)' : '' }}. Killed one of you: {{ $g['killed'] }}</span></div>
     @php $u = $g['usual']; @endphp
     @if ($g['count'])
         <div class="box usual">
@@ -223,7 +223,7 @@
 
 {{-- ============================== who dies --}}
 <div class="section">
-    <div class="label">Who dies</div>
+    <div class="label">@include('desktop.partials.icon', ['n' => 'skull'])Who dies</div>
     <table class="two"><tr>
         <td class="col left"><div class="box">
             <div class="label">Your first death <span class="aside">in {{ $d['losses'] }} game{{ $d['losses'] === 1 ? '' : 's' }} you lost</span></div>
@@ -243,7 +243,7 @@
 
 {{-- ============================== defensives traded --}}
 <div class="section">
-    <div class="label">Defensives traded</div>
+    <div class="label">@include('desktop.partials.icon', ['n' => 'shield'])Defensives traded</div>
     <table class="two"><tr>
         <td class="col left"><div class="box">
             <div class="label">When you go: enemy defensives <span class="aside">{{ $t['perOurGo'] }} a go, over your {{ $t['ourGoes'] }} goes</span></div>
@@ -265,7 +265,7 @@
 @if (! empty($c['kicks']))
     @php $k = $c['kicks']; @endphp
     <div class="section">
-        <div class="label">What to kick on them <span class="aside">the casts top players rank highest to interrupt, each seen stopped in the archive</span></div>
+        <div class="label">@include('desktop.partials.icon', ['n' => 'ban'])What to kick on them <span class="aside">the casts top players rank highest to interrupt, each seen stopped in the archive</span></div>
         @foreach (array_chunk($k['specs'], 2) as $pair)
             <table class="two"><tr>
                 @foreach ($pair as $s)
@@ -292,7 +292,7 @@
 {{-- ============================== by their experience --}}
 @php $x = $c['byExperience']; @endphp
 <div class="section">
-    <div class="label">Less against more experienced teams <span class="aside">counted by enemy Gladiator seasons, since MMR runs low early in a season and Solo Shuffle doesn't show it</span></div>
+    <div class="label">@include('desktop.partials.icon', ['n' => 'users'])Less against more experienced teams <span class="aside">counted by enemy Gladiator seasons, since MMR runs low early in a season and Solo Shuffle doesn't show it</span></div>
     <div class="box">
         @if ($x['state'] === 'split')
             <table class="stats">
@@ -318,7 +318,7 @@
 
 {{-- ============================== every game --}}
 <div class="section" id="games">
-    <div class="label">Every game against them <span class="aside">{{ ($c['pool'] ?? false) ? 'tap a game for its players, then open its card' : "click a game for every player's experience and the game's numbers" }}</span></div>
+    <div class="label">@include('desktop.partials.icon', ['n' => 'clock'])Every game against them <span class="aside">{{ ($c['pool'] ?? false) ? 'tap a game for its players, then open its card' : "click a game for every player's experience and the game's numbers" }}</span></div>
     <div class="box">
         <table class="stats games">
             <tr><td class="arrow"></td><td class="small muted">Played</td>@unless ($c['pool'] ?? false)<td class="small muted">You</td>@endunless<td class="small muted">{{ ($c['pool'] ?? false) ? 'Your result' : 'Result' }}</td><td class="small muted">MMR (you / them)</td><td class="small muted wide">Enemy Gladiator seasons</td><td class="small muted wide">First death</td></tr>
@@ -371,7 +371,7 @@
 
 @if ($c['unused']['losses'])
     <div class="section">
-        <div class="label">Ready and never pressed when they killed <span class="aside">your team's defensives and Medallions, in {{ $c['unused']['losses'] }} loss{{ $c['unused']['losses'] === 1 ? '' : 'es' }} with an answer sheet</span></div>
+        <div class="label">@include('desktop.partials.icon', ['n' => 'lock'])Ready and never pressed when they killed <span class="aside">your team's defensives and Medallions, in {{ $c['unused']['losses'] }} loss{{ $c['unused']['losses'] === 1 ? '' : 'es' }} with an answer sheet</span></div>
         <div class="box">{!! $list($c['unused']['rows']) !!}</div>
     </div>
 @endif

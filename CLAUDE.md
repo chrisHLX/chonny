@@ -44,7 +44,7 @@ never have to remind you of these.
 |---|---|---|
 | **Review games**: "look at my games", "why did we lose", match analysis, coaching, comparing a player or teammate | `match-review.md`, then `match-review-operations.md` (the method) and `match-review-analysis.md` (past findings) | The `review-games` skill carries the workflow. The user's characters and teammates are in memory. Read defensives through the three questions; never call a count a fault |
 | **Change a measure** (`RoundAnalysisService`, `ArenaMomentService`, `CooldownLedgerService`) | `match-review.md` ("what to re-run"), `match-review-operations.md` | Bump `RoundAnalysisService::VERSION` and say what it adds; re-measure with `wow:sync --skip-ingest --fresh` |
-| **Change the desktop app** (cards, Improve, Comps, `MindCollectorLogs.ps1`) | `match-review.md` (traps), `tools/log-manager/README.md` | IE11 views; the script stays ASCII; never name a PowerShell variable `$c` |
+| **Change the desktop app** (cards, Improve, Comps, `MindCollectorLogs.ps1`) | `match-review.md` (traps), `tools/log-manager/README.md` | The pages are drawn by WebView2 and the site (grid and flex are fine since 2026-10-29; only the retired PowerShell app was IE11); the script stays ASCII; never name a PowerShell variable `$c` |
 | **Tags, classification, short defensives, spells used both ways, a cooldown missing from goes** | `match-review-operations.md`, "Making the tags better from play"; rule 11 | Run `tagaudit.php` (wrong or missing tags) and `hiddencds.php` (tagged cooldowns cast under an id the timeline cannot see: add them to `cast-aliases.json`); record decisions in `reviewed.json`; bump the cache, then kits, then profiles, then re-measure |
 | **Write or correct a guide** | `guide-writing.md` (budget and shape), `docs/guides/reader-corrections-2026-09-23.md`, `arena-structure.md` / `data/brain/brain.md` | `docs/machine-guides.md` (authoring, feedback export first). If drawn from played games: `guides-from-play.md` and `match-review-analysis.md` |
 | **The arena model, the Brain, a new prose source** | `arena-structure.md`, `arena-open-questions.md`, `docs/arena/synthesis-process.md` | `docs/arena/sources/chriso-scope-correction-2026-09-23.md` before adding any "we can't" line |
@@ -737,8 +737,17 @@ the `$C` table in `MindCollectorLogs.ps1`). Black frame around rounded `surface-
 cards with no border that lift on hover, pill buttons and pill tabs (the open tab white), gold for the
 one thing to press. Change a colour in all four places.
 
-Fonts: Inter only, linked from the page head (`partials/fonts.blade.php`), never `@import`ed from CSS.
-`font-display` is Inter at 800 with tight tracking; no italics.
+Fonts: Inter for text, **Marcellus for headings** (2026-10-29, Chriso: the dashboard layout with "a
+special font for certain things"), both linked from the page head (`partials/fonts.blade.php`, and the
+desktop pages' `styles.blade.php`), never `@import`ed from CSS. `font-display` is Marcellus, which has one
+weight, so `font-synthesis: none` keeps the browser from faking a bold; no italics. On the desktop pages
+the titles and big numbers use it (`.head .title`, `.serif`, `.tile .v`).
+
+**The dashboard layout (2026-10-29)** takes the layout of a mockup Chriso sent, not its look (red fire
+art, ornate emblems): a header with your side and an opponent box, then panels (`.grid2`, `.card`,
+`.kicker`, `.tiles`, `.events` in the desktop styles), small gold line icons before section names
+(`desktop.partials.icon`, inline SVG, no file to fetch). No embedded video on a card: it costs every
+card load; the Watch page has it.
 
 | Token | Value | Use |
 |---|---|---|

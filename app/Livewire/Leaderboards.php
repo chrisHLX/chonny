@@ -55,6 +55,10 @@ class Leaderboards extends Component
     #[Url(as: 'exp', except: null)]
     public ?string $exp = null;
 
+    /** Only comps with this spec in them (Blizzard's spec id, 2026-10-29); a string, as $exp is. */
+    #[Url(as: 'spec', except: null)]
+    public ?string $spec = null;
+
     #[Url(except: 'us')]
     public string $region = 'us';
 
@@ -84,6 +88,13 @@ class Leaderboards extends Component
         $this->exp = isset(CompLeaderboardService::EXP_BANDS[$exp]) ? (string) $exp : null;
         $this->all = false;
         PageViewEvent::log('leaderboards', null, null, 'exp:'.($this->exp ?? 'all'));
+    }
+
+    public function setSpec(?string $spec): void
+    {
+        $this->spec = ctype_digit((string) $spec) ? (string) $spec : null;
+        $this->all = false;
+        PageViewEvent::log('leaderboards', null, null, 'spec:'.($this->spec ?? 'any'));
     }
 
     public function setRegion(string $region): void
@@ -126,11 +137,16 @@ class Leaderboards extends Component
         $service = app(CompLeaderboardService::class);
         $tab = in_array($this->tab, ['players', 'games'], true) ? $this->tab : 'comps';
         $region = in_array($this->region, self::regions(), true) ? $this->region : 'us';
-        $board = $service->board(ctype_digit((string) $this->exp) ? (int) $this->exp : null);
+        $board = $service->board(ctype_digit((string) $this->exp) ? (int) $this->exp : null, ctype_digit((string) $this->spec) ? (int) $this->spec : null);
         $ladder = $tab === 'players'
             ? $service->ladder($region, $this->seenOnly, max(self::LADDER_STEP, min(self::LADDER_MAX, $this->ladderShown)))
             : null;
         $games = $tab === 'games' ? $service->recentGames(max(self::GAMES_STEP, min(self::GAMES_MAX, $this->gamesShown))) : null;
+        // The comps tab's side column (2026-10-29): the newest games and the best-rated players seen.
+        $newest = $tab === 'comps' ? $service->recentGames(5)['games'] : [];
+        $topSeen = $tab === 'comps' ? array_slice($service->ladder('us', true, 5)['players'] ?? [], 0, 5) : [];
+        // Each comp's line-up as spec icons.
+        $specIds = collect($board['comps'])->flatMap(fn ($c) => $c['lineups'][0]['ids'] ?? [])->unique()->values()->all();
 
         return view('livewire.leaderboards', [
             'tabNow' => $tab,
@@ -142,6 +158,10 @@ class Leaderboards extends Component
             'board' => $board,
             'ladder' => $ladder,
             'games' => $games,
+            'newest' => $newest,
+            'topSeen' => $topSeen,
+            'specsSeen' => $tab === 'comps' ? $service->specsSeen() : [],
+            'specModels' => \App\Models\Specialization::with('gameClass')->whereIn('external_spec_id', $specIds)->get()->keyBy('external_spec_id'),
             'bands' => CompLeaderboardService::EXP_BANDS,
             'comps' => $this->all ? $board['comps'] : array_slice($board['comps'], 0, self::SHOWN),
             'classes' => GameClass::whereHas('game', fn ($q) => $q->where('slug', 'wow'))->get()->keyBy('slug'),

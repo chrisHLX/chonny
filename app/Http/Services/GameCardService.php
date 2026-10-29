@@ -340,7 +340,100 @@ class GameCardService
             'notes' => $this->noteRows($notes[$round->id] ?? [], $round),
             'basics' => $this->pool ? null : $this->basicsModel([$a]),
             'moments' => $this->pool ? null : $this->momentsModel([[null, $a]]),
+            'tiles' => $this->tiles($a, $players),
+            'events' => $this->events($a, $players, (float) ($this->payload($round)['metadata']['durationInSeconds'] ?? 0)),
         ];
+    }
+
+    /**
+     * The Summary's numbers at a glance (2026-10-29, the dashboard layout): damage, healing, goes,
+     * each healer's time crowd-controlled, defensives before the first death and interrupts, yours
+     * against theirs. Every one is a figure the Numbers and Damage tabs already show in full.
+     *
+     * @return list<array{icon: string, label: string, value: string, sub: ?string}>
+     */
+    private function tiles(array $a, Collection $players): array
+    {
+        $side = $players->keyBy('guid')->map(fn ($p) => $p['side']);
+        $sum = function (string $kinds, string $s) use ($a, $side) {
+            $n = 0;
+            foreach ($a['breakdown'] ?? [] as $guid => $b) {
+                if (($side[$guid] ?? null) === $s) {
+                    foreach (explode(',', $kinds) as $kind) {
+                        $n += array_sum(array_column($b[$kind] ?? [], 'amount'));
+                    }
+                }
+            }
+
+            return $n;
+        };
+        $goes = collect($a['goes']);
+        $kicks = collect($a['kicks']);
+        $healer = fn (string $s) => $players->first(fn ($p) => $p['side'] === $s && $p['healer']);
+        $you = $players->firstWhere('you', true);
+        $tiles = [];
+
+        if (! empty($a['breakdown'])) {
+            $mine = $you ? array_sum(array_column($a['breakdown'][$you['guid']]['damage'] ?? [], 'amount')) : 0;
+            $ours = $sum('damage', 'us');
+            $tiles[] = ['icon' => 'flame', 'label' => 'Damage', 'value' => $this->amount($ours),
+                'sub' => 'enemy '.$this->amount($sum('damage', 'them')).($you && $ours > 0 ? ', yours '.round(100 * $mine / $ours).'%' : '')];
+            $tiles[] = ['icon' => 'heart', 'label' => 'Healing and absorbs', 'value' => $this->amount($sum('healing,absorbs', 'us')),
+                'sub' => 'enemy '.$this->amount($sum('healing,absorbs', 'them'))];
+        }
+        $killed = $goes->where('side', 'us')->filter(fn ($g) => $g['kill'] || $g['killLater'])->count();
+        $tiles[] = ['icon' => 'swords', 'label' => 'Goes, yours / enemy', 'value' => $goes->where('side', 'us')->count().' / '.$goes->where('side', 'them')->count(),
+            'sub' => $killed.' of yours led to a kill'];
+        if ($healer('us') || $healer('them')) {
+            $locked = fn ($p) => $p ? round((float) ($a['lockout'][$p['guid']] ?? 0), 1).'s' : 'no healer';
+            $tiles[] = ['icon' => 'lock', 'label' => 'Your healer crowd-controlled', 'value' => $locked($healer('us')), 'sub' => 'enemy healer '.$locked($healer('them'))];
+        }
+        $tiles[] = ['icon' => 'shield', 'label' => 'Defensives before the first death', 'value' => ($a['defensives']['us']['spent'] ?? 0).' / '.($a['defensives']['them']['spent'] ?? 0),
+            'sub' => 'yours / enemy'];
+        $tiles[] = ['icon' => 'ban', 'label' => 'Interrupts, yours / enemy', 'value' => $kicks->where('side', 'us')->count().' / '.$kicks->where('side', 'them')->count(),
+            'sub' => $kicks->where('side', 'us')->where('onHealer', true)->count().' of yours on their healer'];
+
+        return $tiles;
+    }
+
+    /**
+     * The game on one line of time (the Summary's key events): each go and whom it went on, each
+     * Medallion it forced, each death and the end, all from what RoundAnalysisService stored.
+     *
+     * @return list<array{t: float, clock: string, kind: string, ours: bool, text: string, icon: ?string}>
+     */
+    private function events(array $a, Collection $players, float $length): array
+    {
+        $byGuid = $players->keyBy('guid');
+        $name = fn (?string $guid) => $byGuid[$guid]['name'] ?? 'someone';
+        $icons = $this->icons->for(array_values(array_filter(array_merge(['Gladiator\'s Medallion'], array_map(fn ($d) => $d['killingBlow']['spell'] ?? null, $a['deaths'])))));
+        $events = [];
+        $medallions = [];
+        foreach ($a['goes'] as $go) {
+            $ours = $go['side'] === 'us';
+            $events[] = ['t' => (float) $go['from'], 'kind' => ($go['kill'] ?? null) ? 'kill' : 'go', 'ours' => $ours, 'icon' => null,
+                'text' => ($ours ? 'Your team goes' : 'Enemy go').(isset($byGuid[$go['target'] ?? '']) ? ' on '.$name($go['target']) : '')
+                    .(($go['healerCc'] ?? 0) > 0 ? ', '.($ours ? 'their' : 'your').' healer crowd-controlled' : '')];
+            foreach ($go['forced'] ?? [] as $f) {
+                $t = round((float) $go['from'] + (float) $f['t']);
+                if (str_contains($f['spell'], 'Medallion') && ! isset($medallions[$f['who'].'@'.$t])) {
+                    $medallions[$f['who'].'@'.$t] = true;
+                    $events[] = ['t' => (float) $t, 'kind' => 'medallion', 'ours' => ! $ours, 'icon' => $this->spellIcon($icons, 'Gladiator\'s Medallion'),
+                        'text' => $name($f['who']).' uses Medallion'];
+                }
+            }
+        }
+        foreach ($a['deaths'] as $d) {
+            $kb = $d['killingBlow']['spell'] ?? null;
+            $events[] = ['t' => (float) $d['t'], 'kind' => 'death', 'ours' => $d['side'] === 'us', 'icon' => $kb ? $this->spellIcon($icons, $kb) : null,
+                'text' => $name($d['who']).' dies'.($kb ? ' to '.$kb : '')];
+        }
+        if ($length > 0) {
+            $events[] = ['t' => $length, 'kind' => 'end', 'ours' => (bool) $a['won'], 'icon' => null, 'text' => $a['won'] ? 'Your team wins' : 'Your team loses'];
+        }
+        usort($events, fn ($x, $y) => $x['t'] <=> $y['t']);
+
+        return array_map(fn ($e) => $e + ['clock' => $this->clock($e['t'])], $events);
     }
 
     /**

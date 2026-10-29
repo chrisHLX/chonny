@@ -192,8 +192,22 @@ class CompBoardTest extends TestCase
         $this->assertCount(2, $svc->board(2401)['comps'], 'a number that is not a band is the whole board');
 
         $this->get('/wow/leaderboards')->assertOk()->assertSee('RMP')->assertSee('Jungle')->assertSee('Known for 2 of 4 teams');
-        $this->get('/wow/leaderboards?exp=2400')->assertOk()->assertSee('RMP')->assertDontSee('Jungle');
+        // The board's own rows; the side column's newest games are every game, whatever the filter.
+        $this->get('/wow/leaderboards?exp=2400')->assertOk()->assertSee('comps/played/mage-rogue-priest', false)->assertDontSee('comps/played/druid-hunter-priest', false);
         $this->get('/wow/leaderboards?exp=junk')->assertOk()->assertSee('Jungle');
+    }
+
+    public function test_the_board_filters_comps_by_a_spec_in_them(): void
+    {
+        $this->game(User::factory()->create(), 'm1', true);   // RMP with a Discipline Priest, Jungle with a Holy Priest
+
+        $svc = app(CompLeaderboardService::class);
+        $this->assertSame(['druid-hunter-priest'], array_column($svc->board(null, 257)['comps'], 'key'));
+        $this->assertCount(2, $svc->board(null, 999)['comps'], 'a spec nobody played is the whole board');
+        $this->assertContains(256, array_column($svc->specsSeen(), 'id'));
+
+        $this->get('/wow/leaderboards?spec=256')->assertOk()
+            ->assertSee('comps/played/mage-rogue-priest', false)->assertDontSee('comps/played/druid-hunter-priest', false);
     }
 
     public function test_the_players_tab_is_blizzards_ladder_with_the_comps_each_player_was_seen_on(): void

@@ -136,17 +136,18 @@ class CompLeaderboardService
      * The board: every comp with its record, the average MMR and experience of the teams that
      * played it, its usual specs, and its record against each comp it met. With $minExp (a key of
      * EXP_BANDS), only the teams whose experience is known and at least that; any other value is
-     * the whole board.
+     * the whole board. With $spec (Blizzard's spec id, 2026-10-29), only the teams that had one.
      *
      * @return array{season: array, games: int, teams: int, known: int, minExp: ?int, comps: list<array>}
      */
-    public function board(?int $minExp = null): array
+    public function board(?int $minExp = null, ?int $spec = null): array
     {
         $minExp = isset(self::EXP_BANDS[$minExp]) ? $minExp : null;
         $teams = $this->teams();
+        $spec = $spec && $teams->contains(fn ($t) => in_array($spec, $t['specs'], true)) ? $spec : null;
         $signature = $teams->count().':'.$teams->max('round');
 
-        return Cache::remember('comp-board:v4:'.$signature.':'.($minExp ?? 'all'), now()->addMinutes(self::TTL_MINUTES), function () use ($teams, $minExp) {
+        return Cache::remember('comp-board:v4:'.$signature.':'.($minExp ?? 'all').':'.($spec ?? 'any'), now()->addMinutes(self::TTL_MINUTES), function () use ($teams, $minExp, $spec) {
             $xp = app(PlayerExperienceService::class)->cachedMany($teams->pluck('names')->flatten()->unique()->values()->all());
             $specs = app(PlayerGamesService::class);
             $labels = $teams->pluck('key')->unique()->mapWithKeys(fn ($k) => [$k => self::label($k)]);
@@ -157,6 +158,9 @@ class CompLeaderboardService
             $all = $teams->count();
             if ($minExp) {
                 $teams = $teams->filter(fn ($t) => $t['exp'] !== null && $t['exp'] >= $minExp);
+            }
+            if ($spec) {
+                $teams = $teams->filter(fn ($t) => in_array($spec, $t['specs'], true));
             }
 
             // The players of these teams who are on Blizzard's 3v3 ladder, for each comp's "top players seen".
@@ -202,8 +206,23 @@ class CompLeaderboardService
                 ];
             })->sortByDesc(fn ($c) => [$c['games'], $c['rate'] ?? 0])->values()->all();
 
-            return ['games' => $teams->pluck('match')->unique()->count(), 'teams' => $all, 'known' => $known, 'minExp' => $minExp, 'comps' => $comps];
+            return ['games' => $teams->pluck('match')->unique()->count(), 'teams' => $all, 'known' => $known, 'minExp' => $minExp, 'spec' => $spec, 'comps' => $comps];
         }) + ['season' => $this->season()];
+    }
+
+    /**
+     * Every spec played in a 3v3 game this season, for the board's spec filter: Blizzard's id and its
+     * name, by class then spec.
+     *
+     * @return list<array{id: int, label: string, class: ?string}>
+     */
+    public function specsSeen(): array
+    {
+        $specs = app(PlayerGamesService::class);
+
+        return $this->teams()->pluck('specs')->flatten()->unique()
+            ->map(fn ($id) => ['id' => (int) $id] + $specs->spec((int) $id))
+            ->sortBy(fn ($s) => [$s['class'] ?? 'z', $s['label']])->values()->all();
     }
 
     /** One player as the ladder and the uploaded games both name them: "us|area52|rogueguy". */

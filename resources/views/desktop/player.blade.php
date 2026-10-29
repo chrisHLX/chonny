@@ -110,7 +110,7 @@
 
 {{-- ============================== what they press --}}
 <div class="section">
-    <div class="label">What they press
+    <div class="label">@include('desktop.partials.icon', ['n' => 'bolt'])What they press
         <span class="aside">a minute free to act (alive and not crowd-controlled), over {{ $m['measured'] }} round{{ $m['measured'] === 1 ? '' : 's' }}, {{ $m['freeMinutes'] }} min.
         @if ($m['norm']) Most: the median {{ $m['norm']['label'] }} who pressed it, {{ $m['norm']['rounds'] }} rounds in the archive.@endif
         @if ($m['youPlay']) You: your own {{ $m['youPlay']['rounds'] }} round{{ $m['youPlay']['rounds'] === 1 ? '' : 's' }} of the spec.@endif</span>
@@ -145,7 +145,7 @@
 {{-- ============================== output --}}
 @if ($m['output'])
     <div class="section">
-        <div class="label">Enemy output and habits <span class="aside">against the median {{ $specShort }} in the archive{{ $m['youPlay'] ? ', and you on the spec' : '' }}</span></div>
+        <div class="label">@include('desktop.partials.icon', ['n' => 'chart'])Enemy output and habits <span class="aside">against the median {{ $specShort }} in the archive{{ $m['youPlay'] ? ', and you on the spec' : '' }}</span></div>
         <div class="box">
             <table class="stats">
                 <tr><td class="small muted"></td><td class="n small muted" style="width: 90px">Them</td><td class="n small muted" style="width: 90px">Most</td><td class="n small muted" style="width: 90px">You</td></tr>
@@ -179,7 +179,7 @@
 {{-- ============================== damage and healing --}}
 @if ($m['breakdown'])
     <div class="section">
-        <div class="label">Where enemy output came from <span class="aside">share of the enemy total onto players, every round summed</span></div>
+        <div class="label">@include('desktop.partials.icon', ['n' => 'flame'])Where enemy output came from <span class="aside">share of the enemy total onto players, every round summed</span></div>
         <table class="two"><tr>
             @foreach ($m['breakdown'] as $i => $bd)
                 <td class="col {{ $i === 0 ? 'left' : 'right' }}"><div class="box">
@@ -194,7 +194,7 @@
 
 {{-- ============================== every round --}}
 <div class="section">
-    <div class="label">Every round against them</div>
+    <div class="label">@include('desktop.partials.icon', ['n' => 'clock'])Every round against them</div>
     <div class="box">
         <table class="stats">
             <tr><td class="small muted">Played</td><td class="small muted">Bracket</td><td class="small muted">You</td><td class="small muted">Result</td><td class="small muted">MMR (you / them)</td><td class="small muted">They died at</td></tr>

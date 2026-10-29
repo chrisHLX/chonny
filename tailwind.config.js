@@ -21,10 +21,10 @@ export default {
         extend: {
             fontFamily: {
                 sans: ['Inter', ...defaultTheme.fontFamily.sans],
-                // Headings: Inter at heavy weight with tight tracking (.font-display in
-                // app.css), the way Spotify sets its titles. One family for the whole site:
-                // Archivo Black was a second and third webfont on every page (2026-10-11).
-                display: ['Inter', ...defaultTheme.fontFamily.sans],
+                // Headings: Marcellus (2026-10-29, the dashboard layout), a Trajan-like face
+                // with true lowercase, one weight and ~20 KB; body text stays Inter. Before
+                // that Inter at 800 (2026-10-11), and Archivo Black before that.
+                display: ['Marcellus', 'Georgia', 'serif'],
             },
             colors: {
                 // Surfaces: Spotify's neutral greys (2026-10-11), the same steps the site and

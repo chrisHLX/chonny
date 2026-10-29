@@ -1,9 +1,13 @@
 {{-- The desktop pages' styles: the game card, Improve, Comps and Classes, shown in both apps and on
      /wow/coach. Spotify's look, the same as the site (2026-10-11): #121212 page, #181818 cards that
-     lift on hover, pill tabs, a coloured wash behind each page's title. IE11-safe for the Dev app: no
-     CSS variables, no grid, no flex gap (gradients and rounded corners are fine). Colours are the
-     site's tokens written out (tailwind.config.js). --}}
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap">
+     lift on hover, pill tabs, a coloured wash behind each page's title. Colours are the site's tokens
+     written out (tailwind.config.js).
+
+     2026-10-29: grid and flex are in use. The downloadable app draws these pages with WebView2 (Edge),
+     and the site in any current browser; only the retired PowerShell app was IE11, and it now draws
+     the newer layouts as a single column. Titles and the big numbers are Marcellus, the site's
+     heading face (one weight, ~20 KB). --}}
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Marcellus&display=swap">
 <style>
     html, body { margin: 0; padding: 0; background: #121212; color: #FFFFFF; }
     /* IE's own scrollbar properties: the Dev app's browser control is IE11. */
@@ -28,7 +32,8 @@
         background: #2a2214; background: linear-gradient(to bottom, #3a2d12 0%, #1e1a12 60%, #121212 100%); }
     .head.head-won { background: #17301f; background: linear-gradient(to bottom, #1d4a2c 0%, #16261b 60%, #121212 100%); }
     .head.head-lost { background: #301717; background: linear-gradient(to bottom, #4a1d1d 0%, #261616 60%, #121212 100%); }
-    .head .title { font-size: 30px; font-weight: 800; letter-spacing: -.02em; margin: 0 10px 0 8px; vertical-align: middle; }
+    .head .title { font-family: 'Marcellus', Georgia, serif; font-size: 32px; font-weight: 400; letter-spacing: .01em; margin: 0 10px 0 8px; vertical-align: middle; font-synthesis: none; }
+    .serif { font-family: 'Marcellus', Georgia, serif; font-weight: 400; font-synthesis: none; }
     .head .when { vertical-align: middle; font-size: 13px; }
     .head .mmr { float: right; margin-top: 10px; }
 
@@ -43,6 +48,70 @@
 
     .section { margin-top: 26px; }
     .label { font-size: 17px; font-weight: 700; letter-spacing: -.01em; color: #FFFFFF; margin-bottom: 10px; }
+    /* A section's icon, gold, before its name (desktop.partials.icon). */
+    .ico { width: 16px; height: 16px; vertical-align: -3px; }
+    .label .ico { color: #C8952C; margin-right: 7px; }
+    /* A small caps heading inside a card: "KEY EVENTS", the way the dashboard names its panels. */
+    .kicker { font-size: 11.5px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: #B3B3B3; margin-bottom: 10px; }
+    .kicker .ico { color: #C8952C; margin-right: 6px; width: 15px; height: 15px; }
+
+    /* ---- the dashboard layout (2026-10-29): a header with both sides, then panels in a grid ---- */
+    .hero { display: flex; flex-wrap: wrap; align-items: flex-start; justify-content: space-between; gap: 16px; }
+    .hero-main { display: flex; align-items: center; gap: 16px; min-width: 0; }
+    .hero-ic { width: 64px; height: 64px; border-radius: 12px; flex-shrink: 0; border: 2px solid #3E3E3E; }
+    .head-won .hero-ic { border-color: #1db954; }
+    .head-lost .hero-ic { border-color: #b93a3a; }
+    .hero .eyebrow { font-size: 12.5px; color: #B3B3B3; }
+    .hero .title { margin: 0 10px 0 0; }
+    .hero .big { font-family: 'Marcellus', Georgia, serif; font-size: 22px; vertical-align: middle; margin-left: 8px; font-synthesis: none; }
+    .lineup { margin-top: 6px; font-size: 13px; }
+    .lineup span.p { white-space: nowrap; margin-right: 12px; }
+    .lineup img { width: 18px; height: 18px; border-radius: 4px; vertical-align: -4px; margin-right: 5px; }
+    .opp { background: rgba(0,0,0,.28); border: 1px solid #3E3E3E; border-radius: 10px; padding: 10px 14px; min-width: 210px; }
+    .opp .k { font-size: 11.5px; color: #B3B3B3; }
+    .opp .v { font-family: 'Marcellus', Georgia, serif; font-size: 20px; font-synthesis: none; }
+    .actions { margin-top: 10px; }
+    .actions a { display: inline-block; margin: 0 6px 6px 0; border-radius: 9999px; padding: 6px 14px; font-weight: 700; font-size: 12.5px; text-decoration: none; }
+    .actions a.primary { background: #C8952C; color: #000000; }
+    .actions a.primary:hover { background: #E8B84B; }
+    .actions a.plain { background: #2A2A2A; color: #FFFFFF; }
+    .actions a.plain:hover { background: #3E3E3E; }
+
+    .grid2 { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 14px; }
+    .grid2 + .grid2, .grid2 + .section, .section + .grid2 { margin-top: 14px; }
+    .grid2.lead { grid-template-columns: minmax(0, 2fr) minmax(0, 3fr); }
+    .grid2.top { align-items: start; }
+    .card { background: #181818; border-radius: 10px; padding: 14px 16px; min-width: 0; }
+    .card:hover { background: #1c1c1c; }
+
+    /* The headline: the first death, in the face of the titles. */
+    .headline .t { font-family: 'Marcellus', Georgia, serif; font-size: 22px; line-height: 1.25; font-synthesis: none; }
+    .headline .line { color: #B3B3B3; }
+    .headline a { color: #E8B84B; font-size: 12.5px; font-weight: 600; text-decoration: none; }
+
+    .tiles { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; }
+    .tile { background: #121212; border-radius: 8px; padding: 10px 12px; min-width: 0; }
+    .tile .k { font-size: 11.5px; color: #B3B3B3; line-height: 1.3; }
+    .tile .k .ico { color: #C8952C; width: 14px; height: 14px; margin-right: 4px; vertical-align: -2px; }
+    .tile .v { font-family: 'Marcellus', Georgia, serif; font-size: 22px; margin-top: 4px; white-space: nowrap; font-synthesis: none; }
+    .tile .s { font-size: 11.5px; color: #6A6A6A; }
+
+    /* Key events: one line of time down the left. */
+    .events { position: relative; }
+    .ev { display: flex; align-items: center; gap: 10px; padding: 5px 8px; border-radius: 8px; }
+    .ev .t { width: 38px; flex-shrink: 0; color: #B3B3B3; font-variant-numeric: tabular-nums; font-size: 12.5px; }
+    .ev .dot { width: 26px; height: 26px; flex-shrink: 0; border-radius: 13px; background: #232323; display: flex; align-items: center; justify-content: center; overflow: hidden; }
+    .ev .dot img { width: 26px; height: 26px; }
+    .ev .dot .ico { width: 14px; height: 14px; }
+    .ev.ours .dot { color: #86efac; }
+    .ev.theirs .dot { color: #fca5a5; }
+    .ev.death.ours, .ev.kill.theirs { background: rgba(239,68,68,.10); }
+    .ev.death.theirs, .ev.kill.ours { background: rgba(200,149,44,.14); }
+    .ev .x { min-width: 0; }
+
+    @media (max-width: 860px) {
+        .grid2, .grid2.lead { grid-template-columns: minmax(0, 1fr); }
+    }
     .label .aside { font-size: 12.5px; font-weight: 400; letter-spacing: 0; color: #B3B3B3; margin-left: 8px; }
     .box { background: #181818; border-radius: 8px; padding: 12px 14px; }
     .box:hover { background: #1f1f1f; }
@@ -133,7 +202,11 @@
     @media (max-width: 560px) {
         body { padding: 0 14px 28px; }
         .head { margin: 0 -14px 16px; padding: 20px 14px 16px; }
-        .head .title { font-size: 22px; margin: 0 6px 0 4px; }
+        .head .title { font-size: 24px; margin: 0 6px 0 4px; }
+        .hero-ic { width: 44px; height: 44px; }
+        .opp { min-width: 0; width: 100%; }
+        .tiles { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+        .tile .v, .headline .t { font-size: 19px; }
         .head .mmr { float: none; display: block; margin-top: 6px; }
 
         /* Two columns side by side become one on top of the other. Both names are in use:
