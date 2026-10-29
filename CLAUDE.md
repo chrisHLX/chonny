@@ -737,11 +737,10 @@ the `$C` table in `MindCollectorLogs.ps1`). Black frame around rounded `surface-
 cards with no border that lift on hover, pill buttons and pill tabs (the open tab white), gold for the
 one thing to press. Change a colour in all four places.
 
-Fonts: Inter for text, **Marcellus for headings** (2026-10-29, Chriso: the dashboard layout with "a
-special font for certain things"), both linked from the page head (`partials/fonts.blade.php`, and the
-desktop pages' `styles.blade.php`), never `@import`ed from CSS. `font-display` is Marcellus, which has one
-weight, so `font-synthesis: none` keeps the browser from faking a bold; no italics. On the desktop pages
-the titles and big numbers use it (`.head .title`, `.serif`, `.tile .v`).
+Fonts: Inter only, linked from the page head (`partials/fonts.blade.php`), never `@import`ed from CSS.
+`font-display` is Inter at 800 with tight tracking; no italics. A serif for headings (Marcellus) was tried
+on 2026-10-29 and dropped before it shipped: at small sizes and in numbers it read as fussy, and Chriso
+found it "wasn't clean and simple".
 
 **The dashboard layout (2026-10-29)** takes the layout of a mockup Chriso sent, not its look (red fire
 art, ornate emblems): a header with your side and an opponent box, then panels (`.grid2`, `.card`,

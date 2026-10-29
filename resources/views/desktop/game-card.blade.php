@@ -51,7 +51,7 @@
                     <span class="chip {{ $g['won'] ? 'won' : 'lost' }}">{{ $g['won'] ? 'WON' : 'LOST' }}</span>
                 @endif
                 @if ($g['kind'] === 'game' && ($g['mmr']['us'] ?? null))
-                    <span class="big">{{ $g['mmr']['us'] }} <span class="small muted" style="font-family: Inter, sans-serif">MMR</span></span>
+                    <span class="big">{{ $g['mmr']['us'] }} <span class="small muted" style="font-weight: 400; letter-spacing: 0">MMR</span></span>
                 @endif
             </div>
             @if ($lineup)
@@ -70,7 +70,7 @@
     <div class="opp">
         @if ($g['kind'] === 'game')
             <div class="k">Opponent</div>
-            <div class="v">{{ $g['mmr']['them'] ?? '?' }} <span class="small muted" style="font-family: Inter, sans-serif">MMR</span></div>
+            <div class="v">{{ $g['mmr']['them'] ?? '?' }} <span class="small muted" style="font-weight: 400; letter-spacing: 0">MMR</span></div>
             <div class="small muted">{{ $g['glad']['them'] }} Gladiator season{{ $g['glad']['them'] === 1 ? '' : 's' }}, yours {{ $g['glad']['us'] }}</div>
             @if (! empty($g['difficulty']))
                 <div class="small" style="margin-top: 6px"><span class="chip {{ $g['difficulty']['tone'] }}">{{ $g['difficulty']['label'] }}</span> <span class="muted">&nbsp;{{ $g['difficulty']['text'] }}</span></div>

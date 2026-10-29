@@ -10,8 +10,7 @@
 
     /* Titles: Inter, heavy and tight, as Spotify sets them. Base specificity, so a template's own
        font-* or tracking-* utility still wins. */
-    /* Marcellus has one weight: never let the browser fake a bold of it. */
-    .font-display { font-weight: 400; letter-spacing: 0.005em; font-synthesis: none; }
+    .font-display { font-weight: 800; letter-spacing: -0.025em; }
 
     ::-webkit-scrollbar { width: 12px; height: 12px; }
     ::-webkit-scrollbar-track { background: transparent; }

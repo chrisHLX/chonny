@@ -5,9 +5,9 @@
 
      2026-10-29: grid and flex are in use. The downloadable app draws these pages with WebView2 (Edge),
      and the site in any current browser; only the retired PowerShell app was IE11, and it now draws
-     the newer layouts as a single column. Titles and the big numbers are Marcellus, the site's
-     heading face (one weight, ~20 KB). --}}
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Marcellus&display=swap">
+     the newer layouts as a single column. One face, Inter: a serif for titles and numbers was tried
+     the same day and read as fussy at small sizes. --}}
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap">
 <style>
     html, body { margin: 0; padding: 0; background: #121212; color: #FFFFFF; }
     /* IE's own scrollbar properties: the Dev app's browser control is IE11. */
@@ -32,8 +32,7 @@
         background: #2a2214; background: linear-gradient(to bottom, #3a2d12 0%, #1e1a12 60%, #121212 100%); }
     .head.head-won { background: #17301f; background: linear-gradient(to bottom, #1d4a2c 0%, #16261b 60%, #121212 100%); }
     .head.head-lost { background: #301717; background: linear-gradient(to bottom, #4a1d1d 0%, #261616 60%, #121212 100%); }
-    .head .title { font-family: 'Marcellus', Georgia, serif; font-size: 32px; font-weight: 400; letter-spacing: .01em; margin: 0 10px 0 8px; vertical-align: middle; font-synthesis: none; }
-    .serif { font-family: 'Marcellus', Georgia, serif; font-weight: 400; font-synthesis: none; }
+    .head .title { font-size: 30px; font-weight: 800; letter-spacing: -.02em; margin: 0 10px 0 8px; vertical-align: middle; }
     .head .when { vertical-align: middle; font-size: 13px; }
     .head .mmr { float: right; margin-top: 10px; }
 
@@ -63,13 +62,13 @@
     .head-lost .hero-ic { border-color: #b93a3a; }
     .hero .eyebrow { font-size: 12.5px; color: #B3B3B3; }
     .hero .title { margin: 0 10px 0 0; }
-    .hero .big { font-family: 'Marcellus', Georgia, serif; font-size: 22px; vertical-align: middle; margin-left: 8px; font-synthesis: none; }
+    .hero .big { font-size: 22px; font-weight: 800; letter-spacing: -.02em; vertical-align: middle; margin-left: 8px; font-variant-numeric: tabular-nums; }
     .lineup { margin-top: 6px; font-size: 13px; }
     .lineup span.p { white-space: nowrap; margin-right: 12px; }
     .lineup img { width: 18px; height: 18px; border-radius: 4px; vertical-align: -4px; margin-right: 5px; }
     .opp { background: rgba(0,0,0,.28); border: 1px solid #3E3E3E; border-radius: 10px; padding: 10px 14px; min-width: 210px; }
     .opp .k { font-size: 11.5px; color: #B3B3B3; }
-    .opp .v { font-family: 'Marcellus', Georgia, serif; font-size: 20px; font-synthesis: none; }
+    .opp .v { font-size: 20px; font-weight: 800; letter-spacing: -.02em; font-variant-numeric: tabular-nums; }
     .actions { margin-top: 10px; }
     .actions a { display: inline-block; margin: 0 6px 6px 0; border-radius: 9999px; padding: 6px 14px; font-weight: 700; font-size: 12.5px; text-decoration: none; }
     .actions a.primary { background: #C8952C; color: #000000; }
@@ -85,7 +84,7 @@
     .card:hover { background: #1c1c1c; }
 
     /* The headline: the first death, in the face of the titles. */
-    .headline .t { font-family: 'Marcellus', Georgia, serif; font-size: 22px; line-height: 1.25; font-synthesis: none; }
+    .headline .t { font-size: 21px; font-weight: 800; letter-spacing: -.02em; line-height: 1.25; }
     .headline .line { color: #B3B3B3; }
     .headline a { color: #E8B84B; font-size: 12.5px; font-weight: 600; text-decoration: none; }
 
@@ -93,7 +92,7 @@
     .tile { background: #121212; border-radius: 8px; padding: 10px 12px; min-width: 0; }
     .tile .k { font-size: 11.5px; color: #B3B3B3; line-height: 1.3; }
     .tile .k .ico { color: #C8952C; width: 14px; height: 14px; margin-right: 4px; vertical-align: -2px; }
-    .tile .v { font-family: 'Marcellus', Georgia, serif; font-size: 22px; margin-top: 4px; white-space: nowrap; font-synthesis: none; }
+    .tile .v { font-size: 22px; font-weight: 800; letter-spacing: -.02em; margin-top: 4px; white-space: nowrap; font-variant-numeric: tabular-nums; }
     .tile .s { font-size: 11.5px; color: #6A6A6A; }
 
     /* Key events: one line of time down the left. */
