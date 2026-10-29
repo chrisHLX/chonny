@@ -218,6 +218,16 @@ Start the remote command with `cd` so git-bash doesn't rewrite the path. To revo
 that line from `authorized_keys`; the root password doesn't change. The paramiko and password
 method below is how deploys were done before the key; it stays here as a record.
 
+**Keys only, from 2026-10-29.** `/etc/ssh/sshd_config.d/00-keys-only.conf` sets
+`PasswordAuthentication no` and `PermitRootLogin prohibit-password`; it is read before cloud-init's
+`50-cloud-init.conf` (which says yes), and sshd keeps the first value. The root password no longer
+works over SSH, so the paramiko method below is dead. Both PCs' keys are in `authorized_keys`
+(`chris-pc`, `chris-desktop`). Lost both keys: Vultr's web console still takes the password, and
+deleting that file then `systemctl reload ssh` brings password SSH back. The website's own logins are
+unaffected. The same day: the systemd journal capped at 500 MB
+(`/etc/systemd/journald.conf.d/size.conf`, it had reached 4.1 GB) and old app installers removed,
+keeping the one before the current (`storage/app/desktop/MindCollector-<version>.exe`) for a rollback.
+
 **Before the key: paramiko, not `ssh`.** The password is in
 `C:\Users\chris\Desktop\mytho\MINDCOLLECTOR.txt`. The Bash tool's native `ssh`/`scp` can't answer a
 password prompt. Use `python -m pip install paramiko` and a small helper, `prod_ssh.py`, in the
