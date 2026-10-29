@@ -71,9 +71,27 @@
     </div>
     <div class="opp">
         @if ($g['kind'] === 'game')
-            <div class="k">Opponent</div>
-            <div class="v">{{ $g['mmr']['them'] ?? '?' }} <span class="small muted" style="font-weight: 400; letter-spacing: 0">MMR</span></div>
-            <div class="small muted">{{ $g['glad']['them'] }} Gladiator season{{ $g['glad']['them'] === 1 ? '' : 's' }}, yours {{ $g['glad']['us'] }}</div>
+            {{-- Each opponent's Gladiator seasons first (2026-10-30, Chriso: "the glad xp of the opponents
+                 needs to be one of the primary things people see"), then their MMR. --}}
+            <div class="k">Opponents &middot; {{ $g['mmr']['them'] ?? '?' }} MMR</div>
+            <table class="opp-list">
+                @foreach ($g['teams']['them'] as $p)
+                    <tr>
+                        <td class="who">@if ($p['icon'])<img src="{{ $p['icon'] }}" alt="">@endif<span style="color: {{ $p['color'] }}">{{ $p['name'] }}</span></td>
+                        <td class="gl">
+                            @if ($p['xp']['state'] === 'ok')
+                                @if ($p['xp']['glad'] > 0)<span class="chip glad">{{ $p['xp']['glad'] }}&times; Glad</span>@else<span class="small muted">no Glad</span>@endif
+                            @elseif ($p['xp']['state'] === 'none')
+                                <span class="small subtle">no profile</span>
+                            @else
+                                <span class="small subtle">not looked up</span>
+                            @endif
+                        </td>
+                        <td class="ex small">@if (($p['xp']['state'] === 'ok') && $p['xp']['exp']){{ $p['xp']['exp'] }} <span class="subtle">exp</span>@endif</td>
+                    </tr>
+                @endforeach
+            </table>
+            <div class="small muted" style="margin-top: 4px">{{ $g['glad']['them'] }} Gladiator season{{ $g['glad']['them'] === 1 ? '' : 's' }} between them, your team {{ $g['glad']['us'] }}</div>
             @if (! empty($g['difficulty']))
                 <div class="small" style="margin-top: 6px"><span class="chip {{ $g['difficulty']['tone'] }}">{{ $g['difficulty']['label'] }}</span> <span class="muted">&nbsp;{{ $g['difficulty']['text'] }}</span></div>
             @endif
