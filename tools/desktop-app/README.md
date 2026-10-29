@@ -227,6 +227,11 @@ YouTube" and never tickable. A character picker (shown once there are two charac
 Games tab's) narrows it, **Tick all** and **Untick all** act on what it shows, and the button says how
 many go ("Upload 3 games"). Only shown games stay ticked, so the count is what is sent.
 
+**Not a tester yet (0.6.4, 2026-10-29).** When the website is set up for YouTube but the player is not
+one of its testers, the index says `youtubeInvite: true` and the Videos tab's first row reads
+**YouTube uploads: testers for now**; clicking it opens Your games' YouTube box, which says to ask on
+Discord. Adding a tester, and what Google needs to open it to everyone: `docs/youtube-verification.md`.
+
 ## To improve later
 
 - **A card sooner after a game (noted 2026-10-27, held until it is quieter).** Measured on a player's game

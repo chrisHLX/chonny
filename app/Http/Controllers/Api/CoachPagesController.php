@@ -41,6 +41,9 @@ class CoachPagesController extends Controller
             'builtAt' => File::exists($path) ? date(DATE_ATOM, File::lastModified($path)) : null,
             // Whether the website can take YouTube uploads (2026-10-26): the app shows its upload row only then.
             'youtube' => app(\App\Http\Services\YouTubeService::class)->availableTo($user),
+            // Testers only so far, and not one (2026-10-29): 0.6.4 on shows a row saying how to join.
+            // A separate key, so older apps, which read `youtube` as true or nothing, are unchanged.
+            'youtubeInvite' => app(\App\Http\Services\YouTubeService::class)->testersOnly($user),
         ] + $index);
     }
 

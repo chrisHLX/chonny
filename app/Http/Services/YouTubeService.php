@@ -55,6 +55,15 @@ class YouTubeService
             && (config('services.youtube.public') || $user->is_admin || in_array($user->id, config('services.youtube.testers', []), true));
     }
 
+    /**
+     * Set up, but this player is not one of the testers yet (2026-10-29): they are told it is open to
+     * testers while Google reviews it, and how to be added, rather than seeing nothing at all.
+     */
+    public function testersOnly(?User $user): bool
+    {
+        return $this->configured() && $user !== null && ! $this->availableTo($user);
+    }
+
     /** The callback on whichever host the player is on: both are registered with Google. */
     public function redirectUri(): string
     {

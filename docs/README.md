@@ -74,6 +74,7 @@ heading. Rules are still cited by number and still mean the same rule.
 | File | Status | What it is |
 |---|---|---|
 | `DEPLOY.md` | current | The deploy runbook, and how to work on production from Claude Code. |
+| `docs/youtube-verification.md` | current | YouTube uploads: adding a tester today, and what Google needs to open it to everyone (consent screen fields, the scope reason, the demo video, the API quota and two data gaps). |
 
 ## The dormant learning platform
 

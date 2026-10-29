@@ -156,6 +156,15 @@ internal sealed class MainForm : Form
         {
             if (_filling || _list.SelectedFile is not { } file) return;
             if (file == YouTubeAction) { OpenYouTubeQueue(); return; }
+            if (file == YouTubeInviteAction)
+            {
+                // How to be added as a tester: the website's YouTube box on Your games.
+                try { System.Diagnostics.Process.Start(new System.Diagnostics.ProcessStartInfo($"{_settings.ServerUrl.TrimEnd('/')}/wow/coach#youtube") { UseShellExecute = true }); } catch { }
+                _filling = true;
+                _list.ClearSelected();
+                _filling = false;
+                return;
+            }
             if (file.StartsWith(SamplePrefix, StringComparison.Ordinal)) await ShowSampleAsync(file[SamplePrefix.Length..]);
             else if (file.StartsWith(VideoPrefix, StringComparison.Ordinal)) ShowVideo(file[VideoPrefix.Length..]);
             else await ShowPageAsync(file);
@@ -567,6 +576,9 @@ internal sealed class MainForm : Form
             // Only once the website has YouTube set up (its index says so): until then it could only say "not yet".
             if (rows.Count > 0 && _index?.RootElement is { } ix && ix.TryGetProperty("youtube", out var yt) && yt.ValueKind == System.Text.Json.JsonValueKind.True)
                 rows.Insert(0, new LibraryRow("YouTube: upload and share…", "Send games to your channel, and see who can watch the ones there, their views and their pages", null, 0, YouTubeAction));
+            // Set up, but testers only while Google reviews it, and this player is not one yet (2026-10-29).
+            else if (rows.Count > 0 && _index?.RootElement is { } iv && iv.TryGetProperty("youtubeInvite", out var inv) && inv.ValueKind == System.Text.Json.JsonValueKind.True)
+                rows.Insert(0, new LibraryRow("YouTube uploads: testers for now", "Google is still reviewing it. Click to see how to be added", null, 0, YouTubeInviteAction));
             if (rows.Count == 0)
                 rows.Add(_settings.RecordGames
                     ? new LibraryRow("No videos yet", "Each arena game you play is recorded with OBS")
@@ -797,6 +809,7 @@ internal sealed class MainForm : Form
     /// timeline of goes, deaths and defensives under it), otherwise the plain player.
     /// </summary>
     private const string YouTubeAction = "action:youtube";
+    private const string YouTubeInviteAction = "action:youtube-invite";
 
     /// <summary>The upload picker (YouTubeQueueForm): recordings matched to a game, those on YouTube already among them, marked.</summary>
     private void OpenYouTubeQueue()

@@ -62,5 +62,13 @@
             @endforeach
         </ol>
     </section>
+
+    {{-- The policies from the front page (2026-10-29): Google's review of the YouTube upload wants the
+         home page to link the privacy policy, and a player should find both without signing up. --}}
+    <footer class="flex flex-wrap gap-x-5 gap-y-1 text-[12.5px] text-ink-subtle px-1 pb-2">
+        <a href="{{ route('privacy') }}" class="hover:text-ink">Privacy policy</a>
+        <a href="{{ route('terms') }}" class="hover:text-ink">Terms</a>
+        <a href="https://discord.gg/Bk7wEvPRt" target="_blank" rel="noopener noreferrer" class="hover:text-ink">Discord</a>
+    </footer>
 </div>
 </x-app-layout>

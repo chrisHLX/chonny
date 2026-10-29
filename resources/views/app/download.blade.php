@@ -111,6 +111,12 @@
                 <span class="text-ink font-semibold">Set up OBS</span>. It turns on what the app needs in OBS, adds a
                 capture of WoW if you don't have one, and records each arena game from then on.
             </p>
+            <p class="text-[14px] text-ink-muted mt-2">
+                To share them, link your YouTube channel on <span class="text-ink font-semibold">Your games</span>.
+                The app uploads only the games you pick, each with a title and chapters written from the game,
+                unlisted unless you choose otherwise. While Google reviews this it is open to testers:
+                <a href="https://discord.gg/Bk7wEvPRt" target="_blank" rel="noopener noreferrer" class="text-gold hover:underline">ask on Discord</a> to be added.
+            </p>
         </div>
     </div>
 
@@ -208,7 +214,8 @@
             game's date, the two teams, their ratings, and each player's damage, healing and talents. Your
             notes, videos and game pages are never on them.</p>
         <p><span class="text-ink font-semibold">Your videos stay on your PC.</span> The app plays them from your
-            own disk and never uploads them.</p>
+            own disk. It uploads one only if you link your YouTube channel and pick that game, and then it goes
+            straight from your PC to your channel, never through us.</p>
         <p><span class="text-ink font-semibold">The averages.</span> Unless you opt out, your games are also
             counted, without any names, in the averages everyone is compared with. You can leave them out
             any time on <a href="{{ route('coach') }}#privacy" class="text-gold hover:underline">Your games</a>, under Upload.</p>

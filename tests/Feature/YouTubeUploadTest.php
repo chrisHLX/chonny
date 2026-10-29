@@ -48,6 +48,27 @@ class YouTubeUploadTest extends TestCase
         $this->withToken($player->issueCoachToken())->getJson(route('api.coach.index'))->assertJsonPath('youtube', true);
     }
 
+    /** Not a tester yet: told it is for testers while Google reviews it, and how to be added (2026-10-29). */
+    public function test_a_player_who_is_not_a_tester_is_told_how_to_join(): void
+    {
+        config(['services.youtube.public' => false]);
+        $player = User::factory()->create();
+
+        $this->withToken($player->issueCoachToken())->getJson(route('api.coach.index'))
+            ->assertJsonPath('youtube', false)->assertJsonPath('youtubeInvite', true);
+        $this->actingAs($player)->get(route('coach'))->assertOk()
+            ->assertSee('Testers for now')->assertSee('discord.gg', false)->assertDontSee('Connect YouTube');
+
+        // Once added, the invitation gives way to the real thing.
+        config(['services.youtube.testers' => [$player->id]]);
+        $this->withToken($player->issueCoachToken())->getJson(route('api.coach.index'))->assertJsonPath('youtubeInvite', false);
+        $this->actingAs($player)->get(route('coach'))->assertSee('Connect YouTube')->assertDontSee('Testers for now');
+
+        // Not set up at all: nothing is said.
+        config(['services.youtube.client_id' => null, 'services.youtube.testers' => []]);
+        $this->withToken($player->issueCoachToken())->getJson(route('api.coach.index'))->assertJsonPath('youtubeInvite', false);
+    }
+
     /** A 3v3 shaped like 25 Oct 19:11: Jungle against RMD, lost, with a fall at 69s. */
     private function game(User $user): void
     {

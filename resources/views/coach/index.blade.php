@@ -38,7 +38,7 @@
 
 <div class="min-h-full py-4 px-4 lg:px-6">
     <div class="mx-auto space-y-4" style="max-width: 1500px" x-data="{ tab: @js($startTab), file: @js($games[0]['file'] ?? null) }"
-         x-init="if (location.hash === '#videos') tab = 'videos'">
+         x-init="if (location.hash === '#videos') tab = 'videos'; if (location.hash === '#youtube') { tab = 'upload'; $nextTick(() => document.getElementById('youtube')?.scrollIntoView()) }">
         <div class="page-hero !py-6">
             <p class="page-eyebrow">Only you can see this page</p>
             <h1 class="page-title">Your games</h1>
@@ -304,6 +304,21 @@
                     @else
                         <a href="{{ route('youtube.link') }}" class="btn-primary text-[13px]">Connect YouTube</a>
                     @endif
+                </div>
+            @elseif ($youtube['invite'])
+                {{-- Testers only while Google reviews the app (2026-10-29): Google lets a channel link only
+                     once its account is added by hand, so the player is told how to ask. --}}
+                <div id="youtube" class="linear-card p-4 flex flex-col sm:flex-row sm:items-center gap-3">
+                    <div class="flex-1">
+                        <p class="text-[14px] text-ink font-bold">YouTube <span class="badge-gray ml-1">Testers for now</span></p>
+                        <p class="text-[13px] text-ink-muted">
+                            The app can upload the games you record to your YouTube channel, each with a title and
+                            chapters written from the game. Google is still reviewing this, and until it has, uploads
+                            work only for channels we add by hand. To try it, tell us on Discord which Google account
+                            your channel is on and we'll add you.
+                        </p>
+                    </div>
+                    <a href="https://discord.gg/Bk7wEvPRt" target="_blank" rel="noopener noreferrer" class="btn-primary text-[13px]">Ask on Discord</a>
                 </div>
             @endif
         </div>

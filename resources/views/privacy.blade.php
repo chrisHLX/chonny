@@ -167,6 +167,13 @@
                         <li><span class="text-ink">How it is used:</span> only to upload the videos you pick, with the title and description the app writes for each game. Nothing is uploaded unless you choose it.</li>
                         <li><span class="text-ink">How to stop it:</span> click Disconnect YouTube on Your games, which revokes our access with Google and deletes the token. You can also remove MindCollector at any time from your <a href="https://myaccount.google.com/permissions" target="_blank" rel="noopener noreferrer" class="text-gold hover:text-gold-light transition-colors">Google account's security settings</a>.</li>
                     </ul>
+                    <p class="mt-2">
+                        MindCollector's use and transfer of information received from Google APIs to any other app will
+                        adhere to the
+                        <a href="https://developers.google.com/terms/api-services-user-data-policy" target="_blank" rel="noopener noreferrer" class="text-gold hover:text-gold-light transition-colors">Google API Services User Data Policy</a>,
+                        including the Limited Use requirements. We do not use it for advertising, do not sell it, and do
+                        not let anyone read it apart from what is needed to run the upload you asked for.
+                    </p>
                 </section>
 
                 <section>
