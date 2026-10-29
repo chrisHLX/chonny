@@ -108,11 +108,15 @@ internal sealed class YouTubeQueueForm : Form
         channelButtons.Controls.AddRange([_open, _copy, _manage]);
 
         var grid = new TableLayoutPanel { Dock = DockStyle.Fill, ColumnCount = 1, BackColor = Theme.Frame };
+        // Each control in its own row by number: added in flow, a hidden one (the progress bar until an
+        // upload runs) gets no cell, everything below moves up a row, and On your channel landed in a
+        // 32px row with the empty half of the window under it (2026-10-30).
         void Add(Control c, SizeType type, float size)
         {
             grid.RowStyles.Add(new RowStyle(type, size));
             c.Margin = new Padding(0, 2, 0, 2);
-            grid.Controls.Add(c);
+            grid.RowCount = grid.RowStyles.Count;
+            grid.Controls.Add(c, 0, grid.RowStyles.Count - 1);
         }
         var pickRow = new FlowLayoutPanel { Dock = DockStyle.Fill, FlowDirection = FlowDirection.LeftToRight, BackColor = Theme.Frame, Margin = Padding.Empty };
         _character.Margin = new Padding(0, 6, 12, 0);

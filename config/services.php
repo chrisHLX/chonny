@@ -109,8 +109,10 @@ return [
         // logins are the project's test users. Chriso's app sends to account 8, not his admin account.
         'testers' => array_values(array_filter(array_map('intval', explode(',', (string) env('YOUTUBE_TESTERS', ''))))),
         // A plain API key in the same project (2026-10-28), for each uploaded video's views and whether
-        // it is public, unlisted or gone (YouTubeVideoService::refresh). Optional: without it the
-        // Videos tab still says whether others can watch a video, but shows no views.
+        // it is public, unlisted or gone (YouTubeVideoService::refresh). Without it the Videos tab still
+        // says whether others can watch a video, but shows no views, and a video uploaded unlisted and
+        // made public later never joins the library: oEmbed, the fallback, cannot tell the two apart and
+        // Google will not let the upload link read (2026-10-30).
         'api_key' => env('YOUTUBE_API_KEY'),
     ],
 

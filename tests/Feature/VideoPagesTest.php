@@ -100,6 +100,28 @@ class VideoPagesTest extends TestCase
         $this->actingAs($owner)->get(route('videos.show', 'prvVideo001'))->assertOk()->assertSee('Private on YouTube');
     }
 
+    /** Uploaded unlisted and made public on YouTube later: the library asks YouTube and takes it in. */
+    public function test_an_unlisted_video_made_public_on_youtube_joins_the_library(): void
+    {
+        Http::fake(['www.youtube.com/oembed*' => Http::response(['title' => 'A game'])]);
+        $owner = User::factory()->create();
+        $v = $this->video($owner, 'unlVideo002', 'unlisted', str_repeat('f', 32));
+        $this->get(route('videos.show', 'unlVideo002'))->assertOk();   // its summary, as an upload leaves it
+        $this->get(route('videos'))->assertDontSee('unlVideo002');
+
+        // Made public on YouTube. Without the API key nothing can tell: oEmbed plays both the same.
+        $v->forceFill(['checked_at' => now()->subHour()])->save();
+        $this->get(route('videos'))->assertDontSee('unlVideo002');
+
+        config(['services.youtube.api_key' => 'key']);
+        Http::fake(['www.googleapis.com/youtube/v3/videos*' => Http::response(['items' => [[
+            'id' => 'unlVideo002', 'snippet' => ['title' => 'A game'],
+            'status' => ['privacyStatus' => 'public', 'uploadStatus' => 'processed', 'embeddable' => true],
+        ]]])]);
+        $this->get(route('videos'))->assertOk()->assertSee('unlVideo002');
+        $this->assertSame('public', $v->fresh()->status);
+    }
+
     /** YouTube's answer replaces what was chosen at upload: made private there, the page closes. */
     public function test_what_youtube_says_is_what_counts(): void
     {

@@ -33,6 +33,13 @@ class VideoController extends Controller
             PageViewEvent::log('wow_videos_filter', slot: mb_substr(http_build_query($filters), 0, 191));
         }
 
+        // A video made public on YouTube after an unlisted upload joins the library without its owner
+        // opening anything (2026-10-30, Chriso). Only with the API key, the one way that tells unlisted
+        // from public, and at most every 15 minutes: one videos.list call for up to 50 videos.
+        if (config('services.youtube.api_key') && Cache::add('youtube-library-recheck', true, now()->addMinutes(15))) {
+            $service->refresh(YoutubeVideo::whereNotNull('game')->where('status', 'unlisted')->where(fn ($q) => $q->whereNull('listed')->orWhere('listed', true))
+                ->latest()->limit(50)->get(), staleMinutes: 15);
+        }
         $all = YoutubeVideo::whereNotNull('game')->latest('played_at')->get()->filter->inLibrary()->values();
         $options = $this->options($all);
         $videos = $all->filter(fn (YoutubeVideo $v) => $this->matches($v->game, $filters))->values();

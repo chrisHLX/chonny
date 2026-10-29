@@ -220,7 +220,10 @@ half, **On your channel**: each uploaded video as the website last heard from Yo
 library, its views. **Open its page** and **Copy link** give the game's page on the website
 (`/wow/videos/{id}`, the video with its timeline, names hidden), the one to send to people; **Manage on
 the website** opens Your games > Videos. Each privacy choice says under it what it means for that page:
-a private video plays for nobody else, on YouTube or on the website.
+a private video plays for nobody else, on YouTube or on the website. Telling unlisted from public needs
+the website's `YOUTUBE_API_KEY` (Google will not let the upload link read, and oEmbed plays both the
+same): with it, a video uploaded unlisted and made public in YouTube Studio joins the library within 15
+minutes; without it, it never does (2026-10-30).
 
 **Picking (2026-10-29).** The upload list holds every recorded game, the ones on YouTube marked "on
 YouTube" and never tickable. A character picker (shown once there are two characters, starting on the
