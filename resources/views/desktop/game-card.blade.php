@@ -27,9 +27,9 @@
     }
 </script>
 </head>
-{{-- Moments open first when there are any (2026-10-29): of everything on the card, they are what testers
-     said changes how the next game is played. --}}
-<body onload="showTab('{{ ! empty($g['moments']) && empty($g['pool']) ? 'moments' : 'summary' }}')">
+{{-- The teams open first (2026-10-29): who was in the game, their titles and ratings, is what players
+     come for. Moments sit right beside it, ahead of the rest. --}}
+<body onload="showTab('summary')">
 
 {{-- ============================== header --}}
 <div class="head {{ $g['won'] ? 'head-won' : 'head-lost' }}">
@@ -65,9 +65,9 @@
 
     @php $noteCount = count($g['notes']) + count($g['gameNotes']); @endphp
     <div class="tabs">
+        <a id="b-summary" onclick="showTab('summary')">Summary</a>
         {{-- Basics, Moments and Notes are about the uploader's own play: not on a pooled card. --}}
         @if (empty($g['pool']))<a id="b-moments" onclick="showTab('moments')">Moments @if (! empty($g['moments']))<span class="cnt">{{ count($g['moments']) }}</span>@endif</a>@endif
-        <a id="b-summary" onclick="showTab('summary')">Summary</a>
         @if (empty($g['pool']))<a id="b-basics" onclick="showTab('basics')">Basics</a>@endif
         <a id="b-damage" onclick="showTab('damage')">Damage &amp; healing</a>
         <a id="b-numbers" onclick="showTab('numbers')">Numbers</a>
@@ -161,8 +161,8 @@
     {{-- ============================== a shuffle lobby --}}
     @php $noteCount = count($g['gameNotes']) + collect($g['rounds'])->sum(fn ($r) => count($r['notes'])); @endphp
     <div class="tabs">
-        <a id="b-moments" onclick="showTab('moments')">Moments @if (! empty($g['moments']))<span class="cnt">{{ count($g['moments']) }}</span>@endif</a>
         <a id="b-summary" onclick="showTab('summary')">Rounds</a>
+        <a id="b-moments" onclick="showTab('moments')">Moments @if (! empty($g['moments']))<span class="cnt">{{ count($g['moments']) }}</span>@endif</a>
         <a id="b-basics" onclick="showTab('basics')">Basics</a>
         <a id="b-damage" onclick="showTab('damage')">Damage &amp; healing</a>
         <a id="b-notes" onclick="showTab('notes')">Notes @if ($noteCount)<span class="cnt">{{ $noteCount }}</span>@endif</a>
