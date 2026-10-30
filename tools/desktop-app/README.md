@@ -225,6 +225,10 @@ the website's `YOUTUBE_API_KEY` (Google will not let the upload link read, and o
 same): with it, a video uploaded unlisted and made public in YouTube Studio joins the library within 15
 minutes; without it, it never does (2026-10-30).
 
+**0.6.5 (2026-10-30)** fixed the window's bottom half: its rows were added in flow, so the hidden
+progress bar got no cell, everything under it moved up a row, and On your channel sat in a 32px strip
+with the empty space below. Each control is now placed in its own numbered row.
+
 **Picking (2026-10-29).** The upload list holds every recorded game, the ones on YouTube marked "on
 YouTube" and never tickable. A character picker (shown once there are two characters, starting on the
 Games tab's) narrows it, **Tick all** and **Untick all** act on what it shows, and the button says how
