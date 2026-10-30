@@ -31,11 +31,15 @@
      come for. Moments sit right beside it, ahead of the rest. --}}
 <body onload="showTab('summary')">
 
-{{-- ============================== header (2026-10-29, the dashboard layout): your side on the left with
-     its line-up, the other side and the buttons in a box on the right. --}}
+{{-- ============================== header. A game (2026-10-30, Chriso: "the first thing you see is actually
+     the layout of the red box"): one line with the result, both MMRs, how hard it was and the buttons, then
+     both teams side by side, each player with their Gladiator seasons, exp and title. Before, a line-up
+     and an Opponents box said the same as the teams panel further down. A Solo Shuffle keeps your line-up
+     and its record, its opponents changing every round. --}}
 @php
     $lineup = $g['kind'] === 'game' ? $g['teams']['us'] : array_values(array_filter($g['roster'], fn ($p) => $p['you']));
     $lead = collect($lineup)->firstWhere('you', true) ?? ($lineup[0] ?? null);
+    $hasButtons = ! empty($g['watch']) || ! empty($g['youtube']);
 @endphp
 <div class="head {{ $g['won'] ? 'head-won' : 'head-lost' }}">
 <div class="hero">
@@ -50,13 +54,14 @@
                 @else
                     <span class="chip {{ $g['won'] ? 'won' : 'lost' }}">{{ $g['won'] ? 'WON' : 'LOST' }}</span>
                 @endif
-                {{-- Both sides' MMR on the title line (2026-10-29, Chriso: the opposition's rating visible
-                     without scrolling): the Opponent box wraps below the line-up in a narrow window. --}}
                 @if ($g['kind'] === 'game' && (($g['mmr']['us'] ?? null) || ($g['mmr']['them'] ?? null)))
                     <span class="big">{{ $g['mmr']['us'] ?? '?' }} <span class="small muted" style="font-weight: 400; letter-spacing: 0">vs</span> {{ $g['mmr']['them'] ?? '?' }}<span class="small muted" style="font-weight: 400; letter-spacing: 0">MMR</span></span>
                 @endif
             </div>
-            @if ($lineup)
+            @if ($g['kind'] === 'game' && ! empty($g['difficulty']))
+                <div class="small" style="margin-top: 6px"><span class="chip {{ $g['difficulty']['tone'] }}">{{ $g['difficulty']['label'] }}</span> <span class="muted">&nbsp;{{ $g['difficulty']['text'] }}</span></div>
+            @endif
+            @if ($g['kind'] === 'shuffle' && $lineup)
                 <div class="lineup">
                     @foreach ($lineup as $p)
                         <span class="p">@if ($p['icon'])<img src="{{ $p['icon'] }}" alt="">@endif<span class="name" style="color: {{ $p['color'] }}">{{ $p['name'] }}</span>@if ($p['you'])<span class="you">YOU</span>@endif @if ($p['spec'] !== $p['name'])<span class="muted">&nbsp;{{ $p['spec'] }}</span>@endif</span>
@@ -69,51 +74,42 @@
             @endif
         </div>
     </div>
-    <div class="opp">
-        @if ($g['kind'] === 'game')
-            {{-- Each opponent's Gladiator seasons first (2026-10-30, Chriso: "the glad xp of the opponents
-                 needs to be one of the primary things people see"), then their MMR. --}}
-            <div class="k">Opponents &middot; {{ $g['mmr']['them'] ?? '?' }} MMR</div>
-            <table class="opp-list">
-                @foreach ($g['teams']['them'] as $p)
-                    <tr>
-                        <td class="who">@if ($p['icon'])<img src="{{ $p['icon'] }}" alt="">@endif<span style="color: {{ $p['color'] }}">{{ $p['name'] }}</span></td>
-                        <td class="gl">
-                            @if ($p['xp']['state'] === 'ok')
-                                @if ($p['xp']['glad'] > 0)<span class="chip glad">{{ $p['xp']['glad'] }}&times; Glad</span>@else<span class="small muted">no Glad</span>@endif
-                            @elseif ($p['xp']['state'] === 'none')
-                                <span class="small subtle">no profile</span>
-                            @else
-                                <span class="small subtle">not looked up</span>
-                            @endif
-                        </td>
-                        <td class="ex small">@if (($p['xp']['state'] === 'ok') && $p['xp']['exp']){{ $p['xp']['exp'] }} <span class="subtle">exp</span>@endif</td>
-                    </tr>
-                @endforeach
-            </table>
-            <div class="small muted" style="margin-top: 4px">{{ $g['glad']['them'] }} Gladiator season{{ $g['glad']['them'] === 1 ? '' : 's' }} between them, your team {{ $g['glad']['us'] }}</div>
-            @if (! empty($g['difficulty']))
-                <div class="small" style="margin-top: 6px"><span class="chip {{ $g['difficulty']['tone'] }}">{{ $g['difficulty']['label'] }}</span> <span class="muted">&nbsp;{{ $g['difficulty']['text'] }}</span></div>
+    @if ($g['kind'] === 'shuffle' || $hasButtons)
+        <div class="hero-side">
+            @if ($g['kind'] === 'shuffle')
+                <div class="opp">
+                    <div class="k">Solo Shuffle</div>
+                    <div class="v">{{ $g['record'][0] }} won, {{ $g['record'][1] }} lost</div>
+                </div>
             @endif
-        @else
-            <div class="k">Solo Shuffle</div>
-            <div class="v">{{ $g['record'][0] }} won, {{ $g['record'][1] }} lost</div>
-        @endif
-        @if (! empty($g['watch']) || ! empty($g['youtube']))
-            <div class="actions">
-                @if (! empty($g['watch']))
-                    <a class="primary" href="{{ $g['watch'] }}">@include('desktop.partials.icon', ['n' => 'play']) {{ ! empty($g['youtube']) ? 'Watch the video' : 'Timeline' }}</a>
-                @endif
-                @if (! empty($g['youtube']))
-                    {{-- Uploaded from the app (2026-10-28): the Watch button plays it with the timeline under it,
-                         and its public page (VideoController, names hidden) is the one to send to people. --}}
-                    <a class="plain" href="https://mindcollector.com/wow/videos/{{ $g['youtube'] }}" target="_blank" rel="noopener">Page to share &#8599;</a>
-                    <a class="plain" href="https://youtu.be/{{ $g['youtube'] }}" target="_blank" rel="noopener">YouTube &#8599;</a>
-                @endif
-            </div>
-        @endif
-    </div>
+            @if ($hasButtons)
+                <div class="actions">
+                    @if (! empty($g['watch']))
+                        <a class="primary" href="{{ $g['watch'] }}">@include('desktop.partials.icon', ['n' => 'play']) {{ ! empty($g['youtube']) ? 'Watch the video' : 'Timeline' }}</a>
+                    @endif
+                    @if (! empty($g['youtube']))
+                        {{-- Uploaded from the app (2026-10-28): the Watch button plays it with the timeline under it,
+                             and its public page (VideoController, names hidden) is the one to send to people. --}}
+                        <a class="plain" href="https://mindcollector.com/wow/videos/{{ $g['youtube'] }}" target="_blank" rel="noopener">Page to share &#8599;</a>
+                        <a class="plain" href="https://youtu.be/{{ $g['youtube'] }}" target="_blank" rel="noopener">YouTube &#8599;</a>
+                    @endif
+                </div>
+            @endif
+        </div>
+    @endif
 </div>
+@if ($g['kind'] === 'game')
+    {{-- Both teams, yours first: each player's Gladiator seasons, exp and title (2026-10-30, Chriso: "the
+         glad xp of the opponents needs to be one of the primary things people see"). --}}
+    <div class="grid2 head-teams">
+        @foreach (['us' => 'Your team', 'them' => 'Enemy team'] as $side => $title)
+            <div class="card">
+                <div class="kicker">@include('desktop.partials.icon', ['n' => 'users']){{ $title }} <span style="text-transform: none; letter-spacing: 0; font-weight: 400">&nbsp;&middot; {{ $g['glad'][$side] }} Gladiator season{{ $g['glad'][$side] === 1 ? '' : 's' }}@if ($g['mmr'][$side] ?? null) &middot; {{ $g['mmr'][$side] }} MMR @endif</span></div>
+                @include('desktop.partials.roster', ['players' => $g['teams'][$side], 'showCc' => true])
+            </div>
+        @endforeach
+    </div>
+@endif
 </div>
 
 @if ($g['kind'] === 'game')
@@ -162,16 +158,6 @@
                 @endforeach
             </div>
         </div>
-    </div>
-
-    {{-- ============================== teams: yours first, the way the header reads --}}
-    <div class="grid2">
-        @foreach (['us' => 'Your team', 'them' => 'Enemy team'] as $side => $title)
-            <div class="card">
-                <div class="kicker">@include('desktop.partials.icon', ['n' => 'users']){{ $title }} <span style="text-transform: none; letter-spacing: 0; font-weight: 400">&nbsp;&middot; {{ $g['glad'][$side] }} Gladiator season{{ $g['glad'][$side] === 1 ? '' : 's' }}@if ($g['mmr'][$side] ?? null) &middot; {{ $g['mmr'][$side] }} MMR @endif</span></div>
-                @include('desktop.partials.roster', ['players' => $g['teams'][$side], 'showCc' => true])
-            </div>
-        @endforeach
     </div>
 
     {{-- ============================== the game on one line of time, and the checks beside it --}}

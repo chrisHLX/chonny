@@ -69,13 +69,12 @@
     .opp { background: rgba(0,0,0,.28); border: 1px solid #3E3E3E; border-radius: 10px; padding: 10px 14px; min-width: 210px; }
     .opp .k { font-size: 11.5px; color: #B3B3B3; }
     .opp .v { font-size: 20px; font-weight: 800; letter-spacing: -.02em; font-variant-numeric: tabular-nums; }
-    .opp-list { border-collapse: collapse; margin-top: 6px; width: 100%; }
-    .opp-list td { padding: 3px 0; vertical-align: middle; }
-    .opp-list .who { font-size: 13.5px; font-weight: 600; white-space: nowrap; padding-right: 12px; }
-    .opp-list .who img { width: 20px; height: 20px; border-radius: 4px; vertical-align: -5px; margin-right: 6px; }
-    .opp-list .gl { white-space: nowrap; padding-right: 10px; }
-    .opp-list .gl .chip { font-size: 13px; padding: 2px 10px; }
-    .opp-list .ex { color: #B3B3B3; text-align: right; font-variant-numeric: tabular-nums; }
+    .hero-side { display: flex; flex-direction: column; align-items: flex-end; gap: 8px; }
+    .hero-side .actions { margin-top: 0; text-align: right; }
+    /* Both teams in the header (2026-10-30): cards dark enough to read on the result's colour. */
+    .head-teams { margin-top: 18px; }
+    .head-teams .card { background: rgba(0,0,0,.42); }
+    .head-teams .card:hover { background: rgba(0,0,0,.5); }
     .actions { margin-top: 10px; }
     .actions a { display: inline-block; margin: 0 6px 6px 0; border-radius: 9999px; padding: 6px 14px; font-weight: 700; font-size: 12.5px; text-decoration: none; }
     .actions a.primary { background: #C8952C; color: #000000; }
@@ -211,6 +210,8 @@
         .head .title { font-size: 24px; margin: 0 6px 0 4px; }
         .hero-ic { width: 44px; height: 44px; }
         .opp { min-width: 0; width: 100%; }
+        .hero-side { width: 100%; align-items: stretch; }
+        .hero-side .actions { text-align: left; }
         .tiles { grid-template-columns: repeat(2, minmax(0, 1fr)); }
         .tile .v, .headline .t { font-size: 19px; }
         .head .mmr { float: none; display: block; margin-top: 6px; }
