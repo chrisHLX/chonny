@@ -240,6 +240,8 @@ class Leaderboards extends Component
             'newest' => $newest,
             'topSeen' => $topSeen,
             'specsSeen' => $tab !== 'players' ? $service->specsSeen() : [],
+            // The spec picker's choices as models, for their icons (x-spec-picker).
+            'specOptions' => $tab !== 'players' ? \App\Models\Specialization::with('gameClass')->whereIn('external_spec_id', array_column($service->specsSeen(), 'id'))->get() : collect(),
             'regionsSeen' => $service->regionsSeen(),
             'regionNames' => CompLeaderboardService::REGIONS,
             'sorts' => self::SORTS,

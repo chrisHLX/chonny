@@ -8,14 +8,16 @@
     </div>
 
     <form wire:submit="search" class="linear-card p-5 mb-8">
-        <div class="grid grid-cols-1 sm:grid-cols-[110px_1fr_1fr_auto] gap-3 items-start">
+        <div class="grid grid-cols-1 sm:grid-cols-[auto_1fr_1fr_auto] gap-3 items-start">
             <div>
-                <label for="lookup-region" class="block text-[11px] uppercase tracking-wider text-ink-subtle mb-1">Region</label>
-                <select id="lookup-region" wire:model.live="region" class="form-select w-full">
+                <span class="block text-[11px] uppercase tracking-wider text-ink-subtle mb-1">Region</span>
+                {{-- Pills, as on the Leaderboards (2026-10-30): two choices need no dropdown. --}}
+                <div class="inline-flex p-1 rounded-full bg-black/40 border border-line" role="radiogroup" aria-label="Region">
                     @foreach ($regions as $r)
-                        <option value="{{ $r }}">{{ strtoupper($r) }}</option>
+                        <button type="button" wire:click="$set('region', '{{ $r }}')" role="radio" aria-checked="{{ $region === $r ? 'true' : 'false' }}"
+                                class="px-3 py-1 rounded-full text-[12.5px] font-semibold transition-colors {{ $region === $r ? 'bg-ink text-black' : 'text-ink-muted hover:text-ink' }}">{{ strtoupper($r) }}</button>
                     @endforeach
-                </select>
+                </div>
             </div>
             {{-- Suggestions as you type (Search::suggestions()). Arrow keys move, Enter opens the
                  highlighted one, or looks up what is typed when none is. --}}
