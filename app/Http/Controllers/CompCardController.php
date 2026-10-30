@@ -26,6 +26,14 @@ class CompCardController extends Controller
         return $this->page($board->game($round, request()->query('as') === 'them' ? 'them' : 'us'));
     }
 
+    /** One game's timeline, with no one named (CompLeaderboardService::timeline()). */
+    public function timeline(CompLeaderboardService $board, int $round)
+    {
+        abort_unless(CompsPlayed::canOpen(auth()->user()), 403);
+
+        return $this->page($board->timeline($round));
+    }
+
     private function page(?string $html)
     {
         abort_if($html === null, 404);

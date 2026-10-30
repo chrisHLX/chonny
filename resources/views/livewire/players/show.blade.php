@@ -126,7 +126,8 @@
                 <div class="divide-y divide-line">
                     @foreach ($games['games'] as $g)
                         <div x-data="{ open: false }" class="py-2.5">
-                            <button type="button" @click="open = !open" class="w-full text-left flex flex-wrap items-center gap-x-3 gap-y-1">
+                            <div class="flex items-center gap-2">
+                            <button type="button" @click="open = !open" class="flex-1 min-w-0 text-left flex flex-wrap items-center gap-x-3 gap-y-1">
                                 <span class="w-8 text-[12px] font-semibold {{ $g['won'] === true ? 'text-green-400' : ($g['won'] === false ? 'text-red-300' : 'text-ink-subtle') }}">
                                     {{ $g['won'] === true ? 'Won' : ($g['won'] === false ? 'Lost' : '?') }}
                                 </span>
@@ -146,6 +147,11 @@
                                 @endif
                                 <svg class="w-3.5 h-3.5 text-ink-subtle transition-transform" :class="open && 'rotate-180'" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
                             </button>
+                            {{-- A 3v3 game of this season's board: its card and timeline, read from this player's team. --}}
+                            @if ($g['card'] ?? null)
+                                <a href="{{ $g['card'] }}" wire:navigate class="shrink-0 rounded-full border border-line-gold bg-gold-subtle text-gold-light hover:border-gold px-3 py-1 text-[12px] font-semibold">Open game &rarr;</a>
+                            @endif
+                            </div>
 
                             <div x-show="open" x-cloak class="mt-2 overflow-x-auto">
                                 <table class="w-full text-[12px] tabular-nums min-w-[640px]">

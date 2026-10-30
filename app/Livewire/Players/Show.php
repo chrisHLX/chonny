@@ -4,6 +4,7 @@ namespace App\Livewire\Players;
 
 use App\Http\Services\BattlenetCharacterSyncService;
 use App\Http\Services\CharacterTalentResolver;
+use App\Http\Services\CompLeaderboardService;
 use App\Http\Services\PlayerGamesService;
 use App\Http\Services\PvpLeaderboardService;
 use App\Http\Services\RealmDirectory;
@@ -221,6 +222,19 @@ class Show extends Component
 
         $games = $this->games;
         $known = $c?->synced_at || $this->leaderboard->isNotEmpty() || $games['total'] > 0;
+        // Each 3v3 game of this season's board opens its card and timeline (2026-10-30, Chriso: "when I
+        // click on the top players that we have seen in a game I still can't figure out how to see the
+        // individual match card and timeline"), read from this player's own team.
+        if ($games['games'] !== []) {
+            $board = app(CompLeaderboardService::class)->teams()->groupBy('match');
+            $me = CompLeaderboardService::whoKey($this->region, RealmDirectory::key($this->realm), $this->name);
+            foreach ($games['games'] as $i => $g) {
+                $side = ($board[$g['match']] ?? collect())->first(fn ($t) => in_array($me, array_column($t['who'], 'k'), true));
+                $games['games'][$i]['card'] = $side
+                    ? route('comps.game', ['round' => $side['round']] + ($side['side'] === 'them' ? ['as' => 'them'] : []))
+                    : null;
+            }
+        }
 
         return view('livewire.players.show', [
             'character' => $c,

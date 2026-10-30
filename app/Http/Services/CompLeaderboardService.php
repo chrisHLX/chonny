@@ -562,6 +562,23 @@ class CompLeaderboardService
     }
 
     /**
+     * One game's timeline for the website (2026-10-30, Chriso: "I still can't figure out how to see
+     * the individual match card and timeline"): the Watch page the app draws, every name swapped for
+     * its spec as on a shared video's page, and never the uploader's YouTube video, whose channel would
+     * name them. Only a 3v3 game of this season's board; null for any other round.
+     */
+    public function timeline(int $round): ?string
+    {
+        if (! $this->teams()->contains('round', $round) || ! ($r = ArenaRound::find($round))) {
+            return null;
+        }
+        $view = (string) @filemtime(resource_path('views/desktop/watch.blade.php'));
+
+        return Cache::remember('comp-board:timeline:v1:'.$round.':'.$r->updated_at?->timestamp.':'.$view, now()->addHours(12),
+            fn () => app(WatchPageService::class)->html($r->user_id, $r->lobby_id, null, null, public: true, video: false));
+    }
+
+    /**
      * The same game from the other team's side: every "us" becomes "them", the result and the MMR
      * swap.
      */

@@ -21,6 +21,14 @@
     </div>
 
     @if ($state === 'open')
+        {{-- The game on one line of time (2026-10-30): every player's buttons as they were pressed, no one named. --}}
+        <div class="flex flex-wrap items-center gap-2 mb-4">
+            <a href="{{ route('comps.game.timeline', $round) }}" class="btn-primary text-[13px] inline-flex items-center gap-1.5">
+                <svg class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>
+                Timeline
+            </a>
+            <span class="text-[12px] text-ink-subtle">Every button each player pressed, second by second.</span>
+        </div>
         {{-- The app's own game card, drawn as its own document; the frame grows with it as tabs and rows open. --}}
         <iframe src="{{ route('comps.game.card', array_filter(['round' => $round, 'as' => $as === 'them' ? 'them' : null])) }}"
                 class="w-full rounded-xl bg-surface-0" style="min-height: 70vh; border: 0"

@@ -82,6 +82,7 @@ class PlayerGamesService
         $enemy = $players->where('side', '!=', $me->side)->sortByDesc('healer');
 
         return [
+            'match' => $me->match_id,
             'playedAt' => $me->played_at,
             'bracket' => str_replace(['Rated Solo Shuffle', 'Rated BG Blitz'], ['Shuffle', 'Blitz'], $me->bracket),
             'seconds' => $me->seconds,

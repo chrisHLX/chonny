@@ -151,6 +151,29 @@ class CompBoardTest extends TestCase
         $this->actingAs($player)->get('/wow/comps/game-card/999999')->assertNotFound();
     }
 
+    /** A board game's timeline names no one and never plays the uploader's video; a player's page opens their games. */
+    public function test_a_board_game_has_a_timeline_and_a_players_page_opens_their_games(): void
+    {
+        $uploader = User::factory()->create();
+        $this->game($uploader, 'm1', true);
+        $round = ArenaRound::first()->id;
+        // On the uploader's channel: their channel would name them.
+        \App\Models\YoutubeVideo::create(['user_id' => $uploader->id, 'lobby_id' => 'm1', 'video_id' => 'secretVid01', 'privacy' => 'public', 'status' => 'public']);
+
+        $this->get("/wow/comps/game-timeline/{$round}")->assertForbidden();
+        $player = User::factory()->create();
+        $this->actingAs($player)->get("/wow/comps/game/{$round}")->assertOk()->assertSee("/wow/comps/game-timeline/{$round}", false);
+        $timeline = $this->actingAs($player)->get("/wow/comps/game-timeline/{$round}")->assertOk()->getContent();
+        foreach (['Rogueguy', 'Mageguy', 'Priestguy', 'Druidguy', 'Hunterguy', 'Healguy', 'secretVid01'] as $hidden) {
+            $this->assertStringNotContainsString($hidden, $timeline);
+        }
+        $this->actingAs($player)->get('/wow/comps/game-timeline/999999')->assertNotFound();
+
+        // The player page links the game, read from that player's own team.
+        $this->get('/wow/player/us/tichondrius/druidguy')->assertOk()->assertSee("/wow/comps/game/{$round}?as=them", false)->assertSee('Open game');
+        $this->get('/wow/player/us/area-52/rogueguy')->assertOk()->assertSee("/wow/comps/game/{$round}\"", false);
+    }
+
     public function test_the_games_tab_lists_every_game_newest_first(): void
     {
         $this->game(User::factory()->create(), 'm1', true);

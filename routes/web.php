@@ -199,6 +199,8 @@ Route::prefix('wow')->group(function () {
     Route::get('/comps/game/{round}', \App\Livewire\CompGame::class)->whereNumber('round')->name('comps.game');
     Route::get('/comps/game-card/{round}', [\App\Http\Controllers\CompCardController::class, 'game'])
         ->whereNumber('round')->middleware('throttle:60,1,comp-card')->name('comps.game.card');
+    Route::get('/comps/game-timeline/{round}', [\App\Http\Controllers\CompCardController::class, 'timeline'])
+        ->whereNumber('round')->middleware('throttle:60,1,comp-card')->name('comps.game.timeline');
 
     // Two comps on one clock — whose kill window opens first, and why. The first page here that
     // answers a question about a MATCHUP rather than about one spec or one comp, which is the

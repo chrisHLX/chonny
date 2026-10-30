@@ -142,8 +142,10 @@ class WatchPageService
      * @param  array{name: string, url: string, started: float, rounds?: array<int, float>}|null  $recording
      * @param  array<string, ?string>|null  $app  the desktop app's links (mc-app://...)
      * @param  bool  $public  for anyone (a shared video, VideoController): every name swapped for its spec
+     * @param  bool  $video  false: never the uploader's YouTube video, whose channel would name them (the
+     *                       board's games, CompLeaderboardService::timeline())
      */
-    public function html(int $userId, string $lobby, ?array $recording = null, ?array $app = null, bool $public = false): ?string
+    public function html(int $userId, string $lobby, ?array $recording = null, ?array $app = null, bool $public = false, bool $video = true): ?string
     {
         $rounds = ArenaRound::where('user_id', $userId)->where('lobby_id', $lobby)->get();
         if ($rounds->isEmpty()) {
@@ -154,7 +156,7 @@ class WatchPageService
         config(['desktop.web_assets' => true]);
         // Uploaded to the player's YouTube channel from the app (2026-10-26): played from YouTube,
         // placed by the recording's timing file the app sent with it.
-        if ($recording === null && ($yt = \App\Models\YoutubeVideo::where('user_id', $userId)->where('lobby_id', $lobby)->first())) {
+        if ($video && $recording === null && ($yt = \App\Models\YoutubeVideo::where('user_id', $userId)->where('lobby_id', $lobby)->first())) {
             $clock = fn (?string $at) => $at ? (float) Carbon::parse($at)->format('U.v') : null;
             $first = $rounds->sortBy(fn (ArenaRound $r) => (string) $r->played_at)->first();
             $recording = [
