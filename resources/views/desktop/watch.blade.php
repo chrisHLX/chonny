@@ -192,8 +192,12 @@
     }
     /* Phones and narrow frames (2026-10-26): side by side, each team had half a phone's width and a
        player's buttons stacked one per line. The teams stack instead, and each player's buttons wrap
-       across the whole width under their name. */
+       across the whole width under their name. The players' box is not capped there (2026-10-30,
+       Chriso: "it's only showing that of the recording team"): at 30vh the enemy team sat below the
+       fold of a box with its own scroll bar. The stage scrolls with the page instead of sticking. */
     @media (max-width: 760px) {
+        .stage { position: static; }
+        .panel { max-height: none; overflow: visible; }
         .frames { flex-direction: column; gap: 10px; padding: 8px; }
         .pl { flex-wrap: wrap; row-gap: 3px; }
         .pl .nm { width: auto; max-width: 60%; }
