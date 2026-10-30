@@ -105,7 +105,7 @@ RUNTIME_CHANGED=$(echo "$CHANGED_FILES" | grep -vE '^(data/population/|docs/|too
 if [[ -n "$CHANGED_FILES" && -z "$RUNTIME_CHANGED" && "$FORCE" -eq 0 ]]; then
     echo "==> Only data, docs and PC tools changed: no restart, no cache bump, no kit rebuild."
     echo "==> Rebuilding the live norms (wow:population-refresh)"
-    sudo -u "$(stat -c %U storage/app)" php -d memory_limit=1G artisan wow:population-refresh || echo "    (refresh failed; pages keep the copy they had)"
+    sudo -u "$(stat -c %U storage/app)" nice -n 15 php -d memory_limit=1G artisan wow:population-refresh || echo "    (refresh failed; pages keep the copy they had)"
     echo "==> Spell names still untranslated (wow:translate-spell-names --report)"
     sudo -u "$(stat -c %U storage/app)" php -d memory_limit=1G artisan wow:translate-spell-names --report || echo "    (report failed)"
     echo "==> Post-deploy smoke test"
@@ -122,10 +122,28 @@ if echo "$CHANGED_FILES" | grep -q '^composer\.lock$'; then
     composer install --no-dev --optimize-autoloader --no-interaction
 fi
 
-if echo "$CHANGED_FILES" | grep -qE '^(package-lock\.json|package\.json|resources/)'; then
-    echo "==> Frontend assets changed — running npm build"
+# The desktop pages (resources/views/desktop) carry their own styles, so they never need the site's
+# CSS rebuilt. And the build goes to a folder beside the live one and is swapped in (2026-10-30):
+# `npm run build` empties public/build first, and for the minute it ran every page on the site was a
+# 500 ("Vite manifest not found"), which players met mid-deploy. The previous build's files are kept
+# for pages already open in a browser.
+if echo "$CHANGED_FILES" | grep -vE '^resources/views/desktop/' | grep -qE '^(package-lock\.json|package\.json|resources/)'; then
+    echo "==> Frontend assets changed — running npm build (into public/build-next, then swapped in)"
     npm ci
-    npm run build
+    rm -rf public/build-next
+    nice -n 15 npx vite build --outDir public/build-next --emptyOutDir
+    if [[ -f public/build-next/manifest.json ]]; then
+        if [[ -d public/build/assets ]]; then
+            grep -o '"file": "assets/[^"]*"' public/build/manifest.json 2>/dev/null | sed 's/"file": "//; s/"$//' \
+                | while read -r f; do [[ -f "public/build/$f" ]] && cp -n "public/build/$f" "public/build-next/$f"; done
+        fi
+        rm -rf public/build-old
+        [[ -d public/build ]] && mv public/build public/build-old
+        mv public/build-next public/build
+        rm -rf public/build-old
+    else
+        echo "    !! the build wrote no manifest: the live assets are left as they were"
+    fi
 fi
 
 echo "==> Running migrations (safe no-op if nothing pending)"
@@ -190,7 +208,9 @@ else
     echo "    a live recompute: profiled at 6,964ms/3,042 queries for a 3-spec WowComps render"
     echo "    versus 970ms/146 with fresh files. Before this step existed, production ran that"
     echo "    slow path after every single deploy."
-    php -d memory_limit=1024M artisan wow:precompute-spell-kits
+    # At low priority (2026-10-30): on this one core the kits took the CPU from every page for two
+    # minutes, and players met a slow site through every deploy.
+    nice -n 15 php -d memory_limit=1024M artisan wow:precompute-spell-kits
 fi
 
 echo "==> Rebuilding Matchup Lab profiles (data/matchup-profiles/{class}/{spec}.json)."
@@ -200,7 +220,7 @@ echo "    ~7s-per-spec live computation forty times over. /wow/matchup-lab reads
 echo "    time with no database query at all; a spec whose profile is missing is excluded from"
 echo "    the matchup by name rather than simulated with an empty answer pool, which would read"
 echo "    as a short pool and silently move the verdict."
-php -d memory_limit=1024M artisan wow:build-matchup-profiles
+nice -n 15 php -d memory_limit=1024M artisan wow:build-matchup-profiles
 
 echo "==> Applying the committed icon manifest (data/spelldata/icon-manifest.json)."
 echo "    Fills spells/classes/specs icon_name from the committed manifest wherever it is still"
@@ -216,7 +236,7 @@ echo "==> Rebuilding the live norms (wow:population-refresh): the archive bundle
 echo "    uploaded round, measured by the code just deployed. About 10 seconds. Run as the owner"
 echo "    of storage/ (the queue workers' user): run as root, it left files the workers' own"
 echo "    rebuilds could not replace (2026-10-11)."
-sudo -u "$(stat -c %U storage/app)" php -d memory_limit=1G artisan wow:population-refresh || echo "    (refresh failed; pages keep the copy they had)"
+sudo -u "$(stat -c %U storage/app)" nice -n 15 php -d memory_limit=1G artisan wow:population-refresh || echo "    (refresh failed; pages keep the copy they had)"
 
 echo "==> Spell names still untranslated: the list to add by hand to"
 echo "    data/spelldata/spell-name-translations.txt (docs/international.md, \"The name table\")."

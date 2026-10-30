@@ -266,6 +266,10 @@ class GameCardService
             // The parts a card reads; moments are unused here. Combatants (talents) are for a shuffle's
             // talent changes between rounds.
             $this->payloads[$r->id] = array_intersect_key($stored ?? [], ['analysis' => true, 'metadata' => true, 'combatants' => true]);
+            if (isset($this->payloads[$r->id]['analysis'])) {
+                // Every spell name in English (2026-10-30), the rule for every card.
+                $this->payloads[$r->id]['analysis'] = app(SpellNameTranslations::class)->inEnglish($this->payloads[$r->id]['analysis']);
+            }
         }
 
         return $this->payloads[$r->id];

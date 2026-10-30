@@ -73,9 +73,16 @@ spell id (`SpellNameTranslations`). It is filled two ways:
 What reads it: `SpellIconIndex` (every icon on the cards, Improve, the comp library and the Watch
 page) retries a name it cannot find under its English name; `WatchPageService::abilities()` counts a
 press under the English name, so the frames show 激流 as Riptide used, and a talent pressed under its
-Chinese name is no longer dropped as "never pressed". The casts line still shows the name the
-player's client used. Only names with a non-ASCII character are kept, so English games are untouched
-and an unaccented German or French name is not caught.
+Chinese name is no longer dropped as "never pressed". Only names with a non-ASCII character are kept,
+so English games are untouched and an unaccented German or French name is not caught.
+
+**Every match on the website in English (2026-10-30, Chriso: "a rule where all matches on the website
+are in English").** `SpellNameTranslations::inEnglish()` swaps every spell name the table knows, as a
+value or a key, in a round as it is read: every card (`GameCardService::payload()`, the leaderboard's
+pooled cards included) and the Watch page. Player names are left alone, and a name the table does not
+know yet stays as logged until a round teaches it or a line goes in the hand file (the list of what is
+left, below). Before this the casts line kept the client's name. The Leaderboards also filter by
+region (`?from=cn`), so Chinese games can be read on their own or left out.
 
 After a backfill, rebuild the player's pages (`BuildCoachPages`) so their cards draw the icons; the
 Watch page reads the table every time it is drawn.

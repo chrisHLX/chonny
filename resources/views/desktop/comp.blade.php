@@ -85,7 +85,7 @@
     $tipN = 0;
     // One spell's row (its cells after the name in $after) and its hidden tooltip row.
     $spellRow = function (array $r, string $after, int $cols, string $lead = '') use (&$tipN) {
-        $icon = ! empty($r['icon']) ? '<img class="spell-ic" src="'.e($r['icon']).'">' : '';
+        $icon = ! empty($r['icon']) ? '<img loading="lazy" class="spell-ic" src="'.e($r['icon']).'">' : '';
         if (empty($r['tip'])) {
             return '<tr>'.$lead.'<td>'.$icon.e($r['label']).'</td>'.$after.'</tr>';
         }

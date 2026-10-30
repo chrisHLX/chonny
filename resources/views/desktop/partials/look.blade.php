@@ -13,7 +13,7 @@
         <tr>
             <td class="ic">
                 @if ($i['icon'])
-                    <img class="spell-ic" src="{{ $i['icon'] }}">
+                    <img loading="lazy" class="spell-ic" src="{{ $i['icon'] }}">
                 @else
                     <span class="dot" style="background: {{ $i['color'] }}"></span>
                 @endif

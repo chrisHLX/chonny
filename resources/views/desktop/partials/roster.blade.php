@@ -4,7 +4,7 @@
         <tr>
             <td class="ic">
                 @if ($p['icon'])
-                    <img class="spec-ic" src="{{ $p['icon'] }}" style="border:1px solid {{ $p['color'] }}">
+                    <img loading="lazy" class="spec-ic" src="{{ $p['icon'] }}" style="border:1px solid {{ $p['color'] }}">
                 @else
                     <span class="ph" style="border:1px solid {{ $p['color'] }}"></span>
                 @endif

@@ -27,6 +27,11 @@ use Livewire\Component;
  * with no one named (CompGame). Chriso: "Can we also have in leaderboard individual matches so we
  * can click on the match card".
  *
+ * FILTERS (2026-10-30, Chriso: "we don't have the ability to filter properly"): both tabs filter by
+ * a spec on either team and by region (CompLeaderboardService::REGIONS: Chinese games apart from the
+ * rest); the comps by the teams' experience and sorted by games, win rate, MMR or experience; the
+ * games by a comp on either team and by the game's rating. Every filter is in the URL.
+ *
  * The 3v3 comps page keeps a top-five preview of the comps tab (CompBoard).
  */
 class Leaderboards extends Component
@@ -59,8 +64,27 @@ class Leaderboards extends Component
     #[Url(as: 'spec', except: null)]
     public ?string $spec = null;
 
+    /** The region the games come from (a key of CompLeaderboardService::REGIONS), on Comps and Games. */
+    #[Url(as: 'from', except: null)]
+    public ?string $from = null;
+
+    /** How the comps are sorted: 'games' (the default), 'rate', 'mmr' or 'exp'. */
+    #[Url(as: 'sort', except: 'games')]
+    public string $sort = 'games';
+
+    /** Games: only those with this comp on either team (a board key like "rogue-warlock-priest"). */
+    #[Url(as: 'comp', except: null)]
+    public ?string $comp = null;
+
+    /** Games: only those whose two teams' MMR averages at least this (a key of EXP_BANDS). */
+    #[Url(as: 'mmr', except: null)]
+    public ?string $mmr = null;
+
+    /** The ladder's region on the Players tab. */
     #[Url(except: 'us')]
     public string $region = 'us';
+
+    public const SORTS = ['games' => 'Most played', 'rate' => 'Win rate', 'mmr' => 'MMR', 'exp' => 'Experience'];
 
     /** Only players seen in an uploaded game. Not in the URL: a URL's junk would not fit a bool. */
     public bool $seenOnly = false;
@@ -95,6 +119,43 @@ class Leaderboards extends Component
         $this->spec = ctype_digit((string) $spec) ? (string) $spec : null;
         $this->all = false;
         PageViewEvent::log('leaderboards', null, null, 'spec:'.($this->spec ?? 'any'));
+    }
+
+    public function setFrom(?string $from): void
+    {
+        $this->from = isset(CompLeaderboardService::REGIONS[$from]) ? $from : null;
+        $this->all = false;
+        $this->gamesShown = self::GAMES_STEP;
+        PageViewEvent::log('leaderboards', null, null, 'from:'.($this->from ?? 'any'));
+    }
+
+    public function setSort(string $sort): void
+    {
+        $this->sort = isset(self::SORTS[$sort]) ? $sort : 'games';
+        PageViewEvent::log('leaderboards', null, null, 'sort:'.$this->sort);
+    }
+
+    public function setComp(?string $comp): void
+    {
+        $this->comp = $comp !== null && preg_match('/^[a-z-]{3,80}$/', $comp) ? $comp : null;
+        $this->gamesShown = self::GAMES_STEP;
+        PageViewEvent::log('leaderboards', null, null, 'comp:'.($this->comp ?? 'any'));
+    }
+
+    public function setMmr(?int $mmr): void
+    {
+        $this->mmr = isset(CompLeaderboardService::EXP_BANDS[$mmr]) ? (string) $mmr : null;
+        $this->gamesShown = self::GAMES_STEP;
+        PageViewEvent::log('leaderboards', null, null, 'mmr:'.($this->mmr ?? 'any'));
+    }
+
+    /** Every filter of the open tab back to its default. */
+    public function clearFilters(): void
+    {
+        $this->exp = $this->spec = $this->from = $this->comp = $this->mmr = null;
+        $this->sort = 'games';
+        $this->all = false;
+        $this->gamesShown = self::GAMES_STEP;
     }
 
     public function setRegion(string $region): void
@@ -137,16 +198,28 @@ class Leaderboards extends Component
         $service = app(CompLeaderboardService::class);
         $tab = in_array($this->tab, ['players', 'games'], true) ? $this->tab : 'comps';
         $region = in_array($this->region, self::regions(), true) ? $this->region : 'us';
-        $board = $service->board(ctype_digit((string) $this->exp) ? (int) $this->exp : null, ctype_digit((string) $this->spec) ? (int) $this->spec : null);
+        $spec = ctype_digit((string) $this->spec) ? (int) $this->spec : null;
+        $from = isset(CompLeaderboardService::REGIONS[$this->from]) ? $this->from : null;
+        $sort = isset(self::SORTS[$this->sort]) ? $this->sort : 'games';
+        $board = $service->board(ctype_digit((string) $this->exp) ? (int) $this->exp : null, $spec, $from);
+        if ($sort !== 'games') {
+            // Win rate over a handful of games says little: comps with fewer than 5 sort after the rest.
+            $board['comps'] = collect($board['comps'])->sortByDesc(fn ($c) => [$sort === 'rate' ? (int) ($c['games'] >= 5) : 1, $c[$sort] ?? -1, $c['games']])->values()->all();
+        }
         $ladder = $tab === 'players'
             ? $service->ladder($region, $this->seenOnly, max(self::LADDER_STEP, min(self::LADDER_MAX, $this->ladderShown)))
             : null;
-        $games = $tab === 'games' ? $service->recentGames(max(self::GAMES_STEP, min(self::GAMES_MAX, $this->gamesShown))) : null;
+        $games = $tab === 'games' ? $service->recentGames(max(self::GAMES_STEP, min(self::GAMES_MAX, $this->gamesShown)),
+            ['spec' => $spec, 'comp' => $this->comp, 'region' => $from, 'mmr' => $this->mmr]) : null;
         // The comps tab's side column (2026-10-29): the newest games and the best-rated players seen.
-        $newest = $tab === 'comps' ? $service->recentGames(5)['games'] : [];
+        $newest = $tab === 'comps' ? $service->recentGames(5, ['region' => $from])['games'] : [];
         $topSeen = $tab === 'comps' ? array_slice($service->ladder('us', true, 5)['players'] ?? [], 0, 5) : [];
-        // Each comp's line-up as spec icons.
-        $specIds = collect($board['comps'])->flatMap(fn ($c) => $c['lineups'][0]['ids'] ?? [])->unique()->values()->all();
+        // Each comp's line-up and each game's teams as spec icons: one query for all of them.
+        $specIds = collect($board['comps'])->flatMap(fn ($c) => $c['lineups'][0]['ids'] ?? [])
+            ->merge(collect($games['games'] ?? [])->flatMap(fn ($g) => array_merge($g['us']['ids'], $g['them']['ids'])))
+            ->unique()->values()->all();
+        // The comps a game can be filtered by: the whole board's, most played first.
+        $compOptions = $tab === 'games' ? collect($service->board(null, null, $from)['comps'])->map(fn ($c) => ['key' => $c['key'], 'nick' => $c['nick'], 'classes' => $c['classes'], 'games' => $c['games']])->all() : [];
 
         return view('livewire.leaderboards', [
             'tabNow' => $tab,
@@ -160,7 +233,16 @@ class Leaderboards extends Component
             'games' => $games,
             'newest' => $newest,
             'topSeen' => $topSeen,
-            'specsSeen' => $tab === 'comps' ? $service->specsSeen() : [],
+            'specsSeen' => $tab !== 'players' ? $service->specsSeen() : [],
+            'regionsSeen' => $service->regionsSeen(),
+            'regionNames' => CompLeaderboardService::REGIONS,
+            'sorts' => self::SORTS,
+            'sortNow' => $sort,
+            'fromNow' => $from,
+            'specNow' => $spec,
+            'compNow' => $this->comp,
+            'mmrNow' => isset(CompLeaderboardService::EXP_BANDS[(int) $this->mmr]) ? (int) $this->mmr : null,
+            'compOptions' => $compOptions,
             'specModels' => \App\Models\Specialization::with('gameClass')->whereIn('external_spec_id', $specIds)->get()->keyBy('external_spec_id'),
             'bands' => CompLeaderboardService::EXP_BANDS,
             'comps' => $this->all ? $board['comps'] : array_slice($board['comps'], 0, self::SHOWN),

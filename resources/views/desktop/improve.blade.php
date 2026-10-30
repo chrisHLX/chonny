@@ -169,7 +169,7 @@
             <div class="list">
                 <span class="small muted">{{ $h['list']['label'] }}:</span><br>
                 @foreach ($h['list']['rows'] as $r)
-                    <span class="def">@if ($r['icon'])<img class="spell-ic" src="{{ $r['icon'] }}" alt="">@else<span class="ph-s"></span>@endif{{ $r['spell'] }}<span>{{ $r['value'] }}</span></span>
+                    <span class="def">@if ($r['icon'])<img loading="lazy" class="spell-ic" src="{{ $r['icon'] }}" alt="">@else<span class="ph-s"></span>@endif{{ $r['spell'] }}<span>{{ $r['value'] }}</span></span>
                 @endforeach
             </div>
         @endif
@@ -187,7 +187,7 @@
             <tr><td></td><td class="small muted">You</td><td class="small muted">In your games</td><td class="small muted">Every {{ $m['spec'] }}</td><td></td></tr>
             @foreach ($m['rotation']['rows'] as $r)
                 <tr>
-                    <td>@if ($r['icon'])<img class="spell-ic" src="{{ $r['icon'] }}" alt="" style="margin-right: 5px">@endif{{ $r['spell'] }}</td>
+                    <td>@if ($r['icon'])<img loading="lazy" class="spell-ic" src="{{ $r['icon'] }}" alt="" style="margin-right: 5px">@endif{{ $r['spell'] }}</td>
                     <td><b>{{ $r['you'] }}</b></td>
                     <td class="muted">{{ $r['others'] }}</td>
                     <td class="muted">{{ $r['norm'] ?? '-' }}</td>
@@ -206,7 +206,7 @@
                 <tr><td></td><td class="small muted">You</td><td class="small muted">Other {{ $m['spec'] }}s</td></tr>
                 @foreach ($o['rows'] as $r)
                     <tr>
-                        <td>@if ($r['icon'])<img class="spell-ic" src="{{ $r['icon'] }}" alt="" style="margin-right: 5px">@endif{{ $r['spell'] }}</td>
+                        <td>@if ($r['icon'])<img loading="lazy" class="spell-ic" src="{{ $r['icon'] }}" alt="" style="margin-right: 5px">@endif{{ $r['spell'] }}</td>
                         <td><b>{{ $r['you'] }}</b></td>
                         <td class="muted">{{ $r['others'] ?? '-' }}</td>
                     </tr>

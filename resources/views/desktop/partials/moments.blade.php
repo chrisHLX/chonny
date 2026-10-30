@@ -37,7 +37,7 @@
                                     <span class="muted">@if ($x['round']){{ $x['round'] }}, @endif{{ $x['clock'] }}</span>&nbsp;
                                     <b>{{ $x['title'] }}</b>
                                     @if (! empty($x['icons']))
-                                        &nbsp;@foreach ($x['icons'] as $ic)<img class="spell-ic" src="{{ $ic }}" style="margin-right: 3px">@endforeach
+                                        &nbsp;@foreach ($x['icons'] as $ic)<img loading="lazy" class="spell-ic" src="{{ $ic }}" style="margin-right: 3px">@endforeach
                                     @endif
                                     <div class="small" style="margin-top: 3px">{{ $x['text'] }}</div>
                                     @if (($x['hp']['start'] ?? null) !== null)
@@ -49,7 +49,7 @@
                                                 <tr>
                                                     <td class="small muted" style="padding: 1px 10px 1px 0">{{ $st['clock'] }}</td>
                                                     <td class="small" style="padding: 1px 8px 1px 0">{{ $st['who'] }}</td>
-                                                    <td class="small" style="padding: 1px 8px 1px 0">@if ($st['icon'])<img class="spell-ic" src="{{ $st['icon'] }}" style="margin-right: 4px">@endif<span @if (($st['mark'] ?? null) === 'control') class="warn-text" @elseif (($st['mark'] ?? null) === 'dispel') class="gold" @elseif (($st['mark'] ?? null) === 'answer') class="muted" @endif>{{ $st['spell'] }}</span></td>
+                                                    <td class="small" style="padding: 1px 8px 1px 0">@if ($st['icon'])<img loading="lazy" class="spell-ic" src="{{ $st['icon'] }}" style="margin-right: 4px">@endif<span @if (($st['mark'] ?? null) === 'control') class="warn-text" @elseif (($st['mark'] ?? null) === 'dispel') class="gold" @elseif (($st['mark'] ?? null) === 'answer') class="muted" @endif>{{ $st['spell'] }}</span></td>
                                                     <td class="small muted" style="padding: 1px 0">@if ($st['on'])on {{ $st['on'] }}@endif</td>
                                                 </tr>
                                             @endforeach

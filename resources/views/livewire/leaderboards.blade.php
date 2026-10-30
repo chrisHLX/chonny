@@ -10,6 +10,19 @@
         $e >= 1800 => ['Rival', 'badge-blue'],
         default => ['Under 1800', 'badge-gray'],
     };
+    // A team's three spec icons as plain tags (2026-10-30): the Games tab draws 300 of them, and the
+    // <x-spec-icon> component's markup and render time made the page half as large again. Its class
+    // icons when a spec is not known.
+    $teamIcons = function (array $t) use ($specModels, $classes, $colors) {
+        $tag = fn (?string $file, string $dir, string $alt, ?string $slug) => $file
+            ? '<img src="/storage/'.$dir.'/'.e($file).'" alt="'.e($alt).'" loading="lazy" class="w-5 h-5 sm:w-6 sm:h-6 rounded-md border object-cover" style="border-color:'.($colors[$slug] ?? '#8A8A9A').'66">'
+            : '<span class="w-5 h-5 sm:w-6 sm:h-6 rounded-md border border-line bg-surface-2"></span>';
+        $specs = array_values(array_filter(array_map(fn ($id) => $specModels[$id] ?? null, $t['ids'] ?? [])));
+
+        return $specs !== []
+            ? implode('', array_map(fn ($s) => $tag($s->icon_name, 'spec-icons', $s->name, $s->gameClass?->slug), $specs))
+            : implode('', array_map(fn ($slug) => $tag($classes[$slug]->icon_name ?? null, 'class-icons', $slug, $slug), $t['classes']));
+    };
 @endphp
 <div class="max-w-[1280px] mx-auto px-3 sm:px-4 py-6 sm:py-8">
     <a href="{{ route('wow-comps') }}" wire:navigate class="text-[12px] text-ink-subtle hover:text-gold transition-colors">&larr; 3v3 Comps</a>
@@ -22,7 +35,7 @@
         <div class="min-w-0">
             <h1 class="font-display text-3xl sm:text-4xl text-ink leading-tight">3v3 Leaderboards</h1>
             <p class="text-[13px] text-ink-muted mt-1">This season's comps and games from real 3v3 games uploaded to MindCollector, and Blizzard's 3v3 ladder.</p>
-            <p class="text-[12px] text-ink-subtle mt-0.5 tabular-nums">Since {{ $start->format('j M') }} &middot; {{ number_format($board['games']) }} games</p>
+            <p class="text-[12px] text-ink-subtle mt-0.5 tabular-nums">Since {{ $start->format('j M') }} &middot; {{ number_format(array_sum($regionsSeen)) }} games</p>
         </div>
     </div>
 
@@ -32,47 +45,20 @@
         <button type="button" wire:click="setTab('players')" class="tab-btn {{ $tabNow === 'players' ? 'tab-active' : 'tab-inactive' }}">Players</button>
     </div>
 
-    <div wire:loading.class="opacity-60" wire:target="setTab,setExp,setSpec,setRegion,toggleSeen,showMorePlayers,showMoreGames">
+    <div wire:loading.class="opacity-60" wire:target="setTab,setExp,setSpec,setFrom,setSort,setComp,setMmr,clearFilters,setRegion,toggleSeen,showMorePlayers,showMoreGames">
     @if ($tabNow === 'comps')
     <div class="lg:grid lg:grid-cols-[minmax(0,1fr)_300px] lg:gap-5">
     <div class="min-w-0">
-        {{-- The filters: the team's experience (its players' best 3v3 rating ever, averaged) and a spec in it. --}}
-        <div class="linear-card px-4 py-3 mb-3 flex flex-wrap items-center gap-x-4 gap-y-2">
-            <div class="flex flex-wrap items-center gap-2">
-                <span class="text-[11px] uppercase tracking-wider text-ink-subtle mr-1">Experience</span>
-                <button type="button" wire:click="setExp(null)" class="chip {{ $board['minExp'] === null ? 'chip-on' : '' }}">Everyone</button>
-                @foreach ($bands as $min => $label)
-                    <button type="button" wire:click="setExp({{ $min }})" class="chip {{ $board['minExp'] === $min ? 'chip-on' : '' }}" title="{{ $label }}">{{ $min }}+</button>
-                @endforeach
-            </div>
-            <label class="flex items-center gap-2">
-                <span class="text-[11px] uppercase tracking-wider text-ink-subtle">Spec</span>
-                <select class="form-select !py-1 !text-[12.5px] max-w-[220px]" wire:change="setSpec($event.target.value)">
-                    <option value="">Every spec</option>
-                    @foreach (collect($specsSeen)->groupBy('class') as $class => $specs)
-                        <optgroup label="{{ \App\Http\Services\CompLeaderboardService::className((string) $class) }}">
-                            @foreach ($specs as $s)
-                                <option value="{{ $s['id'] }}" @selected(($board['spec'] ?? null) === $s['id'])>{{ $s['label'] }}</option>
-                            @endforeach
-                        </optgroup>
-                    @endforeach
-                </select>
-            </label>
-        </div>
+        @include('livewire.partials.leaderboard-filters', ['mode' => 'comps'])
         <p class="text-[12px] text-ink-subtle mb-4">
-            @if ($board['minExp'])
-                Teams whose players' best 3v3 rating ever averages {{ $board['minExp'] }} or more.
-            @else
-                Experience is a team's players' best 3v3 rating ever, averaged.
-            @endif
-            Known for {{ number_format($board['known']) }} of {{ number_format($board['teams']) }} teams, where Blizzard has a profile; the others are left out of a filter.
-            Both teams of every game count. Open a comp for its games, or see every game in the Games tab.
+            Experience is a team's players' best 3v3 rating ever, averaged: known for {{ number_format($board['known']) }} of {{ number_format($board['teams']) }} teams, where Blizzard has a profile, and the others are left out of an experience filter.
+            Both teams of every game count. Open a comp for its games.
         </p>
 
         <div class="linear-card p-0 overflow-hidden">
             @if ($comps === [])
                 <p class="p-5 text-[13px] text-ink-subtle">
-                    {{ $board['minExp'] || ($board['spec'] ?? null) ? 'No team with these filters in the games uploaded this season.' : 'No 3v3 games uploaded yet this season.' }}
+                    {{ $board['minExp'] || ($board['spec'] ?? null) || ($board['region'] ?? null) ? 'No team with these filters in the games uploaded this season.' : 'No 3v3 games uploaded yet this season.' }}
                 </p>
             @else
                 <table class="w-full text-[13px] tabular-nums">
@@ -207,6 +193,7 @@
     </aside>
     </div>
     @elseif ($tabNow === 'games')
+        @include('livewire.partials.leaderboard-filters', ['mode' => 'games'])
         <p class="text-[12px] text-ink-subtle mb-4">
             Every 3v3 game uploaded to MindCollector this season, newest first. Open one for both teams, how each death happened
             and everyone's damage and healing. No player is named; the first team is the one that uploaded it.
@@ -214,32 +201,27 @@
 
         <div class="linear-card p-0 overflow-hidden">
             @if ($games['games'] === [])
-                <p class="p-5 text-[13px] text-ink-subtle">No 3v3 games uploaded yet this season.</p>
+                <p class="p-5 text-[13px] text-ink-subtle">{{ $fromNow || $specNow || $compNow || $mmrNow ? 'No game with these filters this season.' : 'No 3v3 games uploaded yet this season.' }}</p>
             @else
+                {{-- Each game (2026-10-30): both teams as their specs, the winner bright with a W, each team's MMR. --}}
                 <ul class="divide-y divide-line">
                     @foreach ($games['games'] as $gm)
                         <li>
-                            <a href="{{ route('comps.game', ['round' => $gm['round']]) }}" wire:navigate
-                               class="flex items-center gap-3 px-3 sm:px-4 py-2.5 hover:bg-surface-2 transition-colors">
-                                <span class="w-14 sm:w-20 shrink-0 text-[11.5px] leading-tight text-ink-subtle tabular-nums">
-                                    {{ $gm['at']?->format('D j M') }}<span class="block">{{ $gm['at']?->format('H:i') }}</span>
+                            <a href="{{ route('comps.game', ['round' => $gm['round']]) }}" wire:navigate class="flex items-center gap-3 px-3 sm:px-4 py-3 hover:bg-surface-2 transition-colors">
+                                <span class="w-12 sm:w-16 shrink-0 text-[11.5px] leading-tight text-ink-subtle tabular-nums">
+                                    {{ $gm['at']?->format('j M') }}<span class="block">{{ $gm['at']?->format('H:i') }}</span>
+                                    @if (count($regionsSeen) > 1 && ! $fromNow)<span class="inline-block mt-1 rounded px-1 text-[9.5px] font-bold tracking-wider border border-line text-ink-muted">{{ strtoupper($gm['region']) }}</span>@endif
                                 </span>
-                                <span class="flex-1 min-w-0 space-y-1">
+                                <span class="flex-1 min-w-0 space-y-1.5">
                                     @foreach (['us', 'them'] as $side)
                                         @php $t = $gm[$side]; @endphp
                                         <span class="flex items-center gap-2 min-w-0">
-                                            <span class="flex -space-x-1 shrink-0">
-                                                @foreach ($t['classes'] as $slug)
-                                                    @if ($classes[$slug] ?? null) <x-class-icon :class="$classes[$slug]" size="w-5 h-5"/> @endif
-                                                @endforeach
-                                            </span>
-                                            <span class="truncate text-[13px] {{ $t['won'] ? 'text-ink font-semibold' : 'text-ink-muted' }}">{{ $name($t) }}</span>
+                                            <span class="flex gap-0.5 shrink-0">{!! $teamIcons($t) !!}</span>
+                                            <span class="flex-1 min-w-0 truncate text-[13px] {{ $t['won'] ? 'text-ink font-semibold' : 'text-ink-muted' }}">{{ $name($t) }}</span>
                                             @if ($t['won'])
-                                                <span class="shrink-0 rounded-full bg-green-500/15 text-green-300 text-[10.5px] font-bold px-2 py-px">WON</span>
+                                                <span class="shrink-0 rounded-full bg-green-500/15 text-green-300 text-[10.5px] font-bold px-1.5 sm:px-2 py-px">W<span class="hidden sm:inline">ON</span></span>
                                             @endif
-                                            @if ($t['mmr'])
-                                                <span class="ml-auto shrink-0 text-[12px] text-ink-subtle tabular-nums">{{ $t['mmr'] }}</span>
-                                            @endif
+                                            <span class="w-10 shrink-0 text-right text-[12px] tabular-nums {{ $t['won'] ? 'text-ink' : 'text-ink-subtle' }}">{{ $t['mmr'] ?? '' }}</span>
                                         </span>
                                     @endforeach
                                 </span>
@@ -255,12 +237,23 @@
             <button type="button" wire:click="showMoreGames" class="btn-ghost mt-3 text-[12.5px]">Show more games ({{ number_format($games['total'] - count($games['games'])) }} more)</button>
         @endif
     @else
-        <div class="flex flex-wrap items-center gap-2 mb-2">
-            @foreach ($regions as $r)
-                <button type="button" wire:click="setRegion('{{ $r }}')" class="chip {{ $regionNow === $r ? 'chip-on' : '' }}">{{ strtoupper($r) }}</button>
-            @endforeach
-            <span class="w-px h-5 bg-line mx-1"></span>
-            <button type="button" wire:click="toggleSeen" class="chip {{ $seenOnly ? 'chip-on' : '' }}">Seen in uploaded games</button>
+        @php $segBtn = fn (bool $on) => 'px-3.5 py-1.5 rounded-full text-[12.5px] font-semibold transition-colors '.($on ? 'bg-ink text-black' : 'text-ink-muted hover:text-ink'); @endphp
+        <div class="linear-card p-3 sm:p-4 mb-3 flex flex-wrap items-end gap-4">
+            <div>
+                <span class="block text-[10.5px] font-bold uppercase tracking-[.12em] text-ink-subtle mb-1.5">Ladder</span>
+                <div class="inline-flex p-1 rounded-full bg-black/40 border border-line">
+                    @foreach ($regions as $r)
+                        <button type="button" wire:click="setRegion('{{ $r }}')" class="{{ $segBtn($regionNow === $r) }}">{{ strtoupper($r) }}</button>
+                    @endforeach
+                </div>
+            </div>
+            <div>
+                <span class="block text-[10.5px] font-bold uppercase tracking-[.12em] text-ink-subtle mb-1.5">Players</span>
+                <div class="inline-flex p-1 rounded-full bg-black/40 border border-line">
+                    <button type="button" wire:click="{{ $seenOnly ? 'toggleSeen' : '$refresh' }}" class="{{ $segBtn(! $seenOnly) }}">Everyone</button>
+                    <button type="button" wire:click="{{ $seenOnly ? '$refresh' : 'toggleSeen' }}" class="{{ $segBtn($seenOnly) }}">Seen in uploaded games</button>
+                </div>
+            </div>
         </div>
         <p class="text-[12px] text-ink-subtle mb-4">
             @if ($ladder['season'])

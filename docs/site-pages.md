@@ -96,6 +96,14 @@
     board's bands: Rival 1800+, Duelist 2100+, 2400+; "R1" and Gladiator titles cannot be read from a
     best rating), a spec filter (`?spec=`, Blizzard's id, `CompLeaderboardService::board($exp, $spec)`),
     and a side column with the newest games, the top US ladder players seen in uploads and the app.
+    **Filters (2026-10-30**, Chriso: "the grey filtering boxes on top look too basic and we don't have
+    the ability to filter properly"): one panel for Comps and Games (`livewire.partials.leaderboard-filters`),
+    a pill row for the band and dropdowns, with the chosen filters as chips under it and Clear all.
+    Both tabs: a spec on either team (`?spec=`) and the region (`?from=`, `CompLeaderboardService::REGIONS`,
+    Chinese games apart). Comps: experience (`?exp=`) and sort (`?sort=` games, rate, mmr, exp; a win
+    rate over fewer than 5 games sorts last). Games: a comp on either team (`?comp=`) and the game's
+    rating, its two teams' MMR averaged (`?mmr=`). The teams are read from the cache once a request
+    and each filtered list is cached 30 minutes, so a filter costs a cache read.
     **Games** (2026-10-27, Chriso: "have in leaderboard
     individual matches so we can click on the match card"): every 3v3 game this season, newest
     first, one row a match (`CompLeaderboardService::recentGames()`), each opening its own card.

@@ -99,6 +99,52 @@ class SpellNameTranslations
     }
 
     /**
+     * Every spell name in a round in English (2026-10-30, Chriso: "a rule where all matches on the
+     * website are in English"). A Chinese client's log names its spells in Chinese (激流 for Riptide,
+     * docs/international.md); the name table gives the English one, here for values and for keys
+     * (the damage breakdown is keyed by spell). Every card and the Watch page read a round through
+     * this. Player names are never touched, and a name the table does not know yet stays as the log
+     * wrote it.
+     */
+    public function inEnglish(array $a): array
+    {
+        $foreign = [];
+        $collect = function ($v) use (&$collect, &$foreign) {
+            foreach ($v as $k => $x) {
+                if (is_string($k) && self::foreign($k)) {
+                    $foreign[$k] = true;
+                }
+                if (is_array($x)) {
+                    $collect($x);
+                } elseif (is_string($x) && self::foreign($x)) {
+                    $foreign[$x] = true;
+                }
+            }
+        };
+        $collect($a);
+        if ($foreign === []) {
+            return $a;
+        }
+        foreach ($a['players'] ?? [] as $p) {
+            unset($foreign[$p['name'] ?? ''], $foreign[explode('-', (string) ($p['name'] ?? ''))[0]]);
+        }
+        $english = $this->english(array_keys($foreign));
+        if ($english === []) {
+            return $a;
+        }
+        $swap = function ($v) use (&$swap, $english) {
+            $out = [];
+            foreach ($v as $k => $x) {
+                $out[is_string($k) ? ($english[$k] ?? $k) : $k] = is_array($x) ? $swap($x) : (is_string($x) ? ($english[$x] ?? $x) : $x);
+            }
+
+            return $out;
+        };
+
+        return $swap($a);
+    }
+
+    /**
      * The hand file's entries, log name => English name.
      *
      * @return array<string, string>

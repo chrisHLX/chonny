@@ -57,6 +57,8 @@ class WatchPageService
             if (! is_array($analysis) || $analysis === []) {
                 continue;
             }
+            // Every spell name in English, as on the cards (2026-10-30).
+            $analysis = app(SpellNameTranslations::class)->inEnglish($analysis);
 
             $at = $round->played_at ? Carbon::parse($round->played_at)->getTimestamp() : null;
             $last = 0.0;

@@ -40,11 +40,11 @@ class CompBoardTest extends TestCase
     }
 
     /** RMP (the uploader's team) against Jungle. */
-    private function game(User $uploader, string $match, bool $rmpWon): void
+    private function game(User $uploader, string $match, bool $rmpWon, string $region = 'US'): void
     {
         $team = [
-            'us' => [['Rogueguy-Area52-US', 'rogue', 259, false], ['Mageguy-Area52-US', 'mage', 63, false], ['Priestguy-Area52-US', 'priest', 256, true]],
-            'them' => [['Druidguy-Tichondrius-US', 'druid', 103, false], ['Hunterguy-Tichondrius-US', 'hunter', 253, false], ['Healguy-Tichondrius-US', 'priest', 257, true]],
+            'us' => [["Rogueguy-Area52-$region", 'rogue', 259, false], ["Mageguy-Area52-$region", 'mage', 63, false], ["Priestguy-Area52-$region", 'priest', 256, true]],
+            'them' => [["Druidguy-Tichondrius-$region", 'druid', 103, false], ["Hunterguy-Tichondrius-$region", 'hunter', 253, false], ["Healguy-Tichondrius-$region", 'priest', 257, true]],
         ];
         $players = [];
         foreach ($team as $side => $members) {
@@ -166,6 +166,32 @@ class CompBoardTest extends TestCase
             ->assertSee('/wow/comps/game/'.$games['games'][1]['round'], false);
     }
 
+    /** Chinese games apart from the rest, and the Games tab by spec, comp and rating (2026-10-30). */
+    public function test_the_board_and_the_games_filter_by_region_spec_comp_and_rating(): void
+    {
+        $this->game(User::factory()->create(), 'm1', true);
+        $this->game(User::factory()->create(), 'm2', false, 'CN');
+        $svc = app(CompLeaderboardService::class);
+
+        $this->assertSame(['us' => 1, 'cn' => 1], $svc->regionsSeen());
+        $this->assertSame(1, $svc->board(null, null, 'cn')['games']);
+        $this->assertSame(2, $svc->board(null, null, 'junk')['games'], 'a region with no games is every region');
+        $this->assertSame(1, $svc->recentGames(50, ['region' => 'cn'])['total']);
+        $this->assertSame('cn', $svc->recentGames(50, ['region' => 'cn'])['games'][0]['region']);
+        $this->assertSame(2, $svc->recentGames(50, ['comp' => 'mage-rogue-priest'])['total']);
+        $this->assertSame(0, $svc->recentGames(50, ['comp' => 'warrior-warrior-paladin'])['total']);
+        $this->assertSame(2, $svc->recentGames(50, ['spec' => 63])['total']);
+        $this->assertSame(0, $svc->recentGames(50, ['spec' => 71])['total']);
+        $this->assertSame(2, $svc->recentGames(50, ['mmr' => 1800])['total']);
+        $this->assertSame(0, $svc->recentGames(50, ['mmr' => 2400])['total']);
+
+        // The game's MMR averages 2075: in at 1800+, out at 2100+.
+        $this->get('/wow/leaderboards?tab=games&from=cn&comp=mage-rogue-priest&mmr=1800')->assertOk()->assertSee('China')->assertSee('1 game')->assertDontSee('1 games');
+        $this->get('/wow/leaderboards?tab=games&from=cn&mmr=2100')->assertOk()->assertSee('No game with these filters this season.');
+        $this->get('/wow/leaderboards?from=cn&sort=rate')->assertOk()->assertSee('comps/played/mage-rogue-priest', false);
+        $this->get('/wow/leaderboards?tab=games&from=junk&sort=junk&mmr=junk&comp=%3Cx%3E')->assertOk();
+    }
+
     /** A character's experience as PlayerExperienceService caches it after a lookup. */
     private function experience(string $fullName, int $best3v3): void
     {
@@ -191,7 +217,7 @@ class CompBoardTest extends TestCase
         $this->assertSame([2500, 2, 2400], [$top['comps'][0]['exp'], $top['games'], $top['minExp']]);
         $this->assertCount(2, $svc->board(2401)['comps'], 'a number that is not a band is the whole board');
 
-        $this->get('/wow/leaderboards')->assertOk()->assertSee('RMP')->assertSee('Jungle')->assertSee('Known for 2 of 4 teams');
+        $this->get('/wow/leaderboards')->assertOk()->assertSee('RMP')->assertSee('Jungle')->assertSee('known for 2 of 4 teams');
         // The board's own rows; the side column's newest games are every game, whatever the filter.
         $this->get('/wow/leaderboards?exp=2400')->assertOk()->assertSee('comps/played/mage-rogue-priest', false)->assertDontSee('comps/played/druid-hunter-priest', false);
         $this->get('/wow/leaderboards?exp=junk')->assertOk()->assertSee('Jungle');

@@ -44,7 +44,7 @@
 <div class="head {{ $g['won'] ? 'head-won' : 'head-lost' }}">
 <div class="hero">
     <div class="hero-main">
-        @if ($lead && $lead['icon'])<img class="hero-ic" src="{{ $lead['icon'] }}" alt="">@endif
+        @if ($lead && $lead['icon'])<img loading="lazy" class="hero-ic" src="{{ $lead['icon'] }}" alt="">@endif
         <div style="min-width: 0">
             <div class="eyebrow">{{ $g['playedAt'] }}@if ($g['kind'] === 'game') &nbsp;&middot;&nbsp; {{ $g['duration'] }}@endif</div>
             <div style="margin-top: 2px">
@@ -64,7 +64,7 @@
             @if ($g['kind'] === 'shuffle' && $lineup)
                 <div class="lineup">
                     @foreach ($lineup as $p)
-                        <span class="p">@if ($p['icon'])<img src="{{ $p['icon'] }}" alt="">@endif<span class="name" style="color: {{ $p['color'] }}">{{ $p['name'] }}</span>@if ($p['you'])<span class="you">YOU</span>@endif @if ($p['spec'] !== $p['name'])<span class="muted">&nbsp;{{ $p['spec'] }}</span>@endif</span>
+                        <span class="p">@if ($p['icon'])<img loading="lazy" src="{{ $p['icon'] }}" alt="">@endif<span class="name" style="color: {{ $p['color'] }}">{{ $p['name'] }}</span>@if ($p['you'])<span class="you">YOU</span>@endif @if ($p['spec'] !== $p['name'])<span class="muted">&nbsp;{{ $p['spec'] }}</span>@endif</span>
                     @endforeach
                 </div>
             @endif
@@ -136,7 +136,7 @@
             @if ($first)
                 <div class="t"><span style="color: {{ $first['color'] }}">{{ $first['name'] }}</span> died at {{ $first['clock'] }}</div>
                 <div class="line small">
-                    @if ($first['killingBlow'])Killing blow @if ($first['killingBlow']['icon'])<img class="spell-ic" src="{{ $first['killingBlow']['icon'] }}" alt="">@endif<b style="color: #FFFFFF">{{ $first['killingBlow']['spell'] }}</b>. @endif
+                    @if ($first['killingBlow'])Killing blow @if ($first['killingBlow']['icon'])<img loading="lazy" class="spell-ic" src="{{ $first['killingBlow']['icon'] }}" alt="">@endif<b style="color: #FFFFFF">{{ $first['killingBlow']['spell'] }}</b>. @endif
                     @if ($first['healer']){{ $first['healer']['whose'] }} <span class="chip {{ $first['healer']['tone'] }}">{{ $first['healer']['label'] }}</span>, {{ lcfirst($first['healer']['medallion']) }}. @endif
                     @if ($first['goStartedAgo'] !== null){{ $first['goWhose'] }} go had been running {{ $first['goStartedAgo'] }}s.@endif
                 </div>
@@ -168,7 +168,7 @@
                 @forelse ($g['events'] ?? [] as $e)
                     <div class="ev {{ $e['kind'] }} {{ $e['ours'] ? 'ours' : 'theirs' }}">
                         <span class="t">{{ $e['clock'] }}</span>
-                        <span class="dot">@if ($e['icon'])<img src="{{ $e['icon'] }}" alt="">@else @include('desktop.partials.icon', ['n' => ['go' => 'swords', 'kill' => 'swords', 'death' => 'skull', 'end' => 'trophy', 'medallion' => 'shield'][$e['kind']] ?? 'bolt'])@endif</span>
+                        <span class="dot">@if ($e['icon'])<img loading="lazy" src="{{ $e['icon'] }}" alt="">@else @include('desktop.partials.icon', ['n' => ['go' => 'swords', 'kill' => 'swords', 'death' => 'skull', 'end' => 'trophy', 'medallion' => 'shield'][$e['kind']] ?? 'bolt'])@endif</span>
                         <span class="x">{{ $e['text'] }}</span>
                     </div>
                 @empty

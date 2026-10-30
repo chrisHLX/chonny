@@ -56,7 +56,7 @@ class SpellNameTranslationsTest extends TestCase
         $this->assertSame('spell_nature_riptide.jpg', app(SpellIconIndex::class)->for(['Riptide'])['Riptide']?->icon_name, 'English is untouched');
     }
 
-    public function test_the_arena_frames_count_a_chinese_press_and_keep_its_name_on_the_casts_line(): void
+    public function test_the_arena_frames_count_a_chinese_press_and_name_it_in_english(): void
     {
         app(SpellNameTranslations::class)->learn(',408,"肾击",0x1,');
         $user = User::factory()->create();
@@ -72,7 +72,26 @@ class SpellNameTranslationsTest extends TestCase
         $frame = app(WatchPageService::class)->page(collect([$round]))['rounds'][0]['frames'][0];
 
         $this->assertSame([21.0, 67.0], $frame['abilities'][0]['presses']);
-        $this->assertSame('肾击', $frame['casts'][0][1], 'the casts line keeps the name the player\'s client uses');
+        // Every match on the website in English (2026-10-30); before, the casts line kept the client's name.
+        $this->assertSame('Kidney Shot', $frame['casts'][0][1]);
+    }
+
+    /** Spell names in English everywhere a round is read, as values and as keys; player names never. */
+    public function test_a_round_reads_in_english_and_its_players_keep_their_names(): void
+    {
+        app(SpellNameTranslations::class)->learn(',61295,"激流",0x8, ,408,"肾击",0x1,');
+        $a = app(SpellNameTranslations::class)->inEnglish([
+            'players' => [['guid' => 'P-1', 'name' => '萨满-死亡之翼-CN']],
+            'deaths' => [['who' => '萨满-死亡之翼-CN', 'killingBlow' => ['spell' => '肾击']]],
+            'breakdown' => ['P-1' => ['healing' => ['激流' => ['amount' => 5]]]],
+            'timeline' => ['casts' => ['P-1' => [[1.0, '激流', null], [2.0, 'pet: 激流', null], [3.0, '不在数据里', null]]]],
+        ]);
+
+        $this->assertSame('萨满-死亡之翼-CN', $a['players'][0]['name']);
+        $this->assertSame('萨满-死亡之翼-CN', $a['deaths'][0]['who']);
+        $this->assertSame('Kidney Shot', $a['deaths'][0]['killingBlow']['spell']);
+        $this->assertSame(['Riptide' => ['amount' => 5]], $a['breakdown']['P-1']['healing']);
+        $this->assertSame(['Riptide', 'pet: Riptide', '不在数据里'], array_column($a['timeline']['casts']['P-1'], 1), 'a name not known yet stays as logged');
     }
 
     public function test_a_hand_entry_wins_and_the_report_lists_only_what_is_left(): void

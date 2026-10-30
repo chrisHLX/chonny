@@ -20,7 +20,7 @@
                             <td>
                                 <b>{{ $row['label'] }}</b>&nbsp; <span class="gold">{{ $row['value'] }}</span>
                                 @if (! empty($row['icons']))
-                                    &nbsp;@foreach ($row['icons'] as $ic)<img class="spell-ic" src="{{ $ic }}" style="margin-right: 3px">@endforeach
+                                    &nbsp;@foreach ($row['icons'] as $ic)<img loading="lazy" class="spell-ic" src="{{ $ic }}" style="margin-right: 3px">@endforeach
                                 @endif
                                 {{-- A row may now carry no text at all: the definition of a measure
                                      belongs in learning, not on every card, so only a finding about

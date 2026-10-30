@@ -1,6 +1,6 @@
 {{-- One death: who, the killing blow, who did the damage, the healer, defensives in the last 30s. --}}
 <div class="who">
-    @if ($d['icon'])<img class="spec-ic" src="{{ $d['icon'] }}" style="border:1px solid {{ $d['color'] }}">@endif
+    @if ($d['icon'])<img loading="lazy" class="spec-ic" src="{{ $d['icon'] }}" style="border:1px solid {{ $d['color'] }}">@endif
     <span class="muted">&nbsp;{{ $d['clock'] }}</span>&nbsp;
     <span class="name" style="color: {{ $d['color'] }}">{{ $d['name'] }}</span> died
     <span class="chip {{ $d['ours'] ? 'bad' : 'good' }}">{{ $d['ours'] ? 'yours' : 'enemy' }}</span>
@@ -10,7 +10,7 @@
     <div class="line">
         @if ($d['killingBlow'])
             <span class="muted">Killing blow</span>&nbsp;
-            @if ($d['killingBlow']['icon'])<img class="spell-ic" src="{{ $d['killingBlow']['icon'] }}">@endif<b>{{ $d['killingBlow']['spell'] }}</b>
+            @if ($d['killingBlow']['icon'])<img loading="lazy" class="spell-ic" src="{{ $d['killingBlow']['icon'] }}">@endif<b>{{ $d['killingBlow']['spell'] }}</b>
         @endif
         @if ($d['shares'])
             <div class="bar">@foreach ($d['shares'] as $s)<span style="width: {{ $s['pct'] }}%; background: {{ $s['color'] }}"></span>@endforeach</div>
@@ -36,7 +36,7 @@
     @if ($d['defensives'])
         <div style="margin-top:4px"><span class="muted">Defensives in the last 30s:&nbsp;</span>
             @foreach ($d['defensives'] as $x)
-                <span class="def">@if ($x['icon'])<img class="spell-ic" src="{{ $x['icon'] }}">@endif{{ $x['spell'] }} <span class="muted">{{ $x['who'] }}, {{ $x['ago'] }}s before</span></span>
+                <span class="def">@if ($x['icon'])<img loading="lazy" class="spell-ic" src="{{ $x['icon'] }}">@endif{{ $x['spell'] }} <span class="muted">{{ $x['who'] }}, {{ $x['ago'] }}s before</span></span>
             @endforeach
         </div>
     @else
@@ -55,7 +55,7 @@
     <table class="ab" style="margin-top: 8px">
         @foreach ($d['abilities'] as $a)
             <tr>
-                <td class="sp">@if ($a['icon'])<img class="spell-ic" src="{{ $a['icon'] }}">@else<span class="ph-s"></span>@endif<b>{{ $a['spell'] }}</b> <span class="small" style="color: {{ $a['color'] }}">{{ $a['name'] }}</span></td>
+                <td class="sp">@if ($a['icon'])<img loading="lazy" class="spell-ic" src="{{ $a['icon'] }}">@else<span class="ph-s"></span>@endif<b>{{ $a['spell'] }}</b> <span class="small" style="color: {{ $a['color'] }}">{{ $a['name'] }}</span></td>
                 <td class="sh"><div class="bar" style="margin:0"><span style="width: {{ $a['pct'] }}%; background: {{ $a['color'] }}"></span></div></td>
                 <td class="n small muted">{{ $a['pct'] }}%</td>
             </tr>
@@ -88,14 +88,14 @@
         @if ($s['offensive'])
             <div class="line small"><span class="muted">Enemy offensive cooldowns:&nbsp;</span>
                 @foreach ($s['offensive'] as $x)
-                    <span class="def">@if ($x['icon'])<img class="spell-ic" src="{{ $x['icon'] }}">@endif{{ $x['spell'] }} <span style="color: {{ $x['color'] }}">{{ $x['name'] }}</span></span>
+                    <span class="def">@if ($x['icon'])<img loading="lazy" class="spell-ic" src="{{ $x['icon'] }}">@endif{{ $x['spell'] }} <span style="color: {{ $x['color'] }}">{{ $x['name'] }}</span></span>
                 @endforeach
             </div>
         @endif
         @if ($s['control'])
             <div class="line small"><span class="muted">Enemy crowd control on you:&nbsp;</span>
                 @foreach ($s['control'] as $x)
-                    <span class="def">@if ($x['icon'])<img class="spell-ic" src="{{ $x['icon'] }}">@endif{{ $x['spell'] }} <span class="muted">on {{ $x['on'] }}, {{ $x['clock'] }}</span></span>
+                    <span class="def">@if ($x['icon'])<img loading="lazy" class="spell-ic" src="{{ $x['icon'] }}">@endif{{ $x['spell'] }} <span class="muted">on {{ $x['on'] }}, {{ $x['clock'] }}</span></span>
                 @endforeach
             </div>
         @endif
@@ -116,7 +116,7 @@
             <div class="line"><span class="chip warn">Ready, and could have saved them</span> <span class="small muted">&nbsp;reached them and covers that damage</span></div>
             <div class="line small">
                 @foreach ($s['fits'] as $x)
-                    <span class="def">@if ($x['icon'])<img class="spell-ic" src="{{ $x['icon'] }}">@endif{{ $x['spell'] }} <span style="color: {{ $x['color'] }}">{{ $x['name'] }}</span> @if ($x['tried'])<span class="gold">tried {{ $x['tried'] }}</span>@endif</span>
+                    <span class="def">@if ($x['icon'])<img loading="lazy" class="spell-ic" src="{{ $x['icon'] }}">@endif{{ $x['spell'] }} <span style="color: {{ $x['color'] }}">{{ $x['name'] }}</span> @if ($x['tried'])<span class="gold">tried {{ $x['tried'] }}</span>@endif</span>
                 @endforeach
             </div>
         @endif
@@ -124,7 +124,7 @@
             <div class="line"><span class="chip neutral">Ready, other answers</span> <span class="small muted">&nbsp;crowd control, peels, trinkets, hiding: whether one fitted is your read</span></div>
             <div class="line small">
                 @foreach ($s['others'] as $x)
-                    <span class="def">@if ($x['icon'])<img class="spell-ic" src="{{ $x['icon'] }}">@endif{{ $x['spell'] }} <span style="color: {{ $x['color'] }}">{{ $x['name'] }}</span> @if ($x['tried'])<span class="gold">tried {{ $x['tried'] }}</span>@endif</span>
+                    <span class="def">@if ($x['icon'])<img loading="lazy" class="spell-ic" src="{{ $x['icon'] }}">@endif{{ $x['spell'] }} <span style="color: {{ $x['color'] }}">{{ $x['name'] }}</span> @if ($x['tried'])<span class="gold">tried {{ $x['tried'] }}</span>@endif</span>
                 @endforeach
             </div>
         @endif
@@ -140,7 +140,7 @@
             <div class="line"><span class="chip neutral">Pressed in the enemy go</span></div>
             <div class="line small">
                 @foreach ($s['pressed'] as $x)
-                    <span class="def">@if ($x['icon'])<img class="spell-ic" src="{{ $x['icon'] }}">@endif{{ $x['spell'] }} <span style="color: {{ $x['color'] }}">{{ $x['name'] }}</span> <span class="muted">{{ $x['clock'] }}</span></span>
+                    <span class="def">@if ($x['icon'])<img loading="lazy" class="spell-ic" src="{{ $x['icon'] }}">@endif{{ $x['spell'] }} <span style="color: {{ $x['color'] }}">{{ $x['name'] }}</span> <span class="muted">{{ $x['clock'] }}</span></span>
                 @endforeach
             </div>
         @endif
@@ -148,7 +148,7 @@
             <div class="line"><span class="chip neutral">On cooldown when it began</span></div>
             <div class="line small">
                 @foreach ($s['down'] as $x)
-                    <span class="def">@if ($x['icon'])<img class="spell-ic" src="{{ $x['icon'] }}">@endif{{ $x['spell'] }} <span style="color: {{ $x['color'] }}">{{ $x['name'] }}</span> <span class="muted">back at {{ $x['back'] }}</span></span>
+                    <span class="def">@if ($x['icon'])<img loading="lazy" class="spell-ic" src="{{ $x['icon'] }}">@endif{{ $x['spell'] }} <span style="color: {{ $x['color'] }}">{{ $x['name'] }}</span> <span class="muted">back at {{ $x['back'] }}</span></span>
                 @endforeach
             </div>
         @endif

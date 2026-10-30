@@ -13,7 +13,7 @@
                 @foreach ($b['players'] as $p)
                     <tr class="pl" onclick="var e=document.getElementById('{{ $p['id'] }}');e.style.display=e.style.display==='none'?'':'none';">
                         <td>
-                            @if ($p['icon'])<img class="spell-ic" src="{{ $p['icon'] }}" style="border:1px solid {{ $p['color'] }}">@else<span class="ph-s" style="border:1px solid {{ $p['color'] }}"></span>@endif
+                            @if ($p['icon'])<img loading="lazy" class="spell-ic" src="{{ $p['icon'] }}" style="border:1px solid {{ $p['color'] }}">@else<span class="ph-s" style="border:1px solid {{ $p['color'] }}"></span>@endif
                             <span class="name" style="color: {{ $p['color'] }}">{{ $p['name'] }}</span>@if ($p['you'])<span class="you">YOU</span>@endif
                             @if ($p['them'])<span class="small subtle">&nbsp;them</span>@endif
                         </td>
@@ -29,7 +29,7 @@
                                 <table class="ab">
                                     @foreach ($k['rows'] as $r)
                                         <tr>
-                                            <td class="sp">@if ($r['icon'])<img class="spell-ic" src="{{ $r['icon'] }}">@else<span class="ph-s"></span>@endif{{ $r['spell'] }}</td>
+                                            <td class="sp">@if ($r['icon'])<img loading="lazy" class="spell-ic" src="{{ $r['icon'] }}">@else<span class="ph-s"></span>@endif{{ $r['spell'] }}</td>
                                             <td class="sh"><div class="bar"><span style="width: {{ max(1, $r['share']) }}%; background: {{ $p['color'] }}"></span></div></td>
                                             <td class="n">{{ $r['amount'] }}</td>
                                             <td class="n muted">{{ $r['share'] }}%</td>

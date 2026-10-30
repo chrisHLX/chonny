@@ -74,12 +74,27 @@ class CompLeaderboardService
      */
     public function teams(): Collection
     {
+        // Once a request (2026-10-30): the page asks for the teams four or five times (the board, the
+        // games, the specs and regions seen), and each read of the cache unserialises every team.
+        if ($this->teams !== null) {
+            return $this->teams;
+        }
         // Kept until a 3v3 round is added or re-measured: one cheap query decides, so the board,
         // a card and the card's page never regroup every player on each request.
         $now = ArenaRoundPlayer::where('bracket', '3v3')->selectRaw('count(*) as n, max(id) as m')->first();
-        $key = 'comp-board:teams:v3:'.$now->n.':'.$now->m.':'.$this->season()['start']->timestamp;
+        $key = 'comp-board:teams:v4:'.$now->n.':'.$now->m.':'.$this->season()['start']->timestamp;
 
-        return Cache::remember($key, now()->addHours(6), fn () => $this->groupTeams());
+        return $this->teams = Cache::remember($key, now()->addHours(6), fn () => $this->groupTeams());
+    }
+
+    private ?Collection $teams = null;
+
+    /** A short signature of the teams, for the keys of what is cached from them. */
+    private function signature(): string
+    {
+        $teams = $this->teams();
+
+        return $teams->count().':'.$teams->max('round');
     }
 
     private function groupTeams(): Collection
@@ -110,6 +125,8 @@ class CompLeaderboardService
                     'won' => $team->first()->won,
                     'mmr' => $team->first()->mmr,
                     'at' => $team->first()->played_at,
+                    // The game's region, from its players (2026-10-30): Chinese games can be told apart.
+                    'region' => strtolower((string) $team->first()->region),
                     'names' => $team->map(fn ($p) => $p->name.'-'.$p->realm.'-'.strtoupper($p->region))->values()->all(),
                     // Who played, as the ladder is matched (whoKey()), with their class.
                     'who' => $team->map(fn ($p) => ['k' => self::whoKey($p->region, $p->realm_key, $p->name), 'n' => $p->name, 'c' => $p->class_slug])->values()->all(),
@@ -140,14 +157,18 @@ class CompLeaderboardService
      *
      * @return array{season: array, games: int, teams: int, known: int, minExp: ?int, comps: list<array>}
      */
-    public function board(?int $minExp = null, ?int $spec = null): array
+    public function board(?int $minExp = null, ?int $spec = null, ?string $region = null): array
     {
         $minExp = isset(self::EXP_BANDS[$minExp]) ? $minExp : null;
         $teams = $this->teams();
         $spec = $spec && $teams->contains(fn ($t) => in_array($spec, $t['specs'], true)) ? $spec : null;
-        $signature = $teams->count().':'.$teams->max('round');
+        $region = $region !== null && isset($this->regionsSeen()[$region]) ? $region : null;
+        $signature = $this->signature();
 
-        return Cache::remember('comp-board:v4:'.$signature.':'.($minExp ?? 'all').':'.($spec ?? 'any'), now()->addMinutes(self::TTL_MINUTES), function () use ($teams, $minExp, $spec) {
+        return Cache::remember('comp-board:v5:'.$signature.':'.($minExp ?? 'all').':'.($spec ?? 'any').':'.($region ?? 'any'), now()->addMinutes(self::TTL_MINUTES), function () use ($teams, $minExp, $spec, $region) {
+            if ($region) {
+                $teams = $teams->where('region', $region)->values();
+            }
             $xp = app(PlayerExperienceService::class)->cachedMany($teams->pluck('names')->flatten()->unique()->values()->all());
             $specs = app(PlayerGamesService::class);
             $labels = $teams->pluck('key')->unique()->mapWithKeys(fn ($k) => [$k => self::label($k)]);
@@ -206,7 +227,7 @@ class CompLeaderboardService
                 ];
             })->sortByDesc(fn ($c) => [$c['games'], $c['rate'] ?? 0])->values()->all();
 
-            return ['games' => $teams->pluck('match')->unique()->count(), 'teams' => $all, 'known' => $known, 'minExp' => $minExp, 'spec' => $spec, 'comps' => $comps];
+            return ['games' => $teams->pluck('match')->unique()->count(), 'teams' => $all, 'known' => $known, 'minExp' => $minExp, 'spec' => $spec, 'region' => $region, 'comps' => $comps];
         }) + ['season' => $this->season()];
     }
 
@@ -218,12 +239,32 @@ class CompLeaderboardService
      */
     public function specsSeen(): array
     {
-        $specs = app(PlayerGamesService::class);
+        return Cache::remember('comp-board:specs:v1:'.$this->signature(), now()->addMinutes(self::TTL_MINUTES), function () {
+            $specs = app(PlayerGamesService::class);
 
-        return $this->teams()->pluck('specs')->flatten()->unique()
-            ->map(fn ($id) => ['id' => (int) $id] + $specs->spec((int) $id))
-            ->sortBy(fn ($s) => [$s['class'] ?? 'z', $s['label']])->values()->all();
+            return $this->teams()->pluck('specs')->flatten()->unique()
+                ->map(fn ($id) => ['id' => (int) $id] + $specs->spec((int) $id))
+                ->sortBy(fn ($s) => [$s['class'] ?? 'z', $s['label']])->values()->all();
+        });
     }
+
+    /** Names of the regions games come from. */
+    public const REGIONS = ['us' => 'Americas', 'eu' => 'Europe', 'kr' => 'Korea', 'tw' => 'Taiwan', 'cn' => 'China'];
+
+    /**
+     * The regions this season's games come from, with their game counts, most first: ['us' => 829,
+     * 'cn' => 134]. For the board's region filter (2026-10-30, Chriso: "filter and seperate Chinese
+     * games from English").
+     *
+     * @return array<string, int>
+     */
+    public function regionsSeen(): array
+    {
+        return $this->regions ??= $this->teams()->where('side', 'us')->countBy('region')
+            ->filter(fn ($n, $r) => isset(self::REGIONS[$r]))->sortDesc()->all();
+    }
+
+    private ?array $regions = null;
 
     /** One player as the ladder and the uploaded games both name them: "us|area52|rogueguy". */
     public static function whoKey(string $region, string $realm, string $name): string
@@ -421,31 +462,58 @@ class CompLeaderboardService
      *
      * @return array{total: int, games: list<array>}
      */
-    public function recentGames(int $limit = 50): array
+    public function recentGames(int $limit = 50, array $filters = []): array
     {
-        $teams = $this->teams();
-        $matches = $teams->groupBy('match')->filter(fn (Collection $sides) => $sides->count() === 2)
-            ->sortByDesc(fn (Collection $sides) => (string) $sides->first()['at']);
-        $specs = app(PlayerGamesService::class);
-        $side = function (array $t) use ($specs) {
-            $label = self::label($t['key']);
+        // The Games tab's filters (2026-10-30): a spec or a comp on either team, the region, and the
+        // game's rating (the two teams' MMR averaged) at least a band.
+        $spec = isset($filters['spec']) ? (int) $filters['spec'] : null;
+        $comp = isset($filters['comp']) ? (string) $filters['comp'] : null;
+        $region = isset($filters['region'], $this->regionsSeen()[$filters['region']]) ? $filters['region'] : null;
+        $mmr = isset($filters['mmr'], self::EXP_BANDS[(int) $filters['mmr']]) ? (int) $filters['mmr'] : null;
+
+        $key = 'comp-board:games:v2:'.$this->signature().':'.$limit.':'.md5(json_encode([$spec, $comp, $region, $mmr]));
+
+        return Cache::remember($key, now()->addMinutes(self::TTL_MINUTES), function () use ($limit, $spec, $comp, $region, $mmr) {
+            $matches = $this->teams()->groupBy('match')->filter(fn (Collection $sides) => $sides->count() === 2);
+            if ($spec || $comp || $region || $mmr) {
+                $matches = $matches->filter(function (Collection $sides) use ($spec, $comp, $region, $mmr) {
+                    if ($region && $sides->first()['region'] !== $region) {
+                        return false;
+                    }
+                    if ($comp && ! $sides->contains('key', $comp)) {
+                        return false;
+                    }
+                    if ($spec && ! $sides->contains(fn ($t) => in_array($spec, $t['specs'], true))) {
+                        return false;
+                    }
+                    if ($mmr) {
+                        $avg = $sides->pluck('mmr')->filter()->avg();
+                        if (! $avg || $avg < $mmr) {
+                            return false;
+                        }
+                    }
+
+                    return true;
+                });
+            }
+            $matches = $matches->sortByDesc(fn (Collection $sides) => (string) $sides->first()['at']);
+            $side = function (array $t) {
+                $label = self::label($t['key']);
+
+                return ['key' => $t['key'], 'nick' => $label['nick'], 'classes' => $label['classes'], 'ids' => $t['specs'], 'won' => $t['won'], 'mmr' => $t['mmr']];
+            };
 
             return [
-                'key' => $t['key'], 'nick' => $label['nick'], 'classes' => $label['classes'],
-                'specs' => array_map(fn ($id) => $specs->spec($id), $t['specs']),
-                'won' => $t['won'], 'mmr' => $t['mmr'],
+                'total' => $matches->count(),
+                'games' => $matches->take($limit)->map(fn (Collection $sides) => [
+                    'round' => $sides->first()['round'],
+                    'at' => $sides->first()['at'],
+                    'region' => $sides->first()['region'],
+                    'us' => $side($sides->firstWhere('side', 'us')),
+                    'them' => $side($sides->firstWhere('side', 'them')),
+                ])->values()->all(),
             ];
-        };
-
-        return [
-            'total' => $matches->count(),
-            'games' => $matches->take($limit)->map(fn (Collection $sides) => [
-                'round' => $sides->first()['round'],
-                'at' => $sides->first()['at'],
-                'us' => $side($sides->firstWhere('side', 'us')),
-                'them' => $side($sides->firstWhere('side', 'them')),
-            ])->values()->all(),
-        ];
+        });
     }
 
     /**

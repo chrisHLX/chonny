@@ -55,7 +55,7 @@
     $tipN = 0;
     // One spell's row (its cells after the name in $after) and its hidden tooltip row.
     $spellRow = function (array $r, string $after, int $cols, string $nameClass = '') use (&$tipN) {
-        $icon = ! empty($r['icon']) ? '<img class="spell-ic" src="'.e($r['icon']).'">' : '<span class="ph-s"></span>';
+        $icon = ! empty($r['icon']) ? '<img loading="lazy" class="spell-ic" src="'.e($r['icon']).'">' : '<span class="ph-s"></span>';
         $cls = $nameClass ? ' class="'.$nameClass.'"' : '';
         if (empty($r['tip'])) {
             return '<tr><td'.$cls.'>'.$icon.e($r['label']).'</td>'.$after.'</tr>';
@@ -84,7 +84,7 @@
 @endphp
 
 <div class="head">
-    @if ($m['icon'])<img class="spec-ic" src="{{ $m['icon'] }}" style="border:1px solid {{ $m['color'] }}">@else<span class="ph" style="border:1px solid {{ $m['color'] }}"></span>@endif
+    @if ($m['icon'])<img loading="lazy" class="spec-ic" src="{{ $m['icon'] }}" style="border:1px solid {{ $m['color'] }}">@else<span class="ph" style="border:1px solid {{ $m['color'] }}"></span>@endif
     <span class="title" style="color: {{ $m['color'] }}">{{ $m['name'] }}</span>
     <span class="when muted">{{ $m['spec'] }} &nbsp;&middot;&nbsp; {{ $m['realm'] }}</span>
 </div>
