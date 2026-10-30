@@ -19,8 +19,8 @@
     ]);
 @endphp
 <div class="linear-card p-3 sm:p-4 mb-3">
-    <div class="grid grid-cols-2 sm:grid-cols-3 gap-3 items-end">
-        <div class="col-span-2 sm:col-span-3">
+    <div class="grid grid-cols-2 {{ $isComps ? 'sm:grid-cols-3' : '' }} gap-3 items-end">
+        <div class="col-span-2 {{ $isComps ? 'sm:col-span-3' : '' }}">
             <span class="{{ $label }}" title="{{ $isComps ? 'The team\'s players\' best 3v3 rating ever, averaged' : 'The two teams\' MMR in the game, averaged' }}">{{ $isComps ? 'Experience' : 'Rating' }}</span>
             <div class="inline-flex p-1 rounded-full bg-black/40 border border-line max-w-full overflow-x-auto">
                 <button type="button" wire:click="{{ $bandCall }}(null)" class="{{ $segBtn($bandNow === null) }}">Any</button>
@@ -44,20 +44,7 @@
                 </select>{!! $chev !!}
             </span>
         </label>
-        @unless ($isComps)
-            <label class="block min-w-0">
-                <span class="{{ $label }}">Comp</span>
-                <span class="relative block">
-                    <select class="{{ $select }}" wire:change="setComp($event.target.value || null)">
-                        <option value="">Any comp</option>
-                        @foreach ($compOptions as $c)
-                            <option value="{{ $c['key'] }}" @selected($compNow === $c['key'])>{{ $c['nick'] ?? collect($c['classes'])->map(fn ($s) => \App\Http\Services\CompLeaderboardService::className($s))->implode(' + ') }} ({{ $c['games'] }})</option>
-                        @endforeach
-                    </select>{!! $chev !!}
-                </span>
-            </label>
-        @endunless
-        <label class="block min-w-0 {{ $isComps ? '' : 'col-span-2 sm:col-span-1' }}">
+        <label class="block min-w-0">
             <span class="{{ $label }}">Region</span>
             <span class="relative block">
                 <select class="{{ $select }}" wire:change="setFrom($event.target.value || null)">
@@ -81,6 +68,38 @@
             </label>
         @endif
     </div>
+    @unless ($isComps)
+        {{-- The comps as boxes (2026-10-30, Chriso: "make comp selection the same kind of boxes as what we
+             have in 3v3 comps"): the 3v3 Comps page's common picks, each its most-played line-up. The
+             most played first; the rest behind More comps. --}}
+        <div class="mt-3" x-data="{ more: false }">
+            <span class="{{ $label }}">Comp</span>
+            <div class="flex flex-wrap gap-2">
+                @foreach ($compOptions as $i => $c)
+                    @php $on = $compNow === $c['key']; @endphp
+                    <button type="button" wire:click="setComp({{ $on ? 'null' : "'".$c['key']."'" }})" @if ($i >= 12 && ! $on) x-show="more" x-cloak @endif
+                            class="flex items-center gap-2.5 pl-2 pr-3 py-1.5 rounded-lg border transition-colors {{ $on ? 'border-gold bg-gold-subtle' : 'border-line hover:border-gold/40 hover:bg-surface-2' }}">
+                        <span class="flex -space-x-1.5">
+                            @forelse ($c['ids'] as $id)
+                                @if ($specModels[$id] ?? null) <x-spec-icon :spec="$specModels[$id]" size="w-6 h-6"/> @endif
+                            @empty
+                                @foreach ($c['classes'] as $slug)
+                                    @if ($classes[$slug] ?? null) <x-class-icon :class="$classes[$slug]" size="w-6 h-6"/> @endif
+                                @endforeach
+                            @endforelse
+                        </span>
+                        <span class="text-left">
+                            <span class="block text-[12px] font-semibold leading-tight {{ $on ? 'text-gold-light' : 'text-ink' }}">{{ $c['nick'] ?? collect($c['classes'])->map(fn ($x) => \App\Http\Services\CompLeaderboardService::className($x))->implode(' + ') }}</span>
+                            <span class="block text-[10px] text-ink-muted leading-tight tabular-nums">{{ number_format($c['games']) }} {{ $c['games'] === 1 ? 'game' : 'games' }}</span>
+                        </span>
+                    </button>
+                @endforeach
+                @if (count($compOptions) > 12)
+                    <button type="button" x-show="!more" @click="more = true" class="px-3 py-1.5 rounded-lg border border-dashed border-line-strong text-[12px] text-ink-muted hover:text-ink">More comps</button>
+                @endif
+            </div>
+        </div>
+    @endunless
     <div class="flex flex-wrap items-center gap-2 mt-3 pt-3 border-t border-line text-[12px]">
         <span class="text-ink-muted tabular-nums">
             @if ($isComps)

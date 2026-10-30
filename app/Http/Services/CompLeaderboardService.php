@@ -30,6 +30,9 @@ class CompLeaderboardService
     /** Cached this long; the key also changes with every new upload. */
     private const TTL_MINUTES = 30;
 
+    /** The games listed beside each player on the ladder, newest first. */
+    public const LADDER_GAMES = 4;
+
     /**
      * The leaderboard's experience filter (2026-10-21, Chriso: "the comps with exp and mmr and then
      * matches ... just comp filtered by EXP"): the team's experience at least this, by the rating
@@ -331,17 +334,24 @@ class CompLeaderboardService
         }
         $teams = $this->teams();
         $asOf = PvpLeaderboardEntry::where('region', $region)->where('season', $season)->where('bracket', '3v3')->max('seen_at');
-        $cacheKey = 'comp-board:ladder:v1:'.implode(':', [$region, $season, $asOf, $teams->count(), $teams->max('round'), (int) $seenOnly, $limit]);
+        $cacheKey = 'comp-board:ladder:v2:'.implode(':', [$region, $season, $asOf, $teams->count(), $teams->max('round'), (int) $seenOnly, $limit]);
 
         return Cache::remember($cacheKey, now()->addMinutes(self::TTL_MINUTES), function () use ($region, $season, $teams, $seenOnly, $limit, $asOf) {
-            // Every comp each player was seen on, and their class from those games.
+            // Every comp each player was seen on, every game they were in, and their class from those games.
             $seen = [];
             foreach ($teams as $t) {
                 foreach ($t['who'] as $w) {
                     $seen[$w['k']]['comps'][$t['key']] = ($seen[$w['k']]['comps'][$t['key']] ?? 0) + 1;
                     $seen[$w['k']]['class'] ??= $w['c'];
+                    $seen[$w['k']]['games'][] = $t;
                 }
             }
+            // A player's games (2026-10-30, Chriso: "instead of showing the comp aggregation can we have
+            // a link to the actual game"): newest first, each opening its card from their own team's side.
+            $games = fn (array $list) => collect($list)->sortByDesc(fn ($t) => (string) $t['at'])->take(self::LADDER_GAMES)
+                ->map(fn ($t) => self::label($t['key']) + ['key' => $t['key'], 'won' => $t['won'], 'mmr' => $t['mmr'], 'at' => $t['at'],
+                    'vs' => self::label($t['vs']), 'url' => route('comps.game', ['round' => $t['round']] + ($t['side'] === 'them' ? ['as' => 'them'] : []))])
+                ->values()->all();
 
             $rows = PvpLeaderboardEntry::where('region', $region)->where('season', $season)->where('bracket', '3v3')
                 ->orderBy('rank')->get(['blizzard_character_id', 'name', 'realm_slug', 'rank', 'rating', 'won', 'lost']);
@@ -370,6 +380,8 @@ class CompLeaderboardService
                     'lost' => (int) $e->lost,
                     'comps' => collect($seen[$e->who]['comps'] ?? [])->sortDesc()->take(3)
                         ->map(fn ($n, $key) => self::label($key) + ['key' => $key, 'games' => $n])->values()->all(),
+                    'games' => $games($seen[$e->who]['games'] ?? []),
+                    'gamesTotal' => count($seen[$e->who]['games'] ?? []),
                 ])->all(),
             ];
         });

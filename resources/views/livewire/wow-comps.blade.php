@@ -310,9 +310,9 @@
                     <x-mc-icon name="icon-compass" class="w-3.5 h-3.5"/>
                     How to play it
                 </button>
-                <button type="button" @click="selectTab('basics')" class="tab-btn flex items-center gap-1.5" :class="tab === 'basics' ? 'tab-active' : 'tab-inactive'" title="How a game of arena is won, in eight lines">
+                <button type="button" @click="selectTab('basics')" class="tab-btn flex items-center gap-1.5" :class="tab === 'basics' ? 'tab-active' : 'tab-inactive'" title="Each spec's PvP guide and class quiz">
                     <x-mc-icon name="icon-leaf" class="w-3.5 h-3.5"/>
-                    Basics
+                    Learn
                 </button>
                 <button type="button" @click="selectTab('offensive')" class="tab-btn flex items-center gap-1.5" :class="tab === 'offensive' ? 'tab-active' : 'tab-inactive'" title="Real, arena-log-verified offensive cooldowns for this exact spec">
                     <svg class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2l2.4 7.4H22l-6.2 4.5 2.4 7.4L12 16.8l-6.2 4.5 2.4-7.4L2 9.4h7.6z"/></svg>
@@ -1216,7 +1216,7 @@
 
         <livewire:spell-detail-modal/>
     @else
-        {{-- No spec picked yet: the basics alone, so a new player landing here has something to read. --}}
+        {{-- No spec picked yet: the PvP guides and class quizzes, so a new player landing here has somewhere to go. --}}
         @include('livewire.partials.comp-playbook')
     @endif
 </div>

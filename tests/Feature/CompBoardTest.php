@@ -236,7 +236,7 @@ class CompBoardTest extends TestCase
             ->assertSee('comps/played/mage-rogue-priest', false)->assertDontSee('comps/played/druid-hunter-priest', false);
     }
 
-    public function test_the_players_tab_is_blizzards_ladder_with_the_comps_each_player_was_seen_on(): void
+    public function test_the_players_tab_is_blizzards_ladder_with_the_games_each_player_was_in(): void
     {
         $this->game(User::factory()->create(), 'm1', true);
         $this->game(User::factory()->create(), 'm2', true);
@@ -267,8 +267,14 @@ class CompBoardTest extends TestCase
         $this->assertSame([], $board['druid-hunter-priest']['top']);
 
         $this->get('/wow/leaderboards')->assertOk()->assertSee('Played by')->assertSee('/wow/player/us/area-52/rogueguy', false);
+        // Each player's own games, newest first, each opening that game (2026-10-30), not the comp totals.
+        $games = $ladder['players'][0]['games'];
+        $this->assertSame([2, 2], [count($games), $ladder['players'][0]['gamesTotal']]);
+        $this->assertSame(['RMP', 'Jungle', true], [$games[0]['nick'], $games[0]['vs']['nick'], $games[0]['won']]);
+        $this->assertStringContainsString('/wow/comps/game/', $games[0]['url']);
+        $this->assertStringNotContainsString('as=them', $games[0]['url'], 'read from their own team, the uploader\'s');
         $this->get('/wow/leaderboards?tab=players')->assertOk()->assertSee('Stranger')->assertSee('2 of its 3 players are in an uploaded game')
-            ->assertSee('/wow/comps/played/mage-rogue-priest', false);
+            ->assertSee($games[0]['url'], false)->assertDontSee('/wow/comps/played/mage-rogue-priest', false);
         $this->get('/wow/leaderboards?tab=players&region=junk')->assertOk()->assertSee('Stranger');
     }
 

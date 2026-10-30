@@ -1,7 +1,7 @@
 {{-- "How to play it": WowComps' plain guide for a player new to arena (CompPlaybookService).
      Expects $comp, $playbook (null until all three slots are filled), $drBadge, $openSpell, and
      optionally $part: 'plan' (the "How to play it" tab: the team's plan only, so it starts at the
-     top), 'basics' (the Basics tab: the eight lines), or both when absent (nothing picked yet).
+     top), 'basics' (the Learn tab: PvP guides and class quizzes), or both when absent (nothing picked yet).
      Offensive cooldowns and crowd control are separate sections on purpose (guide-writing.md):
      two jobs, often two players, and a reader looks for them separately. --}}
 @php
@@ -28,36 +28,55 @@
 @php $part ??= 'all'; @endphp
 <div class="space-y-4">
     @if ($part !== 'plan')
-    {{-- The basics. Every line here is from the arena model (arena-structure.md) or a confirmed
-         game fact (DR: full, half, then immune, reset after 20s; dr-categories-reference.md). --}}
-    <div class="linear-card p-5" x-data="{ open: true }">
-        <button type="button" @click="open = !open" class="w-full flex items-center justify-between text-left">
-            <span>
-                <span class="text-[11px] uppercase tracking-wide text-gold font-semibold">New to arena?</span>
-                <span class="block text-[15px] text-ink font-semibold mt-0.5">How a game is won, in eight lines</span>
-            </span>
-            <svg class="w-4 h-4 text-ink-subtle transition-transform" :class="open && 'rotate-180'" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
-        </button>
-        <ol x-show="open" x-cloak class="mt-4 space-y-2.5 text-[13px] text-ink-muted list-none">
-            @foreach ([
-                ['A game is a series of goes.', 'Your team picks one enemy, locks their healer in crowd control, and presses its big damage buttons together. Then they try the same on you.'],
-                ['Press your big buttons together.', 'Two cooldowns a few seconds apart give their healer time to heal through each one.'],
-                ['Their healer first, then the damage.', 'Land the crowd control on their healer, and press your cooldowns while it holds.'],
-                ['The same kind of control gets shorter.', 'The second of one kind on the same player lasts half as long; the third does nothing. Use a different kind, or wait 20 seconds.'],
-                ['When they go on you, one defensive at a time.', 'Two pressed at once leave you nothing for their next go.'],
-                ['If the target will not die, change something.', 'Swap to whoever has the fewest defensives left, or back off until your cooldowns are back.'],
-                ['Kick what matters.', 'Their healer\'s heals during your go, and the crowd control they cast on your healer.'],
-                ['Use line of sight.', 'A spell needs line of sight to its target. Behind a pillar you cannot be cast on, and your healer cannot heal you either.'],
-            ] as $n => [$head, $body])
-                <li class="flex gap-3">
-                    <span class="text-gold font-semibold w-4 flex-shrink-0 text-right">{{ $n + 1 }}</span>
-                    <span><span class="text-ink font-medium">{{ $head }}</span> {{ $body }}</span>
-                </li>
-            @endforeach
-            <li class="pt-1 pl-7">
-                <a href="{{ route('wow-basics') }}" wire:navigate class="text-gold hover:text-gold-light">Check you have them: the arena basics check &rarr;</a>
-            </li>
-        </ol>
+    {{-- Learn your spec (2026-10-30, Chriso: "get rid of the new to arena check list just have links to
+         the class quizes and PvP guides in a nice format"): the two places that teach a spec, and each
+         picked spec's own guide and quiz. The eight-line checklist it replaces is in git history. --}}
+    @php
+        $picked = collect($comp ?? [])->filter(fn ($m) => ! empty($m['spec']) && ! empty($m['class']))->values();
+    @endphp
+    <div class="linear-card p-5">
+        <p class="text-[11px] uppercase tracking-wide text-gold font-semibold">Learn your spec</p>
+        <div class="grid sm:grid-cols-2 gap-3 mt-3">
+            <a href="{{ route('spec-pvp.index') }}" wire:navigate class="group flex items-start gap-3 rounded-xl border border-line bg-surface-2 hover:border-line-gold p-4 transition-colors">
+                <span class="w-10 h-10 rounded-lg bg-gold-subtle border border-line-gold flex items-center justify-center text-gold shrink-0">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+                </span>
+                <span class="min-w-0">
+                    <span class="block text-[15px] font-semibold text-ink group-hover:text-gold-light">PvP guides</span>
+                    <span class="block text-[12.5px] text-ink-muted mt-0.5">Every spec's PvP talents, goes, defensives, what to kick and best comps, counted from real games.</span>
+                    <span class="inline-block text-[12px] text-gold mt-2">Find your spec &rarr;</span>
+                </span>
+            </a>
+            <a href="{{ route('wow-quiz') }}" wire:navigate class="group flex items-start gap-3 rounded-xl border border-line bg-surface-2 hover:border-violet p-4 transition-colors">
+                <span class="w-10 h-10 rounded-lg bg-violet-subtle border border-violet-muted flex items-center justify-center text-violet shrink-0">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                </span>
+                <span class="min-w-0">
+                    <span class="block text-[15px] font-semibold text-ink group-hover:text-violet-hover">Class quizzes</span>
+                    <span class="block text-[12.5px] text-ink-muted mt-0.5">Questions built from the live game data: your cooldowns, your crowd control, what counters it.</span>
+                    <span class="inline-block text-[12px] text-violet mt-2">Take a quiz &rarr;</span>
+                </span>
+            </a>
+        </div>
+        @if ($picked->isNotEmpty())
+            <p class="text-[11px] uppercase tracking-wide text-ink-subtle font-semibold mt-5 mb-2">This team</p>
+            <div class="divide-y divide-line rounded-xl border border-line overflow-hidden">
+                @foreach ($picked as $m)
+                    @php
+                        $guide = \App\Support\SpecPages::forSpec((int) $m['spec']->external_spec_id);
+                        $color = config('wow_classes.colors')[$m['class']->slug] ?? '#B3B3B3';
+                    @endphp
+                    <div class="flex items-center gap-3 px-3 py-2.5 bg-surface-1">
+                        <x-spec-icon :spec="$m['spec']" size="w-7 h-7"/>
+                        <span class="flex-1 min-w-0 truncate text-[13px] font-semibold" style="color: {{ $color }}">{{ $m['spec']->name }} {{ $m['class']->name }}</span>
+                        @if ($guide)
+                            <a href="{{ route('spec-pvp.show', [$m['class']->slug, $m['spec']->slug]) }}" wire:navigate class="shrink-0 rounded-full border border-line-gold bg-gold-subtle text-gold-light hover:border-gold px-3 py-1 text-[12px] font-semibold">Guide</a>
+                        @endif
+                        <a href="{{ route('wow-quiz', [$m['class']->slug, $m['spec']->slug]) }}" wire:navigate class="shrink-0 rounded-full border border-violet-muted bg-violet-subtle text-violet hover:border-violet px-3 py-1 text-[12px] font-semibold">Quiz</a>
+                    </div>
+                @endforeach
+            </div>
+        @endif
     </div>
 
     @endif

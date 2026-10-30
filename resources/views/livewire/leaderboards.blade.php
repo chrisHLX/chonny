@@ -258,7 +258,7 @@
         <p class="text-[12px] text-ink-subtle mb-4">
             @if ($ladder['season'])
                 Blizzard's {{ strtoupper($regionNow) }} 3v3 ladder this season, as of {{ $ladder['asOf']?->diffForHumans() }}.
-                "Seen on" is the comps a player played in the games uploaded to MindCollector this season: Blizzard's ladder names no team.
+                Each player's games are the ones uploaded to MindCollector this season that they were in, newest first: open one to see it from their team's side.
                 {{ number_format($ladder['seen']) }} of its {{ number_format($ladder['total']) }} players are in an uploaded game.
             @endif
         </p>
@@ -274,7 +274,7 @@
                         <tr class="border-b border-line">
                             <th class="text-left font-normal py-2 pl-3 sm:pl-4 pr-2 w-10">#</th>
                             <th class="text-left font-normal py-2 pr-2">Player</th>
-                            <th class="text-left font-normal py-2 pr-3 hidden sm:table-cell">Seen on</th>
+                            <th class="text-left font-normal py-2 pr-3 hidden sm:table-cell">Their games</th>
                             <th class="text-right font-normal py-2 pr-3 hidden sm:table-cell">Won&ndash;lost</th>
                             <th class="text-right font-normal py-2 pr-3 sm:pr-4">Rating</th>
                         </tr>
@@ -282,20 +282,24 @@
                     <tbody class="divide-y divide-line">
                         @foreach ($ladder['players'] as $p)
                             @php
-                                // The comps a player was seen on, each a link to that comp's card.
-                                $seenOn = collect($p['comps'])->map(fn ($c) => '<a href="'.e(route('comps.played', ['key' => $c['key']])).'" wire:navigate class="inline-flex items-center gap-1 mr-2 hover:underline">'
-                                    .'<span class="text-ink">'.e($name($c)).'</span><span class="text-ink-subtle">('.$c['games'].')</span></a>')->implode('');
+                                // The games a player was in (2026-10-30): each a link to that game, read from their side.
+                                $compName = fn (array $c) => $c['nick'] ?? collect($c['classes'])->map(fn ($x) => \App\Http\Services\CompLeaderboardService::className($x))->implode(' + ');
+                                $theirGames = collect($p['games'] ?? [])->map(fn ($g) => '<a href="'.e($g['url']).'" wire:navigate class="inline-flex items-center gap-1.5 mr-1.5 mb-1 rounded-md border border-line bg-surface-2 hover:border-line-strong px-2 py-0.5 whitespace-nowrap">'
+                                    .'<span class="w-1.5 h-1.5 rounded-full '.($g['won'] ? 'bg-green-400' : 'bg-red-400').'"></span>'
+                                    .'<span class="text-ink">'.e($compName($g)).'</span><span class="text-ink-subtle">vs '.e($compName($g['vs'])).'</span>'
+                                    .'<span class="text-ink-subtle tabular-nums">'.e($g['at']?->format('j M') ?? '').'</span></a>')->implode('')
+                                    .(($p['gamesTotal'] ?? 0) > count($p['games'] ?? []) ? '<span class="text-ink-subtle">+'.(($p['gamesTotal'] ?? 0) - count($p['games'] ?? [])).' more</span>' : '');
                             @endphp
                             <tr class="hover:bg-surface-2">
                                 <td class="py-2 pl-3 sm:pl-4 pr-2 text-ink-subtle align-top">{{ number_format($p['rank']) }}</td>
                                 <td class="py-2 pr-2">
                                     <a href="{{ $p['url'] }}" wire:navigate class="font-semibold hover:underline" style="color: {{ $colors[$p['class']] ?? '#FFFFFF' }}">{{ $p['name'] }}</a>
                                     <span class="text-[11.5px] text-ink-subtle">{{ $p['realm'] }}</span>
-                                    @if ($seenOn !== '')
-                                        <span class="block sm:hidden text-[11.5px] mt-0.5">{!! $seenOn !!}</span>
+                                    @if ($theirGames !== '')
+                                        <span class="block sm:hidden text-[11.5px] mt-1">{!! $theirGames !!}</span>
                                     @endif
                                 </td>
-                                <td class="py-2 pr-3 text-[12px] hidden sm:table-cell">{!! $seenOn !== '' ? $seenOn : '<span class="text-ink-subtle">-</span>' !!}</td>
+                                <td class="py-2 pr-3 text-[11.5px] hidden sm:table-cell">{!! $theirGames !== '' ? $theirGames : '<span class="text-ink-subtle">-</span>' !!}</td>
                                 <td class="py-2 pr-3 text-right text-ink-muted hidden sm:table-cell">{{ $p['won'] }}&ndash;{{ $p['lost'] }}</td>
                                 <td class="py-2 pr-3 sm:pr-4 text-right font-semibold text-ink">{{ $p['rating'] }}</td>
                             </tr>

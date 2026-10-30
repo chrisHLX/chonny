@@ -159,11 +159,13 @@ test('defensives leave out the Medallion', function () {
     expect(collect($pb['defensives'][1])->pluck('spell.name')->all())->toBe(['Ice Block']);
 });
 
-test('the comps page shows the basics before anything is picked', function () {
+test('the comps page points to the PvP guides and class quizzes before anything is picked', function () {
+    // The new-to-arena checklist gave way to these on 2026-10-30.
     $this->get(route('wow-comps'))
         ->assertOk()
-        ->assertSee('How a game is won')
-        ->assertSee('Use line of sight')
-        ->assertSee(route('wow-basics'), false)
+        ->assertSee('Learn your spec')
+        ->assertSee(route('spec-pvp.index'), false)
+        ->assertSee(route('wow-quiz'), false)
+        ->assertDontSee('How a game is won')
         ->assertDontSee('Never crowd control the player you are hitting');
 });

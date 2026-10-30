@@ -84,6 +84,9 @@ class Leaderboards extends Component
     #[Url(except: 'us')]
     public string $region = 'us';
 
+    /** Comps offered as boxes on the Games tab: the first 12 shown, the rest behind "More comps". */
+    public const COMP_BOXES = 24;
+
     public const SORTS = ['games' => 'Most played', 'rate' => 'Win rate', 'mmr' => 'MMR', 'exp' => 'Experience'];
 
     /** Only players seen in an uploaded game. Not in the URL: a URL's junk would not fit a bool. */
@@ -215,11 +218,14 @@ class Leaderboards extends Component
         $newest = $tab === 'comps' ? $service->recentGames(5, ['region' => $from])['games'] : [];
         $topSeen = $tab === 'comps' ? array_slice($service->ladder('us', true, 5)['players'] ?? [], 0, 5) : [];
         // Each comp's line-up and each game's teams as spec icons: one query for all of them.
+        // The comps a game can be filtered by (2026-10-30, as boxes like the 3v3 Comps page's common picks):
+        // the most played on the whole board, and the chosen one wherever it ranks.
+        $compOptions = $tab === 'games' ? collect($service->board(null, null, $from)['comps'])->map(fn ($c) => ['key' => $c['key'], 'nick' => $c['nick'], 'classes' => $c['classes'], 'games' => $c['games'], 'ids' => $c['lineups'][0]['ids'] ?? []])
+            ->filter(fn ($c, $i) => $i < self::COMP_BOXES || $c['key'] === $this->comp)->values()->all() : [];
         $specIds = collect($board['comps'])->flatMap(fn ($c) => $c['lineups'][0]['ids'] ?? [])
             ->merge(collect($games['games'] ?? [])->flatMap(fn ($g) => array_merge($g['us']['ids'], $g['them']['ids'])))
+            ->merge(collect($compOptions)->flatMap(fn ($c) => $c['ids']))
             ->unique()->values()->all();
-        // The comps a game can be filtered by: the whole board's, most played first.
-        $compOptions = $tab === 'games' ? collect($service->board(null, null, $from)['comps'])->map(fn ($c) => ['key' => $c['key'], 'nick' => $c['nick'], 'classes' => $c['classes'], 'games' => $c['games']])->all() : [];
 
         return view('livewire.leaderboards', [
             'tabNow' => $tab,
