@@ -83,9 +83,12 @@
             @endif
         </div>
         <p class="text-[11.5px] text-ink-subtle mt-3">
-            Measured from {{ number_format($empowered['rounds']) }} rounds by {{ number_format($empowered['players']) }} players. &times;1.20 means 20% bigger than without the buff.
+            Measured from {{ number_format($empowered['rounds']) }} rounds by {{ number_format($empowered['players']) }} players{{ ! empty($empowered['patch']) ? ' on patch '.$empowered['patch'] : '' }}. &times;1.20 means 20% bigger than without the buff.
             @if (! empty($empowered['note'])){{ $empowered['note'] }}@endif
         </p>
+        @if ($empowered['stale'] ?? false)
+            <p class="text-[12px] text-gold-light mt-1.5">The game has been patched since, so some of these may have changed.</p>
+        @endif
     </div>
 @else
     <div class="linear-card px-6 py-4">

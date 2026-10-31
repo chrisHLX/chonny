@@ -129,7 +129,11 @@ on Fists of Fury. Both are real mechanics, but not ones a size comparison can st
 
 1. List the spells in any record whose tooltip, cooldown or effects changed, and any talent added,
    moved or removed.
-2. Mark those records "needs checking" and keep showing them only with that label.
+2. The box does the first part itself: it shows the patch it was measured on, and once
+   `patches.build_version` differs from the file's `build` it adds "The game has been patched since, so
+   some of these may have changed." `wow:patch-update` prints this as a manual step. Any new build
+   counts, including a hotfix, because the box can't tell which spells moved. Tying the warning to the
+   spells named in `spell_changes` is still to do.
 3. Rerun steps 2 to 7 for those abilities on games played on the new build.
 4. Compare against the record. A number that moved reopens its question, and a new talent that touches
    a payoff starts a new one.

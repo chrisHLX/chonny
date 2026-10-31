@@ -111,6 +111,8 @@ class PatchUpdate extends Command
         $this->line('  3. Walk the live site — WowComps, Spell Explorer, canonical module pages');
         $this->line('       (prioritize whichever specs actually got reworked this patch)');
         $this->line('  4. Deploy this repo\'s updated data/ files if you ran this locally, not on the server directly');
+        $this->line('  5. Re-measure empowered spells: the PvP Guides boxes now say they predate this patch');
+        $this->line('       (docs/class-mechanics.md, "After a patch")');
 
         return self::SUCCESS;
     }

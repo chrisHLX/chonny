@@ -32,8 +32,28 @@ class EmpoweredCasts
         }
 
         $data['icons'] = self::icons(self::names($data));
+        $data['patch'] = self::patchName($data['build'] ?? null);
+        $data['stale'] = self::isStale($data['build'] ?? null);
 
         return $data;
+    }
+
+    /** "12.1.0.69933" reads as "12.1.0". */
+    public static function patchName(?string $build): ?string
+    {
+        return $build ? implode('.', array_slice(explode('.', $build), 0, 3)) : null;
+    }
+
+    /**
+     * The game data has moved on from the patch this file was measured on, so a buff in it may have
+     * changed or gone. The numbers stay up with a warning until the process is rerun
+     * (docs/class-mechanics.md, "After a patch"): a hotfix build counts, because tuning ships in them.
+     */
+    private static function isStale(?string $build): bool
+    {
+        $current = DB::table('patches')->where('is_current', true)->value('build_version');
+
+        return $build !== null && $current !== null && $current !== $build;
     }
 
     /** First letters, for the few buffs the spell data holds no icon for. */

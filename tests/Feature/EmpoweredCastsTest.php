@@ -4,6 +4,7 @@ namespace Tests\Feature;
 
 use App\Models\Game;
 use App\Models\GameClass;
+use App\Models\Patch;
 use App\Models\Specialization;
 use App\Support\EmpoweredCasts;
 use Illuminate\Foundation\Testing\RefreshDatabase;
@@ -55,6 +56,20 @@ class EmpoweredCastsTest extends TestCase
             ->assertSee('Empowered spells')
             ->assertSee('Penance healing by buffs')
             ->assertSee('Harsh Discipline');
+    }
+
+    public function test_the_box_warns_once_the_game_has_been_patched_since(): void
+    {
+        $spec = $this->spec('priest', 'discipline', 'Discipline');
+        $url = route('pvp-guides', ['classSlug' => 'priest', 'specSlug' => 'discipline']);
+        $measured = json_decode(file_get_contents(base_path('data/empowered-casts/priest/discipline.json')), true)['build'];
+        $patch = Patch::create(['game_id' => $spec->gameClass->game_id, 'build_version' => $measured, 'is_current' => true]);
+
+        $this->get($url)->assertOk()->assertSee('on patch 12.1.0')->assertDontSee('patched since');
+
+        $patch->update(['build_version' => $measured.'1']);
+
+        $this->get($url)->assertOk()->assertSee('patched since');
     }
 
     public function test_a_spec_without_a_file_says_so(): void
