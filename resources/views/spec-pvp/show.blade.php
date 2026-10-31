@@ -89,6 +89,12 @@
         </div>
     @endif
 
+    {{-- ── Empowered spells: the sidebar's PvP Guides leads here, not to /wow/pvp-guides ── --}}
+    @include('partials.empowered-casts', [
+        'empowered' => \App\Support\EmpoweredCasts::forSpec($spec->gameClass->slug, $spec->slug),
+        'class' => $spec->gameClass,
+    ])
+
     {{-- ── PvP talents ── --}}
     <section class="linear-card p-5">
         <h2 class="text-[16px] font-semibold text-ink">{{ $name }} PvP talents</h2>

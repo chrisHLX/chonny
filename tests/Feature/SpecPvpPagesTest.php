@@ -97,6 +97,7 @@ class SpecPvpPagesTest extends TestCase
         SpecPages::fake(SpecPages::build(collect(range(1, 20))->map(fn ($i) => $this->round($i, $i <= 12)), '2026-08-01'));
 
         $html = $this->get('/wow/pvp/paladin/retribution')->assertOk()->getContent();
+        $this->assertStringContainsString('Empowered spells', $html);
         $this->assertStringContainsString('<title>Retribution Paladin PvP Guide &amp; Talents (Midnight', $html);
         $this->assertStringContainsString('Hallowed Ground', $html);
         $this->assertStringContainsString('Divine Protection', $html);

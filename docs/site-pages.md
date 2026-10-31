@@ -184,7 +184,8 @@
   counters), each also standalone at `/class-guide`, `/burst-guides`, `/spells`,
   `/spell-counters`. Under the header, the **Empowered spells** box (2026-11-01,
   `partials/empowered-casts`, `App\Support\EmpoweredCasts`): cast, buff, result, from the committed
-  `data/empowered-casts` files (`docs/class-mechanics.md`).
+  `data/empowered-casts` files (`docs/class-mechanics.md`). The same box is on `/wow/pvp/{class}/{spec}`,
+  which is where the sidebar's PvP Guides leads.
 - `/spell/{id}` — `SpellDetail`; shared `SpellDetailModal` everywhere else.
 - `/wow/quiz/basics/{class?}/{spec?}` — `Quizzes\BasicsCheckPlay`, the **arena basics check**: one
   question per basic (the comp page's list), built by `App\Quiz\Wow\BasicsCheck` from the spec the
