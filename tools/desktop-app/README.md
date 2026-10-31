@@ -288,7 +288,8 @@ WoW is not running, `Updater` downloads it and the installer swaps it in, back i
 
 **Publishing a new version:** bump `<Version>` in the csproj, `dotnet publish`, then upload
 `publish\MindCollector.exe` to the server's `storage/app/desktop/MindCollector.exe` **and** write
-`storage/app/desktop/version.json` as `{"version": "x.y.z"}` (DEPLOY.md, "Uploading a file"). Upload
+`storage/app/desktop/version.json` as `{"version": "x.y.z", "sha256": "..."}` (DEPLOY.md, "Uploading a file"), the
+hash being the exe's, lower case: from 0.6.6 the app refuses a download that doesn't match it. Upload
 the exe first: an app that sees the new version before the new exe is there downloads the old one,
 finds nothing newer to install, and tries again in three hours.
 

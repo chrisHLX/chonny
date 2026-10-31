@@ -72,7 +72,16 @@ class AppDownloadController extends Controller
      */
     public function appVersion(): JsonResponse
     {
-        return response()->json(['version' => self::servedVersion()]);
+        return response()->json(['version' => self::servedVersion(), 'sha256' => self::servedHash()]);
+    }
+
+    /** The served installer's SHA-256 from version.json, which the app checks a download against. */
+    public static function servedHash(): ?string
+    {
+        $path = dirname(DesktopAppController::path()).'/version.json';
+        $hash = is_file($path) ? (json_decode((string) file_get_contents($path), true)['sha256'] ?? null) : null;
+
+        return is_string($hash) && preg_match('/^[0-9a-f]{64}$/', $hash) ? $hash : null;
     }
 
     /** The version in storage/app/desktop/version.json, or null when it is missing or malformed. */

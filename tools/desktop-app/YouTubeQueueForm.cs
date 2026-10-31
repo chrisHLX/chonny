@@ -248,10 +248,7 @@ internal sealed class YouTubeQueueForm : Form
         return $"{v.Title ?? v.VideoId}   ·   {who}{views}";
     }
 
-    private static void Open(string url)
-    {
-        try { System.Diagnostics.Process.Start(new System.Diagnostics.ProcessStartInfo(url) { UseShellExecute = true }); } catch { }
-    }
+    private static void Open(string url) => MainForm.OpenUrl(url);
 
     private async Task RunAsync()
     {

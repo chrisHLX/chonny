@@ -134,6 +134,24 @@ class TeammatesTest extends TestCase
         \Illuminate\Support\Facades\File::deleteDirectory($dir);
     }
 
+    public function test_the_app_is_told_the_installer_hash_only_when_it_is_a_real_one(): void
+    {
+        $dir = dirname(\App\Http\Controllers\DesktopAppController::path());
+        \Illuminate\Support\Facades\File::ensureDirectoryExists($dir);
+        $path = $dir.'/version.json';
+        $before = is_file($path) ? file_get_contents($path) : null;
+
+        try {
+            file_put_contents($path, json_encode(['version' => '0.6.6', 'sha256' => str_repeat('a', 64)]));
+            $this->getJson('/api/coach/app-version')->assertJson(['version' => '0.6.6', 'sha256' => str_repeat('a', 64)]);
+
+            file_put_contents($path, json_encode(['version' => '0.6.6', 'sha256' => 'not a hash']));
+            $this->getJson('/api/coach/app-version')->assertJson(['version' => '0.6.6', 'sha256' => null]);
+        } finally {
+            $before === null ? unlink($path) : file_put_contents($path, $before);
+        }
+    }
+
     public function test_one_game_together_gets_no_page_of_its_own(): void
     {
         $user = User::factory()->create();

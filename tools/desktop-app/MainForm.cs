@@ -1152,8 +1152,10 @@ internal sealed class MainForm : Form
             _ => v.ToString(),
         } : "";
 
-    private static void OpenUrl(string url)
+    /// <summary>Opens a web link in the browser. Nothing else: the shell would also run a file path, or any protocol a page named.</summary>
+    internal static void OpenUrl(string url)
     {
+        if (!Uri.TryCreate(url, UriKind.Absolute, out var uri) || uri.Scheme is not ("http" or "https")) return;
         try { System.Diagnostics.Process.Start(new System.Diagnostics.ProcessStartInfo(url) { UseShellExecute = true }); } catch { }
     }
 

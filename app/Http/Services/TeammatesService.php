@@ -32,7 +32,7 @@ class TeammatesService
     /** One game together is a stranger from a queue. A page starts at the second. */
     private const MIN_GAMES_FOR_A_PAGE = 2;
 
-    /** @var array<int, array{label: string, short: string, class: ?string, icon: ?string}>|null */
+    /** @var array<int, array{label: string, class: ?string, icon: ?string}>|null */
     private ?array $specs = null;
 
     public function signature(User $user): string
@@ -101,7 +101,8 @@ class TeammatesService
 
         $rows = collect();
         foreach (array_chunk(array_keys($loggers), 500) as $ids) {
-            $rows = $rows->concat(ArenaRoundPlayer::whereIn('arena_round_id', $ids)->where('side', 'us')->get());
+            $rows = $rows->concat(ArenaRoundPlayer::whereIn('arena_round_id', $ids)->where('side', 'us')
+                ->get(['arena_round_id', 'match_id', 'bracket', 'played_at', 'guid', 'name', 'realm', 'realm_key', 'region', 'spec_external_id', 'class_slug', 'healer', 'won', 'mmr']));
         }
 
         $games = [];
@@ -192,7 +193,7 @@ class TeammatesService
     {
         $specs = $g['team']->map(fn ($p) => $this->spec($p->spec_external_id));
 
-        return ['key' => $g['bracket'].'|'.$g['team']->pluck('spec_external_id')->implode(','), 'label' => $specs->pluck('short')->implode(' + ')];
+        return ['key' => $g['bracket'].'|'.$g['team']->pluck('spec_external_id')->implode(','), 'label' => $specs->pluck('label')->implode(' + ')];
     }
 
     private function count(?array &$record, bool $won): void
@@ -208,14 +209,22 @@ class TeammatesService
             'rate' => round($r['won'] / $r['games'] * 100),
             'lead' => $r['games'] < MatchAnalysisService::LEAD_BELOW,
         ], $records);
-        usort($records, fn ($a, $b) => [$a['lead'], $a['lead'] ? -$a['games'] : -$a['rate'], -$a['games']] <=> [$b['lead'], $b['lead'] ? -$b['games'] : -$b['rate'], -$b['games']]);
+        usort($records, $this->bestFirst(...));
 
         return $records;
     }
 
     private function ranked(Collection $mates): Collection
     {
-        return $mates->sort(fn ($a, $b) => [$a['lead'], $a['lead'] ? -$a['games'] : -$a['rate'], -$a['games']] <=> [$b['lead'], $b['lead'] ? -$b['games'] : -$b['rate'], -$b['games']])->values();
+        return $mates->sort($this->bestFirst(...))->values();
+    }
+
+    /** Win rate from 10 games, then smaller records by games played: a 3-0 is not ahead of a 40-20. */
+    private function bestFirst(array $a, array $b): int
+    {
+        $rank = fn ($r) => [$r['lead'], $r['lead'] ? -$r['games'] : -$r['rate'], -$r['games']];
+
+        return $rank($a) <=> $rank($b);
     }
 
     /** What we already hold on each teammate: ratings, exp and titles. Never asks Blizzard. */
@@ -230,10 +239,10 @@ class TeammatesService
         $characters = [];
         $boards = [];
         foreach ($names->chunk(500) as $chunk) {
-            foreach (BattlenetCharacter::whereIn('name', $chunk)->get() as $c) {
+            foreach (BattlenetCharacter::whereIn('name', $chunk)->get(['id', 'region', 'realm_slug', 'name', 'exp_2v2', 'exp_3v3', 'ratings', 'arena_titles']) as $c) {
                 $characters[$key($c->region, $c->realm_slug, $c->name)] = $c;
             }
-            foreach (PvpLeaderboardEntry::whereIn('name', $chunk)->where('bracket', '3v3')->orderBy('season')->get() as $e) {
+            foreach (PvpLeaderboardEntry::whereIn('name', $chunk)->where('bracket', '3v3')->orderBy('season')->get(['region', 'realm_slug', 'name', 'rating']) as $e) {
                 $boards[$key($e->region, $e->realm_slug, $e->name)] = (int) $e->rating;
             }
         }
@@ -265,11 +274,10 @@ class TeammatesService
         $this->specs ??= Specialization::with('gameClass')->whereNotNull('external_spec_id')->get()
             ->mapWithKeys(fn ($s) => [(int) $s->external_spec_id => [
                 'label' => trim($s->name.' '.$s->gameClass?->name),
-                'short' => trim($s->name.' '.$s->gameClass?->name),
                 'class' => $s->gameClass?->slug,
                 'icon' => $s->icon_name ? DesktopAsset::url('spec-icons/'.$s->icon_name) : null,
             ]])->all();
 
-        return $this->specs[(int) $externalId] ?? ['label' => 'Unknown spec', 'short' => 'Unknown spec', 'class' => null, 'icon' => null];
+        return $this->specs[(int) $externalId] ?? ['label' => 'Unknown spec', 'class' => null, 'icon' => null];
     }
 }

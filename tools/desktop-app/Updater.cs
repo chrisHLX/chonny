@@ -33,6 +33,19 @@ internal static class Updater
         return served > current ? served : null;
     }
 
+    private static async Task<string?> ExpectedHashAsync(string serverUrl, CancellationToken ct)
+    {
+        try
+        {
+            using var http = new HttpClient { Timeout = TimeSpan.FromSeconds(20) };
+            using var res = await http.GetAsync($"{serverUrl.TrimEnd('/')}/api/coach/app-version", ct);
+            if (!res.IsSuccessStatusCode) return null;
+            using var doc = JsonDocument.Parse(await res.Content.ReadAsStringAsync(ct));
+            return doc.RootElement.TryGetProperty("sha256", out var h) && h.ValueKind == JsonValueKind.String ? h.GetString() : null;
+        }
+        catch (Exception e) when (e is HttpRequestException or JsonException or TaskCanceledException) { return null; }
+    }
+
     /// <summary>Downloads the new version and starts it; true when the caller should now exit.</summary>
     public static async Task<bool> InstallAsync(string serverUrl, Version version, Action<string> log, CancellationToken ct)
     {
@@ -53,6 +66,21 @@ internal static class Updater
             log($"The update to {version} did not download properly; will try again later.");
             File.Delete(target);
             return false;
+        }
+
+        // The website's hash for this version, when it gives one: a download cut short or altered on the
+        // way is not started. It proves nothing if the website itself were taken over; only signing would.
+        if (await ExpectedHashAsync(serverUrl, ct) is { } expected)
+        {
+            await using var f = File.OpenRead(target);
+            var actual = Convert.ToHexString(await System.Security.Cryptography.SHA256.HashDataAsync(f, ct));
+            if (!actual.Equals(expected, StringComparison.OrdinalIgnoreCase))
+            {
+                log($"The update to {version} did not match the website's hash; will try again later.");
+                await f.DisposeAsync();
+                File.Delete(target);
+                return false;
+            }
         }
 
         log($"Updating MindCollector from {Current.ToString(3)} to {version}.");

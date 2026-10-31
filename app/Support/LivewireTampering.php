@@ -6,6 +6,7 @@ use ErrorException;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
+use InvalidArgumentException;
 use Livewire\Features\SupportLockedProperties\CannotUpdateLockedPropertyException;
 use Livewire\Mechanisms\HandleComponents\CorruptComponentPayloadException;
 use RuntimeException;
@@ -54,7 +55,9 @@ class LivewireTampering extends RuntimeException
             return true;
         }
 
-        return ($e instanceof TypeError || $e instanceof ErrorException)
+        // InvalidArgumentException: Livewire 3.8 refuses a malformed snapshot itself, with this when
+        // debug is on and an abort when it is off.
+        return ($e instanceof TypeError || $e instanceof ErrorException || $e instanceof InvalidArgumentException)
             && str_ends_with(str_replace('\\', '/', $e->getFile()), self::HYDRATION_FILE);
     }
 
