@@ -8,6 +8,24 @@ Every number here is from one player's own games. A finding is a description of 
 a starting point, not a rule about the game. Where a finding depends on a definition that later
 changed, that is said beside it.
 
+**Don't read this file whole (120KB).** `Grep` for a player, spec, spell or a game's time, or go by
+heading (`Grep "^###"`), then `Read` with an offset. Start with **"What holds over every game, and
+what does not"**: it is the pooled read, and sessions before it are leads.
+
+| Your question | Heading |
+|---|---|
+| What holds across all games | What holds over every game, and what does not; The cooldown ledger |
+| Are defensives pressed well | Measuring a defensive honestly; Was the trinket warranted...; Why each defensive was pressed; Was the reason valid?; Overlapping defensives |
+| What a go needs, why it killed | Drain, then kill; What our goes that killed had in common; How the kills happened in the wins; Peak burst |
+| Mixed or both-ways cooldowns | Mixed cooldowns are mostly not mixed |
+| Crowd control, kicks, dispels | Crowd control broken by your own damage; The healer's CC on their healer...; Interrupts; Skylake's dispels moved... |
+| Experience against MMR | Who we played: experience separates wins from losses better than MMR |
+| One spec against better players | Our Feral beside the others; Our Hunter beside the others; How our DK and Monk play their specs; Follow-up: how Rastic's Feral spends |
+| A partner or teammate | Rel (Doubletapz, Cindogz)...; Skylake with LFG partners...; Crawlordx with Doubletapz and LFG healers |
+| A hypothesis of Chriso's | two of Chriso's hypotheses, tested; Testing Chriso's read; Disc talents, the Shadow Word: Pain build |
+| The measures against video | the go model against the video |
+| What a new player's game looks like | Dijonhoney with two new players |
+
 ---
 
 ### Mixed cooldowns are mostly not mixed

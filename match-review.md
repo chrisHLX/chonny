@@ -12,8 +12,10 @@ stored, what to re-run after a change, and which docs hold the detail.
 | `match-review-operations.md` | **the method**: how every measure is taken, the combat log's field offsets, the three questions for defensives, the tag audit |
 | `match-review-analysis.md` | **the findings**, dated, with the numbers each rests on |
 | `match-review-tools.md` | **the research tools** in `tools/match-review/`, and what each was built to answer |
-| `tools/log-manager/README.md` | the desktop app, page by page |
+| `tools/desktop-app/README.md` | the downloadable app, what runs on Chriso's PC since 2026-10-25 (`tools/log-manager/README.md` is the retired PowerShell app) |
 | `guides-from-play.md` | how played games become guides, and the level-of-play rule |
+| `docs/learning/` | what the whole archive shows (population findings): read before writing advice or a tip |
+| `docs/class-mechanics.md` | how a spec's buffs and talents combine on one press (empowered casts) |
 | `docs/reviews/`, `docs/ai/` | one-off session reviews; the "Ask about this game" design (not built) |
 | `.claude/skills/review-games/SKILL.md` | the workflow for "look at my games" requests: find and sync the games, use the tools, read them honestly, write the findings down |
 
@@ -43,14 +45,15 @@ Chriso's PC; see tools/desktop-app/README.md, "Developer mode"):
         ├─ ClassLibraryService  → player-{hash}.html  the strongest player of each spec met (Classes page)
         └─ index.json            what the app lists; each set redrawn only when its signature changes
   ▼
-The app shows those HTML files in Windows' browser control (IE11: tables only, no CSS variables).
+The app shows those pages in WebView2, so grid and flex are fine (2026-10-29). Only the retired
+PowerShell app was IE11.
 ```
 
 The website reads the same `arena_rounds` payloads: `/wow/match-analysis` ("Your analysis",
 `MatchAnalysisService`) for any signed-in player, who can also upload games in the browser
 (`ArenaReviewIngestService`; the raw log is discarded once derived).
 
-**The same pages on the website: `/wow/coach` ("Your coach", from 5 Oct 2026).** One copy of every
+**The same pages on the website: `/wow/coach` ("Your games", from 5 Oct 2026).** One copy of every
 page, drawn for two readers:
 - **Upload:** with a key from `/wow/coach`, the app runs `wow:push-rounds` after each sync. Each
   round's archived slice goes to `/api/coach/round` (`Api\CoachUploadController`), in 768 KB pieces
@@ -217,7 +220,7 @@ Each one is here because breaking it produced a wrong answer at least once.
    Neither the outcome nor the target's health alone decides it.
 5. **Every comparison carries its context**: difficulty, your teammates, your sample. Under 10
    games it is a lead (`MatchAnalysisService::LEAD_BELOW`).
-6. **Describe; do not assign blame.** The coach asks what the player could control next time.
+6. **Describe; do not assign blame.** Ask what the player could control next time.
 7. **Test a player's own explanation before accepting it, and say when it fails.** Lower dispels
    were not caused by pressure; Doubletapz's kicks were not slow.
 8. **A log shows what happened, not what should have been done.** What the player should have
@@ -256,7 +259,7 @@ the PC:
 ```
 php -d memory_limit=3G artisan wow:population --fresh          # re-measure the archive
 php artisan wow:population --bundle=population-archive.jsonl.gz
-# upload it (base64 through prod_ssh.py), then on the server:
+# upload it (DEPLOY.md, "Connecting"), then on the server:
 sudo -u christian php -d memory_limit=1G artisan wow:population --aggregate --archive=<file> --live
 ```
 
@@ -273,10 +276,9 @@ line in `match-review-tools.md`, so the next session runs one command instead of
 
 ## Traps in this area
 
-- **PowerShell variable names ignore case.** A loop variable `$c` replaced the colour table `$C`
-  and the app died at startup with no message. Fatal errors now go to the Activity log.
-- **The desktop script stays plain ASCII** (PowerShell 5.1 reads it as ANSI): build `▾` or `·`
-  from char codes.
+- **In the retired `MindCollectorLogs.ps1`:** PowerShell variable names ignore case (a loop variable
+  `$c` replaced the colour table `$C` and the app died at startup), and the script stays plain ASCII
+  (PowerShell 5.1 reads it as ANSI).
 - **A Blade directive glued to a letter is not compiled** (`a game@if`): the template then fails
   with an unbalanced `@endif`.
 - **The card cleanup deletes every `.html` that is not a game**, unless it is excluded by prefix.
@@ -300,25 +302,7 @@ line in `match-review-tools.md`, so the next session runs one command instead of
 
 - The warrant read is stored (version 9) without its replay: whether a defensive *did* its job
   (the damage it removed) still needs `warrant.php` and the raw log.
-- Comp advice needs other players' games against the same comp: uploads now feed the pool ("The website's pool"); the comp pages do not read it yet.
+- Comp advice needs other players' games against the same comp. The site's comp cards read the pool (`/wow/comps/played`, `CompLibraryService::buildPool()`); the app's own Comps page does not yet.
 - A before-the-gates card needs the addon to read enemy specs in the prep room; the combat log has
   only your own team until the gates open.
 - Clips or screenshots at each enemy cooldown: measure the combat log's write delay first.
-- The Improve, Comps and answer-sheet pages have been checked as text, not yet looked at on screen
-  by anyone but the user.
-- **Moving the app's pages off IE11 onto WebView2 (Edge), when the design needs it.** Every page
-  is drawn in WinForms' `WebBrowser` control, which is IE11: no CSS variables, flex or grid gaps,
-  `<details>` or `position: sticky`. **Inline SVG does work**, so charts need no move. Every page
-  sets `X-UA-Compatible: IE=edge`, and a test render on 4 Oct 2026 read `documentMode` 11 and drew
-  an SVG line chart. `WebBrowser.DrawToBitmap` also screenshots a page with no window on screen,
-  which is how to look at one without the user. The WebView2 runtime
-  ships with Windows 11 (154.x on the dev machine, 4 Oct 2026). Switching needs three things:
-  - the `Microsoft.Web.WebView2` NuGet package's `Microsoft.Web.WebView2.WinForms.dll`,
-    `Microsoft.Web.WebView2.Core.dll` and `WebView2Loader.dll`, loaded with `Add-Type -Path`;
-  - a writable user data folder (`%APPDATA%\MindCollector\webview`);
-  - `EnsureCoreWebView2Async()` before the first `Navigate`. The app already navigates to the card
-    files by path (`MindCollectorLogs.ps1`), so only the control's creation changes.
-
-  The pages would not change at first, since modern CSS is a superset. Do this when a page needs
-  something IE11 cannot draw (a sticky header, CSS variables), not before. Until then the pages
-  stay IE11-safe.

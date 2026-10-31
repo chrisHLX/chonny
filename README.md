@@ -1,15 +1,15 @@
 # MindCollector
 
-A coach for World of Warcraft arena players. It reads a player's own arena games from their
-combat log, measures them against the players they actually meet, and tells them what to work on,
-on top of a clean, current model of every class, spell, talent and mechanic.
+A platform for understanding your own World of Warcraft arena games. It reads a player's games from
+their combat log and shows what happened and where they stand against the players they actually
+meet, on top of a clean, current model of every class, spell, talent and mechanic.
 
 Laravel, Livewire 3, Alpine and Tailwind; MySQL and Redis. A Windows desktop app
-(`tools/log-manager/`) reads games in as they are played.
+(`tools/desktop-app/`) sends games to the site as they are played.
 
 - `VISION.md`: what this is for.
-- `CLAUDE.md`: how to work in the repo: commands, environment, architecture, and the rules that
-  must not be broken.
+- `CLAUDE.md`: how to work in the repo: commands, environment, an index of the rules, and where
+  everything else is written down.
 - `docs/README.md`: every doc, by area and status.
 - `match-review.md`: the match review and the desktop app, end to end.
 

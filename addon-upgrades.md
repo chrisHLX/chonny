@@ -1,6 +1,7 @@
 # Addon upgrades
 
-What I want next for getting arena games from WoW into MindCollector.
+**History: all three wants below shipped**, first in `tools/log-manager/`, then in the downloadable app
+(`tools/desktop-app`, on Chriso's PC since 2026-10-25). Kept for how the capture side came to be.
 
 ## What I want
 

@@ -1,804 +1,232 @@
 # CLAUDE.md
 
-Guidance for working in this repository. Rules and orientation only — **history lives in
-`docs/history/engineering-log-2026.md`** (the old, 790KB version of this file, preserved
-verbatim). When you need the *why* behind a rule below, search that log for the symptom,
-file name, or date.
+The library: what every session needs, and where everything else is. **Loaded in full every session,
+so keep it small.** A fact goes here only if most sessions need it; anything else goes in the doc for
+its area, with a line here pointing to it. `docs/README.md` maps every doc in the repo.
 
-## Vision (full statement in `VISION.md`)
+**"CLAUDE.md rule N" anywhere in the code or docs means rule N in `docs/rules.md`.** A named section
+this file no longer has ("Canonical Context Module Template", "Synergies tab"...) is in
+`docs/history/engineering-log-2026.md`: search it for the heading, or for a symptom, file or date, to
+find the *why* behind a rule.
+
+## Vision (`VISION.md`)
 
 A website that gives a player everything they need to reach Gladiator or higher in WoW arena:
-class/spell/talent/mechanics data pulled straight from the game, combined with player insight
-and real match data, so an aspiring Gladiator can model and simulate what happens in arena.
-There is no certain path to Gladiator in a given season — but the game itself is knowable, and
-that is what the site captures.
+class, spell, talent and mechanics data pulled straight from the game, combined with player insight
+and real match data. There is no certain path to Gladiator in a season, but the game itself is
+knowable, and that is what the site captures.
 
-Optimise for four things: **speed** for the user; **simple architecture** (fewest moving parts
-that do the job); **clean formatting** (resolved, finished output — no broken icons, no
-placeholder symbols, no `(varies)` or raw formula text, no duplicate spells); **clean data**
-(accurate, current spells, abilities, talents, mechanics).
+Optimise for four things: **speed** for the user; **simple architecture**; **clean formatting**
+(finished output: no broken icons, placeholder symbols, `(varies)`, raw formula text or duplicate
+spells); **clean data** (accurate, current spells, abilities, talents, mechanics).
 
-**Current focus: understanding your own games** (since 2026-10-02, reworded 2026-10-18). Read each
-player's own arena games against the players they meet and show what happened and where they stand.
-Coaching is a prospect built on that, not the claim: Chriso, 2026-10-18, "more a platform for
-understanding your games and then maybe the prospect of some coaching". Where a page does name
-something to work on, it leads with what decides games (damage, defensive use, crowd control;
-`ImprovementService::PRIORITY`), not with whatever gap is largest. The work lives
-in the match review and the desktop app: **`match-review.md`** is its map. Game plans and guides
-remain, as the baseline a player is measured against, and the spell/talent/match-data pipeline
-underneath must stay correct: every read sees a button only through it.
+**Current focus: understanding your own games.** Read each player's own arena games against the
+players they meet, and show what happened and where they stand. Coaching is a prospect, not the
+claim (Chriso, 2026-10-18), so no "coach" copy. Where a page does name something to work on, it leads
+with what decides games (damage, defensive use, crowd control; `ImprovementService::PRIORITY`).
 
-**Validation is part of the product** (2026-10-23, `VISION.md` "What building it has taught"). A read
-has three separate tests: is it right, does it change what the player does, does that change improve
-results. A rating gain proves none of them. **Training** (`/training`, built 2026-10-23, beside Home
-in the sidebar, across every game): reasoning lessons with notes that come back for a revisit, a
-before-and-after reasoning check, claims with calibration. `docs/training.md`.
+**Validation is part of the product.** A read has three separate tests: is it right, does it change
+what the player does, does that change improve results. A rating gain proves none of them.
 
-### Before you start: read the docs for the task
+## Before you start: read the docs for the task
 
-Find the task below and read its files **before** writing anything. Each is there because a
-session that skipped it got something wrong that the doc already settled. The user should
-never have to remind you of these.
+Find the task and read what it names **before** writing anything. Each is there because a session
+that skipped it got something wrong the doc had already settled. These are reference, not gates: a
+note that something "can break" is a warning to check, not a rule that blocks the work.
 
-| The task | Read first | Also |
+**Big docs are read by section, not whole** (size in brackets; each opens with what to read for which
+question). `Grep` for `^##` or a spell, player or date, then `Read` with an offset.
+
+| The task | Read first | Then, as the task needs |
 |---|---|---|
-| **Review games**: "look at my games", "why did we lose", match analysis, coaching, comparing a player or teammate | `match-review.md`, then `match-review-operations.md` (the method) and `match-review-analysis.md` (past findings) | The `review-games` skill carries the workflow. The user's characters and teammates are in memory. Read defensives through the three questions; never call a count a fault |
-| **Change a measure** (`RoundAnalysisService`, `ArenaMomentService`, `CooldownLedgerService`) | `match-review.md` ("what to re-run"), `match-review-operations.md` | Bump `RoundAnalysisService::VERSION` and say what it adds; re-measure with `wow:sync --skip-ingest --fresh` |
-| **Change the desktop app** (cards, Improve, Comps, `MindCollectorLogs.ps1`) | `match-review.md` (traps), `tools/log-manager/README.md` | The pages are drawn by WebView2 and the site (grid and flex are fine since 2026-10-29; only the retired PowerShell app was IE11); the script stays ASCII; never name a PowerShell variable `$c` |
-| **Tags, classification, short defensives, spells used both ways, a cooldown missing from goes** | `match-review-operations.md`, "Making the tags better from play"; rule 11 | Run `tagaudit.php` (wrong or missing tags) and `hiddencds.php` (tagged cooldowns cast under an id the timeline cannot see: add them to `cast-aliases.json`); record decisions in `reviewed.json`; bump the cache, then kits, then profiles, then re-measure |
-| **Write or correct a guide** | `guide-writing.md` (budget and shape), `docs/guides/reader-corrections-2026-09-23.md`, `arena-structure.md` / `data/brain/brain.md` | `docs/machine-guides.md` (authoring, feedback export first). If drawn from played games: `guides-from-play.md` and `match-review-analysis.md` |
-| **The arena model, the Brain, a new prose source** | `arena-structure.md`, `arena-open-questions.md`, `docs/arena/synthesis-process.md` | `docs/arena/sources/chriso-scope-correction-2026-09-23.md` before adding any "we can't" line |
+| **Review games**: "look at my games", "why did we lose", comparing a player | The `review-games` skill, `match-review.md` | `match-review-analysis.md` (120KB) and `match-review-operations.md` (77KB) by section. Characters and teammates are in memory. Read defensives through the three questions; never call a count a fault |
+| **Change a measure** (`RoundAnalysisService`, `ArenaMomentService`, `CooldownLedgerService`) | `match-review.md`, the "You changed / Run" table | Operations by section. Bump `RoundAnalysisService::VERSION` and say what it adds; re-measure with `wow:sync --skip-ingest --fresh` |
+| **Change the desktop app or its pages** | `tools/desktop-app/README.md`, `match-review.md` (traps) | Pages are drawn by WebView2 and the site, so grid and flex are fine. `tools/log-manager/` is the retired PowerShell app |
+| **Tags, classification, short defensives, a cooldown missing from goes** | Operations, "Making the tags better from play"; rule 11 | Run `tagaudit.php` and `hiddencds.php`; record decisions in `reviewed.json`; bump the cache, then kits, then profiles, then re-measure |
+| **Write or correct a guide** | `guide-writing.md`, `data/brain/brain.md`, `docs/guides/reader-corrections-2026-09-23.md` | `docs/machine-guides.md` (authoring, feedback export first); `arena-structure.md` by Part. From played games: `guides-from-play.md` |
+| **The arena model, the Brain, a new prose source** | `docs/arena/structure-summary.md`, `arena-open-questions.md`, `docs/arena/synthesis-process.md` | `arena-structure.md` (75KB) by Part; `docs/arena/sources/chriso-scope-correction-2026-09-23.md` before any "we can't" line |
 | **Matchup Lab** | `data/matchup-profiles/README.md`, rules 31–34 | `arena-structure.md` Part 19 |
-| **Spell data, import, a patch** | `game-data.md`, `spell-acquisition-model.md`, rules 1–11 | `knowledge-gaps.md`; `dr-categories-reference.md` is stale, a hint only |
-| **Class mechanics**: empowered casts, how buffs and talents combine, what a patch changed for a spec | `docs/class-mechanics.md` | Work one spike out from its tooltips first; pool only to ask how often or what is better |
-| **A page of the site** | `docs/site-pages.md`, the Web/Livewire rules (22–30) | Check the real URL serves (Environment, "Looking at a page") |
-| **Deploy or check production** | `DEPLOY.md`, "Working from Claude Code" | Production runs whatever branch is checked out there; push it, then `./deploy.sh` |
-| **Training**: a lesson, notes and revisits, the reasoning check, claims | `docs/training.md`, `VISION.md` "What building it has taught" | Label invented figures as illustrative; a claim about the game cites the archive. Lesson files need no front-end build |
-| **Quizzes, modules, diagnostics** (dormant platform) | `system-integration.md`, rules 35–38 | `docs/archive/` for how the old pieces work |
+| **Spell data, import, a patch** | `docs/rules.md` rules 1–11, `spell-acquisition-model.md` | `game-data.md` (75KB) by section, `knowledge-gaps.md`; `dr-categories-reference.md` is stale, a hint only |
+| **Class mechanics**: empowered casts, how buffs and talents combine, what a patch changed | `docs/class-mechanics.md` | Rule 39. Work one spike out from its tooltips first; pool only to ask how often or what is better |
+| **A page of the site** | `docs/site-pages.md` by section, rules 22–30, `docs/design-system.md` | Check the real URL serves, at phone width too (Looking at a page, below) |
+| **Deploy or check production** | `DEPLOY.md` | When asked, do it. Production runs the branch checked out there: push it, then `./deploy.sh` |
+| **Training**: a lesson, notes, the reasoning check, claims | `docs/training.md` | Label invented figures as illustrative; a claim about the game cites the archive |
+| **Quizzes, modules, diagnostics** (dormant) | `system-integration.md`, rules 35–38 | `docs/architecture.md`, "Dormant"; `docs/archive/` |
 | **Product, usage, pricing** | `VISION.md`, `monetisation-read.md` | |
+| **How something fits together** | `docs/architecture.md` | |
 
 ### What "done" looks like for the spell data
 
-- **Nothing unresolved in displayed text** — no `(varies)`, `$s1`, `${...}`, `$lWord:Words;`,
-  no raw formula fragments. If a true value can't be computed, get the data; never ship a
-  placeholder and never fabricate a number.
-- **No duplicate spells** from internal spell_id copies.
-- **No broken icons** — every rendered spell resolves a real icon.
-- **Accurate and current** — cooldowns, charges, talent modifiers, CC durations, mechanics all
-  match the live game.
+Nothing unresolved in displayed text (no `(varies)`, `$s1`, `${...}`, `$lWord:Words;`, raw formula
+fragments): if a true value can't be computed, get the data, and never ship a placeholder or
+fabricate a number. No duplicate spells from internal id copies. Every rendered spell has a real
+icon. Cooldowns, charges, talent modifiers, CC durations and mechanics match the live game.
 
-## Where things are written down
+## The library
 
-**`docs/README.md` maps every doc in the repo**: its area, whether it is current, dormant or
-history, and what it is for. Start there. The ones most work needs:
-
-| File | What it is |
+| For | Read |
 |---|---|
-| `match-review.md` | **The current work, end to end:** the match review, the desktop app, what is measured where, the data files, the tools. Read before touching any of it. |
-| `arena-structure.md` (public at `/brain`) | The arena model every guide and every coaching read is written from. [OBS]/[DER]/[HYP] tags. |
-| `docs/history/engineering-log-2026.md` | The archive (not loaded): search it for the *why* behind a rule. |
-| `game-data.md`, `spell-acquisition-model.md` | The spell-data import pipeline. |
-| `DEPLOY.md` | Production, and working on it from Claude Code. |
-| `AbilityFinder` / `wow:abilities --vocabulary` | Find abilities by curated property. Fields only, never descriptions. |
-
-These are reference, not gates. Implementation decisions are yours. A note that something "can
-break" is a warning to check before relying on it, not a rule that blocks the work.
+| Every doc, by area and status | `docs/README.md` |
+| Rules and traps in full, the test baseline | `docs/rules.md` |
+| How the pieces fit, security, smaller services and commands | `docs/architecture.md` |
+| Tokens, components, icons, pickers | `docs/design-system.md` |
+| The current work end to end | `match-review.md` |
+| The arena model (public at `/brain`) | `docs/arena/structure-summary.md`, then `arena-structure.md` |
+| The spell-data pipeline | `spell-acquisition-model.md`, `game-data.md` |
+| Production, env vars, working on the box | `DEPLOY.md` |
+| Every page of the site | `docs/site-pages.md` |
+| Why a rule exists | `docs/history/engineering-log-2026.md` (not loaded), `docs/history/deploy-incidents-2026.md` |
+| Finding abilities by curated property | `AbilityFinder`, `wow:abilities --vocabulary` (fields only, never descriptions) |
 
 ## Commands
 
 ```bash
 composer run dev          # server + queue + logs + vite in parallel
-php artisan serve
-php artisan queue:listen --tries=1
-npm run dev
+composer test             # or: php artisan test --filter=test_name
+./vendor/bin/pint app/Path/To/File.php   # ALWAYS an explicit file list
 npm run build
-php artisan pail --timeout=0
-
-composer test             # or: php artisan test
-php artisan test tests/Feature/ExampleTest.php
-php artisan test --filter=test_name
-
-./vendor/bin/pint app/Path/To/File.php   # ALWAYS pass an explicit file list — see Traps
-
 php artisan migrate
-php artisan migrate:fresh --seed
 ```
+
+**Test baseline: 12 pre-existing failures** (11 are one reCAPTCHA config gap, 1 is `LearningPathTest`;
+`docs/rules.md`). Say "same 12" only after confirming the count.
 
 **Game data:**
 ```bash
-php artisan import:spelldata wow                 # normal form — no patch arg, see Rules
-php artisan wow:patch-update {build}             # orchestrates a full patch bump
-php artisan wow:ingest-combatlog                 # import YOUR games from WoWCombatLog.txt
-php artisan wow:review-lobby                     # committed review artifact that /wow/game-review reads
-php artisan wow:refresh-match-derived            # after ANY match-data change
+php artisan import:spelldata wow                 # normal form, no patch argument (rule 7)
+php artisan wow:patch-update {build}             # a full patch bump
+php artisan wow:refresh-match-derived            # after ANY match-data change (rule 15)
 php artisan wow:apply-icon-manifest              # icons without Blizzard credentials
-php artisan wow:precompute-spell-kits            # after a resolver/display change
-php artisan wow:build-matchup-profiles           # AFTER the kits, never before
-php artisan wow:abilities --vocabulary           # drafting aid: what is queryable, and what is not
+php artisan wow:precompute-spell-kits            # after a resolver or display change
+php artisan wow:build-matchup-profiles           # AFTER the kits, never before (rule 31)
 php artisan wow:rebuild-spell-counters           # backfill only; import already does it
-php artisan wow:import-murlok-defaults --all --apply   # on-demand only, see Rules
+php artisan wow:import-murlok-defaults --all --apply   # on-demand only (rule 16)
 ```
 
-**Your games (the match review and the desktop app; `match-review.md`):**
+**Your games:**
 ```bash
 php artisan wow:sync                             # ingest + review + measure new games
-php -d memory_limit=2G artisan wow:sync --skip-ingest --fresh   # re-measure everything after a measure changes (~8 min)
+php -d memory_limit=2G artisan wow:sync --skip-ingest --fresh   # re-measure everything (~8 min)
 php artisan wow:game-cards --dir="$APPDATA/MindCollector/cards" --notes="$APPDATA/MindCollector/notes.json"   # the app's pages
 php -d memory_limit=3G tools/match-review/tagaudit.php    # tags against how spells are pressed; proposes only
-php -d memory_limit=2G artisan wow:go-cooldowns          # what each spec presses in its goes -> the comp page's "How to play it"; commit the file
-php -d memory_limit=2G artisan wow:refresh-kits     # stored rounds' buttons from their stored talents, after a talent-resolution change
-php artisan wow:translate-spell-names               # Chinese/Korean spell names in stored rounds -> English, for icons and frames (docs/international.md)
-php -d memory_limit=3G artisan wow:population           # every archived game, every player -> data/population/norms.json (Basics tab norms + evidence); --fresh after VERSION changes
+php -d memory_limit=2G artisan wow:go-cooldowns  # what each spec presses in its goes; commit the file
+php -d memory_limit=2G artisan wow:refresh-kits  # stored rounds' buttons, after a talent-resolution change
+php artisan wow:translate-spell-names            # Chinese/Korean names in stored rounds -> English (docs/international.md)
+php -d memory_limit=3G artisan wow:population    # data/population/norms.json; --fresh after VERSION changes
 ```
 
-**Machine-drafted guides:**
-```bash
-php artisan guides:author data/machine-guides/            # a file or the whole directory
-php artisan guides:author data/machine-guides/ --dry-run  # resolve + talent-check, write nothing
-php artisan guides:author data/machine-guides/x.json --draft --model="Claude Opus 5"
-php artisan guides:export-feedback                        # run on the SERVER — the loop back
-```
-
-### Test suite baseline
-
-**12 pre-existing failures**, traced and understood — not noise to ignore, but not regressions:
-
-- **11 are one config gap.** `phpunit.xml` sets `APP_ENV=testing`, but the reCAPTCHA skips in
-  `RegisteredUserController::store()` / `LoginRequest` / `PasswordResetLinkController` and the
-  bypass in `User::hasVerifiedEmail()` all check `local` / `!isProduction()` only. Affects
-  `AuthenticationTest`, `RegistrationTest`, `PasswordResetTest`, `EmailVerificationTest`,
-  `GuestDiagnosticClaimTest`, `RoadmapFunnelTest`. The fix is `environment(['local','testing'])`
-  in those places; low-risk, just never prioritised.
-- **1 is a real app bug.** `LearningPathTest` — `Collection::getLearningPathProperty()` gives the
-  "next" badge to a stage that should read `future` before any context dimension is declared.
-
-Say "same 12 pre-existing failures" only when you have actually confirmed the count.
+**Guides:** `guides:author {path}` with `--dry-run` first; `guides:export-feedback` on the server before
+re-authoring, because re-authoring destroys reader comments (`docs/machine-guides.md`).
 
 ## Environment
 
-### Windows / Herd (local)
+**Windows / Herd (local).** Run PHP and artisan through the **PowerShell tool**: the Bash tool is
+git-bash, with no PHP on its PATH, so use it for file and git work only. Redis via Herd, MySQL. A full
+re-import may need `php -d memory_limit=512M`. Destructive artisan commands (`migrate:fresh`, `db:seed`
+on a real DB, `queue:restart`) are confirm-first.
 
-- Run PHP/artisan through the **PowerShell tool**. The Bash tool is git-bash and has **no PHP on
-  its PATH** — use it for file/git work only.
-- Redis via Herd for queues, sessions, cache. MySQL.
-- The site is served on a Herd `.test` domain (`chonny.test`), not `localhost` — see the
-  host-relative asset rule in Traps.
-- A full re-import may need `php -d memory_limit=512M artisan import:spelldata wow`.
-- Treat destructive artisan commands (`migrate:fresh`, `db:seed` on a real DB, `queue:restart`)
-  with confirm-first judgment.
-
-#### Looking at a page in a browser
-
-**`chonny.test` is often not resolvable** — Herd is not always running, and the host may not be
-in `C:\Windows\System32\drivers\etc\hosts` at all. Do not conclude from that that a page
-cannot be checked. Serve it directly:
+**Looking at a page.** `chonny.test` is often not resolvable (Herd not running, host not in `hosts`).
+That does not mean a page can't be checked:
 
 ```bash
-php -S 127.0.0.1:8321 -t public     # run in the background, then Invoke-WebRequest the routes
+php -S 127.0.0.1:8321 -t public     # in the background, then Invoke-WebRequest the routes
 ```
 
-Use the built-in server, not `php artisan serve` — the latter failed to bind here
-("Failed to listen on 127.0.0.1:8123") while `php -S` on the same machine worked.
+Not `php artisan serve`, which failed to bind here. **Do this before calling a new page done.**
+`Livewire::test()` renders without the layout, so a full-page component missing `->layout(...)` passes
+every Livewire assertion while the real URL is a 500; a `$this->get(route(...))->assertOk()` catches
+it. Chrome can't screenshot a `file://` page: render the HTML to the scratchpad and serve it with a
+small `php -S` router. Check phone width too, by resizing the window.
 
-**Do this before calling any new page done.** `Livewire::test()` renders a component *without*
-its layout, so a full-page component missing its `->layout('layouts.app', [...])` call passes
-every Livewire assertion while the real URL returns a 500 (`MissingLayoutException`). That is
-exactly how the Matchup Lab shipped its first green test run (2026-09-23). A `$this->get(route(
-...))->assertOk()` alongside the Livewire tests catches the same class of error in CI.
+**Production.** Linux, one vCPU, Nginx + PHP-FPM, 2 queue workers, no scheduler. `mindcollector.com`:
 
-### Production
-
-Linux, Nginx + PHP-FPM, 2 Supervisor workers on the default queue (90s timeout each), same
-Redis/MySQL/env requirements. **No scheduler runs** — anything scheduled must be triggered
-another way. The one cron line is the daily leaderboard pull (`wow:pvp-leaderboards`, DEPLOY.md).
-
-**Box, measured: 1 vCPU, ~1,958 MB RAM, 5.3 GB swap.** The single core is the throughput ceiling
-and it is the thing to remember before tuning anything else: `/` and `/wow-comps` are ~0.12s of
-CPU, `/spell-counters` ~0.57s, and latency under concurrency scales linearly (12 concurrent
-`/wow-comps` ≈ 1.45s each). No PHP tuning changes that; a second vCPU would. PHP-FPM is
-`pm.max_children = 12`, `pm.max_requests = 500`. Size workers from **PSS** in
-`/proc/<pid>/smaps_rollup`, never `ps` RSS — OPcache's 192 MB is shared, so RSS overstates
-badly (52–62 MB RSS vs 11–20 MB private).
-
-**Deploy with `cd /var/www/mindcollector && ./deploy.sh`, never a bare `git pull`.**
-`opcache.validate_timestamps=Off` means a bare pull updates files while running workers keep
-executing old bytecode; the queue workers and anything they wrote to Redis go stale the same way.
-This caused real 500s for real users (2026-08-28). `deploy.sh` restarts php-fpm and the workers,
-bumps the spell cache version, regenerates the spell kits, runs a smoke test, and logs to
-`storage/logs/deploy-*.log`. Nginx config is not in the repo (backup:
-`/root/nginx-mindcollector.bak-20260917`).
-
-### Working on production (SSH, deploys, permissions)
-
-**When asked to deploy or check something live, do it.** The full method, and why each step is
-there: `DEPLOY.md`, "Working from Claude Code". The essentials:
-- Ubuntu on Vultr, `45.76.116.44` (`mindcollector.com`), `root`, code at `/var/www/mindcollector`.
-- **Connect with the deploy key** (2026-10-23), never the password:
-  `ssh -i ~/.ssh/mindcollector_deploy -o BatchMode=yes root@45.76.116.44 "cd /var/www/mindcollector && ./deploy.sh"`.
-  Start the remote command with `cd`, so git-bash does not rewrite the path. SFTP is broken: upload
-  by base64 over exec. (The older paramiko-and-password method is in `DEPLOY.md` as a record.)
-- **Deploy only with `./deploy.sh`, never a bare `git pull`** (OPcache keeps old bytecode).
-- One-off production DB writes are blocked: hand the user a ready-to-paste command. Never add an
-  allow rule for yourself. Redis cache is DB 1. No scheduler runs; cron runs only the leaderboard pull.
-
-### Required environment variables
-
-```
-OPENAI_API_KEY=            # AI question/content generation
-GEMINI_API_KEY=            # Gemini web-search grounding (ResearchService)
-STRIPE_KEY= STRIPE_SECRET=
-BLIZZARD_CLIENT_ID=        # Game Data API + Battle.net OAuth
-BLIZZARD_CLIENT_SECRET=
-BATTLENET_REDIRECT_URI=    # optional override
-GOOGLE_CLIENT_ID= GOOGLE_CLIENT_SECRET=   # Google sign-in; button hidden if unset
-BUYMEACOFFEE_URL=          # support link; hidden if unset
-RECAPTCHA_SITE_KEY= RECAPTCHA_SECRET_KEY=
-ARENA_LOG_ARCHIVE_PATH=    # optional; defaults to in-repo data/arena-logs/
-AUTH_REMEMBER_DAYS=30
-DB_CONNECTION=mysql
-QUEUE_CONNECTION=redis
-SESSION_DRIVER=redis
-CACHE_STORE=redis
+```bash
+ssh -i ~/.ssh/mindcollector_deploy -o BatchMode=yes root@45.76.116.44 "cd /var/www/mindcollector && ./deploy.sh"
 ```
 
-Battle.net and Google OAuth need their redirect URLs registered with the provider for **both**
-`mindcollector.com` and `www.mindcollector.com` (both serve the site directly), plus the local
-`.test` host.
-
-### Security
-
-- reCAPTCHA v3 on login/registration/password-reset, threshold 0.5, direct siteverify call.
-- Google and Battle.net sign-in skip reCAPTCHA deliberately — the provider's own sign-in is a
-  stronger bot barrier than a score.
-- **No password breach check.** `->uncompromised()` was removed; `Password::defaults()` is
-  `min(8)`. It turned away real people on every attempt.
-
-## Architecture
-
-### The match review and the desktop app (the current work)
-
-Your own combat log → `wow:ingest-combatlog` → the archive (`D:/MindCollector/arena-logs`,
-gitignored) → `wow:sync` → `RoundAnalysisService` measures each round once into
-`arena_rounds.payload` (at `RoundAnalysisService::VERSION`) → `wow:game-cards` renders the desktop app's pages (game cards,
-Improve per character, the comp library) as HTML files → the app shows them. **Since 2026-10-25 the
-app on Chriso's PC is the downloadable one (`tools/desktop-app`)**: it sends games to the site, which
-builds the same pages, and in developer mode (`LocalSyncDir` in its settings.json) runs the ingest and
-`wow:sync` locally after each game, the job `tools/log-manager/MindCollectorLogs.ps1` did. That
-PowerShell app is retired from the PC but kept in the repo. `/wow/match-analysis` reads the same
-payloads on the site. **Read `match-review.md` before changing any of it**: what to re-run after a
-change, the data files that decide what is seen, the reading rules and the traps.
-
-Laravel + Livewire 3 + Alpine + Tailwind. Redis queues.
-
-### The game-data pipeline (the foundation)
-
-```
-SimulationCraft dumps ──┐
-Blizzard Game Data API ─┼─→ import:spelldata ─→ spells / talent_* / pvp_talents / spell_*
-Addon spellbook export ─┤        (+ curated override files, applied every run)
-Arena match logs ───────┘
-```
-
-- `ImportSpellData` + `SpellDataFileParser` read `data/spelldata`, `data/talenttrees`,
-  `data/pvptalents`, all joined on Blizzard's external `spell_id`.
-- Curated override files in `data/spelldata/` are re-applied on every import and are the
-  authoritative source for anything the raw data can't say (see Rules).
-- Global post-import passes build `spell_relationships`, resolve description references,
-  materialize the `SpellProfile` shape, and rebuild `spell_counters`.
-- Arena logs (`data/arena-logs/`, external archive via `ARENA_LOG_ARCHIVE_PATH`) feed CC chains,
-  burst windows, playstyle analysis, CC targeting, and offensive/defensive classification.
-
-### One spell object
-
-`App\Support\SpellProfile` + `SpellProfileBuilder` are **the** representation of a spell.
-Build-independent facts (school, `dr_category`, duration, mechanic, category, immunities,
-counters, base cooldown, `is_*` flags) come from materialized columns; build-dependent ones
-(talent-modified cooldown/charges, resolved description, active modifiers) are nullable and
-absent without a `TalentBuild`, distinguished by `hasBuildContext()`. It implements
-`ArrayAccess` as a bridge for older array-shaped consumers — **new code uses the typed
-properties.** `SpellProfileBuilder::forDetail()` (one spell) and `forKitEntry()` (batched) are
-the only constructors.
-
-`config/spell_display.php` holds the single definition of category/DR badge colours and
-`usable_while_cc` labels. There were once ten copies, and they had drifted.
-
-### Talent builds
-
-`TalentSelectionService::resolveActiveBuild()` resolves in order: the module/guide-linked build
-→ the viewer's own saved build → the spec's admin default (`is_default`) → an empty shell.
-Scopes are `user_id` (personal), `is_default` (spec-wide meta), `module_id`, and guide-slot
-builds (`user_id NULL` + `is_default false`, invisible to both default lookups).
-`/admin/talent-builds` is where meta defaults are curated. `TalentSelector` is the one
-calculator component — read-only mode, default-editor mode, and guide-slot mode
-(`#[Locked] $buildId`).
-
-### Spec kits
-
-`SpecKitComputer` answers "every spell this spec can press, categorised". Precomputed into
-`data/spell-kits/{class}/{spec}.json`, keyed by the spell cache version plus a deployed-code
-fingerprint; falls back to a live compute when stale (6,964ms/3,042 queries vs 970ms/146 for a
-3-spec WoW Comps render — safe but slow, so keep the kits fresh).
-
-### Pages
-
-`/` MindCollector's home, a card per game (`PlatformController`, `config/platform.php`) · `/wow`
-WoW's home (`Landing`; signed-in players go to `/dashboard`) · `/sc2`, `/lol` coming games, with
-"tell me when it's ready" (`game_interests`) · `/sc2/quiz` and `/sc2/diagnostic`, SC2's first content
-(quizzes from the game's unit data, `App\Quiz\Sc2`, `data/sc2/`) · the sidebar's game switcher shows each game's own menu ·
-`/wow/pvp/{class}/{spec}` spec guides written for search · `/wow/comps` (the heaviest page) ·
-`/wow/matchup-lab` · `/wow/coach` (**"Your games"**: the desktop app's pages, uploaded by the app with
-the player's key or from the browser, plus the same-spec reviews at `/wow/game-review/{id?}`;
-`/wow/match-analysis` redirects there) — a signed-in player's OWN games: auth,
-scoped to the viewer, never public · the guide builder and readers
-(`/guides/{slug}/edit`, `/g/{user}/{slug}`, `/browse-guides`, `/claudes-comp-guides`) ·
-`/pvp-guides/{class}/{spec}` · `/spell/{id}` · `/wow/quiz` · `/characters` · admin pages ·
-`/training` (Training: reasoning lessons with notes that come back, beside Home in the sidebar,
-across every game; `docs/training.md`).
-What each does, and the decisions behind it: `docs/site-pages.md`.
-
-### Guides
-
-`user_guides` (type `comp`|`class`, status draft/published, visibility public/invited) →
-`user_guide_sections` (kind `Sequence`|`Defensives`|`Text`, placed by `(row, column)` so two can
-sit side by side) → `user_guide_blocks` (each stores an **external** spell id plus
-`source_spec_id`). Roster in `user_guide_members` (up to 3, with per-slot talent builds).
-`UserGuideChainService` is the single resolution path — the builder and the read view must
-render identically. Collaboration via `friends_can_edit` / `guild_can_edit`, with per-block and
-per-section attribution. Guests get a real plan via `GuestPlanService` (cookie token, claimed on
-sign-up).
-
-### Machine-drafted guides
-
-Guides a model wrote, **published to be corrected**: drafts in `data/machine-guides/`. Everything
-about them is in `docs/machine-guides.md`. The rules that bite:
-- **Author only with `guides:author {path}`**, `--dry-run` first (resolves every ability by name,
-  flags talent conflicts). Never through tinker. Idempotent by slug.
-- **Re-authoring DESTROYS anchored reader comments** (cascade delete). Run
-  `guides:export-feedback` on the server and commit its output first.
-- `guides:author` rewrites `status` on every run: `--draft` unpublishes.
-- A draft must name a build one character can have (`TalentFeasibilityService`). Talent node ids
-  are not stable across environments; names are the key.
-- The data cannot model who a spell may be cast on (Banish and Shackle Horror shipped as player CC).
-- Every guide is written from `arena-structure.md` (public at `/brain`); a [HYP] is never asserted.
-- `/claudes-comp-guides` (machine `user_guides`, commentable) is not `/wow/claudes-guides`
-  (hand-authored JSON, read-only). Machine guides stay out of player listings (rule 30).
-
-### Dormant: the learning platform
-
-Categories → Subjects → Modules → Questions, quizzes, credits, AI generation, diagnostics, the
-Next Step / Reflection loop, roadmaps. **Still live code, not the current direction.** It lives
-at `/learning-profile` (at `/training` until 2026-10-23, when that address went to Training, which
-is a separate system: `docs/training.md`), `/modules`, `/collection` and is deliberately unlinked from the sidebar. See the
-history log for its full design. If you return to any of it, decide first whether it should
-become part of class quizzes rather than restoring it as it was.
-
-Things still true about it:
-- Subject-scoped queries **must** filter by `$currentSubjectId`, never "most recent across all
-  subjects" — that silently shows the wrong subject's data and won't surface with one subject
-  seeded. Category/subject selection is remembered in `session('context.*')`.
-- `NextStepService` is the only "what's next" system; `SuggestionJob` and
-  `diagnostic_profile.recommended_module` were both retired.
-- `Module` uses `slug` as its route key.
-- `AiService`'s four private call methods each already write an `AiRequest` and deduct credits —
-  **never** add a second write in calling code.
-
-### Player model
-
-All player data is **behaviour** (inferred from interactions), **context** (declared: class,
-race, role, rating, goals), or **evidence** (observed performance). Context filters and flavours
-content; **it never partitions mastery.** Concepts stay universal — one "Cooldown Management",
-not a Mage version. Mastery earned through Rogue-flavoured modules persists if the player
-rerolls; accept that, don't "fix" it by splitting concepts. If a new field is none of the three,
-it probably doesn't belong.
-
-## Rules that must not be regressed
-
-### Spell data
-
-1. **`spec_id = NULL` baseline spells are ambiguous.** The row means both "genuinely class-wide"
-   (Leg Sweep) and "spec-restricted but unlabelled" (Mind Sear on Discipline). Every heuristic
-   tried to split them has been disproven under testing — a SimC GitHub search, a
-   `spell_relationships` pattern check, a cooldown/CC heuristic. One bulk attempt shipped and was
-   pulled the same day. What works: hand-curated `data/spelldata/baseline-spec-overrides.txt` +
-   `TalentSelectionService::verifiedBaselineAbilityIds()`, **one verified line at a time.**
-   `alwaysAvailableAbilityIds()` remains in the file, unused, flagged **DO NOT WIRE IN**.
-   When the evidence says an ability is genuinely class-wide, add every spec of that class at
-   once — otherwise the same gap resurfaces spec by spec as separate reports.
-
-2. **External vs internal spell ids.** `spells.id` is an internal auto-increment key, patch-scoped
-   and reassigned on a rebuild. `spells.spell_id` is Blizzard's. `talent_node_entries.spell_id`
-   and `pvp_talents.spell_id` are FKs to **`spells.id`** despite the column name. Guide blocks,
-   curated override files and gating columns store **external** ids. This mismatch has caused at
-   least three silent bugs that resolved cleanly while being wrong — check which space you are in
-   before comparing.
-
-3. **One visible ability is often several internal spell_id copies.** Prefer the pressable one
-   (`is_passive = false`, `not_in_spellbook = false`, real cooldown/charges). Never filter a
-   candidate pool by "has this metadata field populated" as a proxy for "is real" — that
-   assumption has been found backwards twice; the real copy frequently has the *emptier*
-   metadata. Sibling recovery (same display name, same patch) is the standard fallback for
-   descriptions, effects, categorisation, icons, and base cooldown/charges.
-
-4. **`spells.mechanic` is not `dr_category`.** Measured 50% disagreement on real curated spells
-   (Fear to Flee, Cyclone to Banish). It is a hint shown next to an empty field, never a default.
-
-5. **Curated override files are authoritative and re-applied on every import.** Every field is
-   written on every run — **a blank field means null/false, not "leave alone"** — and a duplicate
-   line silently wipes an earlier one (the importer warns on this now). The importer is
-   **additive-only**: removing a line does not delete the row it wrote, so a correction needs a
-   one-off delete query as well.
-   - `baseline-spec-overrides.txt` — spec availability (`verified_override`)
-   - `cc-synergies-overrides.txt` — `dr_category`, `chain_target`, `is_peel`, `is_interrupt`,
-     `pvp_duration_seconds`, conditional DR gating
-   - `cc-immunity-overrides.txt`, `school-immunity-overrides.txt`, `icon-name-overrides.txt`,
-     `manual-spells.txt`, `icon-manifest.json`
-
-6. **Read a curation file's own commentary before "correcting" it.** Redundant-looking lines are
-   often deliberate and say so (an aura spell_id kept for log matching alongside the pressable
-   copy kept for palettes). This has stopped at least two wrong "fixes".
-
-6a. **`--auto-detect-live` can roll the spell data BACKWARDS.** `fetch-simc-dumps.php` picks the
-    newest `data-update-live-*` branch, but SimC does not cut one per build: on 2026-09-24 the
-    only live branch was 69283 while `midnight` carried 69933 and the DB already held 69814. Read
-    the first line of a fetched dump ("... for World of Warcraft 12.1.0.69933 Live") and compare
-    it with `patches.build_version` before importing. `midnight` is the expansion's active branch.
-
-7. **`php artisan import:spelldata wow` with no patch argument is the normal form.** It resolves
-   the current patch from the DB and relabels that row in place from the SimC dump headers.
-   **The patch row is never forked** — everything game-related FKs to `patches.id`, so a new row
-   orphans every curated build, guide reference and counter. A genuinely separate row needs
-   `--new-patch`. Guides record their own `authored_build_version` separately.
-
-8. **`spells.dr_category` is the base value and is never overwritten by talent-conditional
-   resolution.** Log-derived consumers (`CcFormulaService`, `FindCcChains`, `SpellCounterIndexer`,
-   `CcTargetingAnalyzer`, `/cc-review`, `SpellFinder`) read the column and are right to — a combat
-   log records whichever variant landed, under its own aura id. Only build-aware *display*
-   resolves the conditional, via `SpellProfile::drCategory()`.
-
-9. **`chain_target = kill_target` requires a `dr_category` of Stun or Silence.** Everything else
-   breaks on damage, so it can only ever be healer-directed or a peel. Enforced at import.
-
-10. **Three independent categorisation axes.** `spells.category` (`categorize()`) drives the badge
-    and Spell Explorer tabs; `spells.dr_category` (curated) drives Crowd Control and the CC
-    chains; `ArenaLogService::offensiveDefensiveClassification()` (arena-log-verified, promoted
-    JSON) drives **only** WoW Comps' Offensive/Defensive Cooldowns tabs. "Shows as offensive" can
-    mean any of them. A spell legitimately appears as both an offensive cooldown and crowd control.
-
-11. **Hand-promoted classification JSON.** `data/arena-logs/spell-classification/*.json` is
-    reviewed and promoted by hand, not computed live. When re-promoting `classify-cooldowns.php`
-    output, **keep the hand-written entries** (e.g. Gladiator's Medallion) or they drop out of
-    every Defensive Cooldowns tab and guide palette. Two smaller files in the same folder decide
-    what the match analysis SEES: `contextual-cooldowns.json` (spells read per press, Vanish) and
-    `short-defensives.json` (defensives under the 45s timeline floor that still count, Feint).
-    `tools/match-review/tagaudit.php` proposes changes to all of them from how spells are pressed;
-    it never writes them (`match-review-operations.md`, "Making the tags better from play").
-
-### Arena logs
-
-12. **New matches come from YOUR OWN combat log** (`wow:ingest-combatlog`,
-    `CombatLogIngestService`). The WoWArenaLogs pullers are dead and stay dead (search disabled
-    from 2026-09-09, sign-in gated from 09-23: do not resume bulk pulling). Advanced Combat Logging
-    must be on. A team comes only from `COMBATANT_INFO` field 2, never `reaction`. A Solo Shuffle
-    lobby is six matches with one unusable END line, and each round's winner comes from its
-    deaths: `UNIT_DIED`'s trailing `unconsciousOnDeath` filters a Hunter's Feign Death. Every
-    measured offset and the checks behind them: `docs/combat-log-ingest.md`.
-
-13. **Do not cull the archive again.** The 2026-09-05 cull of the oldest 500 matches is permanent
-    and unrecoverable — those came from a feed that no longer serves us. New matches only ever
-    arrive now by playing them.
-
-14. **The raw archive is a build-time input, never a runtime dependency.**
-    `data/arena-logs/metadata/*` is gitignored, so anything a page reads from it at render time
-    works perfectly on every dev machine and is silently broken for every real user. Bake what
-    pages need into a committed artifact (the way burst windows embed their talent build). Tests
-    for such pages should force the archive absent — a normal dev run structurally cannot catch
-    this.
-
-15. **`wow:refresh-match-derived` after any match-data change.** It runs CC chains (`--json`, the
-    flag that actually matters), burst-window regeneration and promotion, talent and mechanics
-    enrichment, playstyle analysis, CC targeting, burst guides, and bumps the spell cache. It
-    deliberately does **not** run `wow:extract-arena-spells` promotion, `classify-cooldowns.php`
-    promotion, or the murlok importer — those are human-review gates, and it prints them as a
-    checklist instead.
-
-16. **`wow:import-murlok-defaults --all --apply` is on-demand only.** Every run wholesale replaces
-    each spec's default build from murlok's current page, discarding hand curation, and hits a
-    third-party site. Reach for it when something concrete motivates it (a patch, a reported gap),
-    never on a cadence. It is deliberately not part of `wow:patch-update`.
-
-### Caching
-
-17. **`bumpSpellCacheVersion()` is a global counter** — it keys the `wow_spell_references:*` cache
-    **and** all 40 precomputed kits. Bump it when the underlying spell *data* changed. **Do not**
-    bump it to publish a smaller artifact change (a palette grouping, a burst-guide JSON) — that
-    invalidates every kit and drops WoW Comps and Spell Explorer onto the slow path for nothing.
-    Use a local signature instead: `PALETTE_SHAPE_VERSION`, `guideFilesSignature()`.
-
-18. **The counter lives in `wow_spell_cache_state` (a DB table), not the cache store.** It used to
-    be a `Cache::forever` key, which meant an ordinary `cache:clear` silently reset it to 1 and
-    broke invalidation entirely. `optimize:clear` does not touch it.
-
-19. **Ordering is load-bearing: bump the version FIRST, generate the kits SECOND.** Kits embed the
-    version and the deployed-code fingerprint; generating before writing them stamps the old value
-    and invalidates them seconds later.
-
-20. **A cached payload's *shape* changing is not a data change.** Adding a key the blade reads
-    bumps nothing on its own, and stale entries of the old shape then throw `Undefined array key`.
-    Bump manually after deploying such a change.
-
-21. **Precomputed kits embed resolved description text.** After a description-resolver fix, the
-    code being right is not enough — regenerate the kits.
-
-### Web / Livewire
-
-22. **Never put `wire:key` on a Livewire component's root element.** Livewire sends a child back
-    as a bare `<div wire:id>` placeholder on a parent re-render, and morph matches `wire:key`
-    before `wire:id` — so the component is destroyed and re-initialised with no snapshot, and
-    every later click on the page silently does nothing. Pass `:key` on the `<livewire:>` tag.
-
-23. **Every public Livewire property is writable by anyone who posts to `/livewire/update`**,
-    bound or not. Mark server-owned properties `#[Locked]`. This was a real exploit: an unlocked
-    `$isDefaultEditor` / `$readOnly` on a public read-only page let an unauthenticated request
-    write into a spec's admin default talent build. Anything deciding *where* something saves or
-    *whose* data is shown must never be client-writable.
-
-24. **`render()` must explicitly pass computed and public properties into the view.** Bare
-    `$property` access in a Blade template does not reliably auto-inject; `$this->property` from
-    PHP always works.
-
-25. **A component's view needs one persistent, always-rendered root element** — a template whose
-    entire body sits inside `@if` produces zero roots when it is false.
-
-26. **Never read the DOM to decide what to persist.** The quiz ordering question keeps
-    `wire:ignore` on its `<ul>` (client-authoritative between renders; Alpine pushes order into
-    `$wire.answer`) and `submit()` reads `$this->answer`. The guide builder deliberately does the
-    opposite — no `wire:ignore`, because it is server-authoritative and persists on every drop;
-    copying `wire:ignore` there freezes the list against add and remove.
-
-27. **Don't mutate cloned Eloquent models to hold view state.** It does not survive Livewire
-    rehydration — the model is re-fetched and the change silently discarded. Use plain arrays
-    keyed by id (`$shuffledOptions`).
-
-28. **Every new user-facing route must be tracked twice:** a bare `PageViewEvent::log($page)` in
-    `mount()` for the raw count, an *attributed* call on every real explicit selection (never on a
-    default/landing value), **and** an entry in `Admin\PageUsage::PAGES`. Logging without the
-    `PAGES` entry is indistinguishable from not tracking at all — a confirmed real gap. Sub-views
-    that must not round-trip Livewire use an Alpine `fetch` beacon to `TrackController` with an
-    allowlist, surfaced by their own `PageUsage` breakdown rather than a `PAGES` entry.
-    **`is_bot = false` is not a person.** From 4 Oct 2026 a page view counts as seen by a browser
-    only when the layout's signed beacon confirms it (`confirmed_at`,
-    `PageViewEvent::scopeConfirmed()`). The 2–3 Oct "Google spike" was 154 Alibaba Cloud
-    addresses faking the referrer, and none of them ran the page (`monetisation-read.md`, 1e).
-
-29. **Guide URLs resolve slugs per author**, via an explicit binding in
-    `AppServiceProvider::boot()` (not the routes file, so `route:cache` can't drop it). Implicit
-    binding took the first global match and made every new player's first guide open a stranger's
-    draft.
-
-30. **Machine-drafted guides stay out of player listings.** `Browse`, `GuideFeed` and
-    `Home::exampleGuide()` filter `humanAuthored()`; machine guides have their own page and their
-    own byline.
-
-### The Matchup Lab
-
-31. **`wow:build-matchup-profiles` runs AFTER `wow:precompute-spell-kits`, never before.** A
-    profile is a narrowing of the same kit, so with fresh kits a whole sweep is a few seconds of
-    JSON reads and with stale ones it is the full ~7s-per-spec live computation forty times over.
-    `deploy.sh` runs them in that order, and throws away both committed artifacts before the pull
-    for the same reason.
-
-32. **Matchup profiles carry EXTERNAL spell ids; spell kits carry internal ones.** That is what
-    makes a committed profile the real artifact rather than a placeholder — internal `spells.id`
-    values are reassigned on every rebuild, which is why the committed kits are regenerated per
-    environment. See rule 2; this distinction has caused at least three silent bugs that resolved
-    cleanly while being wrong.
-
-33. **Nothing built on the cooldown graph may state a win probability, or call a window a kill.**
-    There is no outcome corpus to fit a probability to (rule 12 killed match search; the comp
-    index holds two entries), and an empty answer pool means the target has no button left, not
-    that the damage is lethal — Part 11's damage-model blocker is unchanged. The page's
-    honest-limits copy lives in one method, `MatchupLab::limitations()`, so it cannot be trimmed
-    a line at a time by a layout change. `arena-structure.md` Part 19.1 records why the source
-    that proposed the feature was wrong to call the crossing point "mathematically guaranteed".
-
-34. **Every cadence the engine reports is an upper bound.** The data holds base and
-    talent-modified cooldowns, not spend-driven reduction, so real goes come round sooner by an
-    unknown amount that differs per spec. Stated on the page rather than corrected for; see
-    `knowledge-gaps.md` (2026-09-23) and `arena-open-questions.md` C12.
-
-### Generated questions
-
-35. **A generated result never writes `UserConceptMastery`.** `MasteryService` scores a concept
-    as `correct ÷ every question attached to it` — the whole authored bank, not what the player
-    was asked. Feed that an unbounded generator and every player's percentage falls as the game
-    data gets richer. Drill results are read back off `quiz_attempts` instead
-    (`ConceptDrillRecord`, a window over the last 20 questions actually asked), which needs no
-    table because an attempt already stores its questions as they were asked.
-
-36. **A generated question states only what a field can confirm, and never compares to a field
-    it does not hold.** The arena-duration question was first written with an explanation claiming the PvE
-    duration is longer; 36 of the 111 crowd control spells carrying an arena figure have the same
-    figure in PvE, so it would have been false a third of the time. `WowAbility` carries no PvE
-    duration, so the claim is now general rather than per-spell.
-
-37. **`usable_while_cc = NULL` means no, not unknown.** `SpellDataFileParser` reads every spell's
-    whole `Attributes` line on every import and writes null when none of Blizzard's "Allow While …"
-    codes are present. That is what makes a "which of these can you cast while stunned" distractor
-    sound. Do not generalise this to other nullable columns — most of them *are* gaps.
-
-38. **Adding a field to a cached `WowAbility` bumps `WowAbilityFacts::SHAPE_VERSION`, not the
-    spell cache version.** Rule 17's reasoning: the global counter also keys all 40 kits. A stale
-    entry of the old shape makes every question type reading the new field skip in silence.
-
-## Traps that have bitten before
-
-**PHP**
-- **Arrow functions capture by value**, with no opt-out. `fn () => $tokens[$pos]` freezes `$pos`
-  forever. Use a regular closure with `use (&$var)`. This silently truncated every multi-term
-  arithmetic expression in the description resolver for months, and recurred later in
-  `annotateChain()`.
-- **`Collection::sortBy()` with an *array* of closures calls each as a two-argument comparator**
-  (`$fn($a, $b)`) and uses the return value directly — a one-argument rank closure sorts by
-  nonsense. Use `fn ($a, $b) => $x <=> $y`. A single-closure `sortBy` *is* a value extractor.
-  Shipped wrong in `SpellCounterIndexer`; fixing it changed 362 of 1,754 counter rows.
-- **`orderBy()` on a relation that already declares an order APPENDS** — the leading clause still
-  decides, so the added one is dead. Use `reorder()`. A fixture needs at least two rows on the far
-  side for the bug to be distinguishable from correct behaviour.
-- **`Collection::offsetGet()` does not support chained nested mutation** — build nested structures
-  as plain arrays and convert once at the end.
-- **Eloquent `Collection::merge()` calls `getKey()` on incoming items** — it throws outright on a
-  plain array of strings. `->toBase()` first.
-- **A plain `throttle:N,1` shares ONE counter per IP (or per user) with every other plain throttle
-  on the site.** The limit differs per route, the count does not. Always name it:
-  `throttle:20,1,battlenet`. Unnamed, the desktop app's connect polling (every 2s) used up
-  Battle.net sign-in's 20 from the same PC and a tester got "Too many requests" (2026-10-14).
-
-**Blade**
-- **A directive glued to a word character is not compiled** (the `\B` guard):
-  `...diminished@endif` passes through as literal text while its partner compiles, unbalancing the
-  block — and the directive counts still look balanced, because one of each is being ignored.
-  Suspect this on an unbalanced-directive error that makes no sense.
-- **A component tag with a multi-line attribute containing nested escaped quotes silently doesn't
-  compile** — it renders as literal `<x-...` text, which then hides whatever error was inside it.
-  Extract the expression to a variable in `@php`.
-- **`@json([...])` with a multi-line literal breaks the directive-arg parser** — build the array
-  in `@php` and `json_encode` it.
-
-**Tailwind**
-- **An arbitrary variant or value inside a Blade `{{ }}` ternary may silently not compile.**
-  `[&_button]:pointer-events-none` produced no rule at all while plain classes did, which would
-  have shipped a read-only view whose buttons still worked. Grep the built CSS for the generated
-  rule before trusting it.
-
-**Assets**
-- **Use host-relative paths (`/storage/...`), not `Storage::disk()->url()` or `asset()`.** Those
-  build an absolute URL from `APP_URL` (`http://localhost`) while Herd serves the site on a
-  `.test` domain — so every image 404s in the browser while every CLI check passes.
-
-**Migrations**
-- **Never use a DB enum for an evolving vocabulary** — use a plain string column governed by a PHP
-  enum. A raw `ALTER TABLE ... MODIFY COLUMN` is invalid on SQLite, and the suite runs on in-memory
-  SQLite: one such migration broke all 167 tests at once. If you must change an existing enum,
-  branch on `DB::connection()->getDriverName()`.
-- Run `php artisan test` after any migration touching an existing enum column, not just after
-  touching application code.
-
-**Testing**
-- **Only the FIRST `Livewire::test()` of a given component in one PHP process returns full HTML**;
-  later ones return a stub. Verify per-component renders in separate processes, or an empty render
-  reads as a real page bug.
-- `RefreshDatabase` gives an empty schema, and **spells only ever come from `import:spelldata`,
-  never a seeder** — build fixtures, or verify against the live dev DB instead.
-- `RefreshDatabase` does not reset the filesystem. A test that writes a fixture into a real data
-  directory is contaminated by the real data — assert invariants (ordering, caps, absence of
-  leaked names) rather than exact counts.
-- **Never benchmark a write path against the real database.** A benchmark's own cleanup deleted
-  five real steps from a live guide; they were recovered only because MySQL binary logging
-  happened to be on. Read-only paths are enough to profile a component.
-
-**Tooling**
-- **Always pass Pint an explicit file list.** `./vendor/bin/pint app/` reformatted 138 unrelated
-  files and buried the real diff.
+- **Only `./deploy.sh`, never a bare `git pull`** (OPcache keeps old bytecode; this caused real 500s).
+- Start the remote command with `cd`, so git-bash does not rewrite the path. SFTP is broken: upload by
+  base64 through stdin. Redis cache is DB 1.
+- One-off production DB writes are blocked: hand the user a ready-to-paste command. Never add an allow
+  rule for yourself.
+- Everything else, including env vars: `DEPLOY.md`.
+
+## Rules index
+
+One line each; the full text and the reason are in `docs/rules.md`. Numbers never change.
+
+**Spell data**
+1. `spec_id = NULL` baselines are ambiguous: hand-curate `baseline-spec-overrides.txt` a verified line at a time; no heuristic has survived testing.
+2. `spells.id` is internal, `spells.spell_id` is Blizzard's; `talent_node_entries.spell_id` and `pvp_talents.spell_id` are FKs to `spells.id`. Guide blocks and override files hold external ids.
+3. One ability is often several id copies: prefer the pressable one; never filter by "this metadata is populated".
+4. `spells.mechanic` is not `dr_category`.
+5. Curated override files are re-applied every import: a blank field means null, a duplicate line wipes the earlier one, removing a line deletes nothing.
+6. Read a curation file's own comments before "correcting" it. 6a. `--auto-detect-live` can roll data backwards: compare the dump's header with `patches.build_version`.
+7. `import:spelldata wow` takes no patch argument; the patch row is never forked.
+8. `spells.dr_category` is the base value; only build-aware display resolves a conditional.
+9. `chain_target = kill_target` needs a `dr_category` of Stun or Silence.
+10. Three separate axes: `spells.category` (badge), `spells.dr_category` (CC), `offensiveDefensiveClassification()` (Comps' cooldown tabs).
+11. Classification JSON is hand-promoted: keep the hand-written entries; `tagaudit.php` only proposes.
+
+**Arena logs**
+12. New games come from your own combat log only; the WoWArenaLogs pullers stay dead. Teams from `COMBATANT_INFO`, never `reaction`.
+13. Never cull the archive.
+14. The raw archive is a build-time input, never read at render time: bake a committed artifact.
+15. `wow:refresh-match-derived` after any match-data change; it prints the human-review gates and does not run them.
+16. `wow:import-murlok-defaults` is on-demand only; it discards hand curation.
+
+**Caching**
+17. `bumpSpellCacheVersion()` also invalidates all 40 kits: bump for data changes only; use a local signature otherwise.
+18. The counter lives in `wow_spell_cache_state`, not the cache store.
+19. Bump first, generate kits second.
+20. A cached payload's shape changing needs a manual bump.
+21. Kits embed resolved descriptions: after a resolver fix, regenerate them.
+
+**Web / Livewire**
+22. No `wire:key` on a component's root element; pass `:key` on the `<livewire:>` tag.
+23. Every public property is writable by anyone: `#[Locked]` for anything server-owned.
+24. `render()` passes computed and public properties explicitly.
+25. One persistent, always-rendered root element.
+26. Never read the DOM to decide what to persist.
+27. Don't mutate cloned models for view state; use plain arrays keyed by id.
+28. Every new user-facing route is tracked: `PageViewEvent::log()` in `mount()`, attributed calls on real selections, and an `Admin\PageUsage::PAGES` entry. `is_bot = false` is not a person.
+29. Guide URLs resolve slugs per author, by a binding in `AppServiceProvider::boot()`.
+30. Machine-drafted guides stay out of player listings.
+
+**Matchup Lab**
+31. Profiles build after kits.
+32. Profiles carry external ids, kits internal ones.
+33. Nothing on the cooldown graph states a win probability or calls a window a kill.
+34. Every cadence is an upper bound.
+
+**Generated questions**
+35. A generated result never writes `UserConceptMastery`.
+36. State only what a field can confirm; never compare to a field not held.
+37. `usable_while_cc = NULL` means no (not true of other nullable columns).
+38. A new field on a cached `WowAbility` bumps `WowAbilityFacts::SHAPE_VERSION`.
+
+**Empowered spells**
+39. A buff reaches PvP Guides only through `data/empowered-casts/reviewed.json`; `empowered.php` only proposes.
+
+## Traps index
+
+Full text in `docs/rules.md`.
+
+- **PHP:** arrow functions capture by value; `sortBy([closures])` calls two-argument comparators; `orderBy()` on an ordered relation appends, use `reorder()`; `Collection::merge()` on an Eloquent collection needs `->toBase()` for plain arrays; name every throttle (`throttle:20,1,battlenet`), since plain ones share a counter.
+- **Blade:** a directive glued to a word character isn't compiled; multi-line attributes with nested escaped quotes and multi-line `@json([...])` break, so build the value in `@php`.
+- **Tailwind:** an arbitrary variant inside a `{{ }}` ternary may not compile: grep the built CSS.
+- **Assets:** host-relative paths (`/storage/...`), never `asset()` or `Storage::url()`.
+- **Migrations:** no DB enums, string columns only; the suite runs on SQLite.
+- **Testing:** only the first `Livewire::test()` of a component in a process returns full HTML; spells only come from `import:spelldata`; never benchmark a write path against the real DB.
+- **Tooling:** PowerShell's `Set-Content` adds a BOM; quotes in a Bash heredoc break inline Python, so write the script with Write.
+- **Layout:** a box with its own scroll bar hides what's below it on a phone, and reads as missing.
 
 ## Working practice
 
-- **Trace to the root cause; don't shotgun-patch.** Several fixes in the history log were applied
-  at the wrong layer first (Garrote's double-counted silence was "fixed" once before the real
-  mechanism turned up).
-- **Flag, don't guess.** If a value can't be derived honestly, show `(varies)`, "no verified
-  answer", or a named gap. A confidently wrong number is worse than a visible hole. This applies
-  to curation, to AI-proposed classifications, and to prose.
-- **Verify against something independent.** A round trip through your own encoder and decoder
-  proves nothing — `encodeBuild()` passed exactly that test and shipped broken. Compare against
-  real captured data, a real screenshot, a real in-game reading.
-- **Quantify before and after.** "44 windows over-counted to 0", "1,015 spells affected, 694
-  recoverable", "12,264 entry pairs, zero mismatches" — the numbers are what make a claim
-  checkable, and they have caught several fixes that were solving the wrong problem.
-- **Don't trust a subagent's self-report.** One reported success while its own numbers were
-  internally contradictory (3,357 "processed", 39 files on disk); the real bug was an
-  internal-vs-external id mismatch.
-- **Check `git status` on sibling files before concluding something is pre-existing breakage.**
-  Stash-and-re-run cannot distinguish "genuinely broken at HEAD" from "another writer reverted an
-  uncommitted fix minutes ago" — that mistake produced a confidently wrong diagnosis.
-- **Curated game facts come from the domain expert or real observation, never from AI research
-  presented as ground truth.** Secondary sources (including `dr-categories-reference.md`) are
-  hints to verify, not authorities — that file has been confirmed wrong on both a spell's category
-  and the DR falloff step count.
-- Arena-log *cast* evidence is direct observation (a real player, a real match, a spec recorded in
-  the match's own metadata) and is a stronger tier than the structural inference this project has
-  tried and reverted. `wow:diff-arena-spells --apply` writes on that basis deliberately.
-
-## Design System
-
-### Tokens (`tailwind.config.js`)
-
-**Spotify's desktop look (2026-10-11), one set of values everywhere:** the site, the desktop pages
-(`resources/views/desktop/partials/styles.blade.php`) and both apps' windows (`tools/desktop-app/Theme.cs`,
-the `$C` table in `MindCollectorLogs.ps1`). Black frame around rounded `surface-0` panels, `surface-1`
-cards with no border that lift on hover, pill buttons and pill tabs (the open tab white), gold for the
-one thing to press. Change a colour in all four places.
-
-Fonts: Inter only, linked from the page head (`partials/fonts.blade.php`), never `@import`ed from CSS.
-`font-display` is Inter at 800 with tight tracking; no italics. A serif for headings (Marcellus) was tried
-on 2026-10-29 and dropped before it shipped: at small sizes and in numbers it read as fussy, and Chriso
-found it "wasn't clean and simple".
-
-**The dashboard layout (2026-10-29)** takes the layout of a mockup Chriso sent, not its look (red fire
-art, ornate emblems): a header with your side and an opponent box, then panels (`.grid2`, `.card`,
-`.kicker`, `.tiles`, `.events` in the desktop styles), small gold line icons before section names
-(`desktop.partials.icon`, inline SVG, no file to fetch). No embedded video on a card: it costs every
-card load; the Watch page has it.
-
-| Token | Value | Use |
-|---|---|---|
-| `frame` | `#000000` | The black around the panels |
-| `surface-0` | `#121212` | Page / panel background |
-| `surface-1` | `#181818` | Cards |
-| `surface-2` | `#232323` | Hover, elevated elements |
-| `surface-3` | `#2A2A2A` | Selected, modals, overlays |
-| `ink` | `#FFFFFF` | Primary text |
-| `ink-muted` | `#B3B3B3` | Secondary text |
-| `ink-subtle` | `#6A6A6A` | Disabled/placeholder |
-| `gold` | `#C8952C` | Brand/CTA primary |
-| `gold-light` | `#E8B84B` | Hover gold |
-| `gold-dark` | `#8B6420` | |
-| `gold-muted` | `#6B4E1A` | Subtle gold fills |
-| `gold-subtle` | `#1E150A` | Faint gold tint |
-| `violet` | `#7B6EE8` | Secondary/quiz |
-| `violet-hover` | `#8B7EF8` | |
-| `violet-muted` | `#4A3FA8` | |
-| `violet-subtle` | `#18163A` | Faint violet tint |
-| `accent` | `#C8952C` | Alias for `gold` (compat) |
-| `line` | `#282828` | Default border |
-| `line-strong` | `#3E3E3E` | Stronger border |
-| `line-gold` | `#6B4E1A` | Gold-tinted border |
-
-Gradients: `bg-gold-gradient`, `bg-gold-gradient-v`, `bg-violet-gradient`.
-Shadows: `shadow-gold-sm|gold|gold-lg`, `shadow-violet-sm|violet`.
-Class colours: `config/wow_classes.php` (Blizzard's own `RAID_CLASS_COLORS`).
-
-### Component classes (`resources/css/app.css`)
-
-`.linear-card` · `.sidebar-item(.active)` · `.page-hero` / `.page-eyebrow` / `.page-title` · `.chip(-on)` ·
-`.form-input|select|textarea|checkbox` ·
-`.page-section(-title|-desc)` · `.badge-green|amber|gold|blue|gray` ·
-`.tab-btn`/`.tab-active`/`.tab-inactive` · `.btn-primary|secondary|ghost|danger` ·
-`.ordering-list`/`.ordering-item` · `.prose-guide` (scoped on purpose — user-written content
-must never restyle the site).
-
-### Icons
-
-`<x-mc-icon name="icon-compass" class="w-6 h-6 text-gold"/>` inlines SVG from
-`public/images/icons/`, so `currentColor` and Tailwind `text-*` control the colour.
-
-**`<x-icon>` is taken by `blade-ui-kit/blade-icons` — always use `<x-mc-icon>`**, or you get
-"Svg by name ... not found".
-
-Available: `icon-complete`, `icon-compass`, `icon-scroll`, `icon-hourglass`, `icon-leaf`,
-`icon-starburst`, `icon-lightning-circle`, `icon-flask`, `icon-axis-hex`, `icon-diamond`,
-`icon-delta`, `badge-wow`, `badge-sc2`, `badge-lol`,
-`gem-mastered|strong|developing|weak|unknown`, `bg-arch`, `bg-constellation`.
-
-Also: `<x-spell-icon>`, `<x-class-icon>`, `<x-spec-icon>` (self-hosted, filename-keyed, with a
-plain placeholder — never a broken `<img>` — when `icon_name` is null), and
-`<x-ornament.corner position="tl|tr|bl|br">`.
+- **Trace to the root cause; don't shotgun-patch.**
+- **Flag, don't guess.** A confidently wrong number is worse than a visible hole, in curation and in prose.
+- **Verify against something independent.** A real screenshot, real captured data, a real in-game reading; a round trip through your own encoder proves nothing.
+- **Quantify before and after.** The numbers make a claim checkable.
+- **Don't trust a subagent's self-report.**
+- **Check `git status` on sibling files** before calling something pre-existing breakage: another session may be writing here.
+- **Curated game facts come from the domain expert or real observation**, never AI research. Arena-log cast evidence is direct observation.

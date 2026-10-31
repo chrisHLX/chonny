@@ -69,7 +69,6 @@ How MindCollector builds and continuously corrects its own model of "what spells
 |---|---|
 | Fetch class/spec/hero talent trees, filtering out the class-tree-bloat duplication | `data/talenttrees/fetch-talent-trees.php` |
 | Fetch PvP talents (bundled into the same per-spec API response) | same script — see its own `--skip-pvp` flag |
-| Cross-check PvP talents against SimC's own PvP-tagged records | `data/pvptalents/diff-against-simc.php` |
 | Import specializations | `ImportSpellData::importSpecializations()` |
 | Import talent trees + nodes | `importTalentTrees()`, `importTreeNodes()` |
 | Import PvP talents | `importPvpTalents()`, `resolvePvpTalentTargetSpell()` |
@@ -136,7 +135,7 @@ manually reviews and copies the relevant files over (see config/arena_logs.php's
 |---|---|---|
 | Pre-kill sequences (winning/losing comp + kill-target context) | `php artisan wow:record-kill-sequences --all` | `{archive}/kill-sequences/{class}/{spec}.jsonl` |
 | Accumulated cast-spell lists | `php artisan wow:extract-arena-spells --all` | `{archive}/spell-usage/{class}/{spec}.txt` |
-| Frequency-ranked self-buffs/target-debuffs in pre-kill windows — the non-obvious mechanics a cast sequence alone wouldn't show (Colossus Smash amplifying damage, Ancient Arts refunding combo points) | `php artisan wow:record-important-mechanics --all` | `{archive}/mechanics/{class}/{spec}.txt` |
+| Frequency-ranked self-buffs/target-debuffs in pre-kill windows — the non-obvious mechanics a cast sequence alone wouldn't show (Colossus Smash amplifying damage, Ancient Arts refunding combo points) | Now embedded in each rotation export by `php artisan wow:enrich-rotation-mechanics`; `wow:record-important-mechanics` was removed in 3f4098d | `{archive}/mechanics/{class}/{spec}.txt` |
 
 Pass `--window=N` consistently across kill-sequences and mechanics if you want both scoped to
 the same look-back (default 20s for both). `wow:extract-arena-spells --all` and

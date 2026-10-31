@@ -1,102 +1,132 @@
 # The doc map
 
-Every doc in the repo, by area, with its status. **Current**: true now, keep it true. **Reference**:
-true, consulted for a task. **Dormant**: describes code that is still there but not the current
-direction. **History**: a record; never edit it to change the past. Start with `CLAUDE.md` (rules
-and orientation), then the area you are working in.
+Every doc in the repo, by area and status. **Current**: true now, keep it true. **Reference**: true,
+consulted for a task. **Dormant**: describes code still there but not the direction. **History**: a
+record; never edit it to change the past. **Which docs to read for a task** is `CLAUDE.md`'s "Before
+you start" table.
 
-**Which docs to read for a task** is CLAUDE.md's "Before you start" table. **An older doc that
-cites "CLAUDE.md's ... section"** by a name CLAUDE.md no longer has ("Canonical Context Module
-Template", "AI-Assisted Game Data", "Synergies tab", "the patch row is relabelled in place") is
-pointing at the old 790KB CLAUDE.md: search `docs/history/engineering-log-2026.md` for that
-heading. Rules are still cited by number and still mean the same rule.
+**Keeping it clean.** `CLAUDE.md` is loaded every session, so it stays a library: a fact goes there
+only if most sessions need it, and everything else goes in the doc for its area with a pointer. A doc
+over about 30KB opens with what to read for which question, and is read by section. A new doc gets a
+row here the day it is written. Moved text goes to `docs/history/` rather than being deleted.
 
-## The current work: the coach, the match review, the desktop app
+**A doc or comment citing "CLAUDE.md"** means `docs/rules.md` when it gives a rule number. When it names
+a section ("Canonical Context Module Template", "AI-Assisted Game Data", "Synergies tab", "the patch
+row is relabelled in place"), that is the old 790KB CLAUDE.md: search
+`docs/history/engineering-log-2026.md` for the heading.
+
+## Working in the repo
 
 | File | Status | What it is |
 |---|---|---|
-| `match-review.md` | current | **Start here.** The whole area on one page: the pipeline, what is measured where, what to re-run after a change, the data files that decide what is seen, the reading rules, the traps. |
-| `match-review-operations.md` | current | The method: the combat log's measured field offsets, what a go is, every measure and how it is taken, the three questions for defensives, the cooldown ledger, the tag audit. Read before measuring anything from a log. |
-| `match-review-analysis.md` | current | The findings, dated, with the numbers each rests on: what reviews of the user's games found, and the corrections to them. Read before claiming how an ability is used or why games were won or lost. |
-| `match-review-tools.md` | current | Every research tool in `tools/match-review/`, what it answers, and the one-off scripts worth rewriting. Read before writing a new analysis script. |
-| `tools/log-manager/README.md` | current | The desktop app (MindCollector Logs): every page, where its files live, how it syncs. |
-| `tools/app-pictures/README.md` | current | The pictures of the app on the front page and `/wow/app`: real pages with every name swapped out, and the two checks before committing new ones. |
-| `vision-experiment.md` | open experiment | Reading a game from the screen: what a frame alone can say, the [READ]/[INFER]/[PRIOR]/[UNKNOWN] protocol that keeps the answer honest, and frame 1's result. n=1, nothing diffed against a log yet. |
-| `guides-from-play.md` | current | How played games become guides, and the level-of-play rule. Read before drafting a guide from match data. |
-| `addon-upgrades.md` | current | What Chriso wants next from the capture side. Wants, not design. |
-| `docs/reviews/` | history | One-off reviews of a session (2026-10-01: Disc with LFG partners). |
-| `docs/international.md` | current | Players from other regions, China first: why their games show Chinese, what that breaks (no icons; arena frames that never show a button used), the fix (keep the spell id), reaching the site from China, and bringing the regions together. |
-| `docs/achievements.md` | proposal | Achievements and rewards (AI credits) for improving, not grinding: the rules, the kinds, the data model, and a first pass on Disc Priest dispels with real numbers. Not built. |
-| `docs/sc2/plan.md` | research | StarCraft II: where its game knowledge comes from (the game's data files, replays; Blizzard's API has no unit data), WoW's pieces mapped to SC2's, and a first build planner. Built so far: the unit data (`data/sc2/`) and the quizzes on it. |
-| `docs/ai/ask-about-this-game.md` | proposal | "Ask about this game": a model answering from stored measurements. Not built. |
+| `CLAUDE.md` | current | The library: vision, task routing, commands, environment, one-line rule and trap indexes. |
+| `docs/rules.md` | current | The full text of rules 1–39, the traps, the test baseline, working practice. |
+| `docs/architecture.md` | current | How the pieces fit, security, and every smaller service, command and page. |
+| `docs/design-system.md` | current | Tokens, component classes, icons, pickers. |
+
+## The current work: the match review and the desktop app
+
+| File | Status | What it is |
+|---|---|---|
+| `match-review.md` | current | **Start here.** The pipeline, what is measured where, what to re-run after a change, the data files that decide what is seen, the reading rules, the traps. |
+| `match-review-operations.md` (77KB) | current | The method: the log's field offsets, what a go is, every measure, the three questions for defensives, the cooldown ledger, the tag audit. By section. |
+| `match-review-analysis.md` (120KB) | current | The findings, dated, with their numbers and corrections. By section. |
+| `match-review-tools.md` | current | Every tool in `tools/match-review/`. Read before writing a new analysis script. |
+| `tools/desktop-app/README.md` | current | The downloadable app, on Chriso's PC since 2026-10-25: what it does, recording, YouTube, updates, publishing a version, the Store build. |
+| `tools/log-manager/README.md` | dormant | The PowerShell app, retired from the PC on 2026-10-25, kept in the repo. |
+| `tools/wow-addon/MindCollectorArenaLog/README.md` | reference | The addon that turns combat logging on in arena. |
+| `tools/app-pictures/README.md` | current | The pictures of the app on the front page and `/wow/app`, and the two checks before committing new ones. |
+| `guides-from-play.md` | current | How played games become guides; the level-of-play rule. |
+| `docs/class-mechanics.md` | current | How a spec's buffs and talents combine (empowered casts), how to measure every spec, and what to redo after a patch. Live on PvP Guides for 25 specs. |
+| `docs/combat-log-ingest.md` | reference | How a combat log becomes archive games (rule 12 in full). |
+| `docs/international.md` | current | Players from other regions, China first: why their games showed Chinese, the English rule, the name table, reaching the site from China. |
 | `docs/testers/how-to-test.md` | current | How a tester runs the app. |
-| `docs/combat-log-ingest.md` | reference | How a combat log becomes archive games: team ids, Solo Shuffle, Feign Death, the checks behind each (rule 12 in full). |
-| `.claude/skills/review-games/SKILL.md` | current | The project skill for reviewing games: loads itself on a "look at my games" request. |
-| `docs/training.md` | current | Training (`/training`): reasoning lessons with notes that come back for a revisit, the reasoning check, claims, the course-feedback page; how to write a lesson. |
+| `docs/training.md` | current | Training (`/training`): lessons, notes that come back, the reasoning check, claims; how to write a lesson. |
+| `.claude/skills/review-games/SKILL.md` | current | The project skill for "look at my games". |
+| `docs/vision-experiment.md` | open experiment | Reading a game from the screen, and the [READ]/[INFER]/[PRIOR]/[UNKNOWN] protocol. n=1. |
+| `docs/achievements.md` | proposal | Achievements for improving, not grinding. Not built. |
+| `docs/ai/ask-about-this-game.md` | proposal | A model answering from stored measurements. Not built. |
+| `docs/sc2/plan.md` | research | StarCraft II: where its knowledge comes from, WoW's pieces mapped across. Built so far: `data/sc2/` and its quizzes. |
+| `docs/reviews/` | history | One-off session reviews. |
+| `addon-upgrades.md` | history | The capture-side wants of Sep 2026; all shipped. |
+
+## What the whole archive shows
+
+Read before writing advice, a tip, or a "how the top plays" line.
+
+| File | Status | What it is |
+|---|---|---|
+| `docs/learning/population-findings-2026-10-06.md` | current | Which basics kill and which habits go with winning, across 795 games, with confound checks; how tips re-test themselves (`wow:population`). |
+| `docs/learning/population-findings-2026-10-07-trading.md` | current | Defensive trading: what wins is an answer back for the next go. Stacked reductions multiply. |
+| `docs/learning/population-findings-2026-10-07-top-tier.md` | current | The best games: how the top plays differently, and that what decides its games is the same as below. |
+| `docs/learning/population-findings-2026-10-10-decisions.md` | current | Defensive choices judged within the same situation; "pressed nothing" is a choice. |
+| `docs/learning/fear-windows-2026-10-14.md` | current | Exploration: positions in the log and Psychic Scream windows. |
+| `data/arena-logs/GCD and Go Analysis.md` | reference | Reconstructing what is pressed in a go from raw casts, correcting for off-GCD abilities (2026-08-17). |
+| `data/arena-logs/spec-cooldowns/` | reference | Per-spec cooldown tables from the archive. |
 
 ## The arena model
 
 | File | Status | What it is |
 |---|---|---|
-| `arena-structure.md` | current | The arena model (v2): the go/anti-go cycle, the answer pool, the rating ladder. Every claim tagged [OBS]/[DER]/[HYP]; a [HYP] may be written, never asserted as settled. Read before building anything that scores a plan. |
-| `data/brain/brain.md` | current | The model's public statement, rendered at `/brain`. Every machine guide is written from it. Section ids are comment anchors: never change one. |
-| `docs/arena/structure-summary.md` | current | The arena model on one page: the objective (a relative resource state, Part 20), the vocabulary, the match as setup → go → answer → reset, and what the analysis measures at each stage. Each line names its Part of `arena-structure.md`. |
+| `docs/arena/structure-summary.md` | current | **Start here.** The model on one page, each line naming its Part. |
+| `arena-structure.md` (75KB) | current | The model (v2): the go/anti-go cycle, the answer pool, the rating ladder, tagged [OBS]/[DER]/[HYP]. A [HYP] is never asserted. By Part. |
+| `data/brain/brain.md` | current | The public statement at `/brain`; every machine guide is written from it. Section ids are comment anchors: never change one. |
 | `arena-open-questions.md` | current | What the model still guesses at, and who could settle each. |
-| `docs/arena/synthesis-process.md` | current | How to fold a new prose source (a transcript) into the model. |
-| `docs/arena/sources/` | history | Verbatim sources with a distilled note each. Never edit a raw file. The Gemini source had the model in its context, so its agreement is not corroboration. |
+| `docs/arena/synthesis-process.md` | current | How to fold a new prose source into the model. |
 | `docs/arena/sources/chriso-scope-correction-2026-09-23.md` | reference | Why the model proposes rather than refuses. Read before adding any "we can't do X" line. |
+| `docs/arena/sources/` | history | Verbatim sources, each with a distilled note. Never edit a raw file. The Gemini source had the model in its context, so its agreement is not corroboration. |
 
 ## Guides and the site
 
 | File | Status | What it is |
 |---|---|---|
-| `docs/site-pages.md` | reference | Every page of the site, what it does and the decisions behind it. |
+| `docs/site-pages.md` | reference | Every main page, what it does and the decisions behind it. |
 | `docs/machine-guides.md` | reference | Machine-drafted guides: authoring, feedback export, talent feasibility, bylines. |
-| `guide-writing.md` | current | How to draft a machine guide: the length budget, the shape, the errors past drafts made. |
-| `docs/guides/` | history | Reader feedback on machine guides, exported before re-authoring. |
-| `monetisation-read.md` | history | Usage against the case for a paywall (2026-09-24, with a 09-29 update): mostly crawlers, distribution is the problem. |
+| `guide-writing.md` | current | How to draft one: the length budget, the shape, past errors. |
+| `data/claudes-guides/README.md` | reference | The hand-authored JSON guides at `/wow/claudes-guides`. |
+| `data/claudes-counters/README.md` | reference | The spell counters behind `/spell-counters`. |
 | `data/matchup-profiles/README.md` | reference | The Matchup Lab's per-spec artifact, and what it cannot say. |
+| `data/kick-priorities/README.md` | reference | Which casts are worth a kick, and how the archive checks them. |
+| `docs/guides/` | history | Reader feedback on machine guides, exported before re-authoring. |
+| `monetisation-read.md` | history | Usage against the case for a paywall (Sep 2026): mostly crawlers, distribution is the problem. |
 
 ## The spell data
 
 | File | Status | What it is |
 |---|---|---|
-| `game-data.md` | reference | The import pipeline, folder by folder, with dated findings. |
-| `spell-acquisition-model.md` | reference | Every acquisition script, command and service. |
+| `spell-acquisition-model.md` | reference | Every acquisition script, command and service. Start here. |
+| `game-data.md` (75KB) | reference | The import pipeline, folder by folder, with dated findings. By section. |
 | `wow-spells.md`, `wow-spell-data-model.md` | reference | How spell data works and is modelled. |
 | `knowledge-gaps.md` | current | Append-only ledger of module prose against spell data. |
-| `docs/class-mechanics.md` | draft spec | How a spec's buffs, talents and abilities combine (empowered casts), the process for working it out, and what to redo after a patch. Disc and Feral measured so far. |
 | `spellbook-verifier.md` | reference | Addon export → snapshot → diff. |
+| `tools/wow-addon/MindCollectorExport/README.md`, `data/spellbook-exports/README.md` | reference | The spellbook export addon, and where its files go. |
 | `dr-categories-reference.md` | reference, **stale** | A 2022 community DR guide, confirmed wrong twice. A hint, never authority. |
-| `arena-log-api.md` | history | The WoWArenaLogs API shape. That API is closed to us (rule 12). |
+| `arena-log-api.md` | history | The WoWArenaLogs API. Closed to us (rule 12). |
+| `data/spelldata/filtered/*/INDEX.md` | generated | Per-class spell indexes, 60–95KB each. Grep them; never read one whole. |
 
 ## Production
 
 | File | Status | What it is |
 |---|---|---|
-| `DEPLOY.md` | current | The deploy runbook, and how to work on production from Claude Code. |
-| `docs/youtube-verification.md` | current | YouTube uploads: adding a tester today, and what Google needs to open it to everyone (consent screen fields, the scope reason, the demo video, the API quota and two data gaps). |
+| `DEPLOY.md` | current | The box, connecting, permissions, what `deploy.sh` does, env vars, nginx. |
+| `docs/youtube-verification.md` | current | YouTube uploads: adding a tester, and what Google needs to open it to everyone. |
+| `docs/history/deploy-incidents-2026.md` | history | The 2026-08-28 incident in full, and the password method that ended on 2026-10-29. |
 
 ## The dormant learning platform
 
 | File | Status | What it is |
 |---|---|---|
-| `system-integration.md` | reference | How the learning platform could join the spell data, guides and the model. Read before touching modules, diagnostics or mastery. |
+| `system-integration.md` | reference | How the learning platform could join the spell data and the model. Read before touching modules, diagnostics or mastery. |
 | `docs/learning/question-audit-2026-09-24.md` | history | The authored question bank checked against the model and the spell data. |
-| `docs/learning/population-findings-2026-10-06.md` | current | Learning from every player in every game: which basics kill and which habits go with winning across 795 games and 1,193 players, with confound checks; macro and positioning signals from failed casts; how the tips re-test themselves (`wow:population`). Read before writing advice or a new tip. |
-| `docs/learning/population-findings-2026-10-07-trading.md` | current | Defensive trading across the archive: higher-rated sides spend more answers per go, but within a band spending more loses; what wins is an answer back for the next go. Stacked reductions multiply. Behind the Matchup Lab's trading plan and the Basics tab's answers line. |
-| `docs/learning/population-findings-2026-10-10-decisions.md` | current | Defensive choices judged within the same situation (big answers down, the attackers' pressure): answer a heavy go when drained, hold into a light one; the early-against-late split reverses like with like and is not advice yet. VERSION 12 adds per-answer ownership, lockout, target health and gear: "pressed nothing" is a choice (8 of 4,426 forced), gear barely matters, and Pain Suppression timing inside a go changes nothing. |
-| `docs/learning/fear-windows-2026-10-14.md` | current | Exploration, not a feature: positions are in the log and usable (with their age); Psychic Scream windows split into reachable, feasible and valuable; the immunity list, fear breaks (12% by your own team) and held-window follow-ups are measurable; whether expert priests use comparable windows better is not answerable yet (too few Gladiator Disc Priests). |
-| `docs/learning/population-findings-2026-10-07-top-tier.md` | current | The best games in the archive: rounds tiered by team MMR and by players' arena history (Blizzard profiles). How the top plays differently (opens sooner, goes together, kicks and CCs more, gives no free exchanges), and that what decides its games is the same as below: healer CC per go, defensives drawn, answers held. Read before writing a "how the top plays" line. |
 | `module-upload-format.md` | dormant | Shape for module content. |
 | `app/Http/Services/playstyle-analysis.md` | reference | The per-player talent-usage read. |
-| `docs/archive/` | dormant | Prompt inventory, the research feature, the next-step loop, the quiz runner, a seeder audit and a pricing audit: the earlier learning-platform direction. Kept for how the code works; not the direction. |
+| `docs/archive/` | dormant | Prompts, the research feature, the next-step loop, the quiz runner, a seeder audit, a pricing audit. How the code works; not the direction. |
 
 ## Ideas and history
 
 | File | Status | What it is |
 |---|---|---|
-| `VISION.md` | current | The vision and its history (stage 7, 2026-10-23: improvement as a validated feedback loop; Training built). |
-| `docs/vision/feedback-loops-2026-10-23.md` | history | Chriso's account, verbatim, of what building MindCollector taught about feedback, cause and validation. Condensed in `VISION.md`. |
+| `VISION.md` | current | The vision and its history. |
+| `docs/vision/feedback-loops-2026-10-23.md` | history | Chriso's account, verbatim, of what building MindCollector taught. Condensed in `VISION.md`. |
 | `docs/future-plan.md` | current | Ideas flagged for later, deliberately not built. |
-| `docs/history/engineering-log-2026.md` | history | The archive: every dated write-up, bug trace and reversal through 2026-09-18 (790KB, the old CLAUDE.md). Search it for the *why*. |
+| `docs/history/engineering-log-2026.md` | history | Every dated write-up, bug trace and reversal through 2026-09-18 (790KB, the old CLAUDE.md). Search it for the *why*. |

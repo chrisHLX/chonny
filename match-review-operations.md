@@ -13,6 +13,19 @@ the analysis versions and what to re-run after a change, is `match-review.md`.**
 
 ---
 
+**Read this by section (77KB).** `Grep "^##"` for the headings, then `Read` with an offset.
+
+| You need | Heading |
+|---|---|
+| Field offsets, event shapes | What the combat log actually says; COMBATANT_INFO |
+| What a go is, the categories | Categories come first; Go effectiveness: drain, then kill |
+| Defensives | Reading defensives: three questions, in order; Was it warranted; The cooldown ledger |
+| Why a loss was flagged | Where the losses came from: the rules |
+| Tags and hidden cooldowns | Making the tags better from play; Tagged, but cast under an id the timeline cannot see |
+| Reviewing a set of games | How to review a set of games; What is useful, and what misleads |
+| One player's spec | How one player plays their spec; One spec, side by side |
+| Known problems | Known defects and open items |
+
 ## Where it stands: the review path (written 2026-09-27)
 
 The game-review path below is unchanged. Everything built on it since (the per-round analysis

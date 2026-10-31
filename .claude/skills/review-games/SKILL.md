@@ -6,8 +6,9 @@ description: Review a player's own WoW arena games from the MindCollector archiv
 # Reviewing arena games
 
 The method the match review settled, often after getting it wrong first. The map of the code is
-`match-review.md`; the method is `match-review-operations.md`; past findings are
-`match-review-analysis.md`. Read the map first.
+`match-review.md`: read it first. The method (`match-review-operations.md`, 77KB) and past findings
+(`match-review-analysis.md`, 120KB) are read by section: each opens with what to read for which
+question, or `Grep` for the player, spec or spell. What the whole archive shows is in `docs/learning/`.
 
 ## 1. Find the games
 
