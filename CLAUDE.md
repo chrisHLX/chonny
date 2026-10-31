@@ -50,6 +50,7 @@ never have to remind you of these.
 | **The arena model, the Brain, a new prose source** | `arena-structure.md`, `arena-open-questions.md`, `docs/arena/synthesis-process.md` | `docs/arena/sources/chriso-scope-correction-2026-09-23.md` before adding any "we can't" line |
 | **Matchup Lab** | `data/matchup-profiles/README.md`, rules 31–34 | `arena-structure.md` Part 19 |
 | **Spell data, import, a patch** | `game-data.md`, `spell-acquisition-model.md`, rules 1–11 | `knowledge-gaps.md`; `dr-categories-reference.md` is stale, a hint only |
+| **Class mechanics**: empowered casts, how buffs and talents combine, what a patch changed for a spec | `docs/class-mechanics.md` | Work one spike out from its tooltips first; pool only to ask how often or what is better |
 | **A page of the site** | `docs/site-pages.md`, the Web/Livewire rules (22–30) | Check the real URL serves (Environment, "Looking at a page") |
 | **Deploy or check production** | `DEPLOY.md`, "Working from Claude Code" | Production runs whatever branch is checked out there; push it, then `./deploy.sh` |
 | **Training**: a lesson, notes and revisits, the reasoning check, claims | `docs/training.md`, `VISION.md` "What building it has taught" | Label invented figures as illustrative; a claim about the game cites the archive. Lesson files need no front-end build |

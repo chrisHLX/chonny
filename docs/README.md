@@ -65,6 +65,7 @@ heading. Rules are still cited by number and still mean the same rule.
 | `spell-acquisition-model.md` | reference | Every acquisition script, command and service. |
 | `wow-spells.md`, `wow-spell-data-model.md` | reference | How spell data works and is modelled. |
 | `knowledge-gaps.md` | current | Append-only ledger of module prose against spell data. |
+| `docs/class-mechanics.md` | draft spec | How a spec's buffs, talents and abilities combine (empowered casts), the process for working it out, and what to redo after a patch. Disc and Feral measured so far. |
 | `spellbook-verifier.md` | reference | Addon export → snapshot → diff. |
 | `dr-categories-reference.md` | reference, **stale** | A 2022 community DR guide, confirmed wrong twice. A hint, never authority. |
 | `arena-log-api.md` | history | The WoWArenaLogs API shape. That API is closed to us (rule 12). |
