@@ -54,6 +54,8 @@ class CoachController extends Controller
             'shuffle' => $comps->filter(fn ($c) => str_starts_with($c['key'], 'shuffle:'))->values()->all(),
             // The strongest player of each spec met, by class (ClassLibraryService).
             'classes' => collect($index['classes'] ?? [])->sortBy(fn ($c) => $c['class'].'|'.$c['spec'].'|'.$c['name'])->groupBy('class')->all(),
+            // Who you queue with and your own comps (TeammatesService), best record first.
+            'teammates' => collect($index['teammates'] ?? [])->sortBy('order')->values()->all(),
             'mirrors' => app(LobbyReviewService::class)->index($user),
             'hasKey' => $user->coach_token_at !== null,
             'keyMadeAt' => $user->coach_token_at,

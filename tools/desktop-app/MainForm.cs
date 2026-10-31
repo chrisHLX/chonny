@@ -120,7 +120,8 @@ internal sealed class MainForm : Form
         ("Games", "", "Your games"),
         ("Videos", "\uE714", "Your videos"),
         ("Improve", "", "What to work on"),
-        ("Comps", "", "Comps you've played"),
+        ("Comps", "", "Comps you've faced"),
+        ("Teammates", "\uE716", "Who you play with"),
         ("Classes", "", "Players you've met"),
     ];
 
@@ -553,6 +554,7 @@ internal sealed class MainForm : Form
                 case "Games": LoadVideos(); rows.AddRange(GameRows(r, VideoFor).Where(g => _settings.Character == null || g.Title.StartsWith(_settings.Character + " ·", StringComparison.Ordinal))); break;
                 case "Improve": rows.AddRange(SimpleRows(r, "characters", e => (Str(e, "name"), $"{Str(e, "spec")} · {Str(e, "games")} games", null, 0))); break;
                 case "Comps": rows.AddRange(SimpleRows(r, "comps", e => (Str(e, "name"), $"{Str(e, "games")} games", $"{Str(e, "won")}-{Str(e, "lost")}", Math.Sign(Num(e, "won") - Num(e, "lost"))))); break;
+                case "Teammates": rows.AddRange(SimpleRows(r, "teammates", e => (Str(e, "name"), $"{Str(e, "games")} games", $"{Str(e, "won")}-{Str(e, "lost")}", Math.Sign(Num(e, "won") - Num(e, "lost"))), "order")); break;
                 case "Classes": rows.AddRange(SimpleRows(r, "classes", e => (Str(e, "name"), $"{Str(e, "spec")} · {Str(e, "why")}", null, 0))); break;
             }
         }
@@ -632,10 +634,11 @@ internal sealed class MainForm : Form
         }
     }
 
-    private static IEnumerable<LibraryRow> SimpleRows(JsonElement r, string key, Func<JsonElement, (string Title, string Sub, string? Badge, int Tone)> shape)
+    private static IEnumerable<LibraryRow> SimpleRows(JsonElement r, string key, Func<JsonElement, (string Title, string Sub, string? Badge, int Tone)> shape, string? orderBy = null)
     {
         if (!r.TryGetProperty(key, out var set) || set.ValueKind != JsonValueKind.Object) yield break;
-        foreach (var entry in set.EnumerateObject().OrderByDescending(e => Num(e.Value, "games")))
+        var entries = orderBy != null ? set.EnumerateObject().OrderBy(e => Num(e.Value, orderBy)) : set.EnumerateObject().OrderByDescending(e => Num(e.Value, "games"));
+        foreach (var entry in entries)
         {
             var (title, sub, badge, tone) = shape(entry.Value);
             yield return new LibraryRow(title, sub, badge, tone, Str(entry.Value, "file"));

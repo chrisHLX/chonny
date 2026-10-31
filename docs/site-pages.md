@@ -186,6 +186,9 @@
   `partials/empowered-casts`, `App\Support\EmpoweredCasts`): cast, buff, result, from the committed
   `data/empowered-casts` files (`docs/class-mechanics.md`). The same box is on `/wow/pvp/{class}/{spec}`,
   which is where the sidebar's PvP Guides leads.
+- **Teammates** (`/wow/coach` tab and the app, 2026-11-01): `TeammatesService`, `desktop/teammates`,
+  `desktop/teammate`. Who you queue with in 2v2 and 3v3, your record with each, your own comps' records,
+  and what we already hold on a teammate. Never asks Blizzard. Best win rate first from 10 games.
 - `/spell/{id}` — `SpellDetail`; shared `SpellDetailModal` everywhere else.
 - `/wow/quiz/basics/{class?}/{spec?}` — `Quizzes\BasicsCheckPlay`, the **arena basics check**: one
   question per basic (the comp page's list), built by `App\Quiz\Wow\BasicsCheck` from the spec the

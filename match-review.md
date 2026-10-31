@@ -43,6 +43,7 @@ Chriso's PC; see tools/desktop-app/README.md, "Developer mode"):
         ├─ ImprovementService   → improve-{hash}.html one per character (Improve page)
         ├─ CompLibraryService   → comp-{hash}.html    one per enemy comp (Comps page)
         ├─ ClassLibraryService  → player-{hash}.html  the strongest player of each spec met (Classes page)
+        ├─ TeammatesService     → teammates.html, mate-{hash}.html  who you queue with, your comps (Teammates page)
         └─ index.json            what the app lists; each set redrawn only when its signature changes
   ▼
 The app shows those pages in WebView2, so grid and flex are fine (2026-10-29). Only the retired
@@ -283,7 +284,7 @@ line in `match-review-tools.md`, so the next session runs one command instead of
   with an unbalanced `@endif`.
 - **The card cleanup deletes every `.html` that is not a game**, unless it is excluded by prefix.
   It deleted the Improve pages on every run until `improve-` and `comp-` were exempted (`player-`
-  too, since the Classes page). A new kind of page needs its prefix added there.
+  too, since the Classes page, and `mate-` and `teammates.html` since the Teammates page). A new kind of page needs its prefix added there.
 - **The classification's `byName` is keyed by the exact name**, not lower case. Lower case missed
   Roar of Sacrifice.
 - **A talent is not "ready" unless the player took it**: profiles are the default build

@@ -47,7 +47,7 @@ class BuildGameCards extends Command
     /** The exit code of a build that ran out of --budget: what it drew is saved, the rest is next time. */
     public const UNFINISHED = 3;
 
-    public function handle(GameCardService $cards, ImprovementService $improve, CompLibraryService $library, ClassLibraryService $classLibrary): int
+    public function handle(GameCardService $cards, ImprovementService $improve, CompLibraryService $library, ClassLibraryService $classLibrary, \App\Http\Services\TeammatesService $teammates): int
     {
         $user = $this->resolveUser();
 
@@ -95,7 +95,7 @@ class BuildGameCards extends Command
             // A game no longer synced (wow:forget-games) loses its card. The Improve pages are not
             // cards and are tidied below.
             foreach (File::glob("{$dir}/*.html") as $file) {
-                if (! preg_match('/^(improve|comp|player)-/', basename($file)) && ! isset($built['games'][basename($file, '.html')])) {
+                if (! preg_match('/^((improve|comp|player|mate)-|teammates\.html$)/', basename($file)) && ! isset($built['games'][basename($file, '.html')])) {
                     File::delete($file);
                 }
             }
@@ -230,6 +230,40 @@ class BuildGameCards extends Command
             }
         }
         $took['classes'] = microtime(true) - $clock;
+        $clock = microtime(true);
+
+        // The Teammates page: who you queue with and your own comps (TeammatesService).
+        $mates = $index['teammates'] ?? [];
+        $mateSig = $teammates->signature($user);
+        $haveMates = $dir && ($index['mateSig'] ?? null) === $mateSig && ! $this->option('fresh')
+            && collect($mates)->every(fn ($m) => File::exists("{$dir}/{$m['file']}"));
+        if (! $haveMates && $overBudget()) {
+            return $stop('Teammates');
+        }
+        if (! $haveMates) {
+            $mates = [];
+            $page = $teammates->build($user);
+            if ($page['overview']) {
+                $mates['all'] = array_diff_key($page['overview'], ['html' => true, 'mates' => true]) + ['name' => 'All teammates', 'order' => 0, 'file' => 'teammates.html'];
+                if ($dir) {
+                    File::put("{$dir}/teammates.html", $page['overview']['html']);
+                }
+            }
+            foreach ($page['mates'] as $key => $m) {
+                $mates[$key] = array_diff_key($m, ['html' => true]);
+                if ($dir) {
+                    File::put("{$dir}/{$m['file']}", $m['html']);
+                }
+            }
+            if ($dir) {
+                foreach (File::glob("{$dir}/mate-*.html") as $file) {
+                    if (! in_array(basename($file), array_column($mates, 'file'), true)) {
+                        File::delete($file);
+                    }
+                }
+            }
+        }
+        $took['teammates'] = microtime(true) - $clock;
 
         $games = array_map(fn ($g) => array_diff_key($g, ['html' => true]), $built['games']);
         $parts = [
@@ -237,6 +271,7 @@ class BuildGameCards extends Command
             'characters' => $characters, 'improveSig' => $improveSig,
             'comps' => $comps, 'compSig' => $compSig,
             'classes' => $classes, 'classSig' => $classSig,
+            'teammates' => $mates, 'mateSig' => $mateSig,
         ];
 
         if (! $dir) {

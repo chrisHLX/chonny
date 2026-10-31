@@ -32,7 +32,7 @@
 
 @php
     // The app's pages need something built; until then the Upload tab is where a player starts.
-    $pageTabs = ['games' => 'Games', 'improve' => 'Improve', 'comps' => 'Comps', 'shuffle' => 'Shuffle', 'classes' => 'Classes'];
+    $pageTabs = ['games' => 'Games', 'improve' => 'Improve', 'comps' => "Comps you've faced", 'shuffle' => 'Shuffle', 'teammates' => 'Teammates', 'classes' => 'Classes'];
     $startTab = $newKey || ! $built ? 'upload' : 'games';
 @endphp
 
@@ -62,7 +62,7 @@
         </div>
 
         {{-- The app's pages: a list on the left, the page in a frame on the right. --}}
-        <div x-show="['games', 'improve', 'comps', 'shuffle', 'classes'].includes(tab)" x-cloak>
+        <div x-show="['games', 'improve', 'comps', 'shuffle', 'teammates', 'classes'].includes(tab)" x-cloak>
             @if (! $built)
                 <div class="linear-card p-6">
                     <p class="text-[16px] text-ink font-bold">No games here yet</p>
@@ -104,6 +104,17 @@
                                 @endforelse
                             </div>
                         @endforeach
+                        {{-- Who you queue with and your own comps (TeammatesService). --}}
+                        <div x-show="tab === 'teammates'" x-cloak>
+                            @forelse ($teammates as $mate)
+                                <button type="button" class="coach-item" :class="file === '{{ $mate['file'] }}' && 'on'" @click="file = '{{ $mate['file'] }}'">
+                                    <span style="color: {{ $mate['color'] ?? 'inherit' }}">{{ $mate['name'] }}</span>
+                                    <span class="sub">{{ $mate['games'] }} game{{ $mate['games'] === 1 ? '' : 's' }} &middot; {{ $mate['won'] }}-{{ $mate['lost'] }}</span>
+                                </button>
+                            @empty
+                                <p class="text-[12px] text-ink-subtle p-2">None yet.</p>
+                            @endforelse
+                        </div>
                         {{-- The strongest player of each spec you met, by class. --}}
                         <div x-show="tab === 'classes'" x-cloak>
                             @forelse ($classes as $class => $players)
