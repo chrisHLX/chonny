@@ -1,0 +1,43 @@
+{
+    "kind": "healing",
+    "ladderUnit": "cast",
+    "build": "12.1.0",
+    "measured": "2026-10-31",
+    "rounds": 1069,
+    "players": 181,
+    "payoff": "Penance",
+    "stacked": ["Harsh Discipline", "Power of the Dark Side", "Archangel"],
+    "method": "Hand measure, docs/class-mechanics.md worked example: Penance casts on an enemy, whole-cast gross healing at 3 Atonements against the player's plain casts. The general scan only sees hit sizes, so it cannot find Harsh Discipline's extra bolts.",
+    "empowers": [
+        {
+            "buff": "Harsh Discipline",
+            "from": ["Evangelism", "Power Word: Radiance"],
+            "chain": true,
+            "link": 1.0,
+            "results": [{"bolts": 4, "extra": 2, "label": "bolts"}]
+        },
+        {
+            "buff": "Power of the Dark Side",
+            "from": ["Mind Blast", "Shadow Word: Pain"],
+            "link": 0.86,
+            "results": [{"ability": "Penance", "x": 1.29, "label": "bolt size"}]
+        },
+        {
+            "buff": "Archangel",
+            "from": ["Evangelism"],
+            "link": 0.99,
+            "results": [{"ability": "Atonement", "x": 1.18, "label": "Atonement healing"}]
+        }
+    ],
+    "ladder": [
+        {"up": [0, 0, 0], "x": 1.0, "hits": 2111},
+        {"up": [0, 0, 1], "x": 1.08, "hits": 843},
+        {"up": [1, 0, 0], "x": 1.22, "hits": 232},
+        {"up": [0, 1, 0], "x": 1.23, "hits": 881},
+        {"up": [1, 0, 1], "x": 1.38, "hits": 546},
+        {"up": [0, 1, 1], "x": 1.45, "hits": 345},
+        {"up": [1, 1, 0], "x": 1.66, "hits": 119},
+        {"up": [1, 1, 1], "x": 1.83, "hits": 213}
+    ],
+    "note": "Mostly Oracle builds; Voidweaver is not measured yet."
+}

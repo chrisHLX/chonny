@@ -1,0 +1,29 @@
+{
+    "kind": "damage",
+    "build": "12.1.0.69933",
+    "measured": "2026-10-31",
+    "rounds": 91,
+    "players": 29,
+    "payoff": "Frost Strike",
+    "stacked": [],
+    "empowers": [
+        {
+            "buff": "Icy Onslaught",
+            "from": [
+                "Frost Strike"
+            ],
+            "link": 0.5,
+            "results": [
+                {
+                    "ability": "Frost Strike",
+                    "x": 1.15,
+                    "hits": 291
+                }
+            ],
+            "held": 5.1,
+            "tooltip": "Next Frost Strike stronger"
+        }
+    ],
+    "ladder": [],
+    "note": null
+}

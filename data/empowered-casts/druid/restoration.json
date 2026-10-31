@@ -1,0 +1,39 @@
+{
+    "kind": "healing",
+    "build": "12.1.0.69933",
+    "measured": "2026-10-31",
+    "rounds": 559,
+    "players": 96,
+    "payoff": "Lifebloom",
+    "stacked": [],
+    "empowers": [
+        {
+            "buff": "Genesis",
+            "from": [
+                "Rejuvenation"
+            ],
+            "link": 0.62,
+            "results": [
+                {
+                    "ability": "Lifebloom",
+                    "x": 1.15,
+                    "hits": 14549
+                },
+                {
+                    "ability": "Rejuvenation",
+                    "x": 1.12,
+                    "hits": 7614
+                },
+                {
+                    "ability": "Rejuvenation (Germination)",
+                    "x": 1.12,
+                    "hits": 4847
+                }
+            ],
+            "held": 12,
+            "tooltip": "Heal over time effects heal more"
+        }
+    ],
+    "ladder": [],
+    "note": null
+}

@@ -2,8 +2,8 @@
 
 *Moved here word for word from CLAUDE.md on 2026-10-04, to keep that file to orientation and rules.*
 
-- `/` — `Landing` (public front page: feed of game plans + comp shortcuts). Signed-in players
-  redirect to `dashboard`.
+- `/` — MindCollector's home, a card per game (`PlatformController`, `config/platform.php`). `/wow` —
+  `Landing`, WoW's home; signed-in players go to `dashboard`.
 - `/dashboard` — `Home` (feed, your guides, characters, friends).
 - `/wow/matchup-lab` — `MatchupLab`. Two comps on one clock: whose kill window opens first,
   and why, read at three execution settings. The only page answering a question about a
@@ -65,7 +65,8 @@
   **Layout (2026-10-29):** the page's heading is two short lines and on a wide screen the frame takes
   the rest of the window, because watching and reading the timeline at once was hard under the old
   tall heading. Inside the Watch page the players sit beside the video when the window is 1,100px+
-  wide, under it in their own scrolling box otherwise, and fold away; the video's height has five
+  wide, under it in their own scrolling box otherwise (below 760px not a box: the teams stack and the
+  page scrolls, or the enemy team reads as missing, 2026-10-30), and fold away; the video's height has five
   steps. All of that is remembered per viewer (`localStorage` `watch-view`) and applies to every Watch
   page, the app's and Your games' too. Previous/Next and the Show filters stay under the video as it
   scrolls; how to read it and the line-up fold, open only when the video must be lined up by hand; a
@@ -78,7 +79,7 @@
   log is discarded straight after) and every player's experience is looked up by a queued job. See
   `match-review-operations.md`, "Your analysis".
 - `/wow/comps` (was `/wow-comps`) — `WowComps`, the heaviest page. Tabs: **How to play it** (first
-  and default since 2026-10-05), **Basics**, Offensive/Defensive Cooldowns, Mobility, Crowd Control, PvP Talents,
+  and default since 2026-10-05), **Learn** (was Basics until 2026-10-30), Offensive/Defensive Cooldowns, Mobility, Crowd Control, PvP Talents,
   Burst Window. Since 2026-10-05 the eight basics are their own **Basics** tab, so "How to play
   it" starts with the team's plan (Chriso: people had to scroll past the basics to reach it).
   - **This season's top comps** (`CompBoard`, lazy, below the three slots). From 2026-10-19 to
@@ -98,7 +99,7 @@
     and a side column with the newest games, the top US ladder players seen in uploads and the app.
     **Filters (2026-10-30**, Chriso: "the grey filtering boxes on top look too basic and we don't have
     the ability to filter properly"): one panel for Comps and Games (`livewire.partials.leaderboard-filters`),
-    a pill row for the band and dropdowns, with the chosen filters as chips under it and Clear all.
+    pill rows and the spec picker (`x-spec-picker`, 2026-10-30: no native dropdowns, `docs/design-system.md`), with the chosen filters as chips under it and Clear all.
     Both tabs: a spec on either team (`?spec=`) and the region (`?from=`, `CompLeaderboardService::REGIONS`,
     Chinese games apart). Comps: experience (`?exp=`) and sort (`?sort=` games, rate, mmr, exp; a win
     rate over fewer than 5 games sorts last). Games: a comp on either team (`?comp=`) and the game's
@@ -121,7 +122,7 @@
     - **Players** (Chriso: "integrate the comps to player leaderboard"). Blizzard's 3v3 ladder
       for a region (`?region=`, `pvp_leaderboard_entries`, pulled daily), 100 at a time to 1,000,
       each player with the comps they were seen playing in uploaded games, linked to the comp's
-      card; "Seen in uploaded games" keeps only those. Blizzard's ladder names no team, so "seen
+      card and their newest games linked straight to each game (`LADDER_GAMES`); "Seen in uploaded games" keeps only those. Blizzard's ladder names no team, so "seen
       on" is only ever what uploads show, and the page says how many ladder players have any. A
       3v3 entry names no spec, so a player's class comes from their Shuffle or Blitz entry, else
       from their games. Matched on region, realm (`RealmDirectory::key()`) and name
@@ -139,7 +140,10 @@
   - **One game** (`/wow/comps/game/{round}`, `CompGame`, 2026-10-27): the app's game card for one
     game of the board, every name swapped for its spec before it is drawn and the page checked for
     any name left (`GameCardService::pooled()`; it is not shown if one is). Basics, Moments, Checks,
-    Worth a look, notes and the timeline stay off: they are about the uploader's own play. Opened from
+    Worth a look and notes stay off: they are about the uploader's own play. **The timeline** is one button
+    above the card (`/wow/comps/game-timeline/{round}`, `CompLeaderboardService::timeline()`, 2026-10-30): the
+    Watch page with every name swapped and never the uploader's video, whose channel would name them;
+    same access rule. A player's page links here too ("Open game"). Opened from
     each game on a comp card ("Open this game", read as the team facing the comp, `?as=them` when
     that is the side the uploader played) and from the Games tab (read as the uploader's team).
     `?from`/`?vs` name the comp card the back link returns to, landing on its games (`#games`);
@@ -147,8 +151,9 @@
     with their page (a ResizeObserver), so a phone never scrolls inside a frame; the comp card's
     open game no longer ran off a phone's edge once `tr.more td` stopped padding the tables inside it.
   - **How to play it** (`CompPlaybookService`, `livewire/partials/comp-playbook.blade.php`) is a
-    plain guide for a player new to arena, so someone can be sent to the page: eight basics (shown
-    alone before anything is picked, with a link to the basics check), then for the three specs:
+    plain guide for a player new to arena, so someone can be sent to the page. The eight basics went on
+    2026-10-30 for a **Learn your spec** card (the **Learn** tab): PvP guides and class quizzes, with a guide
+    and a quiz for each picked spec. Then for the three specs:
     lock their healer, the buttons to press together, control for the player being killed,
     defensives one at a time, kicks and peels. Everything from play is in
     `data/comp-playbook/go-cooldowns.json` (`wow:go-cooldowns`):
@@ -177,7 +182,9 @@
   `Guides\Show`; plus `/browse-guides` and `/claudes-comp-guides` (machine-drafted).
 - `/pvp-guides/{class}/{spec}` — `PvpGuides` shell over four panels (kit, burst, spells,
   counters), each also standalone at `/class-guide`, `/burst-guides`, `/spells`,
-  `/spell-counters`.
+  `/spell-counters`. Under the header, the **Empowered spells** box (2026-11-01,
+  `partials/empowered-casts`, `App\Support\EmpoweredCasts`): cast, buff, result, from the committed
+  `data/empowered-casts` files (`docs/class-mechanics.md`).
 - `/spell/{id}` — `SpellDetail`; shared `SpellDetailModal` everywhere else.
 - `/wow/quiz/basics/{class?}/{spec?}` — `Quizzes\BasicsCheckPlay`, the **arena basics check**: one
   question per basic (the comp page's list), built by `App\Quiz\Wow\BasicsCheck` from the spec the

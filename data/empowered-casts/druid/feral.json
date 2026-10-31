@@ -1,0 +1,134 @@
+{
+    "kind": "damage",
+    "build": "12.1.0.69933",
+    "measured": "2026-10-31",
+    "rounds": 235,
+    "players": 37,
+    "payoff": "Ferocious Bite",
+    "stacked": [
+        "Tiger's Fury",
+        "Coiled to Spring",
+        "Unseen Predator's Craving"
+    ],
+    "empowers": [
+        {
+            "buff": "Tiger's Fury",
+            "from": [],
+            "link": 0.67,
+            "results": [
+                {
+                    "ability": "Rake",
+                    "x": 1.23,
+                    "hits": 7239
+                },
+                {
+                    "ability": "Rip",
+                    "x": 1.22,
+                    "hits": 9917
+                },
+                {
+                    "ability": "Bursting Growth",
+                    "x": 1.15,
+                    "hits": 7684
+                },
+                {
+                    "ability": "Ferocious Bite",
+                    "x": 1.15,
+                    "hits": 918
+                }
+            ],
+            "held": 15,
+            "tooltip": "All attacks 15% stronger"
+        },
+        {
+            "buff": "Coiled to Spring",
+            "from": [],
+            "link": 0.21,
+            "results": [
+                {
+                    "ability": "Ferocious Bite",
+                    "x": 1.15,
+                    "hits": 605
+                }
+            ],
+            "held": 7.2,
+            "tooltip": "Next Ferocious Bite 10% stronger"
+        },
+        {
+            "buff": "Unseen Predator's Craving",
+            "from": [],
+            "link": 0.23,
+            "results": [
+                {
+                    "ability": "Bursting Growth",
+                    "x": 1.14,
+                    "hits": 8064
+                },
+                {
+                    "ability": "Ferocious Bite",
+                    "x": 1.13,
+                    "hits": 999
+                }
+            ],
+            "held": 10,
+            "tooltip": "Damage increased after Unseen Attacks"
+        }
+    ],
+    "ladder": [
+        {
+            "up": [
+                0,
+                0,
+                0
+            ],
+            "x": 1,
+            "hits": 83
+        },
+        {
+            "up": [
+                1,
+                0,
+                0
+            ],
+            "x": 1.07,
+            "hits": 24
+        },
+        {
+            "up": [
+                0,
+                0,
+                1
+            ],
+            "x": 1.11,
+            "hits": 39
+        },
+        {
+            "up": [
+                0,
+                1,
+                0
+            ],
+            "x": 1.14,
+            "hits": 24
+        },
+        {
+            "up": [
+                1,
+                0,
+                1
+            ],
+            "x": 1.39,
+            "hits": 86
+        },
+        {
+            "up": [
+                1,
+                1,
+                1
+            ],
+            "x": 1.5,
+            "hits": 28
+        }
+    ],
+    "note": "Rake from stealth is not separated yet, so Rake and Rip read above the tooltip."
+}

@@ -1,0 +1,181 @@
+{
+    "kind": "damage",
+    "build": "12.1.0.69933",
+    "measured": "2026-10-31",
+    "rounds": 433,
+    "players": 145,
+    "payoff": "Mortal Strike",
+    "stacked": [
+        "Sharpen Blade",
+        "Avatar",
+        "Executioner's Precision"
+    ],
+    "empowers": [
+        {
+            "buff": "Opportunist",
+            "from": [],
+            "link": 0.1,
+            "results": [
+                {
+                    "ability": "Overpower",
+                    "x": 1.22,
+                    "hits": 1313
+                }
+            ],
+            "held": 4.8,
+            "tooltip": "Next Overpower 20% stronger"
+        },
+        {
+            "buff": "Cut to the Bone",
+            "from": [
+                "Mortal Strike"
+            ],
+            "link": 1,
+            "results": [
+                {
+                    "ability": "Deep Wounds",
+                    "x": 1.22,
+                    "hits": 1362
+                }
+            ],
+            "held": 8,
+            "tooltip": "Deep Wounds stronger after a Mortal Strike crit"
+        },
+        {
+            "buff": "Sharpen Blade",
+            "from": [
+                "Colossus Smash"
+            ],
+            "link": 1,
+            "results": [
+                {
+                    "ability": "Mortal Strike",
+                    "x": 1.18,
+                    "hits": 1075
+                }
+            ],
+            "held": 3.8,
+            "tooltip": "Next Mortal Strike 15% stronger"
+        },
+        {
+            "buff": "Avatar",
+            "from": [],
+            "link": 0.57,
+            "results": [
+                {
+                    "ability": "Mortal Strike",
+                    "x": 1.15,
+                    "hits": 2258
+                },
+                {
+                    "ability": "Execute",
+                    "x": 1.14,
+                    "hits": 1039
+                },
+                {
+                    "ability": "Slayer's Strike",
+                    "x": 1.14,
+                    "hits": 829
+                },
+                {
+                    "ability": "Overpower",
+                    "x": 1.12,
+                    "hits": 1027
+                }
+            ],
+            "held": 20,
+            "tooltip": "All damage 20% stronger"
+        },
+        {
+            "buff": "Executioner's Precision",
+            "from": [
+                "Execute"
+            ],
+            "link": 1,
+            "results": [
+                {
+                    "ability": "Mortal Strike",
+                    "x": 1.15,
+                    "hits": 1992
+                }
+            ],
+            "held": 4.2,
+            "tooltip": "Next Mortal Strike 35% stronger, stacking twice"
+        }
+    ],
+    "ladder": [
+        {
+            "up": [
+                0,
+                0,
+                0
+            ],
+            "x": 1,
+            "hits": 2654
+        },
+        {
+            "up": [
+                0,
+                1,
+                0
+            ],
+            "x": 1.07,
+            "hits": 1049
+        },
+        {
+            "up": [
+                1,
+                0,
+                0
+            ],
+            "x": 1.14,
+            "hits": 201
+        },
+        {
+            "up": [
+                1,
+                1,
+                0
+            ],
+            "x": 1.22,
+            "hits": 238
+        },
+        {
+            "up": [
+                0,
+                0,
+                1
+            ],
+            "x": 1.26,
+            "hits": 922
+        },
+        {
+            "up": [
+                1,
+                0,
+                1
+            ],
+            "x": 1.44,
+            "hits": 291
+        },
+        {
+            "up": [
+                0,
+                1,
+                1
+            ],
+            "x": 1.45,
+            "hits": 366
+        },
+        {
+            "up": [
+                1,
+                1,
+                1
+            ],
+            "x": 1.65,
+            "hits": 195
+        }
+    ],
+    "note": null
+}

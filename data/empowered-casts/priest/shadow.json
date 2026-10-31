@@ -1,0 +1,32 @@
+{
+    "kind": "damage",
+    "build": "12.1.0.69933",
+    "measured": "2026-10-31",
+    "rounds": 175,
+    "players": 65,
+    "payoff": "Shadowy Apparition",
+    "stacked": [],
+    "empowers": [
+        {
+            "buff": "Voidform",
+            "from": [],
+            "link": 0.99,
+            "results": [
+                {
+                    "ability": "Shadowy Apparition",
+                    "x": 1.13,
+                    "hits": 4194
+                },
+                {
+                    "ability": "Shadeburst",
+                    "x": 1.12,
+                    "hits": 2395
+                }
+            ],
+            "held": 20,
+            "tooltip": "Spell damage 20% stronger"
+        }
+    ],
+    "ladder": [],
+    "note": null
+}

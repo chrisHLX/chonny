@@ -1,0 +1,51 @@
+{
+    "kind": "healing",
+    "build": "12.1.0.69933",
+    "measured": "2026-10-31",
+    "rounds": 294,
+    "players": 74,
+    "payoff": "Holy Shock",
+    "stacked": [],
+    "empowers": [
+        {
+            "buff": "Avenging Wrath",
+            "from": [],
+            "link": 0.81,
+            "results": [
+                {
+                    "ability": "Holy Shock",
+                    "x": 1.21,
+                    "hits": 1049
+                },
+                {
+                    "ability": "Flash of Light",
+                    "x": 1.16,
+                    "hits": 497
+                },
+                {
+                    "ability": "Eternal Flame",
+                    "x": 1.15,
+                    "hits": 3247
+                }
+            ],
+            "held": 30,
+            "tooltip": "Healing 15% stronger"
+        },
+        {
+            "buff": "Divine Purpose",
+            "from": [],
+            "link": 0.38,
+            "results": [
+                {
+                    "ability": "Word of Glory",
+                    "x": 1.14,
+                    "hits": 163
+                }
+            ],
+            "held": 2.6,
+            "tooltip": "Next Holy Power spender 15% stronger"
+        }
+    ],
+    "ladder": [],
+    "note": null
+}

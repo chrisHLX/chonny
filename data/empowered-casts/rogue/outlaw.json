@@ -1,0 +1,29 @@
+{
+    "kind": "damage",
+    "build": "12.1.0.69933",
+    "measured": "2026-10-31",
+    "rounds": 44,
+    "players": 8,
+    "payoff": "Pistol Shot",
+    "stacked": [],
+    "empowers": [
+        {
+            "buff": "Opportunity",
+            "from": [
+                "Sinister Strike"
+            ],
+            "link": 1,
+            "results": [
+                {
+                    "ability": "Pistol Shot",
+                    "x": 1.28,
+                    "hits": 532
+                }
+            ],
+            "held": 2.5,
+            "tooltip": "Next Pistol Shot stronger"
+        }
+    ],
+    "ladder": [],
+    "note": null
+}

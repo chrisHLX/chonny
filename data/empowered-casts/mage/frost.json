@@ -1,0 +1,79 @@
+{
+    "kind": "damage",
+    "build": "12.1.0.69933",
+    "measured": "2026-10-31",
+    "rounds": 197,
+    "players": 58,
+    "payoff": "Shatter",
+    "stacked": [
+        "Fingers of Frost",
+        "Permafrost Lances"
+    ],
+    "empowers": [
+        {
+            "buff": "Fingers of Frost",
+            "from": [],
+            "link": 0.28,
+            "results": [
+                {
+                    "ability": "Shatter",
+                    "x": 1.25,
+                    "hits": 1104
+                }
+            ],
+            "held": 4.5,
+            "tooltip": "Next Ice Lance Shatters harder"
+        },
+        {
+            "buff": "Permafrost Lances",
+            "from": [
+                "Frozen Orb"
+            ],
+            "link": 0.91,
+            "results": [
+                {
+                    "ability": "Shatter",
+                    "x": 1.11,
+                    "hits": 2011
+                }
+            ],
+            "held": 15,
+            "tooltip": "Shatter 10% stronger during Frozen Orb"
+        }
+    ],
+    "ladder": [
+        {
+            "up": [
+                0,
+                0
+            ],
+            "x": 1,
+            "hits": 2462
+        },
+        {
+            "up": [
+                1,
+                0
+            ],
+            "x": 1.02,
+            "hits": 536
+        },
+        {
+            "up": [
+                0,
+                1
+            ],
+            "x": 1.16,
+            "hits": 1408
+        },
+        {
+            "up": [
+                1,
+                1
+            ],
+            "x": 1.34,
+            "hits": 499
+        }
+    ],
+    "note": null
+}

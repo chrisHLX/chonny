@@ -1,0 +1,32 @@
+{
+    "kind": "damage",
+    "build": "12.1.0.69933",
+    "measured": "2026-10-31",
+    "rounds": 56,
+    "players": 22,
+    "payoff": "Lunar Storm",
+    "stacked": [],
+    "empowers": [
+        {
+            "buff": "Takedown",
+            "from": [],
+            "link": 0.85,
+            "results": [
+                {
+                    "ability": "Lunar Storm",
+                    "x": 1.19,
+                    "hits": 268
+                },
+                {
+                    "ability": "Boomstick",
+                    "x": 1.11,
+                    "hits": 186
+                }
+            ],
+            "held": 10,
+            "tooltip": "You and your pet deal 20% more damage"
+        }
+    ],
+    "ladder": [],
+    "note": null
+}

@@ -1,0 +1,109 @@
+{
+    "kind": "damage",
+    "build": "12.1.0.69933",
+    "measured": "2026-10-31",
+    "rounds": 375,
+    "players": 102,
+    "payoff": "Cobra Shot",
+    "stacked": [
+        "Bestial Wrath",
+        "Wyvern's Cry"
+    ],
+    "empowers": [
+        {
+            "buff": "Bestial Wrath",
+            "from": [],
+            "link": 0.86,
+            "results": [
+                {
+                    "ability": "Cobra Shot",
+                    "x": 1.22,
+                    "hits": 2079
+                },
+                {
+                    "ability": "Auto Shot",
+                    "x": 1.2,
+                    "hits": 3460
+                },
+                {
+                    "ability": "Stampede",
+                    "x": 1.15,
+                    "hits": 11207
+                },
+                {
+                    "ability": "Barbed Shot",
+                    "x": 1.14,
+                    "hits": 7652
+                }
+            ],
+            "held": 15,
+            "tooltip": "All damage 20% stronger"
+        },
+        {
+            "buff": "Wyvern's Cry",
+            "from": [
+                "Kill Command"
+            ],
+            "link": 0.28,
+            "results": [
+                {
+                    "ability": "Auto Shot",
+                    "x": 1.15,
+                    "hits": 2428
+                },
+                {
+                    "ability": "Stampede",
+                    "x": 1.12,
+                    "hits": 5706
+                },
+                {
+                    "ability": "Barbed Shot",
+                    "x": 1.11,
+                    "hits": 5395
+                },
+                {
+                    "ability": "Cobra Shot",
+                    "x": 1.11,
+                    "hits": 1679
+                }
+            ],
+            "held": 15,
+            "tooltip": "You and your pets deal more damage"
+        }
+    ],
+    "ladder": [
+        {
+            "up": [
+                0,
+                0
+            ],
+            "x": 1,
+            "hits": 1927
+        },
+        {
+            "up": [
+                0,
+                1
+            ],
+            "x": 1.15,
+            "hits": 594
+        },
+        {
+            "up": [
+                1,
+                0
+            ],
+            "x": 1.27,
+            "hits": 937
+        },
+        {
+            "up": [
+                1,
+                1
+            ],
+            "x": 1.46,
+            "hits": 829
+        }
+    ],
+    "note": null
+}

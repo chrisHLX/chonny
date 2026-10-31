@@ -1,0 +1,43 @@
+{
+    "kind": "damage",
+    "build": "12.1.0.69933",
+    "measured": "2026-10-31",
+    "rounds": 53,
+    "players": 22,
+    "payoff": "Arcane Missiles",
+    "stacked": [],
+    "empowers": [
+        {
+            "buff": "Overpowered Missiles",
+            "from": [],
+            "link": 0.32,
+            "results": [
+                {
+                    "ability": "Arcane Missiles",
+                    "x": 1.32,
+                    "hits": 1335
+                }
+            ],
+            "held": 2.6,
+            "tooltip": "Next Arcane Missiles stronger"
+        },
+        {
+            "buff": "Arcane Salvo",
+            "from": [
+                "Arcane Missiles"
+            ],
+            "link": 0.33,
+            "results": [
+                {
+                    "ability": "Arcane Barrage",
+                    "x": 1.27,
+                    "hits": 218
+                }
+            ],
+            "held": 5,
+            "tooltip": "Each wave of Missiles strengthens Arcane Barrage"
+        }
+    ],
+    "ladder": [],
+    "note": null
+}

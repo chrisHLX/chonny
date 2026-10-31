@@ -1,0 +1,29 @@
+{
+    "kind": "damage",
+    "build": "12.1.0.69933",
+    "measured": "2026-10-31",
+    "rounds": 248,
+    "players": 80,
+    "payoff": "Aimed Shot",
+    "stacked": [],
+    "empowers": [
+        {
+            "buff": "Bulletstorm",
+            "from": [
+                "Rapid Fire"
+            ],
+            "link": 0.56,
+            "results": [
+                {
+                    "ability": "Aimed Shot",
+                    "x": 1.13,
+                    "hits": 156
+                }
+            ],
+            "held": 7.4,
+            "tooltip": "Rapid Fire makes the next Aimed Shot stronger"
+        }
+    ],
+    "ladder": [],
+    "note": null
+}

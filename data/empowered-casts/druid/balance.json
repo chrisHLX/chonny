@@ -1,0 +1,143 @@
+{
+    "kind": "damage",
+    "build": "12.1.0.69933",
+    "measured": "2026-10-31",
+    "rounds": 128,
+    "players": 38,
+    "payoff": "Starfall",
+    "stacked": [
+        "Eclipse (Solar)",
+        "Eclipse (Lunar)",
+        "Akil'zon's Clarity"
+    ],
+    "empowers": [
+        {
+            "buff": "Eclipse (Solar)",
+            "from": [],
+            "link": 0.3,
+            "results": [
+                {
+                    "ability": "Starsurge",
+                    "x": 1.21,
+                    "hits": 988
+                },
+                {
+                    "ability": "Starfall",
+                    "x": 1.2,
+                    "hits": 7737
+                },
+                {
+                    "ability": "Shooting Stars",
+                    "x": 1.17,
+                    "hits": 3064
+                }
+            ],
+            "held": 20,
+            "tooltip": "Nature spells deal more damage"
+        },
+        {
+            "buff": "Eclipse (Lunar)",
+            "from": [],
+            "link": 0.38,
+            "results": [
+                {
+                    "ability": "Starsurge",
+                    "x": 1.2,
+                    "hits": 1057
+                },
+                {
+                    "ability": "Shooting Stars",
+                    "x": 1.17,
+                    "hits": 3428
+                },
+                {
+                    "ability": "Starfall",
+                    "x": 1.15,
+                    "hits": 8407
+                }
+            ],
+            "held": 20,
+            "tooltip": "Arcane spells deal more damage"
+        },
+        {
+            "buff": "Akil'zon's Clarity",
+            "from": [],
+            "link": 0.09,
+            "results": [
+                {
+                    "ability": "Starfall",
+                    "x": 1.15,
+                    "hits": 6391
+                }
+            ],
+            "held": 15,
+            "tooltip": "Damage increased in any Eclipse"
+        }
+    ],
+    "ladder": [
+        {
+            "up": [
+                1,
+                0,
+                0
+            ],
+            "x": 0.95,
+            "hits": 18
+        },
+        {
+            "up": [
+                0,
+                0,
+                0
+            ],
+            "x": 1,
+            "hits": 872
+        },
+        {
+            "up": [
+                0,
+                1,
+                0
+            ],
+            "x": 1.01,
+            "hits": 473
+        },
+        {
+            "up": [
+                1,
+                1,
+                0
+            ],
+            "x": 1.1,
+            "hits": 600
+        },
+        {
+            "up": [
+                1,
+                0,
+                1
+            ],
+            "x": 1.1,
+            "hits": 529
+        },
+        {
+            "up": [
+                1,
+                1,
+                1
+            ],
+            "x": 1.27,
+            "hits": 1366
+        },
+        {
+            "up": [
+                0,
+                1,
+                1
+            ],
+            "x": 1.27,
+            "hits": 859
+        }
+    ],
+    "note": null
+}

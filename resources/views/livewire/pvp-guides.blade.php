@@ -58,6 +58,8 @@
         </div>
     </div>
 
+    @include('partials.empowered-casts')
+
     {{-- Tab bar. Each tab is a real Livewire round trip (it swaps which lazy panel is mounted),
          so unlike WowComps' Alpine-only tab bar this needs no fetch() beacon to be tracked -
          PvpGuides::selectTab() logs it directly. A tab with no data on file for this spec is

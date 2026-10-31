@@ -1,0 +1,89 @@
+{
+    "kind": "damage",
+    "build": "12.1.0.69933",
+    "measured": "2026-10-31",
+    "rounds": 329,
+    "players": 114,
+    "payoff": "Necrotic Coil",
+    "stacked": [
+        "Sudden Doom",
+        "Essence of the Blood Queen"
+    ],
+    "empowers": [
+        {
+            "buff": "Sudden Doom",
+            "from": [],
+            "link": 0.12,
+            "results": [
+                {
+                    "ability": "Necrotic Coil",
+                    "x": 1.26,
+                    "hits": 4322
+                },
+                {
+                    "ability": "Death Coil",
+                    "x": 1.12,
+                    "hits": 1453
+                }
+            ],
+            "held": 4.1,
+            "tooltip": "Next Death Coil stronger"
+        },
+        {
+            "buff": "Essence of the Blood Queen",
+            "from": [
+                "Vampiric Strike"
+            ],
+            "link": 0.93,
+            "results": [
+                {
+                    "ability": "Necrotic Coil",
+                    "x": 1.16,
+                    "hits": 4554
+                },
+                {
+                    "ability": "Death Coil",
+                    "x": 1.12,
+                    "hits": 1829
+                }
+            ],
+            "held": 40.7,
+            "tooltip": "Death Coil stronger, stacking"
+        }
+    ],
+    "ladder": [
+        {
+            "up": [
+                0,
+                0
+            ],
+            "x": 1,
+            "hits": 1503
+        },
+        {
+            "up": [
+                0,
+                1
+            ],
+            "x": 1.17,
+            "hits": 409
+        },
+        {
+            "up": [
+                1,
+                0
+            ],
+            "x": 1.23,
+            "hits": 1395
+        },
+        {
+            "up": [
+                1,
+                1
+            ],
+            "x": 1.55,
+            "hits": 500
+        }
+    ],
+    "note": null
+}

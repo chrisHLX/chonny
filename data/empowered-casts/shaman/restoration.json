@@ -1,0 +1,29 @@
+{
+    "kind": "healing",
+    "build": "12.1.0.69933",
+    "measured": "2026-10-31",
+    "rounds": 121,
+    "players": 68,
+    "payoff": "Riptide",
+    "stacked": [],
+    "empowers": [
+        {
+            "buff": "Coalescing Water",
+            "from": [
+                "Healing Wave"
+            ],
+            "link": 0.69,
+            "results": [
+                {
+                    "ability": "Riptide",
+                    "x": 1.47,
+                    "hits": 2876
+                }
+            ],
+            "held": 3.7,
+            "tooltip": "Next Riptide 30% stronger, stacking twice"
+        }
+    ],
+    "ladder": [],
+    "note": null
+}

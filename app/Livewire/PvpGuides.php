@@ -278,6 +278,7 @@ class PvpGuides extends Component
             'classSpecs' => $this->classSpecs,
             'tabs' => self::TABS,
             'tabHasData' => $this->tabHasData,
+            'empowered' => \App\Support\EmpoweredCasts::forSpec($this->class?->slug, $this->spec?->slug),
             // The spec's guide counted from real games (SpecPvpController), when it has one.
             'specGuideUrl' => $this->spec?->external_spec_id && \App\Support\SpecPages::forSpec((int) $this->spec->external_spec_id)
                 ? route('spec-pvp.show', [$this->class->slug, $this->spec->slug]) : null,

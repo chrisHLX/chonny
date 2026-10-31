@@ -1,0 +1,110 @@
+{
+    "kind": "damage",
+    "build": "12.1.0.69933",
+    "measured": "2026-10-31",
+    "rounds": 171,
+    "players": 58,
+    "payoff": "Shadowstrike",
+    "stacked": [
+        "Lingering Darkness",
+        "The Rotten"
+    ],
+    "empowers": [
+        {
+            "buff": "Lingering Darkness",
+            "from": [
+                "Shadow Blades"
+            ],
+            "link": 0.12,
+            "results": [
+                {
+                    "ability": "Lashe Macabre",
+                    "x": 1.25,
+                    "hits": 179
+                },
+                {
+                    "ability": "Secret Technique",
+                    "x": 1.22,
+                    "hits": 179
+                },
+                {
+                    "ability": "Eviscerate",
+                    "x": 1.14,
+                    "hits": 352
+                },
+                {
+                    "ability": "Shadowstrike",
+                    "x": 1.13,
+                    "hits": 216
+                }
+            ],
+            "held": 30,
+            "tooltip": "Shadow damage stronger after Shadow Blades"
+        },
+        {
+            "buff": "The Rotten",
+            "from": [
+                "Shadow Dance"
+            ],
+            "link": 0.94,
+            "results": [
+                {
+                    "ability": "Shadowstrike",
+                    "x": 1.21,
+                    "hits": 1669
+                }
+            ],
+            "held": 6.5,
+            "tooltip": "Next Shadowstrike stronger"
+        },
+        {
+            "buff": "Flawless Form",
+            "from": [],
+            "link": 0.27,
+            "results": [
+                {
+                    "ability": "Eviscerate",
+                    "x": 1.11,
+                    "hits": 2759
+                }
+            ],
+            "held": 21.4,
+            "tooltip": "Finishing moves stronger"
+        }
+    ],
+    "ladder": [
+        {
+            "up": [
+                0,
+                0
+            ],
+            "x": 1,
+            "hits": 1161
+        },
+        {
+            "up": [
+                1,
+                0
+            ],
+            "x": 1.15,
+            "hits": 132
+        },
+        {
+            "up": [
+                0,
+                1
+            ],
+            "x": 1.47,
+            "hits": 1212
+        },
+        {
+            "up": [
+                1,
+                1
+            ],
+            "x": 1.64,
+            "hits": 48
+        }
+    ],
+    "note": null
+}

@@ -1,0 +1,29 @@
+{
+    "kind": "damage",
+    "build": "12.1.0.69933",
+    "measured": "2026-10-31",
+    "rounds": 242,
+    "players": 75,
+    "payoff": "Rising Sun Kick",
+    "stacked": [],
+    "empowers": [
+        {
+            "buff": "Unbroken Rhythm",
+            "from": [
+                "Fists of Fury"
+            ],
+            "link": 0.47,
+            "results": [
+                {
+                    "ability": "Rising Sun Kick",
+                    "x": 1.15,
+                    "hits": 207
+                }
+            ],
+            "held": 5.1,
+            "tooltip": "Next Rising Sun Kick stronger"
+        }
+    ],
+    "ladder": [],
+    "note": null
+}

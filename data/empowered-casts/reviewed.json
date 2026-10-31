@@ -1,0 +1,152 @@
+{
+    "_about": "What reaches a page. tools/match-review/empowered.php proposes; this decides. A buff is approved only when its tooltip states a direct increase to the hit measured, and the measurement fits it. 'only' keeps results on abilities the tooltip covers. 'from' overrides the press found in the log; an empty list means it procs. See docs/class-mechanics.md.",
+    "reviewed": "2026-11-01",
+    "specs": {
+        "256": {
+            "handMeasured": true
+        },
+        "102": {
+            "approve": {
+                "Eclipse (Solar)": {"from": [], "tooltip": "Nature spells deal more damage"},
+                "Eclipse (Lunar)": {"from": [], "tooltip": "Arcane spells deal more damage"},
+                "Akil'zon's Clarity": {"from": [], "tooltip": "Damage increased in any Eclipse"}
+            }
+        },
+        "103": {
+            "payoff": "Ferocious Bite",
+            "approve": {
+                "Tiger's Fury": {"from": [], "tooltip": "All attacks 15% stronger"},
+                "Coiled to Spring": {"from": [], "tooltip": "Next Ferocious Bite 10% stronger"},
+                "Unseen Predator's Craving": {"from": [], "tooltip": "Damage increased after Unseen Attacks"}
+            },
+            "note": "Rake from stealth is not separated yet, so Rake and Rip read above the tooltip."
+        },
+        "105": {
+            "approve": {
+                "Genesis": {"only": ["Lifebloom", "Rejuvenation", "Rejuvenation (Germination)"], "from": ["Rejuvenation"], "tooltip": "Heal over time effects heal more"}
+            }
+        },
+        "251": {
+            "approve": {
+                "Icy Onslaught": {"only": ["Frost Strike"], "from": ["Frost Strike"], "tooltip": "Next Frost Strike stronger"}
+            }
+        },
+        "252": {
+            "approve": {
+                "Sudden Doom": {"only": ["Necrotic Coil", "Death Coil"], "from": [], "tooltip": "Next Death Coil stronger"},
+                "Essence of the Blood Queen": {"only": ["Necrotic Coil", "Death Coil"], "from": ["Vampiric Strike"], "tooltip": "Death Coil stronger, stacking"}
+            }
+        },
+        "253": {
+            "payoff": "Cobra Shot",
+            "approve": {
+                "Bestial Wrath": {"from": [], "tooltip": "All damage 20% stronger"},
+                "Wyvern's Cry": {"from": ["Kill Command"], "tooltip": "You and your pets deal more damage"}
+            }
+        },
+        "254": {
+            "approve": {
+                "Bulletstorm": {"only": ["Aimed Shot"], "from": ["Rapid Fire"], "tooltip": "Rapid Fire makes the next Aimed Shot stronger"}
+            }
+        },
+        "255": {
+            "approve": {
+                "Takedown": {"only": ["Lunar Storm", "Boomstick"], "from": [], "tooltip": "You and your pet deal 20% more damage"}
+            }
+        },
+        "258": {
+            "approve": {
+                "Voidform": {"only": ["Shadowy Apparition", "Shadeburst"], "from": [], "tooltip": "Spell damage 20% stronger"}
+            }
+        },
+        "259": {
+            "approve": {
+                "Fatebound Coin (Heads)": {"from": ["Envenom"], "tooltip": "Attacks stronger until you flip Tails"},
+                "Lucky Coin": {"from": [], "tooltip": "Coin bonuses 50% stronger"},
+                "Finish the Job": {"from": ["Deathmark"], "tooltip": "All damage 10% stronger during Deathmark"}
+            }
+        },
+        "260": {
+            "approve": {
+                "Opportunity": {"only": ["Pistol Shot"], "from": ["Sinister Strike"], "tooltip": "Next Pistol Shot stronger"}
+            }
+        },
+        "261": {
+            "approve": {
+                "The Rotten": {"only": ["Shadowstrike"], "from": ["Shadow Dance"], "tooltip": "Next Shadowstrike stronger"},
+                "Flawless Form": {"only": ["Eviscerate"], "from": [], "tooltip": "Finishing moves stronger"},
+                "Lingering Darkness": {"from": ["Shadow Blades"], "tooltip": "Shadow damage stronger after Shadow Blades"}
+            }
+        },
+        "263": {
+            "approve": {
+                "Lightning Strikes": {"only": ["Stormstrike"], "from": ["Lightning Bolt"], "tooltip": "Next Stormstrike stronger"}
+            }
+        },
+        "264": {
+            "approve": {
+                "Coalescing Water": {"only": ["Riptide"], "from": ["Healing Wave"], "tooltip": "Next Riptide 30% stronger, stacking twice"}
+            }
+        },
+        "265": {
+            "approve": {
+                "Nightfall": {"only": ["Drain Soul"], "from": [], "tooltip": "Next Drain Soul stronger"}
+            }
+        },
+        "269": {
+            "approve": {
+                "Unbroken Rhythm": {"only": ["Rising Sun Kick"], "from": ["Fists of Fury"], "tooltip": "Next Rising Sun Kick stronger"}
+            }
+        },
+        "270": {
+            "approve": {
+                "Balanced Stratagem": {"only": ["Enveloping Mist"], "from": ["Rushing Wind Kick"], "tooltip": "Next Fire or Nature spell stronger"}
+            }
+        },
+        "577": {
+            "approve": {
+                "Empowered Eye Beam": {"only": ["Eye Beam"], "from": ["The Hunt"], "tooltip": "The Hunt makes the next Eye Beam stronger"},
+                "Exergy": {"from": ["Vengeful Retreat"], "tooltip": "Damage stronger after Vengeful Retreat or The Hunt"},
+                "Demon Soul": {"from": [], "tooltip": "Damage stronger after a Demon's soul"}
+            }
+        },
+        "62": {
+            "approve": {
+                "Arcane Salvo": {"only": ["Arcane Barrage"], "from": ["Arcane Missiles"], "tooltip": "Each wave of Missiles strengthens Arcane Barrage"},
+                "Overpowered Missiles": {"only": ["Arcane Missiles"], "from": [], "tooltip": "Next Arcane Missiles stronger"}
+            }
+        },
+        "64": {
+            "approve": {
+                "Permafrost Lances": {"only": ["Shatter"], "from": ["Frozen Orb"], "tooltip": "Shatter 10% stronger during Frozen Orb"},
+                "Fingers of Frost": {"only": ["Shatter"], "from": [], "tooltip": "Next Ice Lance Shatters harder"}
+            }
+        },
+        "65": {
+            "approve": {
+                "Avenging Wrath": {"only": ["Holy Shock", "Flash of Light", "Eternal Flame"], "from": [], "tooltip": "Healing 15% stronger"},
+                "Divine Purpose": {"only": ["Word of Glory"], "from": [], "tooltip": "Next Holy Power spender 15% stronger"}
+            }
+        },
+        "70": {
+            "approve": {
+                "Avenging Wrath": {"only": ["Crusading Strikes", "Highlord's Judgment"], "from": [], "tooltip": "Damage 15% stronger"}
+            }
+        },
+        "71": {
+            "payoff": "Mortal Strike",
+            "approve": {
+                "Sharpen Blade": {"only": ["Mortal Strike"], "from": ["Colossus Smash"], "tooltip": "Next Mortal Strike 15% stronger"},
+                "Executioner's Precision": {"only": ["Mortal Strike"], "from": ["Execute"], "tooltip": "Next Mortal Strike 35% stronger, stacking twice"},
+                "Avatar": {"from": [], "tooltip": "All damage 20% stronger"},
+                "Opportunist": {"only": ["Overpower"], "from": [], "tooltip": "Next Overpower 20% stronger"},
+                "Cut to the Bone": {"only": ["Deep Wounds"], "from": ["Mortal Strike"], "tooltip": "Deep Wounds stronger after a Mortal Strike crit"}
+            }
+        },
+        "72": {
+            "approve": {
+                "Hack and Slash": {"only": ["Raging Blow"], "from": ["Rampage"], "tooltip": "Next Raging Blow 20% stronger"}
+            }
+        }
+    }
+}

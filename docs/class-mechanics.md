@@ -1,7 +1,8 @@
 # Class mechanics: how a spec's output works
 
-Status: draft spec, 2026-10-31. Disc Priest and Feral Druid have been measured by hand. Nothing here
-is built into the site yet (see "What is not built").
+Status: current, 2026-11-01. 25 specs have an Empowered spells box on PvP Guides, from 46 reviewed
+buffs. Disc Priest was measured by hand; the other 24 came through the general tool. See "What is not
+built" for the rest.
 
 This is the process for working out how a spec's buffs, talents and abilities combine, recording it,
 and redoing it when a patch changes them. Guides, the match review and player reads can then all use
@@ -69,6 +70,58 @@ A measured effect needs a mechanism before it counts. Each must pass:
 - It holds with the other buffs held equal. Harsh Discipline first looked like 11% bigger bolts. It is
   ×1.00: it travels with Archangel in goes.
 - The result holds on more than one player, across separate sessions.
+
+## Running it for every spec
+
+```bash
+php -d memory_limit=3G tools/match-review/empowered.php scan <dir>     # every raw log into per-spec hit files, about 15 min
+php -d memory_limit=3G tools/match-review/empowered.php report <dir>   # candidates with tooltips in <dir>/candidates.txt, about 8 min
+# read candidates.txt, then record decisions in data/empowered-casts/reviewed.json
+php -d memory_limit=4G tools/match-review/empowered.php build <dir>    # data/empowered-casts/{class}/{spec}.json
+php tools/match-review/empowered.php spike "<Name-Realm-US>" <match> "<Ability>"   # one game, hit by hit
+```
+
+`<dir>` holds player names, so it stays out of the repo. The committed files hold none.
+
+**The scan and report never decide.** A buff reaches a page only when `reviewed.json` approves it,
+the same split as `tagaudit.php`. `only` limits it to abilities the tooltip covers, `from` overrides
+the press found in the log (empty means it procs), and `payoff` picks the ability for the stacked bars.
+
+Each candidate has to lift a main ability by at least ×1.07, with 60 hits on each side, 3 players, and
+both halves of the players showing it. The buff's name must also belong to the class's talents or spells.
+
+Approval needs both: the tooltip states a direct increase to the hit measured, and the number fits.
+Of 297 candidates that passed every automatic check, 43 were approved, about one in seven. So the
+automatic checks are not enough, and this step cannot be skipped.
+
+**What fools a hit-size comparison.** All of these passed the automatic checks:
+
+- **Damage scaled by a resource.** Finishers scale with combo points, so a buff that arrives with more
+  points looks like a damage buff. Subtlety's Eviscerate showed ×1.48 for Ancient Arts, which only
+  shortens two cooldowns.
+- **Hits that depend on crits.** Fire's Ignite grows from crits, so nearly everything read as a multiplier
+  on it, up to ×2.3. Fire has no box for this reason.
+- **Crit and haste buffs.** Hits measured exclude crits, so a crit buff can't raise them. Strategic
+  Infusion's ×1.23 on Rake and Killing Machine's ×1.39 on Obliterate are false, probably standing in for
+  something that arrives at the same moment.
+- **The buff being the same event as the hit.** Ability names can cover several kinds of hit: Riptide's
+  initial heal and its ticks, Feral Frenzy's hit and its bleed.
+- **Healing that depends on the target.** Healing taken changes with what's on the ally, and heals over
+  time pile up when a team is in trouble, so a defensive like Pain Suppression or Frenzied Regeneration
+  appears to raise healing. Preservation's Emerald Communion read ×3.7 on Lifebind. Healers came out
+  worst: besides Disc, four got one or two buffs, and Holy Priest and Preservation got none.
+- **The tooltip not covering it.** A buff can be real and the ability wrong. Voidform's 20% reads ×1.66 on
+  Shadow Word: Madness, which has its own scaling, so only the hits close to the tooltip were kept.
+
+**The two numbers answer different questions.** A row holds the other buffs apart. The stacked bars are
+raw medians. They can disagree: Coalescing Water is ×1.47 on its row and ×1.05 in raw bars, because
+Riptide's ticks are in there. So the bars only show for two or more buffs, with a note that others may
+also be up, and a single-buff spec has no bars.
+
+**Only hit size is measured generally.** Disc needed a hand measure because Harsh Discipline adds bolts,
+which the general tool can't see. Any buff that adds hits, or shortens a cast, or ramps across a channel
+is missed or misread. Teachings of the Monastery reads ×5.29 on Blackout Kick and Momentum Boost ×1.99
+on Fists of Fury. Both are real mechanics, but not ones a size comparison can state, so neither is listed.
 
 ## After a patch
 
@@ -183,11 +236,23 @@ Traps found while measuring this, all checked on real lines:
 
 ## What is not built
 
-The measurements so far came from one-off scripts. To make this a real system:
+Built: the tool (`tools/match-review/empowered.php`, plus `disc-penance.php`, `disc-radiance.php` and
+`disc-timers.php` for Disc's hand measures), the review file, and the box on each spec's PvP guide
+(`App\Support\EmpoweredCasts`, `partials/empowered-casts`).
 
-1. Move the scripts into `tools/match-review/`.
-2. Store records and questions where a query can read them.
-3. Tie a patch's `spell_changes` to the records.
-4. Add a section to each spec's PvP guide.
-5. Add the reads to the match review. New measures need `RoundAnalysisService` to keep hit sizes and
+Still to do:
+
+1. Timers in the box. The scan records each buff's usual length, but "held" and "ran out" exist only for
+   Disc so far.
+2. Hit counts, cast time and ramps in the general tool, so Harsh Discipline-style buffs can be found.
+3. Combo points and other resources held equal, which would open up Rogue and Feral finishers.
+4. Absorbs and healing that depends on the target, which would open up healers.
+5. Voidweaver's own record, and a split by hero tree. Each box pools both trees today.
+6. Hand-work the headline number of each spec with `spike`, as Disc's was. So far only Disc has had this.
+7. Store records and questions where a query can read them, and tie a patch's `spell_changes` to them.
+8. Add the reads to the match review. New measures need `RoundAnalysisService` to keep hit sizes and
    buffs, and because the server keeps no raw logs, every app re-sends its games after that VERSION bump.
+
+**No box yet:** Holy Priest, Preservation, Devastation and Augmentation Evoker, Fire Mage, Elemental
+Shaman, Demonology and Destruction Warlock, Devourer Demon Hunter, and the tanks. Candidates existed for
+most, but none passed review. The box says so rather than showing a guess.

@@ -1,0 +1,29 @@
+{
+    "kind": "damage",
+    "build": "12.1.0.69933",
+    "measured": "2026-10-31",
+    "rounds": 91,
+    "players": 33,
+    "payoff": "Raging Blow",
+    "stacked": [],
+    "empowers": [
+        {
+            "buff": "Hack and Slash",
+            "from": [
+                "Rampage"
+            ],
+            "link": 0.99,
+            "results": [
+                {
+                    "ability": "Raging Blow",
+                    "x": 1.19,
+                    "hits": 300
+                }
+            ],
+            "held": 3.4,
+            "tooltip": "Next Raging Blow 20% stronger"
+        }
+    ],
+    "ladder": [],
+    "note": null
+}

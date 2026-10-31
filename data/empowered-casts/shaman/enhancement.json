@@ -1,0 +1,29 @@
+{
+    "kind": "damage",
+    "build": "12.1.0.69933",
+    "measured": "2026-10-31",
+    "rounds": 157,
+    "players": 32,
+    "payoff": "Stormstrike",
+    "stacked": [],
+    "empowers": [
+        {
+            "buff": "Lightning Strikes",
+            "from": [
+                "Lightning Bolt"
+            ],
+            "link": 0.62,
+            "results": [
+                {
+                    "ability": "Stormstrike",
+                    "x": 1.17,
+                    "hits": 103
+                }
+            ],
+            "held": 1.4,
+            "tooltip": "Next Stormstrike stronger"
+        }
+    ],
+    "ladder": [],
+    "note": null
+}

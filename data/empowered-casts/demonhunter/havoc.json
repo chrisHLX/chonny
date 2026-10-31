@@ -1,0 +1,115 @@
+{
+    "kind": "damage",
+    "build": "12.1.0.69933",
+    "measured": "2026-10-31",
+    "rounds": 177,
+    "players": 61,
+    "payoff": "Eye Beam",
+    "stacked": [
+        "Empowered Eye Beam",
+        "Demon Soul"
+    ],
+    "empowers": [
+        {
+            "buff": "Empowered Eye Beam",
+            "from": [
+                "The Hunt"
+            ],
+            "link": 0.99,
+            "results": [
+                {
+                    "ability": "Eye Beam",
+                    "x": 1.72,
+                    "hits": 2463
+                }
+            ],
+            "held": 6,
+            "tooltip": "The Hunt makes the next Eye Beam stronger"
+        },
+        {
+            "buff": "Demon Soul",
+            "from": [],
+            "link": 0.54,
+            "results": [
+                {
+                    "ability": "Death Sweep",
+                    "x": 1.25,
+                    "hits": 251
+                },
+                {
+                    "ability": "Eye Beam",
+                    "x": 1.16,
+                    "hits": 418
+                },
+                {
+                    "ability": "Fury of the Aldrachi",
+                    "x": 1.15,
+                    "hits": 521
+                },
+                {
+                    "ability": "Soulscar",
+                    "x": 1.12,
+                    "hits": 411
+                }
+            ],
+            "held": 15,
+            "tooltip": "Damage stronger after a Demon's soul"
+        },
+        {
+            "buff": "Exergy",
+            "from": [
+                "Vengeful Retreat"
+            ],
+            "link": 0.59,
+            "results": [
+                {
+                    "ability": "Wounded Quarry",
+                    "x": 1.14,
+                    "hits": 3633
+                },
+                {
+                    "ability": "Soulscar",
+                    "x": 1.13,
+                    "hits": 6114
+                }
+            ],
+            "held": 20,
+            "tooltip": "Damage stronger after Vengeful Retreat or The Hunt"
+        }
+    ],
+    "ladder": [
+        {
+            "up": [
+                0,
+                0
+            ],
+            "x": 1,
+            "hits": 6496
+        },
+        {
+            "up": [
+                0,
+                1
+            ],
+            "x": 1.18,
+            "hits": 312
+        },
+        {
+            "up": [
+                1,
+                0
+            ],
+            "x": 1.96,
+            "hits": 2314
+        },
+        {
+            "up": [
+                1,
+                1
+            ],
+            "x": 2.44,
+            "hits": 100
+        }
+    ],
+    "note": null
+}
