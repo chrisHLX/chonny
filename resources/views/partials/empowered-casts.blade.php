@@ -19,13 +19,13 @@
     <div class="linear-card px-6 py-5">
         <h2 class="font-display text-[17px] text-ink">Empowered Spells</h2>
         <div class="grid lg:grid-cols-2 gap-x-10 gap-y-6 mt-3">
-            <div>
+            <div class="min-w-0">
                 <div class="flex items-center gap-2 text-[11px] text-ink-subtle">
-                    <span class="w-[116px] text-right">Cast</span><span class="w-4"></span><span class="w-9">Buff</span><span class="w-4"></span><span>Result</span>
+                    <span class="w-[84px] sm:w-[116px] text-right flex-shrink-0">Cast</span><span class="w-4"></span><span class="w-9">Buff</span><span class="w-4"></span><span>Result</span>
                 </div>
                 @foreach ($empowered['empowers'] as $row)
                     <div class="flex items-center gap-2 py-1.5">
-                        <div class="w-[116px] flex items-center justify-end gap-1 flex-shrink-0">
+                        <div class="w-[84px] sm:w-[116px] flex flex-wrap items-center justify-end gap-1 flex-shrink-0">
                             @foreach ($row['from'] ?? [] as $i => $from)
                                 @if ($i && ($row['chain'] ?? false))
                                     <span class="text-ink-subtle">&rarr;</span>
@@ -36,7 +36,7 @@
                         <span class="w-4 text-ink-subtle">@if ($row['from'] ?? [])&rarr;@endif</span>
                         <span class="flex items-center gap-2 flex-shrink-0">{!! $icon($row['buff']) !!}</span>
                         <span class="w-4 text-ink-subtle">&rarr;</span>
-                        <div class="flex flex-wrap items-center gap-x-4 gap-y-1 min-w-0">
+                        <div class="flex flex-1 flex-wrap items-center gap-x-4 gap-y-1 min-w-0">
                             @foreach ($row['results'] as $result)
                                 @if (isset($result['bolts']))
                                     <span class="flex items-center gap-1">
@@ -61,7 +61,7 @@
             </div>
 
             @if (! empty($empowered['ladder']) && count($empowered['ladder']) > 1)
-                <div>
+                <div class="min-w-0">
                     <p class="text-[12.5px] font-semibold text-ink mb-1.5">{{ $empowered['payoff'] }} {{ $empowered['kind'] }} by buffs</p>
                     <div class="flex items-center gap-2 text-[11px] text-ink-subtle mb-1">
                         <span class="{{ count($empowered['stacked']) === 3 ? 'w-[92px]' : (count($empowered['stacked']) === 2 ? 'w-[60px]' : 'w-7') }} flex-shrink-0">Buffs up</span>
@@ -72,10 +72,10 @@
                             @foreach ($empowered['stacked'] as $i => $buff)
                                 {!! $icon($buff, 'w-7 h-7', ! ($rung['up'][$i] ?? 0)) !!}
                             @endforeach
-                            <div class="flex-1 h-3 rounded-full bg-surface-3 overflow-hidden">
+                            <div class="flex-1 min-w-0 h-3 rounded-full bg-surface-3 overflow-hidden">
                                 <div class="h-full rounded-full bg-gold" style="width: {{ round($rung['x'] / $ladderMax * 100) }}%"></div>
                             </div>
-                            <b class="w-12 text-right text-[13.5px] text-ink">&times;{{ number_format($rung['x'], 2) }}</b>
+                            <b class="w-12 flex-shrink-0 text-right text-[13.5px] text-ink">&times;{{ number_format($rung['x'], 2) }}</b>
                         </div>
                     @endforeach
                     <p class="text-[11px] text-ink-subtle mt-1.5">Other buffs may also be up in these bars.</p>

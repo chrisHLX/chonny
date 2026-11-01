@@ -15,6 +15,8 @@
         <link rel="manifest" href="/site.webmanifest">
         @include('partials.fonts')
         @vite(['resources/css/app.css', 'resources/js/app.js'])
+        {{-- app.js starts Livewire itself; without this config the bundle starts it a second time. --}}
+        @livewireScriptConfig
     </head>
     <body class="font-sans antialiased bg-surface-0 text-ink">
         <div class="min-h-screen flex flex-col items-center justify-center px-4">

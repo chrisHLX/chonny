@@ -11,7 +11,7 @@
 <div class="max-w-3xl mx-auto px-4 py-8">
     <div class="mb-6">
         <p class="text-[11px] uppercase tracking-[0.13em] text-gold mb-1">Friends</p>
-        <h1 class="font-display text-3xl text-ink">The players you queue with</h1>
+        <h1 class="font-display text-3xl text-ink">Friends</h1>
         <p class="text-[13.5px] text-ink-muted mt-1">
             Friends can read what you share with them, and edit any guide where you've switched on
             <span class="text-ink">"My friends can edit"</span>.

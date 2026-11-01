@@ -1,7 +1,7 @@
 <div class="max-w-4xl mx-auto px-4 py-8">
     <div class="mb-6">
         <p class="text-[11px] uppercase tracking-[0.13em] text-gold mb-1">Guilds</p>
-        <h1 class="font-display text-3xl text-ink">Your guilds</h1>
+        <h1 class="font-display text-3xl text-ink">Your Guilds</h1>
         <p class="text-[13.5px] text-ink-muted mt-1">
             A group you share guides with. Everyone in a guild can read every guide shared with it.
         </p>

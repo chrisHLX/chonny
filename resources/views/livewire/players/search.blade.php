@@ -1,7 +1,7 @@
 <div class="max-w-4xl mx-auto px-4 py-8">
     <div class="mb-6">
         <p class="text-[11px] uppercase tracking-[0.13em] text-gold mb-1">World of Warcraft</p>
-        <h1 class="font-display text-3xl text-ink">Player lookup</h1>
+        <h1 class="font-display text-3xl text-ink">Player Lookup</h1>
         <p class="text-[13.5px] text-ink-muted mt-1">
             Any character's arena and Solo Shuffle ratings, highest rating ever, titles, gear and talents, from Blizzard.
         </p>

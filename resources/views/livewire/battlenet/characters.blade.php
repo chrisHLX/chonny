@@ -1,7 +1,7 @@
 <div class="max-w-4xl mx-auto px-4 py-8" @if ($this->isAwaitingSync) wire:poll.4s @endif>
     <div class="mb-6">
         <p class="text-[11px] uppercase tracking-[0.13em] text-gold mb-1">Battle.net</p>
-        <h1 class="font-display text-3xl text-ink">Your characters</h1>
+        <h1 class="font-display text-3xl text-ink">Your Characters</h1>
         <p class="text-[13.5px] text-ink-muted mt-1">
             Exp, ratings, gear and talents, read straight from Blizzard. Sign a guide with one of these
             and readers see who wrote it.
