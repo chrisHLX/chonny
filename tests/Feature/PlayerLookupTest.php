@@ -103,7 +103,7 @@ class PlayerLookupTest extends TestCase
         Http::fake();
         $html = $this->get('/wow/player/us/tichondrius/skylake')->assertOk()->getContent();
         $this->assertStringNotContainsString('noindex', $html);
-        $this->assertStringContainsString('Skylake-Tichondrius US PvP profile', $html);
+        $this->assertStringContainsString('Skylake-Tichondrius US PvP Profile', $html);
         Http::assertNothingSent();
     }
 
