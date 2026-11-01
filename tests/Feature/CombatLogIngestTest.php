@@ -152,6 +152,20 @@ class CombatLogIngestTest extends TestCase
         $this->assertSame(1, $players->where('reaction', 2)->count());
     }
 
+    public function test_an_enemy_first_seen_as_friendly_is_still_on_the_other_side(): void
+    {
+        // Flags at first sight can lie: real games had an enemy flagged friendly, which put four
+        // players on one side of a 3v3. COMBATANT_INFO's team decides.
+        $lines = $this->match();
+        array_splice($lines, 4, 0, [$this->line('10:00:00.5000', 'SPELL_CAST_SUCCESS,Player-1-CCC,"Foe-Realm",0x512,0x0,Player-1-AAA,"Me-Realm",0x511,0x0,1,"Spell",0x1')]);
+
+        $players = collect($this->derive($lines)['units'])->keyBy('id');
+
+        $this->assertSame(2, $players['Player-1-CCC']['reaction']);
+        $this->assertSame(1, $players['Player-1-AAA']['reaction']);
+        $this->assertSame(1, $players['Player-1-BBB']['reaction']);
+    }
+
     public function test_the_id_is_stable_across_runs_but_differs_between_matches(): void
     {
         // Re-ingesting a growing WoWCombatLog.txt must not duplicate what is already stored.

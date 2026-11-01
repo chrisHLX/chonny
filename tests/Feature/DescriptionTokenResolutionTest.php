@@ -438,3 +438,44 @@ test('a coefficient on an effect that is not damage or healing is ignored', func
     expect(resolveText($spell, $class, $spec))
         ->toBe('Hits (varies) allies in a (varies) yd cone for ≈150% of Spell Power damage.');
 });
+
+/*
+ * $?c<n> is the spec's position in its class. Each of these was "(varies by condition)" on a real page.
+ */
+test('a spec condition takes the branch for the spec being shown', function () {
+    [$patch, $class, $spec] = tokenWorld();
+    $second = Specialization::create(['class_id' => $class->id, 'name' => 'Enhancement', 'slug' => 'enhancement', 'external_spec_id' => 263]);
+
+    $spell = tokenSpell($patch, $class, ['spell_id' => 900001, 'name' => 'Two Ways', 'description' => '$?c1[Lightning Bolt][Stormstrike] hits harder.']);
+
+    expect(resolveText($spell, $class, $spec))->toBe('Lightning Bolt hits harder.');
+    expect(resolveText($spell, $class, $second))->toBe('Stormstrike hits harder.');
+});
+
+test('a spec condition with one branch, and a chain of them, resolve the same way', function () {
+    [$patch, $class, $spec] = tokenWorld();
+
+    $one = tokenSpell($patch, $class, ['spell_id' => 900002, 'name' => 'One', 'description' => 'Hits.$?c2[ Extra.]']);
+    $chain = tokenSpell($patch, $class, ['spell_id' => 900003, 'name' => 'Chain', 'description' => '$?c1[First]?c2[Second][Third]']);
+
+    expect(resolveText($one, $class, $spec))->toBe('Hits.');
+    expect(resolveText($chain, $class, $spec))->toBe('First');
+});
+
+test('monk specs are not in id order, so the position comes from the list', function () {
+    [$patch, $class] = tokenWorld();
+    $mistweaver = Specialization::create(['class_id' => $class->id, 'name' => 'Mistweaver', 'slug' => 'mistweaver', 'external_spec_id' => 270]);
+
+    $spell = tokenSpell($patch, $class, ['spell_id' => 900004, 'name' => 'Tea', 'description' => '$?c2[Thunder Focus Tea][Strike of the Windlord]']);
+
+    expect(resolveText($spell, $class, $mistweaver))->toBe('Thunder Focus Tea');
+});
+
+test('a spec nobody can place keeps the placeholder rather than a guess', function () {
+    [$patch, $class] = tokenWorld();
+    $unknown = Specialization::create(['class_id' => $class->id, 'name' => 'Unknown', 'slug' => 'unknown', 'external_spec_id' => 99999]);
+
+    $spell = tokenSpell($patch, $class, ['spell_id' => 900005, 'name' => 'Unsure', 'description' => '$?c1[First][Second]']);
+
+    expect(resolveText($spell, $class, $unknown))->toBe('(varies by condition — check in-game)');
+});

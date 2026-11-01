@@ -181,6 +181,10 @@ These barely change between under 1800, 1800 to 2099 and 2100 and up. Players at
 empowers within about 2.5 seconds and rarely lose one. So the gap is not wasted buffs. Whether holding
 one to line up with the others does better is the open question.
 
+**How often it happens** [OBS]
+
+Among Discs rated 2100 and up (350 enemy Penances at 3 Atonements), 27% of Penances had no empower, 35% one, 27% two and 11% all three. Harsh Discipline was up on 41%, Power of the Dark Side on 34% and Archangel on 47%. Compare a player only against games where they ran the talents: a build without Harsh Discipline reads as a huge gap that has nothing to do with play.
+
 **Talents by tree** [OBS]
 
 - Spec tree (either hero tree): Harsh Discipline, Power of the Dark Side, Dark Indulgence, Evangelism,

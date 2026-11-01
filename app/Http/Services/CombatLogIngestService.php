@@ -336,6 +336,17 @@ class CombatLogIngestService
         // The team id comes from COMBATANT_INFO, never from `reaction` — see the class docblock.
         $myTeam = $myGuid !== null ? ($teamByGuid[$myGuid] ?? null) : null;
 
+        // Flags are how a unit looked when first seen, and a player can look friendly then: 3 of 1,319
+        // archived games had an enemy down as an ally, which put four on one side of a 3v3
+        // (2026-11-01). Every page reads `reaction` as the side, so a player's comes from their team.
+        if ($myTeam !== null) {
+            foreach ($teamByGuid as $guid => $team) {
+                if (isset($units[$guid])) {
+                    $units[$guid]['reaction'] = $team === $myTeam ? 1 : 2;
+                }
+            }
+        }
+
         $startMs = $this->timestampMs($lines[0]);
         $endMs = $this->timestampMs($lines[count($lines) - 1]);
 

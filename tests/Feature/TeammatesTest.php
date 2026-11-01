@@ -7,6 +7,7 @@ use App\Http\Services\RealmDirectory;
 use App\Http\Services\TeammatesService;
 use App\Jobs\BuildCoachPages;
 use App\Models\ArenaRound;
+use App\Models\ArenaRoundPlayer;
 use App\Models\BattlenetCharacter;
 use App\Models\PvpLeaderboardEntry;
 use App\Models\User;
@@ -212,6 +213,19 @@ class TeammatesTest extends TestCase
         // The uploader counts as a player we hold nothing on; a teammate we hold, and one game, do not.
         $this->assertEqualsCanonicalizing(['Me', 'Unknown'], $looked);
         Queue::assertPushed(BuildCoachPages::class, fn ($job) => $job->userId === $user->id);
+    }
+
+    public function test_the_lookup_skips_china_because_its_api_cannot_be_reached(): void
+    {
+        $user = User::factory()->create();
+        $this->games($user, 'Friend', 2, 0);
+        ArenaRoundPlayer::where('name', 'Friend')->update(['region' => 'cn']);
+        ArenaRoundPlayer::where('name', 'Me')->update(['region' => 'cn']);
+
+        $this->mock(BattlenetCharacterSyncService::class)->shouldNotReceive('lookupPublic');
+        $this->mock(RealmDirectory::class);
+
+        $this->artisan('wow:lookup-teammates', ['--pause' => 0])->assertSuccessful();
     }
 
     public function test_the_page_build_writes_the_pages_and_lists_them_in_order(): void

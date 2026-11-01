@@ -26,7 +26,8 @@ class LookupTeammates extends Command
     public function handle(BattlenetCharacterSyncService $sync, RealmDirectory $realms): int
     {
         $min = (int) $this->option('min');
-        $rows = ArenaRoundPlayer::whereIn('bracket', ['2v2', '3v3'])->where('side', 'us')
+        // Not China: Blizzard's API for it can't be reached from here, so each one is only a logged error.
+        $rows = ArenaRoundPlayer::whereIn('bracket', ['2v2', '3v3'])->where('side', 'us')->where('region', '!=', 'cn')
             ->get(['user_id', 'match_id', 'name', 'realm', 'realm_key', 'region']);
 
         $byUser = [];

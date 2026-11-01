@@ -1817,11 +1817,12 @@ class ModuleSpellReferenceService
      * spell's own kit context — see resolveKitContext(), sound for a page that's about one
      * specific, fixed build, or one specific opponent-class ability).
      *
-     * Deliberately conservative about the rest: $?c<n> condition codes aren't confidently
-     * interpretable without deeper SimC-format knowledge than we have, and some descriptions in
+     * $?c<n> is the spec's position in its class (SPEC_POSITION), confirmed 2026-11-01: 317 of 362
+     * branches naming a spec-only spell matched, and each exception read checked out by hand. A
+     * spell with no spec in its context still can't say which branch applies. Some descriptions in
      * this dataset are genuinely truncated at the source (confirmed by hand, 2026-07-25 — Mind
      * Blast's raw record ends mid-conditional with no closing brackets, verified against the
-     * literal source file, not a parsing bug on our end). Both cases get honest player-facing
+     * literal source file, not a parsing bug on our end). Both of those get honest player-facing
      * copy ("varies by condition — check in-game") instead of a guessed number or raw token, and
      * get logged so they're discoverable rather than silently wrong — see modifiersFor()'s
      * docblock for the same "flag, don't guess" posture applied to modifier scoping.
@@ -1886,7 +1887,47 @@ class ModuleSpellReferenceService
             return $this->resolveDescriptionMemo[$memoKey];
         }
 
-        return $this->resolveDescriptionMemo[$memoKey] = $this->resolveDescriptionUncached($spell, $build, $context);
+        // Set around the call and put back, because a description can pull in another spell's.
+        $outer = $this->specPosition;
+        $this->specPosition = $this->positionOfSpec($context['spec_id']);
+
+        try {
+            return $this->resolveDescriptionMemo[$memoKey] = $this->resolveDescriptionUncached($spell, $build, $context);
+        } finally {
+            $this->specPosition = $outer;
+        }
+    }
+
+    /** A spec's place in its class, by Blizzard's spec id: what a $?c<n> tooltip condition tests. Monk is out of id order. */
+    private const SPEC_POSITION = [
+        250 => 1, 251 => 2, 252 => 3,
+        577 => 1, 581 => 2, 1480 => 3,
+        102 => 1, 103 => 2, 104 => 3, 105 => 4,
+        1467 => 1, 1468 => 2, 1473 => 3,
+        253 => 1, 254 => 2, 255 => 3,
+        62 => 1, 63 => 2, 64 => 3,
+        268 => 1, 270 => 2, 269 => 3,
+        65 => 1, 66 => 2, 70 => 3,
+        256 => 1, 257 => 2, 258 => 3,
+        259 => 1, 260 => 2, 261 => 3,
+        262 => 1, 263 => 2, 264 => 3,
+        265 => 1, 266 => 2, 267 => 3,
+        71 => 1, 72 => 2, 73 => 3,
+    ];
+
+    /** The position of the spec the description being resolved is for; null when it has none. */
+    private ?int $specPosition = null;
+
+    /** @var array<int, ?int> */
+    private array $specPositionMemo = [];
+
+    private function positionOfSpec(?int $specId): ?int
+    {
+        if ($specId === null) {
+            return null;
+        }
+
+        return $this->specPositionMemo[$specId] ??= self::SPEC_POSITION[(int) Specialization::whereKey($specId)->value('external_spec_id')] ?? null;
     }
 
     private function resolveDescriptionUncached(Spell $spell, ModuleGameBuild $build, array $context): array
@@ -1929,7 +1970,8 @@ class ModuleSpellReferenceService
         $text = preg_replace('/\|c[0-9A-Fa-f]{8}|\|r/i', '', $text);
 
         // Pass 1: conditional branches. $?a<id>/$?s<id> resolved via this spell's own kit
-        // context membership; $?c<n> codes are flagged rather than guessed.
+        // context membership, $?c<n> by the spec's position in its class. A spell with no spec
+        // in its context can't say which branch of a $?c<n> applies, so that is flagged.
         // The "\]?" tolerates a stray closing bracket between the id and the first branch —
         // "$?a137008][$s3 charges of Bone Shield][Killing Machine]". Exactly two spells in the
         // 12.1.0.69933 dumps are written this way (the other is "$?s400254][Raze][Maul]"), and
@@ -1947,6 +1989,10 @@ class ModuleSpellReferenceService
             '/\$\?([acs])(\d+)\]?\[([^\[\]]*)\]\s*\[([^\[\]]*)\]/',
             function ($m) use (&$uncertain, $kitIds, $spell) {
                 [, $letter, $id, $branchA, $branchB] = $m;
+
+                if ($letter === 'c' && $this->specPosition !== null) {
+                    return (int) $id === $this->specPosition ? $branchA : $branchB;
+                }
 
                 if ($letter === 'c') {
                     $uncertain = true;
@@ -2014,6 +2060,10 @@ class ModuleSpellReferenceService
             '/\$\?([acs])(\d+)\[([^\[\]]*)\]/',
             function ($m) use (&$uncertain, $kitIds, $spell) {
                 [, $letter, $id, $branch] = $m;
+
+                if ($letter === 'c' && $this->specPosition !== null) {
+                    return (int) $id === $this->specPosition ? $branch : '';
+                }
 
                 if ($letter === 'c') {
                     $uncertain = true;
@@ -2575,6 +2625,17 @@ class ModuleSpellReferenceService
             $negate = str_starts_with($term, '!');
             if ($negate || str_starts_with($term, '?')) {
                 $term = substr($term, 1);
+            }
+            // Written with its own "$" after the first term: "a451029&$c2".
+            $term = ltrim($term, '$');
+
+            if (preg_match('/^c(\d+)$/', $term, $m)) {
+                if ($this->specPosition === null) {
+                    return null;
+                }
+                $results[] = $negate ? (int) $m[1] !== $this->specPosition : (int) $m[1] === $this->specPosition;
+
+                continue;
             }
 
             if (! preg_match('/^[as](\d+)$/', $term, $m)) {
