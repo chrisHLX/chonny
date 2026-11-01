@@ -119,8 +119,8 @@ class WowQuizPlay extends Component
             'nextLevel' => $levels[$this->level + 1] ?? null,
             'specLabel' => $label,
         ])->layout('layouts.app', [
-            'title' => "{$label} — Level {$this->level} quiz | MindCollector",
-            'description' => "A quiz on {$label}'s arena kit, built from live game data.",
+            'title' => "{$label} Quiz: Level {$this->level} | MindCollector",
+            'description' => "A quiz on {$label}'s arena kit, based on live game data.",
         ]);
     }
 }

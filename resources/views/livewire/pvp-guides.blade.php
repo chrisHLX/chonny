@@ -20,11 +20,11 @@
                 </h1>
                 <p class="text-[12.5px] text-ink-muted mt-1.5 max-w-2xl">
                     The talents top players run, how to line up your burst, your full spell kit, and what
-                    answers your crowd control. Built from high-rated arena matches and current patch data.
+                    answers your crowd control. Based on high-rated arena matches and the current patch.
                 </p>
                 @if ($specGuideUrl)
                     <a href="{{ $specGuideUrl }}" class="inline-block text-[12.5px] text-gold hover:text-gold-light mt-2">
-                        How {{ $spec->name }} players actually play arena, counted from real games &rarr;
+                        Read the {{ $spec->name }} PvP guide &rarr;
                     </a>
                 @endif
             </div>

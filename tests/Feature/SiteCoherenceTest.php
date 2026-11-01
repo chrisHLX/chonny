@@ -23,7 +23,7 @@ it('shows a real game with the names hidden to anyone', function () {
 
 it('sends a signed-out visitor from Your games to the sample, not a sign-in box', function () {
     $this->get('/wow/coach')->assertRedirect(route('wow.sample'));
-    $this->actingAs(\App\Models\User::factory()->create())->get('/wow/coach')->assertOk()->assertSee('Your games');
+    $this->actingAs(\App\Models\User::factory()->create())->get('/wow/coach')->assertOk()->assertSee('Your Games');
 });
 
 it('makes /wow a hub that sends people to the sample and the app, not a copy of the app page', function () {
@@ -34,17 +34,17 @@ it('makes /wow a hub that sends people to the sample and the app, not a copy of 
 
 it('groups the menu and keeps the lab for admins', function () {
     $html = $this->get('/wow/comps')->assertOk()->getContent();
-    foreach (['>Plan<', '>Guides<', '>Learn<', 'Player guides', 'Class quizzes'] as $needle) {
+    foreach (['>Plan<', '>Guides<', '>Learn<', 'Player Guides', 'Class Quizzes'] as $needle) {
         expect($html)->toContain($needle);
     }
     expect($html)->not->toContain('Your library')   // a visitor has no library
         ->and($html)->not->toContain('>Lab<')        // the Lab is admins' only since 2026-10-27
-        ->and($html)->not->toContain("Claude's comp guides");
+        ->and($html)->not->toContain("Claude's Comp Guides");
 
     $admin = User::factory()->create();
     $admin->forceFill(['is_admin' => true])->save();
     expect($this->actingAs($admin)->get('/wow/comps')->assertOk()->getContent())
-        ->toContain('>Lab<')->toContain("Claude's comp guides");
+        ->toContain('>Lab<')->toContain("Claude's Comp Guides");
 });
 
 it('lists League of Legends only on its own page and retires the old diagnostic picker', function () {

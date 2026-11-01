@@ -136,8 +136,8 @@ class ConceptDrillPlay extends Component
             'specLabel' => $label,
             'brainSections' => ConceptCoverage::brainSectionsFor($this->concept->name),
         ])->layout('layouts.app', [
-            'title' => "{$this->concept->name} drill — {$label} | MindCollector",
-            'description' => "Practise {$this->concept->name} as {$label}. Every question is built from live game data, so the answers are current.",
+            'title' => "{$this->concept->name} Drill: {$label} | MindCollector",
+            'description' => "Practise {$this->concept->name} as {$label}. Every question is based on live game data, so the answers are current.",
         ]);
     }
 }

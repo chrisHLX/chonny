@@ -56,10 +56,10 @@ test('a visitor gets the WoW home at /wow (the site root until 2026-10-17)', fun
 
     $this->get('/wow')
         ->assertOk()
-        ->assertSee('Every arena game you play, reviewed.')
+        ->assertSee('Review Every Arena Game You Play')
         // A hub since 2026-10-18: the sample game and the app's page, not a second copy of the app's pitch.
-        ->assertSee('See a real game')
-        ->assertSee('Get the app')
+        ->assertSee('See a Sample Game')
+        ->assertSee('Get the App')
         ->assertSee('Learn the game')
         ->assertSee('Build a 3v3 comp')
         ->assertSee('RMD into Jungle');

@@ -94,7 +94,7 @@ class Landing extends Component
     public function render()
     {
         return view('livewire.landing')->layout('layouts.app', [
-            'title' => 'MindCollector: every WoW arena game you play, reviewed',
+            'title' => 'MindCollector: WoW Arena Game Reviews',
             'description' => 'A free Windows app that reviews every arena game you play: who died, what killed them, what you had left, and how you compare with players of your spec. Plus 3v3 comps, class guides and the Matchup Lab.',
         ]);
     }

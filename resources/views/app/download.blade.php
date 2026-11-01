@@ -2,12 +2,12 @@
 @php
     $appSchema = \App\Http\Controllers\AppDownloadController::schema();
 @endphp
-<x-app-layout title="MindCollector for Windows: a review of every WoW arena game" description="Free Windows app for WoW arena. Every game you play gets a review and a timeline you can play back: who fell and why, every player's cooldowns at each moment, and how you compare with players of your spec." og-image="/images/app/card.webp" :schema="$appSchema">
+<x-app-layout title="MindCollector for Windows: WoW Arena Game Reviews" description="Free Windows app for WoW arena. Every game you play gets a review and a timeline you can play back: who fell and why, every player's cooldowns at each moment, and how you compare with players of your spec." og-image="/images/app/card.webp" :schema="$appSchema">
 <div class="max-w-4xl mx-auto px-4 py-6 sm:py-10">
 
     <section class="page-hero">
         <p class="page-eyebrow">For Windows 10 and 11</p>
-        <h1 class="page-title">See every arena game you play, reviewed.</h1>
+        <h1 class="page-title">Review Every Arena Game You Play</h1>
         <p class="text-[15px] text-ink-muted mt-4 max-w-2xl">
             The MindCollector app watches your games while you play and sends each one to your page
             when it ends. You get a card for every game, a timeline you can play back, and a page

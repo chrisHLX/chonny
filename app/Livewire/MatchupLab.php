@@ -474,23 +474,23 @@ class MatchupLab extends Component
     {
         return [
             [
-                'title' => 'No win percentage, on purpose',
+                'title' => 'No win percentages',
                 'body' => 'We have no match results to work from, so any number we put here would be made up. This is cooldown arithmetic with the reasoning shown.',
             ],
             [
-                'title' => 'A window is not a kill',
+                'title' => 'Kill windows are estimates',
                 'body' => 'Empty list means they have nothing left to press. It does not mean your damage kills them. We have no damage model and will not fake one.',
             ],
             [
-                'title' => 'Real goes come round sooner',
+                'title' => 'Goes can come sooner',
                 'body' => 'Cooldowns that shrink as you spend resources are not in our data, so every timing here is the slowest it could be.',
             ],
             [
-                'title' => 'No positioning, no calls',
+                'title' => 'Positioning and calls',
                 'body' => 'We assume both their DPS are reachable on the same global, and that someone makes the call. Real games break both.',
             ],
             [
-                'title' => 'Cooldowns your play shortens',
+                'title' => 'Cooldown reduction',
                 'body' => 'Some answers come back sooner because of what you do (Savage Momentum takes 10s off Survival Instincts per kick). The data has no rate for that, so the trading plan uses the full cooldown.',
             ],
             [
@@ -539,7 +539,7 @@ class MatchupLab extends Component
             'executionSettings' => CooldownGraphService::EXECUTION_SETTINGS,
             'teamColours' => self::TEAM_COLOURS,
         ])->layout('layouts.app', [
-            'title' => 'Matchup Lab — whose kill window opens first | MindCollector',
+            'title' => 'Matchup Lab: Compare Two 3v3 Comps | MindCollector',
             'description' => 'Put two WoW 3v3 arena comps on one clock. See every cooldown both teams hold, '
                 .'where each side runs out of answers, and which team the structure favours — with the '
                 .'reasoning shown and no invented win percentage.',

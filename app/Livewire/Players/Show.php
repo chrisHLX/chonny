@@ -244,7 +244,7 @@ class Show extends Component
             'games' => $games,
             'classColors' => config('wow_classes.colors', []),
         ])->layout('layouts.app', [
-            'title' => "{$this->name}-{$realmName} ".strtoupper($this->region).' PvP profile | MindCollector',
+            'title' => "{$this->name}-{$realmName} ".strtoupper($this->region).' PvP Profile | MindCollector',
             'description' => $this->describe($c, $realmName),
             // Nothing stored means nothing to index: a name is a page of its own once Blizzard's
             // profile, a leaderboard or an uploaded game has it.

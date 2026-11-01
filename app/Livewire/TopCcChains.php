@@ -322,7 +322,7 @@ class TopCcChains extends Component
             'chains' => $this->chains,
             'lastUpdated' => $this->lastUpdated,
         ])->layout('layouts.app', [
-            'title' => 'Top 10 CC Chains — Longest Real WoW Arena CC Chains | MindCollector',
+            'title' => 'Top 10 WoW Arena CC Chains | MindCollector',
             'description' => 'The 10 longest crowd-control chains recorded in WoW arena, and the comps that landed them.',
         ]);
     }

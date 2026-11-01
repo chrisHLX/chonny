@@ -219,7 +219,7 @@
 
 <div class="foot">
     Every number is from your own games and the players in them. "Other {{ $m['spec'] }}s" are everyone of your spec you played with or against, so they share your rating range.
-    Under 10 games on either side a difference is a lead, not a finding. The log cannot see positioning, line of sight or calls.
+    With under 10 games on either side, treat a difference as an early sign. The log can't see positioning, line of sight or calls.
 </div>
 
 </body>

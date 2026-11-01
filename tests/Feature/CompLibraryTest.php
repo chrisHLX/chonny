@@ -114,7 +114,7 @@ class CompLibraryTest extends TestCase
         $this->assertStringContainsString('Under 12 seasons 12 or more', $page);
         $this->assertStringContainsString('Your record 2-0 0-2', $page);
         $this->assertStringContainsString('Enemy Gladiator seasons, median 0 12', $page);
-        $this->assertStringContainsString('4 games with experience on file: a lead', $page);
+        $this->assertStringContainsString('4 games with experience on file, so this is an early sign', $page);
         $this->assertStringContainsString('Every game against them', $page);
         $this->assertStringContainsString('2000 / 2000 12', $page, 'each game with its MMR and their seasons');
         // Clicking a game opens every player's experience and the game's numbers.

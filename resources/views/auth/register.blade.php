@@ -3,10 +3,10 @@
          the first thing here and said features "may change or reset" — the wrong thing to tell
          someone about to spend an evening writing a plan, and not true of saved guides. --}}
     <div class="mb-5">
-        <h1 class="font-display text-[22px] text-ink leading-tight">Plan your arena games</h1>
+        <h1 class="font-display text-[22px] text-ink leading-tight">Create Your Free Account</h1>
         <p class="text-[13px] text-ink-muted mt-1.5 leading-snug">
-            Build your opener and your go from real spell data, see what survives diminishing
-            returns, and share the plan with the people you queue with. Free.
+            Review every arena game you play, plan your goes and share them with the people you
+            queue with.
         </p>
     </div>
 

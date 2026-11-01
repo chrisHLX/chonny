@@ -1055,7 +1055,7 @@ class WowComps extends Component
             'offensiveRotations' => $this->offensiveRotations,
             'boardKey' => $this->boardKey(),
         ])->layout('layouts.app', [
-            'title' => 'MindCollector — WoW 3v3 Arena Comp Builder & Game Plans',
+            'title' => 'WoW 3v3 Comp Builder and Game Plans | MindCollector',
             'description' => 'Build a 3v3 arena team and compare every spec\'s spell kit side by side — crowd-control chains, cooldowns, burst windows and counters — then turn it into a game plan you can share with your team.',
         ]);
     }

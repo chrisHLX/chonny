@@ -130,7 +130,7 @@ class GameReview extends Component
             // limits it was assembled with instead of silently acquiring today's wording.
             'limitations' => $review['limitations'] ?? app(LobbyReviewService::class)->limitations(),
         ])->layout('layouts.app', [
-            'title' => 'Match Review — your arena games, measured | MindCollector',
+            'title' => 'Match Review | MindCollector',
             'description' => 'Read back your own WoW arena games round by round: effective healing, '
                 .'absorbs, overheal and damage for every player, and a same-spec mirror comparison '
                 .'showing exactly where two players of one spec differed in talents, gear and stats.',

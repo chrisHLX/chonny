@@ -43,7 +43,7 @@
                 </span>
                 <span class="min-w-0">
                     <span class="block text-[15px] font-semibold text-ink group-hover:text-gold-light">PvP guides</span>
-                    <span class="block text-[12.5px] text-ink-muted mt-0.5">Every spec's PvP talents, goes, defensives, what to kick and best comps, counted from real games.</span>
+                    <span class="block text-[12.5px] text-ink-muted mt-0.5">Every spec's PvP talents, goes, defensives, what to kick and best comps, based on rated games.</span>
                     <span class="inline-block text-[12px] text-gold mt-2">Find your spec &rarr;</span>
                 </span>
             </a>
@@ -53,7 +53,7 @@
                 </span>
                 <span class="min-w-0">
                     <span class="block text-[15px] font-semibold text-ink group-hover:text-violet-hover">Class quizzes</span>
-                    <span class="block text-[12.5px] text-ink-muted mt-0.5">Questions built from the live game data: your cooldowns, your crowd control, what counters it.</span>
+                    <span class="block text-[12.5px] text-ink-muted mt-0.5">Questions based on live game data: your cooldowns, your crowd control, what counters it.</span>
                     <span class="inline-block text-[12px] text-violet mt-2">Take a quiz &rarr;</span>
                 </span>
             </a>
@@ -115,7 +115,7 @@
             @if (empty($playbook['lock']['steps']))
                 <p class="text-[13px] text-ink-subtle mt-2">This team has no crowd control in the data yet.</p>
             @else
-                <p class="text-[12px] text-ink-subtle mt-1">Each player's usual combo on the healer in real games, put together. One after another, each as the last one ends, a different kind each time so none is shortened.</p>
+                <p class="text-[12px] text-ink-subtle mt-1">Each player's usual combo on the healer. One after another, each as the last one ends, a different kind each time so none is shortened.</p>
                 <ol class="mt-3 space-y-3">
                     @foreach ($playbook['lock']['steps'] as $i => $step)
                         <li class="flex gap-3">
@@ -193,7 +193,7 @@
                     </p>
                 @endif
             @else
-                <p class="text-[12px] text-ink-muted mt-2">None: in real games this team's control goes on their healer.</p>
+                <p class="text-[12px] text-ink-muted mt-2">None. This team's control usually goes on their healer.</p>
             @endif
         </div>
 

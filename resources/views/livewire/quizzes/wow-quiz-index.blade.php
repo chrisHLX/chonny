@@ -5,7 +5,7 @@
         <div class="mb-6">
             <h1 class="font-display text-3xl text-ink">Class quizzes</h1>
             <p class="text-[14px] text-ink-muted mt-1.5">
-                Pick your spec. Each quiz is built from live game data, so it stays right when the game changes.
+                Pick your spec. Each quiz is based on live game data, so it stays right when the game changes.
             </p>
         </div>
 

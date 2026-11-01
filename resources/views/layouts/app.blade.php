@@ -12,7 +12,7 @@
         @php
             $seoTitle = trim($title ?? '') !== ''
                 ? $title
-                : 'MindCollector — WoW Arena Game Plans, Comps & Spell Data';
+                : 'MindCollector: WoW Arena Reviews, Comps and Spell Data';
             $seoDescription = trim($description ?? '') !== ''
                 ? $description
                 : 'WoW arena comps, game plans and spell data for every spec: cooldowns, crowd control, diminishing returns and counters, taken from the live game. Review your own games with the MindCollector app.';

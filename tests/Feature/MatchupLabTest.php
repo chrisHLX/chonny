@@ -286,8 +286,8 @@ class MatchupLabTest extends TestCase
     {
         Livewire::test(\App\Livewire\MatchupLab::class)
             ->assertOk()
-            ->assertSee('No win percentage, on purpose')
-            ->assertSee('A window is not a kill')
-            ->assertSee('No positioning, no calls');
+            ->assertSee('No win percentages')
+            ->assertSee('Kill windows are estimates')
+            ->assertSee('Positioning and calls');
     }
 }

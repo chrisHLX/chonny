@@ -13,7 +13,7 @@
     $plural = $name.'s';
     $title = "{$name} PvP Guide & Talents ({$patch})";
     $topTalents = array_slice(array_keys($page['pvpTalents']), 0, 3);
-    $description = "{$name} arena guide for {$patch}, counted from real rated games: the PvP talents {$name} players take"
+    $description = "{$name} arena guide for {$patch}, based on rated games: the PvP talents {$name} players take"
         .($topTalents ? ' ('.implode(', ', $topTalents).')' : '')
         .', what they press in a go, the defensives they use when targeted, what to kick, and the comps they play.';
     $breadcrumbs = [
@@ -62,12 +62,12 @@
             <x-spec-icon :spec="$spec" :color="$color" size="w-14 h-14 sm:w-20 sm:h-20" class="!rounded-xl shadow-lg" />
             <div class="min-w-0">
                 <p class="page-eyebrow" style="color: {{ $color }}">{{ $patch }} arena</p>
-                <h1 class="page-title">{{ $name }} PvP guide</h1>
+                <h1 class="page-title">{{ $name }} PvP Guide</h1>
             </div>
         </div>
         <p class="text-[15px] text-ink-muted mt-4 max-w-2xl">
-            How {{ $plural }} actually play arena: the PvP talents they take, what they press when they go, how they
-            survive, what to kick on them, and the comps they play. Counted from real rated games, not written from memory.
+            How {{ $plural }} play arena: the PvP talents they take, what they press when they go, how they
+            survive, what to kick on them, and the comps they play. Based on rated arena games.
         </p>
     </section>
 
@@ -321,7 +321,7 @@
     {{-- ── Where it comes from, and the other guides ── --}}
     <section class="text-[12px] text-ink-subtle space-y-2 px-1">
         <p>
-            Counted from rated arena games uploaded to MindCollector: every player in every game, not only the one who recorded it.
+            Based on rated arena games uploaded to MindCollector, including every player in each game.
             Updated {{ $months($builtAt) }}.
         </p>
         @if ($siblings->isNotEmpty())

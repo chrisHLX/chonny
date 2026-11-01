@@ -14,7 +14,7 @@
             </span>
             <p class="text-[13px] text-ink-muted flex-1 min-w-[200px]">
                 @if ($picked)
-                    <span class="font-semibold text-ink">{{ $name($picked) }}</span> in real games this season:
+                    <span class="font-semibold text-ink">{{ $name($picked) }}</span> this season:
                     <span class="text-ink tabular-nums">{{ $picked['games'] }}</span> {{ \Illuminate\Support\Str::plural('game', $picked['games']) }},
                     @if ($picked['rate'] !== null)
                         <span class="tabular-nums {{ $rateClass($picked['rate']) }}">{{ $picked['rate'] }}%</span> won

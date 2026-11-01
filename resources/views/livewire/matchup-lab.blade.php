@@ -390,7 +390,7 @@
 
                 <p class="text-[10px] text-ink-subtle pt-2">
                     Reductions are each spell's own damage-taken effect; two on one go multiply (20% and 50% let 40% through), so the second always adds less than its number.
-                    Across 795 real games, spending more answers per go did not win more; having one back when their next go came did.
+                    Across 795 games, spending more answers per go did not win more; having one back when their next go came did.
                 </p>
             </x-fold>
         @endif

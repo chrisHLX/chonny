@@ -257,8 +257,8 @@ class Leaderboards extends Component
             'classes' => GameClass::whereHas('game', fn ($q) => $q->where('slug', 'wow'))->get()->keyBy('slug'),
             'colors' => config('wow_classes.colors', []),
         ])->layout('layouts.app', [
-            'title' => '3v3 leaderboards this season: comps and players | MindCollector',
-            'description' => 'This season\'s 3v3 arena comps from real games uploaded to MindCollector, by the experience of the teams playing them, and Blizzard\'s 3v3 ladder with the comps each player was seen on.',
+            'title' => '3v3 Leaderboards: Comps and Players | MindCollector',
+            'description' => 'This season\'s 3v3 arena comps from games uploaded to MindCollector, by the experience of the teams playing them, and Blizzard\'s 3v3 ladder with the comps each player was seen on.',
         ]);
     }
 }

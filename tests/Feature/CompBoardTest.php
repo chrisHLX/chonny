@@ -318,7 +318,7 @@ class CompBoardTest extends TestCase
 
         // Its own test: only the first Livewire::test() of a component in a process returns full HTML.
         Livewire::withoutLazyLoading()->test(CompBoard::class, ['selected' => 'mage-rogue-priest'])
-            ->assertSee('in real games this season')->assertDontSee('Jungle')
+            ->assertSee('this season')->assertDontSee('Jungle')
             ->assertSee('/wow/comps/played/mage-rogue-priest', false);
     }
 

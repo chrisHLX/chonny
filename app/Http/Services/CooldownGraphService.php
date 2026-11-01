@@ -139,7 +139,7 @@ class CooldownGraphService
         ],
         self::EXECUTION_CLEAN => [
             'label' => 'Trading cleanly',
-            'summary' => 'One sufficient answer per threat, no overlap — but every go is sent the moment it is up, whether or not their pool is low.',
+            'summary' => 'One answer per threat with no overlap, and every go is sent as soon as it is ready.',
             'model' => 'Part 3\'s pre-agreed trigger working as intended.',
         ],
         self::EXECUTION_POOL => [

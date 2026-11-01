@@ -85,7 +85,7 @@ test('a kick question offers one cast and three instants', function () {
 test('the basics check page offers a spec picker', function () {
     $this->get(route('wow-basics'))
         ->assertOk()
-        ->assertSee('Arena basics check')
+        ->assertSee('Arena Basics')
         ->assertSee('Eight questions');
 
     $this->get(route('wow-basics', ['classSlug' => 'nope', 'specSlug' => 'nope']))->assertNotFound();

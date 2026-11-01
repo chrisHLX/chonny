@@ -41,7 +41,7 @@
             </h1>
             <p class="text-[13.5px] text-ink-muted mt-1">
                 @if ($firstRun)
-                    Turn a matchup into a plan you can actually play, instead of trying to hold it all in your head.
+                    Turn a matchup into a plan you can use in your games.
                 @else
                     What players are planning, and what changed in the game.
                 @endif
@@ -62,7 +62,7 @@
 
             <h2 class="font-display text-[22px] sm:text-[26px] text-ink leading-tight">Build your first game plan</h2>
             <p class="text-[13.5px] text-ink-muted mt-2 max-w-2xl">
-                Pick your comp, then drag in the abilities you'd actually press. MindCollector works
+                Pick your comp, then drag in the abilities you'd press. MindCollector works
                 out how long the control lasts after diminishing returns and how often you can run it
                 again, from the game's own spell data.
             </p>

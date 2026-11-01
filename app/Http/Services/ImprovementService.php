@@ -618,7 +618,7 @@ class ImprovementService
                 'Your time alive in gaps of more than 2.5s between casts, not counting time locked out.',
                 $idle($mine), $idle($others), $withB($mine)->count(), $withB($others)->count(), 0, '%',
                 [], $trend($idle),
-                'A cast longer than 2.5s counts as a gap, and so does waiting out of sight on purpose.',
+                'A cast longer than 2.5s counts as a gap, and so does waiting out of sight.',
             );
         }
 
@@ -675,7 +675,7 @@ class ImprovementService
                 $left($mine), $left($others), $sheets($mine)->count(), $sheets($others)->count(), 0, '%',
                 [sprintf('In %d of your last %d.', $last->filter(fn ($r) => $r['readyFit'])->count(), $last->count())],
                 $trend($left),
-                'It lists what was there, not what would have won: one kept for the go after can be the right hold. Each game card shows the go beside it.',
+                'It lists what was there, which isn\'t always what would have won: one kept for the go after can be the right hold. Each game card shows the go beside it.',
                 $this->iconRows(array_map(fn ($n) => $n.' of '.$sheets($mine)->count(), $spells->take(6)->all()), 'Ready most often'),
             );
         }

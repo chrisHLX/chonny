@@ -59,7 +59,7 @@ class GameReviewAnalysis extends Component
         return view('livewire.game-review-analysis', [
             'outputs' => $this->outputs(),
         ])->layout('layouts.app', [
-            'title' => 'Match Review — raw analysis | MindCollector',
+            'title' => 'Match Review: Raw Analysis | MindCollector',
             'description' => 'The raw output of the match review tools for your own arena games.',
         ]);
     }

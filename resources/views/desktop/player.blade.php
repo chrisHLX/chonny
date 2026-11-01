@@ -105,7 +105,7 @@
     @endforeach
 </div>
 @if ($m['measured'] < 3)
-    <div class="box small muted">Measured over {{ $m['measured'] }} round{{ $m['measured'] === 1 ? '' : 's' }}: a glimpse of how they play, not a pattern.</div>
+    <div class="box small muted">Measured over {{ $m['measured'] }} round{{ $m['measured'] === 1 ? '' : 's' }}, so this is only a glimpse of how they play.</div>
 @endif
 
 {{-- ============================== what they press --}}
@@ -214,7 +214,7 @@
 
 <div class="foot">
     Every number is from your own games against this player. It is what they pressed in those games, not their talents or their reasons, and the log cannot see positioning, line of sight or calls.
-    The best players' habits are the level they play at, not a recipe: across the archive, kicking more than the other team did not decide a game, while crowd control on the healer in a go, defensives drawn and answers held did.
+    The best players' habits show the level they play at. They aren't a recipe: across the archive, kicking more than the other team did not decide a game, while crowd control on the healer in a go, defensives drawn and answers held did.
 </div>
 
 </body>

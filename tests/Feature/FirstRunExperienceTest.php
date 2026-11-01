@@ -221,8 +221,8 @@ test('the sidebar puts your own pages in one block, separate from the public sit
         // 2026-10-27: Leaderboards up beside Your games; Arena Kit out of the menu; the Lab, Training
         // and the library's name block gone for players (the Lab and Training stay for admins).
         ->assertSeeInOrder([
-            'Home', 'Your games', 'Get the app', 'Leaderboards', 'Player lookup', 'Plan', '3v3 Comps', 'Matchup Lab',
-            'Guides', 'PvP Guides', 'Player guides', 'Learn', 'Class quizzes', 'Arena basics check',
+            'Home', 'Your Games', 'Get the App', 'Leaderboards', 'Player Lookup', 'Plan', '3v3 Comps', 'Matchup Lab',
+            'Guides', 'PvP Guides', 'Player Guides', 'Learn', 'Class Quizzes', 'Arena Basics',
             'Your library', 'My Guides', 'My Characters', 'Profile &amp; settings',
             'Social', 'Friends', 'Guilds',
         ], false)
@@ -276,6 +276,6 @@ test('the landing page tells a signed-out visitor they can turn a comp into a pl
 test('the register page says what the account is for, and no longer warns that things may reset', function () {
     $this->get(route('register'))
         ->assertOk()
-        ->assertSee('Plan your arena games')
+        ->assertSee('Create Your Free Account')
         ->assertDontSee('change or reset');
 });

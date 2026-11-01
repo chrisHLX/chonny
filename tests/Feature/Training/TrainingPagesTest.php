@@ -4,7 +4,7 @@ use App\Models\User;
 use App\Training\Curriculum;
 
 test('training says what it is to a visitor, and the rest needs an account', function () {
-    $this->get('/training')->assertOk()->assertSee('Learn to steer by evidence.');
+    $this->get('/training')->assertOk()->assertSee('Learn to Reason with Evidence');
     $this->get('/training/lessons/the-control-loop')->assertRedirect('/login');
     $this->get('/training/notebook')->assertRedirect('/login');
     $this->get('/training/read/steering-by-feedback')->assertRedirect('/login');

@@ -98,7 +98,7 @@ internal static class Installer
         link.TargetPath = InstalledExe;
         link.WorkingDirectory = Dir;
         link.IconLocation = InstalledExe + ",0";
-        link.Description = "MindCollector: your arena games, reviewed";
+        link.Description = "MindCollector";
         link.Save();
     }
 }

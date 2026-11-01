@@ -166,7 +166,7 @@ class CoachTest extends TestCase
 
         $this->actingAs($user)->get(route('coach'))
             ->assertOk()
-            ->assertSee('Your games')
+            ->assertSee('Your Games')
             ->assertSee('Same spec')
             ->assertSee('Upload matches')
             ->assertSee('window.arenaUpload', false);

@@ -53,7 +53,7 @@ class EmpoweredCastsTest extends TestCase
 
         $this->get(route('pvp-guides', ['classSlug' => 'priest', 'specSlug' => 'discipline']))
             ->assertOk()
-            ->assertSee('Empowered spells')
+            ->assertSee('Empowered Spells')
             ->assertSee('Penance healing by buffs')
             ->assertSee('Harsh Discipline');
     }
@@ -79,7 +79,7 @@ class EmpoweredCastsTest extends TestCase
 
         $this->get(route('pvp-guides', ['classSlug' => 'warrior', 'specSlug' => 'protection']))
             ->assertOk()
-            ->assertSee('Empowered spells')
+            ->assertSee('Empowered Spells')
             ->assertSee('None confirmed');
     }
 }

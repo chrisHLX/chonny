@@ -83,7 +83,7 @@
 @if (! empty($d['answers']))
     @php $s = $d['answers']; @endphp
     <div class="answers">
-        <div class="label" style="margin-top: 12px">What your team had for the enemy go <span class="aside">from {{ $s['from'] }} to the death: what was there, not what would have won</span></div>
+        <div class="label" style="margin-top: 12px">What your team had for the enemy go <span class="aside">from {{ $s['from'] }} to the death</span></div>
 
         @if ($s['offensive'])
             <div class="line small"><span class="muted">Enemy offensive cooldowns:&nbsp;</span>

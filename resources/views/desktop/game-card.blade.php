@@ -232,7 +232,7 @@
 
     @if ($g['look'] !== null)
         <div class="section">
-            <div class="label">Worth a look <span class="aside">rules applied to the log: an estimate, not a verdict</span></div>
+            <div class="label">Worth a look <span class="aside">estimated from the log</span></div>
             <div class="box">@include('desktop.partials.look', ['items' => $g['look']])</div>
         </div>
     @endif
@@ -304,7 +304,7 @@
                 <details class="more">
                 <summary>Your buttons this round</summary>
                 @if ($r['look'])
-                    <div class="line"><div class="label" style="margin-top:8px">Your buttons <span class="aside">an estimate, not a verdict</span></div>
+                    <div class="line"><div class="label" style="margin-top:8px">Your buttons <span class="aside">estimated from the log</span></div>
                     @include('desktop.partials.look', ['items' => $r['look']])</div>
                 @endif
                 @if ($r['checks'])

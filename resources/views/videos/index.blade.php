@@ -1,6 +1,6 @@
 {{-- /wow/videos (VideoController::index): the library of games on video, filtered by what the combat log
      knows exactly. Layout in its own <style>, as Your games does, so it never waits on an asset build. --}}
-<x-app-layout title="WoW arena games on video, with their timelines | MindCollector"
+<x-app-layout title="WoW Arena Games on Video | MindCollector"
               description="Watch real WoW arena games recorded with MindCollector, each with a timeline of who fell and why and every player's cooldowns as the video plays. Filter by spec, comp, bracket and MMR.">
 <style>
     .vid-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 12px; }
@@ -26,7 +26,7 @@
                 <p class="page-eyebrow">Arena games on video</p>
                 <h1 class="page-title">Videos</h1>
                 <p class="text-[14px] text-ink-muted mt-3 max-w-3xl">
-                    Real games recorded with the MindCollector app. Each one plays with its timeline underneath: who fell
+                    Arena games recorded with the MindCollector app. Each one plays with its timeline underneath: who fell
                     and why, and every player's cooldowns as the video runs. The specs in every game come from its combat
                     log, so you can find exactly the matchup you want to watch.
                 </p>

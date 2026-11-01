@@ -8,14 +8,14 @@
     ];
 @endphp
 <x-app-layout :title="'WoW PvP Guides for Every Spec ('.$patch.') | MindCollector'"
-              description="WoW arena guides for every spec, counted from real rated games: the PvP talents each spec takes, what they press when they go, how they survive, what to kick, and the 3v3 comps they play."
+              description="WoW arena guides for every spec, based on rated games: the PvP talents each spec takes, what they press when they go, how they survive, what to kick, and the 3v3 comps they play."
               og-image="/images/app/card.webp" :schema="$breadcrumbs">
 <div class="max-w-5xl mx-auto px-4 py-6 sm:py-10 space-y-5">
     <section class="page-hero">
         <p class="page-eyebrow">{{ $patch }} arena</p>
-        <h1 class="page-title">WoW PvP guides for every spec</h1>
+        <h1 class="page-title">WoW PvP Guides for Every Spec</h1>
         <p class="text-[15px] text-ink-muted mt-3 max-w-2xl">
-            Each guide is counted from real rated arena games: the PvP talents a spec takes, what it presses when it goes,
+            Each guide is based on rated arena games: the PvP talents a spec takes, what it presses when it goes,
             the defensives it uses, what to kick on it, and the comps it plays.
         </p>
     </section>

@@ -160,7 +160,7 @@
     @endif
 </div>
 @if ($c['lead'])
-    <div class="box small muted">Fewer than 10 games: every pattern on this page is a lead from these games, not a rule about the comp.</div>
+    <div class="box small muted">Fewer than 10 games, so treat these patterns as early signs.</div>
 @endif
 
 {{-- ============================== enemy goes --}}
@@ -306,7 +306,7 @@
                 @endforeach
             </table>
             @if ($x['known'] < 10)
-                <div class="line small muted">{{ $x['known'] }} games with experience on file: a lead, not a finding.</div>
+                <div class="line small muted">{{ $x['known'] }} games with experience on file, so this is an early sign.</div>
             @endif
         @elseif ($x['state'] === 'flat')
             <div class="small muted">Every team of this comp you met had about the same experience, so there is nothing to split yet.</div>
@@ -378,9 +378,9 @@
 
 <div class="foot">
     @if ($c['pool'] ?? false)
-        Every number is from the games uploaded to MindCollector against {{ $c['nick'] ?? 'this comp' }} this season, each read from the side that faced them. It is what these teams did, not what the comp always does.
+        Every number is from the games uploaded to MindCollector against {{ $c['nick'] ?? 'this comp' }} this season, each read from the side that faced them. It shows what these teams did, which isn't always what the comp does.
     @else
-        Every number is from your own games against this pair of DPS specs, with any healer. It is what these teams did against you, not what the comp always does.
+        Every number is from your own games against this pair of DPS specs, with any healer. It shows what these teams did against you, which isn't always what the comp does.
     @endif
     The log cannot see positioning, line of sight or calls.
 </div>

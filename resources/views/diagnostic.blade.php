@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PvP Diagnostic — Find Your Weak Spots | MindCollector</title>
+    <title>PvP Diagnostic: Find Your Weak Spots | MindCollector</title>
     <meta name="description" content="A short diagnostic that profiles how you play — WoW arena, League, StarCraft II or poker — then points you at the concepts worth training next.">
     <link rel="canonical" href="https://mindcollector.com/diagnostic">
     <meta property="og:type" content="website">

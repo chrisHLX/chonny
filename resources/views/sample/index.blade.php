@@ -1,6 +1,6 @@
 {{-- /wow/sample (SampleGameController): the pages "Your games" shows, from real games with the names
      hidden, for anyone to click through before installing anything. --}}
-<x-app-layout title="A real arena game, reviewed | MindCollector"
+<x-app-layout title="Sample Game Review | MindCollector"
               description="Click through a real WoW arena game as MindCollector reads it: each death, a timeline you can play with every player's cooldowns, a Solo Shuffle round by round, and where the player stands against their spec. Names hidden."
               og-image="/images/app/card.webp">
 <style>
@@ -48,7 +48,7 @@
         <iframe class="sample-frame" :src="'/wow/sample/page/' + tab" title="A sample page from MindCollector"></iframe>
 
         <p class="text-[12.5px] text-ink-subtle">
-            These are pages the MindCollector app drew from real games, with every player's name swapped for a label.
+            These are sample pages from the MindCollector app, with player names hidden.
             Yours show your own games, and only you can see these pages.
         </p>
     </div>

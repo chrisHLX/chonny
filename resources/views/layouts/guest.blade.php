@@ -4,7 +4,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="csrf-token" content="{{ csrf_token() }}">
-        <title>{{ config('app.name', 'MindCollector') }}</title>
+        <title>{{ request()->routeIs('register') ? 'Create Your Account' : (request()->routeIs('login') ? 'Sign In' : 'Your Account') }} | MindCollector</title>
         {{-- Auth screens (login / register / password) — no SEO value, keep them out of the index. --}}
         <meta name="robots" content="noindex, follow">
         <link rel="canonical" href="{{ url()->to(request()->getPathInfo()) }}">

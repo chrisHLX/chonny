@@ -8,7 +8,7 @@
         <a href="{{ route('wow-quiz') }}" wire:navigate class="text-[12px] text-ink-subtle hover:text-gold">All specs &rarr;</a>
     </div>
     <p class="text-[12.5px] text-ink-muted mt-1.5">
-        How well do you know your kit? Cooldowns, crowd control and DR, built from live game data.
+        How well do you know your kit? Cooldowns, crowd control and DR, based on live game data.
     </p>
 
     <h3 class="text-[11px] uppercase tracking-[0.13em] text-ink font-semibold mt-4 mb-1.5">Most questions answered</h3>

@@ -1,6 +1,6 @@
 {{-- A game that is coming to MindCollector (PlatformController::game): what is open already, what
      it will have, and "tell me when it's ready". --}}
-<x-app-layout :title="$game['name'].' on MindCollector: '.($now ? 'quizzes, and more coming' : 'coming soon')"
+<x-app-layout :title="$game['name'].' on MindCollector: '.($now ? 'Quizzes' : 'Coming Soon')"
               :description="$game['name'].' on MindCollector: '.$game['tagline'].' Ask to be told when it opens.'">
 <div class="max-w-4xl mx-auto px-4 py-6 sm:py-10 space-y-5">
 

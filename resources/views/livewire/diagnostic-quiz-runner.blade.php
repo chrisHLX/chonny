@@ -317,7 +317,7 @@
                      style="width: {{ (($currentIndex + 1) / $questions->count()) * 100 }}%"></div>
             </div>
             <div class="flex justify-end mt-1">
-                <span class="text-[11px] text-ink-subtle">Answer honestly — choose what you'd actually do.</span>
+                <span class="text-[11px] text-ink-subtle">Choose what you'd do in a game.</span>
             </div>
         </div>
 

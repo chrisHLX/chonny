@@ -94,7 +94,7 @@ class GameCardTest extends TestCase
         $this->assertStringContainsString('10× Glad 2588 Gladiator', $card);
         $this->assertStringContainsString('not looked up yet', $card, 'experience nobody has looked up is said, not shown as zero');
         $this->assertStringContainsString('Marksmanship Hunter Camouflage while they were not in a go', $card);
-        $this->assertStringContainsString('an estimate, not a verdict', $card);
+        $this->assertStringContainsString('estimated from the log', $card);
         // The Summary's panels (2026-10-29): the death as the headline, the game on one line of time.
         $this->assertStringContainsString('Hunter died at 1:32 Killing blow Unstable Affliction', $card);
         $this->assertStringContainsString('1:32 Hunter dies to Unstable Affliction', $card);

@@ -76,7 +76,7 @@ class MatchAnalysis extends Component
             'analysis' => $analysis,
             'gameView' => $game,
         ])->layout('layouts.app', [
-            'title' => 'Your analysis — your arena games, explained | MindCollector',
+            'title' => 'Your Analysis | MindCollector',
             'description' => 'Your own arena games read back: who you really played, what differed between the games you won and lost, and what to change.',
         ]);
     }

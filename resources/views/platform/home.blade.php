@@ -1,16 +1,16 @@
 {{-- MindCollector's home (PlatformController::home): what it is, and a card per game. --}}
-<x-app-layout title="MindCollector: understand your own games"
-              description="MindCollector reads the games you play and shows what happened in them, set against the players you actually meet. World of Warcraft arena now; StarCraft II next."
+<x-app-layout title="MindCollector: Understand Your Games"
+              description="MindCollector reads the games you play and shows what happened in them, set against the players you meet. World of Warcraft arena now; StarCraft II next."
               og-image="/images/app/card.webp">
 <div class="max-w-5xl mx-auto px-4 py-6 sm:py-10 space-y-6">
 
     <section class="page-hero relative overflow-hidden"
              style="background: radial-gradient(circle at 85% 10%, #C8952C26, transparent 50%), radial-gradient(circle at 10% 100%, #3FA7F51a, transparent 45%)">
         <p class="page-eyebrow">MindCollector</p>
-        <h1 class="page-title max-w-3xl">Understand your own games.</h1>
+        <h1 class="page-title max-w-3xl">Understand Your Games</h1>
         <p class="text-[15px] text-ink-muted mt-4 max-w-2xl">
             MindCollector reads the games you play and shows what happened in them, set against the players you
-            actually meet. It started with World of Warcraft arena, and StarCraft II is next.
+            meet. It started with World of Warcraft arena, and StarCraft II is next.
         </p>
     </section>
 

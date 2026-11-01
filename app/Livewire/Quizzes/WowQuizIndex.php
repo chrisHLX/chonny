@@ -52,7 +52,7 @@ class WowQuizIndex extends Component
         // The first level not yet passed is the one to take next.
         $recommended = collect($quiz->levels())->keys()->first(fn (int $n) => ! (($best[$n] ?? null)?->passed()));
 
-        $title = $this->spec ? "{$this->spec->name} {$this->spec->gameClass->name} quiz" : 'WoW class quizzes';
+        $title = $this->spec ? "{$this->spec->name} {$this->spec->gameClass->name} Quiz" : 'WoW Class Quizzes';
 
         // Concept drills, shown under the levels once a spec is picked. A level is a stage on a
         // path; a drill is a single idea you can hammer. Concepts with no generated questions are
@@ -89,7 +89,7 @@ class WowQuizIndex extends Component
             'drillRecords' => $drillRecords,
         ])->layout('layouts.app', [
             'title' => "{$title} | MindCollector",
-            'description' => 'Quizzes on your WoW arena kit: your cooldowns, your crowd control and diminishing returns. Built from live game data, so they stay current every patch.',
+            'description' => 'Quizzes on your WoW arena kit: your cooldowns, your crowd control and diminishing returns. Based on live game data, so they stay current every patch.',
         ]);
     }
 }

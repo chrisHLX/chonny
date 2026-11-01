@@ -14,14 +14,14 @@
     <section class="page-hero -mx-2 sm:mx-0 grid grid-cols-1 lg:grid-cols-5 gap-8 items-center">
         <div class="lg:col-span-3">
             <p class="page-eyebrow">World of Warcraft arena</p>
-            <h1 class="page-title max-w-3xl">Every arena game you play, reviewed.</h1>
+            <h1 class="page-title max-w-3xl">Review Every Arena Game You Play</h1>
             <p class="text-[16px] text-ink-muted mt-4 max-w-2xl">
                 The free MindCollector app sends each game here when it ends. You get a card for every game with
                 who died and why, a timeline you can play back with every player's cooldowns, and where you stand
-                against the players of your spec you actually meet.
+                against the players of your spec you meet.
             </p>
             <div class="flex flex-col sm:flex-row sm:items-center gap-3 mt-7">
-                <a href="{{ route('wow.sample') }}" class="btn-primary !px-7 !py-3 !text-[15px]">See a real game</a>
+                <a href="{{ route('wow.sample') }}" class="btn-primary !px-7 !py-3 !text-[15px]">See a Sample Game</a>
                 <a href="{{ route('app') }}" wire:navigate class="btn-secondary !px-7 !py-3 !text-[15px]">Get the app</a>
             </div>
             @if ($pool['games'] > 0)
@@ -33,7 +33,7 @@
         <a href="{{ route('wow.sample') }}" class="lg:col-span-2 block group">
             <img src="/images/app/card.webp" alt="A 3v3 game as MindCollector reads it, names hidden" loading="eager"
                  class="w-full rounded-lg border border-line shadow-xl group-hover:-translate-y-0.5 transition-transform">
-            <span class="block text-[12.5px] text-ink-subtle mt-2 group-hover:text-ink">A real game, names hidden. Click through it &rarr;</span>
+            <span class="block text-[12.5px] text-ink-subtle mt-2 group-hover:text-ink">Sample game, names hidden. Click through it &rarr;</span>
         </a>
     </section>
 
@@ -45,8 +45,8 @@
             @foreach ([
                 [route('wow-comps'), 'Build a 3v3 comp', 'Pick three specs and see their cooldowns, crowd control and defensives side by side.'],
                 [route('matchup-lab'), 'Matchup Lab', 'Set two comps against each other and see when each side has its answers.'],
-                [route('spec-pvp.index'), 'PvP guides', 'Every spec\'s PvP talents, goes, defensives and what to kick, counted from real games.'],
-                [route('guides.browse'), 'Guides', 'Game plans other players have written for their comps.'],
+                [route('spec-pvp.index'), 'PvP Guides', 'Every spec\'s PvP talents, goes, defensives and what to kick, based on rated games.'],
+                [route('guides.browse'), 'Player Guides', 'Game plans other players have written for their comps.'],
             ] as [$href, $title, $text])
                 <a href="{{ $href }}" wire:navigate class="linear-card group p-5 flex flex-col">
                     <p class="text-[16px] font-bold text-ink">{{ $title }}</p>
@@ -74,7 +74,7 @@
     {{-- Learn ------------------------------------------------------------------------------- --}}
     <section class="mt-14">
         <h2 class="text-[22px] font-bold text-ink">Learn the game</h2>
-        <p class="text-[14px] text-ink-muted mt-1">How arena is won, and quizzes on your own spec's kit, built from live game data.</p>
+        <p class="text-[14px] text-ink-muted mt-1">How arena is won, and quizzes on your own spec's kit, based on live game data.</p>
         <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 mt-4">
             @foreach ([
                 [route('wow-basics'), 'Arena basics check', 'Eight questions on how arena is won, with your own spec\'s buttons.'],

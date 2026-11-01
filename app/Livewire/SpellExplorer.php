@@ -403,7 +403,7 @@ class SpellExplorer extends Component
             // as a bare view variable — same reasoning as 'usingPersonalBuild' directly above.
             'embedded' => $this->embedded,
         ])->layout('layouts.app', [
-            'title' => 'WoW Spell Explorer — Talent-Aware Cooldowns & Modifiers | MindCollector',
+            'title' => 'WoW Spell Explorer: Cooldowns and Talents | MindCollector',
             'description' => 'Browse any WoW class/spec\'s full spell kit with talent-aware cooldowns, charges, crowd-control categories and every talent that modifies each ability.',
         ]);
     }

@@ -32,7 +32,7 @@
 
 @php
     // The app's pages need something built; until then the Upload tab is where a player starts.
-    $pageTabs = ['games' => 'Games', 'improve' => 'Improve', 'comps' => "Comps you've faced", 'shuffle' => 'Shuffle', 'teammates' => 'Teammates', 'classes' => 'Classes'];
+    $pageTabs = ['games' => 'Games', 'improve' => 'Improve', 'comps' => "Comps You've Faced", 'shuffle' => 'Shuffle', 'teammates' => 'Teammates', 'classes' => 'Classes'];
     $startTab = $newKey || ! $built ? 'upload' : 'games';
 @endphp
 
@@ -41,7 +41,7 @@
          x-init="if (location.hash === '#videos') tab = 'videos'; if (location.hash === '#youtube') { tab = 'upload'; $nextTick(() => document.getElementById('youtube')?.scrollIntoView()) }">
         <div class="page-hero !py-6">
             <p class="page-eyebrow">Only you can see this page</p>
-            <h1 class="page-title">Your games</h1>
+            <h1 class="page-title">Your Games</h1>
             <p class="text-[14px] text-ink-muted mt-3 max-w-3xl">Every game you've uploaded, where you stand against players of your spec, the comps you've played against and the best player of each spec you've met.</p>
             {{-- Nothing uploaded yet (2026-10-27): real games to open meanwhile, rather than a page that
                  reads as empty. --}}

@@ -10,7 +10,7 @@
             then <span class="text-ink">fill</span> the globals that are left.
         </p>
         <p class="text-[11px] text-ink-subtle mt-2 max-w-3xl">
-            Built from hundreds of recorded burst windows per spec, so every step reflects what players
+            Based on hundreds of recorded burst windows per spec, so every step reflects what players
             usually press, not a one-off. Timings are measured from the spec's biggest cooldown. Click any
             step to see what it does.
         </p>

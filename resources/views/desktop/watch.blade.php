@@ -27,7 +27,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Watch &mdash; {{ $title ?? 'Game' }}</title>
+<title>Watch: {{ $title ?? 'Game' }}</title>
 @include('desktop.partials.styles')
 <style>
     .wrap { max-width: 1680px; }

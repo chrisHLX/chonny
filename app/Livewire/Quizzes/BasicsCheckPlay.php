@@ -140,7 +140,7 @@ class BasicsCheckPlay extends Component
                 ->orderBy('name')
                 ->get(),
         ])->layout('layouts.app', [
-            'title' => ($label ? "Arena basics check — {$label}" : 'Arena basics check').' | MindCollector',
+            'title' => ($label ? "Arena Basics: {$label}" : 'Arena Basics').' | MindCollector',
             'description' => 'New to WoW arena? Eight questions on the basics — goes, crowd control, diminishing returns, defensives, kicks, line of sight — built from your own spec, with what to work on.',
         ]);
     }

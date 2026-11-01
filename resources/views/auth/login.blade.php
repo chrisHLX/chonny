@@ -1,4 +1,8 @@
 <x-guest-layout>
+    <div class="mb-5">
+        <h1 class="font-display text-[22px] text-ink leading-tight">Sign In</h1>
+    </div>
+
     <x-auth-session-status class="mb-4" :status="session('status')" />
 
     <x-auth.social-buttons/>

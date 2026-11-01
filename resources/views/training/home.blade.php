@@ -1,13 +1,13 @@
 {{-- Training's home (TrainingController::home). Signed in: today's revisits first (the phone visit),
      then where to continue, the reasoning check and the subjects. Visitors: what Training is. --}}
-<x-app-layout title="Training: reasoning for the AI era | MindCollector"
+<x-app-layout title="Training | MindCollector"
               description="Lessons in feedback loops, causal reasoning, statistics and decisions, built on competitive games. Notes you make come back, so you can see what changed your mind.">
 <div class="tr max-w-6xl mx-auto px-4 py-6 sm:py-10 space-y-8">
     @include('training.partials.top')
 
     <section class="page-hero">
         <p class="page-eyebrow">Training</p>
-        <h1 class="page-title max-w-3xl">Learn to steer by evidence.</h1>
+        <h1 class="page-title max-w-3xl">Learn to Reason with Evidence</h1>
         <p class="text-[15px] text-ink-muted mt-4 max-w-2xl">
             AI makes explanations cheap. Judging whether they're true is still your job. Each lesson starts with a real problem,
             asks what you think before teaching anything, then tests whether the idea carries over to a situation you haven't seen.
@@ -20,7 +20,7 @@
         <section class="grid gap-3 sm:grid-cols-3">
             <div class="linear-card p-5 space-y-2"><p class="page-eyebrow">Problem first</p><h3 class="text-ink font-bold">You reason before you're told</h3><p class="text-[14px] text-ink-muted">Every lesson opens with an ambiguous situation. You write your reading of it, then see evidence that may change it.</p></div>
             <div class="linear-card p-5 space-y-2"><p class="page-eyebrow">Notes that come back</p><h3 class="text-ink font-bold">Mark what you don't understand</h3><p class="text-[14px] text-ink-muted">Highlight any passage or add a note. Confusing passages and questions come back for a revisit, where you record whether your understanding moved.</p></div>
-            <div class="linear-card p-5 space-y-2"><p class="page-eyebrow">Transfer, not recall</p><h3 class="text-ink font-bold">Measured on new situations</h3><p class="text-[14px] text-ink-muted">Mastery counts only questions set in a different domain, answered right first time. A before-and-after check measures whether your reasoning changed.</p></div>
+            <div class="linear-card p-5 space-y-2"><p class="page-eyebrow">New situations</p><h3 class="text-ink font-bold">Measured on new situations</h3><p class="text-[14px] text-ink-muted">Mastery counts only questions set in a different domain, answered right first time. A before-and-after check measures whether your reasoning changed.</p></div>
         </section>
         <div class="flex flex-wrap gap-3"><a class="btn-primary" href="{{ route('register') }}">Create a free account</a><a class="btn-secondary" href="{{ route('login') }}">Sign in</a></div>
     @endguest

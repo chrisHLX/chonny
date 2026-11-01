@@ -174,7 +174,7 @@ class Search extends Component
             'recent' => $this->recent,
             'regions' => self::regions(),
         ])->layout('layouts.app', [
-            'title' => 'WoW PvP player lookup: ratings, exp and talents | MindCollector',
+            'title' => 'WoW PvP Player Lookup: Ratings, Exp and Talents | MindCollector',
             'description' => 'Look up any World of Warcraft character: current arena and Solo Shuffle ratings, highest rating ever (exp), Gladiator titles, gear and talents, from Blizzard.',
         ]);
     }

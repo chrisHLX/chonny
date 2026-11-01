@@ -36,7 +36,7 @@
     <div class="rounded-xl bg-frame p-2 shadow-2xl shadow-black/60 ring-1 ring-white/5">
         <div class="flex items-center gap-2 px-2 pb-2 text-[12px] text-ink-muted">
             <span class="w-3 h-3 rounded-full bg-gold/80"></span> MindCollector
-            <span class="ml-auto text-ink-subtle">Real games, names hidden</span>
+            <span class="ml-auto text-ink-subtle">Player names hidden</span>
         </div>
         <div class="flex gap-2">
             <div class="hidden lg:flex flex-col gap-2 w-52 shrink-0">

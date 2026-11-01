@@ -17,7 +17,7 @@
 
 @if ($empowered)
     <div class="linear-card px-6 py-5">
-        <h2 class="font-display text-[17px] text-ink">Empowered spells</h2>
+        <h2 class="font-display text-[17px] text-ink">Empowered Spells</h2>
         <div class="grid lg:grid-cols-2 gap-x-10 gap-y-6 mt-3">
             <div>
                 <div class="flex items-center gap-2 text-[11px] text-ink-subtle">
@@ -92,7 +92,7 @@
     </div>
 @else
     <div class="linear-card px-6 py-4">
-        <h2 class="font-display text-[17px] text-ink">Empowered spells</h2>
+        <h2 class="font-display text-[17px] text-ink">Empowered Spells</h2>
         <p class="text-[12.5px] text-ink-muted mt-1">None confirmed for {{ $spec?->name }} {{ $class?->name }} yet. A buff is listed once its tooltip and our games agree.</p>
     </div>
 @endif

@@ -17,7 +17,7 @@ class PlatformTest extends TestCase
     {
         $html = $this->get('/')->assertOk()->getContent();
 
-        $this->assertStringContainsString('Understand your own games.', $html);
+        $this->assertStringContainsString('Understand Your Games', $html);
         foreach (['World of Warcraft', 'StarCraft II'] as $game) {
             $this->assertStringContainsString($game, $html);
         }

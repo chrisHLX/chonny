@@ -128,7 +128,7 @@ class TeammatesTest extends TestCase
         ]]));
 
         $this->actingAs($user)->get(route('coach'))->assertOk()
-            ->assertSee("Comps you've faced")
+            ->assertSee("Comps You've Faced")
             ->assertSeeInOrder(['All teammates', 'First', 'Second']);
 
         \Illuminate\Support\Facades\File::deleteDirectory($dir);
