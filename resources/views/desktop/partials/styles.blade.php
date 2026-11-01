@@ -54,6 +54,45 @@
     .kicker { font-size: 11.5px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: #B3B3B3; margin-bottom: 10px; }
     .kicker .ico { color: #C8952C; margin-right: 6px; width: 15px; height: 15px; }
 
+    /* ---- the Kill targets box (2026-11-01): who a team went after, and its goes ---- */
+    .kt-card { margin-top: 14px; }
+    .kt-round { margin-top: 12px; padding-top: 12px; border-top: 1px solid #2A2A2A; }
+    .kt-head { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 10px; }
+    .kt-head .kicker { margin-bottom: 0; }
+    .seg { display: inline-flex; background: #2A2A2A; border-radius: 999px; padding: 2px; flex-shrink: 0; }
+    .seg a { padding: 4px 12px; border-radius: 999px; font-size: 12px; font-weight: 600; color: #B3B3B3; cursor: pointer; text-decoration: none; }
+    .seg a.on { background: #C8952C; color: #000000; }
+    .kt-target { display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(0, 1.4fr) 58px 92px; gap: 12px; align-items: center; padding: 5px 0; font-size: 13.5px; }
+    .kt-target .who { min-width: 0; }
+    .kt-target .bar { margin: 0; }
+    .kt-target .amt { text-align: right; font-variant-numeric: tabular-nums; }
+    .kt-target .fate { font-size: 12.5px; color: #FFFFFF; white-space: nowrap; }
+    .kt-target .fate .ico { width: 14px; height: 14px; margin-right: 4px; color: #C8952C; }
+    .kt-go { display: grid; grid-template-columns: 44px minmax(0, 1.3fr) minmax(0, 1fr) minmax(0, 1fr); gap: 12px; align-items: center; padding: 8px 0; border-top: 1px solid #2A2A2A; font-size: 13px; }
+    .kt-go.heads { margin-top: 12px; padding-bottom: 6px; border-top: 0; font-size: 11px; color: #B3B3B3; }
+    .kt-go .at { color: #B3B3B3; font-variant-numeric: tabular-nums; }
+    .kt-go .ic { display: flex; flex-wrap: wrap; align-items: flex-start; gap: 6px; min-width: 0; }
+    .kt-go .cc { display: inline-flex; flex-direction: column; align-items: center; gap: 2px; }
+    .kt-go .cc img, .kt-go .cc i { width: 28px; height: 28px; border-radius: 5px; display: block; }
+    .kt-go .cc i { background: #2a2214; color: #E8B84B; font-size: 11px; font-style: normal; line-height: 28px; text-align: center; }
+    .kt-go .cc b { font-size: 10.5px; font-weight: 600; color: #B3B3B3; font-variant-numeric: tabular-nums; }
+    .kt-go .drop { min-width: 0; }
+    .kt-go .drop .line1 { display: block; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .kt-go .drop .ico { width: 14px; height: 14px; color: #C8952C; }
+    .kt-go .hp { display: block; position: relative; height: 6px; margin-top: 5px; border-radius: 3px; background: #3E3E3E; overflow: hidden; }
+    .kt-go .hp i { position: absolute; top: 0; bottom: 0; }
+    .kt-more { margin-top: 8px; }
+    @media (max-width: 560px) {
+        .kt-head { flex-wrap: wrap; }
+        .kt-target { grid-template-columns: minmax(0, 1fr) auto; gap: 4px 12px; }
+        .kt-target .bar { grid-column: 1 / -1; grid-row: 2; }
+        .kt-target .fate { grid-column: 1 / -1; }
+        .kt-target .fate:empty { display: none; }
+        .kt-go { grid-template-columns: minmax(0, 1fr); gap: 7px; }
+        .kt-go.heads { display: none; }
+        .kt-go .ic::before, .kt-go .drop::before { content: attr(data-label); display: block; flex-basis: 100%; font-size: 11px; color: #B3B3B3; margin-bottom: 2px; }
+    }
+
     /* ---- the dashboard layout (2026-10-29): a header with both sides, then panels in a grid ---- */
     .hero { display: flex; flex-wrap: wrap; align-items: flex-start; justify-content: space-between; gap: 16px; }
     .hero-main { display: flex; align-items: center; gap: 16px; min-width: 0; }

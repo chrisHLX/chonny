@@ -92,7 +92,7 @@ class RoundAnalysisService
      * pets, totems and summons. Damage totals, by round and in the population norms, read higher
      * than version 16, most against a Disc Priest. Every other measure is unchanged.
      */
-    public const VERSION = 17;
+    public const VERSION = 18;
 
     /** A priority cast is taken as stopped or finished when that happens this long after it began. */
     private const CAST_WINDOW = 3.5;
@@ -114,6 +114,13 @@ class RoundAnalysisService
 
     /** Crowd control that takes a player out: a slow or root does not stop a healer healing. */
     private const LOCKOUT = ['Stun', 'Silence', 'Disorient', 'Incapacitate'];
+
+    /** Shortest cooldown a talent joins a kit at. Under these it is rotation (Barbed Shot, Haunt), or a heal on one. */
+    private const KIT_FLOOR = ['offensive' => 20, 'answers' => 30, 'control' => 15];
+
+    private ?array $controlByName = null;
+
+    private ?array $pressedBySpec = null;
 
     /** A link within this long of the chain's end makes a good go. */
     private const TIGHT_LINK = 5.0;
@@ -211,7 +218,11 @@ class RoundAnalysisService
         // The defending side's damage defensives back as each go started (the cooldown ledger), and
         // each player's gear and PvP talents read on the way.
         $kit = [];
-        $cover = $this->cover($lines, $metadata, $roster, $sideOf, $tl, $kit);
+        $pressedBy = [];
+        foreach ($named as $c) {
+            $pressedBy[$c['src']][$c['spell']] = true;
+        }
+        $cover = $this->cover($lines, $metadata, $roster, $sideOf, $tl, $kit, $pressedBy);
         $health = [];
         foreach ($dmg as $x) {
             if ($x['hpAfter'] !== null) {
@@ -256,6 +267,7 @@ class RoundAnalysisService
             'kicks' => $this->kicks($interrupts, $sideOf, $credit, $healers, $goes),
             'lockout' => array_map(fn ($iv) => round($this->len($iv), 1), $locked),
             'breakdown' => $this->breakdown($roster, $sideOf, $credit, array_merge($dmg, $swingOnly), $meter, $heals, $absorbs, $casts, $locked, $deaths, $metadata),
+            'taken' => $this->damageTaken(array_merge($dmg, $swingOnly, $meter), $sideOf, $credit),
             'checks' => $this->checks($tl, $roster, $sideOf, $deaths, $metadata, $this->overlaps($tl, $buffs, $sideOf, $firstDeath)),
             'dispels' => $this->dispels($dispelEvents, $sideOf, $credit),
             'debuffs' => $this->debuffs($debuffSpans, $sideOf, $credit),
@@ -608,10 +620,7 @@ class RoundAnalysisService
      */
     private function kits(array $lines, array $metadata, callable $sideOf, array $pressed): array
     {
-        $ccById = $this->moments->crowdControl();
-        $ccByName = \App\Models\Spell::where('patch_id', \App\Models\Patch::where('is_current', true)->value('id'))
-            ->whereIn('spell_id', array_keys($ccById))->get(['spell_id', 'name'])
-            ->mapWithKeys(fn ($s) => [$s->display_name => $ccById[$s->spell_id]])->all();
+        $ccByName = $this->controlByName();
         $classes = $this->arena->offensiveDefensiveClassification();
         // byName is keyed by the name exactly as the classification file spells it.
         $defensive = fn (string $n) => (bool) (($classes['byName'][$n] ?? $classes['byName'][strtolower($n)] ?? [])['defensive'] ?? false);
@@ -682,11 +691,12 @@ class RoundAnalysisService
      * would store them in `players[].kit`. For wow:refresh-kits after a change to how talents resolve.
      *
      * @param  array{talents?: array, pvpTalentIds?: array}  $combatant
+     * @param  array<string, true>  $pressed  what the player pressed in the round, by name
      * @return array<int, array{name: string, kind: string, cd: float, charges: int}>
      */
-    public function kitFor(array $combatant, \App\Models\Specialization $spec): array
+    public function kitFor(array $combatant, \App\Models\Specialization $spec, array $pressed = []): array
     {
-        return $this->abilities($spec, $this->ledger->build($combatant, $spec));
+        return $this->abilities($spec, $this->ledger->build($combatant, $spec), $pressed);
     }
 
     /**
@@ -697,9 +707,17 @@ class RoundAnalysisService
      * has to send its games again: a round measured before it has no `kit`, and the page falls back
      * to the spec's usual build.
      *
+     * A profile holds what the default build took, so what else this spec is seen pressing is added
+     * here when the player has it (Incarnation, Scatter Shot, Shadow Dance: 106 buttons were pressed
+     * and missing, 2026-11-01). Seen pressing, because a build alone also holds what a talent replaced
+     * and passives (166 Ferals held Berserk and none pressed it), and Moments calls any button in a
+     * kit ready. Pressing it in this round proves they have it: a build can miss a talent the player
+     * has (92 of 93 Rets pressed a Divine Toll their build did not list; why is not yet known).
+     *
+     * @param  array<string, true>  $pressed  what this player pressed in the round, by name
      * @return array<int, array{name: string, kind: string, cd: float, charges: int}>
      */
-    private function abilities(\App\Models\Specialization $spec, array $build): array
+    private function abilities(\App\Models\Specialization $spec, array $build, array $pressed = []): array
     {
         $profile = $this->ledger->profile($spec->gameClass?->slug, $spec->slug);
         $out = [];
@@ -718,14 +736,67 @@ class RoundAnalysisService
             }
         }
 
+        foreach (array_keys($this->pressedBySpec()[(int) $spec->external_spec_id] ?? []) as $name) {
+            $kind = $this->kitKind($name);
+            if ($kind === null || isset($out[$name]) || (! isset($pressed[$name]) && ! $this->ledger->takes($name, $spec, $build))) {
+                continue;
+            }
+            $cd = $this->ledger->cooldown($name, $spec, $build);
+            if (($cd['cd'] ?? 0) >= self::KIT_FLOOR[$kind]) {
+                $out[$name] = ['name' => $name, 'kind' => $kind, 'cd' => $cd['cd'], 'charges' => $cd['charges']];
+            }
+        }
+
         return array_values($out);
+    }
+
+    /** Which list of a kit a talent belongs in, or null when it is not a tracked button. */
+    private function kitKind(string $name): ?string
+    {
+        $classes = $this->arena->offensiveDefensiveClassification()['byName'] ?? [];
+        $tags = $classes[$name] ?? $classes[strtolower($name)] ?? [];
+
+        return match (true) {
+            (bool) ($tags['offensive'] ?? false) => 'offensive',
+            (bool) ($tags['defensive'] ?? false) => 'answers',
+            in_array($this->controlByName()[$name] ?? null, self::LOCKOUT, true) => 'control',
+            default => null,
+        };
+    }
+
+    /** @return array<string, string> crowd control name => its kind, from the spell data */
+    private function controlByName(): array
+    {
+        if ($this->controlByName === null) {
+            $byId = $this->moments->crowdControl();
+            $this->controlByName = \App\Models\Spell::where('patch_id', \App\Models\Patch::where('is_current', true)->value('id'))
+                ->whereIn('spell_id', array_keys($byId))->get(['spell_id', 'name'])
+                ->mapWithKeys(fn ($s) => [$s->display_name => $byId[$s->spell_id]])->all();
+        }
+
+        return $this->controlByName;
+    }
+
+    /**
+     * What the players of each spec are seen pressing, from the population norms: spec id => name =>
+     * true. It comes from real games, so a talent changed by a patch sorts itself out at the next
+     * wow:population with nothing to curate.
+     *
+     * @return array<int, array<string, true>>
+     */
+    private function pressedBySpec(): array
+    {
+        $path = \App\Console\Commands\BuildPopulation::normsPath();
+
+        return $this->pressedBySpec ??= \App\Support\SpellDataCache::remember('kit-pressed', [$path], fn () => collect(json_decode((string) @file_get_contents($path), true)['specs'] ?? [])
+            ->map(fn ($s) => array_fill_keys(array_keys($s['abilities'] ?? []), true))->all());
     }
 
     /**
      * A function from (side, moment) to that side's damage defensives back at that moment. Null when
      * the cooldowns cannot be resolved; a round is never left unanalysed because of the ledger.
      */
-    private function cover(array $lines, array $metadata, array $roster, callable $sideOf, array $tl, array &$kit = []): ?\Closure
+    private function cover(array $lines, array $metadata, array $roster, callable $sideOf, array $tl, array &$kit = [], array $pressedBy = []): ?\Closure
     {
         try {
             $presses = [];
@@ -747,7 +818,7 @@ class RoundAnalysisService
                 $combatant = $this->arena->extractCombatantInfoFromLog($raw, $guid) ?? [];
                 $build = $this->ledger->build($combatant, $spec);
                 $kit[$guid] = ['ilvl' => $combatant['gear']['median'] ?? null, 'pvpTalents' => array_column($build['pvp'] ?? [], 'name'),
-                    'abilities' => $this->abilities($spec, $build)];
+                    'abilities' => $this->abilities($spec, $build, $pressedBy[$guid] ?? [])];
                 $names = array_unique(array_merge($this->ledger->profileAnswers($spec->gameClass?->slug, $spec->slug), array_keys($presses[$guid] ?? [])));
                 foreach ($names as $name) {
                     if ($cd = $this->ledger->cooldown($name, $spec, $build)) {
@@ -1027,6 +1098,27 @@ class RoundAnalysisService
     }
 
     // ------------------------------------------------------------------ breakdown and checks
+
+    /**
+     * What each player took from the other team, shields included, as `breakdown` counts damage done
+     * (version 18). Who took the most is the kill target the log can see (docs/plan-overlay.md).
+     *
+     * @return array<string, int> guid => damage
+     */
+    private function damageTaken(array $hits, callable $sideOf, callable $credit): array
+    {
+        $taken = [];
+        foreach ($hits as $x) {
+            $on = $sideOf($x['dst']);
+            $from = $sideOf($credit($x['src']));
+            if ($on !== null && $from !== null && $on !== $from) {
+                $taken[$x['dst']] = ($taken[$x['dst']] ?? 0) + $x['amount'] + ($x['absorbed'] ?? 0);
+            }
+        }
+        arsort($taken);
+
+        return $taken;
+    }
 
     /**
      * Each player's output by ability: damage onto the other team, healing (effective and overheal)

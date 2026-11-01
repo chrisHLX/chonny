@@ -46,6 +46,7 @@ row is relabelled in place"), that is the old 790KB CLAUDE.md: search
 | `docs/vision-experiment.md` | open experiment | Reading a game from the screen, and the [READ]/[INFER]/[PRIOR]/[UNKNOWN] protocol. n=1. |
 | `docs/achievements.md` | proposal | Achievements for improving, not grinding. Not built. |
 | `docs/ai/ask-about-this-game.md` | proposal | A model answering from stored measurements. Not built. |
+| `docs/plan-overlay.md` | proposal | A player's plan held against a played game, each teammate seeing their own part, the cooldown feedback loop, and where AI fits: the research, the design and the build order. Prototypes only (`tools/match-review/planread.php`, `cdaudit.php`). |
 | `docs/sc2/plan.md` | research | StarCraft II: where its knowledge comes from, WoW's pieces mapped across. Built so far: `data/sc2/` and its quizzes. |
 | `docs/reviews/` | history | One-off session reviews. |
 | `addon-upgrades.md` | history | The capture-side wants of Sep 2026; all shipped. |

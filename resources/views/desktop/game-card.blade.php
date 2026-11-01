@@ -25,6 +25,12 @@
         }
         document.title = 'tab:' + name;
     }
+    // The Kill targets box: your team's goes or the enemy's. A shuffle has one box a round.
+    function ktShow(link, side) {
+        var box = link.closest('.kt'), sides = box.querySelectorAll('.kt-side'), seg = link.parentNode.children, i;
+        for (i = 0; i < sides.length; i++) { sides[i].style.display = sides[i].getAttribute('data-side') === side ? '' : 'none'; }
+        for (i = 0; i < seg.length; i++) { seg[i].className = seg[i] === link ? 'on' : ''; }
+    }
 </script>
 </head>
 {{-- The teams open first (2026-10-29): who was in the game, their titles and ratings, is what players
@@ -159,6 +165,10 @@
             </div>
         </div>
     </div>
+
+    @if (! empty($g['killTargets']))
+        <div class="card kt-card">@include('desktop.partials.kill-targets', ['kt' => $g['killTargets']])</div>
+    @endif
 
     {{-- ============================== the game on one line of time, and the checks beside it --}}
     <div class="grid2 top">
@@ -299,6 +309,9 @@
             @endif
             @if ($r['death'])
                 <div class="line">@include('desktop.partials.death', ['d' => $r['death']])</div>
+            @endif
+            @if ($r['killTargets'])
+                <div class="kt-round">@include('desktop.partials.kill-targets', ['kt' => $r['killTargets']])</div>
             @endif
             @if ($r['look'] || $r['checks'])
                 <details class="more">

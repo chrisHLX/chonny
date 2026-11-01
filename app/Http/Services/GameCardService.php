@@ -294,7 +294,7 @@ class GameCardService
         // The defensive tags sort each death's ready defensives (DefensiveFit), so a tag change redraws.
         // GameMomentsService draws the Moments tab.
         $files = array_merge([__FILE__, app_path('Http/Services/GameBasicsService.php'), app_path('Http/Services/GameMomentsService.php'), \App\Console\Commands\BuildPopulation::normsPath(),
-            app_path('Support/DefensiveFit.php'), DefensiveFit::path()],
+            app_path('Support/DefensiveFit.php'), DefensiveFit::path(), app_path('Http/Services/KillTargetService.php')],
             // The Watch page is a desktop view but no card draws it (2026-10-26: every change to it
             // redrew every player's cards, and the largest account's build timed out after deploys).
             array_filter(glob(resource_path('views/desktop/*.blade.php')), fn ($f) => basename($f) !== 'watch.blade.php'),
@@ -345,8 +345,51 @@ class GameCardService
             'basics' => $this->pool ? null : $this->basicsModel([$a]),
             'moments' => $this->pool ? null : $this->momentsModel([[null, $a]]),
             'tiles' => $this->tiles($a, $players),
+            'killTargets' => $this->killTargetsModel($a, $players),
             'events' => $this->events($a, $players, (float) ($this->payload($round)['metadata']['durationInSeconds'] ?? 0)),
         ];
+    }
+
+    /**
+     * The Summary's Kill targets box: each team's targets by the damage they took, and its goes, with
+     * names and icons (KillTargetService). Null on a pooled card, which has no "your team", and for a
+     * round measured before version 18.
+     */
+    private function killTargetsModel(array $a, Collection $players): ?array
+    {
+        $read = $this->pool ? null : app(KillTargetService::class)->read($a);
+        if ($read === null) {
+            return null;
+        }
+
+        $byGuid = $players->keyBy('guid');
+        $names = collect($read)->flatMap(fn ($side) => collect($side['goes'])->flatMap(fn ($go) => [...array_column($go['healerCc'], 'spell'), ...$go['cooldowns']]))
+            ->unique()->values()->all();
+        $icons = $names ? $this->icons->for($names) : [];
+        $spell = fn (string $name) => ['spell' => $name, 'icon' => $this->spellIcon($icons, $name)];
+        $who = fn (string $guid) => ['name' => $byGuid[$guid]['name'] ?? '?', 'spec' => $byGuid[$guid]['spec'] ?? '', 'color' => $byGuid[$guid]['color'] ?? '#B3B3B3'];
+
+        return array_map(function (array $side) use ($spell, $who) {
+            $most = max(array_column($side['targets'], 'damage') ?: [1]) ?: 1;
+
+            return [
+                'targets' => array_map(fn ($t) => $who($t['guid']) + [
+                    'amount' => $this->amount($t['damage']),
+                    'share' => round(100 * $t['damage'] / $most),
+                    'died' => $t['died'] === null ? null : $this->clock($t['died']),
+                ], $side['targets']),
+                'goes' => array_map(fn ($go) => [
+                    'clock' => $this->clock((float) $go['from']),
+                    'who' => $who($go['on']),
+                    'high' => (int) $go['high'],
+                    'low' => (int) $go['low'],
+                    'died' => $go['died'],
+                    'healerCc' => array_map(fn ($c) => $spell($c['spell']) + ['seconds' => $c['seconds']], $go['healerCc']),
+                    'cooldowns' => array_map($spell, $go['cooldowns']),
+                ], $side['goes']),
+                'allGoes' => $side['allGoes'],
+            ];
+        }, $read);
     }
 
     /**
@@ -500,6 +543,7 @@ class GameCardService
                 'with' => $ps->where('side', 'us')->where('you', false)->values()->all(),
                 'against' => $ps->where('side', 'them')->values()->all(),
                 'death' => isset($a['deaths'][0]) ? $this->death($a['deaths'][0], $ps, $a['goes']) : null,
+                'killTargets' => $this->killTargetsModel($a, $ps),
                 'talents' => array_map(fn ($c) => $c + ['color' => $ps->firstWhere('guid', $c['guid'])['color'] ?? '#B3B3B3'], $talents[$i] ?? []),
                 'look' => $look,
                 // Your own only, like $look: the other players change every round.

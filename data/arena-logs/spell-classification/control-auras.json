@@ -1,0 +1,12 @@
+{
+    "_about": "Auras the combat log writes for crowd control under a name of their own, so no spell row carries them. crowdControl() adds each one by id, as `dr`, and the timeline credits the span to `as`, the button that was pressed. A list here and not a spell row, because a row would put the aura in the spec's kit and the Comps pages as a second, pressable spell. Found by tools/match-review/cdaudit.php, list 4 (docs/plan-overlay.md, \"Keeping cooldowns right\"). Hand-curated from the log: each entry names the aura's own measurement.",
+    "auras": [
+        {
+            "auraId": 356727,
+            "name": "Spider Venom",
+            "dr": "Silence",
+            "as": "Chimaeral Sting",
+            "note": "Chimaeral Sting's silence, the second of its three venoms. From 120 raw logs (2026-11-01): 51 of 80 casts reached it, a median 3.2s after the press (1.6s to 3.5s), lasting 3s. The curated line on 356719 tags only the cast, which writes no aura of that name, so every press was missing from the control spans."
+        }
+    ]
+}

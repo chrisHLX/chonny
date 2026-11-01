@@ -121,6 +121,19 @@
                             <span class="text-ink">Mind</span><span class="text-gold">Collector</span>
                         </span>
                     </a>
+                    {{-- Signing in and out is one tap on a phone (2026-11-01): both used to sit behind the
+                         menu, and sign out one popup further in. --}}
+                    <div class="ml-auto flex items-center gap-3 text-[12.5px]">
+                        @auth
+                            <form method="POST" action="{{ route('logout') }}">
+                                @csrf
+                                <button type="submit" class="text-ink-muted hover:text-ink transition-colors">Sign out</button>
+                            </form>
+                        @else
+                            <a href="{{ route('login') }}" class="text-ink-muted hover:text-ink transition-colors">Sign in</a>
+                            <a href="{{ route('register') }}" class="font-semibold text-gold hover:text-gold-light transition-colors">Sign up</a>
+                        @endauth
+                    </div>
                 </div>
 
                 {{-- Bottom padding on phones clears the tab bar below, so the last thing on a page

@@ -8,6 +8,9 @@
             Review every arena game you play, plan your goes and share them with the people you
             queue with.
         </p>
+        <p class="text-[13.5px] text-ink-muted mt-2.5">
+            Already have an account? <a href="{{ route('login') }}" class="text-gold font-semibold hover:text-gold-light">Sign in</a>
+        </p>
     </div>
 
     <div class="flex items-start gap-2.5 mb-5 px-3 py-2 rounded-md bg-gold-subtle border border-line-gold">
@@ -63,11 +66,7 @@
 
         <x-input-error :messages="$errors->get('g-recaptcha-response')" class="mt-1.5" />
 
-        <div class="flex items-center justify-between pt-1">
-            <a href="{{ route('login') }}"
-               class="text-[12px] text-ink-subtle hover:text-ink-muted transition-colors">
-                Already registered?
-            </a>
+        <div class="flex items-center justify-end pt-1">
             <x-primary-button>Register</x-primary-button>
         </div>
     </form>

@@ -295,8 +295,10 @@ class WatchPageService
             }
         }
         $english = app(SpellNameTranslations::class)->english(array_keys($castNames));
+        // A kit's button can come from the player's own talents, so a profile may not hold its icon.
+        $kitNames = collect($analysis['players'] ?? [])->flatMap(fn ($p) => array_column($p['kit'] ?? [], 'name'))->all();
         $castIcons = [];
-        foreach ($icons ? app(SpellIconIndex::class)->for(array_keys($castNames)) : [] as $spell => $model) {
+        foreach ($icons ? app(SpellIconIndex::class)->for(array_values(array_unique([...array_keys($castNames), ...$kitNames]))) : [] as $spell => $model) {
             if ($model?->icon_name) {
                 $castIcons[$spell] = \App\Support\DesktopAsset::icon($model->icon_name);
             }
@@ -362,7 +364,7 @@ class WatchPageService
                 // Every successful cast, in order: time, spell, its icon, whom it went on.
                 'casts' => array_map(fn ($c) => [(float) $c[0], $c[1], isset($c[2]) ? ($names[$c[2]] ?? null) : null], $casts[$p['guid']] ?? []),
                 'abilities' => array_map(fn ($a) => $a + [
-                    'icon' => isset($icons[$a['name']]) ? \App\Support\DesktopAsset::icon($icons[$a['name']]) : null,
+                    'icon' => isset($icons[$a['name']]) ? \App\Support\DesktopAsset::icon($icons[$a['name']]) : ($castIcons[$a['name']] ?? null),
                     'presses' => $pressed[$a['name']] ?? [],
                 ], $kit),
             ];

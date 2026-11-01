@@ -41,7 +41,8 @@ class RefreshKits extends Command
                             continue;
                         }
                         $seen++;
-                        $kit = $analysis->kitFor($combatant, $spec);
+                        $pressed = array_fill_keys(array_column($p['analysis']['timeline']['casts'][$pl['guid']] ?? [], 1), true);
+                        $kit = $analysis->kitFor($combatant, $spec, $pressed);
                         if ($kit != $pl['kit']) {   // loose: a stored 240 is a fresh 240.0
                             $p['analysis']['players'][$i]['kit'] = $kit;
                             $dirty = true;

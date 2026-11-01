@@ -110,6 +110,10 @@ class ArenaMomentService
 
     private ?array $crowdControl = null;
 
+    private ?array $controlAuras = null;
+
+    private const CONTROL_AURAS = 'data/arena-logs/spell-classification/control-auras.json';
+
     public function __construct(private ArenaLogService $arena) {}
 
     /**
@@ -286,7 +290,7 @@ class ArenaMomentService
                 }
 
                 $control[] = [
-                    'on' => $dst, 'by' => $open[$key]['by'], 'spell' => $spellName,
+                    'on' => $dst, 'by' => $open[$key]['by'], 'spell' => $this->controlAuras()[$spellId]['as'] ?? $spellName,
                     'dr' => $cc[$spellId], 'from' => $open[$key]['t'], 'to' => $t,
                 ];
                 unset($open[$key]);
@@ -570,11 +574,23 @@ class ArenaMomentService
     /** spell_id => dr_category for the current patch. Public for RoundAnalysisService. */
     public function crowdControl(): array
     {
-        return $this->crowdControl ??= SpellDataCache::remember('moment-cc', [__FILE__], fn () => Spell::query()
+        return $this->crowdControl ??= SpellDataCache::remember('moment-cc', [__FILE__, base_path(self::CONTROL_AURAS)], fn () => Spell::query()
             ->where('patch_id', Patch::where('is_current', true)->value('id'))
             ->whereNotNull('dr_category')
             ->pluck('dr_category', 'spell_id')
-            ->all());
+            ->all() + array_map(fn ($a) => $a['dr'], $this->controlAuras()));
+    }
+
+    /**
+     * Crowd control the log writes under an aura of its own, by aura id: Chimaeral Sting's silence
+     * is Spider Venom (control-auras.json, whose header says why it is not a spell row).
+     *
+     * @return array<int, array{dr: string, as: string}>
+     */
+    private function controlAuras(): array
+    {
+        return $this->controlAuras ??= collect(json_decode((string) @file_get_contents(base_path(self::CONTROL_AURAS)), true)['auras'] ?? [])
+            ->keyBy('auraId')->all();
     }
 
     /** WoW stamps `M/D/YYYY HH:MM:SS.ssss` with no zone; only the difference matters here. */

@@ -251,6 +251,24 @@ class ArenaMomentTest extends TestCase
         $this->assertSame(3.5, $moments[0]['controlOnHealer'][0]['held']);
     }
 
+    public function test_an_aura_with_its_own_name_counts_as_the_control_that_was_pressed(): void
+    {
+        // Tagged on the cast, as the curated file has it: the log writes no aura under this id.
+        $this->spell(356719, 'Chimaeral Sting', 60, 'Silence');
+
+        $timeline = app(ArenaMomentService::class)->readTimeline([
+            $this->cast('Player-A', 356719, 'Chimaeral Sting', '10:00:10.0000'),
+            $this->aura('SPELL_AURA_APPLIED', 'Player-A', 'Player-F', 356727, 'Spider Venom', '10:00:13.2000'),
+            $this->aura('SPELL_AURA_REMOVED', 'Player-A', 'Player-F', 356727, 'Spider Venom', '10:00:16.2000'),
+        ], app(ArenaMomentService::class)->roster($this->metadata()));
+
+        $this->assertCount(1, $timeline['control']);
+        $this->assertSame('Chimaeral Sting', $timeline['control'][0]['spell']);
+        $this->assertSame('Silence', $timeline['control'][0]['dr']);
+        $this->assertSame('Player-A', $timeline['control'][0]['by']);
+        $this->assertEqualsWithDelta(3.0, $timeline['control'][0]['to'] - $timeline['control'][0]['from'], 0.01);
+    }
+
     public function test_a_garrote_bleed_is_not_read_as_a_silence(): void
     {
         // 703 is curated as a Silence because pressing it silences, but its aura in the log is the

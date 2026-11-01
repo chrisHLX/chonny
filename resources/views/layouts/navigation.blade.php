@@ -343,8 +343,8 @@
     <div class="shrink-0 border-t border-line/60">
         @auth
         <!-- User menu -->
-        <div x-data="{ open: false }" class="relative px-2 py-1.5">
-            <button @click="open = !open" class="sidebar-item w-full justify-between">
+        <div x-data="{ open: false }" class="relative px-2 py-1.5 flex items-center gap-1">
+            <button @click="open = !open" class="sidebar-item flex-1 min-w-0 justify-between">
                 <div class="flex items-center gap-2 min-w-0">
                     <div class="w-5 h-5 rounded-full bg-gold/10 flex items-center justify-center text-[10px] font-semibold text-gold shrink-0">
                         {{ strtoupper(substr(Auth::user()?->name ?? 'U', 0, 1)) }}
@@ -355,6 +355,16 @@
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 9l4-4 4 4m0 6l-4 4-4-4"/>
                 </svg>
             </button>
+            {{-- One click, always: signing out used to be behind this menu's popup. --}}
+            <form method="POST" action="{{ route('logout') }}" class="shrink-0">
+                @csrf
+                <button type="submit" title="Sign out" aria-label="Sign out"
+                        class="p-2 rounded text-ink-subtle hover:text-ink hover:bg-surface-3 transition-colors">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"/>
+                    </svg>
+                </button>
+            </form>
 
             <div x-show="open"
                  @click.away="open = false"
