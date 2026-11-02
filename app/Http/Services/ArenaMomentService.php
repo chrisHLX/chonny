@@ -200,6 +200,7 @@ class ArenaMomentService
         $control = [];
         $deaths = [];
         $open = [];
+        $closed = [];
         $t0 = null;
 
         foreach ($lines as $line) {
@@ -220,7 +221,7 @@ class ArenaMomentService
 
             $isDamage = in_array($event, self::DAMAGE_EVENTS, true);
 
-            if (! $isDamage && ! in_array($event, ['SPELL_CAST_SUCCESS', 'SPELL_AURA_APPLIED', 'SPELL_AURA_REMOVED', 'UNIT_DIED'], true)) {
+            if (! $isDamage && ! in_array($event, ['SPELL_CAST_SUCCESS', 'SPELL_AURA_APPLIED', 'SPELL_AURA_REMOVED', 'SPELL_AURA_BROKEN_SPELL', 'UNIT_DIED'], true)) {
                 continue;
             }
 
@@ -282,6 +283,23 @@ class ArenaMomentService
                 continue;
             }
 
+            // Who ended it early, and with what (version 19). The log writes this for a spell or a tick
+            // and for nothing else: a melee swing that breaks control leaves no line of its own, so
+            // those stay unbroken here rather than guessed from a swing landing near the end. It can
+            // come either side of the aura's removal, so it goes on the span open or just closed.
+            if ($event === 'SPELL_AURA_BROKEN_SPELL') {
+                $key = "{$dst}|{$spellId}";
+                $broke = ['src' => $src, 'spell' => (string) ($f[13] ?? '')];
+
+                if (isset($open[$key])) {
+                    $open[$key]['broke'] = $broke;
+                } elseif (isset($closed[$key]) && $t - $control[$closed[$key]]['to'] < 0.3) {
+                    $control[$closed[$key]]['broke'] = $broke;
+                }
+
+                continue;
+            }
+
             if ($event === 'SPELL_AURA_REMOVED') {
                 $key = "{$dst}|{$spellId}";
 
@@ -291,8 +309,9 @@ class ArenaMomentService
 
                 $control[] = [
                     'on' => $dst, 'by' => $open[$key]['by'], 'spell' => $this->controlAuras()[$spellId]['as'] ?? $spellName,
-                    'dr' => $cc[$spellId], 'from' => $open[$key]['t'], 'to' => $t,
+                    'dr' => $cc[$spellId], 'from' => $open[$key]['t'], 'to' => $t, 'broke' => $open[$key]['broke'] ?? null,
                 ];
+                $closed[$key] = array_key_last($control);
                 unset($open[$key]);
 
                 continue;
@@ -311,13 +330,15 @@ class ArenaMomentService
                 $damage[] = ['t' => $t, 'src' => $src, 'dst' => $dst, 'amount' => (int) $amount];
             }
 
-            // The advanced-parameter block describes the event's TARGET, so currentHP/maxHP there
-            // is the victim's — a health curve read straight off the log.
+            // The advanced-parameter block names its unit, and on these lines that is the event's
+            // TARGET, so currentHP/maxHP there is the victim's: a health curve read straight off the
+            // log. SWING_DAMAGE is the exception: all 10,670 lines of 60 logs carry the ATTACKER,
+            // usually a pet at full health, which put false 100s in the curve until version 19.
             $base = $isSwing ? 9 : 12;
             $current = $f[$base + 2] ?? null;
             $max = $f[$base + 3] ?? null;
 
-            if (is_numeric($current) && is_numeric($max) && $max > 0) {
+            if (($f[$base] ?? '') === $dst && is_numeric($current) && is_numeric($max) && $max > 0) {
                 $health[$dst][] = ['t' => $t, 'pct' => round(100 * $current / $max, 1)];
             }
         }

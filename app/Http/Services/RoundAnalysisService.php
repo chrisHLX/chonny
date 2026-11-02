@@ -91,8 +91,13 @@ class RoundAnalysisService
      * part of each hit a shield took, hits a shield took whole, and damage onto the other team's
      * pets, totems and summons. Damage totals, by round and in the population norms, read higher
      * than version 16, most against a Disc Priest. Every other measure is unchanged.
+     * 19 (2026-11-02): every hit on a dying player through the go that killed them (`deaths[].hits`,
+     * hitsOn()): who, what, how much, what a shield took, crits, their health after it. Until now
+     * the hits were added up and let go, so a card could not draw one. `timeline.control` says who
+     * broke a crowd control and with what. And the health curve stops reading SWING_DAMAGE lines,
+     * which carry the attacker's health, so falls and go health can differ from version 18.
      */
-    public const VERSION = 18;
+    public const VERSION = 19;
 
     /** A priority cast is taken as stopped or finished when that happens this long after it began. */
     private const CAST_WINDOW = 3.5;
@@ -113,7 +118,7 @@ class RoundAnalysisService
     private const BEFORE_LOCKOUT = 4.0;
 
     /** Crowd control that takes a player out: a slow or root does not stop a healer healing. */
-    private const LOCKOUT = ['Stun', 'Silence', 'Disorient', 'Incapacitate'];
+    public const LOCKOUT = ['Stun', 'Silence', 'Disorient', 'Incapacitate'];
 
     /** Shortest cooldown a talent joins a kit at. Under these it is rotation (Barbed Shot, Haunt), or a heal on one. */
     private const KIT_FLOOR = ['offensive' => 20, 'answers' => 30, 'control' => 15];
@@ -258,7 +263,7 @@ class RoundAnalysisService
             'players' => $this->players($metadata, $roster, $sideOf, $logger['id'] ?? null, $kit),
             'goes' => $goRows,
             'deaths' => $this->withAnswers(
-                array_map(fn ($d) => $this->killRead($d, $tl, $dmg, $locked, $healers, $roster, $sideOf, $credit, $goes), $deaths),
+                array_map(fn ($d) => $this->killRead($d, $tl, $dmg, $locked, $healers, $roster, $sideOf, $credit, $goes, array_merge($swingOnly, $meter)), $deaths),
                 $lines, $metadata, $sideOf, $credit, $named, $failed, $locked, $goes,
             ),
             'defensives' => $this->warrant($this->defensives($tl, $sideOf, $goes, $firstDeath, $roster, $locked),
@@ -469,7 +474,9 @@ class RoundAnalysisService
 
         $control = [];
         foreach ($tl['control'] as $c) {
-            $control[] = [$c['on'], $credit($c['by']), $c['spell'], $c['dr'], round($c['from'], 1), round($c['to'], 1)];
+            // The last field is who broke it and with what; null when it ran out or the log does not say.
+            $broke = ($c['broke'] ?? null) && $c['broke']['src'] !== $c['on'] ? [$credit($c['broke']['src']), $c['broke']['spell']] : null;
+            $control[] = [$c['on'], $credit($c['by']), $c['spell'], $c['dr'], round($c['from'], 1), round($c['to'], 1), $broke];
         }
 
         // Defensive only: a cooldown tagged both ways (Avatar) is a damage window, not cover.
@@ -895,6 +902,24 @@ class RoundAnalysisService
                 $pos[$u][] = [$t, (float) $f[$start + 14], (float) $f[$start + 15]];
             }
         };
+        // What a damage line says beyond its amount. `crit` holds up against the hits themselves: over
+        // 85,819 hits in 60 logs the flagged 12% dealt a median 1.55x the same player's same spell.
+        // `over` is overkill, -1 when there was none.
+        $hitHealth = function (array $f, int $base, string $crit, int $over): array {
+            // SWING_DAMAGE's advanced block describes the attacker, so its health says nothing here.
+            $own = ($f[$base] ?? '') === $f[5];
+            $cur = $own ? ($f[$base + 2] ?? null) : null;
+            $max = $own ? ($f[$base + 3] ?? null) : null;
+
+            return [
+                'hpAfter' => is_numeric($cur) && is_numeric($max) && $max > 0 ? round(100 * $cur / $max, 1) : null,
+                // Absolute health, for time to live (warrant()).
+                'hpNow' => is_numeric($cur) ? (int) $cur : null,
+                'hpMax' => is_numeric($max) ? (int) $max : null,
+                'crit' => $crit === '1',
+                'over' => max(0, $over),
+            ];
+        };
 
         foreach ($lines as $line) {
             $s = $this->seconds($line);
@@ -1027,7 +1052,8 @@ class RoundAnalysisService
                 $key = strtok($line, ' ').'|'.$s.'|'.$f[1].'|'.$f[5].'|'.$amount;
                 $swingSeen[strtok($line, ' ').'|'.$s.'|'.$f[1].'|'.$f[5]] = true;
                 if (is_numeric($amount) && isset($roster[$f[5]]) && $f[1] !== $f[5]) {
-                    $swingOnly[$key] = ['t' => $t, 'src' => $f[1], 'dst' => $f[5], 'amount' => (int) $amount, 'absorbed' => $absorbed, 'spell' => 'Melee'];
+                    $swingOnly[$key] = ['t' => $t, 'src' => $f[1], 'dst' => $f[5], 'amount' => (int) $amount, 'absorbed' => $absorbed, 'spell' => 'Melee']
+                        + $hitHealth($f, 9, (string) ($f[count($f) - 3] ?? ''), (int) ($f[count($f) - 8] ?? -1));
                 } elseif (is_numeric($amount) && ! isset($roster[$f[5]]) && ($side = $sideByFlags($f[7] ?? '0')) !== null) {
                     $swingOther[$key] = ['src' => $f[1], 'dst' => $f[5], 'dstSide' => $side, 'amount' => (int) $amount + $absorbed, 'spell' => 'Melee'];
                 }
@@ -1042,7 +1068,9 @@ class RoundAnalysisService
                 $amount = $f[$at + 2] ?? null;
                 if (($f[$at] ?? '') === 'ABSORB' && is_numeric($amount) && $f[1] !== $f[5]) {
                     $side = isset($roster[$f[5]]) ? null : $sideByFlags($f[7] ?? '0');
-                    $hit = ['src' => $f[1], 'dst' => $f[5], 'dstSide' => $side, 'amount' => (int) $amount, 'spell' => $swing ? 'Melee' : $f[10]];
+                    // Taken whole by a shield, so no health on the line. Its amount is the shield's.
+                    $hit = ['t' => $t, 'src' => $f[1], 'dst' => $f[5], 'dstSide' => $side, 'amount' => (int) $amount, 'spell' => $swing ? 'Melee' : $f[10],
+                        'crit' => ($f[$at + 4] ?? '') === '1'];
                     if ($swing && (isset($roster[$f[5]]) || $side !== null)) {
                         $swingMissed[strtok($line, ' ').'|'.$s.'|'.$f[1].'|'.$f[5]] = $hit;
                     } elseif (isset($roster[$f[5]]) || $side !== null) {
@@ -1073,18 +1101,12 @@ class RoundAnalysisService
             if (! is_numeric($amount) || ! isset($roster[$f[5]]) || $f[1] === $f[5]) {
                 continue;
             }
-            $base = $swing ? 9 : 12;
-            $cur = $f[$base + 2] ?? null;
-            $max = $f[$base + 3] ?? null;
             $dmg[] = [
                 't' => $t, 'src' => $f[1], 'dst' => $f[5], 'amount' => (int) $amount, 'absorbed' => $absorbed,
                 'spell' => $swing ? 'Melee' : $f[10],
                 // The spell's school mask (1 physical; any other bit magic). A melee swing is physical.
                 'school' => $swing ? 1 : (int) hexdec((string) ($f[11] ?? '0x1')),
-                'hpAfter' => is_numeric($cur) && is_numeric($max) && $max > 0 ? round(100 * $cur / $max, 1) : null,
-                // Absolute health, for time to live (warrant()).
-                'hpNow' => is_numeric($cur) ? (int) $cur : null,
-            ];
+            ] + $hitHealth($f, $swing ? 9 : 12, (string) ($f[count($f) - ($swing ? 3 : 4)] ?? ''), (int) ($f[count($f) - ($swing ? 8 : 9)] ?? -1));
         }
 
         $swingOnly = array_values(array_diff_key($swingOnly, $landed));
@@ -1752,7 +1774,7 @@ class RoundAnalysisService
 
     // ------------------------------------------------------------------ deaths
 
-    private function killRead(array $d, array $tl, array $dmg, array $locked, array $healers, array $roster, callable $sideOf, callable $credit, array $goes): array
+    private function killRead(array $d, array $tl, array $dmg, array $locked, array $healers, array $roster, callable $sideOf, callable $credit, array $goes, array $extraHits = []): array
     {
         $killer = $d['side'] === 'us' ? 'them' : 'us';
         $win = array_values(array_filter($dmg, fn ($x) => $x['dst'] === $d['who'] && $x['t'] <= $d['t'] + 0.05 && $x['t'] >= $d['t'] - 10));
@@ -1842,9 +1864,49 @@ class RoundAnalysisService
             // Seconds before the death run from count(hp)-1 down to 0; healerLocked spans in the same terms.
             'schools' => ['physical' => (int) round(100 * ($schools['physical'] ?? 0) / $total), 'magic' => (int) round(100 * ($schools['magic'] ?? 0) / $total)],
             'hp' => $hp,
+            'hits' => $this->hitsOn($d, count($hp) - 1, array_merge($dmg, $extraHits), $roster, $credit),
             'healerLocked' => $healerLocked,
             'defensives30s' => array_map(fn ($c) => ['spell' => $c['spell'], 'who' => $roster[$c['who']]['name'] ?? '?', 'ago' => round($d['t'] - $c['t'])], $defs),
         ];
+    }
+
+    /**
+     * Every hit on the dying player over the seconds `hp` covers, oldest first (version 19), so the
+     * card can draw each one rather than a total. `amount` reached their health, `shield` is what a
+     * shield took (a hit it took whole has amount 0 and hp null), `drop` and `cover` are those two in
+     * points of their maximum health, overkill left out, and `hp` their health after it.
+     */
+    private function hitsOn(array $d, int $span, array $all, array $roster, callable $credit): array
+    {
+        $on = array_filter($all, fn ($x) => $x['dst'] === $d['who'] && $x['t'] <= $d['t'] + 0.05 && $x['t'] >= $d['t'] - $span - 1);
+        usort($on, fn ($a, $b) => $a['t'] <=> $b['t']);
+
+        $max = null;
+        $hits = [];
+        foreach ($on as $x) {
+            // A hit a shield took whole carries no health, so it borrows the last maximum seen.
+            $max = ($x['hpMax'] ?? 0) > 0 ? $x['hpMax'] : $max;
+            if ($x['t'] < $d['t'] - $span) {
+                continue;
+            }
+            $who = $credit($x['src']);
+            $whole = ! array_key_exists('hpAfter', $x);
+            $amount = $whole ? 0 : $x['amount'];
+            $shield = $whole ? $x['amount'] : ($x['absorbed'] ?? 0);
+            $hits[] = [
+                'ago' => round(max(0, $d['t'] - $x['t']), 2),
+                'by' => isset($roster[$who]) ? $roster[$who]['name'] : 'pets/other',
+                'spell' => $x['spell'],
+                'amount' => $amount,
+                'shield' => $shield,
+                'crit' => $x['crit'] ?? false,
+                'hp' => $x['hpAfter'] ?? null,
+                'drop' => $max ? round(100 * max(0, $amount - ($x['over'] ?? 0)) / $max, 1) : 0,
+                'cover' => $max ? round(100 * $shield / $max, 1) : 0,
+            ];
+        }
+
+        return $hits;
     }
 
     // ------------------------------------------------------------------ the rest

@@ -21,11 +21,11 @@ internal static class Program
         var fromBuild = Environment.ProcessPath?.Contains(Path.DirectorySeparatorChar + "bin" + Path.DirectorySeparatorChar, StringComparison.OrdinalIgnoreCase) == true;
 #if STORE
         // The Store installs and updates it (StoreStartup): nothing to copy anywhere.
-        var startHidden = StoreStartup.LaunchedAtSignIn();
+        var startMinimized = StoreStartup.LaunchedAtSignIn();
         var firstRun = !fromBuild && testData == null && !AppSettings.Exists();
 #else
         if (!fromBuild && testData == null && Installer.InstallIfNeeded(fromUpdate: args.Contains("--update"))) return 0;
-        var startHidden = args.Contains("--minimized");
+        var startMinimized = args.Contains("--minimized");
         var firstRun = args.Contains("--first-run");
 #endif
 
@@ -41,7 +41,7 @@ internal static class Program
         }
 
         ApplicationConfiguration.Initialize();
-        var form = new MainForm(startHidden: startHidden, firstRun: firstRun);
+        var form = new MainForm(startMinimized: startMinimized, firstRun: firstRun);
         var watcher = new Thread(() =>
         {
             while (show.WaitOne())

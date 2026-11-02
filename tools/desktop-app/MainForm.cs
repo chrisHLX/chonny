@@ -39,7 +39,6 @@ internal sealed class MainForm : Form
     private readonly Dictionary<string, NavItem> _tabs = new();
     private readonly List<string> _activity = [];
     private readonly string _activityFile = Path.Combine(AppSettings.Dir, "activity.log");
-    private readonly bool _startHidden;
     private readonly bool _firstRun;
 
     private JsonDocument? _index;
@@ -48,9 +47,12 @@ internal sealed class MainForm : Form
     private bool _exiting;
     private int _refreshesLeft;
 
-    public MainForm(bool startHidden, bool firstRun = false)
+    public MainForm(bool startMinimized, bool firstRun = false)
     {
-        _startHidden = startHidden;
+        // Started with Windows: on the taskbar, one click away, taking no focus from a game. It used
+        // to start hidden, and Windows tucks a new tray icon out of sight, so a player had no way of
+        // knowing it was there or where their games were (2026-11-02).
+        if (startMinimized) WindowState = FormWindowState.Minimized;
         _firstRun = firstRun;
         _syncer = new Syncer(_settings, Log);
         _syncer.Progress += p => BeginInvoke(() =>
@@ -102,13 +104,6 @@ internal sealed class MainForm : Form
             Hide();
             _tray.ShowBalloonTip(4000, "Still watching", "MindCollector keeps sending your games from the tray. Right-click it to exit.", ToolTipIcon.Info);
         };
-    }
-
-    protected override void SetVisibleCore(bool value)
-    {
-        // Started with Windows: run in the tray without flashing the window.
-        if (_startHidden && !IsHandleCreated) { CreateHandle(); value = false; _ = StartAsync(); }
-        base.SetVisibleCore(value);
     }
 
     // ------------------------------------------------------------------ layout

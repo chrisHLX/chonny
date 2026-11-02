@@ -260,7 +260,7 @@ steps. From there:
 1. **Download** (`/wow/coach/app`, public: the app does nothing until it is connected to an account).
    The exe is not code-signed, so SmartScreen warns; the page says to click More info, Run anyway.
 2. **First run installs it** (`Installer`): copies itself to `%LOCALAPPDATA%\Programs\MindCollector`,
-   adds Start menu and desktop shortcuts, starts with Windows in the tray (Settings turns it off), and
+   adds Start menu and desktop shortcuts, starts with Windows minimised to the taskbar (Settings turns it off), and
    opens the installed copy with `--first-run`. Opening a newer download later replaces the installed
    copy the same way, closing the running one first: that is how an update installs.
 3. **Connect** (`MainForm.ConnectAsync`): on `--first-run` the app opens `/wow/app/connect?code=...`
@@ -273,6 +273,8 @@ steps. From there:
 
 Opening the app while it is in the tray brings its window up instead of a message.
 
+**Started with Windows it opens minimised on the taskbar** (`--minimized`, 2026-11-02), one click away and taking no focus from a game. It used to start hidden, and Windows tucks a new tray icon into the overflow, where a player could not know it existed. An app cannot pin its own tray icon. Closing the window still sends it to the tray, with a balloon saying so.
+
 Checked end to end on 2026-10-11 against a local server with a throwaway account: first run, Connect,
 approval, the key picked up, one real round sent, measured and built, and the game in the library.
 
@@ -283,7 +285,7 @@ write its link to the activity log instead of opening a browser.
 **Updates itself (0.5.0, 2026-10-11).** The pages are the website's, so a page, analysis or design
 change reaches every player with a deploy. The window around them (this code) checks
 `/api/coach/app-version` at start and every three hours; when the website serves a newer version and
-WoW is not running, `Updater` downloads it and the installer swaps it in, back in the tray. Players on
+WoW is not running, `Updater` downloads it and the installer swaps it in, back minimised on the taskbar. Players on
 0.4.0 or older have no updater and need one more download from /wow/app.
 
 **Publishing a new version:** bump `<Version>` in the csproj, `dotnet publish`, then upload

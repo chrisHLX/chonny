@@ -28,6 +28,7 @@ class PushRounds extends Command
     protected $signature = 'wow:push-rounds
         {--user= : Whose games (id or email). Defaults to the only user who has any.}
         {--all : Send every round again}
+        {--newest : Newest games first, to see the latest on the website soon after a re-send starts}
         {--limit=150 : Rounds a run; the rest go next time}
         {--pause=1 : Seconds between rounds, to leave the server (one core) room for its visitors}
         {--minutes=10 : Stop after this long and finish properly; the rest go next time}';
@@ -73,7 +74,7 @@ class PushRounds extends Command
         }
         $version = min(RoundAnalysisService::VERSION, $serverVersion ?? RoundAnalysisService::VERSION);
 
-        $todo = ArenaRound::where('user_id', $user->id)->orderBy('played_at')->get(['match_id', 'lobby_id'])
+        $todo = ArenaRound::where('user_id', $user->id)->orderBy('played_at', $this->option('newest') ? 'desc' : 'asc')->get(['match_id', 'lobby_id'])
             ->filter(fn ($r) => $this->option('all') || ($state[$r->match_id] ?? 0) < $version)
             ->values();
         if ($todo->isEmpty()) {

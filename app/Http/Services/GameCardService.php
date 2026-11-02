@@ -326,7 +326,7 @@ class GameCardService
             'teams' => ['them' => $players->where('side', 'them')->values()->all(), 'us' => $players->where('side', 'us')->values()->all()],
             'glad' => ['them' => $glad('them'), 'us' => $glad('us')],
             'missingXp' => $players->where('xp.state', '!=', 'ok')->count(),
-            'deaths' => array_map(fn ($d) => $this->death($d, $players, $a['goes']), $a['deaths']),
+            'deaths' => array_map(fn ($d) => $this->death($d, $players, $a['goes'], $a['timeline'] ?? []), $a['deaths']),
             'difficulty' => $this->difficulty($a, $players),
             // [label, yours, theirs, whether more is better for the side that has it]
             'stats' => [
@@ -346,6 +346,7 @@ class GameCardService
             'moments' => $this->pool ? null : $this->momentsModel([[null, $a]]),
             'tiles' => $this->tiles($a, $players),
             'killTargets' => $this->killTargetsModel($a, $players),
+            'ccBreaks' => $this->ccBreaksModel($a, $players),
             'events' => $this->events($a, $players, (float) ($this->payload($round)['metadata']['durationInSeconds'] ?? 0)),
         ];
     }
@@ -390,6 +391,47 @@ class GameCardService
                 'allGoes' => $side['allGoes'],
             ];
         }, $read);
+    }
+
+    /**
+     * The Summary's crowd control that something broke (2026-11-02, Chriso: every trap in a game went to
+     * damage), by the team that cast it. One dot a landing, held or broken, then what broke each. It
+     * lists the lockouts of a kind that broke at least once; it makes no call on whether the break was
+     * a mistake, since breaking one on purpose is part of the game. Melee swings write no break to
+     * the log, so a Polymorph ended by a swing reads as held. Null on a pooled card, for a round
+     * measured before version 19, and when nothing broke.
+     */
+    private function ccBreaksModel(array $a, Collection $players): ?array
+    {
+        if ($this->pool || ($a['version'] ?? 0) < 19) {
+            return null;
+        }
+        $byGuid = $players->keyBy('guid');
+        $control = collect($a['timeline']['control'] ?? [])->filter(fn ($c) => in_array($c[3], RoundAnalysisService::LOCKOUT, true) && isset($byGuid[$c[1]]));
+        if (! $control->contains(fn ($c) => isset($c[6]))) {
+            return null;
+        }
+        $icons = $this->icons->for($control->flatMap(fn ($c) => [$c[2], $c[6][1] ?? null])->filter()->unique()->values()->all());
+        $name = fn ($guid) => $byGuid[$guid]['name'] ?? '?';
+
+        $side = fn (string $team) => $control->filter(fn ($c) => $byGuid[$c[1]]['side'] === $team)->groupBy(2)
+            ->filter(fn ($g) => $g->contains(fn ($c) => isset($c[6])))
+            ->sortByDesc(fn ($g) => $g->filter(fn ($c) => isset($c[6]))->count())
+            ->map(fn ($g, $spell) => [
+                'spell' => $spell,
+                'icon' => $this->spellIcon($icons, $spell),
+                'landed' => $g->count(),
+                'broken' => $g->filter(fn ($c) => isset($c[6]))->count(),
+                'dots' => $g->map(fn ($c) => isset($c[6]))->values()->all(),
+                'by' => $g->filter(fn ($c) => isset($c[6]))->sortBy(4)->map(fn ($c) => [
+                    'spell' => $c[6][1],
+                    'icon' => $this->spellIcon($icons, $c[6][1]),
+                    'held' => round($c[5] - $c[4], 1),
+                    'tip' => $c[6][1].' from '.$name($c[6][0]).' broke it on '.$name($c[0]).' at '.$this->clock($c[5]).', after '.round($c[5] - $c[4], 1).'s',
+                ])->values()->all(),
+            ])->values()->all();
+
+        return ['us' => $side('us'), 'them' => $side('them')];
     }
 
     /**
@@ -542,8 +584,9 @@ class GameCardService
                 'duration' => $this->clock((float) ($this->payload($round)['metadata']['durationInSeconds'] ?? 0)),
                 'with' => $ps->where('side', 'us')->where('you', false)->values()->all(),
                 'against' => $ps->where('side', 'them')->values()->all(),
-                'death' => isset($a['deaths'][0]) ? $this->death($a['deaths'][0], $ps, $a['goes']) : null,
+                'death' => isset($a['deaths'][0]) ? $this->death($a['deaths'][0], $ps, $a['goes'], $a['timeline'] ?? []) : null,
                 'killTargets' => $this->killTargetsModel($a, $ps),
+                'ccBreaks' => $this->ccBreaksModel($a, $ps),
                 'talents' => array_map(fn ($c) => $c + ['color' => $ps->firstWhere('guid', $c['guid'])['color'] ?? '#B3B3B3'], $talents[$i] ?? []),
                 'look' => $look,
                 // Your own only, like $look: the other players change every round.
@@ -875,7 +918,7 @@ class GameCardService
         };
     }
 
-    private function death(array $d, Collection $players, array $goes = []): array
+    private function death(array $d, Collection $players, array $goes = [], array $timeline = []): array
     {
         $p = $players->firstWhere('guid', $d['who']);
         $byName = $players->keyBy('full');
@@ -916,53 +959,219 @@ class GameCardService
                 'color' => $byName[$a['name']]['color'] ?? '#6A6A6A',
             ], array_values(array_filter($d['abilities'] ?? [], fn ($a) => $a['pct'] >= 3))),
             'healer' => $healer,
+            // The Summary's one line about the first death still says it in words.
             'goStartedAgo' => $d['goStartedAgo'],
             'goWhose' => $d['side'] === 'us' ? 'Enemy' : 'Your',
-            'defensives' => array_map(fn ($x) => [
-                'spell' => $x['spell'], 'icon' => $this->spellIcon($icons, $x['spell']),
-                'who' => $this->short($x['who']), 'ago' => $x['ago'],
-            ], $d['defensives30s']),
             'answers' => isset($d['answers']) ? $this->answers($d, $players, $goes) : null,
-            'health' => $this->healthLine($d, $p['color'] ?? '#B3B3B3'),
+            'chart' => $this->deathChart($d, $players, $goes, $timeline),
+            'hitRows' => $this->hitRows($d, $players, $timeline),
         ];
     }
 
     /**
-     * The dying player's health through the go (RoundAnalysisService version 14), drawn as a line:
-     * their healer's lockout shaded behind it, their side's defensives as dots on it, the 35% danger
-     * line dashed. Null for a round measured before version 14.
+     * One death as a picture (2026-11-02, Chriso: the text said this more slowly, and PvP Guides'
+     * Empowered box shows how). Every lane shares one clock, from the go's start to the death: the
+     * attackers' cooldowns, crowd control on each of the dying side, that side's defensives, and
+     * their health with each hit drawn on it as the drop it caused. Read when the page is drawn from
+     * the stored timeline; `deaths[].hits` is version 19, and a round measured before it keeps the
+     * health a second at a time. Null with no health to draw.
      */
-    private function healthLine(array $d, string $color): ?array
+    private function deathChart(array $d, Collection $players, array $goes, array $tl): ?array
     {
-        $hp = $d['hp'] ?? null;
-        if (! is_array($hp) || count($hp) < 3) {
+        $n = count($d['hp'] ?? []) - 1;
+        if ($n < 2) {
             return null;
         }
-        $hp = array_map(fn ($v) => max(0, min(100, (int) $v)), $hp);
-        $w = 600;
-        $h = 64;
-        $n = count($hp) - 1;
-        $x = fn (float $ago) => round($w * ($n - $ago) / $n, 1);
-        $y = fn (float $pct) => round($h - $h * max(0, min(100, $pct)) / 100, 1);
+        $byGuid = $players->keyBy('guid');
+        $byName = $players->keyBy('full');
+        $killer = $d['side'] === 'us' ? 'them' : 'us';
+        $end = (float) $d['t'];
+        $start = $end - $n;
+        $x = fn (float $t) => round(100 * (max($start, min($end, $t)) - $start) / $n, 2);
+        $sideOf = fn ($guid) => $byGuid[$guid]['side'] ?? null;
+        $name = fn ($guid) => $byGuid[$guid]['name'] ?? '?';
+        $color = fn ($guid) => $byGuid[$guid]['color'] ?? '#6A6A6A';
+        $inside = fn (float $from, float $to) => $to > $start && $from < $end;
+        // Lockouts only: a slow or a root still leaves the player their buttons.
+        $control = collect($tl['control'] ?? [])->filter(fn ($c) => $sideOf($c[0]) === $d['side'] && $inside($c[4], $c[5]) && in_array($c[3], RoundAnalysisService::LOCKOUT, true));
 
-        // How long they were in danger (35% or lower) before dying: the window there was to answer.
-        $danger = 0;
-        for ($i = $n - 1; $i >= 0 && $hp[$i] <= 35; $i--) {
-            $danger++;
+        // Spans, then the presses with no span of their own: a cooldown that is no buff, or a defensive
+        // on a shorter tag. Each is drawn from its press, so what was up reads the same in both.
+        $cooldowns = collect($tl['offUp'] ?? [])->filter(fn ($s) => $sideOf($s[0]) === $killer && $inside($s[2], $s[3]))
+            ->map(fn ($s) => ['spell' => $s[1], 'who' => $s[0], 'from' => $s[2], 'to' => $s[3]])->values()->all();
+        foreach ($goes as $g) {
+            foreach (($g['side'] ?? null) === $killer ? ($g['links'] ?? []) : [] as $l) {
+                $t = $g['from'] + $l['t'];
+                $tagged = in_array($l['cat'] ?? null, ['offensive', 'mixed'], true);
+                if ($tagged && $t >= $start && $t <= $end && ! collect($cooldowns)->contains(fn ($c) => $c['spell'] === $l['spell'] && $t >= $c['from'] - 2 && $t <= $c['to'])) {
+                    $cooldowns[] = ['spell' => $l['spell'], 'who' => $l['by'], 'from' => $t, 'to' => $t];
+                }
+            }
+        }
+        $defensives = collect($tl['defUp'] ?? [])->filter(fn ($s) => $sideOf($s[0]) === $d['side'] && $inside($s[3], $s[4]))
+            ->map(fn ($s) => ['spell' => $s[2], 'who' => $s[1], 'from' => $s[3], 'to' => $s[4]])->values()->all();
+        foreach ($d['defensives30s'] as $c) {
+            $t = $end - $c['ago'];
+            $guid = $players->firstWhere('full', $c['who'])['guid'] ?? null;
+            if ($t >= $start && ! collect($defensives)->contains(fn ($s) => $s['spell'] === $c['spell'] && $t >= $s['from'] - 2 && $t <= $s['to'])) {
+                $defensives[] = ['spell' => $c['spell'], 'who' => $guid, 'from' => $t, 'to' => $t];
+            }
         }
 
+        $hits = $d['hits'] ?? [];
+        $icons = $this->icons->for(array_values(array_unique(array_merge(
+            array_column($cooldowns, 'spell'), array_column($defensives, 'spell'), $control->pluck(2)->all(), array_column($hits, 'spell')))));
+
+        $bar = fn (string $spell, ?string $by, float $from, float $to, string $tip) => [
+            'left' => $x($from), 'width' => round($x($to) - $x($from), 2), 'color' => $color($by),
+            'spell' => $spell, 'icon' => $this->spellIcon($icons, $spell), 'tip' => $tip,
+        ];
+        $span = fn (array $s) => $s['to'] > $s['from'] ? round($s['to'] - $s['from'], 1).'s' : 'pressed';
+        // Bars that overlap in time take a row each, so neither hides the other.
+        $stack = function (array $spans) use ($bar, $name, $n, $span) {
+            usort($spans, fn ($a, $b) => $a['from'] <=> $b['from']);
+            $rows = [];
+            $ends = [];
+            foreach ($spans as $s) {
+                $at = 0;
+                while (isset($ends[$at]) && $ends[$at] > $s['from']) {
+                    $at++;
+                }
+                // Past its end by what an icon takes up, or two presses in a row would share one spot.
+                $ends[$at] = max($s['to'], $s['from']) + $n * 0.05;
+                $rows[$at][] = $bar($s['spell'], $s['who'], $s['from'], $s['to'], $s['spell'].', '.$name($s['who']).', '.$span($s));
+            }
+
+            return $rows;
+        };
+
+        $people = $players->where('side', $d['side'])->sortBy(fn ($p) => $p['healer'] ? 0 : ($p['guid'] === $d['who'] ? 1 : 2))
+            ->map(fn ($p) => [
+                'name' => $p['name'], 'color' => $p['color'], 'healer' => $p['healer'],
+                'bars' => $control->where(0, $p['guid'])->sortBy(4)->map(fn ($c) => $bar($c[2], $c[1], $c[4], $c[5],
+                    $c[2].' on '.$p['name'].' from '.$name($c[1]).', '.round($c[5] - $c[4], 1).'s'
+                    .(isset($c[6]) ? ', broken by '.$name($c[6][0]).': '.$c[6][1] : '')) + ['broke' => isset($c[6])])->values()->all(),
+            ])
+            ->filter(fn ($p) => $p['bars'] || $p['healer'])->values()->all();
+
+        // Health moves a hit at a time. The hits get a lane of their own, scaled to the biggest: most
+        // are 1% of a health bar (median 4,000 of 1.07M on the game this was built from), so drawn
+        // against health they could not be seen, and a crit could not be told from anything else.
+        $now = (float) $d['hp'][0];
+        $line = ['0,'.round(100 - $now, 1)];
+        $bars = [];
+        $peak = max(1, max(array_map(fn ($h) => $h['amount'] + $h['shield'], $hits) ?: [1]));
+        foreach ($hits as $h) {
+            $t = $end - $h['ago'];
+            $after = $h['hp'] === null ? $now : (float) $h['hp'];
+            $by = $byName[$h['by']] ?? null;
+            $left = $x($t);
+            $line[] = round($left * 10, 1).','.round(100 - $now, 1);
+            $line[] = round($left * 10, 1).','.round(100 - $after, 1);
+            $now = $after;
+            $with = collect($tl['offUp'] ?? [])->filter(fn ($s) => $by && $s[0] === $by['guid'] && $t >= $s[2] && $t <= $s[3])->pluck(1)->unique()->implode(', ');
+            $weight = $h['amount'] + $h['shield'];
+            $bars[] = [
+                'left' => $left, 'height' => round(100 * $weight / $peak, 1),
+                // How much of the bar reached health; the rest a shield took.
+                'solid' => (int) round(100 * $h['amount'] / max(1, $weight)),
+                'color' => $by['color'] ?? '#6A6A6A', 'crit' => $h['crit'], 'spell' => $h['spell'],
+                'icon' => $this->spellIcon($icons, $h['spell']), 'weight' => $weight, 'pin' => null,
+                'tip' => $h['spell'].', '.($by['name'] ?? $h['by']).': '.number_format($h['amount'])
+                    .($h['crit'] ? ', crit' : '')
+                    .($h['shield'] ? ', '.number_format($h['shield']).' on a shield' : '')
+                    .($h['hp'] !== null ? ', '.round($h['hp']).'% health left' : '')
+                    .($with !== '' ? ', with '.$with : ''),
+            ];
+        }
+        if ($hits) {
+            $line[] = '1000,'.round(100 - $now, 1);
+        } else {
+            $line = collect($d['hp'])->map(fn ($v, $i) => round(1000 * $i / $n, 1).','.(100 - max(0, min(100, (int) $v))))->all();
+        }
+        // The biggest hits wear their icon, as many as stay apart. Closer ones appear in the last 10s.
+        $picked = [];
+        $order = array_keys(collect($bars)->sortByDesc('weight')->all());
+        foreach ([[4, 100 / 12, 'all'], [8, 100 * 0.8 / $n, 'near']] as [$most, $gap, $tier]) {
+            foreach ($order as $i) {
+                if (count($picked) < $most && $bars[$i]['weight'] >= $peak * 0.25
+                    && ! collect($picked)->contains(fn ($p) => abs($bars[$p]['left'] - $bars[$i]['left']) < $gap)) {
+                    $picked[] = $i;
+                    $bars[$i]['pin'] = $tier;
+                }
+            }
+        }
+
+        $goWhose = $d['side'] === 'us' ? 'Enemy' : 'Your';
+
         return [
-            'w' => $w, 'h' => $h, 'color' => $color, 'seconds' => $n,
-            'points' => collect($hp)->map(fn ($v, $i) => $x($n - $i).','.$y($v))->implode(' '),
-            'danger' => $y(35),
-            'locked' => array_map(fn ($iv) => ['x' => $x($iv[0]), 'w' => round($x($iv[1]) - $x($iv[0]), 1)], $d['healerLocked'] ?? []),
-            'presses' => collect($d['defensives30s'])->filter(fn ($c) => $c['ago'] <= $n)
-                ->map(fn ($c) => ['x' => $x($c['ago']), 'label' => $c['spell'].', '.$this->short($c['who']).', '.$c['ago'].'s before'])
-                ->values()->all(),
-            'start' => $hp[0],
-            'summary' => $hp[0].'% '.$n.'s before the death; '.($danger === 0
-                ? 'above 35% a second before it, so the last hits came too fast to answer once they landed.'
-                : 'under 35% for the last '.$danger.'s.'),
+            'seconds' => $n,
+            // Worth a second view only when the whole go is much longer than its last ten seconds.
+            'zoom' => $n >= 14 ? round($n / 10, 2) : null,
+            'from' => ($d['goStartedAgo'] ?? null) !== null && $d['goStartedAgo'] <= $n + 1 ? $goWhose.' go starts' : $n.'s before',
+            'cooldowns' => ['label' => ($killer === 'us' ? 'Your' : 'Enemy').' cooldowns', 'rows' => $stack($cooldowns)],
+            'defensives' => ['label' => $d['side'] === 'us' ? 'Your defensives' : 'Their defensives', 'rows' => $stack($defensives)],
+            'people' => $people,
+            'hits' => $bars,
+            'peak' => $this->amount($peak),
+            'lockedLabel' => ($d['side'] === 'us' ? 'Your' : 'Enemy').' healer locked out',
+            'line' => implode(' ', $line),
+            'locked' => array_map(fn ($iv) => ['left' => round(100 * ($n - $iv[0]) / $n, 2), 'width' => round(100 * ($iv[0] - $iv[1]) / $n, 2)], $d['healerLocked'] ?? []),
+            'ticks' => collect(range(0, max($n, 5), 5))->filter(fn ($s) => $s > 0 && $s < $n - 1)
+                ->map(fn ($s) => ['left' => round(100 * ($n - $s) / $n, 2), 'label' => $s.'s', 'edge' => $s >= 10])->values()->all(),
+            'schools' => array_sum($d['schools'] ?? []) > 0 ? $d['schools'] : null,
+        ];
+    }
+
+    /**
+     * The last ten seconds' damage by ability: a bar for how much it did, gold for the part that came
+     * from crits, in place of the dot a hit first tried here (Chriso, 2026-11-02: 39 grey dots for
+     * Melee said nothing the chart above does not). Beside it, the cooldowns the attacker had up for
+     * most of those hits, named and never given a multiplier: the log says what was up, not how
+     * much it added. Empty for a round measured before version 19.
+     *
+     * @return array{rows: array<int, array<string, mixed>>, shares: array<int, array<string, mixed>>}|null
+     */
+    private function hitRows(array $d, Collection $players, array $tl): ?array
+    {
+        $hits = array_filter($d['hits'] ?? [], fn ($h) => $h['ago'] <= 10);
+        if (! $hits) {
+            return null;
+        }
+        $byName = $players->keyBy('full');
+        $total = max(1, array_sum(array_map(fn ($h) => $h['amount'] + $h['shield'], $hits)));
+        $sum = fn (Collection $g) => $g->sum(fn ($h) => $h['amount'] + $h['shield']);
+        $groups = collect($hits)->groupBy(fn ($h) => $h['by'].'|'.$h['spell'])->sortByDesc($sum)->take(6);
+        $up = [];
+        foreach ($groups as $key => $g) {
+            $guid = $byName[$g->first()['by']]['guid'] ?? null;
+            $times = $g->map(fn ($h) => $d['t'] - $h['ago']);
+            $up[$key] = collect($tl['offUp'] ?? [])->filter(fn ($s) => $s[0] === $guid
+                && $times->filter(fn ($t) => $t >= $s[2] && $t <= $s[3])->count() * 2 > $times->count())->pluck(1)->unique()->values()->all();
+        }
+        $icons = $this->icons->for(array_merge($groups->map(fn ($g) => $g->first()['spell'])->values()->all(), array_merge(...array_values($up))));
+        $most = max(1, $sum($groups->first()));
+
+        $rows = $groups->map(fn ($g, $key) => [
+            'spell' => $g->first()['spell'],
+            'icon' => $this->spellIcon($icons, $g->first()['spell']),
+            'name' => $byName[$g->first()['by']]['name'] ?? $this->short($g->first()['by']),
+            'color' => $byName[$g->first()['by']]['color'] ?? '#6A6A6A',
+            'pct' => (int) round(100 * $sum($g) / $total),
+            'crits' => $g->where('crit', true)->count(),
+            'count' => $g->count(),
+            'bar' => (int) round(100 * $sum($g) / $most),
+            'critShare' => (int) round(100 * $sum($g->where('crit', true)) / max(1, $sum($g))),
+            'up' => array_map(fn ($s) => ['spell' => $s, 'icon' => $this->spellIcon($icons, $s)], $up[$key]),
+        ])->values()->all();
+
+        return [
+            'rows' => $rows,
+            'shares' => collect($hits)->groupBy('by')->sortByDesc($sum)->take(4)->map(fn ($g, $name) => [
+                'name' => $byName[$name]['name'] ?? $this->short($name),
+                'color' => $byName[$name]['color'] ?? '#6A6A6A',
+                'pct' => (int) round(100 * $sum($g) / $total),
+            ])->values()->all(),
         ];
     }
 
@@ -1022,9 +1231,41 @@ class GameCardService
             'others' => $ready->where('fit', 'other')->values()->all(),
             'cannot' => $ready->where('fit', 'no')->values()->all(),
             'schools' => isset($d['schools']) && ($d['schools']['physical'] + $d['schools']['magic']) > 0 ? $d['schools'] : null,
-            'pressed' => $rows->where('state', 'pressed')->sortBy('at')->map(fn ($r) => $cell($r) + ['clock' => $this->clock($r['at'])])->values()->all(),
-            'down' => $rows->where('state', 'down')->map(fn ($r) => $cell($r) + ['back' => $this->clock($r['back'])])->values()->all(),
+            'pressed' => $pressed = $rows->where('state', 'pressed')->sortBy('at')->map(fn ($r) => $cell($r) + ['clock' => $this->clock($r['at'])])->values()->all(),
+            'down' => $down = $rows->where('state', 'down')->map(fn ($r) => $cell($r) + ['back' => $this->clock($r['back'])])->values()->all(),
+            'kit' => $this->kitStrip($ready->all(), $pressed, $down, $byGuid[$d['who']]['name'] ?? null),
         ];
+    }
+
+    /**
+     * What each player had for the go, one row of icons a player, lit or greyed the way the Empowered
+     * box shows a buff up or missing: ringed gold when it was ready and could have saved them, lit
+     * when ready or pressed, grey when on cooldown or no use here. The dying player's row first.
+     */
+    private function kitStrip(array $ready, array $pressed, array $down, ?string $dying): array
+    {
+        $items = [];
+        foreach ($ready as $x) {
+            $state = ['fits' => 'fits', 'no' => 'no'][$x['fit']] ?? 'ready';
+            $tip = match ($state) {
+                'fits' => 'ready, and could have saved them',
+                'no' => 'ready, could not help ('.$x['why'].')',
+                default => 'ready',
+            };
+            $items[] = $x + ['state' => $state, 'cap' => null, 'tip' => $x['spell'].', '.$tip.($x['tried'] ? ', tried '.$x['tried'] : '')];
+        }
+        foreach ($pressed as $x) {
+            $items[] = $x + ['state' => 'pressed', 'cap' => $x['clock'], 'tip' => $x['spell'].', pressed at '.$x['clock']];
+        }
+        foreach ($down as $x) {
+            $items[] = $x + ['state' => 'down', 'cap' => $x['back'], 'tip' => $x['spell'].', on cooldown, back at '.$x['back']];
+        }
+        $rank = ['fits' => 0, 'ready' => 1, 'pressed' => 2, 'down' => 3, 'no' => 4];
+
+        return collect($items)->groupBy('name')
+            ->sortBy(fn ($g, $name) => $name === $dying ? 0 : 1)
+            ->map(fn ($g, $name) => ['name' => $name, 'color' => $g->first()['color'], 'items' => $g->sortBy(fn ($x) => $rank[$x['state']])->values()->all()])
+            ->values()->all();
     }
 
     /** One row per distinct item, with a count where a rule fired more than once (once per go). */

@@ -62,6 +62,21 @@ class SpellIconIndex
                     $this->cache[$name] = $again->firstWhere('name', $base);
                 }
             }
+
+            // The data can carry a suffix the log does not: every Evoker colour spell is stored as
+            // "Disintegrate (desc=Blue)", and Sleep Walk, Deep Breath and Rewind drew blank without this.
+            $suffixed = array_values(array_filter($missing, fn ($n) => $this->cache[$n] === null));
+            if ($suffixed !== []) {
+                $rows = Spell::query()
+                    ->where('patch_id', Patch::where('is_current', true)->value('id'))
+                    ->whereNotNull('icon_name')
+                    ->where(fn ($q) => collect($suffixed)->each(fn ($n) => $q->orWhere('name', 'like', addcslashes($n, '%_').' (%')))
+                    ->orderBy('is_passive')->orderBy('not_in_spellbook')
+                    ->get(['id', 'spell_id', 'name', 'icon_name', 'is_passive', 'not_in_spellbook']);
+                foreach ($suffixed as $name) {
+                    $this->cache[$name] = $rows->first(fn ($r) => str_starts_with($r->name, $name.' ('));
+                }
+            }
         }
 
         return array_intersect_key($this->cache, array_flip($names));

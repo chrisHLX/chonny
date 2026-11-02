@@ -1,0 +1,2 @@
+{{-- A span on the death chart, its spell's icon at the moment it began. --}}
+<span class="dt-bar{{ ($b['broke'] ?? false) ? ' broke' : '' }}" style="left: {{ $b['left'] }}%; width: {{ $b['width'] }}%; background: {{ $b['color'] }}40" data-tip="{{ $b['tip'] }}">@if ($b['icon'])<img loading="lazy" src="{{ $b['icon'] }}" alt="{{ $b['spell'] }}">@else<b>{{ mb_substr($b['spell'], 0, 2) }}</b>@endif</span>

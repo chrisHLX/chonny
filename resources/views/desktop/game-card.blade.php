@@ -31,6 +31,24 @@
         for (i = 0; i < sides.length; i++) { sides[i].style.display = sides[i].getAttribute('data-side') === side ? '' : 'none'; }
         for (i = 0; i < seg.length; i++) { seg[i].className = seg[i] === link ? 'on' : ''; }
     }
+    // The death chart: the whole go or its last ten seconds, every lane moving together.
+    function dtZoom(link, z) {
+        var dt = link.closest('.dt'), seg = link.parentNode.children, i;
+        dt.style.setProperty('--z', z);
+        dt.classList.toggle('zoomed', z > 1);
+        for (i = 0; i < seg.length; i++) { seg[i].className = seg[i] === link ? 'on' : ''; }
+    }
+    // One tip for everything drawn: a hit, a span, a kit icon. A tap reaches it as a hover does.
+    document.addEventListener('mouseover', function (e) {
+        var el = e.target.closest ? e.target.closest('[data-tip]') : null, tip = document.getElementById('dt-tip');
+        if (!el) { if (tip) { tip.style.display = 'none'; } return; }
+        if (!tip) { tip = document.createElement('div'); tip.id = 'dt-tip'; document.body.appendChild(tip); }
+        tip.textContent = el.getAttribute('data-tip');
+        tip.style.display = 'block';
+        var r = el.getBoundingClientRect(), w = tip.offsetWidth, h = tip.offsetHeight;
+        tip.style.left = Math.max(6, Math.min(window.innerWidth - w - 6, r.left + r.width / 2 - w / 2)) + 'px';
+        tip.style.top = (r.top - h - 8 < 4 ? r.bottom + 8 : r.top - h - 8) + 'px';
+    });
 </script>
 </head>
 {{-- The teams open first (2026-10-29): who was in the game, their titles and ratings, is what players
@@ -170,7 +188,8 @@
         <div class="card kt-card">@include('desktop.partials.kill-targets', ['kt' => $g['killTargets']])</div>
     @endif
 
-    {{-- ============================== the game on one line of time, and the checks beside it --}}
+    {{-- ============================== the game on one line of time, and the checks beside it, with what
+         broke crowd control under them: Key events runs long and Checks stops short (Chriso, 2026-11-02). --}}
     <div class="grid2 top">
         <div class="card" @if (! empty($g['pool'])) style="grid-column: 1 / -1" @endif>
             <div class="kicker">@include('desktop.partials.icon', ['n' => 'clock'])Key events</div>
@@ -187,9 +206,14 @@
             </div>
         </div>
         @if (empty($g['pool']))
-            <div class="card">
-                <div class="kicker">@include('desktop.partials.icon', ['n' => 'target'])Checks <span style="text-transform: none; letter-spacing: 0; font-weight: 400">&nbsp;&middot; what the log shows by itself, for your team</span></div>
-                @include('desktop.partials.checks', ['checks' => $g['checks']])
+            <div class="side-stack">
+                <div class="card">
+                    <div class="kicker">@include('desktop.partials.icon', ['n' => 'target'])Checks <span style="text-transform: none; letter-spacing: 0; font-weight: 400">&nbsp;&middot; what the log shows by itself, for your team</span></div>
+                    @include('desktop.partials.checks', ['checks' => $g['checks']])
+                </div>
+                @if (! empty($g['ccBreaks']))
+                    <div class="card">@include('desktop.partials.cc-breaks', ['cb' => $g['ccBreaks']])</div>
+                @endif
             </div>
         @endif
     </div>
@@ -312,6 +336,9 @@
             @endif
             @if ($r['killTargets'])
                 <div class="kt-round">@include('desktop.partials.kill-targets', ['kt' => $r['killTargets']])</div>
+            @endif
+            @if ($r['ccBreaks'])
+                <div class="kt-round">@include('desktop.partials.cc-breaks', ['cb' => $r['ccBreaks']])</div>
             @endif
             @if ($r['look'] || $r['checks'])
                 <details class="more">

@@ -76,6 +76,7 @@ class ArenaMomentTest extends TestCase
     private function damage(string $src, string $dst, int $amount, int $curHp, int $maxHp, string $clock): string
     {
         $advanced = array_fill(0, 17, '0');
+        $advanced[0] = $dst;
         $advanced[2] = (string) $curHp;
         $advanced[3] = (string) $maxHp;
 
@@ -234,6 +235,42 @@ class ArenaMomentTest extends TestCase
         $this->assertCount(1, $control);
         $this->assertSame('Polymorph', $control[0]['spell']);
         $this->assertSame(['Mate-Realm'], $control[0]['brokenBy']);
+    }
+
+    public function test_the_log_says_what_broke_a_control_whichever_line_comes_first(): void
+    {
+        $this->spell(118, 'Polymorph', 15, 'Incapacitate');
+        $broken = fn (string $clock) => "9/25/2026 {$clock}  SPELL_AURA_BROKEN_SPELL,Player-B,\"Mate\",0x511,0x0,Player-F,\"Foe\",0x548,0x0,118,\"Polymorph\",0x40,589,\"Shadow Word: Pain\",32,DEBUFF";
+
+        $timeline = app(ArenaMomentService::class)->readTimeline([
+            $this->aura('SPELL_AURA_APPLIED', 'Player-A', 'Player-F', 118, 'Polymorph', '10:00:10.0000'),
+            $broken('10:00:11.0000'),
+            $this->aura('SPELL_AURA_REMOVED', 'Player-A', 'Player-F', 118, 'Polymorph', '10:00:11.0000'),
+            $this->aura('SPELL_AURA_APPLIED', 'Player-A', 'Player-F', 118, 'Polymorph', '10:00:20.0000'),
+            $this->aura('SPELL_AURA_REMOVED', 'Player-A', 'Player-F', 118, 'Polymorph', '10:00:21.0000'),
+            $broken('10:00:21.0500'),
+            $this->aura('SPELL_AURA_APPLIED', 'Player-A', 'Player-F', 118, 'Polymorph', '10:00:30.0000'),
+            $this->aura('SPELL_AURA_REMOVED', 'Player-A', 'Player-F', 118, 'Polymorph', '10:00:38.0000'),
+        ], app(ArenaMomentService::class)->roster($this->metadata()));
+
+        $this->assertSame(['src' => 'Player-B', 'spell' => 'Shadow Word: Pain'], $timeline['control'][0]['broke']);
+        $this->assertSame(['src' => 'Player-B', 'spell' => 'Shadow Word: Pain'], $timeline['control'][1]['broke']);
+        $this->assertNull($timeline['control'][2]['broke'], 'one that ran its course names nobody');
+    }
+
+    public function test_a_swing_line_carrying_the_attackers_health_is_no_reading_of_the_target(): void
+    {
+        $swing = fn (string $event, string $unit, int $hp) => $this->line($event, array_merge(
+            ['Player-B', '"Pet"', '0x511', '0x0', 'Player-F', '"Foe"', '0x548', '0x0', $unit, '0'],
+            [(string) $hp, '1000000'], array_fill(0, 14, '0')),
+            ['500', '500', '-1', '1', '0', '0', '0', 'nil', 'nil', 'nil'], 38, '10:00:10.0000');
+
+        $timeline = app(ArenaMomentService::class)->readTimeline([
+            $swing('SWING_DAMAGE', 'Player-B', 1000000),
+            $swing('SWING_DAMAGE_LANDED', 'Player-F', 400000),
+        ], app(ArenaMomentService::class)->roster($this->metadata()));
+
+        $this->assertSame([40.0], array_column($timeline['health']['Player-F'], 'pct'));
     }
 
     public function test_control_left_alone_is_not_reported_as_broken(): void

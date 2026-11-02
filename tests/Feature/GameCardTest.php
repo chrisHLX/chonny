@@ -247,46 +247,90 @@ class GameCardTest extends TestCase
             ]],
         ]);
 
-        $card = $this->text(app(GameCardService::class)->build($user), 'm1');
+        $built = app(GameCardService::class)->build($user);
+        $card = $this->text($built, 'm1');
+        $html = html_entity_decode($built['games']['m1']['html'], ENT_QUOTES);
 
         $this->assertStringContainsString('Harder Enemy MMR +186, 0 Gladiator seasons vs your 0', $card);
-        $this->assertStringContainsString('What your team had for the enemy go from 0:07 to the death', $card);
-        $this->assertStringContainsString('Enemy offensive cooldowns: Bladestorm Lock', $card);
-        $this->assertStringContainsString('Enemy crowd control on you: Holy Word: Chastise on Healz, 0:15', $card);
-        $this->assertStringContainsString('Healz locked out 8.6s of it, the longest stretch 8.9s from 0:15. Free 0:14 to 0:15 just before it', $card);
-        // The dying Hunter's own defensives first, then the healer's, with the refused press.
-        $this->assertStringContainsString('Ready, and could have saved them', $card);
-        $this->assertLessThan(strpos($card, 'Pain Suppression Healz'), strpos($card, 'Roar of Sacrifice Hunter'));
-        $this->assertStringContainsString('Pain Suppression Healz tried 0:19 (while fleeing)', $card);
-        $this->assertStringContainsString("Pressed in the enemy go Gladiator's Medallion Healz 0:14", $card);
-        $this->assertStringContainsString('On cooldown when it began Camouflage Hunter back at 1:00', $card);
+        $this->assertStringContainsString('What your team had for the enemy go', $card);
+        // The dying Hunter's own row first, then the healer's, with the refused press.
+        $this->assertLessThan(strpos($html, 'data-tip="Pain Suppression,'), strpos($html, 'data-tip="Roar of Sacrifice,'));
+        $this->assertStringContainsString('Pain Suppression, ready, and could have saved them, tried 0:19 (while fleeing)', $html);
+        $this->assertStringContainsString("Gladiator's Medallion, pressed at 0:14", $html);
+        $this->assertStringContainsString('Camouflage, on cooldown, back at 1:00', $html);
         $this->assertStringNotContainsString('Barkskin while they were not in a go', $card, 'pressed just before a lockout is not a fault');
     }
 
-    public function test_a_death_draws_the_health_line_through_the_go(): void
+    public function test_a_death_is_one_chart_with_every_hit_on_it(): void
     {
         $user = User::factory()->create();
-        // Ten seconds: full until 6s before, then down to 30% for the last three; healer locked from
-        // 5s to 1s before; Feint 4s before.
+        // Ten seconds up to the death at 1:32.
         $this->storeRound($user, 'm1', 'm1', '3v3', '2026-10-01 14:43:00', false, $this->threes());
         $round = ArenaRound::where('match_id', 'm1')->first();
         $payload = $round->payload;
+        $t = $payload['analysis']['deaths'][0]['t'];
+        $hit = fn ($ago, $spell, $amount, $shield, $crit, $hp) => ['ago' => $ago, 'by' => 'Lock-Realm-US', 'spell' => $spell, 'amount' => $amount, 'shield' => $shield,
+            'crit' => $crit, 'hp' => $hp, 'drop' => $amount / 10, 'cover' => $shield / 10];
         $payload['analysis']['deaths'][0] = [
             'defensives30s' => [['spell' => 'Feint', 'who' => 'Hunter-Realm-US', 'ago' => 4], ['spell' => 'Barkskin', 'who' => 'Hunter-Realm-US', 'ago' => 25]],
             'hp' => [100, 100, 100, 100, 90, 60, 50, 30, 20, 9, 0],
+            'hits' => [$hit(6.0, 'Haunt', 300, 100, true, 70.0), $hit(3.0, 'Agony', 0, 200, false, null), $hit(0.0, 'Haunt', 700, 0, false, 0.0)],
             'healerLocked' => [[5.0, 1.0]],
         ] + $payload['analysis']['deaths'][0];
+        $payload['analysis']['timeline']['control'] = [
+            ['P-1', 'E-2', 'Fear', 'Disorient', $t - 5, $t - 1, ['E-1', 'Agony']],
+            ['P-2', 'E-2', 'Permeating Chill', 'Slow', $t - 5, $t - 1, null],
+        ];
+        $payload['analysis']['timeline']['offUp'] = [['E-1', 'Dark Soul', $t - 8, $t + 5]];
+        $round->update(['payload' => $payload]);
+
+        $built = app(GameCardService::class)->build($user);
+        $html = html_entity_decode($built['games']['m1']['html'], ENT_QUOTES);
+
+        $this->assertStringContainsString('Haunt, Lock: 300, crit, 100 on a shield, 70% health left, with Dark Soul', $html);
+        $this->assertStringContainsString('class="dt-hit crit"', $html, 'a crit is marked on its bar');
+        $this->assertStringContainsString('Agony, Lock: 0, 200 on a shield, with Dark Soul', $html, 'a hit a shield took whole is still a hit');
+        $this->assertStringContainsString('Biggest 700', $html, 'the lane says what its scale is');
+        $this->assertStringContainsString('Fear on Healz from Druid, 4s, broken by Lock: Agony', $html);
+        $this->assertStringContainsString('dt-bar broke', $html);
+        $this->assertStringNotContainsString('Permeating Chill', $html, 'a slow leaves a player their buttons, so it is no lockout');
+        $this->assertStringContainsString('Feint, Hunter, pressed', $html, 'a defensive inside the chart sits on it');
+        $this->assertStringNotContainsString('Barkskin, Hunter', $html, 'one from before the chart starts does not');
+        $this->assertStringContainsString('Your healer locked out', $html, 'their own healer, not the enemy one');
+        // Each ability's damage as a bar, the part from crits gold (400 of Haunt's 1,100), with the cooldown beside it.
+        $this->assertStringContainsString('2 hits, 1 crit', $html);
+        $this->assertStringContainsString('#E8B84B 64%', $html);
+        $this->assertStringContainsString('title="Dark Soul up for most of these hits"', $html);
+    }
+
+    public function test_crowd_control_something_broke_is_listed_under_the_team_that_cast_it(): void
+    {
+        $user = User::factory()->create();
+        $this->storeRound($user, 'm1', 'm1', '3v3', '2026-10-01 14:43:00', false, $this->threes());
+        $round = ArenaRound::where('match_id', 'm1')->first();
+        $payload = $round->payload;
+        $payload['analysis']['version'] = 19;
+        $payload['analysis']['timeline']['control'] = [
+            ['E-2', 'P-2', 'Freezing Trap', 'Incapacitate', 40, 41.2, ['P-1', 'Shadow Word: Pain']],
+            ['E-2', 'P-2', 'Freezing Trap', 'Incapacitate', 60, 68, null],
+            ['E-1', 'P-2', 'Concussive Shot', 'Slow', 70, 72, ['P-1', 'Shadow Word: Pain']],
+        ];
         $round->update(['payload' => $payload]);
 
         $built = app(GameCardService::class)->build($user);
         $card = $this->text($built, 'm1');
-        $html = $built['games']['m1']['html'];
+        $html = html_entity_decode($built['games']['m1']['html'], ENT_QUOTES);
 
-        $this->assertStringContainsString('Health, the last 10s: 100% 10s before the death; under 35% for the last 3s.', $card);
-        $this->assertStringContainsString('Shaded: the enemy healer locked out.', $card);
-        $this->assertStringContainsString('<title>Feint, Hunter, 4s before</title>', $html, 'a defensive inside the line is marked on it');
-        $this->assertStringNotContainsString('Barkskin, Hunter, 25s before</title>', $html, 'one before the line starts is not');
-        $this->assertStringContainsString('points="0,0 60,0 120,0 180,0 240,6.4 300,25.6 360,32 420,44.8 480,51.2 540,58.2 600,64"', $html);
+        $this->assertStringContainsString('Crowd Control Broken', $card);
+        $this->assertStringContainsString('Freezing Trap 1 of 2 broke', $card);
+        $this->assertStringContainsString('<b>1.2s</b>', $html);
+        $this->assertStringContainsString('Shadow Word: Pain from Healz broke it on Druid at 0:41, after 1.2s', $html);
+        $this->assertStringNotContainsString('Concussive Shot', $card, 'a slow is not a lockout');
+
+        // Nothing broke, or the round predates version 19: no box, rather than "None" that may be untrue.
+        $payload['analysis']['version'] = 18;
+        $round->update(['payload' => $payload]);
+        $this->assertStringNotContainsString('Crowd Control Broken', $this->text(app(GameCardService::class)->build($user), 'm1'));
     }
 
     public function test_ready_defensives_are_sorted_by_whether_they_could_have_saved_them(): void
@@ -309,13 +353,13 @@ class GameCardTest extends TestCase
         ] + $payload['analysis']['deaths'][0];
         $round->update(['payload' => $payload]);
 
-        $card = $this->text(app(GameCardService::class)->build($user), 'm1');
+        $html = html_entity_decode(app(GameCardService::class)->build($user)['games']['m1']['html'], ENT_QUOTES);
 
-        $this->assertStringContainsString('The damage that killed, last 10s: 90% physical, 10% magic', $card);
-        $this->assertStringContainsString('Ready, and could have saved them reached them and covers that damage Aspect of the Turtle Hunter Pain Suppression Healz', $card);
-        $this->assertStringContainsString("Ready, other answers crowd control, peels, trinkets, hiding: whether one fitted is your read Gladiator's Medallion Healz", $card);
-        $this->assertStringContainsString('Desperate Prayer Healz (only on themselves)', $card);
-        $this->assertStringContainsString('Blessing of Spellwarding Healz (magic only; 90% physical)', $card);
+        $this->assertStringContainsString('Aspect of the Turtle, ready, and could have saved them', $html);
+        $this->assertStringContainsString('Pain Suppression, ready, and could have saved them', $html);
+        $this->assertStringContainsString("Gladiator's Medallion, ready", $html);
+        $this->assertStringContainsString('Desperate Prayer, ready, could not help (only on themselves)', $html);
+        $this->assertStringContainsString('Blessing of Spellwarding, ready, could not help (magic only; 90% physical)', $html);
     }
 
     public function test_a_death_measured_before_version_14_has_no_health_line(): void
@@ -323,7 +367,7 @@ class GameCardTest extends TestCase
         $user = User::factory()->create();
         $this->storeRound($user, 'm1', 'm1', '3v3', '2026-10-01 14:43:00', false, $this->threes());
 
-        $this->assertStringNotContainsString('Health, the last', $this->text(app(GameCardService::class)->build($user), 'm1'));
+        $this->assertStringNotContainsString('class="dt-row dt-health"', app(GameCardService::class)->build($user)['games']['m1']['html']);
     }
 
     public function test_a_game_on_youtube_says_so_on_its_card_and_in_the_list(): void

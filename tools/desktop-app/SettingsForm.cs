@@ -9,7 +9,7 @@ internal sealed class SettingsForm : Form
     private readonly TextBox _wow = Box();
     private readonly TextBox _move = Box();
     private readonly CheckBox _moveLogs = Check("Move each combat log out of WoW's folder once all of it is sent (after WoW closes)");
-    private readonly CheckBox _startup = Check("Start MindCollector when Windows starts (in the tray)");
+    private readonly CheckBox _startup = Check("Start MindCollector when Windows starts (minimised to the taskbar)");
     private readonly CheckBox _record = Check("Record each arena game with OBS: it starts as you zone in and stops when the game ends");
     private readonly TextBox _videos = Box();
     private readonly TextBox _limit = Box();
