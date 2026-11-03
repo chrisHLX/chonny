@@ -112,6 +112,21 @@ The app drives the player's own OBS; it does not record anything itself (docs/vi
   one video), or when WoW closes, after 90 minutes, or for a game that never wrote its END, at the
   next game's START or after 20 minutes with nothing written. A video with no game in it after 4
   minutes is deleted. OBS is opened if it is closed.
+- **Safe Mode (0.6.8, 2026-11-03).** OBS 32 offers Safe Mode after a session that did not exit
+  cleanly, despite `--disable-shutdown-check`: it finds the crash from a `run_` file left in
+  `%APPDATA%\obs-studio\.sentinel`. Safe Mode loads no third-party plugins, so no WebSocket server,
+  and on 3 Nov a whole evening went unrecorded behind "OBS is not answering ... Enable WebSocket
+  server", which was on. The app now clears those files before it opens OBS (OBS is closed then, so
+  every one is stale), and when OBS is open but silent it reads OBS's newest log for "Safe Mode
+  enabled" and says so. Checked with `--obs-test` against the Safe Mode OBS of that evening.
+- **The Recording light (0.6.8, 2026-11-03)**, beside Activity in the bottom bar: red and lit while a
+  game records, a green dot when the next one will, amber "Not recording" when something will stop
+  it (the reason in its tooltip and on a click), grey when recording is off (a click opens
+  Settings). It checks every 5 seconds without connecting to OBS (`ObsSetup.Problem`: installed,
+  server on, and when OBS is open, something listening on its port), so a problem shows before the
+  first game rather than in Activity after each one. `--check-record-light` writes what it would say
+  now and draws the four states off-screen; at the 900px minimum window the bar's right side has
+  494px and needs 476px.
 - **WoW writes its log in bursts**, so the file goes quiet mid-game: on 25 Oct round 6 ran 3.5
   minutes with nothing reaching the disk, and a "3 minutes quiet" stop cut that video 35s short.
   Quiet is now a sign only before a game. The same buffering held the zone-in back until round 1's

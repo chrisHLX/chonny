@@ -357,6 +357,44 @@ internal static class Diagnostics
         }
     }
 
+    /// <summary>
+    /// `--check-record-light`: what the Recording light would say now (record-light.txt), and its four
+    /// states drawn off-screen (record-light.png), so it can be checked without the window open.
+    /// </summary>
+    public static int CheckRecordLight()
+    {
+        var problem = ObsSetup.Problem();
+        Write("record-light.txt", $"OBS open: {ObsSetup.Running()}; Safe Mode: {ObsSetup.InSafeMode()}\n"
+            + $"With recording on, the light would say: {(problem == null ? "Ready to record" : "Not recording: " + problem)}\n");
+
+        using var bar = new Panel { BackColor = Theme.Frame, Size = new Size(760, 60) };
+        var x = 12;
+        foreach (var (state, why) in new[] { (RecordLight.State.Recording, (string?)null), (RecordLight.State.Ready, null), (RecordLight.State.Problem, problem ?? ObsSetup.SafeModeMessage), (RecordLight.State.Off, null) })
+        {
+            var light = new RecordLight();
+            light.Set(state, why);
+            light.Location = new Point(x, 12);
+            bar.Controls.Add(light);
+            x += light.Width + 12;
+        }
+        var activity = Theme.Button("Activity");
+        activity.Location = new Point(x, 12);
+        bar.Controls.Add(activity);
+        // And the right of the bar at the window's 900px minimum (58% of it, less the bar's padding):
+        // Settings, Website, Activity and the widest light must fit.
+        var widest = new RecordLight();
+        widest.Set(RecordLight.State.Ready, null);
+        var need = new[] { "Settings", "Website", "Activity" }.Sum(t => Theme.Button(t).Width + 8) + widest.Width + 8;
+        File.AppendAllText(Path.Combine(AppSettings.Dir, "record-light.txt"), $"At 900px the right of the bar has {(int)((900 - 16 - 32) * 0.58)}px; it needs {need}px.\n");
+
+        using var bmp = new Bitmap(bar.Width, bar.Height);
+        bar.CreateControl();
+        bar.DrawToBitmap(bmp, new Rectangle(Point.Empty, bar.Size));
+        Directory.CreateDirectory(AppSettings.Dir);
+        bmp.Save(Path.Combine(AppSettings.Dir, "record-light.png"), System.Drawing.Imaging.ImageFormat.Png);
+        return 0;
+    }
+
     private static void Write(string name, string text)
     {
         Directory.CreateDirectory(AppSettings.Dir);

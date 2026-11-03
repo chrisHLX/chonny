@@ -30,6 +30,8 @@ internal sealed class MainForm : Form
     private bool _notesChanged;
     private readonly HashSet<string> _warned = [];
     private bool _recording;
+    private readonly RecordLight _recLight = new();
+    private int _lightTick;
     private readonly LibraryList _list = new();
     private readonly Label _libTitle = new() { Dock = DockStyle.Top, Height = 44, Font = Theme.Heading, ForeColor = Theme.Ink, BackColor = Theme.Panel, TextAlign = ContentAlignment.MiddleLeft, Padding = new Padding(10, 0, 0, 0) };
     private readonly WebView2 _view = new();
@@ -76,6 +78,7 @@ internal sealed class MainForm : Form
         _recorder.RecordingChanged += on => BeginInvoke(() =>
         {
             _recording = on;
+            UpdateRecordLight();
             _tray.Text = on ? "MindCollector: recording this game" : "MindCollector";
             SetStatus(on ? "Recording this game with OBS" : WatchingText());
             if (!on && _tab is "Videos" or "Games") FillList();
@@ -194,9 +197,11 @@ internal sealed class MainForm : Form
 
         // Bottom: the status on the left, Sync in the middle, the rest on the right (Spotify's player bar).
         var bar = new TableLayoutPanel { Dock = DockStyle.Bottom, Height = 72, BackColor = Theme.Frame, ColumnCount = 3, RowCount = 1, Padding = new Padding(16, 0, 16, 0) };
-        bar.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 40));
+        // The right takes more since the Recording light joined Activity (2026-11-03): all four fit at
+        // the window's 900px minimum, and the status on the left shortens with an ellipsis instead.
+        bar.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 22));
         bar.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 20));
-        bar.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 40));
+        bar.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 58));
         bar.RowStyles.Add(new RowStyle(SizeType.Percent, 100));
         _status.AutoSize = false;
         _status.Dock = DockStyle.Fill;
@@ -212,7 +217,9 @@ internal sealed class MainForm : Form
         settings.Click += (_, _) => OpenSettings();
         site.Click += (_, _) => OpenUrl($"{_settings.ServerUrl}/wow/coach");
         activity.Click += (_, _) => ShowActivity();
-        buttons.Controls.AddRange([settings, site, activity]);
+        _recLight.Click += (_, _) => OnRecordLightClick();
+        buttons.Controls.AddRange([settings, site, activity, _recLight]);
+        UpdateRecordLight();
         bar.Controls.Add(_status, 0, 0);
         bar.Controls.Add(sync, 1, 0);
         bar.Controls.Add(buttons, 2, 0);
@@ -883,6 +890,7 @@ internal sealed class MainForm : Form
     /// <summary>Once a second: the nav's dot, the status line, the players' experience, and "This game" when it changed.</summary>
     private async Task LiveTickAsync()
     {
+        if (++_lightTick % 5 == 0) UpdateRecordLight();
         var active = _live.Active;
         if (_tabs.TryGetValue("This game", out var nav) && nav.Dot != active)
         {
@@ -1130,6 +1138,33 @@ internal sealed class MainForm : Form
         f.Controls.Add(box);
         f.Shown += (_, _) => { box.SelectionStart = box.TextLength; box.ScrollToCaret(); };
         f.Show(this);
+    }
+
+    /// <summary>
+    /// The Recording light (2026-11-03), every 5 seconds and when a recording starts or stops. On
+    /// 3 Nov an OBS in Safe Mode cost a whole evening's videos, said only in Activity, one line a game.
+    /// </summary>
+    private void UpdateRecordLight()
+    {
+        if (!_settings.RecordGames) { _recLight.Set(RecordLight.State.Off, null); return; }
+        if (_recording) { _recLight.Set(RecordLight.State.Recording, null); return; }
+        var problem = ObsSetup.Problem();
+        // A closed OBS looks fine from here; if the app could not open it for the last game, say so.
+        if (problem == null && !ObsSetup.Running() && _recorder.LastFailure is { } f && DateTime.Now - f.At < TimeSpan.FromMinutes(15))
+            problem = $"The last game could not be recorded: {f.Why}";
+        _recLight.Set(problem == null ? RecordLight.State.Ready : RecordLight.State.Problem, problem);
+    }
+
+    private void OnRecordLightClick()
+    {
+        switch (_recLight.Current)
+        {
+            case RecordLight.State.Off: OpenSettings(); break;
+            case RecordLight.State.Problem:
+                MessageBox.Show(this, _recLight.Why, "Games are not being recorded", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                break;
+            default: ShowActivity(); break;
+        }
     }
 
     private void SetStatus(string text)

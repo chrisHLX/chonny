@@ -99,6 +99,12 @@ public static class ObsSetup
     /// Opens OBS in the tray. It must start in its own folder, or it cannot find its files. The
     /// shutdown check is skipped so a crash last time cannot leave a "start in safe mode?" box
     /// waiting on a screen nobody is looking at while a game goes unrecorded.
+    ///
+    /// OBS 32 asks anyway (2026-11-03): it finds the crash from a run_ file a session leaves in
+    /// .sentinel and deletes on a clean exit. A session that ended at 13:37 without exiting cleanly
+    /// left one; the OBS the app opened at 16:59 asked, Safe Mode was chosen, Safe Mode leaves the
+    /// WebSocket server out, and a whole evening went unrecorded. OBS is closed here, so every run_
+    /// file is from a session already gone: they are cleared before it starts.
     /// </summary>
     public static bool Launch(out string message)
     {
@@ -108,6 +114,7 @@ public static class ObsSetup
             message = "OBS is not installed. Get it from obsproject.com, then open Settings > Set up OBS.";
             return false;
         }
+        if (!Running()) ClearCrashMarkers();
         try
         {
             Process.Start(new ProcessStartInfo(exe, "--minimize-to-tray --disable-shutdown-check")
@@ -124,6 +131,68 @@ public static class ObsSetup
             return false;
         }
     }
+
+    private static readonly string ObsDir = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "obs-studio");
+
+    /// <summary>OBS's run_ files from sessions that did not exit cleanly. Only call with OBS closed.</summary>
+    private static void ClearCrashMarkers()
+    {
+        try
+        {
+            var dir = Path.Combine(ObsDir, ".sentinel");
+            if (!Directory.Exists(dir)) return;
+            foreach (var f in Directory.GetFiles(dir, "run_*"))
+            {
+                try { File.Delete(f); } catch { }
+            }
+        }
+        catch { }
+    }
+
+    /// <summary>
+    /// Whether the OBS that is open started in Safe Mode, which loads no third-party plugins and so
+    /// no WebSocket server: its newest log says "Safe Mode enabled".
+    /// </summary>
+    public static bool InSafeMode()
+    {
+        try
+        {
+            var log = new DirectoryInfo(Path.Combine(ObsDir, "logs")).GetFiles("*.txt").OrderByDescending(f => f.LastWriteTimeUtc).FirstOrDefault();
+            if (log == null) return false;
+            using var reader = new StreamReader(new FileStream(log.FullName, FileMode.Open, FileAccess.Read, FileShare.ReadWrite | FileShare.Delete));
+            for (var i = 0; i < 400 && reader.ReadLine() is { } line; i++)
+            {
+                if (line.Contains("Safe Mode enabled", StringComparison.Ordinal)) return true;
+            }
+            return false;
+        }
+        catch { return false; }
+    }
+
+    /// <summary>
+    /// What would stop the next game being recorded, read without connecting to OBS (2026-11-03):
+    /// whether it is installed, its server switched on, and, when it is open, whether anything is
+    /// listening on its port. Null when nothing stands in the way; a closed OBS is fine, the app
+    /// opens it when a game starts.
+    /// </summary>
+    public static string? Problem()
+    {
+        if (ExePath() == null) return "OBS is not installed. Get it from obsproject.com, then open Settings > Set up OBS.";
+        var config = ReadConfig();
+        var running = Running();
+        if (!config.Enabled && running) return "OBS's WebSocket server is off. In OBS: Tools > WebSocket Server Settings > Enable WebSocket server.";
+        if (!running) return null;
+        try
+        {
+            var listening = System.Net.NetworkInformation.IPGlobalProperties.GetIPGlobalProperties()
+                .GetActiveTcpListeners().Any(l => l.Port == config.Port);
+            if (listening) return null;
+        }
+        catch { return null; }
+        return InSafeMode() ? SafeModeMessage : "OBS is open but not answering on its WebSocket port. Close OBS and open it again.";
+    }
+
+    public const string SafeModeMessage = "OBS opened in Safe Mode after it last closed badly, and Safe Mode turns its remote control off. Close OBS and open it again, choosing Run Normally.";
 
     /// <summary>
     /// A connection to OBS, opening OBS first when it is closed: waits up to 30 seconds for it to
@@ -165,7 +234,9 @@ public static class ObsSetup
             catch (OperationCanceledException) when (!ct.IsCancellationRequested) { }
             await Task.Delay(1000, ct);
         }
-        return (null, last);
+        // Open and silent with the server switched on: Safe Mode, said as itself rather than as
+        // "check the WebSocket setting", which is on.
+        return (null, Running() && InSafeMode() ? SafeModeMessage : last);
     }
 
     /// <summary>

@@ -228,6 +228,9 @@ public sealed class Recorder : IDisposable
     /// <summary>True while a recording this app started is running.</summary>
     public event Action<bool>? RecordingChanged;
 
+    /// <summary>The last game that could not be recorded, and why; cleared by the next that is.</summary>
+    public (DateTime At, string Why)? LastFailure { get; private set; }
+
     /// <param name="live">Fed every line read, for "This game" (LiveGame). The log is read whether or not recording is on.</param>
     public Recorder(AppSettings settings, Action<string> log, LiveGame? live = null)
     {
@@ -401,6 +404,7 @@ public sealed class Recorder : IDisposable
             if (client == null)
             {
                 _log($"Could not record this game: {message}");
+                LastFailure = (DateTime.Now, message);
                 _retryAfter = DateTime.Now.AddMinutes(2);
                 _trigger.Reset();
                 return;
@@ -437,6 +441,7 @@ public sealed class Recorder : IDisposable
 
         _session = new Session { StartedAt = startedAt, FolderSet = folderSet, RestoreFolder = restore ? previous : null, Log = _file };
         _log($"Recording this game with OBS (started {startedAt:HH:mm:ss.fff}).");
+        LastFailure = null;
         RecordingChanged?.Invoke(true);
     }
 

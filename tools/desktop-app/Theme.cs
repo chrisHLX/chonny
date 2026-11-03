@@ -127,6 +127,100 @@ internal sealed class PillButton : Button
     }
 }
 
+/// <summary>
+/// Whether games are being recorded, beside Activity in the bottom bar (2026-11-03): lit red while
+/// a game records, a green dot when the next one will, amber when something will stop it (the reason
+/// in its tooltip and a click away), grey when recording is off.
+/// </summary>
+internal sealed class RecordLight : Button
+{
+    public enum State { Off, Ready, Recording, Problem }
+
+    private static readonly Color Red = Color.FromArgb(239, 68, 68);
+    private static readonly Color Green = Color.FromArgb(74, 222, 128);
+    private static readonly Color Amber = Color.FromArgb(245, 158, 11);
+    private readonly ToolTip _tip = new();
+    private bool _hover;
+
+    public State Current { get; private set; } = State.Off;
+    public string? Why { get; private set; }
+
+    public RecordLight()
+    {
+        Font = new Font("Segoe UI Semibold", 9.75f);
+        FlatStyle = FlatStyle.Flat;
+        FlatAppearance.BorderSize = 0;
+        Cursor = Cursors.Hand;
+        Margin = new Padding(8, 0, 0, 0);
+        AutoSize = false;
+        Height = 36;
+        SetStyle(ControlStyles.AllPaintingInWmPaint | ControlStyles.OptimizedDoubleBuffer | ControlStyles.UserPaint | ControlStyles.SupportsTransparentBackColor, true);
+        BackColor = Color.Transparent;
+        MouseEnter += (_, _) => { _hover = true; Invalidate(); };
+        MouseLeave += (_, _) => { _hover = false; Invalidate(); };
+        Set(State.Off, null);
+    }
+
+    public void Set(State state, string? why)
+    {
+        if (state == Current && why == Why && Text != "") return;
+        Current = state;
+        Why = why;
+        Text = state switch
+        {
+            State.Recording => "Recording",
+            State.Ready => "Ready to record",
+            State.Problem => "Not recording",
+            _ => "Recording off",
+        };
+        Width = TextRenderer.MeasureText(Text, Font).Width + 52;
+        _tip.SetToolTip(this, state switch
+        {
+            State.Recording => "Recording this game with OBS.",
+            State.Ready => "The next arena game will be recorded with OBS.",
+            State.Problem => why ?? "The next game will not be recorded.",
+            _ => "Recording is off. Click to turn it on in Settings.",
+        });
+        Invalidate();
+    }
+
+    protected override void OnPaint(PaintEventArgs e)
+    {
+        var g = e.Graphics;
+        g.SmoothingMode = SmoothingMode.AntiAlias;
+        g.Clear(Parent?.BackColor ?? Theme.Panel);
+        var r = new Rectangle(0, 0, Width - 1, Height - 1);
+        using var path = Theme.Rounded(r, Height / 2);
+        var (dot, ink, edge) = Current switch
+        {
+            State.Recording => (Red, Theme.Ink, Red),
+            State.Ready => (Green, Theme.Ink, Theme.Subtle),
+            State.Problem => (Amber, Amber, Amber),
+            _ => (Theme.Subtle, Theme.Muted, Theme.Subtle),
+        };
+        if (Current == State.Recording)
+        {
+            using var glow = new SolidBrush(Color.FromArgb(48, Red));
+            g.FillPath(glow, path);
+        }
+        else if (_hover)
+        {
+            using var f = new SolidBrush(Color.FromArgb(18, 255, 255, 255));
+            g.FillPath(f, path);
+        }
+        using (var pen = new Pen(_hover ? Theme.Ink : edge, 1f)) g.DrawPath(pen, path);
+        using (var b = new SolidBrush(dot)) g.FillEllipse(b, 16, Height / 2 - 5, 10, 10);
+        TextRenderer.DrawText(g, Text, Font, new Rectangle(32, 0, Width - 40, Height), ink,
+            TextFormatFlags.Left | TextFormatFlags.VerticalCenter | TextFormatFlags.NoPadding);
+    }
+
+    protected override void Dispose(bool disposing)
+    {
+        if (disposing) _tip.Dispose();
+        base.Dispose(disposing);
+    }
+}
+
 /// <summary>A panel with rounded corners on the black frame, as Spotify's.</summary>
 internal sealed class RoundPanel : Panel
 {
