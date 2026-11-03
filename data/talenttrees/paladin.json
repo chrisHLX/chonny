@@ -1,7 +1,7 @@
 {
     "class": "Paladin",
     "talent_tree_id": 790,
-    "fetched_at": "2026-10-06T22:29:34+00:00",
+    "fetched_at": "2026-11-03T21:14:23+00:00",
     "source": "Blizzard Game Data API (static-us, en_US)",
     "class_talents": {
         "nodes": [
@@ -111,7 +111,7 @@
                                 "talent_name": "Holy Prism",
                                 "spell_id": 114165,
                                 "spell_name": "Holy Prism",
-                                "description": "Fires a beam of light that scatters to strike a clump of targets. \r\n\r\nIf the beam is aimed at an enemy target, it deals 2,433 Holy damage and radiates 2,649 healing to 5 allies within 30 yds.\r\n\r\nIf the beam is aimed at a friendly target, it heals for 5,998 and radiates 917 Holy damage to 5 enemies within 30 yds.\r\n\r\nGenerates 3 Holy Power.",
+                                "description": "Fires a beam of light that scatters to strike a clump of targets. \r\n\r\nIf the beam is aimed at an enemy target, it deals 2,483 Holy damage and radiates 2,625 healing to 5 allies within 30 yds.\r\n\r\nIf the beam is aimed at a friendly target, it heals for 6,129 and radiates 919 Holy damage to 5 enemies within 30 yds.\r\n\r\nGenerates 3 Holy Power.",
                                 "cast_time": "Instant",
                                 "cooldown": "45 sec cooldown",
                                 "range": "40 yd range"
@@ -214,8 +214,8 @@
                 "raw_position_x": 6600,
                 "raw_position_y": 4500,
                 "locked_by": [
-                    93009,
-                    93165
+                    93165,
+                    93009
                 ],
                 "unlocks": [
                     81615,
@@ -304,9 +304,9 @@
                 "raw_position_y": 1500,
                 "locked_by": [],
                 "unlocks": [
-                    109999,
                     81598,
-                    81632
+                    81632,
+                    109999
                 ],
                 "max_ranks": 1,
                 "ranks": [
@@ -394,9 +394,9 @@
                     81632
                 ],
                 "unlocks": [
+                    81614,
                     81630,
-                    110006,
-                    81614
+                    110006
                 ],
                 "max_ranks": 1,
                 "ranks": [
@@ -494,9 +494,9 @@
                 "raw_position_x": 3600,
                 "raw_position_y": 5100,
                 "locked_by": [
-                    109998,
                     93168,
-                    81614
+                    81614,
+                    109998
                 ],
                 "unlocks": [
                     103850,
@@ -526,9 +526,9 @@
                 "raw_position_x": 3600,
                 "raw_position_y": 2700,
                 "locked_by": [
+                    81508,
                     103859,
-                    109999,
-                    81508
+                    109999
                 ],
                 "unlocks": [
                     103860
@@ -556,9 +556,9 @@
                 "raw_position_x": 4200,
                 "raw_position_y": 4501,
                 "locked_by": [
+                    81605,
                     81630,
-                    110006,
-                    81605
+                    110006
                 ],
                 "unlocks": [
                     81607,
@@ -588,9 +588,9 @@
                 "raw_position_x": 6000,
                 "raw_position_y": 5100,
                 "locked_by": [
-                    109997,
                     81543,
-                    81616
+                    81616,
+                    109997
                 ],
                 "unlocks": [
                     103864,
@@ -619,9 +619,9 @@
                 "raw_position_x": 5399,
                 "raw_position_y": 4501,
                 "locked_by": [
+                    93187,
                     93009,
-                    110006,
-                    93187
+                    110006
                 ],
                 "unlocks": [
                     93192,
@@ -840,9 +840,9 @@
                     81632
                 ],
                 "unlocks": [
+                    93187,
                     93009,
-                    110006,
-                    93187
+                    110006
                 ],
                 "max_ranks": 1,
                 "ranks": [
@@ -881,9 +881,9 @@
                 "raw_position_x": 4800,
                 "raw_position_y": 2700,
                 "locked_by": [
-                    109999,
                     81598,
-                    81600
+                    81600,
+                    109999
                 ],
                 "unlocks": [
                     81605,
@@ -917,8 +917,8 @@
                     81598
                 ],
                 "unlocks": [
-                    93009,
-                    110092
+                    110092,
+                    93009
                 ],
                 "max_ranks": 1,
                 "ranks": [
@@ -1071,8 +1071,8 @@
                 "raw_position_x": 3000,
                 "raw_position_y": 4500,
                 "locked_by": [
-                    81630,
-                    103860
+                    103860,
+                    81630
                 ],
                 "unlocks": [
                     103850,
@@ -1238,13 +1238,13 @@
                 "raw_position_x": 3600,
                 "raw_position_y": 2700,
                 "locked_by": [
+                    81507,
                     109999,
-                    103859,
-                    81507
+                    103859
                 ],
                 "unlocks": [
-                    81630,
-                    103860
+                    103860,
+                    81630
                 ],
                 "max_ranks": 1,
                 "ranks": [
@@ -1269,13 +1269,13 @@
                 "raw_position_x": 3600,
                 "raw_position_y": 2700,
                 "locked_by": [
+                    81507,
                     103859,
-                    109999,
-                    81507
+                    109999
                 ],
                 "unlocks": [
-                    109867,
-                    103860
+                    103860,
+                    109867
                 ],
                 "max_ranks": 1,
                 "ranks": [
@@ -1857,8 +1857,8 @@
                     103858
                 ],
                 "unlocks": [
-                    81630,
-                    93168
+                    93168,
+                    81630
                 ],
                 "max_ranks": 1,
                 "ranks": [
@@ -2054,7 +2054,7 @@
                         "talent_name": "Holy Ritual",
                         "spell_id": 199422,
                         "spell_name": "Holy Ritual",
-                        "description": "Allies are healed for 7,443 when you cast Blessing of Protection or Blessing of Sacrifice on them.",
+                        "description": "Allies are healed for 7,786 when you cast Blessing of Protection or Blessing of Sacrifice on them.",
                         "cast_time": "Passive",
                         "cooldown": null,
                         "range": null
@@ -2249,9 +2249,9 @@
                     81597
                 ],
                 "unlocks": [
-                    110012,
                     93188,
-                    81632
+                    81632,
+                    110012
                 ],
                 "max_ranks": 1,
                 "ranks": [
@@ -2525,7 +2525,7 @@
                             "talent_name": "Light's Guidance",
                             "spell_id": 427445,
                             "spell_name": "Light's Guidance",
-                            "description": "Wake of Ashes is replaced with Hammer of Light for 20 sec after it is cast.\r\n\r\n Hammer of Light:\r\nHammer down your enemy with the power of the Light, dealing 364 Holy damage and 183 Holy damage up to 7 nearby enemies. \r\n\r\nAdditionally, calls down Empyrean Hammers from the sky to strike 3 nearby enemies for 18 Holy damage each.\r\n\r\nCosts 5 Holy Power.\r\n",
+                            "description": "Wake of Ashes is replaced with Hammer of Light for 20 sec after it is cast.\r\n\r\n Hammer of Light:\r\nHammer down your enemy with the power of the Light, dealing 369 Holy damage and 185 Holy damage up to 7 nearby enemies. \r\n\r\nAdditionally, calls down Empyrean Hammers from the sky to strike 3 nearby enemies for 18 Holy damage each.\r\n\r\nCosts 5 Holy Power.\r\n",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -3238,8 +3238,8 @@
                     "raw_position_x": 9900,
                     "raw_position_y": 4800,
                     "locked_by": [
-                        110257,
-                        95234
+                        95234,
+                        110257
                     ],
                     "unlocks": [
                         109743
@@ -3842,7 +3842,7 @@
                             "talent_name": "Avenger's Shield",
                             "spell_id": 31935,
                             "spell_name": "Avenger's Shield",
-                            "description": "Hurls your shield at an enemy target, dealing 68 Holy damage, interrupting and silencing the non-Player target for 3 sec, and then jumping to 2 additional nearby enemies. \r\n",
+                            "description": "Hurls your shield at an enemy target, dealing 69 Holy damage, interrupting and silencing the non-Player target for 3 sec, and then jumping to 2 additional nearby enemies. \r\n",
                             "cast_time": "Instant",
                             "cooldown": "15 sec cooldown",
                             "range": "30 yd range"
@@ -3972,8 +3972,8 @@
                         81502
                     ],
                     "unlocks": [
-                        81487,
-                        81476
+                        81476,
+                        81487
                     ],
                     "max_ranks": 1,
                     "ranks": [
@@ -4014,7 +4014,7 @@
                                     "talent_name": "Hammer of the Righteous",
                                     "spell_id": 53595,
                                     "spell_name": "Hammer of the Righteous",
-                                    "description": "Hammers the current target for 69 Physical damage.\r\n\r\nGenerates 1 Holy Power.",
+                                    "description": "Hammers the current target for 70 Physical damage.\r\n\r\nGenerates 1 Holy Power.",
                                     "cast_time": "Instant",
                                     "cooldown": null,
                                     "range": "Melee Range"
@@ -4451,7 +4451,7 @@
                                     "talent_name": "Uther's Counsel",
                                     "spell_id": 378425,
                                     "spell_name": "Uther's Counsel",
-                                    "description": "Your Lay on Hands, Divine Shield, Blessing of Protection, and Blessing of Spellwarding have 15% reduced cooldown.",
+                                    "description": "Your Lay on Hands, Divine Shield, and Blessing of Protection have 15% reduced cooldown.",
                                     "cast_time": "Passive",
                                     "cooldown": null,
                                     "range": null
@@ -4471,8 +4471,8 @@
                         81487
                     ],
                     "unlocks": [
-                        81483,
                         81499,
+                        81483,
                         81503
                     ],
                     "max_ranks": 1,
@@ -4633,9 +4633,9 @@
                         81481
                     ],
                     "unlocks": [
+                        90062,
                         81612,
-                        81506,
-                        90062
+                        81506
                     ],
                     "max_ranks": 1,
                     "ranks": [
@@ -4845,8 +4845,8 @@
                     "raw_position_x": 12600,
                     "raw_position_y": 4500,
                     "locked_by": [
-                        81483,
-                        81499
+                        81499,
+                        81483
                     ],
                     "unlocks": [
                         81490,
@@ -5131,8 +5131,8 @@
                     "raw_position_x": 9900,
                     "raw_position_y": 4800,
                     "locked_by": [
-                        110257,
-                        95234
+                        95234,
+                        110257
                     ],
                     "unlocks": [
                         109743
@@ -5211,8 +5211,8 @@
                     ],
                     "unlocks": [
                         81484,
-                        81497,
-                        103877
+                        103877,
+                        81497
                     ],
                     "max_ranks": 1,
                     "ranks": [
@@ -5237,13 +5237,13 @@
                     "raw_position_x": 14400,
                     "raw_position_y": 5100,
                     "locked_by": [
-                        81612,
                         81485,
-                        81470
+                        81470,
+                        81612
                     ],
                     "unlocks": [
-                        81471,
-                        81498
+                        81498,
+                        81471
                     ],
                     "max_ranks": 1,
                     "ranks": [
@@ -5485,9 +5485,9 @@
                         81490
                     ],
                     "unlocks": [
-                        81471,
                         81497,
-                        81504
+                        81504,
+                        81471
                     ],
                     "max_ranks": 1,
                     "ranks": [
@@ -5697,12 +5697,12 @@
                     "raw_position_y": 6300,
                     "locked_by": [
                         81484,
-                        81490,
-                        103877
+                        103877,
+                        81490
                     ],
                     "unlocks": [
-                        81491,
-                        81504
+                        81504,
+                        81491
                     ],
                     "max_ranks": 1,
                     "ranks": [
@@ -5727,8 +5727,8 @@
                     "raw_position_x": 14400,
                     "raw_position_y": 6300,
                     "locked_by": [
-                        81488,
                         81498,
+                        81488,
                         103877
                     ],
                     "unlocks": [
@@ -5867,9 +5867,9 @@
                     "raw_position_x": 13800,
                     "raw_position_y": 6900,
                     "locked_by": [
-                        81471,
                         81497,
-                        103877
+                        103877,
+                        81471
                     ],
                     "unlocks": [],
                     "max_ranks": 1,
@@ -5997,7 +5997,7 @@
                             "talent_name": "Holy Shock",
                             "spell_id": 20473,
                             "spell_name": "Holy Shock",
-                            "description": "Triggers a burst of Light on the target, dealing 810 Holy damage to an enemy, or 4,292 healing to an ally.\r\n\r\nGenerates 1 Holy Power.\r\n",
+                            "description": "Triggers a burst of Light on the target, dealing 819 Holy damage to an enemy, or 4,270 healing to an ally.\r\n\r\nGenerates 1 Holy Power.\r\n",
                             "cast_time": "Instant",
                             "cooldown": null,
                             "range": "40 yd range"
@@ -6339,8 +6339,8 @@
                         81569
                     ],
                     "unlocks": [
-                        81570,
-                        81590
+                        81590,
+                        81570
                     ],
                     "max_ranks": 1,
                     "ranks": [
@@ -6369,9 +6369,9 @@
                         81569
                     ],
                     "unlocks": [
-                        81575,
                         108099,
-                        81566
+                        81566,
+                        81575
                     ],
                     "max_ranks": 1,
                     "ranks": [
@@ -6540,8 +6540,8 @@
                         93927
                     ],
                     "unlocks": [
-                        93523,
-                        81571
+                        81571,
+                        93523
                     ],
                     "max_ranks": 1,
                     "ranks": [
@@ -6798,8 +6798,8 @@
                     "raw_position_x": 14401,
                     "raw_position_y": 3900,
                     "locked_by": [
-                        81575,
-                        81568
+                        81568,
+                        81575
                     ],
                     "unlocks": [
                         81556,
@@ -6886,14 +6886,14 @@
                     "raw_position_x": 11400,
                     "raw_position_y": 4500,
                     "locked_by": [
+                        81571,
                         81590,
-                        81570,
-                        81571
+                        81570
                     ],
                     "unlocks": [
-                        81573,
                         81580,
-                        102502
+                        102502,
+                        81573
                     ],
                     "max_ranks": 1,
                     "ranks": [
@@ -7023,7 +7023,7 @@
                             "talent_name": "Shining Righteousness",
                             "spell_id": 414443,
                             "spell_name": "Shining Righteousness",
-                            "description": "Shield of the Righteous deals 985 damage to its first target struck.\r\n\r\nShield of the Righteous now has a 35% chance to activate Divine Purpose if talented.",
+                            "description": "Shield of the Righteous deals 968 damage to its first target struck.\r\n\r\nShield of the Righteous now has a 35% chance to activate Divine Purpose if talented.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -7153,8 +7153,8 @@
                     "raw_position_x": 9900,
                     "raw_position_y": 4800,
                     "locked_by": [
-                        110257,
-                        95234
+                        95234,
+                        110257
                     ],
                     "unlocks": [
                         109743
@@ -7253,9 +7253,9 @@
                     "raw_position_x": 12001,
                     "raw_position_y": 5100,
                     "locked_by": [
-                        81570,
                         81574,
-                        93523
+                        93523,
+                        81570
                     ],
                     "unlocks": [
                         103831,
@@ -7387,8 +7387,8 @@
                         81562
                     ],
                     "unlocks": [
-                        81558,
-                        81584
+                        81584,
+                        81558
                     ],
                     "max_ranks": 1,
                     "ranks": [
@@ -7416,8 +7416,8 @@
                         81561
                     ],
                     "unlocks": [
-                        81558,
-                        81589
+                        81589,
+                        81558
                     ],
                     "max_ranks": 1,
                     "ranks": [
@@ -7583,8 +7583,8 @@
                     "raw_position_y": 5699,
                     "locked_by": [
                         81580,
-                        81573,
-                        102502
+                        102502,
+                        81573
                     ],
                     "unlocks": [
                         81579,
@@ -7691,9 +7691,9 @@
                         81578
                     ],
                     "unlocks": [
-                        81588,
                         81592,
-                        81587
+                        81587,
+                        81588
                     ],
                     "max_ranks": 1,
                     "ranks": [
@@ -7715,7 +7715,7 @@
                                     "talent_name": "Avenging Crusader",
                                     "spell_id": 216331,
                                     "spell_name": "Avenging Crusader",
-                                    "description": "You become the ultimate crusader of light, for 15 sec. Auto-attack damage is increased by 1,000%, Judgment and Crusader Strike heal up to 5 injured allies within 40 yds for 55% of the damage done, split evenly among them.\r\n\r\nThis spell is replaced with Crusader Strike while active.\r\n\r\nCrusader Strike:\r\nStrike the target for 49 Physical damage.\r\n\r\nGenerates 1 Holy Power.",
+                                    "description": "You become the ultimate crusader of light, for 15 sec. Auto-attack damage is increased by 1,000%, Judgment and Crusader Strike heal up to 5 injured allies within 40 yds for 55% of the damage done, split evenly among them.\r\n\r\nThis spell is replaced with Crusader Strike while active.\r\n\r\nCrusader Strike:\r\nStrike the target for 48 Physical damage.\r\n\r\nGenerates 1 Holy Power.",
                                     "cast_time": "Instant",
                                     "cooldown": "1 min cooldown",
                                     "range": null
@@ -7977,8 +7977,8 @@
                         81584
                     ],
                     "unlocks": [
-                        81591,
-                        81588
+                        81588,
+                        81591
                     ],
                     "max_ranks": 2,
                     "ranks": [
@@ -8042,8 +8042,8 @@
                     "raw_position_x": 15600,
                     "raw_position_y": 6300,
                     "locked_by": [
-                        81558,
-                        81560
+                        81560,
+                        81558
                     ],
                     "unlocks": [
                         81591
@@ -8179,9 +8179,9 @@
                     "raw_position_x": 13800,
                     "raw_position_y": 6900,
                     "locked_by": [
-                        81584,
                         81592,
-                        81587
+                        81587,
+                        81584
                     ],
                     "unlocks": [],
                     "max_ranks": 1,
@@ -8221,9 +8221,9 @@
                     "raw_position_x": 15000,
                     "raw_position_y": 6900,
                     "locked_by": [
+                        81589,
                         108034,
-                        81587,
-                        81589
+                        81587
                     ],
                     "unlocks": [],
                     "max_ranks": 1,
@@ -8297,7 +8297,7 @@
                             "talent_name": "Light's Guidance",
                             "spell_id": 427445,
                             "spell_name": "Light's Guidance",
-                            "description": "Wake of Ashes is replaced with Hammer of Light for 20 sec after it is cast.\r\n\r\n Hammer of Light:\r\nHammer down your enemy with the power of the Light, dealing 370 Holy damage and 182 Holy damage up to 7 nearby enemies. \r\n\r\nAdditionally, calls down Empyrean Hammers from the sky to strike 3 nearby enemies for 18 Holy damage each.\r\n\r\nCosts 5 Holy Power.\r\n",
+                            "description": "Wake of Ashes is replaced with Hammer of Light for 20 sec after it is cast.\r\n\r\n Hammer of Light:\r\nHammer down your enemy with the power of the Light, dealing 366 Holy damage and 183 Holy damage up to 7 nearby enemies. \r\n\r\nAdditionally, calls down Empyrean Hammers from the sky to strike 3 nearby enemies for 18 Holy damage each.\r\n\r\nCosts 5 Holy Power.\r\n",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -8353,7 +8353,7 @@
                             "talent_name": "Blade of Justice",
                             "spell_id": 184575,
                             "spell_name": "Blade of Justice",
-                            "description": "Pierce an enemy with a blade of light, dealing 66 Holy damage.\r\n\r\nGenerates 1 Holy Power.",
+                            "description": "Pierce an enemy with a blade of light, dealing 67 Holy damage.\r\n\r\nGenerates 1 Holy Power.",
                             "cast_time": "Instant",
                             "cooldown": null,
                             "range": "12 yd range"
@@ -8465,7 +8465,7 @@
                             "talent_name": "Divine Hammer",
                             "spell_id": 432929,
                             "spell_name": "Divine Hammer",
-                            "description": "Divine Toll summons Divine Hammers that spin around you for 8 sec.\r\n\r\nDivine Hammer\r\nStrikes all enemies nearby for 51 Holy damage every 2 sec. Deals reduced damage beyond 8 targets.",
+                            "description": "Divine Toll summons Divine Hammers that spin around you for 8 sec.\r\n\r\nDivine Hammer\r\nStrikes all enemies nearby for 50 Holy damage every 2 sec. Deals reduced damage beyond 8 targets.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -8620,7 +8620,7 @@
                             "talent_name": "Divine Storm",
                             "spell_id": 53385,
                             "spell_name": "Divine Storm",
-                            "description": "Unleashes a whirl of divine energy, dealing 92 Holy damage to all nearby enemies. \r\n\r\nDeals reduced damage beyond 5 targets.",
+                            "description": "Unleashes a whirl of divine energy, dealing 94 Holy damage to all nearby enemies. \r\n\r\nDeals reduced damage beyond 5 targets.",
                             "cast_time": "Instant",
                             "cooldown": null,
                             "range": null
@@ -9005,8 +9005,8 @@
                         92689
                     ],
                     "unlocks": [
-                        81523,
-                        92838
+                        92838,
+                        81523
                     ],
                     "max_ranks": 1,
                     "ranks": [
@@ -9298,7 +9298,7 @@
                             "talent_name": "Final Verdict",
                             "spell_id": 383328,
                             "spell_name": "Final Verdict",
-                            "description": "Unleashes a powerful weapon strike that deals 162 Holy damage to an enemy target,\r\n\r\nHas a 15% chance to reset the cooldown of Judgment.",
+                            "description": "Unleashes a powerful weapon strike that deals 163 Holy damage to an enemy target,\r\n\r\nHas a 15% chance to reset the cooldown of Judgment.",
                             "cast_time": "Instant",
                             "cooldown": null,
                             "range": "12 yd range"
@@ -9313,9 +9313,9 @@
                     "raw_position_x": 13200,
                     "raw_position_y": 3300,
                     "locked_by": [
+                        81544,
                         81521,
-                        93161,
-                        81544
+                        93161
                     ],
                     "unlocks": [
                         109370,

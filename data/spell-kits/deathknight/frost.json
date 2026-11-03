@@ -1,14 +1,14 @@
 {
-    "generatedAt": "2026-10-18T02:36:36+00:00",
-    "spellCacheVersion": 29,
+    "generatedAt": "2026-11-03T23:04:23+00:00",
+    "spellCacheVersion": 31,
     "codeFingerprint": "dev",
     "entries": [
         {
             "spellId": 1001,
             "category": "Other",
             "description": {
-                "text": "While you have 2 or more Horsemen aiding you, your (varies by condition — check in-game) increased damage.",
-                "uncertain": true
+                "text": "While you have 2 or more Horsemen aiding you, your Runic Power spending abilities deal 20% increased damage.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -1357,8 +1357,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game)",
-                            "uncertain": true
+                            "text": "Frost Strike damage is increased by 35% and Glacial Advance damage is increased by 5%. Reaper's Mark grants 3 charges of Bonegrinder if it is known.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -1423,8 +1423,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "While you have 20 or more Horsemen aiding you, your (varies by condition — check in-game) increased damage.",
-                            "uncertain": true
+                            "text": "While you have 20 or more Horsemen aiding you, your Runic Power spending abilities deal 20% increased damage.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -1876,7 +1876,7 @@
             "spellId": 6,
             "category": "Offensive",
             "description": {
-                "text": "Corrupts the targeted ground, causing (varies) Shadow damage over 10 to targets within the area.(varies by condition — check in-game)",
+                "text": "Corrupts the targeted ground, causing (varies) Shadow damage over 10 to targets within the area.",
                 "uncertain": true
             },
             "formulaModifierSpellIds": [],
@@ -2035,8 +2035,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Your damage is increased by 5% and you gain (varies by condition — check in-game) while inside Mograine's Death and Decay.",
-                            "uncertain": true
+                            "text": "Your damage is increased by 5% and you gain 5% critical strike chance while inside Mograine's Death and Decay.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -2067,8 +2067,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Your damage is increased by 5% and you gain (varies by condition — check in-game) while inside Mograine's Death and Decay.",
-                            "uncertain": true
+                            "text": "Your damage is increased by 5% and you gain 5% critical strike chance while inside Mograine's Death and Decay.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -2598,8 +2598,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game)",
-                            "uncertain": true
+                            "text": "Frost Strike damage is increased by 35% and Glacial Advance damage is increased by 5%. Reaper's Mark grants 3 charges of Bonegrinder if it is known.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -3191,8 +3191,8 @@
             "spellId": 991,
             "category": "Other",
             "description": {
-                "text": "(varies by condition — check in-game)",
-                "uncertain": true
+                "text": "Frost Strike damage is increased by 35% and Glacial Advance damage is increased by 5%. Reaper's Mark grants 3 charges of Bonegrinder if it is known.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -3830,8 +3830,8 @@
             "spellId": 585,
             "category": "Offensive",
             "description": {
-                "text": "After Reaper's Mark explodes, your next 50 Obliterates or Frostscythes cost 50 Runes and summon 100 scythes to strike your enemies. The first scythe strikes your target for 50 Shadowfrost damage (varies by condition — check in-game) the second scythe strikes all enemies around your target for 50 Shadowfrost damage(varies by condition — check in-game). Deals reduced damage beyond 8 targets.",
-                "uncertain": true
+                "text": "After Reaper's Mark explodes, your next 50 Obliterates or Frostscythes cost 50 Runes and summon 100 scythes to strike your enemies. The first scythe strikes your target for 50 Shadowfrost damage and has a 100% chance to grant Killing Machine, the second scythe strikes all enemies around your target for 50 Shadowfrost damage and applies Frost Fever. Deals reduced damage beyond 8 targets.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -3890,8 +3890,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "The effectiveness of Permafrost is increased by (varies by condition — check in-game)%(varies by condition — check in-game) Permafrost Your auto attack damage grants you an absorb shield equal to 50% of the damage dealt.",
-                            "uncertain": true
+                            "text": "The effectiveness of Permafrost is increased by 50%. Permafrost Your auto attack damage grants you an absorb shield equal to 50% of the damage dealt.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -4069,8 +4069,8 @@
             "spellId": 990,
             "category": "Other",
             "description": {
-                "text": "The effectiveness of Permafrost is increased by (varies by condition — check in-game)%(varies by condition — check in-game) Permafrost Your auto attack damage grants you an absorb shield equal to 50% of the damage dealt.",
-                "uncertain": true
+                "text": "The effectiveness of Permafrost is increased by 50%. Permafrost Your auto attack damage grants you an absorb shield equal to 50% of the damage dealt.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -4159,8 +4159,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game)",
-                            "uncertain": true
+                            "text": "Frost Strike damage is increased by 35% and Glacial Advance damage is increased by 5%. Reaper's Mark grants 3 charges of Bonegrinder if it is known.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -4387,8 +4387,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "While you have 20 or more Horsemen aiding you, your (varies by condition — check in-game) increased damage.",
-                            "uncertain": true
+                            "text": "While you have 20 or more Horsemen aiding you, your Runic Power spending abilities deal 20% increased damage.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -4988,8 +4988,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "After Reaper's Mark explodes, your next 2 Obliterates or Frostscythes cost 1 Rune and summon 2 scythes to strike your enemies. The first scythe strikes your target for 50 Shadowfrost damage (varies by condition — check in-game) the second scythe strikes all enemies around your target for 50 Shadowfrost damage(varies by condition — check in-game). Deals reduced damage beyond 8 targets.",
-                            "uncertain": true
+                            "text": "After Reaper's Mark explodes, your next 2 Obliterates or Frostscythes cost 1 Rune and summon 2 scythes to strike your enemies. The first scythe strikes your target for 50 Shadowfrost damage and has a 100% chance to grant Killing Machine, the second scythe strikes all enemies around your target for 50 Shadowfrost damage and applies Frost Fever. Deals reduced damage beyond 8 targets.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -5120,8 +5120,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "After Reaper's Mark explodes, your next 50 Obliterates or Frostscythes cost 50 Runes and summon 100 scythes to strike your enemies. The first scythe strikes your target for 50 Shadowfrost damage (varies by condition — check in-game) the second scythe strikes all enemies around your target for 50 Shadowfrost damage(varies by condition — check in-game). Deals reduced damage beyond 8 targets.",
-                            "uncertain": true
+                            "text": "After Reaper's Mark explodes, your next 50 Obliterates or Frostscythes cost 50 Runes and summon 100 scythes to strike your enemies. The first scythe strikes your target for 50 Shadowfrost damage and has a 100% chance to grant Killing Machine, the second scythe strikes all enemies around your target for 50 Shadowfrost damage and applies Frost Fever. Deals reduced damage beyond 8 targets.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -5168,8 +5168,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "After Reaper's Mark explodes, your next 50 Obliterates or Frostscythes cost 50 Runes and summon 100 scythes to strike your enemies. The first scythe strikes your target for 50 Shadowfrost damage (varies by condition — check in-game) the second scythe strikes all enemies around your target for 50 Shadowfrost damage(varies by condition — check in-game). Deals reduced damage beyond 8 targets.",
-                            "uncertain": true
+                            "text": "After Reaper's Mark explodes, your next 50 Obliterates or Frostscythes cost 50 Runes and summon 100 scythes to strike your enemies. The first scythe strikes your target for 50 Shadowfrost damage and has a 100% chance to grant Killing Machine, the second scythe strikes all enemies around your target for 50 Shadowfrost damage and applies Frost Fever. Deals reduced damage beyond 8 targets.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -5184,8 +5184,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "After Reaper's Mark explodes, your next 50 Obliterates or Frostscythes cost 50 Runes and summon 100 scythes to strike your enemies. The first scythe strikes your target for 50 Shadowfrost damage (varies by condition — check in-game) the second scythe strikes all enemies around your target for 50 Shadowfrost damage(varies by condition — check in-game). Deals reduced damage beyond 8 targets.",
-                            "uncertain": true
+                            "text": "After Reaper's Mark explodes, your next 50 Obliterates or Frostscythes cost 50 Runes and summon 100 scythes to strike your enemies. The first scythe strikes your target for 50 Shadowfrost damage and has a 100% chance to grant Killing Machine, the second scythe strikes all enemies around your target for 50 Shadowfrost damage and applies Frost Fever. Deals reduced damage beyond 8 targets.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -5216,8 +5216,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "After Reaper's Mark explodes, your next 50 Obliterates or Frostscythes cost 50 Runes and summon 100 scythes to strike your enemies. The first scythe strikes your target for 50 Shadowfrost damage (varies by condition — check in-game) the second scythe strikes all enemies around your target for 50 Shadowfrost damage(varies by condition — check in-game). Deals reduced damage beyond 8 targets.",
-                            "uncertain": true
+                            "text": "After Reaper's Mark explodes, your next 50 Obliterates or Frostscythes cost 50 Runes and summon 100 scythes to strike your enemies. The first scythe strikes your target for 50 Shadowfrost damage and has a 100% chance to grant Killing Machine, the second scythe strikes all enemies around your target for 50 Shadowfrost damage and applies Frost Fever. Deals reduced damage beyond 8 targets.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -5280,8 +5280,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game)",
-                            "uncertain": true
+                            "text": "Casting Obliterate or Frostscythe orders Trollbane to cast his Obliterate or Frostscythe alongside you at 100% effectiveness.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -7061,8 +7061,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "After Reaper's Mark explodes, your next 2 Obliterates or Frostscythes cost 1 Rune and summon 2 scythes to strike your enemies. The first scythe strikes your target for 50 Shadowfrost damage (varies by condition — check in-game) the second scythe strikes all enemies around your target for 50 Shadowfrost damage(varies by condition — check in-game). Deals reduced damage beyond 8 targets.",
-                            "uncertain": true
+                            "text": "After Reaper's Mark explodes, your next 2 Obliterates or Frostscythes cost 1 Rune and summon 2 scythes to strike your enemies. The first scythe strikes your target for 50 Shadowfrost damage and has a 100% chance to grant Killing Machine, the second scythe strikes all enemies around your target for 50 Shadowfrost damage and applies Frost Fever. Deals reduced damage beyond 8 targets.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -7112,8 +7112,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "After Reaper's Mark explodes, your next 50 Obliterates or Frostscythes cost 50 Runes and summon 100 scythes to strike your enemies. The first scythe strikes your target for 50 Shadowfrost damage (varies by condition — check in-game) the second scythe strikes all enemies around your target for 50 Shadowfrost damage(varies by condition — check in-game). Deals reduced damage beyond 8 targets.",
-                            "uncertain": true
+                            "text": "After Reaper's Mark explodes, your next 50 Obliterates or Frostscythes cost 50 Runes and summon 100 scythes to strike your enemies. The first scythe strikes your target for 50 Shadowfrost damage and has a 100% chance to grant Killing Machine, the second scythe strikes all enemies around your target for 50 Shadowfrost damage and applies Frost Fever. Deals reduced damage beyond 8 targets.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -7128,8 +7128,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "After Reaper's Mark explodes, your next 50 Obliterates or Frostscythes cost 50 Runes and summon 100 scythes to strike your enemies. The first scythe strikes your target for 50 Shadowfrost damage (varies by condition — check in-game) the second scythe strikes all enemies around your target for 50 Shadowfrost damage(varies by condition — check in-game). Deals reduced damage beyond 8 targets.",
-                            "uncertain": true
+                            "text": "After Reaper's Mark explodes, your next 50 Obliterates or Frostscythes cost 50 Runes and summon 100 scythes to strike your enemies. The first scythe strikes your target for 50 Shadowfrost damage and has a 100% chance to grant Killing Machine, the second scythe strikes all enemies around your target for 50 Shadowfrost damage and applies Frost Fever. Deals reduced damage beyond 8 targets.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -7144,8 +7144,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "After Reaper's Mark explodes, your next 50 Obliterates or Frostscythes cost 50 Runes and summon 100 scythes to strike your enemies. The first scythe strikes your target for 50 Shadowfrost damage (varies by condition — check in-game) the second scythe strikes all enemies around your target for 50 Shadowfrost damage(varies by condition — check in-game). Deals reduced damage beyond 8 targets.",
-                            "uncertain": true
+                            "text": "After Reaper's Mark explodes, your next 50 Obliterates or Frostscythes cost 50 Runes and summon 100 scythes to strike your enemies. The first scythe strikes your target for 50 Shadowfrost damage and has a 100% chance to grant Killing Machine, the second scythe strikes all enemies around your target for 50 Shadowfrost damage and applies Frost Fever. Deals reduced damage beyond 8 targets.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -7160,8 +7160,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "After Reaper's Mark explodes, your next 50 Obliterates or Frostscythes cost 50 Runes and summon 100 scythes to strike your enemies. The first scythe strikes your target for 50 Shadowfrost damage (varies by condition — check in-game) the second scythe strikes all enemies around your target for 50 Shadowfrost damage(varies by condition — check in-game). Deals reduced damage beyond 8 targets.",
-                            "uncertain": true
+                            "text": "After Reaper's Mark explodes, your next 50 Obliterates or Frostscythes cost 50 Runes and summon 100 scythes to strike your enemies. The first scythe strikes your target for 50 Shadowfrost damage and has a 100% chance to grant Killing Machine, the second scythe strikes all enemies around your target for 50 Shadowfrost damage and applies Frost Fever. Deals reduced damage beyond 8 targets.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -7223,8 +7223,8 @@
             "spellId": 1006,
             "category": "Other",
             "description": {
-                "text": "(varies by condition — check in-game)",
-                "uncertain": true
+                "text": "Casting Obliterate or Frostscythe orders Trollbane to cast his Obliterate or Frostscythe alongside you at 100% effectiveness.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -7376,8 +7376,8 @@
             "spellId": 998,
             "category": "Offensive",
             "description": {
-                "text": "Your damage is increased by 5% and you gain (varies by condition — check in-game) while inside Mograine's Death and Decay.",
-                "uncertain": true
+                "text": "Your damage is increased by 5% and you gain 5% critical strike chance while inside Mograine's Death and Decay.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -7843,8 +7843,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "After Reaper's Mark explodes, your next 2 Obliterates or Frostscythes cost 1 Rune and summon 2 scythes to strike your enemies. The first scythe strikes your target for 50 Shadowfrost damage (varies by condition — check in-game) the second scythe strikes all enemies around your target for 50 Shadowfrost damage(varies by condition — check in-game). Deals reduced damage beyond 8 targets.",
-                            "uncertain": true
+                            "text": "After Reaper's Mark explodes, your next 2 Obliterates or Frostscythes cost 1 Rune and summon 2 scythes to strike your enemies. The first scythe strikes your target for 50 Shadowfrost damage and has a 100% chance to grant Killing Machine, the second scythe strikes all enemies around your target for 50 Shadowfrost damage and applies Frost Fever. Deals reduced damage beyond 8 targets.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -7911,7 +7911,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Corrupts the targeted ground, causing (varies) Shadow damage over 10 to targets within the area.(varies by condition — check in-game)",
+                            "text": "Corrupts the targeted ground, causing (varies) Shadow damage over 10 to targets within the area.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -7927,8 +7927,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "After Reaper's Mark explodes, your next 50 Obliterates or Frostscythes cost 50 Runes and summon 100 scythes to strike your enemies. The first scythe strikes your target for 50 Shadowfrost damage (varies by condition — check in-game) the second scythe strikes all enemies around your target for 50 Shadowfrost damage(varies by condition — check in-game). Deals reduced damage beyond 8 targets.",
-                            "uncertain": true
+                            "text": "After Reaper's Mark explodes, your next 50 Obliterates or Frostscythes cost 50 Runes and summon 100 scythes to strike your enemies. The first scythe strikes your target for 50 Shadowfrost damage and has a 100% chance to grant Killing Machine, the second scythe strikes all enemies around your target for 50 Shadowfrost damage and applies Frost Fever. Deals reduced damage beyond 8 targets.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -7943,8 +7943,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "After Reaper's Mark explodes, your next 50 Obliterates or Frostscythes cost 50 Runes and summon 100 scythes to strike your enemies. The first scythe strikes your target for 50 Shadowfrost damage (varies by condition — check in-game) the second scythe strikes all enemies around your target for 50 Shadowfrost damage(varies by condition — check in-game). Deals reduced damage beyond 8 targets.",
-                            "uncertain": true
+                            "text": "After Reaper's Mark explodes, your next 50 Obliterates or Frostscythes cost 50 Runes and summon 100 scythes to strike your enemies. The first scythe strikes your target for 50 Shadowfrost damage and has a 100% chance to grant Killing Machine, the second scythe strikes all enemies around your target for 50 Shadowfrost damage and applies Frost Fever. Deals reduced damage beyond 8 targets.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -7975,8 +7975,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "After Reaper's Mark explodes, your next 50 Obliterates or Frostscythes cost 50 Runes and summon 100 scythes to strike your enemies. The first scythe strikes your target for 50 Shadowfrost damage (varies by condition — check in-game) the second scythe strikes all enemies around your target for 50 Shadowfrost damage(varies by condition — check in-game). Deals reduced damage beyond 8 targets.",
-                            "uncertain": true
+                            "text": "After Reaper's Mark explodes, your next 50 Obliterates or Frostscythes cost 50 Runes and summon 100 scythes to strike your enemies. The first scythe strikes your target for 50 Shadowfrost damage and has a 100% chance to grant Killing Machine, the second scythe strikes all enemies around your target for 50 Shadowfrost damage and applies Frost Fever. Deals reduced damage beyond 8 targets.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -7991,8 +7991,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "After Reaper's Mark explodes, your next 50 Obliterates or Frostscythes cost 50 Runes and summon 100 scythes to strike your enemies. The first scythe strikes your target for 50 Shadowfrost damage (varies by condition — check in-game) the second scythe strikes all enemies around your target for 50 Shadowfrost damage(varies by condition — check in-game). Deals reduced damage beyond 8 targets.",
-                            "uncertain": true
+                            "text": "After Reaper's Mark explodes, your next 50 Obliterates or Frostscythes cost 50 Runes and summon 100 scythes to strike your enemies. The first scythe strikes your target for 50 Shadowfrost damage and has a 100% chance to grant Killing Machine, the second scythe strikes all enemies around your target for 50 Shadowfrost damage and applies Frost Fever. Deals reduced damage beyond 8 targets.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -8007,7 +8007,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Corrupts the targeted ground, causing (varies) Shadow damage over 10 to targets within the area.(varies by condition — check in-game)(varies by condition — check in-game)(varies by condition — check in-game)",
+                            "text": "Corrupts the targeted ground, causing (varies) Shadow damage over 10 to targets within the area. While you remain within the area, your Obliterate will hit up to (varies) additional targets.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -8039,7 +8039,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Corrupts the targeted ground, causing (varies) Shadow damage over 1 to targets within the area.(varies by condition — check in-game)(varies by condition — check in-game)(varies by condition — check in-game)",
+                            "text": "Corrupts the targeted ground, causing (varies) Shadow damage over 1 to targets within the area. While you remain within the area, your Obliterate will hit up to (varies) additional target.",
                             "uncertain": true
                         },
                         "category": "Crowd Control",
@@ -8183,8 +8183,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game)",
-                            "uncertain": true
+                            "text": "Casting Obliterate or Frostscythe orders Trollbane to cast his Obliterate or Frostscythe alongside you at 100% effectiveness.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -8378,8 +8378,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "The effectiveness of Permafrost is increased by (varies by condition — check in-game)%(varies by condition — check in-game) Permafrost Your auto attack damage grants you an absorb shield equal to 50% of the damage dealt.",
-                            "uncertain": true
+                            "text": "The effectiveness of Permafrost is increased by 50%. Permafrost Your auto attack damage grants you an absorb shield equal to 50% of the damage dealt.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -8654,8 +8654,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game)",
-                            "uncertain": true
+                            "text": "Pillar of Frost summons forth Trollbane for 6 sec.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -9252,8 +9252,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "After Reaper's Mark explodes, your next 2 Obliterates or Frostscythes cost 1 Rune and summon 2 scythes to strike your enemies. The first scythe strikes your target for 50 Shadowfrost damage (varies by condition — check in-game) the second scythe strikes all enemies around your target for 50 Shadowfrost damage(varies by condition — check in-game). Deals reduced damage beyond 8 targets.",
-                            "uncertain": true
+                            "text": "After Reaper's Mark explodes, your next 2 Obliterates or Frostscythes cost 1 Rune and summon 2 scythes to strike your enemies. The first scythe strikes your target for 50 Shadowfrost damage and has a 100% chance to grant Killing Machine, the second scythe strikes all enemies around your target for 50 Shadowfrost damage and applies Frost Fever. Deals reduced damage beyond 8 targets.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -9300,8 +9300,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game)",
-                            "uncertain": true
+                            "text": "Frost Strike damage is increased by 35% and Glacial Advance damage is increased by 5%. Reaper's Mark grants 3 charges of Bonegrinder if it is known.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -9416,8 +9416,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "After Reaper's Mark explodes, your next 50 Obliterates or Frostscythes cost 50 Runes and summon 100 scythes to strike your enemies. The first scythe strikes your target for 50 Shadowfrost damage (varies by condition — check in-game) the second scythe strikes all enemies around your target for 50 Shadowfrost damage(varies by condition — check in-game). Deals reduced damage beyond 8 targets.",
-                            "uncertain": true
+                            "text": "After Reaper's Mark explodes, your next 50 Obliterates or Frostscythes cost 50 Runes and summon 100 scythes to strike your enemies. The first scythe strikes your target for 50 Shadowfrost damage and has a 100% chance to grant Killing Machine, the second scythe strikes all enemies around your target for 50 Shadowfrost damage and applies Frost Fever. Deals reduced damage beyond 8 targets.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -9432,8 +9432,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "After Reaper's Mark explodes, your next 50 Obliterates or Frostscythes cost 50 Runes and summon 100 scythes to strike your enemies. The first scythe strikes your target for 50 Shadowfrost damage (varies by condition — check in-game) the second scythe strikes all enemies around your target for 50 Shadowfrost damage(varies by condition — check in-game). Deals reduced damage beyond 8 targets.",
-                            "uncertain": true
+                            "text": "After Reaper's Mark explodes, your next 50 Obliterates or Frostscythes cost 50 Runes and summon 100 scythes to strike your enemies. The first scythe strikes your target for 50 Shadowfrost damage and has a 100% chance to grant Killing Machine, the second scythe strikes all enemies around your target for 50 Shadowfrost damage and applies Frost Fever. Deals reduced damage beyond 8 targets.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -9448,8 +9448,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "After Reaper's Mark explodes, your next 50 Obliterates or Frostscythes cost 50 Runes and summon 100 scythes to strike your enemies. The first scythe strikes your target for 50 Shadowfrost damage (varies by condition — check in-game) the second scythe strikes all enemies around your target for 50 Shadowfrost damage(varies by condition — check in-game). Deals reduced damage beyond 8 targets.",
-                            "uncertain": true
+                            "text": "After Reaper's Mark explodes, your next 50 Obliterates or Frostscythes cost 50 Runes and summon 100 scythes to strike your enemies. The first scythe strikes your target for 50 Shadowfrost damage and has a 100% chance to grant Killing Machine, the second scythe strikes all enemies around your target for 50 Shadowfrost damage and applies Frost Fever. Deals reduced damage beyond 8 targets.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -9464,8 +9464,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "After Reaper's Mark explodes, your next 50 Obliterates or Frostscythes cost 50 Runes and summon 100 scythes to strike your enemies. The first scythe strikes your target for 50 Shadowfrost damage (varies by condition — check in-game) the second scythe strikes all enemies around your target for 50 Shadowfrost damage(varies by condition — check in-game). Deals reduced damage beyond 8 targets.",
-                            "uncertain": true
+                            "text": "After Reaper's Mark explodes, your next 50 Obliterates or Frostscythes cost 50 Runes and summon 100 scythes to strike your enemies. The first scythe strikes your target for 50 Shadowfrost damage and has a 100% chance to grant Killing Machine, the second scythe strikes all enemies around your target for 50 Shadowfrost damage and applies Frost Fever. Deals reduced damage beyond 8 targets.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -9867,8 +9867,8 @@
             "spellId": 1007,
             "category": "Other",
             "description": {
-                "text": "(varies by condition — check in-game)",
-                "uncertain": true
+                "text": "Pillar of Frost summons forth Trollbane for 6 sec.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -10517,8 +10517,8 @@
             "spellId": 1008,
             "category": "Other",
             "description": {
-                "text": "The abilities that Horsemen cast deal 5% increased damage.(varies by condition — check in-game).",
-                "uncertain": true
+                "text": "The abilities that Horsemen cast deal 5% increased damage..",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {

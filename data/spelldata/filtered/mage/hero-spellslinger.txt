@@ -1,5 +1,5 @@
 # Mage — Spellslinger Hero Talents
-# Extracted verbatim from mage.txt (SimulationCraft 1210-01 for World of Warcraft 12.1.0.69933 Live)
+# Extracted verbatim from mage.txt (SimulationCraft 1210-01 for World of Warcraft 12.1.5.70688 Live)
 # 17 spell record(s). Mechanical regroup only — no content altered.
 
 Name             : Splintering Sorcery (id=443739) [Spell Family (3), Passive, Hidden] 
@@ -46,7 +46,7 @@ Effects          :
                    Base Value: 100 | Scaled Value: 100
 #3 (id=1250329)  : Apply Aura (6) | Dummy (4)
                    Base Value: 1 | Scaled Value: 1 | Target: Self (1)
-Description      : $?c1[Casting Arcane Surge generates $s1 Arcane Splinters][Each time Ray of Frost damages one or more enemies, it generates $s3 Frost $LSplinter:Splinters;].
+Description      : $?c1[Casting Arcane Surge conjures $s1 Arcane Splinters][Each time Ray of Frost damages one or more enemies, it conjures $s3 Frost $LSplinter:Splinters;].
 
 $?c1[During Arcane Surge, your chance to conjure an additional Arcane Splinter is increased to $s2%][For $1247908d after casting Ray of Frost, your chance to conjure an additional Frost Splinter is increased to $s2%].
 
@@ -164,7 +164,7 @@ Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log
 Effects          :
 #1 (id=1141352)  : Apply Aura (6) | Dummy (4)
                    Base Value: 0 | Scaled Value: 0 | Target: Self (1)
-Description      : While in combat, Blink summons a Mirror Image at your previous location.
+Description      : While in combat, $?s212653[Shimmer][Blink] summons a Mirror Image at your previous location.
 
 Name             : Phantasmal Image (id=444784) [Spell Family (3), Passive, Hidden] 
 Talent Entry     : Spellslinger (Arcane, Frost) [tree=hero, row=3, col=4, max_rank=1, req_points=0, select_idx=200]
@@ -181,7 +181,7 @@ Effects          :
 #2 (id=1141403)  : Apply Aura (6) | Apply Flat Modifier w/ Label (219): Spell Effect 2 (12)
                    Base Value: 1 | Scaled Value: 1 | Misc Value: 12 | Misc Value 2: 3672 (Label) | Target: Self (1)
                    Affected Spells (Label): Mirror Image (55342)
-Description      : Your Mirror Image summons $s2 extra $Lcopy:copies; of you.
+Description      : Casting Mirror Image summons $s2 extra $Lcopy:copies; of you.
 
 Name             : Reactive Barrier (id=444827) [Spell Family (3), Passive, Hidden] 
 Talent Entry     : Spellslinger (Arcane, Frost) [tree=hero, row=3, col=4, max_rank=1, req_points=0, select_idx=100]
@@ -302,7 +302,7 @@ Effects          :
                    Base Value: 1 | Scaled Value: 1 | Target: Self (1)
 #4 (id=1270702)  : Apply Aura (6) | Dummy (4)
                    Base Value: 1 | Scaled Value: 1 | Target: Self (1)
-Description      : Direct damage from $?c1[Arcane][Frost] Splinters have a $?c1[$s1][$s2]% chance to $?c1[grant $s3 $Lstack:stacks; Arcane Salvo][apply $s4 $Lstack:stacks; of Freezing].$?c1[
+Description      : Direct damage from $?c1[Arcane][Frost] Splinters has a $?c1[$s1][$s2]% chance to $?c1[grant $s3 $Lstack:stacks; Arcane Salvo][apply $s4 $Lstack:stacks; of Freezing].$?c1[
 
 $@spellicon1242974 $@spellname1242974
 $@spellaura1242974][]

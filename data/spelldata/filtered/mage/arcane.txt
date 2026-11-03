@@ -1,5 +1,5 @@
 # Mage — Arcane Spec Talents
-# Extracted verbatim from mage.txt (SimulationCraft 1210-01 for World of Warcraft 12.1.0.69933 Live)
+# Extracted verbatim from mage.txt (SimulationCraft 1210-01 for World of Warcraft 12.1.5.70688 Live)
 # 44 spell record(s). Mechanical regroup only — no content altered.
 
 Name             : Arcane Missiles (id=5143) [Spell Family (3)] 
@@ -373,7 +373,7 @@ Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log
 Effects          :
 #1 (id=1016232)  : Apply Aura (6) | Modify All Haste% (193)
                    Base Value: 2 | Scaled Value: 2 | Target: Self (1)
-Description      : Your Haste is increased by $s1%.
+Description      : Haste increased by $s1%.
 
 Name             : Illuminated Thoughts (id=384060) [Spell Family (3), Passive, Hidden] 
 Talent Entry     : Arcane [tree=spec, row=8, col=6, max_rank=1, req_points=20]

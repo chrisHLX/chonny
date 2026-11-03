@@ -1,5 +1,5 @@
 # Demon Hunter — Devourer Spec Talents
-# Extracted verbatim from demonhunter.txt (SimulationCraft 1210-01 for World of Warcraft 12.1.0.69933 Live)
+# Extracted verbatim from demonhunter.txt (SimulationCraft 1210-01 for World of Warcraft 12.1.5.70688 Live)
 # 43 spell record(s). Mechanical regroup only — no content altered.
 
 Name             : Void Metamorphosis (id=471306) [Spell Family (107), Passive, Hidden] 
@@ -105,7 +105,7 @@ $@spellicon1221150 $@spellname1221150
 $@spelldesc1221150
 
 Name             : Waste Not (id=1223918) [Spell Family (107), Passive, Hidden] 
-Talent Entry     : Devourer [tree=spec, row=5, col=5, max_rank=1, req_points=8]
+Talent Entry     : Devourer [tree=spec, row=6, col=7, max_rank=1, req_points=8]
 Class            : Demon Hunter
 School           : Spellshadow
 Spell Type       : None
@@ -121,7 +121,7 @@ Effects          :
 Description      : Damage from Void Ray has a $s1% increased chance to generate a Soul Fragment.
 
 Name             : Eradicate (id=1226033) [Spell Family (107), Passive, Hidden] 
-Talent Entry     : Devourer [tree=spec, row=10, col=6, max_rank=1, req_points=20]
+Talent Entry     : Devourer [tree=spec, row=5, col=6, max_rank=1, req_points=8]
 Class            : Demon Hunter
 School           : Cosmic
 Spell Type       : None
@@ -229,7 +229,7 @@ Effects          :
 Description      : Reap gains an additional charge.
 
 Name             : Devourer's Bite (id=1240201) [Spell Family (107), Passive, Hidden] 
-Talent Entry     : Devourer [tree=spec, row=9, col=3, max_rank=1, req_points=20]
+Talent Entry     : Devourer [tree=spec, row=10, col=2, max_rank=1, req_points=20]
 Class            : Demon Hunter
 School           : Cosmic
 Spell Type       : None
@@ -245,7 +245,7 @@ Effects          :
 Description      : Damage from Voidblade and the Hunt increases the damage your target takes from you by $1241532s1% for $1241532d. Multiple applications may overlap.
 
 Name             : Voidglare Boon (id=1240202) [Spell Family (107), Passive, Hidden] 
-Talent Entry     : Devourer [tree=spec, row=8, col=6, max_rank=1, req_points=20]
+Talent Entry     : Devourer [tree=spec, row=9, col=6, max_rank=1, req_points=20]
 Class            : Demon Hunter
 School           : Cosmic
 Spell Type       : None
@@ -275,7 +275,7 @@ Effects          :
 Description      : Void Ray deals $s1% more damage when damaging $s2 $Ltarget:targets;.
 
 Name             : Star Fragments (id=1240204) [Spell Family (107), Passive, Hidden] 
-Talent Entry     : Devourer [tree=spec, row=9, col=6, max_rank=1, req_points=20]
+Talent Entry     : Devourer [tree=spec, row=5, col=5, max_rank=1, req_points=8]
 Class            : Demon Hunter
 School           : Cosmic
 Spell Type       : None
@@ -407,7 +407,7 @@ Effects          :
 Description      : Your Mastery is increased by $s1%.
 
 Name             : Voidpurge (id=1244220) [Spell Family (107), Passive, Hidden] 
-Talent Entry     : Devourer [tree=spec, row=6, col=7, max_rank=1, req_points=8]
+Talent Entry     : Devourer [tree=spec, row=10, col=6, max_rank=1, req_points=20]
 Class            : Demon Hunter
 School           : Cosmic
 Spell Type       : None
@@ -417,7 +417,7 @@ Labels           : 16: Class Spells
 Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Do Not Log on Learn (355)
 Effects          :
 #1 (id=1244852)  : Apply Aura (6) | Add Flat Modifier (107): Spell Cooldown (11)
-                   Base Value: -2000 | Scaled Value: -2000 | Misc Value: 11 | Target: Self (1)
+                   Base Value: -2500 | Scaled Value: -2500 | Misc Value: 11 | Target: Self (1)
                    Affected Spells: Void Ray (473728)
                    Family Flags: 104
 Description      : Void Ray's cooldown during Void Metamorphosis is reduced by ${-$s1/1000}.1 sec.
@@ -480,7 +480,7 @@ $@spellicon1237270 $@spellname1237270
 $@spelldesc1237270
 
 Name             : The Hunt (id=1246167) [Spell Family (107)] 
-Talent Entry     : Devourer [tree=spec, row=10, col=2, max_rank=1, req_points=20]
+Talent Entry     : Devourer [tree=spec, row=5, col=2, max_rank=1, req_points=8]
 Class            : Demon Hunter
 School           : Cosmic
 Spell Type       : Melee
@@ -491,9 +491,11 @@ Cast Time        : 1 seconds
 GCD              : 1.5 seconds
 Duration         : 2 seconds
 Cooldown         : 90 seconds
+Category         : 2427 (Type 0x0): Eternal Hunt (1270900 effect#2)
 Labels           : 16: Class Spells
                  : 66: Demon Hunter Spells
                  : 292
+Category Cooldown: 90 seconds
 Affecting Spells : Havoc Demon Hunter (212612 effect#6), Vengeance Demon Hunter (212613 effect#6), Any Means Necessary (388114 effects: #1, #3, #4), Violent Transformation (452409 effect#2), Devourer Demon Hunter (1213636 effect#5), Demonsurge (1245496 effects: #3, #6), Eternal Hunt (1270900 effect#1)
 Triggered By     : The Hunt (370966), The Hunt (1246169)
 Family Flags     : 32, 82
@@ -708,7 +710,7 @@ Description      : Collapsing Star reduces the cooldown of Voidblade by ${$s1/10
 Voidblade and The Hunt briefly reduce your Fury drain while in Void Metamorphosis.
 
 Name             : Soulforged Blades (id=1272432) [Spell Family (107), Passive, Hidden] 
-Talent Entry     : Devourer [tree=spec, row=8, col=1, max_rank=1, req_points=20]
+Talent Entry     : Devourer [tree=spec, row=9, col=3, max_rank=1, req_points=20]
 Class            : Demon Hunter
 School           : Cosmic
 Spell Type       : None
@@ -718,13 +720,13 @@ Labels           : 16: Class Spells
 Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Do Not Log on Learn (355)
 Effects          :
 #1 (id=1285665)  : Apply Aura (6) | Add Flat Modifier (107): Spell Critical Chance (7)
-                   Base Value: 15 | Scaled Value: 15 | Misc Value: 7 | Target: Self (1)
+                   Base Value: 18 | Scaled Value: 18 | Misc Value: 7 | Target: Self (1)
                    Affected Spells: Felblade (213241), Felblade (213243), Felblade (232893), Hungering Slash (1239127), Voidblade (1241285), Voidblade (1245412), Voidblade (1245414), Pierce the Veil (1245483)
                    Family Flags: 30, 106
 Description      : Hungering Slash and Voidblade's critical strike chance is increased by $s1%.
 
 Name             : Singular Strikes (id=1272770) [Spell Family (107), Passive, Hidden] 
-Talent Entry     : Devourer [tree=spec, row=8, col=2, max_rank=1, req_points=20]
+Talent Entry     : Devourer [tree=spec, row=8, col=1, max_rank=1, req_points=20]
 Class            : Demon Hunter
 School           : Cosmic
 Spell Type       : None

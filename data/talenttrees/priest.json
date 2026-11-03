@@ -1,7 +1,7 @@
 {
     "class": "Priest",
     "talent_tree_id": 795,
-    "fetched_at": "2026-10-06T22:29:38+00:00",
+    "fetched_at": "2026-11-03T21:14:28+00:00",
     "source": "Blizzard Game Data API (static-us, en_US)",
     "class_talents": {
         "nodes": [
@@ -229,9 +229,9 @@
                 "raw_position_x": 3900,
                 "raw_position_y": 4500,
                 "locked_by": [
-                    82699,
                     109019,
-                    82690
+                    82690,
+                    82699
                 ],
                 "unlocks": [
                     109012,
@@ -458,8 +458,8 @@
                     82556
                 ],
                 "unlocks": [
-                    109020,
-                    82690
+                    82690,
+                    109020
                 ],
                 "max_ranks": 1,
                 "ranks": [
@@ -485,8 +485,8 @@
                 "raw_position_y": 3900,
                 "locked_by": [
                     109890,
-                    108731,
-                    82687
+                    82687,
+                    108731
                 ],
                 "unlocks": [
                     82678,
@@ -941,13 +941,13 @@
                 "raw_position_x": 5100,
                 "raw_position_y": 4500,
                 "locked_by": [
-                    109020,
-                    82690
+                    82690,
+                    109020
                 ],
                 "unlocks": [
+                    82684,
                     109015,
-                    82711,
-                    82684
+                    82711
                 ],
                 "max_ranks": 1,
                 "ranks": [
@@ -984,7 +984,7 @@
                         "talent_name": "Mind Blast",
                         "spell_id": 8092,
                         "spell_name": "Mind Blast",
-                        "description": "Blast the target's mind for 298 Shadow damage. Costs a high amount of mana.",
+                        "description": "Blast the target's mind for 299 Shadow damage. Costs a high amount of mana.",
                         "cast_time": "1.5 sec cast",
                         "cooldown": null,
                         "range": "40 yd range"
@@ -1101,7 +1101,7 @@
                         "talent_name": "Holy Nova",
                         "spell_id": 132157,
                         "spell_name": "Holy Nova",
-                        "description": "An explosion of holy light around you deals up to 156 Holy damage to enemies and up to 117 healing to allies within 12 yds, reduced if there are more than 5 targets.",
+                        "description": "An explosion of holy light around you deals up to 156 Holy damage to enemies and up to 121 healing to allies within 12 yds, reduced if there are more than 5 targets.",
                         "cast_time": "Instant",
                         "cooldown": null,
                         "range": null
@@ -1156,7 +1156,7 @@
                         "talent_name": "Void Torrent",
                         "spell_id": 263165,
                         "spell_name": "Void Torrent",
-                        "description": "Channel a torrent of void energy into the target, dealing 3,880 Shadow damage over 3 sec and tearing open an Entropic Rift.\r\n\r\n Entropic Rift\r\nMind Blast tears open an Entropic Rift that follows the enemy for 8 sec. Enemies caught in its path suffer 231 Shadow damage every 0.9 sec while within its reach.\r\n\r\nGenerates 24 Insanity over the duration.",
+                        "description": "Channel a torrent of void energy into the target, dealing 3,914 Shadow damage over 3 sec and tearing open an Entropic Rift.\r\n\r\n Entropic Rift\r\nMind Blast tears open an Entropic Rift that follows the enemy for 8 sec. Enemies caught in its path suffer 225 Shadow damage every 0.9 sec while within its reach.\r\n\r\nGenerates 24 Insanity over the duration.",
                         "cast_time": "Channeled",
                         "cooldown": "30 sec cooldown",
                         "range": "40 yd range"
@@ -1185,7 +1185,7 @@
                         "talent_name": "Halo",
                         "spell_id": 120644,
                         "spell_name": "Halo",
-                        "description": "Creates a ring of Shadow energy around you that quickly expands to a 40 yd radius, healing allies for 613 and dealing 541 Shadow damage to enemies. Healing reduced beyond 6 targets.",
+                        "description": "Creates a ring of Shadow energy around you that quickly expands to a 40 yd radius, healing allies for 602 and dealing 542 Shadow damage to enemies. Healing reduced beyond 6 targets.",
                         "cast_time": "1.5 sec cast",
                         "cooldown": "1 min cooldown",
                         "range": "40 yd range"
@@ -1262,7 +1262,7 @@
                         "talent_name": "Halo",
                         "spell_id": 120517,
                         "spell_name": "Halo",
-                        "description": "Creates a ring of Holy energy around you that quickly expands to a 40 yd radius, healing allies for 615 and dealing 554 Holy damage to enemies.\r\n\r\nHealing reduced beyond 6 targets.",
+                        "description": "Creates a ring of Holy energy around you that quickly expands to a 40 yd radius, healing allies for 605 and dealing 543 Holy damage to enemies.\r\n\r\nHealing reduced beyond 6 targets.",
                         "cast_time": "1.5 sec cast",
                         "cooldown": "1 min cooldown",
                         "range": "40 yd range"
@@ -1289,7 +1289,7 @@
                         "talent_name": "Holy Fire",
                         "spell_id": 14914,
                         "spell_name": "Holy Fire",
-                        "description": "Consumes the enemy in Holy flames that cause 1,178 Holy damage and an additional 421 Holy damage over 7 sec.",
+                        "description": "Consumes the enemy in Holy flames that cause 1,170 Holy damage and an additional 421 Holy damage over 7 sec.",
                         "cast_time": "1.5 sec cast",
                         "cooldown": "10 sec cooldown",
                         "range": "40 yd range"
@@ -1364,8 +1364,8 @@
                     82701
                 ],
                 "unlocks": [
-                    82710,
-                    82687
+                    82687,
+                    82710
                 ],
                 "max_ranks": 1,
                 "ranks": [
@@ -1742,7 +1742,7 @@
                         "talent_name": "Entropic Rift",
                         "spell_id": 447444,
                         "spell_name": "Entropic Rift",
-                        "description": "Mind Blast tears open an Entropic Rift that follows the enemy for 8 sec. Enemies caught in its path suffer 233 Shadow damage every 0.9 sec while within its reach.",
+                        "description": "Mind Blast tears open an Entropic Rift that follows the enemy for 8 sec. Enemies caught in its path suffer 227 Shadow damage every 0.9 sec while within its reach.",
                         "cast_time": "Passive",
                         "cooldown": null,
                         "range": null
@@ -1777,7 +1777,7 @@
                             "talent_name": "Devour Matter",
                             "spell_id": 451840,
                             "spell_name": "Devour Matter",
-                            "description": "Shadow Word: Death consumes absorb shields from your target, dealing 982 extra damage to them and granting you 1% mana if a shield was present.",
+                            "description": "Shadow Word: Death consumes absorb shields from your target, dealing 956 extra damage to them and granting you 1% mana if a shield was present.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -1863,7 +1863,7 @@
                             "talent_name": "Void Torrent",
                             "spell_id": 263165,
                             "spell_name": "Void Torrent",
-                            "description": "Channel a torrent of void energy into the target, dealing 3,993 Shadow damage over 3 sec and tearing open an Entropic Rift.\r\n\r\n Entropic Rift\r\nMind Blast tears open an Entropic Rift that follows the enemy for 8 sec. Enemies caught in its path suffer 227 Shadow damage every 0.9 sec while within its reach.\r\n\r\nGenerates 24 Insanity over the duration.",
+                            "description": "Channel a torrent of void energy into the target, dealing 3,962 Shadow damage over 3 sec and tearing open an Entropic Rift.\r\n\r\n Entropic Rift\r\nMind Blast tears open an Entropic Rift that follows the enemy for 8 sec. Enemies caught in its path suffer 228 Shadow damage every 0.9 sec while within its reach.\r\n\r\nGenerates 24 Insanity over the duration.",
                             "cast_time": "Channeled",
                             "cooldown": "30 sec cooldown",
                             "range": "40 yd range"
@@ -2076,7 +2076,7 @@
                             "talent_name": "Void Blast",
                             "spell_id": 450405,
                             "spell_name": "Void Blast",
-                            "description": "Entropic Rift upgrades Smite into Void Blast while it is active.\r\n\r\nVoid Blast:\r\nSends a blast of cosmic void energy at the enemy, causing 576 Shadow damage.",
+                            "description": "Entropic Rift upgrades Smite into Void Blast while it is active.\r\n\r\nVoid Blast:\r\nSends a blast of cosmic void energy at the enemy, causing 562 Shadow damage.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -2175,8 +2175,8 @@
                     "raw_position_x": 9600,
                     "raw_position_y": 5100,
                     "locked_by": [
-                        94684,
-                        110008
+                        110008,
+                        94684
                     ],
                     "unlocks": [
                         109779
@@ -2218,7 +2218,7 @@
                             "talent_name": "Entropic Rift",
                             "spell_id": 447444,
                             "spell_name": "Entropic Rift",
-                            "description": "Mind Blast tears open an Entropic Rift that follows the enemy for 8 sec. Enemies caught in its path suffer 228 Shadow damage every 0.9 sec while within its reach.",
+                            "description": "Mind Blast tears open an Entropic Rift that follows the enemy for 8 sec. Enemies caught in its path suffer 232 Shadow damage every 0.9 sec while within its reach.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -2507,7 +2507,7 @@
                             "talent_name": "Halo",
                             "spell_id": 120644,
                             "spell_name": "Halo",
-                            "description": "Creates a ring of Shadow energy around you that quickly expands to a 40 yd radius, healing allies for 606 and dealing 542 Shadow damage to enemies. Healing reduced beyond 6 targets.",
+                            "description": "Creates a ring of Shadow energy around you that quickly expands to a 40 yd radius, healing allies for 603 and dealing 545 Shadow damage to enemies. Healing reduced beyond 6 targets.",
                             "cast_time": "1.5 sec cast",
                             "cooldown": "1 min cooldown",
                             "range": "40 yd range"
@@ -2594,7 +2594,7 @@
                             "talent_name": "Halo",
                             "spell_id": 120517,
                             "spell_name": "Halo",
-                            "description": "Creates a ring of Holy energy around you that quickly expands to a 40 yd radius, healing allies for 618 and dealing 548 Holy damage to enemies.\r\n\r\nHealing reduced beyond 6 targets.",
+                            "description": "Creates a ring of Holy energy around you that quickly expands to a 40 yd radius, healing allies for 599 and dealing 546 Holy damage to enemies.\r\n\r\nHealing reduced beyond 6 targets.",
                             "cast_time": "1.5 sec cast",
                             "cooldown": "1 min cooldown",
                             "range": "40 yd range"
@@ -2995,7 +2995,7 @@
                             "talent_name": "Assured Safety",
                             "spell_id": 440766,
                             "spell_name": "Assured Safety",
-                            "description": "Casting Prayer of Mending applies Power Word: Shield to your target.\r\n\r\n Power Word: Shield\r\nShields an ally for 15 sec, absorbing 1,740 damage.",
+                            "description": "Casting Prayer of Mending applies Power Word: Shield to your target.\r\n\r\n Power Word: Shield\r\nShields an ally for 15 sec, absorbing 1,777 damage.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -3199,7 +3199,7 @@
                             "talent_name": "Holy Word: Serenity",
                             "spell_id": 2050,
                             "spell_name": "Holy Word: Serenity",
-                            "description": "Perform a miracle, healing an ally for 7,977.\r\n\r\nCooldown reduced by 6 sec when you cast Flash Heal.",
+                            "description": "Perform a miracle, healing an ally for 7,998.\r\n\r\nCooldown reduced by 6 sec when you cast Flash Heal.",
                             "cast_time": "Instant",
                             "cooldown": null,
                             "range": "40 yd range"
@@ -3329,8 +3329,8 @@
                         82638
                     ],
                     "unlocks": [
-                        82632,
-                        82630
+                        82630,
+                        82632
                     ],
                     "max_ranks": 1,
                     "ranks": [
@@ -3340,7 +3340,7 @@
                             "talent_name": "Holy Word: Sanctify",
                             "spell_id": 34861,
                             "spell_name": "Holy Word: Sanctify",
-                            "description": "Releases miraculous light at a target location, healing up to 5 allies within 10 yds for 2,249.\r\n\r\nCooldown reduced by 6 sec when you cast Prayer of Healing.",
+                            "description": "Releases miraculous light at a target location, healing up to 5 allies within 10 yds for 2,257.\r\n\r\nCooldown reduced by 6 sec when you cast Prayer of Healing.",
                             "cast_time": "Instant",
                             "cooldown": null,
                             "range": "40 yd range"
@@ -3386,8 +3386,8 @@
                         82638
                     ],
                     "unlocks": [
-                        82640,
-                        82619
+                        82619,
+                        82640
                     ],
                     "max_ranks": 1,
                     "ranks": [
@@ -3397,7 +3397,7 @@
                             "talent_name": "Holy Word: Chastise",
                             "spell_id": 88625,
                             "spell_name": "Holy Word: Chastise",
-                            "description": "Chastises the target for 1,470 Holy damage and incapacitates them for 4 sec.",
+                            "description": "Chastises the target for 1,467 Holy damage and incapacitates them for 4 sec.",
                             "cast_time": "Instant",
                             "cooldown": "1 min cooldown",
                             "range": "30 yd range"
@@ -3541,7 +3541,7 @@
                             "talent_name": "Assured Safety",
                             "spell_id": 440766,
                             "spell_name": "Assured Safety",
-                            "description": "Casting Prayer of Mending applies Power Word: Shield to your target.\r\n\r\n Power Word: Shield\r\nShields an ally for 15 sec, absorbing 1,760 damage.",
+                            "description": "Casting Prayer of Mending applies Power Word: Shield to your target.\r\n\r\n Power Word: Shield\r\nShields an ally for 15 sec, absorbing 1,769 damage.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -3669,7 +3669,7 @@
                             "talent_name": "Prayer of Healing",
                             "spell_id": 596,
                             "spell_name": "Prayer of Healing",
-                            "description": "A powerful prayer that heals your target and 4 injured allies within 40 yards for 2,229.",
+                            "description": "A powerful prayer that heals your target and 4 injured allies within 40 yards for 2,160.",
                             "cast_time": "2.5 sec cast",
                             "cooldown": null,
                             "range": "40 yd range"
@@ -4094,7 +4094,7 @@
                             "talent_name": "Cosmic Ripple",
                             "spell_id": 238136,
                             "spell_name": "Cosmic Ripple",
-                            "description": "When Holy Word: Serenity or Holy Word: Sanctify finish their cooldown, you emit a burst of light that heals up to 5 injured targets within 40 yards for 467.",
+                            "description": "When Holy Word: Serenity or Holy Word: Sanctify finish their cooldown, you emit a burst of light that heals up to 5 injured targets within 40 yards for 470.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -4137,9 +4137,9 @@
                     "raw_position_x": 13500,
                     "raw_position_y": 3300,
                     "locked_by": [
-                        82640,
+                        82619,
                         82636,
-                        82619
+                        82640
                     ],
                     "unlocks": [
                         82618,
@@ -4441,7 +4441,7 @@
                             "talent_name": "Divine Hymn",
                             "spell_id": 64843,
                             "spell_name": "Divine Hymn",
-                            "description": "Heals all party or raid members within 40 yards for 10,430 over 4.5 sec. Each heal increases all targets' healing taken by 4% for 15 sec, stacking.\r\n\r\nYou gain Guardian Spirit while channeling Divine Hymn.\r\n\r\nHealing reduced beyond 5 targets.",
+                            "description": "Heals all party or raid members within 40 yards for 10,640 over 4.5 sec. Each heal increases all targets' healing taken by 4% for 15 sec, stacking.\r\n\r\nYou gain Guardian Spirit while channeling Divine Hymn.\r\n\r\nHealing reduced beyond 5 targets.",
                             "cast_time": "Channeled",
                             "cooldown": "3 min cooldown",
                             "range": null
@@ -4546,8 +4546,8 @@
                         82633
                     ],
                     "unlocks": [
-                        82604,
-                        82627
+                        82627,
+                        82604
                     ],
                     "max_ranks": 1,
                     "ranks": [
@@ -4710,8 +4710,8 @@
                         82623
                     ],
                     "unlocks": [
-                        82604,
-                        82610
+                        82610,
+                        82604
                     ],
                     "max_ranks": 1,
                     "ranks": [
@@ -4927,10 +4927,10 @@
                         {
                             "rank": 1,
                             "talent_id": 108750,
-                            "talent_name": "Holy Celerity",
-                            "spell_id": 1215275,
-                            "spell_name": "Holy Celerity",
-                            "description": "Reduces the cooldown of your Holy Words by 15 sec.",
+                            "talent_name": "Ultimate Serenity",
+                            "spell_id": 1246517,
+                            "spell_name": "Ultimate Serenity",
+                            "description": "Increases the healing done by Holy Word: Serenity by 10% and causes it to heal 4 nearby injured allies within 40 yards for 15% of its healing done.\r\n\r\nTalents that affect Holy Word: Sanctify instead affect Holy Word: Serenity.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -5003,8 +5003,8 @@
                     "raw_position_x": 11700,
                     "raw_position_y": 6300,
                     "locked_by": [
-                        82604,
-                        82610
+                        82610,
+                        82604
                     ],
                     "unlocks": [
                         103900,
@@ -5231,10 +5231,10 @@
                         {
                             "rank": 1,
                             "talent_id": 108738,
-                            "talent_name": "Ultimate Serenity",
-                            "spell_id": 1246517,
-                            "spell_name": "Ultimate Serenity",
-                            "description": "Increases the healing done by Holy Word: Serenity by 10% and causes it to heal 4 nearby injured allies within 40 yards for 15% of its healing done.\r\n\r\nTalents that affect Holy Word: Sanctify instead affect Holy Word: Serenity.",
+                            "talent_name": "Holy Celerity",
+                            "spell_id": 1215275,
+                            "spell_name": "Holy Celerity",
+                            "description": "Reduces the cooldown of your Holy Words by 15 sec.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -5547,7 +5547,7 @@
                             "talent_name": "Power Word: Radiance",
                             "spell_id": 194509,
                             "spell_name": "Power Word: Radiance",
-                            "description": "A burst of light heals the target and 4 injured allies within 40 yards for 2,140, and applies Atonement for 60% of its normal duration.",
+                            "description": "A burst of light heals the target and 4 injured allies within 40 yards for 2,197, and applies Atonement for 60% of its normal duration.",
                             "cast_time": "2 sec cast",
                             "cooldown": null,
                             "range": "40 yd range"
@@ -5633,7 +5633,7 @@
                             "talent_name": "Assured Safety",
                             "spell_id": 440766,
                             "spell_name": "Assured Safety",
-                            "description": "Casting Prayer of Mending applies Power Word: Shield to your target.\r\n\r\n Power Word: Shield\r\nShields an ally for 15 sec, absorbing 1,734 damage.",
+                            "description": "Casting Prayer of Mending applies Power Word: Shield to your target.\r\n\r\n Power Word: Shield\r\nShields an ally for 15 sec, absorbing 1,731 damage.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -6121,7 +6121,7 @@
                                     "talent_name": "Ultimate Penitence",
                                     "spell_id": 421453,
                                     "spell_name": "Ultimate Penitence",
-                                    "description": "Ascend into the air and unleash a massive barrage of Penance bolts, causing 22,416 Holy damage to enemies or 51,484 healing to allies over 5.4 sec.\r\n\r\nWhile ascended, gain a shield for 100% of your health. In addition, you are unaffected by knockbacks or crowd control effects.",
+                                    "description": "Ascend into the air and unleash a massive barrage of Penance bolts, causing 22,512 Holy damage to enemies or 52,261 healing to allies over 5.4 sec.\r\n\r\nWhile ascended, gain a shield for 100% of your health. In addition, you are unaffected by knockbacks or crowd control effects.",
                                     "cast_time": "1.5 sec cast",
                                     "cooldown": "4 min cooldown",
                                     "range": "40 yd range"
@@ -6239,8 +6239,8 @@
                         82591
                     ],
                     "unlocks": [
-                        82566,
-                        82575
+                        82575,
+                        82566
                     ],
                     "max_ranks": 1,
                     "ranks": [
@@ -6270,9 +6270,9 @@
                         82597
                     ],
                     "unlocks": [
+                        82575,
                         82576,
-                        82578,
-                        82575
+                        82578
                     ],
                     "max_ranks": 1,
                     "ranks": [
@@ -6540,7 +6540,7 @@
                             "talent_name": "Void Blast",
                             "spell_id": 450405,
                             "spell_name": "Void Blast",
-                            "description": "Entropic Rift upgrades Smite into Void Blast while it is active.\r\n\r\nVoid Blast:\r\nSends a blast of cosmic void energy at the enemy, causing 569 Shadow damage.",
+                            "description": "Entropic Rift upgrades Smite into Void Blast while it is active.\r\n\r\nVoid Blast:\r\nSends a blast of cosmic void energy at the enemy, causing 570 Shadow damage.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -6584,8 +6584,8 @@
                     "raw_position_x": 9600,
                     "raw_position_y": 5100,
                     "locked_by": [
-                        94684,
-                        110008
+                        110008,
+                        94684
                     ],
                     "unlocks": [
                         109779
@@ -6613,8 +6613,8 @@
                     "raw_position_x": 11700,
                     "raw_position_y": 5100,
                     "locked_by": [
-                        82566,
-                        82575
+                        82575,
+                        82566
                     ],
                     "unlocks": [
                         82601,
@@ -6654,9 +6654,9 @@
                     "raw_position_x": 12900,
                     "raw_position_y": 5100,
                     "locked_by": [
+                        82575,
                         82576,
-                        82578,
-                        82575
+                        82578
                     ],
                     "unlocks": [
                         82567,
@@ -6740,7 +6740,7 @@
                             "talent_name": "Devour Matter",
                             "spell_id": 451840,
                             "spell_name": "Devour Matter",
-                            "description": "Shadow Word: Death consumes absorb shields from your target, dealing 957 extra damage to them and granting you 1% mana if a shield was present.",
+                            "description": "Shadow Word: Death consumes absorb shields from your target, dealing 956 extra damage to them and granting you 1% mana if a shield was present.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -6971,7 +6971,7 @@
                             "talent_name": "Shadow Mend",
                             "spell_id": 1252217,
                             "spell_name": "Shadow Mend",
-                            "description": "Flash Heal is upgraded to Shadow Mend, a stronger heal with a higher mana cost.\r\n\r\n Shadow Mend:\r\nWraps an ally in shadows which heal for 3,333, but at a price.\r\n\r\nThe ally will take 163 damage every 1 sec, until they have taken 1,621 total damage from all sources, or leave combat.",
+                            "description": "Flash Heal is upgraded to Shadow Mend, a stronger heal with a higher mana cost.\r\n\r\n Shadow Mend:\r\nWraps an ally in shadows which heal for 3,282, but at a price.\r\n\r\nThe ally will take 169 damage every 1 sec, until they have taken 1,621 total damage from all sources, or leave combat.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -7523,7 +7523,7 @@
                             "talent_name": "Master the Darkness",
                             "spell_id": 1253590,
                             "spell_name": "Master the Darkness",
-                            "description": "Penance has a 25% chance to upgrade Power Word: Shield into Void Shield.\r\n\r\n Void Shield:\r\nShields 3 allies for 15 sec, absorbing 1,792 damage.\r\n\r\n",
+                            "description": "Penance has a 25% chance to upgrade Power Word: Shield into Void Shield.\r\n\r\n Void Shield:\r\nShields 3 allies for 15 sec, absorbing 1,723 damage.\r\n\r\n",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -7846,7 +7846,7 @@
                             "talent_name": "Tentacle Slam",
                             "spell_id": 1227280,
                             "spell_name": "Tentacle Slam",
-                            "description": "Summons a massive shadowy appendage to slam the ground, dealing 260 Shadow damage in front of you and 8 yds around your target.\r\n\r\nApplies Vampiric Touch to up to 6 enemies, prioritizing ones without Vampiric Touch.\r\n\r\nGenerates 6 Insanity.",
+                            "description": "Summons a massive shadowy appendage to slam the ground, dealing 257 Shadow damage in front of you and 8 yds around your target.\r\n\r\nApplies Vampiric Touch to up to 6 enemies, prioritizing ones without Vampiric Touch.\r\n\r\nGenerates 6 Insanity.",
                             "cast_time": "Instant",
                             "cooldown": null,
                             "range": "40 yd range"
@@ -7874,7 +7874,7 @@
                             "talent_name": "Shadowy Apparitions",
                             "spell_id": 341491,
                             "spell_name": "Shadowy Apparitions",
-                            "description": "Shadow Word: Madness conjures Shadowy Apparitions that float towards all targets afflicted by your Vampiric Touch for 319 Shadow damage.",
+                            "description": "Shadow Word: Madness conjures Shadowy Apparitions that float towards all targets afflicted by your Vampiric Touch for 325 Shadow damage.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -8262,8 +8262,8 @@
                     ],
                     "unlocks": [
                         82662,
-                        109018,
-                        82660
+                        82660,
+                        109018
                     ],
                     "max_ranks": 1,
                     "ranks": [
@@ -8711,7 +8711,7 @@
                             "talent_name": "Void Blast",
                             "spell_id": 450405,
                             "spell_name": "Void Blast",
-                            "description": "Entropic Rift upgrades Smite into Void Blast while it is active.\r\n\r\nVoid Blast:\r\nSends a blast of cosmic void energy at the enemy, causing 570 Shadow damage.",
+                            "description": "Entropic Rift upgrades Smite into Void Blast while it is active.\r\n\r\nVoid Blast:\r\nSends a blast of cosmic void energy at the enemy, causing 573 Shadow damage.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -8755,8 +8755,8 @@
                     "raw_position_x": 9600,
                     "raw_position_y": 5100,
                     "locked_by": [
-                        94684,
-                        110008
+                        110008,
+                        94684
                     ],
                     "unlocks": [
                         109779
@@ -8813,12 +8813,12 @@
                     "raw_position_y": 5100,
                     "locked_by": [
                         82662,
-                        109018,
-                        82660
+                        82660,
+                        109018
                     ],
                     "unlocks": [
-                        82558,
-                        82648
+                        82648,
+                        82558
                     ],
                     "max_ranks": 2,
                     "ranks": [
@@ -8858,9 +8858,9 @@
                         82662
                     ],
                     "unlocks": [
-                        82667,
                         82558,
-                        108153
+                        108153,
+                        82667
                     ],
                     "max_ranks": 1,
                     "ranks": [
@@ -8933,8 +8933,8 @@
                         108029
                     ],
                     "unlocks": [
-                        82667,
-                        82654
+                        82654,
+                        82667
                     ],
                     "max_ranks": 2,
                     "ranks": [
@@ -8983,7 +8983,7 @@
                             "talent_name": "Devour Matter",
                             "spell_id": 451840,
                             "spell_name": "Devour Matter",
-                            "description": "Shadow Word: Death consumes absorb shields from your target, dealing 982 extra damage to them and granting you 1% mana if a shield was present.",
+                            "description": "Shadow Word: Death consumes absorb shields from your target, dealing 980 extra damage to them and granting you 1% mana if a shield was present.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -9096,8 +9096,8 @@
                     "raw_position_x": 11100,
                     "raw_position_y": 5700,
                     "locked_by": [
-                        82559,
-                        82645
+                        82645,
+                        82559
                     ],
                     "unlocks": [
                         82671,
@@ -9484,9 +9484,9 @@
                     "raw_position_x": 12900,
                     "raw_position_y": 6300,
                     "locked_by": [
-                        82667,
                         82558,
-                        108153
+                        108153,
+                        82667
                     ],
                     "unlocks": [
                         82552,
@@ -9720,7 +9720,7 @@
                             "talent_name": "Idol of Yogg-Saron",
                             "spell_id": 373273,
                             "spell_name": "Idol of Yogg-Saron",
-                            "description": "After conjuring Shadowy Apparitions, gain a stack of Idol of Yogg-Saron. At 20 stacks, you summon a Thing from Beyond that casts Void Spike at nearby enemies for 20 sec.\r\n\r\n Void Spike\r\nHurls a bolt of dark magic, dealing 354 Shadow damage and 190 Shadow damage to all enemies within 10 yards of the target. Damage reduced beyond 5 targets.",
+                            "description": "After conjuring Shadowy Apparitions, gain a stack of Idol of Yogg-Saron. At 20 stacks, you summon a Thing from Beyond that casts Void Spike at nearby enemies for 20 sec.\r\n\r\n Void Spike\r\nHurls a bolt of dark magic, dealing 355 Shadow damage and 192 Shadow damage to all enemies within 10 yards of the target. Damage reduced beyond 5 targets.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -9747,7 +9747,7 @@
                             "talent_name": "Idol of C'Thun",
                             "spell_id": 377349,
                             "spell_name": "Idol of C'Thun",
-                            "description": "Mind Flay has a chance to spawn a Void Tendril that channels Mind Flay or Void Lasher that channels Mind Sear at your target.\r\n\r\n Mind Flay\r\nAssaults the target's mind with Shadow energy, causing 1,244 Shadow damage over 10 sec and slowing their movement speed by 30%.\r\n\r\nGenerates 5 Insanity over the duration.\r\n\r\n Mind Sear\r\nCorrosive shadow energy radiates from the target, dealing 811 Shadow damage over 10 sec to all enemies within 10 yards of the target. Damage reduced beyond 5 targets.\r\n\r\nGenerates 5 Insanity over the duration.",
+                            "description": "Mind Flay has a chance to spawn a Void Tendril that channels Mind Flay or Void Lasher that channels Mind Sear at your target.\r\n\r\n Mind Flay\r\nAssaults the target's mind with Shadow energy, causing 1,205 Shadow damage over 10 sec and slowing their movement speed by 30%.\r\n\r\nGenerates 5 Insanity over the duration.\r\n\r\n Mind Sear\r\nCorrosive shadow energy radiates from the target, dealing 818 Shadow damage over 10 sec to all enemies within 10 yards of the target. Damage reduced beyond 5 targets.\r\n\r\nGenerates 5 Insanity over the duration.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null

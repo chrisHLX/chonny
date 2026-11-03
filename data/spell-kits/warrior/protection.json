@@ -1,14 +1,14 @@
 {
-    "generatedAt": "2026-10-18T02:37:13+00:00",
-    "spellCacheVersion": 29,
+    "generatedAt": "2026-11-03T23:05:00+00:00",
+    "spellCacheVersion": 31,
     "codeFingerprint": "dev",
     "entries": [
         {
             "spellId": 12349,
             "category": "Other",
             "description": {
-                "text": "Every (varies by condition — check in-game) Rage you spend(varies by condition — check in-game) reduces the remaining cooldown on Avatar and (varies by condition — check in-game) by 1 sec.",
-                "uncertain": true
+                "text": "Every 20 Rage you spend reduces the remaining cooldown on Avatar and Shield Wall by 1 sec.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -67,8 +67,8 @@
             "spellId": 12369,
             "category": "Other",
             "description": {
-                "text": "Gain Strength equal to (varies by condition — check in-game)% of your Armor.",
-                "uncertain": true
+                "text": "Gain Strength equal to 2% of your Armor.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -127,8 +127,8 @@
             "spellId": 11696,
             "category": "Offensive",
             "description": {
-                "text": "Transform into a colossus, increasing all damage you deal by 20% (varies by condition — check in-game)for 20.",
-                "uncertain": true
+                "text": "Transform into a colossus, increasing all damage you deal by 20% and reducing all damage you take by 3% for 20.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -139,8 +139,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Every (varies by condition — check in-game) Rage you spend(varies by condition — check in-game) reduces the remaining cooldown on Avatar and (varies by condition — check in-game) by 1 sec.",
-                            "uncertain": true
+                            "text": "Every 20 Rage you spend reduces the remaining cooldown on Avatar and Shield Wall by 1 sec.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -354,8 +354,8 @@
             "spellId": 12366,
             "category": "Offensive",
             "description": {
-                "text": "(varies by condition — check in-game)",
-                "uncertain": true
+                "text": "Revenge deals 10% more damage and 5% increased critical strike damage.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -978,8 +978,8 @@
             "spellId": 12437,
             "category": "Offensive",
             "description": {
-                "text": "Demolish's final strike grants 10% Haste for 10 and increases the critical strike chance of your next (varies by condition — check in-game) by 100%.",
-                "uncertain": true
+                "text": "Demolish's final strike grants 10% Haste for 10 and increases the critical strike chance of your next Shield Slam by 100%.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -1187,8 +1187,8 @@
             "spellId": 12421,
             "category": "Other",
             "description": {
-                "text": "Colossal Might increases damage dealt by your next Demolish by 5%, stacking up to 5 times. (varies by condition — check in-game) grants a stack of Colossal Might and (varies by condition — check in-game) grants a stack of Colossal Might when it strikes 3 or more targets.",
-                "uncertain": true
+                "text": "Colossal Might increases damage dealt by your next Demolish by 5%, stacking up to 5 times. Shield Slam grants a stack of Colossal Might and Revenge grants a stack of Colossal Might when it strikes 3 or more targets.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -1201,8 +1201,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Colossal Might increases damage dealt by your next Demolish by 5%, stacking up to 5 times. (varies by condition — check in-game) grants a stack of Colossal Might and (varies by condition — check in-game) grants a stack of Colossal Might when it strikes 5 or more targets.",
-                            "uncertain": true
+                            "text": "Colossal Might increases damage dealt by your next Demolish by 5%, stacking up to 5 times. Shield Slam grants a stack of Colossal Might and Revenge grants a stack of Colossal Might when it strikes 5 or more targets.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -1233,8 +1233,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Colossal Might increases the damage of your (varies by condition — check in-game) and Execute by (varies by condition — check in-game)% per stack.",
-                            "uncertain": true
+                            "text": "Colossal Might increases the damage of your Revenge and Execute by 3% per stack.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -1249,8 +1249,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game) critical strikes grant an additional stack of Colossal Might.",
-                            "uncertain": true
+                            "text": "Shield Slam critical strikes grant an additional stack of Colossal Might.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -1418,8 +1418,8 @@
             "spellId": 12359,
             "category": "Offensive",
             "description": {
-                "text": "(varies by condition — check in-game) deals an additional (varies by condition — check in-game)% damage and deals (varies by condition — check in-game)% increased critical strike damage.",
-                "uncertain": true
+                "text": "Shield Slam deals an additional 5% damage and deals 5% increased critical strike damage.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -1448,8 +1448,8 @@
             "spellId": 12436,
             "category": "Other",
             "description": {
-                "text": "(varies by condition — check in-game) critical strikes increase your Rend and Deep Wounds damage by 15% for 8.",
-                "uncertain": true
+                "text": "Shield Slam critical strikes increase your Rend and Deep Wounds damage by 15% for 8.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -1571,8 +1571,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game) critical strikes increase your Rend and Deep Wounds damage by 15% for 8.",
-                            "uncertain": true
+                            "text": "Shield Slam critical strikes increase your Rend and Deep Wounds damage by 15% for 8.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -1619,8 +1619,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game) critical strikes increase your Rend and Deep Wounds damage by 15% for 8.",
-                            "uncertain": true
+                            "text": "Shield Slam critical strikes increase your Rend and Deep Wounds damage by 15% for 8.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -1793,8 +1793,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Colossal Might increases damage dealt by your next Demolish by 5%, stacking up to 5 times. (varies by condition — check in-game) grants a stack of Colossal Might and (varies by condition — check in-game) grants a stack of Colossal Might when it strikes 5 or more targets.",
-                            "uncertain": true
+                            "text": "Colossal Might increases damage dealt by your next Demolish by 5%, stacking up to 5 times. Shield Slam grants a stack of Colossal Might and Revenge grants a stack of Colossal Might when it strikes 5 or more targets.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -1873,8 +1873,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Demolish's final strike increases the critical strike chance of your next (varies by condition — check in-game) by 100%.",
-                            "uncertain": true
+                            "text": "Demolish's final strike increases the critical strike chance of your next Shield Slam by 100%.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -1889,8 +1889,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Colossal Might increases damage dealt by your next Demolish by 5%, stacking up to 5 times. (varies by condition — check in-game) grants a stack of Colossal Might and (varies by condition — check in-game) grants a stack of Colossal Might when it strikes 3 or more targets.",
-                            "uncertain": true
+                            "text": "Colossal Might increases damage dealt by your next Demolish by 5%, stacking up to 5 times. Shield Slam grants a stack of Colossal Might and Revenge grants a stack of Colossal Might when it strikes 3 or more targets.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -1937,8 +1937,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Demolish's final strike grants 10% Haste for 10 and increases the critical strike chance of your next (varies by condition — check in-game) by 100%.",
-                            "uncertain": true
+                            "text": "Demolish's final strike grants 10% Haste for 10 and increases the critical strike chance of your next Shield Slam by 100%.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -2431,7 +2431,7 @@
             "spellId": 12516,
             "category": "Crowd Control",
             "description": {
-                "text": "Run at high speed at a distance in front of you. All enemies in your path will take 23 Physical damage and be knocked back.",
+                "text": "Run at high speed at a distance in front of you. All enemies in your path will take 98 Physical damage and be knocked back.",
                 "uncertain": false
             },
             "formulaModifierSpellIds": [],
@@ -2761,8 +2761,8 @@
             "spellId": 12375,
             "category": "Other",
             "description": {
-                "text": "(varies by condition — check in-game) a 20% chance to immediately refund (varies by condition — check in-game)% of the Rage spent.",
-                "uncertain": true
+                "text": "Revenge has a 20% chance to immediately refund 50% of the Rage spent.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -2992,8 +2992,8 @@
             "spellId": 12340,
             "category": "Mobility",
             "description": {
-                "text": "Leap through the air toward a target location, slamming down with destructive force to deal 1.2 Physical damage to all enemies within 8 yards(varies by condition — check in-game).",
-                "uncertain": true
+                "text": "Leap through the air toward a target location, slamming down with destructive force to deal 1.2 Physical damage to all enemies within 8 yards and resetting the remaining cooldown on Taunt.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -3169,7 +3169,7 @@
             "spellId": 12373,
             "category": "Defensive",
             "description": {
-                "text": "Cooldown of (varies by condition — check in-game), Intervene, (varies by condition — check in-game)Spell Reflection, Storm Bolt, and Pummel reduced by 10%. Successfully interrupting an enemy increases the damage you deal to them by (varies)% for 10.",
+                "text": "Cooldown of Shield Wall, Intervene, Spell Reflection, Storm Bolt, and Pummel reduced by 10%. Successfully interrupting an enemy increases the damage you deal to them by (varies)% for 10.",
                 "uncertain": true
             },
             "formulaModifierSpellIds": [],
@@ -3229,13 +3229,10 @@
             "spellId": 12476,
             "category": "Defensive",
             "description": {
-                "text": "Fight through the pain, ignoring 50% of damage taken (varies by condition — check in-game)until ≈1,612.4% of Attack Power damage has been prevented.(varies by condition — check in-game)",
-                "uncertain": true
+                "text": "Fight through the pain, ignoring 50% of damage taken until ≈1,612.4% of Attack Power damage has been prevented. Repeated uses of Ignore Pain accumulate, up to ≈30% of maximum health total damage prevented.",
+                "uncertain": false
             },
-            "formulaModifierSpellIds": [
-                12428,
-                11816
-            ],
+            "formulaModifierSpellIds": [],
             "modifiers": {
                 "named": [
                     {
@@ -3393,8 +3390,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Transform into a colossus, increasing all damage you deal by 20% (varies by condition — check in-game)for 20.",
-                            "uncertain": true
+                            "text": "Transform into a colossus, increasing all damage you deal by 20% and reducing all damage you take by 3% for 20.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -3760,7 +3757,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Cooldown of (varies by condition — check in-game), Intervene, (varies by condition — check in-game)Spell Reflection, Storm Bolt, and Pummel reduced by 10%. Successfully interrupting an enemy increases the damage you deal to them by (varies)% for 10.",
+                            "text": "Cooldown of Shield Wall, Intervene, Spell Reflection, Storm Bolt, and Pummel reduced by 10%. Successfully interrupting an enemy increases the damage you deal to them by (varies)% for 10.",
                             "uncertain": true
                         },
                         "category": "Defensive",
@@ -3776,7 +3773,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Cooldown of (varies by condition — check in-game), Intervene, (varies by condition — check in-game)Spell Reflection, Storm Bolt, and Pummel reduced by 5%. Successfully interrupting an enemy increases the damage you deal to them by (varies)% for 10.",
+                            "text": "Cooldown of Shield Wall, Intervene, Spell Reflection, Storm Bolt, and Pummel reduced by 5%. Successfully interrupting an enemy increases the damage you deal to them by (varies)% for 10.",
                             "uncertain": true
                         },
                         "category": "Defensive",
@@ -3840,7 +3837,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Cooldown of (varies by condition — check in-game), Intervene, (varies by condition — check in-game)Spell Reflection, Storm Bolt, and Pummel reduced by 10%. Successfully interrupting an enemy increases the damage you deal to them by (varies)% for 10.",
+                            "text": "Cooldown of Shield Wall, Intervene, Spell Reflection, Storm Bolt, and Pummel reduced by 10%. Successfully interrupting an enemy increases the damage you deal to them by (varies)% for 10.",
                             "uncertain": true
                         },
                         "category": "Defensive",
@@ -3856,7 +3853,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Cooldown of (varies by condition — check in-game), Intervene, (varies by condition — check in-game)Spell Reflection, Storm Bolt, and Pummel reduced by 5%. Successfully interrupting an enemy increases the damage you deal to them by (varies)% for 10.",
+                            "text": "Cooldown of Shield Wall, Intervene, Spell Reflection, Storm Bolt, and Pummel reduced by 5%. Successfully interrupting an enemy increases the damage you deal to them by (varies)% for 10.",
                             "uncertain": true
                         },
                         "category": "Defensive",
@@ -4605,8 +4602,8 @@
             "spellId": 12423,
             "category": "Other",
             "description": {
-                "text": "Shockwave(varies by condition — check in-game) and (varies by condition — check in-game) deal 5% more damage per target affected up to 5.",
-                "uncertain": true
+                "text": "Shockwave and Revenge deal 5% more damage per target affected up to 5.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -4978,8 +4975,8 @@
             "spellId": 12429,
             "category": "Other",
             "description": {
-                "text": "(varies by condition — check in-game).(varies by condition — check in-game)",
-                "uncertain": true
+                "text": "Shield Slam damage increased by 25%. Revenge and Thunder Clap damage increased by 15%. Shield Slam generates an additional 4 Rage. Revenge and Execute Rage cost reduced by 10.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -5008,8 +5005,8 @@
             "spellId": 12430,
             "category": "Other",
             "description": {
-                "text": "(varies by condition — check in-game) critical strikes grant an additional stack of Colossal Might.",
-                "uncertain": true
+                "text": "Shield Slam critical strikes grant an additional stack of Colossal Might.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -5050,7 +5047,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Cooldown of (varies by condition — check in-game), Intervene, (varies by condition — check in-game)Spell Reflection, Storm Bolt, and Pummel reduced by 10%. Successfully interrupting an enemy increases the damage you deal to them by (varies)% for 10.",
+                            "text": "Cooldown of Shield Wall, Intervene, Spell Reflection, Storm Bolt, and Pummel reduced by 10%. Successfully interrupting an enemy increases the damage you deal to them by (varies)% for 10.",
                             "uncertain": true
                         },
                         "category": "Defensive",
@@ -5066,7 +5063,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Cooldown of (varies by condition — check in-game), Intervene, (varies by condition — check in-game)Spell Reflection, Storm Bolt, and Pummel reduced by 5%. Successfully interrupting an enemy increases the damage you deal to them by (varies)% for 10.",
+                            "text": "Cooldown of Shield Wall, Intervene, Spell Reflection, Storm Bolt, and Pummel reduced by 5%. Successfully interrupting an enemy increases the damage you deal to them by (varies)% for 10.",
                             "uncertain": true
                         },
                         "category": "Defensive",
@@ -5232,8 +5229,8 @@
             "spellId": 11702,
             "category": "Offensive",
             "description": {
-                "text": "Throws a whirling weapon at your target that chases nearby enemies, inflicting ≈1,075.7% of Attack Power Physical damage to all enemies over 12. Deals reduced damage beyond 8 targets. Enemies damaged by Ravager take 50% additional damage from your Bleeds for 12.(varies by condition — check in-game)",
-                "uncertain": true
+                "text": "Throws a whirling weapon at your target that chases nearby enemies, inflicting ≈1,075.7% of Attack Power Physical damage to all enemies over 12. Deals reduced damage beyond 8 targets. Enemies damaged by Ravager take 50% additional damage from your Bleeds for 12. Generates 10 Rage each time it deals damage.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -5280,7 +5277,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Throws a whirling weapon at your target that chases nearby enemies, inflicting ≈1,075.7% of Attack Power Physical damage to all enemies over (varies). Deals reduced damage beyond 8 targets. Enemies damaged by Ravager take 50% additional damage from your Bleeds for 12.(varies by condition — check in-game)",
+                            "text": "Throws a whirling weapon at your target that chases nearby enemies, inflicting ≈1,075.7% of Attack Power Physical damage to all enemies over (varies). Deals reduced damage beyond 8 targets. Enemies damaged by Ravager take 50% additional damage from your Bleeds for 12. Generates 10 Rage each time it deals damage.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -5434,8 +5431,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Transform into a colossus, increasing all damage you deal by 20% (varies by condition — check in-game)for 20.",
-                            "uncertain": true
+                            "text": "Transform into a colossus, increasing all damage you deal by 20% and reducing all damage you take by 3% for 20.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -5710,8 +5707,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Colossal Might increases damage dealt by your next Demolish by 5%, stacking up to 5 times. (varies by condition — check in-game) grants a stack of Colossal Might and (varies by condition — check in-game) grants a stack of Colossal Might when it strikes 5 or more targets.",
-                            "uncertain": true
+                            "text": "Colossal Might increases damage dealt by your next Demolish by 5%, stacking up to 5 times. Shield Slam grants a stack of Colossal Might and Revenge grants a stack of Colossal Might when it strikes 5 or more targets.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -5726,8 +5723,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game) critical strikes increase your Rend and Deep Wounds damage by 15% for 8.",
-                            "uncertain": true
+                            "text": "Shield Slam critical strikes increase your Rend and Deep Wounds damage by 15% for 8.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -5758,8 +5755,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game) critical strikes increase your Rend and Deep Wounds damage by 15% for 8.",
-                            "uncertain": true
+                            "text": "Shield Slam critical strikes increase your Rend and Deep Wounds damage by 15% for 8.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -5881,8 +5878,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Transform into a colossus, increasing all damage you deal by 20% (varies by condition — check in-game)for 20.",
-                            "uncertain": true
+                            "text": "Transform into a colossus, increasing all damage you deal by 20% and reducing all damage you take by 3% for 20.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -5913,8 +5910,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game)",
-                            "uncertain": true
+                            "text": "Revenge deals 10% more damage and 5% increased critical strike damage.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -5993,7 +5990,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game) a (varies)% chance to immediately refund (varies by condition — check in-game)% of the Rage spent.",
+                            "text": "Revenge has a (varies)% chance to immediately refund 50% of the Rage spent.",
                             "uncertain": true
                         },
                         "category": "Other",
@@ -6041,8 +6038,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game) a 20% chance to immediately refund (varies by condition — check in-game)% of the Rage spent.",
-                            "uncertain": true
+                            "text": "Revenge has a 20% chance to immediately refund 50% of the Rage spent.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -6173,8 +6170,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Throws a whirling weapon at your target that chases nearby enemies, inflicting ≈1,075.7% of Attack Power Physical damage to all enemies over 12. Deals reduced damage beyond 8 targets. Enemies damaged by Ravager take 50% additional damage from your Bleeds for 12.(varies by condition — check in-game)",
-                            "uncertain": true
+                            "text": "Throws a whirling weapon at your target that chases nearby enemies, inflicting ≈1,075.7% of Attack Power Physical damage to all enemies over 12. Deals reduced damage beyond 8 targets. Enemies damaged by Ravager take 50% additional damage from your Bleeds for 12. Generates 10 Rage each time it deals damage.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -6253,8 +6250,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game).(varies by condition — check in-game)",
-                            "uncertain": true
+                            "text": "Shield Slam damage increased by 25%. Revenge and Thunder Clap damage increased by 15%. Shield Slam generates an additional 4 Rage. Revenge and Execute Rage cost reduced by 10.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -6269,8 +6266,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Colossal Might increases damage dealt by your next Demolish by 5%, stacking up to 5 times. (varies by condition — check in-game) grants a stack of Colossal Might and (varies by condition — check in-game) grants a stack of Colossal Might when it strikes 5 or more targets.",
-                            "uncertain": true
+                            "text": "Colossal Might increases damage dealt by your next Demolish by 5%, stacking up to 5 times. Shield Slam grants a stack of Colossal Might and Revenge grants a stack of Colossal Might when it strikes 5 or more targets.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -6301,8 +6298,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Colossal Might increases damage dealt by your next Demolish by 5%, stacking up to 5 times. (varies by condition — check in-game) grants a stack of Colossal Might and (varies by condition — check in-game) grants a stack of Colossal Might when it strikes 3 or more targets.",
-                            "uncertain": true
+                            "text": "Colossal Might increases damage dealt by your next Demolish by 5%, stacking up to 5 times. Shield Slam grants a stack of Colossal Might and Revenge grants a stack of Colossal Might when it strikes 3 or more targets.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -6317,8 +6314,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Shockwave(varies by condition — check in-game) and (varies by condition — check in-game) deal 5% more damage per target affected up to 5.",
-                            "uncertain": true
+                            "text": "Shockwave and Revenge deal 5% more damage per target affected up to 5.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -6333,8 +6330,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Colossal Might increases the damage of your (varies by condition — check in-game) and Execute by (varies by condition — check in-game)% per stack.",
-                            "uncertain": true
+                            "text": "Colossal Might increases the damage of your Revenge and Execute by 3% per stack.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -6534,8 +6531,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Transform into a colossus, increasing all damage you deal by 20% (varies by condition — check in-game)for 20.",
-                            "uncertain": true
+                            "text": "Transform into a colossus, increasing all damage you deal by 20% and reducing all damage you take by 3% for 20.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -6941,8 +6938,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Transform into a colossus, increasing all damage you deal by 20% (varies by condition — check in-game)for 20.",
-                            "uncertain": true
+                            "text": "Transform into a colossus, increasing all damage you deal by 20% and reducing all damage you take by 3% for 20.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -6989,8 +6986,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game) deals an additional (varies by condition — check in-game)% damage and deals (varies by condition — check in-game)% increased critical strike damage.",
-                            "uncertain": true
+                            "text": "Shield Slam deals an additional 5% damage and deals 5% increased critical strike damage.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -7377,8 +7374,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Raise your shield, blocking all melee attacks against you for 6. These blocks can be critical blocks.(varies by condition — check in-game)",
-                            "uncertain": true
+                            "text": "Raise your shield, blocking all melee attacks against you for 6. These blocks can be critical blocks. Increases Shield Slam damage by 30% while active.",
+                            "uncertain": false
                         },
                         "category": "Defensive",
                         "cooldown": {
@@ -7473,8 +7470,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game).(varies by condition — check in-game)",
-                            "uncertain": true
+                            "text": "Shield Slam damage increased by 25%. Revenge and Thunder Clap damage increased by 15%. Shield Slam generates an additional 4 Rage. Revenge and Execute Rage cost reduced by 10.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -7489,8 +7486,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Demolish's final strike increases the critical strike chance of your next (varies by condition — check in-game) by 100%.",
-                            "uncertain": true
+                            "text": "Demolish's final strike increases the critical strike chance of your next Shield Slam by 100%.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -7505,8 +7502,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Raise your shield, blocking all melee attacks against you for 6. These blocks can be critical blocks.(varies by condition — check in-game)",
-                            "uncertain": true
+                            "text": "Raise your shield, blocking all melee attacks against you for 6. These blocks can be critical blocks. Increases Shield Slam damage by 30% while active.",
+                            "uncertain": false
                         },
                         "category": "Defensive",
                         "cooldown": {
@@ -7537,8 +7534,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Colossal Might increases damage dealt by your next Demolish by 5%, stacking up to 5 times. (varies by condition — check in-game) grants a stack of Colossal Might and (varies by condition — check in-game) grants a stack of Colossal Might when it strikes 5 or more targets.",
-                            "uncertain": true
+                            "text": "Colossal Might increases damage dealt by your next Demolish by 5%, stacking up to 5 times. Shield Slam grants a stack of Colossal Might and Revenge grants a stack of Colossal Might when it strikes 5 or more targets.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -7553,8 +7550,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Raise your shield, blocking all melee attacks against you for 6. These blocks can be critical blocks.(varies by condition — check in-game)",
-                            "uncertain": true
+                            "text": "Raise your shield, blocking all melee attacks against you for 6. These blocks can be critical blocks. Increases Shield Slam damage by 30% while active.",
+                            "uncertain": false
                         },
                         "category": "Defensive",
                         "cooldown": {
@@ -7569,8 +7566,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game) critical strikes increase your Rend and Deep Wounds damage by 15% for 8.",
-                            "uncertain": true
+                            "text": "Shield Slam critical strikes increase your Rend and Deep Wounds damage by 15% for 8.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -7585,8 +7582,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Colossal Might increases damage dealt by your next Demolish by 5%, stacking up to 5 times. (varies by condition — check in-game) grants a stack of Colossal Might and (varies by condition — check in-game) grants a stack of Colossal Might when it strikes 3 or more targets.",
-                            "uncertain": true
+                            "text": "Colossal Might increases damage dealt by your next Demolish by 5%, stacking up to 5 times. Shield Slam grants a stack of Colossal Might and Revenge grants a stack of Colossal Might when it strikes 3 or more targets.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -7601,8 +7598,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game) critical strikes grant an additional stack of Colossal Might.",
-                            "uncertain": true
+                            "text": "Shield Slam critical strikes grant an additional stack of Colossal Might.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -7617,8 +7614,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game) critical strikes increase your Rend and Deep Wounds damage by 15% for 8.",
-                            "uncertain": true
+                            "text": "Shield Slam critical strikes increase your Rend and Deep Wounds damage by 15% for 8.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -7633,8 +7630,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Demolish's final strike grants 10% Haste for 10 and increases the critical strike chance of your next (varies by condition — check in-game) by 100%.",
-                            "uncertain": true
+                            "text": "Demolish's final strike grants 10% Haste for 10 and increases the critical strike chance of your next Shield Slam by 100%.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -7760,7 +7757,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Cooldown of (varies by condition — check in-game), Intervene, (varies by condition — check in-game)Spell Reflection, Storm Bolt, and Pummel reduced by 10%. Successfully interrupting an enemy increases the damage you deal to them by (varies)% for 10.",
+                            "text": "Cooldown of Shield Wall, Intervene, Spell Reflection, Storm Bolt, and Pummel reduced by 10%. Successfully interrupting an enemy increases the damage you deal to them by (varies)% for 10.",
                             "uncertain": true
                         },
                         "category": "Defensive",
@@ -7808,7 +7805,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Cooldown of (varies by condition — check in-game), Intervene, (varies by condition — check in-game)Spell Reflection, Storm Bolt, and Pummel reduced by 5%. Successfully interrupting an enemy increases the damage you deal to them by (varies)% for 10.",
+                            "text": "Cooldown of Shield Wall, Intervene, Spell Reflection, Storm Bolt, and Pummel reduced by 5%. Successfully interrupting an enemy increases the damage you deal to them by (varies)% for 10.",
                             "uncertain": true
                         },
                         "category": "Defensive",
@@ -7824,8 +7821,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Every (varies by condition — check in-game) Rage you spend(varies by condition — check in-game) reduces the remaining cooldown on Avatar and (varies by condition — check in-game) by 1 sec.",
-                            "uncertain": true
+                            "text": "Every 20 Rage you spend reduces the remaining cooldown on Avatar and Shield Wall by 1 sec.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -8142,8 +8139,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Transform into a colossus, increasing all damage you deal by 20% (varies by condition — check in-game)for 20.",
-                            "uncertain": true
+                            "text": "Transform into a colossus, increasing all damage you deal by 20% and reducing all damage you take by 3% for 20.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -8450,8 +8447,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Shockwave(varies by condition — check in-game) and (varies by condition — check in-game) deal 5% more damage per target affected up to 5.",
-                            "uncertain": true
+                            "text": "Shockwave and Revenge deal 5% more damage per target affected up to 5.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -8513,8 +8510,8 @@
             "spellId": 12342,
             "category": "Defensive",
             "description": {
-                "text": "Raise your (varies by condition — check in-game), reflecting the next 2 spells cast on you and reducing magic damage you take by 20% for 5.",
-                "uncertain": true
+                "text": "Raise your shield, reflecting the next 2 spells cast on you and reducing magic damage you take by 20% for 5.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -8525,7 +8522,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Cooldown of (varies by condition — check in-game), Intervene, (varies by condition — check in-game)Spell Reflection, Storm Bolt, and Pummel reduced by 10%. Successfully interrupting an enemy increases the damage you deal to them by (varies)% for 10.",
+                            "text": "Cooldown of Shield Wall, Intervene, Spell Reflection, Storm Bolt, and Pummel reduced by 10%. Successfully interrupting an enemy increases the damage you deal to them by (varies)% for 10.",
                             "uncertain": true
                         },
                         "category": "Defensive",
@@ -8541,7 +8538,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Cooldown of (varies by condition — check in-game), Intervene, (varies by condition — check in-game)Spell Reflection, Storm Bolt, and Pummel reduced by 5%. Successfully interrupting an enemy increases the damage you deal to them by (varies)% for 10.",
+                            "text": "Cooldown of Shield Wall, Intervene, Spell Reflection, Storm Bolt, and Pummel reduced by 5%. Successfully interrupting an enemy increases the damage you deal to them by (varies)% for 10.",
                             "uncertain": true
                         },
                         "category": "Defensive",
@@ -8675,8 +8672,8 @@
             "spellId": 12382,
             "category": "Other",
             "description": {
-                "text": "Your stances have additional effects. (varies by condition — check in-game) Defensive Stance When an attack deals 20% or more of your maximum health in damage, that damage is reduced by 15%.",
-                "uncertain": true
+                "text": "Your stances have additional effects. Battle Stance Increases the critical strike damage of your abilities by 3%. Defensive Stance When an attack deals 20% or more of your maximum health in damage, that damage is reduced by 15%.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -8763,8 +8760,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Transform into a colossus, increasing all damage you deal by 20% (varies by condition — check in-game)for 20.",
-                            "uncertain": true
+                            "text": "Transform into a colossus, increasing all damage you deal by 20% and reducing all damage you take by 3% for 20.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -8811,7 +8808,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Cooldown of (varies by condition — check in-game), Intervene, (varies by condition — check in-game)Spell Reflection, Storm Bolt, and Pummel reduced by 10%. Successfully interrupting an enemy increases the damage you deal to them by (varies)% for 10.",
+                            "text": "Cooldown of Shield Wall, Intervene, Spell Reflection, Storm Bolt, and Pummel reduced by 10%. Successfully interrupting an enemy increases the damage you deal to them by (varies)% for 10.",
                             "uncertain": true
                         },
                         "category": "Defensive",
@@ -8859,7 +8856,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Cooldown of (varies by condition — check in-game), Intervene, (varies by condition — check in-game)Spell Reflection, Storm Bolt, and Pummel reduced by 5%. Successfully interrupting an enemy increases the damage you deal to them by (varies)% for 10.",
+                            "text": "Cooldown of Shield Wall, Intervene, Spell Reflection, Storm Bolt, and Pummel reduced by 5%. Successfully interrupting an enemy increases the damage you deal to them by (varies)% for 10.",
                             "uncertain": true
                         },
                         "category": "Defensive",
@@ -9251,8 +9248,8 @@
             "spellId": 11695,
             "category": "Other",
             "description": {
-                "text": "Your attacks have a chance to make your next Condemn (varies by condition — check in-game)be usable on any target regardless of their health(varies by condition — check in-game).",
-                "uncertain": true
+                "text": "Your attacks have a chance to make your next Condemn be usable on any target regardless of their health.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -9293,8 +9290,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Leap through the air toward a target location, slamming down with destructive force to deal 1.2 Physical damage to all enemies within 8 yards(varies by condition — check in-game).",
-                            "uncertain": true
+                            "text": "Leap through the air toward a target location, slamming down with destructive force to deal 1.2 Physical damage to all enemies within 8 yards and resetting the remaining cooldown on Taunt.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -9362,8 +9359,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Leap through the air toward a target location, slamming down with destructive force to deal 1.2 Physical damage to all enemies within 8 yards(varies by condition — check in-game).",
-                            "uncertain": true
+                            "text": "Leap through the air toward a target location, slamming down with destructive force to deal 1.2 Physical damage to all enemies within 8 yards and resetting the remaining cooldown on Taunt.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -9378,8 +9375,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Leap through the air toward a target location, slamming down with destructive force to deal 1.2 Physical damage to all enemies within 8 yards(varies by condition — check in-game).",
-                            "uncertain": true
+                            "text": "Leap through the air toward a target location, slamming down with destructive force to deal 1.2 Physical damage to all enemies within 8 yards and resetting the remaining cooldown on Taunt.",
+                            "uncertain": false
                         },
                         "category": "Crowd Control",
                         "cooldown": {
@@ -9394,8 +9391,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Leap through the air toward a target location, slamming down with destructive force to deal 1.2 Physical damage to all enemies within 8 yards(varies by condition — check in-game).",
-                            "uncertain": true
+                            "text": "Leap through the air toward a target location, slamming down with destructive force to deal 1.2 Physical damage to all enemies within 8 yards and resetting the remaining cooldown on Taunt.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -9410,8 +9407,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Leap through the air toward a target location, slamming down with destructive force to deal 1.2 Physical damage to all enemies within 8 yards(varies by condition — check in-game).",
-                            "uncertain": true
+                            "text": "Leap through the air toward a target location, slamming down with destructive force to deal 1.2 Physical damage to all enemies within 8 yards and resetting the remaining cooldown on Taunt.",
+                            "uncertain": false
                         },
                         "category": "Mobility",
                         "cooldown": {
@@ -9605,8 +9602,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Transform into a colossus, increasing all damage you deal by 20% (varies by condition — check in-game)for 20.",
-                            "uncertain": true
+                            "text": "Transform into a colossus, increasing all damage you deal by 20% and reducing all damage you take by 3% for 20.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -9653,8 +9650,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game)",
-                            "uncertain": true
+                            "text": "Revenge deals 10% more damage and 5% increased critical strike damage.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -9897,8 +9894,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Throws a whirling weapon at your target that chases nearby enemies, inflicting ≈1,075.7% of Attack Power Physical damage to all enemies over 12. Deals reduced damage beyond 8 targets. Enemies damaged by Ravager take 50% additional damage from your Bleeds for 12.(varies by condition — check in-game)",
-                            "uncertain": true
+                            "text": "Throws a whirling weapon at your target that chases nearby enemies, inflicting ≈1,075.7% of Attack Power Physical damage to all enemies over 12. Deals reduced damage beyond 8 targets. Enemies damaged by Ravager take 50% additional damage from your Bleeds for 12. Generates 10 Rage each time it deals damage.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -9977,8 +9974,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game).(varies by condition — check in-game)",
-                            "uncertain": true
+                            "text": "Shield Slam damage increased by 25%. Revenge and Thunder Clap damage increased by 15%. Shield Slam generates an additional 4 Rage. Revenge and Execute Rage cost reduced by 10.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -10086,8 +10083,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Transform into a colossus, increasing all damage you deal by 20% (varies by condition — check in-game)for 20.",
-                            "uncertain": true
+                            "text": "Transform into a colossus, increasing all damage you deal by 20% and reducing all damage you take by 3% for 20.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -10134,8 +10131,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game)",
-                            "uncertain": true
+                            "text": "Revenge deals 10% more damage and 5% increased critical strike damage.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -10442,8 +10439,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Throws a whirling weapon at your target that chases nearby enemies, inflicting ≈1,075.7% of Attack Power Physical damage to all enemies over 12. Deals reduced damage beyond 8 targets. Enemies damaged by Ravager take 50% additional damage from your Bleeds for 12.(varies by condition — check in-game)",
-                            "uncertain": true
+                            "text": "Throws a whirling weapon at your target that chases nearby enemies, inflicting ≈1,075.7% of Attack Power Physical damage to all enemies over 12. Deals reduced damage beyond 8 targets. Enemies damaged by Ravager take 50% additional damage from your Bleeds for 12. Generates 10 Rage each time it deals damage.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -10522,8 +10519,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game).(varies by condition — check in-game)",
-                            "uncertain": true
+                            "text": "Shield Slam damage increased by 25%. Revenge and Thunder Clap damage increased by 15%. Shield Slam generates an additional 4 Rage. Revenge and Execute Rage cost reduced by 10.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -10759,8 +10756,8 @@
             "spellId": 12426,
             "category": "Other",
             "description": {
-                "text": "Colossal Might increases the damage of your (varies by condition — check in-game) and Execute by (varies by condition — check in-game)% per stack.",
-                "uncertain": true
+                "text": "Colossal Might increases the damage of your Revenge and Execute by 3% per stack.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -10956,8 +10953,8 @@
             "spellId": 12353,
             "category": "Mobility",
             "description": {
-                "text": "Your auto-attacks generate (varies by condition — check in-game)% more Rage. Killing an enemy instantly generates 5 Rage and increases your movement speed by 30% for 8.",
-                "uncertain": true
+                "text": "Your auto-attacks generate 50% more Rage. Killing an enemy instantly generates 5 Rage and increases your movement speed by 30% for 8.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -11074,8 +11071,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Transform into a colossus, increasing all damage you deal by 20% (varies by condition — check in-game)for 20.",
-                            "uncertain": true
+                            "text": "Transform into a colossus, increasing all damage you deal by 20% and reducing all damage you take by 3% for 20.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {

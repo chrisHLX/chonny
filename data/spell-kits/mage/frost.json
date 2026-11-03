@@ -1,6 +1,6 @@
 {
-    "generatedAt": "2026-10-18T02:36:39+00:00",
-    "spellCacheVersion": 29,
+    "generatedAt": "2026-11-03T23:04:27+00:00",
+    "spellCacheVersion": 31,
     "codeFingerprint": "dev",
     "entries": [
         {
@@ -35,7 +35,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Reduces the cooldown of Temporal Realignment by 5 sec.",
+                            "text": "Alter Time's cooldown is reduced by 5 sec.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -86,7 +86,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Upon dropping below 20% health, your past self corrects your timeline, casting Alter Time and instantly returning 20% of your maximum health and healing you for an additional 30% over 6.",
+                            "text": "When your health is brought below 20%, your past self corrects your timeline if Alter Time is not on cooldown, instantly restoring 20% of your maximum health and healing you for an additional 30% over 6. This effect places Alter Time on cooldown as if it had been cast.",
                             "uncertain": false
                         },
                         "category": "Defensive",
@@ -102,7 +102,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Upon dropping below 20% health, your past self corrects your timeline, casting Alter Time and instantly returning 20% of your maximum health and healing you for an additional 30% over 6.",
+                            "text": "When your health is brought below 20%, your past self corrects your timeline if Alter Time is not on cooldown, instantly restoring 20% of your maximum health and healing you for an additional 30% over 6. This effect places Alter Time on cooldown as if it had been cast.",
                             "uncertain": false
                         },
                         "category": "Defensive",
@@ -118,7 +118,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Upon dropping below 25% health, your past self corrects your timeline, casting Alter Time and instantly returning 20% of your maximum health and healing you for an additional 30% over 6.",
+                            "text": "When your health is brought below 25%, your past self corrects your timeline if Alter Time is not on cooldown, instantly restoring 20% of your maximum health and healing you for an additional 30% over 6. This effect places Alter Time on cooldown as if it had been cast.",
                             "uncertain": false
                         },
                         "category": "Defensive",
@@ -266,7 +266,7 @@
         },
         {
             "spellId": 4922,
-            "category": "Other",
+            "category": "Offensive",
             "description": {
                 "text": "Infuses the target with brilliance, increasing their Intellect by 3% for 3,600. If the target is in your party or raid, all party and raid members will be affected.",
                 "uncertain": false
@@ -315,7 +315,7 @@
             "spellId": 5595,
             "category": "Defensive",
             "description": {
-                "text": "Reduces magic damage taken by 4%.",
+                "text": "Magic damage taken reduced by 4%.",
                 "uncertain": false
             },
             "formulaModifierSpellIds": [],
@@ -345,8 +345,8 @@
             "spellId": 5738,
             "category": "Other",
             "description": {
-                "text": "(varies by condition — check in-game) damage increased by (varies by condition — check in-game)%. Your chance to gain (varies by condition — check in-game) is increased by (varies by condition — check in-game)%.",
-                "uncertain": true
+                "text": "Ray of Frost damage increased by 20%. Your chance to gain Brain Freeze from Frostbolt is increased by 5%.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -458,8 +458,8 @@
             "spellId": 5743,
             "category": "Other",
             "description": {
-                "text": "(varies by condition — check in-game).",
-                "uncertain": true
+                "text": "Your Water Elemental has a 50% chance to conjure a Splinter alongside its Waterbolt.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -488,8 +488,8 @@
             "spellId": 5744,
             "category": "Other",
             "description": {
-                "text": "Conjuring one or more (varies by condition — check in-game) Splinters has a 10% chance to conjure a burst of 8 (varies by condition — check in-game) Splinters.",
-                "uncertain": true
+                "text": "Conjuring one or more Frost Splinters has a 10% chance to conjure a burst of 8 Frost Splinters.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -518,7 +518,7 @@
             "spellId": 5603,
             "category": "Other",
             "description": {
-                "text": "When your Barrier is removed, reduce its cooldown by 5 sec.",
+                "text": "When Ice Barrier is removed, its remaining cooldown is reduced by 5 sec.",
                 "uncertain": false
             },
             "formulaModifierSpellIds": [],
@@ -624,8 +624,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game)",
-                            "uncertain": true
+                            "text": "Ice Barrier also casts a Blazing Barrier at 25% effectiveness.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -689,7 +689,7 @@
                         "modifier_value": -3,
                         "modifier_unit": "seconds",
                         "description": {
-                            "text": "The cooldowns of Blink and Shimmer are reduced by 3 sec.",
+                            "text": "Shimmer's cooldown is reduced by 3 sec.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -771,7 +771,7 @@
                                         "spell_id": 382268,
                                         "name": "Flow of Time",
                                         "school": "Physical",
-                                        "description": "The cooldowns of Blink and Shimmer are reduced by ${$s1/-1000} sec.",
+                                        "description": "$?s212653[Shimmer's][Blink's] cooldown is reduced by ${$s1/-1000} sec.",
                                         "variables": null,
                                         "charges": null,
                                         "max_stacks": null,
@@ -809,7 +809,7 @@
                                         "is_passive": true,
                                         "icon_name": "spell_arcane_blink.jpg",
                                         "created_at": "2026-08-03T12:22:39.000000Z",
-                                        "updated_at": "2026-09-08T00:07:06.000000Z"
+                                        "updated_at": "2026-11-03T21:20:46.000000Z"
                                     },
                                     "relationship_type": "modifies_cooldown",
                                     "modifier_value": -3,
@@ -889,7 +889,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "While in combat, Blink summons a Mirror Image at your previous location.",
+                            "text": "While in combat, Shimmer summons a Mirror Image at your previous location.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -905,7 +905,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Blink and Shimmer apply Slow at 100% effectiveness to all enemies you Blink through. For each enemy you Blink through, the cooldown of Blink and Shimmer are reduced by 1 sec, up to 5 sec.",
+                            "text": "Blink applies Slow at 100% effectiveness to all enemies you Blink through. For each enemy you Blink through, the cooldown of Blink is reduced by 1 sec, up to 5 sec.\r\n\r\n Slow\r\nReduces the target's movement speed by 50% for 15 sec. ",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -929,7 +929,7 @@
                             "spell_id": 382268,
                             "name": "Flow of Time",
                             "school": "Physical",
-                            "description": "The cooldowns of Blink and Shimmer are reduced by ${$s1/-1000} sec.",
+                            "description": "$?s212653[Shimmer's][Blink's] cooldown is reduced by ${$s1/-1000} sec.",
                             "variables": null,
                             "charges": null,
                             "max_stacks": null,
@@ -967,7 +967,7 @@
                             "is_passive": true,
                             "icon_name": "spell_arcane_blink.jpg",
                             "created_at": "2026-08-03T12:22:39.000000Z",
-                            "updated_at": "2026-09-08T00:07:06.000000Z",
+                            "updated_at": "2026-11-03T21:20:46.000000Z",
                             "effects": [
                                 {
                                     "id": 10268,
@@ -1245,8 +1245,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game).",
-                            "uncertain": true
+                            "text": "Frostbolt and Blizzard damage increased by 25%. Glacial Spike conjures 2 additional Frost Splinters.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -1262,22 +1262,6 @@
                         "modifier_unit": null,
                         "description": {
                             "text": "Flurry and Blizzard damage increased by 10%.",
-                            "uncertain": false
-                        },
-                        "category": "Other",
-                        "cooldown": {
-                            "seconds": null,
-                            "base_seconds": null,
-                            "applied": []
-                        }
-                    },
-                    {
-                        "spellId": 5767,
-                        "relationship_type": "mentions",
-                        "modifier_value": null,
-                        "modifier_unit": null,
-                        "description": {
-                            "text": "Summon a strong Blizzard that surrounds you for 6 sec that slows enemies by 70% and deals 83 Frost damage every 1 sec. \r\n\r\nEnemies that are caught in Snowdrift for 2 sec consecutively become Frozen in ice, stunned for 4 sec.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -1313,7 +1297,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Frostfire Bolt has an additional 5% chance to grant Brain Freeze. The damage of your Frost spells and Fire spells are increased by 4%.",
+                            "text": "Frostfire Bolt grants Brain Freeze 5% more often. The damage of your Frost spells and Fire spells are increased by 4%.",
                             "uncertain": false
                         },
                         "category": "Offensive",
@@ -1442,8 +1426,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game) damage increased by (varies by condition — check in-game)%. Your chance to gain (varies by condition — check in-game) is increased by (varies by condition — check in-game)%.",
-                            "uncertain": true
+                            "text": "Ray of Frost damage increased by 20%. Your chance to gain Brain Freeze from Frostbolt is increased by 5%.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -1541,7 +1525,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Frostfire Bolt has an additional 5% chance to grant Brain Freeze. The damage of your Frost spells and Fire spells are increased by 4%.",
+                            "text": "Frostfire Bolt grants Brain Freeze 5% more often. The damage of your Frost spells and Fire spells are increased by 4%.",
                             "uncertain": false
                         },
                         "category": "Offensive",
@@ -1557,7 +1541,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Frostfire Bolt has an additional 5% chance to grant Brain Freeze. The damage of your Frost spells and Fire spells are increased by 4%.",
+                            "text": "Frostfire Bolt grants Brain Freeze 5% more often. The damage of your Frost spells and Fire spells are increased by 4%.",
                             "uncertain": false
                         },
                         "category": "Offensive",
@@ -1589,8 +1573,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Gaining (varies by condition — check in-game) conjures 2 (varies by condition — check in-game) Splinters.",
-                            "uncertain": true
+                            "text": "Gaining Brain Freeze conjures 2 Frost Splinters.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -1605,7 +1589,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Places a Frost Bomb on the target. After 5 sec, the bomb explodes, dealing 9,661 Frost damage to the target and 4,898 Frost damage to all other enemies within 10 yards. All affected targets are slowed by 50% for 8 sec. \r\n\r\nIf Frost Bomb is dispelled before it explodes, gain a charge of Brain Freeze.",
+                            "text": "Places a Frost Bomb on the target. After 5 sec, the bomb explodes, dealing 9,792 Frost damage to the target and 5,015 Frost damage to all other enemies within 10 yards. All affected targets are slowed by 50% for 8 sec. \r\n\r\nIf Frost Bomb is dispelled before it explodes, gain a charge of Brain Freeze.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -1728,7 +1712,7 @@
             "spellId": 5612,
             "category": "Other",
             "description": {
-                "text": "Your Mastery is increased by 3%.",
+                "text": "Mastery increased by 3%.",
                 "uncertain": false
             },
             "formulaModifierSpellIds": [],
@@ -1834,8 +1818,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game). Your Haste is increased by 2%.",
-                            "uncertain": true
+                            "text": "Meteor and Pyroblast now apply Ignite. Haste increased by 2%.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -1867,7 +1851,7 @@
             "spellId": 5764,
             "category": "Other",
             "description": {
-                "text": "Frozen Orb's damage is increased by 10% and is now castable at a location with a 40 yard range but no longer moves. ",
+                "text": "Frozen Orb's damage is increased by 10% and it is now castable at a location within 40 yds, but it no longer moves.",
                 "uncertain": false
             },
             "formulaModifierSpellIds": [],
@@ -2078,8 +2062,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game)",
-                            "uncertain": true
+                            "text": "The cooldown of Fire spells is reduced by 30%.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -2094,7 +2078,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Frostfire Bolt has an additional 5% chance to grant Brain Freeze. The damage of your Frost spells and Fire spells are increased by 4%.",
+                            "text": "Frostfire Bolt grants Brain Freeze 5% more often. The damage of your Frost spells and Fire spells are increased by 4%.",
                             "uncertain": false
                         },
                         "category": "Offensive",
@@ -2396,8 +2380,8 @@
             "spellId": 5731,
             "category": "Offensive",
             "description": {
-                "text": "(varies by condition — check in-game) of the direct damage dealt by (varies by condition — check in-game) is also dealt to nearby enemies. Damage reduced beyond 5 targets.",
-                "uncertain": true
+                "text": "60% of the direct damage dealt by a Frost Splinter is also dealt to nearby enemies. Damage reduced beyond 5 targets.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -2751,8 +2735,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game)",
-                            "uncertain": true
+                            "text": "The cooldown of Fire spells is reduced by 30%.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -2923,7 +2907,7 @@
             "spellId": 5725,
             "category": "Other",
             "description": {
-                "text": "(varies by condition — check in-game).",
+                "text": "Casting Glacial Spike also casts a Pyroblast, dealing ≈881.3% of Spell Power Fire damage.",
                 "uncertain": true
             },
             "formulaModifierSpellIds": [],
@@ -2953,8 +2937,8 @@
             "spellId": 5713,
             "category": "Other",
             "description": {
-                "text": "(varies by condition — check in-game)",
-                "uncertain": true
+                "text": "The cooldown of Fire spells is reduced by 30%.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -2983,8 +2967,8 @@
             "spellId": 5727,
             "category": "Offensive",
             "description": {
-                "text": "(varies by condition — check in-game). Your Haste is increased by 2%.",
-                "uncertain": true
+                "text": "Meteor and Pyroblast now apply Ignite. Haste increased by 2%.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -3013,7 +2997,7 @@
             "spellId": 5598,
             "category": "Other",
             "description": {
-                "text": "Casting your barrier removes all snare effects.",
+                "text": "Casting Ice Barrier removes all snare effects.",
                 "uncertain": false
             },
             "formulaModifierSpellIds": [],
@@ -3043,7 +3027,7 @@
             "spellId": 5769,
             "category": "Other",
             "description": {
-                "text": "Blink and Shimmer apply Slow at 100% effectiveness to all enemies you Blink through. For each enemy you Blink through, the cooldown of Blink and Shimmer are reduced by 1 sec, up to 5 sec.",
+                "text": "Blink applies Slow at 100% effectiveness to all enemies you Blink through. For each enemy you Blink through, the cooldown of Blink is reduced by 1 sec, up to 5 sec.\r\n\r\n Slow\r\nReduces the target's movement speed by 50% for 15 sec. ",
                 "uncertain": false
             },
             "formulaModifierSpellIds": [],
@@ -3423,8 +3407,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game)",
-                            "uncertain": true
+                            "text": "The cooldown of Fire spells is reduced by 30%.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -3439,7 +3423,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Frostfire Bolt has an additional 5% chance to grant Brain Freeze. The damage of your Frost spells and Fire spells are increased by 4%.",
+                            "text": "Frostfire Bolt grants Brain Freeze 5% more often. The damage of your Frost spells and Fire spells are increased by 4%.",
                             "uncertain": false
                         },
                         "category": "Offensive",
@@ -3598,7 +3582,7 @@
             "spellId": 5589,
             "category": "Other",
             "description": {
-                "text": "The cooldowns of Blink and Shimmer are reduced by 3 sec.",
+                "text": "Shimmer's cooldown is reduced by 3 sec.",
                 "uncertain": false
             },
             "formulaModifierSpellIds": [],
@@ -3817,7 +3801,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game) conjures (varies by condition — check in-game) Splinter. (varies by condition — check in-game)",
+                            "text": "Casting Frostbolt or Flurry conjures a Frost Splinter. Frost Splinter: Conjure raw Frost magic into a sharp projectile that deals ≈45.3% of Spell Power Frost damage. ",
                             "uncertain": true
                         },
                         "category": "Other",
@@ -3970,8 +3954,8 @@
             "spellId": 5733,
             "category": "Other",
             "description": {
-                "text": "(varies by condition — check in-game).",
-                "uncertain": true
+                "text": "Ice Lance conjures a Frost Splinter for every 2 Freezing stacks Shattered from its primary target.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -4150,7 +4134,7 @@
             "spellId": 5766,
             "category": "Other",
             "description": {
-                "text": "Places a Frost Bomb on the target. After 5 sec, the bomb explodes, dealing 9,661 Frost damage to the target and 4,898 Frost damage to all other enemies within 10 yards. All affected targets are slowed by 50% for 8 sec. \r\n\r\nIf Frost Bomb is dispelled before it explodes, gain a charge of Brain Freeze.",
+                "text": "Places a Frost Bomb on the target. After 5 sec, the bomb explodes, dealing 9,792 Frost damage to the target and 5,015 Frost damage to all other enemies within 10 yards. All affected targets are slowed by 50% for 8 sec. \r\n\r\nIf Frost Bomb is dispelled before it explodes, gain a charge of Brain Freeze.",
                 "uncertain": false
             },
             "formulaModifierSpellIds": [],
@@ -4338,8 +4322,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game)",
-                            "uncertain": true
+                            "text": "The cooldown of Fire spells is reduced by 30%.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -4370,7 +4354,7 @@
                         "modifier_value": 1,
                         "modifier_unit": "charges",
                         "description": {
-                            "text": "Frost Nova now has 2 charges.",
+                            "text": "Frost Nova gains an additional charge.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -4402,7 +4386,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "When your Frost Nova or Water Elemental's Freeze is dispelled or removed, become immune to snares for 4 sec. \r\n\r\nThis effect can only occur once every 10 sec.",
+                            "text": "When your Frost Nova or Water Elemental's Freeze is dispelled or removed, you become immune to snares for 4 sec. \r\n\r\nThis effect can only occur once every 10 sec.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -4634,8 +4618,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game).",
-                            "uncertain": true
+                            "text": "Frostbolt and Blizzard damage increased by 25%. Glacial Spike conjures 2 additional Frost Splinters.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -4826,7 +4810,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game) conjures (varies by condition — check in-game) Splinter. (varies by condition — check in-game)",
+                            "text": "Casting Frostbolt or Flurry conjures a Frost Splinter. Frost Splinter: Conjure raw Frost magic into a sharp projectile that deals ≈45.3% of Spell Power Frost damage. ",
                             "uncertain": true
                         },
                         "category": "Other",
@@ -4842,8 +4826,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game) damage increased by (varies by condition — check in-game)%. Your chance to gain (varies by condition — check in-game) is increased by (varies by condition — check in-game)%.",
-                            "uncertain": true
+                            "text": "Ray of Frost damage increased by 20%. Your chance to gain Brain Freeze from Frostbolt is increased by 5%.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -4861,7 +4845,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Frostfire Bolt has an additional 5% chance to grant Brain Freeze. The damage of your Frost spells and Fire spells are increased by 4%.",
+                            "text": "Frostfire Bolt grants Brain Freeze 5% more often. The damage of your Frost spells and Fire spells are increased by 4%.",
                             "uncertain": false
                         },
                         "category": "Offensive",
@@ -5197,8 +5181,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Casting Frostfire spells has a 60% chance to activate Frostfire Empowerment, causing your next Frostfire Bolt to be instant cast, deal 60% increased damage, explode for 100% of its damage to nearby enemies. Damage reduced beyond 5 targets.(varies by condition — check in-game)",
-                            "uncertain": true
+                            "text": "Casting Frostfire spells has a 60% chance to activate Frostfire Empowerment, causing your next Frostfire Bolt to be instant cast, deal 60% increased damage, and explode for 100% of its damage to nearby enemies. Damage reduced beyond 5 targets. Damage from Frostfire Empowerment applies 1 stack of Freezing.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -5213,7 +5197,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Frostfire Bolt has an additional 5% chance to grant Brain Freeze. The damage of your Frost spells and Fire spells are increased by 4%.",
+                            "text": "Frostfire Bolt grants Brain Freeze 5% more often. The damage of your Frost spells and Fire spells are increased by 4%.",
                             "uncertain": false
                         },
                         "category": "Offensive",
@@ -5229,8 +5213,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Casting Frostfire spells has a 60% chance to activate Frostfire Empowerment, causing your next Frostfire Bolt to be instant cast, deal 60% increased damage, explode for 100% of its damage to nearby enemies. Damage reduced beyond 5 targets.(varies by condition — check in-game)",
-                            "uncertain": true
+                            "text": "Casting Frostfire spells has a 60% chance to activate Frostfire Empowerment, causing your next Frostfire Bolt to be instant cast, deal 60% increased damage, and explode for 100% of its damage to nearby enemies. Damage reduced beyond 5 targets. Damage from Frostfire Empowerment applies 1 stack of Freezing.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -5261,7 +5245,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Frostfire Bolt has an additional 5% chance to grant Brain Freeze. The damage of your Frost spells and Fire spells are increased by 4%.",
+                            "text": "Frostfire Bolt grants Brain Freeze 5% more often. The damage of your Frost spells and Fire spells are increased by 4%.",
                             "uncertain": false
                         },
                         "category": "Offensive",
@@ -5277,8 +5261,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Casting Frostfire spells has a 10% chance to activate Frostfire Empowerment, causing your next Frostfire Bolt to be instant cast, deal 60% increased damage, explode for 60% of its damage to nearby enemies. Damage reduced beyond 5 targets.(varies by condition — check in-game)",
-                            "uncertain": true
+                            "text": "Casting Frostfire spells has a 10% chance to activate Frostfire Empowerment, causing your next Frostfire Bolt to be instant cast, deal 60% increased damage, and explode for 60% of its damage to nearby enemies. Damage reduced beyond 5 targets. Damage from Frostfire Empowerment applies 1 stack of Freezing.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -5326,8 +5310,8 @@
             "spellId": 5719,
             "category": "Offensive",
             "description": {
-                "text": "Casting Frostfire spells has a 10% chance to activate Frostfire Empowerment, causing your next Frostfire Bolt to be instant cast, deal 60% increased damage, explode for 60% of its damage to nearby enemies. Damage reduced beyond 5 targets.(varies by condition — check in-game)",
-                "uncertain": true
+                "text": "Casting Frostfire spells has a 10% chance to activate Frostfire Empowerment, causing your next Frostfire Bolt to be instant cast, deal 60% increased damage, and explode for 60% of its damage to nearby enemies. Damage reduced beyond 5 targets. Damage from Frostfire Empowerment applies 1 stack of Freezing.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -5356,8 +5340,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Casting Frostfire spells has a 60% chance to activate Frostfire Empowerment, causing your next Frostfire Bolt to be instant cast, deal 60% increased damage, explode for 100% of its damage to nearby enemies. Damage reduced beyond 5 targets.(varies by condition — check in-game)",
-                            "uncertain": true
+                            "text": "Casting Frostfire spells has a 60% chance to activate Frostfire Empowerment, causing your next Frostfire Bolt to be instant cast, deal 60% increased damage, and explode for 100% of its damage to nearby enemies. Damage reduced beyond 5 targets. Damage from Frostfire Empowerment applies 1 stack of Freezing.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -5372,8 +5356,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Casting Frostfire spells has a 60% chance to activate Frostfire Empowerment, causing your next Frostfire Bolt to be instant cast, deal 60% increased damage, explode for 100% of its damage to nearby enemies. Damage reduced beyond 5 targets.(varies by condition — check in-game)",
-                            "uncertain": true
+                            "text": "Casting Frostfire spells has a 60% chance to activate Frostfire Empowerment, causing your next Frostfire Bolt to be instant cast, deal 60% increased damage, and explode for 100% of its damage to nearby enemies. Damage reduced beyond 5 targets. Damage from Frostfire Empowerment applies 1 stack of Freezing.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -5453,7 +5437,7 @@
             "spellId": 5718,
             "category": "Offensive",
             "description": {
-                "text": "Frostfire Bolt has an additional 5% chance to grant Brain Freeze. The damage of your Frost spells and Fire spells are increased by 4%.",
+                "text": "Frostfire Bolt grants Brain Freeze 5% more often. The damage of your Frost spells and Fire spells are increased by 4%.",
                 "uncertain": false
             },
             "formulaModifierSpellIds": [],
@@ -5495,8 +5479,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Enemies damaged by your (varies by condition — check in-game) conjure (varies by condition — check in-game) Splinters, up to (varies by condition — check in-game). (varies by condition — check in-game) damage is increased by 25%.",
-                            "uncertain": true
+                            "text": "Enemies damaged by your Frozen Orb conjure 1 Frost Splinter, up to 4. Frozen Orb damage is increased by 25%.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -5511,8 +5495,8 @@
                         "modifier_value": 1,
                         "modifier_unit": "charges",
                         "description": {
-                            "text": "Direct damage from (varies by condition — check in-game) Splinters reduces the cooldown of (varies by condition — check in-game) Orb by (varies by condition — check in-game) sec.",
-                            "uncertain": true
+                            "text": "Direct damage from Frost Splinters reduces the cooldown of Frozen Orb by 0 sec.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -5706,7 +5690,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Frozen Orb's damage is increased by 10% and is now castable at a location with a 40 yard range but no longer moves. ",
+                            "text": "Frozen Orb's damage is increased by 10% and it is now castable at a location within 40 yds, but it no longer moves.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -5833,7 +5817,7 @@
             "spellId": 5688,
             "category": "Other",
             "description": {
-                "text": "Ice Block now has an additional charge and its cooldown is reduced by 30 sec.",
+                "text": "Ice Cold gains an additional charge and its cooldown is reduced by 30 sec.",
                 "uncertain": false
             },
             "formulaModifierSpellIds": [],
@@ -6031,8 +6015,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game).",
-                            "uncertain": true
+                            "text": "Frostbolt and Blizzard damage increased by 25%. Glacial Spike conjures 2 additional Frost Splinters.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -6050,7 +6034,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game).",
+                            "text": "Casting Glacial Spike also casts a Pyroblast, dealing ≈881.3% of Spell Power Fire damage.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -6066,7 +6050,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game).",
+                            "text": "Casting Glacial Spike also casts a Pyroblast, dealing ≈881.3% of Spell Power Fire damage.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -6146,7 +6130,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game).",
+                            "text": "Casting Glacial Spike also casts a Pyroblast, dealing ≈881.3% of Spell Power Fire damage.",
                             "uncertain": true
                         },
                         "category": "Other",
@@ -6162,8 +6146,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game). Your Haste is increased by 2%.",
-                            "uncertain": true
+                            "text": "Meteor and Pyroblast now apply Ignite. Haste increased by 2%.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -6273,7 +6257,7 @@
                         "modifier_value": -60,
                         "modifier_unit": "seconds",
                         "description": {
-                            "text": "Reduces the cooldown of Invisibility by 60 sec.",
+                            "text": "Greater Invisibility's cooldown is reduced by 60 sec.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -6508,7 +6492,7 @@
                         "modifier_value": 1,
                         "modifier_unit": "charges",
                         "description": {
-                            "text": "Ice Block now has an additional charge and its cooldown is reduced by 30 sec.",
+                            "text": "Ice Cold gains an additional charge and its cooldown is reduced by 30 sec.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -6543,8 +6527,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game)",
-                            "uncertain": true
+                            "text": "Ice Barrier also casts a Blazing Barrier at 25% effectiveness.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -6664,7 +6648,7 @@
                             "spell_id": 1244110,
                             "name": "Glacial Bulwark",
                             "school": "Physical",
-                            "description": "Ice Block now has an additional charge and its cooldown is reduced by ${-$s2/1000} sec.",
+                            "description": "$?s414658[Ice Cold][Ice Block] gains an additional charge and its cooldown is reduced by ${-$s2/1000} sec.",
                             "variables": null,
                             "charges": null,
                             "max_stacks": null,
@@ -6702,7 +6686,7 @@
                             "is_passive": true,
                             "icon_name": "spell_frost_chillingarmor.jpg",
                             "created_at": "2026-08-03T12:22:40.000000Z",
-                            "updated_at": "2026-09-08T00:07:14.000000Z",
+                            "updated_at": "2026-11-03T21:20:47.000000Z",
                             "effects": [
                                 {
                                     "id": 10445,
@@ -6777,7 +6761,7 @@
                         "modifier_value": -60,
                         "modifier_unit": "seconds",
                         "description": {
-                            "text": "The cooldown of Ice Block is reduced by 30 sec.",
+                            "text": "Ice Cold's cooldown is reduced by 30 sec.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -6793,7 +6777,7 @@
                         "modifier_value": 1,
                         "modifier_unit": "charges",
                         "description": {
-                            "text": "Ice Block now has an additional charge and its cooldown is reduced by 30 sec.",
+                            "text": "Ice Cold gains an additional charge and its cooldown is reduced by 30 sec.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -6809,7 +6793,7 @@
                         "modifier_value": -30,
                         "modifier_unit": "seconds",
                         "description": {
-                            "text": "Ice Block now has an additional charge and its cooldown is reduced by 30 sec.",
+                            "text": "Ice Cold gains an additional charge and its cooldown is reduced by 30 sec.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -6825,7 +6809,7 @@
                         "modifier_value": -30,
                         "modifier_unit": "seconds",
                         "description": {
-                            "text": "The cooldown of Ice Block and Ice Cold are reduced by 30 sec.",
+                            "text": "Ice Cold's cooldown is reduced by 30 sec.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -6838,6 +6822,179 @@
                 ],
                 "baseline": [],
                 "potential": [
+                    {
+                        "spellId": 5381,
+                        "relationship_type": "replaces",
+                        "modifier_value": null,
+                        "modifier_unit": null,
+                        "description": {
+                            "text": "Your blood runs cold, reducing all damage you take by 70% for 6. While Ice Cold is active, you heal for 40% of your maximum health over the duration. Does not incur the Global Cooldown. Causes Hypothermia, preventing you from recasting Ice Cold for 30.",
+                            "uncertain": false
+                        },
+                        "category": "Defensive",
+                        "cooldown": {
+                            "seconds": 120,
+                            "base_seconds": 240,
+                            "applied": [
+                                {
+                                    "spell": {
+                                        "id": 5592,
+                                        "patch_id": 1,
+                                        "spell_id": 382424,
+                                        "name": "Winter's Protection",
+                                        "school": "Physical",
+                                        "description": "$?s414659[Ice Cold][Ice Block]'s cooldown is reduced by ${$s1/-1000} sec.",
+                                        "variables": null,
+                                        "charges": null,
+                                        "max_stacks": null,
+                                        "proc_chance": null,
+                                        "proc_cooldown_seconds": null,
+                                        "cooldown_seconds": null,
+                                        "cooldown_scaling_note": null,
+                                        "duration_seconds": null,
+                                        "pvp_duration_seconds": null,
+                                        "pairs_with_category": null,
+                                        "requires_stealth": false,
+                                        "requires_target_out_of_combat": false,
+                                        "not_in_spellbook": true,
+                                        "mechanic": null,
+                                        "usable_while_cc": null,
+                                        "bypasses_active_defense": false,
+                                        "silence_immune_by_school": false,
+                                        "cc_immunity_note": null,
+                                        "grants_cc_immunity_override": null,
+                                        "cc_immunity_gating_spell_id": null,
+                                        "grants_cc_immunity": [],
+                                        "grants_school_immunity": null,
+                                        "school_immunity_override": null,
+                                        "spell_type": "None",
+                                        "range_yards": null,
+                                        "dr_category": null,
+                                        "conditional_dr_gating_spell_id": null,
+                                        "conditional_dr_category": null,
+                                        "category": "Other",
+                                        "cast_type": "instant",
+                                        "chain_target": null,
+                                        "is_peel": false,
+                                        "is_interrupt": false,
+                                        "is_mobility": false,
+                                        "is_passive": true,
+                                        "icon_name": "spell_ice_rune.jpg",
+                                        "created_at": "2026-08-03T12:22:39.000000Z",
+                                        "updated_at": "2026-11-03T21:20:46.000000Z"
+                                    },
+                                    "relationship_type": "modifies_cooldown",
+                                    "modifier_value": -60,
+                                    "modifier_unit": "seconds",
+                                    "selection_spell_id": 5592
+                                },
+                                {
+                                    "spell": {
+                                        "id": 5688,
+                                        "patch_id": 1,
+                                        "spell_id": 1244110,
+                                        "name": "Glacial Bulwark",
+                                        "school": "Physical",
+                                        "description": "$?s414658[Ice Cold][Ice Block] gains an additional charge and its cooldown is reduced by ${-$s2/1000} sec.",
+                                        "variables": null,
+                                        "charges": null,
+                                        "max_stacks": null,
+                                        "proc_chance": null,
+                                        "proc_cooldown_seconds": null,
+                                        "cooldown_seconds": null,
+                                        "cooldown_scaling_note": null,
+                                        "duration_seconds": null,
+                                        "pvp_duration_seconds": null,
+                                        "pairs_with_category": null,
+                                        "requires_stealth": false,
+                                        "requires_target_out_of_combat": false,
+                                        "not_in_spellbook": true,
+                                        "mechanic": null,
+                                        "usable_while_cc": null,
+                                        "bypasses_active_defense": false,
+                                        "silence_immune_by_school": false,
+                                        "cc_immunity_note": null,
+                                        "grants_cc_immunity_override": null,
+                                        "cc_immunity_gating_spell_id": null,
+                                        "grants_cc_immunity": [],
+                                        "grants_school_immunity": null,
+                                        "school_immunity_override": null,
+                                        "spell_type": "None",
+                                        "range_yards": null,
+                                        "dr_category": null,
+                                        "conditional_dr_gating_spell_id": null,
+                                        "conditional_dr_category": null,
+                                        "category": "Other",
+                                        "cast_type": "instant",
+                                        "chain_target": null,
+                                        "is_peel": false,
+                                        "is_interrupt": false,
+                                        "is_mobility": false,
+                                        "is_passive": true,
+                                        "icon_name": "spell_frost_chillingarmor.jpg",
+                                        "created_at": "2026-08-03T12:22:40.000000Z",
+                                        "updated_at": "2026-11-03T21:20:47.000000Z"
+                                    },
+                                    "relationship_type": "modifies_cooldown",
+                                    "modifier_value": -30,
+                                    "modifier_unit": "seconds",
+                                    "selection_spell_id": 5688
+                                },
+                                {
+                                    "spell": {
+                                        "id": 5615,
+                                        "patch_id": 1,
+                                        "spell_id": 1265517,
+                                        "name": "Permafrost Bauble",
+                                        "school": "Physical",
+                                        "description": "$?s414659[Ice Cold][Ice Block]'s cooldown is reduced by ${$s1/-1000} sec.",
+                                        "variables": null,
+                                        "charges": null,
+                                        "max_stacks": null,
+                                        "proc_chance": null,
+                                        "proc_cooldown_seconds": null,
+                                        "cooldown_seconds": null,
+                                        "cooldown_scaling_note": null,
+                                        "duration_seconds": null,
+                                        "pvp_duration_seconds": null,
+                                        "pairs_with_category": null,
+                                        "requires_stealth": false,
+                                        "requires_target_out_of_combat": false,
+                                        "not_in_spellbook": true,
+                                        "mechanic": null,
+                                        "usable_while_cc": null,
+                                        "bypasses_active_defense": false,
+                                        "silence_immune_by_school": false,
+                                        "cc_immunity_note": null,
+                                        "grants_cc_immunity_override": null,
+                                        "cc_immunity_gating_spell_id": null,
+                                        "grants_cc_immunity": [],
+                                        "grants_school_immunity": null,
+                                        "school_immunity_override": null,
+                                        "spell_type": "None",
+                                        "range_yards": null,
+                                        "dr_category": null,
+                                        "conditional_dr_gating_spell_id": null,
+                                        "conditional_dr_category": null,
+                                        "category": "Other",
+                                        "cast_type": "instant",
+                                        "chain_target": null,
+                                        "is_peel": false,
+                                        "is_interrupt": false,
+                                        "is_mobility": false,
+                                        "is_passive": true,
+                                        "icon_name": "inv_10_dungeonjewelry_primalist_necklace_2_frost.jpg",
+                                        "created_at": "2026-08-03T12:22:39.000000Z",
+                                        "updated_at": "2026-11-03T21:20:46.000000Z"
+                                    },
+                                    "relationship_type": "modifies_cooldown",
+                                    "modifier_value": -30,
+                                    "modifier_unit": "seconds",
+                                    "selection_spell_id": 5615
+                                }
+                            ]
+                        }
+                    },
                     {
                         "spellId": 5601,
                         "relationship_type": "mentions",
@@ -6916,7 +7073,7 @@
                             "spell_id": 382424,
                             "name": "Winter's Protection",
                             "school": "Physical",
-                            "description": "The cooldown of Ice Block is reduced by ${$s1/-1000} sec.",
+                            "description": "$?s414659[Ice Cold][Ice Block]'s cooldown is reduced by ${$s1/-1000} sec.",
                             "variables": null,
                             "charges": null,
                             "max_stacks": null,
@@ -6954,7 +7111,7 @@
                             "is_passive": true,
                             "icon_name": "spell_ice_rune.jpg",
                             "created_at": "2026-08-03T12:22:39.000000Z",
-                            "updated_at": "2026-09-08T00:07:06.000000Z",
+                            "updated_at": "2026-11-03T21:20:46.000000Z",
                             "effects": [
                                 {
                                     "id": 10272,
@@ -6968,7 +7125,7 @@
                                     "chain_targets": null,
                                     "affected_schools": null,
                                     "sp_coefficient": null,
-                                    "pvp_coefficient": null,
+                                    "pvp_coefficient": 0.5,
                                     "ap_coefficient": null,
                                     "rank_op": "set",
                                     "rank_values": [
@@ -6976,7 +7133,7 @@
                                         -60000
                                     ],
                                     "created_at": "2026-08-03T12:22:39.000000Z",
-                                    "updated_at": "2026-09-07T23:52:51.000000Z"
+                                    "updated_at": "2026-11-03T21:20:46.000000Z"
                                 }
                             ]
                         },
@@ -6992,7 +7149,7 @@
                             "spell_id": 1244110,
                             "name": "Glacial Bulwark",
                             "school": "Physical",
-                            "description": "Ice Block now has an additional charge and its cooldown is reduced by ${-$s2/1000} sec.",
+                            "description": "$?s414658[Ice Cold][Ice Block] gains an additional charge and its cooldown is reduced by ${-$s2/1000} sec.",
                             "variables": null,
                             "charges": null,
                             "max_stacks": null,
@@ -7030,7 +7187,7 @@
                             "is_passive": true,
                             "icon_name": "spell_frost_chillingarmor.jpg",
                             "created_at": "2026-08-03T12:22:40.000000Z",
-                            "updated_at": "2026-09-08T00:07:14.000000Z",
+                            "updated_at": "2026-11-03T21:20:47.000000Z",
                             "effects": [
                                 {
                                     "id": 10445,
@@ -7084,7 +7241,7 @@
                             "spell_id": 1265517,
                             "name": "Permafrost Bauble",
                             "school": "Physical",
-                            "description": "The cooldown of Ice Block and Ice Cold are reduced by ${-$s1/1000} sec.",
+                            "description": "$?s414659[Ice Cold][Ice Block]'s cooldown is reduced by ${$s1/-1000} sec.",
                             "variables": null,
                             "charges": null,
                             "max_stacks": null,
@@ -7122,7 +7279,7 @@
                             "is_passive": true,
                             "icon_name": "inv_10_dungeonjewelry_primalist_necklace_2_frost.jpg",
                             "created_at": "2026-08-03T12:22:39.000000Z",
-                            "updated_at": "2026-09-08T00:07:16.000000Z",
+                            "updated_at": "2026-11-03T21:20:46.000000Z",
                             "effects": [
                                 {
                                     "id": 10307,
@@ -7163,7 +7320,7 @@
                             "spell_id": 1244110,
                             "name": "Glacial Bulwark",
                             "school": "Physical",
-                            "description": "Ice Block now has an additional charge and its cooldown is reduced by ${-$s2/1000} sec.",
+                            "description": "$?s414658[Ice Cold][Ice Block] gains an additional charge and its cooldown is reduced by ${-$s2/1000} sec.",
                             "variables": null,
                             "charges": null,
                             "max_stacks": null,
@@ -7201,7 +7358,7 @@
                             "is_passive": true,
                             "icon_name": "spell_frost_chillingarmor.jpg",
                             "created_at": "2026-08-03T12:22:40.000000Z",
-                            "updated_at": "2026-09-08T00:07:14.000000Z",
+                            "updated_at": "2026-11-03T21:20:47.000000Z",
                             "effects": [
                                 {
                                     "id": 10445,
@@ -7264,7 +7421,7 @@
             "spellId": 5381,
             "category": "Defensive",
             "description": {
-                "text": "Your blood runs cold, reducing all damage you take by 70% for 6. While Ice Cold is active, you heal for 40% of your maximum health over the duration. Causes Hypothermia, preventing you from recasting Ice Cold for 30.",
+                "text": "Your blood runs cold, reducing all damage you take by 70% for 6. While Ice Cold is active, you heal for 40% of your maximum health over the duration. Does not incur the Global Cooldown. Causes Hypothermia, preventing you from recasting Ice Cold for 30.",
                 "uncertain": false
             },
             "formulaModifierSpellIds": [],
@@ -7276,7 +7433,7 @@
                         "modifier_value": -60,
                         "modifier_unit": "seconds",
                         "description": {
-                            "text": "The cooldown of Ice Block is reduced by 30 sec.",
+                            "text": "Ice Cold's cooldown is reduced by 30 sec.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -7292,7 +7449,7 @@
                         "modifier_value": 1,
                         "modifier_unit": "charges",
                         "description": {
-                            "text": "Ice Block now has an additional charge and its cooldown is reduced by 30 sec.",
+                            "text": "Ice Cold gains an additional charge and its cooldown is reduced by 30 sec.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -7308,7 +7465,7 @@
                         "modifier_value": -30,
                         "modifier_unit": "seconds",
                         "description": {
-                            "text": "Ice Block now has an additional charge and its cooldown is reduced by 30 sec.",
+                            "text": "Ice Cold gains an additional charge and its cooldown is reduced by 30 sec.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -7324,7 +7481,7 @@
                         "modifier_value": -30,
                         "modifier_unit": "seconds",
                         "description": {
-                            "text": "The cooldown of Ice Block and Ice Cold are reduced by 30 sec.",
+                            "text": "Ice Cold's cooldown is reduced by 30 sec.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -7399,7 +7556,7 @@
                             "spell_id": 382424,
                             "name": "Winter's Protection",
                             "school": "Physical",
-                            "description": "The cooldown of Ice Block is reduced by ${$s1/-1000} sec.",
+                            "description": "$?s414659[Ice Cold][Ice Block]'s cooldown is reduced by ${$s1/-1000} sec.",
                             "variables": null,
                             "charges": null,
                             "max_stacks": null,
@@ -7437,7 +7594,7 @@
                             "is_passive": true,
                             "icon_name": "spell_ice_rune.jpg",
                             "created_at": "2026-08-03T12:22:39.000000Z",
-                            "updated_at": "2026-09-08T00:07:06.000000Z",
+                            "updated_at": "2026-11-03T21:20:46.000000Z",
                             "effects": [
                                 {
                                     "id": 10272,
@@ -7451,7 +7608,7 @@
                                     "chain_targets": null,
                                     "affected_schools": null,
                                     "sp_coefficient": null,
-                                    "pvp_coefficient": null,
+                                    "pvp_coefficient": 0.5,
                                     "ap_coefficient": null,
                                     "rank_op": "set",
                                     "rank_values": [
@@ -7459,7 +7616,7 @@
                                         -60000
                                     ],
                                     "created_at": "2026-08-03T12:22:39.000000Z",
-                                    "updated_at": "2026-09-07T23:52:51.000000Z"
+                                    "updated_at": "2026-11-03T21:20:46.000000Z"
                                 }
                             ]
                         },
@@ -7475,7 +7632,7 @@
                             "spell_id": 1244110,
                             "name": "Glacial Bulwark",
                             "school": "Physical",
-                            "description": "Ice Block now has an additional charge and its cooldown is reduced by ${-$s2/1000} sec.",
+                            "description": "$?s414658[Ice Cold][Ice Block] gains an additional charge and its cooldown is reduced by ${-$s2/1000} sec.",
                             "variables": null,
                             "charges": null,
                             "max_stacks": null,
@@ -7513,7 +7670,7 @@
                             "is_passive": true,
                             "icon_name": "spell_frost_chillingarmor.jpg",
                             "created_at": "2026-08-03T12:22:40.000000Z",
-                            "updated_at": "2026-09-08T00:07:14.000000Z",
+                            "updated_at": "2026-11-03T21:20:47.000000Z",
                             "effects": [
                                 {
                                     "id": 10445,
@@ -7567,7 +7724,7 @@
                             "spell_id": 1265517,
                             "name": "Permafrost Bauble",
                             "school": "Physical",
-                            "description": "The cooldown of Ice Block and Ice Cold are reduced by ${-$s1/1000} sec.",
+                            "description": "$?s414659[Ice Cold][Ice Block]'s cooldown is reduced by ${$s1/-1000} sec.",
                             "variables": null,
                             "charges": null,
                             "max_stacks": null,
@@ -7605,7 +7762,7 @@
                             "is_passive": true,
                             "icon_name": "inv_10_dungeonjewelry_primalist_necklace_2_frost.jpg",
                             "created_at": "2026-08-03T12:22:39.000000Z",
-                            "updated_at": "2026-09-08T00:07:16.000000Z",
+                            "updated_at": "2026-11-03T21:20:46.000000Z",
                             "effects": [
                                 {
                                     "id": 10307,
@@ -7646,7 +7803,7 @@
                             "spell_id": 1244110,
                             "name": "Glacial Bulwark",
                             "school": "Physical",
-                            "description": "Ice Block now has an additional charge and its cooldown is reduced by ${-$s2/1000} sec.",
+                            "description": "$?s414658[Ice Cold][Ice Block] gains an additional charge and its cooldown is reduced by ${-$s2/1000} sec.",
                             "variables": null,
                             "charges": null,
                             "max_stacks": null,
@@ -7684,7 +7841,7 @@
                             "is_passive": true,
                             "icon_name": "spell_frost_chillingarmor.jpg",
                             "created_at": "2026-08-03T12:22:40.000000Z",
-                            "updated_at": "2026-09-08T00:07:14.000000Z",
+                            "updated_at": "2026-11-03T21:20:47.000000Z",
                             "effects": [
                                 {
                                     "id": 10445,
@@ -7734,7 +7891,7 @@
                 ]
             },
             "isSelected": true,
-            "source": "baseline",
+            "source": "talent",
             "isPriority": false,
             "offensiveDefensive": {
                 "offensive": false,
@@ -7903,8 +8060,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game).",
-                            "uncertain": true
+                            "text": "Ice Lance conjures a Frost Splinter for every 2 Freezing stacks Shattered from its primary target.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -7919,8 +8076,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game)",
-                            "uncertain": true
+                            "text": "Ice Lance Shatters 1 additional stack of Freezing. Shatter damage increased by 20%.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -7938,7 +8095,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Frostfire Bolt has an additional 5% chance to grant Brain Freeze. The damage of your Frost spells and Fire spells are increased by 4%.",
+                            "text": "Frostfire Bolt grants Brain Freeze 5% more often. The damage of your Frost spells and Fire spells are increased by 4%.",
                             "uncertain": false
                         },
                         "category": "Offensive",
@@ -8195,8 +8352,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game)",
-                            "uncertain": true
+                            "text": "The cooldown of Fire spells is reduced by 30%.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -8211,7 +8368,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Frostfire Bolt has an additional 5% chance to grant Brain Freeze. The damage of your Frost spells and Fire spells are increased by 4%.",
+                            "text": "Frostfire Bolt grants Brain Freeze 5% more often. The damage of your Frost spells and Fire spells are increased by 4%.",
                             "uncertain": false
                         },
                         "category": "Offensive",
@@ -8415,7 +8572,7 @@
             "spellId": 5580,
             "category": "Other",
             "description": {
-                "text": "Frost Nova now has 2 charges.",
+                "text": "Frost Nova gains an additional charge.",
                 "uncertain": false
             },
             "formulaModifierSpellIds": [],
@@ -8525,7 +8682,7 @@
             "spellId": 5763,
             "category": "Other",
             "description": {
-                "text": "When your Frost Nova or Water Elemental's Freeze is dispelled or removed, become immune to snares for 4 sec. \r\n\r\nThis effect can only occur once every 10 sec.",
+                "text": "When your Frost Nova or Water Elemental's Freeze is dispelled or removed, you become immune to snares for 4 sec. \r\n\r\nThis effect can only occur once every 10 sec.",
                 "uncertain": false
             },
             "formulaModifierSpellIds": [],
@@ -8555,8 +8712,8 @@
             "spellId": 5712,
             "category": "Other",
             "description": {
-                "text": "(varies by condition — check in-game)",
-                "uncertain": true
+                "text": "Ice Barrier also casts a Blazing Barrier at 25% effectiveness.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -8795,7 +8952,7 @@
             "spellId": 5382,
             "category": "Other",
             "description": {
-                "text": "The cooldown of Mass Invisibility is reduced by 3 min and it can affect allies in combat.",
+                "text": "Mass Invisibility's cooldown is reduced by 3 min, and it can affect allies in combat.",
                 "uncertain": false
             },
             "formulaModifierSpellIds": [],
@@ -9005,8 +9162,8 @@
             "spellId": 5741,
             "category": "Other",
             "description": {
-                "text": "Direct damage from (varies by condition — check in-game) Splinters have a (varies by condition — check in-game)% chance to (varies by condition — check in-game).(varies by condition — check in-game)",
-                "uncertain": true
+                "text": "Direct damage from Frost Splinters has a 15% chance to apply 1 stack of Freezing.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -9096,7 +9253,7 @@
                         "modifier_value": -60,
                         "modifier_unit": "seconds",
                         "description": {
-                            "text": "Reduces the cooldown of Invisibility by 60 sec.",
+                            "text": "Greater Invisibility's cooldown is reduced by 60 sec.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -9160,7 +9317,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "The cooldown of Mass Invisibility is reduced by 3 min and it can affect allies in combat.",
+                            "text": "Mass Invisibility's cooldown is reduced by 3 min, and it can affect allies in combat.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -9269,7 +9426,7 @@
             "spellId": 5735,
             "category": "Other",
             "description": {
-                "text": "While in combat, Blink summons a Mirror Image at your previous location.",
+                "text": "While in combat, Shimmer summons a Mirror Image at your previous location.",
                 "uncertain": false
             },
             "formulaModifierSpellIds": [],
@@ -9343,7 +9500,7 @@
                         "modifier_value": -180,
                         "modifier_unit": "seconds",
                         "description": {
-                            "text": "The cooldown of Mass Invisibility is reduced by 3 min and it can affect allies in combat.",
+                            "text": "Mass Invisibility's cooldown is reduced by 3 min, and it can affect allies in combat.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -9376,8 +9533,8 @@
             "spellId": 5596,
             "category": "Crowd Control",
             "description": {
-                "text": "Transforms all enemies within (varies) yards into sheep, wandering around incapacitated for 15. While affected, the victims cannot take actions but will regenerate health very quickly. Damage will cancel the effect. Only works on Beasts, Humanoids and Critters.",
-                "uncertain": true
+                "text": "Transforms all enemies within 10 yds into sheep, wandering around incapacitated for 15. While affected, the victims cannot take actions but will regenerate health very quickly. Damage will cancel the effect. Only works on Beasts, Humanoids and Critters.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -9423,7 +9580,7 @@
             "spellId": 5581,
             "category": "Other",
             "description": {
-                "text": "Reduces the cooldown of Invisibility by 60 sec.",
+                "text": "Greater Invisibility's cooldown is reduced by 60 sec.",
                 "uncertain": false
             },
             "formulaModifierSpellIds": [],
@@ -9453,7 +9610,7 @@
             "spellId": 5587,
             "category": "Other",
             "description": {
-                "text": "Reduces the cooldown of Temporal Realignment by 5 sec.",
+                "text": "Alter Time's cooldown is reduced by 5 sec.",
                 "uncertain": false
             },
             "formulaModifierSpellIds": [],
@@ -9573,7 +9730,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "While in combat, Blink summons a Mirror Image at your previous location.",
+                            "text": "While in combat, Shimmer summons a Mirror Image at your previous location.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -9589,7 +9746,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Your Mirror Image summons 1 extra copy of you.",
+                            "text": "Casting Mirror Image summons 1 extra copy of you.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -9622,8 +9779,8 @@
             "spellId": 5726,
             "category": "Other",
             "description": {
-                "text": "(varies by condition — check in-game).",
-                "uncertain": true
+                "text": "Your Frostfire spells apply Ignite, dealing an additional 30% of their damage over 9.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -9712,7 +9869,7 @@
             "spellId": 5615,
             "category": "Other",
             "description": {
-                "text": "The cooldown of Ice Block and Ice Cold are reduced by 30 sec.",
+                "text": "Ice Cold's cooldown is reduced by 30 sec.",
                 "uncertain": false
             },
             "formulaModifierSpellIds": [],
@@ -9772,7 +9929,7 @@
             "spellId": 5736,
             "category": "Other",
             "description": {
-                "text": "Your Mirror Image summons 1 extra copy of you.",
+                "text": "Casting Mirror Image summons 1 extra copy of you.",
                 "uncertain": false
             },
             "formulaModifierSpellIds": [],
@@ -9832,8 +9989,8 @@
             "spellId": 5742,
             "category": "Other",
             "description": {
-                "text": "(varies by condition — check in-game)",
-                "uncertain": true
+                "text": "Ice Lance Shatters 1 additional stack of Freezing. Shatter damage increased by 20%.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -10035,8 +10192,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game) damage increased by (varies by condition — check in-game)%. Your chance to gain (varies by condition — check in-game) is increased by (varies by condition — check in-game)%.",
-                            "uncertain": true
+                            "text": "Ray of Frost damage increased by 20%. Your chance to gain Brain Freeze from Frostbolt is increased by 5%.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -10099,8 +10256,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game). (varies by condition — check in-game).",
-                            "uncertain": true
+                            "text": "Each time Ray of Frost damages one or more enemies, it conjures 1 Frost Splinter. For 10 after casting Ray of Frost, your chance to conjure an additional Frost Splinter is increased to 100%.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -10147,8 +10304,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game). (varies by condition — check in-game).",
-                            "uncertain": true
+                            "text": "Each time Ray of Frost damages one or more enemies, it conjures 1 Frost Splinter. For 10 after casting Ray of Frost, your chance to conjure an additional Frost Splinter is increased to 100%.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -10215,7 +10372,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Frostfire Bolt has an additional 5% chance to grant Brain Freeze. The damage of your Frost spells and Fire spells are increased by 4%.",
+                            "text": "Frostfire Bolt grants Brain Freeze 5% more often. The damage of your Frost spells and Fire spells are increased by 4%.",
                             "uncertain": false
                         },
                         "category": "Offensive",
@@ -10332,8 +10489,8 @@
             "spellId": 5737,
             "category": "Other",
             "description": {
-                "text": "Your (varies by condition — check in-game) Barrier can absorb up to 25% more damage based on your missing health. Max effectiveness when under 25% health.",
-                "uncertain": true
+                "text": "Your Ice Barrier can absorb up to 25% more damage based on your missing health. Max effectiveness when under 25% health.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -10769,8 +10926,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game)",
-                            "uncertain": true
+                            "text": "The cooldown of Fire spells is reduced by 30%.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -10925,8 +11082,8 @@
             "spellId": 5732,
             "category": "Other",
             "description": {
-                "text": "Gaining (varies by condition — check in-game) conjures 2 (varies by condition — check in-game) Splinters.",
-                "uncertain": true
+                "text": "Gaining Brain Freeze conjures 2 Frost Splinters.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -10967,7 +11124,7 @@
                         "modifier_value": -3,
                         "modifier_unit": "seconds",
                         "description": {
-                            "text": "The cooldowns of Blink and Shimmer are reduced by 3 sec.",
+                            "text": "Shimmer's cooldown is reduced by 3 sec.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -11077,12 +11234,12 @@
                         }
                     },
                     {
-                        "spellId": 5769,
+                        "spellId": 5735,
                         "relationship_type": "mentions",
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Blink and Shimmer apply Slow at 100% effectiveness to all enemies you Blink through. For each enemy you Blink through, the cooldown of Blink and Shimmer are reduced by 1 sec, up to 5 sec.",
+                            "text": "While in combat, Shimmer summons a Mirror Image at your previous location.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -11106,7 +11263,7 @@
                             "spell_id": 382268,
                             "name": "Flow of Time",
                             "school": "Physical",
-                            "description": "The cooldowns of Blink and Shimmer are reduced by ${$s1/-1000} sec.",
+                            "description": "$?s212653[Shimmer's][Blink's] cooldown is reduced by ${$s1/-1000} sec.",
                             "variables": null,
                             "charges": null,
                             "max_stacks": null,
@@ -11144,7 +11301,7 @@
                             "is_passive": true,
                             "icon_name": "spell_arcane_blink.jpg",
                             "created_at": "2026-08-03T12:22:39.000000Z",
-                            "updated_at": "2026-09-08T00:07:06.000000Z",
+                            "updated_at": "2026-11-03T21:20:46.000000Z",
                             "effects": [
                                 {
                                     "id": 10268,
@@ -11331,8 +11488,8 @@
             "spellId": 5740,
             "category": "Other",
             "description": {
-                "text": "(varies by condition — check in-game).",
-                "uncertain": true
+                "text": "Frostbolt and Blizzard damage increased by 25%. Glacial Spike conjures 2 additional Frost Splinters.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -11391,7 +11548,7 @@
             "spellId": 5767,
             "category": "Other",
             "description": {
-                "text": "Summon a strong Blizzard that surrounds you for 6 sec that slows enemies by 70% and deals 83 Frost damage every 1 sec. \r\n\r\nEnemies that are caught in Snowdrift for 2 sec consecutively become Frozen in ice, stunned for 4 sec.",
+                "text": "Swirling ice surrounds you for 6 sec, slowing enemies by 70% and dealing 85 Frost damage every 1 sec.\r\n\r\nEnemies caught in Snowdrift for 2 sec consecutively become Frozen in ice, stunned for 4 sec.",
                 "uncertain": false
             },
             "formulaModifierSpellIds": [],
@@ -11451,8 +11608,8 @@
             "spellId": 5739,
             "category": "Other",
             "description": {
-                "text": "Direct damage from (varies by condition — check in-game) Splinters reduces the cooldown of (varies by condition — check in-game) Orb by (varies by condition — check in-game) sec.",
-                "uncertain": true
+                "text": "Direct damage from Frost Splinters reduces the cooldown of Frozen Orb by 0.3 sec.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -11528,8 +11685,8 @@
             "spellId": 5730,
             "category": "Other",
             "description": {
-                "text": "Enemies damaged by your (varies by condition — check in-game) conjure (varies by condition — check in-game) Splinters, up to (varies by condition — check in-game). (varies by condition — check in-game) damage is increased by 25%.",
-                "uncertain": true
+                "text": "Enemies damaged by your Frozen Orb conjure 1 Frost Splinter, up to 4. Frozen Orb damage is increased by 25%.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -11605,7 +11762,7 @@
             "spellId": 5728,
             "category": "Other",
             "description": {
-                "text": "(varies by condition — check in-game) conjures (varies by condition — check in-game) Splinter. (varies by condition — check in-game)",
+                "text": "Casting Frostbolt or Flurry conjures a Frost Splinter. Frost Splinter: Conjure raw Frost magic into a sharp projectile that deals ≈45.3% of Spell Power Frost damage. ",
                 "uncertain": true
             },
             "formulaModifierSpellIds": [],
@@ -11635,8 +11792,8 @@
             "spellId": 5729,
             "category": "Other",
             "description": {
-                "text": "(varies by condition — check in-game). (varies by condition — check in-game).",
-                "uncertain": true
+                "text": "Each time Ray of Frost damages one or more enemies, it conjures 1 Frost Splinter. For 10 after casting Ray of Frost, your chance to conjure an additional Frost Splinter is increased to 100%.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -11947,7 +12104,7 @@
             "spellId": 5610,
             "category": "Defensive",
             "description": {
-                "text": "Upon dropping below 25% health, your past self corrects your timeline, casting Alter Time and instantly returning 20% of your maximum health and healing you for an additional 30% over 6.",
+                "text": "When your health is brought below 25%, your past self corrects your timeline if Alter Time is not on cooldown, instantly restoring 20% of your maximum health and healing you for an additional 30% over 6. This effect places Alter Time on cooldown as if it had been cast.",
                 "uncertain": false
             },
             "formulaModifierSpellIds": [],
@@ -11959,7 +12116,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Reduces the cooldown of Temporal Realignment by 5 sec.",
+                            "text": "Alter Time's cooldown is reduced by 5 sec.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -12161,7 +12318,7 @@
             "spellId": 5593,
             "category": "Offensive",
             "description": {
-                "text": "Increases Haste by 2%.",
+                "text": "Haste increased by 2%.",
                 "uncertain": false
             },
             "formulaModifierSpellIds": [],
@@ -12191,7 +12348,7 @@
             "spellId": 5594,
             "category": "Offensive",
             "description": {
-                "text": "Increases critical strike chance by 2%.",
+                "text": "Critical strike chance by 2%.",
                 "uncertain": false
             },
             "formulaModifierSpellIds": [],
@@ -12281,7 +12438,7 @@
             "spellId": 5592,
             "category": "Other",
             "description": {
-                "text": "The cooldown of Ice Block is reduced by 30 sec.",
+                "text": "Ice Cold's cooldown is reduced by 30 sec.",
                 "uncertain": false
             },
             "formulaModifierSpellIds": [],

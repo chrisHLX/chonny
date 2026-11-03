@@ -1,6 +1,6 @@
 {
-    "generatedAt": "2026-10-18T02:36:45+00:00",
-    "spellCacheVersion": 29,
+    "generatedAt": "2026-11-03T23:04:33+00:00",
+    "spellCacheVersion": 31,
     "codeFingerprint": "dev",
     "entries": [
         {
@@ -1050,6 +1050,44 @@
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:22:10.000000Z",
                                     "updated_at": "2026-08-03T12:22:10.000000Z"
+                                },
+                                {
+                                    "id": 25102,
+                                    "spell_id": 2182,
+                                    "effect_index": 29,
+                                    "type": "Modify Attacker Melee Crit Chance",
+                                    "base_value": -6,
+                                    "scaled_value": -6,
+                                    "misc_value": null,
+                                    "radius_yards": null,
+                                    "chain_targets": null,
+                                    "affected_schools": null,
+                                    "sp_coefficient": null,
+                                    "pvp_coefficient": null,
+                                    "ap_coefficient": null,
+                                    "rank_op": null,
+                                    "rank_values": null,
+                                    "created_at": "2026-11-03T21:20:37.000000Z",
+                                    "updated_at": "2026-11-03T21:20:37.000000Z"
+                                },
+                                {
+                                    "id": 25103,
+                                    "spell_id": 2182,
+                                    "effect_index": 30,
+                                    "type": "Modify Expertise%",
+                                    "base_value": 3,
+                                    "scaled_value": 3,
+                                    "misc_value": null,
+                                    "radius_yards": null,
+                                    "chain_targets": null,
+                                    "affected_schools": null,
+                                    "sp_coefficient": null,
+                                    "pvp_coefficient": null,
+                                    "ap_coefficient": null,
+                                    "rank_op": null,
+                                    "rank_values": null,
+                                    "created_at": "2026-11-03T21:20:37.000000Z",
+                                    "updated_at": "2026-11-03T21:20:37.000000Z"
                                 }
                             ]
                         },
@@ -1078,8 +1116,8 @@
             "spellId": 3045,
             "category": "Other",
             "description": {
-                "text": "(varies by condition — check in-game) (varies by condition — check in-game)",
-                "uncertain": true
+                "text": "Raze damage increased by 10%. Lunar Beam's damage dealt to its primary target increased by 30%.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -1250,8 +1288,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "During Berserk, (varies by condition — check in-game), and Brutal Slash have a 20% chance to make your next Maul become Ravage.",
-                            "uncertain": true
+                            "text": "During Berserk, Mangle, Thrash, and Brutal Slash have a 20% chance to make your next Maul become Ravage.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -1624,8 +1662,8 @@
             "spellId": 3021,
             "category": "Other",
             "description": {
-                "text": "During Berserk, (varies by condition — check in-game), and Brutal Slash have a 20% chance to make your next Maul become Ravage.",
-                "uncertain": true
+                "text": "During Berserk, Mangle, Thrash, and Brutal Slash have a 20% chance to make your next Maul become Ravage.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -1950,8 +1988,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Your Dreadful Wounds increase the damage afflicted enemies take from your Bleed damage over time effects by (varies by condition — check in-game)%.",
-                            "uncertain": true
+                            "text": "Your Dreadful Wounds increase the damage afflicted enemies take from your Bleed damage over time effects by 15%.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -2337,8 +2375,8 @@
             "spellId": 3028,
             "category": "Other",
             "description": {
-                "text": "Your Dreadful Wounds increase the damage afflicted enemies take from your Bleed damage over time effects by (varies by condition — check in-game)%.",
-                "uncertain": true
+                "text": "Your Dreadful Wounds increase the damage afflicted enemies take from your Bleed damage over time effects by 15%.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -2851,8 +2889,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Ironfur and Frenzied Regeneration persist in Cat Form.(varies by condition — check in-game) For 6 after entering Bear Form, you heal for 10% of damage taken over 8.",
-                            "uncertain": true
+                            "text": "Ironfur and Frenzied Regeneration persist in Cat Form. For 6 after entering Bear Form, you heal for 10% of damage taken over 8.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -2867,8 +2905,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Ironfur and Frenzied Regeneration persist in Cat Form.(varies by condition — check in-game) For 6 after entering Bear Form, you heal for 10% of damage taken over 8.",
-                            "uncertain": true
+                            "text": "Ironfur and Frenzied Regeneration persist in Cat Form. For 6 after entering Bear Form, you heal for 10% of damage taken over 8.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -2883,8 +2921,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Ironfur and Frenzied Regeneration persist in Cat Form.(varies by condition — check in-game) For 6 after entering Bear Form, you heal for 10% of damage taken over 8.",
-                            "uncertain": true
+                            "text": "Ironfur and Frenzied Regeneration persist in Cat Form. For 6 after entering Bear Form, you heal for 10% of damage taken over 8.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -2931,8 +2969,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Ironfur and Frenzied Regeneration persist in Cat Form.(varies by condition — check in-game) For 6 after entering Bear Form, you heal for 10% of damage taken over 8.",
-                            "uncertain": true
+                            "text": "Ironfur and Frenzied Regeneration persist in Cat Form. For 6 after entering Bear Form, you heal for 10% of damage taken over 8.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -3526,6 +3564,44 @@
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:22:10.000000Z",
                                     "updated_at": "2026-08-03T12:22:10.000000Z"
+                                },
+                                {
+                                    "id": 25102,
+                                    "spell_id": 2182,
+                                    "effect_index": 29,
+                                    "type": "Modify Attacker Melee Crit Chance",
+                                    "base_value": -6,
+                                    "scaled_value": -6,
+                                    "misc_value": null,
+                                    "radius_yards": null,
+                                    "chain_targets": null,
+                                    "affected_schools": null,
+                                    "sp_coefficient": null,
+                                    "pvp_coefficient": null,
+                                    "ap_coefficient": null,
+                                    "rank_op": null,
+                                    "rank_values": null,
+                                    "created_at": "2026-11-03T21:20:37.000000Z",
+                                    "updated_at": "2026-11-03T21:20:37.000000Z"
+                                },
+                                {
+                                    "id": 25103,
+                                    "spell_id": 2182,
+                                    "effect_index": 30,
+                                    "type": "Modify Expertise%",
+                                    "base_value": 3,
+                                    "scaled_value": 3,
+                                    "misc_value": null,
+                                    "radius_yards": null,
+                                    "chain_targets": null,
+                                    "affected_schools": null,
+                                    "sp_coefficient": null,
+                                    "pvp_coefficient": null,
+                                    "ap_coefficient": null,
+                                    "rank_op": null,
+                                    "rank_values": null,
+                                    "created_at": "2026-11-03T21:20:37.000000Z",
+                                    "updated_at": "2026-11-03T21:20:37.000000Z"
                                 }
                             ]
                         },
@@ -4121,7 +4197,7 @@
             "spellId": 2917,
             "category": "Other",
             "description": {
-                "text": "Perform a powerful off-role ability depending on your currently active shapeshift form.(varies by condition — check in-game)(varies by condition — check in-game)(varies by condition — check in-game)",
+                "text": "Perform a powerful off-role ability depending on your currently active shapeshift form. Non-shapeshifted: Empowered Wild Growth that heals up to 5 injured allies within 30 yards of the target for ≈2,525.3% of Spell Power over 7. Cat Form: Unleash an empowered Feral Frenzy, clawing your target (varies) times for (varies) Physical damage and an additional (varies) Bleed damage over 6. Awards 5 combo points. Moonkin Form: Call down waves of empowered falling stars upon enemies within 40 yds, dealing ≈1,458% of Spell Power Astral damage over 8.",
                 "uncertain": true
             },
             "formulaModifierSpellIds": [],
@@ -4922,8 +4998,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Ironfur and Frenzied Regeneration persist in Cat Form.(varies by condition — check in-game) For 6 after entering Bear Form, you heal for 10% of damage taken over 8.",
-                            "uncertain": true
+                            "text": "Ironfur and Frenzied Regeneration persist in Cat Form. For 6 after entering Bear Form, you heal for 10% of damage taken over 8.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -4938,8 +5014,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Ironfur and Frenzied Regeneration persist in Cat Form.(varies by condition — check in-game) For 6 after entering Bear Form, you heal for 10% of damage taken over 8.",
-                            "uncertain": true
+                            "text": "Ironfur and Frenzied Regeneration persist in Cat Form. For 6 after entering Bear Form, you heal for 10% of damage taken over 8.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -4954,8 +5030,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Ironfur and Frenzied Regeneration persist in Cat Form.(varies by condition — check in-game) For 6 after entering Bear Form, you heal for 10% of damage taken over 8.",
-                            "uncertain": true
+                            "text": "Ironfur and Frenzied Regeneration persist in Cat Form. For 6 after entering Bear Form, you heal for 10% of damage taken over 8.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -5018,8 +5094,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Ironfur and Frenzied Regeneration persist in Cat Form.(varies by condition — check in-game) For 6 after entering Bear Form, you heal for 10% of damage taken over 8.",
-                            "uncertain": true
+                            "text": "Ironfur and Frenzied Regeneration persist in Cat Form. For 6 after entering Bear Form, you heal for 10% of damage taken over 8.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -5187,8 +5263,8 @@
             "spellId": 3026,
             "category": "Other",
             "description": {
-                "text": "Your auto-attacks are 30% more likely to make your next (varies by condition — check in-game) become Ravage.",
-                "uncertain": true
+                "text": "Your auto-attacks are 30% more likely to make your next Raze become Ravage.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -5417,8 +5493,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game).",
-                            "uncertain": true
+                            "text": " Lunar Beam increases Arcane damage you deal by 10% while it is active.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -5433,8 +5509,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game) (varies by condition — check in-game)",
-                            "uncertain": true
+                            "text": "Raze damage increased by 10%. Lunar Beam's damage dealt to its primary target increased by 30%.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -6358,8 +6434,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game) (varies by condition — check in-game)",
-                            "uncertain": true
+                            "text": "Mangle damage increased by 10% and its critical strike chance is increased by 10%. Mangle heals you for 5% of maximum health.",
+                            "uncertain": false
                         },
                         "category": "Defensive",
                         "cooldown": {
@@ -6470,8 +6546,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game) (varies by condition — check in-game)",
-                            "uncertain": true
+                            "text": "Mangle damage increased by 10% and its critical strike chance is increased by 10%. Mangle heals you for 5% of maximum health.",
+                            "uncertain": false
                         },
                         "category": "Defensive",
                         "cooldown": {
@@ -6614,8 +6690,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "During Berserk, (varies by condition — check in-game), and Brutal Slash have a 20% chance to make your next Maul become Ravage.",
-                            "uncertain": true
+                            "text": "During Berserk, Mangle, Thrash, and Brutal Slash have a 20% chance to make your next Maul become Ravage.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -7037,8 +7113,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game) (varies by condition — check in-game)",
-                            "uncertain": true
+                            "text": "Raze damage increased by 10%. Lunar Beam's damage dealt to its primary target increased by 30%.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -7473,8 +7549,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "During Berserk, (varies by condition — check in-game), and Brutal Slash have a 20% chance to make your next Maul become Ravage.",
-                            "uncertain": true
+                            "text": "During Berserk, Mangle, Thrash, and Brutal Slash have a 20% chance to make your next Maul become Ravage.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -7489,8 +7565,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Your auto-attacks are 30% more likely to make your next (varies by condition — check in-game) become Ravage.",
-                            "uncertain": true
+                            "text": "Your auto-attacks are 30% more likely to make your next Raze become Ravage.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -8153,7 +8229,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Perform a powerful off-role ability depending on your currently active shapeshift form.(varies by condition — check in-game)(varies by condition — check in-game)(varies by condition — check in-game)",
+                            "text": "Perform a powerful off-role ability depending on your currently active shapeshift form. Non-shapeshifted: Empowered Wild Growth that heals up to 5 injured allies within 30 yards of the target for ≈2,525.3% of Spell Power over 7. Cat Form: Unleash an empowered Feral Frenzy, clawing your target (varies) times for (varies) Physical damage and an additional (varies) Bleed damage over 6. Awards 5 combo points. Moonkin Form: Call down waves of empowered falling stars upon enemies within 40 yds, dealing ≈1,458% of Spell Power Astral damage over 8.",
                             "uncertain": true
                         },
                         "category": "Other",
@@ -8169,7 +8245,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Perform a powerful off-role ability depending on your currently active shapeshift form.(varies by condition — check in-game)(varies by condition — check in-game)(varies by condition — check in-game)",
+                            "text": "Perform a powerful off-role ability depending on your currently active shapeshift form. Non-shapeshifted: Empowered Wild Growth that heals up to 5 injured allies within 30 yards of the target for ≈2,525.3% of Spell Power over 7. Cat Form: Unleash an empowered Feral Frenzy, clawing your target (varies) times for (varies) Physical damage and an additional (varies) Bleed damage over 6. Awards 5 combo points. Moonkin Form: Call down waves of empowered falling stars upon enemies within 40 yds, dealing ≈1,458% of Spell Power Astral damage over 8.",
                             "uncertain": true
                         },
                         "category": "Other",
@@ -8185,7 +8261,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Perform a powerful off-role ability depending on your currently active shapeshift form.(varies by condition — check in-game)(varies by condition — check in-game)(varies by condition — check in-game)",
+                            "text": "Perform a powerful off-role ability depending on your currently active shapeshift form. Non-shapeshifted: Empowered Wild Growth that heals up to 5 injured allies within 30 yards of the target for ≈2,525.3% of Spell Power over 7. Cat Form: Unleash an empowered Feral Frenzy, clawing your target (varies) times for (varies) Physical damage and an additional (varies) Bleed damage over 6. Awards 5 combo points. Moonkin Form: Call down waves of empowered falling stars upon enemies within 40 yds, dealing ≈1,458% of Spell Power Astral damage over 8.",
                             "uncertain": true
                         },
                         "category": "Other",
@@ -8249,7 +8325,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Perform a powerful off-role ability depending on your currently active shapeshift form.(varies by condition — check in-game)(varies by condition — check in-game)(varies by condition — check in-game)",
+                            "text": "Perform a powerful off-role ability depending on your currently active shapeshift form. Non-shapeshifted: Empowered Wild Growth that heals up to 5 injured allies within 30 yards of the target for ≈2,525.3% of Spell Power over 7. Cat Form: Unleash an empowered Feral Frenzy, clawing your target (varies) times for (varies) Physical damage and an additional (varies) Bleed damage over 6. Awards 5 combo points. Moonkin Form: Call down waves of empowered falling stars upon enemies within 40 yds, dealing ≈1,458% of Spell Power Astral damage over 8.",
                             "uncertain": true
                         },
                         "category": "Other",
@@ -8301,7 +8377,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Heals a friendly target for ≈536% of Spell Power and another (varies) over 6. Usable while in Moonkin Form.",
+                            "text": "Heals a friendly target for ≈590% of Spell Power and another (varies) over 6. Usable while in Moonkin Form.",
                             "uncertain": true
                         },
                         "category": "Defensive",
@@ -8576,8 +8652,8 @@
             "spellId": 3044,
             "category": "Other",
             "description": {
-                "text": "(varies by condition — check in-game).",
-                "uncertain": true
+                "text": " Lunar Beam increases Arcane damage you deal by 10% while it is active.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -9029,8 +9105,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game) (varies by condition — check in-game)",
-                            "uncertain": true
+                            "text": "Mangle damage increased by 10% and its critical strike chance is increased by 10%. Mangle heals you for 5% of maximum health.",
+                            "uncertain": false
                         },
                         "category": "Defensive",
                         "cooldown": {
@@ -9093,8 +9169,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game) (varies by condition — check in-game)",
-                            "uncertain": true
+                            "text": "Mangle damage increased by 10% and its critical strike chance is increased by 10%. Mangle heals you for 5% of maximum health.",
+                            "uncertain": false
                         },
                         "category": "Defensive",
                         "cooldown": {
@@ -9348,8 +9424,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "During Berserk, (varies by condition — check in-game), and Brutal Slash have a 20% chance to make your next Maul become Ravage.",
-                            "uncertain": true
+                            "text": "During Berserk, Mangle, Thrash, and Brutal Slash have a 20% chance to make your next Maul become Ravage.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -9364,8 +9440,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Your auto-attacks are 30% more likely to make your next (varies by condition — check in-game) become Ravage.",
-                            "uncertain": true
+                            "text": "Your auto-attacks are 30% more likely to make your next Raze become Ravage.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -9537,8 +9613,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game) (varies by condition — check in-game)",
-                            "uncertain": true
+                            "text": "Raze damage increased by 10%. Lunar Beam's damage dealt to its primary target increased by 30%.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -9717,8 +9793,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "You have a (varies by condition — check in-game)% chance to follow up any single target melee ability(varies by condition — check in-game) with a Twin Claw, dealing (varies by condition — check in-game) Physical damage and generating (varies by condition — check in-game).",
-                            "uncertain": true
+                            "text": "You have a 3% chance to follow up any single target melee ability or Raze with a Twin Claw, dealing 16 Physical damage and generating 5 Rage.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -9733,8 +9809,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "You have a (varies by condition — check in-game)% chance to follow up any single target melee ability(varies by condition — check in-game) with a Twin Claw, dealing (varies by condition — check in-game) Physical damage and generating (varies by condition — check in-game).",
-                            "uncertain": true
+                            "text": "You have a 50% chance to follow up any single target melee ability or Raze with a Twin Claw, dealing 16 Physical damage and generating 5 Rage.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -9797,8 +9873,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Your auto-attacks are 30% more likely to make your next (varies by condition — check in-game) become Ravage.",
-                            "uncertain": true
+                            "text": "Your auto-attacks are 30% more likely to make your next Raze become Ravage.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -9813,8 +9889,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "You have a (varies by condition — check in-game)% chance to follow up any single target melee ability(varies by condition — check in-game) with a Twin Claw, dealing (varies by condition — check in-game) Physical damage and generating (varies by condition — check in-game).",
-                            "uncertain": true
+                            "text": "You have a 18% chance to follow up any single target melee ability or Raze with a Twin Claw, dealing 16 Physical damage and generating 5 Rage.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -10151,7 +10227,7 @@
             "spellId": 2073,
             "category": "Defensive",
             "description": {
-                "text": "Heals a friendly target for ≈536% of Spell Power and another (varies) over 6. Usable while in Moonkin Form.",
+                "text": "Heals a friendly target for ≈590% of Spell Power and another (varies) over 6. Usable while in Moonkin Form.",
                 "uncertain": true
             },
             "formulaModifierSpellIds": [
@@ -11662,8 +11738,8 @@
             "spellId": 3043,
             "category": "Other",
             "description": {
-                "text": "(varies by condition — check in-game) has a (varies by condition — check in-game)% chance to launch a Starsurge at a victim at (varies by condition — check in-game)% effectiveness.",
-                "uncertain": true
+                "text": "Thrash has a 50% chance to launch a Starsurge at a victim at 120% effectiveness.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -11896,8 +11972,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game) has a (varies by condition — check in-game)% chance to launch a Starsurge at a victim at (varies by condition — check in-game)% effectiveness.",
-                            "uncertain": true
+                            "text": "Thrash has a 50% chance to launch a Starsurge at a victim at 120% effectiveness.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -12310,8 +12386,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game) (varies by condition — check in-game)",
-                            "uncertain": true
+                            "text": "Raze damage increased by 10%. Lunar Beam's damage dealt to its primary target increased by 30%.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -12326,8 +12402,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game) has a (varies by condition — check in-game)% chance to launch a Starsurge at a victim at (varies by condition — check in-game)% effectiveness.",
-                            "uncertain": true
+                            "text": "Thrash has a 50% chance to launch a Starsurge at a victim at 120% effectiveness.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -12636,8 +12712,8 @@
             "spellId": 3024,
             "category": "Defensive",
             "description": {
-                "text": "(varies by condition — check in-game) (varies by condition — check in-game)",
-                "uncertain": true
+                "text": "Mangle damage increased by 10% and its critical strike chance is increased by 10%. Mangle heals you for 5% of maximum health.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -12842,8 +12918,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game)(varies by condition — check in-game)(varies by condition — check in-game).",
-                            "uncertain": true
+                            "text": "The cooldown of Sundering Roar is reduced by 15 sec.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -13721,6 +13797,44 @@
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:22:10.000000Z",
                                     "updated_at": "2026-08-03T12:22:10.000000Z"
+                                },
+                                {
+                                    "id": 25102,
+                                    "spell_id": 2182,
+                                    "effect_index": 29,
+                                    "type": "Modify Attacker Melee Crit Chance",
+                                    "base_value": -6,
+                                    "scaled_value": -6,
+                                    "misc_value": null,
+                                    "radius_yards": null,
+                                    "chain_targets": null,
+                                    "affected_schools": null,
+                                    "sp_coefficient": null,
+                                    "pvp_coefficient": null,
+                                    "ap_coefficient": null,
+                                    "rank_op": null,
+                                    "rank_values": null,
+                                    "created_at": "2026-11-03T21:20:37.000000Z",
+                                    "updated_at": "2026-11-03T21:20:37.000000Z"
+                                },
+                                {
+                                    "id": 25103,
+                                    "spell_id": 2182,
+                                    "effect_index": 30,
+                                    "type": "Modify Expertise%",
+                                    "base_value": 3,
+                                    "scaled_value": 3,
+                                    "misc_value": null,
+                                    "radius_yards": null,
+                                    "chain_targets": null,
+                                    "affected_schools": null,
+                                    "sp_coefficient": null,
+                                    "pvp_coefficient": null,
+                                    "ap_coefficient": null,
+                                    "rank_op": null,
+                                    "rank_values": null,
+                                    "created_at": "2026-11-03T21:20:37.000000Z",
+                                    "updated_at": "2026-11-03T21:20:37.000000Z"
                                 }
                             ]
                         },
@@ -13905,8 +14019,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game) (varies by condition — check in-game)",
-                            "uncertain": true
+                            "text": "Mangle damage increased by 10% and its critical strike chance is increased by 10%. Mangle heals you for 5% of maximum health.",
+                            "uncertain": false
                         },
                         "category": "Defensive",
                         "cooldown": {
@@ -13969,8 +14083,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "During Berserk, (varies by condition — check in-game), and Brutal Slash have a 20% chance to make your next Maul become Ravage.",
-                            "uncertain": true
+                            "text": "During Berserk, Mangle, Thrash, and Brutal Slash have a 20% chance to make your next Maul become Ravage.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -13985,8 +14099,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game) (varies by condition — check in-game)",
-                            "uncertain": true
+                            "text": "Mangle damage increased by 10% and its critical strike chance is increased by 10%. Mangle heals you for 5% of maximum health.",
+                            "uncertain": false
                         },
                         "category": "Defensive",
                         "cooldown": {
@@ -14048,8 +14162,8 @@
             "spellId": 3025,
             "category": "Other",
             "description": {
-                "text": "(varies by condition — check in-game)(varies by condition — check in-game)(varies by condition — check in-game).",
-                "uncertain": true
+                "text": "The cooldown of Sundering Roar is reduced by 15 sec.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -14580,8 +14694,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game) has a (varies by condition — check in-game)% chance to launch a Starsurge at a victim at (varies by condition — check in-game)% effectiveness.",
-                            "uncertain": true
+                            "text": "Thrash has a 50% chance to launch a Starsurge at a victim at 120% effectiveness.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -14808,8 +14922,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "During Berserk, (varies by condition — check in-game), and Brutal Slash have a 20% chance to make your next Maul become Ravage.",
-                            "uncertain": true
+                            "text": "During Berserk, Mangle, Thrash, and Brutal Slash have a 20% chance to make your next Maul become Ravage.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -14918,8 +15032,8 @@
             "spellId": 3027,
             "category": "Offensive",
             "description": {
-                "text": "You have a (varies by condition — check in-game)% chance to follow up any single target melee ability(varies by condition — check in-game) with a Twin Claw, dealing (varies by condition — check in-game) Physical damage and generating (varies by condition — check in-game).",
-                "uncertain": true
+                "text": "You have a 18% chance to follow up any single target melee ability or Raze with a Twin Claw, dealing 16 Physical damage and generating 5 Rage.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -14932,8 +15046,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "You have a (varies by condition — check in-game)% chance to follow up any single target melee ability(varies by condition — check in-game) with a Twin Claw, dealing (varies by condition — check in-game) Physical damage and generating (varies by condition — check in-game).",
-                            "uncertain": true
+                            "text": "You have a 3% chance to follow up any single target melee ability or Raze with a Twin Claw, dealing 16 Physical damage and generating 5 Rage.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -14948,8 +15062,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "You have a (varies by condition — check in-game)% chance to follow up any single target melee ability(varies by condition — check in-game) with a Twin Claw, dealing (varies by condition — check in-game) Physical damage and generating (varies by condition — check in-game).",
-                            "uncertain": true
+                            "text": "You have a 50% chance to follow up any single target melee ability or Raze with a Twin Claw, dealing 16 Physical damage and generating 5 Rage.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -15639,7 +15753,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Perform a powerful off-role ability depending on your currently active shapeshift form.(varies by condition — check in-game)(varies by condition — check in-game)(varies by condition — check in-game)",
+                            "text": "Perform a powerful off-role ability depending on your currently active shapeshift form. Non-shapeshifted: Empowered Wild Growth that heals up to 5 injured allies within 30 yards of the target for ≈2,525.3% of Spell Power over 7. Cat Form: Unleash an empowered Feral Frenzy, clawing your target (varies) times for (varies) Physical damage and an additional (varies) Bleed damage over 6. Awards 5 combo points. Moonkin Form: Call down waves of empowered falling stars upon enemies within 40 yds, dealing ≈1,458% of Spell Power Astral damage over 8.",
                             "uncertain": true
                         },
                         "category": "Other",
@@ -15655,7 +15769,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Perform a powerful off-role ability depending on your currently active shapeshift form.(varies by condition — check in-game)(varies by condition — check in-game)(varies by condition — check in-game)",
+                            "text": "Perform a powerful off-role ability depending on your currently active shapeshift form. Non-shapeshifted: Empowered Wild Growth that heals up to 5 injured allies within 30 yards of the target for ≈2,525.3% of Spell Power over 7. Cat Form: Unleash an empowered Feral Frenzy, clawing your target (varies) times for (varies) Physical damage and an additional (varies) Bleed damage over 6. Awards 5 combo points. Moonkin Form: Call down waves of empowered falling stars upon enemies within 40 yds, dealing ≈1,458% of Spell Power Astral damage over 8.",
                             "uncertain": true
                         },
                         "category": "Other",
@@ -15671,7 +15785,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Perform a powerful off-role ability depending on your currently active shapeshift form.(varies by condition — check in-game)(varies by condition — check in-game)(varies by condition — check in-game)",
+                            "text": "Perform a powerful off-role ability depending on your currently active shapeshift form. Non-shapeshifted: Empowered Wild Growth that heals up to 5 injured allies within 30 yards of the target for ≈2,525.3% of Spell Power over 7. Cat Form: Unleash an empowered Feral Frenzy, clawing your target (varies) times for (varies) Physical damage and an additional (varies) Bleed damage over 6. Awards 5 combo points. Moonkin Form: Call down waves of empowered falling stars upon enemies within 40 yds, dealing ≈1,458% of Spell Power Astral damage over 8.",
                             "uncertain": true
                         },
                         "category": "Other",
@@ -15687,7 +15801,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Perform a powerful off-role ability depending on your currently active shapeshift form.(varies by condition — check in-game)(varies by condition — check in-game)(varies by condition — check in-game)",
+                            "text": "Perform a powerful off-role ability depending on your currently active shapeshift form. Non-shapeshifted: Empowered Wild Growth that heals up to 5 injured allies within 30 yards of the target for ≈2,525.3% of Spell Power over 7. Cat Form: Unleash an empowered Feral Frenzy, clawing your target (varies) times for (varies) Physical damage and an additional (varies) Bleed damage over 6. Awards 5 combo points. Moonkin Form: Call down waves of empowered falling stars upon enemies within 40 yds, dealing ≈1,458% of Spell Power Astral damage over 8.",
                             "uncertain": true
                         },
                         "category": "Other",
@@ -15865,8 +15979,8 @@
             "spellId": 3014,
             "category": "Other",
             "description": {
-                "text": "Ironfur and Frenzied Regeneration persist in Cat Form.(varies by condition — check in-game) For 6 after entering Bear Form, you heal for 10% of damage taken over 8.",
-                "uncertain": true
+                "text": "Ironfur and Frenzied Regeneration persist in Cat Form. For 6 after entering Bear Form, you heal for 10% of damage taken over 8.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {

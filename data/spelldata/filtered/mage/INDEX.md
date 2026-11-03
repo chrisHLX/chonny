@@ -480,8 +480,8 @@ One line per spell record; each lists every file it appears in.
 - **Hypothermia (id=41425) [Spell Family (3)]** — `baseline.txt`
 - **Ice Barrier (id=11426) [Spell Family (3)]** — `class-talents.txt`
 - **Ice Block (id=45438) [Spell Family (3)]** — `class-talents.txt`
-- **Ice Cold (id=414658) [Spell Family (3)]** — `baseline.txt`
-- **Ice Cold (id=414659) [Spell Family (3), Passive]** — `class-talents.txt`
+- **Ice Cold (id=414658) [Spell Family (3)]** — `class-talents.txt`
+- **Ice Cold (id=414659) [Spell Family (3), Passive]** — `baseline.txt`
 - **Ice Form (desc=PvP Talent) (id=198144) [Spell Family (3)]** — `baseline.txt`
 - **Ice Lance (id=228598) [Spell Family (3)]** — `baseline.txt`
 - **Ice Lance (id=30455) [Spell Family (3)]** — `frost.txt`
@@ -629,7 +629,7 @@ One line per spell record; each lists every file it appears in.
 - **Marquee Bindings of the Sun King (id=209450) [Spell Family (3), Passive]** — `baseline.txt`
 - **Mass Invisibility (id=414664) [Spell Family (3)]** — `class-talents.txt`
 - **Mass Polymorph (id=383121) [Spell Family (3)]** — `class-talents.txt`
-- **Master of Escape (desc=PvP Talent) (id=210476) [Spell Family (3), Passive, Hidden]** — `class-talents.txt`
+- **Master of Escape (id=210476) [Spell Family (3), Passive, Hidden]** — `class-talents.txt`
 - **Master of Flame (id=1217750) [Spell Family (3), Hidden]** — `baseline.txt`
 - **Master of Flame (id=384174) [Spell Family (3), Passive]** — `fire.txt`
 - **Master of Time (id=342249) [Spell Family (3), Passive]** — `class-talents.txt`
@@ -760,7 +760,7 @@ One line per spell record; each lists every file it appears in.
 - **Rapid Refreezing (id=1310248) [Spell Family (3)]** — `baseline.txt`
 - **Ray of Frost (id=205021) [Spell Family (3)]** — `frost.txt`
 - **Ray of Frost (id=208141) [Spell Family (3), Hidden]** — `baseline.txt`
-- **Ray of Frost (id=269748) [Spell Family (3), Hidden]** — `baseline.txt`
+- **Ray of Frost (id=269748) [Spell Family (3)]** — `baseline.txt`
 - **Reactive Barrier (id=444827) [Spell Family (3), Passive, Hidden]** — `hero-spellslinger.txt`
 - **Recall (desc=Bronze) (id=471078) [Spell Family (3), Hidden]** — `baseline.txt`
 - **Recently Damaged By Blizzard (id=1216988) [Spell Family (3), Hidden]** — `baseline.txt`

@@ -1,14 +1,14 @@
 {
-    "generatedAt": "2026-10-18T02:37:23+00:00",
-    "spellCacheVersion": 29,
+    "generatedAt": "2026-11-03T23:05:10+00:00",
+    "spellCacheVersion": 31,
     "codeFingerprint": "dev",
     "entries": [
         {
             "spellId": 7764,
             "category": "Defensive",
             "description": {
-                "text": "After (varies by condition — check in-game) successfully removes an effect from an ally, they are healed for ≈540% of Spell Power.",
-                "uncertain": true
+                "text": "After Cleanse Toxins successfully removes an effect from an ally, they are healed for ≈540% of Spell Power.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -239,8 +239,8 @@
             "spellId": 7791,
             "category": "Other",
             "description": {
-                "text": "After you cast (varies by condition — check in-game), gain Divine Purpose. (varies by condition — check in-game)",
-                "uncertain": true
+                "text": "After you cast Wake of Ashes, gain Divine Purpose. Divine Purpose $@spellaura408458",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -269,13 +269,10 @@
             "spellId": 7834,
             "category": "Offensive",
             "description": {
-                "text": "Call upon the Light to become an avatar of retribution, (varies by condition — check in-game)increasing your damage, healing, and critical strike chance by 20% and Haste by 3% for 20. Each Holy Power spent increases Haste by an additional 2%, up to 20%.",
-                "uncertain": true
+                "text": "Call upon the Light to become an avatar of retribution, increasing your damage, healing, and critical strike chance by 20% and Haste by 3% for 20. Each Holy Power spent increases Haste by an additional 2%, up to 20%.",
+                "uncertain": false
             },
-            "formulaModifierSpellIds": [
-                97,
-                7011
-            ],
+            "formulaModifierSpellIds": [],
             "modifiers": {
                 "named": [
                     {
@@ -300,8 +297,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Avenging Wrath empowers your next (varies by condition — check in-game) with 30% increased effectiveness.",
-                            "uncertain": true
+                            "text": "Avenging Wrath empowers your next damage dealing single target Holy Power ability to automatically activate Divine Storm with 30% increased effectiveness.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -316,8 +313,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Avenging Wrath empowers your next (varies by condition — check in-game) with 30% increased effectiveness.",
-                            "uncertain": true
+                            "text": "Avenging Wrath empowers your next damage dealing single target Holy Power ability to automatically activate Divine Storm with 30% increased effectiveness.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -380,8 +377,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "During Avenging Wrath, Judgment is empowered into Hammer of Wrath.(varies by condition — check in-game)",
-                            "uncertain": true
+                            "text": "During Avenging Wrath, Judgment is empowered into Hammer of Wrath. Hammer of Wrath Hurls a divine hammer that strikes an enemy for ≈215.8% of Attack Power Holy damage. Generates 1 Holy Power.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -396,8 +393,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game)",
-                            "uncertain": true
+                            "text": "You have a 100% chance to gain Blessing of An'she and generate 2 Holy Power after casting Avenging Wrath. During Avenging Wrath, Hammer of Wrath casts Blade of Justice at 100% effectiveness.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -428,8 +425,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Avenging Wrath empowers your next (varies by condition — check in-game) with 25% increased effectiveness.",
-                            "uncertain": true
+                            "text": "Avenging Wrath empowers your next damage dealing single target Holy Power ability to automatically activate Divine Storm with 25% increased effectiveness.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -560,8 +557,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "During Avenging Wrath, Judgment is empowered into Hammer of Wrath.(varies by condition — check in-game)",
-                            "uncertain": true
+                            "text": "During Avenging Wrath, Judgment is empowered into Hammer of Wrath. Hammer of Wrath Hurls a divine hammer that strikes an enemy for ≈215.8% of Attack Power Holy damage. Generates 1 Holy Power.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -576,8 +573,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "During Avenging Wrath, Judgment is empowered into Hammer of Wrath.(varies by condition — check in-game)",
-                            "uncertain": true
+                            "text": "During Avenging Wrath, Judgment is empowered into Hammer of Wrath. Hammer of Wrath Hurls a divine hammer that strikes an enemy for ≈215.8% of Attack Power Holy damage. Generates 1 Holy Power.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -1167,8 +1164,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Call upon the Light to become an avatar of retribution, (varies by condition — check in-game)increasing your damage, healing, and critical strike chance by 20% and Haste by 3% for 20. Each Holy Power spent increases Haste by an additional 2%, up to 20%.",
-                            "uncertain": true
+                            "text": "Call upon the Light to become an avatar of retribution, increasing your damage, healing, and critical strike chance by 20% and Haste by 3% for 20. Each Holy Power spent increases Haste by an additional 2%, up to 20%.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -1331,8 +1328,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game)",
-                            "uncertain": true
+                            "text": "You have a 100% chance to gain Blessing of An'she and generate 2 Holy Power after casting Avenging Wrath. During Avenging Wrath, Hammer of Wrath casts Blade of Justice at 100% effectiveness.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -1912,8 +1909,8 @@
             "spellId": 7792,
             "category": "Other",
             "description": {
-                "text": "(varies by condition — check in-game)",
-                "uncertain": true
+                "text": "Your damage and healing over time effects have a chance to increase the damage of your next Judgment by 50%.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -1924,8 +1921,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game)",
-                            "uncertain": true
+                            "text": "You have a 100% chance to gain Blessing of An'she and generate 2 Holy Power after casting Avenging Wrath. During Avenging Wrath, Hammer of Wrath casts Blade of Justice at 100% effectiveness.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -2135,8 +2132,8 @@
             "spellId": 7711,
             "category": "Defensive",
             "description": {
-                "text": "Blesses a party or raid member, granting immunity to Physical damage and harmful effects for 10. Cannot be used on a target with Forbearance. Causes Forbearance for 30.(varies by condition — check in-game)",
-                "uncertain": true
+                "text": "Blesses a party or raid member, granting immunity to Physical damage and harmful effects for 10. Cannot be used on a target with Forbearance. Causes Forbearance for 30.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -2214,8 +2211,8 @@
                         "modifier_value": -60,
                         "modifier_unit": "seconds",
                         "description": {
-                            "text": "Reduces the cooldown of Blessing of Protection(varies by condition — check in-game) by 60 sec.",
-                            "uncertain": true
+                            "text": "Reduces the cooldown of Blessing of Protection by 60 sec.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -2643,8 +2640,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Blesses a party or raid member, granting immunity to Physical damage and harmful effects for 10. Cannot be used on a target with Forbearance. Causes Forbearance for 30.(varies by condition — check in-game)",
-                            "uncertain": true
+                            "text": "Blesses a party or raid member, granting immunity to Physical damage and harmful effects for 10. Cannot be used on a target with Forbearance. Causes Forbearance for 30.",
+                            "uncertain": false
                         },
                         "category": "Defensive",
                         "cooldown": {
@@ -2678,8 +2675,8 @@
                         "modifier_value": -60,
                         "modifier_unit": "seconds",
                         "description": {
-                            "text": "Reduces the cooldown of Blessing of Protection(varies by condition — check in-game) by 60 sec.",
-                            "uncertain": true
+                            "text": "Reduces the cooldown of Blessing of Protection by 60 sec.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -3060,7 +3057,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "After (varies by condition — check in-game) successfully removes an effect from an ally, they are healed for (varies).",
+                            "text": "After Cleanse Toxins successfully removes an effect from an ally, they are healed for (varies).",
                             "uncertain": true
                         },
                         "category": "Defensive",
@@ -3076,8 +3073,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "After (varies by condition — check in-game) successfully removes an effect from an ally, they are healed for ≈540% of Spell Power.",
-                            "uncertain": true
+                            "text": "After Cleanse Toxins successfully removes an effect from an ally, they are healed for ≈540% of Spell Power.",
+                            "uncertain": false
                         },
                         "category": "Defensive",
                         "cooldown": {
@@ -3503,8 +3500,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Call upon the Light to become an avatar of retribution, (varies by condition — check in-game)increasing your damage, healing, and critical strike chance by 20% and Haste by 3% for 20. Each Holy Power spent increases Haste by an additional 2%, up to 20%.",
-                            "uncertain": true
+                            "text": "Call upon the Light to become an avatar of retribution, increasing your damage, healing, and critical strike chance by 20% and Haste by 3% for 20. Each Holy Power spent increases Haste by an additional 2%, up to 20%.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -3836,7 +3833,7 @@
             "spellId": 7780,
             "category": "Offensive",
             "description": {
-                "text": "Casting (varies by condition — check in-game) causes your next 2 Holy Power spending abilities to apply Dawnlight on your target, dealing ≈255% of Spell Power Radiant damage or ≈538.2% of Spell Power healing over 8. 8% of Dawnlight's damage and healing radiates to nearby allies or enemies, reduced beyond 5 targets.(varies by condition — check in-game)",
+                "text": "Casting Wake of Ashes causes your next 2 Holy Power spending abilities to apply Dawnlight on your target, dealing ≈255% of Spell Power Radiant damage or ≈538.2% of Spell Power healing over 8. 8% of Dawnlight's damage and healing radiates to nearby allies or enemies, reduced beyond 5 targets.",
                 "uncertain": true
             },
             "formulaModifierSpellIds": [],
@@ -3848,7 +3845,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Casting (varies by condition — check in-game) causes your next 2 Holy Power spending abilities to apply Dawnlight on your target, dealing ≈255% of Spell Power Radiant damage or ≈538.2% of Spell Power healing over 8. 8% of Dawnlight's damage and healing radiates to nearby allies or enemies, reduced beyond 5 targets.(varies by condition — check in-game)",
+                            "text": "Casting Wake of Ashes causes your next 2 Holy Power spending abilities to apply Dawnlight on your target, dealing ≈255% of Spell Power Radiant damage or ≈538.2% of Spell Power healing over 8. 8% of Dawnlight's damage and healing radiates to nearby allies or enemies, reduced beyond 5 targets.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -3864,7 +3861,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Casting (varies by condition — check in-game) causes your next 2 Holy Power spending abilities to apply Dawnlight on your target, dealing ≈255% of Spell Power Radiant damage or ≈538.2% of Spell Power healing over 8. 8% of Dawnlight's damage and healing radiates to nearby allies or enemies, reduced beyond 5 targets.(varies by condition — check in-game)",
+                            "text": "Casting Wake of Ashes causes your next 2 Holy Power spending abilities to apply Dawnlight on your target, dealing ≈255% of Spell Power Radiant damage or ≈538.2% of Spell Power healing over 8. 8% of Dawnlight's damage and healing radiates to nearby allies or enemies, reduced beyond 5 targets.",
                             "uncertain": true
                         },
                         "category": "Mobility",
@@ -3880,7 +3877,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Casting (varies by condition — check in-game) causes your next 2 Holy Power spending abilities to apply Dawnlight on your target, dealing ≈255% of Spell Power Radiant damage or ≈538.2% of Spell Power healing over 8. 8% of Dawnlight's damage and healing radiates to nearby allies or enemies, reduced beyond 5 targets.(varies by condition — check in-game)",
+                            "text": "Casting Wake of Ashes causes your next 2 Holy Power spending abilities to apply Dawnlight on your target, dealing ≈255% of Spell Power Radiant damage or ≈538.2% of Spell Power healing over 8. 8% of Dawnlight's damage and healing radiates to nearby allies or enemies, reduced beyond 5 targets.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -3896,7 +3893,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Casting (varies by condition — check in-game) causes your next 2 Holy Power spending abilities to apply Dawnlight on your target, dealing ≈255% of Spell Power Radiant damage or ≈538.2% of Spell Power healing over 8. 8% of Dawnlight's damage and healing radiates to nearby allies or enemies, reduced beyond 5 targets.(varies by condition — check in-game)",
+                            "text": "Casting Wake of Ashes causes your next 2 Holy Power spending abilities to apply Dawnlight on your target, dealing ≈255% of Spell Power Radiant damage or ≈538.2% of Spell Power healing over 8. 8% of Dawnlight's damage and healing radiates to nearby allies or enemies, reduced beyond 5 targets.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -3912,7 +3909,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Casting (varies by condition — check in-game) causes your next ≈13.5% of Spell Power Holy Power spending abilities to apply Dawnlight on your target, dealing ≈255% of Spell Power Radiant damage or ≈538.2% of Spell Power healing over 8. 8% of Dawnlight's damage and healing radiates to nearby allies or enemies, reduced beyond 5 targets.(varies by condition — check in-game)",
+                            "text": "Casting Wake of Ashes causes your next ≈13.5% of Spell Power Holy Power spending abilities to apply Dawnlight on your target, dealing ≈255% of Spell Power Radiant damage or ≈538.2% of Spell Power healing over 8. 8% of Dawnlight's damage and healing radiates to nearby allies or enemies, reduced beyond 5 targets.",
                             "uncertain": true
                         },
                         "category": "Defensive",
@@ -3928,8 +3925,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "After you cast (varies by condition — check in-game), your next Holy Power spender is guaranteed to apply 1 Dawnlight.",
-                            "uncertain": true
+                            "text": "After you cast Wake of Ashes, your next Holy Power spender is guaranteed to apply 1 Dawnlight.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -3944,8 +3941,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "After you cast (varies by condition — check in-game), your next Holy Power spender is guaranteed to apply 8,000 Dawnlight.",
-                            "uncertain": true
+                            "text": "After you cast Wake of Ashes, your next Holy Power spender is guaranteed to apply 8,000 Dawnlight.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -3976,7 +3973,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Casting (varies by condition — check in-game) causes your next 8 Holy Power spending abilities to apply Dawnlight on your target, dealing ≈255% of Spell Power Radiant damage or ≈538.2% of Spell Power healing over 8. 8% of Dawnlight's damage and healing radiates to nearby allies or enemies, reduced beyond 5 targets.(varies by condition — check in-game)",
+                            "text": "Casting Wake of Ashes causes your next 8 Holy Power spending abilities to apply Dawnlight on your target, dealing ≈255% of Spell Power Radiant damage or ≈538.2% of Spell Power healing over 8. 8% of Dawnlight's damage and healing radiates to nearby allies or enemies, reduced beyond 5 targets.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -3992,8 +3989,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "You link to your Dawnlights within 30 yds, causing 15 Radiant damage to enemies or 15 healing to allies that pass through the beams, reduced beyond (varies by condition — check in-game) targets.",
-                            "uncertain": true
+                            "text": "You link to your Dawnlights within 30 yds, causing 15 Radiant damage to enemies or 15 healing to allies that pass through the beams, reduced beyond 8 targets.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -4008,8 +4005,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "You link to your Dawnlights within 30 yds, causing 15 Radiant damage to enemies or 15 healing to allies that pass through the beams, reduced beyond (varies by condition — check in-game) targets.",
-                            "uncertain": true
+                            "text": "You link to your Dawnlights within 30 yds, causing 15 Radiant damage to enemies or 15 healing to allies that pass through the beams, reduced beyond 8 targets.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -4024,8 +4021,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "You link to your Dawnlights within 30 yds, causing 15 Radiant damage to enemies or 15 healing to allies that pass through the beams, reduced beyond (varies by condition — check in-game) targets.",
-                            "uncertain": true
+                            "text": "You link to your Dawnlights within 30 yds, causing 15 Radiant damage to enemies or 15 healing to allies that pass through the beams, reduced beyond 8 targets.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -4040,8 +4037,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "You link to your Dawnlights within 30 yds, causing 15 Radiant damage to enemies or 15 healing to allies that pass through the beams, reduced beyond (varies by condition — check in-game) targets.",
-                            "uncertain": true
+                            "text": "You link to your Dawnlights within 30 yds, causing 15 Radiant damage to enemies or 15 healing to allies that pass through the beams, reduced beyond 8 targets.",
+                            "uncertain": false
                         },
                         "category": "Defensive",
                         "cooldown": {
@@ -4056,8 +4053,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "You link to your Dawnlights within 30 yds, causing 15 Radiant damage to enemies or 15 healing to allies that pass through the beams, reduced beyond (varies by condition — check in-game) targets.",
-                            "uncertain": true
+                            "text": "You link to your Dawnlights within 30 yds, causing 15 Radiant damage to enemies or 15 healing to allies that pass through the beams, reduced beyond 8 targets.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -4072,8 +4069,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "You link to your Dawnlights within 30 yds, causing 15 Radiant damage to enemies or 15 healing to allies that pass through the beams, reduced beyond (varies by condition — check in-game) targets.",
-                            "uncertain": true
+                            "text": "You link to your Dawnlights within 30 yds, causing 15 Radiant damage to enemies or 15 healing to allies that pass through the beams, reduced beyond 8 targets.",
+                            "uncertain": false
                         },
                         "category": "Defensive",
                         "cooldown": {
@@ -4088,8 +4085,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "You link to your Dawnlights within 30 yds, causing 15 Radiant damage to enemies or 15 healing to allies that pass through the beams, reduced beyond (varies by condition — check in-game) targets.",
-                            "uncertain": true
+                            "text": "You link to your Dawnlights within 30 yds, causing 15 Radiant damage to enemies or 15 healing to allies that pass through the beams, reduced beyond 8 targets.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -4120,8 +4117,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "You link to your Dawnlights within 30 yds, causing 15 Radiant damage to enemies or 15 healing to allies that pass through the beams, reduced beyond (varies by condition — check in-game) targets.",
-                            "uncertain": true
+                            "text": "You link to your Dawnlights within 30 yds, causing 15 Radiant damage to enemies or 15 healing to allies that pass through the beams, reduced beyond 8 targets.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -4152,8 +4149,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game)",
-                            "uncertain": true
+                            "text": "Dawnlight's duration is increased by 0.3 sec whenever struck by Divine Storm or Templar's Verdict. When 2 Dawnlights are struck by Divine Storm, their durations are extended by an additional 0.5 sec.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -4439,8 +4436,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game) increases healing taken by 15% for its duration.",
-                            "uncertain": true
+                            "text": "Divine Protection increases healing taken by 15% for its duration.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -4507,7 +4504,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Melee and ranged attackers receive ≈35% of Spell Power Holy damage each time they strike you during (varies by condition — check in-game) and Divine Shield.",
+                            "text": "Melee and ranged attackers receive ≈35% of Spell Power Holy damage each time they strike you during Divine Protection and Divine Shield.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -4523,7 +4520,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Melee and ranged attackers receive ≈35% of Spell Power Holy damage each time they strike you during (varies by condition — check in-game) and Divine Shield.",
+                            "text": "Melee and ranged attackers receive ≈35% of Spell Power Holy damage each time they strike you during Divine Protection and Divine Shield.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -5082,8 +5079,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "After you cast (varies by condition — check in-game), gain Divine Purpose. (varies by condition — check in-game)",
-                            "uncertain": true
+                            "text": "After you cast Wake of Ashes, gain Divine Purpose. Divine Purpose $@spellaura408458",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -5147,8 +5144,8 @@
             "spellId": 7734,
             "category": "Other",
             "description": {
-                "text": "(varies by condition — check in-game)",
-                "uncertain": true
+                "text": "After casting Divine Toll, your next 3 Judgments cast again at 100% effectiveness.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -5224,7 +5221,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Melee and ranged attackers receive ≈35% of Spell Power Holy damage each time they strike you during (varies by condition — check in-game) and Divine Shield.",
+                            "text": "Melee and ranged attackers receive ≈35% of Spell Power Holy damage each time they strike you during Divine Protection and Divine Shield.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -5240,7 +5237,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Melee and ranged attackers receive ≈35% of Spell Power Holy damage each time they strike you during (varies by condition — check in-game) and Divine Shield.",
+                            "text": "Melee and ranged attackers receive ≈35% of Spell Power Holy damage each time they strike you during Divine Protection and Divine Shield.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -5586,8 +5583,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Call upon the Light to become an avatar of retribution, (varies by condition — check in-game)increasing your damage, healing, and critical strike chance by 20% and Haste by 3% for 20. Each Holy Power spent increases Haste by an additional 2%, up to 20%.",
-                            "uncertain": true
+                            "text": "Call upon the Light to become an avatar of retribution, increasing your damage, healing, and critical strike chance by 20% and Haste by 3% for 20. Each Holy Power spent increases Haste by an additional 2%, up to 20%.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -5702,8 +5699,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game)",
-                            "uncertain": true
+                            "text": "Critical Strike chance of Hammer of Wrath and Divine Storm increased by 10%.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -5734,8 +5731,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Avenging Wrath empowers your next (varies by condition — check in-game) with 30% increased effectiveness.",
-                            "uncertain": true
+                            "text": "Avenging Wrath empowers your next damage dealing single target Holy Power ability to automatically activate Divine Storm with 30% increased effectiveness.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -5750,8 +5747,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Avenging Wrath empowers your next (varies by condition — check in-game) with 30% increased effectiveness.",
-                            "uncertain": true
+                            "text": "Avenging Wrath empowers your next damage dealing single target Holy Power ability to automatically activate Divine Storm with 30% increased effectiveness.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -5766,7 +5763,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game)",
+                            "text": "Hammer of Wrath and Divine Storm critical strikes cause the target to burn for an additional ≈48% of Spell Power Radiant damage over 4.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -5782,8 +5779,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game)",
-                            "uncertain": true
+                            "text": "Divine Storm and Hammer of Wrath have a 1% chance to cast again at 30% effectiveness.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -5798,7 +5795,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game)",
+                            "text": "Hammer of Wrath and Divine Storm critical strikes cause the target to burn for an additional ≈48% of Spell Power Radiant damage over 4.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -5814,8 +5811,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game)",
-                            "uncertain": true
+                            "text": "Divine Storm and Hammer of Wrath have a 15% chance to cast again at 30% effectiveness.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -5830,8 +5827,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game)",
-                            "uncertain": true
+                            "text": "Dawnlight's duration is increased by 0.3 sec whenever struck by Divine Storm or Templar's Verdict. When 2 Dawnlights are struck by Divine Storm, their durations are extended by an additional 0.5 sec.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -5846,8 +5843,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Avenging Wrath empowers your next (varies by condition — check in-game) with 25% increased effectiveness.",
-                            "uncertain": true
+                            "text": "Avenging Wrath empowers your next damage dealing single target Holy Power ability to automatically activate Divine Storm with 25% increased effectiveness.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -6010,8 +6007,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Call upon the Light to become an avatar of retribution, (varies by condition — check in-game)increasing your damage, healing, and critical strike chance by 20% and Haste by 3% for 20. Each Holy Power spent increases Haste by an additional 2%, up to 20%.",
-                            "uncertain": true
+                            "text": "Call upon the Light to become an avatar of retribution, increasing your damage, healing, and critical strike chance by 20% and Haste by 3% for 20. Each Holy Power spent increases Haste by an additional 2%, up to 20%.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -6303,8 +6300,8 @@
             "spellId": 7731,
             "category": "Other",
             "description": {
-                "text": "Instantly cast Judgment on up to 5 targets within 30 yds.(varies by condition — check in-game)(varies by condition — check in-game)",
-                "uncertain": true
+                "text": "Instantly cast Judgment on up to 5 targets within 30 yds. Divine Toll's Judgment deals 50% increased damage.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -6315,8 +6312,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Call upon the Light to become an avatar of retribution, (varies by condition — check in-game)increasing your damage, healing, and critical strike chance by 20% and Haste by 3% for 20. Each Holy Power spent increases Haste by an additional 2%, up to 20%.",
-                            "uncertain": true
+                            "text": "Call upon the Light to become an avatar of retribution, increasing your damage, healing, and critical strike chance by 20% and Haste by 3% for 20. Each Holy Power spent increases Haste by an additional 2%, up to 20%.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -6399,7 +6396,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Instantly cast Holy Shock, Avenger's Shield, or Judgment on up to 100 targets within (varies) yds (based on your current specialization).(varies by condition — check in-game)",
+                            "text": "Instantly cast Holy Shock, Avenger's Shield, or Judgment on up to 100 targets within (varies) yds (based on your current specialization). Divine Toll's Judgment deals 100% increased damage.",
                             "uncertain": true
                         },
                         "category": "Other",
@@ -6415,8 +6412,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "After casting Divine Toll, you instantly cast (varies by condition — check in-game) every 5 sec. This effect lasts 15 sec.",
-                            "uncertain": true
+                            "text": "After casting Divine Toll, you instantly cast Judgement every 5 sec. This effect lasts 15 sec.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -6431,8 +6428,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "After casting Divine Toll, you instantly cast (varies by condition — check in-game) every 5 sec. This effect lasts 15 sec.",
-                            "uncertain": true
+                            "text": "After casting Divine Toll, you instantly cast Judgement every 5 sec. This effect lasts 15 sec.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -6447,8 +6444,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "After casting Divine Toll, you instantly cast (varies by condition — check in-game) every 5 sec. This effect lasts 15 sec.",
-                            "uncertain": true
+                            "text": "After casting Divine Toll, you instantly cast Judgement every 5 sec. This effect lasts 15 sec.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -6463,8 +6460,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "After casting Divine Toll, you instantly cast (varies by condition — check in-game) every 5 sec. This effect lasts 15 sec.",
-                            "uncertain": true
+                            "text": "After casting Divine Toll, you instantly cast Judgement every 5 sec. This effect lasts 15 sec.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -6479,8 +6476,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "After casting Divine Toll, you instantly cast (varies by condition — check in-game) every 5 sec. This effect lasts 15 sec.",
-                            "uncertain": true
+                            "text": "After casting Divine Toll, you instantly cast Judgement every 5 sec. This effect lasts 15 sec.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -6495,7 +6492,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Instantly cast Holy Shock, Avenger's Shield, or Judgment on up to 60 targets within (varies) yds (based on your current specialization).(varies by condition — check in-game)",
+                            "text": "Instantly cast Holy Shock, Avenger's Shield, or Judgment on up to 60 targets within (varies) yds (based on your current specialization). Divine Toll's Judgment deals 100% increased damage.",
                             "uncertain": true
                         },
                         "category": "Other",
@@ -6511,8 +6508,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game)",
-                            "uncertain": true
+                            "text": "After casting Divine Toll, your next 3 Judgments cast again at 100% effectiveness.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -6527,8 +6524,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game)",
-                            "uncertain": true
+                            "text": "After casting Divine Toll, your next 3 Judgments cast again at 100% effectiveness.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -6543,8 +6540,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game)",
-                            "uncertain": true
+                            "text": "After casting Divine Toll, your next 3 Judgments cast again at 100% effectiveness.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -6559,8 +6556,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "After casting(varies by condition — check in-game) Divine Toll, you instantly cast (varies by condition — check in-game) every 5 sec for 15 sec.",
-                            "uncertain": true
+                            "text": "After casting Divine Toll, you instantly cast Judgment every 5 sec for 15 sec.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -6575,8 +6572,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "After casting(varies by condition — check in-game) Divine Toll, you instantly cast (varies by condition — check in-game) every 5 sec for 15 sec.",
-                            "uncertain": true
+                            "text": "After casting Divine Toll, you instantly cast Judgment every 5 sec for 15 sec.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -6591,8 +6588,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "After casting(varies by condition — check in-game) Divine Toll, you instantly cast (varies by condition — check in-game) every 5 sec for 15 sec.",
-                            "uncertain": true
+                            "text": "After casting Divine Toll, you instantly cast Judgment every 5 sec for 15 sec.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -6607,8 +6604,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "After casting(varies by condition — check in-game) Divine Toll, you instantly cast (varies by condition — check in-game) every 5 sec for 15 sec.",
-                            "uncertain": true
+                            "text": "After casting Divine Toll, you instantly cast Judgment every 5 sec for 15 sec.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -6623,8 +6620,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "After casting(varies by condition — check in-game) Divine Toll, you instantly cast (varies by condition — check in-game) every 5 sec for 15 sec.",
-                            "uncertain": true
+                            "text": "After casting Divine Toll, you instantly cast Judgment every 5 sec for 15 sec.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -6639,7 +6636,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Casting (varies by condition — check in-game) causes your next 2 Holy Power spending abilities to apply Dawnlight on your target, dealing ≈255% of Spell Power Radiant damage or ≈538.2% of Spell Power healing over 8. 8% of Dawnlight's damage and healing radiates to nearby allies or enemies, reduced beyond 5 targets.(varies by condition — check in-game)",
+                            "text": "Casting Wake of Ashes causes your next 2 Holy Power spending abilities to apply Dawnlight on your target, dealing ≈255% of Spell Power Radiant damage or ≈538.2% of Spell Power healing over 8. 8% of Dawnlight's damage and healing radiates to nearby allies or enemies, reduced beyond 5 targets.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -6655,7 +6652,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Casting (varies by condition — check in-game) causes your next 2 Holy Power spending abilities to apply Dawnlight on your target, dealing ≈255% of Spell Power Radiant damage or ≈538.2% of Spell Power healing over 8. 8% of Dawnlight's damage and healing radiates to nearby allies or enemies, reduced beyond 5 targets.(varies by condition — check in-game)",
+                            "text": "Casting Wake of Ashes causes your next 2 Holy Power spending abilities to apply Dawnlight on your target, dealing ≈255% of Spell Power Radiant damage or ≈538.2% of Spell Power healing over 8. 8% of Dawnlight's damage and healing radiates to nearby allies or enemies, reduced beyond 5 targets.",
                             "uncertain": true
                         },
                         "category": "Mobility",
@@ -6671,7 +6668,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Casting (varies by condition — check in-game) causes your next 2 Holy Power spending abilities to apply Dawnlight on your target, dealing ≈255% of Spell Power Radiant damage or ≈538.2% of Spell Power healing over 8. 8% of Dawnlight's damage and healing radiates to nearby allies or enemies, reduced beyond 5 targets.(varies by condition — check in-game)",
+                            "text": "Casting Wake of Ashes causes your next 2 Holy Power spending abilities to apply Dawnlight on your target, dealing ≈255% of Spell Power Radiant damage or ≈538.2% of Spell Power healing over 8. 8% of Dawnlight's damage and healing radiates to nearby allies or enemies, reduced beyond 5 targets.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -6687,7 +6684,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Casting (varies by condition — check in-game) causes your next 2 Holy Power spending abilities to apply Dawnlight on your target, dealing ≈255% of Spell Power Radiant damage or ≈538.2% of Spell Power healing over 8. 8% of Dawnlight's damage and healing radiates to nearby allies or enemies, reduced beyond 5 targets.(varies by condition — check in-game)",
+                            "text": "Casting Wake of Ashes causes your next 2 Holy Power spending abilities to apply Dawnlight on your target, dealing ≈255% of Spell Power Radiant damage or ≈538.2% of Spell Power healing over 8. 8% of Dawnlight's damage and healing radiates to nearby allies or enemies, reduced beyond 5 targets.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -6703,7 +6700,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Casting (varies by condition — check in-game) causes your next ≈13.5% of Spell Power Holy Power spending abilities to apply Dawnlight on your target, dealing ≈255% of Spell Power Radiant damage or ≈538.2% of Spell Power healing over 8. 8% of Dawnlight's damage and healing radiates to nearby allies or enemies, reduced beyond 5 targets.(varies by condition — check in-game)",
+                            "text": "Casting Wake of Ashes causes your next ≈13.5% of Spell Power Holy Power spending abilities to apply Dawnlight on your target, dealing ≈255% of Spell Power Radiant damage or ≈538.2% of Spell Power healing over 8. 8% of Dawnlight's damage and healing radiates to nearby allies or enemies, reduced beyond 5 targets.",
                             "uncertain": true
                         },
                         "category": "Defensive",
@@ -6719,7 +6716,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Casting (varies by condition — check in-game) causes your next 8 Holy Power spending abilities to apply Dawnlight on your target, dealing ≈255% of Spell Power Radiant damage or ≈538.2% of Spell Power healing over 8. 8% of Dawnlight's damage and healing radiates to nearby allies or enemies, reduced beyond 5 targets.(varies by condition — check in-game)",
+                            "text": "Casting Wake of Ashes causes your next 8 Holy Power spending abilities to apply Dawnlight on your target, dealing ≈255% of Spell Power Radiant damage or ≈538.2% of Spell Power healing over 8. 8% of Dawnlight's damage and healing radiates to nearby allies or enemies, reduced beyond 5 targets.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -6735,8 +6732,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game)",
-                            "uncertain": true
+                            "text": "After casting Divine Toll, your next 3 Judgments cast again at 100% effectiveness.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -6751,8 +6748,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game)",
-                            "uncertain": true
+                            "text": "After casting Divine Toll, your next 3 Judgments cast again at 100% effectiveness.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -6767,8 +6764,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "After casting(varies by condition — check in-game) Divine Toll, you instantly cast (varies by condition — check in-game) every 5 sec for 15 sec.",
-                            "uncertain": true
+                            "text": "After casting Divine Toll, you instantly cast Judgment every 5 sec for 15 sec.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -6783,7 +6780,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Casting (varies by condition — check in-game) causes your next 2 Holy Power spending abilities to apply Dawnlight on your target, dealing ≈255% of Spell Power Radiant damage or ≈538.2% of Spell Power healing over 8. 8% of Dawnlight's damage and healing radiates to nearby allies or enemies, reduced beyond 5 targets.(varies by condition — check in-game)",
+                            "text": "Casting Wake of Ashes causes your next 2 Holy Power spending abilities to apply Dawnlight on your target, dealing ≈255% of Spell Power Radiant damage or ≈538.2% of Spell Power healing over 8. 8% of Dawnlight's damage and healing radiates to nearby allies or enemies, reduced beyond 5 targets.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -6799,8 +6796,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "After you cast (varies by condition — check in-game), gain Divine Purpose. (varies by condition — check in-game)",
-                            "uncertain": true
+                            "text": "After you cast Wake of Ashes, gain Divine Purpose. Divine Purpose $@spellaura408458",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -6915,8 +6912,8 @@
                         "modifier_value": -15,
                         "modifier_unit": "seconds",
                         "description": {
-                            "text": "(varies by condition — check in-game) cooldown is reduced by 15 sec.",
-                            "uncertain": true
+                            "text": "Divine Toll's cooldown is reduced by 15 sec.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -7318,8 +7315,8 @@
             "spellId": 7945,
             "category": "Other",
             "description": {
-                "text": "Avenging Wrath empowers your next (varies by condition — check in-game) with 25% increased effectiveness.",
-                "uncertain": true
+                "text": "Avenging Wrath empowers your next damage dealing single target Holy Power ability to automatically activate Divine Storm with 25% increased effectiveness.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -7378,8 +7375,8 @@
             "spellId": 7794,
             "category": "Other",
             "description": {
-                "text": "(varies by condition — check in-game)",
-                "uncertain": true
+                "text": "Dawnlight's duration is increased by 0.3 sec whenever struck by Divine Storm or Templar's Verdict. When 2 Dawnlights are struck by Divine Storm, their durations are extended by an additional 0.5 sec.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -7438,7 +7435,7 @@
             "spellId": 7779,
             "category": "Defensive",
             "description": {
-                "text": "Heals an ally for 25 and an additional ≈109.4% of Spell Power over 16. Healing increased by (varies by condition — check in-game)% when cast on self.",
+                "text": "Heals an ally for 25 and an additional ≈109.4% of Spell Power over 16. Healing increased by 35% when cast on self.",
                 "uncertain": true
             },
             "formulaModifierSpellIds": [],
@@ -7450,8 +7447,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Call upon the Light to become an avatar of retribution, (varies by condition — check in-game)increasing your damage, healing, and critical strike chance by 20% and Haste by 3% for 20. Each Holy Power spent increases Haste by an additional 2%, up to 20%.",
-                            "uncertain": true
+                            "text": "Call upon the Light to become an avatar of retribution, increasing your damage, healing, and critical strike chance by 20% and Haste by 3% for 20. Each Holy Power spent increases Haste by an additional 2%, up to 20%.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -7782,8 +7779,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Call upon the Light to become an avatar of retribution, (varies by condition — check in-game)increasing your damage, healing, and critical strike chance by 20% and Haste by 3% for 20. Each Holy Power spent increases Haste by an additional 2%, up to 20%.",
-                            "uncertain": true
+                            "text": "Call upon the Light to become an avatar of retribution, increasing your damage, healing, and critical strike chance by 20% and Haste by 3% for 20. Each Holy Power spent increases Haste by an additional 2%, up to 20%.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -8248,7 +8245,7 @@
             "spellId": 7757,
             "category": "Offensive",
             "description": {
-                "text": "Melee and ranged attackers receive ≈35% of Spell Power Holy damage each time they strike you during (varies by condition — check in-game) and Divine Shield.",
+                "text": "Melee and ranged attackers receive ≈35% of Spell Power Holy damage each time they strike you during Divine Protection and Divine Shield.",
                 "uncertain": true
             },
             "formulaModifierSpellIds": [],
@@ -8295,7 +8292,7 @@
             "spellId": 7751,
             "category": "Defensive",
             "description": {
-                "text": "(varies by condition — check in-game) grants 20% bonus armor for (varies).",
+                "text": "Word of Glory grants 20% bonus armor for (varies).",
                 "uncertain": true
             },
             "formulaModifierSpellIds": [],
@@ -8367,8 +8364,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Call upon the Light to become an avatar of retribution, (varies by condition — check in-game)increasing your damage, healing, and critical strike chance by 20% and Haste by 3% for 20. Each Holy Power spent increases Haste by an additional 2%, up to 20%.",
-                            "uncertain": true
+                            "text": "Call upon the Light to become an avatar of retribution, increasing your damage, healing, and critical strike chance by 20% and Haste by 3% for 20. Each Holy Power spent increases Haste by an additional 2%, up to 20%.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -9274,8 +9271,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Call upon the Light to become an avatar of retribution, (varies by condition — check in-game)increasing your damage, healing, and critical strike chance by 20% and Haste by 3% for 20. Each Holy Power spent increases Haste by an additional 2%, up to 20%.",
-                            "uncertain": true
+                            "text": "Call upon the Light to become an avatar of retribution, increasing your damage, healing, and critical strike chance by 20% and Haste by 3% for 20. Each Holy Power spent increases Haste by an additional 2%, up to 20%.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -9422,8 +9419,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game)",
-                            "uncertain": true
+                            "text": "Critical Strike chance of Hammer of Wrath and Divine Storm increased by 10%.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -9438,8 +9435,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game)",
-                            "uncertain": true
+                            "text": "Your damage and healing over time effects have a chance to increase the damage of your next Judgment by 50%.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -9518,7 +9515,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game)",
+                            "text": "Hammer of Wrath and Divine Storm critical strikes cause the target to burn for an additional ≈48% of Spell Power Radiant damage over 4.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -9534,8 +9531,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game)",
-                            "uncertain": true
+                            "text": "Divine Storm and Hammer of Wrath have a 1% chance to cast again at 30% effectiveness.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -9550,8 +9547,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "During Avenging Wrath, Judgment is empowered into Hammer of Wrath.(varies by condition — check in-game)",
-                            "uncertain": true
+                            "text": "During Avenging Wrath, Judgment is empowered into Hammer of Wrath. Hammer of Wrath Hurls a divine hammer that strikes an enemy for ≈215.8% of Attack Power Holy damage. Generates 1 Holy Power.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -9582,7 +9579,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game)",
+                            "text": "Hammer of Wrath and Divine Storm critical strikes cause the target to burn for an additional ≈48% of Spell Power Radiant damage over 4.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -9598,8 +9595,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game)",
-                            "uncertain": true
+                            "text": "Divine Storm and Hammer of Wrath have a 15% chance to cast again at 30% effectiveness.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -9614,8 +9611,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game)",
-                            "uncertain": true
+                            "text": "You have a 100% chance to gain Blessing of An'she and generate 2 Holy Power after casting Avenging Wrath. During Avenging Wrath, Hammer of Wrath casts Blade of Justice at 100% effectiveness.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -9878,8 +9875,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "During Avenging Wrath, Judgment is empowered into Hammer of Wrath.(varies by condition — check in-game)",
-                            "uncertain": true
+                            "text": "During Avenging Wrath, Judgment is empowered into Hammer of Wrath. Hammer of Wrath Hurls a divine hammer that strikes an enemy for ≈215.8% of Attack Power Holy damage. Generates 1 Holy Power.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -9894,8 +9891,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "During Avenging Wrath, Judgment is empowered into Hammer of Wrath.(varies by condition — check in-game)",
-                            "uncertain": true
+                            "text": "During Avenging Wrath, Judgment is empowered into Hammer of Wrath. Hammer of Wrath Hurls a divine hammer that strikes an enemy for ≈215.8% of Attack Power Holy damage. Generates 1 Holy Power.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -10280,7 +10277,7 @@
             "spellId": 7974,
             "category": "Other",
             "description": {
-                "text": "Fires a beam of light that scatters to strike a clump of targets. \r\n\r\nIf the beam is aimed at an enemy target, it deals 2,433 Holy damage and radiates 2,649 healing to 5 allies within 30 yds.\r\n\r\nIf the beam is aimed at a friendly target, it heals for 5,998 and radiates 917 Holy damage to 5 enemies within 30 yds.\r\n\r\nGenerates 3 Holy Power.",
+                "text": "Fires a beam of light that scatters to strike a clump of targets. \r\n\r\nIf the beam is aimed at an enemy target, it deals 2,483 Holy damage and radiates 2,625 healing to 5 allies within 30 yds.\r\n\r\nIf the beam is aimed at a friendly target, it heals for 6,129 and radiates 919 Holy damage to 5 enemies within 30 yds.\r\n\r\nGenerates 3 Holy Power.",
                 "uncertain": false
             },
             "formulaModifierSpellIds": [],
@@ -10430,8 +10427,8 @@
             "spellId": 7736,
             "category": "Other",
             "description": {
-                "text": "Reduces the cooldown of Blessing of Protection(varies by condition — check in-game) by 60 sec.",
-                "uncertain": true
+                "text": "Reduces the cooldown of Blessing of Protection by 60 sec.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -10520,8 +10517,8 @@
             "spellId": 7767,
             "category": "Other",
             "description": {
-                "text": "(varies by condition — check in-game) increases healing taken by 15% for its duration.",
-                "uncertain": true
+                "text": "Divine Protection increases healing taken by 15% for its duration.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -10592,8 +10589,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Call upon the Light to become an avatar of retribution, (varies by condition — check in-game)increasing your damage, healing, and critical strike chance by 20% and Haste by 3% for 20. Each Holy Power spent increases Haste by an additional 2%, up to 20%.",
-                            "uncertain": true
+                            "text": "Call upon the Light to become an avatar of retribution, increasing your damage, healing, and critical strike chance by 20% and Haste by 3% for 20. Each Holy Power spent increases Haste by an additional 2%, up to 20%.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -10660,7 +10657,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Instantly cast Holy Shock, Avenger's Shield, or Judgment on up to 100 targets within (varies) yds (based on your current specialization).(varies by condition — check in-game)",
+                            "text": "Instantly cast Holy Shock, Avenger's Shield, or Judgment on up to 100 targets within (varies) yds (based on your current specialization). Divine Toll's Judgment deals 100% increased damage.",
                             "uncertain": true
                         },
                         "category": "Other",
@@ -10724,8 +10721,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game)",
-                            "uncertain": true
+                            "text": "Your damage and healing over time effects have a chance to increase the damage of your next Judgment by 50%.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -10772,7 +10769,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Instantly cast Holy Shock, Avenger's Shield, or Judgment on up to 60 targets within (varies) yds (based on your current specialization).(varies by condition — check in-game)",
+                            "text": "Instantly cast Holy Shock, Avenger's Shield, or Judgment on up to 60 targets within (varies) yds (based on your current specialization). Divine Toll's Judgment deals 100% increased damage.",
                             "uncertain": true
                         },
                         "category": "Other",
@@ -10788,8 +10785,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game)",
-                            "uncertain": true
+                            "text": "After casting Divine Toll, your next 3 Judgments cast again at 100% effectiveness.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -10804,8 +10801,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game)",
-                            "uncertain": true
+                            "text": "After casting Divine Toll, your next 3 Judgments cast again at 100% effectiveness.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -10820,8 +10817,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game)",
-                            "uncertain": true
+                            "text": "After casting Divine Toll, your next 3 Judgments cast again at 100% effectiveness.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -10836,8 +10833,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "After casting(varies by condition — check in-game) Divine Toll, you instantly cast (varies by condition — check in-game) every 5 sec for 15 sec.",
-                            "uncertain": true
+                            "text": "After casting Divine Toll, you instantly cast Judgment every 5 sec for 15 sec.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -10852,8 +10849,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "After casting(varies by condition — check in-game) Divine Toll, you instantly cast (varies by condition — check in-game) every 5 sec for 15 sec.",
-                            "uncertain": true
+                            "text": "After casting Divine Toll, you instantly cast Judgment every 5 sec for 15 sec.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -10868,8 +10865,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "After casting(varies by condition — check in-game) Divine Toll, you instantly cast (varies by condition — check in-game) every 5 sec for 15 sec.",
-                            "uncertain": true
+                            "text": "After casting Divine Toll, you instantly cast Judgment every 5 sec for 15 sec.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -10884,8 +10881,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "After casting(varies by condition — check in-game) Divine Toll, you instantly cast (varies by condition — check in-game) every 5 sec for 15 sec.",
-                            "uncertain": true
+                            "text": "After casting Divine Toll, you instantly cast Judgment every 5 sec for 15 sec.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -10900,8 +10897,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "After casting(varies by condition — check in-game) Divine Toll, you instantly cast (varies by condition — check in-game) every 5 sec for 15 sec.",
-                            "uncertain": true
+                            "text": "After casting Divine Toll, you instantly cast Judgment every 5 sec for 15 sec.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -10964,8 +10961,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game)",
-                            "uncertain": true
+                            "text": "After casting Divine Toll, your next 3 Judgments cast again at 100% effectiveness.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -11012,8 +11009,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Instantly cast Judgment on up to 5 targets within 30 yds.(varies by condition — check in-game)(varies by condition — check in-game)",
-                            "uncertain": true
+                            "text": "Instantly cast Judgment on up to 5 targets within 30 yds. Divine Toll's Judgment deals 50% increased damage.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -11028,8 +11025,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game)",
-                            "uncertain": true
+                            "text": "After casting Divine Toll, your next 3 Judgments cast again at 100% effectiveness.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -11044,8 +11041,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "After casting(varies by condition — check in-game) Divine Toll, you instantly cast (varies by condition — check in-game) every 5 sec for 15 sec.",
-                            "uncertain": true
+                            "text": "After casting Divine Toll, you instantly cast Judgment every 5 sec for 15 sec.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -11060,8 +11057,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "During Avenging Wrath, Judgment is empowered into Hammer of Wrath.(varies by condition — check in-game)",
-                            "uncertain": true
+                            "text": "During Avenging Wrath, Judgment is empowered into Hammer of Wrath. Hammer of Wrath Hurls a divine hammer that strikes an enemy for ≈215.8% of Attack Power Holy damage. Generates 1 Holy Power.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -11076,8 +11073,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game)",
-                            "uncertain": true
+                            "text": "Your damage and healing over time effects have a chance to increase the damage of your next Judgment by 50%.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -11340,8 +11337,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Call upon the Light to become an avatar of retribution, (varies by condition — check in-game)increasing your damage, healing, and critical strike chance by 20% and Haste by 3% for 20. Each Holy Power spent increases Haste by an additional 2%, up to 20%.",
-                            "uncertain": true
+                            "text": "Call upon the Light to become an avatar of retribution, increasing your damage, healing, and critical strike chance by 20% and Haste by 3% for 20. Each Holy Power spent increases Haste by an additional 2%, up to 20%.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -11484,8 +11481,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "During Avenging Wrath, Judgment is empowered into Hammer of Wrath.(varies by condition — check in-game)",
-                            "uncertain": true
+                            "text": "During Avenging Wrath, Judgment is empowered into Hammer of Wrath. Hammer of Wrath Hurls a divine hammer that strikes an enemy for ≈215.8% of Attack Power Holy damage. Generates 1 Holy Power.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -11500,8 +11497,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "During Avenging Wrath, Judgment is empowered into Hammer of Wrath.(varies by condition — check in-game)",
-                            "uncertain": true
+                            "text": "During Avenging Wrath, Judgment is empowered into Hammer of Wrath. Hammer of Wrath Hurls a divine hammer that strikes an enemy for ≈215.8% of Attack Power Holy damage. Generates 1 Holy Power.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -12360,8 +12357,8 @@
             "spellId": 7781,
             "category": "Other",
             "description": {
-                "text": "(varies by condition — check in-game)",
-                "uncertain": true
+                "text": "Critical Strike chance of Hammer of Wrath and Divine Storm increased by 10%.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -12497,8 +12494,8 @@
             "spellId": 7733,
             "category": "Other",
             "description": {
-                "text": "(varies by condition — check in-game) cooldown is reduced by 15 sec.",
-                "uncertain": true
+                "text": "Divine Toll's cooldown is reduced by 15 sec.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -12633,8 +12630,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Call upon the Light to become an avatar of retribution, (varies by condition — check in-game)increasing your damage, healing, and critical strike chance by 20% and Haste by 3% for 20. Each Holy Power spent increases Haste by an additional 2%, up to 20%.",
-                            "uncertain": true
+                            "text": "Call upon the Light to become an avatar of retribution, increasing your damage, healing, and critical strike chance by 20% and Haste by 3% for 20. Each Holy Power spent increases Haste by an additional 2%, up to 20%.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -13223,8 +13220,8 @@
             "spellId": 7740,
             "category": "Other",
             "description": {
-                "text": "Mastery increased by 2% and (varies by condition — check in-game) increased by 2%.",
-                "uncertain": true
+                "text": "Mastery increased by 2% and Strength increased by 2%.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -13313,8 +13310,8 @@
             "spellId": 7788,
             "category": "Other",
             "description": {
-                "text": "(varies by condition — check in-game)",
-                "uncertain": true
+                "text": "Divine Storm and Hammer of Wrath have a 15% chance to cast again at 30% effectiveness.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -13390,8 +13387,8 @@
             "spellId": 7766,
             "category": "Other",
             "description": {
-                "text": "Flash of Light (varies by condition — check in-game) 30% more effective on your allies and 40% of the healing done also heals you.",
-                "uncertain": true
+                "text": "Flash of Light is 30% more effective on your allies and 40% of the healing done also heals you.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -13826,7 +13823,7 @@
             "spellId": 7785,
             "category": "Offensive",
             "description": {
-                "text": "(varies by condition — check in-game)",
+                "text": "Hammer of Wrath and Divine Storm critical strikes cause the target to burn for an additional ≈48% of Spell Power Radiant damage over 4.",
                 "uncertain": true
             },
             "formulaModifierSpellIds": [],
@@ -13856,8 +13853,8 @@
             "spellId": 7787,
             "category": "Offensive",
             "description": {
-                "text": "You link to your Dawnlights within 30 yds, causing 15 Radiant damage to enemies or 15 healing to allies that pass through the beams, reduced beyond (varies by condition — check in-game) targets.",
-                "uncertain": true
+                "text": "You link to your Dawnlights within 30 yds, causing 15 Radiant damage to enemies or 15 healing to allies that pass through the beams, reduced beyond 8 targets.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -14249,8 +14246,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Call upon the Light to become an avatar of retribution, (varies by condition — check in-game)increasing your damage, healing, and critical strike chance by 20% and Haste by 3% for 20. Each Holy Power spent increases Haste by an additional 2%, up to 20%.",
-                            "uncertain": true
+                            "text": "Call upon the Light to become an avatar of retribution, increasing your damage, healing, and critical strike chance by 20% and Haste by 3% for 20. Each Holy Power spent increases Haste by an additional 2%, up to 20%.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -14349,7 +14346,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Casting (varies by condition — check in-game) causes your next 2 Holy Power spending abilities to apply Dawnlight on your target, dealing ≈255% of Spell Power Radiant damage or ≈538.2% of Spell Power healing over 8. 8% of Dawnlight's damage and healing radiates to nearby allies or enemies, reduced beyond 5 targets.(varies by condition — check in-game)",
+                            "text": "Casting Wake of Ashes causes your next 2 Holy Power spending abilities to apply Dawnlight on your target, dealing ≈255% of Spell Power Radiant damage or ≈538.2% of Spell Power healing over 8. 8% of Dawnlight's damage and healing radiates to nearby allies or enemies, reduced beyond 5 targets.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -14365,7 +14362,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Casting (varies by condition — check in-game) causes your next 2 Holy Power spending abilities to apply Dawnlight on your target, dealing ≈255% of Spell Power Radiant damage or ≈538.2% of Spell Power healing over 8. 8% of Dawnlight's damage and healing radiates to nearby allies or enemies, reduced beyond 5 targets.(varies by condition — check in-game)",
+                            "text": "Casting Wake of Ashes causes your next 2 Holy Power spending abilities to apply Dawnlight on your target, dealing ≈255% of Spell Power Radiant damage or ≈538.2% of Spell Power healing over 8. 8% of Dawnlight's damage and healing radiates to nearby allies or enemies, reduced beyond 5 targets.",
                             "uncertain": true
                         },
                         "category": "Mobility",
@@ -14381,7 +14378,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Casting (varies by condition — check in-game) causes your next 2 Holy Power spending abilities to apply Dawnlight on your target, dealing ≈255% of Spell Power Radiant damage or ≈538.2% of Spell Power healing over 8. 8% of Dawnlight's damage and healing radiates to nearby allies or enemies, reduced beyond 5 targets.(varies by condition — check in-game)",
+                            "text": "Casting Wake of Ashes causes your next 2 Holy Power spending abilities to apply Dawnlight on your target, dealing ≈255% of Spell Power Radiant damage or ≈538.2% of Spell Power healing over 8. 8% of Dawnlight's damage and healing radiates to nearby allies or enemies, reduced beyond 5 targets.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -14397,7 +14394,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Casting (varies by condition — check in-game) causes your next 2 Holy Power spending abilities to apply Dawnlight on your target, dealing ≈255% of Spell Power Radiant damage or ≈538.2% of Spell Power healing over 8. 8% of Dawnlight's damage and healing radiates to nearby allies or enemies, reduced beyond 5 targets.(varies by condition — check in-game)",
+                            "text": "Casting Wake of Ashes causes your next 2 Holy Power spending abilities to apply Dawnlight on your target, dealing ≈255% of Spell Power Radiant damage or ≈538.2% of Spell Power healing over 8. 8% of Dawnlight's damage and healing radiates to nearby allies or enemies, reduced beyond 5 targets.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -14413,7 +14410,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Casting (varies by condition — check in-game) causes your next ≈13.5% of Spell Power Holy Power spending abilities to apply Dawnlight on your target, dealing ≈255% of Spell Power Radiant damage or ≈538.2% of Spell Power healing over 8. 8% of Dawnlight's damage and healing radiates to nearby allies or enemies, reduced beyond 5 targets.(varies by condition — check in-game)",
+                            "text": "Casting Wake of Ashes causes your next ≈13.5% of Spell Power Holy Power spending abilities to apply Dawnlight on your target, dealing ≈255% of Spell Power Radiant damage or ≈538.2% of Spell Power healing over 8. 8% of Dawnlight's damage and healing radiates to nearby allies or enemies, reduced beyond 5 targets.",
                             "uncertain": true
                         },
                         "category": "Defensive",
@@ -14429,8 +14426,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "After you cast (varies by condition — check in-game), your next Holy Power spender is guaranteed to apply 1 Dawnlight.",
-                            "uncertain": true
+                            "text": "After you cast Wake of Ashes, your next Holy Power spender is guaranteed to apply 1 Dawnlight.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -14445,8 +14442,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "After you cast (varies by condition — check in-game), your next Holy Power spender is guaranteed to apply 8,000 Dawnlight.",
-                            "uncertain": true
+                            "text": "After you cast Wake of Ashes, your next Holy Power spender is guaranteed to apply 8,000 Dawnlight.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -14461,7 +14458,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Casting (varies by condition — check in-game) causes your next 8 Holy Power spending abilities to apply Dawnlight on your target, dealing ≈255% of Spell Power Radiant damage or ≈538.2% of Spell Power healing over 8. 8% of Dawnlight's damage and healing radiates to nearby allies or enemies, reduced beyond 5 targets.(varies by condition — check in-game)",
+                            "text": "Casting Wake of Ashes causes your next 8 Holy Power spending abilities to apply Dawnlight on your target, dealing ≈255% of Spell Power Radiant damage or ≈538.2% of Spell Power healing over 8. 8% of Dawnlight's damage and healing radiates to nearby allies or enemies, reduced beyond 5 targets.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -14509,7 +14506,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Casting (varies by condition — check in-game) causes your next 2 Holy Power spending abilities to apply Dawnlight on your target, dealing ≈255% of Spell Power Radiant damage or ≈538.2% of Spell Power healing over 8. 8% of Dawnlight's damage and healing radiates to nearby allies or enemies, reduced beyond 5 targets.(varies by condition — check in-game)",
+                            "text": "Casting Wake of Ashes causes your next 2 Holy Power spending abilities to apply Dawnlight on your target, dealing ≈255% of Spell Power Radiant damage or ≈538.2% of Spell Power healing over 8. 8% of Dawnlight's damage and healing radiates to nearby allies or enemies, reduced beyond 5 targets.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -14525,8 +14522,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "After you cast (varies by condition — check in-game), gain Divine Purpose. (varies by condition — check in-game)",
-                            "uncertain": true
+                            "text": "After you cast Wake of Ashes, gain Divine Purpose. Divine Purpose $@spellaura408458",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -14890,8 +14887,8 @@
             "spellId": 7793,
             "category": "Other",
             "description": {
-                "text": "(varies by condition — check in-game)",
-                "uncertain": true
+                "text": "You have a 100% chance to gain Blessing of An'she and generate 2 Holy Power after casting Avenging Wrath. During Avenging Wrath, Hammer of Wrath casts Blade of Justice at 100% effectiveness.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {

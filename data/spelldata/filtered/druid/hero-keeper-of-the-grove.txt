@@ -1,5 +1,5 @@
 # Druid — Keeper of the Grove Hero Talents
-# Extracted verbatim from druid.txt (SimulationCraft 1210-01 for World of Warcraft 12.1.0.69933 Live)
+# Extracted verbatim from druid.txt (SimulationCraft 1210-01 for World of Warcraft 12.1.5.70688 Live)
 # 18 spell record(s). Mechanical regroup only — no content altered.
 
 Name             : Treants of the Moon (id=428544) [Spell Family (7), Passive] 
@@ -66,7 +66,7 @@ Effects          :
                    Affected Spells (Category): Swiftmend (18562)
 #3 (id=1256778)  : Apply Aura (6) | Add Flat Modifier (107): Spell Cooldown (11)
                    Base Value: -1000 | Scaled Value: -1000 | Misc Value: 11 | Target: Self (1)
-                   Affected Spells: Wild Growth (48438)
+                   Affected Spells: Wild Growth (48438), Mass Blooming (474149)
                    Family Flags: 58
 Description      : $?a137013[Force of Nature cooldown reduced by ${$s1/-1000} sec.][Swiftmend and Wild Growth cooldowns reduced by ${$s2/-1000} sec.]
 
@@ -146,11 +146,11 @@ Effects          :
                    Family Flags: 0, 2
 #2 (id=1113584)  : Apply Aura (6) | Add Percent Modifier (108): Spell Direct Amount (0)
                    Base Value: 9 | Scaled Value: 9 | Target: Self (1)
-                   Affected Spells: Regrowth (8936), Swiftmend (18562), Wild Growth (48438), Regrowth (1264664)
+                   Affected Spells: Regrowth (8936), Swiftmend (18562), Wild Growth (48438), Mass Blooming (474149), Regrowth (1264664)
                    Family Flags: 6, 33, 58
 #3 (id=1113585)  : Apply Aura (6) | Add Percent Modifier (108): Spell Periodic Amount (22)
                    Base Value: 9 | Scaled Value: 9 | Misc Value: 22 | Target: Self (1)
-                   Affected Spells: Regrowth (8936), Swiftmend (18562), Wild Growth (48438), Regrowth (1264664)
+                   Affected Spells: Regrowth (8936), Swiftmend (18562), Wild Growth (48438), Mass Blooming (474149), Regrowth (1264664)
                    Family Flags: 6, 33, 58
 Description      : Wrath and Starfire damage increased by $s1%. 
 

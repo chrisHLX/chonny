@@ -1,6 +1,6 @@
 # Demon Hunter — Baseline (no talent tree)
-# Extracted verbatim from demonhunter.txt (SimulationCraft 1210-01 for World of Warcraft 12.1.0.69933 Live)
-# 687 spell record(s). Mechanical regroup only — no content altered.
+# Extracted verbatim from demonhunter.txt (SimulationCraft 1210-01 for World of Warcraft 12.1.5.70688 Live)
+# 689 spell record(s). Mechanical regroup only — no content altered.
 
 Name             : Dual Wield (desc=Passive) (id=674) [Passive] 
 Class            : Frost Death Knight, Warrior, Hunter, Rogue, Monk, Demon Hunter
@@ -6437,7 +6437,7 @@ Effects          :
 #1 (id=891975)   : Apply Aura (6) | Add Flat Modifier (107): Spell Radius (6)
                    Base Value: 4 | Scaled Value: 4 | Misc Value: 6 | Target: Self (1)
 #2 (id=891976)   : Apply Aura (6) | Add Flat Modifier (107): Spell Duration (1)
-                   Base Value: 2000 | Scaled Value: 2000 | Misc Value: 1 | Target: Self (1)
+                   Base Value: 4000 | Scaled Value: 4000 | Misc Value: 1 | Target: Self (1)
                    Affected Spells: Darkness (196718)
                    Family Flags: 77
 Description      : The radius of Darkness is increased by $s1 yds, and its duration by ${$s2/1000} sec.
@@ -8702,7 +8702,6 @@ Attributes       : Is Ability (4), Not Shapeshifted (16), Do Not Sheath (18), No
 Effects          :
 #1 (id=1137380)  : School Damage (2): physical
                    Base Value: 0 | Scaled Value: 0 | AP Coefficient: 4.81 | Chain Multiplier: 1 | Chain Targets: 3 | Target: Targeted Enemy (6)
-Hotfixed         : AP Coefficient (3.85 -> 4.81)
 #2 (id=1137756)  : Energize Power (30)
                    Base Value: 0 | Scaled Value: 0 | Resource: fury | Target: Self (1)
                    Modified By: Keen Engagement (442497 effect#1)
@@ -8807,11 +8806,9 @@ Effects          :
                    Base Value: 8 | Scaled Value: 8 | Target: Targeted Enemy (6)
                    Affected Spells: Demon's Bite (162243), Chaos Nova (179057), Throw Glaive (185123), Infernal Strike (189112), Fel Rush (192611), Eye Beam (198030), Vengeful Retreat (198813), Chaos Strike (199547), Blade Dance (199552), Metamorphosis (200166), Blade Dance (200685), Annihilation (201428), Shear (203782), Demon Blades (203796), Fiery Brand (204021), Throw Glaive (204157), Sigil of Flame (204598), Soul Carver (207407), Fiery Brand (207771), Death Sweep (210153), Death Sweep (210155), Fel Devastation (212105), Felblade (213243), Soul Carver (214743), Chaos Strike (222031), Fracture (225919), Fracture (225921), Annihilation (227518), Soul Cleave (228478), Spirit Bomb (247455), Essence Break (258860), Trail of Ruin (258883), Immolation Aura (258921), Immolation Aura (258922), Infernal Armor (273239), Unbound Chaos (275148), Essence Sever (279450), Elysian Decree (307046), Sinful Brand (317009), Infernal Armor (320334), The Hunt (323802), Fel Devastation (333110), Throw Glaive (337819), Elysian Decree (339893), Elysian Decree (339894), Glaive Tempest (342857), Chaos Nova (344867), The Hunt (345335), Fel Devastation (346503), Throw Glaive (346665), The Hunt (370966), The Hunt (370969), Sigil of Spite (389860), Inner Demon (390137), Eye Beam (391058), Demon Spikes (391159), Burning Wound (391191), Blade Dance (391374), Blade Dance (391378), Throw Glaive (393035), Death Sweep (393054), Death Sweep (393055), Fel Devastation (393834), Metamorphosis - Alex S Copy (418583), Sigil of Flame (425672), Immolation Aura (427904), Immolation Aura (427905), Immolation Aura (427906), Immolation Aura (427907), Immolation Aura (427908), Immolation Aura (427910), Immolation Aura (427911), Immolation Aura (427916), Blazing Nova (436899), Blazing Nova (436964), Reaver's Glaive (442294), Warblade's Hunger (442507), Fury of the Aldrachi (444806), Preemptive Strike (444979), Demonsurge (451266), Demonsurge (452416), Burning Blades (453177), Sigil of Doom (462030), Void Nova (1234195), Essence Break (1245759), Voidfall Meteor (1256306), World Killer (1256617), Catastrophe (1256667), Catastrophe (1256676), Meteor Shower (1264130), Explosion of the Soul (1276488), Reaver's Glaive (1283344), Eye Beam (1287949)
                    Family Flags: 16, 70
-Hotfixed         : Base Value (7 -> 8)
                    Modified By: Havoc Demon Hunter (212612 effect#11)
 #2 (id=1167823)  : Apply Aura (6) | Modify Auto Attack Damage Taken% from Caster (343)
                    Base Value: 8 | Scaled Value: 8 | Target: Targeted Enemy (6)
-Hotfixed         : Base Value (7 -> 8)
                    Modified By: Havoc Demon Hunter (212612 effect#11)
 Description      : $@spelldesc442679
 Tooltip          : Taking $w1% increased damage from $@auracaster.
@@ -9519,7 +9516,7 @@ Effects          :
 #1 (id=1153826)  : Apply Aura (6) | Modify Total Stat% (137)
                    Base Value: 8 | Scaled Value: 8 | Stat: Agi | Target: Self (1)
 #2 (id=1247648)  : Apply Aura (6) | Modify Total Stat% (137)
-                   Base Value: 15 | Scaled Value: 15 | Stat: Int | Target: Self (1)
+                   Base Value: 10 | Scaled Value: 10 | Stat: Int | Target: Self (1)
 Description      : $@spelldesc452414
 Tooltip          : Agility increased by $w1%.
 
@@ -10084,7 +10081,6 @@ Attributes       : Allow Class Ability Procs (416)
 Effects          :
 #1 (id=1192725)  : School Damage (2): cosmic
                    Base Value: 0 | Scaled Value: 0 (delta=0.05) | SP Coefficient: 3.67 | PvP Coefficient: 1.34 | Target: Targeted Enemy (6)
-Hotfixed         : SP Coefficient (3.4 -> 3.67), PvP Coefficient (1.45 -> 1.34)
 Description      : Drain the essence from your target, dealing $s1 Cosmic damage.
 
 Castable while moving.
@@ -10494,7 +10490,6 @@ Attributes       : Allow Class Ability Procs (416)
 Effects          :
 #1 (id=1201793)  : School Damage (2): cosmic
                    Base Value: 0 | Scaled Value: 0 (delta=0.05) | SP Coefficient: 3.67 | PvP Coefficient: 1.34 | Target: Targeted Enemy (6)
-Hotfixed         : SP Coefficient (3.4 -> 3.67), PvP Coefficient (1.45 -> 1.34)
 Description      : Devour the life essence of your target, dealing $s1 Cosmic damage. Reduces the cooldown of Reap by ${$1217607s14/1000}.1 sec.
 
 Castable while moving.
@@ -10555,10 +10550,10 @@ Spell Type       : None
 Range            : 25 yards
 Cast Time        : 3 seconds
 GCD              : 1.5 seconds
-Cooldown         : 5 seconds
 Labels           : 16: Class Spells
                  : 66: Demon Hunter Spells
                  : 292
+Affecting Spells : Collapsing Star (1319061 effect#1)
 Family Flags     : 105
 Attributes       : Not Shapeshifted (16), Not In Spellbook Until Learned (269), Trigger Cooldown On Spell Start (407), Allow Class Ability Procs (416)
 Channel Interrupt: Damage (2), Action (3), Sheathing (10), Interacting (11), Looting (12), Attacking (13), Action (Delayed) (17)
@@ -10567,7 +10562,6 @@ Effects          :
                    Base Value: 8 | Scaled Value: 8 | Target: Targeted Enemy (6)
 #2 (id=1290193)  : Dummy (3)
                    Base Value: 50 | Scaled Value: 50
-Hotfixed         : Base Value (54 -> 50)
 Description      : Channel an immense amount of void energy into a single, cataclysmic blast, $?a1242486[critically striking for ${$1221162s1*2}][dealing $1221162s1] Cosmic damage to your target and $?a1242486[${2*($1221162s1*($s2/100))}][${$1221162s1*($s2/100)}] Cosmic damage to all nearby enemies. Damage reduced beyond $s1 targets.
 
 While casting Collapsing Star, your Fury drain is significantly reduced.$?a1240204[
@@ -10588,8 +10582,7 @@ Family Flags     : 95, 103
 Attributes       : Ignore Line of Sight (66), Always AOE Line of Sight (186), Allow Class Ability Procs (416)
 Effects          :
 #1 (id=1207523)  : School Damage (2): cosmic
-                   Base Value: 0 | Scaled Value: 0 (delta=0.05) | SP Coefficient: 12.755 | PvP Coefficient: 0.741 | Radius: 8 yards | Target: at Enemy in Area (16)
-Hotfixed         : SP Coefficient (11.81 -> 12.755), PvP Coefficient (0.8 -> 0.741)
+                   Base Value: 0 | Scaled Value: 0 (delta=0.05) | SP Coefficient: 12.755 | PvP Coefficient: 0.89 | Radius: 8 yards | Target: at Enemy in Area (16)
 Description      : $@spelldesc1221150
 
 Name             : Collapsing Star (id=1221171) [Spell Family (107), Hidden] 
@@ -10742,7 +10735,6 @@ Attributes       : Can Proc From Procs (122), Allow Class Ability Procs (416)
 Effects          :
 #1 (id=1215271)  : School Damage (2): cosmic
                    Base Value: 0 | Scaled Value: 0 | SP Coefficient: 6.0156 | PvP Coefficient: 0.526 | Target: Targeted Enemy (6)
-Hotfixed         : SP Coefficient (5.57 -> 6.0156), PvP Coefficient (0.568 -> 0.526)
 Description      : $@spelldesc1226019
 
 Name             : Eradicate (id=1225826) [Spell Family (107)] 
@@ -10763,7 +10755,6 @@ Attributes       : No Aura Icon (60), Can Proc From Procs (122), Enforce Facing 
 Effects          :
 #1 (id=1215274)  : Dummy (3)
                    Base Value: 83 | Scaled Value: 83 | Target: Targeted Enemy (6)
-Hotfixed         : Base Value (90 -> 83)
 #2 (id=1215655)  : Apply Aura (6) | Dummy (4)
                    Base Value: 25 | Scaled Value: 25 | Target: Self (1)
 Description      : Slam your Scythe to the ground, dealing $?a1217607[$1279200s1][$1225827s1] Cosmic damage to your primary target and $?a1217607[${$1279200s1*($s1/100)}][${$1225827s1*($s1/100)}] to all other enemies within a $s2 yd cone in front of you. Damage reduced beyond $1226033s1 targets.
@@ -10788,7 +10779,6 @@ Attributes       : Ignore Line of Sight (66), Can Proc From Procs (122), Always 
 Effects          :
 #1 (id=1215275)  : School Damage (2): cosmic | Attributes: Area Effects Use Target Radius (17)
                    Base Value: 0 | Scaled Value: 0 | SP Coefficient: 6.0156 | PvP Coefficient: 0.526 | Radius: 0 - 30 yards | Target: at Area (87) -> Line to Enemy (134)
-Hotfixed         : SP Coefficient (5.57 -> 6.0156), PvP Coefficient (0.568 -> 0.526)
 Description      : $@spelldesc1225826
 
 Name             : Reap (id=1226019) [Spell Family (107)] 
@@ -11441,7 +11431,6 @@ Effects          :
                    Base Value: 1 | Scaled Value: 1 | Target: Targeted Enemy (6)
 #2 (id=1246443)  : School Damage (2): cosmic
                    Base Value: 0 | Scaled Value: 0 (delta=0.05) | SP Coefficient: 2.475 | PvP Coefficient: 1.25 | Target: Targeted Enemy (6)
-Hotfixed         : SP Coefficient (2.25 -> 2.475), PvP Coefficient (1.38 -> 1.25)
 #3 (id=1246444)  : Energize Power (30)
                    Base Value: 0 | Scaled Value: 0 | Resource: fury | Target: Self (1)
                    Modified By: Duty Eternal (1246562 effect#2)
@@ -11490,7 +11479,6 @@ Attributes       : Can Proc From Procs (122), Allow Class Ability Procs (416)
 Effects          :
 #1 (id=1246508)  : School Damage (2): cosmic
                    Base Value: 0 | Scaled Value: 0 | SP Coefficient: 7.736 | PvP Coefficient: 0.526 | Target: Targeted Enemy (6)
-Hotfixed         : SP Coefficient (7.163 -> 7.736), PvP Coefficient (0.568 -> 0.526)
 Description      : $@spelldesc1245453
 
 Name             : Reaper's Toll (id=1245470) [Spell Family (107)] 
@@ -11792,7 +11780,6 @@ Attributes       : Is Ability (4), Do Not Sheath (18), Allow Cast While Casting 
 Effects          :
 #1 (id=1247657)  : School Damage (2): cosmic
                    Base Value: 0 | Scaled Value: 0 (delta=0.05) | SP Coefficient: 6.6 | PvP Coefficient: 0.77 | Target: Targeted Enemy (6)
-Hotfixed         : SP Coefficient (6 -> 6.6), PvP Coefficient (0.85 -> 0.77)
 #2 (id=1247658)  : Dummy (3)
                    Base Value: 25 | Scaled Value: 25 | Target: Targeted Enemy (6)
 #3 (id=1247659)  : Trigger Spell (64): The Hunt
@@ -12301,10 +12288,12 @@ Cast Time        : 1 seconds
 GCD              : 1.5 seconds
 Duration         : 2 seconds
 Cooldown         : 90 seconds
+Category         : 2427 (Type 0x0): Eternal Hunt (1270900 effect#2)
 Labels           : 16: Class Spells
                  : 66: Demon Hunter Spells
                  : 292
                  : 3597
+Category Cooldown: 90 seconds
 Affecting Spells : Havoc Demon Hunter (212612 effect#6), Vengeance Demon Hunter (212613 effect#6), Any Means Necessary (388114 effects: #1, #3, #4), Violent Transformation (452409 effect#2), Devourer Demon Hunter (1213636 effect#5), Demonsurge (1245496 effects: #3, #6), Eternal Hunt (1270900 effect#1)
 Triggered By     : The Hunt (370966), The Hunt (1246169)
 Family Flags     : 32, 82
@@ -12970,7 +12959,6 @@ Attributes       : Ignore Line of Sight (66), Can Proc From Procs (122), Always 
 Effects          :
 #1 (id=1291601)  : School Damage (2): cosmic | Attributes: Area Effects Use Target Radius (17)
                    Base Value: 0 | Scaled Value: 0 | SP Coefficient: 7.736 | PvP Coefficient: 0.526 | Radius: 0 - 30 yards | Target: at Area (87) -> Line to Enemy (134)
-Hotfixed         : SP Coefficient (7.163 -> 7.736), PvP Coefficient (0.568 -> 0.526)
 Description      : $@spelldesc1225826
 
 Name             : Reaver's Glaive (id=1283344) [Spell Family (107)] 
@@ -12992,7 +12980,6 @@ Attributes       : Is Ability (4), Not Shapeshifted (16), Do Not Sheath (18), No
 Effects          :
 #1 (id=1297557)  : School Damage (2): physical
                    Base Value: 0 | Scaled Value: 0 | AP Coefficient: 5.09 | Chain Multiplier: 1 | Chain Targets: 3 | Target: Targeted Enemy (6)
-Hotfixed         : AP Coefficient (4.07 -> 5.09)
 #2 (id=1297558)  : Energize Power (30)
                    Base Value: 0 | Scaled Value: 0 | Resource: fury | Target: Self (1)
                    Modified By: Keen Engagement (442497 effect#1)
@@ -13236,3 +13223,33 @@ Effects          :
                    Family Flags: 97
 Description      : $@spelldesc1296615
 Tooltip          : Your next Consume triggers a Soulburst, dealing additional damage.
+
+Name             : Collapsing Star (id=1319061) [Spell Family (107), Hidden] 
+Class            : Demon Hunter
+School           : Cosmic
+Spell Type       : None
+Duration         : Aura (infinite)
+Labels           : 16: Class Spells
+                 : 66: Demon Hunter Spells
+                 : 292
+Attributes       : Do Not Display (Spellbook, Aura Icon, Combat Log) (7), No Aura Cancel (31), No Cast Log (128), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=1352832)  : Apply Aura (6) | Add Flat Modifier (107): Spell Range (5)
+                   Base Value: 10 | Scaled Value: 10 | Misc Value: 5 | Target: Self (1)
+                   Affected Spells: Collapsing Star (1221150)
+                   Family Flags: 105
+Description      : $@spelldesc1221150
+
+Name             : Collapsing Star (id=1319066) [Spell Family (107), Hidden] 
+Class            : Demon Hunter
+School           : Cosmic
+Spell Type       : None
+Duration         : Aura (infinite)
+Labels           : 16: Class Spells
+                 : 66: Demon Hunter Spells
+                 : 292
+Attributes       : Do Not Display (Spellbook, Aura Icon, Combat Log) (7), No Aura Cancel (31), No Cast Log (128), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=1352838)  : Apply Aura (6) | Periodic Dummy (226): every 0.1 seconds
+                   Base Value: 4950 | Scaled Value: 4950 | Target: Self (1)
+Description      : $@spelldesc1221150

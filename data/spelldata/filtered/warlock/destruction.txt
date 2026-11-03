@@ -1,5 +1,5 @@
 # Warlock — Destruction Spec Talents
-# Extracted verbatim from warlock.txt (SimulationCraft 1210-01 for World of Warcraft 12.1.0.69933 Live)
+# Extracted verbatim from warlock.txt (SimulationCraft 1210-01 for World of Warcraft 12.1.5.70688 Live)
 # 48 spell record(s). Mechanical regroup only — no content altered.
 
 Name             : Summon Infernal (desc=Guardian) (id=1122) [Spell Family (5)] 
@@ -405,7 +405,7 @@ Effects          :
                    Base Value: 100 | Scaled Value: 100 | Misc Value: 7 | Target: Self (1)
                    Affected Spells: Shadowburn (17877), Conflagrate (17962)
                    Family Flags: 7, 55
-Description      : Conflagrate and Shadowburn have a $s1% chance to critical strike and their damage is increased by your critical strike chance.
+Description      : Conflagrate and Shadowburn have a $s1% chance to critically strike and their damage is increased by your critical strike chance.
 
 Name             : Raging Demonfire (id=387166) [Spell Family (5), Passive] 
 Talent Entry     : Destruction [tree=spec, row=10, col=7, max_rank=1, req_points=20]

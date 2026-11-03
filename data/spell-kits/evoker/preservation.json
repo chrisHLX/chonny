@@ -1,6 +1,6 @@
 {
-    "generatedAt": "2026-10-18T02:37:06+00:00",
-    "spellCacheVersion": 29,
+    "generatedAt": "2026-11-03T23:04:54+00:00",
+    "spellCacheVersion": 31,
     "codeFingerprint": "dev",
     "entries": [
         {
@@ -251,8 +251,8 @@
             "spellId": 3739,
             "category": "Other",
             "description": {
-                "text": "Fire Breath (varies by condition — check in-game) maximum empower level 20% faster.",
-                "uncertain": true
+                "text": "Fire Breath and Dream Breath reach their maximum empower level 20% faster.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -392,8 +392,8 @@
             "spellId": 3723,
             "category": "Other",
             "description": {
-                "text": "Living Flame is enhanced with Bronze magic, repeating (varies by condition — check in-game) of the damage or healing you dealt to the target in the last 5 sec as Arcane, up to ≈350% of Spell Power.",
-                "uncertain": true
+                "text": "Living Flame is enhanced with Bronze magic, repeating 15% of the damage or healing you dealt to the target in the last 5 sec as Arcane, up to ≈350% of Spell Power.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -455,8 +455,8 @@
             "spellId": 3505,
             "category": "Other",
             "description": {
-                "text": "Twist Chrono Flames toward your target, (varies by condition — check in-game) Bronze magic repeats (varies by condition — check in-game) of the damage or healing you dealt to the target in the last 5 sec as Arcane, up to ≈250% of Spell Power.",
-                "uncertain": true
+                "text": "Twist Chrono Flames toward your target, healing an ally for 1.6 or dealing 1.6 Fire damage to an enemy. Bronze magic repeats 15% of the damage or healing you dealt to the target in the last 5 sec as Arcane, up to ≈250% of Spell Power.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -531,8 +531,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Living Flame is enhanced with Bronze magic, repeating (varies by condition — check in-game) of the damage or healing you dealt to the target in the last 5 sec as Arcane, up to ≈350% of Spell Power.",
-                            "uncertain": true
+                            "text": "Living Flame is enhanced with Bronze magic, repeating 15% of the damage or healing you dealt to the target in the last 5 sec as Arcane, up to ≈350% of Spell Power.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -906,8 +906,8 @@
             "spellId": 3740,
             "category": "Offensive",
             "description": {
-                "text": "(varies by condition — check in-game)",
-                "uncertain": true
+                "text": "Verdant Embrace consumes 4 sec of Dream Breath from allies it heals, detonating it and healing them for 290% of the amount consumed. Emerald Blossom and Fluttering Seedlings consume 2 sec of Dream Breath from allies they heal, detonating it and healing them for 290% of the amount consumed.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -953,8 +953,8 @@
             "spellId": 3750,
             "category": "Other",
             "description": {
-                "text": "Fire Breath's damage over time lasts 4 sec longer.(varies by condition — check in-game)",
-                "uncertain": true
+                "text": "Fire Breath's damage over time lasts 4 sec longer. Dream Breath's heal over time lasts 6 sec longer.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -1326,12 +1326,10 @@
             "spellId": 3730,
             "category": "Other",
             "description": {
-                "text": "(varies by condition — check in-game)",
-                "uncertain": true
+                "text": "When Dream Breath or Fire Breath critically strike, their duration is extended by 2 sec, up to a maximum of 12 sec.",
+                "uncertain": false
             },
-            "formulaModifierSpellIds": [
-                3419
-            ],
+            "formulaModifierSpellIds": [],
             "modifiers": {
                 "named": [],
                 "baseline": [],
@@ -1596,8 +1594,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game) 15% more often.",
-                            "uncertain": true
+                            "text": "Fire Breath and Dream Breath deal their damage and healing 15% more often.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -1644,8 +1642,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Fire Breath's damage over time lasts 4 sec longer.(varies by condition — check in-game)",
-                            "uncertain": true
+                            "text": "Fire Breath's damage over time lasts 4 sec longer. Dream Breath's heal over time lasts 6 sec longer.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -1660,8 +1658,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game)",
-                            "uncertain": true
+                            "text": "Verdant Embrace consumes 4 sec of Dream Breath from allies it heals, detonating it and healing them for 290% of the amount consumed. Emerald Blossom and Fluttering Seedlings consume 2 sec of Dream Breath from allies they heal, detonating it and healing them for 290% of the amount consumed.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -1676,8 +1674,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game)",
-                            "uncertain": true
+                            "text": "Verdant Embrace consumes 4 sec of Dream Breath from allies it heals, detonating it and healing them for 290% of the amount consumed. Emerald Blossom and Fluttering Seedlings consume 2 sec of Dream Breath from allies they heal, detonating it and healing them for 290% of the amount consumed.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -1692,8 +1690,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game)",
-                            "uncertain": true
+                            "text": "When Dream Breath or Fire Breath critically strike, their duration is extended by 2 sec, up to a maximum of 12 sec.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -1708,8 +1706,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game)",
-                            "uncertain": true
+                            "text": "When Dream Breath or Fire Breath critically strike, their duration is extended by 2 sec, up to a maximum of 12 sec.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -1724,8 +1722,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Fire Breath (varies by condition — check in-game) maximum empower level 20% faster.",
-                            "uncertain": true
+                            "text": "Fire Breath and Dream Breath reach their maximum empower level 20% faster.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -1740,8 +1738,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game)",
-                            "uncertain": true
+                            "text": "Verdant Embrace consumes 4 sec of Dream Breath from allies it heals, detonating it and healing them for 290% of the amount consumed. Emerald Blossom and Fluttering Seedlings consume 2 sec of Dream Breath from allies they heal, detonating it and healing them for 290% of the amount consumed.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -1756,8 +1754,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game) an additional charge.",
-                            "uncertain": true
+                            "text": "Dream Breath and Fire Breath gain an additional charge.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -1772,8 +1770,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game) a 50% chance to generate Essence Burst.",
-                            "uncertain": true
+                            "text": "Dream Breath and Fire Breath have a 50% chance to generate Essence Burst.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -1955,8 +1953,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Fire Breath (varies by condition — check in-game) maximum empower level 20% faster.",
-                            "uncertain": true
+                            "text": "Fire Breath and Dream Breath reach their maximum empower level 20% faster.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -1971,8 +1969,8 @@
                         "modifier_value": 1,
                         "modifier_unit": "charges",
                         "description": {
-                            "text": "(varies by condition — check in-game) an additional charge.",
-                            "uncertain": true
+                            "text": "Dream Breath and Fire Breath gain an additional charge.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -2128,7 +2126,7 @@
             "spellId": 3830,
             "category": "Other",
             "description": {
-                "text": "Summon a flying projection of yourself that heals allies you pass through for 749. Detonating your projection dispels all nearby allies of Magical effects, and heals for 3,845 over 20 sec.",
+                "text": "Summon a flying projection of yourself that heals allies you pass through for 776. Detonating your projection dispels all nearby allies of Magical effects, and heals for 3,768 over 20 sec.",
                 "uncertain": false
             },
             "formulaModifierSpellIds": [],
@@ -2310,8 +2308,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game)",
-                            "uncertain": true
+                            "text": "Echo is 10% more effective.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -2856,8 +2854,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Living Flame (varies by condition — check in-game)",
-                            "uncertain": true
+                            "text": "Living Flame has 1 extra chance to trigger Essence Burst when it critically strikes.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -2872,7 +2870,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Consuming Essence Burst fires a twin flame, (varies by condition — check in-game).",
+                            "text": "Consuming Essence Burst fires a twin flame, healing your target for ≈312% of Spell Power.",
                             "uncertain": true
                         },
                         "category": "Other",
@@ -2888,8 +2886,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game) a 50% chance to generate Essence Burst.",
-                            "uncertain": true
+                            "text": "Dream Breath and Fire Breath have a 50% chance to generate Essence Burst.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -2953,8 +2951,8 @@
             "spellId": 3754,
             "category": "Other",
             "description": {
-                "text": "(varies by condition — check in-game) a 50% chance to generate Essence Burst.",
-                "uncertain": true
+                "text": "Dream Breath and Fire Breath have a 50% chance to generate Essence Burst.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -3315,8 +3313,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Fire Breath (varies by condition — check in-game) maximum empower level 20% faster.",
-                            "uncertain": true
+                            "text": "Fire Breath and Dream Breath reach their maximum empower level 20% faster.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -3331,8 +3329,8 @@
                         "modifier_value": 1,
                         "modifier_unit": "charges",
                         "description": {
-                            "text": "(varies by condition — check in-game) an additional charge.",
-                            "uncertain": true
+                            "text": "Dream Breath and Fire Breath gain an additional charge.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -3474,8 +3472,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game)",
-                            "uncertain": true
+                            "text": "Verdant Embrace consumes 4 sec of Dream Breath from allies it heals, detonating it and healing them for 290% of the amount consumed. Emerald Blossom and Fluttering Seedlings consume 2 sec of Dream Breath from allies they heal, detonating it and healing them for 290% of the amount consumed.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -3490,8 +3488,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game)",
-                            "uncertain": true
+                            "text": "Verdant Embrace consumes 4 sec of Dream Breath from allies it heals, detonating it and healing them for 290% of the amount consumed. Emerald Blossom and Fluttering Seedlings consume 2 sec of Dream Breath from allies they heal, detonating it and healing them for 290% of the amount consumed.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -3506,8 +3504,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game)",
-                            "uncertain": true
+                            "text": "Verdant Embrace consumes 4 sec of Dream Breath from allies it heals, detonating it and healing them for 290% of the amount consumed. Emerald Blossom and Fluttering Seedlings consume 2 sec of Dream Breath from allies they heal, detonating it and healing them for 290% of the amount consumed.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -3645,8 +3643,8 @@
             "spellId": 3748,
             "category": "Other",
             "description": {
-                "text": "(varies by condition — check in-game) 15% more often.",
-                "uncertain": true
+                "text": "Fire Breath and Dream Breath deal their damage and healing 15% more often.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -3739,8 +3737,8 @@
             "spellId": 3733,
             "category": "Other",
             "description": {
-                "text": "(varies by condition — check in-game)",
-                "uncertain": true
+                "text": "Echo is 10% more effective.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -3959,8 +3957,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game) travel 40% faster, and Hover travels 40% further.",
-                            "uncertain": true
+                            "text": "Hover, Deep Breath, and Dream Flight travel 40% faster, and Hover travels 40% further.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -4731,8 +4729,8 @@
             "spellId": 3749,
             "category": "Other",
             "description": {
-                "text": "(varies by condition — check in-game) an additional charge.",
-                "uncertain": true
+                "text": "Dream Breath and Fire Breath gain an additional charge.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -4911,8 +4909,8 @@
             "spellId": 3271,
             "category": "Defensive",
             "description": {
-                "text": "Send a flickering flame towards your target, (varies by condition — check in-game)",
-                "uncertain": true
+                "text": "Send a flickering flame towards your target, healing an ally for 1.6 or dealing 1.6 Fire damage to an enemy.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -5211,8 +5209,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Living Flame is enhanced with Bronze magic, repeating (varies by condition — check in-game) of the damage or healing you dealt to the target in the last 5 sec as Arcane, up to ≈350% of Spell Power.",
-                            "uncertain": true
+                            "text": "Living Flame is enhanced with Bronze magic, repeating 15% of the damage or healing you dealt to the target in the last 5 sec as Arcane, up to ≈350% of Spell Power.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -5310,8 +5308,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Living Flame (varies by condition — check in-game)",
-                            "uncertain": true
+                            "text": "Living Flame has 1 extra chance to trigger Essence Burst when it critically strikes.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -5640,8 +5638,8 @@
             "spellId": 3643,
             "category": "Other",
             "description": {
-                "text": "Disintegrate channels 20% faster(varies by condition — check in-game).",
-                "uncertain": true
+                "text": "Disintegrate channels 20% faster.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -5670,8 +5668,8 @@
             "spellId": 3728,
             "category": "Other",
             "description": {
-                "text": "(varies by condition — check in-game)",
-                "uncertain": true
+                "text": "Temporal Anomaly's mana cost is reduced by 15% and its cooldown is reduced by 4 sec.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -6333,8 +6331,8 @@
             "spellId": 3726,
             "category": "Offensive",
             "description": {
-                "text": "For each (varies by condition — check in-game), gain 3% haste, up to 9%.",
-                "uncertain": true
+                "text": "For each healing over time effect from Verdant Embrace, gain 3% haste, up to 9%.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -6576,8 +6574,8 @@
             "spellId": 3725,
             "category": "Other",
             "description": {
-                "text": "(varies by condition — check in-game)",
-                "uncertain": true
+                "text": "Verdant Embrace heals for an additional 40% over 8.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -7729,8 +7727,8 @@
                         "modifier_value": -4,
                         "modifier_unit": "seconds",
                         "description": {
-                            "text": "(varies by condition — check in-game)",
-                            "uncertain": true
+                            "text": "Temporal Anomaly's mana cost is reduced by 15% and its cooldown is reduced by 4 sec.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -7966,7 +7964,7 @@
                                         "spell_id": 431715,
                                         "name": "Nozdormu Adept (desc=Bronze)",
                                         "school": "Arcane",
-                                        "description": "$?c2[Temporal Anomaly mana cost reduced by $s1% and cooldown reduced by ${$s2/-1000} sec.][Prescience cooldown reduced by ${$s3/-1000} sec and it grants $s4% additional critical strike chance.]",
+                                        "description": "$?c2[Temporal Anomaly's mana cost is reduced by $s1% and its cooldown is reduced by ${$s2/-1000} sec.][Prescience's cooldown is reduced by ${$s3/-1000} sec and it grants $s4% additional critical strike chance.]",
                                         "variables": null,
                                         "charges": null,
                                         "max_stacks": null,
@@ -8004,7 +8002,7 @@
                                         "is_passive": true,
                                         "icon_name": "ability_evoker_aspectsfavorbronze.jpg",
                                         "created_at": "2026-08-03T12:22:23.000000Z",
-                                        "updated_at": "2026-09-08T00:07:09.000000Z"
+                                        "updated_at": "2026-11-03T21:20:41.000000Z"
                                     },
                                     "relationship_type": "modifies_cooldown",
                                     "modifier_value": -4,
@@ -8028,7 +8026,7 @@
                             "spell_id": 431715,
                             "name": "Nozdormu Adept (desc=Bronze)",
                             "school": "Arcane",
-                            "description": "$?c2[Temporal Anomaly mana cost reduced by $s1% and cooldown reduced by ${$s2/-1000} sec.][Prescience cooldown reduced by ${$s3/-1000} sec and it grants $s4% additional critical strike chance.]",
+                            "description": "$?c2[Temporal Anomaly's mana cost is reduced by $s1% and its cooldown is reduced by ${$s2/-1000} sec.][Prescience's cooldown is reduced by ${$s3/-1000} sec and it grants $s4% additional critical strike chance.]",
                             "variables": null,
                             "charges": null,
                             "max_stacks": null,
@@ -8066,7 +8064,7 @@
                             "is_passive": true,
                             "icon_name": "ability_evoker_aspectsfavorbronze.jpg",
                             "created_at": "2026-08-03T12:22:23.000000Z",
-                            "updated_at": "2026-09-08T00:07:09.000000Z",
+                            "updated_at": "2026-11-03T21:20:41.000000Z",
                             "effects": [
                                 {
                                     "id": 7252,
@@ -8226,8 +8224,8 @@
                         "modifier_value": -4,
                         "modifier_unit": "seconds",
                         "description": {
-                            "text": "(varies by condition — check in-game)",
-                            "uncertain": true
+                            "text": "Temporal Anomaly's mana cost is reduced by 15% and its cooldown is reduced by 4 sec.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -8456,7 +8454,7 @@
                             "spell_id": 431715,
                             "name": "Nozdormu Adept (desc=Bronze)",
                             "school": "Arcane",
-                            "description": "$?c2[Temporal Anomaly mana cost reduced by $s1% and cooldown reduced by ${$s2/-1000} sec.][Prescience cooldown reduced by ${$s3/-1000} sec and it grants $s4% additional critical strike chance.]",
+                            "description": "$?c2[Temporal Anomaly's mana cost is reduced by $s1% and its cooldown is reduced by ${$s2/-1000} sec.][Prescience's cooldown is reduced by ${$s3/-1000} sec and it grants $s4% additional critical strike chance.]",
                             "variables": null,
                             "charges": null,
                             "max_stacks": null,
@@ -8494,7 +8492,7 @@
                             "is_passive": true,
                             "icon_name": "ability_evoker_aspectsfavorbronze.jpg",
                             "created_at": "2026-08-03T12:22:23.000000Z",
-                            "updated_at": "2026-09-08T00:07:09.000000Z",
+                            "updated_at": "2026-11-03T21:20:41.000000Z",
                             "effects": [
                                 {
                                     "id": 7252,
@@ -9399,8 +9397,8 @@
             "spellId": 3746,
             "category": "Other",
             "description": {
-                "text": "Living Flame (varies by condition — check in-game)",
-                "uncertain": true
+                "text": "Living Flame has 1 extra chance to trigger Essence Burst when it critically strikes.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -9429,8 +9427,8 @@
             "spellId": 3744,
             "category": "Other",
             "description": {
-                "text": "(varies by condition — check in-game) travel 40% faster, and Hover travels 40% further.",
-                "uncertain": true
+                "text": "Hover, Deep Breath, and Dream Flight travel 40% faster, and Hover travels 40% further.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -9489,7 +9487,7 @@
             "spellId": 3752,
             "category": "Other",
             "description": {
-                "text": "Consuming Essence Burst fires a twin flame, (varies by condition — check in-game).",
+                "text": "Consuming Essence Burst fires a twin flame, healing your target for ≈312% of Spell Power.",
                 "uncertain": true
             },
             "formulaModifierSpellIds": [],
@@ -9731,8 +9729,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "For each (varies by condition — check in-game), gain 3% haste, up to 9%.",
-                            "uncertain": true
+                            "text": "For each healing over time effect from Verdant Embrace, gain 3% haste, up to 9%.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -9779,8 +9777,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game)",
-                            "uncertain": true
+                            "text": "Verdant Embrace heals for an additional 40% over 8.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -9795,8 +9793,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "For each (varies by condition — check in-game), gain 3% haste, up to 9%.",
-                            "uncertain": true
+                            "text": "For each healing over time effect from Verdant Embrace, gain 3% haste, up to 9%.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -9927,7 +9925,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game)",
+                            "text": "Verdant Embrace heals for an additional (varies)% over 8.",
                             "uncertain": true
                         },
                         "category": "Defensive",
@@ -9943,8 +9941,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game)",
-                            "uncertain": true
+                            "text": "Verdant Embrace consumes 4 sec of Dream Breath from allies it heals, detonating it and healing them for 290% of the amount consumed. Emerald Blossom and Fluttering Seedlings consume 2 sec of Dream Breath from allies they heal, detonating it and healing them for 290% of the amount consumed.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -9959,8 +9957,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game)",
-                            "uncertain": true
+                            "text": "Verdant Embrace consumes 4 sec of Dream Breath from allies it heals, detonating it and healing them for 290% of the amount consumed. Emerald Blossom and Fluttering Seedlings consume 2 sec of Dream Breath from allies they heal, detonating it and healing them for 290% of the amount consumed.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -9975,8 +9973,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game)",
-                            "uncertain": true
+                            "text": "Verdant Embrace consumes 4 sec of Dream Breath from allies it heals, detonating it and healing them for 290% of the amount consumed. Emerald Blossom and Fluttering Seedlings consume 2 sec of Dream Breath from allies they heal, detonating it and healing them for 290% of the amount consumed.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {

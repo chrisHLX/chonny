@@ -1,5 +1,5 @@
 # Mage — Frost Spec Talents
-# Extracted verbatim from mage.txt (SimulationCraft 1210-01 for World of Warcraft 12.1.0.69933 Live)
+# Extracted verbatim from mage.txt (SimulationCraft 1210-01 for World of Warcraft 12.1.5.70688 Live)
 # 46 spell record(s). Mechanical regroup only — no content altered.
 
 Name             : Ice Lance (id=30455) [Spell Family (3)] 
@@ -519,7 +519,7 @@ Effects          :
 #2 (id=1244696)  : Apply Aura (6) | Modify Recharge Time (Category) (453)
                    Base Value: -30000 | Scaled Value: -30000 | Misc Value: 1560 (Category) | Target: Self (1)
                    Affected Spells (Category): Ice Block (45438), Ice Cold (414658)
-Description      : Ice Block now has an additional charge and its cooldown is reduced by ${-$s2/1000} sec.
+Description      : $?s414658[Ice Cold][Ice Block] gains an additional charge and its cooldown is reduced by ${-$s2/1000} sec.
 
 Name             : Improved Shatter (id=1246811) [Spell Family (3), Passive] 
 Talent Entry     : Frost [tree=spec, row=7, col=3, max_rank=1, req_points=8]

@@ -1,14 +1,14 @@
 {
-    "generatedAt": "2026-10-18T02:35:53+00:00",
-    "spellCacheVersion": 29,
+    "generatedAt": "2026-11-03T23:03:39+00:00",
+    "spellCacheVersion": 31,
     "codeFingerprint": "dev",
     "entries": [
         {
             "spellId": 12349,
             "category": "Other",
             "description": {
-                "text": "Every (varies by condition — check in-game) Rage you spend(varies by condition — check in-game) reduces the remaining cooldown on Avatar and (varies by condition — check in-game) by 1 sec.",
-                "uncertain": true
+                "text": "Every 20 Rage you spend on attacks reduces the remaining cooldown on Avatar and Colossus Smash by 1 sec.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -37,8 +37,8 @@
             "spellId": 12369,
             "category": "Other",
             "description": {
-                "text": "Gain Strength equal to (varies by condition — check in-game)% of your Armor.",
-                "uncertain": true
+                "text": "Gain Strength equal to 5% of your Armor.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -97,8 +97,8 @@
             "spellId": 11696,
             "category": "Offensive",
             "description": {
-                "text": "Transform into a colossus, increasing all damage you deal by 20% (varies by condition — check in-game)for 20.",
-                "uncertain": true
+                "text": "Transform into a colossus, increasing all damage you deal by 20% and reducing damage you take from area of effect attacks by 5% for 20.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -109,8 +109,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Every (varies by condition — check in-game) Rage you spend(varies by condition — check in-game) reduces the remaining cooldown on Avatar and (varies by condition — check in-game) by 1 sec.",
-                            "uncertain": true
+                            "text": "Every 20 Rage you spend on attacks reduces the remaining cooldown on Avatar and Colossus Smash by 1 sec.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -165,8 +165,8 @@
             "spellId": 12366,
             "category": "Offensive",
             "description": {
-                "text": "(varies by condition — check in-game)",
-                "uncertain": true
+                "text": "Slam, Whirlwind, and Cleave deal 10% more damage and 5% increased critical strike damage.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -271,7 +271,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Become an unstoppable storm of destructive force, striking all nearby enemies for (varies) Physical damage over 6. Deals reduced damage beyond 8 targets. You are immune to movement impairing and loss of control effects, but can use defensive abilities and can avoid attacks. (varies by condition — check in-game)",
+                            "text": "Become an unstoppable storm of destructive force, striking all nearby enemies for (varies) Physical damage over 6. Deals reduced damage beyond 8 targets. You are immune to movement impairing and loss of control effects, but can use defensive abilities and can avoid attacks. ",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -290,7 +290,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Become an unstoppable storm of destructive force, striking all nearby enemies for (varies) Physical damage over 6. Deals reduced damage beyond 8 targets. You are immune to movement impairing and loss of control effects, but can use defensive abilities and can avoid attacks. (varies by condition — check in-game)",
+                            "text": "Become an unstoppable storm of destructive force, striking all nearby enemies for (varies) Physical damage over 6. Deals reduced damage beyond 8 targets. You are immune to movement impairing and loss of control effects, but can use defensive abilities and can avoid attacks. ",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -425,7 +425,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Become an unstoppable storm of destructive force, striking all nearby enemies for (varies) Physical damage over 6. Deals reduced damage beyond 8 targets. You are immune to movement impairing and loss of control effects, but can use defensive abilities and can avoid attacks. (varies by condition — check in-game)",
+                            "text": "Become an unstoppable storm of destructive force, striking all nearby enemies for (varies) Physical damage over 6. Deals reduced damage beyond 8 targets. You are immune to movement impairing and loss of control effects, but can use defensive abilities and can avoid attacks. ",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -444,7 +444,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Become an unstoppable storm of destructive force, striking all nearby enemies for (varies) Physical damage over 6. Deals reduced damage beyond 8 targets. You are immune to movement impairing and loss of control effects, but can use defensive abilities and can avoid attacks. (varies by condition — check in-game)",
+                            "text": "Become an unstoppable storm of destructive force, striking all nearby enemies for (varies) Physical damage over 6. Deals reduced damage beyond 8 targets. You are immune to movement impairing and loss of control effects, but can use defensive abilities and can avoid attacks. ",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -525,7 +525,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Become an unstoppable storm of destructive force, striking all nearby enemies for (varies) Physical damage over 6. Deals reduced damage beyond 8 targets. You are immune to movement impairing and loss of control effects, but can use defensive abilities and can avoid attacks. (varies by condition — check in-game)",
+                            "text": "Become an unstoppable storm of destructive force, striking all nearby enemies for (varies) Physical damage over 6. Deals reduced damage beyond 8 targets. You are immune to movement impairing and loss of control effects, but can use defensive abilities and can avoid attacks. ",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -544,7 +544,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Become an unstoppable storm of destructive force, striking all nearby enemies for (varies) Physical damage over 6. Deals reduced damage beyond 8 targets. You are immune to movement impairing and loss of control effects, but can use defensive abilities and can avoid attacks. (varies by condition — check in-game)",
+                            "text": "Become an unstoppable storm of destructive force, striking all nearby enemies for (varies) Physical damage over 6. Deals reduced damage beyond 8 targets. You are immune to movement impairing and loss of control effects, but can use defensive abilities and can avoid attacks. ",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -577,7 +577,7 @@
             "spellId": 11701,
             "category": "Offensive",
             "description": {
-                "text": "Become an unstoppable storm of destructive force, striking all nearby enemies for (varies) Physical damage over 6. Deals reduced damage beyond 8 targets. You are immune to movement impairing and loss of control effects, but can use defensive abilities and can avoid attacks. (varies by condition — check in-game)",
+                "text": "Become an unstoppable storm of destructive force, striking all nearby enemies for (varies) Physical damage over 6. Deals reduced damage beyond 8 targets. You are immune to movement impairing and loss of control effects, but can use defensive abilities and can avoid attacks. ",
                 "uncertain": true
             },
             "formulaModifierSpellIds": [],
@@ -689,8 +689,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Your next (varies by condition — check in-game) after Bladestorm ends deals (varies by condition — check in-game)% additional damage.",
-                            "uncertain": true
+                            "text": "Your next Mortal Strike after Bladestorm ends deals 50% additional damage.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -721,8 +721,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Every 2 strikes of Bladestorm, you automatically cast a (varies by condition — check in-game) at your target or random nearby enemy, dealing 100% of normal damage.",
-                            "uncertain": true
+                            "text": "Every 2 strikes of Bladestorm, you automatically cast a Mortal Strike at your target or random nearby enemy, dealing 100% of normal damage.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -785,8 +785,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Your next (varies by condition — check in-game) after Bladestorm ends deals (varies by condition — check in-game)% additional damage.",
-                            "uncertain": true
+                            "text": "Your next Mortal Strike after Bladestorm ends deals 50% additional damage.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -1048,8 +1048,8 @@
             "spellId": 12470,
             "category": "Other",
             "description": {
-                "text": "Your next (varies by condition — check in-game) after Bladestorm ends deals (varies by condition — check in-game)% additional damage.",
-                "uncertain": true
+                "text": "Your next Mortal Strike after Bladestorm ends deals 50% additional damage.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -1108,8 +1108,8 @@
             "spellId": 12437,
             "category": "Offensive",
             "description": {
-                "text": "Demolish's final strike grants 10% Haste for 10 and increases the critical strike chance of your next (varies by condition — check in-game) by 100%.",
-                "uncertain": true
+                "text": "Demolish's final strike grants 10% Haste for 10 and increases the critical strike chance of your next Mortal Strike by 100%.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -1150,8 +1150,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Transform into a colossus, increasing all damage you deal by 20% (varies by condition — check in-game)for 20.",
-                            "uncertain": true
+                            "text": "Transform into a colossus, increasing all damage you deal by 20% and reducing damage you take from area of effect attacks by 5% for 20.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -2050,8 +2050,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Transform into a colossus, increasing all damage you deal by 20% (varies by condition — check in-game)for 20.",
-                            "uncertain": true
+                            "text": "Transform into a colossus, increasing all damage you deal by 20% and reducing damage you take from area of effect attacks by 5% for 20.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -2114,8 +2114,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game)",
-                            "uncertain": true
+                            "text": "Slam, Whirlwind, and Cleave deal 10% more damage and 5% increased critical strike damage.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -2210,8 +2210,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game).(varies by condition — check in-game)",
-                            "uncertain": true
+                            "text": "Mortal Strike and Slam damage increased by 25%. Cleave and Whirlwind damage increased by 15%.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -2306,7 +2306,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game) a (varies)% chance to immediately refund (varies by condition — check in-game)% of the Rage spent.",
+                            "text": "Mortal Strike and Cleave have a (varies)% chance to immediately refund 10% of the Rage spent.",
                             "uncertain": true
                         },
                         "category": "Other",
@@ -2322,8 +2322,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Colossal Might increases damage dealt by your next Demolish by 5%, stacking up to 5 times. (varies by condition — check in-game) grants a stack of Colossal Might and (varies by condition — check in-game) grants a stack of Colossal Might when it strikes 5 or more targets.",
-                            "uncertain": true
+                            "text": "Colossal Might increases damage dealt by your next Demolish by 5%, stacking up to 5 times. Mortal Strike grants a stack of Colossal Might and Cleave grants a stack of Colossal Might when it strikes 5 or more targets.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -2338,8 +2338,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game) a 20% chance to immediately refund (varies by condition — check in-game)% of the Rage spent.",
-                            "uncertain": true
+                            "text": "Mortal Strike and Cleave have a 20% chance to immediately refund 10% of the Rage spent.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -2354,8 +2354,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Colossal Might increases damage dealt by your next Demolish by 5%, stacking up to 5 times. (varies by condition — check in-game) grants a stack of Colossal Might and (varies by condition — check in-game) grants a stack of Colossal Might when it strikes 3 or more targets.",
-                            "uncertain": true
+                            "text": "Colossal Might increases damage dealt by your next Demolish by 5%, stacking up to 5 times. Mortal Strike grants a stack of Colossal Might and Cleave grants a stack of Colossal Might when it strikes 3 or more targets.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -2422,8 +2422,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Throws a whirling weapon at your target that chases nearby enemies, inflicting ≈1,075.7% of Attack Power Physical damage to all enemies over 12. Deals reduced damage beyond 8 targets. Enemies damaged by Ravager take 50% additional damage from your Bleeds for 12.(varies by condition — check in-game)",
-                            "uncertain": true
+                            "text": "Throws a whirling weapon at your target that chases nearby enemies, inflicting ≈1,075.7% of Attack Power Physical damage to all enemies over 12. Deals reduced damage beyond 8 targets. Enemies damaged by Ravager take 50% additional damage from your Bleeds for 12.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -2566,8 +2566,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "When (varies by condition — check in-game) 3 or more targets(varies by condition — check in-game) you have a (varies by condition — check in-game)% chance to unleash a flurry of steel, striking all nearby enemies for 8 Physical damage and applying Overwhelmed. Deals reduced damage beyond 8 targets.",
-                            "uncertain": true
+                            "text": "When Cleave hits 3 or more targets you have a 20% chance to unleash a flurry of steel, striking all nearby enemies for 8 Physical damage and applying Overwhelmed. Deals reduced damage beyond 8 targets.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -2582,8 +2582,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Shockwave(varies by condition — check in-game) and (varies by condition — check in-game) deal 5% more damage per target affected up to 5.",
-                            "uncertain": true
+                            "text": "Shockwave, Cleave, and Whirlwind deal 5% more damage per target affected up to 5.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -2598,8 +2598,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "When (varies by condition — check in-game) 3 or more targets(varies by condition — check in-game) you have a (varies by condition — check in-game)% chance to unleash a flurry of steel, striking all nearby enemies for 8 Physical damage and applying Overwhelmed. Deals reduced damage beyond 8 targets.",
-                            "uncertain": true
+                            "text": "When Cleave hits 3 or more targets you have a 20% chance to unleash a flurry of steel, striking all nearby enemies for 8 Physical damage and applying Overwhelmed. Deals reduced damage beyond 8 targets.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -2661,8 +2661,8 @@
             "spellId": 12421,
             "category": "Other",
             "description": {
-                "text": "Colossal Might increases damage dealt by your next Demolish by 5%, stacking up to 5 times. (varies by condition — check in-game) grants a stack of Colossal Might and (varies by condition — check in-game) grants a stack of Colossal Might when it strikes 3 or more targets.",
-                "uncertain": true
+                "text": "Colossal Might increases damage dealt by your next Demolish by 5%, stacking up to 5 times. Mortal Strike grants a stack of Colossal Might and Cleave grants a stack of Colossal Might when it strikes 3 or more targets.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -2673,8 +2673,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Colossal Might increases damage dealt by your next Demolish by 5%, stacking up to 5 times. (varies by condition — check in-game) grants a stack of Colossal Might and (varies by condition — check in-game) grants a stack of Colossal Might when it strikes 5 or more targets.",
-                            "uncertain": true
+                            "text": "Colossal Might increases damage dealt by your next Demolish by 5%, stacking up to 5 times. Mortal Strike grants a stack of Colossal Might and Cleave grants a stack of Colossal Might when it strikes 5 or more targets.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -2705,8 +2705,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Colossal Might increases the damage of your (varies by condition — check in-game) and Execute by (varies by condition — check in-game)% per stack.",
-                            "uncertain": true
+                            "text": "Colossal Might increases the damage of your Overpower and Execute by 3% per stack.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -2721,8 +2721,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game) critical strikes grant an additional stack of Colossal Might.",
-                            "uncertain": true
+                            "text": "Mortal Strike critical strikes grant an additional stack of Colossal Might.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -2784,8 +2784,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Transform into a colossus, increasing all damage you deal by 20% (varies by condition — check in-game)for 20.",
-                            "uncertain": true
+                            "text": "Transform into a colossus, increasing all damage you deal by 20% and reducing damage you take from area of effect attacks by 5% for 20.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -2960,8 +2960,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Every (varies by condition — check in-game) Rage you spend(varies by condition — check in-game) reduces the remaining cooldown on Avatar and (varies by condition — check in-game) by 1 sec.",
-                            "uncertain": true
+                            "text": "Every 20 Rage you spend on attacks reduces the remaining cooldown on Avatar and Colossus Smash by 1 sec.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -3313,8 +3313,8 @@
             "spellId": 12359,
             "category": "Offensive",
             "description": {
-                "text": "(varies by condition — check in-game) deals an additional (varies by condition — check in-game)% damage and deals (varies by condition — check in-game)% increased critical strike damage.",
-                "uncertain": true
+                "text": "Mortal Strike deals an additional 5% damage and deals 5% increased critical strike damage.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -3373,8 +3373,8 @@
             "spellId": 12436,
             "category": "Other",
             "description": {
-                "text": "(varies by condition — check in-game) critical strikes increase your Rend and Deep Wounds damage by 15% for 8.",
-                "uncertain": true
+                "text": "Mortal Strike critical strikes increase your Rend and Deep Wounds damage by 15% for 8.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -3585,8 +3585,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game) critical strikes increase your Rend and Deep Wounds damage by 15% for 8.",
-                            "uncertain": true
+                            "text": "Mortal Strike critical strikes increase your Rend and Deep Wounds damage by 15% for 8.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -3633,8 +3633,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game) critical strikes increase your Rend and Deep Wounds damage by 15% for 8.",
-                            "uncertain": true
+                            "text": "Mortal Strike critical strikes increase your Rend and Deep Wounds damage by 15% for 8.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -3680,7 +3680,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Become an unstoppable storm of destructive force, striking all nearby enemies for (varies) Physical damage over 6. Deals reduced damage beyond 8 targets. You are immune to movement impairing and loss of control effects, but can use defensive abilities and can avoid attacks. (varies by condition — check in-game)",
+                            "text": "Become an unstoppable storm of destructive force, striking all nearby enemies for (varies) Physical damage over 6. Deals reduced damage beyond 8 targets. You are immune to movement impairing and loss of control effects, but can use defensive abilities and can avoid attacks. ",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -3699,7 +3699,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Become an unstoppable storm of destructive force, striking all nearby enemies for (varies) Physical damage over 6. Deals reduced damage beyond 8 targets. You are immune to movement impairing and loss of control effects, but can use defensive abilities and can avoid attacks. (varies by condition — check in-game)",
+                            "text": "Become an unstoppable storm of destructive force, striking all nearby enemies for (varies) Physical damage over 6. Deals reduced damage beyond 8 targets. You are immune to movement impairing and loss of control effects, but can use defensive abilities and can avoid attacks. ",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -3744,8 +3744,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Colossal Might increases damage dealt by your next Demolish by 5%, stacking up to 5 times. (varies by condition — check in-game) grants a stack of Colossal Might and (varies by condition — check in-game) grants a stack of Colossal Might when it strikes 5 or more targets.",
-                            "uncertain": true
+                            "text": "Colossal Might increases damage dealt by your next Demolish by 5%, stacking up to 5 times. Mortal Strike grants a stack of Colossal Might and Cleave grants a stack of Colossal Might when it strikes 5 or more targets.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -3824,8 +3824,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Demolish's final strike increases the critical strike chance of your next (varies by condition — check in-game) by 100%.",
-                            "uncertain": true
+                            "text": "Demolish's final strike increases the critical strike chance of your next Mortal Strike by 100%.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -3840,8 +3840,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Colossal Might increases damage dealt by your next Demolish by 5%, stacking up to 5 times. (varies by condition — check in-game) grants a stack of Colossal Might and (varies by condition — check in-game) grants a stack of Colossal Might when it strikes 3 or more targets.",
-                            "uncertain": true
+                            "text": "Colossal Might increases damage dealt by your next Demolish by 5%, stacking up to 5 times. Mortal Strike grants a stack of Colossal Might and Cleave grants a stack of Colossal Might when it strikes 3 or more targets.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -3888,8 +3888,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Demolish's final strike grants 10% Haste for 10 and increases the critical strike chance of your next (varies by condition — check in-game) by 100%.",
-                            "uncertain": true
+                            "text": "Demolish's final strike grants 10% Haste for 10 and increases the critical strike chance of your next Mortal Strike by 100%.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -4002,7 +4002,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Become an unstoppable storm of destructive force, striking all nearby enemies for (varies) Physical damage over 6. Deals reduced damage beyond 8 targets. You are immune to movement impairing and loss of control effects, but can use defensive abilities and can avoid attacks. (varies by condition — check in-game)",
+                            "text": "Become an unstoppable storm of destructive force, striking all nearby enemies for (varies) Physical damage over 6. Deals reduced damage beyond 8 targets. You are immune to movement impairing and loss of control effects, but can use defensive abilities and can avoid attacks. ",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -4018,7 +4018,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Cooldown of (varies by condition — check in-game), Intervene, (varies by condition — check in-game)Spell Reflection, Storm Bolt, and Pummel reduced by 10%. Successfully interrupting an enemy increases the damage you deal to them by (varies)% for 10.",
+                            "text": "Cooldown of Die By the Sword, Intervene, Interpose, Spell Reflection, Storm Bolt, and Pummel reduced by 10%. Successfully interrupting an enemy increases the damage you deal to them by (varies)% for 10.",
                             "uncertain": true
                         },
                         "category": "Defensive",
@@ -4050,7 +4050,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Cooldown of (varies by condition — check in-game), Intervene, (varies by condition — check in-game)Spell Reflection, Storm Bolt, and Pummel reduced by 5%. Successfully interrupting an enemy increases the damage you deal to them by (varies)% for 10.",
+                            "text": "Cooldown of Die By the Sword, Intervene, Interpose, Spell Reflection, Storm Bolt, and Pummel reduced by 5%. Successfully interrupting an enemy increases the damage you deal to them by (varies)% for 10.",
                             "uncertain": true
                         },
                         "category": "Defensive",
@@ -4069,7 +4069,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Become an unstoppable storm of destructive force, striking all nearby enemies for (varies) Physical damage over 6. Deals reduced damage beyond 8 targets. You are immune to movement impairing and loss of control effects, but can use defensive abilities and can avoid attacks. (varies by condition — check in-game)",
+                            "text": "Become an unstoppable storm of destructive force, striking all nearby enemies for (varies) Physical damage over 6. Deals reduced damage beyond 8 targets. You are immune to movement impairing and loss of control effects, but can use defensive abilities and can avoid attacks. ",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -4196,7 +4196,7 @@
             "spellId": 12516,
             "category": "Crowd Control",
             "description": {
-                "text": "Run at high speed at a distance in front of you. All enemies in your path will take 23 Physical damage and be knocked back.",
+                "text": "Run at high speed at a distance in front of you. All enemies in your path will take 98 Physical damage and be knocked back.",
                 "uncertain": false
             },
             "formulaModifierSpellIds": [],
@@ -4405,8 +4405,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Your attacks have a chance to make your next Condemn (varies by condition — check in-game)be usable on any target regardless of their health(varies by condition — check in-game).",
-                            "uncertain": true
+                            "text": "Your attacks have a chance to make your next Condemn cost no Rage, be usable on any target regardless of their health, and deal damage as if you spent 40 Rage.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -4496,13 +4496,29 @@
                         }
                     },
                     {
+                        "spellId": 12429,
+                        "relationship_type": "modifies",
+                        "modifier_value": null,
+                        "modifier_unit": null,
+                        "description": {
+                            "text": "Mortal Strike and Slam damage increased by 25%. Cleave and Whirlwind damage increased by 15%.",
+                            "uncertain": false
+                        },
+                        "category": "Other",
+                        "cooldown": {
+                            "seconds": null,
+                            "base_seconds": null,
+                            "applied": []
+                        }
+                    },
+                    {
                         "spellId": 11695,
                         "relationship_type": "mentions",
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Your attacks have a chance to make your next Condemn (varies by condition — check in-game)be usable on any target regardless of their health(varies by condition — check in-game).",
-                            "uncertain": true
+                            "text": "Your attacks have a chance to make your next Condemn cost no Rage, be usable on any target regardless of their health, and deal damage as if you spent 40 Rage.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -4629,8 +4645,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Colossal Might increases the damage of your (varies by condition — check in-game) and Execute by (varies by condition — check in-game)% per stack.",
-                            "uncertain": true
+                            "text": "Colossal Might increases the damage of your Overpower and Execute by 3% per stack.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -4697,8 +4713,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game) and Execute damage increased by (varies by condition — check in-game)%.",
-                            "uncertain": true
+                            "text": "Overpower and Execute damage increased by 15%.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -4713,7 +4729,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Your attacks against your primary target have a (varies by condition — check in-game)% chance to overwhelm their defenses and trigger a Slayer's Strike, dealing ≈840.4% of Attack Power Physical damage and granting you a stack of Executioner, increasing your Execute damage by 3% for 12. Multiple stacks of Executioner may overlap.",
+                            "text": "Your attacks against your primary target have a 25% chance to overwhelm their defenses and trigger a Slayer's Strike, dealing ≈840.4% of Attack Power Physical damage and granting you a stack of Executioner, increasing your Execute damage by 3% for 12. Multiple stacks of Executioner may overlap.",
                             "uncertain": true
                         },
                         "category": "Other",
@@ -4942,8 +4958,8 @@
             "spellId": 12462,
             "category": "Other",
             "description": {
-                "text": "(varies by condition — check in-game) critical strikes increase the damage of your next (varies by condition — check in-game) by (varies by condition — check in-game)%.",
-                "uncertain": true
+                "text": "Mortal Strike critical strikes increase the damage of your next Mortal Strike by 20%.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -4972,8 +4988,8 @@
             "spellId": 12375,
             "category": "Other",
             "description": {
-                "text": "(varies by condition — check in-game) a 20% chance to immediately refund (varies by condition — check in-game)% of the Rage spent.",
-                "uncertain": true
+                "text": "Mortal Strike and Cleave have a 20% chance to immediately refund 10% of the Rage spent.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -5078,8 +5094,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Transform into a colossus, increasing all damage you deal by 20% (varies by condition — check in-game)for 20.",
-                            "uncertain": true
+                            "text": "Transform into a colossus, increasing all damage you deal by 20% and reducing damage you take from area of effect attacks by 5% for 20.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -5371,8 +5387,8 @@
             "spellId": 12340,
             "category": "Mobility",
             "description": {
-                "text": "Leap through the air toward a target location, slamming down with destructive force to deal 1.2 Physical damage to all enemies within 8 yards(varies by condition — check in-game).",
-                "uncertain": true
+                "text": "Leap through the air toward a target location, slamming down with destructive force to deal 1.2 Physical damage to all enemies within 8 yards.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -5576,8 +5592,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Transform into a colossus, increasing all damage you deal by 20% (varies by condition — check in-game)for 20.",
-                            "uncertain": true
+                            "text": "Transform into a colossus, increasing all damage you deal by 20% and reducing damage you take from area of effect attacks by 5% for 20.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -5624,8 +5640,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game)",
-                            "uncertain": true
+                            "text": "Slam, Whirlwind, and Cleave deal 10% more damage and 5% increased critical strike damage.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -5720,8 +5736,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game).(varies by condition — check in-game)",
-                            "uncertain": true
+                            "text": "Mortal Strike and Slam damage increased by 25%. Cleave and Whirlwind damage increased by 15%.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -5964,7 +5980,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Your single target melee abilities have a chance to upgrade Slam to Heroic Strike. All modifiers and talents that affect Slam also affect Heroic Strike. $@spelltooltip1269383",
+                            "text": "Slam has been upgraded to Heroic Strike.",
                             "uncertain": false
                         },
                         "category": "Offensive",
@@ -6025,8 +6041,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Transform into a colossus, increasing all damage you deal by 20% (varies by condition — check in-game)for 20.",
-                            "uncertain": true
+                            "text": "Transform into a colossus, increasing all damage you deal by 20% and reducing damage you take from area of effect attacks by 5% for 20.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -6302,7 +6318,7 @@
             "spellId": 12373,
             "category": "Defensive",
             "description": {
-                "text": "Cooldown of (varies by condition — check in-game), Intervene, (varies by condition — check in-game)Spell Reflection, Storm Bolt, and Pummel reduced by 10%. Successfully interrupting an enemy increases the damage you deal to them by (varies)% for 10.",
+                "text": "Cooldown of Die By the Sword, Intervene, Interpose, Spell Reflection, Storm Bolt, and Pummel reduced by 10%. Successfully interrupting an enemy increases the damage you deal to them by (varies)% for 10.",
                 "uncertain": true
             },
             "formulaModifierSpellIds": [],
@@ -6344,7 +6360,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Become an unstoppable storm of destructive force, striking all nearby enemies for (varies) Physical damage over 6. Deals reduced damage beyond 8 targets. You are immune to movement impairing and loss of control effects, but can use defensive abilities and can avoid attacks. (varies by condition — check in-game)",
+                            "text": "Become an unstoppable storm of destructive force, striking all nearby enemies for (varies) Physical damage over 6. Deals reduced damage beyond 8 targets. You are immune to movement impairing and loss of control effects, but can use defensive abilities and can avoid attacks. ",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -6395,7 +6411,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Become an unstoppable storm of destructive force, striking all nearby enemies for (varies) Physical damage over 6. Deals reduced damage beyond 8 targets. You are immune to movement impairing and loss of control effects, but can use defensive abilities and can avoid attacks. (varies by condition — check in-game)",
+                            "text": "Become an unstoppable storm of destructive force, striking all nearby enemies for (varies) Physical damage over 6. Deals reduced damage beyond 8 targets. You are immune to movement impairing and loss of control effects, but can use defensive abilities and can avoid attacks. ",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -6504,8 +6520,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Transform into a colossus, increasing all damage you deal by 20% (varies by condition — check in-game)for 20.",
-                            "uncertain": true
+                            "text": "Transform into a colossus, increasing all damage you deal by 20% and reducing damage you take from area of effect attacks by 5% for 20.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -6919,7 +6935,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Cooldown of (varies by condition — check in-game), Intervene, (varies by condition — check in-game)Spell Reflection, Storm Bolt, and Pummel reduced by 10%. Successfully interrupting an enemy increases the damage you deal to them by (varies)% for 10.",
+                            "text": "Cooldown of Die By the Sword, Intervene, Interpose, Spell Reflection, Storm Bolt, and Pummel reduced by 10%. Successfully interrupting an enemy increases the damage you deal to them by (varies)% for 10.",
                             "uncertain": true
                         },
                         "category": "Defensive",
@@ -6951,7 +6967,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Cooldown of (varies by condition — check in-game), Intervene, (varies by condition — check in-game)Spell Reflection, Storm Bolt, and Pummel reduced by 5%. Successfully interrupting an enemy increases the damage you deal to them by (varies)% for 10.",
+                            "text": "Cooldown of Die By the Sword, Intervene, Interpose, Spell Reflection, Storm Bolt, and Pummel reduced by 5%. Successfully interrupting an enemy increases the damage you deal to them by (varies)% for 10.",
                             "uncertain": true
                         },
                         "category": "Defensive",
@@ -6998,7 +7014,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Cooldown of (varies by condition — check in-game), Intervene, (varies by condition — check in-game)Spell Reflection, Storm Bolt, and Pummel reduced by 10%. Successfully interrupting an enemy increases the damage you deal to them by (varies)% for 10.",
+                            "text": "Cooldown of Die By the Sword, Intervene, Interpose, Spell Reflection, Storm Bolt, and Pummel reduced by 10%. Successfully interrupting an enemy increases the damage you deal to them by (varies)% for 10.",
                             "uncertain": true
                         },
                         "category": "Defensive",
@@ -7030,7 +7046,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Cooldown of (varies by condition — check in-game), Intervene, (varies by condition — check in-game)Spell Reflection, Storm Bolt, and Pummel reduced by 5%. Successfully interrupting an enemy increases the damage you deal to them by (varies)% for 10.",
+                            "text": "Cooldown of Die By the Sword, Intervene, Interpose, Spell Reflection, Storm Bolt, and Pummel reduced by 5%. Successfully interrupting an enemy increases the damage you deal to them by (varies)% for 10.",
                             "uncertain": true
                         },
                         "category": "Defensive",
@@ -7679,8 +7695,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Transform into a colossus, increasing all damage you deal by 20% (varies by condition — check in-game)for 20.",
-                            "uncertain": true
+                            "text": "Transform into a colossus, increasing all damage you deal by 20% and reducing damage you take from area of effect attacks by 5% for 20.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -7759,8 +7775,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game) deals an additional (varies by condition — check in-game)% damage and deals (varies by condition — check in-game)% increased critical strike damage.",
-                            "uncertain": true
+                            "text": "Mortal Strike deals an additional 5% damage and deals 5% increased critical strike damage.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -7903,8 +7919,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game).(varies by condition — check in-game)",
-                            "uncertain": true
+                            "text": "Mortal Strike and Slam damage increased by 25%. Cleave and Whirlwind damage increased by 15%.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -7919,8 +7935,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Demolish's final strike increases the critical strike chance of your next (varies by condition — check in-game) by 100%.",
-                            "uncertain": true
+                            "text": "Demolish's final strike increases the critical strike chance of your next Mortal Strike by 100%.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -8111,7 +8127,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game) a (varies)% chance to immediately refund (varies by condition — check in-game)% of the Rage spent.",
+                            "text": "Mortal Strike and Cleave have a (varies)% chance to immediately refund 10% of the Rage spent.",
                             "uncertain": true
                         },
                         "category": "Other",
@@ -8127,8 +8143,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Colossal Might increases damage dealt by your next Demolish by 5%, stacking up to 5 times. (varies by condition — check in-game) grants a stack of Colossal Might and (varies by condition — check in-game) grants a stack of Colossal Might when it strikes 5 or more targets.",
-                            "uncertain": true
+                            "text": "Colossal Might increases damage dealt by your next Demolish by 5%, stacking up to 5 times. Mortal Strike grants a stack of Colossal Might and Cleave grants a stack of Colossal Might when it strikes 5 or more targets.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -8143,8 +8159,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game) critical strikes increase your Rend and Deep Wounds damage by 15% for 8.",
-                            "uncertain": true
+                            "text": "Mortal Strike critical strikes increase your Rend and Deep Wounds damage by 15% for 8.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -8159,8 +8175,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game) a 20% chance to immediately refund (varies by condition — check in-game)% of the Rage spent.",
-                            "uncertain": true
+                            "text": "Mortal Strike and Cleave have a 20% chance to immediately refund 10% of the Rage spent.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -8175,8 +8191,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Colossal Might increases damage dealt by your next Demolish by 5%, stacking up to 5 times. (varies by condition — check in-game) grants a stack of Colossal Might and (varies by condition — check in-game) grants a stack of Colossal Might when it strikes 3 or more targets.",
-                            "uncertain": true
+                            "text": "Colossal Might increases damage dealt by your next Demolish by 5%, stacking up to 5 times. Mortal Strike grants a stack of Colossal Might and Cleave grants a stack of Colossal Might when it strikes 3 or more targets.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -8191,8 +8207,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game) critical strikes grant an additional stack of Colossal Might.",
-                            "uncertain": true
+                            "text": "Mortal Strike critical strikes grant an additional stack of Colossal Might.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -8207,8 +8223,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game) critical strikes increase your Rend and Deep Wounds damage by 15% for 8.",
-                            "uncertain": true
+                            "text": "Mortal Strike critical strikes increase your Rend and Deep Wounds damage by 15% for 8.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -8223,8 +8239,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Demolish's final strike grants 10% Haste for 10 and increases the critical strike chance of your next (varies by condition — check in-game) by 100%.",
-                            "uncertain": true
+                            "text": "Demolish's final strike grants 10% Haste for 10 and increases the critical strike chance of your next Mortal Strike by 100%.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -8355,8 +8371,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Your next (varies by condition — check in-game) after Bladestorm ends deals (varies by condition — check in-game)% additional damage.",
-                            "uncertain": true
+                            "text": "Your next Mortal Strike after Bladestorm ends deals 50% additional damage.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -8371,8 +8387,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game) critical strikes increase the damage of your next (varies by condition — check in-game) by (varies by condition — check in-game)%.",
-                            "uncertain": true
+                            "text": "Mortal Strike critical strikes increase the damage of your next Mortal Strike by 20%.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -8467,8 +8483,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Every 2 strikes of Bladestorm, you automatically cast a (varies by condition — check in-game) at your target or random nearby enemy, dealing 100% of normal damage.",
-                            "uncertain": true
+                            "text": "Every 2 strikes of Bladestorm, you automatically cast a Mortal Strike at your target or random nearby enemy, dealing 100% of normal damage.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -8483,8 +8499,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game) critical strikes increase the damage of your next (varies by condition — check in-game) by (varies by condition — check in-game)%.",
-                            "uncertain": true
+                            "text": "Mortal Strike critical strikes increase the damage of your next Mortal Strike by 20%.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -8499,8 +8515,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Your next (varies by condition — check in-game) after Bladestorm ends deals (varies by condition — check in-game)% additional damage.",
-                            "uncertain": true
+                            "text": "Your next Mortal Strike after Bladestorm ends deals 50% additional damage.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -8622,8 +8638,8 @@
             "spellId": 12423,
             "category": "Other",
             "description": {
-                "text": "Shockwave(varies by condition — check in-game) and (varies by condition — check in-game) deal 5% more damage per target affected up to 5.",
-                "uncertain": true
+                "text": "Shockwave, Cleave, and Whirlwind deal 5% more damage per target affected up to 5.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -8682,8 +8698,8 @@
             "spellId": 12463,
             "category": "Offensive",
             "description": {
-                "text": "(varies by condition — check in-game) Stacking up to 2 times.",
-                "uncertain": true
+                "text": "When Overpower has its cooldown reset by Tactician, your next Overpower deals 20% additional damage and 20% additional critical damage. Stacking up to 2 times.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -8724,8 +8740,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Transform into a colossus, increasing all damage you deal by 20% (varies by condition — check in-game)for 20.",
-                            "uncertain": true
+                            "text": "Transform into a colossus, increasing all damage you deal by 20% and reducing damage you take from area of effect attacks by 5% for 20.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -8868,8 +8884,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Colossal Might increases damage dealt by your next Demolish by 5%, stacking up to 5 times. (varies by condition — check in-game) grants a stack of Colossal Might and (varies by condition — check in-game) grants a stack of Colossal Might when it strikes 5 or more targets.",
-                            "uncertain": true
+                            "text": "Colossal Might increases damage dealt by your next Demolish by 5%, stacking up to 5 times. Mortal Strike grants a stack of Colossal Might and Cleave grants a stack of Colossal Might when it strikes 5 or more targets.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -9108,8 +9124,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Colossal Might increases the damage of your (varies by condition — check in-game) and Execute by (varies by condition — check in-game)% per stack.",
-                            "uncertain": true
+                            "text": "Colossal Might increases the damage of your Overpower and Execute by 3% per stack.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -9224,8 +9240,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game) and Execute damage increased by (varies by condition — check in-game)%.",
-                            "uncertain": true
+                            "text": "Overpower and Execute damage increased by 15%.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -9240,8 +9256,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game) Stacking up to 2 times.",
-                            "uncertain": true
+                            "text": "When Overpower has its cooldown reset by Tactician, your next Overpower deals 20% additional damage and 20% additional critical damage. Stacking up to 2 times.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -9320,8 +9336,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game) Stacking up to 2 times.",
-                            "uncertain": true
+                            "text": "When Overpower has its cooldown reset by Tactician, your next Overpower deals 20% additional damage and 20% additional critical damage. Stacking up to 2 times.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -9680,8 +9696,8 @@
             "spellId": 12429,
             "category": "Other",
             "description": {
-                "text": "(varies by condition — check in-game).(varies by condition — check in-game)",
-                "uncertain": true
+                "text": "Mortal Strike and Slam damage increased by 25%. Cleave and Whirlwind damage increased by 15%.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -9710,8 +9726,8 @@
             "spellId": 12430,
             "category": "Other",
             "description": {
-                "text": "(varies by condition — check in-game) critical strikes grant an additional stack of Colossal Might.",
-                "uncertain": true
+                "text": "Mortal Strike critical strikes grant an additional stack of Colossal Might.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -9752,7 +9768,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Cooldown of (varies by condition — check in-game), Intervene, (varies by condition — check in-game)Spell Reflection, Storm Bolt, and Pummel reduced by 10%. Successfully interrupting an enemy increases the damage you deal to them by (varies)% for 10.",
+                            "text": "Cooldown of Die By the Sword, Intervene, Interpose, Spell Reflection, Storm Bolt, and Pummel reduced by 10%. Successfully interrupting an enemy increases the damage you deal to them by (varies)% for 10.",
                             "uncertain": true
                         },
                         "category": "Defensive",
@@ -9768,7 +9784,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Cooldown of (varies by condition — check in-game), Intervene, (varies by condition — check in-game)Spell Reflection, Storm Bolt, and Pummel reduced by 5%. Successfully interrupting an enemy increases the damage you deal to them by (varies)% for 10.",
+                            "text": "Cooldown of Die By the Sword, Intervene, Interpose, Spell Reflection, Storm Bolt, and Pummel reduced by 5%. Successfully interrupting an enemy increases the damage you deal to them by (varies)% for 10.",
                             "uncertain": true
                         },
                         "category": "Defensive",
@@ -9787,7 +9803,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Become an unstoppable storm of destructive force, striking all nearby enemies for (varies) Physical damage over 6. Deals reduced damage beyond 8 targets. You are immune to movement impairing and loss of control effects, but can use defensive abilities and can avoid attacks. (varies by condition — check in-game)",
+                            "text": "Become an unstoppable storm of destructive force, striking all nearby enemies for (varies) Physical damage over 6. Deals reduced damage beyond 8 targets. You are immune to movement impairing and loss of control effects, but can use defensive abilities and can avoid attacks. ",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -9848,7 +9864,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Become an unstoppable storm of destructive force, striking all nearby enemies for (varies) Physical damage over 6. Deals reduced damage beyond 8 targets. You are immune to movement impairing and loss of control effects, but can use defensive abilities and can avoid attacks. (varies by condition — check in-game)",
+                            "text": "Become an unstoppable storm of destructive force, striking all nearby enemies for (varies) Physical damage over 6. Deals reduced damage beyond 8 targets. You are immune to movement impairing and loss of control effects, but can use defensive abilities and can avoid attacks. ",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -9916,7 +9932,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Become an unstoppable storm of destructive force, striking all nearby enemies for (varies) Physical damage over 6. Deals reduced damage beyond 8 targets. You are immune to movement impairing and loss of control effects, but can use defensive abilities and can avoid attacks. (varies by condition — check in-game)",
+                            "text": "Become an unstoppable storm of destructive force, striking all nearby enemies for (varies) Physical damage over 6. Deals reduced damage beyond 8 targets. You are immune to movement impairing and loss of control effects, but can use defensive abilities and can avoid attacks. ",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -9969,8 +9985,8 @@
             "spellId": 11702,
             "category": "Offensive",
             "description": {
-                "text": "Throws a whirling weapon at your target that chases nearby enemies, inflicting ≈1,075.7% of Attack Power Physical damage to all enemies over 12. Deals reduced damage beyond 8 targets. Enemies damaged by Ravager take 50% additional damage from your Bleeds for 12.(varies by condition — check in-game)",
-                "uncertain": true
+                "text": "Throws a whirling weapon at your target that chases nearby enemies, inflicting ≈1,075.7% of Attack Power Physical damage to all enemies over 12. Deals reduced damage beyond 8 targets. Enemies damaged by Ravager take 50% additional damage from your Bleeds for 12.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -10017,7 +10033,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Throws a whirling weapon at your target that chases nearby enemies, inflicting ≈1,075.7% of Attack Power Physical damage to all enemies over (varies). Deals reduced damage beyond 8 targets. Enemies damaged by Ravager take 50% additional damage from your Bleeds for 12.(varies by condition — check in-game)",
+                            "text": "Throws a whirling weapon at your target that chases nearby enemies, inflicting ≈1,075.7% of Attack Power Physical damage to all enemies over (varies). Deals reduced damage beyond 8 targets. Enemies damaged by Ravager take 50% additional damage from your Bleeds for 12.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -10066,8 +10082,8 @@
             "spellId": 12464,
             "category": "Offensive",
             "description": {
-                "text": "When (varies by condition — check in-game) 3 or more targets(varies by condition — check in-game) you have a (varies by condition — check in-game)% chance to unleash a flurry of steel, striking all nearby enemies for 8 Physical damage and applying Overwhelmed. Deals reduced damage beyond 8 targets.",
-                "uncertain": true
+                "text": "When Cleave hits 3 or more targets you have a 20% chance to unleash a flurry of steel, striking all nearby enemies for 8 Physical damage and applying Overwhelmed. Deals reduced damage beyond 8 targets.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -10231,8 +10247,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Transform into a colossus, increasing all damage you deal by 20% (varies by condition — check in-game)for 20.",
-                            "uncertain": true
+                            "text": "Transform into a colossus, increasing all damage you deal by 20% and reducing damage you take from area of effect attacks by 5% for 20.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -10375,8 +10391,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Colossal Might increases damage dealt by your next Demolish by 5%, stacking up to 5 times. (varies by condition — check in-game) grants a stack of Colossal Might and (varies by condition — check in-game) grants a stack of Colossal Might when it strikes 5 or more targets.",
-                            "uncertain": true
+                            "text": "Colossal Might increases damage dealt by your next Demolish by 5%, stacking up to 5 times. Mortal Strike grants a stack of Colossal Might and Cleave grants a stack of Colossal Might when it strikes 5 or more targets.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -10407,8 +10423,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game) critical strikes increase your Rend and Deep Wounds damage by 15% for 8.",
-                            "uncertain": true
+                            "text": "Mortal Strike critical strikes increase your Rend and Deep Wounds damage by 15% for 8.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -10567,8 +10583,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game) critical strikes increase your Rend and Deep Wounds damage by 15% for 8.",
-                            "uncertain": true
+                            "text": "Mortal Strike critical strikes increase your Rend and Deep Wounds damage by 15% for 8.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -10989,8 +11005,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Transform into a colossus, increasing all damage you deal by 20% (varies by condition — check in-game)for 20.",
-                            "uncertain": true
+                            "text": "Transform into a colossus, increasing all damage you deal by 20% and reducing damage you take from area of effect attacks by 5% for 20.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -11346,8 +11362,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Transform into a colossus, increasing all damage you deal by 20% (varies by condition — check in-game)for 20.",
-                            "uncertain": true
+                            "text": "Transform into a colossus, increasing all damage you deal by 20% and reducing damage you take from area of effect attacks by 5% for 20.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -11654,8 +11670,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Shockwave(varies by condition — check in-game) and (varies by condition — check in-game) deal 5% more damage per target affected up to 5.",
-                            "uncertain": true
+                            "text": "Shockwave, Cleave, and Whirlwind deal 5% more damage per target affected up to 5.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -11729,8 +11745,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Transform into a colossus, increasing all damage you deal by 20% (varies by condition — check in-game)for 20.",
-                            "uncertain": true
+                            "text": "Transform into a colossus, increasing all damage you deal by 20% and reducing damage you take from area of effect attacks by 5% for 20.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -11777,8 +11793,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game)",
-                            "uncertain": true
+                            "text": "Slam, Whirlwind, and Cleave deal 10% more damage and 5% increased critical strike damage.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -11873,8 +11889,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game).(varies by condition — check in-game)",
-                            "uncertain": true
+                            "text": "Mortal Strike and Slam damage increased by 25%. Cleave and Whirlwind damage increased by 15%.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -11985,8 +12001,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Leap through the air toward a target location, slamming down with destructive force to deal 1.2 Physical damage to all enemies within 8 yards(varies by condition — check in-game).",
-                            "uncertain": true
+                            "text": "Leap through the air toward a target location, slamming down with destructive force to deal 1.2 Physical damage to all enemies within 8 yards.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -12054,8 +12070,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Leap through the air toward a target location, slamming down with destructive force to deal 1.2 Physical damage to all enemies within 8 yards(varies by condition — check in-game).",
-                            "uncertain": true
+                            "text": "Leap through the air toward a target location, slamming down with destructive force to deal 1.2 Physical damage to all enemies within 8 yards.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -12086,8 +12102,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Leap through the air toward a target location, slamming down with destructive force to deal 1.2 Physical damage to all enemies within 8 yards(varies by condition — check in-game).",
-                            "uncertain": true
+                            "text": "Leap through the air toward a target location, slamming down with destructive force to deal 1.2 Physical damage to all enemies within 8 yards.",
+                            "uncertain": false
                         },
                         "category": "Crowd Control",
                         "cooldown": {
@@ -12102,8 +12118,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Colossal Might increases damage dealt by your next Demolish by 5%, stacking up to 5 times. (varies by condition — check in-game) grants a stack of Colossal Might and (varies by condition — check in-game) grants a stack of Colossal Might when it strikes 5 or more targets.",
-                            "uncertain": true
+                            "text": "Colossal Might increases damage dealt by your next Demolish by 5%, stacking up to 5 times. Mortal Strike grants a stack of Colossal Might and Cleave grants a stack of Colossal Might when it strikes 5 or more targets.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -12118,8 +12134,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Leap through the air toward a target location, slamming down with destructive force to deal 1.2 Physical damage to all enemies within 8 yards(varies by condition — check in-game).",
-                            "uncertain": true
+                            "text": "Leap through the air toward a target location, slamming down with destructive force to deal 1.2 Physical damage to all enemies within 8 yards.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -12134,8 +12150,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game) critical strikes increase your Rend and Deep Wounds damage by 15% for 8.",
-                            "uncertain": true
+                            "text": "Mortal Strike critical strikes increase your Rend and Deep Wounds damage by 15% for 8.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -12150,8 +12166,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Demolish's final strike increases the critical strike chance of your next (varies by condition — check in-game) by 100%.",
-                            "uncertain": true
+                            "text": "Demolish's final strike increases the critical strike chance of your next Mortal Strike by 100%.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -12166,8 +12182,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Leap through the air toward a target location, slamming down with destructive force to deal 1.2 Physical damage to all enemies within 8 yards(varies by condition — check in-game).",
-                            "uncertain": true
+                            "text": "Leap through the air toward a target location, slamming down with destructive force to deal 1.2 Physical damage to all enemies within 8 yards.",
+                            "uncertain": false
                         },
                         "category": "Mobility",
                         "cooldown": {
@@ -12235,8 +12251,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game) deals an additional (varies by condition — check in-game)% damage and deals (varies by condition — check in-game)% increased critical strike damage.",
-                            "uncertain": true
+                            "text": "Mortal Strike deals an additional 5% damage and deals 5% increased critical strike damage.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -12251,8 +12267,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Colossal Might increases damage dealt by your next Demolish by 5%, stacking up to 5 times. (varies by condition — check in-game) grants a stack of Colossal Might and (varies by condition — check in-game) grants a stack of Colossal Might when it strikes 3 or more targets.",
-                            "uncertain": true
+                            "text": "Colossal Might increases damage dealt by your next Demolish by 5%, stacking up to 5 times. Mortal Strike grants a stack of Colossal Might and Cleave grants a stack of Colossal Might when it strikes 3 or more targets.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -12267,8 +12283,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game) critical strikes grant an additional stack of Colossal Might.",
-                            "uncertain": true
+                            "text": "Mortal Strike critical strikes grant an additional stack of Colossal Might.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -12283,8 +12299,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game) critical strikes increase your Rend and Deep Wounds damage by 15% for 8.",
-                            "uncertain": true
+                            "text": "Mortal Strike critical strikes increase your Rend and Deep Wounds damage by 15% for 8.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -12299,8 +12315,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Demolish's final strike grants 10% Haste for 10 and increases the critical strike chance of your next (varies by condition — check in-game) by 100%.",
-                            "uncertain": true
+                            "text": "Demolish's final strike grants 10% Haste for 10 and increases the critical strike chance of your next Mortal Strike by 100%.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -12703,7 +12719,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Your single target melee abilities have a chance to upgrade Slam to Heroic Strike. All modifiers and talents that affect Slam also affect Heroic Strike. $@spelltooltip1269383",
+                            "text": "Slam has been upgraded to Heroic Strike.",
                             "uncertain": false
                         },
                         "category": "Offensive",
@@ -12736,7 +12752,7 @@
             "spellId": 12457,
             "category": "Other",
             "description": {
-                "text": "Your attacks against your primary target have a (varies by condition — check in-game)% chance to overwhelm their defenses and trigger a Slayer's Strike, dealing ≈840.4% of Attack Power Physical damage and granting you a stack of Executioner, increasing your Execute damage by 3% for 12. Multiple stacks of Executioner may overlap.",
+                "text": "Your attacks against your primary target have a 25% chance to overwhelm their defenses and trigger a Slayer's Strike, dealing ≈840.4% of Attack Power Physical damage and granting you a stack of Executioner, increasing your Execute damage by 3% for 12. Multiple stacks of Executioner may overlap.",
                 "uncertain": true
             },
             "formulaModifierSpellIds": [],
@@ -12766,8 +12782,8 @@
             "spellId": 12468,
             "category": "Other",
             "description": {
-                "text": "(varies by condition — check in-game) and Execute damage increased by (varies by condition — check in-game)%.",
-                "uncertain": true
+                "text": "Overpower and Execute damage increased by 15%.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -12796,8 +12812,8 @@
             "spellId": 12342,
             "category": "Defensive",
             "description": {
-                "text": "Raise your (varies by condition — check in-game), reflecting the next 2 spells cast on you and reducing magic damage you take by 20% for 5.",
-                "uncertain": true
+                "text": "Raise your weapon, reflecting the next 2 spells cast on you and reducing magic damage you take by 20% for 5.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -12808,7 +12824,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Become an unstoppable storm of destructive force, striking all nearby enemies for (varies) Physical damage over 6. Deals reduced damage beyond 8 targets. You are immune to movement impairing and loss of control effects, but can use defensive abilities and can avoid attacks. (varies by condition — check in-game)",
+                            "text": "Become an unstoppable storm of destructive force, striking all nearby enemies for (varies) Physical damage over 6. Deals reduced damage beyond 8 targets. You are immune to movement impairing and loss of control effects, but can use defensive abilities and can avoid attacks. ",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -12824,7 +12840,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Cooldown of (varies by condition — check in-game), Intervene, (varies by condition — check in-game)Spell Reflection, Storm Bolt, and Pummel reduced by 10%. Successfully interrupting an enemy increases the damage you deal to them by (varies)% for 10.",
+                            "text": "Cooldown of Die By the Sword, Intervene, Interpose, Spell Reflection, Storm Bolt, and Pummel reduced by 10%. Successfully interrupting an enemy increases the damage you deal to them by (varies)% for 10.",
                             "uncertain": true
                         },
                         "category": "Defensive",
@@ -12856,7 +12872,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Cooldown of (varies by condition — check in-game), Intervene, (varies by condition — check in-game)Spell Reflection, Storm Bolt, and Pummel reduced by 5%. Successfully interrupting an enemy increases the damage you deal to them by (varies)% for 10.",
+                            "text": "Cooldown of Die By the Sword, Intervene, Interpose, Spell Reflection, Storm Bolt, and Pummel reduced by 5%. Successfully interrupting an enemy increases the damage you deal to them by (varies)% for 10.",
                             "uncertain": true
                         },
                         "category": "Defensive",
@@ -12891,7 +12907,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Become an unstoppable storm of destructive force, striking all nearby enemies for (varies) Physical damage over 6. Deals reduced damage beyond 8 targets. You are immune to movement impairing and loss of control effects, but can use defensive abilities and can avoid attacks. (varies by condition — check in-game)",
+                            "text": "Become an unstoppable storm of destructive force, striking all nearby enemies for (varies) Physical damage over 6. Deals reduced damage beyond 8 targets. You are immune to movement impairing and loss of control effects, but can use defensive abilities and can avoid attacks. ",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -12928,8 +12944,8 @@
             "spellId": 12382,
             "category": "Other",
             "description": {
-                "text": "Your stances have additional effects. (varies by condition — check in-game) Defensive Stance When an attack deals 20% or more of your maximum health in damage, that damage is reduced by 15%.",
-                "uncertain": true
+                "text": "Your stances have additional effects. Battle Stance Increases the critical strike damage of your abilities by 3%. Defensive Stance When an attack deals 20% or more of your maximum health in damage, that damage is reduced by 15%.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -12970,8 +12986,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Transform into a colossus, increasing all damage you deal by 20% (varies by condition — check in-game)for 20.",
-                            "uncertain": true
+                            "text": "Transform into a colossus, increasing all damage you deal by 20% and reducing damage you take from area of effect attacks by 5% for 20.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -13050,7 +13066,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Cooldown of (varies by condition — check in-game), Intervene, (varies by condition — check in-game)Spell Reflection, Storm Bolt, and Pummel reduced by 10%. Successfully interrupting an enemy increases the damage you deal to them by (varies)% for 10.",
+                            "text": "Cooldown of Die By the Sword, Intervene, Interpose, Spell Reflection, Storm Bolt, and Pummel reduced by 10%. Successfully interrupting an enemy increases the damage you deal to them by (varies)% for 10.",
                             "uncertain": true
                         },
                         "category": "Defensive",
@@ -13130,7 +13146,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Cooldown of (varies by condition — check in-game), Intervene, (varies by condition — check in-game)Spell Reflection, Storm Bolt, and Pummel reduced by 5%. Successfully interrupting an enemy increases the damage you deal to them by (varies)% for 10.",
+                            "text": "Cooldown of Die By the Sword, Intervene, Interpose, Spell Reflection, Storm Bolt, and Pummel reduced by 5%. Successfully interrupting an enemy increases the damage you deal to them by (varies)% for 10.",
                             "uncertain": true
                         },
                         "category": "Defensive",
@@ -13230,7 +13246,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Become an unstoppable storm of destructive force, striking all nearby enemies for (varies) Physical damage over 6. Deals reduced damage beyond 8 targets. You are immune to movement impairing and loss of control effects, but can use defensive abilities and can avoid attacks. (varies by condition — check in-game)",
+                            "text": "Become an unstoppable storm of destructive force, striking all nearby enemies for (varies) Physical damage over 6. Deals reduced damage beyond 8 targets. You are immune to movement impairing and loss of control effects, but can use defensive abilities and can avoid attacks. ",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -13401,8 +13417,8 @@
             "spellId": 11695,
             "category": "Other",
             "description": {
-                "text": "Your attacks have a chance to make your next Condemn (varies by condition — check in-game)be usable on any target regardless of their health(varies by condition — check in-game).",
-                "uncertain": true
+                "text": "Your attacks have a chance to make your next Condemn cost no Rage, be usable on any target regardless of their health, and deal damage as if you spent 40 Rage.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -13750,8 +13766,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game) Stacking up to 2 times.",
-                            "uncertain": true
+                            "text": "When Overpower has its cooldown reset by Tactician, your next Overpower deals 20% additional damage and 20% additional critical damage. Stacking up to 2 times.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -13798,8 +13814,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game) Stacking up to 2 times.",
-                            "uncertain": true
+                            "text": "When Overpower has its cooldown reset by Tactician, your next Overpower deals 20% additional damage and 20% additional critical damage. Stacking up to 2 times.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -13859,7 +13875,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Become an unstoppable storm of destructive force, striking all nearby enemies for (varies) Physical damage over 6. Deals reduced damage beyond 8 targets. You are immune to movement impairing and loss of control effects, but can use defensive abilities and can avoid attacks. (varies by condition — check in-game)",
+                            "text": "Become an unstoppable storm of destructive force, striking all nearby enemies for (varies) Physical damage over 6. Deals reduced damage beyond 8 targets. You are immune to movement impairing and loss of control effects, but can use defensive abilities and can avoid attacks. ",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -13891,8 +13907,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Leap through the air toward a target location, slamming down with destructive force to deal 1.2 Physical damage to all enemies within 8 yards(varies by condition — check in-game).",
-                            "uncertain": true
+                            "text": "Leap through the air toward a target location, slamming down with destructive force to deal 1.2 Physical damage to all enemies within 8 yards.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -13960,8 +13976,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Leap through the air toward a target location, slamming down with destructive force to deal 1.2 Physical damage to all enemies within 8 yards(varies by condition — check in-game).",
-                            "uncertain": true
+                            "text": "Leap through the air toward a target location, slamming down with destructive force to deal 1.2 Physical damage to all enemies within 8 yards.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -13976,8 +13992,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Leap through the air toward a target location, slamming down with destructive force to deal 1.2 Physical damage to all enemies within 8 yards(varies by condition — check in-game).",
-                            "uncertain": true
+                            "text": "Leap through the air toward a target location, slamming down with destructive force to deal 1.2 Physical damage to all enemies within 8 yards.",
+                            "uncertain": false
                         },
                         "category": "Crowd Control",
                         "cooldown": {
@@ -13992,8 +14008,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Leap through the air toward a target location, slamming down with destructive force to deal 1.2 Physical damage to all enemies within 8 yards(varies by condition — check in-game).",
-                            "uncertain": true
+                            "text": "Leap through the air toward a target location, slamming down with destructive force to deal 1.2 Physical damage to all enemies within 8 yards.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -14008,8 +14024,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Leap through the air toward a target location, slamming down with destructive force to deal 1.2 Physical damage to all enemies within 8 yards(varies by condition — check in-game).",
-                            "uncertain": true
+                            "text": "Leap through the air toward a target location, slamming down with destructive force to deal 1.2 Physical damage to all enemies within 8 yards.",
+                            "uncertain": false
                         },
                         "category": "Mobility",
                         "cooldown": {
@@ -14080,7 +14096,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Become an unstoppable storm of destructive force, striking all nearby enemies for (varies) Physical damage over 6. Deals reduced damage beyond 8 targets. You are immune to movement impairing and loss of control effects, but can use defensive abilities and can avoid attacks. (varies by condition — check in-game)",
+                            "text": "Become an unstoppable storm of destructive force, striking all nearby enemies for (varies) Physical damage over 6. Deals reduced damage beyond 8 targets. You are immune to movement impairing and loss of control effects, but can use defensive abilities and can avoid attacks. ",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -14125,8 +14141,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Transform into a colossus, increasing all damage you deal by 20% (varies by condition — check in-game)for 20.",
-                            "uncertain": true
+                            "text": "Transform into a colossus, increasing all damage you deal by 20% and reducing damage you take from area of effect attacks by 5% for 20.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -14189,8 +14205,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game)",
-                            "uncertain": true
+                            "text": "Slam, Whirlwind, and Cleave deal 10% more damage and 5% increased critical strike damage.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -14269,8 +14285,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game).(varies by condition — check in-game)",
-                            "uncertain": true
+                            "text": "Mortal Strike and Slam damage increased by 25%. Cleave and Whirlwind damage increased by 15%.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -14353,8 +14369,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Throws a whirling weapon at your target that chases nearby enemies, inflicting ≈1,075.7% of Attack Power Physical damage to all enemies over 12. Deals reduced damage beyond 8 targets. Enemies damaged by Ravager take 50% additional damage from your Bleeds for 12.(varies by condition — check in-game)",
-                            "uncertain": true
+                            "text": "Throws a whirling weapon at your target that chases nearby enemies, inflicting ≈1,075.7% of Attack Power Physical damage to all enemies over 12. Deals reduced damage beyond 8 targets. Enemies damaged by Ravager take 50% additional damage from your Bleeds for 12.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -14482,8 +14498,8 @@
             "spellId": 12426,
             "category": "Other",
             "description": {
-                "text": "Colossal Might increases the damage of your (varies by condition — check in-game) and Execute by (varies by condition — check in-game)% per stack.",
-                "uncertain": true
+                "text": "Colossal Might increases the damage of your Overpower and Execute by 3% per stack.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -14542,8 +14558,8 @@
             "spellId": 12456,
             "category": "Other",
             "description": {
-                "text": "Every 2 strikes of Bladestorm, you automatically cast a (varies by condition — check in-game) at your target or random nearby enemy, dealing 100% of normal damage.",
-                "uncertain": true
+                "text": "Every 2 strikes of Bladestorm, you automatically cast a Mortal Strike at your target or random nearby enemy, dealing 100% of normal damage.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -14692,8 +14708,8 @@
             "spellId": 12353,
             "category": "Mobility",
             "description": {
-                "text": "Your auto-attacks generate (varies by condition — check in-game)% more Rage. Killing an enemy instantly generates 5 Rage and increases your movement speed by 30% for 8.",
-                "uncertain": true
+                "text": "Your auto-attacks generate 10% more Rage. Killing an enemy instantly generates 5 Rage and increases your movement speed by 30% for 8.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -14750,8 +14766,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game)",
-                            "uncertain": true
+                            "text": "Slam, Whirlwind, and Cleave deal 10% more damage and 5% increased critical strike damage.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -14766,8 +14782,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game).(varies by condition — check in-game)",
-                            "uncertain": true
+                            "text": "Mortal Strike and Slam damage increased by 25%. Cleave and Whirlwind damage increased by 15%.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -14866,8 +14882,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Throws a whirling weapon at your target that chases nearby enemies, inflicting ≈1,075.7% of Attack Power Physical damage to all enemies over 12. Deals reduced damage beyond 8 targets. Enemies damaged by Ravager take 50% additional damage from your Bleeds for 12.(varies by condition — check in-game)",
-                            "uncertain": true
+                            "text": "Throws a whirling weapon at your target that chases nearby enemies, inflicting ≈1,075.7% of Attack Power Physical damage to all enemies over 12. Deals reduced damage beyond 8 targets. Enemies damaged by Ravager take 50% additional damage from your Bleeds for 12.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -15058,8 +15074,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "When (varies by condition — check in-game) 3 or more targets(varies by condition — check in-game) you have a (varies by condition — check in-game)% chance to unleash a flurry of steel, striking all nearby enemies for 8 Physical damage and applying Overwhelmed. Deals reduced damage beyond 8 targets.",
-                            "uncertain": true
+                            "text": "When Cleave hits 3 or more targets you have a 20% chance to unleash a flurry of steel, striking all nearby enemies for 8 Physical damage and applying Overwhelmed. Deals reduced damage beyond 8 targets.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -15170,8 +15186,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Shockwave(varies by condition — check in-game) and (varies by condition — check in-game) deal 5% more damage per target affected up to 5.",
-                            "uncertain": true
+                            "text": "Shockwave, Cleave, and Whirlwind deal 5% more damage per target affected up to 5.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -15186,8 +15202,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "When (varies by condition — check in-game) 3 or more targets(varies by condition — check in-game) you have a (varies by condition — check in-game)% chance to unleash a flurry of steel, striking all nearby enemies for 8 Physical damage and applying Overwhelmed. Deals reduced damage beyond 8 targets.",
-                            "uncertain": true
+                            "text": "When Cleave hits 3 or more targets you have a 20% chance to unleash a flurry of steel, striking all nearby enemies for 8 Physical damage and applying Overwhelmed. Deals reduced damage beyond 8 targets.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -15277,8 +15293,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Transform into a colossus, increasing all damage you deal by 20% (varies by condition — check in-game)for 20.",
-                            "uncertain": true
+                            "text": "Transform into a colossus, increasing all damage you deal by 20% and reducing damage you take from area of effect attacks by 5% for 20.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {

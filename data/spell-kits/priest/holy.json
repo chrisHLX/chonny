@@ -1,6 +1,6 @@
 {
-    "generatedAt": "2026-10-18T02:36:55+00:00",
-    "spellCacheVersion": 29,
+    "generatedAt": "2026-11-03T23:04:42+00:00",
+    "spellCacheVersion": 31,
     "codeFingerprint": "dev",
     "entries": [
         {
@@ -407,8 +407,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "While above 75% health, the cast time of your (varies by condition — check in-game) reduced by 5%.",
-                            "uncertain": true
+                            "text": "While above 75% health, the cast time of your Flash Heal, Prayer of Healing, and Smite are reduced by 5%.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -439,8 +439,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Increases healing done by Flash Heal(varies by condition — check in-game) by 15%.",
-                            "uncertain": true
+                            "text": "Increases healing done by Flash Heal by 15%.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -603,8 +603,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game) more effective when cast on yourself.",
-                            "uncertain": true
+                            "text": "Your Flash Heal and Holy Word: Serenity are 30% more effective when cast on yourself.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -651,8 +651,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game)",
-                            "uncertain": true
+                            "text": "Flash Heal healing increased by 10%. Healing spells and Smite have an additional 2% chance to grant Surge of Light.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -746,8 +746,8 @@
             "spellId": 8610,
             "category": "Other",
             "description": {
-                "text": "20% of (varies by condition — check in-game) healing on other targets also heals you.",
-                "uncertain": true
+                "text": "20% of Flash Heal healing on other targets also heals you.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -776,8 +776,8 @@
             "spellId": 8597,
             "category": "Mobility",
             "description": {
-                "text": "(varies by condition — check in-game) and Leap of Faith increase your target's movement speed by 40% for 3.",
-                "uncertain": true
+                "text": "Prayer of Mending and Leap of Faith increase your target's movement speed by 40% for 3.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -1869,8 +1869,8 @@
             "spellId": 8722,
             "category": "Offensive",
             "description": {
-                "text": "(varies by condition — check in-game) that follows the enemy for 8. Enemies caught in its path suffer 30 Shadow damage every 1 sec while within its reach.",
-                "uncertain": true
+                "text": "Mind Blast tears open an Entropic Rift that follows the enemy for 8. Enemies caught in its path suffer 30 Shadow damage every 1 sec while within its reach.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -1883,8 +1883,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game) that follows the enemy for 8. Enemies caught in its path suffer 30 Shadow damage every 1 sec while within its reach.",
-                            "uncertain": true
+                            "text": "Mind Blast tears open an Entropic Rift that follows the enemy for 8. Enemies caught in its path suffer 30 Shadow damage every 1 sec while within its reach.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -1899,8 +1899,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game) that follows the enemy for 8. Enemies caught in its path suffer 30 Shadow damage every 1 sec while within its reach.",
-                            "uncertain": true
+                            "text": "Mind Blast tears open an Entropic Rift that follows the enemy for 8. Enemies caught in its path suffer 30 Shadow damage every 1 sec while within its reach.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -1915,8 +1915,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game) that follows the enemy for 8. Enemies caught in its path suffer 30 Shadow damage every 1 sec while within its reach.",
-                            "uncertain": true
+                            "text": "Mind Blast tears open an Entropic Rift that follows the enemy for 8. Enemies caught in its path suffer 30 Shadow damage every 1 sec while within its reach.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -1931,8 +1931,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game) that follows the enemy for 8. Enemies caught in its path suffer 30 Shadow damage every 1 sec while within its reach.",
-                            "uncertain": true
+                            "text": "Mind Blast tears open an Entropic Rift that follows the enemy for 8. Enemies caught in its path suffer 30 Shadow damage every 1 sec while within its reach.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -2352,8 +2352,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "While above 75% health, the cast time of your (varies by condition — check in-game) reduced by 5%.",
-                            "uncertain": true
+                            "text": "While above 75% health, the cast time of your Flash Heal, Prayer of Healing, and Smite are reduced by 5%.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -2384,8 +2384,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Increases healing done by Flash Heal(varies by condition — check in-game) by 15%.",
-                            "uncertain": true
+                            "text": "Increases healing done by Flash Heal by 15%.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -2480,8 +2480,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Casting (varies by condition — check in-game) on yourself reduces all damage you take by 10% for 10.",
-                            "uncertain": true
+                            "text": "Casting Flash Heal on yourself reduces all damage you take by 10% for 10.",
+                            "uncertain": false
                         },
                         "category": "Defensive",
                         "cooldown": {
@@ -2496,8 +2496,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Reduces your target's physical damage taken by 5% for 15 after a critical heal with (varies by condition — check in-game).",
-                            "uncertain": true
+                            "text": "Reduces your target's physical damage taken by 5% for 15 after a critical heal with Flash Heal or Holy Word: Serenity.",
+                            "uncertain": false
                         },
                         "category": "Defensive",
                         "cooldown": {
@@ -2512,8 +2512,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Your healing spells and Smite have a 8% chance to make your next (varies by condition — check in-game) or Prayer of Healing instant and cost 50% less mana. Stacks to 2.",
-                            "uncertain": true
+                            "text": "Your healing spells and Smite have a 8% chance to make your next Flash Heal or Prayer of Healing instant and cost 50% less mana. Stacks to 2.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -2528,8 +2528,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Casting (varies by condition — check in-game) on yourself reduces all damage you take by 10% for 10.",
-                            "uncertain": true
+                            "text": "Casting Flash Heal on yourself reduces all damage you take by 10% for 10.",
+                            "uncertain": false
                         },
                         "category": "Defensive",
                         "cooldown": {
@@ -2544,8 +2544,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "20% of (varies by condition — check in-game) healing on other targets also heals you.",
-                            "uncertain": true
+                            "text": "20% of Flash Heal healing on other targets also heals you.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -2560,8 +2560,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Reduces your target's physical damage taken by 5% for 15 after a critical heal with (varies by condition — check in-game).",
-                            "uncertain": true
+                            "text": "Reduces your target's physical damage taken by 5% for 15 after a critical heal with Flash Heal or Holy Word: Serenity.",
+                            "uncertain": false
                         },
                         "category": "Defensive",
                         "cooldown": {
@@ -2765,8 +2765,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game) more effective when cast on yourself.",
-                            "uncertain": true
+                            "text": "Your Flash Heal and Holy Word: Serenity are 30% more effective when cast on yourself.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -2813,8 +2813,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game)",
-                            "uncertain": true
+                            "text": "Flash Heal healing increased by 10%. Healing spells and Smite have an additional 2% chance to grant Surge of Light.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -2909,8 +2909,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game)",
-                            "uncertain": true
+                            "text": "Surge of Light can now be consumed by Prayer of Healing in addition to Flash Heal. Surge of Light Your healing spells and Smite have a 8% chance to make your next Flash Heal or Prayer of Healing instant and cost 50% less mana. Stacks to 2.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -3006,8 +3006,8 @@
             "spellId": 8703,
             "category": "Other",
             "description": {
-                "text": "(varies by condition — check in-game)",
-                "uncertain": true
+                "text": "Prayer of Healing mana cost reduced by 10% and its cast time is reduced by 15%.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -3689,8 +3689,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Creating a Halo grants Surge of Light. Surge of Light Your healing spells and Smite have a 8% chance to make your next (varies by condition — check in-game) or Prayer of Healing instant and cost 50% less mana. Stacks to 2.",
-                            "uncertain": true
+                            "text": "Creating a Halo grants Surge of Light. Surge of Light Your healing spells and Smite have a 8% chance to make your next Flash Heal or Prayer of Healing instant and cost 50% less mana. Stacks to 2.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -4757,8 +4757,8 @@
                         "modifier_value": -5,
                         "modifier_unit": "seconds",
                         "description": {
-                            "text": "(varies by condition — check in-game)",
-                            "uncertain": true
+                            "text": "Reduces the cooldown of your Holy Words by 5 sec.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -5336,8 +5336,8 @@
                         "modifier_value": -5,
                         "modifier_unit": "seconds",
                         "description": {
-                            "text": "(varies by condition — check in-game)",
-                            "uncertain": true
+                            "text": "Reduces the cooldown of your Holy Words by 5 sec.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -6124,8 +6124,8 @@
                         "modifier_value": -5,
                         "modifier_unit": "seconds",
                         "description": {
-                            "text": "(varies by condition — check in-game)",
-                            "uncertain": true
+                            "text": "Reduces the cooldown of your Holy Words by 5 sec.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -6188,8 +6188,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Reduces your target's physical damage taken by 5% for 15 after a critical heal with (varies by condition — check in-game).",
-                            "uncertain": true
+                            "text": "Reduces your target's physical damage taken by 5% for 15 after a critical heal with Flash Heal or Holy Word: Serenity.",
+                            "uncertain": false
                         },
                         "category": "Defensive",
                         "cooldown": {
@@ -6236,8 +6236,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Reduces your target's physical damage taken by 5% for 15 after a critical heal with (varies by condition — check in-game).",
-                            "uncertain": true
+                            "text": "Reduces your target's physical damage taken by 5% for 15 after a critical heal with Flash Heal or Holy Word: Serenity.",
+                            "uncertain": false
                         },
                         "category": "Defensive",
                         "cooldown": {
@@ -6336,8 +6336,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game) more effective when cast on yourself.",
-                            "uncertain": true
+                            "text": "Your Flash Heal and Holy Word: Serenity are 30% more effective when cast on yourself.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -6818,8 +6818,8 @@
             "spellId": 8624,
             "category": "Other",
             "description": {
-                "text": "Increases healing done by Flash Heal(varies by condition — check in-game) by 15%.",
-                "uncertain": true
+                "text": "Increases healing done by Flash Heal by 15%.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -6938,8 +6938,8 @@
             "spellId": 8621,
             "category": "Defensive",
             "description": {
-                "text": "Reduces your target's physical damage taken by 5% for 15 after a critical heal with (varies by condition — check in-game).",
-                "uncertain": true
+                "text": "Reduces your target's physical damage taken by 5% for 15 after a critical heal with Flash Heal or Holy Word: Serenity.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -7091,8 +7091,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game) and Leap of Faith increase your target's movement speed by 40% for 3.",
-                            "uncertain": true
+                            "text": "Prayer of Mending and Leap of Faith increase your target's movement speed by 40% for 3.",
+                            "uncertain": false
                         },
                         "category": "Mobility",
                         "cooldown": {
@@ -7107,8 +7107,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game) and Leap of Faith increase your target's movement speed by 40% for 3.",
-                            "uncertain": true
+                            "text": "Prayer of Mending and Leap of Faith increase your target's movement speed by 40% for 3.",
+                            "uncertain": false
                         },
                         "category": "Mobility",
                         "cooldown": {
@@ -7139,8 +7139,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game) and Leap of Faith increase your target's movement speed by 40% for 3.",
-                            "uncertain": true
+                            "text": "Prayer of Mending and Leap of Faith increase your target's movement speed by 40% for 3.",
+                            "uncertain": false
                         },
                         "category": "Mobility",
                         "cooldown": {
@@ -7650,8 +7650,8 @@
             "spellId": 8693,
             "category": "Other",
             "description": {
-                "text": "Creating a Halo grants Surge of Light. Surge of Light Your healing spells and Smite have a 8% chance to make your next (varies by condition — check in-game) or Prayer of Healing instant and cost 50% less mana. Stacks to 2.",
-                "uncertain": true
+                "text": "Creating a Halo grants Surge of Light. Surge of Light Your healing spells and Smite have a 8% chance to make your next Flash Heal or Prayer of Healing instant and cost 50% less mana. Stacks to 2.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -7774,7 +7774,7 @@
             "spellId": 8588,
             "category": "Offensive",
             "description": {
-                "text": "Blast the target's mind for ≈78.3% of Spell Power Shadow damage.(varies by condition — check in-game)",
+                "text": "Blast the target's mind for ≈78.3% of Spell Power Shadow damage.",
                 "uncertain": true
             },
             "formulaModifierSpellIds": [],
@@ -7918,8 +7918,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game) that follows the enemy for 8. Enemies caught in its path suffer 30 Shadow damage every 1 sec while within its reach.",
-                            "uncertain": true
+                            "text": "Mind Blast tears open an Entropic Rift that follows the enemy for 8. Enemies caught in its path suffer 30 Shadow damage every 1 sec while within its reach.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -7934,8 +7934,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game) that follows the enemy for 8. Enemies caught in its path suffer 30 Shadow damage every 1 sec while within its reach.",
-                            "uncertain": true
+                            "text": "Mind Blast tears open an Entropic Rift that follows the enemy for 8. Enemies caught in its path suffer 30 Shadow damage every 1 sec while within its reach.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -7950,8 +7950,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game) that follows the enemy for 8. Enemies caught in its path suffer 30 Shadow damage every 1 sec while within its reach.",
-                            "uncertain": true
+                            "text": "Mind Blast tears open an Entropic Rift that follows the enemy for 8. Enemies caught in its path suffer 30 Shadow damage every 1 sec while within its reach.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -7966,8 +7966,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game) that follows the enemy for 8. Enemies caught in its path suffer 30 Shadow damage every 1 sec while within its reach.",
-                            "uncertain": true
+                            "text": "Mind Blast tears open an Entropic Rift that follows the enemy for 8. Enemies caught in its path suffer 30 Shadow damage every 1 sec while within its reach.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -7982,8 +7982,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game) that follows the enemy for 8. Enemies caught in its path suffer 30 Shadow damage every 1 sec while within its reach.",
-                            "uncertain": true
+                            "text": "Mind Blast tears open an Entropic Rift that follows the enemy for 8. Enemies caught in its path suffer 30 Shadow damage every 1 sec while within its reach.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -8508,8 +8508,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "While above 75% health, the cast time of your (varies by condition — check in-game) reduced by 5%.",
-                            "uncertain": true
+                            "text": "While above 75% health, the cast time of your Flash Heal, Prayer of Healing, and Smite are reduced by 5%.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -8588,8 +8588,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Your healing spells and Smite have a 8% chance to make your next (varies by condition — check in-game) or Prayer of Healing instant and cost 50% less mana. Stacks to 2.",
-                            "uncertain": true
+                            "text": "Your healing spells and Smite have a 8% chance to make your next Flash Heal or Prayer of Healing instant and cost 50% less mana. Stacks to 2.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -8978,8 +8978,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game)",
-                            "uncertain": true
+                            "text": "Prayer of Healing mana cost reduced by 10% and its cast time is reduced by 15%.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -9010,8 +9010,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game)",
-                            "uncertain": true
+                            "text": "Surge of Light can now be consumed by Prayer of Healing in addition to Flash Heal. Surge of Light Your healing spells and Smite have a 8% chance to make your next Flash Heal or Prayer of Healing instant and cost 50% less mana. Stacks to 2.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -9183,8 +9183,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game) and Leap of Faith increase your target's movement speed by 40% for 3.",
-                            "uncertain": true
+                            "text": "Prayer of Mending and Leap of Faith increase your target's movement speed by 40% for 3.",
+                            "uncertain": false
                         },
                         "category": "Mobility",
                         "cooldown": {
@@ -9199,8 +9199,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game) and Leap of Faith increase your target's movement speed by 40% for 3.",
-                            "uncertain": true
+                            "text": "Prayer of Mending and Leap of Faith increase your target's movement speed by 40% for 3.",
+                            "uncertain": false
                         },
                         "category": "Mobility",
                         "cooldown": {
@@ -9231,8 +9231,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game) and Leap of Faith increase your target's movement speed by 40% for 3.",
-                            "uncertain": true
+                            "text": "Prayer of Mending and Leap of Faith increase your target's movement speed by 40% for 3.",
+                            "uncertain": false
                         },
                         "category": "Mobility",
                         "cooldown": {
@@ -9295,8 +9295,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game)",
-                            "uncertain": true
+                            "text": "When Prayer of Mending expires without healing, it jumps to a nearby injured ally and loses 2 stacks instead.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -9983,8 +9983,8 @@
             "spellId": 8719,
             "category": "Other",
             "description": {
-                "text": "(varies by condition — check in-game)",
-                "uncertain": true
+                "text": "Reduces the cooldown of your Holy Words by 5 sec.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -10013,8 +10013,8 @@
             "spellId": 8705,
             "category": "Other",
             "description": {
-                "text": "(varies by condition — check in-game) more effective when cast on yourself.",
-                "uncertain": true
+                "text": "Your Flash Heal and Holy Word: Serenity are 30% more effective when cast on yourself.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -10043,8 +10043,8 @@
             "spellId": 8604,
             "category": "Defensive",
             "description": {
-                "text": "Casting (varies by condition — check in-game) on yourself reduces all damage you take by 10% for 10.",
-                "uncertain": true
+                "text": "Casting Flash Heal on yourself reduces all damage you take by 10% for 10.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -10490,8 +10490,8 @@
             "spellId": 8704,
             "category": "Other",
             "description": {
-                "text": "(varies by condition — check in-game)",
-                "uncertain": true
+                "text": "Flash Heal healing increased by 10%. Healing spells and Smite have an additional 2% chance to grant Surge of Light.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -10790,7 +10790,7 @@
             "spellId": 8595,
             "category": "Offensive",
             "description": {
-                "text": "A word of dark binding that inflicts ≈85% of Spell Power Shadow damage to your target. If your target is not killed by Shadow Word: Death, you take backlash damage equal to 5% of your maximum health.(varies by condition — check in-game)(varies by condition — check in-game)",
+                "text": "A word of dark binding that inflicts ≈85% of Spell Power Shadow damage to your target. If your target is not killed by Shadow Word: Death, you take backlash damage equal to 5% of your maximum health.(varies by condition — check in-game)",
                 "uncertain": true
             },
             "formulaModifierSpellIds": [],
@@ -10834,7 +10834,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "A word of dark binding that inflicts (varies) Shadow damage to your target. If your target is not killed by Shadow Word: Death, you take backlash damage equal to 5% of your maximum health.(varies by condition — check in-game)(varies by condition — check in-game)",
+                            "text": "A word of dark binding that inflicts (varies) Shadow damage to your target. If your target is not killed by Shadow Word: Death, you take backlash damage equal to 5% of your maximum health.(varies by condition — check in-game)",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -10918,8 +10918,8 @@
                         "modifier_value": -3,
                         "modifier_unit": "seconds",
                         "description": {
-                            "text": "(varies by condition — check in-game)",
-                            "uncertain": true
+                            "text": "Flash Heal healing increased by 10%. Healing spells and Smite have an additional 2% chance to grant Surge of Light.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -11219,8 +11219,8 @@
             "spellId": 8701,
             "category": "Other",
             "description": {
-                "text": "(varies by condition — check in-game)",
-                "uncertain": true
+                "text": "Surge of Light can now be consumed by Prayer of Healing in addition to Flash Heal. Surge of Light Your healing spells and Smite have a 8% chance to make your next Flash Heal or Prayer of Healing instant and cost 50% less mana. Stacks to 2.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -11279,8 +11279,8 @@
             "spellId": 8601,
             "category": "Other",
             "description": {
-                "text": "Your healing spells and Smite have a 8% chance to make your next (varies by condition — check in-game) or Prayer of Healing instant and cost 50% less mana. Stacks to 2.",
-                "uncertain": true
+                "text": "Your healing spells and Smite have a 8% chance to make your next Flash Heal or Prayer of Healing instant and cost 50% less mana. Stacks to 2.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -11310,8 +11310,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game)",
-                            "uncertain": true
+                            "text": "Flash Heal healing increased by 10%. Healing spells and Smite have an additional 2% chance to grant Surge of Light.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -11326,8 +11326,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Creating a Halo grants Surge of Light. Surge of Light Your healing spells and Smite have a 8% chance to make your next (varies by condition — check in-game) or Prayer of Healing instant and cost 50% less mana. Stacks to 2.",
-                            "uncertain": true
+                            "text": "Creating a Halo grants Surge of Light. Surge of Light Your healing spells and Smite have a 8% chance to make your next Flash Heal or Prayer of Healing instant and cost 50% less mana. Stacks to 2.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -11374,8 +11374,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game)",
-                            "uncertain": true
+                            "text": "Surge of Light can now be consumed by Prayer of Healing in addition to Flash Heal. Surge of Light Your healing spells and Smite have a 8% chance to make your next Flash Heal or Prayer of Healing instant and cost 50% less mana. Stacks to 2.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -11694,8 +11694,8 @@
             "spellId": 8720,
             "category": "Other",
             "description": {
-                "text": "(varies by condition — check in-game)",
-                "uncertain": true
+                "text": "When Prayer of Mending expires without healing, it jumps to a nearby injured ally and loses 2 stacks instead.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -11724,8 +11724,8 @@
             "spellId": 8615,
             "category": "Other",
             "description": {
-                "text": "While above 75% health, the cast time of your (varies by condition — check in-game) reduced by 5%.",
-                "uncertain": true
+                "text": "While above 75% health, the cast time of your Flash Heal, Prayer of Healing, and Smite are reduced by 5%.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -11844,7 +11844,7 @@
             "spellId": 8721,
             "category": "Offensive",
             "description": {
-                "text": "Channel a torrent of void energy into the target, dealing (varies) Shadow damage over 3 and tearing open an Entropic Rift. Entropic Rift (varies by condition — check in-game) that follows the enemy for 8. Enemies caught in its path suffer 30 Shadow damage every 1 sec while within its reach. Generates 24 Insanity over the duration.",
+                "text": "Channel a torrent of void energy into the target, dealing (varies) Shadow damage over 3 and tearing open an Entropic Rift. Entropic Rift Mind Blast tears open an Entropic Rift that follows the enemy for 8. Enemies caught in its path suffer 30 Shadow damage every 1 sec while within its reach. Generates 24 Insanity over the duration.",
                 "uncertain": true
             },
             "formulaModifierSpellIds": [],

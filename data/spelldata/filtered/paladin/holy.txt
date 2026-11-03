@@ -1,5 +1,5 @@
 # Paladin — Holy Spec Talents
-# Extracted verbatim from paladin.txt (SimulationCraft 1210-01 for World of Warcraft 12.1.0.69933 Live)
+# Extracted verbatim from paladin.txt (SimulationCraft 1210-01 for World of Warcraft 12.1.5.70688 Live)
 # 55 spell record(s). Mechanical regroup only — no content altered.
 
 Name             : Holy Shock (id=20473) [Spell Family (10)] 
@@ -1084,7 +1084,7 @@ Labels           : 16: Class Spells
 Attributes       : Passive (6), Can Proc From Procs (122), Not In Spellbook (143), Do Not Log on Learn (355)
 Effects          :
 #1 (id=1283343)  : Apply Aura (6) | Add Percent Modifier (108): Spell Resource Cost 1 (14)
-                   Base Value: -10 | Scaled Value: -10 | PvP Coefficient: 3 | Misc Value: 14 | Target: Self (1)
+                   Base Value: -10 | Scaled Value: -10 | PvP Coefficient: 5 | Misc Value: 14 | Target: Self (1)
                    Affected Spells: Holy Light (82326)
                    Family Flags: 74
 #2 (id=1283344)  : Apply Aura (6) | Add Percent Modifier (108): Spell Cast Time (10)

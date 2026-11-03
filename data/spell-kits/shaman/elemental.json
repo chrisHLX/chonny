@@ -1,6 +1,6 @@
 {
-    "generatedAt": "2026-10-18T02:36:24+00:00",
-    "spellCacheVersion": 29,
+    "generatedAt": "2026-11-03T23:04:12+00:00",
+    "spellCacheVersion": 31,
     "codeFingerprint": "dev",
     "entries": [
         {
@@ -125,8 +125,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game)Increases the chance for Lava Surge to occur by 10%.",
-                            "uncertain": true
+                            "text": "Increases the chance for Lava Surge to occur by 10%.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -157,8 +157,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game)Increases the chance for Lava Surge to occur by 20%.",
-                            "uncertain": true
+                            "text": "Increases the chance for Lava Surge to occur by 20%.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -517,8 +517,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game)Ascendance upgrades your next Lightning Bolt to Tempest.",
-                            "uncertain": true
+                            "text": "Casting Ascendance upgrades your next Lightning Bolt to Tempest.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -1296,8 +1296,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "The cast times of (varies by condition — check in-game) Lava Burst are reduced by 10%.",
-                            "uncertain": true
+                            "text": "The cast times of Healing Surge, Chain Heal and Lava Burst are reduced by 10%.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -2207,8 +2207,8 @@
             "spellId": 10632,
             "category": "Other",
             "description": {
-                "text": "(varies by condition — check in-game)Ascendance upgrades your next Lightning Bolt to Tempest.",
-                "uncertain": true
+                "text": "Casting Ascendance upgrades your next Lightning Bolt to Tempest.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -2361,8 +2361,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Earth Shield (varies by condition — check in-game) 115% effective.",
-                            "uncertain": true
+                            "text": "Earth Shield no longer loses charges and is 115% effective.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -2425,8 +2425,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game) Shield increases your (varies by condition — check in-game) by 3%. Casting (varies by condition — check in-game) Shield now applies your weapon imbuements. Earth Shield is also applied if you have the Elemental Orbit talent.",
-                            "uncertain": true
+                            "text": "Lightning Shield increases your Intellect by 3%. Casting Lightning Shield now applies your weapon imbuements. Earth Shield is also applied if you have the Elemental Orbit talent.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -2460,8 +2460,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "When refreshing Earth Shield, your target is healed for 428.6 for each stack of Earth Shield they are missing.(varies by condition — check in-game) Additionally, Earth Shield(varies by condition — check in-game) can consume charges 1 sec faster.",
-                            "uncertain": true
+                            "text": "When refreshing Earth Shield, your target is healed for 428.6 for each stack of Earth Shield they are missing. Additionally, Earth Shield can consume charges 1 sec faster.",
+                            "uncertain": false
                         },
                         "category": "Defensive",
                         "cooldown": {
@@ -2476,8 +2476,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "When refreshing Earth Shield, your target is healed for 428.6 for each stack of Earth Shield they are missing.(varies by condition — check in-game) Additionally, Earth Shield(varies by condition — check in-game) can consume charges 1 sec faster.",
-                            "uncertain": true
+                            "text": "When refreshing Earth Shield, your target is healed for 428.6 for each stack of Earth Shield they are missing. Additionally, Earth Shield can consume charges 1 sec faster.",
+                            "uncertain": false
                         },
                         "category": "Defensive",
                         "cooldown": {
@@ -2492,8 +2492,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "When refreshing Earth Shield, your target is healed for 428.6 for each stack of Earth Shield they are missing.(varies by condition — check in-game) Additionally, Earth Shield(varies by condition — check in-game) can consume charges 1 sec faster.",
-                            "uncertain": true
+                            "text": "When refreshing Earth Shield, your target is healed for 428.6 for each stack of Earth Shield they are missing. Additionally, Earth Shield can consume charges 1 sec faster.",
+                            "uncertain": false
                         },
                         "category": "Defensive",
                         "cooldown": {
@@ -4144,8 +4144,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game) Shield increases your (varies by condition — check in-game) by 3%. Casting (varies by condition — check in-game) Shield now applies your weapon imbuements. Earth Shield is also applied if you have the Elemental Orbit talent.",
-                            "uncertain": true
+                            "text": "Lightning Shield increases your Intellect by 3%. Casting Lightning Shield now applies your weapon imbuements. Earth Shield is also applied if you have the Elemental Orbit talent.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -4376,8 +4376,8 @@
             "spellId": 10506,
             "category": "Other",
             "description": {
-                "text": "The effects of your weapon and shield imbues are increased by (varies by condition — check in-game)%.",
-                "uncertain": true
+                "text": "The effects of your weapon and shield imbues are increased by 30%.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -4646,8 +4646,8 @@
             "spellId": 10525,
             "category": "Other",
             "description": {
-                "text": "Imbue your weapon with the element of Fire for 3,600(varies by condition — check in-game).",
-                "uncertain": true
+                "text": "Imbue your weapon with the element of Fire for 3,600, increasing the damage of your Fire spells by 5%.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -4690,8 +4690,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "The effects of your weapon and shield imbues are increased by (varies by condition — check in-game)%.",
-                            "uncertain": true
+                            "text": "The effects of your weapon and shield imbues are increased by 30%.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -5818,8 +5818,8 @@
             "spellId": 10509,
             "category": "Other",
             "description": {
-                "text": "(varies by condition — check in-game) Shield increases your (varies by condition — check in-game) by 3%. Casting (varies by condition — check in-game) Shield now applies your weapon imbuements. Earth Shield is also applied if you have the Elemental Orbit talent.",
-                "uncertain": true
+                "text": "Lightning Shield increases your Intellect by 3%. Casting Lightning Shield now applies your weapon imbuements. Earth Shield is also applied if you have the Elemental Orbit talent.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -6048,8 +6048,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "The cast times of (varies by condition — check in-game) Lava Burst are reduced by 10%.",
-                            "uncertain": true
+                            "text": "The cast times of Healing Surge, Chain Heal and Lava Burst are reduced by 10%.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -7752,8 +7752,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game)Ascendance upgrades your next Lightning Bolt to Tempest.",
-                            "uncertain": true
+                            "text": "Casting Ascendance upgrades your next Lightning Bolt to Tempest.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -8284,8 +8284,8 @@
             "spellId": 10617,
             "category": "Other",
             "description": {
-                "text": "(varies by condition — check in-game)Increases the chance for Lava Surge to occur by 20%.",
-                "uncertain": true
+                "text": "Increases the chance for Lava Surge to occur by 20%.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -8525,8 +8525,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game)Increases the chance for Lava Surge to occur by 10%.",
-                            "uncertain": true
+                            "text": "Increases the chance for Lava Surge to occur by 10%.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -8557,8 +8557,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game)Increases the chance for Lava Surge to occur by 20%.",
-                            "uncertain": true
+                            "text": "Increases the chance for Lava Surge to occur by 20%.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -9085,8 +9085,8 @@
             "spellId": 10502,
             "category": "Defensive",
             "description": {
-                "text": "When refreshing Earth Shield, your target is healed for 428.6 for each stack of Earth Shield they are missing.(varies by condition — check in-game) Additionally, Earth Shield(varies by condition — check in-game) can consume charges 1 sec faster.",
-                "uncertain": true
+                "text": "When refreshing Earth Shield, your target is healed for 428.6 for each stack of Earth Shield they are missing. Additionally, Earth Shield can consume charges 1 sec faster.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -9930,8 +9930,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game)",
-                            "uncertain": true
+                            "text": "Storm Elemental lasts 2 sec longer, and Stormkeeper generates 10 Maelstrom.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -10031,8 +10031,8 @@
             "spellId": 10634,
             "category": "Other",
             "description": {
-                "text": "(varies by condition — check in-game)",
-                "uncertain": true
+                "text": "Storm Elemental lasts 2 sec longer, and Stormkeeper generates 10 Maelstrom.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -10613,8 +10613,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game)Ascendance upgrades your next Lightning Bolt to Tempest.",
-                            "uncertain": true
+                            "text": "Casting Ascendance upgrades your next Lightning Bolt to Tempest.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -10646,8 +10646,8 @@
             "spellId": 10508,
             "category": "Other",
             "description": {
-                "text": "Earth Shield (varies by condition — check in-game) 115% effective.",
-                "uncertain": true
+                "text": "Earth Shield no longer loses charges and is 115% effective.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -11847,8 +11847,8 @@
             "spellId": 10616,
             "category": "Other",
             "description": {
-                "text": "The cast times of (varies by condition — check in-game) Lava Burst are reduced by 10%.",
-                "uncertain": true
+                "text": "The cast times of Healing Surge, Chain Heal and Lava Burst are reduced by 10%.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {

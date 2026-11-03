@@ -1,5 +1,5 @@
 # Rogue — Outlaw Spec Talents
-# Extracted verbatim from rogue.txt (SimulationCraft 1210-01 for World of Warcraft 12.1.0.69933 Live)
+# Extracted verbatim from rogue.txt (SimulationCraft 1210-01 for World of Warcraft 12.1.5.70688 Live)
 # 44 spell record(s). Mechanical regroup only — no content altered.
 
 Name             : Adrenaline Rush (id=13750) [Spell Family (8)] 
@@ -27,7 +27,7 @@ Effects          :
                    Base Value: 20 | Scaled Value: 20 | Target: Self (1)
 #3 (id=165715)   : Apply Aura (6) | Add Flat Modifier (107): Spell Global Cooldown (21)
                    Base Value: 0 | Scaled Value: 0 | Misc Value: 21 | Target: Self (1)
-                   Affected Spells: Dispatch (2098), Shiv (5938), Ambush (8676), Blade Flurry (13877), Pistol Shot (185763), Sinister Strike (193315), Sinister Strike (197834), Blade Rush (271877), Blade Rush (271878), Blade Rush (271881), Blade Rush (271896), Between the Eyes (315341), Slice and Dice (315496), Echoing Reprimand (323547), Echoing Reprimand (323558), Echoing Reprimand (323559), Echoing Reprimand (323560), Sepsis (328305), Sepsis (328306), Sinister Strike (341541), Echoing Reprimand (354835), Echoing Reprimand (354838), Keep It Rolling (381989), Ambush (385897), Blade Flurry (429951), Ambush (430023), Coup de Grace (441776), Dispatch (Coup de Grace) (462140), Dispatch (Coup de Grace) (462239), Dispatch (Coup de Grace) (462240), Dispatch (467059), Supercharge (470409), Supercharge (470412), Supercharge (470414), Supercharge (470415), Echoing Reprimand (470672), Roll the Bones (1214909)
+                   Affected Spells: Dispatch (2098), Shiv (5938), Ambush (8676), Blade Flurry (13877), Pistol Shot (185763), Sinister Strike (193315), Sinister Strike (197834), Blade Rush (271877), Blade Rush (271878), Blade Rush (271881), Blade Rush (271896), Between the Eyes (315341), Slice and Dice (315496), Echoing Reprimand (323547), Echoing Reprimand (323558), Echoing Reprimand (323559), Echoing Reprimand (323560), Sepsis (328305), Sepsis (328306), Sinister Strike (341541), Echoing Reprimand (354835), Echoing Reprimand (354838), Keep It Rolling (381989), Ambush (385897), Ambush (430023), Coup de Grace (441776), Dispatch (Coup de Grace) (462140), Dispatch (Coup de Grace) (462239), Dispatch (Coup de Grace) (462240), Dispatch (467059), Supercharge (470409), Supercharge (470412), Supercharge (470414), Supercharge (470415), Echoing Reprimand (470672), Roll the Bones (1214909)
                    Family Flags: 9, 13, 18, 26, 29, 43, 60, 82, 98, 101, 111, 112, 113, 118
 #4 (id=762250)   : Apply Aura (6) | Add Percent Modifier (108): Spell Direct Amount (0)
                    Base Value: 0 | Scaled Value: 0 | Target: Self (1)
@@ -444,11 +444,11 @@ Effects          :
                    Affected Spells (Label): Blade Flurry (331850), Blade Flurry (429951)
 #2 (id=1034505)  : Apply Aura (6) | Dummy (4)
                    Base Value: 1 | Scaled Value: 1 | Target: Self (1)
-#3 (id=1290426)  : Apply Aura (6) | Add Flat Modifier (107): Spell Resource Cost 1 (14)
-                   Base Value: 30 | Scaled Value: 30 | Misc Value: 14 | Target: Self (1)
-                   Affected Spells: Blade Flurry (13877)
-                   Family Flags: 43
-Description      : Blade Flurry's initial damage is increased by $s1% and generates $m2 $Lcombo point:combo points; per target struck, but its Energy cost is increased by $s3.
+#3 (id=1290426)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 5 | Scaled Value: 5 | Target: Self (1)
+#4 (id=1353584)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 30 | Scaled Value: 30 | Target: Self (1)
+Description      : Blade Flurry's initial damage is increased by $s1% and it generates $m2 $Lcombo point:combo points; per target struck, but its Energy cost is increased by $s3 for each target struck, up to $s4.
 
 Name             : Heavy Hitter (id=381885) [Spell Family (8), Passive] 
 Talent Entry     : Outlaw [tree=spec, row=7, col=3, max_rank=2, req_points=8]

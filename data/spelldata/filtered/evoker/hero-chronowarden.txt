@@ -1,5 +1,5 @@
 # Evoker — Chronowarden Hero Talents
-# Extracted verbatim from evoker.txt (SimulationCraft 1210-01 for World of Warcraft 12.1.0.69933 Live)
+# Extracted verbatim from evoker.txt (SimulationCraft 1210-01 for World of Warcraft 12.1.5.70688 Live)
 # 16 spell record(s). Mechanical regroup only — no content altered.
 
 Name             : Warp (desc=Bronze) (id=429483) [Spell Family (224), Passive] 
@@ -78,7 +78,7 @@ Proc Flags       : Magic Heal, Magic Hostile Spell
 Attributes       : Passive (6), Can Proc From Procs (122), Do Not Display Range (126), Not In Spellbook (143), Spellcast Override In Spellbook (310), Do Not Log on Learn (355)
 Effects          :
 #1 (id=1119510)  : Apply Aura (6) | Dummy (4)
-                   Base Value: 40 | Scaled Value: 40 | Target: Self (1)
+                   Base Value: 40 | Scaled Value: 40 | PvP Coefficient: 2 | Target: Self (1)
 #2 (id=1165092)  : Apply Aura (6) | Dummy (4)
                    Base Value: 50 | Scaled Value: 50 | Target: Self (1)
 Description      : $?c2[Verdant Embrace heals for an additional $s1% over $409895d.][Upheaval deals $s2% additional damage over $431620d.]
@@ -140,7 +140,7 @@ Effects          :
                    Base Value: 1 | Scaled Value: 1 | Misc Value: 3 | Target: Self (1)
                    Affected Spells: Prescience (409311)
                    Family Flags: 73
-Description      : $?c2[Temporal Anomaly mana cost reduced by $s1% and cooldown reduced by ${$s2/-1000} sec.][Prescience cooldown reduced by ${$s3/-1000} sec and it grants $s4% additional critical strike chance.]
+Description      : $?c2[Temporal Anomaly's mana cost is reduced by $s1% and its cooldown is reduced by ${$s2/-1000} sec.][Prescience's cooldown is reduced by ${$s3/-1000} sec and it grants $s4% additional critical strike chance.]
 
 Name             : Temporality (desc=Bronze) (id=431873) [Spell Family (224), Passive] 
 Talent Entry     : Chronowarden (Preservation) [tree=hero, row=3, col=1, max_rank=1, req_points=1, select_idx=100]
@@ -293,6 +293,7 @@ Spell Type       : None
 Labels           : 16: Class Spells
                  : 292
                  : 1216: Evoker Spells
+                 : 7444
 Attributes       : Passive (6), Allow Class Ability Procs (416)
 Effects          :
 #1 (id=1310930)  : Apply Aura (6) | Add Flat Modifier (107): Spell Cast Time (10)

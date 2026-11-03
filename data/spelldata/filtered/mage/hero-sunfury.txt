@@ -1,5 +1,5 @@
 # Mage — Sunfury Hero Talents
-# Extracted verbatim from mage.txt (SimulationCraft 1210-01 for World of Warcraft 12.1.0.69933 Live)
+# Extracted verbatim from mage.txt (SimulationCraft 1210-01 for World of Warcraft 12.1.5.70688 Live)
 # 17 spell record(s). Mechanical regroup only — no content altered.
 
 Name             : Spellfire Spheres (id=448601) [Spell Family (3), Passive, Hidden] 
@@ -248,7 +248,6 @@ Effects          :
                    Base Value: 6 | Scaled Value: 6 | Target: Self (1)
                    Affected Spells: Flamestrike (2120), Flamestrike (460476), Flamestrike (1254851)
                    Family Flags: 2
-Hotfixed         : Base Value (3 -> 6)
 #3 (id=1261872)  : Apply Aura (6) | Add Percent Modifier (108): Spell Direct Amount (0)
                    Base Value: 30 | Scaled Value: 30 | Target: Self (1)
                    Affected Spells: Arcane Blast (30451)
@@ -292,7 +291,10 @@ Effects          :
 #1 (id=1261855)  : Apply Aura (6) | Apply Flat Modifier w/ Label (219): Spell Cooldown (11)
                    Base Value: -10000 | Scaled Value: -10000 | Misc Value: 11 | Misc Value 2: 892 (Label) | Target: Self (1)
                    Affected Spells (Label): Alter Time (108978), Alter Time (342245)
-Description      : The cooldown of Alter Time is reduced by ${-$s1/1000} sec.
+#2 (id=1340973)  : Apply Aura (6) | Apply Flat Modifier w/ Label (219): Spell Effect 3 (23)
+                   Base Value: -10000 | Scaled Value: -10000 | Misc Value: 23 | Misc Value 2: 5291 (Label) | Target: Self (1)
+                   Affected Spells (Label): Temporal Realignment (1244090), Temporal Realignment (1244093)
+Description      : Alter Time's cooldown is reduced by ${-$s1/1000} sec.
 
 Name             : Ashes of Inspiration (id=1260272) [Spell Family (3), Passive, Hidden] 
 Talent Entry     : Sunfury (Arcane, Fire) [tree=hero, row=4, col=2, max_rank=1, req_points=0]
@@ -331,7 +333,7 @@ Effects          :
 #3 (id=1270122)  : Apply Aura (6) | Apply Flat Modifier w/ Label (219): Spell Direct Amount (0)
                    Base Value: 15 | Scaled Value: 15 | Misc Value 2: 4137 (Label) | Target: Self (1)
                    Affected Spells (Label): Meteorite (449569)
-Description      : $?c1[Arcane Salvo can stack $s1 additional times][Fire Blast cooldown reduced by ${-$s2/1000}.1 sec].
+Description      : $?c1[Arcane Salvo can stack $s1 additional times][Fire Blast's cooldown is reduced by ${-$s2/1000}.1 sec].
 
 Meteorite damage increased by $s3%.
 

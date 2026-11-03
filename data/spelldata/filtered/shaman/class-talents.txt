@@ -1,5 +1,5 @@
 # Shaman — Class Talents
-# Extracted verbatim from shaman.txt (SimulationCraft 1210-01 for World of Warcraft 12.1.0.69933 Live)
+# Extracted verbatim from shaman.txt (SimulationCraft 1210-01 for World of Warcraft 12.1.5.70688 Live)
 # 57 spell record(s). Mechanical regroup only — no content altered.
 
 Name             : Purge (id=370) [Spell Family (11)] 
@@ -327,7 +327,6 @@ Attributes       : Is Ability (4), Not Shapeshifted (16), Do Not Sheath (18), In
 Effects          :
 #1 (id=53784)    : School Damage (2): fire
                    Base Value: 0 | Scaled Value: 0 (delta=0.05) | AP Coefficient: 3.22268 | PvP Coefficient: 1.1 | Target: Targeted Enemy (6)
-Hotfixed         : AP Coefficient (2.38717 -> 3.22268)
 #2 (id=53785)    : Dummy (3)
                    Base Value: 100 | Scaled Value: 100 | Target: Targeted Enemy (6)
 #3 (id=1033576)  : Dummy (3)
@@ -750,12 +749,12 @@ Aura Interrupt   : Change Specialization (38), Change Talent (46), Change Glyph 
 Effects          :
 #1 (id=1006346)  : Apply Aura (6) | Add Percent Modifier (108): Spell Resource Cost 1 (14)
                    Base Value: -100 | Scaled Value: -100 | Misc Value: 14 | Target: Self (1)
-                   Affected Spells: Chain Heal (1064), Healing Surge (8004), Healing Wave (77472), Elemental Blast (117014), Tempest (452201), Healing Rain (1298679)
-                   Family Flags: 7, 8, 80, 84, 98, 107
+                   Affected Spells: Chain Heal (1064), Healing Surge (8004), Healing Rain (73920), Healing Wave (77472), Elemental Blast (117014), Tempest (452201)
+                   Family Flags: 5, 7, 8, 80, 98, 107
 #2 (id=1006347)  : Apply Aura (6) | Add Percent Modifier (108): Spell Cast Time (10)
                    Base Value: -100 | Scaled Value: -100 | Misc Value: 10 | Target: Self (1)
-                   Affected Spells: Chain Heal (1064), Healing Surge (8004), Healing Wave (77472), Elemental Blast (117014), Lightning Bolt (188196), Chain Lightning (188443), Chain Lightning (211094), Lightning Bolt (214815), Lightning Bolt Overload (214816), Tempest (452201), Healing Rain (1298679)
-                   Family Flags: 0, 1, 7, 8, 80, 84, 98, 107
+                   Affected Spells: Chain Heal (1064), Healing Surge (8004), Healing Rain (73920), Healing Wave (77472), Elemental Blast (117014), Lightning Bolt (188196), Chain Lightning (188443), Chain Lightning (211094), Lightning Bolt (214815), Lightning Bolt Overload (214816), Tempest (452201)
+                   Family Flags: 0, 1, 5, 7, 8, 80, 98, 107
 #3 (id=1038703)  : Apply Aura (6) | Add Percent Modifier (108): Spell Resource Cost 1 (14)
                    Base Value: -100 | Scaled Value: -100 | Misc Value: 14 | Target: Self (1)
                    Affected Spells: Lightning Bolt (188196), Chain Lightning (188443), Chain Lightning (211094), Lightning Bolt (214815), Lightning Bolt Overload (214816)

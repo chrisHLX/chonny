@@ -1,6 +1,6 @@
 {
-    "generatedAt": "2026-10-18T02:36:01+00:00",
-    "spellCacheVersion": 29,
+    "generatedAt": "2026-11-03T23:03:47+00:00",
+    "spellCacheVersion": 31,
     "codeFingerprint": "dev",
     "entries": [
         {
@@ -425,8 +425,8 @@
             "spellId": 3045,
             "category": "Other",
             "description": {
-                "text": "(varies by condition — check in-game) (varies by condition — check in-game)",
-                "uncertain": true
+                "text": "Starsurge damage increased by 5%. Starfall damage increased by 10%. ",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -686,8 +686,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game)(varies by condition — check in-game)(varies by condition — check in-game)",
-                            "uncertain": true
+                            "text": "Orbital Strike damage increased by 30%, and damage of Stellar Flares it applies increased by 30%. Whirling Stars increases the haste you gain during Incarnation: Chosen of Elune by an additional 6%.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -1867,8 +1867,8 @@
             "spellId": 3062,
             "category": "Other",
             "description": {
-                "text": "(varies by condition — check in-game)",
-                "uncertain": true
+                "text": "Dryads cause most of your Astral power generation to be increased by 10%.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -1897,8 +1897,8 @@
             "spellId": 3051,
             "category": "Other",
             "description": {
-                "text": "(varies by condition — check in-game)",
-                "uncertain": true
+                "text": "Your Force of Nature treants have 100% increased health.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -2388,7 +2388,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game)",
+                            "text": "Entering an Eclipse summons a Dryad to assist you for 8, casting Starsurge dealing ≈150% of Spell Power Astral damage and Starfall at 1% effectiveness.",
                             "uncertain": true
                         },
                         "category": "Other",
@@ -2404,7 +2404,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game)",
+                            "text": "Entering an Eclipse summons a Dryad to assist you for 8, casting Starsurge dealing ≈150% of Spell Power Astral damage and Starfall at 1% effectiveness.",
                             "uncertain": true
                         },
                         "category": "Other",
@@ -2420,7 +2420,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game)",
+                            "text": "Entering an Eclipse summons a Dryad to assist you for 8, casting Starsurge dealing ≈150% of Spell Power Astral damage and Starfall at 1% effectiveness.",
                             "uncertain": true
                         },
                         "category": "Defensive",
@@ -2452,7 +2452,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game)",
+                            "text": "Entering an Eclipse summons a Dryad to assist you for 8, casting Starsurge dealing ≈150% of Spell Power Astral damage and Starfall at 250% effectiveness.",
                             "uncertain": true
                         },
                         "category": "Other",
@@ -3019,8 +3019,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game).",
-                            "uncertain": true
+                            "text": "Lunar Eclipse increases Arcane damage by an additional 3%.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -3496,7 +3496,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game)",
+                            "text": "Entering an Eclipse summons a Dryad to assist you for 8, casting Starsurge dealing ≈150% of Spell Power Astral damage and Starfall at 1% effectiveness.",
                             "uncertain": true
                         },
                         "category": "Other",
@@ -3512,7 +3512,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game)",
+                            "text": "Entering an Eclipse summons a Dryad to assist you for 8, casting Starsurge dealing ≈150% of Spell Power Astral damage and Starfall at 1% effectiveness.",
                             "uncertain": true
                         },
                         "category": "Defensive",
@@ -3936,7 +3936,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game)",
+                            "text": "Entering an Eclipse summons a Dryad to assist you for 8, casting Starsurge dealing ≈150% of Spell Power Astral damage and Starfall at 1% effectiveness.",
                             "uncertain": true
                         },
                         "category": "Other",
@@ -3952,7 +3952,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game)",
+                            "text": "Entering an Eclipse summons a Dryad to assist you for 8, casting Starsurge dealing ≈150% of Spell Power Astral damage and Starfall at 1% effectiveness.",
                             "uncertain": true
                         },
                         "category": "Defensive",
@@ -4650,8 +4650,8 @@
             "spellId": 2917,
             "category": "Other",
             "description": {
-                "text": "Perform a powerful off-role ability depending on your currently active shapeshift form.(varies by condition — check in-game)(varies by condition — check in-game)(varies by condition — check in-game)",
-                "uncertain": true
+                "text": "Perform a powerful off-role ability depending on your currently active shapeshift form. Non-shapeshifted: Empowered Wild Growth that heals up to 5 injured allies within 30 yards of the target for ≈2,525.3% of Spell Power over 7. Bear Form: Increase your maximum health by 30% for 20.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -5998,8 +5998,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game).",
-                            "uncertain": true
+                            "text": "Lunar Eclipse increases Arcane damage by an additional 3%.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -7620,8 +7620,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Perform a powerful off-role ability depending on your currently active shapeshift form.(varies by condition — check in-game)(varies by condition — check in-game)(varies by condition — check in-game)",
-                            "uncertain": true
+                            "text": "Perform a powerful off-role ability depending on your currently active shapeshift form. Non-shapeshifted: Empowered Wild Growth that heals up to 5 injured allies within 30 yards of the target for ≈2,525.3% of Spell Power over 7. Bear Form: Increase your maximum health by 30% for 20.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -7636,8 +7636,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Perform a powerful off-role ability depending on your currently active shapeshift form.(varies by condition — check in-game)(varies by condition — check in-game)(varies by condition — check in-game)",
-                            "uncertain": true
+                            "text": "Perform a powerful off-role ability depending on your currently active shapeshift form. Non-shapeshifted: Empowered Wild Growth that heals up to 5 injured allies within 30 yards of the target for ≈2,525.3% of Spell Power over 7. Bear Form: Increase your maximum health by 30% for 20.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -7652,8 +7652,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Perform a powerful off-role ability depending on your currently active shapeshift form.(varies by condition — check in-game)(varies by condition — check in-game)(varies by condition — check in-game)",
-                            "uncertain": true
+                            "text": "Perform a powerful off-role ability depending on your currently active shapeshift form. Non-shapeshifted: Empowered Wild Growth that heals up to 5 injured allies within 30 yards of the target for ≈2,525.3% of Spell Power over 7. Bear Form: Increase your maximum health by 30% for 20.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -7700,8 +7700,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Perform a powerful off-role ability depending on your currently active shapeshift form.(varies by condition — check in-game)(varies by condition — check in-game)(varies by condition — check in-game)",
-                            "uncertain": true
+                            "text": "Perform a powerful off-role ability depending on your currently active shapeshift form. Non-shapeshifted: Empowered Wild Growth that heals up to 5 injured allies within 30 yards of the target for ≈2,525.3% of Spell Power over 7. Bear Form: Increase your maximum health by 30% for 20.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -7784,7 +7784,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Heals a friendly target for ≈536% of Spell Power and another (varies) over 6. Usable while in Moonkin Form.",
+                            "text": "Heals a friendly target for ≈590% of Spell Power and another (varies) over 6. Usable while in Moonkin Form.",
                             "uncertain": true
                         },
                         "category": "Defensive",
@@ -8329,7 +8329,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game)",
+                            "text": "Entering an Eclipse summons a Dryad to assist you for 8, casting Starsurge dealing ≈150% of Spell Power Astral damage and Starfall at 1% effectiveness.",
                             "uncertain": true
                         },
                         "category": "Other",
@@ -8345,7 +8345,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game)",
+                            "text": "Entering an Eclipse summons a Dryad to assist you for 8, casting Starsurge dealing ≈150% of Spell Power Astral damage and Starfall at 1% effectiveness.",
                             "uncertain": true
                         },
                         "category": "Defensive",
@@ -8830,8 +8830,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game)(varies by condition — check in-game)(varies by condition — check in-game)",
-                            "uncertain": true
+                            "text": "Orbital Strike damage increased by 30%, and damage of Stellar Flares it applies increased by 30%. Whirling Stars increases the haste you gain during Incarnation: Chosen of Elune by an additional 6%.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -8895,8 +8895,8 @@
             "spellId": 3044,
             "category": "Other",
             "description": {
-                "text": "(varies by condition — check in-game).",
-                "uncertain": true
+                "text": "Lunar Eclipse increases Arcane damage by an additional 3%.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -8955,8 +8955,8 @@
             "spellId": 3054,
             "category": "Other",
             "description": {
-                "text": "(varies by condition — check in-game)(varies by condition — check in-game)(varies by condition — check in-game)",
-                "uncertain": true
+                "text": "Orbital Strike damage increased by 30%, and damage of Stellar Flares it applies increased by 30%. Whirling Stars increases the haste you gain during Incarnation: Chosen of Elune by an additional 6%.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -9592,7 +9592,7 @@
             "spellId": 2073,
             "category": "Defensive",
             "description": {
-                "text": "Heals a friendly target for ≈536% of Spell Power and another (varies) over 6. Usable while in Moonkin Form.",
+                "text": "Heals a friendly target for ≈590% of Spell Power and another (varies) over 6. Usable while in Moonkin Form.",
                 "uncertain": true
             },
             "formulaModifierSpellIds": [
@@ -9719,7 +9719,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game)",
+                            "text": "Entering an Eclipse summons a Dryad to assist you for 8, casting Starsurge dealing ≈150% of Spell Power Astral damage and Starfall at 1% effectiveness.",
                             "uncertain": true
                         },
                         "category": "Other",
@@ -9735,7 +9735,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game)",
+                            "text": "Entering an Eclipse summons a Dryad to assist you for 8, casting Starsurge dealing ≈150% of Spell Power Astral damage and Starfall at 1% effectiveness.",
                             "uncertain": true
                         },
                         "category": "Other",
@@ -9751,7 +9751,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game)",
+                            "text": "Entering an Eclipse summons a Dryad to assist you for 8, casting Starsurge dealing ≈150% of Spell Power Astral damage and Starfall at 1% effectiveness.",
                             "uncertain": true
                         },
                         "category": "Defensive",
@@ -9831,7 +9831,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game)",
+                            "text": "Entering an Eclipse summons a Dryad to assist you for 8, casting Starsurge dealing ≈150% of Spell Power Astral damage and Starfall at 250% effectiveness.",
                             "uncertain": true
                         },
                         "category": "Other",
@@ -11396,8 +11396,8 @@
             "spellId": 3063,
             "category": "Defensive",
             "description": {
-                "text": "(varies by condition — check in-game)",
-                "uncertain": true
+                "text": "Your Starfall damage is increased by 18% and your Starsurge damage is increased by 8%.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -11611,8 +11611,8 @@
             "spellId": 3043,
             "category": "Other",
             "description": {
-                "text": "(varies by condition — check in-game) has a (varies by condition — check in-game)% chance to launch a Starsurge at a victim at (varies by condition — check in-game)% effectiveness.",
-                "uncertain": true
+                "text": "Gaining Astral Power with Starfire has a 30% chance to launch a Starsurge at a victim at 50% effectiveness.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -11829,7 +11829,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game)",
+                            "text": "Entering an Eclipse summons a Dryad to assist you for 8, casting Starsurge dealing ≈150% of Spell Power Astral damage and Starfall at 1% effectiveness.",
                             "uncertain": true
                         },
                         "category": "Other",
@@ -11845,7 +11845,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game)",
+                            "text": "Entering an Eclipse summons a Dryad to assist you for 8, casting Starsurge dealing ≈150% of Spell Power Astral damage and Starfall at 1% effectiveness.",
                             "uncertain": true
                         },
                         "category": "Defensive",
@@ -12717,8 +12717,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game) has a (varies by condition — check in-game)% chance to launch a Starsurge at a victim at (varies by condition — check in-game)% effectiveness.",
-                            "uncertain": true
+                            "text": "Gaining Astral Power with Starfire has a 30% chance to launch a Starsurge at a victim at 50% effectiveness.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -13078,8 +13078,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game)",
-                            "uncertain": true
+                            "text": "Your Starfall damage is increased by 18% and your Starsurge damage is increased by 8%.",
+                            "uncertain": false
                         },
                         "category": "Defensive",
                         "cooldown": {
@@ -13302,7 +13302,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game)",
+                            "text": "Entering an Eclipse summons a Dryad to assist you for 8, casting Starsurge dealing ≈150% of Spell Power Astral damage and Starfall at 1% effectiveness.",
                             "uncertain": true
                         },
                         "category": "Other",
@@ -13318,7 +13318,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game)",
+                            "text": "Entering an Eclipse summons a Dryad to assist you for 8, casting Starsurge dealing ≈150% of Spell Power Astral damage and Starfall at 1% effectiveness.",
                             "uncertain": true
                         },
                         "category": "Other",
@@ -13334,8 +13334,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game)",
-                            "uncertain": true
+                            "text": "Your Starfall damage is increased by 18% and your Starsurge damage is increased by 1%.",
+                            "uncertain": false
                         },
                         "category": "Defensive",
                         "cooldown": {
@@ -13350,7 +13350,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game)",
+                            "text": "Entering an Eclipse summons a Dryad to assist you for 8, casting Starsurge dealing ≈150% of Spell Power Astral damage and Starfall at 1% effectiveness.",
                             "uncertain": true
                         },
                         "category": "Defensive",
@@ -13382,7 +13382,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game)",
+                            "text": "Entering an Eclipse summons a Dryad to assist you for 8, casting Starsurge dealing ≈150% of Spell Power Astral damage and Starfall at 250% effectiveness.",
                             "uncertain": true
                         },
                         "category": "Other",
@@ -13716,8 +13716,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game) (varies by condition — check in-game)",
-                            "uncertain": true
+                            "text": "Starsurge damage increased by 5%. Starfall damage increased by 10%. ",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -13844,8 +13844,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game) has a (varies by condition — check in-game)% chance to launch a Starsurge at a victim at (varies by condition — check in-game)% effectiveness.",
-                            "uncertain": true
+                            "text": "Gaining Astral Power with Starfire has a 30% chance to launch a Starsurge at a victim at 50% effectiveness.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -14720,7 +14720,7 @@
             "spellId": 3061,
             "category": "Other",
             "description": {
-                "text": "(varies by condition — check in-game)",
+                "text": "Entering an Eclipse summons a Dryad to assist you for 8, casting Starsurge dealing ≈150% of Spell Power Astral damage and Starfall at 250% effectiveness.",
                 "uncertain": true
             },
             "formulaModifierSpellIds": [],
@@ -15579,8 +15579,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game)(varies by condition — check in-game)(varies by condition — check in-game)",
-                            "uncertain": true
+                            "text": "Orbital Strike damage increased by 30%, and damage of Stellar Flares it applies increased by 30%. Whirling Stars increases the haste you gain during Incarnation: Chosen of Elune by an additional 6%.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -15786,8 +15786,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Perform a powerful off-role ability depending on your currently active shapeshift form.(varies by condition — check in-game)(varies by condition — check in-game)(varies by condition — check in-game)",
-                            "uncertain": true
+                            "text": "Perform a powerful off-role ability depending on your currently active shapeshift form. Non-shapeshifted: Empowered Wild Growth that heals up to 5 injured allies within 30 yards of the target for ≈2,525.3% of Spell Power over 7. Bear Form: Increase your maximum health by 30% for 20.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -15802,8 +15802,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Perform a powerful off-role ability depending on your currently active shapeshift form.(varies by condition — check in-game)(varies by condition — check in-game)(varies by condition — check in-game)",
-                            "uncertain": true
+                            "text": "Perform a powerful off-role ability depending on your currently active shapeshift form. Non-shapeshifted: Empowered Wild Growth that heals up to 5 injured allies within 30 yards of the target for ≈2,525.3% of Spell Power over 7. Bear Form: Increase your maximum health by 30% for 20.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -15818,8 +15818,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Perform a powerful off-role ability depending on your currently active shapeshift form.(varies by condition — check in-game)(varies by condition — check in-game)(varies by condition — check in-game)",
-                            "uncertain": true
+                            "text": "Perform a powerful off-role ability depending on your currently active shapeshift form. Non-shapeshifted: Empowered Wild Growth that heals up to 5 injured allies within 30 yards of the target for ≈2,525.3% of Spell Power over 7. Bear Form: Increase your maximum health by 30% for 20.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -15834,8 +15834,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Perform a powerful off-role ability depending on your currently active shapeshift form.(varies by condition — check in-game)(varies by condition — check in-game)(varies by condition — check in-game)",
-                            "uncertain": true
+                            "text": "Perform a powerful off-role ability depending on your currently active shapeshift form. Non-shapeshifted: Empowered Wild Growth that heals up to 5 injured allies within 30 yards of the target for ≈2,525.3% of Spell Power over 7. Bear Form: Increase your maximum health by 30% for 20.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -16397,7 +16397,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game)",
+                            "text": "Entering an Eclipse summons a Dryad to assist you for 8, casting Starsurge dealing ≈150% of Spell Power Astral damage and Starfall at 1% effectiveness.",
                             "uncertain": true
                         },
                         "category": "Other",
@@ -16413,7 +16413,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game)",
+                            "text": "Entering an Eclipse summons a Dryad to assist you for 8, casting Starsurge dealing ≈150% of Spell Power Astral damage and Starfall at 1% effectiveness.",
                             "uncertain": true
                         },
                         "category": "Defensive",

@@ -378,6 +378,7 @@ One line per spell record; each lists every file it appears in.
 - **Indomitable (id=202095) [Spell Family (4), Passive]** — `protection.txt`
 - **Indomitable (id=316643) [Spell Family (4)]** — `baseline.txt`
 - **Infinite Fury (id=278130) [Spell Family (4), Hidden]** — `baseline.txt`
+- **Initial Warrior (id=325446) [Spell Family (4), Passive, Hidden]** — `baseline.txt`
 - **Inner Rage (id=215573) [Spell Family (4), Passive, Hidden]** — `baseline.txt`
 - **Instigate (id=394311) [Spell Family (4), Passive]** — `protection.txt`
 - **Intercept (id=198304) [Spell Family (4)]** — `baseline.txt`

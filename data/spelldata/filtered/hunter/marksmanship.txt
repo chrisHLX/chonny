@@ -1,5 +1,5 @@
 # Hunter — Marksmanship Spec Talents
-# Extracted verbatim from hunter.txt (SimulationCraft 1210-01 for World of Warcraft 12.1.0.69933 Live)
+# Extracted verbatim from hunter.txt (SimulationCraft 1210-01 for World of Warcraft 12.1.5.70688 Live)
 # 45 spell record(s). Mechanical regroup only — no content altered.
 
 Name             : Kill Shot (id=53351) [Spell Family (9)] 
@@ -82,12 +82,12 @@ Labels           : 16: Class Spells
                  : 292
 Affecting Spells : Freezing Trap (3355 effect#2), Bestial Wrath (19574 effects: #1, #4), Mortal Shots (36413 effect#1), Hunter (137014 effect#3), Beast Mastery Hunter (137015 effects: #1, #2), Marksmanship Hunter (137016 effects: #1, #2), Survival Hunter (137017 effects: #1, #2), Lone Wolf (155228 effects: #1, #2), Mastery: Sniper Training (193468 effects: #1, #4), Bullseye (204090 effect#1), Unseen Predator's Cloak (248212 effect#1), Thrill of the Hunt (257946 effect#1), Mastery: Spirit Bond (263135 effects: #1, #2), Trueshot (288613 effect#4), Coordinated Assault (360952 effects: #2, #5), Bestial Pact (360955 effects: #3, #4), Spearhead (378957 effects: #2, #3), In the Rhythm (407405 effect#1), Fury Strikes (425830 effects: #1, #2), Small Game Hunter (459802 effect#1), Outland Venom (459941 effect#1), Grenade Juggler (470492 effect#1), Precision Detonation (471369 effect#1), Wyvern's Cry (471881 effects: #1, #2), The Bell Tolls (1232992 effects: #1, #2), Takedown (1250646 effects: #1, #2), Stargazer (1253750 effect#1), Beast Mastery Hunter (1256939 effects: #1, #2), Marksmanship Hunter (1256940 effects: #1, #2), Survival Hunter (1256941 effects: #1, #2), Lethal Calibration (1262408 effect#1), Take Aim (1273129 effects: #1, #3), Hunter- Midnight PrePatch - 11.2 Class Set 2pc (1283629 effects: #1, #2), Hunter- Midnight PrePatch - 11.2 Class Set 4pc (1283630 effects: #1, #2), Hunter Marksmanship 12.1 Class Set 2pc (1296633 effects: #1, #2, #3), Lock and Load: Explosive Shot (1300701 effect#1), Unstable Trigger (1301778 effect#1)
 Family Flags     : 1, 63, 106, 121
-Attributes       : Is Ability (4), Not Shapeshifted (16), Initiates Combat (Enables Auto-Attack) (41), Do Not Reset Combat Timers (81), DoT Stacking Rule (103), Periodic Can Crit (265), Aura Points On Client (268), Rolling Periodic (334), Allow Class Ability Procs (416), Nameplate Personal Buffs/Debuffs (423)
+Attributes       : Is Ability (4), Not Shapeshifted (16), Initiates Combat (Enables Auto-Attack) (41), Do Not Reset Combat Timers (81), DoT Stacking Rule (103), Do Not Auto Select Target with Initiates Combat (220), Periodic Can Crit (265), Aura Points On Client (268), Rolling Periodic (334), Allow Class Ability Procs (416), Nameplate Personal Buffs/Debuffs (423)
 Effects          :
 #1 (id=314949)   : Apply Aura (6) | Periodic Damage (3): fire every 1 seconds
-                   Base Value: 0 | Scaled Value: 0 (delta=0.05) | AP Coefficient: 3.07 | Target: Targeted Enemy (6)
+                   Base Value: 0 | Scaled Value: 0 (delta=0.05) | AP Coefficient: 3.377 | Target: Targeted Enemy (6)
 #2 (id=1325471)  : Dummy (3)
-                   Base Value: 5 | Scaled Value: 5
+                   Base Value: 5 | Scaled Value: 5 | Target: Targeted Enemy (6)
 #3 (id=1342487)  : Apply Aura (6) | Dummy (4)
                    Base Value: 50 | Scaled Value: 50 | Target: Targeted Enemy (6)
 Description      : Fires an explosive shot at your target that lasts for $d. Every $t1 sec the target burns for $s1 Fire damage and explode, dealing $s3% of the damage to all enemies within $212680A1 yds. $?a1301406[Any remaining damage from your previous Explosive Shot will be added into a new Explosive Shot. ][]Deals reduced damage beyond $s2 targets.
@@ -146,12 +146,10 @@ Effects          :
                    Base Value: 5 | Scaled Value: 5 | Misc Value: 9 | Target: Self (1)
                    Modified By: Light Ammo (378913 effect#2)
 #4 (id=738673)   : Apply Aura (6) | Dummy (4)
-                   Base Value: 75 | Scaled Value: 75 | PvP Coefficient: 0.54 | Misc Value: 9 | Target: Self (1)
-Hotfixed         : Base Value (60 -> 75)
+                   Base Value: 85 | Scaled Value: 85 | PvP Coefficient: 0.54 | Misc Value: 9 | Target: Self (1)
                    Modified By: Blighted Quiver (1264291 effect#2)
 #5 (id=753424)   : Apply Aura (6) | Dummy (4)
-                   Base Value: 75 | Scaled Value: 75 | PvP Coefficient: 0.54 | Misc Value: 9 | Target: Self (1)
-Hotfixed         : Base Value (60 -> 75)
+                   Base Value: 85 | Scaled Value: 85 | PvP Coefficient: 0.54 | Misc Value: 9 | Target: Self (1)
                    Modified By: Blighted Quiver (1264291 effect#3)
 Description      : When Multi-Shot hits $s2 or more targets, your next Aimed Shot or Rapid Fire will ricochet and hit up to $s1 additional targets for $s4% of normal damage.
 
@@ -323,7 +321,7 @@ Labels           : 16: Class Spells
                  : 4055: Improved Deathblow (378769 effect#4), Soul Drinker (469638 effect#3), Soul Drinker (469638 effect#4)
 Proc Chance      : 100%
 Proc Flags       : Yellow Ranged
-Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Can Proc From Procs (122), Do Not Log on Learn (355)
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Can Proc From Procs (122), Aura Points On Client (268), Do Not Log on Learn (355)
 Effects          :
 #1 (id=844891)   : Apply Aura (6) | Dummy (4)
                    Base Value: 10 | Scaled Value: 10 | Target: Self (1)
@@ -920,22 +918,6 @@ Effects          :
                    Base Value: 20 | Scaled Value: 20 | Target: Self (1)
 Description      : When Surging Shots resets the cooldown of Rapid Fire, the damage of your next Rapid Fire is increased by $s1%.
 
-Name             : Unload (id=1277548) [Spell Family (9), Passive, Hidden] 
-Talent Entry     : Marksmanship [tree=spec, row=10, col=7, max_rank=1, req_points=20]
-Class            : Hunter
-School           : Physical
-Spell Type       : None
-Labels           : 16: Class Spells
-                 : 23: Hunter Spells
-                 : 292
-Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), No Aura Cancel (31), No Threat (42), Not an Action (92), Suppress Caster Procs (112), Suppress Target Procs (113), Allow Aura While Dead (116), Suppress Weapon Procs (151), Allow While Riding Vehicle (204), Aura Points On Client (268), Do Not Log on Learn (355)
-Effects          :
-#1 (id=1289933)  : Apply Aura (6) | Dummy (4)
-                   Base Value: 100 | Scaled Value: 100 | PvP Coefficient: 0.5 | Target: Self (1)
-Description      : When Rapid Fire begins and finishes channeling, it releases an Arcane Shot at $s1% effectiveness.
-
-If your target is $?a466932[above 80% health or below 20%][below 20%] health, Rapid Fire instead releases $?a466932[Black Arrow][Kill Shot]s.
-
 Name             : Critical Precision (id=1277572) [Spell Family (9), Passive, Hidden] 
 Talent Entry     : Marksmanship [tree=spec, row=6, col=7, max_rank=1, req_points=8]
 Class            : Hunter
@@ -967,3 +949,19 @@ Effects          :
 #1 (id=1326496)  : Apply Aura (6) | Proc Trigger Spell (42): Lock and Load
                    Base Value: -10000 | Scaled Value: -10000 | Trigger Spell: 194594 | Target: Self (1)
 Description      : Explosive Shot has a 100% chance to grant the Lock and Load effect.
+
+Name             : Blood Fletching (id=1319011) [Spell Family (9), Passive, Hidden] 
+Talent Entry     : Marksmanship [tree=spec, row=10, col=7, max_rank=1, req_points=20]
+Class            : Hunter
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 23: Hunter Spells
+                 : 292
+Proc Chance      : 101%
+Proc Flags       : White Ranged, Yellow Ranged, Generic Hostile Spell, Magic Hostile Spell, Periodic
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Can Proc From Procs (122), Do Not Log on Learn (355), Only Proc From Class Abilities (415)
+Effects          :
+#1 (id=1352752)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 20 | Scaled Value: 20 | Target: Self (1)
+Description      : Aimed Shot critical strikes now cause the Master Marksman bleed effect at $s1% of damage dealt. For $1319016d after a critical Aimed Shot, the target will take an additional $1319015s1 bleed damage any time your abilities damage that target.

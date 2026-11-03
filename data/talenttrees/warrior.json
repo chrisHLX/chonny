@@ -1,7 +1,7 @@
 {
     "class": "Warrior",
     "talent_tree_id": 850,
-    "fetched_at": "2026-10-06T22:29:27+00:00",
+    "fetched_at": "2026-11-03T21:14:15+00:00",
     "source": "Blizzard Game Data API (static-us, en_US)",
     "class_talents": {
         "nodes": [
@@ -153,9 +153,9 @@
                     90328
                 ],
                 "unlocks": [
-                    110653,
+                    90352,
                     90332,
-                    90352
+                    110653
                 ],
                 "max_ranks": 1,
                 "ranks": [
@@ -211,8 +211,8 @@
                 ],
                 "unlocks": [
                     90346,
-                    90352,
-                    90326
+                    90326,
+                    90352
                 ],
                 "max_ranks": 1,
                 "ranks": [
@@ -298,8 +298,8 @@
                     90352
                 ],
                 "unlocks": [
-                    108705,
-                    90348
+                    90348,
+                    108705
                 ],
                 "max_ranks": 1,
                 "ranks": [
@@ -365,7 +365,7 @@
                         "talent_name": "Storm Bolt",
                         "spell_id": 107570,
                         "spell_name": "Storm Bolt",
-                        "description": "Hurls your weapon at an enemy, causing 10 Physical damage and stunning for 4 sec.",
+                        "description": "Hurls your weapon at an enemy, causing 9 Physical damage and stunning for 4 sec.",
                         "cast_time": "Instant",
                         "cooldown": "30 sec cooldown",
                         "range": "20 yd range"
@@ -395,7 +395,7 @@
                         "talent_name": "Thunder Clap",
                         "spell_id": 6343,
                         "spell_name": "Thunder Clap",
-                        "description": "Blasts all enemies within 8 yards for 81 Physical damage and reduces their movement speed by 20% for 10 sec. Deals reduced damage beyond 5 targets.",
+                        "description": "Blasts all enemies within 8 yards for 83 Physical damage and reduces their movement speed by 20% for 10 sec. Deals reduced damage beyond 5 targets.",
                         "cast_time": "Instant",
                         "cooldown": "6 sec cooldown",
                         "range": null
@@ -413,8 +413,8 @@
                     90261
                 ],
                 "unlocks": [
-                    110653,
-                    90326
+                    90326,
+                    110653
                 ],
                 "max_ranks": 1,
                 "ranks": [
@@ -439,8 +439,8 @@
                 "raw_position_x": 3600,
                 "raw_position_y": 2100,
                 "locked_by": [
-                    90343,
-                    90328
+                    90328,
+                    90343
                 ],
                 "unlocks": [
                     90355,
@@ -502,8 +502,8 @@
                     90331
                 ],
                 "unlocks": [
-                    90366,
-                    90382
+                    90382,
+                    90366
                 ],
                 "max_ranks": 1,
                 "ranks": [
@@ -542,8 +542,8 @@
                 "raw_position_x": 1800,
                 "raw_position_y": 3900,
                 "locked_by": [
-                    110653,
-                    90375
+                    90375,
+                    110653
                 ],
                 "unlocks": [
                     90366
@@ -558,7 +558,7 @@
                                 "talent_name": "Wrecking Throw",
                                 "spell_id": 384110,
                                 "spell_name": "Wrecking Throw",
-                                "description": "Hurl your weapon at the enemy, causing 207 Physical damage, ignoring armor. Deals up to 500% increased damage to absorb shields.\r\n",
+                                "description": "Hurl your weapon at the enemy, causing 211 Physical damage, ignoring armor. Deals up to 500% increased damage to absorb shields.\r\n",
                                 "cast_time": "Instant",
                                 "cooldown": "45 sec cooldown",
                                 "range": "25 yd range"
@@ -568,7 +568,7 @@
                                 "talent_name": "Shattering Throw",
                                 "spell_id": 64382,
                                 "spell_name": "Shattering Throw",
-                                "description": "Hurl your weapon at the enemy,  removing any magical immunities and causing 214 Physical damage, ignoring armor. Deals up to 500% increased damage to absorb shields.",
+                                "description": "Hurl your weapon at the enemy,  removing any magical immunities and causing 207 Physical damage, ignoring armor. Deals up to 500% increased damage to absorb shields.",
                                 "cast_time": "1.5 sec cast",
                                 "cooldown": "3 min cooldown",
                                 "range": "25 yd range"
@@ -585,9 +585,9 @@
                 "raw_position_x": 3000,
                 "raw_position_y": 2700,
                 "locked_by": [
-                    90328,
                     90326,
-                    90346
+                    90346,
+                    90328
                 ],
                 "unlocks": [
                     90375,
@@ -617,13 +617,13 @@
                 "raw_position_x": 4200,
                 "raw_position_y": 2700,
                 "locked_by": [
-                    90337,
-                    90346
+                    90346,
+                    90337
                 ],
                 "unlocks": [
+                    90331,
                     90385,
-                    110119,
-                    90331
+                    110119
                 ],
                 "max_ranks": 1,
                 "ranks": [
@@ -674,8 +674,8 @@
                 "raw_position_x": 4800,
                 "raw_position_y": 5700,
                 "locked_by": [
-                    108686,
-                    108685
+                    108685,
+                    108686
                 ],
                 "unlocks": [
                     108542,
@@ -719,8 +719,8 @@
                     90348
                 ],
                 "unlocks": [
-                    90347,
-                    110118
+                    110118,
+                    90347
                 ],
                 "max_ranks": 2,
                 "ranks": [
@@ -760,8 +760,8 @@
                     108705
                 ],
                 "unlocks": [
-                    108686,
-                    108685
+                    108685,
+                    108686
                 ],
                 "max_ranks": 2,
                 "ranks": [
@@ -893,8 +893,8 @@
                 "raw_position_x": 2400,
                 "raw_position_y": 3300,
                 "locked_by": [
-                    110653,
-                    90352
+                    90352,
+                    110653
                 ],
                 "unlocks": [
                     90348,
@@ -909,7 +909,7 @@
                         "talent_name": "Shockwave",
                         "spell_id": 46968,
                         "spell_name": "Shockwave",
-                        "description": "Sends a wave of force in a frontal cone, causing 7 damage and stunning all enemies within 10 yards for 2 sec.",
+                        "description": "Sends a wave of force in a frontal cone, causing 6 damage and stunning all enemies within 10 yards for 2 sec.",
                         "cast_time": "Instant",
                         "cooldown": "40 sec cooldown",
                         "range": null
@@ -962,7 +962,7 @@
                         "talent_name": "Champion's Spear",
                         "spell_id": 376079,
                         "spell_name": "Champion's Spear",
-                        "description": "Throw a spear at the target location, chaining all enemies in the area to the spear's location and dealing 83 Physical damage instantly and an additional 128 Physical damage over 6 sec. \r\n\r\nWhile the spear is active, activating this ability will cause you to leap to the spear, dealing 16 Physical damage to all targets.\r\n\r\nAll damage dealt reduced beyond 5 targets.\r\n\r\nGenerates 10 Rage.",
+                        "description": "Throw a spear at the target location, chaining all enemies in the area to the spear's location and dealing 85 Physical damage instantly and an additional 128 Physical damage over 6 sec. \r\n\r\nWhile the spear is active, activating this ability will cause you to leap to the spear, dealing 16 Physical damage to all targets.\r\n\r\nAll damage dealt reduced beyond 5 targets.\r\n\r\nGenerates 10 Rage.",
                         "cast_time": "Instant",
                         "cooldown": "1.5 min cooldown",
                         "range": "25 yd range"
@@ -977,8 +977,8 @@
                 "raw_position_x": 2400,
                 "raw_position_y": 5700,
                 "locked_by": [
-                    90347,
-                    110118
+                    110118,
+                    90347
                 ],
                 "unlocks": [
                     90380,
@@ -1018,8 +1018,8 @@
                 "raw_position_x": 3602,
                 "raw_position_y": 4501,
                 "locked_by": [
-                    108705,
-                    90348
+                    90348,
+                    108705
                 ],
                 "unlocks": [
                     108685,
@@ -1314,12 +1314,12 @@
                 "raw_position_x": 5400,
                 "raw_position_y": 2700,
                 "locked_by": [
-                    90337,
-                    90371
+                    90371,
+                    90337
                 ],
                 "unlocks": [
-                    90385,
-                    95956
+                    95956,
+                    90385
                 ],
                 "max_ranks": 1,
                 "ranks": [
@@ -1880,7 +1880,7 @@
                             "talent_name": "Reap the Storm",
                             "spell_id": 444775,
                             "spell_name": "Reap the Storm",
-                            "description": "When Cleave hits 3 or more targets you have a 20% chance to unleash a flurry of steel, striking all nearby enemies for 269 Physical damage and applying Overwhelmed. Deals reduced damage beyond 8 targets.\r\n",
+                            "description": "When Cleave hits 3 or more targets you have a 20% chance to unleash a flurry of steel, striking all nearby enemies for 270 Physical damage and applying Overwhelmed. Deals reduced damage beyond 8 targets.\r\n",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -2266,7 +2266,7 @@
                             "talent_name": "Ground Current",
                             "spell_id": 436148,
                             "spell_name": "Ground Current",
-                            "description": "Lightning Strikes also deal 57 Nature damage to enemies near their target. Damage reduced beyond 5 targets.",
+                            "description": "Lightning Strikes also deal 58 Nature damage to enemies near their target. Damage reduced beyond 5 targets.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -2310,10 +2310,10 @@
                     "raw_position_x": 15008,
                     "raw_position_y": 2705,
                     "locked_by": [
-                        109809,
                         94797,
                         94792,
-                        94807
+                        94807,
+                        109809
                     ],
                     "unlocks": [],
                     "max_ranks": 1,
@@ -2864,7 +2864,7 @@
                             "talent_name": "Demolish",
                             "spell_id": 436358,
                             "spell_name": "Demolish",
-                            "description": "Unleash a series of precise and powerful strikes against your target, dealing 812 damage to it, and 424 damage to enemies within 10 yds of it. Deals reduced damage beyond 8 targets.\r\n\r\nWhile channeling Demolish, you take 10% less damage and are immune to stuns, knockbacks, and forced movement effects.\r\n\r\nYou can block, parry, dodge, and use certain defensive abilities while channeling Demolish.",
+                            "description": "Unleash a series of precise and powerful strikes against your target, dealing 810 damage to it, and 433 damage to enemies within 10 yds of it. Deals reduced damage beyond 8 targets.\r\n\r\nWhile channeling Demolish, you take 10% less damage and are immune to stuns, knockbacks, and forced movement effects.\r\n\r\nYou can block, parry, dodge, and use certain defensive abilities while channeling Demolish.",
                             "cast_time": "Channeled",
                             "cooldown": "30 sec cooldown",
                             "range": "Melee Range"
@@ -3209,7 +3209,7 @@
                             "talent_name": "Revenge",
                             "spell_id": 6572,
                             "spell_name": "Revenge",
-                            "description": "Swing in a wide arc, dealing 100 Physical damage to all enemies in front of you. Deals reduced damage beyond 5 targets.\r\n\r\nYour successful dodges, parries, and auto-attacks have a chance to make your next Revenge cost no Rage.",
+                            "description": "Swing in a wide arc, dealing 98 Physical damage to all enemies in front of you. Deals reduced damage beyond 5 targets.\r\n\r\nYour successful dodges, parries, and auto-attacks have a chance to make your next Revenge cost no Rage.",
                             "cast_time": "Instant",
                             "cooldown": null,
                             "range": "Melee Range"
@@ -3367,8 +3367,8 @@
                         90305
                     ],
                     "unlocks": [
-                        90451,
-                        107579
+                        107579,
+                        90451
                     ],
                     "max_ranks": 1,
                     "ranks": [
@@ -3452,8 +3452,8 @@
                         90298
                     ],
                     "unlocks": [
-                        90309,
-                        90296
+                        90296,
+                        90309
                     ],
                     "max_ranks": 1,
                     "ranks": [
@@ -3701,10 +3701,10 @@
                     "raw_position_x": 15008,
                     "raw_position_y": 2705,
                     "locked_by": [
-                        109809,
                         94797,
                         94792,
-                        94807
+                        94807,
+                        109809
                     ],
                     "unlocks": [],
                     "max_ranks": 1,
@@ -3789,8 +3789,8 @@
                     ],
                     "unlocks": [
                         107576,
-                        90318,
-                        90264
+                        90264,
+                        90318
                     ],
                     "max_ranks": 1,
                     "ranks": [
@@ -3883,7 +3883,7 @@
                             "talent_name": "Demolish",
                             "spell_id": 436358,
                             "spell_name": "Demolish",
-                            "description": "Unleash a series of precise and powerful strikes against your target, dealing 807 damage to it, and 434 damage to enemies within 10 yds of it. Deals reduced damage beyond 8 targets.\r\n\r\nWhile channeling Demolish, you take 10% less damage and are immune to stuns, knockbacks, and forced movement effects.\r\n\r\nYou can block, parry, dodge, and use certain defensive abilities while channeling Demolish.",
+                            "description": "Unleash a series of precise and powerful strikes against your target, dealing 799 damage to it, and 431 damage to enemies within 10 yds of it. Deals reduced damage beyond 8 targets.\r\n\r\nWhile channeling Demolish, you take 10% less damage and are immune to stuns, knockbacks, and forced movement effects.\r\n\r\nYou can block, parry, dodge, and use certain defensive abilities while channeling Demolish.",
                             "cast_time": "Channeled",
                             "cooldown": "30 sec cooldown",
                             "range": "Melee Range"
@@ -4289,8 +4289,8 @@
                     "raw_position_x": 12002,
                     "raw_position_y": 4497,
                     "locked_by": [
-                        90318,
-                        90264
+                        90264,
+                        90318
                     ],
                     "unlocks": [
                         90315,
@@ -4529,9 +4529,9 @@
                         90319
                     ],
                     "unlocks": [
-                        107575,
                         90317,
-                        90314
+                        90314,
+                        107575
                     ],
                     "max_ranks": 1,
                     "ranks": [
@@ -4656,9 +4656,9 @@
                         90449
                     ],
                     "unlocks": [
-                        90313,
                         90265,
-                        90432
+                        90432,
+                        90313
                     ],
                     "max_ranks": 1,
                     "ranks": [
@@ -4974,7 +4974,7 @@
                             "talent_name": "Shield Charge",
                             "spell_id": 385952,
                             "spell_name": "Shield Charge",
-                            "description": "Charge to an enemy with your shield, granting you Shield Block and dealing 289 Physical damage to it and 93 Physical damage to all enemies within 10 yards.\r\n\r\nAlso stuns the primary target for 4 sec.\r\n\r\nGenerates 20 Rage.",
+                            "description": "Charge to an enemy with your shield, granting you Shield Block and dealing 289 Physical damage to it and 95 Physical damage to all enemies within 10 yards.\r\n\r\nAlso stuns the primary target for 4 sec.\r\n\r\nGenerates 20 Rage.",
                             "cast_time": "Instant",
                             "cooldown": "45 sec cooldown",
                             "range": "25 yd range"
@@ -5040,7 +5040,7 @@
                                     "talent_name": "Ravager",
                                     "spell_id": 228920,
                                     "spell_name": "Ravager",
-                                    "description": "Throws a whirling weapon at your target that chases nearby enemies, inflicting 375 Physical damage to all enemies over 12 sec. Deals reduced damage beyond 8 targets.\r\n\r\nEnemies damaged by Ravager take 50% additional damage from your Bleeds for 12 sec.",
+                                    "description": "Throws a whirling weapon at your target that chases nearby enemies, inflicting 380 Physical damage to all enemies over 12 sec. Deals reduced damage beyond 8 targets.\r\n\r\nEnemies damaged by Ravager take 50% additional damage from your Bleeds for 12 sec.",
                                     "cast_time": "Instant",
                                     "cooldown": "8 sec cooldown",
                                     "range": "40 yd range"
@@ -5066,7 +5066,7 @@
                             "talent_name": "Phalanx",
                             "spell_id": 1269311,
                             "spell_name": "Phalanx",
-                            "description": "Thunder Clap causes your next Shield Slam to deal 10% additional damage and unleash a wave of force, dealing 68 Physical damage to all enemies in front of you.",
+                            "description": "Thunder Clap causes your next Shield Slam to deal 10% additional damage and unleash a wave of force, dealing 69 Physical damage to all enemies in front of you.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -5105,7 +5105,7 @@
                             "talent_name": "Lightning Strikes",
                             "spell_id": 434969,
                             "spell_name": "Lightning Strikes",
-                            "description": "Damaging enemies with Thunder Clap, Raging Blow, or Execute has a 25% chance to also strike one with a lightning bolt, dealing 81 Nature damage.\r\n\r\nLightning Strikes occur 30% more often during Avatar.",
+                            "description": "Damaging enemies with Thunder Clap, Raging Blow, or Execute has a 25% chance to also strike one with a lightning bolt, dealing 83 Nature damage.\r\n\r\nLightning Strikes occur 30% more often during Avatar.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -5134,7 +5134,7 @@
                             "talent_name": "Slayer's Dominance",
                             "spell_id": 444767,
                             "spell_name": "Slayer's Dominance",
-                            "description": "Your attacks against your primary target have a 25% chance to overwhelm their defenses and trigger a Slayer's Strike, dealing 300 Physical damage and granting you a stack of Executioner, increasing your Execute damage by 3% for 12 sec. Multiple stacks of Executioner may overlap.",
+                            "description": "Your attacks against your primary target have a 25% chance to overwhelm their defenses and trigger a Slayer's Strike, dealing 289 Physical damage and granting you a stack of Executioner, increasing your Execute damage by 3% for 12 sec. Multiple stacks of Executioner may overlap.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -5160,7 +5160,7 @@
                             "talent_name": "Bloodthirst",
                             "spell_id": 23881,
                             "spell_name": "Bloodthirst",
-                            "description": "Assault the target in a bloodthirsty craze, dealing 147 Physical damage and restoring 3% of your health.\r\n\r\nGenerates 8 Rage and has a 30% chance to Enrage you.",
+                            "description": "Assault the target in a bloodthirsty craze, dealing 148 Physical damage and restoring 3% of your health.\r\n\r\nGenerates 8 Rage and has a 30% chance to Enrage you.",
                             "cast_time": "Instant",
                             "cooldown": "4.5 sec cooldown",
                             "range": "Melee Range"
@@ -5428,7 +5428,7 @@
                             "talent_name": "Raging Blow",
                             "spell_id": 85288,
                             "spell_name": "Raging Blow",
-                            "description": "A mighty blow with both weapons that deals a total of 76 Physical damage.\r\n\r\nGenerates 12 Rage.",
+                            "description": "A mighty blow with both weapons that deals a total of 77 Physical damage.\r\n\r\nGenerates 12 Rage.",
                             "cast_time": "Instant",
                             "cooldown": null,
                             "range": "Melee Range"
@@ -5456,7 +5456,7 @@
                             "talent_name": "Thunder Blast",
                             "spell_id": 435607,
                             "spell_name": "Thunder Blast",
-                            "description": "Shield Slam and Bloodthirst have a 35% chance to grant you Thunder Blast, stacking up to 2 charges.\r\n\r\nThunder Blast\r\nYour next Thunder Clap becomes a Thunder Blast that deals 82 Stormstrike damage and generates 2 Rage.",
+                            "description": "Shield Slam and Bloodthirst have a 35% chance to grant you Thunder Blast, stacking up to 2 charges.\r\n\r\nThunder Blast\r\nYour next Thunder Clap becomes a Thunder Blast that deals 80 Stormstrike damage and generates 2 Rage.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -6005,7 +6005,7 @@
                             "talent_name": "Reap the Storm",
                             "spell_id": 444775,
                             "spell_name": "Reap the Storm",
-                            "description": "When Cleave hits 3 or more targets you have a 20% chance to unleash a flurry of steel, striking all nearby enemies for 274 Physical damage and applying Overwhelmed. Deals reduced damage beyond 8 targets.\r\n",
+                            "description": "When Cleave hits 3 or more targets you have a 20% chance to unleash a flurry of steel, striking all nearby enemies for 269 Physical damage and applying Overwhelmed. Deals reduced damage beyond 8 targets.\r\n",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -6109,9 +6109,9 @@
                         90398
                     ],
                     "unlocks": [
-                        90408,
                         110330,
-                        90399
+                        90399,
+                        90408
                     ],
                     "max_ranks": 1,
                     "ranks": [
@@ -6169,8 +6169,8 @@
                         90429
                     ],
                     "unlocks": [
-                        90390,
-                        90391
+                        90391,
+                        90390
                     ],
                     "max_ranks": 1,
                     "ranks": [
@@ -6195,10 +6195,10 @@
                     "raw_position_x": 15008,
                     "raw_position_y": 2705,
                     "locked_by": [
-                        109809,
                         94797,
                         94792,
-                        94807
+                        94807,
+                        109809
                     ],
                     "unlocks": [],
                     "max_ranks": 1,
@@ -6281,8 +6281,8 @@
                     "raw_position_x": 10800,
                     "raw_position_y": 3300,
                     "locked_by": [
-                        90403,
-                        90395
+                        90395,
+                        90403
                     ],
                     "unlocks": [
                         109966,
@@ -6337,13 +6337,13 @@
                     "raw_position_x": 12007,
                     "raw_position_y": 3301,
                     "locked_by": [
-                        90395,
-                        90394
+                        90394,
+                        90395
                     ],
                     "unlocks": [
                         90407,
-                        109965,
-                        109969
+                        109969,
+                        109965
                     ],
                     "max_ranks": 1,
                     "ranks": [
@@ -6353,7 +6353,7 @@
                             "talent_name": "Rampage",
                             "spell_id": 184367,
                             "spell_name": "Rampage",
-                            "description": "Unleash a series of 4 brutal strikes for a total of 105 Physical damage.\r\n\r\nEnrages you.",
+                            "description": "Unleash a series of 4 brutal strikes for a total of 104 Physical damage.\r\n\r\nEnrages you.",
                             "cast_time": "Instant",
                             "cooldown": null,
                             "range": "Melee Range"
@@ -6426,8 +6426,8 @@
                     "raw_position_x": 10200,
                     "raw_position_y": 3900,
                     "locked_by": [
-                        90410,
-                        90399
+                        90399,
+                        90410
                     ],
                     "unlocks": [],
                     "max_ranks": 1,
@@ -6496,8 +6496,8 @@
                         90408
                     ],
                     "unlocks": [
-                        109962,
-                        90412
+                        90412,
+                        109962
                     ],
                     "max_ranks": 1,
                     "ranks": [
@@ -6619,8 +6619,8 @@
                     "raw_position_x": 13800,
                     "raw_position_y": 3900,
                     "locked_by": [
-                        90390,
-                        90391
+                        90391,
+                        90390
                     ],
                     "unlocks": [],
                     "max_ranks": 1,
@@ -6719,8 +6719,8 @@
                     "raw_position_y": 4497,
                     "locked_by": [
                         90407,
-                        109965,
-                        109969
+                        109969,
+                        109965
                     ],
                     "unlocks": [
                         90406
@@ -6810,8 +6810,8 @@
                         109962
                     ],
                     "unlocks": [
-                        110203,
-                        109963
+                        109963,
+                        110203
                     ],
                     "max_ranks": 2,
                     "ranks": [
@@ -6847,9 +6847,9 @@
                     "raw_position_x": 12000,
                     "raw_position_y": 5100,
                     "locked_by": [
+                        90412,
                         90405,
-                        109962,
-                        90412
+                        109962
                     ],
                     "unlocks": [
                         90401,
@@ -6878,12 +6878,12 @@
                     "raw_position_x": 13200,
                     "raw_position_y": 5100,
                     "locked_by": [
-                        90405,
-                        90387
+                        90387,
+                        90405
                     ],
                     "unlocks": [
-                        90401,
-                        109964
+                        109964,
+                        90401
                     ],
                     "max_ranks": 2,
                     "ranks": [
@@ -7113,7 +7113,7 @@
                                     "talent_name": "Bladestorm",
                                     "spell_id": 227847,
                                     "spell_name": "Bladestorm",
-                                    "description": "Become an unstoppable storm of destructive force, striking all nearby enemies for 674 Physical damage over 5.4 sec. Deals reduced damage beyond 8 targets.\r\n\r\nYou are immune to movement impairing and loss of control effects, but can use defensive abilities and can avoid attacks.\r\n",
+                                    "description": "Become an unstoppable storm of destructive force, striking all nearby enemies for 680 Physical damage over 5.4 sec. Deals reduced damage beyond 8 targets.\r\n\r\nYou are immune to movement impairing and loss of control effects, but can use defensive abilities and can avoid attacks.\r\n",
                                     "cast_time": "Instant",
                                     "cooldown": "1.5 min cooldown",
                                     "range": null
@@ -7178,7 +7178,7 @@
                             "talent_name": "Slayer's Dominance",
                             "spell_id": 444767,
                             "spell_name": "Slayer's Dominance",
-                            "description": "Your attacks against your primary target have a 25% chance to overwhelm their defenses and trigger a Slayer's Strike, dealing 292 Physical damage and granting you a stack of Executioner, increasing your Execute damage by 3% for 12 sec. Multiple stacks of Executioner may overlap.",
+                            "description": "Your attacks against your primary target have a 25% chance to overwhelm their defenses and trigger a Slayer's Strike, dealing 293 Physical damage and granting you a stack of Executioner, increasing your Execute damage by 3% for 12 sec. Multiple stacks of Executioner may overlap.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -7194,8 +7194,8 @@
                     "raw_position_y": 900,
                     "locked_by": [],
                     "unlocks": [
-                        90271,
-                        90274
+                        90274,
+                        90271
                     ],
                     "max_ranks": 1,
                     "ranks": [
@@ -7205,7 +7205,7 @@
                             "talent_name": "Mortal Strike",
                             "spell_id": 12294,
                             "spell_name": "Mortal Strike",
-                            "description": "A vicious strike that deals 179 Physical damage and reduces the effectiveness of healing on the target by 50% for 10 sec.",
+                            "description": "A vicious strike that deals 184 Physical damage and reduces the effectiveness of healing on the target by 50% for 10 sec.",
                             "cast_time": "Instant",
                             "cooldown": "6 sec cooldown",
                             "range": "Melee Range"
@@ -7359,7 +7359,7 @@
                             "talent_name": "Overpower",
                             "spell_id": 7384,
                             "spell_name": "Overpower",
-                            "description": "Overpower the enemy, dealing 135 Physical damage. Cannot be blocked, dodged, or parried.\r\n",
+                            "description": "Overpower the enemy, dealing 134 Physical damage. Cannot be blocked, dodged, or parried.\r\n",
                             "cast_time": "Instant",
                             "cooldown": null,
                             "range": "Melee Range"
@@ -7655,7 +7655,7 @@
                             "talent_name": "Reap the Storm",
                             "spell_id": 444775,
                             "spell_name": "Reap the Storm",
-                            "description": "When Cleave hits 3 or more targets you have a 20% chance to unleash a flurry of steel, striking all nearby enemies for 269 Physical damage and applying Overwhelmed. Deals reduced damage beyond 8 targets.\r\n",
+                            "description": "When Cleave hits 3 or more targets you have a 20% chance to unleash a flurry of steel, striking all nearby enemies for 268 Physical damage and applying Overwhelmed. Deals reduced damage beyond 8 targets.\r\n",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -7757,8 +7757,8 @@
                         90276
                     ],
                     "unlocks": [
-                        90290,
-                        90282
+                        90282,
+                        90290
                     ],
                     "max_ranks": 1,
                     "ranks": [
@@ -7873,9 +7873,9 @@
                         90277
                     ],
                     "unlocks": [
-                        109681,
                         92614,
-                        109687
+                        109687,
+                        109681
                     ],
                     "max_ranks": 1,
                     "ranks": [
@@ -7935,9 +7935,9 @@
                         90267
                     ],
                     "unlocks": [
+                        90447,
                         92536,
-                        90293,
-                        90447
+                        90293
                     ],
                     "max_ranks": 1,
                     "ranks": [
@@ -7976,7 +7976,7 @@
                             "talent_name": "Demolish",
                             "spell_id": 436358,
                             "spell_name": "Demolish",
-                            "description": "Unleash a series of precise and powerful strikes against your target, dealing 803 damage to it, and 431 damage to enemies within 10 yds of it. Deals reduced damage beyond 8 targets.\r\n\r\nWhile channeling Demolish, you take 10% less damage and are immune to stuns, knockbacks, and forced movement effects.\r\n\r\nYou can block, parry, dodge, and use certain defensive abilities while channeling Demolish.",
+                            "description": "Unleash a series of precise and powerful strikes against your target, dealing 796 damage to it, and 429 damage to enemies within 10 yds of it. Deals reduced damage beyond 8 targets.\r\n\r\nWhile channeling Demolish, you take 10% less damage and are immune to stuns, knockbacks, and forced movement effects.\r\n\r\nYou can block, parry, dodge, and use certain defensive abilities while channeling Demolish.",
                             "cast_time": "Channeled",
                             "cooldown": "30 sec cooldown",
                             "range": "Melee Range"
@@ -8163,8 +8163,8 @@
                         90290
                     ],
                     "unlocks": [
-                        109682,
-                        90291
+                        90291,
+                        109682
                     ],
                     "max_ranks": 2,
                     "ranks": [
@@ -8213,7 +8213,7 @@
                             "talent_name": "Cleave",
                             "spell_id": 845,
                             "spell_name": "Cleave",
-                            "description": "Strikes all enemies in front of you for 83 Physical damage. Deals reduced damage beyond 5 targets.\r\n\r\nIf you know Rend, inflicts Rend on all targets.",
+                            "description": "Strikes all enemies in front of you for 81 Physical damage. Deals reduced damage beyond 5 targets.\r\n\r\nIf you know Rend, inflicts Rend on all targets.",
                             "cast_time": "Instant",
                             "cooldown": "4.5 sec cooldown",
                             "range": "Melee Range"
@@ -8770,7 +8770,7 @@
                                     "talent_name": "Bladestorm",
                                     "spell_id": 227847,
                                     "spell_name": "Bladestorm",
-                                    "description": "Become an unstoppable storm of destructive force, striking all nearby enemies for 657 Physical damage over 5.4 sec. Deals reduced damage beyond 8 targets.\r\n\r\nYou are immune to movement impairing and loss of control effects, but can use defensive abilities and can avoid attacks.\r\n",
+                                    "description": "Become an unstoppable storm of destructive force, striking all nearby enemies for 668 Physical damage over 5.4 sec. Deals reduced damage beyond 8 targets.\r\n\r\nYou are immune to movement impairing and loss of control effects, but can use defensive abilities and can avoid attacks.\r\n",
                                     "cast_time": "Instant",
                                     "cooldown": "1.5 min cooldown",
                                     "range": null
@@ -8780,7 +8780,7 @@
                                     "talent_name": "Ravager",
                                     "spell_id": 228920,
                                     "spell_name": "Ravager",
-                                    "description": "Throws a whirling weapon at your target that chases nearby enemies, inflicting 376 Physical damage to all enemies over 12 sec. Deals reduced damage beyond 8 targets.\r\n\r\nEnemies damaged by Ravager take 50% additional damage from your Bleeds for 12 sec.",
+                                    "description": "Throws a whirling weapon at your target that chases nearby enemies, inflicting 375 Physical damage to all enemies over 12 sec. Deals reduced damage beyond 8 targets.\r\n\r\nEnemies damaged by Ravager take 50% additional damage from your Bleeds for 12 sec.",
                                     "cast_time": "Instant",
                                     "cooldown": "8 sec cooldown",
                                     "range": "40 yd range"
@@ -8797,8 +8797,8 @@
                     "raw_position_x": 13200,
                     "raw_position_y": 5100,
                     "locked_by": [
-                        109682,
-                        90291
+                        90291,
+                        109682
                     ],
                     "unlocks": [
                         90439,

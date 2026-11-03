@@ -1,6 +1,6 @@
 {
-    "generatedAt": "2026-10-18T02:37:26+00:00",
-    "spellCacheVersion": 29,
+    "generatedAt": "2026-11-03T23:05:12+00:00",
+    "spellCacheVersion": 31,
     "codeFingerprint": "dev",
     "entries": [
         {
@@ -217,8 +217,8 @@
             "spellId": 8610,
             "category": "Other",
             "description": {
-                "text": "20% of (varies by condition — check in-game) healing on other targets also heals you.",
-                "uncertain": true
+                "text": "20% of Flash Heal healing on other targets also heals you.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -247,8 +247,8 @@
             "spellId": 8597,
             "category": "Mobility",
             "description": {
-                "text": "(varies by condition — check in-game) and Leap of Faith increase your target's movement speed by 40% for 3.",
-                "uncertain": true
+                "text": "Power Word: Shield and Leap of Faith increase your target's movement speed by 40% for 3.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -277,7 +277,7 @@
             "spellId": 8850,
             "category": "Other",
             "description": {
-                "text": "Voidform sends out slow-moving bolts of Shadow energy at random locations every 0.5 sec for 3 sec, dealing 289 Shadow damage to all targets within 8 yds, and causing them to flee in Horror for 2 sec.",
+                "text": "Voidform sends out slow-moving bolts of Shadow energy at random locations every 0.5 sec for 3 sec, dealing 287 Shadow damage to all targets within 8 yds, and causing them to flee in Horror for 2 sec.",
                 "uncertain": false
             },
             "formulaModifierSpellIds": [],
@@ -307,8 +307,8 @@
             "spellId": 8724,
             "category": "Offensive",
             "description": {
-                "text": "Each time (varies by condition — check in-game), Entropic Rift is empowered, increasing its damage and size by (varies by condition — check in-game)%. After Entropic Rift ends it collapses, dealing 1 Shadow damage split amongst enemy targets within 15 yds.",
-                "uncertain": true
+                "text": "Each time you cast Shadow Word: Madness, Entropic Rift is empowered, increasing its damage and size by 20%. After Entropic Rift ends it collapses, dealing 1 Shadow damage split amongst enemy targets within 15 yds.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -397,8 +397,8 @@
             "spellId": 8730,
             "category": "Other",
             "description": {
-                "text": "(varies by condition — check in-game)While Entropic Rift is active, you move 20% faster.",
-                "uncertain": true
+                "text": "Void Torrent can be used while moving. While Entropic Rift is active, you move 20% faster.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -564,8 +564,8 @@
             "spellId": 8726,
             "category": "Other",
             "description": {
-                "text": "Void Blast increases the duration of Entropic Rift by (varies by condition — check in-game) sec, up to a maximum of 3 sec.",
-                "uncertain": true
+                "text": "Void Blast increases the duration of Entropic Rift by 1 sec, up to a maximum of 3 sec.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -814,7 +814,7 @@
             "spellId": 8735,
             "category": "Other",
             "description": {
-                "text": "Shadow Word: Death consumes absorb shields from your target, dealing ≈255% of Spell Power extra damage to them and granting you (varies by condition — check in-game) if a shield was present.",
+                "text": "Shadow Word: Death consumes absorb shields from your target, dealing ≈255% of Spell Power extra damage to them and granting you 5 Insanity if a shield was present.",
                 "uncertain": true
             },
             "formulaModifierSpellIds": [],
@@ -1500,8 +1500,8 @@
             "spellId": 8722,
             "category": "Offensive",
             "description": {
-                "text": "(varies by condition — check in-game) that follows the enemy for 8. Enemies caught in its path suffer 30 Shadow damage every 1 sec while within its reach.",
-                "uncertain": true
+                "text": "Tear open a rift that follows the enemy for 8. Enemies caught in its path suffer 30 Shadow damage every 1 sec while within its reach.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -1512,8 +1512,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Each time (varies by condition — check in-game), Entropic Rift is empowered, increasing its damage and size by (varies by condition — check in-game)%. After Entropic Rift ends it collapses, dealing 1 Shadow damage split amongst enemy targets within 15 yds.",
-                            "uncertain": true
+                            "text": "Each time you cast Shadow Word: Madness, Entropic Rift is empowered, increasing its damage and size by 20%. After Entropic Rift ends it collapses, dealing 1 Shadow damage split amongst enemy targets within 15 yds.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -1528,8 +1528,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "While Entropic Rift is active, your (varies by condition — check in-game).",
-                            "uncertain": true
+                            "text": "While Entropic Rift is active, your Shadow damage is increased by 5%.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -1544,8 +1544,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Each time (varies by condition — check in-game), Entropic Rift is empowered, increasing its damage and size by (varies by condition — check in-game)%. After Entropic Rift ends it collapses, dealing 1 Shadow damage split amongst enemy targets within 15 yds.",
-                            "uncertain": true
+                            "text": "Each time you cast Shadow Word: Madness, Entropic Rift is empowered, increasing its damage and size by 20%. After Entropic Rift ends it collapses, dealing 1 Shadow damage split amongst enemy targets within 15 yds.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -1560,8 +1560,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "While Entropic Rift is active, your (varies by condition — check in-game).",
-                            "uncertain": true
+                            "text": "While Entropic Rift is active, your Shadow damage is increased by 5%.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -1576,8 +1576,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Void Blast increases the duration of Entropic Rift by (varies by condition — check in-game) sec, up to a maximum of 3 sec.",
-                            "uncertain": true
+                            "text": "Void Blast increases the duration of Entropic Rift by 1 sec, up to a maximum of 3 sec.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -1592,8 +1592,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Entropic Rift upgrades (varies by condition — check in-game) into Void Blast while it is active. (varies by condition — check in-game)",
-                            "uncertain": true
+                            "text": "Entropic Rift upgrades Mind Blast into Void Blast while it is active. Void Blast: Sends a blast of cosmic void energy at the enemy, causing 450,215 Shadow damage. Generates 0.1 Insanity.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -1608,8 +1608,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game)",
-                            "uncertain": true
+                            "text": "Void Blast generates 2 additional Insanity.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -1624,8 +1624,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game)While Entropic Rift is active, you move 20% faster.",
-                            "uncertain": true
+                            "text": "Void Torrent can be used while moving. While Entropic Rift is active, you move 20% faster.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -1691,8 +1691,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game) that follows the enemy for 8. Enemies caught in its path suffer 30 Shadow damage every 1 sec while within its reach.",
-                            "uncertain": true
+                            "text": "Tear open a rift that follows the enemy for 8. Enemies caught in its path suffer 30 Shadow damage every 1 sec while within its reach.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -1707,8 +1707,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game) that follows the enemy for 8. Enemies caught in its path suffer 30 Shadow damage every 1 sec while within its reach.",
-                            "uncertain": true
+                            "text": "Tear open a rift that follows the enemy for 8. Enemies caught in its path suffer 30 Shadow damage every 1 sec while within its reach.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -1723,8 +1723,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Summoning an Entropic Rift (varies by condition — check in-game).",
-                            "uncertain": true
+                            "text": "Summoning an Entropic Rift grants you Shadowy Insight.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -1739,8 +1739,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game) that follows the enemy for 8. Enemies caught in its path suffer 30 Shadow damage every 1 sec while within its reach.",
-                            "uncertain": true
+                            "text": "Tear open a rift that follows the enemy for 8. Enemies caught in its path suffer 30 Shadow damage every 1 sec while within its reach.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -1771,8 +1771,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game) that follows the enemy for 8. Enemies caught in its path suffer 30 Shadow damage every 1 sec while within its reach.",
-                            "uncertain": true
+                            "text": "Tear open a rift that follows the enemy for 8. Enemies caught in its path suffer 30 Shadow damage every 1 sec while within its reach.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -1787,8 +1787,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Summoning an Entropic Rift (varies by condition — check in-game).",
-                            "uncertain": true
+                            "text": "Summoning an Entropic Rift grants you Shadowy Insight.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -2137,8 +2137,8 @@
             "spellId": 8703,
             "category": "Other",
             "description": {
-                "text": "(varies by condition — check in-game)",
-                "uncertain": true
+                "text": "Void Volley deals 5% increased damage and Shadow Word: Madness casts during Voidform unleash a Void Volley at your target at 25% effectiveness.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -3234,8 +3234,8 @@
             "spellId": 8624,
             "category": "Other",
             "description": {
-                "text": "Increases healing done by Flash Heal(varies by condition — check in-game) by 15%.",
-                "uncertain": true
+                "text": "Increases healing done by Flash Heal by 15%.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -3561,8 +3561,8 @@
             "spellId": 8723,
             "category": "Other",
             "description": {
-                "text": "(varies by condition — check in-game)",
-                "uncertain": true
+                "text": "Vampiric Touch and Shadow Word: Pain deal 20% additional damage.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -3638,8 +3638,8 @@
             "spellId": 8621,
             "category": "Defensive",
             "description": {
-                "text": "Reduces your target's physical damage taken by 5% for 15 after a critical heal with (varies by condition — check in-game).",
-                "uncertain": true
+                "text": "Reduces your target's physical damage taken by 5% for 15 after a critical heal with Flash Heal.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -3802,8 +3802,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game) and Leap of Faith increase your target's movement speed by 40% for 3.",
-                            "uncertain": true
+                            "text": "Power Word: Shield and Leap of Faith increase your target's movement speed by 40% for 3.",
+                            "uncertain": false
                         },
                         "category": "Mobility",
                         "cooldown": {
@@ -3818,8 +3818,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game) and Leap of Faith increase your target's movement speed by 40% for 3.",
-                            "uncertain": true
+                            "text": "Power Word: Shield and Leap of Faith increase your target's movement speed by 40% for 3.",
+                            "uncertain": false
                         },
                         "category": "Mobility",
                         "cooldown": {
@@ -3850,8 +3850,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game) and Leap of Faith increase your target's movement speed by 40% for 3.",
-                            "uncertain": true
+                            "text": "Power Word: Shield and Leap of Faith increase your target's movement speed by 40% for 3.",
+                            "uncertain": false
                         },
                         "category": "Mobility",
                         "cooldown": {
@@ -4449,7 +4449,7 @@
             "spellId": 8588,
             "category": "Offensive",
             "description": {
-                "text": "Blast the target's mind for ≈78.3% of Spell Power Shadow damage.(varies by condition — check in-game) Generates 0 Insanity.",
+                "text": "Blast the target's mind for ≈78.3% of Spell Power Shadow damage. Generates 0 Insanity.",
                 "uncertain": true
             },
             "formulaModifierSpellIds": [],
@@ -4589,8 +4589,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game)",
-                            "uncertain": true
+                            "text": "Void Torrent deals 30% increased damage.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -4669,8 +4669,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Entropic Rift upgrades (varies by condition — check in-game) into Void Blast while it is active. (varies by condition — check in-game)",
-                            "uncertain": true
+                            "text": "Entropic Rift upgrades Mind Blast into Void Blast while it is active. Void Blast: Sends a blast of cosmic void energy at the enemy, causing 450,215 Shadow damage. Generates 0.1 Insanity.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -4929,8 +4929,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game) that follows the enemy for 8. Enemies caught in its path suffer 30 Shadow damage every 1 sec while within its reach.",
-                            "uncertain": true
+                            "text": "Tear open a rift that follows the enemy for 8. Enemies caught in its path suffer 30 Shadow damage every 1 sec while within its reach.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -4945,8 +4945,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game) that follows the enemy for 8. Enemies caught in its path suffer 30 Shadow damage every 1 sec while within its reach.",
-                            "uncertain": true
+                            "text": "Tear open a rift that follows the enemy for 8. Enemies caught in its path suffer 30 Shadow damage every 1 sec while within its reach.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -4961,8 +4961,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game) that follows the enemy for 8. Enemies caught in its path suffer 30 Shadow damage every 1 sec while within its reach.",
-                            "uncertain": true
+                            "text": "Tear open a rift that follows the enemy for 8. Enemies caught in its path suffer 30 Shadow damage every 1 sec while within its reach.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -4977,8 +4977,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game) that follows the enemy for 8. Enemies caught in its path suffer 30 Shadow damage every 1 sec while within its reach.",
-                            "uncertain": true
+                            "text": "Tear open a rift that follows the enemy for 8. Enemies caught in its path suffer 30 Shadow damage every 1 sec while within its reach.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -4993,8 +4993,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game) that follows the enemy for 8. Enemies caught in its path suffer 30 Shadow damage every 1 sec while within its reach.",
-                            "uncertain": true
+                            "text": "Tear open a rift that follows the enemy for 8. Enemies caught in its path suffer 30 Shadow damage every 1 sec while within its reach.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -5938,8 +5938,8 @@
             "spellId": 8738,
             "category": "Other",
             "description": {
-                "text": "(varies by condition — check in-game)",
-                "uncertain": true
+                "text": "Void Torrent deals 30% increased damage.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -6292,8 +6292,8 @@
             "spellId": 8604,
             "category": "Defensive",
             "description": {
-                "text": "Casting (varies by condition — check in-game) on yourself reduces all damage you take by 10% for 10.",
-                "uncertain": true
+                "text": "Casting Flash Heal on yourself reduces all damage you take by 10% for 10.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -6819,8 +6819,8 @@
             "spellId": 8704,
             "category": "Other",
             "description": {
-                "text": "(varies by condition — check in-game)",
-                "uncertain": true
+                "text": "Shadow Word: Death damage increased by 25% and its cooldown is reduced by 3 sec.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -7162,7 +7162,7 @@
             "spellId": 8595,
             "category": "Offensive",
             "description": {
-                "text": "A word of dark binding that inflicts ≈85% of Spell Power Shadow damage to your target. If your target is not killed by Shadow Word: Death, you take backlash damage equal to 5% of your maximum health.(varies by condition — check in-game)(varies by condition — check in-game) Generates 0 Insanity.",
+                "text": "A word of dark binding that inflicts ≈85% of Spell Power Shadow damage to your target. If your target is not killed by Shadow Word: Death, you take backlash damage equal to 5% of your maximum health.(varies by condition — check in-game) Generates 0 Insanity.",
                 "uncertain": true
             },
             "formulaModifierSpellIds": [],
@@ -7254,7 +7254,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "A word of dark binding that inflicts (varies) Shadow damage to your target. If your target is not killed by Shadow Word: Death, you take backlash damage equal to 5% of your maximum health.(varies by condition — check in-game)(varies by condition — check in-game) Generates 0 Insanity.",
+                            "text": "A word of dark binding that inflicts (varies) Shadow damage to your target. If your target is not killed by Shadow Word: Death, you take backlash damage equal to 5% of your maximum health.(varies by condition — check in-game) Generates 0 Insanity.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -7334,8 +7334,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Shadow Word: Death consumes absorb shields from your target, dealing up to 1% extra damage to them and granting you (varies by condition — check in-game) if a shield was present.",
-                            "uncertain": true
+                            "text": "Shadow Word: Death consumes absorb shields from your target, dealing up to 1% extra damage to them and granting you 5 Insanity if a shield was present.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -7350,8 +7350,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Shadow Word: Death has a 40% chance to summon a Shadowfiend for 5 sec when damaging targets below 20% health. Shadowfiend Summons a Shadowfiend to attack your target for 5.(varies by condition — check in-game)",
-                            "uncertain": true
+                            "text": "Shadow Word: Death has a 40% chance to summon a Shadowfiend for 5 sec when damaging targets below 20% health. Shadowfiend Summons a Shadowfiend to attack your target for 5. Generates 1 Insanity each time the Shadowfiend attacks.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -7382,8 +7382,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Shadow Word: Death has a 40% chance to summon a Shadowfiend for 5 sec when damaging targets below 20% health. Shadowfiend Summons a Shadowfiend to attack your target for 5.(varies by condition — check in-game)",
-                            "uncertain": true
+                            "text": "Shadow Word: Death has a 40% chance to summon a Shadowfiend for 5 sec when damaging targets below 20% health. Shadowfiend Summons a Shadowfiend to attack your target for 5. Generates 1 Insanity each time the Shadowfiend attacks.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -7430,7 +7430,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Shadow Word: Death consumes absorb shields from your target, dealing ≈255% of Spell Power extra damage to them and granting you (varies by condition — check in-game) if a shield was present.",
+                            "text": "Shadow Word: Death consumes absorb shields from your target, dealing ≈255% of Spell Power extra damage to them and granting you 5 Insanity if a shield was present.",
                             "uncertain": true
                         },
                         "category": "Other",
@@ -7546,8 +7546,8 @@
                         "modifier_value": -3,
                         "modifier_unit": "seconds",
                         "description": {
-                            "text": "(varies by condition — check in-game)",
-                            "uncertain": true
+                            "text": "Shadow Word: Death damage increased by 25% and its cooldown is reduced by 3 sec.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -7771,8 +7771,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Each time (varies by condition — check in-game), Entropic Rift is empowered, increasing its damage and size by (varies by condition — check in-game)%. After Entropic Rift ends it collapses, dealing 1 Shadow damage split amongst enemy targets within 15 yds.",
-                            "uncertain": true
+                            "text": "Each time you cast Shadow Word: Madness, Entropic Rift is empowered, increasing its damage and size by 20%. After Entropic Rift ends it collapses, dealing 1 Shadow damage split amongst enemy targets within 15 yds.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -7787,8 +7787,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Each time (varies by condition — check in-game), Entropic Rift is empowered, increasing its damage and size by (varies by condition — check in-game)%. After Entropic Rift ends it collapses, dealing 1 Shadow damage split amongst enemy targets within 15 yds.",
-                            "uncertain": true
+                            "text": "Each time you cast Shadow Word: Madness, Entropic Rift is empowered, increasing its damage and size by 20%. After Entropic Rift ends it collapses, dealing 1 Shadow damage split amongst enemy targets within 15 yds.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -7999,8 +7999,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Summoning an Entropic Rift (varies by condition — check in-game).",
-                            "uncertain": true
+                            "text": "Summoning an Entropic Rift grants you Shadowy Insight.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -8111,8 +8111,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game)",
-                            "uncertain": true
+                            "text": "Void Volley deals 5% increased damage and Shadow Word: Madness casts during Voidform unleash a Void Volley at your target at 25% effectiveness.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -8300,8 +8300,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game)",
-                            "uncertain": true
+                            "text": "Vampiric Touch and Shadow Word: Pain deal 20% additional damage.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -8799,8 +8799,8 @@
             "spellId": 8640,
             "category": "Other",
             "description": {
-                "text": "Shadow Word: Death has a 40% chance to summon a Shadowfiend for 5 sec when damaging targets below 20% health. Shadowfiend Summons a Shadowfiend to attack your target for 5.(varies by condition — check in-game)",
-                "uncertain": true
+                "text": "Shadow Word: Death has a 40% chance to summon a Shadowfiend for 5 sec when damaging targets below 20% health. Shadowfiend Summons a Shadowfiend to attack your target for 5. Generates 1 Insanity each time the Shadowfiend attacks.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -8891,8 +8891,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Shadow Word: Death has a 40% chance to summon a Shadowfiend for 5 sec when damaging targets below 20% health. Shadowfiend Summons a Shadowfiend to attack your target for 5.(varies by condition — check in-game)",
-                            "uncertain": true
+                            "text": "Shadow Word: Death has a 40% chance to summon a Shadowfiend for 5 sec when damaging targets below 20% health. Shadowfiend Summons a Shadowfiend to attack your target for 5. Generates 1 Insanity each time the Shadowfiend attacks.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -9246,8 +9246,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game)",
-                            "uncertain": true
+                            "text": "Increases Shadowy Apparition damage by 10%.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -9613,8 +9613,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Summoning an Entropic Rift (varies by condition — check in-game).",
-                            "uncertain": true
+                            "text": "Summoning an Entropic Rift grants you Shadowy Insight.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -9629,8 +9629,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Summoning an Entropic Rift (varies by condition — check in-game).",
-                            "uncertain": true
+                            "text": "Summoning an Entropic Rift grants you Shadowy Insight.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -9988,8 +9988,8 @@
             "spellId": 8701,
             "category": "Other",
             "description": {
-                "text": "(varies by condition — check in-game)",
-                "uncertain": true
+                "text": "Increases Shadowy Apparition damage by 10%.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -10108,8 +10108,8 @@
             "spellId": 8601,
             "category": "Other",
             "description": {
-                "text": "Your healing spells and Smite have a 8% chance to make your next (varies by condition — check in-game) or Prayer of Healing instant and cost 50% less mana. Stacks to 2.",
-                "uncertain": true
+                "text": "Your healing spells and Smite have a 8% chance to make your next Flash Heal or Prayer of Healing instant and cost 50% less mana. Stacks to 2.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -10122,8 +10122,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game)",
-                            "uncertain": true
+                            "text": "Shadow Word: Death damage increased by 25% and its cooldown is reduced by 3 sec.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -10202,8 +10202,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game)",
-                            "uncertain": true
+                            "text": "Increases Shadowy Apparition damage by 10%.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -10667,8 +10667,8 @@
             "spellId": 8615,
             "category": "Other",
             "description": {
-                "text": "While above 75% health, the cast time of your (varies by condition — check in-game) reduced by 5%.",
-                "uncertain": true
+                "text": "While above 75% health, the cast time of your Flash Heal is reduced by 5%.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -10774,8 +10774,8 @@
             "spellId": 8484,
             "category": "Offensive",
             "description": {
-                "text": "Sends a blast of cosmic void energy at the enemy, causing 450,215 Shadow damage.(varies by condition — check in-game)",
-                "uncertain": true
+                "text": "Sends a blast of cosmic void energy at the enemy, causing 450,215 Shadow damage. Generates 0.1 Insanity.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -10882,8 +10882,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game)",
-                            "uncertain": true
+                            "text": "Void Blast generates 2 additional Insanity.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -10930,8 +10930,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game)",
-                            "uncertain": true
+                            "text": "Void Torrent deals 30% increased damage.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -10962,8 +10962,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Void Blast increases the duration of Entropic Rift by (varies by condition — check in-game) sec, up to a maximum of 3 sec.",
-                            "uncertain": true
+                            "text": "Void Blast increases the duration of Entropic Rift by 1 sec, up to a maximum of 3 sec.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -10978,8 +10978,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Entropic Rift upgrades (varies by condition — check in-game) into Void Blast while it is active. (varies by condition — check in-game)",
-                            "uncertain": true
+                            "text": "Entropic Rift upgrades Mind Blast into Void Blast while it is active. Void Blast: Sends a blast of cosmic void energy at the enemy, causing 450,215 Shadow damage. Generates 0.1 Insanity.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -11586,8 +11586,8 @@
             "spellId": 8727,
             "category": "Other",
             "description": {
-                "text": "Summoning an Entropic Rift (varies by condition — check in-game).",
-                "uncertain": true
+                "text": "Summoning an Entropic Rift grants you Shadowy Insight.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -11616,8 +11616,8 @@
             "spellId": 8729,
             "category": "Other",
             "description": {
-                "text": "(varies by condition — check in-game)",
-                "uncertain": true
+                "text": "Void Blast generates 2 additional Insanity.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -11736,7 +11736,7 @@
             "spellId": 8721,
             "category": "Offensive",
             "description": {
-                "text": "Channel a torrent of void energy into the target, dealing (varies) Shadow damage over 3 and tearing open an Entropic Rift. Entropic Rift (varies by condition — check in-game) that follows the enemy for 8. Enemies caught in its path suffer 30 Shadow damage every 1 sec while within its reach. Generates 24 Insanity over the duration.",
+                "text": "Channel a torrent of void energy into the target, dealing (varies) Shadow damage over 3 and tearing open an Entropic Rift. Entropic Rift Tear open a rift that follows the enemy for 8. Enemies caught in its path suffer 30 Shadow damage every 1 sec while within its reach. Generates 24 Insanity over the duration.",
                 "uncertain": true
             },
             "formulaModifierSpellIds": [],
@@ -11796,8 +11796,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game)While Entropic Rift is active, you move 20% faster.",
-                            "uncertain": true
+                            "text": "Void Torrent can be used while moving. While Entropic Rift is active, you move 20% faster.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -11844,8 +11844,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game)",
-                            "uncertain": true
+                            "text": "Void Torrent deals 30% increased damage.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -12157,8 +12157,8 @@
                         "modifier_value": -4,
                         "modifier_unit": "seconds",
                         "description": {
-                            "text": "(varies by condition — check in-game)",
-                            "uncertain": true
+                            "text": "Void Volley deals 5% increased damage and Shadow Word: Madness casts during Voidform unleash a Void Volley at your target at 25% effectiveness.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -12298,7 +12298,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Voidform sends out slow-moving bolts of Shadow energy at random locations every 0.5 sec for 3 sec, dealing 289 Shadow damage to all targets within 8 yds, and causing them to flee in Horror for 2 sec.",
+                            "text": "Voidform sends out slow-moving bolts of Shadow energy at random locations every 0.5 sec for 3 sec, dealing 287 Shadow damage to all targets within 8 yds, and causing them to flee in Horror for 2 sec.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -12461,8 +12461,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game)",
-                            "uncertain": true
+                            "text": "Void Volley deals 5% increased damage and Shadow Word: Madness casts during Voidform unleash a Void Volley at your target at 25% effectiveness.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -12530,8 +12530,8 @@
             "spellId": 8725,
             "category": "Offensive",
             "description": {
-                "text": "While Entropic Rift is active, your (varies by condition — check in-game).",
-                "uncertain": true
+                "text": "While Entropic Rift is active, your Shadow damage is increased by 5%.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {

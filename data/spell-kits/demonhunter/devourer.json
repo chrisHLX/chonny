@@ -1,6 +1,6 @@
 {
-    "generatedAt": "2026-10-18T02:36:19+00:00",
-    "spellCacheVersion": 29,
+    "generatedAt": "2026-11-03T23:04:06+00:00",
+    "spellCacheVersion": 31,
     "codeFingerprint": "dev",
     "entries": [
         {
@@ -67,8 +67,8 @@
             "spellId": 1764,
             "category": "Other",
             "description": {
-                "text": "(varies by condition — check in-game)",
-                "uncertain": true
+                "text": "Soul Immolation grants 5 additional Fury over its duration.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -216,8 +216,8 @@
                         "modifier_value": 1,
                         "modifier_unit": "charges",
                         "description": {
-                            "text": "(varies by condition — check in-game) gains 1 additional charge.",
-                            "uncertain": true
+                            "text": "Blur gains 1 additional charge.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -395,8 +395,8 @@
             "spellId": 1797,
             "category": "Utility",
             "description": {
-                "text": "(varies by condition — check in-game) removes 1 Disease effect.",
-                "uncertain": true
+                "text": "Soul Immolation removes 1 Disease effect.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -603,8 +603,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "The primary target of (varies by condition — check in-game) is stunned for an additional 2 sec.",
-                            "uncertain": true
+                            "text": "The primary target of Void Nova is stunned for an additional 2 sec.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -785,8 +785,8 @@
                         },
                         "category": "Offensive",
                         "cooldown": {
-                            "seconds": 5,
-                            "base_seconds": 5,
+                            "seconds": null,
+                            "base_seconds": null,
                             "applied": []
                         }
                     },
@@ -858,13 +858,29 @@
                 "baseline": [],
                 "potential": [
                     {
+                        "spellId": 13681,
+                        "relationship_type": "modifies",
+                        "modifier_value": null,
+                        "modifier_unit": null,
+                        "description": {
+                            "text": "Channel an immense amount of void energy into a single, cataclysmic blast, critically striking for ≈2,551% of Spell Power Cosmic damage to your target and ≈1,275.5% of Spell Power Cosmic damage to all nearby enemies. Damage reduced beyond 10 targets. While casting Collapsing Star, your Fury drain is significantly reduced. Generates 3 Soul Fragments.",
+                            "uncertain": false
+                        },
+                        "category": "Offensive",
+                        "cooldown": {
+                            "seconds": null,
+                            "base_seconds": null,
+                            "applied": []
+                        }
+                    },
+                    {
                         "spellId": 1582,
                         "relationship_type": "mentions",
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Intellect increased by 15% while not in demon form.(varies by condition — check in-game)",
-                            "uncertain": true
+                            "text": "Intellect increased by 10% while not in demon form. Collapsing Star damage increased by 10%.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -879,8 +895,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Intellect increased by 15% while not in demon form.(varies by condition — check in-game)",
-                            "uncertain": true
+                            "text": "Intellect increased by 10% while not in demon form. Collapsing Star damage increased by 15%.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -900,8 +916,8 @@
                         },
                         "category": "Offensive",
                         "cooldown": {
-                            "seconds": 5,
-                            "base_seconds": 5,
+                            "seconds": null,
+                            "base_seconds": null,
                             "applied": []
                         }
                     },
@@ -916,8 +932,8 @@
                         },
                         "category": "Offensive",
                         "cooldown": {
-                            "seconds": 5,
-                            "base_seconds": 5,
+                            "seconds": null,
+                            "base_seconds": null,
                             "applied": []
                         }
                     },
@@ -1007,8 +1023,24 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Intellect increased by 15% while not in demon form.(varies by condition — check in-game)",
-                            "uncertain": true
+                            "text": "Intellect increased by 10% while not in demon form. Collapsing Star damage increased by 20%.",
+                            "uncertain": false
+                        },
+                        "category": "Other",
+                        "cooldown": {
+                            "seconds": null,
+                            "base_seconds": null,
+                            "applied": []
+                        }
+                    },
+                    {
+                        "spellId": 1942,
+                        "relationship_type": "mentions",
+                        "modifier_value": null,
+                        "modifier_unit": null,
+                        "description": {
+                            "text": "Void Metamorphosis greatly empowers The Hunt and casting Collapsing Star resets its cooldown. Voidsurge damage is increased by 10% for each time it previously triggered while your demon form is active.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -1032,13 +1064,29 @@
                             "base_seconds": null,
                             "applied": []
                         }
+                    },
+                    {
+                        "spellId": 13682,
+                        "relationship_type": "mentions",
+                        "modifier_value": null,
+                        "modifier_unit": null,
+                        "description": {
+                            "text": "Channel an immense amount of void energy into a single, cataclysmic blast, critically striking for ≈2,551% of Spell Power Cosmic damage to your target and ≈1,275.5% of Spell Power Cosmic damage to all nearby enemies. Damage reduced beyond 4,950 targets. While casting Collapsing Star, your Fury drain is significantly reduced. Generates 3 Soul Fragments.",
+                            "uncertain": false
+                        },
+                        "category": "Offensive",
+                        "cooldown": {
+                            "seconds": null,
+                            "base_seconds": null,
+                            "applied": []
+                        }
                     }
                 ]
             },
             "hasPotentialImprovement": true,
             "cooldown": {
-                "seconds": 5,
-                "base_seconds": 5,
+                "seconds": null,
+                "base_seconds": null,
                 "applied": []
             },
             "charges": {
@@ -1123,7 +1171,7 @@
             "spellId": 1422,
             "category": "Other",
             "description": {
-                "text": "The radius of Darkness is increased by 4 yds, and its duration by 2 sec.",
+                "text": "The radius of Darkness is increased by 4 yds, and its duration by 4 sec.",
                 "uncertain": false
             },
             "formulaModifierSpellIds": [],
@@ -1422,7 +1470,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "The radius of Darkness is increased by 4 yds, and its duration by 2 sec.",
+                            "text": "The radius of Darkness is increased by 4 yds, and its duration by 4 sec.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -1609,7 +1657,7 @@
             "spellId": 1942,
             "category": "Other",
             "description": {
-                "text": "Activating Void Metamorphosis greatly empowers The Hunt. Voidsurge damage is increased by 10% for each time it previously triggered while your demon form is active.",
+                "text": "Void Metamorphosis greatly empowers The Hunt and casting Collapsing Star resets its cooldown. Voidsurge damage is increased by 10% for each time it previously triggered while your demon form is active.",
                 "uncertain": false
             },
             "formulaModifierSpellIds": [],
@@ -1639,8 +1687,8 @@
             "spellId": 1796,
             "category": "Other",
             "description": {
-                "text": "(varies by condition — check in-game) gains 1 additional charge.",
-                "uncertain": true
+                "text": "Blur gains 1 additional charge.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -2051,7 +2099,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Activating Void Metamorphosis greatly empowers The Hunt. Voidsurge damage is increased by 10% for each time it previously triggered while your demon form is active.",
+                            "text": "Void Metamorphosis greatly empowers The Hunt and casting Collapsing Star resets its cooldown. Voidsurge damage is increased by 10% for each time it previously triggered while your demon form is active.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -3177,7 +3225,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Hungering Slash and Voidblade's critical strike chance is increased by 15%.",
+                            "text": "Hungering Slash and Voidblade's critical strike chance is increased by 18%.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -3525,8 +3573,8 @@
             "spellId": 1795,
             "category": "Other",
             "description": {
-                "text": "The primary target of (varies by condition — check in-game) is stunned for an additional 2 sec.",
-                "uncertain": true
+                "text": "The primary target of Void Nova is stunned for an additional 2 sec.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -3860,7 +3908,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Hungering Slash and Voidblade's critical strike chance is increased by 15%.",
+                            "text": "Hungering Slash and Voidblade's critical strike chance is increased by 18%.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -4554,8 +4602,8 @@
             "spellId": 1771,
             "category": "Offensive",
             "description": {
-                "text": "(varies by condition — check in-game) increases your armor by 20% and causes melee attackers to suffer ≈12% of Attack Power Chaos damage.",
-                "uncertain": true
+                "text": "Soul Immolation increases your armor by 20% and causes melee attackers to suffer ≈12% of Attack Power Chaos damage.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -4764,8 +4812,8 @@
             "spellId": 1915,
             "category": "Other",
             "description": {
-                "text": "While at 3 stacks of Voidfall, (varies by condition — check in-game) consumes all 3 to rapidly call down that many meteor strikes.",
-                "uncertain": true
+                "text": "While at 3 stacks of Voidfall, Reap consumes all 3 to rapidly call down that many meteor strikes.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -4794,8 +4842,8 @@
             "spellId": 1914,
             "category": "Other",
             "description": {
-                "text": "(varies by condition — check in-game) damage increased by 15%. (varies by condition — check in-game) generates (varies by condition — check in-game).",
-                "uncertain": true
+                "text": "Void Ray damage increased by 15%. Fully channeling Void Ray generates 1 stack of Voidfall.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -4901,8 +4949,8 @@
             "spellId": 1941,
             "category": "Other",
             "description": {
-                "text": "Intellect increased by 15% while not in demon form.(varies by condition — check in-game)",
-                "uncertain": true
+                "text": "Intellect increased by 10% while not in demon form. Collapsing Star damage increased by 20%.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -5081,7 +5129,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Hungering Slash and Voidblade's critical strike chance is increased by 15%.",
+                            "text": "Hungering Slash and Voidblade's critical strike chance is increased by 18%.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -5289,7 +5337,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Entering Void Metamorphosis resets the cooldown of Voidblade and The Hunt. The Hunt deals 25% increased damage and resets the cooldown of Soul Immolation.",
+                            "text": "Entering Void Metamorphosis resets the cooldown of Voidblade and Soul Immolation.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -5356,7 +5404,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Charge to your target, striking them for ≈455% of Attack Power Chaos damage, rooting them in place for 1.5 and inflicting ≈227.7% of Attack Power Chaos damage over 6 to up to 50 enemies in your path. The pursuit invigorates your soul, healing you for (varies by condition — check in-game) of the damage you deal to your Hunt target for 30.",
+                            "text": "Charge to your target, striking them for ≈455% of Attack Power Chaos damage, rooting them in place for 1.5 and inflicting ≈227.7% of Attack Power Chaos damage over 6 to up to 50 enemies in your path. The pursuit invigorates your soul, healing you for 50% of the damage you deal to your Hunt target for 30.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -6208,8 +6256,8 @@
             "spellId": 1803,
             "category": "Utility",
             "description": {
-                "text": "(varies by condition — check in-game) removes 1 Curse effect.",
-                "uncertain": true
+                "text": "Soul Immolation removes 1 Curse effect.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -6351,8 +6399,8 @@
                         },
                         "category": "Offensive",
                         "cooldown": {
-                            "seconds": 5,
-                            "base_seconds": 5,
+                            "seconds": null,
+                            "base_seconds": null,
                             "applied": []
                         }
                     },
@@ -6823,8 +6871,8 @@
                         },
                         "category": "Offensive",
                         "cooldown": {
-                            "seconds": 5,
-                            "base_seconds": 5,
+                            "seconds": null,
+                            "base_seconds": null,
                             "applied": []
                         }
                     },
@@ -6898,8 +6946,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game) damage increased by 15%. (varies by condition — check in-game) generates (varies by condition — check in-game).",
-                            "uncertain": true
+                            "text": "Void Ray damage increased by 15%. Fully channeling Void Ray generates 1 stack of Voidfall.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -6989,8 +7037,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game) increases your armor by 20% and causes melee attackers to suffer ≈12% of Attack Power Chaos damage.",
-                            "uncertain": true
+                            "text": "Soul Immolation increases your armor by 20% and causes melee attackers to suffer ≈12% of Attack Power Chaos damage.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -7037,8 +7085,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game) increases your armor by 20% and causes melee attackers to suffer ≈12% of Attack Power Chaos damage.",
-                            "uncertain": true
+                            "text": "Soul Immolation increases your armor by 20% and causes melee attackers to suffer ≈12% of Attack Power Chaos damage.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -7053,8 +7101,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game) removes 1 Curse effect.",
-                            "uncertain": true
+                            "text": "Soul Immolation removes 1 Curse effect.",
+                            "uncertain": false
                         },
                         "category": "Utility",
                         "cooldown": {
@@ -7069,8 +7117,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game)",
-                            "uncertain": true
+                            "text": "Soul Immolation grants 5 additional Fury over its duration.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -7085,8 +7133,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game) removes 1 Curse effect.",
-                            "uncertain": true
+                            "text": "Soul Immolation removes 1 Curse effect.",
+                            "uncertain": false
                         },
                         "category": "Utility",
                         "cooldown": {
@@ -7169,8 +7217,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game) removes 1 Disease effect.",
-                            "uncertain": true
+                            "text": "Soul Immolation removes 1 Disease effect.",
+                            "uncertain": false
                         },
                         "category": "Utility",
                         "cooldown": {
@@ -7185,8 +7233,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game) removes 1 Disease effect.",
-                            "uncertain": true
+                            "text": "Soul Immolation removes 1 Disease effect.",
+                            "uncertain": false
                         },
                         "category": "Utility",
                         "cooldown": {
@@ -7201,7 +7249,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Entering Void Metamorphosis resets the cooldown of Voidblade and The Hunt. The Hunt deals 25% increased damage and resets the cooldown of Soul Immolation.",
+                            "text": "Entering Void Metamorphosis resets the cooldown of Voidblade and Soul Immolation.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -7517,7 +7565,7 @@
             "spellId": 1844,
             "category": "Other",
             "description": {
-                "text": "Hungering Slash and Voidblade's critical strike chance is increased by 15%.",
+                "text": "Hungering Slash and Voidblade's critical strike chance is increased by 18%.",
                 "uncertain": false
             },
             "formulaModifierSpellIds": [],
@@ -8196,7 +8244,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Entering Void Metamorphosis resets the cooldown of Voidblade and The Hunt. The Hunt deals 25% increased damage and resets the cooldown of Soul Immolation.",
+                            "text": "Entering Void Metamorphosis resets the cooldown of Voidblade and Soul Immolation.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -8228,7 +8276,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Activating Void Metamorphosis greatly empowers The Hunt. Voidsurge damage is increased by 10% for each time it previously triggered while your demon form is active.",
+                            "text": "Void Metamorphosis greatly empowers The Hunt and casting Collapsing Star resets its cooldown. Voidsurge damage is increased by 10% for each time it previously triggered while your demon form is active.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -8265,7 +8313,7 @@
             "spellId": 1097,
             "category": "Offensive",
             "description": {
-                "text": "Throw a demonic glaive at the target, dealing ≈49.2% of Attack Power Physical damage. The glaive can ricochet to (varies by condition — check in-game) within 10 yards.",
+                "text": "Throw a demonic glaive at the target, dealing ≈49.2% of Attack Power Physical damage. The glaive can ricochet to 1 additional enemies within 10 yards.",
                 "uncertain": true
             },
             "formulaModifierSpellIds": [],
@@ -8676,8 +8724,8 @@
             "spellId": 1938,
             "category": "Other",
             "description": {
-                "text": "Maximum Fury increased by 20.(varies by condition — check in-game)",
-                "uncertain": true
+                "text": "Maximum Fury increased by 20. Void Ray damage increased by 15%.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -8836,7 +8884,7 @@
             "spellId": 1936,
             "category": "Other",
             "description": {
-                "text": "Entering Void Metamorphosis resets the cooldown of Voidblade and The Hunt. The Hunt deals 25% increased damage and resets the cooldown of Soul Immolation.",
+                "text": "Entering Void Metamorphosis resets the cooldown of Voidblade and Soul Immolation.",
                 "uncertain": false
             },
             "formulaModifierSpellIds": [],
@@ -8915,8 +8963,8 @@
                         },
                         "category": "Offensive",
                         "cooldown": {
-                            "seconds": 5,
-                            "base_seconds": 5,
+                            "seconds": null,
+                            "base_seconds": null,
                             "applied": []
                         }
                     },
@@ -8926,7 +8974,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Void Ray's cooldown during Void Metamorphosis is reduced by 2 sec.",
+                            "text": "Void Ray's cooldown during Void Metamorphosis is reduced by 2.5 sec.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -9062,8 +9110,8 @@
                         },
                         "category": "Offensive",
                         "cooldown": {
-                            "seconds": 5,
-                            "base_seconds": 5,
+                            "seconds": null,
+                            "base_seconds": null,
                             "applied": []
                         }
                     },
@@ -9185,7 +9233,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Entering Void Metamorphosis resets the cooldown of Voidblade and The Hunt. The Hunt deals 25% increased damage and resets the cooldown of Soul Immolation.",
+                            "text": "Entering Void Metamorphosis resets the cooldown of Voidblade and Soul Immolation.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -9246,8 +9294,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "The primary target of (varies by condition — check in-game) is stunned for an additional 2 sec.",
-                            "uncertain": true
+                            "text": "The primary target of Void Nova is stunned for an additional 2 sec.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -9328,10 +9376,10 @@
                     {
                         "spellId": 1829,
                         "relationship_type": "modifies_cooldown",
-                        "modifier_value": -2,
+                        "modifier_value": -2.5,
                         "modifier_unit": "seconds",
                         "description": {
-                            "text": "Void Ray's cooldown during Void Metamorphosis is reduced by 2 sec.",
+                            "text": "Void Ray's cooldown during Void Metamorphosis is reduced by 2.5 sec.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -9655,8 +9703,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game) damage increased by 15%. (varies by condition — check in-game) generates (varies by condition — check in-game).",
-                            "uncertain": true
+                            "text": "Void Ray damage increased by 15%. Fully channeling Void Ray generates 1 stack of Voidfall.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -9687,8 +9735,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Maximum Fury increased by 20.(varies by condition — check in-game)",
-                            "uncertain": true
+                            "text": "Maximum Fury increased by 20. Void Ray damage increased by 15%.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -9796,7 +9844,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Hungering Slash and Voidblade's critical strike chance is increased by 15%.",
+                            "text": "Hungering Slash and Voidblade's critical strike chance is increased by 18%.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -10311,7 +10359,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Entering Void Metamorphosis resets the cooldown of Voidblade and The Hunt. The Hunt deals 25% increased damage and resets the cooldown of Soul Immolation.",
+                            "text": "Entering Void Metamorphosis resets the cooldown of Voidblade and Soul Immolation.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -10506,8 +10554,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game) damage increased by 15%. (varies by condition — check in-game) generates (varies by condition — check in-game).",
-                            "uncertain": true
+                            "text": "Void Ray damage increased by 15%. Fully channeling Void Ray generates 1 stack of Voidfall.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -10522,8 +10570,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "While at 3 stacks of Voidfall, (varies by condition — check in-game) consumes all 3 to rapidly call down that many meteor strikes.",
-                            "uncertain": true
+                            "text": "While at 3 stacks of Voidfall, Reap consumes all 3 to rapidly call down that many meteor strikes.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -10745,7 +10793,7 @@
             "spellId": 1829,
             "category": "Other",
             "description": {
-                "text": "Void Ray's cooldown during Void Metamorphosis is reduced by 2 sec.",
+                "text": "Void Ray's cooldown during Void Metamorphosis is reduced by 2.5 sec.",
                 "uncertain": false
             },
             "formulaModifierSpellIds": [],
@@ -10895,8 +10943,8 @@
             "spellId": 1930,
             "category": "Offensive",
             "description": {
-                "text": "(varies by condition — check in-game) Nova slows enemies by 60% and reduces attack and cast speed by 15% for 5 after its stun fades.",
-                "uncertain": true
+                "text": "Void Nova slows enemies by 60% and reduces attack and cast speed by 15% for 5 after its stun fades.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {

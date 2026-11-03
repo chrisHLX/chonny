@@ -1,5 +1,5 @@
 # Demon Hunter — Void-Scarred Hero Talents
-# Extracted verbatim from demonhunter.txt (SimulationCraft 1210-01 for World of Warcraft 12.1.0.69933 Live)
+# Extracted verbatim from demonhunter.txt (SimulationCraft 1210-01 for World of Warcraft 12.1.5.70688 Live)
 # 17 spell record(s). Mechanical regroup only — no content altered.
 
 Name             : Demonsurge (id=452402) [Spell Family (107), Passive] 
@@ -178,9 +178,7 @@ Effects          :
                    Base Value: 25 | Scaled Value: 25 | Misc Value: 22 | Target: Self (1)
                    Affected Spells: The Hunt (345335), The Hunt (370969), The Hunt (1246168)
                    Family Flags: 87
-Description      : $?a212612[When you activate Metamorphosis, reset the cooldown of Immolation Aura][Entering Void Metamorphosis resets the cooldown of Voidblade and The Hunt.
-
-The Hunt deals $s2% increased damage and resets the cooldown of Soul Immolation].
+Description      : $?a212612[When you activate Metamorphosis, reset the cooldown of Immolation Aura][Entering Void Metamorphosis resets the cooldown of Voidblade and Soul Immolation].
 
 Name             : Enduring Torment (id=452410) [Spell Family (107), Passive] 
 Talent Entry     : Fel-Scarred (Havoc, Devourer) [tree=hero, row=3, col=4, max_rank=1, req_points=1]
@@ -291,7 +289,7 @@ Effects          :
 #1 (id=1153558)  : Apply Aura (6) | Periodic Dummy (226): every 1 seconds
                    Base Value: 5 | Scaled Value: 5 | Target: Self (1)
 #2 (id=1311836)  : Apply Aura (6) | Add Percent Modifier (108): Spell Direct Amount (0)
-                   Base Value: 15 | Scaled Value: 15 | Target: Self (1)
+                   Base Value: 20 | Scaled Value: 20 | Target: Self (1)
                    Affected Spells: Collapsing Star (1221162)
                    Family Flags: 103
 Description      : $?a212612[Agility][Intellect] increased by $?a212612[$452550s1][$452550s2]% while not in demon form.$?c3[
@@ -312,7 +310,9 @@ Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355
 Effects          :
 #1 (id=1153559)  : Apply Aura (6) | Dummy (4)
                    Base Value: 2 | Scaled Value: 2 | Target: Self (1)
-Description      : Activating $?a212612[][Void ]Metamorphosis greatly empowers $?a212612[Eye Beam, Immolation Aura][The Hunt].
+#2 (id=1352783)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 30 | Scaled Value: 30 | Target: Self (1)
+Description      : $?a212612[Activating ][Void ]Metamorphosis greatly empowers $?a212612[Eye Beam and Immolation Aura][The Hunt and casting Collapsing Star resets its cooldown].
 
 $?a212612[Demonsurge][Voidsurge] damage is increased by $?a212612[${$452416s2}][${$1246160s2}]% for each time it previously triggered while your demon form is active.
 

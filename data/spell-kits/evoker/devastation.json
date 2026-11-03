@@ -1,6 +1,6 @@
 {
-    "generatedAt": "2026-10-18T02:36:16+00:00",
-    "spellCacheVersion": 29,
+    "generatedAt": "2026-11-03T23:04:03+00:00",
+    "spellCacheVersion": 31,
     "codeFingerprint": "dev",
     "entries": [
         {
@@ -408,8 +408,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "For each second you are in combat, Azure Strike, Living Flame, and (varies by condition — check in-game) deal 1% increased damage, up to 50%.",
-                            "uncertain": true
+                            "text": "For each second you are in combat, Azure Strike, Living Flame, and Disintegrate deal 1% increased damage, up to 50%.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -648,8 +648,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "For each second you are in combat, Azure Strike, Living Flame, and (varies by condition — check in-game) deal 1% increased damage, up to 50%.",
-                            "uncertain": true
+                            "text": "For each second you are in combat, Azure Strike, Living Flame, and Disintegrate deal 1% increased damage, up to 50%.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -711,7 +711,7 @@
             "spellId": 3756,
             "category": "Offensive",
             "description": {
-                "text": "(varies by condition — check in-game) marks your primary target for destruction for the next 6. You and your allies have a chance to trigger a Bombardment when attacking marked targets, dealing (varies) Volcanic damage split amongst all nearby enemies.",
+                "text": "Mass Disintegrate marks your primary target for destruction for the next 6. You and your allies have a chance to trigger a Bombardment when attacking marked targets, dealing (varies) Volcanic damage split amongst all nearby enemies.",
                 "uncertain": true
             },
             "formulaModifierSpellIds": [
@@ -773,8 +773,8 @@
             "spellId": 3739,
             "category": "Other",
             "description": {
-                "text": "Fire Breath (varies by condition — check in-game) maximum empower level 20% faster.",
-                "uncertain": true
+                "text": "Fire Breath reaches its maximum empower level 20% faster.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -1064,8 +1064,8 @@
             "spellId": 3771,
             "category": "Other",
             "description": {
-                "text": "(varies by condition — check in-game) strikes 1 additional target.",
-                "uncertain": true
+                "text": "Mass Disintegrate strikes 1 additional target.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -1141,8 +1141,8 @@
             "spellId": 3740,
             "category": "Offensive",
             "description": {
-                "text": "(varies by condition — check in-game)",
-                "uncertain": true
+                "text": "Disintegrate consumes 1 sec of Fire Breath from enemies it damages, detonating it for 150% of the amount consumed. Pyre consumes 4 sec of Fire Breath from enemies it damages, detonating it for 115% of the amount consumed.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -1421,8 +1421,8 @@
             "spellId": 3750,
             "category": "Other",
             "description": {
-                "text": "Fire Breath's damage over time lasts 4 sec longer.(varies by condition — check in-game)",
-                "uncertain": true
+                "text": "Fire Breath's damage over time lasts 4 sec longer.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -1463,8 +1463,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Disintegrate channels 20% faster(varies by condition — check in-game).",
-                            "uncertain": true
+                            "text": "Disintegrate channels 20% faster.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -1707,8 +1707,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "For each second you are in combat, Azure Strike, Living Flame, and (varies by condition — check in-game) deal 1% increased damage, up to 50%.",
-                            "uncertain": true
+                            "text": "For each second you are in combat, Azure Strike, Living Flame, and Disintegrate deal 1% increased damage, up to 50%.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -2124,8 +2124,8 @@
             "spellId": 3754,
             "category": "Other",
             "description": {
-                "text": "(varies by condition — check in-game) a 50% chance to generate Essence Burst.",
-                "uncertain": true
+                "text": "Fire Breath has a 50% chance to generate Essence Burst.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -2558,8 +2558,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Fire Breath (varies by condition — check in-game) maximum empower level 20% faster.",
-                            "uncertain": true
+                            "text": "Fire Breath reaches its maximum empower level 20% faster.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -2574,8 +2574,8 @@
                         "modifier_value": 1,
                         "modifier_unit": "charges",
                         "description": {
-                            "text": "(varies by condition — check in-game) an additional charge.",
-                            "uncertain": true
+                            "text": "Fire Breath gains an additional charge.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -2747,8 +2747,8 @@
             "spellId": 3748,
             "category": "Other",
             "description": {
-                "text": "(varies by condition — check in-game) 15% more often.",
-                "uncertain": true
+                "text": "Fire Breath deals its damage 15% more often.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -3062,8 +3062,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game) travel 40% faster, and Hover travels 40% further.",
-                            "uncertain": true
+                            "text": "Hover and Deep Breath travel 40% faster, and Hover travels 40% further.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -3472,8 +3472,8 @@
             "spellId": 3749,
             "category": "Other",
             "description": {
-                "text": "(varies by condition — check in-game) an additional charge.",
-                "uncertain": true
+                "text": "Fire Breath gains an additional charge.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -3532,8 +3532,8 @@
             "spellId": 3271,
             "category": "Defensive",
             "description": {
-                "text": "Send a flickering flame towards your target, (varies by condition — check in-game)",
-                "uncertain": true
+                "text": "Send a flickering flame towards your target, dealing 1.6 Fire damage to an enemy or healing an ally for 1.6.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -3739,8 +3739,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "For each second you are in combat, Azure Strike, Living Flame, and (varies by condition — check in-game) deal 1% increased damage, up to 50%.",
-                            "uncertain": true
+                            "text": "For each second you are in combat, Azure Strike, Living Flame, and Disintegrate deal 1% increased damage, up to 50%.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -3787,8 +3787,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Living Flame (varies by condition — check in-game)",
-                            "uncertain": true
+                            "text": "Living Flame and Azure Strike have 1 extra chance to trigger Essence Burst when they critically strike.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -3819,8 +3819,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "For each second you are in combat, Azure Strike, Living Flame, and (varies by condition — check in-game) deal 1% increased damage, up to 15%.",
-                            "uncertain": true
+                            "text": "For each second you are in combat, Azure Strike, Living Flame, and Disintegrate deal 1% increased damage, up to 15%.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -3882,7 +3882,7 @@
             "spellId": 3755,
             "category": "Other",
             "description": {
-                "text": "Deep Breath can now be steered in your desired direction. In addition, Deep Breath burns targets for ≈840% of Spell Power Volcanic damage over 12.(varies by condition — check in-game)",
+                "text": "Deep Breath can now be steered in your desired direction. In addition, Deep Breath burns targets for ≈840% of Spell Power Volcanic damage over 12. The duration of this effect is extended when Deep Breath is cast multiple times.",
                 "uncertain": true
             },
             "formulaModifierSpellIds": [],
@@ -3926,8 +3926,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game) strikes 1 additional target.",
-                            "uncertain": true
+                            "text": "Mass Disintegrate strikes 1 additional target.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -3989,8 +3989,8 @@
             "spellId": 3759,
             "category": "Offensive",
             "description": {
-                "text": "Deep Breath causes enemies to take 20% increased damage from Bombardments and Essence abilities for 12.(varies by condition — check in-game)",
-                "uncertain": true
+                "text": "Deep Breath causes enemies to take 20% increased damage from Bombardments and Essence abilities for 12. The duration of this effect is extended when Deep Breath is cast multiple times.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -4096,8 +4096,8 @@
             "spellId": 3643,
             "category": "Other",
             "description": {
-                "text": "Disintegrate channels 20% faster(varies by condition — check in-game).",
-                "uncertain": true
+                "text": "Disintegrate channels 20% faster.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -6051,8 +6051,8 @@
             "spellId": 3746,
             "category": "Other",
             "description": {
-                "text": "Living Flame (varies by condition — check in-game)",
-                "uncertain": true
+                "text": "Living Flame and Azure Strike have 1 extra chance to trigger Essence Burst when they critically strike.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -6111,8 +6111,8 @@
             "spellId": 3744,
             "category": "Other",
             "description": {
-                "text": "(varies by condition — check in-game) travel 40% faster, and Hover travels 40% further.",
-                "uncertain": true
+                "text": "Hover and Deep Breath travel 40% faster, and Hover travels 40% further.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -6141,7 +6141,7 @@
             "spellId": 3618,
             "category": "Offensive",
             "description": {
-                "text": "Consuming Essence Burst fires a twin flame, (varies by condition — check in-game).",
+                "text": "Consuming Essence Burst fires a twin flame, striking your target for ≈144% of Spell Power Fire damage.",
                 "uncertain": true
             },
             "formulaModifierSpellIds": [],
@@ -6237,7 +6237,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Consuming Essence Burst fires a twin flame, (varies by condition — check in-game).",
+                            "text": "Consuming Essence Burst fires a twin flame, striking your target for ≈144% of Spell Power Fire damage.",
                             "uncertain": true
                         },
                         "category": "Defensive",
@@ -6253,7 +6253,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Consuming Essence Burst fires a twin flame, (varies by condition — check in-game).",
+                            "text": "Consuming Essence Burst fires a twin flame, striking your target for ≈144% of Spell Power Fire damage.",
                             "uncertain": true
                         },
                         "category": "Other",
@@ -6302,7 +6302,7 @@
             "spellId": 3752,
             "category": "Other",
             "description": {
-                "text": "Consuming Essence Burst fires a twin flame, (varies by condition — check in-game).",
+                "text": "Consuming Essence Burst fires a twin flame, striking your target for ≈144% of Spell Power Fire damage.",
                 "uncertain": true
             },
             "formulaModifierSpellIds": [],
@@ -6452,8 +6452,8 @@
             "spellId": 3766,
             "category": "Other",
             "description": {
-                "text": "For each second you are in combat, Azure Strike, Living Flame, and (varies by condition — check in-game) deal 1% increased damage, up to 15%.",
-                "uncertain": true
+                "text": "For each second you are in combat, Azure Strike, Living Flame, and Disintegrate deal 1% increased damage, up to 15%.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -6572,8 +6572,8 @@
             "spellId": 3762,
             "category": "Other",
             "description": {
-                "text": "(varies by condition — check in-game) reduces the remaining cooldown of (varies by condition — check in-game) by (varies by condition — check in-game) sec for each target struck.",
-                "uncertain": true
+                "text": "Mass Disintegrate reduces the remaining cooldown of Deep Breath by 1 sec for each target struck.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {

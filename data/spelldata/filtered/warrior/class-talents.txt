@@ -1,5 +1,5 @@
 # Warrior — Class Talents
-# Extracted verbatim from warrior.txt (SimulationCraft 1210-01 for World of Warcraft 12.1.0.69933 Live)
+# Extracted verbatim from warrior.txt (SimulationCraft 1210-01 for World of Warcraft 12.1.5.70688 Live)
 # 49 spell record(s). Mechanical regroup only — no content altered.
 
 Name             : Rend (id=772) [Spell Family (4)] 
@@ -142,7 +142,7 @@ Effects          :
 #1 (id=2307)     : Dummy (3)
                    Base Value: 0 | Scaled Value: 0 (delta=1) | Radius: 3 - 8 yards | Target: at Area (87)
 #2 (id=475719)   : Jump Charge (254)
-                   Base Value: 5 | Scaled Value: 5 | Misc Value: 17 | Target: at Area (87)
+                   Base Value: 5 | Scaled Value: 5 | Misc Value: 1912 | Target: at Area (87)
 Description      : Leap through the air toward a target location, slamming down with destructive force to deal $52174s1 Physical damage to all enemies within $52174a1 yards$?c3[ and resetting the remaining cooldown on Taunt][].
 Variables        : $base=${1+0.5*$AP}
 $damage=$?a2457[${1+0.5*$AP*1.1}][${$<base>}]
@@ -1137,7 +1137,7 @@ Family Flags     : 48
 Attributes       : Is Ability (4), Not Shapeshifted (16), Do Not Sheath (18), No Immunities (29), No Threat (42), Exclude Caster (51), Allow Low Level Buff (67), Only On Player (104), Vehicle Immunity Category (218), Allow Class Ability Procs (416), Prevent Jumping During Precast (448)
 Effects          :
 #1 (id=1244644)  : Charge to Destination (149)
-                   Base Value: 0 | Scaled Value: 0 | Misc Value 2: 50201 | Trigger Spell: 1244091 | Radius: 3 yards | Target: At Ally in Area (31)
+                   Base Value: 0 | Scaled Value: 0 | Misc Value 2: 190748 | Trigger Spell: 1244091 | Radius: 3 yards | Target: At Ally in Area (31)
 Description      : Run at high speed toward a target location near your allies, taking $1244091s1% of all damage dealt to allies within $a1 yards for $1244091d or until you take at least ${($1244091s3/100)*$MHP} damage from this effect.
 
 Name             : Fearless (id=1271925) [Spell Family (4), Passive] 

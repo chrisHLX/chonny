@@ -1,14 +1,14 @@
 {
-    "generatedAt": "2026-10-18T02:37:10+00:00",
-    "spellCacheVersion": 29,
+    "generatedAt": "2026-11-03T23:04:57+00:00",
+    "spellCacheVersion": 31,
     "codeFingerprint": "dev",
     "entries": [
         {
             "spellId": 7764,
             "category": "Defensive",
             "description": {
-                "text": "After (varies by condition — check in-game) successfully removes an effect from an ally, they are healed for ≈540% of Spell Power.",
-                "uncertain": true
+                "text": "After Cleanse Toxins successfully removes an effect from an ally, they are healed for ≈540% of Spell Power.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -125,8 +125,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game) increases healing taken by 15% for its duration.",
-                            "uncertain": true
+                            "text": "Ardent Defender increases healing taken by 15% for its duration.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -157,7 +157,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Melee and ranged attackers receive ≈35% of Spell Power Holy damage each time they strike you during (varies by condition — check in-game) and Divine Shield.",
+                            "text": "Melee and ranged attackers receive ≈35% of Spell Power Holy damage each time they strike you during Ardent Defender and Divine Shield.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -173,7 +173,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Melee and ranged attackers receive ≈35% of Spell Power Holy damage each time they strike you during (varies by condition — check in-game) and Divine Shield.",
+                            "text": "Melee and ranged attackers receive ≈35% of Spell Power Holy damage each time they strike you during Ardent Defender and Divine Shield.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -305,8 +305,8 @@
             "spellId": 7810,
             "category": "Other",
             "description": {
-                "text": "Successfully (varies by condition — check in-game) reduces (varies by condition — check in-game). Effect increased by 100% while wielding a Holy Armament.",
-                "uncertain": true
+                "text": "Successfully interrupting an enemy spellcast reduces Rebuke's cooldown by 1 sec. Effect increased by 100% while wielding a Holy Armament.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -347,8 +347,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Call upon the Light to become an avatar of retribution, (varies by condition — check in-game)increasing your damage, healing, and critical strike chance by 20% for 20.",
-                            "uncertain": true
+                            "text": "Call upon the Light to become an avatar of retribution, causing Judgment to generate 1 additional Holy Power, increasing your damage, healing, and critical strike chance by 20% for 20.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -459,7 +459,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Instantly cast Holy Shock, Avenger's Shield, or Judgment on up to 100 targets within (varies) yds (based on your current specialization).(varies by condition — check in-game)",
+                            "text": "Instantly cast Holy Shock, Avenger's Shield, or Judgment on up to 100 targets within (varies) yds (based on your current specialization).",
                             "uncertain": true
                         },
                         "category": "Other",
@@ -507,7 +507,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Instantly cast Holy Shock, Avenger's Shield, or Judgment on up to 60 targets within (varies) yds (based on your current specialization).(varies by condition — check in-game)",
+                            "text": "Instantly cast Holy Shock, Avenger's Shield, or Judgment on up to 60 targets within (varies) yds (based on your current specialization).",
                             "uncertain": true
                         },
                         "category": "Other",
@@ -635,8 +635,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Instantly cast Avenger's Shield on up to 5 targets within 30 yds.(varies by condition — check in-game)(varies by condition — check in-game)",
-                            "uncertain": true
+                            "text": "Instantly cast Avenger's Shield on up to 5 targets within 30 yds. Generates 1 Holy Power per target hit.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -996,8 +996,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "After casting Divine Toll, you instantly cast (varies by condition — check in-game) every 5 sec. This effect lasts 15 sec.",
-                            "uncertain": true
+                            "text": "After casting Divine Toll, you instantly cast Avenger's Shield every 5 sec. This effect lasts 15 sec.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -1012,8 +1012,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "After casting Divine Toll, you instantly cast (varies by condition — check in-game) every 5 sec. This effect lasts 15 sec.",
-                            "uncertain": true
+                            "text": "After casting Divine Toll, you instantly cast Avenger's Shield every 5 sec. This effect lasts 15 sec.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -1028,8 +1028,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "After casting Divine Toll, you instantly cast (varies by condition — check in-game) every 5 sec. This effect lasts 15 sec.",
-                            "uncertain": true
+                            "text": "After casting Divine Toll, you instantly cast Avenger's Shield every 5 sec. This effect lasts 15 sec.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -1044,8 +1044,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "After casting Divine Toll, you instantly cast (varies by condition — check in-game) every 5 sec. This effect lasts 15 sec.",
-                            "uncertain": true
+                            "text": "After casting Divine Toll, you instantly cast Avenger's Shield every 5 sec. This effect lasts 15 sec.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -1060,8 +1060,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "After casting Divine Toll, you instantly cast (varies by condition — check in-game) every 5 sec. This effect lasts 15 sec.",
-                            "uncertain": true
+                            "text": "After casting Divine Toll, you instantly cast Avenger's Shield every 5 sec. This effect lasts 15 sec.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -1108,8 +1108,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game)",
-                            "uncertain": true
+                            "text": "After casting Divine Toll, you instantly cast Avenger's Shield every 5 sec for 15 sec.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -1124,8 +1124,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game)",
-                            "uncertain": true
+                            "text": "After casting Divine Toll, you instantly cast Avenger's Shield every 5 sec for 15 sec.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -1140,8 +1140,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game)",
-                            "uncertain": true
+                            "text": "After casting Divine Toll, you instantly cast Avenger's Shield every 5 sec for 15 sec.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -1156,8 +1156,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "After casting(varies by condition — check in-game) Divine Toll, you instantly cast (varies by condition — check in-game) every 5 sec for 15 sec.",
-                            "uncertain": true
+                            "text": "After casting Divine Toll, you instantly cast Avenger's Shield every 5 sec for 15 sec.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -1172,8 +1172,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "After casting(varies by condition — check in-game) Divine Toll, you instantly cast (varies by condition — check in-game) every 5 sec for 15 sec.",
-                            "uncertain": true
+                            "text": "After casting Divine Toll, you instantly cast Avenger's Shield every 5 sec for 15 sec.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -1188,8 +1188,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "After casting(varies by condition — check in-game) Divine Toll, you instantly cast (varies by condition — check in-game) every 5 sec for 15 sec.",
-                            "uncertain": true
+                            "text": "After casting Divine Toll, you instantly cast Avenger's Shield every 5 sec for 15 sec.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -1204,8 +1204,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "After casting(varies by condition — check in-game) Divine Toll, you instantly cast (varies by condition — check in-game) every 5 sec for 15 sec.",
-                            "uncertain": true
+                            "text": "After casting Divine Toll, you instantly cast Avenger's Shield every 5 sec for 15 sec.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -1220,8 +1220,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "After casting(varies by condition — check in-game) Divine Toll, you instantly cast (varies by condition — check in-game) every 5 sec for 15 sec.",
-                            "uncertain": true
+                            "text": "After casting Divine Toll, you instantly cast Avenger's Shield every 5 sec for 15 sec.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -1252,8 +1252,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game)",
-                            "uncertain": true
+                            "text": "After casting Divine Toll, you instantly cast Avenger's Shield every 5 sec for 15 sec.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -1268,8 +1268,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game)",
-                            "uncertain": true
+                            "text": "After casting Divine Toll, you instantly cast Avenger's Shield every 5 sec for 15 sec.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -1284,8 +1284,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "After casting(varies by condition — check in-game) Divine Toll, you instantly cast (varies by condition — check in-game) every 5 sec for 15 sec.",
-                            "uncertain": true
+                            "text": "After casting Divine Toll, you instantly cast Avenger's Shield every 5 sec for 15 sec.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -1381,13 +1381,10 @@
             "spellId": 7834,
             "category": "Offensive",
             "description": {
-                "text": "Call upon the Light to become an avatar of retribution, (varies by condition — check in-game)increasing your damage, healing, and critical strike chance by 20% for 20.",
-                "uncertain": true
+                "text": "Call upon the Light to become an avatar of retribution, causing Judgment to generate 1 additional Holy Power, increasing your damage, healing, and critical strike chance by 20% for 20.",
+                "uncertain": false
             },
-            "formulaModifierSpellIds": [
-                97,
-                7011
-            ],
+            "formulaModifierSpellIds": [],
             "modifiers": {
                 "named": [
                     {
@@ -1396,8 +1393,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game)(varies by condition — check in-game)(varies by condition — check in-game)",
-                            "uncertain": true
+                            "text": "Avenging Wrath and Sentinel cause Judgment to generate 1 additional Holy Power, and have 25% increased duration.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -1560,8 +1557,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "During Avenging Wrath, Judgment is empowered into Hammer of Wrath.(varies by condition — check in-game)",
-                            "uncertain": true
+                            "text": "During Avenging Wrath, Judgment is empowered into Hammer of Wrath. Hammer of Wrath Hurls a divine hammer that strikes an enemy for ≈123.8% of Attack Power Holy damage. Generates 1 Holy Power.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -1576,8 +1573,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "During Avenging Wrath, Judgment is empowered into Hammer of Wrath.(varies by condition — check in-game)",
-                            "uncertain": true
+                            "text": "During Avenging Wrath, Judgment is empowered into Hammer of Wrath. Hammer of Wrath Hurls a divine hammer that strikes an enemy for ≈123.8% of Attack Power Holy damage. Generates 1 Holy Power.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -2167,8 +2164,8 @@
             "spellId": 7711,
             "category": "Defensive",
             "description": {
-                "text": "Blesses a party or raid member, granting immunity to Physical damage and harmful effects for 10. Cannot be used on a target with Forbearance. Causes Forbearance for 30.(varies by condition — check in-game)",
-                "uncertain": true
+                "text": "Blesses a party or raid member, granting immunity to Physical damage and harmful effects for 10. Cannot be used on a target with Forbearance. Causes Forbearance for 30. Shares a cooldown with Blessing of Spellwarding.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -2195,7 +2192,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Your Lay on Hands, Divine Shield, Blessing of Protection, and Blessing of Spellwarding have 15% reduced cooldown.",
+                            "text": "Your Lay on Hands, Divine Shield, and Blessing of Protection have 15% reduced cooldown.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -2211,8 +2208,8 @@
                         "modifier_value": -60,
                         "modifier_unit": "seconds",
                         "description": {
-                            "text": "Reduces the cooldown of Blessing of Protection(varies by condition — check in-game) by 60 sec.",
-                            "uncertain": true
+                            "text": "Reduces the cooldown of Blessing of Protection and Blessing of Spellwarding by 60 sec.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -2804,8 +2801,8 @@
                         "modifier_value": -60,
                         "modifier_unit": "seconds",
                         "description": {
-                            "text": "Reduces the cooldown of Blessing of Protection(varies by condition — check in-game) by 60 sec.",
-                            "uncertain": true
+                            "text": "Reduces the cooldown of Blessing of Protection and Blessing of Spellwarding by 60 sec.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -2820,7 +2817,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Your Lay on Hands, Divine Shield, Blessing of Protection, and Blessing of Spellwarding have 15% reduced cooldown.",
+                            "text": "Your Lay on Hands, Divine Shield, and Blessing of Protection have 15% reduced cooldown.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -2836,8 +2833,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Blesses a party or raid member, granting immunity to Physical damage and harmful effects for 10. Cannot be used on a target with Forbearance. Causes Forbearance for 30.(varies by condition — check in-game)",
-                            "uncertain": true
+                            "text": "Blesses a party or raid member, granting immunity to Physical damage and harmful effects for 10. Cannot be used on a target with Forbearance. Causes Forbearance for 30. Shares a cooldown with Blessing of Spellwarding.",
+                            "uncertain": false
                         },
                         "category": "Defensive",
                         "cooldown": {
@@ -3334,7 +3331,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "After (varies by condition — check in-game) successfully removes an effect from an ally, they are healed for (varies).",
+                            "text": "After Cleanse Toxins successfully removes an effect from an ally, they are healed for (varies).",
                             "uncertain": true
                         },
                         "category": "Defensive",
@@ -3350,8 +3347,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "After (varies by condition — check in-game) successfully removes an effect from an ally, they are healed for ≈540% of Spell Power.",
-                            "uncertain": true
+                            "text": "After Cleanse Toxins successfully removes an effect from an ally, they are healed for ≈540% of Spell Power.",
+                            "uncertain": false
                         },
                         "category": "Defensive",
                         "cooldown": {
@@ -4283,8 +4280,8 @@
             "spellId": 7734,
             "category": "Other",
             "description": {
-                "text": "(varies by condition — check in-game)",
-                "uncertain": true
+                "text": "After casting Divine Toll, you instantly cast Avenger's Shield every 5 sec for 15 sec.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -4657,8 +4654,8 @@
             "spellId": 7731,
             "category": "Other",
             "description": {
-                "text": "Instantly cast Avenger's Shield on up to 5 targets within 30 yds.(varies by condition — check in-game)(varies by condition — check in-game)",
-                "uncertain": true
+                "text": "Instantly cast Avenger's Shield on up to 5 targets within 30 yds. Generates 1 Holy Power per target hit.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -4669,8 +4666,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Call upon the Light to become an avatar of retribution, (varies by condition — check in-game)increasing your damage, healing, and critical strike chance by 20% for 20.",
-                            "uncertain": true
+                            "text": "Call upon the Light to become an avatar of retribution, causing Judgment to generate 1 additional Holy Power, increasing your damage, healing, and critical strike chance by 20% for 20.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -4717,8 +4714,8 @@
                         "modifier_value": -15,
                         "modifier_unit": "seconds",
                         "description": {
-                            "text": "(varies by condition — check in-game) cooldown is reduced by 15 sec.",
-                            "uncertain": true
+                            "text": "Divine Toll's cooldown is reduced by 15 sec.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -4749,7 +4746,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Instantly cast Holy Shock, Avenger's Shield, or Judgment on up to 100 targets within (varies) yds (based on your current specialization).(varies by condition — check in-game)",
+                            "text": "Instantly cast Holy Shock, Avenger's Shield, or Judgment on up to 100 targets within (varies) yds (based on your current specialization).",
                             "uncertain": true
                         },
                         "category": "Other",
@@ -4765,7 +4762,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Instantly cast Holy Shock, Avenger's Shield, or Judgment on up to 60 targets within (varies) yds (based on your current specialization).(varies by condition — check in-game)",
+                            "text": "Instantly cast Holy Shock, Avenger's Shield, or Judgment on up to 60 targets within (varies) yds (based on your current specialization).",
                             "uncertain": true
                         },
                         "category": "Other",
@@ -5089,8 +5086,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "After casting Divine Toll, you instantly cast (varies by condition — check in-game) every 5 sec. This effect lasts 15 sec.",
-                            "uncertain": true
+                            "text": "After casting Divine Toll, you instantly cast Avenger's Shield every 5 sec. This effect lasts 15 sec.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -5105,8 +5102,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "After casting Divine Toll, you instantly cast (varies by condition — check in-game) every 5 sec. This effect lasts 15 sec.",
-                            "uncertain": true
+                            "text": "After casting Divine Toll, you instantly cast Avenger's Shield every 5 sec. This effect lasts 15 sec.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -5121,8 +5118,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "After casting Divine Toll, you instantly cast (varies by condition — check in-game) every 5 sec. This effect lasts 15 sec.",
-                            "uncertain": true
+                            "text": "After casting Divine Toll, you instantly cast Avenger's Shield every 5 sec. This effect lasts 15 sec.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -5137,8 +5134,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "After casting Divine Toll, you instantly cast (varies by condition — check in-game) every 5 sec. This effect lasts 15 sec.",
-                            "uncertain": true
+                            "text": "After casting Divine Toll, you instantly cast Avenger's Shield every 5 sec. This effect lasts 15 sec.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -5153,8 +5150,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "After casting Divine Toll, you instantly cast (varies by condition — check in-game) every 5 sec. This effect lasts 15 sec.",
-                            "uncertain": true
+                            "text": "After casting Divine Toll, you instantly cast Avenger's Shield every 5 sec. This effect lasts 15 sec.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -5169,8 +5166,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game)",
-                            "uncertain": true
+                            "text": "After casting Divine Toll, you instantly cast Avenger's Shield every 5 sec for 15 sec.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -5185,8 +5182,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game)",
-                            "uncertain": true
+                            "text": "After casting Divine Toll, you instantly cast Avenger's Shield every 5 sec for 15 sec.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -5201,8 +5198,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game)",
-                            "uncertain": true
+                            "text": "After casting Divine Toll, you instantly cast Avenger's Shield every 5 sec for 15 sec.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -5217,8 +5214,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "After casting(varies by condition — check in-game) Divine Toll, you instantly cast (varies by condition — check in-game) every 5 sec for 15 sec.",
-                            "uncertain": true
+                            "text": "After casting Divine Toll, you instantly cast Avenger's Shield every 5 sec for 15 sec.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -5233,8 +5230,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "After casting(varies by condition — check in-game) Divine Toll, you instantly cast (varies by condition — check in-game) every 5 sec for 15 sec.",
-                            "uncertain": true
+                            "text": "After casting Divine Toll, you instantly cast Avenger's Shield every 5 sec for 15 sec.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -5249,8 +5246,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "After casting(varies by condition — check in-game) Divine Toll, you instantly cast (varies by condition — check in-game) every 5 sec for 15 sec.",
-                            "uncertain": true
+                            "text": "After casting Divine Toll, you instantly cast Avenger's Shield every 5 sec for 15 sec.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -5265,8 +5262,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "After casting(varies by condition — check in-game) Divine Toll, you instantly cast (varies by condition — check in-game) every 5 sec for 15 sec.",
-                            "uncertain": true
+                            "text": "After casting Divine Toll, you instantly cast Avenger's Shield every 5 sec for 15 sec.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -5281,8 +5278,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "After casting(varies by condition — check in-game) Divine Toll, you instantly cast (varies by condition — check in-game) every 5 sec for 15 sec.",
-                            "uncertain": true
+                            "text": "After casting Divine Toll, you instantly cast Avenger's Shield every 5 sec for 15 sec.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -5297,8 +5294,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game)",
-                            "uncertain": true
+                            "text": "After casting Divine Toll, you instantly cast Avenger's Shield every 5 sec for 15 sec.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -5313,8 +5310,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game)",
-                            "uncertain": true
+                            "text": "After casting Divine Toll, you instantly cast Avenger's Shield every 5 sec for 15 sec.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -5329,8 +5326,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "After casting(varies by condition — check in-game) Divine Toll, you instantly cast (varies by condition — check in-game) every 5 sec for 15 sec.",
-                            "uncertain": true
+                            "text": "After casting Divine Toll, you instantly cast Avenger's Shield every 5 sec for 15 sec.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -5345,8 +5342,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game) Hammer and Anvil at 100% effectiveness.",
-                            "uncertain": true
+                            "text": "Divine Toll activates Hammer and Anvil at 100% effectiveness.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -5595,7 +5592,7 @@
             "spellId": 7757,
             "category": "Offensive",
             "description": {
-                "text": "Melee and ranged attackers receive ≈35% of Spell Power Holy damage each time they strike you during (varies by condition — check in-game) and Divine Shield.",
+                "text": "Melee and ranged attackers receive ≈35% of Spell Power Holy damage each time they strike you during Ardent Defender and Divine Shield.",
                 "uncertain": true
             },
             "formulaModifierSpellIds": [],
@@ -5642,7 +5639,7 @@
             "spellId": 7751,
             "category": "Defensive",
             "description": {
-                "text": "(varies by condition — check in-game) grants 20% bonus armor for (varies).",
+                "text": "Shield of the Righteous grants 20% bonus armor for (varies).",
                 "uncertain": true
             },
             "formulaModifierSpellIds": [],
@@ -6073,8 +6070,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "When your Holy Bulwark absorbs damage or your Sacred Weapon deals damage or healing, you have a chance to gain (varies by condition — check in-game).",
-                            "uncertain": true
+                            "text": "When your Holy Bulwark absorbs damage or your Sacred Weapon deals damage or healing, you have a chance to gain Grand Crusader.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -6558,8 +6555,8 @@
             "spellId": 7808,
             "category": "Offensive",
             "description": {
-                "text": "Judgment critical strikes cause a shockwave around the target, (varies by condition — check in-game).",
-                "uncertain": true
+                "text": "Judgment critical strikes cause a shockwave around the target, dealing 100 damage to enemies within 5 yards. Damage reduced above 5 targets.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -6588,8 +6585,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game) Hammer and Anvil at 100% effectiveness.",
-                            "uncertain": true
+                            "text": "Divine Toll activates Hammer and Anvil at 100% effectiveness.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -6771,8 +6768,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Call upon the Light to become an avatar of retribution, (varies by condition — check in-game)increasing your damage, healing, and critical strike chance by 20% for 20.",
-                            "uncertain": true
+                            "text": "Call upon the Light to become an avatar of retribution, causing Judgment to generate 1 additional Holy Power, increasing your damage, healing, and critical strike chance by 20% for 20.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -7108,8 +7105,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Call upon the Light to become an avatar of retribution, (varies by condition — check in-game)increasing your damage, healing, and critical strike chance by 20% for 20.",
-                            "uncertain": true
+                            "text": "Call upon the Light to become an avatar of retribution, causing Judgment to generate 1 additional Holy Power, increasing your damage, healing, and critical strike chance by 20% for 20.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -7124,7 +7121,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Instantly cast Holy Shock, Avenger's Shield, or Judgment on up to 100 targets within (varies) yds (based on your current specialization).(varies by condition — check in-game)",
+                            "text": "Instantly cast Holy Shock, Avenger's Shield, or Judgment on up to 100 targets within (varies) yds (based on your current specialization).",
                             "uncertain": true
                         },
                         "category": "Other",
@@ -7432,8 +7429,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "During Avenging Wrath, Judgment is empowered into Hammer of Wrath.(varies by condition — check in-game)",
-                            "uncertain": true
+                            "text": "During Avenging Wrath, Judgment is empowered into Hammer of Wrath. Hammer of Wrath Hurls a divine hammer that strikes an enemy for ≈123.8% of Attack Power Holy damage. Generates 1 Holy Power.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -7448,8 +7445,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "During Avenging Wrath, Judgment is empowered into Hammer of Wrath.(varies by condition — check in-game)",
-                            "uncertain": true
+                            "text": "During Avenging Wrath, Judgment is empowered into Hammer of Wrath. Hammer of Wrath Hurls a divine hammer that strikes an enemy for ≈123.8% of Attack Power Holy damage. Generates 1 Holy Power.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -7728,8 +7725,8 @@
             "spellId": 7796,
             "category": "Defensive",
             "description": {
-                "text": "Will the Light to coalesce and become manifest as a Holy Armament, wielded by your friendly target. Holy Bulwark: While wielding a Holy Bulwark, gain an absorb shield for 15% of your max health and an additional 2% every 2 sec. Lasts 20. Becomes Sacred Weapon after use.(varies by condition — check in-game)",
-                "uncertain": true
+                "text": "Will the Light to coalesce and become manifest as a Holy Armament, wielded by your friendly target. Holy Bulwark: While wielding a Holy Bulwark, gain an absorb shield for 15% of your max health and an additional 2% every 2 sec. Lasts 20. Becomes Sacred Weapon after use.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -7740,8 +7737,8 @@
                         "modifier_value": -15,
                         "modifier_unit": "seconds",
                         "description": {
-                            "text": "(varies by condition — check in-game) cooldown is reduced by 15 sec.",
-                            "uncertain": true
+                            "text": "Divine Toll's cooldown is reduced by 15 sec.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -7775,8 +7772,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Will the Light to coalesce and become manifest as a Holy Armament, wielded by your target. Sacred Weapon: While wielding a Sacred Weapon, your spells and abilities have a chance to deal 33 additional Holy damage or healing to nearby targets. Effect is increased when Sacred Weapon strikes a single target, and reduced above 5. Lasts 20. Becomes Holy Bulwark after use.(varies by condition — check in-game)",
-                            "uncertain": true
+                            "text": "Will the Light to coalesce and become manifest as a Holy Armament, wielded by your target. Sacred Weapon: While wielding a Sacred Weapon, your spells and abilities have a chance to deal 33 additional Holy damage or healing to nearby targets. Effect is increased when Sacred Weapon strikes a single target, and reduced above 5. Lasts 20. Becomes Holy Bulwark after use.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -7956,8 +7953,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "When your Holy Bulwark absorbs damage or your Sacred Weapon deals damage or healing, you have a chance to gain (varies by condition — check in-game).",
-                            "uncertain": true
+                            "text": "When your Holy Bulwark absorbs damage or your Sacred Weapon deals damage or healing, you have a chance to gain Grand Crusader.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -8086,7 +8083,7 @@
             "spellId": 7974,
             "category": "Other",
             "description": {
-                "text": "Fires a beam of light that scatters to strike a clump of targets. \r\n\r\nIf the beam is aimed at an enemy target, it deals 2,433 Holy damage and radiates 2,649 healing to 5 allies within 30 yds.\r\n\r\nIf the beam is aimed at a friendly target, it heals for 5,998 and radiates 917 Holy damage to 5 enemies within 30 yds.\r\n\r\nGenerates 3 Holy Power.",
+                "text": "Fires a beam of light that scatters to strike a clump of targets. \r\n\r\nIf the beam is aimed at an enemy target, it deals 2,483 Holy damage and radiates 2,625 healing to 5 allies within 30 yds.\r\n\r\nIf the beam is aimed at a friendly target, it heals for 6,129 and radiates 919 Holy damage to 5 enemies within 30 yds.\r\n\r\nGenerates 3 Holy Power.",
                 "uncertain": false
             },
             "formulaModifierSpellIds": [],
@@ -8236,8 +8233,8 @@
             "spellId": 7736,
             "category": "Other",
             "description": {
-                "text": "Reduces the cooldown of Blessing of Protection(varies by condition — check in-game) by 60 sec.",
-                "uncertain": true
+                "text": "Reduces the cooldown of Blessing of Protection and Blessing of Spellwarding by 60 sec.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -8326,8 +8323,8 @@
             "spellId": 7767,
             "category": "Other",
             "description": {
-                "text": "(varies by condition — check in-game) increases healing taken by 15% for its duration.",
-                "uncertain": true
+                "text": "Ardent Defender increases healing taken by 15% for its duration.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -8398,8 +8395,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Call upon the Light to become an avatar of retribution, (varies by condition — check in-game)increasing your damage, healing, and critical strike chance by 20% for 20.",
-                            "uncertain": true
+                            "text": "Call upon the Light to become an avatar of retribution, causing Judgment to generate 1 additional Holy Power, increasing your damage, healing, and critical strike chance by 20% for 20.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -8414,7 +8411,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Instantly cast Holy Shock, Avenger's Shield, or Judgment on up to 100 targets within (varies) yds (based on your current specialization).(varies by condition — check in-game)",
+                            "text": "Instantly cast Holy Shock, Avenger's Shield, or Judgment on up to 100 targets within (varies) yds (based on your current specialization).",
                             "uncertain": true
                         },
                         "category": "Other",
@@ -8494,7 +8491,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Instantly cast Holy Shock, Avenger's Shield, or Judgment on up to 60 targets within (varies) yds (based on your current specialization).(varies by condition — check in-game)",
+                            "text": "Instantly cast Holy Shock, Avenger's Shield, or Judgment on up to 60 targets within (varies) yds (based on your current specialization).",
                             "uncertain": true
                         },
                         "category": "Other",
@@ -8622,8 +8619,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Instantly cast Avenger's Shield on up to 5 targets within 30 yds.(varies by condition — check in-game)(varies by condition — check in-game)",
-                            "uncertain": true
+                            "text": "Instantly cast Avenger's Shield on up to 5 targets within 30 yds. Generates 1 Holy Power per target hit.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -8723,8 +8720,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game)(varies by condition — check in-game)(varies by condition — check in-game)",
-                            "uncertain": true
+                            "text": "Avenging Wrath and Sentinel cause Judgment to generate 1 additional Holy Power, and have 25% increased duration.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -8967,8 +8964,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Call upon the Light to become an avatar of retribution, (varies by condition — check in-game)increasing your damage, healing, and critical strike chance by 20% for 20.",
-                            "uncertain": true
+                            "text": "Call upon the Light to become an avatar of retribution, causing Judgment to generate 1 additional Holy Power, increasing your damage, healing, and critical strike chance by 20% for 20.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -8983,8 +8980,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game)",
-                            "uncertain": true
+                            "text": "After casting Divine Toll, you instantly cast Avenger's Shield every 5 sec for 15 sec.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -8999,8 +8996,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game)",
-                            "uncertain": true
+                            "text": "After casting Divine Toll, you instantly cast Avenger's Shield every 5 sec for 15 sec.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -9015,8 +9012,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game)",
-                            "uncertain": true
+                            "text": "After casting Divine Toll, you instantly cast Avenger's Shield every 5 sec for 15 sec.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -9063,8 +9060,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "After casting(varies by condition — check in-game) Divine Toll, you instantly cast (varies by condition — check in-game) every 5 sec for 15 sec.",
-                            "uncertain": true
+                            "text": "After casting Divine Toll, you instantly cast Avenger's Shield every 5 sec for 15 sec.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -9079,8 +9076,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "After casting(varies by condition — check in-game) Divine Toll, you instantly cast (varies by condition — check in-game) every 5 sec for 15 sec.",
-                            "uncertain": true
+                            "text": "After casting Divine Toll, you instantly cast Avenger's Shield every 5 sec for 15 sec.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -9095,8 +9092,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "After casting(varies by condition — check in-game) Divine Toll, you instantly cast (varies by condition — check in-game) every 5 sec for 15 sec.",
-                            "uncertain": true
+                            "text": "After casting Divine Toll, you instantly cast Avenger's Shield every 5 sec for 15 sec.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -9111,8 +9108,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "After casting(varies by condition — check in-game) Divine Toll, you instantly cast (varies by condition — check in-game) every 5 sec for 15 sec.",
-                            "uncertain": true
+                            "text": "After casting Divine Toll, you instantly cast Avenger's Shield every 5 sec for 15 sec.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -9127,8 +9124,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "After casting(varies by condition — check in-game) Divine Toll, you instantly cast (varies by condition — check in-game) every 5 sec for 15 sec.",
-                            "uncertain": true
+                            "text": "After casting Divine Toll, you instantly cast Avenger's Shield every 5 sec for 15 sec.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -9207,8 +9204,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Judgment critical strikes cause a shockwave around the target, (varies by condition — check in-game).",
-                            "uncertain": true
+                            "text": "Judgment critical strikes cause a shockwave around the target, dealing 100 damage to enemies within 5 yards. Damage reduced above 5 targets.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -9223,8 +9220,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Judgment critical strikes cause a shockwave around the target, (varies by condition — check in-game).",
-                            "uncertain": true
+                            "text": "Judgment critical strikes cause a shockwave around the target, dealing 100 damage to enemies within 5 yards. Damage reduced above 5 targets.",
+                            "uncertain": false
                         },
                         "category": "Defensive",
                         "cooldown": {
@@ -9239,8 +9236,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "During Avenging Wrath, Judgment is empowered into Hammer of Wrath.(varies by condition — check in-game)",
-                            "uncertain": true
+                            "text": "During Avenging Wrath, Judgment is empowered into Hammer of Wrath. Hammer of Wrath Hurls a divine hammer that strikes an enemy for ≈123.8% of Attack Power Holy damage. Generates 1 Holy Power.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -9255,8 +9252,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game)",
-                            "uncertain": true
+                            "text": "After casting Divine Toll, you instantly cast Avenger's Shield every 5 sec for 15 sec.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -9271,8 +9268,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Judgment critical strikes cause a shockwave around the target, (varies by condition — check in-game).",
-                            "uncertain": true
+                            "text": "Judgment critical strikes cause a shockwave around the target, dealing 100 damage to enemies within 5 yards. Damage reduced above 5 targets.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -9287,8 +9284,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "During Avenging Wrath, Judgment is empowered into Hammer of Wrath.(varies by condition — check in-game)",
-                            "uncertain": true
+                            "text": "During Avenging Wrath, Judgment is empowered into Hammer of Wrath. Hammer of Wrath Hurls a divine hammer that strikes an enemy for ≈123.8% of Attack Power Holy damage. Generates 1 Holy Power.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -9335,8 +9332,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game)",
-                            "uncertain": true
+                            "text": "After casting Divine Toll, you instantly cast Avenger's Shield every 5 sec for 15 sec.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -9367,8 +9364,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "After casting(varies by condition — check in-game) Divine Toll, you instantly cast (varies by condition — check in-game) every 5 sec for 15 sec.",
-                            "uncertain": true
+                            "text": "After casting Divine Toll, you instantly cast Avenger's Shield every 5 sec for 15 sec.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -9383,8 +9380,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Judgment critical strikes cause a shockwave around the target, (varies by condition — check in-game).",
-                            "uncertain": true
+                            "text": "Judgment critical strikes cause a shockwave around the target, dealing 100 damage to enemies within 5 yards. Damage reduced above 5 targets.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -9573,7 +9570,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Your Lay on Hands, Divine Shield, Blessing of Protection, and Blessing of Spellwarding have 15% reduced cooldown.",
+                            "text": "Your Lay on Hands, Divine Shield, and Blessing of Protection have 15% reduced cooldown.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -10244,8 +10241,8 @@
             "spellId": 7733,
             "category": "Other",
             "description": {
-                "text": "(varies by condition — check in-game) cooldown is reduced by 15 sec.",
-                "uncertain": true
+                "text": "Divine Toll's cooldown is reduced by 15 sec.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -10339,8 +10336,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Successfully (varies by condition — check in-game) reduces (varies by condition — check in-game). Effect increased by 100% while wielding a Holy Armament.",
-                            "uncertain": true
+                            "text": "Successfully interrupting an enemy spellcast reduces Rebuke's cooldown by 1 sec. Effect increased by 100% while wielding a Holy Armament.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -10384,8 +10381,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Call upon the Light to become an avatar of retribution, (varies by condition — check in-game)increasing your damage, healing, and critical strike chance by 20% for 20.",
-                            "uncertain": true
+                            "text": "Call upon the Light to become an avatar of retribution, causing Judgment to generate 1 additional Holy Power, increasing your damage, healing, and critical strike chance by 20% for 20.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -10642,8 +10639,8 @@
             "spellId": 7812,
             "category": "Other",
             "description": {
-                "text": "When your Holy Bulwark absorbs damage or your Sacred Weapon deals damage or healing, you have a chance to gain (varies by condition — check in-game).",
-                "uncertain": true
+                "text": "When your Holy Bulwark absorbs damage or your Sacred Weapon deals damage or healing, you have a chance to gain Grand Crusader.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -10702,8 +10699,8 @@
             "spellId": 7813,
             "category": "Other",
             "description": {
-                "text": "(varies by condition — check in-game) Hammer and Anvil at 100% effectiveness.",
-                "uncertain": true
+                "text": "Divine Toll activates Hammer and Anvil at 100% effectiveness.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -10912,8 +10909,8 @@
             "spellId": 7519,
             "category": "Offensive",
             "description": {
-                "text": "Will the Light to coalesce and become manifest as a Holy Armament, wielded by your target. Sacred Weapon: While wielding a Sacred Weapon, your spells and abilities have a chance to deal 33 additional Holy damage or healing to nearby targets. Effect is increased when Sacred Weapon strikes a single target, and reduced above 5. Lasts 20. Becomes Holy Bulwark after use.(varies by condition — check in-game)",
-                "uncertain": true
+                "text": "Will the Light to coalesce and become manifest as a Holy Armament, wielded by your target. Sacred Weapon: While wielding a Sacred Weapon, your spells and abilities have a chance to deal 33 additional Holy damage or healing to nearby targets. Effect is increased when Sacred Weapon strikes a single target, and reduced above 5. Lasts 20. Becomes Holy Bulwark after use.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -10924,8 +10921,8 @@
                         "modifier_value": -15,
                         "modifier_unit": "seconds",
                         "description": {
-                            "text": "(varies by condition — check in-game) cooldown is reduced by 15 sec.",
-                            "uncertain": true
+                            "text": "Divine Toll's cooldown is reduced by 15 sec.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -10991,8 +10988,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Will the Light to coalesce and become manifest as a Holy Armament, wielded by your friendly target. Holy Bulwark: While wielding a Holy Bulwark, gain an absorb shield for 15% of your max health and an additional 2% every 2 sec. Lasts 20. Becomes Sacred Weapon after use.(varies by condition — check in-game)",
-                            "uncertain": true
+                            "text": "Will the Light to coalesce and become manifest as a Holy Armament, wielded by your friendly target. Holy Bulwark: While wielding a Holy Bulwark, gain an absorb shield for 15% of your max health and an additional 2% every 2 sec. Lasts 20. Becomes Sacred Weapon after use.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -11007,8 +11004,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Will the Light to coalesce and become manifest as a Holy Armament, wielded by your friendly target. Holy Bulwark: While wielding a Holy Bulwark, gain an absorb shield for 15% of your max health and an additional 2% every 2 sec. Lasts 20. Becomes Sacred Weapon after use.(varies by condition — check in-game)",
-                            "uncertain": true
+                            "text": "Will the Light to coalesce and become manifest as a Holy Armament, wielded by your friendly target. Holy Bulwark: While wielding a Holy Bulwark, gain an absorb shield for 15% of your max health and an additional 2% every 2 sec. Lasts 20. Becomes Sacred Weapon after use.",
+                            "uncertain": false
                         },
                         "category": "Defensive",
                         "cooldown": {
@@ -11119,8 +11116,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Will the Light to coalesce and become manifest as a Holy Armament, wielded by your friendly target. Holy Bulwark: While wielding a Holy Bulwark, gain an absorb shield for 15% of your max health and an additional 2% every 2 sec. Lasts 20. Becomes Sacred Weapon after use.(varies by condition — check in-game)",
-                            "uncertain": true
+                            "text": "Will the Light to coalesce and become manifest as a Holy Armament, wielded by your friendly target. Holy Bulwark: While wielding a Holy Bulwark, gain an absorb shield for 15% of your max health and an additional 2% every 2 sec. Lasts 20. Becomes Sacred Weapon after use.",
+                            "uncertain": false
                         },
                         "category": "Defensive",
                         "cooldown": {
@@ -11220,8 +11217,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "When your Holy Bulwark absorbs damage or your Sacred Weapon deals damage or healing, you have a chance to gain (varies by condition — check in-game).",
-                            "uncertain": true
+                            "text": "When your Holy Bulwark absorbs damage or your Sacred Weapon deals damage or healing, you have a chance to gain Grand Crusader.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -11520,8 +11517,8 @@
             "spellId": 7835,
             "category": "Offensive",
             "description": {
-                "text": "(varies by condition — check in-game)(varies by condition — check in-game)(varies by condition — check in-game)",
-                "uncertain": true
+                "text": "Avenging Wrath and Sentinel cause Judgment to generate 1 additional Holy Power, and have 25% increased duration.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -11610,8 +11607,8 @@
             "spellId": 7740,
             "category": "Other",
             "description": {
-                "text": "Mastery increased by 2% and (varies by condition — check in-game) increased by 2%.",
-                "uncertain": true
+                "text": "Mastery increased by 2% and Strength increased by 2%.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -11777,8 +11774,8 @@
             "spellId": 7766,
             "category": "Other",
             "description": {
-                "text": "Flash of Light (varies by condition — check in-game) 30% more effective on your allies and 40% of the healing done also heals you.",
-                "uncertain": true
+                "text": "Flash of Light is 30% more effective on your allies and 40% of the healing done also heals you.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -11821,8 +11818,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game)(varies by condition — check in-game)(varies by condition — check in-game)",
-                            "uncertain": true
+                            "text": "Avenging Wrath and Sentinel cause Judgment to generate 1 additional Holy Power, and have 25% increased duration.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -12002,8 +11999,8 @@
             "spellId": 6889,
             "category": "Offensive",
             "description": {
-                "text": "Slams enemies in front of you with your shield, causing 160 Holy damage, and increasing your Armor by (varies by condition — check in-game) for 4.5. When Shield of the Righteous expires, gain 10% block chance and deal 10 Holy damage to all attackers for 4. Armor granted by Shield of the Righteous is increased by up to 60%, based on your missing health.",
-                "uncertain": true
+                "text": "Slams enemies in front of you with your shield, causing 160 Holy damage, and increasing your Armor by ≈160% of Strength for 4.5. When Shield of the Righteous expires, gain 10% block chance and deal 10 Holy damage to all attackers for 4. Armor granted by Shield of the Righteous is increased by up to 60%, based on your missing health.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -12014,8 +12011,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Call upon the Light to become an avatar of retribution, (varies by condition — check in-game)increasing your damage, healing, and critical strike chance by 20% for 20.",
-                            "uncertain": true
+                            "text": "Call upon the Light to become an avatar of retribution, causing Judgment to generate 1 additional Holy Power, increasing your damage, healing, and critical strike chance by 20% for 20.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -12142,8 +12139,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game) grants 20% bonus armor for 4.5.",
-                            "uncertain": true
+                            "text": "Shield of the Righteous grants 20% bonus armor for 4.5.",
+                            "uncertain": false
                         },
                         "category": "Defensive",
                         "cooldown": {
@@ -12190,7 +12187,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game) grants 20% bonus armor for (varies).",
+                            "text": "Shield of the Righteous grants 20% bonus armor for (varies).",
                             "uncertain": true
                         },
                         "category": "Defensive",
@@ -13368,7 +13365,7 @@
             "spellId": 7905,
             "category": "Other",
             "description": {
-                "text": "Your Lay on Hands, Divine Shield, Blessing of Protection, and Blessing of Spellwarding have 15% reduced cooldown.",
+                "text": "Your Lay on Hands, Divine Shield, and Blessing of Protection have 15% reduced cooldown.",
                 "uncertain": false
             },
             "formulaModifierSpellIds": [],
@@ -13560,8 +13557,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Call upon the Light to become an avatar of retribution, (varies by condition — check in-game)increasing your damage, healing, and critical strike chance by 20% for 20.",
-                            "uncertain": true
+                            "text": "Call upon the Light to become an avatar of retribution, causing Judgment to generate 1 additional Holy Power, increasing your damage, healing, and critical strike chance by 20% for 20.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -13672,8 +13669,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game) grants 20% bonus armor for 4.5.",
-                            "uncertain": true
+                            "text": "Shield of the Righteous grants 20% bonus armor for 4.5.",
+                            "uncertain": false
                         },
                         "category": "Defensive",
                         "cooldown": {
@@ -13768,7 +13765,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game) grants 20% bonus armor for (varies).",
+                            "text": "Shield of the Righteous grants 20% bonus armor for (varies).",
                             "uncertain": true
                         },
                         "category": "Defensive",

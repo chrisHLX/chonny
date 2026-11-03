@@ -1,5 +1,5 @@
 # Warrior — Colossus Hero Talents
-# Extracted verbatim from warrior.txt (SimulationCraft 1210-01 for World of Warcraft 12.1.0.69933 Live)
+# Extracted verbatim from warrior.txt (SimulationCraft 1210-01 for World of Warcraft 12.1.5.70688 Live)
 # 17 spell record(s). Mechanical regroup only — no content altered.
 
 Name             : Colossal Might (id=429634) [Spell Family (4), Passive, Hidden] 
@@ -166,7 +166,6 @@ Effects          :
                    Base Value: 25 | Scaled Value: 25 | PvP Coefficient: 1.2 | Target: Self (1)
                    Affected Spells: Slam (1464), Mortal Strike (12294), Mortal Strike (339385), Heroic Strike (1269383), Concussive Slam (1300660)
                    Family Flags: 21, 25
-Hotfixed         : PvP Coefficient (0.6 -> 1.2)
 #2 (id=1184820)  : Apply Aura (6) | Add Percent Modifier (108): Spell Direct Amount (0)
                    Base Value: 15 | Scaled Value: 15 | Target: Self (1)
                    Affected Spells: Cleave (845), Whirlwind (1680), Whirlwind Off-Hand (44949), Whirlwind (199658), Whirlwind (199667), Whirlwind (199850), Whirlwind Off-Hand (199851), Whirlwind (199852), Whirlwind (347360), Whirlwind Off-Hand (347362), Whirlwind (347363), Whirlwind (385228), Whirlwind (385233), Whirlwind Off-Hand (385234), Whirlwind (411547), Cleave (458459)
@@ -183,13 +182,21 @@ Hotfixed         : PvP Coefficient (0.6 -> 1.2)
                    Base Value: 40 | Scaled Value: 40 | Misc Value: 23 | Target: Self (1)
                    Affected Spells: Shield Slam (23922)
                    Family Flags: 41
+#6 (id=1352765)  : Apply Aura (6) | Add Flat Modifier (107): Spell Resource Cost 1 (14)
+                   Base Value: -100 | Scaled Value: -100 | Misc Value: 14 | Target: Self (1)
+                   Affected Spells: Revenge (6572), Revenge (1215174)
+                   Family Flags: 10
+#7 (id=1352771)  : Apply Aura (6) | Add Flat Modifier (107): Spell Resource Cost 2 (34)
+                   Base Value: -100 | Scaled Value: -100 | Misc Value: 34 | Target: Self (1)
+                   Affected Spells: Execute (5308), Execute (163201), Execute (280735), Execute (281000), Condemn (317349), Condemn (317485), Condemn (330325), Condemn (330334)
+                   Family Flags: 59
 Description      : $?c1[Mortal Strike and Slam damage increased by $s1%.
 
 Cleave and Whirlwind damage increased by $s2%][Shield Slam damage increased by $s3%.
 
 Revenge and Thunder Clap damage increased by $s4%].$?c3[
 
-Shield Slam generates an additional ${$s5/10} Rage.][]
+Shield Slam generates an additional ${$s5/10} Rage. Revenge and Execute Rage cost reduced by ${$s6/-10}.][]
 
 Name             : Precise Might (id=431548) [Spell Family (4), Passive, Hidden] 
 Talent Entry     : Colossus (Arms, Protection) [tree=hero, row=4, col=2, max_rank=1, req_points=0]

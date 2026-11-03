@@ -1,6 +1,6 @@
 {
-    "generatedAt": "2026-10-18T02:36:48+00:00",
-    "spellCacheVersion": 29,
+    "generatedAt": "2026-11-03T23:04:36+00:00",
+    "spellCacheVersion": 31,
     "codeFingerprint": "dev",
     "entries": [
         {
@@ -369,8 +369,8 @@
             "spellId": 1764,
             "category": "Other",
             "description": {
-                "text": "(varies by condition — check in-game)",
-                "uncertain": true
+                "text": "Increases the critical strike chance of Immolation Aura by 6%.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -689,8 +689,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Agility increased by 8% while not in demon form.(varies by condition — check in-game)",
-                            "uncertain": true
+                            "text": "Agility increased by 8% while not in demon form.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -1241,8 +1241,8 @@
                         "modifier_value": 1,
                         "modifier_unit": "charges",
                         "description": {
-                            "text": "(varies by condition — check in-game) gains 1 additional charge.",
-                            "uncertain": true
+                            "text": "Blur gains 1 additional charge.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -1450,8 +1450,8 @@
             "spellId": 1797,
             "category": "Utility",
             "description": {
-                "text": "(varies by condition — check in-game) removes 1 Disease effect.",
-                "uncertain": true
+                "text": "Immolation Aura removes 1 Disease effect.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -1783,8 +1783,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "The primary target of (varies by condition — check in-game) is stunned for an additional 2 sec.",
-                            "uncertain": true
+                            "text": "The primary target of Chaos Nova is stunned for an additional 2 sec.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -2688,7 +2688,7 @@
             "spellId": 1422,
             "category": "Other",
             "description": {
-                "text": "The radius of Darkness is increased by 4 yds, and its duration by 2 sec.",
+                "text": "The radius of Darkness is increased by 4 yds, and its duration by 4 sec.",
                 "uncertain": false
             },
             "formulaModifierSpellIds": [],
@@ -2902,7 +2902,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "The radius of Darkness is increased by 4 yds, and its duration by 2 sec.",
+                            "text": "The radius of Darkness is increased by 4 yds, and its duration by 4 sec.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -3220,7 +3220,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Throw a demonic glaive at the target, dealing ≈49.2% of Attack Power Physical damage. The glaive can ricochet to (varies by condition — check in-game) within 10 yards.",
+                            "text": "Throw a demonic glaive at the target, dealing ≈49.2% of Attack Power Physical damage. The glaive can ricochet to 1 additional enemies within 10 yards.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -3236,7 +3236,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Throw a demonic glaive at the target, dealing ≈49.2% of Attack Power Physical damage. The glaive can ricochet to (varies by condition — check in-game) within 10 yards.",
+                            "text": "Throw a demonic glaive at the target, dealing ≈49.2% of Attack Power Physical damage. The glaive can ricochet to 1 additional enemies within 10 yards.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -3252,7 +3252,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Throw a demonic glaive at the target, dealing ≈49.2% of Attack Power Physical damage. The glaive can ricochet to (varies by condition — check in-game) within 10 yards.",
+                            "text": "Throw a demonic glaive at the target, dealing ≈49.2% of Attack Power Physical damage. The glaive can ricochet to 1 additional enemies within 10 yards.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -3300,7 +3300,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Throw a demonic glaive at the target, dealing (varies) Physical damage. The glaive can ricochet to (varies by condition — check in-game) within 10 yards. Generates high threat.",
+                            "text": "Throw a demonic glaive at the target, dealing (varies) Physical damage. The glaive can ricochet to 1 additional enemies within 10 yards. Generates high threat.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -3316,7 +3316,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Throw a demonic glaive at the target, dealing ≈49.2% of Attack Power Physical damage. The glaive can ricochet to (varies by condition — check in-game) within 10 yards.",
+                            "text": "Throw a demonic glaive at the target, dealing ≈49.2% of Attack Power Physical damage. The glaive can ricochet to 1 additional enemies within 10 yards.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -3396,7 +3396,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "You strangle the target with demonic magic, stunning them in place and dealing 392 Shadow damage over 5 sec while the target is grasped. Can move while channeling.\r\n\r\nUse Illidan's Grasp again to toss the target to a location within 20 yards.",
+                            "text": "You strangle the target with demonic magic, stunning them in place and dealing 588 Shadow damage over 5 sec while the target is grasped. Can move while channeling.\r\n\r\nUse Illidan's Grasp again to toss the target to a location within 20 yards.",
                             "uncertain": false
                         },
                         "category": "Crowd Control",
@@ -3429,7 +3429,7 @@
             "spellId": 1942,
             "category": "Other",
             "description": {
-                "text": "Activating Metamorphosis greatly empowers Eye Beam, Immolation Aura. Demonsurge damage is increased by 5% for each time it previously triggered while your demon form is active.",
+                "text": "Activating Metamorphosis greatly empowers Eye Beam and Immolation Aura. Demonsurge damage is increased by 5% for each time it previously triggered while your demon form is active.",
                 "uncertain": false
             },
             "formulaModifierSpellIds": [],
@@ -3459,8 +3459,8 @@
             "spellId": 1796,
             "category": "Other",
             "description": {
-                "text": "(varies by condition — check in-game) gains 1 additional charge.",
-                "uncertain": true
+                "text": "Blur gains 1 additional charge.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -3871,7 +3871,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Activating Metamorphosis greatly empowers Eye Beam, Immolation Aura. Demonsurge damage is increased by 5% for each time it previously triggered while your demon form is active.",
+                            "text": "Activating Metamorphosis greatly empowers Eye Beam and Immolation Aura. Demonsurge damage is increased by 5% for each time it previously triggered while your demon form is active.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -4966,7 +4966,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Activating Metamorphosis greatly empowers Eye Beam, Immolation Aura. Demonsurge damage is increased by 5% for each time it previously triggered while your demon form is active.",
+                            "text": "Activating Metamorphosis greatly empowers Eye Beam and Immolation Aura. Demonsurge damage is increased by 5% for each time it previously triggered while your demon form is active.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -6080,8 +6080,8 @@
             "spellId": 1795,
             "category": "Other",
             "description": {
-                "text": "The primary target of (varies by condition — check in-game) is stunned for an additional 2 sec.",
-                "uncertain": true
+                "text": "The primary target of Chaos Nova is stunned for an additional 2 sec.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -6478,7 +6478,7 @@
             "spellId": 1994,
             "category": "Crowd Control",
             "description": {
-                "text": "You strangle the target with demonic magic, stunning them in place and dealing 392 Shadow damage over 5 sec while the target is grasped. Can move while channeling.\r\n\r\nUse Illidan's Grasp again to toss the target to a location within 20 yards.",
+                "text": "You strangle the target with demonic magic, stunning them in place and dealing 588 Shadow damage over 5 sec while the target is grasped. Can move while channeling.\r\n\r\nUse Illidan's Grasp again to toss the target to a location within 20 yards.",
                 "uncertain": false
             },
             "formulaModifierSpellIds": [],
@@ -6550,8 +6550,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game) increases your armor by 20% and causes melee attackers to suffer ≈12% of Attack Power Chaos damage.",
-                            "uncertain": true
+                            "text": "Immolation Aura increases your armor by 20% and causes melee attackers to suffer ≈12% of Attack Power Chaos damage.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -6678,8 +6678,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game) increases your armor by 20% and causes melee attackers to suffer ≈12% of Attack Power Chaos damage.",
-                            "uncertain": true
+                            "text": "Immolation Aura increases your armor by 20% and causes melee attackers to suffer ≈12% of Attack Power Chaos damage.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -6726,8 +6726,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game) removes 1 Curse effect.",
-                            "uncertain": true
+                            "text": "Immolation Aura removes 1 Curse effect.",
+                            "uncertain": false
                         },
                         "category": "Utility",
                         "cooldown": {
@@ -6742,8 +6742,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game)",
-                            "uncertain": true
+                            "text": "Increases the critical strike chance of Immolation Aura by 6%.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -6758,8 +6758,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game) removes 1 Curse effect.",
-                            "uncertain": true
+                            "text": "Immolation Aura removes 1 Curse effect.",
+                            "uncertain": false
                         },
                         "category": "Utility",
                         "cooldown": {
@@ -7066,8 +7066,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game) removes 1 Disease effect.",
-                            "uncertain": true
+                            "text": "Immolation Aura removes 1 Disease effect.",
+                            "uncertain": false
                         },
                         "category": "Utility",
                         "cooldown": {
@@ -7082,8 +7082,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game) removes 1 Disease effect.",
-                            "uncertain": true
+                            "text": "Immolation Aura removes 1 Disease effect.",
+                            "uncertain": false
                         },
                         "category": "Utility",
                         "cooldown": {
@@ -7146,7 +7146,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Activating Metamorphosis greatly empowers Eye Beam, Immolation Aura. Demonsurge damage is increased by 5% for each time it previously triggered while your demon form is active.",
+                            "text": "Activating Metamorphosis greatly empowers Eye Beam and Immolation Aura. Demonsurge damage is increased by 5% for each time it previously triggered while your demon form is active.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -7849,8 +7849,8 @@
             "spellId": 1771,
             "category": "Offensive",
             "description": {
-                "text": "(varies by condition — check in-game) increases your armor by 20% and causes melee attackers to suffer ≈12% of Attack Power Chaos damage.",
-                "uncertain": true
+                "text": "Immolation Aura increases your armor by 20% and causes melee attackers to suffer ≈12% of Attack Power Chaos damage.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -8993,7 +8993,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Activating Metamorphosis greatly empowers Eye Beam, Immolation Aura. Demonsurge damage is increased by 5% for each time it previously triggered while your demon form is active.",
+                            "text": "Activating Metamorphosis greatly empowers Eye Beam and Immolation Aura. Demonsurge damage is increased by 5% for each time it previously triggered while your demon form is active.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -9030,8 +9030,8 @@
             "spellId": 1915,
             "category": "Other",
             "description": {
-                "text": "While at 3 stacks of Voidfall, (varies by condition — check in-game) consumes all 3 to rapidly call down that many meteor strikes.",
-                "uncertain": true
+                "text": "While at 3 stacks of Voidfall, Reap consumes all 3 to rapidly call down that many meteor strikes.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -9060,8 +9060,8 @@
             "spellId": 1914,
             "category": "Other",
             "description": {
-                "text": "(varies by condition — check in-game) damage increased by 15%. (varies by condition — check in-game) generates (varies by condition — check in-game).",
-                "uncertain": true
+                "text": "Void Ray damage increased by 15%. Fully channeling Void Ray generates 1 stack of Voidfall.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -9090,8 +9090,8 @@
             "spellId": 1941,
             "category": "Other",
             "description": {
-                "text": "Agility increased by 8% while not in demon form.(varies by condition — check in-game)",
-                "uncertain": true
+                "text": "Agility increased by 8% while not in demon form.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -9344,7 +9344,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Charge to your target, striking them for ≈455% of Attack Power Chaos damage, rooting them in place for 1.5 and inflicting ≈227.7% of Attack Power Chaos damage over 6 to up to 50 enemies in your path. The pursuit invigorates your soul, healing you for (varies by condition — check in-game) of the damage you deal to your Hunt target for 30.",
+                            "text": "Charge to your target, striking them for ≈455% of Attack Power Chaos damage, rooting them in place for 1.5 and inflicting ≈227.7% of Attack Power Chaos damage over 6 to up to 50 enemies in your path. The pursuit invigorates your soul, healing you for 25% of the damage you deal to your Hunt target for 30.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -10578,8 +10578,8 @@
             "spellId": 1803,
             "category": "Utility",
             "description": {
-                "text": "(varies by condition — check in-game) removes 1 Curse effect.",
-                "uncertain": true
+                "text": "Immolation Aura removes 1 Curse effect.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -11266,7 +11266,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Activating Metamorphosis greatly empowers Eye Beam, Immolation Aura. Demonsurge damage is increased by 5% for each time it previously triggered while your demon form is active.",
+                            "text": "Activating Metamorphosis greatly empowers Eye Beam and Immolation Aura. Demonsurge damage is increased by 5% for each time it previously triggered while your demon form is active.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -11382,7 +11382,7 @@
             "spellId": 1097,
             "category": "Offensive",
             "description": {
-                "text": "Throw a demonic glaive at the target, dealing ≈49.2% of Attack Power Physical damage. The glaive can ricochet to (varies by condition — check in-game) within 10 yards.",
+                "text": "Throw a demonic glaive at the target, dealing ≈49.2% of Attack Power Physical damage. The glaive can ricochet to 1 additional enemies within 10 yards.",
                 "uncertain": true
             },
             "formulaModifierSpellIds": [],
@@ -12219,8 +12219,8 @@
             "spellId": 1938,
             "category": "Other",
             "description": {
-                "text": "Maximum Fury increased by 50.(varies by condition — check in-game)",
-                "uncertain": true
+                "text": "Maximum Fury increased by 50.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -12767,8 +12767,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "The primary target of (varies by condition — check in-game) is stunned for an additional 2 sec.",
-                            "uncertain": true
+                            "text": "The primary target of Chaos Nova is stunned for an additional 2 sec.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -13546,8 +13546,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game) damage increased by 15%. (varies by condition — check in-game) generates (varies by condition — check in-game).",
-                            "uncertain": true
+                            "text": "Void Ray damage increased by 15%. Fully channeling Void Ray generates 1 stack of Voidfall.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -13562,8 +13562,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "While at 3 stacks of Voidfall, (varies by condition — check in-game) consumes all 3 to rapidly call down that many meteor strikes.",
-                            "uncertain": true
+                            "text": "While at 3 stacks of Voidfall, Reap consumes all 3 to rapidly call down that many meteor strikes.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -13815,8 +13815,8 @@
             "spellId": 1930,
             "category": "Offensive",
             "description": {
-                "text": "(varies by condition — check in-game) Nova slows enemies by 60% and reduces attack and cast speed by 15% for 5 after its stun fades.",
-                "uncertain": true
+                "text": "Chaos Nova slows enemies by 60% and reduces attack and cast speed by 15% for 5 after its stun fades.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {

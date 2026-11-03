@@ -1,6 +1,6 @@
 {
-    "generatedAt": "2026-10-18T02:37:01+00:00",
-    "spellCacheVersion": 29,
+    "generatedAt": "2026-11-03T23:04:49+00:00",
+    "spellCacheVersion": 31,
     "codeFingerprint": "dev",
     "entries": [
         {
@@ -475,8 +475,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "After consuming Blackout Kick!, Rising Sun Kick has a 467,307% chance to become Rushing Wind Kick. Rushing Wind Kick: Kick up a powerful gust of wind, dealing 467,307 Nature damage in a 25 yd cone to enemies in front of you, split evenly among them. Damage is increased by 6% for each target hit, up to 30%. (varies by condition — check in-game)",
-                            "uncertain": true
+                            "text": "After consuming Blackout Kick!, Rising Sun Kick has a 467,307% chance to become Rushing Wind Kick. Rushing Wind Kick: Kick up a powerful gust of wind, dealing 467,307 Nature damage in a 25 yd cone to enemies in front of you, split evenly among them. Damage is increased by 6% for each target hit, up to 30%. Heals up to 5 allies affected by your heal over time effects for 467,307.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -783,8 +783,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game)",
-                            "uncertain": true
+                            "text": "After Xuen assists you, your next Enveloping Mist's cast time is reduced by 50% and causes Niuzao to grant an absorb shield to 5 nearby allies for 50.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -799,8 +799,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game)",
-                            "uncertain": true
+                            "text": "After Xuen assists you, your next Enveloping Mist's cast time is reduced by 50% and causes Niuzao to grant an absorb shield to 5 nearby allies for 50.",
+                            "uncertain": false
                         },
                         "category": "Defensive",
                         "cooldown": {
@@ -815,8 +815,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game)",
-                            "uncertain": true
+                            "text": "After Xuen assists you, your next Enveloping Mist's cast time is reduced by 50% and causes Niuzao to grant an absorb shield to 5 nearby allies for 50.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -831,8 +831,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game)",
-                            "uncertain": true
+                            "text": "After Xuen assists you, your next Enveloping Mist's cast time is reduced by 50% and causes Niuzao to grant an absorb shield to 5 nearby allies for 50.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -1031,8 +1031,8 @@
             "spellId": 6668,
             "category": "Defensive",
             "description": {
-                "text": "(varies by condition — check in-game) You may move while channeling, but casting other healing or damaging spells cancels this effect.",
-                "uncertain": true
+                "text": "The August Celestials empower you, causing you to radiate ≈5,500% of Spell Power healing onto up to 5 injured allies and ≈825% of Attack Power Nature damage onto enemies within 20 yds over 4, reduced beyond 5 targets. You may move while channeling, but casting other healing or damaging spells cancels this effect.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -1141,8 +1141,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "After Invoking Xuen, the White Tiger you may cast Celestial Conduit within 60. Celestial Conduit: (varies by condition — check in-game) You may move while channeling, but casting other healing or damaging spells cancels this effect.",
-                            "uncertain": true
+                            "text": "After Invoking Xuen, the White Tiger you may cast Celestial Conduit within 60. Celestial Conduit: The August Celestials empower you, causing you to radiate ≈5,500% of Spell Power healing onto up to 5 injured allies and ≈825% of Attack Power Nature damage onto enemies within 20 yds over 4, reduced beyond 5 targets. You may move while channeling, but casting other healing or damaging spells cancels this effect.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -1173,8 +1173,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "After Invoking Xuen, the White Tiger you may cast Celestial Conduit within 60. Celestial Conduit: (varies by condition — check in-game) You may move while channeling, but casting other healing or damaging spells cancels this effect.",
-                            "uncertain": true
+                            "text": "After Invoking Xuen, the White Tiger you may cast Celestial Conduit within 60. Celestial Conduit: The August Celestials empower you, causing you to radiate ≈5,500% of Spell Power healing onto up to 5 injured allies and ≈825% of Attack Power Nature damage onto enemies within 20 yds over 4, reduced beyond 5 targets. You may move while channeling, but casting other healing or damaging spells cancels this effect.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -1302,12 +1302,10 @@
             "spellId": 6603,
             "category": "Offensive",
             "description": {
-                "text": "Hurls a torrent of Chi energy up to 40 yds forward, dealing 1 Nature damage to all enemies, and 1 healing to the Monk and all allies in its path. Healing and damage reduced beyond 5 targets. (varies by condition — check in-game)",
-                "uncertain": true
+                "text": "Hurls a torrent of Chi energy up to 40 yds forward, dealing 1 Nature damage to all enemies, and 1 healing to the Monk and all allies in its path. Healing and damage reduced beyond 5 targets. ",
+                "uncertain": false
             },
-            "formulaModifierSpellIds": [
-                5781
-            ],
+            "formulaModifierSpellIds": [],
             "modifiers": {
                 "named": [
                     {
@@ -1332,8 +1330,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game) 50% increased damage and healing.",
-                            "uncertain": true
+                            "text": "Chi Wave deals 50% increased damage and healing.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -1351,8 +1349,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Hurls a torrent of Chi energy up to 40 yds forward, dealing 1 Nature damage to all enemies, and 1 healing to the Monk and all allies in its path. Healing and damage reduced beyond 1 targets. (varies by condition — check in-game)",
-                            "uncertain": true
+                            "text": "Hurls a torrent of Chi energy up to 40 yds forward, dealing 1 Nature damage to all enemies, and 1 healing to the Monk and all allies in its path. Healing and damage reduced beyond 1 targets. ",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -1367,8 +1365,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Hurls a torrent of Chi energy up to 40 yds forward, dealing 1 Nature damage to all enemies, and 1 healing to the Monk and all allies in its path. Healing and damage reduced beyond 1 targets. (varies by condition — check in-game)",
-                            "uncertain": true
+                            "text": "Hurls a torrent of Chi energy up to 40 yds forward, dealing 1 Nature damage to all enemies, and 1 healing to the Monk and all allies in its path. Healing and damage reduced beyond 1 targets. ",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -1383,8 +1381,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Hurls a torrent of Chi energy up to 40 yds forward, dealing 1 Nature damage to all enemies, and 1 healing to the Monk and all allies in its path. Healing and damage reduced beyond 1 targets. (varies by condition — check in-game)",
-                            "uncertain": true
+                            "text": "Hurls a torrent of Chi energy up to 40 yds forward, dealing 1 Nature damage to all enemies, and 1 healing to the Monk and all allies in its path. Healing and damage reduced beyond 1 targets. ",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -1415,8 +1413,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Your damaging spells and abilities have a chance to activate Chi Burst, allowing you to hurl a torrent of Chi energy up to 40 yds forward, dealing 1 Nature damage to all enemies, and 1 healing to the Monk and all allies in its path. Healing and damage reduced beyond 5 targets. (varies by condition — check in-game)",
-                            "uncertain": true
+                            "text": "Your damaging spells and abilities have a chance to activate Chi Burst, allowing you to hurl a torrent of Chi energy up to 40 yds forward, dealing 1 Nature damage to all enemies, and 1 healing to the Monk and all allies in its path. Healing and damage reduced beyond 5 targets. ",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -1431,8 +1429,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Your damaging spells and abilities have a chance to activate Chi Burst, allowing you to hurl a torrent of Chi energy up to 1 yds forward, dealing 1 Nature damage to all enemies, and 1 healing to the Monk and all allies in its path. Healing and damage reduced beyond 5 targets. (varies by condition — check in-game)",
-                            "uncertain": true
+                            "text": "Your damaging spells and abilities have a chance to activate Chi Burst, allowing you to hurl a torrent of Chi energy up to 1 yds forward, dealing 1 Nature damage to all enemies, and 1 healing to the Monk and all allies in its path. Healing and damage reduced beyond 5 targets. ",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -1447,8 +1445,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Hurls a torrent of Chi energy up to 40 yds forward, dealing 1 Nature damage to all enemies, and 1 healing to the Monk and all allies in its path. Healing and damage reduced beyond 5 targets. (varies by condition — check in-game)",
-                            "uncertain": true
+                            "text": "Hurls a torrent of Chi energy up to 40 yds forward, dealing 1 Nature damage to all enemies, and 1 healing to the Monk and all allies in its path. Healing and damage reduced beyond 5 targets. ",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -1768,8 +1766,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game) 50% increased damage and healing.",
-                            "uncertain": true
+                            "text": "Chi Wave deals 50% increased damage and healing.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -1986,8 +1984,8 @@
             "spellId": 6670,
             "category": "Offensive",
             "description": {
-                "text": "(varies by condition — check in-game) (varies by condition — check in-game) guarantees your next cast activates this effect.",
-                "uncertain": true
+                "text": "Tiger Palm, Vivify, and Sheilun's Gift have a chance to cause Xuen to claw a nearby enemy for 15 Physical damage, healing a nearby ally for 100% of the damage done. Invoke Yu'lon, the Jade Serpent or Invoke Chi-Ji, the Red Crane guarantees your next cast activates this effect.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -3500,8 +3498,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game)",
-                            "uncertain": true
+                            "text": "The healing of Enveloping Mist, Vivify, and Sheilun's Gift is increased by 6%.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -3516,8 +3514,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game)",
-                            "uncertain": true
+                            "text": "After Xuen assists you, your next Enveloping Mist's cast time is reduced by 50% and causes Niuzao to grant an absorb shield to 5 nearby allies for 50.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -3676,8 +3674,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game)",
-                            "uncertain": true
+                            "text": "After Xuen assists you, your next Enveloping Mist's cast time is reduced by 50% and causes Niuzao to grant an absorb shield to 5 nearby allies for 50.",
+                            "uncertain": false
                         },
                         "category": "Defensive",
                         "cooldown": {
@@ -3692,8 +3690,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game)",
-                            "uncertain": true
+                            "text": "After Xuen assists you, your next Enveloping Mist's cast time is reduced by 50% and causes Niuzao to grant an absorb shield to 5 nearby allies for 50.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -3740,8 +3738,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game)",
-                            "uncertain": true
+                            "text": "After Xuen assists you, your next Enveloping Mist's cast time is reduced by 50% and causes Niuzao to grant an absorb shield to 5 nearby allies for 50.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -4110,7 +4108,7 @@
             "spellId": 5790,
             "category": "Defensive",
             "description": {
-                "text": "Turns your skin to stone for 15, increasing your current and maximum health by 20%, reducing all damage you take by (varies)%(varies by condition — check in-game).",
+                "text": "Turns your skin to stone for 15, increasing your current and maximum health by 20%, reducing all damage you take by (varies)%, and Staggering 20% of incoming damage.",
                 "uncertain": true
             },
             "formulaModifierSpellIds": [
@@ -5057,8 +5055,8 @@
             "spellId": 6697,
             "category": "Offensive",
             "description": {
-                "text": "Casting Thunder Focus Tea grants (varies by condition — check in-game) charges of Potential Energy. Your next cast of Tiger Palm or Vivify consumes all charges of Potential Energy to cause a Harmonic Surge. Harmonic Surge: For each charge of Potential Energy, deal (varies by condition — check in-game) Nature damage to your target and (varies by condition — check in-game) Nature damage to other nearby enemies, and heal up to 5 allies for (varies by condition — check in-game). Damage reduced above 5 targets.",
-                "uncertain": true
+                "text": "Casting Thunder Focus Tea grants 2 charges of Potential Energy. Your next cast of Tiger Palm or Vivify consumes all charges of Potential Energy to cause a Harmonic Surge. Harmonic Surge: For each charge of Potential Energy, deal ≈40% of Spell Power Nature damage to your target and ≈40% of Spell Power Nature damage to other nearby enemies, and heal up to 5 allies for ≈200% of Spell Power. Damage reduced above 5 targets.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -5069,8 +5067,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Your next cast of Tiger Palm or Vivify triggers a Harmonic Surge, dealing (varies by condition — check in-game) Nature damage to your target and (varies by condition — check in-game) to other nearby enemies, and (varies by condition — check in-game) healing to up to 5 injured allies. Damage and healing increased per charge of Potential Energy.",
-                            "uncertain": true
+                            "text": "Your next cast of Tiger Palm or Vivify triggers a Harmonic Surge, dealing ≈40% of Spell Power Nature damage to your target and ≈40% of Spell Power to other nearby enemies, and ≈200% of Spell Power healing to up to 5 injured allies. Damage and healing increased per charge of Potential Energy.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -5230,7 +5228,7 @@
             "spellId": 6839,
             "category": "Other",
             "description": {
-                "text": "Your healing has a chance to coalesces a Healing Sphere out of the mists at your target's location after 1.5 sec. If allies walk through it, they consume the sphere, healing themselves for 3,471 and dispelling all harmful periodic magic effects.\r\n\r\nMaximum of 5 Healing Spheres can be active by the Monk at any given time.",
+                "text": "Your healing has a chance to coalesces a Healing Sphere out of the mists at your target's location after 1.5 sec. If allies walk through it, they consume the sphere, healing themselves for 3,384 and dispelling all harmful periodic magic effects.\r\n\r\nMaximum of 5 Healing Spheres can be active by the Monk at any given time.",
                 "uncertain": false
             },
             "formulaModifierSpellIds": [],
@@ -5290,8 +5288,8 @@
             "spellId": 6672,
             "category": "Offensive",
             "description": {
-                "text": "(varies by condition — check in-game) upon Yu'lon to increase the cooldown recovery rate of (varies by condition — check in-game) by 75% for (varies by condition — check in-game).(varies by condition — check in-game)",
-                "uncertain": true
+                "text": "Thunder Focus Tea calls upon Yu'lon to increase the cooldown recovery rate of Renewing Mist, Rising Sun Kick, Life Cocoon, and Thunder Focus Tea by 75% for 8 sec.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -5320,8 +5318,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game).",
-                            "uncertain": true
+                            "text": "Vivify and Sheilun's Gift have a chance to trigger Heart of the Jade Serpent for 4 sec at 100% effectiveness.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -5519,8 +5517,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "After Invoking Xuen, the White Tiger you may cast Celestial Conduit within 60. Celestial Conduit: (varies by condition — check in-game) You may move while channeling, but casting other healing or damaging spells cancels this effect.",
-                            "uncertain": true
+                            "text": "After Invoking Xuen, the White Tiger you may cast Celestial Conduit within 60. Celestial Conduit: The August Celestials empower you, causing you to radiate ≈5,500% of Spell Power healing onto up to 5 injured allies and ≈825% of Attack Power Nature damage onto enemies within 20 yds over 4, reduced beyond 5 targets. You may move while channeling, but casting other healing or damaging spells cancels this effect.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -5535,8 +5533,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game) (varies by condition — check in-game) guarantees your next cast activates this effect.",
-                            "uncertain": true
+                            "text": "Tiger Palm, Vivify, and Sheilun's Gift have a chance to cause Xuen to claw a nearby enemy for 15 Physical damage, healing a nearby ally for 100% of the damage done. Invoke Yu'lon, the Jade Serpent or Invoke Chi-Ji, the Red Crane guarantees your next cast activates this effect.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -5551,8 +5549,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game) (varies by condition — check in-game) guarantees your next cast activates this effect.",
-                            "uncertain": true
+                            "text": "Tiger Palm, Vivify, and Sheilun's Gift have a chance to cause Xuen to claw a nearby enemy for 15 Physical damage, healing a nearby ally for 100% of the damage done. Invoke Yu'lon, the Jade Serpent or Invoke Chi-Ji, the Red Crane guarantees your next cast activates this effect.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -5567,8 +5565,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game) (varies by condition — check in-game) guarantees your next cast activates this effect.",
-                            "uncertain": true
+                            "text": "Tiger Palm, Vivify, and Sheilun's Gift have a chance to cause Xuen to claw a nearby enemy for 15 Physical damage, healing a nearby ally for 100% of the damage done. Invoke Yu'lon, the Jade Serpent or Invoke Chi-Ji, the Red Crane guarantees your next cast activates this effect.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -5583,8 +5581,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game) (varies by condition — check in-game) guarantees your next cast activates this effect.",
-                            "uncertain": true
+                            "text": "Tiger Palm, Vivify, and Sheilun's Gift have a chance to cause Xuen to claw a nearby enemy for 15 Physical damage, healing a nearby ally for 100% of the damage done. Invoke Yu'lon, the Jade Serpent or Invoke Chi-Ji, the Red Crane guarantees your next cast activates this effect.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -5599,8 +5597,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game) (varies by condition — check in-game) guarantees your next cast activates this effect.",
-                            "uncertain": true
+                            "text": "Tiger Palm, Vivify, and Sheilun's Gift have a chance to cause Xuen to claw a nearby enemy for 15 Physical damage, healing a nearby ally for 100% of the damage done. Invoke Yu'lon, the Jade Serpent or Invoke Chi-Ji, the Red Crane guarantees your next cast activates this effect.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -5666,8 +5664,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "After Invoking Xuen, the White Tiger you may cast Celestial Conduit within 60. Celestial Conduit: (varies by condition — check in-game) You may move while channeling, but casting other healing or damaging spells cancels this effect.",
-                            "uncertain": true
+                            "text": "After Invoking Xuen, the White Tiger you may cast Celestial Conduit within 60. Celestial Conduit: The August Celestials empower you, causing you to radiate ≈5,500% of Spell Power healing onto up to 5 injured allies and ≈825% of Attack Power Nature damage onto enemies within 20 yds over 4, reduced beyond 5 targets. You may move while channeling, but casting other healing or damaging spells cancels this effect.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -5682,8 +5680,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game) (varies by condition — check in-game) guarantees your next cast activates this effect.",
-                            "uncertain": true
+                            "text": "Tiger Palm, Vivify, and Sheilun's Gift have a chance to cause Xuen to claw a nearby enemy for 15 Physical damage, healing a nearby ally for 100% of the damage done. Invoke Yu'lon, the Jade Serpent or Invoke Chi-Ji, the Red Crane guarantees your next cast activates this effect.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -5698,8 +5696,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game) (varies by condition — check in-game) guarantees your next cast activates this effect.",
-                            "uncertain": true
+                            "text": "Tiger Palm, Vivify, and Sheilun's Gift have a chance to cause Xuen to claw a nearby enemy for 15 Physical damage, healing a nearby ally for 100% of the damage done. Invoke Yu'lon, the Jade Serpent or Invoke Chi-Ji, the Red Crane guarantees your next cast activates this effect.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -5714,8 +5712,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game) (varies by condition — check in-game) guarantees your next cast activates this effect.",
-                            "uncertain": true
+                            "text": "Tiger Palm, Vivify, and Sheilun's Gift have a chance to cause Xuen to claw a nearby enemy for 15 Physical damage, healing a nearby ally for 100% of the damage done. Invoke Yu'lon, the Jade Serpent or Invoke Chi-Ji, the Red Crane guarantees your next cast activates this effect.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -5730,8 +5728,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game) (varies by condition — check in-game) guarantees your next cast activates this effect.",
-                            "uncertain": true
+                            "text": "Tiger Palm, Vivify, and Sheilun's Gift have a chance to cause Xuen to claw a nearby enemy for 15 Physical damage, healing a nearby ally for 100% of the damage done. Invoke Yu'lon, the Jade Serpent or Invoke Chi-Ji, the Red Crane guarantees your next cast activates this effect.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -5746,8 +5744,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game) (varies by condition — check in-game) guarantees your next cast activates this effect.",
-                            "uncertain": true
+                            "text": "Tiger Palm, Vivify, and Sheilun's Gift have a chance to cause Xuen to claw a nearby enemy for 15 Physical damage, healing a nearby ally for 100% of the damage done. Invoke Yu'lon, the Jade Serpent or Invoke Chi-Ji, the Red Crane guarantees your next cast activates this effect.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -5809,8 +5807,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "After Invoking Xuen, the White Tiger you may cast Celestial Conduit within 60. Celestial Conduit: (varies by condition — check in-game) You may move while channeling, but casting other healing or damaging spells cancels this effect.",
-                            "uncertain": true
+                            "text": "After Invoking Xuen, the White Tiger you may cast Celestial Conduit within 60. Celestial Conduit: The August Celestials empower you, causing you to radiate ≈5,500% of Spell Power healing onto up to 5 injured allies and ≈825% of Attack Power Nature damage onto enemies within 20 yds over 4, reduced beyond 5 targets. You may move while channeling, but casting other healing or damaging spells cancels this effect.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -5825,8 +5823,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game) (varies by condition — check in-game) guarantees your next cast activates this effect.",
-                            "uncertain": true
+                            "text": "Tiger Palm, Vivify, and Sheilun's Gift have a chance to cause Xuen to claw a nearby enemy for 15 Physical damage, healing a nearby ally for 100% of the damage done. Invoke Yu'lon, the Jade Serpent or Invoke Chi-Ji, the Red Crane guarantees your next cast activates this effect.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -5841,8 +5839,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game) (varies by condition — check in-game) guarantees your next cast activates this effect.",
-                            "uncertain": true
+                            "text": "Tiger Palm, Vivify, and Sheilun's Gift have a chance to cause Xuen to claw a nearby enemy for 15 Physical damage, healing a nearby ally for 100% of the damage done. Invoke Yu'lon, the Jade Serpent or Invoke Chi-Ji, the Red Crane guarantees your next cast activates this effect.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -5857,8 +5855,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game) (varies by condition — check in-game) guarantees your next cast activates this effect.",
-                            "uncertain": true
+                            "text": "Tiger Palm, Vivify, and Sheilun's Gift have a chance to cause Xuen to claw a nearby enemy for 15 Physical damage, healing a nearby ally for 100% of the damage done. Invoke Yu'lon, the Jade Serpent or Invoke Chi-Ji, the Red Crane guarantees your next cast activates this effect.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -5873,8 +5871,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game) (varies by condition — check in-game) guarantees your next cast activates this effect.",
-                            "uncertain": true
+                            "text": "Tiger Palm, Vivify, and Sheilun's Gift have a chance to cause Xuen to claw a nearby enemy for 15 Physical damage, healing a nearby ally for 100% of the damage done. Invoke Yu'lon, the Jade Serpent or Invoke Chi-Ji, the Red Crane guarantees your next cast activates this effect.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -5889,8 +5887,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game) (varies by condition — check in-game) guarantees your next cast activates this effect.",
-                            "uncertain": true
+                            "text": "Tiger Palm, Vivify, and Sheilun's Gift have a chance to cause Xuen to claw a nearby enemy for 15 Physical damage, healing a nearby ally for 100% of the damage done. Invoke Yu'lon, the Jade Serpent or Invoke Chi-Ji, the Red Crane guarantees your next cast activates this effect.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -6452,8 +6450,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game) upon Yu'lon to increase the cooldown recovery rate of (varies by condition — check in-game) by 75% for (varies by condition — check in-game).(varies by condition — check in-game)",
-                            "uncertain": true
+                            "text": "Thunder Focus Tea calls upon Yu'lon to increase the cooldown recovery rate of Renewing Mist, Rising Sun Kick, Life Cocoon, and Thunder Focus Tea by 75% for 0 sec.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -6468,8 +6466,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game) upon Yu'lon to increase the cooldown recovery rate of (varies by condition — check in-game) by 75% for (varies by condition — check in-game).(varies by condition — check in-game)",
-                            "uncertain": true
+                            "text": "Thunder Focus Tea calls upon Yu'lon to increase the cooldown recovery rate of Renewing Mist, Rising Sun Kick, Life Cocoon, and Thunder Focus Tea by 75% for 0 sec.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -6484,8 +6482,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game) upon Yu'lon to increase the cooldown recovery rate of (varies by condition — check in-game) by 75% for (varies by condition — check in-game).(varies by condition — check in-game)",
-                            "uncertain": true
+                            "text": "Thunder Focus Tea calls upon Yu'lon to increase the cooldown recovery rate of Renewing Mist, Rising Sun Kick, Life Cocoon, and Thunder Focus Tea by 75% for 0 sec.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -6516,8 +6514,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game) upon Yu'lon to increase the cooldown recovery rate of (varies by condition — check in-game) by 75% for (varies by condition — check in-game).(varies by condition — check in-game)",
-                            "uncertain": true
+                            "text": "Thunder Focus Tea calls upon Yu'lon to increase the cooldown recovery rate of Renewing Mist, Rising Sun Kick, Life Cocoon, and Thunder Focus Tea by 75% for 0 sec.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -6532,8 +6530,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game) upon Yu'lon to increase the cooldown recovery rate of (varies by condition — check in-game) by 75% for (varies by condition — check in-game).(varies by condition — check in-game)",
-                            "uncertain": true
+                            "text": "Thunder Focus Tea calls upon Yu'lon to increase the cooldown recovery rate of Renewing Mist, Rising Sun Kick, Life Cocoon, and Thunder Focus Tea by 75% for 0 sec.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -6548,8 +6546,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game) upon Yu'lon to increase the cooldown recovery rate of (varies by condition — check in-game) by 75% for (varies by condition — check in-game).(varies by condition — check in-game)",
-                            "uncertain": true
+                            "text": "Thunder Focus Tea calls upon Yu'lon to increase the cooldown recovery rate of Renewing Mist, Rising Sun Kick, Life Cocoon, and Thunder Focus Tea by 75% for 0 sec.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -6564,8 +6562,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game) upon Yu'lon to increase the cooldown recovery rate of (varies by condition — check in-game) by 75% for (varies by condition — check in-game).(varies by condition — check in-game)",
-                            "uncertain": true
+                            "text": "Thunder Focus Tea calls upon Yu'lon to increase the cooldown recovery rate of Renewing Mist, Rising Sun Kick, Life Cocoon, and Thunder Focus Tea by 75% for 8 sec.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -7070,8 +7068,8 @@
             "spellId": 6686,
             "category": "Other",
             "description": {
-                "text": "(varies by condition — check in-game) 50% increased damage and healing.",
-                "uncertain": true
+                "text": "Chi Wave deals 50% increased damage and healing.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -7959,8 +7957,8 @@
             "spellId": 6698,
             "category": "Other",
             "description": {
-                "text": "Casting (varies by condition — check in-game) grants a charge of Potential Energy.",
-                "uncertain": true
+                "text": "Casting Rising Sun Kick or Rushing Wind Kick grants a charge of Potential Energy.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -7971,8 +7969,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Your next cast of Tiger Palm or Vivify triggers a Harmonic Surge, dealing (varies by condition — check in-game) Nature damage to your target and (varies by condition — check in-game) to other nearby enemies, and (varies by condition — check in-game) healing to up to 5 injured allies. Damage and healing increased per charge of Potential Energy.",
-                            "uncertain": true
+                            "text": "Your next cast of Tiger Palm or Vivify triggers a Harmonic Surge, dealing ≈40% of Spell Power Nature damage to your target and ≈40% of Spell Power to other nearby enemies, and ≈200% of Spell Power healing to up to 5 injured allies. Damage and healing increased per charge of Potential Energy.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -7987,8 +7985,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "For each charge of Potential Energy, deal (varies by condition — check in-game) Nature damage to your target and (varies by condition — check in-game) Nature damage to other nearby enemies, and heal up to 5 allies for (varies by condition — check in-game). Damage reduced above 5 targets.",
-                            "uncertain": true
+                            "text": "For each charge of Potential Energy, deal ≈40% of Spell Power Nature damage to your target and ≈40% of Spell Power Nature damage to other nearby enemies, and heal up to 5 allies for ≈200% of Spell Power. Damage reduced above 5 targets.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -8003,8 +8001,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "For each charge of Potential Energy, deal (varies by condition — check in-game) Nature damage to your target and (varies by condition — check in-game) Nature damage to other nearby enemies, and heal up to 5 allies for (varies by condition — check in-game). Damage reduced above 5 targets.",
-                            "uncertain": true
+                            "text": "For each charge of Potential Energy, deal ≈40% of Spell Power Nature damage to your target and ≈40% of Spell Power Nature damage to other nearby enemies, and heal up to 5 allies for ≈200% of Spell Power. Damage reduced above 5 targets.",
+                            "uncertain": false
                         },
                         "category": "Defensive",
                         "cooldown": {
@@ -8019,8 +8017,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Casting Thunder Focus Tea grants (varies by condition — check in-game) charges of Potential Energy. Your next cast of Tiger Palm or Vivify consumes all charges of Potential Energy to cause a Harmonic Surge. Harmonic Surge: For each charge of Potential Energy, deal (varies by condition — check in-game) Nature damage to your target and (varies by condition — check in-game) Nature damage to other nearby enemies, and heal up to 5 allies for (varies by condition — check in-game). Damage reduced above 5 targets.",
-                            "uncertain": true
+                            "text": "Casting Thunder Focus Tea grants 2 charges of Potential Energy. Your next cast of Tiger Palm or Vivify consumes all charges of Potential Energy to cause a Harmonic Surge. Harmonic Surge: For each charge of Potential Energy, deal ≈40% of Spell Power Nature damage to your target and ≈40% of Spell Power Nature damage to other nearby enemies, and heal up to 5 allies for ≈200% of Spell Power. Damage reduced above 5 targets.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -8681,8 +8679,8 @@
             "spellId": 6665,
             "category": "Other",
             "description": {
-                "text": "(varies by condition — check in-game)",
-                "uncertain": true
+                "text": "Healing increased by 5% while Chi-Ji, the Red Crane or Yu'lon, the Jade Serpent is active.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -9344,8 +9342,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "After consuming Blackout Kick!, Rising Sun Kick has a 467,307% chance to become Rushing Wind Kick. Rushing Wind Kick: Kick up a powerful gust of wind, dealing 467,307 Nature damage in a 25 yd cone to enemies in front of you, split evenly among them. Damage is increased by 6% for each target hit, up to 30%. (varies by condition — check in-game)",
-                            "uncertain": true
+                            "text": "After consuming Blackout Kick!, Rising Sun Kick has a 467,307% chance to become Rushing Wind Kick. Rushing Wind Kick: Kick up a powerful gust of wind, dealing 467,307 Nature damage in a 25 yd cone to enemies in front of you, split evenly among them. Damage is increased by 6% for each target hit, up to 30%. Heals up to 5 allies affected by your heal over time effects for 467,307.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -9376,8 +9374,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Kick up a powerful gust of wind, dealing 467,307 Nature damage in a 25 yd cone to enemies in front of you, split evenly among them. Damage is increased by 6% for each target hit, up to 30%. (varies by condition — check in-game)",
-                            "uncertain": true
+                            "text": "Kick up a powerful gust of wind, dealing 467,307 Nature damage in a 25 yd cone to enemies in front of you, split evenly among them. Damage is increased by 6% for each target hit, up to 30%. Heals up to 5 allies affected by your heal over time effects for 467,307.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -9678,8 +9676,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "After casting Rising Sun Kick, your next Sheilun's Gift becomes instant cast.(varies by condition — check in-game)",
-                            "uncertain": true
+                            "text": "After casting Rising Sun Kick, your next Sheilun's Gift becomes instant cast.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -9758,8 +9756,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Casting (varies by condition — check in-game) grants a charge of Potential Energy.",
-                            "uncertain": true
+                            "text": "Casting Rising Sun Kick or Rushing Wind Kick grants a charge of Potential Energy.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -9954,8 +9952,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game) upon Yu'lon to increase the cooldown recovery rate of (varies by condition — check in-game) by 75% for (varies by condition — check in-game).(varies by condition — check in-game)",
-                            "uncertain": true
+                            "text": "Thunder Focus Tea calls upon Yu'lon to increase the cooldown recovery rate of Renewing Mist, Rising Sun Kick, Life Cocoon, and Thunder Focus Tea by 75% for 0 sec.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -9970,8 +9968,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game) upon Yu'lon to increase the cooldown recovery rate of (varies by condition — check in-game) by 75% for (varies by condition — check in-game).(varies by condition — check in-game)",
-                            "uncertain": true
+                            "text": "Thunder Focus Tea calls upon Yu'lon to increase the cooldown recovery rate of Renewing Mist, Rising Sun Kick, Life Cocoon, and Thunder Focus Tea by 75% for 0 sec.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -10002,8 +10000,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game) upon Yu'lon to increase the cooldown recovery rate of (varies by condition — check in-game) by 75% for (varies by condition — check in-game).(varies by condition — check in-game)",
-                            "uncertain": true
+                            "text": "Thunder Focus Tea calls upon Yu'lon to increase the cooldown recovery rate of Renewing Mist, Rising Sun Kick, Life Cocoon, and Thunder Focus Tea by 75% for 0 sec.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -10146,8 +10144,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game) upon Yu'lon to increase the cooldown recovery rate of (varies by condition — check in-game) by 75% for (varies by condition — check in-game).(varies by condition — check in-game)",
-                            "uncertain": true
+                            "text": "Thunder Focus Tea calls upon Yu'lon to increase the cooldown recovery rate of Renewing Mist, Rising Sun Kick, Life Cocoon, and Thunder Focus Tea by 75% for 0 sec.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -10162,8 +10160,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game) upon Yu'lon to increase the cooldown recovery rate of (varies by condition — check in-game) by 75% for (varies by condition — check in-game).(varies by condition — check in-game)",
-                            "uncertain": true
+                            "text": "Thunder Focus Tea calls upon Yu'lon to increase the cooldown recovery rate of Renewing Mist, Rising Sun Kick, Life Cocoon, and Thunder Focus Tea by 75% for 0 sec.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -10178,8 +10176,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game) upon Yu'lon to increase the cooldown recovery rate of (varies by condition — check in-game) by 75% for (varies by condition — check in-game).(varies by condition — check in-game)",
-                            "uncertain": true
+                            "text": "Thunder Focus Tea calls upon Yu'lon to increase the cooldown recovery rate of Renewing Mist, Rising Sun Kick, Life Cocoon, and Thunder Focus Tea by 75% for 0 sec.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -10194,8 +10192,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game) upon Yu'lon to increase the cooldown recovery rate of (varies by condition — check in-game) by 75% for (varies by condition — check in-game).(varies by condition — check in-game)",
-                            "uncertain": true
+                            "text": "Thunder Focus Tea calls upon Yu'lon to increase the cooldown recovery rate of Renewing Mist, Rising Sun Kick, Life Cocoon, and Thunder Focus Tea by 75% for 8 sec.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -10460,7 +10458,7 @@
                                     "modifier_unit": null,
                                     "effect_index": 2,
                                     "created_at": "2026-08-05T12:14:04.000000Z",
-                                    "updated_at": "2026-10-18T02:32:13.000000Z",
+                                    "updated_at": "2026-11-03T23:02:07.000000Z",
                                     "source_spell": {
                                         "id": 6724,
                                         "patch_id": 1,
@@ -12836,8 +12834,8 @@
             "spellId": 6761,
             "category": "Offensive",
             "description": {
-                "text": "Kick up a powerful gust of wind, dealing 467,307 Nature damage in a 25 yd cone to enemies in front of you, split evenly among them. Damage is increased by 6% for each target hit, up to 30%. (varies by condition — check in-game)",
-                "uncertain": true
+                "text": "Kick up a powerful gust of wind, dealing 467,307 Nature damage in a 25 yd cone to enemies in front of you, split evenly among them. Damage is increased by 6% for each target hit, up to 30%. Heals up to 5 allies affected by your heal over time effects for 467,307.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -12880,8 +12878,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "After consuming Blackout Kick!, Rising Sun Kick has a 467,307% chance to become Rushing Wind Kick. Rushing Wind Kick: Kick up a powerful gust of wind, dealing 467,307 Nature damage in a 25 yd cone to enemies in front of you, split evenly among them. Damage is increased by 6% for each target hit, up to 30%. (varies by condition — check in-game)",
-                            "uncertain": true
+                            "text": "After consuming Blackout Kick!, Rising Sun Kick has a 467,307% chance to become Rushing Wind Kick. Rushing Wind Kick: Kick up a powerful gust of wind, dealing 467,307 Nature damage in a 25 yd cone to enemies in front of you, split evenly among them. Damage is increased by 6% for each target hit, up to 30%. Heals up to 5 allies affected by your heal over time effects for 467,307.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -12944,8 +12942,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Casting (varies by condition — check in-game) grants a charge of Potential Energy.",
-                            "uncertain": true
+                            "text": "Casting Rising Sun Kick or Rushing Wind Kick grants a charge of Potential Energy.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -13012,8 +13010,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game) upon Yu'lon to increase the cooldown recovery rate of (varies by condition — check in-game) by 75% for (varies by condition — check in-game).(varies by condition — check in-game)",
-                            "uncertain": true
+                            "text": "Thunder Focus Tea calls upon Yu'lon to increase the cooldown recovery rate of Renewing Mist, Rising Sun Kick, Life Cocoon, and Thunder Focus Tea by 75% for 0 sec.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -13028,8 +13026,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game) upon Yu'lon to increase the cooldown recovery rate of (varies by condition — check in-game) by 75% for (varies by condition — check in-game).(varies by condition — check in-game)",
-                            "uncertain": true
+                            "text": "Thunder Focus Tea calls upon Yu'lon to increase the cooldown recovery rate of Renewing Mist, Rising Sun Kick, Life Cocoon, and Thunder Focus Tea by 75% for 0 sec.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -13060,8 +13058,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game) upon Yu'lon to increase the cooldown recovery rate of (varies by condition — check in-game) by 75% for (varies by condition — check in-game).(varies by condition — check in-game)",
-                            "uncertain": true
+                            "text": "Thunder Focus Tea calls upon Yu'lon to increase the cooldown recovery rate of Renewing Mist, Rising Sun Kick, Life Cocoon, and Thunder Focus Tea by 75% for 0 sec.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -13310,7 +13308,7 @@
                                     "modifier_unit": null,
                                     "effect_index": 2,
                                     "created_at": "2026-08-05T12:14:04.000000Z",
-                                    "updated_at": "2026-10-18T02:32:13.000000Z",
+                                    "updated_at": "2026-11-03T23:02:07.000000Z",
                                     "source_spell": {
                                         "id": 6724,
                                         "patch_id": 1,
@@ -15968,8 +15966,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "After casting Rising Sun Kick, your next Sheilun's Gift becomes instant cast.(varies by condition — check in-game)",
-                            "uncertain": true
+                            "text": "After casting Rising Sun Kick, your next Sheilun's Gift becomes instant cast.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -16148,8 +16146,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game)",
-                            "uncertain": true
+                            "text": "The healing of Enveloping Mist, Vivify, and Sheilun's Gift is increased by 6%.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -16324,8 +16322,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game) (varies by condition — check in-game) guarantees your next cast activates this effect.",
-                            "uncertain": true
+                            "text": "Tiger Palm, Vivify, and Sheilun's Gift have a chance to cause Xuen to claw a nearby enemy for 15 Physical damage, healing a nearby ally for 100% of the damage done. Invoke Yu'lon, the Jade Serpent or Invoke Chi-Ji, the Red Crane guarantees your next cast activates this effect.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -16340,8 +16338,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game) (varies by condition — check in-game) guarantees your next cast activates this effect.",
-                            "uncertain": true
+                            "text": "Tiger Palm, Vivify, and Sheilun's Gift have a chance to cause Xuen to claw a nearby enemy for 15 Physical damage, healing a nearby ally for 100% of the damage done. Invoke Yu'lon, the Jade Serpent or Invoke Chi-Ji, the Red Crane guarantees your next cast activates this effect.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -16372,8 +16370,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game) (varies by condition — check in-game) guarantees your next cast activates this effect.",
-                            "uncertain": true
+                            "text": "Tiger Palm, Vivify, and Sheilun's Gift have a chance to cause Xuen to claw a nearby enemy for 15 Physical damage, healing a nearby ally for 100% of the damage done. Invoke Yu'lon, the Jade Serpent or Invoke Chi-Ji, the Red Crane guarantees your next cast activates this effect.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -16388,8 +16386,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game) (varies by condition — check in-game) guarantees your next cast activates this effect.",
-                            "uncertain": true
+                            "text": "Tiger Palm, Vivify, and Sheilun's Gift have a chance to cause Xuen to claw a nearby enemy for 15 Physical damage, healing a nearby ally for 100% of the damage done. Invoke Yu'lon, the Jade Serpent or Invoke Chi-Ji, the Red Crane guarantees your next cast activates this effect.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -16436,8 +16434,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game) (varies by condition — check in-game) guarantees your next cast activates this effect.",
-                            "uncertain": true
+                            "text": "Tiger Palm, Vivify, and Sheilun's Gift have a chance to cause Xuen to claw a nearby enemy for 15 Physical damage, healing a nearby ally for 100% of the damage done. Invoke Yu'lon, the Jade Serpent or Invoke Chi-Ji, the Red Crane guarantees your next cast activates this effect.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -16452,8 +16450,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game).",
-                            "uncertain": true
+                            "text": "Vivify and Sheilun's Gift have a chance to trigger Heart of the Jade Serpent for 4 sec at 100% effectiveness.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -17195,7 +17193,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Turns your skin to stone for 15, increasing your current and maximum health by 20%, reducing all damage you take by (varies)%(varies by condition — check in-game).",
+                            "text": "Turns your skin to stone for 15, increasing your current and maximum health by 20%, reducing all damage you take by (varies)%, and Staggering 20% of incoming damage.",
                             "uncertain": true
                         },
                         "category": "Defensive",
@@ -17211,7 +17209,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Turns your skin to stone for 15, increasing your current and maximum health by 20%, reducing all damage you take by (varies)%(varies by condition — check in-game).",
+                            "text": "Turns your skin to stone for 15, increasing your current and maximum health by 20%, reducing all damage you take by (varies)%, and Staggering 20% of incoming damage.",
                             "uncertain": true
                         },
                         "category": "Defensive",
@@ -17431,8 +17429,8 @@
             "spellId": 6680,
             "category": "Other",
             "description": {
-                "text": "Strength of the Black Ox's effect is (varies by condition — check in-game)% more effective on your primary target.",
-                "uncertain": true
+                "text": "Strength of the Black Ox's effect is 400% more effective on your primary target.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -17538,8 +17536,8 @@
             "spellId": 6671,
             "category": "Offensive",
             "description": {
-                "text": "(varies by condition — check in-game)",
-                "uncertain": true
+                "text": "After Xuen assists you, your next Enveloping Mist's cast time is reduced by 50% and causes Niuzao to grant an absorb shield to 5 nearby allies for 50.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -17552,8 +17550,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Strength of the Black Ox's effect is (varies by condition — check in-game)% more effective on your primary target.",
-                            "uncertain": true
+                            "text": "Strength of the Black Ox's effect is 400% more effective on your primary target.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -17705,8 +17703,8 @@
             "spellId": 6666,
             "category": "Other",
             "description": {
-                "text": "(varies by condition — check in-game)",
-                "uncertain": true
+                "text": "The healing of Enveloping Mist, Vivify, and Sheilun's Gift is increased by 6%.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -18003,8 +18001,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Casting Thunder Focus Tea grants (varies by condition — check in-game) charges of Potential Energy. Your next cast of Tiger Palm or Vivify consumes all charges of Potential Energy to cause a Harmonic Surge. Harmonic Surge: For each charge of Potential Energy, deal (varies by condition — check in-game) Nature damage to your target and (varies by condition — check in-game) Nature damage to other nearby enemies, and heal up to 5 allies for (varies by condition — check in-game). Damage reduced above 5 targets.",
-                            "uncertain": true
+                            "text": "Casting Thunder Focus Tea grants 2 charges of Potential Energy. Your next cast of Tiger Palm or Vivify consumes all charges of Potential Energy to cause a Harmonic Surge. Harmonic Surge: For each charge of Potential Energy, deal ≈40% of Spell Power Nature damage to your target and ≈40% of Spell Power Nature damage to other nearby enemies, and heal up to 5 allies for ≈200% of Spell Power. Damage reduced above 5 targets.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -18086,8 +18084,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game) upon Yu'lon to increase the cooldown recovery rate of (varies by condition — check in-game) by 75% for (varies by condition — check in-game).(varies by condition — check in-game)",
-                            "uncertain": true
+                            "text": "Thunder Focus Tea calls upon Yu'lon to increase the cooldown recovery rate of Renewing Mist, Rising Sun Kick, Life Cocoon, and Thunder Focus Tea by 75% for 0 sec.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -18102,8 +18100,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game) upon Yu'lon to increase the cooldown recovery rate of (varies by condition — check in-game) by 75% for (varies by condition — check in-game).(varies by condition — check in-game)",
-                            "uncertain": true
+                            "text": "Thunder Focus Tea calls upon Yu'lon to increase the cooldown recovery rate of Renewing Mist, Rising Sun Kick, Life Cocoon, and Thunder Focus Tea by 75% for 0 sec.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -18118,8 +18116,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game) upon Yu'lon to increase the cooldown recovery rate of (varies by condition — check in-game) by 75% for (varies by condition — check in-game).(varies by condition — check in-game)",
-                            "uncertain": true
+                            "text": "Thunder Focus Tea calls upon Yu'lon to increase the cooldown recovery rate of Renewing Mist, Rising Sun Kick, Life Cocoon, and Thunder Focus Tea by 75% for 0 sec.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -18182,8 +18180,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game) upon Yu'lon to increase the cooldown recovery rate of (varies by condition — check in-game) by 75% for (varies by condition — check in-game).(varies by condition — check in-game)",
-                            "uncertain": true
+                            "text": "Thunder Focus Tea calls upon Yu'lon to increase the cooldown recovery rate of Renewing Mist, Rising Sun Kick, Life Cocoon, and Thunder Focus Tea by 75% for 0 sec.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -18198,8 +18196,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game) upon Yu'lon to increase the cooldown recovery rate of (varies by condition — check in-game) by 75% for (varies by condition — check in-game).(varies by condition — check in-game)",
-                            "uncertain": true
+                            "text": "Thunder Focus Tea calls upon Yu'lon to increase the cooldown recovery rate of Renewing Mist, Rising Sun Kick, Life Cocoon, and Thunder Focus Tea by 75% for 0 sec.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -18214,8 +18212,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game) upon Yu'lon to increase the cooldown recovery rate of (varies by condition — check in-game) by 75% for (varies by condition — check in-game).(varies by condition — check in-game)",
-                            "uncertain": true
+                            "text": "Thunder Focus Tea calls upon Yu'lon to increase the cooldown recovery rate of Renewing Mist, Rising Sun Kick, Life Cocoon, and Thunder Focus Tea by 75% for 0 sec.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -18246,8 +18244,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game) upon Yu'lon to increase the cooldown recovery rate of (varies by condition — check in-game) by 75% for (varies by condition — check in-game).(varies by condition — check in-game)",
-                            "uncertain": true
+                            "text": "Thunder Focus Tea calls upon Yu'lon to increase the cooldown recovery rate of Renewing Mist, Rising Sun Kick, Life Cocoon, and Thunder Focus Tea by 75% for 8 sec.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -18528,8 +18526,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Your next cast of Tiger Palm or Vivify triggers a Harmonic Surge, dealing (varies by condition — check in-game) Nature damage to your target and (varies by condition — check in-game) to other nearby enemies, and (varies by condition — check in-game) healing to up to 5 injured allies. Damage and healing increased per charge of Potential Energy.",
-                            "uncertain": true
+                            "text": "Your next cast of Tiger Palm or Vivify triggers a Harmonic Surge, dealing ≈40% of Spell Power Nature damage to your target and ≈40% of Spell Power to other nearby enemies, and ≈200% of Spell Power healing to up to 5 injured allies. Damage and healing increased per charge of Potential Energy.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -18592,8 +18590,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Casting Thunder Focus Tea grants (varies by condition — check in-game) charges of Potential Energy. Your next cast of Tiger Palm or Vivify consumes all charges of Potential Energy to cause a Harmonic Surge. Harmonic Surge: For each charge of Potential Energy, deal (varies by condition — check in-game) Nature damage to your target and (varies by condition — check in-game) Nature damage to other nearby enemies, and heal up to 5 allies for (varies by condition — check in-game). Damage reduced above 5 targets.",
-                            "uncertain": true
+                            "text": "Casting Thunder Focus Tea grants 2 charges of Potential Energy. Your next cast of Tiger Palm or Vivify consumes all charges of Potential Energy to cause a Harmonic Surge. Harmonic Surge: For each charge of Potential Energy, deal ≈40% of Spell Power Nature damage to your target and ≈40% of Spell Power Nature damage to other nearby enemies, and heal up to 5 allies for ≈200% of Spell Power. Damage reduced above 5 targets.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -18804,8 +18802,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game) (varies by condition — check in-game) guarantees your next cast activates this effect.",
-                            "uncertain": true
+                            "text": "Tiger Palm, Vivify, and Sheilun's Gift have a chance to cause Xuen to claw a nearby enemy for 15 Physical damage, healing a nearby ally for 100% of the damage done. Invoke Yu'lon, the Jade Serpent or Invoke Chi-Ji, the Red Crane guarantees your next cast activates this effect.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -18820,8 +18818,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game) (varies by condition — check in-game) guarantees your next cast activates this effect.",
-                            "uncertain": true
+                            "text": "Tiger Palm, Vivify, and Sheilun's Gift have a chance to cause Xuen to claw a nearby enemy for 15 Physical damage, healing a nearby ally for 100% of the damage done. Invoke Yu'lon, the Jade Serpent or Invoke Chi-Ji, the Red Crane guarantees your next cast activates this effect.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -18836,8 +18834,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game) (varies by condition — check in-game) guarantees your next cast activates this effect.",
-                            "uncertain": true
+                            "text": "Tiger Palm, Vivify, and Sheilun's Gift have a chance to cause Xuen to claw a nearby enemy for 15 Physical damage, healing a nearby ally for 100% of the damage done. Invoke Yu'lon, the Jade Serpent or Invoke Chi-Ji, the Red Crane guarantees your next cast activates this effect.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -18852,8 +18850,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game) (varies by condition — check in-game) guarantees your next cast activates this effect.",
-                            "uncertain": true
+                            "text": "Tiger Palm, Vivify, and Sheilun's Gift have a chance to cause Xuen to claw a nearby enemy for 15 Physical damage, healing a nearby ally for 100% of the damage done. Invoke Yu'lon, the Jade Serpent or Invoke Chi-Ji, the Red Crane guarantees your next cast activates this effect.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -18868,8 +18866,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game) (varies by condition — check in-game) guarantees your next cast activates this effect.",
-                            "uncertain": true
+                            "text": "Tiger Palm, Vivify, and Sheilun's Gift have a chance to cause Xuen to claw a nearby enemy for 15 Physical damage, healing a nearby ally for 100% of the damage done. Invoke Yu'lon, the Jade Serpent or Invoke Chi-Ji, the Red Crane guarantees your next cast activates this effect.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -19572,8 +19570,8 @@
             "spellId": 6617,
             "category": "Other",
             "description": {
-                "text": "After casting Rising Sun Kick, your next Sheilun's Gift becomes instant cast.(varies by condition — check in-game)",
-                "uncertain": true
+                "text": "After casting Rising Sun Kick, your next Sheilun's Gift becomes instant cast.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -19812,8 +19810,8 @@
             "spellId": 6678,
             "category": "Other",
             "description": {
-                "text": "(varies by condition — check in-game).",
-                "uncertain": true
+                "text": "Vivify and Sheilun's Gift have a chance to trigger Heart of the Jade Serpent for 4 sec at 100% effectiveness.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {

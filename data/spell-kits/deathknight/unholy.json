@@ -1,14 +1,14 @@
 {
-    "generatedAt": "2026-10-18T02:37:34+00:00",
-    "spellCacheVersion": 29,
+    "generatedAt": "2026-11-03T23:05:21+00:00",
+    "spellCacheVersion": 31,
     "codeFingerprint": "dev",
     "entries": [
         {
             "spellId": 1001,
             "category": "Other",
             "description": {
-                "text": "While you have 2 or more Horsemen aiding you, your (varies by condition — check in-game) increased damage.",
-                "uncertain": true
+                "text": "While you have 2 or more Horsemen aiding you, your Death Coil deals 20% and Epidemic deals 20% increased damage.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -1679,7 +1679,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Corrupts the targeted ground, causing (varies) Shadow damage over 10 to targets within the area.(varies by condition — check in-game)(varies by condition — check in-game)(varies by condition — check in-game)",
+                            "text": "Corrupts the targeted ground, causing (varies) Shadow damage over 10 to targets within the area. While you remain within the area, your Necrotic Strike and Clawing Shadows will hit up to (varies) enemies near the target.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -1711,7 +1711,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Corrupts the targeted ground, causing (varies) Shadow damage over 1 to targets within the area.(varies by condition — check in-game)(varies by condition — check in-game)(varies by condition — check in-game)",
+                            "text": "Corrupts the targeted ground, causing (varies) Shadow damage over 1 to targets within the area. While you remain within the area, your Necrotic Strike and Clawing Shadows will hit up to (varies) enemies near the target.",
                             "uncertain": true
                         },
                         "category": "Crowd Control",
@@ -2174,8 +2174,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game)",
-                            "uncertain": true
+                            "text": "Dark Transformation summons forth Whitemane for 6 sec.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -2438,7 +2438,7 @@
             "spellId": 6,
             "category": "Offensive",
             "description": {
-                "text": "Corrupts the targeted ground, causing (varies) Shadow damage over 10 to targets within the area.(varies by condition — check in-game)",
+                "text": "Corrupts the targeted ground, causing (varies) Shadow damage over 10 to targets within the area.",
                 "uncertain": true
             },
             "formulaModifierSpellIds": [],
@@ -2530,8 +2530,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Your damage is increased by 5% and you gain (varies by condition — check in-game) while inside Mograine's Death and Decay.",
-                            "uncertain": true
+                            "text": "Your damage is increased by 5% and you gain the benefits of your Death and Decay while inside Mograine's Death and Decay.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -2594,8 +2594,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Your damage is increased by 5% and you gain (varies by condition — check in-game) while inside Mograine's Death and Decay.",
-                            "uncertain": true
+                            "text": "Your damage is increased by 5% and you gain the benefits of your Death and Decay while inside Mograine's Death and Decay.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -3403,8 +3403,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "While you have 20 or more Horsemen aiding you, your (varies by condition — check in-game) increased damage.",
-                            "uncertain": true
+                            "text": "While you have 20 or more Horsemen aiding you, your Death Coil deals 20% and Epidemic deals 20% increased damage.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -3419,8 +3419,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "While you have 1 or more Horsemen aiding you, your (varies by condition — check in-game) increased damage.",
-                            "uncertain": true
+                            "text": "While you have 1 or more Horsemen aiding you, your Death Coil deals 20% and Epidemic deals 20% increased damage.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -3547,8 +3547,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "While you have 2 or more Horsemen aiding you, your (varies by condition — check in-game) increased damage.",
-                            "uncertain": true
+                            "text": "While you have 2 or more Horsemen aiding you, your Death Coil deals 20% and Epidemic deals 20% increased damage.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -3563,8 +3563,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game)",
-                            "uncertain": true
+                            "text": "Casting Death Coil or Epidemic orders Whitemane to cast her Death Coil or Epidemic alongside you at 125% effectiveness.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -3805,8 +3805,8 @@
             "spellId": 24,
             "category": "Utility",
             "description": {
-                "text": "Harnesses the energy that surrounds and binds all matter, drawing the target toward you and slowing their movement speed by 50% for 6.(varies by condition — check in-game)",
-                "uncertain": true
+                "text": "Harnesses the energy that surrounds and binds all matter, drawing the target toward you and slowing their movement speed by 50% for 6. The cooldown is increased by 10 sec in PvP Combat.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -6229,8 +6229,8 @@
             "spellId": 1016,
             "category": "Offensive",
             "description": {
-                "text": "When Vampiric Strike damages an enemy affected by your plagues, it extends the duration of the plagues by (varies by condition — check in-game) sec(varies by condition — check in-game)",
-                "uncertain": true
+                "text": "When Vampiric Strike damages an enemy affected by your plagues, it extends the duration of the plagues by 3 sec, and erupts them with 75% increased effectiveness.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -6260,8 +6260,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Infliction of Sorrow deals (varies by condition — check in-game)% increased damage, and Vampiric Strike increases the damage of your (varies by condition — check in-game) by 20% for 8. Multiple applications may overlap.",
-                            "uncertain": true
+                            "text": "Infliction of Sorrow deals 10% increased damage, and Vampiric Strike increases the damage of your ghoul by 20% for 8. Multiple applications may overlap.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -6276,8 +6276,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Infliction of Sorrow deals (varies by condition — check in-game)% increased damage, and Vampiric Strike increases the damage of your (varies by condition — check in-game) by 20% for 8. Multiple applications may overlap.",
-                            "uncertain": true
+                            "text": "Infliction of Sorrow deals 10% increased damage, and Vampiric Strike increases the damage of your ghoul by 20% for 8. Multiple applications may overlap.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -6339,8 +6339,8 @@
             "spellId": 1006,
             "category": "Other",
             "description": {
-                "text": "(varies by condition — check in-game)",
-                "uncertain": true
+                "text": "Casting Death Coil or Epidemic orders Whitemane to cast her Death Coil or Epidemic alongside you at 125% effectiveness.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -6888,8 +6888,8 @@
             "spellId": 998,
             "category": "Offensive",
             "description": {
-                "text": "Your damage is increased by 5% and you gain (varies by condition — check in-game) while inside Mograine's Death and Decay.",
-                "uncertain": true
+                "text": "Your damage is increased by 5% and you gain the benefits of your Death and Decay while inside Mograine's Death and Decay.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -8158,8 +8158,8 @@
             "spellId": 1007,
             "category": "Other",
             "description": {
-                "text": "(varies by condition — check in-game)",
-                "uncertain": true
+                "text": "Dark Transformation summons forth Whitemane for 6 sec.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -8704,7 +8704,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Corrupts the targeted ground, causing (varies) Shadow damage over 10 to targets within the area.(varies by condition — check in-game)",
+                            "text": "Corrupts the targeted ground, causing (varies) Shadow damage over 10 to targets within the area.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -8784,7 +8784,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Corrupts the targeted ground, causing (varies) Shadow damage over 10 to targets within the area.(varies by condition — check in-game)(varies by condition — check in-game)(varies by condition — check in-game)",
+                            "text": "Corrupts the targeted ground, causing (varies) Shadow damage over 10 to targets within the area. While you remain within the area, your Necrotic Strike and Clawing Shadows will hit up to (varies) enemies near the target.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -8816,7 +8816,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Corrupts the targeted ground, causing (varies) Shadow damage over 1 to targets within the area.(varies by condition — check in-game)(varies by condition — check in-game)(varies by condition — check in-game)",
+                            "text": "Corrupts the targeted ground, causing (varies) Shadow damage over 1 to targets within the area. While you remain within the area, your Necrotic Strike and Clawing Shadows will hit up to (varies) enemies near the target.",
                             "uncertain": true
                         },
                         "category": "Crowd Control",
@@ -9588,8 +9588,8 @@
             "spellId": 1024,
             "category": "Other",
             "description": {
-                "text": "Essence of the Blood Queen additionally increases your Mastery by (varies by condition — check in-game)% per stack. (varies by condition — check in-game) increased damage.",
-                "uncertain": true
+                "text": "Essence of the Blood Queen additionally increases your Mastery by 0.2% per stack. Dread Plague deals 20% and Virulent Plague deals 10% increased damage.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -9618,8 +9618,8 @@
             "spellId": 1025,
             "category": "Offensive",
             "description": {
-                "text": "Vampiric Strike increases the damage of (varies by condition — check in-game) by (varies by condition — check in-game)% for 8.(varies by condition — check in-game)",
-                "uncertain": true
+                "text": "Vampiric Strike increases the damage of your Lesser Ghouls by 10% for 8.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -9678,8 +9678,8 @@
             "spellId": 1008,
             "category": "Other",
             "description": {
-                "text": "The abilities that Horsemen cast deal 5% increased damage.(varies by condition — check in-game).",
-                "uncertain": true
+                "text": "The abilities that Horsemen cast deal 5% increased damage. Your Ghoul and skeletal archer deals 10% and Lesser Ghouls deal 20% increased damage.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -10011,8 +10011,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "When Vampiric Strike damages an enemy affected by your plagues, it extends the duration of the plagues by (varies by condition — check in-game) sec(varies by condition — check in-game)",
-                            "uncertain": true
+                            "text": "When Vampiric Strike damages an enemy affected by your plagues, it extends the duration of the plagues by 3 sec, and erupts them with 75% increased effectiveness.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -10091,8 +10091,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "When Vampiric Strike damages an enemy affected by your plagues, it extends the duration of the plagues by (varies by condition — check in-game) sec(varies by condition — check in-game)",
-                            "uncertain": true
+                            "text": "When Vampiric Strike damages an enemy affected by your plagues, it extends the duration of the plagues by 3 sec, and erupts them with 75% increased effectiveness.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -10107,7 +10107,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "When Vampiric Strike damages an enemy affected by your plagues, it extends the duration of the plagues by (varies by condition — check in-game) sec(varies by condition — check in-game)",
+                            "text": "When Vampiric Strike damages an enemy affected by your plagues, it extends the duration of the plagues by 0 sec, and erupts them with (varies)% increased effectiveness.",
                             "uncertain": true
                         },
                         "category": "Other",
@@ -10123,8 +10123,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Infliction of Sorrow deals (varies by condition — check in-game)% increased damage, and Vampiric Strike increases the damage of your (varies by condition — check in-game) by 20% for 8. Multiple applications may overlap.",
-                            "uncertain": true
+                            "text": "Infliction of Sorrow deals 10% increased damage, and Vampiric Strike increases the damage of your ghoul by 20% for 8. Multiple applications may overlap.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -10139,8 +10139,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Infliction of Sorrow deals (varies by condition — check in-game)% increased damage, and Vampiric Strike increases the damage of your (varies by condition — check in-game) by 20% for 8. Multiple applications may overlap.",
-                            "uncertain": true
+                            "text": "Infliction of Sorrow deals 10% increased damage, and Vampiric Strike increases the damage of your ghoul by 20% for 8. Multiple applications may overlap.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -10171,8 +10171,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "When Vampiric Strike damages an enemy affected by your plagues, it extends the duration of the plagues by (varies by condition — check in-game) sec(varies by condition — check in-game)",
-                            "uncertain": true
+                            "text": "When Vampiric Strike damages an enemy affected by your plagues, it extends the duration of the plagues by 3 sec, and erupts them with 75% increased effectiveness.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -10235,8 +10235,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Vampiric Strike increases the damage of (varies by condition — check in-game) by (varies by condition — check in-game)% for 8.(varies by condition — check in-game)",
-                            "uncertain": true
+                            "text": "Vampiric Strike increases the damage of your Lesser Ghouls by 10% for 8.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {

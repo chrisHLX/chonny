@@ -1,7 +1,7 @@
 {
     "class": "Rogue",
     "talent_tree_id": 852,
-    "fetched_at": "2026-10-06T22:29:46+00:00",
+    "fetched_at": "2026-11-03T21:14:36+00:00",
     "source": "Blizzard Game Data API (static-us, en_US)",
     "class_talents": {
         "nodes": [
@@ -13,12 +13,12 @@
                 "raw_position_x": 2700,
                 "raw_position_y": 2700,
                 "locked_by": [
-                    90764,
-                    110325
+                    110325,
+                    90764
                 ],
                 "unlocks": [
-                    90745,
-                    90637
+                    90637,
+                    90745
                 ],
                 "max_ranks": 1,
                 "ranks": [
@@ -85,7 +85,7 @@
                                 "talent_name": "Echoing Reprimand",
                                 "spell_id": 470669,
                                 "spell_name": "Echoing Reprimand",
-                                "description": "After consuming a supercharged combo point, your next Mutilate also strikes the target with an Echoing Reprimand dealing 41 Physical damage.",
+                                "description": "After consuming a supercharged combo point, your next Mutilate also strikes the target with an Echoing Reprimand dealing 42 Physical damage.",
                                 "cast_time": "Passive",
                                 "cooldown": null,
                                 "range": null
@@ -207,12 +207,12 @@
                 "raw_position_x": 5100,
                 "raw_position_y": 2700,
                 "locked_by": [
-                    90695,
-                    110324
+                    110324,
+                    90695
                 ],
                 "unlocks": [
-                    90746,
-                    90687
+                    90687,
+                    90746
                 ],
                 "max_ranks": 1,
                 "ranks": [
@@ -395,8 +395,8 @@
                     90697
                 ],
                 "unlocks": [
-                    90686,
-                    90742
+                    90742,
+                    90686
                 ],
                 "max_ranks": 1,
                 "ranks": [
@@ -422,8 +422,8 @@
                 "raw_position_y": 1500,
                 "locked_by": [],
                 "unlocks": [
-                    90695,
-                    110324
+                    110324,
+                    90695
                 ],
                 "max_ranks": 1,
                 "ranks": [
@@ -449,8 +449,8 @@
                 "raw_position_y": 1500,
                 "locked_by": [],
                 "unlocks": [
-                    90764,
-                    110325
+                    110325,
+                    90764
                 ],
                 "max_ranks": 1,
                 "ranks": [
@@ -680,14 +680,14 @@
                 "raw_position_x": 3900,
                 "raw_position_y": 3900,
                 "locked_by": [
+                    110323,
                     90745,
-                    90746,
-                    110323
+                    90746
                 ],
                 "unlocks": [
-                    110576,
                     90743,
-                    94562
+                    94562,
+                    110576
                 ],
                 "max_ranks": 1,
                 "ranks": [
@@ -844,9 +844,9 @@
                 "raw_position_x": 3900,
                 "raw_position_y": 5100,
                 "locked_by": [
-                    110576,
                     90743,
-                    94562
+                    94562,
+                    110576
                 ],
                 "unlocks": [
                     90640,
@@ -876,8 +876,8 @@
                 "raw_position_x": 5100,
                 "raw_position_y": 3900,
                 "locked_by": [
-                    90746,
-                    90687
+                    90687,
+                    90746
                 ],
                 "unlocks": [
                     94562,
@@ -1043,8 +1043,8 @@
                 "raw_position_x": 2700,
                 "raw_position_y": 3900,
                 "locked_by": [
-                    90745,
-                    90637
+                    90637,
+                    90745
                 ],
                 "unlocks": [
                     90743,
@@ -1120,8 +1120,8 @@
                     90684
                 ],
                 "unlocks": [
-                    90636,
-                    90742
+                    90742,
+                    90636
                 ],
                 "max_ranks": 1,
                 "ranks": [
@@ -1792,7 +1792,7 @@
                             "talent_name": "Unseen Blade",
                             "spell_id": 441146,
                             "spell_name": "Unseen Blade",
-                            "description": "Backstab and Shadowstrike now also strike with an Unseen Blade dealing 99 damage. Targets struck are Fazed for 10 sec.\r\n\r\nFazed enemies take 5% more damage from you and cannot parry your attacks.\r\n\r\nThis effect may occur once every 20 sec.",
+                            "description": "Backstab and Shadowstrike now also strike with an Unseen Blade dealing 96 damage. Targets struck are Fazed for 10 sec.\r\n\r\nFazed enemies take 5% more damage from you and cannot parry your attacks.\r\n\r\nThis effect may occur once every 20 sec.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -2107,7 +2107,7 @@
                             "talent_name": "Hand of Fate",
                             "spell_id": 452536,
                             "spell_name": "Hand of Fate",
-                            "description": "Flip a Fatebound Coin each time a finishing move consumes 5 or more combo points. Heads increases the damage of your attacks by 10%, lasting 15 sec or until you flip Tails. Tails deals 60 Cosmic damage to your target.\r\n\r\nFor each time the same face is flipped in a row, Heads increases damage by an additional 2% and Tails increases its damage by 10%.",
+                            "description": "Flip a Fatebound Coin each time a finishing move consumes 5 or more combo points. Heads increases the damage of your attacks by 10%, lasting 15 sec or until you flip Tails. Tails deals 58 Cosmic damage to your target.\r\n\r\nFor each time the same face is flipped in a row, Heads increases damage by an additional 2% and Tails increases its damage by 10%.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -3544,7 +3544,7 @@
                             "talent_name": "Deft Maneuvers",
                             "spell_id": 381878,
                             "spell_name": "Deft Maneuvers",
-                            "description": "Blade Flurry's initial damage is increased by 100% and generates 1 combo point per target struck, but its Energy cost is increased by 30.",
+                            "description": "Blade Flurry's initial damage is increased by 100% and it generates 1 combo point per target struck, but its Energy cost is increased by 5 for each target struck, up to 30.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -3712,9 +3712,9 @@
                         90679
                     ],
                     "unlocks": [
-                        90677,
                         90678,
-                        90641
+                        90641,
+                        90677
                     ],
                     "max_ranks": 1,
                     "ranks": [
@@ -3752,7 +3752,7 @@
                             "talent_name": "Blade Rush",
                             "spell_id": 271877,
                             "spell_name": "Blade Rush",
-                            "description": "Charge to your target with your blades out, dealing 300 Physical damage to the target and 132 to all other nearby enemies. Damage reduced beyond 8 targets.\r\n\r\nWhile Blade Flurry is active, damage to non-primary targets is increased by 100%.\r\n\r\nGenerates 25 Energy over 5 sec.",
+                            "description": "Charge to your target with your blades out, dealing 305 Physical damage to the target and 131 to all other nearby enemies. Damage reduced beyond 8 targets.\r\n\r\nWhile Blade Flurry is active, damage to non-primary targets is increased by 100%.\r\n\r\nGenerates 25 Energy over 5 sec.",
                             "cast_time": "Instant",
                             "cooldown": "1 min cooldown",
                             "range": "20 yd range"
@@ -3856,9 +3856,9 @@
                         90663
                     ],
                     "unlocks": [
-                        90667,
                         90668,
-                        90669
+                        90669,
+                        90667
                     ],
                     "max_ranks": 1,
                     "ranks": [
@@ -4333,9 +4333,9 @@
                     "raw_position_x": 10500,
                     "raw_position_y": 5700,
                     "locked_by": [
-                        90680,
                         90641,
-                        90678
+                        90678,
+                        90680
                     ],
                     "unlocks": [
                         90676
@@ -4363,12 +4363,12 @@
                     "raw_position_x": 11700,
                     "raw_position_y": 5700,
                     "locked_by": [
-                        90678,
-                        90654
+                        90654,
+                        90678
                     ],
                     "unlocks": [
-                        90676,
-                        90653
+                        90653,
+                        90676
                     ],
                     "max_ranks": 1,
                     "ranks": [
@@ -4435,12 +4435,12 @@
                     "raw_position_x": 12900,
                     "raw_position_y": 5700,
                     "locked_by": [
-                        90668,
-                        90654
+                        90654,
+                        90668
                     ],
                     "unlocks": [
-                        90666,
-                        90653
+                        90653,
+                        90666
                     ],
                     "max_ranks": 1,
                     "ranks": [
@@ -4465,9 +4465,9 @@
                     "raw_position_x": 14100,
                     "raw_position_y": 5700,
                     "locked_by": [
-                        90671,
                         90669,
-                        90668
+                        90668,
+                        90671
                     ],
                     "unlocks": [
                         90666
@@ -4802,7 +4802,7 @@
                             "talent_name": "Killing Spree",
                             "spell_id": 51690,
                             "spell_name": "Killing Spree",
-                            "description": "Finishing move that unleashes a barrage of gunfire, striking random enemies within 8 yards for Physical damage. Number of strikes increased per combo point.\r\n\r\nRestores 1 combo point every 0.45 sec. Each combo point spent above 5 increases damage by 15%.\r\n\r\n   1 point  : 318 over 0.45 sec\r\n   2 points: 477 over 0.89 sec\r\n   3 points: 635 over 1.34 sec\r\n   4 points: 794 over 1.78 sec\r\n   5 points: 953 over 2.23 sec",
+                            "description": "Finishing move that unleashes a barrage of gunfire, striking random enemies within 8 yards for Physical damage. Number of strikes increased per combo point.\r\n\r\nRestores 1 combo point every 0.45 sec. Each combo point spent above 5 increases damage by 15%.\r\n\r\n   1 point  : 313 over 0.45 sec\r\n   2 points: 470 over 0.89 sec\r\n   3 points: 627 over 1.34 sec\r\n   4 points: 783 over 1.78 sec\r\n   5 points: 940 over 2.23 sec",
                             "cast_time": "Channeled",
                             "cooldown": "3 min cooldown",
                             "range": "8 yd range"
@@ -4944,7 +4944,7 @@
                             "talent_name": "Hand of Fate",
                             "spell_id": 452536,
                             "spell_name": "Hand of Fate",
-                            "description": "Flip a Fatebound Coin each time a finishing move consumes 5 or more combo points. Heads increases the damage of your attacks by 10%, lasting 15 sec or until you flip Tails. Tails deals 59 Cosmic damage to your target.\r\n\r\nFor each time the same face is flipped in a row, Heads increases damage by an additional 2% and Tails increases its damage by 10%.",
+                            "description": "Flip a Fatebound Coin each time a finishing move consumes 5 or more combo points. Heads increases the damage of your attacks by 10%, lasting 15 sec or until you flip Tails. Tails deals 58 Cosmic damage to your target.\r\n\r\nFor each time the same face is flipped in a row, Heads increases damage by an additional 2% and Tails increases its damage by 10%.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -7755,9 +7755,9 @@
                         94582
                     ],
                     "unlocks": [
-                        90715,
                         90709,
-                        90734
+                        90734,
+                        90715
                     ],
                     "max_ranks": 1,
                     "ranks": [
@@ -7926,8 +7926,8 @@
                     "raw_position_x": 12300,
                     "raw_position_y": 3900,
                     "locked_by": [
-                        90701,
-                        90733
+                        90733,
+                        90701
                     ],
                     "unlocks": [
                         101715,
@@ -7984,8 +7984,8 @@
                     "raw_position_x": 13500,
                     "raw_position_y": 3900,
                     "locked_by": [
-                        90714,
-                        90733
+                        90733,
+                        90714
                     ],
                     "unlocks": [
                         90717,
@@ -8115,9 +8115,9 @@
                     "raw_position_x": 11700,
                     "raw_position_y": 4500,
                     "locked_by": [
-                        90727,
                         90699,
-                        90734
+                        90734,
+                        90727
                     ],
                     "unlocks": [
                         90735,
@@ -8146,9 +8146,9 @@
                     "raw_position_x": 12900,
                     "raw_position_y": 4500,
                     "locked_by": [
-                        90715,
                         90709,
-                        90734
+                        90734,
+                        90715
                     ],
                     "unlocks": [
                         90724,
@@ -8435,7 +8435,7 @@
                             "talent_name": "Goremaw's Bite",
                             "spell_id": 426591,
                             "spell_name": "Goremaw's Bite",
-                            "description": "Lash out at your target and 2 additional nearby enemies, inflicting 221 Shadow damage and causing them to Bleed for 429 damage over 14 sec.\r\n\r\n20% of all damage from Finishing Moves is repeated as Shadow, split evenly among affected enemies.",
+                            "description": "Lash out at your target and 2 additional nearby enemies, inflicting 218 Shadow damage and causing them to Bleed for 431 damage over 14 sec.\r\n\r\n20% of all damage from Finishing Moves is repeated as Shadow, split evenly among affected enemies.",
                             "cast_time": "Instant",
                             "cooldown": "45 sec cooldown",
                             "range": "Melee Range"
@@ -9139,7 +9139,7 @@
                             "talent_name": "Danse Macabre",
                             "spell_id": 382528,
                             "spell_name": "Danse Macabre",
-                            "description": "While Shadow Dance is active, each different attack that generates or spends combo points lashes out at the target, dealing 147 Shadow damage.",
+                            "description": "While Shadow Dance is active, each different attack that generates or spends combo points lashes out at the target, dealing 148 Shadow damage.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null

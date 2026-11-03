@@ -1,6 +1,6 @@
 {
-    "generatedAt": "2026-10-18T02:36:04+00:00",
-    "spellCacheVersion": 29,
+    "generatedAt": "2026-11-03T23:03:51+00:00",
+    "spellCacheVersion": 31,
     "codeFingerprint": "dev",
     "entries": [
         {
@@ -321,8 +321,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game). (varies by condition — check in-game).",
-                            "uncertain": true
+                            "text": "All pet damage increased by 2%. Dire Beast damage increased by 2%.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -396,8 +396,8 @@
                         "modifier_value": -30,
                         "modifier_unit": "seconds",
                         "description": {
-                            "text": "The cooldown of (varies by condition — check in-game)Aspect of the Cheetah, and Aspect of the Turtle are reduced by 15 sec.",
-                            "uncertain": true
+                            "text": "The cooldown of Aspect of the Cheetah, and Aspect of the Turtle are reduced by 15 sec.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -658,8 +658,8 @@
                         "modifier_value": -30,
                         "modifier_unit": "seconds",
                         "description": {
-                            "text": "The cooldown of (varies by condition — check in-game)Aspect of the Cheetah, and Aspect of the Turtle are reduced by 15 sec.",
-                            "uncertain": true
+                            "text": "The cooldown of Aspect of the Cheetah, and Aspect of the Turtle are reduced by 15 sec.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -1017,8 +1017,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Your (varies by condition — check in-game) have a very high chance to grant(varies by condition — check in-game) 3 Focus to you and your pet. (varies by condition — check in-game) damage increased by (varies by condition — check in-game)%.",
-                            "uncertain": true
+                            "text": "Your auto shot have a very high chance to grants 3 Focus to you and your pet. Auto shot damage increased by 25%.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -1033,8 +1033,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Your (varies by condition — check in-game) damage is increased by 25%.",
-                            "uncertain": true
+                            "text": "Your auto shot damage is increased by 25%.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -1049,8 +1049,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Your (varies by condition — check in-game) have a very high chance to grant(varies by condition — check in-game) 3 Focus to you and your pet. (varies by condition — check in-game) damage increased by (varies by condition — check in-game)%.",
-                            "uncertain": true
+                            "text": "Your auto shot have a very high chance to grants 3 Focus to you and your pet. Auto shot damage increased by 25%.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -1116,8 +1116,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game). (varies by condition — check in-game).",
-                            "uncertain": true
+                            "text": "All pet damage increased by 2%. Dire Beast damage increased by 2%.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -1378,8 +1378,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Damage dealt by your pet(varies by condition — check in-game) is increased by (varies by condition — check in-game)%. (varies by condition — check in-game).",
-                            "uncertain": true
+                            "text": "Damage dealt by your pets is increased by 2%. Barbed Shot damage increased by 10%.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -1788,8 +1788,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Howl of the Pack Leader increases the damage of your Kill Command by 50%. Summoning a Beast reduces the cooldown of (varies by condition — check in-game) by (varies by condition — check in-game) sec.",
-                            "uncertain": true
+                            "text": "Howl of the Pack Leader increases the damage of your Kill Command by 50%. Summoning a Beast reduces the cooldown of Barbed Shot by 4 sec.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -1904,8 +1904,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game). (varies by condition — check in-game).",
-                            "uncertain": true
+                            "text": "All pet damage increased by 2%. Dire Beast damage increased by 2%.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -2048,8 +2048,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game) Deathblow The cooldown of Black Arrow is reset. Your next Black Arrow can be used on any target, regardless of their current health.",
-                            "uncertain": true
+                            "text": "Kill Command has a 20% chance and Barbed Shot has a 50% chance to grant Deathblow.  Deathblow The cooldown of Black Arrow is reset. Your next Black Arrow can be used on any target, regardless of their current health.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -2163,8 +2163,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Bleak Powder now applies Black Arrow's periodic effect to all enemies it damages. If Bleak Powder damages 2 or more enemies, gain (varies by condition — check in-game) if talented.",
-                            "uncertain": true
+                            "text": "Bleak Powder now applies Black Arrow's periodic effect to all enemies it damages. If Bleak Powder damages 2 or more enemies, gain Beast Cleave if talented.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -2511,8 +2511,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Casting (varies by condition — check in-game) grants Howl of the Pack Leader and causes your next Kill Command to rouse the nearby wildlife into a Stampede, charging your target and dealing ≈1,350% of Attack Power Physical damage over 7.",
-                            "uncertain": true
+                            "text": "Casting Bestial Wrath grants Howl of the Pack Leader and causes your next Kill Command to rouse the nearby wildlife into a Stampede, charging your target and dealing ≈1,350% of Attack Power Physical damage over 7.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -2671,8 +2671,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Casting (varies by condition — check in-game) grants Howl of the Pack Leader and causes your next Kill Command to rouse the nearby wildlife into a Stampede, charging your target and dealing ≈1,350% of Attack Power Physical damage over 7.",
-                            "uncertain": true
+                            "text": "Casting Bestial Wrath grants Howl of the Pack Leader and causes your next Kill Command to rouse the nearby wildlife into a Stampede, charging your target and dealing ≈1,350% of Attack Power Physical damage over 7.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -2723,8 +2723,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game) causes you to surrender to darkness, granting you Withering Fire for (varies by condition — check in-game) and Deathblow. Withering Fire Casting Black Arrow fires a barrage of 50 additional Black Arrows at nearby targets at 30% effectiveness, prioritizing enemies that aren't affected by Black Arrow's damage over time effect.",
-                            "uncertain": true
+                            "text": "Bestial Wrath causes you to surrender to darkness, granting you Withering Fire for 10 and Deathblow. Withering Fire Casting Black Arrow fires a barrage of 50 additional Black Arrows at nearby targets at 30% effectiveness, prioritizing enemies that aren't affected by Black Arrow's damage over time effect.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -2739,7 +2739,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game) causes you to surrender to darkness, granting you Withering Fire for (varies by condition — check in-game) and Deathblow. Withering Fire Casting Black Arrow fires a barrage of 80 additional Black Arrows at nearby targets at (varies)% effectiveness, prioritizing enemies that aren't affected by Black Arrow's damage over time effect.",
+                            "text": "Bestial Wrath causes you to surrender to darkness, granting you Withering Fire for 10 and Deathblow. Withering Fire Casting Black Arrow fires a barrage of 80 additional Black Arrows at nearby targets at (varies)% effectiveness, prioritizing enemies that aren't affected by Black Arrow's damage over time effect.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -2787,8 +2787,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game) causes you to surrender to darkness, granting you Withering Fire for (varies by condition — check in-game) and Deathblow. Withering Fire Casting Black Arrow fires a barrage of 2 additional Black Arrows at nearby targets at 30% effectiveness, prioritizing enemies that aren't affected by Black Arrow's damage over time effect.",
-                            "uncertain": true
+                            "text": "Bestial Wrath causes you to surrender to darkness, granting you Withering Fire for 10 and Deathblow. Withering Fire Casting Black Arrow fires a barrage of 2 additional Black Arrows at nearby targets at 30% effectiveness, prioritizing enemies that aren't affected by Black Arrow's damage over time effect.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -2803,8 +2803,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game) summons a (varies by condition — check in-game). For 15 after casting (varies by condition — check in-game), (varies by condition — check in-game) is replaced with Wailing Arrow. Wailing Arrow Fire an enchanted arrow, dealing 392,060 Shadow damage to your target and an additional 392,060 Shadow damage to all enemies within 8 yds of your target. Non-Player targets struck by a Wailing Arrow have their spellcasting interrupted and are silenced for 1. Grants Deathblow.",
-                            "uncertain": true
+                            "text": "Bestial Wrath summons a Dark Hound. For 15 after casting Bestial Wrath, Bestial Wrath is replaced with Wailing Arrow. Wailing Arrow Fire an enchanted arrow, dealing 392,060 Shadow damage to your target and an additional 392,060 Shadow damage to all enemies within 8 yds of your target. Non-Player targets struck by a Wailing Arrow have their spellcasting interrupted and are silenced for 1. Grants Deathblow.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -2917,8 +2917,8 @@
             "spellId": 4735,
             "category": "Offensive",
             "description": {
-                "text": "Damage dealt by your pet(varies by condition — check in-game) is increased by (varies by condition — check in-game)%. (varies by condition — check in-game).",
-                "uncertain": true
+                "text": "Damage dealt by your pets is increased by 2%. Barbed Shot damage increased by 10%.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -3345,8 +3345,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game). (varies by condition — check in-game).",
-                            "uncertain": true
+                            "text": "All pet damage increased by 2%. Dire Beast damage increased by 2%.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -3377,8 +3377,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game) causes you to surrender to darkness, granting you Withering Fire for (varies by condition — check in-game) and Deathblow. Withering Fire Casting Black Arrow fires a barrage of 50 additional Black Arrows at nearby targets at 30% effectiveness, prioritizing enemies that aren't affected by Black Arrow's damage over time effect.",
-                            "uncertain": true
+                            "text": "Bestial Wrath causes you to surrender to darkness, granting you Withering Fire for 10 and Deathblow. Withering Fire Casting Black Arrow fires a barrage of 50 additional Black Arrows at nearby targets at 30% effectiveness, prioritizing enemies that aren't affected by Black Arrow's damage over time effect.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -3393,7 +3393,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Black Arrow now explodes in a cloud of shadow and sulfur on impact, dealing (varies by condition — check in-game) Shadow damage to all enemies within an 8 yd cone behind the target. Damage reduced beyond 8 targets.",
+                            "text": "Black Arrow now explodes in a cloud of shadow and sulfur on impact, dealing ≈250% of Attack Power Shadow damage to all enemies within an 8 yd cone behind the target. Damage reduced beyond 8 targets.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -3409,7 +3409,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Black Arrow now explodes in a cloud of shadow and sulfur on impact, dealing (varies by condition — check in-game) Shadow damage to all enemies within an 8 yd cone behind the target. Damage reduced beyond 8 targets.",
+                            "text": "Black Arrow now explodes in a cloud of shadow and sulfur on impact, dealing ≈250% of Attack Power Shadow damage to all enemies within an 8 yd cone behind the target. Damage reduced beyond 8 targets.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -3425,7 +3425,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Black Arrow now explodes in a cloud of shadow and sulfur on impact, dealing (varies by condition — check in-game) Shadow damage to all enemies within an 8 yd cone behind the target. Damage reduced beyond 8 targets.",
+                            "text": "Black Arrow now explodes in a cloud of shadow and sulfur on impact, dealing ≈250% of Attack Power Shadow damage to all enemies within an 8 yd cone behind the target. Damage reduced beyond 8 targets.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -3441,7 +3441,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game) causes you to surrender to darkness, granting you Withering Fire for (varies by condition — check in-game) and Deathblow. Withering Fire Casting Black Arrow fires a barrage of 80 additional Black Arrows at nearby targets at (varies)% effectiveness, prioritizing enemies that aren't affected by Black Arrow's damage over time effect.",
+                            "text": "Bestial Wrath causes you to surrender to darkness, granting you Withering Fire for 10 and Deathblow. Withering Fire Casting Black Arrow fires a barrage of 80 additional Black Arrows at nearby targets at (varies)% effectiveness, prioritizing enemies that aren't affected by Black Arrow's damage over time effect.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -3457,7 +3457,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Black Arrow now explodes in a cloud of shadow and sulfur on impact, dealing (varies by condition — check in-game) Shadow damage to all enemies within an 8 yd cone behind the target. Damage reduced beyond 8 targets.",
+                            "text": "Black Arrow now explodes in a cloud of shadow and sulfur on impact, dealing ≈250% of Attack Power Shadow damage to all enemies within an 8 yd cone behind the target. Damage reduced beyond 8 targets.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -3505,8 +3505,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game) causes you to surrender to darkness, granting you Withering Fire for (varies by condition — check in-game) and Deathblow. Withering Fire Casting Black Arrow fires a barrage of 2 additional Black Arrows at nearby targets at 30% effectiveness, prioritizing enemies that aren't affected by Black Arrow's damage over time effect.",
-                            "uncertain": true
+                            "text": "Bestial Wrath causes you to surrender to darkness, granting you Withering Fire for 10 and Deathblow. Withering Fire Casting Black Arrow fires a barrage of 2 additional Black Arrows at nearby targets at 30% effectiveness, prioritizing enemies that aren't affected by Black Arrow's damage over time effect.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -3537,7 +3537,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Black Arrow now explodes in a cloud of shadow and sulfur on impact, dealing (varies by condition — check in-game) Shadow damage to all enemies within an 8 yd cone behind the target. Damage reduced beyond 8 targets.",
+                            "text": "Black Arrow now explodes in a cloud of shadow and sulfur on impact, dealing ≈250% of Attack Power Shadow damage to all enemies within an 8 yd cone behind the target. Damage reduced beyond 8 targets.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -3553,8 +3553,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game) Deathblow The cooldown of Black Arrow is reset. Your next Black Arrow can be used on any target, regardless of their current health.",
-                            "uncertain": true
+                            "text": "Kill Command has a 20% chance and Barbed Shot has a 50% chance to grant Deathblow.  Deathblow The cooldown of Black Arrow is reset. Your next Black Arrow can be used on any target, regardless of their current health.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -3569,8 +3569,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Bleak Powder now applies Black Arrow's periodic effect to all enemies it damages. If Bleak Powder damages 2 or more enemies, gain (varies by condition — check in-game) if talented.",
-                            "uncertain": true
+                            "text": "Bleak Powder now applies Black Arrow's periodic effect to all enemies it damages. If Bleak Powder damages 2 or more enemies, gain Beast Cleave if talented.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -3585,8 +3585,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game)",
-                            "uncertain": true
+                            "text": "When summoning a Dire Beast, you have a 10% chance to instead summon a Dark Hound that deals significantly increased damage.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -3668,7 +3668,7 @@
             "spellId": 4725,
             "category": "Offensive",
             "description": {
-                "text": "Black Arrow now explodes in a cloud of shadow and sulfur on impact, dealing (varies by condition — check in-game) Shadow damage to all enemies within an 8 yd cone behind the target. Damage reduced beyond 8 targets.",
+                "text": "Black Arrow now explodes in a cloud of shadow and sulfur on impact, dealing ≈250% of Attack Power Shadow damage to all enemies within an 8 yd cone behind the target. Damage reduced beyond 8 targets.",
                 "uncertain": true
             },
             "formulaModifierSpellIds": [],
@@ -3698,8 +3698,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Bleak Powder now applies Black Arrow's periodic effect to all enemies it damages. If Bleak Powder damages 2 or more enemies, gain (varies by condition — check in-game) if talented.",
-                            "uncertain": true
+                            "text": "Bleak Powder now applies Black Arrow's periodic effect to all enemies it damages. If Bleak Powder damages 2 or more enemies, gain Beast Cleave if talented.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -3907,8 +3907,8 @@
             "spellId": 4677,
             "category": "Other",
             "description": {
-                "text": "The cooldown of (varies by condition — check in-game)Aspect of the Cheetah, and Aspect of the Turtle are reduced by 15 sec.",
-                "uncertain": true
+                "text": "The cooldown of Aspect of the Cheetah, and Aspect of the Turtle are reduced by 15 sec.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -4212,8 +4212,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game).",
-                            "uncertain": true
+                            "text": "When your Boar deals damage, the damage of your next Cobra Shot is increased by 100%. Each additional enemy damaged by your Boar causes Cobra Shot to strike 1 additional target, up to 4.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -4340,8 +4340,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Kill Command reduces the cooldown of Howl of the Pack Leader by (varies by condition — check in-game) sec. Mongoose Bite reduces the cooldown of Howl of the Pack Leader by (varies by condition — check in-game) sec.",
-                            "uncertain": true
+                            "text": "Kill Command reduces the cooldown of Howl of the Pack Leader by 1 sec. Mongoose Bite reduces the cooldown of Howl of the Pack Leader by 1 sec.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -4356,8 +4356,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game).",
-                            "uncertain": true
+                            "text": "When your Boar deals damage, the damage of your next Cobra Shot is increased by 100%. Each additional enemy damaged by your Boar causes Cobra Shot to strike 1 additional target, up to 4.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -4488,8 +4488,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game). (varies by condition — check in-game).",
-                            "uncertain": true
+                            "text": "All pet damage increased by 2%. Dire Beast damage increased by 2%.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -4552,8 +4552,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game).",
-                            "uncertain": true
+                            "text": "Hogstrider further increases the damage of Cobra Shot by 25% and it now strikes up to 3 additional targets.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -4756,8 +4756,8 @@
             "spellId": 4728,
             "category": "Other",
             "description": {
-                "text": "(varies by condition — check in-game)",
-                "uncertain": true
+                "text": "When summoning a Dire Beast, you have a 10% chance to instead summon a Dark Hound that deals significantly increased damage.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -4798,8 +4798,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "When (varies by condition — check in-game) interrupts a cast, gain 30 Focus.",
-                            "uncertain": true
+                            "text": "When Counter Shot interrupts a cast, gain 30 Focus.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -4814,8 +4814,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "When (varies by condition — check in-game) interrupts a cast, gain 30 Focus.",
-                            "uncertain": true
+                            "text": "When Counter Shot interrupts a cast, gain 30 Focus.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -5167,8 +5167,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game). (varies by condition — check in-game).",
-                            "uncertain": true
+                            "text": "All pet damage increased by 2%. Dire Beast damage increased by 2%.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -5199,8 +5199,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game). (varies by condition — check in-game).",
-                            "uncertain": true
+                            "text": "All pet damage increased by 6%. Dire Beast damage increased by 10%.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -5215,8 +5215,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game)",
-                            "uncertain": true
+                            "text": "When summoning a Dire Beast, you have a 10% chance to instead summon a Dark Hound that deals significantly increased damage.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -5372,8 +5372,8 @@
             "spellId": 4734,
             "category": "Other",
             "description": {
-                "text": "Kill Command reduces the cooldown of Howl of the Pack Leader by (varies by condition — check in-game) sec. Mongoose Bite reduces the cooldown of Howl of the Pack Leader by (varies by condition — check in-game) sec.",
-                "uncertain": true
+                "text": "Kill Command reduces the cooldown of Howl of the Pack Leader by 1 sec. Mongoose Bite reduces the cooldown of Howl of the Pack Leader by 1 sec.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -5594,8 +5594,8 @@
             "spellId": 4680,
             "category": "Other",
             "description": {
-                "text": "When (varies by condition — check in-game) interrupts a cast, gain 30 Focus.",
-                "uncertain": true
+                "text": "When Counter Shot interrupts a cast, gain 30 Focus.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -6436,8 +6436,8 @@
             "spellId": 4739,
             "category": "Other",
             "description": {
-                "text": "Your pet's attacks increase your Wyvern's damage bonus by 1%, up to 10%. Casting (varies by condition — check in-game) extends the duration of your Wyvern by (varies by condition — check in-game) sec, up to (varies by condition — check in-game) additional sec.",
-                "uncertain": true
+                "text": "Your pet's attacks increase your Wyvern's damage bonus by 1%, up to 10%. Casting Kill Command extends the duration of your Wyvern by 0.5 sec, up to 5 additional sec.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -6590,8 +6590,8 @@
             "spellId": 4740,
             "category": "Other",
             "description": {
-                "text": "(varies by condition — check in-game).",
-                "uncertain": true
+                "text": "When your Boar deals damage, the damage of your next Cobra Shot is increased by 100%. Each additional enemy damaged by your Boar causes Cobra Shot to strike 1 additional target, up to 4.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -6604,8 +6604,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game).",
-                            "uncertain": true
+                            "text": "Hogstrider further increases the damage of Cobra Shot by 25% and it now strikes up to 3 additional targets.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -6637,8 +6637,8 @@
             "spellId": 4748,
             "category": "Other",
             "description": {
-                "text": "(varies by condition — check in-game).",
-                "uncertain": true
+                "text": "Hogstrider further increases the damage of Cobra Shot by 25% and it now strikes up to 3 additional targets.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -6709,8 +6709,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Casting (varies by condition — check in-game) grants Howl of the Pack Leader and causes your next Kill Command to rouse the nearby wildlife into a Stampede, charging your target and dealing ≈1,350% of Attack Power Physical damage over 7.",
-                            "uncertain": true
+                            "text": "Casting Bestial Wrath grants Howl of the Pack Leader and causes your next Kill Command to rouse the nearby wildlife into a Stampede, charging your target and dealing ≈1,350% of Attack Power Physical damage over 7.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -6725,8 +6725,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Kill Command reduces the cooldown of Howl of the Pack Leader by (varies by condition — check in-game) sec. Mongoose Bite reduces the cooldown of Howl of the Pack Leader by (varies by condition — check in-game) sec.",
-                            "uncertain": true
+                            "text": "Kill Command reduces the cooldown of Howl of the Pack Leader by 1 sec. Mongoose Bite reduces the cooldown of Howl of the Pack Leader by 1 sec.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -6741,8 +6741,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Howl of the Pack Leader increases the damage of your Kill Command by 50%. Summoning a Beast reduces the cooldown of (varies by condition — check in-game) by (varies by condition — check in-game) sec.",
-                            "uncertain": true
+                            "text": "Howl of the Pack Leader increases the damage of your Kill Command by 50%. Summoning a Beast reduces the cooldown of Barbed Shot by 4 sec.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -6757,8 +6757,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Casting (varies by condition — check in-game) grants Howl of the Pack Leader and causes your next Kill Command to rouse the nearby wildlife into a Stampede, charging your target and dealing ≈1,350% of Attack Power Physical damage over 7.",
-                            "uncertain": true
+                            "text": "Casting Bestial Wrath grants Howl of the Pack Leader and causes your next Kill Command to rouse the nearby wildlife into a Stampede, charging your target and dealing ≈1,350% of Attack Power Physical damage over 7.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -7802,8 +7802,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Your pet's attacks increase your Wyvern's damage bonus by 1%, up to 10%. Casting (varies by condition — check in-game) extends the duration of your Wyvern by (varies by condition — check in-game) sec, up to (varies by condition — check in-game) additional sec.",
-                            "uncertain": true
+                            "text": "Your pet's attacks increase your Wyvern's damage bonus by 1%, up to 10%. Casting Kill Command extends the duration of your Wyvern by 0.5 sec, up to 5 additional sec.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -7850,8 +7850,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Casting (varies by condition — check in-game) grants Howl of the Pack Leader and causes your next Kill Command to rouse the nearby wildlife into a Stampede, charging your target and dealing ≈1,350% of Attack Power Physical damage over 7.",
-                            "uncertain": true
+                            "text": "Casting Bestial Wrath grants Howl of the Pack Leader and causes your next Kill Command to rouse the nearby wildlife into a Stampede, charging your target and dealing ≈1,350% of Attack Power Physical damage over 7.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -8074,8 +8074,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Kill Command reduces the cooldown of Howl of the Pack Leader by (varies by condition — check in-game) sec. Mongoose Bite reduces the cooldown of Howl of the Pack Leader by (varies by condition — check in-game) sec.",
-                            "uncertain": true
+                            "text": "Kill Command reduces the cooldown of Howl of the Pack Leader by 1 sec. Mongoose Bite reduces the cooldown of Howl of the Pack Leader by 1 sec.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -8090,8 +8090,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Howl of the Pack Leader increases the damage of your Kill Command by 50%. Summoning a Beast reduces the cooldown of (varies by condition — check in-game) by (varies by condition — check in-game) sec.",
-                            "uncertain": true
+                            "text": "Howl of the Pack Leader increases the damage of your Kill Command by 50%. Summoning a Beast reduces the cooldown of Barbed Shot by 4 sec.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -8106,8 +8106,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Your pet's attacks increase your Wyvern's damage bonus by 1%, up to 10%. Casting (varies by condition — check in-game) extends the duration of your Wyvern by (varies by condition — check in-game) sec, up to (varies by condition — check in-game) additional sec.",
-                            "uncertain": true
+                            "text": "Your pet's attacks increase your Wyvern's damage bonus by 1%, up to 10%. Casting Kill Command extends the duration of your Wyvern by 0.5 sec, up to 5 additional sec.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -8122,8 +8122,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Casting (varies by condition — check in-game) grants Howl of the Pack Leader and causes your next Kill Command to rouse the nearby wildlife into a Stampede, charging your target and dealing ≈1,350% of Attack Power Physical damage over 7.",
-                            "uncertain": true
+                            "text": "Casting Bestial Wrath grants Howl of the Pack Leader and causes your next Kill Command to rouse the nearby wildlife into a Stampede, charging your target and dealing ≈1,350% of Attack Power Physical damage over 7.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -8222,8 +8222,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game). (varies by condition — check in-game).",
-                            "uncertain": true
+                            "text": "All pet damage increased by 2%. Dire Beast damage increased by 2%.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -8414,8 +8414,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game) Deathblow The cooldown of Black Arrow is reset. Your next Black Arrow can be used on any target, regardless of their current health.",
-                            "uncertain": true
+                            "text": "Kill Command has a 20% chance and Barbed Shot has a 50% chance to grant Deathblow.  Deathblow The cooldown of Black Arrow is reset. Your next Black Arrow can be used on any target, regardless of their current health.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -8430,7 +8430,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game).",
+                            "text": "Kill Command causes your Dark Hound to Shadow Thrash, dealing ≈210% of Attack Power Shadow damage to up to 8 nearby enemies.",
                             "uncertain": true
                         },
                         "category": "Other",
@@ -8774,8 +8774,8 @@
             "spellId": 4746,
             "category": "Offensive",
             "description": {
-                "text": "Your (varies by condition — check in-game) have a very high chance to grant(varies by condition — check in-game) 3 Focus to you and your pet. (varies by condition — check in-game) damage increased by (varies by condition — check in-game)%.",
-                "uncertain": true
+                "text": "Your auto shot have a very high chance to grants 3 Focus to you and your pet. Auto shot damage increased by 25%.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -9092,8 +9092,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "When (varies by condition — check in-game) interrupts a cast, gain 30 Focus.",
-                            "uncertain": true
+                            "text": "When Counter Shot interrupts a cast, gain 30 Focus.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -9108,8 +9108,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "When (varies by condition — check in-game) interrupts a cast, gain 30 Focus.",
-                            "uncertain": true
+                            "text": "When Counter Shot interrupts a cast, gain 30 Focus.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -9233,8 +9233,8 @@
             "spellId": 4741,
             "category": "Other",
             "description": {
-                "text": "Your Bleed effects deal (varies by condition — check in-game)% increased damage.",
-                "uncertain": true
+                "text": "Your Bleed effects deal 10% increased damage.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -9263,8 +9263,8 @@
             "spellId": 4736,
             "category": "Other",
             "description": {
-                "text": "Howl of the Pack Leader increases the damage of your Kill Command by 50%. Summoning a Beast reduces the cooldown of (varies by condition — check in-game) by (varies by condition — check in-game) sec.",
-                "uncertain": true
+                "text": "Howl of the Pack Leader increases the damage of your Kill Command by 50%. Summoning a Beast reduces the cooldown of Barbed Shot by 4 sec.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -9340,7 +9340,7 @@
             "spellId": 4731,
             "category": "Other",
             "description": {
-                "text": "(varies by condition — check in-game).",
+                "text": "Kill Command causes your Dark Hound to Shadow Thrash, dealing ≈210% of Attack Power Shadow damage to up to 8 nearby enemies.",
                 "uncertain": true
             },
             "formulaModifierSpellIds": [],
@@ -9507,8 +9507,8 @@
             "spellId": 4709,
             "category": "Offensive",
             "description": {
-                "text": "Your (varies by condition — check in-game) damage is increased by 25%.",
-                "uncertain": true
+                "text": "Your auto shot damage is increased by 25%.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -9901,8 +9901,8 @@
             "spellId": 4745,
             "category": "Offensive",
             "description": {
-                "text": "Your mastery is increased by 3%.(varies by condition — check in-game)",
-                "uncertain": true
+                "text": "Your mastery is increased by 3%.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -10111,8 +10111,8 @@
             "spellId": 4726,
             "category": "Other",
             "description": {
-                "text": "(varies by condition — check in-game) Deathblow The cooldown of Black Arrow is reset. Your next Black Arrow can be used on any target, regardless of their current health.",
-                "uncertain": true
+                "text": "Kill Command has a 20% chance and Barbed Shot has a 50% chance to grant Deathblow.  Deathblow The cooldown of Black Arrow is reset. Your next Black Arrow can be used on any target, regardless of their current health.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -10171,8 +10171,8 @@
             "spellId": 4744,
             "category": "Other",
             "description": {
-                "text": "Casting (varies by condition — check in-game) grants Howl of the Pack Leader and causes your next Kill Command to rouse the nearby wildlife into a Stampede, charging your target and dealing ≈1,350% of Attack Power Physical damage over 7.",
-                "uncertain": true
+                "text": "Casting Bestial Wrath grants Howl of the Pack Leader and causes your next Kill Command to rouse the nearby wildlife into a Stampede, charging your target and dealing ≈1,350% of Attack Power Physical damage over 7.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -10201,8 +10201,8 @@
             "spellId": 3892,
             "category": "Offensive",
             "description": {
-                "text": "A steady shot that causes 20 Physical damage.(varies by condition — check in-game) Usable while moving. Generates 20 Focus.",
-                "uncertain": true
+                "text": "A steady shot that causes 20 Physical damage. Usable while moving. Generates 20 Focus.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -10422,8 +10422,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game). (varies by condition — check in-game).",
-                            "uncertain": true
+                            "text": "All pet damage increased by 2%. Dire Beast damage increased by 2%.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -10724,8 +10724,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game). (varies by condition — check in-game).",
-                            "uncertain": true
+                            "text": "All pet damage increased by 2%. Dire Beast damage increased by 2%.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -11301,8 +11301,8 @@
             "spellId": 4720,
             "category": "Offensive",
             "description": {
-                "text": "(varies by condition — check in-game). (varies by condition — check in-game).",
-                "uncertain": true
+                "text": "All pet damage increased by 6%. Dire Beast damage increased by 10%.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -11605,8 +11605,8 @@
             "spellId": 4727,
             "category": "Other",
             "description": {
-                "text": "Bleak Powder now applies Black Arrow's periodic effect to all enemies it damages. If Bleak Powder damages 2 or more enemies, gain (varies by condition — check in-game) if talented.",
-                "uncertain": true
+                "text": "Bleak Powder now applies Black Arrow's periodic effect to all enemies it damages. If Bleak Powder damages 2 or more enemies, gain Beast Cleave if talented.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -11695,8 +11695,8 @@
             "spellId": 4729,
             "category": "Other",
             "description": {
-                "text": "(varies by condition — check in-game) summons a (varies by condition — check in-game). For 15 after casting (varies by condition — check in-game), (varies by condition — check in-game) is replaced with Wailing Arrow. Wailing Arrow Fire an enchanted arrow, dealing 392,060 Shadow damage to your target and an additional 392,060 Shadow damage to all enemies within 8 yds of your target. Non-Player targets struck by a Wailing Arrow have their spellcasting interrupted and are silenced for 1. Grants Deathblow.",
-                "uncertain": true
+                "text": "Bestial Wrath summons a Dark Hound. For 15 after casting Bestial Wrath, Bestial Wrath is replaced with Wailing Arrow. Wailing Arrow Fire an enchanted arrow, dealing 392,060 Shadow damage to your target and an additional 392,060 Shadow damage to all enemies within 8 yds of your target. Non-Player targets struck by a Wailing Arrow have their spellcasting interrupted and are silenced for 1. Grants Deathblow.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -12056,8 +12056,8 @@
             "spellId": 4719,
             "category": "Other",
             "description": {
-                "text": "(varies by condition — check in-game) causes you to surrender to darkness, granting you Withering Fire for (varies by condition — check in-game) and Deathblow. Withering Fire Casting Black Arrow fires a barrage of 2 additional Black Arrows at nearby targets at 30% effectiveness, prioritizing enemies that aren't affected by Black Arrow's damage over time effect.",
-                "uncertain": true
+                "text": "Bestial Wrath causes you to surrender to darkness, granting you Withering Fire for 10 and Deathblow. Withering Fire Casting Black Arrow fires a barrage of 2 additional Black Arrows at nearby targets at 30% effectiveness, prioritizing enemies that aren't affected by Black Arrow's damage over time effect.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -12086,8 +12086,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game) causes you to surrender to darkness, granting you Withering Fire for (varies by condition — check in-game) and Deathblow. Withering Fire Casting Black Arrow fires a barrage of 50 additional Black Arrows at nearby targets at 30% effectiveness, prioritizing enemies that aren't affected by Black Arrow's damage over time effect.",
-                            "uncertain": true
+                            "text": "Bestial Wrath causes you to surrender to darkness, granting you Withering Fire for 10 and Deathblow. Withering Fire Casting Black Arrow fires a barrage of 50 additional Black Arrows at nearby targets at 30% effectiveness, prioritizing enemies that aren't affected by Black Arrow's damage over time effect.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -12102,7 +12102,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game) causes you to surrender to darkness, granting you Withering Fire for (varies by condition — check in-game) and Deathblow. Withering Fire Casting Black Arrow fires a barrage of 80 additional Black Arrows at nearby targets at (varies)% effectiveness, prioritizing enemies that aren't affected by Black Arrow's damage over time effect.",
+                            "text": "Bestial Wrath causes you to surrender to darkness, granting you Withering Fire for 10 and Deathblow. Withering Fire Casting Black Arrow fires a barrage of 80 additional Black Arrows at nearby targets at (varies)% effectiveness, prioritizing enemies that aren't affected by Black Arrow's damage over time effect.",
                             "uncertain": true
                         },
                         "category": "Offensive",

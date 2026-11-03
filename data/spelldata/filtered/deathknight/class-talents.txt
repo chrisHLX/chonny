@@ -1,5 +1,5 @@
 # Death Knight — Class Talents
-# Extracted verbatim from deathknight.txt (SimulationCraft 1210-01 for World of Warcraft 12.1.0.69933 Live)
+# Extracted verbatim from deathknight.txt (SimulationCraft 1210-01 for World of Warcraft 12.1.5.70688 Live)
 # 46 spell record(s). Mechanical regroup only — no content altered.
 
 Name             : Raise Dead (id=46585) [Spell Family (15)] 
@@ -164,7 +164,6 @@ Attributes       : Is Ability (4), Not Shapeshifted (16), Do Not Sheath (18), In
 Effects          :
 #1 (id=42113)    : School Damage (2): physical | Attributes: Unknown(28)
                    Base Value: 0 | Scaled Value: 0 (delta=0.05) | AP Coefficient: 1.761 | Chain Multiplier: 0.6 | Chain Targets: 1 | Target: Targeted Enemy (6)
-Hotfixed         : AP Coefficient (1.5312 -> 1.761), Chain Multiplier (0.75 -> 0.6)
 #2 (id=42114)    : Dummy (3)
                    Base Value: 20 | Scaled Value: 20 | Target: Targeted Enemy (6)
                    Modified By: Voracious (273953 effect#2), Improved Death Strike (374277 effect#1)

@@ -1,5 +1,5 @@
 # Mage — Frostfire Hero Talents
-# Extracted verbatim from mage.txt (SimulationCraft 1210-01 for World of Warcraft 12.1.0.69933 Live)
+# Extracted verbatim from mage.txt (SimulationCraft 1210-01 for World of Warcraft 12.1.5.70688 Live)
 # 17 spell record(s). Mechanical regroup only — no content altered.
 
 Name             : Frostfire Bolt (id=431044) [Spell Family (3)] 
@@ -88,11 +88,11 @@ Effects          :
                    Base Value: 150 | Scaled Value: 150 | Target: Self (1)
 #2 (id=1131295)  : Apply Aura (6) | Dummy (4)
                    Base Value: 300 | Scaled Value: 300 | PvP Coefficient: 0.6667 | Target: Self (1)
-Description      : $?a137019[Meteor now also calls down a Comet Storm, dealing ${$438609s1*7} Frost damage to nearby enemies]?a137020[Comet Storm now also calls down a Meteor, dealing $351140s1 Fire damage to nearby enemies. Damage reduced beyond 8 targets.
+Description      : $?a137019[Meteor now also calls down a Comet Storm, dealing ${$438609s1*7} Frost damage to nearby enemies]?a137020[Comet Storm now also calls down a Meteor, dealing $438607s1 Fire damage to nearby enemies. Damage reduced beyond 8 targets.
 
 Damage from Meteor Shatters $1246769s5 stacks of Freezing][Meteor now also calls down a Comet Storm, dealing ${$438609s1*7} Frost damage to nearby enemies.
 
-Comet Storm now also calls down a Meteor, dealing $351140s1 Fire damage to nearby enemies].
+Comet Storm now also calls down a Meteor, dealing $438607s1 Fire damage to nearby enemies].
 
 Name             : Flame and Frost (id=431112) [Spell Family (3), Passive, Hidden] 
 Talent Entry     : Frostfire (Fire, Frost) [tree=hero, row=2, col=4, max_rank=1, req_points=0, select_idx=200]
@@ -170,7 +170,7 @@ Effects          :
                    Base Value: 4 | Scaled Value: 4 | Misc Value: 22 | Target: Self (1)
                    Affected Spells: Frostbolt (116), Cone of Cold (120), Flamestrike (2120), Scorch (2948), Ignite (12654), Ice Lance (30455), Living Bomb (44461), Frozen Orb (84721), Fire Blast (108853), Meteor (153564), Comet Storm (153595), Comet Storm (153596), Blast Wave (157981), Ice Nova (157997), Blizzard (190356), Blizzard (190357), Ray of Frost (205021), Flame Patch (205472), Flurry (228354), Flurry (228596), Frostbolt (228597), Ice Lance (228598), Glacial Spike (228600), Comet Storm (228601), Blast Wave (268467), Blast Wave (268473), Blast Wave (268474), Blast Wave (268475), Fire Blast (319836), Meteor (351140), Blast Wave (389631), Meteor (438607), Meteor (438608), Comet Storm (438609), Living Bomb (438674), Meteorite (449560), Meteorite (449569), Living Bomb (453251), Flamestrike (460476), Living Bomb (464884), Frostfire Bolt (468655), Ignite (1236160), Glacial Spike (1236209), Glacial Spike (1236211), Shatter (1246949), Freezing Winds (1247554), Blizzard (1248829), Flamestrike (1254851), Glacial Spike (1262860), Glacial Spike (1262862), Ignite (1262887), Winter's End (1280757)
                    Family Flags: 1, 2, 4, 5, 7, 9, 17, 27, 28, 35, 38, 48, 52, 56, 64, 78, 82, 88, 96, 102, 119, 120
-Description      : $?a137020[Frostfire Bolt has an additional $s1% chance to grant Brain Freeze]?a137019[Frostfire Bolt's critical strike chance is increased by $s2%.][Frostfire Bolt has and additional $s1% chance to grant Brain Freeze and its critical strike chance is increased by $s2%].
+Description      : $?a137020[Frostfire Bolt grants Brain Freeze $s1% more often]?a137019[Frostfire Bolt's critical strike chance is increased by $s2%][Frostfire Bolt grants Brain Freeze $s1% more often and its critical strike chance is increased by $s2%].
 
 The damage of your Frost spells and Fire spells are increased by $s3%.
 
@@ -201,7 +201,7 @@ Effects          :
                    Base Value: 5 | Scaled Value: 5 | Target: Self (1)
 #6 (id=1296950)  : Apply Aura (6) | Dummy (4)
                    Base Value: 60 | Scaled Value: 60 | PvP Coefficient: 0.5 | Target: Self (1)
-Description      : Casting Frostfire spells has a $s3% chance to activate Frostfire Empowerment, causing your next Frostfire Bolt to be instant cast, deal $431177s3% increased damage, explode for $s2% of its damage to nearby enemies. Damage reduced beyond $s5 targets.$?c2[][
+Description      : Casting Frostfire spells has a $s3% chance to activate Frostfire Empowerment, causing your next Frostfire Bolt to be instant cast, deal $431177s3% increased damage, and explode for $s2% of its damage to nearby enemies. Damage reduced beyond $s5 targets.$?c2[][
 
 Damage from Frostfire Empowerment applies $s4 $Lstack:stacks; of Freezing.]
 
@@ -313,7 +313,6 @@ Effects          :
                    Base Value: 15 | Scaled Value: 15 | Target: Self (1)
                    Affected Spells: Flamestrike (2120), Flamestrike (460476), Flamestrike (1254851)
                    Family Flags: 2
-Hotfixed         : Base Value (10 -> 15)
 #6 (id=1261864)  : Apply Aura (6) | Add Percent Modifier (108): Spell Direct Amount (0)
                    Base Value: 15 | Scaled Value: 15 | Target: Self (1)
                    Affected Spells: Blizzard (190356), Blizzard (190357), Freezing Winds (1247554), Blizzard (1248829)
@@ -408,4 +407,4 @@ Effects          :
                    Base Value: 2 | Scaled Value: 2 | Target: Self (1)
 Description      : $?c2[Comet Storm and Glacial Spike now apply Ignite][Meteor and Pyroblast now apply Ignite].
 
-Your Haste is increased by $s2%.
+Haste increased by $s2%.

@@ -1,5 +1,5 @@
 # Warlock — Baseline (no talent tree)
-# Extracted verbatim from warlock.txt (SimulationCraft 1210-01 for World of Warcraft 12.1.0.69933 Live)
+# Extracted verbatim from warlock.txt (SimulationCraft 1210-01 for World of Warcraft 12.1.5.70688 Live)
 # 797 spell record(s). Mechanical regroup only — no content altered.
 
 Name             : Eye of Kilrogg (id=126) [Spell Family (5)] 
@@ -1078,7 +1078,7 @@ Family Flags     : 49, 92
 Attributes       : Allow Cast While Dead (23), Allow While Mounted (24), Allow While Sitting (27), No Redirection (35), Allow While Stealthed (37), No Reflection (39), Ignore Line of Sight (66), Allow While Invisible (78), Allow While Not Shapeshifted (caster form) (83), Active Threat (94), Not a Proc (105), Treat As Periodic (121), Do Not Display Range (126), Allow Cast While Casting (135), Not In Spellbook (143), Allow While Stunned (163), Treat as Area Effect (175), Allow While Fleeing (177), Allow While Confused (178), Always AOE Line of Sight (186), Allow While Riding Vehicle (204), Allow While Charmed (261), Allow While Banished Aura State (299), Allow Cast While Channeling (308), Bypass Visibility Check (320), Allow While Stunned By Horror Mechanic (342), Allow While Stunned by Stun Mechanic (378), Don't close loot window (379), Allow Class Ability Procs (416), Allow While Feared By Fear Mechanic (417)
 Effects          :
 #1 (id=33883)    : School Damage (2): fire
-                   Base Value: 0 | Scaled Value: 0 | SP Coefficient: 0.596911 | Target: Targeted Enemy (6)
+                   Base Value: 0 | Scaled Value: 0 | SP Coefficient: 0.716293 | Target: Targeted Enemy (6)
 Description      : $@spelldesc5740
 
 Name             : Seed of Corruption (id=43991) [Spell Family (5)] 
@@ -11356,7 +11356,7 @@ Effects          :
 Description      : Dark magic erupts from you and corrupts your soul for $d, causing enemies suffering from your Wither to take $446285s1 Shadowflame damage and increase its stack count by $430014s1.
 
 While corrupted your Haste is increased by $s1% and spending Soul Shards on damaging spells grants $430014s2 additional stack of Wither.
-Tooltip          : Haste increased by $w1% and $?s324536[Malefic Rapture grants $w2 additional stack of Wither to targets affected by Unstable Affliction.][Chaos Bolt grants $w3 additional stack of Wither.]
+Tooltip          : Haste increased by $w1% and $?s1259790[Unstable Affliction grants $w2 additional stack of Wither.][Chaos Bolt grants $w3 additional stack of Wither.]
 
 All of your active Withers are acute.
 
@@ -13251,7 +13251,7 @@ Effects          :
                    Affected Spells: Seed of Corruption (27243), Unstable Affliction (30108), Unstable Affliction (233490), Unstable Affliction (233496), Unstable Affliction (233497), Unstable Affliction (233498), Unstable Affliction (233499), Unstable Affliction (1219045), Unstable Affliction (1259790), Unstable Affliction (1261176)
                    Family Flags: 36, 40
 Description      : $@spelldesc1260264
-Tooltip          : Your next Unstable Affliction is instant cast and costs no Soul Shards.
+Tooltip          : Your next Unstable Affliction or Seed of Corruption is instant cast and costs no Soul Shards.
 
 Name             : Nightfall (id=1260279) [Spell Family (5)] 
 Class            : Warlock
@@ -13515,7 +13515,7 @@ Effects          :
                    Base Value: 0 | Scaled Value: 0 (delta=0.05) | SP Coefficient: 0.96 | Radius: 0 - 8 yards | Target: at Self (18) -> at Enemy in Area (16)
 #2 (id=1275242)  : None (0)
                    Base Value: 8 | Scaled Value: 8
-Description      : Cleaves the area in front of the caster, inflicting $s1 Shadowflame damage. Damage reduced beyond $s2 targets.
+Description      : Cleaves the area around the caster, inflicting $s1 Shadowflame damage to targets within $a1 yds. Damage reduced beyond $s2 targets.
 
 Name             : Warlock Affliction 12.0 Class Set 2pc (id=1264869) [Spell Family (5), Passive, Hidden] 
 Class            : Warlock

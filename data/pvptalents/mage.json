@@ -1,6 +1,6 @@
 {
     "class": "Mage",
-    "fetched_at": "2026-10-06T22:34:56+00:00",
+    "fetched_at": "2026-11-03T21:19:55+00:00",
     "source": "Blizzard Game Data API (static-us, en_US)",
     "specs": {
         "Frost": {
@@ -11,7 +11,7 @@
                     "name": "Icy Feet",
                     "spell_id": 407581,
                     "spell_name": "Icy Feet",
-                    "description": "When your Frost Nova or Water Elemental's Freeze is dispelled or removed, become immune to snares for 4 sec. \r\n\r\nThis effect can only occur once every 10 sec.",
+                    "description": "When your Frost Nova or Water Elemental's Freeze is dispelled or removed, you become immune to snares for 4 sec. \r\n\r\nThis effect can only occur once every 10 sec.",
                     "unlock_player_level": 0,
                     "compatible_slots": [
                         1,
@@ -27,7 +27,7 @@
                     "name": "Concentrated Coolness",
                     "spell_id": 198148,
                     "spell_name": "Concentrated Coolness",
-                    "description": "Frozen Orb's damage is increased by 10% and is now castable at a location with a 40 yard range but no longer moves. ",
+                    "description": "Frozen Orb's damage is increased by 10% and it is now castable at a location within 40 yds, but it no longer moves.",
                     "unlock_player_level": 40,
                     "compatible_slots": [
                         1,
@@ -75,7 +75,7 @@
                     "name": "Frost Bomb",
                     "spell_id": 390612,
                     "spell_name": "Frost Bomb",
-                    "description": "Places a Frost Bomb on the target. After 5 sec, the bomb explodes, dealing 9,661 Frost damage to the target and 4,898 Frost damage to all other enemies within 10 yards. All affected targets are slowed by 50% for 8 sec. \r\n\r\nIf Frost Bomb is dispelled before it explodes, gain a charge of Brain Freeze.",
+                    "description": "Places a Frost Bomb on the target. After 5 sec, the bomb explodes, dealing 9,792 Frost damage to the target and 5,015 Frost damage to all other enemies within 10 yards. All affected targets are slowed by 50% for 8 sec. \r\n\r\nIf Frost Bomb is dispelled before it explodes, gain a charge of Brain Freeze.",
                     "unlock_player_level": 20,
                     "compatible_slots": [
                         1,
@@ -91,7 +91,7 @@
                     "name": "Snowdrift",
                     "spell_id": 389794,
                     "spell_name": "Snowdrift",
-                    "description": "Summon a strong Blizzard that surrounds you for 6 sec that slows enemies by 70% and deals 83 Frost damage every 1 sec. \r\n\r\nEnemies that are caught in Snowdrift for 2 sec consecutively become Frozen in ice, stunned for 4 sec.",
+                    "description": "Swirling ice surrounds you for 6 sec, slowing enemies by 70% and dealing 85 Frost damage every 1 sec.\r\n\r\nEnemies caught in Snowdrift for 2 sec consecutively become Frozen in ice, stunned for 4 sec.",
                     "unlock_player_level": 20,
                     "compatible_slots": [
                         1,
@@ -123,7 +123,7 @@
                     "name": "Ethereal Blink",
                     "spell_id": 410939,
                     "spell_name": "Ethereal Blink",
-                    "description": "Blink and Shimmer apply Slow at 100% effectiveness to all enemies you Blink through. For each enemy you Blink through, the cooldown of Blink and Shimmer are reduced by 1 sec, up to 5 sec.",
+                    "description": "Blink applies Slow at 100% effectiveness to all enemies you Blink through. For each enemy you Blink through, the cooldown of Blink is reduced by 1 sec, up to 5 sec.\r\n\r\n Slow\r\nReduces the target's movement speed by 50% for 15 sec. ",
                     "unlock_player_level": 0,
                     "compatible_slots": [
                         1,
@@ -139,7 +139,7 @@
                     "name": "Improved Mass Invisibility",
                     "spell_id": 415945,
                     "spell_name": "Improved Mass Invisibility",
-                    "description": "The cooldown of Mass Invisibility is reduced by 3 min and it can affect allies in combat.",
+                    "description": "Mass Invisibility's cooldown is reduced by 3 min, and it can affect allies in combat.",
                     "unlock_player_level": 0,
                     "compatible_slots": [
                         1,
@@ -240,7 +240,7 @@
                     "name": "Glass Cannon",
                     "spell_id": 390428,
                     "spell_name": "Glass Cannon",
-                    "description": "Increases damage of Fireball, Scorch, and Ignite by 25% but decreases your maximum health by 30%.\r\n",
+                    "description": "Fireball, Scorch, and Ignite damage is increased by 25%, but your maximum health is decreased by 30%.\r\n",
                     "unlock_player_level": 20,
                     "compatible_slots": [
                         1,
@@ -272,7 +272,7 @@
                     "name": "Ethereal Blink",
                     "spell_id": 410939,
                     "spell_name": "Ethereal Blink",
-                    "description": "Blink and Shimmer apply Slow at 100% effectiveness to all enemies you Blink through. For each enemy you Blink through, the cooldown of Blink and Shimmer are reduced by 1 sec, up to 5 sec.",
+                    "description": "Blink applies Slow at 100% effectiveness to all enemies you Blink through. For each enemy you Blink through, the cooldown of Blink is reduced by 1 sec, up to 5 sec.\r\n\r\n Slow\r\nReduces the target's movement speed by 50% for 15 sec. ",
                     "unlock_player_level": 0,
                     "compatible_slots": [
                         1,
@@ -288,7 +288,7 @@
                     "name": "Improved Mass Invisibility",
                     "spell_id": 415945,
                     "spell_name": "Improved Mass Invisibility",
-                    "description": "The cooldown of Mass Invisibility is reduced by 3 min and it can affect allies in combat.",
+                    "description": "Mass Invisibility's cooldown is reduced by 3 min, and it can affect allies in combat.",
                     "unlock_player_level": 0,
                     "compatible_slots": [
                         1,
@@ -325,7 +325,7 @@
                     "name": "Improved Mass Invisibility",
                     "spell_id": 415945,
                     "spell_name": "Improved Mass Invisibility",
-                    "description": "The cooldown of Mass Invisibility is reduced by 3 min and it can affect allies in combat.",
+                    "description": "Mass Invisibility's cooldown is reduced by 3 min, and it can affect allies in combat.",
                     "unlock_player_level": 0,
                     "compatible_slots": [
                         1,
@@ -357,7 +357,7 @@
                     "name": "Arcanosphere",
                     "spell_id": 353128,
                     "spell_name": "Arcanosphere",
-                    "description": "Builds a sphere of Arcane energy, gaining power over 4 sec. Upon release, the sphere passes through any barriers, knocking enemies back and dealing up to 18,892 Arcane damage.",
+                    "description": "Builds a sphere of Arcane energy, gaining power over 4 sec. Upon release, the sphere passes through any barriers, knocking enemies back and dealing up to 18,633 Arcane damage.",
                     "unlock_player_level": 55,
                     "compatible_slots": [
                         1,
@@ -421,7 +421,7 @@
                     "name": "Ethereal Blink",
                     "spell_id": 410939,
                     "spell_name": "Ethereal Blink",
-                    "description": "Blink and Shimmer apply Slow at 100% effectiveness to all enemies you Blink through. For each enemy you Blink through, the cooldown of Blink and Shimmer are reduced by 1 sec, up to 5 sec.",
+                    "description": "Blink applies Slow at 100% effectiveness to all enemies you Blink through. For each enemy you Blink through, the cooldown of Blink is reduced by 1 sec, up to 5 sec.\r\n\r\n Slow\r\nReduces the target's movement speed by 50% for 15 sec. ",
                     "unlock_player_level": 0,
                     "compatible_slots": [
                         1,

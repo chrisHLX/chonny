@@ -1,5 +1,5 @@
 # Shaman — Elemental Spec Talents
-# Extracted verbatim from shaman.txt (SimulationCraft 1210-01 for World of Warcraft 12.1.0.69933 Live)
+# Extracted verbatim from shaman.txt (SimulationCraft 1210-01 for World of Warcraft 12.1.5.70688 Live)
 # 51 spell record(s). Mechanical regroup only — no content altered.
 
 Name             : Earth Shock (id=8042) [Spell Family (11)] 
@@ -794,7 +794,7 @@ Affecting Spells : Mastery: Enhanced Elements (77223 effects: #1, #5), Spiritwal
 Family Flags     : 39, 56, 126
 Attributes       : Not Shapeshifted (16), Do Not Sheath (18), Allow Class Ability Procs (416)
 Effects          :
-#1 (id=1184878)  : Dummy (3) | Attributes: Add Target (Dest) Combat Reach to AOE (11)
+#1 (id=1184878)  : Dummy (3) | Attributes: Add Target (Dest) Combat Reach to AOE (11), Area Effects Use Target Radius (17)
                    Base Value: 0 | Scaled Value: 0 (delta=0.05) | Radius: 0 - 10 yards | Target: At Enemy (53) -> at Enemy in Area (16)
 #2 (id=1185192)  : Dummy (3)
                    Base Value: 1 | Scaled Value: 1 | Target: Targeted Enemy (6)

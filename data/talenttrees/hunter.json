@@ -1,7 +1,7 @@
 {
     "class": "Hunter",
     "talent_tree_id": 774,
-    "fetched_at": "2026-10-06T22:29:13+00:00",
+    "fetched_at": "2026-11-03T21:14:01+00:00",
     "source": "Blizzard Game Data API (static-us, en_US)",
     "class_talents": {
         "nodes": [
@@ -92,8 +92,8 @@
                 "raw_position_x": 4200,
                 "raw_position_y": 3300,
                 "locked_by": [
-                    110157,
-                    109485
+                    109485,
+                    110157
                 ],
                 "unlocks": [
                     109484,
@@ -123,8 +123,8 @@
                 "raw_position_x": 3000,
                 "raw_position_y": 3300,
                 "locked_by": [
-                    110157,
-                    102383
+                    102383,
+                    110157
                 ],
                 "unlocks": [
                     102404,
@@ -248,8 +248,8 @@
                 "raw_position_x": 5400,
                 "raw_position_y": 6900,
                 "locked_by": [
-                    102409,
-                    102418
+                    102418,
+                    102409
                 ],
                 "unlocks": [],
                 "max_ranks": 1,
@@ -275,8 +275,8 @@
                 "raw_position_x": 3000,
                 "raw_position_y": 6900,
                 "locked_by": [
-                    110153,
-                    102416
+                    102416,
+                    110153
                 ],
                 "unlocks": [],
                 "max_ranks": 1,
@@ -519,9 +519,9 @@
                     102424
                 ],
                 "unlocks": [
-                    110153,
                     102394,
-                    102416
+                    102416,
+                    110153
                 ],
                 "max_ranks": 1,
                 "ranks": [
@@ -549,8 +549,8 @@
                     102381
                 ],
                 "unlocks": [
-                    110157,
-                    102383
+                    102383,
+                    110157
                 ],
                 "max_ranks": 2,
                 "ranks": [
@@ -590,9 +590,9 @@
                     110157
                 ],
                 "unlocks": [
-                    109484,
                     102404,
-                    102395
+                    102395,
+                    109484
                 ],
                 "max_ranks": 1,
                 "ranks": [
@@ -621,8 +621,8 @@
                     102380
                 ],
                 "unlocks": [
-                    102396,
-                    102425
+                    102425,
+                    102396
                 ],
                 "max_ranks": 1,
                 "ranks": [
@@ -650,8 +650,8 @@
                     102422
                 ],
                 "unlocks": [
-                    110157,
-                    109485
+                    109485,
+                    110157
                 ],
                 "max_ranks": 1,
                 "ranks": [
@@ -913,8 +913,8 @@
                 "raw_position_x": 6000,
                 "raw_position_y": 6300,
                 "locked_by": [
-                    110155,
-                    109488
+                    109488,
+                    110155
                 ],
                 "unlocks": [
                     102387
@@ -945,8 +945,8 @@
                     102384
                 ],
                 "unlocks": [
-                    110156,
-                    102412
+                    102412,
+                    110156
                 ],
                 "max_ranks": 1,
                 "ranks": [
@@ -1026,14 +1026,14 @@
                 "raw_position_x": 3000,
                 "raw_position_y": 5100,
                 "locked_by": [
-                    102396,
                     102425,
-                    102415
+                    102415,
+                    102396
                 ],
                 "unlocks": [
-                    110154,
                     103990,
-                    102414
+                    102414,
+                    110154
                 ],
                 "max_ranks": 1,
                 "ranks": [
@@ -1147,14 +1147,14 @@
                 "raw_position_x": 5400,
                 "raw_position_y": 5100,
                 "locked_by": [
-                    110156,
                     109487,
-                    102412
+                    102412,
+                    110156
                 ],
                 "unlocks": [
-                    110155,
                     109488,
-                    109486
+                    109486,
+                    110155
                 ],
                 "max_ranks": 1,
                 "ranks": [
@@ -1179,12 +1179,12 @@
                 "raw_position_x": 4800,
                 "raw_position_y": 3900,
                 "locked_by": [
-                    102402,
-                    102384
+                    102384,
+                    102402
                 ],
                 "unlocks": [
-                    110156,
-                    109487
+                    109487,
+                    110156
                 ],
                 "max_ranks": 2,
                 "ranks": [
@@ -1323,9 +1323,9 @@
                     109483
                 ],
                 "unlocks": [
-                    110152,
+                    102418,
                     102409,
-                    102418
+                    110152
                 ],
                 "max_ranks": 1,
                 "ranks": [
@@ -1419,8 +1419,8 @@
                 "raw_position_x": 2400,
                 "raw_position_y": 6300,
                 "locked_by": [
-                    110154,
-                    103990
+                    103990,
+                    110154
                 ],
                 "unlocks": [
                     102389
@@ -1551,8 +1551,8 @@
                     102401
                 ],
                 "unlocks": [
-                    102380,
-                    102402
+                    102402,
+                    102380
                 ],
                 "max_ranks": 1,
                 "ranks": [
@@ -2004,7 +2004,7 @@
                             "talent_name": "Moonlight Chakram",
                             "spell_id": 1264902,
                             "spell_name": "Moonlight Chakram",
-                            "description": "For 15 sec after casting Takedown, Takedown is replaced with Moonlight Chakram.\r\n\r\n Moonlight Chakram\r\nThrow a chakram blessed with moonlight at your current target that will rapidly deal 99 Physical damage 7 times, bouncing to other targets if they are nearby.",
+                            "description": "For 15 sec after casting Takedown, Takedown is replaced with Moonlight Chakram.\r\n\r\n Moonlight Chakram\r\nThrow a chakram blessed with moonlight at your current target that will rapidly deal 100 Physical damage 7 times, bouncing to other targets if they are nearby.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -2034,7 +2034,7 @@
                                     "talent_name": "Twilight Requiem",
                                     "spell_id": 1264904,
                                     "spell_name": "Twilight Requiem",
-                                    "description": "When your Moonlight Chakram expires, it summons an explosion of moonlight, dealing 71 Arcane damage to nearby enemies. Damage reduced beyond 8 targets.",
+                                    "description": "When your Moonlight Chakram expires, it summons an explosion of moonlight, dealing 70 Arcane damage to nearby enemies. Damage reduced beyond 8 targets.",
                                     "cast_time": "Passive",
                                     "cooldown": null,
                                     "range": null
@@ -2095,10 +2095,10 @@
                     "raw_position_x": 8100,
                     "raw_position_y": 6599,
                     "locked_by": [
-                        109804,
-                        109802,
                         94967,
-                        94969
+                        94969,
+                        109804,
+                        109802
                     ],
                     "unlocks": [],
                     "max_ranks": 1,
@@ -2109,7 +2109,7 @@
                             "talent_name": "Stampede!",
                             "spell_id": 472741,
                             "spell_name": "Stampede!",
-                            "description": "Casting Bestial Wrath grants Howl of the Pack Leader and causes your next Kill Command to rouse the nearby wildlife into a Stampede, charging your target and dealing 466 Physical damage over 7 sec.",
+                            "description": "Casting Bestial Wrath grants Howl of the Pack Leader and causes your next Kill Command to rouse the nearby wildlife into a Stampede, charging your target and dealing 470 Physical damage over 7 sec.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -2349,10 +2349,10 @@
                     "raw_position_y": 4200,
                     "locked_by": [],
                     "unlocks": [
-                        94979,
                         94985,
                         94992,
-                        94962
+                        94962,
+                        94979
                     ],
                     "max_ranks": 1,
                     "ranks": [
@@ -2789,7 +2789,7 @@
                                     "talent_name": "Through the Eyes",
                                     "spell_id": 1277565,
                                     "spell_name": "Through the Eyes",
-                                    "description": "Kill Shot damage increased by 10%.",
+                                    "description": "Black Arrow damage increased by 10%.",
                                     "cast_time": "Passive",
                                     "cooldown": null,
                                     "range": null
@@ -2836,9 +2836,9 @@
                     "raw_position_y": 3597,
                     "locked_by": [
                         94982,
+                        109799,
                         94957,
-                        94983,
-                        109799
+                        94983
                     ],
                     "unlocks": [],
                     "max_ranks": 1,
@@ -2905,7 +2905,7 @@
                             "talent_name": "Wailing Dead",
                             "spell_id": 1264290,
                             "spell_name": "Wailing Dead",
-                            "description": "Bestial Wrath summons a Dark Hound.\r\n\r\nFor 15 sec after casting Bestial Wrath, Bestial Wrath is replaced with Wailing Arrow.\r\n\r\n Wailing Arrow\r\nFire an enchanted arrow, dealing 491 Shadow damage to your target and an additional 245 Shadow damage to all enemies within 8 yds of your target. Non-Player targets struck by a Wailing Arrow have their spellcasting interrupted and are silenced for 1 sec.\r\n\r\nGrants Deathblow.",
+                            "description": "Bestial Wrath summons a Dark Hound.\r\n\r\nFor 15 sec after casting Bestial Wrath, Bestial Wrath is replaced with Wailing Arrow.\r\n\r\n Wailing Arrow\r\nFire an enchanted arrow, dealing 489 Shadow damage to your target and an additional 245 Shadow damage to all enemies within 8 yds of your target. Non-Player targets struck by a Wailing Arrow have their spellcasting interrupted and are silenced for 1 sec.\r\n\r\nGrants Deathblow.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -3055,7 +3055,7 @@
                             "talent_name": "Aimed Shot",
                             "spell_id": 19434,
                             "spell_name": "Aimed Shot",
-                            "description": "A powerful aimed shot that deals 335 Physical damage.",
+                            "description": "A powerful aimed shot that deals 336 Physical damage.",
                             "cast_time": "2.5 sec cast",
                             "cooldown": null,
                             "range": "40 yd range"
@@ -3198,7 +3198,7 @@
                             "talent_name": "Bleak Powder",
                             "spell_id": 467911,
                             "spell_name": "Bleak Powder",
-                            "description": "Black Arrow now explodes in a cloud of shadow and sulfur on impact, dealing 89 Shadow damage to all enemies within an 8 yd cone behind the target. Damage reduced beyond 8 targets.",
+                            "description": "Black Arrow now explodes in a cloud of shadow and sulfur on impact, dealing 88 Shadow damage to all enemies within an 8 yd cone behind the target. Damage reduced beyond 8 targets.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -3301,8 +3301,8 @@
                         103982
                     ],
                     "unlocks": [
-                        104127,
-                        103975
+                        103975,
+                        104127
                     ],
                     "max_ranks": 1,
                     "ranks": [
@@ -3312,7 +3312,7 @@
                             "talent_name": "Rapid Fire",
                             "spell_id": 257044,
                             "spell_name": "Rapid Fire",
-                            "description": "Shoot a stream of 7 shots at your target over 1.8 sec, dealing a total of 255 Physical damage. Usable while moving.\r\n\r\nEach shot generates 3 Focus.",
+                            "description": "Shoot a stream of 7 shots at your target over 1.8 sec, dealing a total of 260 Physical damage. Usable while moving.\r\n\r\nEach shot generates 3 Focus.",
                             "cast_time": "Channeled",
                             "cooldown": "16 sec cooldown",
                             "range": "40 yd range"
@@ -3330,8 +3330,8 @@
                         103982
                     ],
                     "unlocks": [
-                        107289,
-                        104127
+                        104127,
+                        107289
                     ],
                     "max_ranks": 1,
                     "ranks": [
@@ -3381,7 +3381,7 @@
                                     "talent_name": "Through the Eyes",
                                     "spell_id": 1277565,
                                     "spell_name": "Through the Eyes",
-                                    "description": "Kill Shot damage increased by 10%.",
+                                    "description": "Black Arrow damage increased by 10%.",
                                     "cast_time": "Passive",
                                     "cooldown": null,
                                     "range": null
@@ -3579,7 +3579,7 @@
                             "talent_name": "Wailing Dead",
                             "spell_id": 1264290,
                             "spell_name": "Wailing Dead",
-                            "description": "Bestial Wrath summons a Dark Hound.\r\n\r\nFor 15 sec after casting Bestial Wrath, Bestial Wrath is replaced with Wailing Arrow.\r\n\r\n Wailing Arrow\r\nFire an enchanted arrow, dealing 493 Shadow damage to your target and an additional 245 Shadow damage to all enemies within 8 yds of your target. Non-Player targets struck by a Wailing Arrow have their spellcasting interrupted and are silenced for 1 sec.\r\n\r\nGrants Deathblow.",
+                            "description": "Bestial Wrath summons a Dark Hound.\r\n\r\nFor 15 sec after casting Bestial Wrath, Bestial Wrath is replaced with Wailing Arrow.\r\n\r\n Wailing Arrow\r\nFire an enchanted arrow, dealing 486 Shadow damage to your target and an additional 245 Shadow damage to all enemies within 8 yds of your target. Non-Player targets struck by a Wailing Arrow have their spellcasting interrupted and are silenced for 1 sec.\r\n\r\nGrants Deathblow.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -3711,8 +3711,8 @@
                         103977
                     ],
                     "unlocks": [
-                        103957,
-                        103964
+                        103964,
+                        103957
                     ],
                     "max_ranks": 1,
                     "ranks": [
@@ -3992,8 +3992,8 @@
                         103975
                     ],
                     "unlocks": [
-                        103959,
-                        110572
+                        110572,
+                        103959
                     ],
                     "max_ranks": 1,
                     "ranks": [
@@ -4064,9 +4064,9 @@
                         107289
                     ],
                     "unlocks": [
-                        110575,
                         103947,
-                        110572
+                        110572,
+                        110575
                     ],
                     "max_ranks": 1,
                     "ranks": [
@@ -4107,7 +4107,7 @@
                                     "talent_name": "Trick Shots",
                                     "spell_id": 257621,
                                     "spell_name": "Trick Shots",
-                                    "description": "When Multi-Shot hits 3 or more targets, your next Aimed Shot or Rapid Fire will ricochet and hit up to 5 additional targets for 75% of normal damage.",
+                                    "description": "When Multi-Shot hits 3 or more targets, your next Aimed Shot or Rapid Fire will ricochet and hit up to 5 additional targets for 85% of normal damage.",
                                     "cast_time": "Passive",
                                     "cooldown": null,
                                     "range": null
@@ -4135,9 +4135,9 @@
                     "raw_position_y": 3597,
                     "locked_by": [
                         94982,
+                        109799,
                         94957,
-                        94983,
-                        109799
+                        94983
                     ],
                     "unlocks": [],
                     "max_ranks": 1,
@@ -4177,7 +4177,7 @@
                             "talent_name": "Lunar Storm",
                             "spell_id": 1253732,
                             "spell_name": "Lunar Storm",
-                            "description": "When Sentinel's Mark is consumed, it summons a barrage of 4 lunar missiles, each dealing 68 Arcane damage to enemies within 10 yds.",
+                            "description": "When Sentinel's Mark is consumed, it summons a barrage of 4 lunar missiles, each dealing 70 Arcane damage to enemies within 10 yds.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -4239,9 +4239,9 @@
                         104130
                     ],
                     "unlocks": [
-                        103985,
                         103947,
-                        109490
+                        109490,
+                        103985
                     ],
                     "max_ranks": 1,
                     "ranks": [
@@ -4283,7 +4283,7 @@
                             "talent_name": "Explosive Shot",
                             "spell_id": 212431,
                             "spell_name": "Explosive Shot",
-                            "description": "Fires an explosive shot at your target that lasts for 3 sec. Every 1 sec the target burns for 106 Fire damage and explode, dealing 50% of the damage to all enemies within 8 yds. Deals reduced damage beyond 5 targets.",
+                            "description": "Fires an explosive shot at your target that lasts for 3 sec. Every 1 sec the target burns for 117 Fire damage and explode, dealing 50% of the damage to all enemies within 8 yds. Deals reduced damage beyond 5 targets.",
                             "cast_time": "Instant",
                             "cooldown": "30 sec cooldown",
                             "range": "40 yd range"
@@ -4326,13 +4326,13 @@
                     "raw_position_x": 11400,
                     "raw_position_y": 4500,
                     "locked_by": [
-                        103959,
-                        110572
+                        110572,
+                        103959
                     ],
                     "unlocks": [
+                        110688,
                         103985,
-                        109491,
-                        110688
+                        109491
                     ],
                     "max_ranks": 1,
                     "ranks": [
@@ -4342,7 +4342,7 @@
                             "talent_name": "Kill Shot",
                             "spell_id": 53351,
                             "spell_name": "Kill Shot",
-                            "description": "You attempt to finish off a wounded target, dealing 367 Physical damage. Only usable on enemies with less than 20% health.",
+                            "description": "You attempt to finish off a wounded target, dealing 363 Physical damage. Only usable on enemies with less than 20% health.",
                             "cast_time": "Instant",
                             "cooldown": null,
                             "range": "40 yd range"
@@ -4357,14 +4357,14 @@
                     "raw_position_x": 12600,
                     "raw_position_y": 4500,
                     "locked_by": [
-                        110575,
                         103964,
-                        110572
+                        110572,
+                        110575
                     ],
                     "unlocks": [
+                        103984,
                         103985,
-                        103974,
-                        103984
+                        103974
                     ],
                     "max_ranks": 1,
                     "ranks": [
@@ -4663,9 +4663,9 @@
                     "raw_position_x": 11400,
                     "raw_position_y": 5700,
                     "locked_by": [
+                        110688,
                         103985,
-                        109491,
-                        110688
+                        109491
                     ],
                     "unlocks": [
                         103987,
@@ -4708,9 +4708,9 @@
                         103984
                     ],
                     "unlocks": [
+                        103956,
                         103966,
-                        103962,
-                        103956
+                        103962
                     ],
                     "max_ranks": 1,
                     "ranks": [
@@ -4819,8 +4819,8 @@
                     "raw_position_x": 12000,
                     "raw_position_y": 6300,
                     "locked_by": [
-                        103950,
-                        103958
+                        103958,
+                        103950
                     ],
                     "unlocks": [
                         107290
@@ -4874,8 +4874,8 @@
                     "raw_position_x": 13200,
                     "raw_position_y": 6300,
                     "locked_by": [
-                        103978,
-                        103958
+                        103958,
+                        103978
                     ],
                     "unlocks": [
                         103960
@@ -4888,7 +4888,7 @@
                             "talent_name": "Volley",
                             "spell_id": 260243,
                             "spell_name": "Volley",
-                            "description": "Rain a volley of arrows down over 6 sec, dealing up to 763 Physical damage to any enemy in the area, and gain the effects of Trick Shots for as long as Volley is active.",
+                            "description": "Rain a volley of arrows down over 6 sec, dealing up to 852 Physical damage to any enemy in the area, and gain the effects of Trick Shots for as long as Volley is active.",
                             "cast_time": "Instant",
                             "cooldown": "45 sec cooldown",
                             "range": "40 yd range"
@@ -4994,7 +4994,7 @@
                             "talent_name": "Salvo",
                             "spell_id": 400456,
                             "spell_name": "Salvo",
-                            "description": "Volley now also applies Explosive Shot to up to 2 targets hit.\r\n\r\n Explosive Shot\r\nFires an explosive shot at your target that lasts for 3 sec. Every 1 sec the target burns for 106 Fire damage and explode, dealing 50% of the damage to all enemies within 8 yds. Deals reduced damage beyond 5 targets.",
+                            "description": "Volley now also applies Explosive Shot to up to 2 targets hit.\r\n\r\n Explosive Shot\r\nFires an explosive shot at your target that lasts for 3 sec. Every 1 sec the target burns for 118 Fire damage and explode, dealing 50% of the damage to all enemies within 8 yds. Deals reduced damage beyond 5 targets.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -5017,10 +5017,10 @@
                         {
                             "rank": 1,
                             "talent_id": 133412,
-                            "talent_name": "Unload",
-                            "spell_id": 1277548,
-                            "spell_name": "Unload",
-                            "description": "When Rapid Fire begins and finishes channeling, it releases an Arcane Shot at 100% effectiveness.\r\n\r\nIf your target is below 20% health, Rapid Fire instead releases Kill Shots.",
+                            "talent_name": "Blood Fletching",
+                            "spell_id": 1319011,
+                            "spell_name": "Blood Fletching",
+                            "description": "Aimed Shot critical strikes now cause the Master Marksman bleed effect at 20% of damage dealt. For 4 sec after a critical Aimed Shot, the target will take an additional 15 bleed damage any time your abilities damage that target.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -5222,7 +5222,7 @@
                             "talent_name": "Moonlight Chakram",
                             "spell_id": 1264902,
                             "spell_name": "Moonlight Chakram",
-                            "description": "For 15 sec after casting Takedown, Takedown is replaced with Moonlight Chakram.\r\n\r\n Moonlight Chakram\r\nThrow a chakram blessed with moonlight at your current target that will rapidly deal 99 Physical damage 7 times, bouncing to other targets if they are nearby.",
+                            "description": "For 15 sec after casting Takedown, Takedown is replaced with Moonlight Chakram.\r\n\r\n Moonlight Chakram\r\nThrow a chakram blessed with moonlight at your current target that will rapidly deal 98 Physical damage 7 times, bouncing to other targets if they are nearby.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -5250,7 +5250,7 @@
                             "talent_name": "Wildfire Bomb",
                             "spell_id": 259495,
                             "spell_name": "Wildfire Bomb",
-                            "description": "Hurl a bomb at the target, exploding for 65 Fire damage in a cone and coating enemies in wildfire, scorching them for 52 Fire damage over 6 sec. Deals reduced damage beyond 8 targets.\r\n\r\nDeals 50% increased damage to your primary target.",
+                            "description": "Hurl a bomb at the target, exploding for 66 Fire damage in a cone and coating enemies in wildfire, scorching them for 52 Fire damage over 6 sec. Deals reduced damage beyond 8 targets.\r\n\r\nDeals 50% increased damage to your primary target.",
                             "cast_time": "Instant",
                             "cooldown": null,
                             "range": "40 yd range"
@@ -5278,7 +5278,7 @@
                             "talent_name": "Raptor Strike",
                             "spell_id": 186270,
                             "spell_name": "Raptor Strike",
-                            "description": "A vicious slash dealing 138 Physical damage.",
+                            "description": "A vicious slash dealing 140 Physical damage.",
                             "cast_time": "Instant",
                             "cooldown": null,
                             "range": "Melee Range"
@@ -5406,7 +5406,7 @@
                                     "talent_name": "Twilight Requiem",
                                     "spell_id": 1264904,
                                     "spell_name": "Twilight Requiem",
-                                    "description": "When your Moonlight Chakram expires, it summons an explosion of moonlight, dealing 69 Arcane damage to nearby enemies. Damage reduced beyond 8 targets.",
+                                    "description": "When your Moonlight Chakram expires, it summons an explosion of moonlight, dealing 70 Arcane damage to nearby enemies. Damage reduced beyond 8 targets.",
                                     "cast_time": "Passive",
                                     "cooldown": null,
                                     "range": null
@@ -5680,9 +5680,9 @@
                         102263
                     ],
                     "unlocks": [
-                        109305,
                         110163,
-                        102279
+                        102279,
+                        109305
                     ],
                     "max_ranks": 1,
                     "ranks": [
@@ -5922,10 +5922,10 @@
                     "raw_position_y": 4200,
                     "locked_by": [],
                     "unlocks": [
-                        94979,
                         94985,
                         94992,
-                        94962
+                        94962,
+                        94979
                     ],
                     "max_ranks": 1,
                     "ranks": [
@@ -6361,8 +6361,8 @@
                     "raw_position_x": 13200,
                     "raw_position_y": 5100,
                     "locked_by": [
-                        110159,
-                        109319
+                        109319,
+                        110159
                     ],
                     "unlocks": [
                         109312,
@@ -6616,7 +6616,7 @@
                             "talent_name": "Takedown",
                             "spell_id": 1250646,
                             "spell_name": "Takedown",
-                            "description": "You and your pet leap to your target and strike as one, dealing 637 Physical damage. Your pet frees itself from roots when it leaps.\r\n\r\nFor the next 8 sec, the damage dealt by you and your pet is increased by 20%.\r\n\r\nGenerates 50 Focus.",
+                            "description": "You and your pet leap to your target and strike as one, dealing 632 Physical damage. Your pet frees itself from roots when it leaps.\r\n\r\nFor the next 8 sec, the damage dealt by you and your pet is increased by 20%.\r\n\r\nGenerates 50 Focus.",
                             "cast_time": "Instant",
                             "cooldown": "1.5 min cooldown",
                             "range": "15 yd range"
@@ -6896,8 +6896,8 @@
                         109312
                     ],
                     "unlocks": [
-                        109304,
-                        102257
+                        102257,
+                        109304
                     ],
                     "max_ranks": 1,
                     "ranks": [
@@ -6922,10 +6922,10 @@
                     "raw_position_x": 8100,
                     "raw_position_y": 6599,
                     "locked_by": [
-                        109804,
-                        109802,
                         94967,
-                        94969
+                        94969,
+                        109804,
+                        109802
                     ],
                     "unlocks": [],
                     "max_ranks": 1,
@@ -6936,7 +6936,7 @@
                             "talent_name": "Stampede!",
                             "spell_id": 472741,
                             "spell_name": "Stampede!",
-                            "description": "Casting Bestial Wrath grants Howl of the Pack Leader and causes your next Kill Command to rouse the nearby wildlife into a Stampede, charging your target and dealing 472 Physical damage over 7 sec.",
+                            "description": "Casting Bestial Wrath grants Howl of the Pack Leader and causes your next Kill Command to rouse the nearby wildlife into a Stampede, charging your target and dealing 475 Physical damage over 7 sec.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -7255,7 +7255,7 @@
                             "talent_name": "Bleak Powder",
                             "spell_id": 467911,
                             "spell_name": "Bleak Powder",
-                            "description": "Black Arrow now explodes in a cloud of shadow and sulfur on impact, dealing 88 Shadow damage to all enemies within an 8 yd cone behind the target. Damage reduced beyond 8 targets.",
+                            "description": "Black Arrow now explodes in a cloud of shadow and sulfur on impact, dealing 87 Shadow damage to all enemies within an 8 yd cone behind the target. Damage reduced beyond 8 targets.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -7302,8 +7302,8 @@
                         102346
                     ],
                     "unlocks": [
-                        102376,
-                        102368
+                        102368,
+                        102376
                     ],
                     "max_ranks": 1,
                     "ranks": [
@@ -7396,7 +7396,7 @@
                                     "talent_name": "Through the Eyes",
                                     "spell_id": 1277565,
                                     "spell_name": "Through the Eyes",
-                                    "description": "Kill Shot damage increased by 10%.",
+                                    "description": "Black Arrow damage increased by 10%.",
                                     "cast_time": "Passive",
                                     "cooldown": null,
                                     "range": null
@@ -7496,7 +7496,7 @@
                             "talent_name": "Wailing Dead",
                             "spell_id": 1264290,
                             "spell_name": "Wailing Dead",
-                            "description": "Bestial Wrath summons a Dark Hound.\r\n\r\nFor 15 sec after casting Bestial Wrath, Bestial Wrath is replaced with Wailing Arrow.\r\n\r\n Wailing Arrow\r\nFire an enchanted arrow, dealing 499 Shadow damage to your target and an additional 245 Shadow damage to all enemies within 8 yds of your target. Non-Player targets struck by a Wailing Arrow have their spellcasting interrupted and are silenced for 1 sec.\r\n\r\nGrants Deathblow.",
+                            "description": "Bestial Wrath summons a Dark Hound.\r\n\r\nFor 15 sec after casting Bestial Wrath, Bestial Wrath is replaced with Wailing Arrow.\r\n\r\n Wailing Arrow\r\nFire an enchanted arrow, dealing 493 Shadow damage to your target and an additional 245 Shadow damage to all enemies within 8 yds of your target. Non-Player targets struck by a Wailing Arrow have their spellcasting interrupted and are silenced for 1 sec.\r\n\r\nGrants Deathblow.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -7571,8 +7571,8 @@
                         102377
                     ],
                     "unlocks": [
-                        102354,
-                        102340
+                        102340,
+                        102354
                     ],
                     "max_ranks": 1,
                     "ranks": [
@@ -7751,8 +7751,8 @@
                     "raw_position_x": 11400,
                     "raw_position_y": 3300,
                     "locked_by": [
-                        102376,
-                        102368
+                        102368,
+                        102376
                     ],
                     "unlocks": [
                         102341
@@ -7780,8 +7780,8 @@
                     "raw_position_x": 12600,
                     "raw_position_y": 3300,
                     "locked_by": [
-                        102376,
-                        102347
+                        102347,
+                        102376
                     ],
                     "unlocks": [
                         102370,
@@ -7824,7 +7824,7 @@
                             "talent_name": "Cobra Shot",
                             "spell_id": 193455,
                             "spell_name": "Cobra Shot",
-                            "description": "A quick shot causing 137 Physical damage.\r\n\r\nReduces the cooldown of Kill Command by 1 sec.",
+                            "description": "A quick shot causing 134 Physical damage.\r\n\r\nReduces the cooldown of Kill Command by 1 sec.",
                             "cast_time": "Instant",
                             "cooldown": null,
                             "range": "40 yd range"
@@ -7840,9 +7840,9 @@
                     "raw_position_y": 3597,
                     "locked_by": [
                         94982,
+                        109799,
                         94957,
-                        94983,
-                        109799
+                        94983
                     ],
                     "unlocks": [],
                     "max_ranks": 1,
@@ -7987,10 +7987,10 @@
                     "raw_position_y": 4200,
                     "locked_by": [],
                     "unlocks": [
-                        94979,
                         94985,
                         94992,
-                        94962
+                        94962,
+                        94979
                     ],
                     "max_ranks": 1,
                     "ranks": [
@@ -9131,10 +9131,10 @@
                     "raw_position_x": 8100,
                     "raw_position_y": 6599,
                     "locked_by": [
-                        109804,
-                        109802,
                         94967,
-                        94969
+                        94969,
+                        109804,
+                        109802
                     ],
                     "unlocks": [],
                     "max_ranks": 1,

@@ -1,6 +1,6 @@
 {
-    "generatedAt": "2026-10-18T02:36:09+00:00",
-    "spellCacheVersion": 29,
+    "generatedAt": "2026-11-03T23:03:56+00:00",
+    "spellCacheVersion": 31,
     "codeFingerprint": "dev",
     "entries": [
         {
@@ -1025,8 +1025,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game) causes (varies by condition — check in-game) to launch 3 Flurry Strikes.",
-                            "uncertain": true
+                            "text": "Invoke Niuzao, the Black Ox causes Breath of Fire to launch 3 Flurry Strikes.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -1368,8 +1368,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Casting Celestial Brew grants (varies by condition — check in-game) charges of Potential Energy. Your next cast of Tiger Palm or Vivify consumes all charges of Potential Energy to cause a Harmonic Surge. Harmonic Surge: For each charge of Potential Energy, deal (varies by condition — check in-game) Nature damage to your target and (varies by condition — check in-game) Nature damage to other nearby enemies, and heal up to 5 allies for (varies by condition — check in-game). Damage reduced above 5 targets.",
-                            "uncertain": true
+                            "text": "Casting Celestial Brew grants 2 charges of Potential Energy. Your next cast of Tiger Palm or Vivify consumes all charges of Potential Energy to cause a Harmonic Surge. Harmonic Surge: For each charge of Potential Energy, deal ≈220% of Spell Power Nature damage to your target and ≈220% of Spell Power Nature damage to other nearby enemies, and heal up to 5 allies for ≈50% of Spell Power. Damage reduced above 5 targets.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -1878,8 +1878,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Casting Celestial Brew grants (varies by condition — check in-game) charges of Potential Energy. Your next cast of Tiger Palm or Vivify consumes all charges of Potential Energy to cause a Harmonic Surge. Harmonic Surge: For each charge of Potential Energy, deal (varies by condition — check in-game) Nature damage to your target and (varies by condition — check in-game) Nature damage to other nearby enemies, and heal up to 5 allies for (varies by condition — check in-game). Damage reduced above 5 targets.",
-                            "uncertain": true
+                            "text": "Casting Celestial Brew grants 2 charges of Potential Energy. Your next cast of Tiger Palm or Vivify consumes all charges of Potential Energy to cause a Harmonic Surge. Harmonic Surge: For each charge of Potential Energy, deal ≈220% of Spell Power Nature damage to your target and ≈220% of Spell Power Nature damage to other nearby enemies, and heal up to 5 allies for ≈50% of Spell Power. Damage reduced above 5 targets.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -2053,12 +2053,10 @@
             "spellId": 6603,
             "category": "Offensive",
             "description": {
-                "text": "Hurls a torrent of Chi energy up to 40 yds forward, dealing 1 Nature damage to all enemies, and 1 healing to the Monk and all allies in its path. Healing and damage reduced beyond 5 targets. (varies by condition — check in-game)",
-                "uncertain": true
+                "text": "Hurls a torrent of Chi energy up to 40 yds forward, dealing 1 Nature damage to all enemies, and 1 healing to the Monk and all allies in its path. Healing and damage reduced beyond 5 targets.  Casting Chi Burst does not prevent avoiding attacks.",
+                "uncertain": false
             },
-            "formulaModifierSpellIds": [
-                5781
-            ],
+            "formulaModifierSpellIds": [],
             "modifiers": {
                 "named": [
                     {
@@ -2083,8 +2081,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game) 50% increased damage and healing.",
-                            "uncertain": true
+                            "text": "Chi Burst and Chi Wave deal 50% increased damage and healing.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -2135,8 +2133,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Hurls a torrent of Chi energy up to 40 yds forward, dealing 1 Nature damage to all enemies, and 1 healing to the Monk and all allies in its path. Healing and damage reduced beyond 1 targets. (varies by condition — check in-game)",
-                            "uncertain": true
+                            "text": "Hurls a torrent of Chi energy up to 40 yds forward, dealing 1 Nature damage to all enemies, and 1 healing to the Monk and all allies in its path. Healing and damage reduced beyond 1 targets.  Casting Chi Burst does not prevent avoiding attacks.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -2151,8 +2149,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Hurls a torrent of Chi energy up to 40 yds forward, dealing 1 Nature damage to all enemies, and 1 healing to the Monk and all allies in its path. Healing and damage reduced beyond 1 targets. (varies by condition — check in-game)",
-                            "uncertain": true
+                            "text": "Hurls a torrent of Chi energy up to 40 yds forward, dealing 1 Nature damage to all enemies, and 1 healing to the Monk and all allies in its path. Healing and damage reduced beyond 1 targets.  Casting Chi Burst does not prevent avoiding attacks.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -2167,8 +2165,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Hurls a torrent of Chi energy up to 40 yds forward, dealing 1 Nature damage to all enemies, and 1 healing to the Monk and all allies in its path. Healing and damage reduced beyond 1 targets. (varies by condition — check in-game)",
-                            "uncertain": true
+                            "text": "Hurls a torrent of Chi energy up to 40 yds forward, dealing 1 Nature damage to all enemies, and 1 healing to the Monk and all allies in its path. Healing and damage reduced beyond 1 targets.  Casting Chi Burst does not prevent avoiding attacks.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -2199,8 +2197,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Your damaging spells and abilities have a chance to activate Chi Burst, allowing you to hurl a torrent of Chi energy up to 40 yds forward, dealing 1 Nature damage to all enemies, and 1 healing to the Monk and all allies in its path. Healing and damage reduced beyond 5 targets. (varies by condition — check in-game)",
-                            "uncertain": true
+                            "text": "Your damaging spells and abilities have a chance to activate Chi Burst, allowing you to hurl a torrent of Chi energy up to 40 yds forward, dealing 1 Nature damage to all enemies, and 1 healing to the Monk and all allies in its path. Healing and damage reduced beyond 5 targets.  Casting Chi Burst does not prevent avoiding attacks.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -2215,8 +2213,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Your damaging spells and abilities have a chance to activate Chi Burst, allowing you to hurl a torrent of Chi energy up to 1 yds forward, dealing 1 Nature damage to all enemies, and 1 healing to the Monk and all allies in its path. Healing and damage reduced beyond 5 targets. (varies by condition — check in-game)",
-                            "uncertain": true
+                            "text": "Your damaging spells and abilities have a chance to activate Chi Burst, allowing you to hurl a torrent of Chi energy up to 1 yds forward, dealing 1 Nature damage to all enemies, and 1 healing to the Monk and all allies in its path. Healing and damage reduced beyond 5 targets.  Casting Chi Burst does not prevent avoiding attacks.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -2231,8 +2229,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Hurls a torrent of Chi energy up to 40 yds forward, dealing 1 Nature damage to all enemies, and 1 healing to the Monk and all allies in its path. Healing and damage reduced beyond 5 targets. (varies by condition — check in-game)",
-                            "uncertain": true
+                            "text": "Hurls a torrent of Chi energy up to 40 yds forward, dealing 1 Nature damage to all enemies, and 1 healing to the Monk and all allies in its path. Healing and damage reduced beyond 5 targets.  Casting Chi Burst does not prevent avoiding attacks.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -2753,8 +2751,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game) 50% increased damage and healing.",
-                            "uncertain": true
+                            "text": "Chi Burst and Chi Wave deal 50% increased damage and healing.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -3345,8 +3343,8 @@
             "spellId": 6706,
             "category": "Other",
             "description": {
-                "text": "Energy spenders deal an additional 20% damage. The cooldown of (varies by condition — check in-game).",
-                "uncertain": true
+                "text": "Energy spenders deal an additional 20% damage. The cooldown of Invoke Niuzao, the Black Ox is reduced by 25 sec.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -4086,7 +4084,7 @@
             "spellId": 6700,
             "category": "Other",
             "description": {
-                "text": "Your auto attacks have a chance to generate 1-2 Flurry Charges. When you cast (varies by condition — check in-game), unleash all Flurry Charges, dealing ≈60% of Attack Power Physical damage per charge.",
+                "text": "Your auto attacks have a chance to generate 1-2 Flurry Charges. When you cast Keg Smash, unleash all Flurry Charges, dealing ≈60% of Attack Power Physical damage per charge.",
                 "uncertain": true
             },
             "formulaModifierSpellIds": [],
@@ -4133,8 +4131,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Activating (varies by condition — check in-game) instantly grants 10 stacks of Flurry Strikes that trigger on your next attack at 70% effectiveness.",
-                            "uncertain": true
+                            "text": "Activating Invoke Niuzao, the Black Ox instantly grants 10 stacks of Flurry Strikes that trigger on your next attack at 70% effectiveness.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -4165,8 +4163,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game) causes (varies by condition — check in-game) to launch 3 Flurry Strikes.",
-                            "uncertain": true
+                            "text": "Invoke Niuzao, the Black Ox causes Breath of Fire to launch 3 Flurry Strikes.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -4198,7 +4196,7 @@
             "spellId": 5790,
             "category": "Defensive",
             "description": {
-                "text": "Turns your skin to stone for 15, increasing your current and maximum health by 20%, increasing the effectiveness of Stagger by 15%, reducing all damage you take by (varies)%(varies by condition — check in-game).",
+                "text": "Turns your skin to stone for 15, increasing your current and maximum health by 20%, increasing the effectiveness of Stagger by 15%, reducing all damage you take by (varies)%.",
                 "uncertain": true
             },
             "formulaModifierSpellIds": [
@@ -4684,8 +4682,8 @@
             "spellId": 6697,
             "category": "Offensive",
             "description": {
-                "text": "Casting Celestial Brew grants (varies by condition — check in-game) charges of Potential Energy. Your next cast of Tiger Palm or Vivify consumes all charges of Potential Energy to cause a Harmonic Surge. Harmonic Surge: For each charge of Potential Energy, deal (varies by condition — check in-game) Nature damage to your target and (varies by condition — check in-game) Nature damage to other nearby enemies, and heal up to 5 allies for (varies by condition — check in-game). Damage reduced above 5 targets.",
-                "uncertain": true
+                "text": "Casting Celestial Brew grants 2 charges of Potential Energy. Your next cast of Tiger Palm or Vivify consumes all charges of Potential Energy to cause a Harmonic Surge. Harmonic Surge: For each charge of Potential Energy, deal ≈220% of Spell Power Nature damage to your target and ≈220% of Spell Power Nature damage to other nearby enemies, and heal up to 5 allies for ≈50% of Spell Power. Damage reduced above 5 targets.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -4696,8 +4694,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Your next cast of Tiger Palm or Vivify triggers a Harmonic Surge, dealing (varies by condition — check in-game) Nature damage to your target and (varies by condition — check in-game) to other nearby enemies, and (varies by condition — check in-game) healing to up to 5 injured allies. Damage and healing increased per charge of Potential Energy.",
-                            "uncertain": true
+                            "text": "Your next cast of Tiger Palm or Vivify triggers a Harmonic Surge, dealing ≈220% of Spell Power Nature damage to your target and ≈220% of Spell Power to other nearby enemies, and ≈50% of Spell Power healing to up to 5 injured allies. Damage and healing increased per charge of Potential Energy.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -5127,8 +5125,8 @@
                         "modifier_value": -25,
                         "modifier_unit": "seconds",
                         "description": {
-                            "text": "Energy spenders deal an additional 20% damage. The cooldown of (varies by condition — check in-game).",
-                            "uncertain": true
+                            "text": "Energy spenders deal an additional 20% damage. The cooldown of Invoke Niuzao, the Black Ox is reduced by 25 sec.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -5143,8 +5141,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Activating (varies by condition — check in-game) instantly grants 10 stacks of Flurry Strikes that trigger on your next attack at 70% effectiveness.",
-                            "uncertain": true
+                            "text": "Activating Invoke Niuzao, the Black Ox instantly grants 10 stacks of Flurry Strikes that trigger on your next attack at 70% effectiveness.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -5159,8 +5157,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game).",
-                            "uncertain": true
+                            "text": "Invoke Niuzao, the Black Ox's stomp damage increased by 20%.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -5175,8 +5173,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game) causes (varies by condition — check in-game) to launch 3 Flurry Strikes.",
-                            "uncertain": true
+                            "text": "Invoke Niuzao, the Black Ox causes Breath of Fire to launch 3 Flurry Strikes.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -5730,8 +5728,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "After casting Keg Smash, your next Vivify becomes instant cast.(varies by condition — check in-game)",
-                            "uncertain": true
+                            "text": "After casting Keg Smash, your next Vivify becomes instant cast. This effect also reduces the energy cost of Vivify by 75%.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -5778,8 +5776,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Casting (varies by condition — check in-game) grants a charge of Potential Energy.",
-                            "uncertain": true
+                            "text": "Casting Keg Smash grants a charge of Potential Energy.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -5910,8 +5908,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Auto attack critical strikes generate double the amount of Flurry Charges. (varies by condition — check in-game)",
-                            "uncertain": true
+                            "text": "Auto attack critical strikes generate double the amount of Flurry Charges.  Keg Smash damage increased by 35%.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -5926,8 +5924,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Energy spenders deal an additional 20% damage. The cooldown of (varies by condition — check in-game).",
-                            "uncertain": true
+                            "text": "Energy spenders deal an additional 20% damage. The cooldown of Invoke Niuzao, the Black Ox is reduced by 25 sec.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -5942,7 +5940,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Your auto attacks have a chance to generate 1-2 Flurry Charges. When you cast (varies by condition — check in-game), unleash all Flurry Charges, dealing ≈60% of Attack Power Physical damage per charge.",
+                            "text": "Your auto attacks have a chance to generate 1-2 Flurry Charges. When you cast Keg Smash, unleash all Flurry Charges, dealing ≈60% of Attack Power Physical damage per charge.",
                             "uncertain": true
                         },
                         "category": "Other",
@@ -5990,7 +5988,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Your auto attacks have a chance to generate 1-2 Flurry Charges. When you cast (varies by condition — check in-game), unleash all Flurry Charges, dealing ≈60% of Attack Power Physical damage per charge.",
+                            "text": "Your auto attacks have a chance to generate 1-2 Flurry Charges. When you cast Keg Smash, unleash all Flurry Charges, dealing ≈60% of Attack Power Physical damage per charge.",
                             "uncertain": true
                         },
                         "category": "Other",
@@ -6320,8 +6318,8 @@
             "spellId": 6686,
             "category": "Other",
             "description": {
-                "text": "(varies by condition — check in-game) 50% increased damage and healing.",
-                "uncertain": true
+                "text": "Chi Burst and Chi Wave deal 50% increased damage and healing.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -6727,8 +6725,8 @@
             "spellId": 6705,
             "category": "Other",
             "description": {
-                "text": "Auto attack critical strikes generate double the amount of Flurry Charges. (varies by condition — check in-game)",
-                "uncertain": true
+                "text": "Auto attack critical strikes generate double the amount of Flurry Charges.  Keg Smash damage increased by 35%.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -7169,8 +7167,8 @@
             "spellId": 6698,
             "category": "Other",
             "description": {
-                "text": "Casting (varies by condition — check in-game) grants a charge of Potential Energy.",
-                "uncertain": true
+                "text": "Casting Keg Smash grants a charge of Potential Energy.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -7181,8 +7179,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Your next cast of Tiger Palm or Vivify triggers a Harmonic Surge, dealing (varies by condition — check in-game) Nature damage to your target and (varies by condition — check in-game) to other nearby enemies, and (varies by condition — check in-game) healing to up to 5 injured allies. Damage and healing increased per charge of Potential Energy.",
-                            "uncertain": true
+                            "text": "Your next cast of Tiger Palm or Vivify triggers a Harmonic Surge, dealing ≈220% of Spell Power Nature damage to your target and ≈220% of Spell Power to other nearby enemies, and ≈50% of Spell Power healing to up to 5 injured allies. Damage and healing increased per charge of Potential Energy.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -7197,8 +7195,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "For each charge of Potential Energy, deal (varies by condition — check in-game) Nature damage to your target and (varies by condition — check in-game) Nature damage to other nearby enemies, and heal up to 5 allies for (varies by condition — check in-game). Damage reduced above 5 targets.",
-                            "uncertain": true
+                            "text": "For each charge of Potential Energy, deal ≈220% of Spell Power Nature damage to your target and ≈220% of Spell Power Nature damage to other nearby enemies, and heal up to 5 allies for ≈50% of Spell Power. Damage reduced above 5 targets.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -7213,8 +7211,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "For each charge of Potential Energy, deal (varies by condition — check in-game) Nature damage to your target and (varies by condition — check in-game) Nature damage to other nearby enemies, and heal up to 5 allies for (varies by condition — check in-game). Damage reduced above 5 targets.",
-                            "uncertain": true
+                            "text": "For each charge of Potential Energy, deal ≈220% of Spell Power Nature damage to your target and ≈220% of Spell Power Nature damage to other nearby enemies, and heal up to 5 allies for ≈50% of Spell Power. Damage reduced above 5 targets.",
+                            "uncertain": false
                         },
                         "category": "Defensive",
                         "cooldown": {
@@ -7229,8 +7227,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Casting Celestial Brew grants (varies by condition — check in-game) charges of Potential Energy. Your next cast of Tiger Palm or Vivify consumes all charges of Potential Energy to cause a Harmonic Surge. Harmonic Surge: For each charge of Potential Energy, deal (varies by condition — check in-game) Nature damage to your target and (varies by condition — check in-game) Nature damage to other nearby enemies, and heal up to 5 allies for (varies by condition — check in-game). Damage reduced above 5 targets.",
-                            "uncertain": true
+                            "text": "Casting Celestial Brew grants 2 charges of Potential Energy. Your next cast of Tiger Palm or Vivify consumes all charges of Potential Energy to cause a Harmonic Surge. Harmonic Surge: For each charge of Potential Energy, deal ≈220% of Spell Power Nature damage to your target and ≈220% of Spell Power Nature damage to other nearby enemies, and heal up to 5 allies for ≈50% of Spell Power. Damage reduced above 5 targets.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -8231,8 +8229,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "After casting Keg Smash, your next Vivify becomes instant cast.(varies by condition — check in-game)",
-                            "uncertain": true
+                            "text": "After casting Keg Smash, your next Vivify becomes instant cast. This effect also reduces the energy cost of Vivify by 75%.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -8295,8 +8293,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Casting (varies by condition — check in-game) grants a charge of Potential Energy.",
-                            "uncertain": true
+                            "text": "Casting Keg Smash grants a charge of Potential Energy.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -8443,8 +8441,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Spin while kicking in the air, dealing ≈40% of Attack Power Physical damage over 1.5 to enemies within 8 yds.  Dealing damage with Spinning Crane Kick grants Shuffle for 1 sec, and your Healing Spheres travel towards you. (varies by condition — check in-game)",
-                            "uncertain": true
+                            "text": "Spin while kicking in the air, dealing ≈40% of Attack Power Physical damage over 1.5 to enemies within 8 yds.  Dealing damage with Spinning Crane Kick grants Shuffle for 1 sec, and your Healing Spheres travel towards you. ",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -8507,8 +8505,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game) causes (varies by condition — check in-game) to launch 3 Flurry Strikes.",
-                            "uncertain": true
+                            "text": "Invoke Niuzao, the Black Ox causes Breath of Fire to launch 3 Flurry Strikes.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -8940,7 +8938,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Turns your skin to stone for 15, increasing your current and maximum health by 20%, increasing the effectiveness of Stagger by 15%, reducing all damage you take by (varies)%(varies by condition — check in-game).",
+                            "text": "Turns your skin to stone for 15, increasing your current and maximum health by 20%, increasing the effectiveness of Stagger by 15%, reducing all damage you take by (varies)%.",
                             "uncertain": true
                         },
                         "category": "Defensive",
@@ -9039,8 +9037,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Spin while kicking in the air, dealing ≈40% of Attack Power Physical damage over 1.5 to enemies within 8 yds.  Dealing damage with Spinning Crane Kick grants Shuffle for 1 sec, and your Healing Spheres travel towards you. (varies by condition — check in-game)",
-                            "uncertain": true
+                            "text": "Spin while kicking in the air, dealing ≈40% of Attack Power Physical damage over 1.5 to enemies within 8 yds.  Dealing damage with Spinning Crane Kick grants Shuffle for 1 sec, and your Healing Spheres travel towards you. ",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -9557,7 +9555,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Turns your skin to stone for 15, increasing your current and maximum health by 20%, increasing the effectiveness of Stagger by 15%, reducing all damage you take by (varies)%(varies by condition — check in-game).",
+                            "text": "Turns your skin to stone for 15, increasing your current and maximum health by 20%, increasing the effectiveness of Stagger by 15%, reducing all damage you take by (varies)%.",
                             "uncertain": true
                         },
                         "category": "Defensive",
@@ -9605,7 +9603,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Turns your skin to stone for 15, increasing your current and maximum health by 20%, increasing the effectiveness of Stagger by 15%, reducing all damage you take by (varies)%(varies by condition — check in-game).",
+                            "text": "Turns your skin to stone for 15, increasing your current and maximum health by 20%, increasing the effectiveness of Stagger by 15%, reducing all damage you take by (varies)%.",
                             "uncertain": true
                         },
                         "category": "Defensive",
@@ -10220,8 +10218,8 @@
             "spellId": 6711,
             "category": "Other",
             "description": {
-                "text": "Activating (varies by condition — check in-game) instantly grants 10 stacks of Flurry Strikes that trigger on your next attack at 70% effectiveness.",
-                "uncertain": true
+                "text": "Activating Invoke Niuzao, the Black Ox instantly grants 10 stacks of Flurry Strikes that trigger on your next attack at 70% effectiveness.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -11129,8 +11127,8 @@
             "spellId": 6617,
             "category": "Other",
             "description": {
-                "text": "After casting Keg Smash, your next Vivify becomes instant cast.(varies by condition — check in-game)",
-                "uncertain": true
+                "text": "After casting Keg Smash, your next Vivify becomes instant cast. This effect also reduces the energy cost of Vivify by 75%.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -11236,8 +11234,8 @@
             "spellId": 6712,
             "category": "Other",
             "description": {
-                "text": "(varies by condition — check in-game).",
-                "uncertain": true
+                "text": "Invoke Niuzao, the Black Ox's stomp damage increased by 20%.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -11373,8 +11371,8 @@
             "spellId": 6714,
             "category": "Other",
             "description": {
-                "text": "(varies by condition — check in-game) causes (varies by condition — check in-game) to launch 3 Flurry Strikes.",
-                "uncertain": true
+                "text": "Invoke Niuzao, the Black Ox causes Breath of Fire to launch 3 Flurry Strikes.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -11494,8 +11492,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game).",
-                            "uncertain": true
+                            "text": "Invoke Niuzao, the Black Ox's stomp damage increased by 20%.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {

@@ -1,7 +1,7 @@
 {
     "class": "Death Knight",
     "talent_tree_id": 750,
-    "fetched_at": "2026-10-06T22:29:30+00:00",
+    "fetched_at": "2026-11-03T21:14:19+00:00",
     "source": "Blizzard Game Data API (static-us, en_US)",
     "class_talents": {
         "nodes": [
@@ -44,9 +44,9 @@
                     76081
                 ],
                 "unlocks": [
-                    76052,
                     76044,
-                    76084
+                    76084,
+                    76052
                 ],
                 "max_ranks": 1,
                 "ranks": [
@@ -468,9 +468,9 @@
                 "raw_position_x": 5400,
                 "raw_position_y": 3000,
                 "locked_by": [
-                    110029,
                     76069,
-                    76059
+                    76059,
+                    110029
                 ],
                 "unlocks": [
                     76076
@@ -498,9 +498,9 @@
                 "raw_position_x": 3600,
                 "raw_position_y": 4200,
                 "locked_by": [
-                    110030,
                     76085,
-                    76065
+                    76065,
+                    110030
                 ],
                 "unlocks": [
                     76078,
@@ -578,9 +578,9 @@
                     76052
                 ],
                 "unlocks": [
-                    110030,
                     76065,
-                    76085
+                    76085,
+                    110030
                 ],
                 "max_ranks": 1,
                 "ranks": [
@@ -608,9 +608,9 @@
                     76071
                 ],
                 "unlocks": [
-                    76052,
                     76069,
-                    76074
+                    76074,
+                    76052
                 ],
                 "max_ranks": 1,
                 "ranks": [
@@ -636,8 +636,8 @@
                 "raw_position_y": 3000,
                 "locked_by": [
                     76069,
-                    76052,
-                    76074
+                    76074,
+                    76052
                 ],
                 "unlocks": [
                     76065
@@ -718,7 +718,7 @@
                         "talent_name": "Death Strike",
                         "spell_id": 49998,
                         "spell_name": "Death Strike",
-                        "description": "Focuses dark power into a strike that deals 61 Physical damage and heals you for 20.00% of all damage taken in the last 5 sec, minimum 7.0% of maximum health.",
+                        "description": "Focuses dark power into a strike that deals 62 Physical damage and heals you for 20.00% of all damage taken in the last 5 sec, minimum 7.0% of maximum health.",
                         "cast_time": "Instant",
                         "cooldown": null,
                         "range": "Melee Range"
@@ -762,9 +762,9 @@
                     76072
                 ],
                 "unlocks": [
-                    110029,
                     76059,
-                    76069
+                    76069,
+                    110029
                 ],
                 "max_ranks": 1,
                 "ranks": [
@@ -834,9 +834,9 @@
                     76069
                 ],
                 "unlocks": [
-                    110031,
                     76076,
-                    76065
+                    76065,
+                    110031
                 ],
                 "max_ranks": 1,
                 "ranks": [
@@ -861,9 +861,9 @@
                 "raw_position_x": 5400,
                 "raw_position_y": 3600,
                 "locked_by": [
-                    76060,
                     76075,
-                    76061
+                    76061,
+                    76060
                 ],
                 "unlocks": [
                     76057,
@@ -1242,9 +1242,9 @@
                 "raw_position_x": 3000,
                 "raw_position_y": 3000,
                 "locked_by": [
-                    76052,
                     76084,
-                    76044
+                    76044,
+                    76052
                 ],
                 "unlocks": [
                     76085
@@ -2426,7 +2426,7 @@
                             "talent_name": "Wave of Souls",
                             "spell_id": 439851,
                             "spell_name": "Wave of Souls",
-                            "description": "Reaper's Mark sends forth bursts of Shadowfrost energy and back, dealing 33 Shadowfrost damage both ways to all enemies caught in its path.\r\n\r\nWave of Souls critical strikes cause enemies to take 5% increased Shadowfrost damage for 15 sec, stacking up to 2 times, and it is always a critical strike on its way back.",
+                            "description": "Reaper's Mark sends forth bursts of Shadowfrost energy and back, dealing 34 Shadowfrost damage both ways to all enemies caught in its path.\r\n\r\nWave of Souls critical strikes cause enemies to take 5% increased Shadowfrost damage for 15 sec, stacking up to 2 times, and it is always a critical strike on its way back.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -2652,7 +2652,7 @@
                             "talent_name": "Exterminate",
                             "spell_id": 441378,
                             "spell_name": "Exterminate",
-                            "description": "After Reaper's Mark explodes, your next 2 Obliterates or Frostscythes cost 1 Rune and summon 2 scythes to strike your enemies.\r\n\r\nThe first scythe strikes your target for 155 Shadowfrost damage and the second scythe strikes all enemies around your target for 62 Shadowfrost damage. Deals reduced damage beyond 8 targets.",
+                            "description": "After Reaper's Mark explodes, your next 2 Obliterates or Frostscythes cost 1 Rune and summon 2 scythes to strike your enemies.\r\n\r\nThe first scythe strikes your target for 156 Shadowfrost damage and the second scythe strikes all enemies around your target for 63 Shadowfrost damage. Deals reduced damage beyond 8 targets.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -2799,7 +2799,7 @@
                             "talent_name": "Heart Strike",
                             "spell_id": 206930,
                             "spell_name": "Heart Strike",
-                            "description": "Instantly strike the target and 1 other nearby enemy, causing 68 Physical damage, and reducing enemies' movement speed by 20% for 8 sec.",
+                            "description": "Instantly strike the target and 1 other nearby enemy, causing 70 Physical damage, and reducing enemies' movement speed by 20% for 8 sec.",
                             "cast_time": "Instant",
                             "cooldown": null,
                             "range": "Melee Range"
@@ -2968,7 +2968,7 @@
                             "talent_name": "Marrowrend",
                             "spell_id": 195182,
                             "spell_name": "Marrowrend",
-                            "description": "Smash the target, dealing 78 Physical damage and generating 3 charges of Bone Shield.\r\n\r\n Bone Shield\r\nSurrounds you with a barrier of whirling bones, increasing Armor by 110. Each melee attack against you consumes a charge. Lasts 30 sec or until all charges are consumed.",
+                            "description": "Smash the target, dealing 77 Physical damage and generating 3 charges of Bone Shield.\r\n\r\n Bone Shield\r\nSurrounds you with a barrier of whirling bones, increasing Armor by 110. Each melee attack against you consumes a charge. Lasts 30 sec or until all charges are consumed.",
                             "cast_time": "Instant",
                             "cooldown": null,
                             "range": "Melee Range"
@@ -2996,7 +2996,7 @@
                             "talent_name": "Blood Boil",
                             "spell_id": 50842,
                             "spell_name": "Blood Boil",
-                            "description": "Deals 58 Shadow damage and infects all enemies within 10 yds with Blood Plague.\r\n\r\n Blood Plague\r\nA shadowy disease that drains 93 health from the target over 24 sec. ",
+                            "description": "Deals 56 Shadow damage and infects all enemies within 10 yds with Blood Plague.\r\n\r\n Blood Plague\r\nA shadowy disease that drains 93 health from the target over 24 sec. ",
                             "cast_time": "Instant",
                             "cooldown": null,
                             "range": null
@@ -3881,7 +3881,7 @@
                             "talent_name": "Exterminate",
                             "spell_id": 441378,
                             "spell_name": "Exterminate",
-                            "description": "After Reaper's Mark explodes, your next 2 Obliterates or Frostscythes cost 1 Rune and summon 2 scythes to strike your enemies.\r\n\r\nThe first scythe strikes your target for 156 Shadowfrost damage and the second scythe strikes all enemies around your target for 62 Shadowfrost damage. Deals reduced damage beyond 8 targets.",
+                            "description": "After Reaper's Mark explodes, your next 2 Obliterates or Frostscythes cost 1 Rune and summon 2 scythes to strike your enemies.\r\n\r\nThe first scythe strikes your target for 151 Shadowfrost damage and the second scythe strikes all enemies around your target for 61 Shadowfrost damage. Deals reduced damage beyond 8 targets.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -4328,9 +4328,9 @@
                         76042
                     ],
                     "unlocks": [
-                        76172,
                         76139,
-                        102243
+                        102243,
+                        76172
                     ],
                     "max_ranks": 1,
                     "ranks": [
@@ -4388,9 +4388,9 @@
                         76166
                     ],
                     "unlocks": [
-                        76172,
                         102242,
-                        76041
+                        76041,
+                        76172
                     ],
                     "max_ranks": 1,
                     "ranks": [
@@ -4506,9 +4506,9 @@
                         76143
                     ],
                     "unlocks": [
+                        76125,
                         102244,
-                        76131,
-                        76125
+                        76131
                     ],
                     "max_ranks": 1,
                     "ranks": [
@@ -4603,7 +4603,7 @@
                             "talent_name": "Blood Mist",
                             "spell_id": 1263743,
                             "spell_name": "Blood Mist",
-                            "description": "When you cast Dancing Rune Weapon, you become enveloped in a blood mist that surrounds you for 8 sec, increasing your Parry by 5%. \r\n\r\nDeals 21 Shadow damage every 1 sec to enemies within 10 yds. Every time it deals damage you gain 2 Runic Power, up to a maximum of 10 Runic Power. Deals reduced damage beyond 8 targets.",
+                            "description": "When you cast Dancing Rune Weapon, you become enveloped in a blood mist that surrounds you for 8 sec, increasing your Parry by 5%. \r\n\r\nDeals 22 Shadow damage every 1 sec to enemies within 10 yds. Every time it deals damage you gain 2 Runic Power, up to a maximum of 10 Runic Power. Deals reduced damage beyond 8 targets.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -4618,8 +4618,8 @@
                     "raw_position_x": 12000,
                     "raw_position_y": 6000,
                     "locked_by": [
-                        76172,
-                        76139
+                        76139,
+                        76172
                     ],
                     "unlocks": [
                         76133
@@ -4741,7 +4741,7 @@
                             "talent_name": "Sanguinary Burst",
                             "spell_id": 1263781,
                             "spell_name": "Sanguinary Burst",
-                            "description": "When Blood Mist ends it deals 94 Shadow damage to 8 nearby enemies, healing you for 18% of the damage dealt. The damage is increased by 2% for every 1 Runic Power spent while Blood Mist was active.",
+                            "description": "When Blood Mist ends it deals 96 Shadow damage to 8 nearby enemies, healing you for 18% of the damage dealt. The damage is increased by 2% for every 1 Runic Power spent while Blood Mist was active.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -4938,7 +4938,7 @@
                             "talent_name": "Scourge Strike",
                             "spell_id": 55090,
                             "spell_name": "Scourge Strike",
-                            "description": "An unholy strike that deals 47 Shadow damage and causing your plagues on the target to erupt, dealing their damage an additional time at 35% effectiveness.\r\n\r\nApplies Virulent Plague or spreads it to a nearby enemy.",
+                            "description": "An unholy strike that deals 46 Shadow damage and causing your plagues on the target to erupt, dealing their damage an additional time at 35% effectiveness.\r\n\r\nApplies Virulent Plague or spreads it to a nearby enemy.",
                             "cast_time": "Instant",
                             "cooldown": null,
                             "range": "30 yd range"
@@ -4956,8 +4956,8 @@
                         76189
                     ],
                     "unlocks": [
-                        108129,
-                        76185
+                        76185,
+                        108129
                     ],
                     "max_ranks": 1,
                     "ranks": [
@@ -5336,9 +5336,9 @@
                         108131
                     ],
                     "unlocks": [
+                        76192,
                         76193,
-                        76197,
-                        76192
+                        76197
                     ],
                     "max_ranks": 1,
                     "ranks": [
@@ -5366,9 +5366,9 @@
                         108129
                     ],
                     "unlocks": [
+                        76192,
                         76196,
-                        76179,
-                        76192
+                        76179
                     ],
                     "max_ranks": 1,
                     "ranks": [
@@ -5566,8 +5566,8 @@
                         76162
                     ],
                     "unlocks": [
-                        76155,
-                        76160
+                        76160,
+                        76155
                     ],
                     "max_ranks": 1,
                     "ranks": [
@@ -5625,8 +5625,8 @@
                         76162
                     ],
                     "unlocks": [
-                        76156,
-                        76196
+                        76196,
+                        76156
                     ],
                     "max_ranks": 1,
                     "ranks": [
@@ -5666,7 +5666,7 @@
                             "talent_name": "Soul Reaper",
                             "spell_id": 343294,
                             "spell_name": "Soul Reaper",
-                            "description": "Rupture the soul of your enemy, dealing 160 Shadowfrost damage and causing the foe to take 20% increased damage from your diseases and minions for 8 sec.\r\n\r\nOnly usable on enemies below 35% maximum health.\r\n\r\nConsumes up to 3 Lesser Ghoul stacks to summon them instantly.",
+                            "description": "Rupture the soul of your enemy, dealing 158 Shadowfrost damage and causing the foe to take 20% increased damage from your diseases and minions for 8 sec.\r\n\r\nOnly usable on enemies below 35% maximum health.\r\n\r\nConsumes up to 3 Lesser Ghoul stacks to summon them instantly.",
                             "cast_time": "Instant",
                             "cooldown": "15 sec cooldown",
                             "range": "Melee Range"
@@ -5684,9 +5684,9 @@
                         110260
                     ],
                     "unlocks": [
-                        109392,
                         76194,
-                        101882
+                        101882,
+                        109392
                     ],
                     "max_ranks": 1,
                     "ranks": [
@@ -5797,13 +5797,13 @@
                     "raw_position_x": 11400,
                     "raw_position_y": 4200,
                     "locked_by": [
-                        76197,
-                        76193
+                        76193,
+                        76197
                     ],
                     "unlocks": [
-                        76160,
+                        76178,
                         108126,
-                        76178
+                        76160
                     ],
                     "max_ranks": 1,
                     "ranks": [
@@ -5857,14 +5857,14 @@
                     "raw_position_x": 12600,
                     "raw_position_y": 4200,
                     "locked_by": [
+                        76192,
                         76186,
-                        76179,
-                        76192
+                        76179
                     ],
                     "unlocks": [
-                        76184,
                         76178,
-                        76176
+                        76176,
+                        76184
                     ],
                     "max_ranks": 1,
                     "ranks": [
@@ -5921,9 +5921,9 @@
                         76148
                     ],
                     "unlocks": [
+                        76181,
                         108130,
-                        76184,
-                        76181
+                        76184
                     ],
                     "max_ranks": 1,
                     "ranks": [
@@ -6117,8 +6117,8 @@
                     "raw_position_x": 10800,
                     "raw_position_y": 4800,
                     "locked_by": [
-                        76155,
-                        76197
+                        76197,
+                        76155
                     ],
                     "unlocks": [
                         108126
@@ -6151,8 +6151,8 @@
                         76155
                     ],
                     "unlocks": [
-                        108151,
-                        108126
+                        108126,
+                        108151
                     ],
                     "max_ranks": 1,
                     "ranks": [
@@ -6391,9 +6391,9 @@
                     "raw_position_x": 11400,
                     "raw_position_y": 5400,
                     "locked_by": [
-                        76160,
+                        76178,
                         76155,
-                        76178
+                        76160
                     ],
                     "unlocks": [
                         76152,
@@ -6649,8 +6649,8 @@
                     "raw_position_x": 12000,
                     "raw_position_y": 6000,
                     "locked_by": [
-                        108151,
-                        108126
+                        108126,
+                        108151
                     ],
                     "unlocks": [
                         109458
@@ -6885,7 +6885,7 @@
                             "talent_name": "Forbidden Knowledge",
                             "spell_id": 1242158,
                             "spell_name": "Forbidden Knowledge",
-                            "description": "Army of the Dead siphons the power of the fallen, transforming Death Coil and Epidemic into Necrotic Coil and Graveyard for 30 sec.\r\n\r\nNecrotic Coil\r\nUnleash a vortex of necrotic energy and bone, dealing 72 Shadowstrike damage up to 3 foes and 22 Shadow damage to all pierced enemies.\r\n\r\nGraveyard\r\nThe dead erupt beneath all foes with Virulent Plague, dealing 39 Shadow damage and 18 Shadow damage to enemies nearby.",
+                            "description": "Army of the Dead siphons the power of the fallen, transforming Death Coil and Epidemic into Necrotic Coil and Graveyard for 30 sec.\r\n\r\nNecrotic Coil\r\nUnleash a vortex of necrotic energy and bone, dealing 72 Shadowstrike damage up to 3 foes and 22 Shadow damage to all pierced enemies.\r\n\r\nGraveyard\r\nThe dead erupt beneath all foes with Virulent Plague, dealing 38 Shadow damage and 18 Shadow damage to enemies nearby.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -6951,7 +6951,7 @@
                             "talent_name": "Frost Strike",
                             "spell_id": 49143,
                             "spell_name": "Frost Strike",
-                            "description": "Chill your weapon with icy power and quickly strike the enemy, dealing 69 Frost damage.",
+                            "description": "Chill your weapon with icy power and quickly strike the enemy, dealing 70 Frost damage.",
                             "cast_time": "Instant",
                             "cooldown": null,
                             "range": "Melee Range"
@@ -6979,7 +6979,7 @@
                             "talent_name": "Wave of Souls",
                             "spell_id": 439851,
                             "spell_name": "Wave of Souls",
-                            "description": "Reaper's Mark sends forth bursts of Shadowfrost energy and back, dealing 33 Shadowfrost damage both ways to all enemies caught in its path.\r\n\r\nWave of Souls critical strikes cause enemies to take 5% increased Shadowfrost damage for 15 sec, stacking up to 2 times, and it is always a critical strike on its way back.",
+                            "description": "Reaper's Mark sends forth bursts of Shadowfrost energy and back, dealing 34 Shadowfrost damage both ways to all enemies caught in its path.\r\n\r\nWave of Souls critical strikes cause enemies to take 5% increased Shadowfrost damage for 15 sec, stacking up to 2 times, and it is always a critical strike on its way back.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -7092,7 +7092,7 @@
                             "talent_name": "Obliterate",
                             "spell_id": 49020,
                             "spell_name": "Obliterate",
-                            "description": "A brutal attack that deals 41 Physical and 41 Frost damage.",
+                            "description": "A brutal attack that deals 41 Physical and 40 Frost damage.",
                             "cast_time": "Instant",
                             "cooldown": null,
                             "range": "Melee Range"
@@ -7336,7 +7336,7 @@
                             "talent_name": "Frostscythe",
                             "spell_id": 207230,
                             "spell_name": "Frostscythe",
-                            "description": "A sweeping attack that strikes all enemies in front of you for 17 Frost damage. Deals reduced damage beyond 5 targets. \r\n\r\nConsumes Killing Machine to have its critical strikes deal 4 times the normal damage.",
+                            "description": "A sweeping attack that strikes all enemies in front of you for 16 Frost damage. Deals reduced damage beyond 5 targets. \r\n\r\nConsumes Killing Machine to have its critical strikes deal 4 times the normal damage.",
                             "cast_time": "Instant",
                             "cooldown": null,
                             "range": "8 yd range"
@@ -7675,7 +7675,7 @@
                             "talent_name": "Exterminate",
                             "spell_id": 441378,
                             "spell_name": "Exterminate",
-                            "description": "After Reaper's Mark explodes, your next 2 Obliterates or Frostscythes cost 1 Rune and summon 2 scythes to strike your enemies.\r\n\r\nThe first scythe strikes your target for 154 Shadowfrost damage and the second scythe strikes all enemies around your target for 62 Shadowfrost damage. Deals reduced damage beyond 8 targets.",
+                            "description": "After Reaper's Mark explodes, your next 2 Obliterates or Frostscythes cost 1 Rune and summon 2 scythes to strike your enemies.\r\n\r\nThe first scythe strikes your target for 155 Shadowfrost damage and the second scythe strikes all enemies around your target for 61 Shadowfrost damage. Deals reduced damage beyond 8 targets.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -7704,7 +7704,7 @@
                             "talent_name": "Inexorable Assault",
                             "spell_id": 253593,
                             "spell_name": "Inexorable Assault",
-                            "description": "Gain Inexorable Assault every 4 sec, stacking up to 5 times.\r\n\r\nObliterate consumes up to 3 stacks, dealing an additional 8 Frost damage for each stack consumed.",
+                            "description": "Gain Inexorable Assault every 4 sec, stacking up to 5 times.\r\n\r\nObliterate consumes up to 3 stacks, dealing an additional 9 Frost damage for each stack consumed.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -8232,7 +8232,7 @@
                             "talent_name": "Frostwyrm's Fury",
                             "spell_id": 279302,
                             "spell_name": "Frostwyrm's Fury",
-                            "description": "Summons a frostwyrm who breathes on all enemies within 40 yd in front of you, dealing 104 Frost damage, stunning enemies for 3 sec, and slowing movement speed by 50% for 10 sec.",
+                            "description": "Summons a frostwyrm who breathes on all enemies within 40 yd in front of you, dealing 103 Frost damage, stunning enemies for 3 sec, and slowing movement speed by 50% for 10 sec.",
                             "cast_time": "Instant",
                             "cooldown": "1.5 min cooldown",
                             "range": null
@@ -8918,7 +8918,7 @@
                             "talent_name": "Breath of Sindragosa",
                             "spell_id": 1249658,
                             "spell_name": "Breath of Sindragosa",
-                            "description": "Call upon Sindragosa's aid in battle for 8 sec, continuously dealing 39 Frost damage every 1 sec to enemies in a cone in front of you. Consuming Killing Machine or Rime increases the duration by 0.8 sec. Deals reduced damage to secondary targets.\r\n\r\nGrants a charge of Empower Rune Weapon at the start and 2 Runes at the end.",
+                            "description": "Call upon Sindragosa's aid in battle for 8 sec, continuously dealing 38 Frost damage every 1 sec to enemies in a cone in front of you. Consuming Killing Machine or Rime increases the duration by 0.8 sec. Deals reduced damage to secondary targets.\r\n\r\nGrants a charge of Empower Rune Weapon at the start and 2 Runes at the end.",
                             "cast_time": "Instant",
                             "cooldown": "1.5 min cooldown",
                             "range": null

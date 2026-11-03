@@ -1,5 +1,5 @@
 # Demon Hunter — Havoc Spec Talents
-# Extracted verbatim from demonhunter.txt (SimulationCraft 1210-01 for World of Warcraft 12.1.0.69933 Live)
+# Extracted verbatim from demonhunter.txt (SimulationCraft 1210-01 for World of Warcraft 12.1.5.70688 Live)
 # 46 spell record(s). Mechanical regroup only — no content altered.
 
 Name             : Eye Beam (id=198013) [Spell Family (107)] 
@@ -872,7 +872,7 @@ Effects          :
                    Family Flags: 82
 #2 (id=1283315)  : Apply Aura (6) | Modify Cooldown Time (Category) (341)
                    Base Value: -15000 | Scaled Value: -15000 | Misc Value: 2427 (Category) | Target: Self (1)
-                   Affected Spells (Category): The Hunt (370965)
+                   Affected Spells (Category): The Hunt (370965), The Hunt (1246167), Predator's Wake (1259431)
 #3 (id=1283316)  : Apply Aura (6) | Dummy (4)
                    Base Value: 2 | Scaled Value: 2 | Target: Self (1)
 #4 (id=1283497)  : Apply Aura (6) | Add Percent Modifier (108): Spell Periodic Amount (22)

@@ -1,14 +1,14 @@
 {
-    "generatedAt": "2026-10-18T02:37:32+00:00",
-    "spellCacheVersion": 29,
+    "generatedAt": "2026-11-03T23:05:18+00:00",
+    "spellCacheVersion": 31,
     "codeFingerprint": "dev",
     "entries": [
         {
             "spellId": 4759,
             "category": "Other",
             "description": {
-                "text": "Sentinel's Mark further increases the damage of (varies by condition — check in-game) by (varies by condition — check in-game)%",
-                "uncertain": true
+                "text": "Sentinel's Mark further increases the damage of Wildfire Bomb by 50%",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -49,8 +49,8 @@
                         "modifier_value": -30,
                         "modifier_unit": "seconds",
                         "description": {
-                            "text": "The cooldown of (varies by condition — check in-game)Aspect of the Cheetah, and Aspect of the Turtle are reduced by 15 sec.",
-                            "uncertain": true
+                            "text": "The cooldown of Aspect of the Eagle, Aspect of the Cheetah, and Aspect of the Turtle are reduced by 15 sec.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -419,8 +419,8 @@
                         "modifier_value": -30,
                         "modifier_unit": "seconds",
                         "description": {
-                            "text": "The cooldown of (varies by condition — check in-game)Aspect of the Cheetah, and Aspect of the Turtle are reduced by 15 sec.",
-                            "uncertain": true
+                            "text": "The cooldown of Aspect of the Eagle, Aspect of the Cheetah, and Aspect of the Turtle are reduced by 15 sec.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -564,8 +564,8 @@
                         "modifier_value": -30,
                         "modifier_unit": "seconds",
                         "description": {
-                            "text": "The cooldown of (varies by condition — check in-game)Aspect of the Cheetah, and Aspect of the Turtle are reduced by 15 sec.",
-                            "uncertain": true
+                            "text": "The cooldown of Aspect of the Eagle, Aspect of the Cheetah, and Aspect of the Turtle are reduced by 15 sec.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -818,8 +818,8 @@
             "spellId": 4735,
             "category": "Offensive",
             "description": {
-                "text": "Damage dealt by your pet(varies by condition — check in-game) is increased by (varies by condition — check in-game)%. (varies by condition — check in-game).",
-                "uncertain": true
+                "text": "Damage dealt by your pet is increased by 5%. Raptor Strike damage increased by 5%.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -1238,8 +1238,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game).",
-                            "uncertain": true
+                            "text": "Each time your Boar deals damage, the damage of your next Boomstick is increased by 5%, up to 20%.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -1302,8 +1302,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game).",
-                            "uncertain": true
+                            "text": "Each time your Boar deals damage, the damage of your next Boomstick is increased by 5%, up to 20%.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -1318,8 +1318,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game).",
-                            "uncertain": true
+                            "text": "Hogstrider further increases the damage of Boomstick by 2%.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -1461,8 +1461,8 @@
             "spellId": 4677,
             "category": "Other",
             "description": {
-                "text": "The cooldown of (varies by condition — check in-game)Aspect of the Cheetah, and Aspect of the Turtle are reduced by 15 sec.",
-                "uncertain": true
+                "text": "The cooldown of Aspect of the Eagle, Aspect of the Cheetah, and Aspect of the Turtle are reduced by 15 sec.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -1525,8 +1525,8 @@
             "spellId": 4757,
             "category": "Other",
             "description": {
-                "text": "(varies by condition — check in-game) increased by (varies by condition — check in-game)%. (varies by condition — check in-game) duration increased by (varies by condition — check in-game) sec.",
-                "uncertain": true
+                "text": "Tip of the Spear damage bonus increased by 4%. Takedown duration increased by 2 sec.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -1781,8 +1781,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "When (varies by condition — check in-game) interrupts a cast, gain 30 Focus.",
-                            "uncertain": true
+                            "text": "When Muzzle interrupts a cast, gain 30 Focus.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -1797,8 +1797,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "When (varies by condition — check in-game) interrupts a cast, gain 30 Focus.",
-                            "uncertain": true
+                            "text": "When Muzzle interrupts a cast, gain 30 Focus.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -1816,8 +1816,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "When (varies by condition — check in-game) interrupts a cast, gain 30 Focus.",
-                            "uncertain": true
+                            "text": "When Muzzle interrupts a cast, gain 30 Focus.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -1909,8 +1909,8 @@
             "spellId": 4734,
             "category": "Other",
             "description": {
-                "text": "Kill Command reduces the cooldown of Howl of the Pack Leader by (varies by condition — check in-game) sec. Mongoose Bite reduces the cooldown of Howl of the Pack Leader by (varies by condition — check in-game) sec.",
-                "uncertain": true
+                "text": "Kill Command reduces the cooldown of Howl of the Pack Leader by 1.5 sec. Mongoose Bite reduces the cooldown of Howl of the Pack Leader by 1 sec.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -2019,8 +2019,8 @@
             "spellId": 4680,
             "category": "Other",
             "description": {
-                "text": "When (varies by condition — check in-game) interrupts a cast, gain 30 Focus.",
-                "uncertain": true
+                "text": "When Muzzle interrupts a cast, gain 30 Focus.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -2753,8 +2753,8 @@
             "spellId": 4739,
             "category": "Other",
             "description": {
-                "text": "Your pet's attacks increase your Wyvern's damage bonus by 1%, up to 10%. Casting (varies by condition — check in-game) extends the duration of your Wyvern by (varies by condition — check in-game) sec, up to (varies by condition — check in-game) additional sec.",
-                "uncertain": true
+                "text": "Your pet's attacks increase your Wyvern's damage bonus by 1%, up to 10%. Casting Wildfire Bomb extends the duration of your Wyvern by 5 sec, up to 10 additional sec.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -3131,8 +3131,8 @@
             "spellId": 4740,
             "category": "Other",
             "description": {
-                "text": "(varies by condition — check in-game).",
-                "uncertain": true
+                "text": "Each time your Boar deals damage, the damage of your next Boomstick is increased by 5%, up to 20%.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -3145,8 +3145,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game).",
-                            "uncertain": true
+                            "text": "Hogstrider further increases the damage of Boomstick by 2%.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -3178,8 +3178,8 @@
             "spellId": 4748,
             "category": "Other",
             "description": {
-                "text": "(varies by condition — check in-game).",
-                "uncertain": true
+                "text": "Hogstrider further increases the damage of Boomstick by 2%.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -3269,8 +3269,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Casting (varies by condition — check in-game) grants Howl of the Pack Leader and causes your next Kill Command to rouse the nearby wildlife into a Stampede, charging your target and dealing ≈1,350% of Attack Power Physical damage over 7.",
-                            "uncertain": true
+                            "text": "Casting Takedown grants Howl of the Pack Leader and causes your next Kill Command to rouse the nearby wildlife into a Stampede, charging your target and dealing ≈1,350% of Attack Power Physical damage over 7.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -3285,8 +3285,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Kill Command reduces the cooldown of Howl of the Pack Leader by (varies by condition — check in-game) sec. Mongoose Bite reduces the cooldown of Howl of the Pack Leader by (varies by condition — check in-game) sec.",
-                            "uncertain": true
+                            "text": "Kill Command reduces the cooldown of Howl of the Pack Leader by 1.5 sec. Mongoose Bite reduces the cooldown of Howl of the Pack Leader by 1 sec.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -3301,8 +3301,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Howl of the Pack Leader increases the damage of your Kill Command by 50%. Summoning a Beast reduces the cooldown of (varies by condition — check in-game) by (varies by condition — check in-game) sec.",
-                            "uncertain": true
+                            "text": "Howl of the Pack Leader increases the damage of your Kill Command by 50%. Summoning a Beast reduces the cooldown of Wildfire Bomb by 6 sec.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -3317,8 +3317,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Casting (varies by condition — check in-game) grants Howl of the Pack Leader and causes your next Kill Command to rouse the nearby wildlife into a Stampede, charging your target and dealing ≈1,350% of Attack Power Physical damage over 7.",
-                            "uncertain": true
+                            "text": "Casting Takedown grants Howl of the Pack Leader and causes your next Kill Command to rouse the nearby wildlife into a Stampede, charging your target and dealing ≈1,350% of Attack Power Physical damage over 7.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -3972,8 +3972,8 @@
             "spellId": 4751,
             "category": "Other",
             "description": {
-                "text": "(varies by condition — check in-game) grants an additional 5 Focus and its damage is increased by 20%. Maximum Focus increased by 25.",
-                "uncertain": true
+                "text": "Kill Command grants an additional 5 Focus and its damage is increased by 20%. Maximum Focus increased by 25.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -4044,8 +4044,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game) grants an additional 5 Focus and its damage is increased by 20%. Maximum Focus increased by 25.",
-                            "uncertain": true
+                            "text": "Kill Command grants an additional 5 Focus and its damage is increased by 20%. Maximum Focus increased by 25.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -4153,8 +4153,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game) grants 2% increased critical strike damage for 10. Multiple applications may overlap.",
-                            "uncertain": true
+                            "text": "Consuming Tip of the Spear grants 2% increased critical strike damage for 10. Multiple applications may overlap.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -4169,8 +4169,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game) grants 2% increased critical strike damage for 10. Multiple applications may overlap.",
-                            "uncertain": true
+                            "text": "Consuming Tip of the Spear grants 2% increased critical strike damage for 10. Multiple applications may overlap.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -4265,8 +4265,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game) grants an additional 5 Focus and its damage is increased by 20%. Maximum Focus increased by 25.",
-                            "uncertain": true
+                            "text": "Kill Command grants an additional 5 Focus and its damage is increased by 20%. Maximum Focus increased by 25.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -4605,8 +4605,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Your pet's attacks increase your Wyvern's damage bonus by 1%, up to 10%. Casting (varies by condition — check in-game) extends the duration of your Wyvern by (varies by condition — check in-game) sec, up to (varies by condition — check in-game) additional sec.",
-                            "uncertain": true
+                            "text": "Your pet's attacks increase your Wyvern's damage bonus by 1%, up to 10%. Casting Wildfire Bomb extends the duration of your Wyvern by 5 sec, up to 10 additional sec.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -4621,8 +4621,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Casting (varies by condition — check in-game) grants Howl of the Pack Leader and causes your next Kill Command to rouse the nearby wildlife into a Stampede, charging your target and dealing ≈1,350% of Attack Power Physical damage over 7.",
-                            "uncertain": true
+                            "text": "Casting Takedown grants Howl of the Pack Leader and causes your next Kill Command to rouse the nearby wildlife into a Stampede, charging your target and dealing ≈1,350% of Attack Power Physical damage over 7.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -4653,8 +4653,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Kill Command reduces the cooldown of Howl of the Pack Leader by (varies by condition — check in-game) sec. Mongoose Bite reduces the cooldown of Howl of the Pack Leader by (varies by condition — check in-game) sec.",
-                            "uncertain": true
+                            "text": "Kill Command reduces the cooldown of Howl of the Pack Leader by 1.5 sec. Mongoose Bite reduces the cooldown of Howl of the Pack Leader by 1 sec.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -4669,8 +4669,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Howl of the Pack Leader increases the damage of your Kill Command by 50%. Summoning a Beast reduces the cooldown of (varies by condition — check in-game) by (varies by condition — check in-game) sec.",
-                            "uncertain": true
+                            "text": "Howl of the Pack Leader increases the damage of your Kill Command by 50%. Summoning a Beast reduces the cooldown of Wildfire Bomb by 6 sec.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -4685,8 +4685,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Your pet's attacks increase your Wyvern's damage bonus by 1%, up to 10%. Casting (varies by condition — check in-game) extends the duration of your Wyvern by (varies by condition — check in-game) sec, up to (varies by condition — check in-game) additional sec.",
-                            "uncertain": true
+                            "text": "Your pet's attacks increase your Wyvern's damage bonus by 1%, up to 10%. Casting Wildfire Bomb extends the duration of your Wyvern by 5 sec, up to 10 additional sec.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -4701,8 +4701,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Casting (varies by condition — check in-game) grants Howl of the Pack Leader and causes your next Kill Command to rouse the nearby wildlife into a Stampede, charging your target and dealing ≈1,350% of Attack Power Physical damage over 7.",
-                            "uncertain": true
+                            "text": "Casting Takedown grants Howl of the Pack Leader and causes your next Kill Command to rouse the nearby wildlife into a Stampede, charging your target and dealing ≈1,350% of Attack Power Physical damage over 7.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -4840,8 +4840,8 @@
             "spellId": 4746,
             "category": "Offensive",
             "description": {
-                "text": "Your (varies by condition — check in-game) have a very high chance to grant(varies by condition — check in-game) 3 Focus to you and your pet. (varies by condition — check in-game) damage increased by (varies by condition — check in-game)%.",
-                "uncertain": true
+                "text": "Your auto attacks have a very high chance to grant 3 Focus to you and your pet. Auto attack damage increased by 15%.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -4930,8 +4930,8 @@
             "spellId": 4760,
             "category": "Other",
             "description": {
-                "text": "(varies by condition — check in-game).",
-                "uncertain": true
+                "text": "Takedown summons your Sentinel Owl and your chance to summon your Sentinel Owl is increased by an additional 10% during Takedown.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -5546,8 +5546,8 @@
             "spellId": 4756,
             "category": "Other",
             "description": {
-                "text": "(varies by condition — check in-game) has a 10% increased chance to summon your Sentinel Owl. When your Sentinel Owl applies Sentinel's Mark, reduce the cooldown of (varies by condition — check in-game) by (varies by condition — check in-game) sec.",
-                "uncertain": true
+                "text": "Consuming Tip of the Spear has a 10% increased chance to summon your Sentinel Owl. When your Sentinel Owl applies Sentinel's Mark, reduce the cooldown of Wildfire Bomb by 6 sec.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -5681,8 +5681,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game) grants 2% increased critical strike damage for 10. Multiple applications may overlap.",
-                            "uncertain": true
+                            "text": "Consuming Tip of the Spear grants 2% increased critical strike damage for 10. Multiple applications may overlap.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -5697,8 +5697,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game) grants 2% increased critical strike damage for 10. Multiple applications may overlap.",
-                            "uncertain": true
+                            "text": "Consuming Tip of the Spear grants 2% increased critical strike damage for 10. Multiple applications may overlap.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -5713,7 +5713,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "For 15 after casting (varies by condition — check in-game), (varies by condition — check in-game) is replaced with Moonlight Chakram. Moonlight Chakram Throw a chakram blessed with moonlight at your current target that will rapidly deal 1,264,949 Physical damage (varies) times, bouncing to other targets if they are nearby.",
+                            "text": "For 15 after casting Takedown, Takedown is replaced with Moonlight Chakram. Moonlight Chakram Throw a chakram blessed with moonlight at your current target that will rapidly deal 1,264,949 Physical damage (varies) times, bouncing to other targets if they are nearby.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -5745,8 +5745,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Throwing your Moonlight Chakram (varies by condition — check in-game).",
-                            "uncertain": true
+                            "text": "Throwing your Moonlight Chakram reduces the cooldown of Wildfire Bomb by 10 sec.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -5922,8 +5922,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "When (varies by condition — check in-game) interrupts a cast, gain 30 Focus.",
-                            "uncertain": true
+                            "text": "When Muzzle interrupts a cast, gain 30 Focus.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -5938,8 +5938,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "When (varies by condition — check in-game) interrupts a cast, gain 30 Focus.",
-                            "uncertain": true
+                            "text": "When Muzzle interrupts a cast, gain 30 Focus.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -5957,8 +5957,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "When (varies by condition — check in-game) interrupts a cast, gain 30 Focus.",
-                            "uncertain": true
+                            "text": "When Muzzle interrupts a cast, gain 30 Focus.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -6050,8 +6050,8 @@
             "spellId": 4741,
             "category": "Other",
             "description": {
-                "text": "Your Bleed effects deal (varies by condition — check in-game)% increased damage.",
-                "uncertain": true
+                "text": "Your Bleed effects deal 35% increased damage.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -6080,8 +6080,8 @@
             "spellId": 4755,
             "category": "Offensive",
             "description": {
-                "text": "(varies by condition — check in-game).",
-                "uncertain": true
+                "text": "Fire damage dealt increased by 5%.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -6140,8 +6140,8 @@
             "spellId": 4736,
             "category": "Other",
             "description": {
-                "text": "Howl of the Pack Leader increases the damage of your Kill Command by 50%. Summoning a Beast reduces the cooldown of (varies by condition — check in-game) by (varies by condition — check in-game) sec.",
-                "uncertain": true
+                "text": "Howl of the Pack Leader increases the damage of your Kill Command by 50%. Summoning a Beast reduces the cooldown of Wildfire Bomb by 6 sec.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -6260,8 +6260,8 @@
             "spellId": 4709,
             "category": "Offensive",
             "description": {
-                "text": "Your (varies by condition — check in-game) damage is increased by 25%.",
-                "uncertain": true
+                "text": "Your auto attack damage is increased by 25%.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -6533,8 +6533,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game) grants 2% increased critical strike damage for 10. Multiple applications may overlap.",
-                            "uncertain": true
+                            "text": "Consuming Tip of the Spear grants 2% increased critical strike damage for 10. Multiple applications may overlap.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -6565,8 +6565,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game) grants 2% increased critical strike damage for 10. Multiple applications may overlap.",
-                            "uncertain": true
+                            "text": "Consuming Tip of the Spear grants 2% increased critical strike damage for 10. Multiple applications may overlap.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -6613,8 +6613,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "An additional (varies by condition — check in-game)% of (varies by condition — check in-game)'s damage is dealt as Arcane damage over 6.",
-                            "uncertain": true
+                            "text": "An additional 15% of Raptor Strike's damage is dealt as Arcane damage over 6.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -6629,8 +6629,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "An additional (varies by condition — check in-game)% of (varies by condition — check in-game)'s damage is dealt as Arcane damage over 6.",
-                            "uncertain": true
+                            "text": "An additional 15% of Raptor Strike's damage is dealt as Arcane damage over 6.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -6846,8 +6846,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Damage dealt by your pet(varies by condition — check in-game) is increased by (varies by condition — check in-game)%. (varies by condition — check in-game).",
-                            "uncertain": true
+                            "text": "Damage dealt by your pet is increased by 5%. Raptor Strike damage increased by 5%.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -7006,8 +7006,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Kill Command reduces the cooldown of Howl of the Pack Leader by (varies by condition — check in-game) sec. Mongoose Bite reduces the cooldown of Howl of the Pack Leader by (varies by condition — check in-game) sec.",
-                            "uncertain": true
+                            "text": "Kill Command reduces the cooldown of Howl of the Pack Leader by 1.5 sec. Mongoose Bite reduces the cooldown of Howl of the Pack Leader by 1 sec.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -7224,8 +7224,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game) grants 2% increased critical strike damage for 10. Multiple applications may overlap.",
-                            "uncertain": true
+                            "text": "Consuming Tip of the Spear grants 2% increased critical strike damage for 10. Multiple applications may overlap.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -7256,8 +7256,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game) grants 2% increased critical strike damage for 10. Multiple applications may overlap.",
-                            "uncertain": true
+                            "text": "Consuming Tip of the Spear grants 2% increased critical strike damage for 10. Multiple applications may overlap.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -7457,8 +7457,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Damage dealt by your pet(varies by condition — check in-game) is increased by (varies by condition — check in-game)%. (varies by condition — check in-game).",
-                            "uncertain": true
+                            "text": "Damage dealt by your pet is increased by 5%. Raptor Strike damage increased by 5%.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -7664,8 +7664,8 @@
             "spellId": 4758,
             "category": "Offensive",
             "description": {
-                "text": "An additional (varies by condition — check in-game)% of (varies by condition — check in-game)'s damage is dealt as Arcane damage over 6.",
-                "uncertain": true
+                "text": "An additional 15% of Raptor Strike's damage is dealt as Arcane damage over 6.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -7844,8 +7844,8 @@
             "spellId": 4752,
             "category": "Offensive",
             "description": {
-                "text": "(varies by condition — check in-game). Sentinel's Mark $@spellaura1253601",
-                "uncertain": true
+                "text": "Consuming Tip of the Spear has a 10% chance to summon the aid of a Sentinel Owl that descends from the skies and applies Sentinel's Mark to your target. Sentinel's Mark $@spellaura1253601",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -7856,8 +7856,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game) has a 10% increased chance to summon your Sentinel Owl. When your Sentinel Owl applies Sentinel's Mark, reduce the cooldown of (varies by condition — check in-game) by (varies by condition — check in-game) sec.",
-                            "uncertain": true
+                            "text": "Consuming Tip of the Spear has a 10% increased chance to summon your Sentinel Owl. When your Sentinel Owl applies Sentinel's Mark, reduce the cooldown of Wildfire Bomb by 6 sec.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -7952,8 +7952,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Sentinel's Mark further increases the damage of (varies by condition — check in-game) by (varies by condition — check in-game)%",
-                            "uncertain": true
+                            "text": "Sentinel's Mark further increases the damage of Wildfire Bomb by 50%",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -7968,8 +7968,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game).",
-                            "uncertain": true
+                            "text": "Takedown summons your Sentinel Owl and your chance to summon your Sentinel Owl is increased by an additional 10% during Takedown.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -8067,8 +8067,8 @@
             "spellId": 4745,
             "category": "Offensive",
             "description": {
-                "text": "Your mastery is increased by 3%.(varies by condition — check in-game)",
-                "uncertain": true
+                "text": "Your mastery is increased by 3%. Wildfire Bomb deals an additional 15% increased damage to its primary target.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -8357,8 +8357,8 @@
             "spellId": 4766,
             "category": "Other",
             "description": {
-                "text": "Throwing your Moonlight Chakram (varies by condition — check in-game).",
-                "uncertain": true
+                "text": "Throwing your Moonlight Chakram reduces the cooldown of Wildfire Bomb by 10 sec.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -8387,8 +8387,8 @@
             "spellId": 4744,
             "category": "Other",
             "description": {
-                "text": "Casting (varies by condition — check in-game) grants Howl of the Pack Leader and causes your next Kill Command to rouse the nearby wildlife into a Stampede, charging your target and dealing ≈1,350% of Attack Power Physical damage over 7.",
-                "uncertain": true
+                "text": "Casting Takedown grants Howl of the Pack Leader and causes your next Kill Command to rouse the nearby wildlife into a Stampede, charging your target and dealing ≈1,350% of Attack Power Physical damage over 7.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -8417,8 +8417,8 @@
             "spellId": 4754,
             "category": "Offensive",
             "description": {
-                "text": "(varies by condition — check in-game) grants 2% increased critical strike damage for 10. Multiple applications may overlap.",
-                "uncertain": true
+                "text": "Consuming Tip of the Spear grants 2% increased critical strike damage for 10. Multiple applications may overlap.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -9130,8 +9130,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game) increased by (varies by condition — check in-game)%. (varies by condition — check in-game) duration increased by (varies by condition — check in-game) sec.",
-                            "uncertain": true
+                            "text": "Tip of the Spear damage bonus increased by 4%. Takedown duration increased by 2 sec.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -9162,8 +9162,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game).",
-                            "uncertain": true
+                            "text": "Takedown summons your Sentinel Owl and your chance to summon your Sentinel Owl is increased by an additional 10% during Takedown.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -9178,7 +9178,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "For 15 after casting (varies by condition — check in-game), (varies by condition — check in-game) is replaced with Moonlight Chakram. Moonlight Chakram Throw a chakram blessed with moonlight at your current target that will rapidly deal 1,264,949 Physical damage (varies) times, bouncing to other targets if they are nearby.",
+                            "text": "For 15 after casting Takedown, Takedown is replaced with Moonlight Chakram. Moonlight Chakram Throw a chakram blessed with moonlight at your current target that will rapidly deal 1,264,949 Physical damage (varies) times, bouncing to other targets if they are nearby.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -9213,8 +9213,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Casting (varies by condition — check in-game) grants Howl of the Pack Leader and causes your next Kill Command to rouse the nearby wildlife into a Stampede, charging your target and dealing ≈1,350% of Attack Power Physical damage over 7.",
-                            "uncertain": true
+                            "text": "Casting Takedown grants Howl of the Pack Leader and causes your next Kill Command to rouse the nearby wildlife into a Stampede, charging your target and dealing ≈1,350% of Attack Power Physical damage over 7.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -9229,8 +9229,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Casting (varies by condition — check in-game) grants Howl of the Pack Leader and causes your next Kill Command to rouse the nearby wildlife into a Stampede, charging your target and dealing ≈1,350% of Attack Power Physical damage over 7.",
-                            "uncertain": true
+                            "text": "Casting Takedown grants Howl of the Pack Leader and causes your next Kill Command to rouse the nearby wildlife into a Stampede, charging your target and dealing ≈1,350% of Attack Power Physical damage over 7.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -9617,8 +9617,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game) grants 2% increased critical strike damage for 10. Multiple applications may overlap.",
-                            "uncertain": true
+                            "text": "Consuming Tip of the Spear grants 2% increased critical strike damage for 10. Multiple applications may overlap.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -9633,8 +9633,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game) grants 2% increased critical strike damage for 10. Multiple applications may overlap.",
-                            "uncertain": true
+                            "text": "Consuming Tip of the Spear grants 2% increased critical strike damage for 10. Multiple applications may overlap.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -9649,8 +9649,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game). Sentinel's Mark $@spellaura1253601",
-                            "uncertain": true
+                            "text": "Consuming Tip of the Spear has a 10% chance to summon the aid of a Sentinel Owl that descends from the skies and applies Sentinel's Mark to your target. Sentinel's Mark $@spellaura1253601",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -9665,8 +9665,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game) grants 2% increased critical strike damage for 10. Multiple applications may overlap.",
-                            "uncertain": true
+                            "text": "Consuming Tip of the Spear grants 2% increased critical strike damage for 10. Multiple applications may overlap.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -9681,8 +9681,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game) has a 10% increased chance to summon your Sentinel Owl. When your Sentinel Owl applies Sentinel's Mark, reduce the cooldown of (varies by condition — check in-game) by (varies by condition — check in-game) sec.",
-                            "uncertain": true
+                            "text": "Consuming Tip of the Spear has a 10% increased chance to summon your Sentinel Owl. When your Sentinel Owl applies Sentinel's Mark, reduce the cooldown of Wildfire Bomb by 6 sec.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -9697,8 +9697,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game) increased by (varies by condition — check in-game)%. (varies by condition — check in-game) duration increased by (varies by condition — check in-game) sec.",
-                            "uncertain": true
+                            "text": "Tip of the Spear damage bonus increased by 4%. Takedown duration increased by 2 sec.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -10574,8 +10574,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game) has a 10% increased chance to summon your Sentinel Owl. When your Sentinel Owl applies Sentinel's Mark, reduce the cooldown of (varies by condition — check in-game) by (varies by condition — check in-game) sec.",
-                            "uncertain": true
+                            "text": "Consuming Tip of the Spear has a 10% increased chance to summon your Sentinel Owl. When your Sentinel Owl applies Sentinel's Mark, reduce the cooldown of Wildfire Bomb by 6 sec.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -10590,8 +10590,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Sentinel's Mark further increases the damage of (varies by condition — check in-game) by (varies by condition — check in-game)%",
-                            "uncertain": true
+                            "text": "Sentinel's Mark further increases the damage of Wildfire Bomb by 50%",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -10606,8 +10606,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Throwing your Moonlight Chakram (varies by condition — check in-game).",
-                            "uncertain": true
+                            "text": "Throwing your Moonlight Chakram reduces the cooldown of Wildfire Bomb by 10 sec.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -10754,8 +10754,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Your pet's attacks increase your Wyvern's damage bonus by 1%, up to 10%. Casting (varies by condition — check in-game) extends the duration of your Wyvern by (varies by condition — check in-game) sec, up to (varies by condition — check in-game) additional sec.",
-                            "uncertain": true
+                            "text": "Your pet's attacks increase your Wyvern's damage bonus by 1%, up to 10%. Casting Wildfire Bomb extends the duration of your Wyvern by 5 sec, up to 10 additional sec.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -10834,8 +10834,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Your mastery is increased by 2%.(varies by condition — check in-game)",
-                            "uncertain": true
+                            "text": "Your mastery is increased by 2%. Wildfire Bomb deals an additional 15% increased damage to its primary target.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -10866,8 +10866,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Howl of the Pack Leader increases the damage of your Kill Command by 50%. Summoning a Beast reduces the cooldown of (varies by condition — check in-game) by (varies by condition — check in-game) sec.",
-                            "uncertain": true
+                            "text": "Howl of the Pack Leader increases the damage of your Kill Command by 50%. Summoning a Beast reduces the cooldown of Wildfire Bomb by 6 sec.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -10882,8 +10882,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Your pet's attacks increase your Wyvern's damage bonus by 1%, up to 10%. Casting (varies by condition — check in-game) extends the duration of your Wyvern by (varies by condition — check in-game) sec, up to (varies by condition — check in-game) additional sec.",
-                            "uncertain": true
+                            "text": "Your pet's attacks increase your Wyvern's damage bonus by 1%, up to 10%. Casting Wildfire Bomb extends the duration of your Wyvern by 5 sec, up to 10 additional sec.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -10898,8 +10898,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Your mastery is increased by 3%.(varies by condition — check in-game)",
-                            "uncertain": true
+                            "text": "Your mastery is increased by 3%. Wildfire Bomb deals an additional 15% increased damage to its primary target.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {

@@ -1,5 +1,5 @@
 # Priest — Baseline (no talent tree)
-# Extracted verbatim from priest.txt (SimulationCraft 1210-01 for World of Warcraft 12.1.0.69933 Live)
+# Extracted verbatim from priest.txt (SimulationCraft 1210-01 for World of Warcraft 12.1.5.70688 Live)
 # 619 spell record(s). Mechanical regroup only — no content altered.
 
 Name             : Power Word: Shield (id=17) [Spell Family (6)] 
@@ -362,7 +362,6 @@ Channel Interrupt: Damage (2), Action (3), Sheathing (10), Interacting (11), Loo
 Effects          :
 #1 (id=7301)     : Apply Aura (6) | Periodic Damage (3): shadow every 0.75 seconds
                    Base Value: 0 | Scaled Value: 0 | SP Coefficient: 1.38138 | PvP Coefficient: 0.61 | Target: Targeted Enemy (6)
-Hotfixed         : SP Coefficient (1.2012 -> 1.38138), PvP Coefficient (0.7 -> 0.61)
 #2 (id=7302)     : Apply Aura (6) | Decrease Movement Speed% (33)
                    Base Value: -50 | Scaled Value: -50 | Mechanic: Snare | Target: Targeted Enemy (6)
 #3 (id=303457)   : Apply Aura (6) | Periodic Energize Power (24): every 0.75 seconds
@@ -767,7 +766,7 @@ Name             : Penance (id=47540) [Spell Family (6)]
 Class            : Discipline Priest
 School           : Holy
 Spell Type       : None
-Resource         : 1.28% Base Mana (0) (id=2193)[Hotfixed: Percent Cost (1.6 -> 1.28)]
+Resource         : 1.28% Base Mana (0) (id=2193)
 Spell Level      : 11
 Range            : 40 yards
 GCD              : 1.5 seconds
@@ -2133,7 +2132,6 @@ Effects          :
                    Base Value: 360 | Scaled Value: 360 | Target: Self (1)
                    Affected Spells: Mind Blast (8092), Void Blast (450983)
                    Family Flags: 13
-Hotfixed         : Base Value (300 -> 360)
 #13 (id=1040381) : Apply Aura (6) | Apply Percent Modifier w/ Label (218): Spell Direct Amount (0)
                    Base Value: 137 | Scaled Value: 137 | Misc Value 2: 4040 (Label) | Target: Self (1)
                    Affected Spells (Label): Mind Blast (8092)
@@ -2145,7 +2143,6 @@ Hotfixed         : Base Value (300 -> 360)
                    Base Value: 254 | Scaled Value: 254 | Target: Self (1)
                    Affected Spells: Shadow Word: Death (32379), Painbreaker Psalm (336167)
                    Family Flags: 33
-Hotfixed         : Base Value (208 -> 254)
 #16 (id=1041381) : Apply Aura (6) | Add Percent Modifier (108): Spell Direct Amount (0)
                    Base Value: 148 | Scaled Value: 148 | Target: Self (1)
                    Affected Spells: Shadow Word: Pain (589)
@@ -7712,10 +7709,8 @@ Attributes       : Not Shapeshifted (16), Aura Points On Client (268), Not In Sp
 Effects          :
 #1 (id=1002578)  : School Damage (2): shadow
                    Base Value: 0 | Scaled Value: 0 (delta=0.05) | SP Coefficient: 11.25 | Target: Targeted Enemy (6)
-Hotfixed         : SP Coefficient (7.5 -> 11.25)
 #2 (id=1002579)  : Apply Aura (6) | Dummy (4)
                    Base Value: 3930 | Scaled Value: 3930 | Target: Targeted Enemy (6)
-Hotfixed         : Base Value (2625 -> 3930)
                    Modified By: Shadow Word: Manipulation (356392 effect#2)
 #3 (id=1002580)  : Apply Aura (6) | Dummy (4)
                    Base Value: 100 | Scaled Value: 100 | Target: Targeted Enemy (6)
@@ -7723,7 +7718,6 @@ Hotfixed         : Base Value (2625 -> 3930)
                    Base Value: 0 | Scaled Value: 0 | Trigger Spell: 375902 | Target: Self (1)
 #5 (id=1002582)  : Apply Aura (6) | Dummy (4)
                    Base Value: 3930 | Scaled Value: 3930 | Target: Targeted Enemy (6)
-Hotfixed         : Base Value (2625 -> 3930)
                    Modified By: Shadow Word: Manipulation (356392 effect#3)
 #6 (id=1002583)  : Apply Aura (6) | Dummy (4)
                    Base Value: 450 | Scaled Value: 450 | Target: Current Target (25)
@@ -8315,7 +8309,6 @@ Channel Interrupt: Damage (2), Action (3), Sheathing (10), Interacting (11), Loo
 Effects          :
 #1 (id=1028897)  : Apply Aura (6) | Periodic Damage (3): shadow every 0.375 seconds
                    Base Value: 0 | Scaled Value: 0 | SP Coefficient: 1.55929 | PvP Coefficient: 0.76 | Target: Targeted Enemy (6)
-Hotfixed         : SP Coefficient (1.3559 -> 1.55929), PvP Coefficient (0.875 -> 0.76)
 #2 (id=1028898)  : Apply Aura (6) | Decrease Movement Speed% (33)
                    Base Value: -70 | Scaled Value: -70 | PvP Coefficient: 0.714286 | Mechanic: Snare | Target: Targeted Enemy (6)
 #3 (id=1028899)  : Apply Aura (6) | Periodic Energize Power (24): every 0.375 seconds
@@ -10262,11 +10255,11 @@ Attributes       : Combo on Block (Mainline: Dispel All Stacks) (62), DoT Stacki
 Aura Interrupt   : Change Specialization (38), Change Talent (46)
 Effects          :
 #1 (id=1155949)  : Apply Aura (6) | Add Percent Modifier (108): Spell Direct Amount (0)
-                   Base Value: 2 | Scaled Value: 2 | Target: Self (1)
+                   Base Value: 2 | Scaled Value: 2 | PvP Coefficient: 2 | Target: Self (1)
                    Affected Spells: Renew (139), Prayer of Healing (596), Holy Word: Serenity (2050), Heal (2060), Flash Heal (2061), Prayer of Mending (33110), Holy Word: Sanctify (34861), Penance (47750), Divine Hymn (64844), Divine Star (110745), Halo (120692), Shadow Mend (186263), Power Word: Radiance (194509), Healing Light (196809), Dazzling Lights (196810), Blessed Light (196813), Tranquil Light (196816), Plea (200829), Cosmic Ripple (243241), Penance (270501), Moment of Repose (272776), Twist Magic (280198), Holy Nova (281265), Penance (281469), Unholy Nova (324724), Ascended Nova (325041), Unholy Transfusion (325118), Cauterizing Shadows (336373), Crystalline Reflection (336509), Unholy Nova (347788), Halo (390971), Divine Star (390981), Holy Mending (391156), Dark Reprimand (400187), Ultimate Penitence (421544), Light Eruption (464047), Evangelism (472433), Insurance! (1215349), Insurance! (1215354), Insurance! (1215503), Insurance! (1217013), Penance (1232567), Dark Reprimand (1232615), Prompt Prognosis (1246798), Ultimate Serenity (1250581), Benediction (1262763)
                    Family Flags: 126
 #2 (id=1236995)  : Apply Aura (6) | Add Percent Modifier (108): Spell Periodic Amount (22)
-                   Base Value: 2 | Scaled Value: 2 | Misc Value: 22 | Target: Self (1)
+                   Base Value: 2 | Scaled Value: 2 | PvP Coefficient: 2 | Misc Value: 22 | Target: Self (1)
                    Affected Spells: Renew (139), Prayer of Healing (596), Holy Word: Serenity (2050), Heal (2060), Flash Heal (2061), Prayer of Mending (33110), Holy Word: Sanctify (34861), Penance (47750), Divine Hymn (64844), Divine Star (110745), Halo (120692), Shadow Mend (186263), Power Word: Radiance (194509), Healing Light (196809), Dazzling Lights (196810), Blessed Light (196813), Tranquil Light (196816), Plea (200829), Cosmic Ripple (243241), Penance (270501), Moment of Repose (272776), Twist Magic (280198), Holy Nova (281265), Penance (281469), Unholy Nova (324724), Ascended Nova (325041), Unholy Transfusion (325118), Cauterizing Shadows (336373), Crystalline Reflection (336509), Unholy Nova (347788), Halo (390971), Divine Star (390981), Holy Mending (391156), Dark Reprimand (400187), Ultimate Penitence (421544), Light Eruption (464047), Evangelism (472433), Insurance! (1215349), Insurance! (1215354), Insurance! (1215503), Insurance! (1217013), Penance (1232567), Dark Reprimand (1232615), Prompt Prognosis (1246798), Ultimate Serenity (1250581), Benediction (1262763)
                    Family Flags: 126
 Description      : $@spelldesc453845
@@ -10898,7 +10891,6 @@ Attributes       : Allow While Not Shapeshifted (caster form) (83), Do Not Displ
 Effects          :
 #1 (id=1223522)  : School Damage (2): shadow
                    Base Value: 0 | Scaled Value: 0 | SP Coefficient: 1.33 | PvP Coefficient: 1.05 | Radius: 0 - 8 yards | Target: At Enemy (53) -> at Enemy in Area (16)
-Hotfixed         : SP Coefficient (1.4 -> 1.33), PvP Coefficient (1 -> 1.05)
 Description      : $@spelldesc73510
 
 Name             : Penance (id=1232567) [Spell Family (6)] 
@@ -11119,10 +11111,8 @@ Effects          :
                    Family Flags: 7
 #12 (id=1329440) : Apply Aura (6) | Modify Percent PVP Multiplier by Label (649): Direct Amount (0)
                    Base Value: 62 | Scaled Value: 62 | Misc Value 2: 2932 (Label) | Target: Self (1)
-Hotfixed         : Base Value (25 -> 62)
 #13 (id=1329441) : Apply Aura (6) | Modify Percent PVP Multiplier by Label (649): Direct Amount (0)
                    Base Value: 62 | Scaled Value: 62 | Misc Value 2: 4003 (Label) | Target: Self (1)
-Hotfixed         : Base Value (25 -> 62)
 Description      : Holy Priest core passive
 
 Name             : Void Volley (id=1242171) [Spell Family (6)] 
@@ -11376,7 +11366,7 @@ Name             : Master the Darkness (id=1253591) [Spell Family (6)]
 Class            : Priest
 School           : Holy
 Spell Type       : None
-Duration         : 60 seconds
+Duration         : 30 seconds
 Labels           : 16: Class Spells
                  : 18: Priest Spells
                  : 292
@@ -11556,7 +11546,6 @@ Effects          :
                    Base Value: -12 | Scaled Value: -12 | Target: Self (1)
                    Affected Spells: Shadow Word: Death (32379), Painbreaker Psalm (336167)
                    Family Flags: 33
-Hotfixed         : Base Value (-32 -> -12)
 #4 (id=1264744)  : Apply Aura (6) | Modify Percent PVP Multiplier (647): Direct Amount (0)
                    Base Value: -38 | Scaled Value: -38 | Target: Self (1)
                    Affected Spells: Mind Blast (8092), Void Blast (450983)

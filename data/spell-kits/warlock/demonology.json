@@ -1,6 +1,6 @@
 {
-    "generatedAt": "2026-10-18T02:36:12+00:00",
-    "spellCacheVersion": 29,
+    "generatedAt": "2026-11-03T23:03:59+00:00",
+    "spellCacheVersion": 31,
     "codeFingerprint": "dev",
     "entries": [
         {
@@ -97,7 +97,7 @@
             "spellId": 11566,
             "category": "Offensive",
             "description": {
-                "text": "Your Demonic Tyrant is equipped with armor forged within Antorus, increasing their armor by 10%. While summoned, your Demonic Tyrant now assaults enemies with powerful melee attacks. Burning Cleave Cleaves the area in front of the caster, inflicting ≈96% of Spell Power Shadowflame damage. Damage reduced beyond 8 targets.",
+                "text": "Your Demonic Tyrant is equipped with armor forged within Antorus, increasing their armor by 10%. While summoned, your Demonic Tyrant now assaults enemies with powerful melee attacks. Burning Cleave Cleaves the area around the caster, inflicting ≈96% of Spell Power Shadowflame damage to targets within 8 yds. Damage reduced beyond 8 targets.",
                 "uncertain": true
             },
             "formulaModifierSpellIds": [],
@@ -307,7 +307,7 @@
             "spellId": 11684,
             "category": "Other",
             "description": {
-                "text": "Encircle enemy players with Bonds of Fel. If any affected player leaves the 12 yd radius they explode, dealing 11,087 Fire damage split amongst all nearby enemies.",
+                "text": "Encircle enemy players with Bonds of Fel. If any affected player leaves the 12 yd radius they explode, dealing 10,921 Fire damage split amongst all nearby enemies.",
                 "uncertain": false
             },
             "formulaModifierSpellIds": [],
@@ -821,8 +821,8 @@
             "spellId": 10982,
             "category": "Offensive",
             "description": {
-                "text": "Send the fiery soul of a fallen demon at the enemy, causing 20 Shadowflame damage.(varies by condition — check in-game)",
-                "uncertain": true
+                "text": "Send the fiery soul of a fallen demon at the enemy, causing 20 Shadowflame damage. Generates 2 Soul Shards.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -1078,8 +1078,8 @@
             "spellId": 11551,
             "category": "Other",
             "description": {
-                "text": "Grants access to the following abilities: Demonbolt Send the fiery soul of a fallen demon at the enemy, causing 20 Shadowflame damage.(varies by condition — check in-game) Demonic Core When your Wild Imps fade or are imploded, you have a 10% chance to absorb their life essence, granting you a stack of Demonic Core. When your summoned Dreadstalkers fade away, you have a 100% chance to absorb their life essence, granting you a stack of Demonic Core. Demonic Core reduces the cast time of Demonbolt by 100%. Maximum 4 stacks.",
-                "uncertain": true
+                "text": "Grants access to the following abilities: Demonbolt Send the fiery soul of a fallen demon at the enemy, causing 20 Shadowflame damage. Generates 2 Soul Shards. Demonic Core When your Wild Imps fade or are imploded, you have a 10% chance to absorb their life essence, granting you a stack of Demonic Core. When your summoned Dreadstalkers fade away, you have a 100% chance to absorb their life essence, granting you a stack of Demonic Core. Demonic Core reduces the cast time of Demonbolt by 100%. Maximum 4 stacks.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -3184,7 +3184,7 @@
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:23:33.000000Z",
-                                    "updated_at": "2026-10-18T02:31:08.000000Z"
+                                    "updated_at": "2026-11-03T23:01:01.000000Z"
                                 }
                             ]
                         },
@@ -5787,8 +5787,8 @@
             "spellId": 10751,
             "category": "Offensive",
             "description": {
-                "text": "Sends a shadowy bolt at the enemy, causing 10 Shadow damage.(varies by condition — check in-game)",
-                "uncertain": true
+                "text": "Sends a shadowy bolt at the enemy, causing 10 Shadow damage. Generates 1 Soul Shard.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {

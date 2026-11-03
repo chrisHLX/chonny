@@ -88,6 +88,9 @@ One line per spell record; each lists every file it appears in.
 - **Blighted Arrow (id=1264364) [Spell Family (9)]** — `baseline.txt`
 - **Blighted Quiver (id=1264291) [Spell Family (9), Passive, Hidden]** — `hero-dark-ranger.txt`
 - **Blood Bolt (desc=Special Ability) (id=288962) [Spell Family (9)]** — `baseline.txt`
+- **Blood Fletching (id=1319011) [Spell Family (9), Passive, Hidden]** — `marksmanship.txt`
+- **Blood Fletching (id=1319015) [Spell Family (9)]** — `baseline.txt`
+- **Blood Fletching (id=1319016) [Spell Family (9)]** — `baseline.txt`
 - **Blood of the Rhino (desc=Exotic Ability) (id=280069) [Passive]** — `baseline.txt`
 - **Bloodseeker (id=260248) [Spell Family (9), Passive]** — `survival.txt`
 - **Bloodseeker (id=260249) [Spell Family (9)]** — `baseline.txt`
@@ -995,7 +998,6 @@ One line per spell record; each lists every file it appears in.
 - **Unerring Vision (id=274445) [Spell Family (9), Hidden]** — `baseline.txt`
 - **Unerring Vision (id=274446) [Spell Family (9), Hidden]** — `baseline.txt`
 - **Unerring Vision (id=474738) [Spell Family (9), Passive, Hidden]** — `marksmanship.txt`
-- **Unload (id=1277548) [Spell Family (9), Passive, Hidden]** — `marksmanship.txt`
 - **Unmatched Precision (id=1232955) [Spell Family (9), Passive]** — `marksmanship.txt`
 - **Unnatural Causes (id=459527) [Spell Family (9), Passive, Hidden]** — `class-talents.txt`
 - **Unnatural Causes (id=459529) [Spell Family (9), Hidden]** — `baseline.txt`

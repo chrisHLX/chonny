@@ -1,6 +1,6 @@
 {
-    "generatedAt": "2026-10-18T02:37:16+00:00",
-    "spellCacheVersion": 29,
+    "generatedAt": "2026-11-03T23:05:04+00:00",
+    "spellCacheVersion": 31,
     "codeFingerprint": "dev",
     "entries": [
         {
@@ -67,7 +67,7 @@
             "spellId": 2710,
             "category": "Defensive",
             "description": {
-                "text": "Shapeshift into an Ancient of Lore, preventing all crowd control effects, reducing damage taken by 30%, and granting you access to Blossom Burst and Mass Blooming. Reduces movement speed. Lasts 12. Blossom Burst: Heals an ally for ≈1,110.2% of Spell Power and applies 1 missing heal over time effect. If all of them are present, Blossom Burst critically heals. Mass Blooming: Heals 5 allies for ≈713.7% of Spell Power and applies 1 missing heal over time effect.",
+                "text": "Shapeshift into an Ancient of Lore, preventing all crowd control effects, reducing damage taken by 30%, and granting you access to Blossom Burst and Mass Blooming. Reduces movement speed. Lasts 12. Blossom Burst: Heals an ally for ≈1,110.2% of Spell Power and applies 1 missing heal over time effect. If all of them are present, Blossom Burst critically heals. Mass Blooming: Heals ≈927% of Spell Power allies for 5 and applies 1 missing heal over time effect.",
                 "uncertain": true
             },
             "formulaModifierSpellIds": [],
@@ -79,8 +79,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Your next Regrowth, (varies by condition — check in-game)Rebirth, Ancient of Lore, or Entangling Roots is instant, free, castable in all forms, and heals for an additional 60%.",
-                            "uncertain": true
+                            "text": "Your next Regrowth, Cyclone, Rebirth, Ancient of Lore, or Entangling Roots is instant, free, castable in all forms, and heals for an additional 60%.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -503,8 +503,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game) have a (varies by condition — check in-game)% chance to trigger Bursting Growth every 2 sec at (varies by condition — check in-game)% effectiveness.",
-                            "uncertain": true
+                            "text": "Symbiotic Blooms have a 20% chance to trigger Bursting Growth every 2 sec at 100% effectiveness.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -964,8 +964,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Your next Regrowth, (varies by condition — check in-game)Rebirth, Ancient of Lore, or Entangling Roots is instant, free, castable in all forms, and heals for an additional 60%.",
-                            "uncertain": true
+                            "text": "Your next Regrowth, Cyclone, Rebirth, Ancient of Lore, or Entangling Roots is instant, free, castable in all forms, and heals for an additional 60%.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -1363,8 +1363,8 @@
             "spellId": 3062,
             "category": "Other",
             "description": {
-                "text": "(varies by condition — check in-game)",
-                "uncertain": true
+                "text": "Dryads cause Swiftmend to cool down 25% faster.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -1393,8 +1393,8 @@
             "spellId": 3051,
             "category": "Other",
             "description": {
-                "text": "(varies by condition — check in-game)",
-                "uncertain": true
+                "text": "Grove Guardians last 20% longer.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -1749,8 +1749,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Your next Regrowth, (varies by condition — check in-game)Rebirth, Ancient of Lore, or Entangling Roots is instant, free, castable in all forms, and heals for an additional 60%.",
-                            "uncertain": true
+                            "text": "Your next Regrowth, Cyclone, Rebirth, Ancient of Lore, or Entangling Roots is instant, free, castable in all forms, and heals for an additional 60%.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -2442,8 +2442,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Your (varies by condition — check in-game) effects are (varies by condition — check in-game)% more effective.",
-                            "uncertain": true
+                            "text": "Your heal over time effects are 6% more effective.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -2944,8 +2944,8 @@
             "spellId": 3079,
             "category": "Other",
             "description": {
-                "text": "The rate at which (varies by condition — check in-game) grow is increased by (varies by condition — check in-game)%.",
-                "uncertain": true
+                "text": "The rate at which Symbiotic Blooms grow is increased by 20%.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -3259,8 +3259,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game)",
-                            "uncertain": true
+                            "text": "Grove Guardians last 20% longer.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -3412,7 +3412,7 @@
             "spellId": 2917,
             "category": "Other",
             "description": {
-                "text": "Perform a powerful off-role ability depending on your currently active shapeshift form.(varies by condition — check in-game)(varies by condition — check in-game)(varies by condition — check in-game)",
+                "text": "Perform a powerful off-role ability depending on your currently active shapeshift form. Cat Form: Unleash an empowered Feral Frenzy, clawing your target (varies) times for (varies) Physical damage and an additional (varies) Bleed damage over 6. Awards 5 combo points. Moonkin Form: Call down waves of empowered falling stars upon enemies within 40 yds, dealing ≈1,458% of Spell Power Astral damage over 8. Bear Form: Increase your maximum health by 30% for 20.",
                 "uncertain": true
             },
             "formulaModifierSpellIds": [],
@@ -3779,7 +3779,7 @@
             "spellId": 3126,
             "category": "Other",
             "description": {
-                "text": "Swiftmend healing increased by 30%.",
+                "text": "Swiftmend healing increased by 40%.",
                 "uncertain": false
             },
             "formulaModifierSpellIds": [],
@@ -3898,8 +3898,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Your next Regrowth, (varies by condition — check in-game)Rebirth, Ancient of Lore, or Entangling Roots is instant, free, castable in all forms, and heals for an additional 60%.",
-                            "uncertain": true
+                            "text": "Your next Regrowth, Cyclone, Rebirth, Ancient of Lore, or Entangling Roots is instant, free, castable in all forms, and heals for an additional 60%.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -4235,7 +4235,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game)",
+                            "text": "Ironbark summons a Dryad to channel a beam of pure nature onto your target, healing them for ≈4,392% of Spell Power over 6.",
                             "uncertain": true
                         },
                         "category": "Defensive",
@@ -4251,7 +4251,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game)",
+                            "text": "Ironbark summons a Dryad to channel a beam of pure nature onto your target, healing them for ≈4,392% of Spell Power over 6.",
                             "uncertain": true
                         },
                         "category": "Defensive",
@@ -5198,8 +5198,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Your (varies by condition — check in-game) effects are (varies by condition — check in-game)% more effective.",
-                            "uncertain": true
+                            "text": "Your heal over time effects are 6% more effective.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -5901,8 +5901,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Your (varies by condition — check in-game) effects are (varies by condition — check in-game)% more effective.",
-                            "uncertain": true
+                            "text": "Your heal over time effects are 6% more effective.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -6294,7 +6294,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Perform a powerful off-role ability depending on your currently active shapeshift form.(varies by condition — check in-game)(varies by condition — check in-game)(varies by condition — check in-game)",
+                            "text": "Perform a powerful off-role ability depending on your currently active shapeshift form. Cat Form: Unleash an empowered Feral Frenzy, clawing your target (varies) times for (varies) Physical damage and an additional (varies) Bleed damage over 6. Awards 5 combo points. Moonkin Form: Call down waves of empowered falling stars upon enemies within 40 yds, dealing ≈1,458% of Spell Power Astral damage over 8. Bear Form: Increase your maximum health by 30% for 20.",
                             "uncertain": true
                         },
                         "category": "Other",
@@ -6310,7 +6310,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Perform a powerful off-role ability depending on your currently active shapeshift form.(varies by condition — check in-game)(varies by condition — check in-game)(varies by condition — check in-game)",
+                            "text": "Perform a powerful off-role ability depending on your currently active shapeshift form. Cat Form: Unleash an empowered Feral Frenzy, clawing your target (varies) times for (varies) Physical damage and an additional (varies) Bleed damage over 6. Awards 5 combo points. Moonkin Form: Call down waves of empowered falling stars upon enemies within 40 yds, dealing ≈1,458% of Spell Power Astral damage over 8. Bear Form: Increase your maximum health by 30% for 20.",
                             "uncertain": true
                         },
                         "category": "Other",
@@ -6326,7 +6326,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Perform a powerful off-role ability depending on your currently active shapeshift form.(varies by condition — check in-game)(varies by condition — check in-game)(varies by condition — check in-game)",
+                            "text": "Perform a powerful off-role ability depending on your currently active shapeshift form. Cat Form: Unleash an empowered Feral Frenzy, clawing your target (varies) times for (varies) Physical damage and an additional (varies) Bleed damage over 6. Awards 5 combo points. Moonkin Form: Call down waves of empowered falling stars upon enemies within 40 yds, dealing ≈1,458% of Spell Power Astral damage over 8. Bear Form: Increase your maximum health by 30% for 20.",
                             "uncertain": true
                         },
                         "category": "Other",
@@ -6390,7 +6390,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Perform a powerful off-role ability depending on your currently active shapeshift form.(varies by condition — check in-game)(varies by condition — check in-game)(varies by condition — check in-game)",
+                            "text": "Perform a powerful off-role ability depending on your currently active shapeshift form. Cat Form: Unleash an empowered Feral Frenzy, clawing your target (varies) times for (varies) Physical damage and an additional (varies) Bleed damage over 6. Awards 5 combo points. Moonkin Form: Call down waves of empowered falling stars upon enemies within 40 yds, dealing ≈1,458% of Spell Power Astral damage over 8. Bear Form: Increase your maximum health by 30% for 20.",
                             "uncertain": true
                         },
                         "category": "Other",
@@ -6426,7 +6426,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Heals a friendly target for ≈536% of Spell Power and another (varies) over 6. Initial heal has a 40% increased chance for a critical effect if the target is already affected by Regrowth. Usable while in Moonkin Form. Tree of Life: Instant cast.",
+                            "text": "Heals a friendly target for ≈590% of Spell Power and another (varies) over 6. Initial heal has a 40% increased chance for a critical effect if the target is already affected by Regrowth. Usable while in Moonkin Form. Tree of Life: Instant cast.",
                             "uncertain": true
                         },
                         "category": "Defensive",
@@ -6489,7 +6489,7 @@
             "spellId": 3132,
             "category": "Other",
             "description": {
-                "text": "Regrowth heals all other allies with Regrowth for 10% of its healing.",
+                "text": "Regrowth heals up to 3 allies with Rejuvenation active for 15% of its healing, prioritizing allies with the lowest health.",
                 "uncertain": false
             },
             "formulaModifierSpellIds": [],
@@ -6549,8 +6549,8 @@
             "spellId": 3088,
             "category": "Other",
             "description": {
-                "text": "Your next Regrowth, (varies by condition — check in-game)Rebirth, Ancient of Lore, or Entangling Roots is instant, free, castable in all forms, and heals for an additional 60%.",
-                "uncertain": true
+                "text": "Your next Regrowth, Cyclone, Rebirth, Ancient of Lore, or Entangling Roots is instant, free, castable in all forms, and heals for an additional 60%.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -6965,8 +6965,8 @@
             "spellId": 3081,
             "category": "Other",
             "description": {
-                "text": "Your (varies by condition — check in-game) effects are (varies by condition — check in-game)% more effective.",
-                "uncertain": true
+                "text": "Your heal over time effects are 6% more effective.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -7055,8 +7055,8 @@
             "spellId": 3054,
             "category": "Other",
             "description": {
-                "text": "(varies by condition — check in-game)(varies by condition — check in-game)(varies by condition — check in-game)",
-                "uncertain": true
+                "text": "Reforestation grants Tree of Life for 6 additional sec.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -7616,8 +7616,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Your (varies by condition — check in-game) effects are (varies by condition — check in-game)% more effective.",
-                            "uncertain": true
+                            "text": "Your heal over time effects are 6% more effective.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -7745,8 +7745,8 @@
             "spellId": 3080,
             "category": "Other",
             "description": {
-                "text": "(varies by condition — check in-game) have a (varies by condition — check in-game)% chance to trigger Bursting Growth every 2 sec at (varies by condition — check in-game)% effectiveness.",
-                "uncertain": true
+                "text": "Symbiotic Blooms have a 20% chance to trigger Bursting Growth every 2 sec at 100% effectiveness.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -7817,8 +7817,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Your next Regrowth, (varies by condition — check in-game)Rebirth, Ancient of Lore, or Entangling Roots is instant, free, castable in all forms, and heals for an additional 60%.",
-                            "uncertain": true
+                            "text": "Your next Regrowth, Cyclone, Rebirth, Ancient of Lore, or Entangling Roots is instant, free, castable in all forms, and heals for an additional 60%.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -7935,8 +7935,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game)(varies by condition — check in-game)(varies by condition — check in-game)",
-                            "uncertain": true
+                            "text": "Reforestation grants Tree of Life for 6 additional sec.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -8028,7 +8028,7 @@
             "spellId": 2073,
             "category": "Defensive",
             "description": {
-                "text": "Heals a friendly target for ≈536% of Spell Power and another (varies) over 6. Initial heal has a 40% increased chance for a critical effect if the target is already affected by Regrowth. Usable while in Moonkin Form. Tree of Life: Instant cast.",
+                "text": "Heals a friendly target for ≈590% of Spell Power and another (varies) over 6. Initial heal has a 40% increased chance for a critical effect if the target is already affected by Regrowth. Usable while in Moonkin Form. Tree of Life: Instant cast.",
                 "uncertain": true
             },
             "formulaModifierSpellIds": [
@@ -8128,8 +8128,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Your next Regrowth, (varies by condition — check in-game)Rebirth, Ancient of Lore, or Entangling Roots is instant, free, castable in all forms, and heals for an additional 60%.",
-                            "uncertain": true
+                            "text": "Your next Regrowth, Cyclone, Rebirth, Ancient of Lore, or Entangling Roots is instant, free, castable in all forms, and heals for an additional 60%.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -8373,7 +8373,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game)",
+                            "text": "Your periodic heals have a chance to empower your next Swiftmend to summon a Dryad to assist you, casting Tranquility at 20% effectiveness and Regrowth to heal ≈658.5% of Spell Power damage onto your lowest health ally.",
                             "uncertain": true
                         },
                         "category": "Other",
@@ -8389,7 +8389,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game)",
+                            "text": "Your periodic heals have a chance to empower your next Swiftmend to summon a Dryad to assist you, casting Tranquility at 20% effectiveness and Regrowth to heal ≈658.5% of Spell Power damage onto your lowest health ally.",
                             "uncertain": true
                         },
                         "category": "Other",
@@ -8405,7 +8405,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game)",
+                            "text": "Your periodic heals have a chance to empower your next Swiftmend to summon a Dryad to assist you, casting Tranquility at 18% effectiveness and Regrowth to heal ≈658.5% of Spell Power damage onto your lowest health ally.",
                             "uncertain": true
                         },
                         "category": "Defensive",
@@ -8485,7 +8485,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game)",
+                            "text": "Your periodic heals have a chance to empower your next Swiftmend to summon a Dryad to assist you, casting Tranquility at 10% effectiveness and Regrowth to heal ≈658.5% of Spell Power damage onto your lowest health ally.",
                             "uncertain": true
                         },
                         "category": "Other",
@@ -8798,8 +8798,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Your (varies by condition — check in-game) effects are (varies by condition — check in-game)% more effective.",
-                            "uncertain": true
+                            "text": "Your heal over time effects are 6% more effective.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -8862,7 +8862,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Regrowth heals all other allies with Regrowth for 10% of its healing.",
+                            "text": "Regrowth heals up to 3 allies with Rejuvenation active for 15% of its healing, prioritizing allies with the lowest health.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -8958,7 +8958,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Regrowth heals all other allies with Regrowth for 10% of its healing.",
+                            "text": "Regrowth heals up to 3 allies with Rejuvenation active for 15% of its healing, prioritizing allies with the lowest health.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -9531,8 +9531,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Your (varies by condition — check in-game) effects are (varies by condition — check in-game)% more effective.",
-                            "uncertain": true
+                            "text": "Your heal over time effects are 6% more effective.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -9766,6 +9766,22 @@
                         }
                     },
                     {
+                        "spellId": 2801,
+                        "relationship_type": "mentions",
+                        "modifier_value": null,
+                        "modifier_unit": null,
+                        "description": {
+                            "text": "Regrowth heals up to 3 allies with Rejuvenation active for 15% of its healing, prioritizing allies with the lowest health.",
+                            "uncertain": false
+                        },
+                        "category": "Other",
+                        "cooldown": {
+                            "seconds": null,
+                            "base_seconds": null,
+                            "applied": []
+                        }
+                    },
+                    {
                         "spellId": 3077,
                         "relationship_type": "mentions",
                         "modifier_value": null,
@@ -9900,6 +9916,22 @@
                         "modifier_unit": null,
                         "description": {
                             "text": "Ysera's Gift now heals every 4 sec and its healing is increased by 8% for each of your active Rejuvenations.",
+                            "uncertain": false
+                        },
+                        "category": "Other",
+                        "cooldown": {
+                            "seconds": null,
+                            "base_seconds": null,
+                            "applied": []
+                        }
+                    },
+                    {
+                        "spellId": 3132,
+                        "relationship_type": "mentions",
+                        "modifier_value": null,
+                        "modifier_unit": null,
+                        "description": {
+                            "text": "Regrowth heals up to 3 allies with Rejuvenation active for 15% of its healing, prioritizing allies with the lowest health.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -10291,8 +10323,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Your (varies by condition — check in-game) effects are (varies by condition — check in-game)% more effective.",
-                            "uncertain": true
+                            "text": "Your heal over time effects are 6% more effective.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -10848,8 +10880,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Your (varies by condition — check in-game) effects are (varies by condition — check in-game)% more effective.",
-                            "uncertain": true
+                            "text": "Your heal over time effects are 6% more effective.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -11215,7 +11247,7 @@
             "spellId": 3063,
             "category": "Defensive",
             "description": {
-                "text": "(varies by condition — check in-game)",
+                "text": "Ironbark summons a Dryad to channel a beam of pure nature onto your target, healing them for ≈4,392% of Spell Power over 6.",
                 "uncertain": true
             },
             "formulaModifierSpellIds": [],
@@ -11465,7 +11497,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game)",
+                            "text": "Your periodic heals have a chance to empower your next Swiftmend to summon a Dryad to assist you, casting Tranquility at 20% effectiveness and Regrowth to heal ≈658.5% of Spell Power damage onto your lowest health ally.",
                             "uncertain": true
                         },
                         "category": "Other",
@@ -11481,7 +11513,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game)",
+                            "text": "Your periodic heals have a chance to empower your next Swiftmend to summon a Dryad to assist you, casting Tranquility at 18% effectiveness and Regrowth to heal ≈658.5% of Spell Power damage onto your lowest health ally.",
                             "uncertain": true
                         },
                         "category": "Defensive",
@@ -11992,7 +12024,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game)",
+                            "text": "Ironbark summons a Dryad to channel a beam of pure nature onto your target, healing them for ≈4,392% of Spell Power over 6.",
                             "uncertain": true
                         },
                         "category": "Defensive",
@@ -12136,7 +12168,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game)",
+                            "text": "Your periodic heals have a chance to empower your next Swiftmend to summon a Dryad to assist you, casting Tranquility at 20% effectiveness and Regrowth to heal ≈658.5% of Spell Power damage onto your lowest health ally.",
                             "uncertain": true
                         },
                         "category": "Other",
@@ -12152,7 +12184,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game)",
+                            "text": "Your periodic heals have a chance to empower your next Swiftmend to summon a Dryad to assist you, casting Tranquility at 20% effectiveness and Regrowth to heal ≈658.5% of Spell Power damage onto your lowest health ally.",
                             "uncertain": true
                         },
                         "category": "Other",
@@ -12168,7 +12200,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game)",
+                            "text": "Ironbark summons a Dryad to channel a beam of pure nature onto your target, healing them for ≈4,392% of Spell Power over 6.",
                             "uncertain": true
                         },
                         "category": "Defensive",
@@ -12184,7 +12216,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game)",
+                            "text": "Your periodic heals have a chance to empower your next Swiftmend to summon a Dryad to assist you, casting Tranquility at 18% effectiveness and Regrowth to heal ≈658.5% of Spell Power damage onto your lowest health ally.",
                             "uncertain": true
                         },
                         "category": "Defensive",
@@ -12216,7 +12248,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game)",
+                            "text": "Your periodic heals have a chance to empower your next Swiftmend to summon a Dryad to assist you, casting Tranquility at 10% effectiveness and Regrowth to heal ≈658.5% of Spell Power damage onto your lowest health ally.",
                             "uncertain": true
                         },
                         "category": "Other",
@@ -12793,7 +12825,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Swiftmend healing increased by 30%.",
+                            "text": "Swiftmend healing increased by 40%.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -12809,7 +12841,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game)",
+                            "text": "Your periodic heals have a chance to empower your next Swiftmend to summon a Dryad to assist you, casting Tranquility at 20% effectiveness and Regrowth to heal ≈658.5% of Spell Power damage onto your lowest health ally.",
                             "uncertain": true
                         },
                         "category": "Other",
@@ -12825,7 +12857,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game)",
+                            "text": "Your periodic heals have a chance to empower your next Swiftmend to summon a Dryad to assist you, casting Tranquility at 18% effectiveness and Regrowth to heal ≈658.5% of Spell Power damage onto your lowest health ally.",
                             "uncertain": true
                         },
                         "category": "Defensive",
@@ -12921,7 +12953,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game)",
+                            "text": "Your periodic heals have a chance to empower your next Swiftmend to summon a Dryad to assist you, casting Tranquility at 20% effectiveness and Regrowth to heal ≈658.5% of Spell Power damage onto your lowest health ally.",
                             "uncertain": true
                         },
                         "category": "Other",
@@ -12937,7 +12969,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game)",
+                            "text": "Your periodic heals have a chance to empower your next Swiftmend to summon a Dryad to assist you, casting Tranquility at 10% effectiveness and Regrowth to heal ≈658.5% of Spell Power damage onto your lowest health ally.",
                             "uncertain": true
                         },
                         "category": "Other",
@@ -12953,8 +12985,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game)",
-                            "uncertain": true
+                            "text": "Dryads cause Swiftmend to cool down 25% faster.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -13453,7 +13485,7 @@
             "spellId": 3061,
             "category": "Other",
             "description": {
-                "text": "(varies by condition — check in-game)",
+                "text": "Your periodic heals have a chance to empower your next Swiftmend to summon a Dryad to assist you, casting Tranquility at 10% effectiveness and Regrowth to heal ≈658.5% of Spell Power damage onto your lowest health ally.",
                 "uncertain": true
             },
             "formulaModifierSpellIds": [],
@@ -13768,7 +13800,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game)",
+                            "text": "Your periodic heals have a chance to empower your next Swiftmend to summon a Dryad to assist you, casting Tranquility at 20% effectiveness and Regrowth to heal ≈658.5% of Spell Power damage onto your lowest health ally.",
                             "uncertain": true
                         },
                         "category": "Other",
@@ -13784,7 +13816,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game)",
+                            "text": "Your periodic heals have a chance to empower your next Swiftmend to summon a Dryad to assist you, casting Tranquility at 20% effectiveness and Regrowth to heal ≈658.5% of Spell Power damage onto your lowest health ally.",
                             "uncertain": true
                         },
                         "category": "Other",
@@ -13800,7 +13832,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game)",
+                            "text": "Your periodic heals have a chance to empower your next Swiftmend to summon a Dryad to assist you, casting Tranquility at 18% effectiveness and Regrowth to heal ≈658.5% of Spell Power damage onto your lowest health ally.",
                             "uncertain": true
                         },
                         "category": "Defensive",
@@ -13816,7 +13848,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game)",
+                            "text": "Your periodic heals have a chance to empower your next Swiftmend to summon a Dryad to assist you, casting Tranquility at 10% effectiveness and Regrowth to heal ≈658.5% of Spell Power damage onto your lowest health ally.",
                             "uncertain": true
                         },
                         "category": "Other",
@@ -14730,7 +14762,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Perform a powerful off-role ability depending on your currently active shapeshift form.(varies by condition — check in-game)(varies by condition — check in-game)(varies by condition — check in-game)",
+                            "text": "Perform a powerful off-role ability depending on your currently active shapeshift form. Cat Form: Unleash an empowered Feral Frenzy, clawing your target (varies) times for (varies) Physical damage and an additional (varies) Bleed damage over 6. Awards 5 combo points. Moonkin Form: Call down waves of empowered falling stars upon enemies within 40 yds, dealing ≈1,458% of Spell Power Astral damage over 8. Bear Form: Increase your maximum health by 30% for 20.",
                             "uncertain": true
                         },
                         "category": "Other",
@@ -14746,7 +14778,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Perform a powerful off-role ability depending on your currently active shapeshift form.(varies by condition — check in-game)(varies by condition — check in-game)(varies by condition — check in-game)",
+                            "text": "Perform a powerful off-role ability depending on your currently active shapeshift form. Cat Form: Unleash an empowered Feral Frenzy, clawing your target (varies) times for (varies) Physical damage and an additional (varies) Bleed damage over 6. Awards 5 combo points. Moonkin Form: Call down waves of empowered falling stars upon enemies within 40 yds, dealing ≈1,458% of Spell Power Astral damage over 8. Bear Form: Increase your maximum health by 30% for 20.",
                             "uncertain": true
                         },
                         "category": "Other",
@@ -14762,7 +14794,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Perform a powerful off-role ability depending on your currently active shapeshift form.(varies by condition — check in-game)(varies by condition — check in-game)(varies by condition — check in-game)",
+                            "text": "Perform a powerful off-role ability depending on your currently active shapeshift form. Cat Form: Unleash an empowered Feral Frenzy, clawing your target (varies) times for (varies) Physical damage and an additional (varies) Bleed damage over 6. Awards 5 combo points. Moonkin Form: Call down waves of empowered falling stars upon enemies within 40 yds, dealing ≈1,458% of Spell Power Astral damage over 8. Bear Form: Increase your maximum health by 30% for 20.",
                             "uncertain": true
                         },
                         "category": "Other",
@@ -14778,7 +14810,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Perform a powerful off-role ability depending on your currently active shapeshift form.(varies by condition — check in-game)(varies by condition — check in-game)(varies by condition — check in-game)",
+                            "text": "Perform a powerful off-role ability depending on your currently active shapeshift form. Cat Form: Unleash an empowered Feral Frenzy, clawing your target (varies) times for (varies) Physical damage and an additional (varies) Bleed damage over 6. Awards 5 combo points. Moonkin Form: Call down waves of empowered falling stars upon enemies within 40 yds, dealing ≈1,458% of Spell Power Astral damage over 8. Bear Form: Increase your maximum health by 30% for 20.",
                             "uncertain": true
                         },
                         "category": "Other",
@@ -14995,8 +15027,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Your (varies by condition — check in-game) effects are (varies by condition — check in-game)% more effective.",
-                            "uncertain": true
+                            "text": "Your heal over time effects are 6% more effective.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -15516,7 +15548,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game)",
+                            "text": "Your periodic heals have a chance to empower your next Swiftmend to summon a Dryad to assist you, casting Tranquility at 20% effectiveness and Regrowth to heal ≈658.5% of Spell Power damage onto your lowest health ally.",
                             "uncertain": true
                         },
                         "category": "Other",
@@ -15532,7 +15564,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game)",
+                            "text": "Your periodic heals have a chance to empower your next Swiftmend to summon a Dryad to assist you, casting Tranquility at 18% effectiveness and Regrowth to heal ≈658.5% of Spell Power damage onto your lowest health ally.",
                             "uncertain": true
                         },
                         "category": "Defensive",

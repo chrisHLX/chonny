@@ -1,6 +1,6 @@
 {
-    "generatedAt": "2026-10-18T02:37:04+00:00",
-    "spellCacheVersion": 29,
+    "generatedAt": "2026-11-03T23:04:52+00:00",
+    "spellCacheVersion": 31,
     "codeFingerprint": "dev",
     "entries": [
         {
@@ -913,8 +913,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game) 5% more damage when (varies by condition — check in-game) 5 or more combo points.",
-                            "uncertain": true
+                            "text": "Dispatch and Between the Eyes deal 5% more damage when they consume 5 or more combo points.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -1056,7 +1056,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Blade Flurry's initial damage is increased by 100% and generates 1 combo point per target struck, but its Energy cost is increased by 30.",
+                            "text": "Blade Flurry's initial damage is increased by 100% and it generates 1 combo point per target struck, but its Energy cost is increased by 5 for each target struck, up to 30.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -1235,8 +1235,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game) causes an additional (varies by condition — check in-game) damage dealt to be dealt to affected enemies.",
-                            "uncertain": true
+                            "text": "Blade Flurry causes an additional 5% of attack damage dealt to be dealt to affected enemies.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -1732,8 +1732,8 @@
             "spellId": 9641,
             "category": "Other",
             "description": {
-                "text": "(varies by condition — check in-game) has (varies by condition — check in-game)% increased critical strike chance and now triggers Unseen Blade when available.",
-                "uncertain": true
+                "text": "Pistol Shot has 20% increased critical strike chance and now triggers Unseen Blade when available.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -2604,7 +2604,7 @@
             "spellId": 9739,
             "category": "Other",
             "description": {
-                "text": "Finishing move that empowers your weapons with energy to perform a deadly attack.\r\n\r\nYou leap into the air and Eviscerate your target on the way back down, with such force that it has a 15% stronger effect.",
+                "text": "Finishing move that empowers your weapons with energy to perform a deadly attack.\r\n\r\nYou leap into the air and Eviscerate your target on the way back down, with such force that it has a 30% stronger effect.",
                 "uncertain": false
             },
             "formulaModifierSpellIds": [],
@@ -2741,7 +2741,7 @@
             "spellId": 9662,
             "category": "Other",
             "description": {
-                "text": "Blade Flurry's initial damage is increased by 100% and generates 1 combo point per target struck, but its Energy cost is increased by 30.",
+                "text": "Blade Flurry's initial damage is increased by 100% and it generates 1 combo point per target struck, but its Energy cost is increased by 5 for each target struck, up to 30.",
                 "uncertain": false
             },
             "formulaModifierSpellIds": [],
@@ -2771,8 +2771,8 @@
             "spellId": 9617,
             "category": "Other",
             "description": {
-                "text": "(varies by condition — check in-game) 5% more damage when (varies by condition — check in-game) 5 or more combo points.",
-                "uncertain": true
+                "text": "Dispatch and Between the Eyes deal 5% more damage when they consume 5 or more combo points.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -3368,8 +3368,8 @@
             "spellId": 9620,
             "category": "Other",
             "description": {
-                "text": "(varies by condition — check in-game) causes an additional (varies by condition — check in-game) damage dealt to be dealt to affected enemies.",
-                "uncertain": true
+                "text": "Blade Flurry causes an additional 5% of attack damage dealt to be dealt to affected enemies.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -6015,8 +6015,8 @@
             "spellId": 9616,
             "category": "Other",
             "description": {
-                "text": "(varies by condition — check in-game) has a (varies by condition — check in-game)% chance to flip 3 Fatebound Coins.",
-                "uncertain": true
+                "text": "Dispatch has a 4% chance to flip 3 Fatebound Coins.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -6461,8 +6461,8 @@
             "spellId": 9619,
             "category": "Other",
             "description": {
-                "text": "Gain (varies by condition — check in-game) Energy every time you flip a Fatebound Coin. Gain (varies by condition — check in-game) Energy for Coins that land on their edge.",
-                "uncertain": true
+                "text": "Gain 2 Energy every time you flip a Fatebound Coin. Gain 10 Energy for Coins that land on their edge.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -8374,8 +8374,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game) has (varies by condition — check in-game)% increased critical strike chance and now triggers Unseen Blade when available.",
-                            "uncertain": true
+                            "text": "Pistol Shot has 20% increased critical strike chance and now triggers Unseen Blade when available.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {

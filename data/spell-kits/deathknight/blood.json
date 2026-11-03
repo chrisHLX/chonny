@@ -1,6 +1,6 @@
 {
-    "generatedAt": "2026-10-18T02:36:06+00:00",
-    "spellCacheVersion": 29,
+    "generatedAt": "2026-11-03T23:03:53+00:00",
+    "spellCacheVersion": 31,
     "codeFingerprint": "dev",
     "entries": [
         {
@@ -2402,8 +2402,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Infliction of Sorrow deals (varies by condition — check in-game)% increased damage, and Vampiric Strike increases the damage of your (varies by condition — check in-game) by 20% for 8. Multiple applications may overlap.",
-                            "uncertain": true
+                            "text": "Infliction of Sorrow deals 5% increased damage, and Vampiric Strike increases the damage of your Dancing Rune Weapons by 20% for 8. Multiple applications may overlap.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -2418,8 +2418,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Infliction of Sorrow deals (varies by condition — check in-game)% increased damage, and Vampiric Strike increases the damage of your (varies by condition — check in-game) by 20% for 8. Multiple applications may overlap.",
-                            "uncertain": true
+                            "text": "Infliction of Sorrow deals 10% increased damage, and Vampiric Strike increases the damage of your Dancing Rune Weapons by 20% for 8. Multiple applications may overlap.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -2498,8 +2498,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Vampiric Strike increases the damage of (varies by condition — check in-game) by (varies by condition — check in-game)% for 8.(varies by condition — check in-game)",
-                            "uncertain": true
+                            "text": "Vampiric Strike increases the damage of your Dancing Rune Weapons by 20% for 8. Multiple applications may overlap.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -2801,7 +2801,7 @@
             "spellId": 1070,
             "category": "Other",
             "description": {
-                "text": "Chains 4 enemies together, dealing 61.3 Shadow damage and causing 20% of all damage taken to also be received by the others in the chain. Lasts for 10 sec.",
+                "text": "Chains 4 enemies together, dealing 61.7 Shadow damage and causing 20% of all damage taken to also be received by the others in the chain. Lasts for 10 sec.",
                 "uncertain": false
             },
             "formulaModifierSpellIds": [],
@@ -3516,8 +3516,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game)",
-                            "uncertain": true
+                            "text": "Death Strike damage increased by 20%.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -3671,8 +3671,8 @@
             "spellId": 991,
             "category": "Other",
             "description": {
-                "text": "(varies by condition — check in-game)",
-                "uncertain": true
+                "text": "Death Strike damage increased by 20%.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -3914,8 +3914,8 @@
             "spellId": 985,
             "category": "Offensive",
             "description": {
-                "text": "After Reaper's Mark explodes, your next 2 Marrowrends cost 1 Rune and summon 2 scythes to strike your enemies. The first scythe strikes your target for 100 Shadowfrost damage (varies by condition — check in-game) the second scythe strikes all enemies around your target for 100 Shadowfrost damage and applies Blood Plague. Deals reduced damage beyond 8 targets.",
-                "uncertain": true
+                "text": "After Reaper's Mark explodes, your next 2 Marrowrends cost 1 Rune and summon 2 scythes to strike your enemies. The first scythe strikes your target for 100 Shadowfrost damage and the second scythe strikes all enemies around your target for 100 Shadowfrost damage and applies Blood Plague. Deals reduced damage beyond 8 targets.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -3976,8 +3976,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "The effectiveness of Permafrost is increased by (varies by condition — check in-game)%(varies by condition — check in-game) Permafrost Your auto attack damage grants you an absorb shield equal to 50% of the damage dealt.",
-                            "uncertain": true
+                            "text": "The effectiveness of Permafrost is increased by 100% and Exterminate grants Permafrost equal to 10% of the damage dealt. Permafrost Your auto attack damage grants you an absorb shield equal to 50% of the damage dealt.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -4086,8 +4086,8 @@
             "spellId": 990,
             "category": "Other",
             "description": {
-                "text": "The effectiveness of Permafrost is increased by (varies by condition — check in-game)%(varies by condition — check in-game) Permafrost Your auto attack damage grants you an absorb shield equal to 50% of the damage dealt.",
-                "uncertain": true
+                "text": "The effectiveness of Permafrost is increased by 100% and Exterminate grants Permafrost equal to 10% of the damage dealt. Permafrost Your auto attack damage grants you an absorb shield equal to 50% of the damage dealt.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -5247,8 +5247,8 @@
             "spellId": 1016,
             "category": "Offensive",
             "description": {
-                "text": "When Vampiric Strike damages an enemy affected by your Blood Plague, it extends the duration of the disease by (varies by condition — check in-game) sec(varies by condition — check in-game)",
-                "uncertain": true
+                "text": "When Vampiric Strike damages an enemy affected by your Blood Plague, it extends the duration of the disease by 3 sec, and deals 10% of the remaining damage to the enemy.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -5259,8 +5259,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Infliction of Sorrow deals (varies by condition — check in-game)% increased damage, and Vampiric Strike increases the damage of your (varies by condition — check in-game) by 20% for 8. Multiple applications may overlap.",
-                            "uncertain": true
+                            "text": "Infliction of Sorrow deals 5% increased damage, and Vampiric Strike increases the damage of your Dancing Rune Weapons by 20% for 8. Multiple applications may overlap.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -5275,8 +5275,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Infliction of Sorrow deals (varies by condition — check in-game)% increased damage, and Vampiric Strike increases the damage of your (varies by condition — check in-game) by 20% for 8. Multiple applications may overlap.",
-                            "uncertain": true
+                            "text": "Infliction of Sorrow deals 10% increased damage, and Vampiric Strike increases the damage of your Dancing Rune Weapons by 20% for 8. Multiple applications may overlap.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -5649,8 +5649,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "After Reaper's Mark explodes, your next 50 Marrowrends cost 50 Runes and summon 100 scythes to strike your enemies. The first scythe strikes your target for 100 Shadowfrost damage (varies by condition — check in-game) the second scythe strikes all enemies around your target for 100 Shadowfrost damage and applies Blood Plague. Deals reduced damage beyond 8 targets.",
-                            "uncertain": true
+                            "text": "After Reaper's Mark explodes, your next 50 Marrowrends cost 50 Runes and summon 100 scythes to strike your enemies. The first scythe strikes your target for 100 Shadowfrost damage and the second scythe strikes all enemies around your target for 100 Shadowfrost damage and applies Blood Plague. Deals reduced damage beyond 8 targets.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -5665,8 +5665,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "After Reaper's Mark explodes, your next 50 Marrowrends cost 50 Runes and summon 100 scythes to strike your enemies. The first scythe strikes your target for 100 Shadowfrost damage (varies by condition — check in-game) the second scythe strikes all enemies around your target for 100 Shadowfrost damage and applies Blood Plague. Deals reduced damage beyond 8 targets.",
-                            "uncertain": true
+                            "text": "After Reaper's Mark explodes, your next 50 Marrowrends cost 50 Runes and summon 100 scythes to strike your enemies. The first scythe strikes your target for 100 Shadowfrost damage and the second scythe strikes all enemies around your target for 100 Shadowfrost damage and applies Blood Plague. Deals reduced damage beyond 8 targets.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -5697,8 +5697,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "After Reaper's Mark explodes, your next 50 Marrowrends cost 50 Runes and summon 100 scythes to strike your enemies. The first scythe strikes your target for 100 Shadowfrost damage (varies by condition — check in-game) the second scythe strikes all enemies around your target for 100 Shadowfrost damage and applies Blood Plague. Deals reduced damage beyond 8 targets.",
-                            "uncertain": true
+                            "text": "After Reaper's Mark explodes, your next 50 Marrowrends cost 50 Runes and summon 100 scythes to strike your enemies. The first scythe strikes your target for 100 Shadowfrost damage and the second scythe strikes all enemies around your target for 100 Shadowfrost damage and applies Blood Plague. Deals reduced damage beyond 8 targets.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -5713,8 +5713,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "After Reaper's Mark explodes, your next 50 Marrowrends cost 50 Runes and summon 100 scythes to strike your enemies. The first scythe strikes your target for 100 Shadowfrost damage (varies by condition — check in-game) the second scythe strikes all enemies around your target for 100 Shadowfrost damage and applies Blood Plague. Deals reduced damage beyond 8 targets.",
-                            "uncertain": true
+                            "text": "After Reaper's Mark explodes, your next 50 Marrowrends cost 50 Runes and summon 100 scythes to strike your enemies. The first scythe strikes your target for 100 Shadowfrost damage and the second scythe strikes all enemies around your target for 100 Shadowfrost damage and applies Blood Plague. Deals reduced damage beyond 8 targets.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -5777,8 +5777,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "After Reaper's Mark explodes, your next 2 Marrowrends cost 1 Rune and summon 2 scythes to strike your enemies. The first scythe strikes your target for 100 Shadowfrost damage (varies by condition — check in-game) the second scythe strikes all enemies around your target for 100 Shadowfrost damage and applies Blood Plague. Deals reduced damage beyond 8 targets.",
-                            "uncertain": true
+                            "text": "After Reaper's Mark explodes, your next 2 Marrowrends cost 1 Rune and summon 2 scythes to strike your enemies. The first scythe strikes your target for 100 Shadowfrost damage and the second scythe strikes all enemies around your target for 100 Shadowfrost damage and applies Blood Plague. Deals reduced damage beyond 8 targets.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -6130,8 +6130,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "The effectiveness of Permafrost is increased by (varies by condition — check in-game)%(varies by condition — check in-game) Permafrost Your auto attack damage grants you an absorb shield equal to 50% of the damage dealt.",
-                            "uncertain": true
+                            "text": "The effectiveness of Permafrost is increased by 100% and Exterminate grants Permafrost equal to 10% of the damage dealt. Permafrost Your auto attack damage grants you an absorb shield equal to 50% of the damage dealt.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -6679,8 +6679,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "After Reaper's Mark explodes, your next 50 Marrowrends cost 50 Runes and summon 100 scythes to strike your enemies. The first scythe strikes your target for 100 Shadowfrost damage (varies by condition — check in-game) the second scythe strikes all enemies around your target for 100 Shadowfrost damage and applies Blood Plague. Deals reduced damage beyond 8 targets.",
-                            "uncertain": true
+                            "text": "After Reaper's Mark explodes, your next 50 Marrowrends cost 50 Runes and summon 100 scythes to strike your enemies. The first scythe strikes your target for 100 Shadowfrost damage and the second scythe strikes all enemies around your target for 100 Shadowfrost damage and applies Blood Plague. Deals reduced damage beyond 8 targets.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -6695,8 +6695,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "After Reaper's Mark explodes, your next 50 Marrowrends cost 50 Runes and summon 100 scythes to strike your enemies. The first scythe strikes your target for 100 Shadowfrost damage (varies by condition — check in-game) the second scythe strikes all enemies around your target for 100 Shadowfrost damage and applies Blood Plague. Deals reduced damage beyond 8 targets.",
-                            "uncertain": true
+                            "text": "After Reaper's Mark explodes, your next 50 Marrowrends cost 50 Runes and summon 100 scythes to strike your enemies. The first scythe strikes your target for 100 Shadowfrost damage and the second scythe strikes all enemies around your target for 100 Shadowfrost damage and applies Blood Plague. Deals reduced damage beyond 8 targets.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -6711,8 +6711,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "After Reaper's Mark explodes, your next 50 Marrowrends cost 50 Runes and summon 100 scythes to strike your enemies. The first scythe strikes your target for 100 Shadowfrost damage (varies by condition — check in-game) the second scythe strikes all enemies around your target for 100 Shadowfrost damage and applies Blood Plague. Deals reduced damage beyond 8 targets.",
-                            "uncertain": true
+                            "text": "After Reaper's Mark explodes, your next 50 Marrowrends cost 50 Runes and summon 100 scythes to strike your enemies. The first scythe strikes your target for 100 Shadowfrost damage and the second scythe strikes all enemies around your target for 100 Shadowfrost damage and applies Blood Plague. Deals reduced damage beyond 8 targets.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -6775,8 +6775,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "After Reaper's Mark explodes, your next 50 Marrowrends cost 50 Runes and summon 100 scythes to strike your enemies. The first scythe strikes your target for 100 Shadowfrost damage (varies by condition — check in-game) the second scythe strikes all enemies around your target for 100 Shadowfrost damage and applies Blood Plague. Deals reduced damage beyond 8 targets.",
-                            "uncertain": true
+                            "text": "After Reaper's Mark explodes, your next 50 Marrowrends cost 50 Runes and summon 100 scythes to strike your enemies. The first scythe strikes your target for 100 Shadowfrost damage and the second scythe strikes all enemies around your target for 100 Shadowfrost damage and applies Blood Plague. Deals reduced damage beyond 8 targets.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -6919,8 +6919,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "After Reaper's Mark explodes, your next 2 Marrowrends cost 1 Rune and summon 2 scythes to strike your enemies. The first scythe strikes your target for 100 Shadowfrost damage (varies by condition — check in-game) the second scythe strikes all enemies around your target for 100 Shadowfrost damage and applies Blood Plague. Deals reduced damage beyond 8 targets.",
-                            "uncertain": true
+                            "text": "After Reaper's Mark explodes, your next 2 Marrowrends cost 1 Rune and summon 2 scythes to strike your enemies. The first scythe strikes your target for 100 Shadowfrost damage and the second scythe strikes all enemies around your target for 100 Shadowfrost damage and applies Blood Plague. Deals reduced damage beyond 8 targets.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -6983,8 +6983,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game)",
-                            "uncertain": true
+                            "text": "Death Strike damage increased by 20%.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -7593,8 +7593,8 @@
             "spellId": 1024,
             "category": "Other",
             "description": {
-                "text": "Essence of the Blood Queen additionally increases your Mastery by (varies by condition — check in-game)% per stack. (varies by condition — check in-game) increased damage.",
-                "uncertain": true
+                "text": "Essence of the Blood Queen additionally increases your Mastery by 1% per stack. Blood Plague deals 5% increased damage.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -7623,8 +7623,8 @@
             "spellId": 1025,
             "category": "Offensive",
             "description": {
-                "text": "Vampiric Strike increases the damage of (varies by condition — check in-game) by (varies by condition — check in-game)% for 8.(varies by condition — check in-game)",
-                "uncertain": true
+                "text": "Vampiric Strike increases the damage of your Dancing Rune Weapons by 20% for 8. Multiple applications may overlap.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -8024,8 +8024,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "When Vampiric Strike damages an enemy affected by your Blood Plague, it extends the duration of the disease by (varies by condition — check in-game) sec(varies by condition — check in-game)",
-                            "uncertain": true
+                            "text": "When Vampiric Strike damages an enemy affected by your Blood Plague, it extends the duration of the disease by 3 sec, and deals 10% of the remaining damage to the enemy.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -8104,8 +8104,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "When Vampiric Strike damages an enemy affected by your Blood Plague, it extends the duration of the disease by (varies by condition — check in-game) sec(varies by condition — check in-game)",
-                            "uncertain": true
+                            "text": "When Vampiric Strike damages an enemy affected by your Blood Plague, it extends the duration of the disease by 3 sec, and deals 10% of the remaining damage to the enemy.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -8120,7 +8120,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "When Vampiric Strike damages an enemy affected by your Blood Plague, it extends the duration of the disease by (varies by condition — check in-game) sec(varies by condition — check in-game)",
+                            "text": "When Vampiric Strike damages an enemy affected by your Blood Plague, it extends the duration of the disease by 0 sec, and deals (varies)% of the remaining damage to the enemy.",
                             "uncertain": true
                         },
                         "category": "Other",
@@ -8136,8 +8136,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Infliction of Sorrow deals (varies by condition — check in-game)% increased damage, and Vampiric Strike increases the damage of your (varies by condition — check in-game) by 20% for 8. Multiple applications may overlap.",
-                            "uncertain": true
+                            "text": "Infliction of Sorrow deals 5% increased damage, and Vampiric Strike increases the damage of your Dancing Rune Weapons by 20% for 8. Multiple applications may overlap.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -8152,8 +8152,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Infliction of Sorrow deals (varies by condition — check in-game)% increased damage, and Vampiric Strike increases the damage of your (varies by condition — check in-game) by 20% for 8. Multiple applications may overlap.",
-                            "uncertain": true
+                            "text": "Infliction of Sorrow deals 10% increased damage, and Vampiric Strike increases the damage of your Dancing Rune Weapons by 20% for 8. Multiple applications may overlap.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -8168,8 +8168,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "When Vampiric Strike damages an enemy affected by your Blood Plague, it extends the duration of the disease by (varies by condition — check in-game) sec(varies by condition — check in-game)",
-                            "uncertain": true
+                            "text": "When Vampiric Strike damages an enemy affected by your Blood Plague, it extends the duration of the disease by 3 sec, and deals 10% of the remaining damage to the enemy.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -8216,8 +8216,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Vampiric Strike increases the damage of (varies by condition — check in-game) by (varies by condition — check in-game)% for 8.(varies by condition — check in-game)",
-                            "uncertain": true
+                            "text": "Vampiric Strike increases the damage of your Dancing Rune Weapons by 20% for 8. Multiple applications may overlap.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {

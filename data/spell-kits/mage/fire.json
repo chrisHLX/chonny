@@ -1,6 +1,6 @@
 {
-    "generatedAt": "2026-10-18T02:36:33+00:00",
-    "spellCacheVersion": 29,
+    "generatedAt": "2026-11-03T23:04:21+00:00",
+    "spellCacheVersion": 31,
     "codeFingerprint": "dev",
     "entries": [
         {
@@ -19,7 +19,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Reduces the cooldown of Temporal Realignment by 5 sec.",
+                            "text": "Alter Time's cooldown is reduced by 5 sec.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -54,7 +54,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Upon dropping below 20% health, your past self corrects your timeline, casting Alter Time and instantly returning 20% of your maximum health and healing you for an additional 30% over 6.",
+                            "text": "When your health is brought below 20%, your past self corrects your timeline if Alter Time is not on cooldown, instantly restoring 20% of your maximum health and healing you for an additional 30% over 6. This effect places Alter Time on cooldown as if it had been cast.",
                             "uncertain": false
                         },
                         "category": "Defensive",
@@ -70,7 +70,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Upon dropping below 20% health, your past self corrects your timeline, casting Alter Time and instantly returning 20% of your maximum health and healing you for an additional 30% over 6.",
+                            "text": "When your health is brought below 20%, your past self corrects your timeline if Alter Time is not on cooldown, instantly restoring 20% of your maximum health and healing you for an additional 30% over 6. This effect places Alter Time on cooldown as if it had been cast.",
                             "uncertain": false
                         },
                         "category": "Defensive",
@@ -86,7 +86,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Upon dropping below 25% health, your past self corrects your timeline, casting Alter Time and instantly returning 20% of your maximum health and healing you for an additional 30% over 6.",
+                            "text": "When your health is brought below 25%, your past self corrects your timeline if Alter Time is not on cooldown, instantly restoring 20% of your maximum health and healing you for an additional 30% over 6. This effect places Alter Time on cooldown as if it had been cast.",
                             "uncertain": false
                         },
                         "category": "Defensive",
@@ -102,7 +102,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "The cooldown of Alter Time is reduced by 10 sec.",
+                            "text": "Alter Time's cooldown is reduced by 10 sec.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -139,7 +139,7 @@
             "spellId": 5595,
             "category": "Defensive",
             "description": {
-                "text": "Reduces magic damage taken by 4%.",
+                "text": "Magic damage taken reduced by 4%.",
                 "uncertain": false
             },
             "formulaModifierSpellIds": [],
@@ -199,7 +199,7 @@
             "spellId": 5603,
             "category": "Other",
             "description": {
-                "text": "When your Barrier is removed, reduce its cooldown by 5 sec.",
+                "text": "When Blazing Barrier is removed, its remaining cooldown is reduced by 5 sec.",
                 "uncertain": false
             },
             "formulaModifierSpellIds": [],
@@ -333,8 +333,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game)",
-                            "uncertain": true
+                            "text": "Blazing Barrier also casts an Ice Barrier at 25% effectiveness.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -512,8 +512,8 @@
             "spellId": 5756,
             "category": "Other",
             "description": {
-                "text": "(varies by condition — check in-game).",
-                "uncertain": true
+                "text": "Pyroblast damage increased by 3%. Flamestrike damage increased by 6%.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -679,8 +679,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "The bonuses provided by your Barrier spells persist at 15% effectiveness for an additional (varies by condition — check in-game) after your Barrier is removed.(varies by condition — check in-game)",
-                            "uncertain": true
+                            "text": "The bonuses provided by your Barrier spells persist at 15% effectiveness for an additional 8 after your Barrier is removed. Additionally, Cauterize no longer deals damage to you.",
+                            "uncertain": false
                         },
                         "category": "Defensive",
                         "cooldown": {
@@ -695,8 +695,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "The bonuses provided by your Barrier spells persist at 15% effectiveness for an additional (varies by condition — check in-game) after your Barrier is removed.(varies by condition — check in-game)",
-                            "uncertain": true
+                            "text": "The bonuses provided by your Barrier spells persist at 15% effectiveness for an additional 8 after your Barrier is removed. Additionally, Cauterize no longer deals damage to you.",
+                            "uncertain": false
                         },
                         "category": "Defensive",
                         "cooldown": {
@@ -727,8 +727,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "The bonuses provided by your Barrier spells persist at 100% effectiveness for an additional (varies by condition — check in-game) after your Barrier is removed.(varies by condition — check in-game)",
-                            "uncertain": true
+                            "text": "The bonuses provided by your Barrier spells persist at 100% effectiveness for an additional 8 after your Barrier is removed. Additionally, Cauterize no longer deals damage to you.",
+                            "uncertain": false
                         },
                         "category": "Defensive",
                         "cooldown": {
@@ -790,7 +790,7 @@
             "spellId": 5612,
             "category": "Other",
             "description": {
-                "text": "Your Mastery is increased by 3%.",
+                "text": "Mastery increased by 3%.",
                 "uncertain": false
             },
             "formulaModifierSpellIds": [],
@@ -850,8 +850,8 @@
             "spellId": 5750,
             "category": "Other",
             "description": {
-                "text": "When your Arcane Phoenix is summoned, it consumes all your Spellfire Spheres. Each Sphere consumed increases your spell damage during (varies by condition — check in-game) by (varies by condition — check in-game)% and causes your Arcane Phoenix to cast an exceptional Arcane or Fire spell over its duration.",
-                "uncertain": true
+                "text": "When your Arcane Phoenix is summoned, it consumes all your Spellfire Spheres. Each Sphere consumed increases your spell damage during Combustion by 1% and causes your Arcane Phoenix to cast an exceptional Arcane or Fire spell over its duration.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -864,8 +864,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Your chance to generate a Spellfire Sphere is increased by (varies by condition — check in-game)%. Spellfire Spheres grant an additional 1% spell damage.",
-                            "uncertain": true
+                            "text": "Your chance to generate a Spellfire Sphere is increased by 12%. Spellfire Spheres grant an additional 1% spell damage.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -1120,8 +1120,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "After casting (varies by condition — check in-game), your next Shimmer will cause a Blast Wave at your previous location, dealing 50 Fire damage, knocking enemies back 8 yds, and slowing them by 70% for 6.",
-                            "uncertain": true
+                            "text": "After casting Combustion, your next Shimmer will cause a Blast Wave at your previous location, dealing 50 Fire damage, knocking enemies back 8 yds, and slowing them by 70% for 6.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -1216,8 +1216,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "When you cast (varies by condition — check in-game), summon an Arcane Phoenix to aid you in battle.  Arcane Phoenix Your Arcane Phoenix aids you for the duration of your (varies by condition — check in-game), casting random Arcane and Fire spells.",
-                            "uncertain": true
+                            "text": "When you cast Combustion, summon an Arcane Phoenix to aid you in battle.  Arcane Phoenix Your Arcane Phoenix aids you for the duration of your Combustion, casting random Arcane and Fire spells.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -1232,8 +1232,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "When your Arcane Phoenix is summoned, it consumes all your Spellfire Spheres. Each Sphere consumed increases your spell damage during (varies by condition — check in-game) by (varies by condition — check in-game)% and causes your Arcane Phoenix to cast an exceptional Arcane or Fire spell over its duration.",
-                            "uncertain": true
+                            "text": "When your Arcane Phoenix is summoned, it consumes all your Spellfire Spheres. Each Sphere consumed increases your spell damage during Combustion by 1% and causes your Arcane Phoenix to cast an exceptional Arcane or Fire spell over its duration.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -1248,8 +1248,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "When you cast (varies by condition — check in-game), its duration is extended by 0.8 sec for each Spellfire Sphere you have, up to 2.4 sec.",
-                            "uncertain": true
+                            "text": "When you cast Combustion, its duration is extended by 0.8 sec for each Spellfire Sphere you have, up to 2.4 sec.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -1264,8 +1264,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "After casting (varies by condition — check in-game), your next Shimmer will cause a Blast Wave at your previous location, dealing 50 Fire damage, knocking enemies back 8 yds, and slowing them by 70% for 6.",
-                            "uncertain": true
+                            "text": "After casting Combustion, your next Shimmer will cause a Blast Wave at your previous location, dealing 50 Fire damage, knocking enemies back 8 yds, and slowing them by 70% for 6.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -1748,8 +1748,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game)",
-                            "uncertain": true
+                            "text": "The cooldown of Frost spells with a base cooldown shorter than 4 minutes is reduced by 30%.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -2003,7 +2003,7 @@
             "spellId": 5725,
             "category": "Other",
             "description": {
-                "text": "(varies by condition — check in-game).",
+                "text": "Casting Pyroblast has a (varies)% chance to also cast a Glacial Spike, dealing ≈366.2% of Spell Power Frost damage.",
                 "uncertain": true
             },
             "formulaModifierSpellIds": [],
@@ -2033,8 +2033,8 @@
             "spellId": 5713,
             "category": "Other",
             "description": {
-                "text": "(varies by condition — check in-game)",
-                "uncertain": true
+                "text": "The cooldown of Frost spells with a base cooldown shorter than 4 minutes is reduced by 30%.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -2063,8 +2063,8 @@
             "spellId": 5727,
             "category": "Offensive",
             "description": {
-                "text": "(varies by condition — check in-game). Your Haste is increased by 2%.",
-                "uncertain": true
+                "text": "Comet Storm and Glacial Spike now apply Ignite. Haste increased by 2%.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -2093,7 +2093,7 @@
             "spellId": 5598,
             "category": "Other",
             "description": {
-                "text": "Casting your barrier removes all snare effects.",
+                "text": "Casting Blazing Barrier removes all snare effects.",
                 "uncertain": false
             },
             "formulaModifierSpellIds": [],
@@ -2123,7 +2123,7 @@
             "spellId": 5769,
             "category": "Other",
             "description": {
-                "text": "Blink and Shimmer apply Slow at 100% effectiveness to all enemies you Blink through. For each enemy you Blink through, the cooldown of Blink and Shimmer are reduced by 1 sec, up to 5 sec.",
+                "text": "Blink applies Slow at 100% effectiveness to all enemies you Blink through. For each enemy you Blink through, the cooldown of Blink is reduced by 1 sec, up to 5 sec.\r\n\r\n Slow\r\nReduces the target's movement speed by 50% for 15 sec. ",
                 "uncertain": false
             },
             "formulaModifierSpellIds": [],
@@ -2153,8 +2153,8 @@
             "spellId": 5757,
             "category": "Other",
             "description": {
-                "text": "After casting (varies by condition — check in-game), your next Shimmer will cause a Blast Wave at your previous location, dealing 50 Fire damage, knocking enemies back 8 yds, and slowing them by 70% for 6.",
-                "uncertain": true
+                "text": "After casting Combustion, your next Shimmer will cause a Blast Wave at your previous location, dealing 50 Fire damage, knocking enemies back 8 yds, and slowing them by 70% for 6.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -2416,8 +2416,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game)",
-                            "uncertain": true
+                            "text": "The cooldown of Frost spells with a base cooldown shorter than 4 minutes is reduced by 30%.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -2432,7 +2432,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Frostfire Bolt's critical strike chance is increased by 15%.. The damage of your Frost spells and Fire spells are increased by 4%.",
+                            "text": "Frostfire Bolt's critical strike chance is increased by 15%. The damage of your Frost spells and Fire spells are increased by 4%.",
                             "uncertain": false
                         },
                         "category": "Offensive",
@@ -2772,8 +2772,8 @@
                         "modifier_value": -1,
                         "modifier_unit": "seconds",
                         "description": {
-                            "text": "(varies by condition — check in-game). Meteorite damage increased by 15%.",
-                            "uncertain": true
+                            "text": "Fire Blast's cooldown is reduced by 1 sec. Meteorite damage increased by 15%.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -2788,7 +2788,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Your target burns for an additional 0% over 9 of the total direct damage caused by your Fireball, Fire Blast,  Pyroblast, Meteor, and Flamestrike. If this effect is reapplied, any remaining damage will be added to the new Ignite. Fire Blast causes (varies)% of your Ignite to spread to (varies) nearby enemies.",
+                            "text": "Your target burns for an additional 0% over 9 of the total direct damage caused by your Fireball, Fire Blast, Pyroblast, Meteor, and Flamestrike. If this effect is reapplied, any remaining damage will be added to the new Ignite. Fire Blast causes (varies)% of your Ignite to spread to (varies) nearby enemies.",
                             "uncertain": true
                         },
                         "category": "Other",
@@ -2804,7 +2804,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game) Meteorite Calls down a meteorite which lands at the target location after 3, dealing ≈102% of Spell Power Fire damage to all enemies hit, reduced beyond 8 targets.",
+                            "text": "Generating a Spellfire Sphere causes your next cast of Fire Blast to call down a storm of 4 Meteorites on its target. Meteorite Calls down a meteorite which lands at the target location after 3, dealing ≈102% of Spell Power Fire damage to all enemies hit, reduced beyond 8 targets.",
                             "uncertain": true
                         },
                         "category": "Other",
@@ -2820,7 +2820,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game) Meteorite Calls down a meteorite which lands at the target location after 3, dealing ≈102% of Spell Power Fire damage to all enemies hit, reduced beyond 8 targets.",
+                            "text": "Generating a Spellfire Sphere causes your next cast of Fire Blast to call down a storm of 4 Meteorites on its target. Meteorite Calls down a meteorite which lands at the target location after 3, dealing ≈102% of Spell Power Fire damage to all enemies hit, reduced beyond 8 targets.",
                             "uncertain": true
                         },
                         "category": "Other",
@@ -2900,7 +2900,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game) Meteorite Calls down a meteorite which lands at the target location after 3, dealing ≈102% of Spell Power Fire damage to all enemies hit, reduced beyond 8 targets.",
+                            "text": "Generating a Spellfire Sphere causes your next cast of Fire Blast to call down a storm of 4 Meteorites on its target. Meteorite Calls down a meteorite which lands at the target location after 3, dealing ≈102% of Spell Power Fire damage to all enemies hit, reduced beyond 8 targets.",
                             "uncertain": true
                         },
                         "category": "Other",
@@ -2916,8 +2916,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game) has a (varies by condition — check in-game)% chance to summon a Meteorite. When a Meteorite lands, (varies by condition — check in-game).",
-                            "uncertain": true
+                            "text": "Damage from Fireball has a 20% chance to summon a Meteorite. When a Meteorite lands, the cooldown of Fire Blast is reduced by 0.5 sec.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -3559,7 +3559,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Frostfire Bolt's critical strike chance is increased by 15%.. The damage of your Frost spells and Fire spells are increased by 4%.",
+                            "text": "Frostfire Bolt's critical strike chance is increased by 15%. The damage of your Frost spells and Fire spells are increased by 4%.",
                             "uncertain": false
                         },
                         "category": "Offensive",
@@ -3787,8 +3787,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game).",
-                            "uncertain": true
+                            "text": "Pyroblast damage increased by 3%. Flamestrike damage increased by 6%.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -3803,8 +3803,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game).",
-                            "uncertain": true
+                            "text": "Pyroblast damage increased by 20%. Flamestrike damage increased by 20%.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -3867,7 +3867,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Your target burns for an additional 0% over 9 of the total direct damage caused by your Fireball, Fire Blast,  Pyroblast, Meteor, and Flamestrike. If this effect is reapplied, any remaining damage will be added to the new Ignite. Fire Blast causes (varies)% of your Ignite to spread to (varies) nearby enemies.",
+                            "text": "Your target burns for an additional 0% over 9 of the total direct damage caused by your Fireball, Fire Blast, Pyroblast, Meteor, and Flamestrike. If this effect is reapplied, any remaining damage will be added to the new Ignite. Fire Blast causes (varies)% of your Ignite to spread to (varies) nearby enemies.",
                             "uncertain": true
                         },
                         "category": "Other",
@@ -3994,7 +3994,7 @@
             "spellId": 5589,
             "category": "Other",
             "description": {
-                "text": "The cooldowns of Blink and Shimmer are reduced by 3 sec.",
+                "text": "Shimmer's cooldown is reduced by 3 sec.",
                 "uncertain": false
             },
             "formulaModifierSpellIds": [],
@@ -4211,8 +4211,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game)",
-                            "uncertain": true
+                            "text": "The cooldown of Frost spells with a base cooldown shorter than 4 minutes is reduced by 30%.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -4291,7 +4291,7 @@
                         "modifier_value": 1,
                         "modifier_unit": "charges",
                         "description": {
-                            "text": "Frost Nova now has 2 charges.",
+                            "text": "Frost Nova gains an additional charge.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -4465,7 +4465,7 @@
                             "spell_id": 205036,
                             "name": "Ice Ward",
                             "school": "Frost",
-                            "description": "Frost Nova now has ${1+$m1} charges.",
+                            "description": "Frost Nova gains an additional charge.",
                             "variables": null,
                             "charges": null,
                             "max_stacks": null,
@@ -4503,7 +4503,7 @@
                             "is_passive": true,
                             "icon_name": "spell_frost_frostward.jpg",
                             "created_at": "2026-08-03T12:22:39.000000Z",
-                            "updated_at": "2026-09-08T00:06:57.000000Z",
+                            "updated_at": "2026-11-03T21:20:46.000000Z",
                             "effects": [
                                 {
                                     "id": 10245,
@@ -4587,8 +4587,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Casting Frostfire spells has a 60% chance to activate Frostfire Empowerment, causing your next Frostfire Bolt to be instant cast, deal 60% increased damage, explode for 100% of its damage to nearby enemies. Damage reduced beyond 5 targets.(varies by condition — check in-game)",
-                            "uncertain": true
+                            "text": "Casting Frostfire spells has a 60% chance to activate Frostfire Empowerment, causing your next Frostfire Bolt to be instant cast, deal 60% increased damage, and explode for 100% of its damage to nearby enemies. Damage reduced beyond 5 targets.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -4603,7 +4603,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Frostfire Bolt's critical strike chance is increased by 15%.. The damage of your Frost spells and Fire spells are increased by 4%.",
+                            "text": "Frostfire Bolt's critical strike chance is increased by 15%. The damage of your Frost spells and Fire spells are increased by 4%.",
                             "uncertain": false
                         },
                         "category": "Offensive",
@@ -4619,8 +4619,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Casting Frostfire spells has a 60% chance to activate Frostfire Empowerment, causing your next Frostfire Bolt to be instant cast, deal 60% increased damage, explode for 100% of its damage to nearby enemies. Damage reduced beyond 5 targets.(varies by condition — check in-game)",
-                            "uncertain": true
+                            "text": "Casting Frostfire spells has a 60% chance to activate Frostfire Empowerment, causing your next Frostfire Bolt to be instant cast, deal 60% increased damage, and explode for 100% of its damage to nearby enemies. Damage reduced beyond 5 targets.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -4635,7 +4635,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Frostfire Bolt's critical strike chance is increased by 15%.. The damage of your Frost spells and Fire spells are increased by 4%.",
+                            "text": "Frostfire Bolt's critical strike chance is increased by 15%. The damage of your Frost spells and Fire spells are increased by 4%.",
                             "uncertain": false
                         },
                         "category": "Offensive",
@@ -4651,8 +4651,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Casting Frostfire spells has a 10% chance to activate Frostfire Empowerment, causing your next Frostfire Bolt to be instant cast, deal 60% increased damage, explode for 60% of its damage to nearby enemies. Damage reduced beyond 5 targets.(varies by condition — check in-game)",
-                            "uncertain": true
+                            "text": "Casting Frostfire spells has a 10% chance to activate Frostfire Empowerment, causing your next Frostfire Bolt to be instant cast, deal 60% increased damage, and explode for 60% of its damage to nearby enemies. Damage reduced beyond 5 targets.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -4783,8 +4783,8 @@
             "spellId": 5719,
             "category": "Offensive",
             "description": {
-                "text": "Casting Frostfire spells has a 10% chance to activate Frostfire Empowerment, causing your next Frostfire Bolt to be instant cast, deal 60% increased damage, explode for 60% of its damage to nearby enemies. Damage reduced beyond 5 targets.(varies by condition — check in-game)",
-                "uncertain": true
+                "text": "Casting Frostfire spells has a 10% chance to activate Frostfire Empowerment, causing your next Frostfire Bolt to be instant cast, deal 60% increased damage, and explode for 60% of its damage to nearby enemies. Damage reduced beyond 5 targets.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -4795,8 +4795,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Casting Frostfire spells has a 60% chance to activate Frostfire Empowerment, causing your next Frostfire Bolt to be instant cast, deal 60% increased damage, explode for 100% of its damage to nearby enemies. Damage reduced beyond 5 targets.(varies by condition — check in-game)",
-                            "uncertain": true
+                            "text": "Casting Frostfire spells has a 60% chance to activate Frostfire Empowerment, causing your next Frostfire Bolt to be instant cast, deal 60% increased damage, and explode for 100% of its damage to nearby enemies. Damage reduced beyond 5 targets.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -4811,8 +4811,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Casting Frostfire spells has a 60% chance to activate Frostfire Empowerment, causing your next Frostfire Bolt to be instant cast, deal 60% increased damage, explode for 100% of its damage to nearby enemies. Damage reduced beyond 5 targets.(varies by condition — check in-game)",
-                            "uncertain": true
+                            "text": "Casting Frostfire spells has a 60% chance to activate Frostfire Empowerment, causing your next Frostfire Bolt to be instant cast, deal 60% increased damage, and explode for 100% of its damage to nearby enemies. Damage reduced beyond 5 targets.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -4911,7 +4911,7 @@
             "spellId": 5718,
             "category": "Offensive",
             "description": {
-                "text": "Frostfire Bolt's critical strike chance is increased by 15%.. The damage of your Frost spells and Fire spells are increased by 4%.",
+                "text": "Frostfire Bolt's critical strike chance is increased by 15%. The damage of your Frost spells and Fire spells are increased by 4%.",
                 "uncertain": false
             },
             "formulaModifierSpellIds": [],
@@ -5005,7 +5005,7 @@
             "spellId": 5773,
             "category": "Other",
             "description": {
-                "text": "Increases damage of Fireball, Scorch, and Ignite by 25% but decreases your maximum health by 30%.\r\n",
+                "text": "Fireball, Scorch, and Ignite damage is increased by 25%, but your maximum health is decreased by 30%.\r\n",
                 "uncertain": false
             },
             "formulaModifierSpellIds": [],
@@ -5035,7 +5035,7 @@
             "spellId": 5751,
             "category": "Other",
             "description": {
-                "text": "(varies by condition — check in-game) Meteorite Calls down a meteorite which lands at the target location after 3, dealing ≈102% of Spell Power Fire damage to all enemies hit, reduced beyond 8 targets.",
+                "text": "Generating a Spellfire Sphere causes your next cast of Fire Blast to call down a storm of 4 Meteorites on its target. Meteorite Calls down a meteorite which lands at the target location after 3, dealing ≈102% of Spell Power Fire damage to all enemies hit, reduced beyond 8 targets.",
                 "uncertain": true
             },
             "formulaModifierSpellIds": [],
@@ -5079,7 +5079,7 @@
                         "modifier_value": -60,
                         "modifier_unit": "seconds",
                         "description": {
-                            "text": "Reduces the cooldown of Invisibility by 60 sec.",
+                            "text": "Greater Invisibility's cooldown is reduced by 60 sec.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -5218,8 +5218,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game)",
-                            "uncertain": true
+                            "text": "Blazing Barrier also casts an Ice Barrier at 25% effectiveness.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -5286,7 +5286,7 @@
                         "modifier_value": -60,
                         "modifier_unit": "seconds",
                         "description": {
-                            "text": "The cooldown of Ice Block is reduced by 30 sec.",
+                            "text": "Ice Cold's cooldown is reduced by 30 sec.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -5302,7 +5302,7 @@
                         "modifier_value": -30,
                         "modifier_unit": "seconds",
                         "description": {
-                            "text": "The cooldown of Ice Block and Ice Cold are reduced by 30 sec.",
+                            "text": "Ice Cold's cooldown is reduced by 30 sec.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -5315,6 +5315,127 @@
                 ],
                 "baseline": [],
                 "potential": [
+                    {
+                        "spellId": 5381,
+                        "relationship_type": "replaces",
+                        "modifier_value": null,
+                        "modifier_unit": null,
+                        "description": {
+                            "text": "Your blood runs cold, reducing all damage you take by 70% for 6. While Ice Cold is active, you heal for 40% of your maximum health over the duration. Does not incur the Global Cooldown. Causes Hypothermia, preventing you from recasting Ice Cold for 30.",
+                            "uncertain": false
+                        },
+                        "category": "Defensive",
+                        "cooldown": {
+                            "seconds": 150,
+                            "base_seconds": 240,
+                            "applied": [
+                                {
+                                    "spell": {
+                                        "id": 5592,
+                                        "patch_id": 1,
+                                        "spell_id": 382424,
+                                        "name": "Winter's Protection",
+                                        "school": "Physical",
+                                        "description": "$?s414659[Ice Cold][Ice Block]'s cooldown is reduced by ${$s1/-1000} sec.",
+                                        "variables": null,
+                                        "charges": null,
+                                        "max_stacks": null,
+                                        "proc_chance": null,
+                                        "proc_cooldown_seconds": null,
+                                        "cooldown_seconds": null,
+                                        "cooldown_scaling_note": null,
+                                        "duration_seconds": null,
+                                        "pvp_duration_seconds": null,
+                                        "pairs_with_category": null,
+                                        "requires_stealth": false,
+                                        "requires_target_out_of_combat": false,
+                                        "not_in_spellbook": true,
+                                        "mechanic": null,
+                                        "usable_while_cc": null,
+                                        "bypasses_active_defense": false,
+                                        "silence_immune_by_school": false,
+                                        "cc_immunity_note": null,
+                                        "grants_cc_immunity_override": null,
+                                        "cc_immunity_gating_spell_id": null,
+                                        "grants_cc_immunity": [],
+                                        "grants_school_immunity": null,
+                                        "school_immunity_override": null,
+                                        "spell_type": "None",
+                                        "range_yards": null,
+                                        "dr_category": null,
+                                        "conditional_dr_gating_spell_id": null,
+                                        "conditional_dr_category": null,
+                                        "category": "Other",
+                                        "cast_type": "instant",
+                                        "chain_target": null,
+                                        "is_peel": false,
+                                        "is_interrupt": false,
+                                        "is_mobility": false,
+                                        "is_passive": true,
+                                        "icon_name": "spell_ice_rune.jpg",
+                                        "created_at": "2026-08-03T12:22:39.000000Z",
+                                        "updated_at": "2026-11-03T21:20:46.000000Z"
+                                    },
+                                    "relationship_type": "modifies_cooldown",
+                                    "modifier_value": -60,
+                                    "modifier_unit": "seconds",
+                                    "selection_spell_id": 5592
+                                },
+                                {
+                                    "spell": {
+                                        "id": 5615,
+                                        "patch_id": 1,
+                                        "spell_id": 1265517,
+                                        "name": "Permafrost Bauble",
+                                        "school": "Physical",
+                                        "description": "$?s414659[Ice Cold][Ice Block]'s cooldown is reduced by ${$s1/-1000} sec.",
+                                        "variables": null,
+                                        "charges": null,
+                                        "max_stacks": null,
+                                        "proc_chance": null,
+                                        "proc_cooldown_seconds": null,
+                                        "cooldown_seconds": null,
+                                        "cooldown_scaling_note": null,
+                                        "duration_seconds": null,
+                                        "pvp_duration_seconds": null,
+                                        "pairs_with_category": null,
+                                        "requires_stealth": false,
+                                        "requires_target_out_of_combat": false,
+                                        "not_in_spellbook": true,
+                                        "mechanic": null,
+                                        "usable_while_cc": null,
+                                        "bypasses_active_defense": false,
+                                        "silence_immune_by_school": false,
+                                        "cc_immunity_note": null,
+                                        "grants_cc_immunity_override": null,
+                                        "cc_immunity_gating_spell_id": null,
+                                        "grants_cc_immunity": [],
+                                        "grants_school_immunity": null,
+                                        "school_immunity_override": null,
+                                        "spell_type": "None",
+                                        "range_yards": null,
+                                        "dr_category": null,
+                                        "conditional_dr_gating_spell_id": null,
+                                        "conditional_dr_category": null,
+                                        "category": "Other",
+                                        "cast_type": "instant",
+                                        "chain_target": null,
+                                        "is_peel": false,
+                                        "is_interrupt": false,
+                                        "is_mobility": false,
+                                        "is_passive": true,
+                                        "icon_name": "inv_10_dungeonjewelry_primalist_necklace_2_frost.jpg",
+                                        "created_at": "2026-08-03T12:22:39.000000Z",
+                                        "updated_at": "2026-11-03T21:20:46.000000Z"
+                                    },
+                                    "relationship_type": "modifies_cooldown",
+                                    "modifier_value": -30,
+                                    "modifier_unit": "seconds",
+                                    "selection_spell_id": 5615
+                                }
+                            ]
+                        }
+                    },
                     {
                         "spellId": 5601,
                         "relationship_type": "mentions",
@@ -5377,7 +5498,7 @@
                             "spell_id": 382424,
                             "name": "Winter's Protection",
                             "school": "Physical",
-                            "description": "The cooldown of Ice Block is reduced by ${$s1/-1000} sec.",
+                            "description": "$?s414659[Ice Cold][Ice Block]'s cooldown is reduced by ${$s1/-1000} sec.",
                             "variables": null,
                             "charges": null,
                             "max_stacks": null,
@@ -5415,7 +5536,7 @@
                             "is_passive": true,
                             "icon_name": "spell_ice_rune.jpg",
                             "created_at": "2026-08-03T12:22:39.000000Z",
-                            "updated_at": "2026-09-08T00:07:06.000000Z",
+                            "updated_at": "2026-11-03T21:20:46.000000Z",
                             "effects": [
                                 {
                                     "id": 10272,
@@ -5429,7 +5550,7 @@
                                     "chain_targets": null,
                                     "affected_schools": null,
                                     "sp_coefficient": null,
-                                    "pvp_coefficient": null,
+                                    "pvp_coefficient": 0.5,
                                     "ap_coefficient": null,
                                     "rank_op": "set",
                                     "rank_values": [
@@ -5437,7 +5558,7 @@
                                         -60000
                                     ],
                                     "created_at": "2026-08-03T12:22:39.000000Z",
-                                    "updated_at": "2026-09-07T23:52:51.000000Z"
+                                    "updated_at": "2026-11-03T21:20:46.000000Z"
                                 }
                             ]
                         },
@@ -5453,7 +5574,7 @@
                             "spell_id": 1265517,
                             "name": "Permafrost Bauble",
                             "school": "Physical",
-                            "description": "The cooldown of Ice Block and Ice Cold are reduced by ${-$s1/1000} sec.",
+                            "description": "$?s414659[Ice Cold][Ice Block]'s cooldown is reduced by ${$s1/-1000} sec.",
                             "variables": null,
                             "charges": null,
                             "max_stacks": null,
@@ -5491,7 +5612,7 @@
                             "is_passive": true,
                             "icon_name": "inv_10_dungeonjewelry_primalist_necklace_2_frost.jpg",
                             "created_at": "2026-08-03T12:22:39.000000Z",
-                            "updated_at": "2026-09-08T00:07:16.000000Z",
+                            "updated_at": "2026-11-03T21:20:46.000000Z",
                             "effects": [
                                 {
                                     "id": 10307,
@@ -5537,22 +5658,38 @@
             "drCategory": null
         },
         {
-            "spellId": 5601,
-            "category": "Crowd Control",
+            "spellId": 5381,
+            "category": "Defensive",
             "description": {
-                "text": "Ice Block now reduces all damage taken by 70% for 6 but no longer grants Immunity, prevents movement, attacks, or casting spells. Does not incur the Global Cooldown.",
+                "text": "Your blood runs cold, reducing all damage you take by 70% for 6. While Ice Cold is active, you heal for 40% of your maximum health over the duration. Does not incur the Global Cooldown. Causes Hypothermia, preventing you from recasting Ice Cold for 30.",
                 "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
                 "named": [
                     {
-                        "spellId": 5615,
-                        "relationship_type": "mentions",
-                        "modifier_value": null,
-                        "modifier_unit": null,
+                        "spellId": 5592,
+                        "relationship_type": "modifies_cooldown",
+                        "modifier_value": -60,
+                        "modifier_unit": "seconds",
                         "description": {
-                            "text": "The cooldown of Ice Block and Ice Cold are reduced by 30 sec.",
+                            "text": "Ice Cold's cooldown is reduced by 30 sec.",
+                            "uncertain": false
+                        },
+                        "category": "Other",
+                        "cooldown": {
+                            "seconds": null,
+                            "base_seconds": null,
+                            "applied": []
+                        }
+                    },
+                    {
+                        "spellId": 5615,
+                        "relationship_type": "modifies_cooldown",
+                        "modifier_value": -30,
+                        "modifier_unit": "seconds",
+                        "description": {
+                            "text": "Ice Cold's cooldown is reduced by 30 sec.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -5565,127 +5702,6 @@
                 ],
                 "baseline": [],
                 "potential": [
-                    {
-                        "spellId": 5381,
-                        "relationship_type": "mentions",
-                        "modifier_value": null,
-                        "modifier_unit": null,
-                        "description": {
-                            "text": "Your blood runs cold, reducing all damage you take by 70% for 6. While Ice Cold is active, you heal for 40% of your maximum health over the duration. Causes Hypothermia, preventing you from recasting Ice Cold for 30.",
-                            "uncertain": false
-                        },
-                        "category": "Defensive",
-                        "cooldown": {
-                            "seconds": 150,
-                            "base_seconds": 240,
-                            "applied": [
-                                {
-                                    "spell": {
-                                        "id": 5592,
-                                        "patch_id": 1,
-                                        "spell_id": 382424,
-                                        "name": "Winter's Protection",
-                                        "school": "Physical",
-                                        "description": "The cooldown of Ice Block is reduced by ${$s1/-1000} sec.",
-                                        "variables": null,
-                                        "charges": null,
-                                        "max_stacks": null,
-                                        "proc_chance": null,
-                                        "proc_cooldown_seconds": null,
-                                        "cooldown_seconds": null,
-                                        "cooldown_scaling_note": null,
-                                        "duration_seconds": null,
-                                        "pvp_duration_seconds": null,
-                                        "pairs_with_category": null,
-                                        "requires_stealth": false,
-                                        "requires_target_out_of_combat": false,
-                                        "not_in_spellbook": true,
-                                        "mechanic": null,
-                                        "usable_while_cc": null,
-                                        "bypasses_active_defense": false,
-                                        "silence_immune_by_school": false,
-                                        "cc_immunity_note": null,
-                                        "grants_cc_immunity_override": null,
-                                        "cc_immunity_gating_spell_id": null,
-                                        "grants_cc_immunity": [],
-                                        "grants_school_immunity": null,
-                                        "school_immunity_override": null,
-                                        "spell_type": "None",
-                                        "range_yards": null,
-                                        "dr_category": null,
-                                        "conditional_dr_gating_spell_id": null,
-                                        "conditional_dr_category": null,
-                                        "category": "Other",
-                                        "cast_type": "instant",
-                                        "chain_target": null,
-                                        "is_peel": false,
-                                        "is_interrupt": false,
-                                        "is_mobility": false,
-                                        "is_passive": true,
-                                        "icon_name": "spell_ice_rune.jpg",
-                                        "created_at": "2026-08-03T12:22:39.000000Z",
-                                        "updated_at": "2026-09-08T00:07:06.000000Z"
-                                    },
-                                    "relationship_type": "modifies_cooldown",
-                                    "modifier_value": -60,
-                                    "modifier_unit": "seconds",
-                                    "selection_spell_id": 5592
-                                },
-                                {
-                                    "spell": {
-                                        "id": 5615,
-                                        "patch_id": 1,
-                                        "spell_id": 1265517,
-                                        "name": "Permafrost Bauble",
-                                        "school": "Physical",
-                                        "description": "The cooldown of Ice Block and Ice Cold are reduced by ${-$s1/1000} sec.",
-                                        "variables": null,
-                                        "charges": null,
-                                        "max_stacks": null,
-                                        "proc_chance": null,
-                                        "proc_cooldown_seconds": null,
-                                        "cooldown_seconds": null,
-                                        "cooldown_scaling_note": null,
-                                        "duration_seconds": null,
-                                        "pvp_duration_seconds": null,
-                                        "pairs_with_category": null,
-                                        "requires_stealth": false,
-                                        "requires_target_out_of_combat": false,
-                                        "not_in_spellbook": true,
-                                        "mechanic": null,
-                                        "usable_while_cc": null,
-                                        "bypasses_active_defense": false,
-                                        "silence_immune_by_school": false,
-                                        "cc_immunity_note": null,
-                                        "grants_cc_immunity_override": null,
-                                        "cc_immunity_gating_spell_id": null,
-                                        "grants_cc_immunity": [],
-                                        "grants_school_immunity": null,
-                                        "school_immunity_override": null,
-                                        "spell_type": "None",
-                                        "range_yards": null,
-                                        "dr_category": null,
-                                        "conditional_dr_gating_spell_id": null,
-                                        "conditional_dr_category": null,
-                                        "category": "Other",
-                                        "cast_type": "instant",
-                                        "chain_target": null,
-                                        "is_peel": false,
-                                        "is_interrupt": false,
-                                        "is_mobility": false,
-                                        "is_passive": true,
-                                        "icon_name": "inv_10_dungeonjewelry_primalist_necklace_2_frost.jpg",
-                                        "created_at": "2026-08-03T12:22:39.000000Z",
-                                        "updated_at": "2026-09-08T00:07:16.000000Z"
-                                    },
-                                    "relationship_type": "modifies_cooldown",
-                                    "modifier_value": -30,
-                                    "modifier_unit": "seconds",
-                                    "selection_spell_id": 5615
-                                }
-                            ]
-                        }
-                    },
                     {
                         "spellId": 5715,
                         "relationship_type": "mentions",
@@ -5722,9 +5738,159 @@
             },
             "hasPotentialImprovement": true,
             "cooldown": {
-                "seconds": 240,
+                "seconds": 150,
                 "base_seconds": 240,
-                "applied": []
+                "applied": [
+                    {
+                        "spell": {
+                            "id": 5592,
+                            "patch_id": 1,
+                            "spell_id": 382424,
+                            "name": "Winter's Protection",
+                            "school": "Physical",
+                            "description": "$?s414659[Ice Cold][Ice Block]'s cooldown is reduced by ${$s1/-1000} sec.",
+                            "variables": null,
+                            "charges": null,
+                            "max_stacks": null,
+                            "proc_chance": null,
+                            "proc_cooldown_seconds": null,
+                            "cooldown_seconds": null,
+                            "cooldown_scaling_note": null,
+                            "duration_seconds": null,
+                            "pvp_duration_seconds": null,
+                            "pairs_with_category": null,
+                            "requires_stealth": false,
+                            "requires_target_out_of_combat": false,
+                            "not_in_spellbook": true,
+                            "mechanic": null,
+                            "usable_while_cc": null,
+                            "bypasses_active_defense": false,
+                            "silence_immune_by_school": false,
+                            "cc_immunity_note": null,
+                            "grants_cc_immunity_override": null,
+                            "cc_immunity_gating_spell_id": null,
+                            "grants_cc_immunity": [],
+                            "grants_school_immunity": null,
+                            "school_immunity_override": null,
+                            "spell_type": "None",
+                            "range_yards": null,
+                            "dr_category": null,
+                            "conditional_dr_gating_spell_id": null,
+                            "conditional_dr_category": null,
+                            "category": "Other",
+                            "cast_type": "instant",
+                            "chain_target": null,
+                            "is_peel": false,
+                            "is_interrupt": false,
+                            "is_mobility": false,
+                            "is_passive": true,
+                            "icon_name": "spell_ice_rune.jpg",
+                            "created_at": "2026-08-03T12:22:39.000000Z",
+                            "updated_at": "2026-11-03T21:20:46.000000Z",
+                            "effects": [
+                                {
+                                    "id": 10272,
+                                    "spell_id": 5592,
+                                    "effect_index": 1,
+                                    "type": "Modify Recharge Time (Category)",
+                                    "base_value": -30000,
+                                    "scaled_value": -30000,
+                                    "misc_value": 1560,
+                                    "radius_yards": null,
+                                    "chain_targets": null,
+                                    "affected_schools": null,
+                                    "sp_coefficient": null,
+                                    "pvp_coefficient": 0.5,
+                                    "ap_coefficient": null,
+                                    "rank_op": "set",
+                                    "rank_values": [
+                                        -29999,
+                                        -60000
+                                    ],
+                                    "created_at": "2026-08-03T12:22:39.000000Z",
+                                    "updated_at": "2026-11-03T21:20:46.000000Z"
+                                }
+                            ]
+                        },
+                        "relationship_type": "modifies_cooldown",
+                        "modifier_value": -60,
+                        "modifier_unit": "seconds",
+                        "selection_spell_id": 5592
+                    },
+                    {
+                        "spell": {
+                            "id": 5615,
+                            "patch_id": 1,
+                            "spell_id": 1265517,
+                            "name": "Permafrost Bauble",
+                            "school": "Physical",
+                            "description": "$?s414659[Ice Cold][Ice Block]'s cooldown is reduced by ${$s1/-1000} sec.",
+                            "variables": null,
+                            "charges": null,
+                            "max_stacks": null,
+                            "proc_chance": null,
+                            "proc_cooldown_seconds": null,
+                            "cooldown_seconds": null,
+                            "cooldown_scaling_note": null,
+                            "duration_seconds": null,
+                            "pvp_duration_seconds": null,
+                            "pairs_with_category": null,
+                            "requires_stealth": false,
+                            "requires_target_out_of_combat": false,
+                            "not_in_spellbook": true,
+                            "mechanic": null,
+                            "usable_while_cc": null,
+                            "bypasses_active_defense": false,
+                            "silence_immune_by_school": false,
+                            "cc_immunity_note": null,
+                            "grants_cc_immunity_override": null,
+                            "cc_immunity_gating_spell_id": null,
+                            "grants_cc_immunity": [],
+                            "grants_school_immunity": null,
+                            "school_immunity_override": null,
+                            "spell_type": "None",
+                            "range_yards": null,
+                            "dr_category": null,
+                            "conditional_dr_gating_spell_id": null,
+                            "conditional_dr_category": null,
+                            "category": "Other",
+                            "cast_type": "instant",
+                            "chain_target": null,
+                            "is_peel": false,
+                            "is_interrupt": false,
+                            "is_mobility": false,
+                            "is_passive": true,
+                            "icon_name": "inv_10_dungeonjewelry_primalist_necklace_2_frost.jpg",
+                            "created_at": "2026-08-03T12:22:39.000000Z",
+                            "updated_at": "2026-11-03T21:20:46.000000Z",
+                            "effects": [
+                                {
+                                    "id": 10307,
+                                    "spell_id": 5615,
+                                    "effect_index": 1,
+                                    "type": "Modify Recharge Time (Category)",
+                                    "base_value": -30000,
+                                    "scaled_value": -30000,
+                                    "misc_value": 1560,
+                                    "radius_yards": null,
+                                    "chain_targets": null,
+                                    "affected_schools": null,
+                                    "sp_coefficient": null,
+                                    "pvp_coefficient": null,
+                                    "ap_coefficient": null,
+                                    "rank_op": null,
+                                    "rank_values": null,
+                                    "created_at": "2026-08-03T12:22:39.000000Z",
+                                    "updated_at": "2026-09-07T23:52:51.000000Z"
+                                }
+                            ]
+                        },
+                        "relationship_type": "modifies_cooldown",
+                        "modifier_value": -30,
+                        "modifier_unit": "seconds",
+                        "selection_spell_id": 5615
+                    }
+                ]
             },
             "charges": {
                 "charges": 1,
@@ -5842,8 +6008,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game)",
-                            "uncertain": true
+                            "text": "The cooldown of Frost spells with a base cooldown shorter than 4 minutes is reduced by 30%.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -5858,7 +6024,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Frostfire Bolt's critical strike chance is increased by 15%.. The damage of your Frost spells and Fire spells are increased by 4%.",
+                            "text": "Frostfire Bolt's critical strike chance is increased by 15%. The damage of your Frost spells and Fire spells are increased by 4%.",
                             "uncertain": false
                         },
                         "category": "Offensive",
@@ -6113,7 +6279,7 @@
             "spellId": 5580,
             "category": "Other",
             "description": {
-                "text": "Frost Nova now has 2 charges.",
+                "text": "Frost Nova gains an additional charge.",
                 "uncertain": false
             },
             "formulaModifierSpellIds": [],
@@ -6173,8 +6339,8 @@
             "spellId": 5712,
             "category": "Other",
             "description": {
-                "text": "(varies by condition — check in-game)",
-                "uncertain": true
+                "text": "Blazing Barrier also casts an Ice Barrier at 25% effectiveness.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -6383,7 +6549,7 @@
             "spellId": 5382,
             "category": "Other",
             "description": {
-                "text": "The cooldown of Mass Invisibility is reduced by 3 min and it can affect allies in combat.",
+                "text": "Mass Invisibility's cooldown is reduced by 3 min, and it can affect allies in combat.",
                 "uncertain": false
             },
             "formulaModifierSpellIds": [],
@@ -6653,8 +6819,8 @@
             "spellId": 5746,
             "category": "Other",
             "description": {
-                "text": "When you cast (varies by condition — check in-game), summon an Arcane Phoenix to aid you in battle.  Arcane Phoenix Your Arcane Phoenix aids you for the duration of your (varies by condition — check in-game), casting random Arcane and Fire spells.",
-                "uncertain": true
+                "text": "When you cast Combustion, summon an Arcane Phoenix to aid you in battle.  Arcane Phoenix Your Arcane Phoenix aids you for the duration of your Combustion, casting random Arcane and Fire spells.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -6773,8 +6939,8 @@
             "spellId": 5747,
             "category": "Offensive",
             "description": {
-                "text": "(varies by condition — check in-game) grants you (varies by condition — check in-game)% Haste for 6. Multiple applications may overlap.",
-                "uncertain": true
+                "text": "Consuming Hot Streak grants you 0.5% Haste for 6. Multiple applications may overlap.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -6864,7 +7030,7 @@
                         "modifier_value": -180,
                         "modifier_unit": "seconds",
                         "description": {
-                            "text": "The cooldown of Mass Invisibility is reduced by 3 min and it can affect allies in combat.",
+                            "text": "Mass Invisibility's cooldown is reduced by 3 min, and it can affect allies in combat.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -6897,8 +7063,8 @@
             "spellId": 5596,
             "category": "Crowd Control",
             "description": {
-                "text": "Transforms all enemies within (varies) yards into sheep, wandering around incapacitated for 15. While affected, the victims cannot take actions but will regenerate health very quickly. Damage will cancel the effect. Only works on Beasts, Humanoids and Critters.",
-                "uncertain": true
+                "text": "Transforms all enemies within 10 yds into sheep, wandering around incapacitated for 15. While affected, the victims cannot take actions but will regenerate health very quickly. Damage will cancel the effect. Only works on Beasts, Humanoids and Critters.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -6944,7 +7110,7 @@
             "spellId": 5581,
             "category": "Other",
             "description": {
-                "text": "Reduces the cooldown of Invisibility by 60 sec.",
+                "text": "Greater Invisibility's cooldown is reduced by 60 sec.",
                 "uncertain": false
             },
             "formulaModifierSpellIds": [],
@@ -7004,7 +7170,7 @@
             "spellId": 5587,
             "category": "Other",
             "description": {
-                "text": "Reduces the cooldown of Temporal Realignment by 5 sec.",
+                "text": "Alter Time's cooldown is reduced by 5 sec.",
                 "uncertain": false
             },
             "formulaModifierSpellIds": [],
@@ -7094,8 +7260,8 @@
             "spellId": 5754,
             "category": "Other",
             "description": {
-                "text": "When your Arcane Phoenix expires it empowers you, granting (varies by condition — check in-game) for (varies by condition — check in-game) sec. (varies by condition — check in-game)",
-                "uncertain": true
+                "text": "When your Arcane Phoenix expires it empowers you, granting Hyperthermia for 4 sec. Hyperthermia: $@spellaura383874",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -7124,8 +7290,8 @@
             "spellId": 5748,
             "category": "Defensive",
             "description": {
-                "text": "The bonuses provided by your Barrier spells persist at 100% effectiveness for an additional (varies by condition — check in-game) after your Barrier is removed.(varies by condition — check in-game)",
-                "uncertain": true
+                "text": "The bonuses provided by your Barrier spells persist at 100% effectiveness for an additional 8 after your Barrier is removed. Additionally, Cauterize no longer deals damage to you.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -7570,8 +7736,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game). Your Haste is increased by 2%.",
-                            "uncertain": true
+                            "text": "Comet Storm and Glacial Spike now apply Ignite. Haste increased by 2%.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -7589,7 +7755,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Your target burns for an additional 0% over 9 of the total direct damage caused by your Fireball, Fire Blast,  Pyroblast, Meteor, and Flamestrike. If this effect is reapplied, any remaining damage will be added to the new Ignite. Fire Blast causes (varies)% of your Ignite to spread to (varies) nearby enemies.",
+                            "text": "Your target burns for an additional 0% over 9 of the total direct damage caused by your Fireball, Fire Blast, Pyroblast, Meteor, and Flamestrike. If this effect is reapplied, any remaining damage will be added to the new Ignite. Fire Blast causes (varies)% of your Ignite to spread to (varies) nearby enemies.",
                             "uncertain": true
                         },
                         "category": "Other",
@@ -7605,7 +7771,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game) Meteorite Calls down a meteorite which lands at the target location after 3, dealing ≈102% of Spell Power Fire damage to all enemies hit, reduced beyond 8 targets.",
+                            "text": "Generating a Spellfire Sphere causes your next cast of Fire Blast to call down a storm of 4 Meteorites on its target. Meteorite Calls down a meteorite which lands at the target location after 3, dealing ≈102% of Spell Power Fire damage to all enemies hit, reduced beyond 8 targets.",
                             "uncertain": true
                         },
                         "category": "Other",
@@ -7621,7 +7787,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game) Meteorite Calls down a meteorite which lands at the target location after 3, dealing ≈102% of Spell Power Fire damage to all enemies hit, reduced beyond 8 targets.",
+                            "text": "Generating a Spellfire Sphere causes your next cast of Fire Blast to call down a storm of 4 Meteorites on its target. Meteorite Calls down a meteorite which lands at the target location after 3, dealing ≈102% of Spell Power Fire damage to all enemies hit, reduced beyond 8 targets.",
                             "uncertain": true
                         },
                         "category": "Other",
@@ -7637,8 +7803,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game)",
-                            "uncertain": true
+                            "text": "Pyroclasm's damage bonus is increased by 20% and Meteor grants Pyroclasm if talented.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -7653,7 +7819,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game) Meteorite Calls down a meteorite which lands at the target location after 3, dealing ≈102% of Spell Power Fire damage to all enemies hit, reduced beyond 8 targets.",
+                            "text": "Generating a Spellfire Sphere causes your next cast of Fire Blast to call down a storm of 4 Meteorites on its target. Meteorite Calls down a meteorite which lands at the target location after 3, dealing ≈102% of Spell Power Fire damage to all enemies hit, reduced beyond 8 targets.",
                             "uncertain": true
                         },
                         "category": "Other",
@@ -7669,8 +7835,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game). Meteorite damage increased by 15%.",
-                            "uncertain": true
+                            "text": "Fire Blast's cooldown is reduced by 1 sec. Meteorite damage increased by 15%.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -7685,8 +7851,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game) has a (varies by condition — check in-game)% chance to summon a Meteorite. When a Meteorite lands, (varies by condition — check in-game).",
-                            "uncertain": true
+                            "text": "Damage from Fireball has a 20% chance to summon a Meteorite. When a Meteorite lands, the cooldown of Fire Blast is reduced by 0.5 sec.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -7843,8 +8009,8 @@
             "spellId": 5726,
             "category": "Other",
             "description": {
-                "text": "(varies by condition — check in-game).",
-                "uncertain": true
+                "text": "Your Frostfire spells apply Ignite at 10% increased effectiveness.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -7993,7 +8159,7 @@
             "spellId": 5615,
             "category": "Other",
             "description": {
-                "text": "The cooldown of Ice Block and Ice Cold are reduced by 30 sec.",
+                "text": "Ice Cold's cooldown is reduced by 30 sec.",
                 "uncertain": false
             },
             "formulaModifierSpellIds": [],
@@ -8331,7 +8497,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game).",
+                            "text": "Casting Pyroblast has a (varies)% chance to also cast a Glacial Spike, dealing ≈366.2% of Spell Power Frost damage.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -8411,7 +8577,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game).",
+                            "text": "Casting Pyroblast has a (varies)% chance to also cast a Glacial Spike, dealing ≈366.2% of Spell Power Frost damage.",
                             "uncertain": true
                         },
                         "category": "Other",
@@ -8427,8 +8593,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game). Your Haste is increased by 2%.",
-                            "uncertain": true
+                            "text": "Comet Storm and Glacial Spike now apply Ignite. Haste increased by 2%.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -8479,8 +8645,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game).",
-                            "uncertain": true
+                            "text": "Pyroblast damage increased by 3%. Flamestrike damage increased by 6%.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -8495,8 +8661,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game).",
-                            "uncertain": true
+                            "text": "Pyroblast damage increased by 20%. Flamestrike damage increased by 20%.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -8559,7 +8725,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Your target burns for an additional 0% over 9 of the total direct damage caused by your Fireball, Fire Blast,  Pyroblast, Meteor, and Flamestrike. If this effect is reapplied, any remaining damage will be added to the new Ignite. Fire Blast causes (varies)% of your Ignite to spread to (varies) nearby enemies.",
+                            "text": "Your target burns for an additional 0% over 9 of the total direct damage caused by your Fireball, Fire Blast, Pyroblast, Meteor, and Flamestrike. If this effect is reapplied, any remaining damage will be added to the new Ignite. Fire Blast causes (varies)% of your Ignite to spread to (varies) nearby enemies.",
                             "uncertain": true
                         },
                         "category": "Other",
@@ -8658,8 +8824,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game)",
-                            "uncertain": true
+                            "text": "Pyroclasm's damage bonus is increased by 20% and Meteor grants Pyroclasm if talented.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -8691,8 +8857,8 @@
             "spellId": 5761,
             "category": "Other",
             "description": {
-                "text": "(varies by condition — check in-game) has a (varies by condition — check in-game)% chance to summon a Meteorite. When a Meteorite lands, (varies by condition — check in-game).",
-                "uncertain": true
+                "text": "Damage from Fireball has a 20% chance to summon a Meteorite. When a Meteorite lands, the cooldown of Fire Blast is reduced by 0.5 sec.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -8916,8 +9082,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game)",
-                            "uncertain": true
+                            "text": "The cooldown of Frost spells with a base cooldown shorter than 4 minutes is reduced by 30%.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -9283,8 +9449,8 @@
             "spellId": 5753,
             "category": "Other",
             "description": {
-                "text": "Your chance to generate a Spellfire Sphere is increased by (varies by condition — check in-game)%. Spellfire Spheres grant an additional 1% spell damage.",
-                "uncertain": true
+                "text": "Your chance to generate a Spellfire Sphere is increased by 12%. Spellfire Spheres grant an additional 1% spell damage.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -9313,8 +9479,8 @@
             "spellId": 5752,
             "category": "Other",
             "description": {
-                "text": "When you cast (varies by condition — check in-game), its duration is extended by 0.8 sec for each Spellfire Sphere you have, up to 2.4 sec.",
-                "uncertain": true
+                "text": "When you cast Combustion, its duration is extended by 0.8 sec for each Spellfire Sphere you have, up to 2.4 sec.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -9454,7 +9620,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Frostfire Bolt's critical strike chance is increased by 15%.. The damage of your Frost spells and Fire spells are increased by 4%.",
+                            "text": "Frostfire Bolt's critical strike chance is increased by 15%. The damage of your Frost spells and Fire spells are increased by 4%.",
                             "uncertain": false
                         },
                         "category": "Offensive",
@@ -9602,7 +9768,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Increases damage of Fireball, Scorch, and Ignite by 25% but decreases your maximum health by 30%.\r\n",
+                            "text": "Fireball, Scorch, and Ignite damage is increased by 25%, but your maximum health is decreased by 30%.\r\n",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -9677,7 +9843,7 @@
                         "modifier_value": -3,
                         "modifier_unit": "seconds",
                         "description": {
-                            "text": "The cooldowns of Blink and Shimmer are reduced by 3 sec.",
+                            "text": "Shimmer's cooldown is reduced by 3 sec.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -9776,8 +9942,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "After casting (varies by condition — check in-game), your next Shimmer will cause a Blast Wave at your previous location, dealing 50 Fire damage, knocking enemies back 8 yds, and slowing them by 70% for 6.",
-                            "uncertain": true
+                            "text": "After casting Combustion, your next Shimmer will cause a Blast Wave at your previous location, dealing 50 Fire damage, knocking enemies back 8 yds, and slowing them by 70% for 6.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -9808,23 +9974,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "After casting (varies by condition — check in-game), your next Shimmer will cause a Blast Wave at your previous location, dealing 50 Fire damage, knocking enemies back 8 yds, and slowing them by 70% for 6.",
-                            "uncertain": true
-                        },
-                        "category": "Other",
-                        "cooldown": {
-                            "seconds": null,
-                            "base_seconds": null,
-                            "applied": []
-                        }
-                    },
-                    {
-                        "spellId": 5769,
-                        "relationship_type": "mentions",
-                        "modifier_value": null,
-                        "modifier_unit": null,
-                        "description": {
-                            "text": "Blink and Shimmer apply Slow at 100% effectiveness to all enemies you Blink through. For each enemy you Blink through, the cooldown of Blink and Shimmer are reduced by 1 sec, up to 5 sec.",
+                            "text": "After casting Combustion, your next Shimmer will cause a Blast Wave at your previous location, dealing 50 Fire damage, knocking enemies back 8 yds, and slowing them by 70% for 6.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -9848,7 +9998,7 @@
                             "spell_id": 382268,
                             "name": "Flow of Time",
                             "school": "Physical",
-                            "description": "The cooldowns of Blink and Shimmer are reduced by ${$s1/-1000} sec.",
+                            "description": "$?s212653[Shimmer's][Blink's] cooldown is reduced by ${$s1/-1000} sec.",
                             "variables": null,
                             "charges": null,
                             "max_stacks": null,
@@ -9886,7 +10036,7 @@
                             "is_passive": true,
                             "icon_name": "spell_arcane_blink.jpg",
                             "created_at": "2026-08-03T12:22:39.000000Z",
-                            "updated_at": "2026-09-08T00:07:06.000000Z",
+                            "updated_at": "2026-11-03T21:20:46.000000Z",
                             "effects": [
                                 {
                                     "id": 10268,
@@ -10103,8 +10253,8 @@
             "spellId": 5760,
             "category": "Other",
             "description": {
-                "text": "(varies by condition — check in-game). Meteorite damage increased by 15%.",
-                "uncertain": true
+                "text": "Fire Blast's cooldown is reduced by 1 sec. Meteorite damage increased by 15%.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -10133,8 +10283,8 @@
             "spellId": 5745,
             "category": "Other",
             "description": {
-                "text": "(varies by condition — check in-game) has a (varies by condition — check in-game)% chance to conjure a Spellfire Sphere. While you're out of combat, you will slowly conjure Spellfire Spheres over time. Spellfire Sphere Increases your spell damage by (varies by condition — check in-game)%. Stacks up to 3 times.",
-                "uncertain": true
+                "text": "Consuming Hot Streak has a 12% chance to conjure a Spellfire Sphere. While you're out of combat, you will slowly conjure Spellfire Spheres over time. Spellfire Sphere Increases your spell damage by 1%. Stacks up to 3 times.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -10164,8 +10314,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Your chance to generate a Spellfire Sphere is increased by (varies by condition — check in-game)%. Spellfire Spheres grant an additional 1% spell damage.",
-                            "uncertain": true
+                            "text": "Your chance to generate a Spellfire Sphere is increased by 12%. Spellfire Spheres grant an additional 1% spell damage.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -10180,8 +10330,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game) has a 6% chance to conjure a Spellfire Sphere. While you're out of combat, you will slowly conjure Spellfire Spheres over time. Spellfire Sphere Increases your spell damage by (varies by condition — check in-game)%. Stacks up to 3 times.",
-                            "uncertain": true
+                            "text": "Consuming Hot Streak has a 6% chance to conjure a Spellfire Sphere. While you're out of combat, you will slowly conjure Spellfire Spheres over time. Spellfire Sphere Increases your spell damage by 1%. Stacks up to 3 times.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -10196,8 +10346,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "When your Arcane Phoenix is summoned, it consumes all your Spellfire Spheres. Each Sphere consumed increases your spell damage during (varies by condition — check in-game) by (varies by condition — check in-game)% and causes your Arcane Phoenix to cast an exceptional Arcane or Fire spell over its duration.",
-                            "uncertain": true
+                            "text": "When your Arcane Phoenix is summoned, it consumes all your Spellfire Spheres. Each Sphere consumed increases your spell damage during Combustion by 1% and causes your Arcane Phoenix to cast an exceptional Arcane or Fire spell over its duration.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -10323,8 +10473,8 @@
             "spellId": 5749,
             "category": "Other",
             "description": {
-                "text": "(varies by condition — check in-game)",
-                "uncertain": true
+                "text": "Pyroclasm's damage bonus is increased by 20% and Meteor grants Pyroclasm if talented.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -10643,7 +10793,7 @@
             "spellId": 5610,
             "category": "Defensive",
             "description": {
-                "text": "Upon dropping below 25% health, your past self corrects your timeline, casting Alter Time and instantly returning 20% of your maximum health and healing you for an additional 30% over 6.",
+                "text": "When your health is brought below 25%, your past self corrects your timeline if Alter Time is not on cooldown, instantly restoring 20% of your maximum health and healing you for an additional 30% over 6. This effect places Alter Time on cooldown as if it had been cast.",
                 "uncertain": false
             },
             "formulaModifierSpellIds": [],
@@ -10655,7 +10805,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Reduces the cooldown of Temporal Realignment by 5 sec.",
+                            "text": "Alter Time's cooldown is reduced by 5 sec.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -10667,9 +10817,26 @@
                     }
                 ],
                 "baseline": [],
-                "potential": []
+                "potential": [
+                    {
+                        "spellId": 5758,
+                        "relationship_type": "modifies",
+                        "modifier_value": null,
+                        "modifier_unit": null,
+                        "description": {
+                            "text": "Alter Time's cooldown is reduced by 10 sec.",
+                            "uncertain": false
+                        },
+                        "category": "Other",
+                        "cooldown": {
+                            "seconds": null,
+                            "base_seconds": null,
+                            "applied": []
+                        }
+                    }
+                ]
             },
-            "hasPotentialImprovement": false,
+            "hasPotentialImprovement": true,
             "cooldown": {
                 "seconds": null,
                 "base_seconds": null,
@@ -10750,7 +10917,7 @@
             "spellId": 5758,
             "category": "Other",
             "description": {
-                "text": "The cooldown of Alter Time is reduced by 10 sec.",
+                "text": "Alter Time's cooldown is reduced by 10 sec.",
                 "uncertain": false
             },
             "formulaModifierSpellIds": [],
@@ -10810,7 +10977,7 @@
             "spellId": 5593,
             "category": "Offensive",
             "description": {
-                "text": "Increases Haste by 2%.",
+                "text": "Haste increased by 2%.",
                 "uncertain": false
             },
             "formulaModifierSpellIds": [],
@@ -10840,7 +11007,7 @@
             "spellId": 5594,
             "category": "Offensive",
             "description": {
-                "text": "Increases critical strike chance by 2%.",
+                "text": "Critical strike chance by 2%.",
                 "uncertain": false
             },
             "formulaModifierSpellIds": [],
@@ -10900,7 +11067,7 @@
             "spellId": 5592,
             "category": "Other",
             "description": {
-                "text": "The cooldown of Ice Block is reduced by 30 sec.",
+                "text": "Ice Cold's cooldown is reduced by 30 sec.",
                 "uncertain": false
             },
             "formulaModifierSpellIds": [],

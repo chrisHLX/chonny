@@ -1,14 +1,14 @@
 {
-    "generatedAt": "2026-10-18T02:36:51+00:00",
-    "spellCacheVersion": 29,
+    "generatedAt": "2026-11-03T23:04:40+00:00",
+    "spellCacheVersion": 31,
     "codeFingerprint": "dev",
     "entries": [
         {
             "spellId": 7764,
             "category": "Defensive",
             "description": {
-                "text": "After (varies by condition — check in-game) successfully removes an effect from an ally, they are healed for ≈540% of Spell Power.",
-                "uncertain": true
+                "text": "After Cleanse successfully removes an effect from an ally, they are healed for ≈540% of Spell Power.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -349,8 +349,8 @@
             "spellId": 7791,
             "category": "Other",
             "description": {
-                "text": "After you cast (varies by condition — check in-game), gain Divine Purpose. (varies by condition — check in-game)",
-                "uncertain": true
+                "text": "After you cast Holy Prism or Divine Toll, gain Divine Purpose. Divine Purpose $@spellaura223819",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -379,8 +379,8 @@
             "spellId": 7810,
             "category": "Other",
             "description": {
-                "text": "Successfully (varies by condition — check in-game) reduces (varies by condition — check in-game). Effect increased by 100% while wielding a Holy Armament.",
-                "uncertain": true
+                "text": "Successfully dispelling a harmful effect reduces Cleanse's cooldown by 1 sec. Effect increased by 100% while wielding a Holy Armament.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -421,8 +421,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game)(varies by condition — check in-game)(varies by condition — check in-game)",
-                            "uncertain": true
+                            "text": "Avenging Wrath and Avenging Crusader have 25% increased duration.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -493,13 +493,10 @@
             "spellId": 7834,
             "category": "Offensive",
             "description": {
-                "text": "Call upon the Light to become an avatar of retribution, (varies by condition — check in-game)increasing your damage, healing, and critical strike chance by 20% for 20.",
-                "uncertain": true
+                "text": "Call upon the Light to become an avatar of retribution, increasing your damage, healing, and critical strike chance by 20% for 20.",
+                "uncertain": false
             },
-            "formulaModifierSpellIds": [
-                97,
-                7011
-            ],
+            "formulaModifierSpellIds": [],
             "modifiers": {
                 "named": [
                     {
@@ -508,8 +505,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game)(varies by condition — check in-game)(varies by condition — check in-game)",
-                            "uncertain": true
+                            "text": "Avenging Wrath and Avenging Crusader have 25% increased duration.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -556,8 +553,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Avenging Wrath empowers your next (varies by condition — check in-game) with 30% increased effectiveness.",
-                            "uncertain": true
+                            "text": "Avenging Wrath empowers your next Word of Glory to automatically activate Light of Dawn with 30% increased effectiveness.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -572,8 +569,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Avenging Wrath empowers your next (varies by condition — check in-game) with 30% increased effectiveness.",
-                            "uncertain": true
+                            "text": "Avenging Wrath empowers your next Word of Glory to automatically activate Light of Dawn with 30% increased effectiveness.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -752,8 +749,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "During Avenging Wrath, Judgment is empowered into Hammer of Wrath.(varies by condition — check in-game)",
-                            "uncertain": true
+                            "text": "During Avenging Wrath, Judgment is empowered into Hammer of Wrath. Hammer of Wrath Hurls a divine hammer that strikes an enemy for ≈123.8% of Attack Power Holy damage. Generates 1 Holy Power.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -784,8 +781,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "During Avenging Wrath, Judgment is empowered into Hammer of Wrath.(varies by condition — check in-game)",
-                            "uncertain": true
+                            "text": "During Avenging Wrath, Judgment is empowered into Hammer of Wrath. Hammer of Wrath Hurls a divine hammer that strikes an enemy for ≈123.8% of Attack Power Holy damage. Generates 1 Holy Power.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -800,7 +797,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game)",
+                            "text": "Infusion of Light occurs (varies)% more often during Avenging Wrath.",
                             "uncertain": true
                         },
                         "category": "Other",
@@ -913,8 +910,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "When your Holy Bulwark absorbs damage or your Sacred Weapon deals damage or healing, you have a chance to gain (varies by condition — check in-game).",
-                            "uncertain": true
+                            "text": "When your Holy Bulwark absorbs damage or your Sacred Weapon deals damage or healing, you have a chance to gain Awakening.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -1091,8 +1088,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Call upon the Light to become an avatar of retribution, (varies by condition — check in-game)increasing your damage, healing, and critical strike chance by 20% for 20.",
-                            "uncertain": true
+                            "text": "Call upon the Light to become an avatar of retribution, increasing your damage, healing, and critical strike chance by 20% for 20.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -1471,8 +1468,8 @@
             "spellId": 7792,
             "category": "Other",
             "description": {
-                "text": "(varies by condition — check in-game)",
-                "uncertain": true
+                "text": "The healing and damage of Holy Shock is increased by 15%.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -1485,7 +1482,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game)",
+                            "text": "Infusion of Light occurs (varies)% more often during Avenging Wrath.",
                             "uncertain": true
                         },
                         "category": "Other",
@@ -1694,8 +1691,8 @@
             "spellId": 7711,
             "category": "Defensive",
             "description": {
-                "text": "Blesses a party or raid member, granting immunity to Physical damage and harmful effects for 10. Cannot be used on a target with Forbearance. Causes Forbearance for 30.(varies by condition — check in-game)",
-                "uncertain": true
+                "text": "Blesses a party or raid member, granting immunity to Physical damage and harmful effects for 10. Cannot be used on a target with Forbearance. Causes Forbearance for 30.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -1722,8 +1719,8 @@
                         "modifier_value": -60,
                         "modifier_unit": "seconds",
                         "description": {
-                            "text": "Reduces the cooldown of Blessing of Protection(varies by condition — check in-game) by 60 sec.",
-                            "uncertain": true
+                            "text": "Reduces the cooldown of Blessing of Protection by 60 sec.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -2283,8 +2280,8 @@
                         "modifier_value": -60,
                         "modifier_unit": "seconds",
                         "description": {
-                            "text": "Reduces the cooldown of Blessing of Protection(varies by condition — check in-game) by 60 sec.",
-                            "uncertain": true
+                            "text": "Reduces the cooldown of Blessing of Protection by 60 sec.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -2299,8 +2296,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Blesses a party or raid member, granting immunity to Physical damage and harmful effects for 10. Cannot be used on a target with Forbearance. Causes Forbearance for 30.(varies by condition — check in-game)",
-                            "uncertain": true
+                            "text": "Blesses a party or raid member, granting immunity to Physical damage and harmful effects for 10. Cannot be used on a target with Forbearance. Causes Forbearance for 30.",
+                            "uncertain": false
                         },
                         "category": "Defensive",
                         "cooldown": {
@@ -2825,7 +2822,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "After (varies by condition — check in-game) successfully removes an effect from an ally, they are healed for (varies).",
+                            "text": "After Cleanse successfully removes an effect from an ally, they are healed for (varies).",
                             "uncertain": true
                         },
                         "category": "Defensive",
@@ -2841,8 +2838,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "After (varies by condition — check in-game) successfully removes an effect from an ally, they are healed for ≈540% of Spell Power.",
-                            "uncertain": true
+                            "text": "After Cleanse successfully removes an effect from an ally, they are healed for ≈540% of Spell Power.",
+                            "uncertain": false
                         },
                         "category": "Defensive",
                         "cooldown": {
@@ -3534,7 +3531,7 @@
             "spellId": 7780,
             "category": "Offensive",
             "description": {
-                "text": "Casting (varies by condition — check in-game) causes your next 2 Holy Power spending abilities to apply Dawnlight on your target, dealing ≈255% of Spell Power Radiant damage or ≈538.2% of Spell Power healing over 8. 8% of Dawnlight's damage and healing radiates to nearby allies or enemies, reduced beyond 5 targets.(varies by condition — check in-game)",
+                "text": "Casting Holy Prism or Divine Toll causes your next 2 Holy Power spending abilities to apply Dawnlight on your target, dealing ≈255% of Spell Power Radiant damage or ≈538.2% of Spell Power healing over 8. 8% of Dawnlight's damage and healing radiates to nearby allies or enemies, reduced beyond 5 targets. Dawnlight's healing does not transfer to Beacon of Light.",
                 "uncertain": true
             },
             "formulaModifierSpellIds": [],
@@ -3548,7 +3545,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Casting (varies by condition — check in-game) causes your next 2 Holy Power spending abilities to apply Dawnlight on your target, dealing ≈255% of Spell Power Radiant damage or ≈538.2% of Spell Power healing over 8. 8% of Dawnlight's damage and healing radiates to nearby allies or enemies, reduced beyond 5 targets.(varies by condition — check in-game)",
+                            "text": "Casting Holy Prism or Divine Toll causes your next 2 Holy Power spending abilities to apply Dawnlight on your target, dealing ≈255% of Spell Power Radiant damage or ≈538.2% of Spell Power healing over 8. 8% of Dawnlight's damage and healing radiates to nearby allies or enemies, reduced beyond 5 targets. Dawnlight's healing does not transfer to Beacon of Light.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -3564,7 +3561,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Casting (varies by condition — check in-game) causes your next 2 Holy Power spending abilities to apply Dawnlight on your target, dealing ≈255% of Spell Power Radiant damage or ≈538.2% of Spell Power healing over 8. 8% of Dawnlight's damage and healing radiates to nearby allies or enemies, reduced beyond 5 targets.(varies by condition — check in-game)",
+                            "text": "Casting Holy Prism or Divine Toll causes your next 2 Holy Power spending abilities to apply Dawnlight on your target, dealing ≈255% of Spell Power Radiant damage or ≈538.2% of Spell Power healing over 8. 8% of Dawnlight's damage and healing radiates to nearby allies or enemies, reduced beyond 5 targets. Dawnlight's healing does not transfer to Beacon of Light.",
                             "uncertain": true
                         },
                         "category": "Mobility",
@@ -3580,7 +3577,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Casting (varies by condition — check in-game) causes your next 2 Holy Power spending abilities to apply Dawnlight on your target, dealing ≈255% of Spell Power Radiant damage or ≈538.2% of Spell Power healing over 8. 8% of Dawnlight's damage and healing radiates to nearby allies or enemies, reduced beyond 5 targets.(varies by condition — check in-game)",
+                            "text": "Casting Holy Prism or Divine Toll causes your next 2 Holy Power spending abilities to apply Dawnlight on your target, dealing ≈255% of Spell Power Radiant damage or ≈538.2% of Spell Power healing over 8. 8% of Dawnlight's damage and healing radiates to nearby allies or enemies, reduced beyond 5 targets. Dawnlight's healing does not transfer to Beacon of Light.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -3596,7 +3593,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Casting (varies by condition — check in-game) causes your next 2 Holy Power spending abilities to apply Dawnlight on your target, dealing ≈255% of Spell Power Radiant damage or ≈538.2% of Spell Power healing over 8. 8% of Dawnlight's damage and healing radiates to nearby allies or enemies, reduced beyond 5 targets.(varies by condition — check in-game)",
+                            "text": "Casting Holy Prism or Divine Toll causes your next 2 Holy Power spending abilities to apply Dawnlight on your target, dealing ≈255% of Spell Power Radiant damage or ≈538.2% of Spell Power healing over 8. 8% of Dawnlight's damage and healing radiates to nearby allies or enemies, reduced beyond 5 targets. Dawnlight's healing does not transfer to Beacon of Light.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -3612,7 +3609,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Casting (varies by condition — check in-game) causes your next ≈13.5% of Spell Power Holy Power spending abilities to apply Dawnlight on your target, dealing ≈255% of Spell Power Radiant damage or ≈538.2% of Spell Power healing over 8. 8% of Dawnlight's damage and healing radiates to nearby allies or enemies, reduced beyond 5 targets.(varies by condition — check in-game)",
+                            "text": "Casting Holy Prism or Divine Toll causes your next ≈13.5% of Spell Power Holy Power spending abilities to apply Dawnlight on your target, dealing ≈255% of Spell Power Radiant damage or ≈538.2% of Spell Power healing over 8. 8% of Dawnlight's damage and healing radiates to nearby allies or enemies, reduced beyond 5 targets. Dawnlight's healing does not transfer to Beacon of Light.",
                             "uncertain": true
                         },
                         "category": "Defensive",
@@ -3628,8 +3625,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "After you cast (varies by condition — check in-game), your next Holy Power spender is guaranteed to apply 1 Dawnlight.",
-                            "uncertain": true
+                            "text": "After you cast Holy Prism or Barrier of Faith, your next Holy Power spender is guaranteed to apply 1 Dawnlight.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -3644,8 +3641,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "After you cast (varies by condition — check in-game), your next Holy Power spender is guaranteed to apply 8,000 Dawnlight.",
-                            "uncertain": true
+                            "text": "After you cast Holy Prism or Barrier of Faith, your next Holy Power spender is guaranteed to apply 8,000 Dawnlight.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -3676,7 +3673,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Casting (varies by condition — check in-game) causes your next 8 Holy Power spending abilities to apply Dawnlight on your target, dealing ≈255% of Spell Power Radiant damage or ≈538.2% of Spell Power healing over 8. 8% of Dawnlight's damage and healing radiates to nearby allies or enemies, reduced beyond 5 targets.(varies by condition — check in-game)",
+                            "text": "Casting Holy Prism or Divine Toll causes your next 8 Holy Power spending abilities to apply Dawnlight on your target, dealing ≈255% of Spell Power Radiant damage or ≈538.2% of Spell Power healing over 8. 8% of Dawnlight's damage and healing radiates to nearby allies or enemies, reduced beyond 5 targets. Dawnlight's healing does not transfer to Beacon of Light.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -3692,8 +3689,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "You link to your Dawnlights within 30 yds, causing 15 Radiant damage to enemies or 15 healing to allies that pass through the beams, reduced beyond (varies by condition — check in-game) targets.",
-                            "uncertain": true
+                            "text": "You link to your Dawnlights within 30 yds, causing 15 Radiant damage to enemies or 15 healing to allies that pass through the beams, reduced beyond 5 targets.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -3708,8 +3705,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "You link to your Dawnlights within 30 yds, causing 15 Radiant damage to enemies or 15 healing to allies that pass through the beams, reduced beyond (varies by condition — check in-game) targets.",
-                            "uncertain": true
+                            "text": "You link to your Dawnlights within 30 yds, causing 15 Radiant damage to enemies or 15 healing to allies that pass through the beams, reduced beyond 5 targets.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -3724,8 +3721,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "You link to your Dawnlights within 30 yds, causing 15 Radiant damage to enemies or 15 healing to allies that pass through the beams, reduced beyond (varies by condition — check in-game) targets.",
-                            "uncertain": true
+                            "text": "You link to your Dawnlights within 30 yds, causing 15 Radiant damage to enemies or 15 healing to allies that pass through the beams, reduced beyond 5 targets.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -3740,8 +3737,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "You link to your Dawnlights within 30 yds, causing 15 Radiant damage to enemies or 15 healing to allies that pass through the beams, reduced beyond (varies by condition — check in-game) targets.",
-                            "uncertain": true
+                            "text": "You link to your Dawnlights within 30 yds, causing 15 Radiant damage to enemies or 15 healing to allies that pass through the beams, reduced beyond 5 targets.",
+                            "uncertain": false
                         },
                         "category": "Defensive",
                         "cooldown": {
@@ -3756,8 +3753,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "You link to your Dawnlights within 30 yds, causing 15 Radiant damage to enemies or 15 healing to allies that pass through the beams, reduced beyond (varies by condition — check in-game) targets.",
-                            "uncertain": true
+                            "text": "You link to your Dawnlights within 30 yds, causing 15 Radiant damage to enemies or 15 healing to allies that pass through the beams, reduced beyond 5 targets.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -3772,8 +3769,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "You link to your Dawnlights within 30 yds, causing 15 Radiant damage to enemies or 15 healing to allies that pass through the beams, reduced beyond (varies by condition — check in-game) targets.",
-                            "uncertain": true
+                            "text": "You link to your Dawnlights within 30 yds, causing 15 Radiant damage to enemies or 15 healing to allies that pass through the beams, reduced beyond 5 targets.",
+                            "uncertain": false
                         },
                         "category": "Defensive",
                         "cooldown": {
@@ -3788,8 +3785,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "You link to your Dawnlights within 30 yds, causing 15 Radiant damage to enemies or 15 healing to allies that pass through the beams, reduced beyond (varies by condition — check in-game) targets.",
-                            "uncertain": true
+                            "text": "You link to your Dawnlights within 30 yds, causing 15 Radiant damage to enemies or 15 healing to allies that pass through the beams, reduced beyond 5 targets.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -3852,8 +3849,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "You link to your Dawnlights within 30 yds, causing 15 Radiant damage to enemies or 15 healing to allies that pass through the beams, reduced beyond (varies by condition — check in-game) targets.",
-                            "uncertain": true
+                            "text": "You link to your Dawnlights within 30 yds, causing 15 Radiant damage to enemies or 15 healing to allies that pass through the beams, reduced beyond 5 targets.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -3884,8 +3881,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game)",
-                            "uncertain": true
+                            "text": "Dawnlight's duration is increased by 0.5 sec when it heals an ally with full health.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -4109,8 +4106,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Call upon the Light to become an avatar of retribution, (varies by condition — check in-game)increasing your damage, healing, and critical strike chance by 20% for 20.",
-                            "uncertain": true
+                            "text": "Call upon the Light to become an avatar of retribution, increasing your damage, healing, and critical strike chance by 20% for 20.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -4675,8 +4672,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game) increases healing taken by 15% for its duration.",
-                            "uncertain": true
+                            "text": "Divine Protection increases healing taken by 15% for its duration.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -4710,7 +4707,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Melee and ranged attackers receive ≈35% of Spell Power Holy damage each time they strike you during (varies by condition — check in-game) and Divine Shield.",
+                            "text": "Melee and ranged attackers receive ≈35% of Spell Power Holy damage each time they strike you during Divine Protection and Divine Shield.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -4726,7 +4723,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Melee and ranged attackers receive ≈35% of Spell Power Holy damage each time they strike you during (varies by condition — check in-game) and Divine Shield.",
+                            "text": "Melee and ranged attackers receive ≈35% of Spell Power Holy damage each time they strike you during Divine Protection and Divine Shield.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -4858,8 +4855,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "After you cast (varies by condition — check in-game), gain Divine Purpose. (varies by condition — check in-game)",
-                            "uncertain": true
+                            "text": "After you cast Holy Prism or Divine Toll, gain Divine Purpose. Divine Purpose $@spellaura223819",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -4921,8 +4918,8 @@
             "spellId": 7734,
             "category": "Other",
             "description": {
-                "text": "(varies by condition — check in-game)",
-                "uncertain": true
+                "text": "After casting Divine Toll, you instantly cast Holy Shock every 5 sec for 15 sec.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -5028,7 +5025,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Melee and ranged attackers receive ≈35% of Spell Power Holy damage each time they strike you during (varies by condition — check in-game) and Divine Shield.",
+                            "text": "Melee and ranged attackers receive ≈35% of Spell Power Holy damage each time they strike you during Divine Protection and Divine Shield.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -5044,7 +5041,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Melee and ranged attackers receive ≈35% of Spell Power Holy damage each time they strike you during (varies by condition — check in-game) and Divine Shield.",
+                            "text": "Melee and ranged attackers receive ≈35% of Spell Power Holy damage each time they strike you during Divine Protection and Divine Shield.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -5313,8 +5310,8 @@
             "spellId": 7731,
             "category": "Other",
             "description": {
-                "text": "Instantly cast Holy Shock, Avenger's Shield, or Judgment on up to 5 targets within 30 yds.(varies by condition — check in-game)(varies by condition — check in-game)",
-                "uncertain": true
+                "text": "Instantly cast Holy Shock, Avenger's Shield, or Judgment on up to 5 targets within 30 yds.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -5373,8 +5370,8 @@
                         "modifier_value": -15,
                         "modifier_unit": "seconds",
                         "description": {
-                            "text": "(varies by condition — check in-game) cooldown is reduced by 15 sec.",
-                            "uncertain": true
+                            "text": "Divine Toll's, Holy Armament's, and Holy Prism's cooldown is reduced by 15 sec.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -5421,7 +5418,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Instantly cast Holy Shock, Avenger's Shield, or Judgment on up to 100 targets within (varies) yds (based on your current specialization).(varies by condition — check in-game)",
+                            "text": "Instantly cast Holy Shock, Avenger's Shield, or Judgment on up to 100 targets within (varies) yds (based on your current specialization).",
                             "uncertain": true
                         },
                         "category": "Other",
@@ -5437,7 +5434,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Instantly cast Holy Shock, Avenger's Shield, or Judgment on up to 60 targets within (varies) yds (based on your current specialization).(varies by condition — check in-game)",
+                            "text": "Instantly cast Holy Shock, Avenger's Shield, or Judgment on up to 60 targets within (varies) yds (based on your current specialization).",
                             "uncertain": true
                         },
                         "category": "Other",
@@ -5453,8 +5450,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game) Hammer and Anvil at 100% effectiveness.",
-                            "uncertain": true
+                            "text": "Holy Armaments activate Hammer and Anvil at 100% effectiveness.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -5537,8 +5534,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Call upon the Light to become an avatar of retribution, (varies by condition — check in-game)increasing your damage, healing, and critical strike chance by 20% for 20.",
-                            "uncertain": true
+                            "text": "Call upon the Light to become an avatar of retribution, increasing your damage, healing, and critical strike chance by 20% for 20.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -5617,8 +5614,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "After casting Divine Toll, you instantly cast (varies by condition — check in-game) every 5 sec. This effect lasts 15 sec.",
-                            "uncertain": true
+                            "text": "After casting Divine Toll, you instantly cast Holy Shock every 5 sec. This effect lasts 15 sec.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -5633,8 +5630,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "After casting Divine Toll, you instantly cast (varies by condition — check in-game) every 5 sec. This effect lasts 15 sec.",
-                            "uncertain": true
+                            "text": "After casting Divine Toll, you instantly cast Holy Shock every 5 sec. This effect lasts 15 sec.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -5649,8 +5646,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "After casting Divine Toll, you instantly cast (varies by condition — check in-game) every 5 sec. This effect lasts 15 sec.",
-                            "uncertain": true
+                            "text": "After casting Divine Toll, you instantly cast Holy Shock every 5 sec. This effect lasts 15 sec.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -5665,8 +5662,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "After casting Divine Toll, you instantly cast (varies by condition — check in-game) every 5 sec. This effect lasts 15 sec.",
-                            "uncertain": true
+                            "text": "After casting Divine Toll, you instantly cast Holy Shock every 5 sec. This effect lasts 15 sec.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -5681,8 +5678,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "After casting Divine Toll, you instantly cast (varies by condition — check in-game) every 5 sec. This effect lasts 15 sec.",
-                            "uncertain": true
+                            "text": "After casting Divine Toll, you instantly cast Holy Shock every 5 sec. This effect lasts 15 sec.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -5697,8 +5694,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game)",
-                            "uncertain": true
+                            "text": "After casting Divine Toll, you instantly cast Holy Shock every 5 sec for 15 sec.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -5713,8 +5710,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game)",
-                            "uncertain": true
+                            "text": "After casting Divine Toll, you instantly cast Holy Shock every 5 sec for 15 sec.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -5729,8 +5726,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game)",
-                            "uncertain": true
+                            "text": "After casting Divine Toll, you instantly cast Holy Shock every 5 sec for 15 sec.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -5745,8 +5742,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "After casting(varies by condition — check in-game) Divine Toll, you instantly cast (varies by condition — check in-game) every 5 sec for 15 sec.",
-                            "uncertain": true
+                            "text": "After casting Holy Prism, Holy Armament, or Divine Toll, you instantly cast Holy Shock every 5 sec for 15 sec.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -5761,8 +5758,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "After casting(varies by condition — check in-game) Divine Toll, you instantly cast (varies by condition — check in-game) every 5 sec for 15 sec.",
-                            "uncertain": true
+                            "text": "After casting Holy Prism, Holy Armament, or Divine Toll, you instantly cast Holy Shock every 5 sec for 15 sec.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -5777,8 +5774,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "After casting(varies by condition — check in-game) Divine Toll, you instantly cast (varies by condition — check in-game) every 5 sec for 15 sec.",
-                            "uncertain": true
+                            "text": "After casting Holy Prism, Holy Armament, or Divine Toll, you instantly cast Holy Shock every 5 sec for 15 sec.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -5793,8 +5790,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "After casting(varies by condition — check in-game) Divine Toll, you instantly cast (varies by condition — check in-game) every 5 sec for 15 sec.",
-                            "uncertain": true
+                            "text": "After casting Holy Prism, Holy Armament, or Divine Toll, you instantly cast Holy Shock every 5 sec for 15 sec.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -5809,8 +5806,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "After casting(varies by condition — check in-game) Divine Toll, you instantly cast (varies by condition — check in-game) every 5 sec for 15 sec.",
-                            "uncertain": true
+                            "text": "After casting Holy Prism, Holy Armament, or Divine Toll, you instantly cast Holy Shock every 5 sec for 15 sec.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -5825,7 +5822,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Casting (varies by condition — check in-game) causes your next 2 Holy Power spending abilities to apply Dawnlight on your target, dealing ≈255% of Spell Power Radiant damage or ≈538.2% of Spell Power healing over 8. 8% of Dawnlight's damage and healing radiates to nearby allies or enemies, reduced beyond 5 targets.(varies by condition — check in-game)",
+                            "text": "Casting Holy Prism or Divine Toll causes your next 2 Holy Power spending abilities to apply Dawnlight on your target, dealing ≈255% of Spell Power Radiant damage or ≈538.2% of Spell Power healing over 8. 8% of Dawnlight's damage and healing radiates to nearby allies or enemies, reduced beyond 5 targets. Dawnlight's healing does not transfer to Beacon of Light.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -5841,7 +5838,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Casting (varies by condition — check in-game) causes your next 2 Holy Power spending abilities to apply Dawnlight on your target, dealing ≈255% of Spell Power Radiant damage or ≈538.2% of Spell Power healing over 8. 8% of Dawnlight's damage and healing radiates to nearby allies or enemies, reduced beyond 5 targets.(varies by condition — check in-game)",
+                            "text": "Casting Holy Prism or Divine Toll causes your next 2 Holy Power spending abilities to apply Dawnlight on your target, dealing ≈255% of Spell Power Radiant damage or ≈538.2% of Spell Power healing over 8. 8% of Dawnlight's damage and healing radiates to nearby allies or enemies, reduced beyond 5 targets. Dawnlight's healing does not transfer to Beacon of Light.",
                             "uncertain": true
                         },
                         "category": "Mobility",
@@ -5857,7 +5854,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Casting (varies by condition — check in-game) causes your next 2 Holy Power spending abilities to apply Dawnlight on your target, dealing ≈255% of Spell Power Radiant damage or ≈538.2% of Spell Power healing over 8. 8% of Dawnlight's damage and healing radiates to nearby allies or enemies, reduced beyond 5 targets.(varies by condition — check in-game)",
+                            "text": "Casting Holy Prism or Divine Toll causes your next 2 Holy Power spending abilities to apply Dawnlight on your target, dealing ≈255% of Spell Power Radiant damage or ≈538.2% of Spell Power healing over 8. 8% of Dawnlight's damage and healing radiates to nearby allies or enemies, reduced beyond 5 targets. Dawnlight's healing does not transfer to Beacon of Light.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -5873,7 +5870,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Casting (varies by condition — check in-game) causes your next 2 Holy Power spending abilities to apply Dawnlight on your target, dealing ≈255% of Spell Power Radiant damage or ≈538.2% of Spell Power healing over 8. 8% of Dawnlight's damage and healing radiates to nearby allies or enemies, reduced beyond 5 targets.(varies by condition — check in-game)",
+                            "text": "Casting Holy Prism or Divine Toll causes your next 2 Holy Power spending abilities to apply Dawnlight on your target, dealing ≈255% of Spell Power Radiant damage or ≈538.2% of Spell Power healing over 8. 8% of Dawnlight's damage and healing radiates to nearby allies or enemies, reduced beyond 5 targets. Dawnlight's healing does not transfer to Beacon of Light.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -5889,7 +5886,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Casting (varies by condition — check in-game) causes your next ≈13.5% of Spell Power Holy Power spending abilities to apply Dawnlight on your target, dealing ≈255% of Spell Power Radiant damage or ≈538.2% of Spell Power healing over 8. 8% of Dawnlight's damage and healing radiates to nearby allies or enemies, reduced beyond 5 targets.(varies by condition — check in-game)",
+                            "text": "Casting Holy Prism or Divine Toll causes your next ≈13.5% of Spell Power Holy Power spending abilities to apply Dawnlight on your target, dealing ≈255% of Spell Power Radiant damage or ≈538.2% of Spell Power healing over 8. 8% of Dawnlight's damage and healing radiates to nearby allies or enemies, reduced beyond 5 targets. Dawnlight's healing does not transfer to Beacon of Light.",
                             "uncertain": true
                         },
                         "category": "Defensive",
@@ -5905,7 +5902,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Casting (varies by condition — check in-game) causes your next 8 Holy Power spending abilities to apply Dawnlight on your target, dealing ≈255% of Spell Power Radiant damage or ≈538.2% of Spell Power healing over 8. 8% of Dawnlight's damage and healing radiates to nearby allies or enemies, reduced beyond 5 targets.(varies by condition — check in-game)",
+                            "text": "Casting Holy Prism or Divine Toll causes your next 8 Holy Power spending abilities to apply Dawnlight on your target, dealing ≈255% of Spell Power Radiant damage or ≈538.2% of Spell Power healing over 8. 8% of Dawnlight's damage and healing radiates to nearby allies or enemies, reduced beyond 5 targets. Dawnlight's healing does not transfer to Beacon of Light.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -5921,8 +5918,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game)",
-                            "uncertain": true
+                            "text": "After casting Divine Toll, you instantly cast Holy Shock every 5 sec for 15 sec.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -5937,8 +5934,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game)",
-                            "uncertain": true
+                            "text": "After casting Divine Toll, you instantly cast Holy Shock every 5 sec for 15 sec.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -5953,8 +5950,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "After casting(varies by condition — check in-game) Divine Toll, you instantly cast (varies by condition — check in-game) every 5 sec for 15 sec.",
-                            "uncertain": true
+                            "text": "After casting Holy Prism, Holy Armament, or Divine Toll, you instantly cast Holy Shock every 5 sec for 15 sec.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -5969,7 +5966,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Casting (varies by condition — check in-game) causes your next 2 Holy Power spending abilities to apply Dawnlight on your target, dealing ≈255% of Spell Power Radiant damage or ≈538.2% of Spell Power healing over 8. 8% of Dawnlight's damage and healing radiates to nearby allies or enemies, reduced beyond 5 targets.(varies by condition — check in-game)",
+                            "text": "Casting Holy Prism or Divine Toll causes your next 2 Holy Power spending abilities to apply Dawnlight on your target, dealing ≈255% of Spell Power Radiant damage or ≈538.2% of Spell Power healing over 8. 8% of Dawnlight's damage and healing radiates to nearby allies or enemies, reduced beyond 5 targets. Dawnlight's healing does not transfer to Beacon of Light.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -5985,8 +5982,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "After you cast (varies by condition — check in-game), gain Divine Purpose. (varies by condition — check in-game)",
-                            "uncertain": true
+                            "text": "After you cast Holy Prism or Divine Toll, gain Divine Purpose. Divine Purpose $@spellaura223819",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -6896,8 +6893,8 @@
             "spellId": 7794,
             "category": "Other",
             "description": {
-                "text": "(varies by condition — check in-game)",
-                "uncertain": true
+                "text": "Dawnlight's duration is increased by 0.5 sec when it heals an ally with full health.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -6926,7 +6923,7 @@
             "spellId": 7779,
             "category": "Defensive",
             "description": {
-                "text": "Heals an ally for 25 and an additional ≈109.4% of Spell Power over 16. Healing increased by (varies by condition — check in-game)% when cast on self.",
+                "text": "Heals an ally for 25 and an additional ≈109.4% of Spell Power over 16. Healing increased by 25% when cast on self.",
                 "uncertain": true
             },
             "formulaModifierSpellIds": [],
@@ -7054,8 +7051,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Call upon the Light to become an avatar of retribution, (varies by condition — check in-game)increasing your damage, healing, and critical strike chance by 20% for 20.",
-                            "uncertain": true
+                            "text": "Call upon the Light to become an avatar of retribution, increasing your damage, healing, and critical strike chance by 20% for 20.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -7213,7 +7210,7 @@
             "spellId": 7757,
             "category": "Offensive",
             "description": {
-                "text": "Melee and ranged attackers receive ≈35% of Spell Power Holy damage each time they strike you during (varies by condition — check in-game) and Divine Shield.",
+                "text": "Melee and ranged attackers receive ≈35% of Spell Power Holy damage each time they strike you during Divine Protection and Divine Shield.",
                 "uncertain": true
             },
             "formulaModifierSpellIds": [],
@@ -7260,7 +7257,7 @@
             "spellId": 7751,
             "category": "Defensive",
             "description": {
-                "text": "(varies by condition — check in-game) grants 20% bonus armor for (varies).",
+                "text": "Word of Glory grants 20% bonus armor for (varies).",
                 "uncertain": true
             },
             "formulaModifierSpellIds": [],
@@ -7570,8 +7567,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Flash of Light (varies by condition — check in-game) 30% more effective on your allies and 40% of the healing done also heals you.",
-                            "uncertain": true
+                            "text": "Flash of Light and Holy Light are 30% more effective on your allies and 40% of the healing done also heals you.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -7602,8 +7599,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Flash of Light (varies by condition — check in-game) 30% more effective on your allies and 40% of the healing done also heals you.",
-                            "uncertain": true
+                            "text": "Flash of Light and Holy Light are 30% more effective on your allies and 40% of the healing done also heals you.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -7702,8 +7699,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Call upon the Light to become an avatar of retribution, (varies by condition — check in-game)increasing your damage, healing, and critical strike chance by 20% for 20.",
-                            "uncertain": true
+                            "text": "Call upon the Light to become an avatar of retribution, increasing your damage, healing, and critical strike chance by 20% for 20.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -8173,8 +8170,8 @@
             "spellId": 7808,
             "category": "Offensive",
             "description": {
-                "text": "Judgment critical strikes cause a shockwave around the target, (varies by condition — check in-game).",
-                "uncertain": true
+                "text": "Judgment critical strikes cause a shockwave around the target, healing to up to 5 injuried allies for 100.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -8201,8 +8198,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game) Hammer and Anvil at 100% effectiveness.",
-                            "uncertain": true
+                            "text": "Holy Armaments activate Hammer and Anvil at 100% effectiveness.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -8402,7 +8399,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Instantly cast Holy Shock, Avenger's Shield, or Judgment on up to 100 targets within (varies) yds (based on your current specialization).(varies by condition — check in-game)",
+                            "text": "Instantly cast Holy Shock, Avenger's Shield, or Judgment on up to 100 targets within (varies) yds (based on your current specialization).",
                             "uncertain": true
                         },
                         "category": "Other",
@@ -8534,8 +8531,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Call upon the Light to become an avatar of retribution, (varies by condition — check in-game)increasing your damage, healing, and critical strike chance by 20% for 20.",
-                            "uncertain": true
+                            "text": "Call upon the Light to become an avatar of retribution, increasing your damage, healing, and critical strike chance by 20% for 20.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -8582,8 +8579,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game)",
-                            "uncertain": true
+                            "text": "Critical Strike chance of Holy Shock and Light of Dawn increased by 5%.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -8598,8 +8595,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game)",
-                            "uncertain": true
+                            "text": "The healing and damage of Holy Shock is increased by 50%.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -8678,7 +8675,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game)",
+                            "text": "Holy Shock and Light of Dawn critical strikes cause the target to be healed for an additional ≈54% of Spell Power over 4.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -8694,8 +8691,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game)",
-                            "uncertain": true
+                            "text": "Light of Dawn and Holy Shock have a 1% chance to cast again at 30% effectiveness.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -8710,8 +8707,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "During Avenging Wrath, Judgment is empowered into Hammer of Wrath.(varies by condition — check in-game)",
-                            "uncertain": true
+                            "text": "During Avenging Wrath, Judgment is empowered into Hammer of Wrath. Hammer of Wrath Hurls a divine hammer that strikes an enemy for ≈123.8% of Attack Power Holy damage. Generates 1 Holy Power.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -8726,8 +8723,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "During Avenging Wrath, Judgment is empowered into Hammer of Wrath.(varies by condition — check in-game)",
-                            "uncertain": true
+                            "text": "During Avenging Wrath, Judgment is empowered into Hammer of Wrath. Hammer of Wrath Hurls a divine hammer that strikes an enemy for ≈123.8% of Attack Power Holy damage. Generates 1 Holy Power.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -8742,7 +8739,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game)",
+                            "text": "Holy Shock and Light of Dawn critical strikes cause the target to be healed for an additional ≈54% of Spell Power over 4.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -8758,8 +8755,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game)",
-                            "uncertain": true
+                            "text": "Light of Dawn and Holy Shock have a 15% chance to cast again at 30% effectiveness.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -8774,7 +8771,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game)",
+                            "text": "Infusion of Light occurs (varies)% more often during Avenging Wrath.",
                             "uncertain": true
                         },
                         "category": "Other",
@@ -8901,8 +8898,8 @@
             "spellId": 7796,
             "category": "Defensive",
             "description": {
-                "text": "Will the Light to coalesce and become manifest as a Holy Armament, wielded by your friendly target. Holy Bulwark: While wielding a Holy Bulwark, gain an absorb shield for 15% of your max health and an additional 2% every 2 sec. Lasts 20. Becomes Sacred Weapon after use.(varies by condition — check in-game)",
-                "uncertain": true
+                "text": "Will the Light to coalesce and become manifest as a Holy Armament, wielded by your friendly target. Holy Bulwark: While wielding a Holy Bulwark, gain an absorb shield for 15% of your max health and an additional 2% every 2 sec. Lasts 20. Becomes Sacred Weapon after use. Generates 3 Holy Power.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -8913,8 +8910,8 @@
                         "modifier_value": -15,
                         "modifier_unit": "seconds",
                         "description": {
-                            "text": "(varies by condition — check in-game) cooldown is reduced by 15 sec.",
-                            "uncertain": true
+                            "text": "Divine Toll's, Holy Armament's, and Holy Prism's cooldown is reduced by 15 sec.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -9009,8 +9006,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "When your Holy Bulwark absorbs damage or your Sacred Weapon deals damage or healing, you have a chance to gain (varies by condition — check in-game).",
-                            "uncertain": true
+                            "text": "When your Holy Bulwark absorbs damage or your Sacred Weapon deals damage or healing, you have a chance to gain Awakening.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -9190,7 +9187,7 @@
             "spellId": 7974,
             "category": "Other",
             "description": {
-                "text": "Fires a beam of light that scatters to strike a clump of targets. \r\n\r\nIf the beam is aimed at an enemy target, it deals 2,433 Holy damage and radiates 2,649 healing to 5 allies within 30 yds.\r\n\r\nIf the beam is aimed at a friendly target, it heals for 5,998 and radiates 917 Holy damage to 5 enemies within 30 yds.\r\n\r\nGenerates 3 Holy Power.",
+                "text": "Fires a beam of light that scatters to strike a clump of targets. \r\n\r\nIf the beam is aimed at an enemy target, it deals 2,483 Holy damage and radiates 2,625 healing to 5 allies within 30 yds.\r\n\r\nIf the beam is aimed at a friendly target, it heals for 6,129 and radiates 919 Holy damage to 5 enemies within 30 yds.\r\n\r\nGenerates 3 Holy Power.",
                 "uncertain": false
             },
             "formulaModifierSpellIds": [],
@@ -9340,7 +9337,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Instantly cast Holy Shock, Avenger's Shield, or Judgment on up to 100 targets within (varies) yds (based on your current specialization).(varies by condition — check in-game)",
+                            "text": "Instantly cast Holy Shock, Avenger's Shield, or Judgment on up to 100 targets within (varies) yds (based on your current specialization).",
                             "uncertain": true
                         },
                         "category": "Other",
@@ -9372,7 +9369,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Instantly cast Holy Shock, Avenger's Shield, or Judgment on up to 60 targets within (varies) yds (based on your current specialization).(varies by condition — check in-game)",
+                            "text": "Instantly cast Holy Shock, Avenger's Shield, or Judgment on up to 60 targets within (varies) yds (based on your current specialization).",
                             "uncertain": true
                         },
                         "category": "Other",
@@ -9516,8 +9513,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Instantly cast Holy Shock, Avenger's Shield, or Judgment on up to 5 targets within 30 yds.(varies by condition — check in-game)(varies by condition — check in-game)",
-                            "uncertain": true
+                            "text": "Instantly cast Holy Shock, Avenger's Shield, or Judgment on up to 5 targets within 30 yds.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -9832,8 +9829,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game)",
-                            "uncertain": true
+                            "text": "Critical Strike chance of Holy Shock and Light of Dawn increased by 5%.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -9848,8 +9845,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game)",
-                            "uncertain": true
+                            "text": "The healing and damage of Holy Shock is increased by 15%.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -9880,8 +9877,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "After casting Divine Toll, you instantly cast (varies by condition — check in-game) every 5 sec. This effect lasts 15 sec.",
-                            "uncertain": true
+                            "text": "After casting Divine Toll, you instantly cast Holy Shock every 5 sec. This effect lasts 15 sec.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -9896,8 +9893,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "After casting Divine Toll, you instantly cast (varies by condition — check in-game) every 5 sec. This effect lasts 15 sec.",
-                            "uncertain": true
+                            "text": "After casting Divine Toll, you instantly cast Holy Shock every 5 sec. This effect lasts 15 sec.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -9912,8 +9909,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "After casting Divine Toll, you instantly cast (varies by condition — check in-game) every 5 sec. This effect lasts 15 sec.",
-                            "uncertain": true
+                            "text": "After casting Divine Toll, you instantly cast Holy Shock every 5 sec. This effect lasts 15 sec.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -9928,8 +9925,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "After casting Divine Toll, you instantly cast (varies by condition — check in-game) every 5 sec. This effect lasts 15 sec.",
-                            "uncertain": true
+                            "text": "After casting Divine Toll, you instantly cast Holy Shock every 5 sec. This effect lasts 15 sec.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -9944,8 +9941,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "After casting Divine Toll, you instantly cast (varies by condition — check in-game) every 5 sec. This effect lasts 15 sec.",
-                            "uncertain": true
+                            "text": "After casting Divine Toll, you instantly cast Holy Shock every 5 sec. This effect lasts 15 sec.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -9960,8 +9957,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game)",
-                            "uncertain": true
+                            "text": "After casting Divine Toll, you instantly cast Holy Shock every 5 sec for 15 sec.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -9976,8 +9973,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game)",
-                            "uncertain": true
+                            "text": "After casting Divine Toll, you instantly cast Holy Shock every 5 sec for 15 sec.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -9992,8 +9989,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game)",
-                            "uncertain": true
+                            "text": "After casting Divine Toll, you instantly cast Holy Shock every 5 sec for 15 sec.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -10008,8 +10005,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "After casting(varies by condition — check in-game) Divine Toll, you instantly cast (varies by condition — check in-game) every 5 sec for 15 sec.",
-                            "uncertain": true
+                            "text": "After casting Holy Prism, Holy Armament, or Divine Toll, you instantly cast Holy Shock every 5 sec for 15 sec.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -10024,8 +10021,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "After casting(varies by condition — check in-game) Divine Toll, you instantly cast (varies by condition — check in-game) every 5 sec for 15 sec.",
-                            "uncertain": true
+                            "text": "After casting Holy Prism, Holy Armament, or Divine Toll, you instantly cast Holy Shock every 5 sec for 15 sec.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -10040,8 +10037,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "After casting(varies by condition — check in-game) Divine Toll, you instantly cast (varies by condition — check in-game) every 5 sec for 15 sec.",
-                            "uncertain": true
+                            "text": "After casting Holy Prism, Holy Armament, or Divine Toll, you instantly cast Holy Shock every 5 sec for 15 sec.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -10056,8 +10053,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "After casting(varies by condition — check in-game) Divine Toll, you instantly cast (varies by condition — check in-game) every 5 sec for 15 sec.",
-                            "uncertain": true
+                            "text": "After casting Holy Prism, Holy Armament, or Divine Toll, you instantly cast Holy Shock every 5 sec for 15 sec.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -10072,8 +10069,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "After casting(varies by condition — check in-game) Divine Toll, you instantly cast (varies by condition — check in-game) every 5 sec for 15 sec.",
-                            "uncertain": true
+                            "text": "After casting Holy Prism, Holy Armament, or Divine Toll, you instantly cast Holy Shock every 5 sec for 15 sec.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -10120,7 +10117,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game)",
+                            "text": "Holy Shock and Light of Dawn critical strikes cause the target to be healed for an additional ≈54% of Spell Power over 4.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -10136,8 +10133,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game)",
-                            "uncertain": true
+                            "text": "The healing and damage of Holy Shock is increased by 50%.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -10152,8 +10149,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game)",
-                            "uncertain": true
+                            "text": "Light of Dawn and Holy Shock have a 1% chance to cast again at 30% effectiveness.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -10184,8 +10181,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game)",
-                            "uncertain": true
+                            "text": "After casting Divine Toll, you instantly cast Holy Shock every 5 sec for 15 sec.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -10232,8 +10229,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game)",
-                            "uncertain": true
+                            "text": "After casting Divine Toll, you instantly cast Holy Shock every 5 sec for 15 sec.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -10248,8 +10245,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "After casting(varies by condition — check in-game) Divine Toll, you instantly cast (varies by condition — check in-game) every 5 sec for 15 sec.",
-                            "uncertain": true
+                            "text": "After casting Holy Prism, Holy Armament, or Divine Toll, you instantly cast Holy Shock every 5 sec for 15 sec.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -10280,7 +10277,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game)",
+                            "text": "Holy Shock and Light of Dawn critical strikes cause the target to be healed for an additional ≈54% of Spell Power over 4.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -10296,8 +10293,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game)",
-                            "uncertain": true
+                            "text": "Light of Dawn and Holy Shock have a 15% chance to cast again at 30% effectiveness.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -10514,8 +10511,8 @@
             "spellId": 7736,
             "category": "Other",
             "description": {
-                "text": "Reduces the cooldown of Blessing of Protection(varies by condition — check in-game) by 60 sec.",
-                "uncertain": true
+                "text": "Reduces the cooldown of Blessing of Protection by 60 sec.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -10763,7 +10760,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game)",
+                            "text": "Infusion of Light occurs (varies)% more often during Avenging Wrath.",
                             "uncertain": true
                         },
                         "category": "Other",
@@ -10796,8 +10793,8 @@
             "spellId": 7767,
             "category": "Other",
             "description": {
-                "text": "(varies by condition — check in-game) increases healing taken by 15% for its duration.",
-                "uncertain": true
+                "text": "Divine Protection increases healing taken by 15% for its duration.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -10918,7 +10915,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Instantly cast Holy Shock, Avenger's Shield, or Judgment on up to 100 targets within (varies) yds (based on your current specialization).(varies by condition — check in-game)",
+                            "text": "Instantly cast Holy Shock, Avenger's Shield, or Judgment on up to 100 targets within (varies) yds (based on your current specialization).",
                             "uncertain": true
                         },
                         "category": "Other",
@@ -11062,7 +11059,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Instantly cast Holy Shock, Avenger's Shield, or Judgment on up to 60 targets within (varies) yds (based on your current specialization).(varies by condition — check in-game)",
+                            "text": "Instantly cast Holy Shock, Avenger's Shield, or Judgment on up to 60 targets within (varies) yds (based on your current specialization).",
                             "uncertain": true
                         },
                         "category": "Other",
@@ -11190,8 +11187,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Judgment critical strikes cause a shockwave around the target, (varies by condition — check in-game).",
-                            "uncertain": true
+                            "text": "Judgment critical strikes cause a shockwave around the target, healing to up to 5 injuried allies for 100.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -11206,8 +11203,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Judgment critical strikes cause a shockwave around the target, (varies by condition — check in-game).",
-                            "uncertain": true
+                            "text": "Judgment critical strikes cause a shockwave around the target, healing to up to 5 injuried allies for 100.",
+                            "uncertain": false
                         },
                         "category": "Defensive",
                         "cooldown": {
@@ -11270,8 +11267,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Judgment critical strikes cause a shockwave around the target, (varies by condition — check in-game).",
-                            "uncertain": true
+                            "text": "Judgment critical strikes cause a shockwave around the target, healing to up to 5 injuried allies for 100.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -11302,8 +11299,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Instantly cast Holy Shock, Avenger's Shield, or Judgment on up to 5 targets within 30 yds.(varies by condition — check in-game)(varies by condition — check in-game)",
-                            "uncertain": true
+                            "text": "Instantly cast Holy Shock, Avenger's Shield, or Judgment on up to 5 targets within 30 yds.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -11422,8 +11419,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Judgment critical strikes cause a shockwave around the target, (varies by condition — check in-game).",
-                            "uncertain": true
+                            "text": "Judgment critical strikes cause a shockwave around the target, healing to up to 5 injuried allies for 100.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -11438,8 +11435,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game)(varies by condition — check in-game)(varies by condition — check in-game)",
-                            "uncertain": true
+                            "text": "Avenging Wrath and Avenging Crusader have 25% increased duration.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -11586,8 +11583,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Call upon the Light to become an avatar of retribution, (varies by condition — check in-game)increasing your damage, healing, and critical strike chance by 20% for 20.",
-                            "uncertain": true
+                            "text": "Call upon the Light to become an avatar of retribution, increasing your damage, healing, and critical strike chance by 20% for 20.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -11634,8 +11631,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game)",
-                            "uncertain": true
+                            "text": "The healing and damage of Holy Shock is increased by 50%.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -11730,8 +11727,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Call upon the Light to become an avatar of retribution, (varies by condition — check in-game)increasing your damage, healing, and critical strike chance by 20% for 20.",
-                            "uncertain": true
+                            "text": "Call upon the Light to become an avatar of retribution, increasing your damage, healing, and critical strike chance by 20% for 20.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -11746,8 +11743,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game)",
-                            "uncertain": true
+                            "text": "After casting Divine Toll, you instantly cast Holy Shock every 5 sec for 15 sec.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -11762,8 +11759,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game)",
-                            "uncertain": true
+                            "text": "After casting Divine Toll, you instantly cast Holy Shock every 5 sec for 15 sec.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -11778,8 +11775,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game)",
-                            "uncertain": true
+                            "text": "After casting Divine Toll, you instantly cast Holy Shock every 5 sec for 15 sec.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -11826,8 +11823,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "After casting(varies by condition — check in-game) Divine Toll, you instantly cast (varies by condition — check in-game) every 5 sec for 15 sec.",
-                            "uncertain": true
+                            "text": "After casting Holy Prism, Holy Armament, or Divine Toll, you instantly cast Holy Shock every 5 sec for 15 sec.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -11842,8 +11839,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "After casting(varies by condition — check in-game) Divine Toll, you instantly cast (varies by condition — check in-game) every 5 sec for 15 sec.",
-                            "uncertain": true
+                            "text": "After casting Holy Prism, Holy Armament, or Divine Toll, you instantly cast Holy Shock every 5 sec for 15 sec.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -11858,8 +11855,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "After casting(varies by condition — check in-game) Divine Toll, you instantly cast (varies by condition — check in-game) every 5 sec for 15 sec.",
-                            "uncertain": true
+                            "text": "After casting Holy Prism, Holy Armament, or Divine Toll, you instantly cast Holy Shock every 5 sec for 15 sec.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -11874,8 +11871,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "After casting(varies by condition — check in-game) Divine Toll, you instantly cast (varies by condition — check in-game) every 5 sec for 15 sec.",
-                            "uncertain": true
+                            "text": "After casting Holy Prism, Holy Armament, or Divine Toll, you instantly cast Holy Shock every 5 sec for 15 sec.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -11890,8 +11887,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "After casting(varies by condition — check in-game) Divine Toll, you instantly cast (varies by condition — check in-game) every 5 sec for 15 sec.",
-                            "uncertain": true
+                            "text": "After casting Holy Prism, Holy Armament, or Divine Toll, you instantly cast Holy Shock every 5 sec for 15 sec.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -11938,8 +11935,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "During Avenging Wrath, Judgment is empowered into Hammer of Wrath.(varies by condition — check in-game)",
-                            "uncertain": true
+                            "text": "During Avenging Wrath, Judgment is empowered into Hammer of Wrath. Hammer of Wrath Hurls a divine hammer that strikes an enemy for ≈123.8% of Attack Power Holy damage. Generates 1 Holy Power.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -11954,8 +11951,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game)",
-                            "uncertain": true
+                            "text": "After casting Divine Toll, you instantly cast Holy Shock every 5 sec for 15 sec.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -11970,8 +11967,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "During Avenging Wrath, Judgment is empowered into Hammer of Wrath.(varies by condition — check in-game)",
-                            "uncertain": true
+                            "text": "During Avenging Wrath, Judgment is empowered into Hammer of Wrath. Hammer of Wrath Hurls a divine hammer that strikes an enemy for ≈123.8% of Attack Power Holy damage. Generates 1 Holy Power.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -11986,8 +11983,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game)",
-                            "uncertain": true
+                            "text": "After casting Divine Toll, you instantly cast Holy Shock every 5 sec for 15 sec.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -12018,8 +12015,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "After casting(varies by condition — check in-game) Divine Toll, you instantly cast (varies by condition — check in-game) every 5 sec for 15 sec.",
-                            "uncertain": true
+                            "text": "After casting Holy Prism, Holy Armament, or Divine Toll, you instantly cast Holy Shock every 5 sec for 15 sec.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -12050,8 +12047,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game)",
-                            "uncertain": true
+                            "text": "The healing and damage of Holy Shock is increased by 15%.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -12481,8 +12478,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Avenging Wrath empowers your next (varies by condition — check in-game) with 30% increased effectiveness.",
-                            "uncertain": true
+                            "text": "Avenging Wrath empowers your next Word of Glory to automatically activate Light of Dawn with 30% increased effectiveness.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -12497,8 +12494,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Avenging Wrath empowers your next (varies by condition — check in-game) with 30% increased effectiveness.",
-                            "uncertain": true
+                            "text": "Avenging Wrath empowers your next Word of Glory to automatically activate Light of Dawn with 30% increased effectiveness.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -12581,8 +12578,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Call upon the Light to become an avatar of retribution, (varies by condition — check in-game)increasing your damage, healing, and critical strike chance by 20% for 20.",
-                            "uncertain": true
+                            "text": "Call upon the Light to become an avatar of retribution, increasing your damage, healing, and critical strike chance by 20% for 20.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -12629,8 +12626,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game)",
-                            "uncertain": true
+                            "text": "Critical Strike chance of Holy Shock and Light of Dawn increased by 5%.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -12725,7 +12722,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game)",
+                            "text": "Holy Shock and Light of Dawn critical strikes cause the target to be healed for an additional ≈54% of Spell Power over 4.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -12741,8 +12738,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game)",
-                            "uncertain": true
+                            "text": "Light of Dawn and Holy Shock have a 1% chance to cast again at 30% effectiveness.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -12805,7 +12802,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game)",
+                            "text": "Holy Shock and Light of Dawn critical strikes cause the target to be healed for an additional ≈54% of Spell Power over 4.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -12821,8 +12818,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game)",
-                            "uncertain": true
+                            "text": "Light of Dawn and Holy Shock have a 15% chance to cast again at 30% effectiveness.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -13254,8 +13251,8 @@
             "spellId": 7781,
             "category": "Other",
             "description": {
-                "text": "(varies by condition — check in-game)",
-                "uncertain": true
+                "text": "Critical Strike chance of Holy Shock and Light of Dawn increased by 5%.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -13558,8 +13555,8 @@
             "spellId": 7733,
             "category": "Other",
             "description": {
-                "text": "(varies by condition — check in-game) cooldown is reduced by 15 sec.",
-                "uncertain": true
+                "text": "Divine Toll's, Holy Armament's, and Holy Prism's cooldown is reduced by 15 sec.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -13635,8 +13632,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Successfully (varies by condition — check in-game) reduces (varies by condition — check in-game). Effect increased by 100% while wielding a Holy Armament.",
-                            "uncertain": true
+                            "text": "Successfully dispelling a harmful effect reduces Cleanse's cooldown by 1 sec. Effect increased by 100% while wielding a Holy Armament.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -13778,8 +13775,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Call upon the Light to become an avatar of retribution, (varies by condition — check in-game)increasing your damage, healing, and critical strike chance by 20% for 20.",
-                            "uncertain": true
+                            "text": "Call upon the Light to become an avatar of retribution, increasing your damage, healing, and critical strike chance by 20% for 20.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -13875,8 +13872,8 @@
             "spellId": 7812,
             "category": "Other",
             "description": {
-                "text": "When your Holy Bulwark absorbs damage or your Sacred Weapon deals damage or healing, you have a chance to gain (varies by condition — check in-game).",
-                "uncertain": true
+                "text": "When your Holy Bulwark absorbs damage or your Sacred Weapon deals damage or healing, you have a chance to gain Awakening.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -13905,8 +13902,8 @@
             "spellId": 7813,
             "category": "Other",
             "description": {
-                "text": "(varies by condition — check in-game) Hammer and Anvil at 100% effectiveness.",
-                "uncertain": true
+                "text": "Holy Armaments activate Hammer and Anvil at 100% effectiveness.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -14269,8 +14266,8 @@
             "spellId": 7835,
             "category": "Offensive",
             "description": {
-                "text": "(varies by condition — check in-game)(varies by condition — check in-game)(varies by condition — check in-game)",
-                "uncertain": true
+                "text": "Avenging Wrath and Avenging Crusader have 25% increased duration.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -14329,8 +14326,8 @@
             "spellId": 7740,
             "category": "Other",
             "description": {
-                "text": "Mastery increased by 2% and (varies by condition — check in-game) increased by 2%.",
-                "uncertain": true
+                "text": "Mastery increased by 2% and Intellect increased by 2%.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -14389,8 +14386,8 @@
             "spellId": 7788,
             "category": "Other",
             "description": {
-                "text": "(varies by condition — check in-game)",
-                "uncertain": true
+                "text": "Light of Dawn and Holy Shock have a 15% chance to cast again at 30% effectiveness.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -14466,8 +14463,8 @@
             "spellId": 7766,
             "category": "Other",
             "description": {
-                "text": "Flash of Light (varies by condition — check in-game) 30% more effective on your allies and 40% of the healing done also heals you.",
-                "uncertain": true
+                "text": "Flash of Light and Holy Light are 30% more effective on your allies and 40% of the healing done also heals you.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -14890,7 +14887,7 @@
             "spellId": 7785,
             "category": "Offensive",
             "description": {
-                "text": "(varies by condition — check in-game)",
+                "text": "Holy Shock and Light of Dawn critical strikes cause the target to be healed for an additional ≈54% of Spell Power over 4.",
                 "uncertain": true
             },
             "formulaModifierSpellIds": [],
@@ -14920,8 +14917,8 @@
             "spellId": 7787,
             "category": "Offensive",
             "description": {
-                "text": "You link to your Dawnlights within 30 yds, causing 15 Radiant damage to enemies or 15 healing to allies that pass through the beams, reduced beyond (varies by condition — check in-game) targets.",
-                "uncertain": true
+                "text": "You link to your Dawnlights within 30 yds, causing 15 Radiant damage to enemies or 15 healing to allies that pass through the beams, reduced beyond 5 targets.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -15373,7 +15370,7 @@
             "spellId": 7793,
             "category": "Other",
             "description": {
-                "text": "(varies by condition — check in-game)",
+                "text": "Infusion of Light occurs (varies)% more often during Avenging Wrath.",
                 "uncertain": true
             },
             "formulaModifierSpellIds": [],
@@ -15541,8 +15538,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game) grants 20% bonus armor for 4.5.",
-                            "uncertain": true
+                            "text": "Word of Glory grants 20% bonus armor for 4.5.",
+                            "uncertain": false
                         },
                         "category": "Defensive",
                         "cooldown": {
@@ -15557,8 +15554,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Avenging Wrath empowers your next (varies by condition — check in-game) with 30% increased effectiveness.",
-                            "uncertain": true
+                            "text": "Avenging Wrath empowers your next Word of Glory to automatically activate Light of Dawn with 30% increased effectiveness.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -15573,8 +15570,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Avenging Wrath empowers your next (varies by condition — check in-game) with 30% increased effectiveness.",
-                            "uncertain": true
+                            "text": "Avenging Wrath empowers your next Word of Glory to automatically activate Light of Dawn with 30% increased effectiveness.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -15653,7 +15650,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game) grants 20% bonus armor for (varies).",
+                            "text": "Word of Glory grants 20% bonus armor for (varies).",
                             "uncertain": true
                         },
                         "category": "Defensive",
@@ -15721,8 +15718,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Call upon the Light to become an avatar of retribution, (varies by condition — check in-game)increasing your damage, healing, and critical strike chance by 20% for 20.",
-                            "uncertain": true
+                            "text": "Call upon the Light to become an avatar of retribution, increasing your damage, healing, and critical strike chance by 20% for 20.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -15833,7 +15830,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Heals an ally for 25 and an additional ≈109.4% of Spell Power over 16. Healing increased by (varies by condition — check in-game)% when cast on self.",
+                            "text": "Heals an ally for 25 and an additional ≈109.4% of Spell Power over 16. Healing increased by 25% when cast on self.",
                             "uncertain": true
                         },
                         "category": "Defensive",

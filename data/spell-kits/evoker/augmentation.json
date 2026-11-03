@@ -1,6 +1,6 @@
 {
-    "generatedAt": "2026-10-18T02:35:57+00:00",
-    "spellCacheVersion": 29,
+    "generatedAt": "2026-11-03T23:03:44+00:00",
+    "spellCacheVersion": 31,
     "codeFingerprint": "dev",
     "entries": [
         {
@@ -519,7 +519,7 @@
             "spellId": 3756,
             "category": "Offensive",
             "description": {
-                "text": "(varies by condition — check in-game) marks your primary target for destruction for the next 6. You and your allies have a chance to trigger a Bombardment when attacking marked targets, dealing (varies) Volcanic damage split amongst all nearby enemies.",
+                "text": "Mass Eruption marks your primary target for destruction for the next 6. You and your allies have a chance to trigger a Bombardment when attacking marked targets, dealing (varies) Volcanic damage split amongst all nearby enemies.",
                 "uncertain": true
             },
             "formulaModifierSpellIds": [
@@ -846,8 +846,8 @@
             "spellId": 3771,
             "category": "Other",
             "description": {
-                "text": "(varies by condition — check in-game) strikes 1 additional target.",
-                "uncertain": true
+                "text": "Mass Eruption strikes 1 additional target.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -2889,8 +2889,8 @@
             "spellId": 3271,
             "category": "Defensive",
             "description": {
-                "text": "Send a flickering flame towards your target, (varies by condition — check in-game)",
-                "uncertain": true
+                "text": "Send a flickering flame towards your target, dealing 1.6 Fire damage to an enemy or healing an ally for 1.6.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -3255,7 +3255,7 @@
             "spellId": 3755,
             "category": "Other",
             "description": {
-                "text": "Breath of Eons can now be steered in your desired direction. In addition, Breath of Eons burns targets for ≈840% of Spell Power Volcanic damage over 12.(varies by condition — check in-game)",
+                "text": "Breath of Eons can now be steered in your desired direction. In addition, Breath of Eons burns targets for ≈840% of Spell Power Volcanic damage over 12.",
                 "uncertain": true
             },
             "formulaModifierSpellIds": [],
@@ -3345,8 +3345,8 @@
             "spellId": 3759,
             "category": "Offensive",
             "description": {
-                "text": "Breath of Eons causes enemies to take 20% increased damage from Bombardments and Essence abilities for 12.(varies by condition — check in-game)",
-                "uncertain": true
+                "text": "Breath of Eons causes enemies to take 20% increased damage from Bombardments and Essence abilities for 12.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -3572,8 +3572,8 @@
             "spellId": 3643,
             "category": "Other",
             "description": {
-                "text": "Disintegrate channels 20% faster(varies by condition — check in-game).",
-                "uncertain": true
+                "text": "Disintegrate channels 20% faster and Eruption's cast time is reduced by 20%.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -4922,7 +4922,7 @@
             "spellId": 3819,
             "category": "Other",
             "description": {
-                "text": "Landslide causes enemies who are mid-air to be slammed to the ground, stunning them for 5 sec and Landslide's cooldown is reduced by 15 sec.",
+                "text": "Landslide causes enemies who are mid-air to be slammed to the ground, stunning them for 5 sec.\r\n\r\nLandslide's cooldown is reduced by 15 sec.",
                 "uncertain": false
             },
             "formulaModifierSpellIds": [],
@@ -5915,8 +5915,8 @@
             "spellId": 3766,
             "category": "Other",
             "description": {
-                "text": "For each second you are in combat, Azure Strike, Living Flame, and (varies by condition — check in-game) deal 1% increased damage, up to 15%.",
-                "uncertain": true
+                "text": "For each second you are in combat, Azure Strike, Living Flame, and Eruption deal 1% increased damage, up to 15%.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -6170,7 +6170,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game)",
+                            "text": "Upheaval deals (varies)% additional damage over 8.",
                             "uncertain": true
                         },
                         "category": "Defensive",
@@ -6374,8 +6374,8 @@
             "spellId": 3762,
             "category": "Other",
             "description": {
-                "text": "(varies by condition — check in-game) reduces the remaining cooldown of (varies by condition — check in-game) by (varies by condition — check in-game) sec for each target struck.",
-                "uncertain": true
+                "text": "Mass Eruption reduces the remaining cooldown of Breath of Eons by 1.5 sec for each target struck.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {

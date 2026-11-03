@@ -1,6 +1,6 @@
 {
-    "generatedAt": "2026-10-18T02:37:37+00:00",
-    "spellCacheVersion": 29,
+    "generatedAt": "2026-11-03T23:05:24+00:00",
+    "spellCacheVersion": 31,
     "codeFingerprint": "dev",
     "entries": [
         {
@@ -189,8 +189,8 @@
             "spellId": 1764,
             "category": "Other",
             "description": {
-                "text": "(varies by condition — check in-game)",
-                "uncertain": true
+                "text": "Increases the critical strike chance of Immolation Aura by 6%.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -416,8 +416,8 @@
             "spellId": 1797,
             "category": "Utility",
             "description": {
-                "text": "(varies by condition — check in-game) removes 1 Disease effect.",
-                "uncertain": true
+                "text": "Immolation Aura removes 1 Disease effect.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -762,8 +762,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "The primary target of (varies by condition — check in-game) is stunned for an additional 2 sec.",
-                            "uncertain": true
+                            "text": "The primary target of Chaos Nova is stunned for an additional 2 sec.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -1058,7 +1058,7 @@
             "spellId": 1422,
             "category": "Other",
             "description": {
-                "text": "The radius of Darkness is increased by 4 yds, and its duration by 2 sec.",
+                "text": "The radius of Darkness is increased by 4 yds, and its duration by 4 sec.",
                 "uncertain": false
             },
             "formulaModifierSpellIds": [],
@@ -1242,7 +1242,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "The radius of Darkness is increased by 4 yds, and its duration by 2 sec.",
+                            "text": "The radius of Darkness is increased by 4 yds, and its duration by 4 sec.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -1411,8 +1411,8 @@
                         "modifier_value": 1,
                         "modifier_unit": "charges",
                         "description": {
-                            "text": "(varies by condition — check in-game) gains 1 additional charge.",
-                            "uncertain": true
+                            "text": "Demon Spikes gains 1 additional charge.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -1689,7 +1689,7 @@
             "spellId": 1942,
             "category": "Other",
             "description": {
-                "text": "Activating Void Metamorphosis greatly empowers The Hunt. Voidsurge damage is increased by 10% for each time it previously triggered while your demon form is active.",
+                "text": "Void Metamorphosis greatly empowers The Hunt and casting Collapsing Star resets its cooldown. Voidsurge damage is increased by 10% for each time it previously triggered while your demon form is active.",
                 "uncertain": false
             },
             "formulaModifierSpellIds": [],
@@ -1719,8 +1719,8 @@
             "spellId": 1796,
             "category": "Other",
             "description": {
-                "text": "(varies by condition — check in-game) gains 1 additional charge.",
-                "uncertain": true
+                "text": "Demon Spikes gains 1 additional charge.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -2515,8 +2515,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game) damage increased by 15%. (varies by condition — check in-game) generates (varies by condition — check in-game).",
-                            "uncertain": true
+                            "text": "Fel Devastation damage increased by 15%. Fel Devastation generates 3 Soul Fragments over its duration.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -3574,8 +3574,8 @@
             "spellId": 1795,
             "category": "Other",
             "description": {
-                "text": "The primary target of (varies by condition — check in-game) is stunned for an additional 2 sec.",
-                "uncertain": true
+                "text": "The primary target of Chaos Nova is stunned for an additional 2 sec.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -4412,7 +4412,7 @@
             "spellId": 1994,
             "category": "Crowd Control",
             "description": {
-                "text": "You strangle the target with demonic magic, stunning them in place and dealing 392 Shadow damage over 5 sec while the target is grasped. Can move while channeling.\r\n\r\nUse Illidan's Grasp again to toss the target to a location within 20 yards.",
+                "text": "You strangle the target with demonic magic, stunning them in place and dealing 588 Shadow damage over 5 sec while the target is grasped. Can move while channeling.\r\n\r\nUse Illidan's Grasp again to toss the target to a location within 20 yards.",
                 "uncertain": false
             },
             "formulaModifierSpellIds": [],
@@ -4500,8 +4500,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game) increases your armor by 20% and causes melee attackers to suffer ≈12% of Attack Power Chaos damage.",
-                            "uncertain": true
+                            "text": "Immolation Aura increases your armor by 20% and causes melee attackers to suffer ≈12% of Attack Power Chaos damage.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -4532,8 +4532,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game) increases your armor by 20% and causes melee attackers to suffer ≈12% of Attack Power Chaos damage.",
-                            "uncertain": true
+                            "text": "Immolation Aura increases your armor by 20% and causes melee attackers to suffer ≈12% of Attack Power Chaos damage.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -4580,8 +4580,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game) removes 1 Curse effect.",
-                            "uncertain": true
+                            "text": "Immolation Aura removes 1 Curse effect.",
+                            "uncertain": false
                         },
                         "category": "Utility",
                         "cooldown": {
@@ -4596,8 +4596,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game)",
-                            "uncertain": true
+                            "text": "Increases the critical strike chance of Immolation Aura by 6%.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -4612,8 +4612,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game) removes 1 Curse effect.",
-                            "uncertain": true
+                            "text": "Immolation Aura removes 1 Curse effect.",
+                            "uncertain": false
                         },
                         "category": "Utility",
                         "cooldown": {
@@ -4808,8 +4808,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game) removes 1 Disease effect.",
-                            "uncertain": true
+                            "text": "Immolation Aura removes 1 Disease effect.",
+                            "uncertain": false
                         },
                         "category": "Utility",
                         "cooldown": {
@@ -4824,8 +4824,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game) removes 1 Disease effect.",
-                            "uncertain": true
+                            "text": "Immolation Aura removes 1 Disease effect.",
+                            "uncertain": false
                         },
                         "category": "Utility",
                         "cooldown": {
@@ -5092,8 +5092,8 @@
             "spellId": 1771,
             "category": "Offensive",
             "description": {
-                "text": "(varies by condition — check in-game) increases your armor by 20% and causes melee attackers to suffer ≈12% of Attack Power Chaos damage.",
-                "uncertain": true
+                "text": "Immolation Aura increases your armor by 20% and causes melee attackers to suffer ≈12% of Attack Power Chaos damage.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -6247,8 +6247,8 @@
             "spellId": 1915,
             "category": "Other",
             "description": {
-                "text": "While at 3 stacks of Voidfall, (varies by condition — check in-game) consumes all 3 to rapidly call down that many meteor strikes.",
-                "uncertain": true
+                "text": "While at 3 stacks of Voidfall, Spirit Bomb and Soul Cleave consumes all 3 to rapidly call down that many meteor strikes.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -6277,8 +6277,8 @@
             "spellId": 1914,
             "category": "Other",
             "description": {
-                "text": "(varies by condition — check in-game) damage increased by 15%. (varies by condition — check in-game) generates (varies by condition — check in-game).",
-                "uncertain": true
+                "text": "Fel Devastation damage increased by 15%. Fel Devastation generates 3 Soul Fragments over its duration.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -6324,8 +6324,8 @@
             "spellId": 1941,
             "category": "Other",
             "description": {
-                "text": "Intellect increased by 15% while not in demon form.(varies by condition — check in-game)",
-                "uncertain": true
+                "text": "Intellect increased by 10% while not in demon form.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -8422,8 +8422,8 @@
             "spellId": 1803,
             "category": "Utility",
             "description": {
-                "text": "(varies by condition — check in-game) removes 1 Curse effect.",
-                "uncertain": true
+                "text": "Immolation Aura removes 1 Curse effect.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -9480,8 +9480,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game) damage increased by 15%. (varies by condition — check in-game) generates (varies by condition — check in-game).",
-                            "uncertain": true
+                            "text": "Fel Devastation damage increased by 15%. Fel Devastation generates 3 Soul Fragments over its duration.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -10012,8 +10012,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "While at 3 stacks of Voidfall, (varies by condition — check in-game) consumes all 3 to rapidly call down that many meteor strikes.",
-                            "uncertain": true
+                            "text": "While at 3 stacks of Voidfall, Spirit Bomb and Soul Cleave consumes all 3 to rapidly call down that many meteor strikes.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -10522,8 +10522,8 @@
             "spellId": 1938,
             "category": "Other",
             "description": {
-                "text": "Maximum Fury increased by 20.(varies by condition — check in-game)",
-                "uncertain": true
+                "text": "Maximum Fury increased by 20.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -10808,7 +10808,7 @@
             "spellId": 1936,
             "category": "Other",
             "description": {
-                "text": "Entering Void Metamorphosis resets the cooldown of Voidblade and The Hunt. The Hunt deals 25% increased damage and resets the cooldown of Soul Immolation.",
+                "text": "Entering Void Metamorphosis resets the cooldown of Voidblade and Soul Immolation.",
                 "uncertain": false
             },
             "formulaModifierSpellIds": [],
@@ -10898,8 +10898,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "The primary target of (varies by condition — check in-game) is stunned for an additional 2 sec.",
-                            "uncertain": true
+                            "text": "The primary target of Chaos Nova is stunned for an additional 2 sec.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -11276,8 +11276,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game) damage increased by 15%. (varies by condition — check in-game) generates (varies by condition — check in-game).",
-                            "uncertain": true
+                            "text": "Fel Devastation damage increased by 15%. Fel Devastation generates 3 Soul Fragments over its duration.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -11292,8 +11292,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "While at 3 stacks of Voidfall, (varies by condition — check in-game) consumes all 3 to rapidly call down that many meteor strikes.",
-                            "uncertain": true
+                            "text": "While at 3 stacks of Voidfall, Spirit Bomb and Soul Cleave consumes all 3 to rapidly call down that many meteor strikes.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -11605,8 +11605,8 @@
             "spellId": 1930,
             "category": "Offensive",
             "description": {
-                "text": "(varies by condition — check in-game) Nova slows enemies by 60% and reduces attack and cast speed by 15% for 5 after its stun fades.",
-                "uncertain": true
+                "text": "Void Nova slows enemies by 60% and reduces attack and cast speed by 15% for 5 after its stun fades.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {

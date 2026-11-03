@@ -1,6 +1,6 @@
 {
-    "generatedAt": "2026-10-18T02:37:28+00:00",
-    "spellCacheVersion": 29,
+    "generatedAt": "2026-11-03T23:05:15+00:00",
+    "spellCacheVersion": 31,
     "codeFingerprint": "dev",
     "entries": [
         {
@@ -705,8 +705,8 @@
             "spellId": 9603,
             "category": "Other",
             "description": {
-                "text": "(varies by condition — check in-game) damage increased by 60%.",
-                "uncertain": true
+                "text": "Shuriken Storm damage increased by 60%.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -735,8 +735,8 @@
             "spellId": 9641,
             "category": "Other",
             "description": {
-                "text": "(varies by condition — check in-game) has (varies by condition — check in-game)% increased critical strike chance and now triggers Unseen Blade when available.",
-                "uncertain": true
+                "text": "Shuriken Storm has 10% increased critical strike chance and now triggers Unseen Blade when available.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -952,8 +952,8 @@
             "spellId": 9602,
             "category": "Other",
             "description": {
-                "text": "(varies by condition — check in-game) damage increased by (varies by condition — check in-game)%.",
-                "uncertain": true
+                "text": "Deathstalker's Mark damage increased by 25%.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -1614,11 +1614,45 @@
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
-                "named": [],
+                "named": [
+                    {
+                        "spellId": 9712,
+                        "relationship_type": "modifies",
+                        "modifier_value": null,
+                        "modifier_unit": null,
+                        "description": {
+                            "text": "Shadow damage increased by 8%.",
+                            "uncertain": false
+                        },
+                        "category": "Other",
+                        "cooldown": {
+                            "seconds": null,
+                            "base_seconds": null,
+                            "applied": []
+                        }
+                    }
+                ],
                 "baseline": [],
-                "potential": []
+                "potential": [
+                    {
+                        "spellId": 9399,
+                        "relationship_type": "modifies",
+                        "modifier_value": null,
+                        "modifier_unit": null,
+                        "description": {
+                            "text": "After Shadow Blades expires, gain 30% increased Shadow damage for 30.",
+                            "uncertain": false
+                        },
+                        "category": "Other",
+                        "cooldown": {
+                            "seconds": null,
+                            "base_seconds": null,
+                            "applied": []
+                        }
+                    }
+                ]
             },
-            "hasPotentialImprovement": false,
+            "hasPotentialImprovement": true,
             "cooldown": {
                 "seconds": null,
                 "base_seconds": null,
@@ -1669,8 +1703,8 @@
             "spellId": 9596,
             "category": "Other",
             "description": {
-                "text": "When you consume the final Deathstalker's Mark from a target or your target dies, gain 30 Energy and Darkest Night, causing your next (varies by condition — check in-game) cast with 5 or more combo points to critically strike, deal 35% additional damage, and apply 3 stacks of Deathstalker's Mark to the target if no other Deathstalker's Mark is active. (varies by condition — check in-game) cast with Darkest Night does not consume a stack of active Deathstalker's Marks.",
-                "uncertain": true
+                "text": "When you consume the final Deathstalker's Mark from a target or your target dies, gain 30 Energy and Darkest Night, causing your next Eviscerate cast with 5 or more combo points to critically strike, deal 35% additional damage, and apply 3 stacks of Deathstalker's Mark to the target if no other Deathstalker's Mark is active. Eviscerate cast with Darkest Night does not consume a stack of active Deathstalker's Marks.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -1683,8 +1717,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "When you consume the final Deathstalker's Mark from a target or your target dies, gain 30 Energy and Darkest Night, causing your next (varies by condition — check in-game) cast with 5 or more combo points to critically strike, deal 35% additional damage, and apply 3 stacks of Deathstalker's Mark to the target if no other Deathstalker's Mark is active. (varies by condition — check in-game) cast with Darkest Night does not consume a stack of active Deathstalker's Marks.",
-                            "uncertain": true
+                            "text": "When you consume the final Deathstalker's Mark from a target or your target dies, gain 30 Energy and Darkest Night, causing your next Eviscerate cast with 5 or more combo points to critically strike, deal 35% additional damage, and apply 3 stacks of Deathstalker's Mark to the target if no other Deathstalker's Mark is active. Eviscerate cast with Darkest Night does not consume a stack of active Deathstalker's Marks.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -1699,8 +1733,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "When you consume the final Deathstalker's Mark from a target or your target dies, gain 30 Energy and Darkest Night, causing your next (varies by condition — check in-game) cast with 5 or more combo points to critically strike, deal 35% additional damage, and apply 3 stacks of Deathstalker's Mark to the target if no other Deathstalker's Mark is active. (varies by condition — check in-game) cast with Darkest Night does not consume a stack of active Deathstalker's Marks.",
-                            "uncertain": true
+                            "text": "When you consume the final Deathstalker's Mark from a target or your target dies, gain 30 Energy and Darkest Night, causing your next Eviscerate cast with 5 or more combo points to critically strike, deal 35% additional damage, and apply 3 stacks of Deathstalker's Mark to the target if no other Deathstalker's Mark is active. Eviscerate cast with Darkest Night does not consume a stack of active Deathstalker's Marks.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -1792,7 +1826,7 @@
             "spellId": 9739,
             "category": "Other",
             "description": {
-                "text": "Finishing move that empowers your weapons with energy to perform a deadly attack.\r\n\r\nYou leap into the air and Eviscerate your target on the way back down, with such force that it has a 15% stronger effect.",
+                "text": "Finishing move that empowers your weapons with energy to perform a deadly attack.\r\n\r\nYou leap into the air and Eviscerate your target on the way back down, with such force that it has a 30% stronger effect.",
                 "uncertain": false
             },
             "formulaModifierSpellIds": [],
@@ -1852,8 +1886,8 @@
             "spellId": 9591,
             "category": "Offensive",
             "description": {
-                "text": "(varies by condition — check in-game) applies 3 stacks of Deathstalker's Mark to your target, unless Deathstalker's Mark is already active. You learn Mark for Death. When you spend 5 or more combo points on attacks against a Marked target you consume an application of Deathstalker's Mark, dealing 3 Plague damage. Mark for Death Move your active Deathstalker's Mark to your target.",
-                "uncertain": true
+                "text": "Shadowstrike applies 3 stacks of Deathstalker's Mark to your target, unless Deathstalker's Mark is already active. You learn Mark for Death. When you spend 5 or more combo points on attacks against a Marked target you consume an application of Deathstalker's Mark, dealing 3 Plague damage. Mark for Death Move your active Deathstalker's Mark to your target.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -1866,8 +1900,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game) applies 3 stacks of Deathstalker's Mark to your target, unless Deathstalker's Mark is already active. You learn Mark for Death. When you spend 8 or more combo points on attacks against a Marked target you consume an application of Deathstalker's Mark, dealing 3 Plague damage. Mark for Death Move your active Deathstalker's Mark to your target.",
-                            "uncertain": true
+                            "text": "Shadowstrike applies 3 stacks of Deathstalker's Mark to your target, unless Deathstalker's Mark is already active. You learn Mark for Death. When you spend 8 or more combo points on attacks against a Marked target you consume an application of Deathstalker's Mark, dealing 3 Plague damage. Mark for Death Move your active Deathstalker's Mark to your target.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -1882,8 +1916,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game) applies 3 stacks of Deathstalker's Mark to your target, unless Deathstalker's Mark is already active. You learn Mark for Death. When you spend 8 or more combo points on attacks against a Marked target you consume an application of Deathstalker's Mark, dealing 3 Plague damage. Mark for Death Move your active Deathstalker's Mark to your target.",
-                            "uncertain": true
+                            "text": "Shadowstrike applies 3 stacks of Deathstalker's Mark to your target, unless Deathstalker's Mark is already active. You learn Mark for Death. When you spend 8 or more combo points on attacks against a Marked target you consume an application of Deathstalker's Mark, dealing 3 Plague damage. Mark for Death Move your active Deathstalker's Mark to your target.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -1898,8 +1932,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "When you consume the final Deathstalker's Mark from a target or your target dies, gain 30 Energy and Darkest Night, causing your next (varies by condition — check in-game) cast with 5 or more combo points to critically strike, deal 35% additional damage, and apply 3 stacks of Deathstalker's Mark to the target if no other Deathstalker's Mark is active. (varies by condition — check in-game) cast with Darkest Night does not consume a stack of active Deathstalker's Marks.",
-                            "uncertain": true
+                            "text": "When you consume the final Deathstalker's Mark from a target or your target dies, gain 30 Energy and Darkest Night, causing your next Eviscerate cast with 5 or more combo points to critically strike, deal 35% additional damage, and apply 3 stacks of Deathstalker's Mark to the target if no other Deathstalker's Mark is active. Eviscerate cast with Darkest Night does not consume a stack of active Deathstalker's Marks.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -1914,8 +1948,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "When you consume the final Deathstalker's Mark from a target or your target dies, gain 30 Energy and Darkest Night, causing your next (varies by condition — check in-game) cast with 5 or more combo points to critically strike, deal 35% additional damage, and apply 3 stacks of Deathstalker's Mark to the target if no other Deathstalker's Mark is active. (varies by condition — check in-game) cast with Darkest Night does not consume a stack of active Deathstalker's Marks.",
-                            "uncertain": true
+                            "text": "When you consume the final Deathstalker's Mark from a target or your target dies, gain 30 Energy and Darkest Night, causing your next Eviscerate cast with 5 or more combo points to critically strike, deal 35% additional damage, and apply 3 stacks of Deathstalker's Mark to the target if no other Deathstalker's Mark is active. Eviscerate cast with Darkest Night does not consume a stack of active Deathstalker's Marks.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -1930,8 +1964,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "When you consume an application of Deathstalker's Mark, the damage of your next (varies by condition — check in-game) is increased by 50%(varies by condition — check in-game).",
-                            "uncertain": true
+                            "text": "When you consume an application of Deathstalker's Mark, the damage of your next Gloomblade is increased by 50% or Shadowstrike increased by 25%.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -1946,8 +1980,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game) applies 3 stacks of Deathstalker's Mark to your target, unless Deathstalker's Mark is already active. You learn Mark for Death. When you spend 8 or more combo points on attacks against a Marked target you consume an application of Deathstalker's Mark, dealing 3 Plague damage. Mark for Death Move your active Deathstalker's Mark to your target.",
-                            "uncertain": true
+                            "text": "Shadowstrike applies 3 stacks of Deathstalker's Mark to your target, unless Deathstalker's Mark is already active. You learn Mark for Death. When you spend 8 or more combo points on attacks against a Marked target you consume an application of Deathstalker's Mark, dealing 3 Plague damage. Mark for Death Move your active Deathstalker's Mark to your target.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -1978,8 +2012,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "When you consume the final Deathstalker's Mark from a target or your target dies, gain 30 Energy and Darkest Night, causing your next (varies by condition — check in-game) cast with 5 or more combo points to critically strike, deal 35% additional damage, and apply 3 stacks of Deathstalker's Mark to the target if no other Deathstalker's Mark is active. (varies by condition — check in-game) cast with Darkest Night does not consume a stack of active Deathstalker's Marks.",
-                            "uncertain": true
+                            "text": "When you consume the final Deathstalker's Mark from a target or your target dies, gain 30 Energy and Darkest Night, causing your next Eviscerate cast with 5 or more combo points to critically strike, deal 35% additional damage, and apply 3 stacks of Deathstalker's Mark to the target if no other Deathstalker's Mark is active. Eviscerate cast with Darkest Night does not consume a stack of active Deathstalker's Marks.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -1994,8 +2028,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "When you consume an application of Deathstalker's Mark, the damage of your next (varies by condition — check in-game) is increased by 50%(varies by condition — check in-game).",
-                            "uncertain": true
+                            "text": "When you consume an application of Deathstalker's Mark, the damage of your next Gloomblade is increased by 50% or Shadowstrike increased by 25%.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -2010,8 +2044,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game) damage increased by (varies by condition — check in-game)%.",
-                            "uncertain": true
+                            "text": "Deathstalker's Mark damage increased by 25%.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -2042,8 +2076,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Deathstalker's Mark deals (varies by condition — check in-game)% of its normal damage to all other enemies within 8 yds (varies by condition — check in-game).",
-                            "uncertain": true
+                            "text": "Deathstalker's Mark deals 75% of its normal damage to all other enemies within 8 yds when a stack is consumed by Black Powder.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -3146,8 +3180,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "When you consume the final Deathstalker's Mark from a target or your target dies, gain 30 Energy and Darkest Night, causing your next (varies by condition — check in-game) cast with 5 or more combo points to critically strike, deal 35% additional damage, and apply 3 stacks of Deathstalker's Mark to the target if no other Deathstalker's Mark is active. (varies by condition — check in-game) cast with Darkest Night does not consume a stack of active Deathstalker's Marks.",
-                            "uncertain": true
+                            "text": "When you consume the final Deathstalker's Mark from a target or your target dies, gain 30 Energy and Darkest Night, causing your next Eviscerate cast with 5 or more combo points to critically strike, deal 35% additional damage, and apply 3 stacks of Deathstalker's Mark to the target if no other Deathstalker's Mark is active. Eviscerate cast with Darkest Night does not consume a stack of active Deathstalker's Marks.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -3194,8 +3228,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "When you consume the final Deathstalker's Mark from a target or your target dies, gain 30 Energy and Darkest Night, causing your next (varies by condition — check in-game) cast with 5 or more combo points to critically strike, deal 35% additional damage, and apply 3 stacks of Deathstalker's Mark to the target if no other Deathstalker's Mark is active. (varies by condition — check in-game) cast with Darkest Night does not consume a stack of active Deathstalker's Marks.",
-                            "uncertain": true
+                            "text": "When you consume the final Deathstalker's Mark from a target or your target dies, gain 30 Energy and Darkest Night, causing your next Eviscerate cast with 5 or more combo points to critically strike, deal 35% additional damage, and apply 3 stacks of Deathstalker's Mark to the target if no other Deathstalker's Mark is active. Eviscerate cast with Darkest Night does not consume a stack of active Deathstalker's Marks.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -3210,8 +3244,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "When you consume the final Deathstalker's Mark from a target or your target dies, gain 30 Energy and Darkest Night, causing your next (varies by condition — check in-game) cast with 5 or more combo points to critically strike, deal 35% additional damage, and apply 3 stacks of Deathstalker's Mark to the target if no other Deathstalker's Mark is active. (varies by condition — check in-game) cast with Darkest Night does not consume a stack of active Deathstalker's Marks.",
-                            "uncertain": true
+                            "text": "When you consume the final Deathstalker's Mark from a target or your target dies, gain 30 Energy and Darkest Night, causing your next Eviscerate cast with 5 or more combo points to critically strike, deal 35% additional damage, and apply 3 stacks of Deathstalker's Mark to the target if no other Deathstalker's Mark is active. Eviscerate cast with Darkest Night does not consume a stack of active Deathstalker's Marks.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -3242,7 +3276,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Finishing move that empowers your weapons with energy to perform a deadly attack.\r\n\r\nYou leap into the air and Eviscerate your target on the way back down, with such force that it has a 15% stronger effect.",
+                            "text": "Finishing move that empowers your weapons with energy to perform a deadly attack.\r\n\r\nYou leap into the air and Eviscerate your target on the way back down, with such force that it has a 30% stronger effect.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -4016,8 +4050,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game) and (varies by condition — check in-game) deal (varies by condition — check in-game)% additional damage while (varies by condition — check in-game).",
-                            "uncertain": true
+                            "text": "Shuriken Storm and Black Powder deal 15% additional damage while Find Weakness is active.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -4283,8 +4317,8 @@
             "spellId": 9600,
             "category": "Other",
             "description": {
-                "text": "(varies by condition — check in-game) and (varies by condition — check in-game) deal (varies by condition — check in-game)% additional damage while (varies by condition — check in-game).",
-                "uncertain": true
+                "text": "Shuriken Storm and Black Powder deal 15% additional damage while Find Weakness is active.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -4862,8 +4896,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "When you consume an application of Deathstalker's Mark, the damage of your next (varies by condition — check in-game) is increased by 50%(varies by condition — check in-game).",
-                            "uncertain": true
+                            "text": "When you consume an application of Deathstalker's Mark, the damage of your next Gloomblade is increased by 50% or Shadowstrike increased by 25%.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -4879,6 +4913,22 @@
                         "modifier_unit": null,
                         "description": {
                             "text": "Shadow damage increased by 5%. Shadow Clones have a 50% chance to trigger Shadow Techniques' effect.",
+                            "uncertain": false
+                        },
+                        "category": "Other",
+                        "cooldown": {
+                            "seconds": null,
+                            "base_seconds": null,
+                            "applied": []
+                        }
+                    },
+                    {
+                        "spellId": 9399,
+                        "relationship_type": "modifies",
+                        "modifier_value": null,
+                        "modifier_unit": null,
+                        "description": {
+                            "text": "After Shadow Blades expires, gain 30% increased Shadow damage for 30.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -4974,8 +5024,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "When you consume an application of Deathstalker's Mark, the damage of your next (varies by condition — check in-game) is increased by 50%(varies by condition — check in-game).",
-                            "uncertain": true
+                            "text": "When you consume an application of Deathstalker's Mark, the damage of your next Gloomblade is increased by 50% or Shadowstrike increased by 25%.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -5930,10 +5980,10 @@
         },
         {
             "spellId": 9594,
-            "category": "Offensive",
+            "category": "Other",
             "description": {
-                "text": "After (varies by condition — check in-game) expires, gain (varies by condition — check in-game)% increased (varies by condition — check in-game) damage for 30.",
-                "uncertain": true
+                "text": "After Shadow Blades expires, gain 30% increased Shadow damage for 30.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -6022,8 +6072,8 @@
             "spellId": 9606,
             "category": "Other",
             "description": {
-                "text": "Deathstalker's Mark deals (varies by condition — check in-game)% of its normal damage to all other enemies within 8 yds (varies by condition — check in-game).",
-                "uncertain": true
+                "text": "Deathstalker's Mark deals 75% of its normal damage to all other enemies within 8 yds when a stack is consumed by Black Powder.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -6142,8 +6192,8 @@
             "spellId": 9599,
             "category": "Offensive",
             "description": {
-                "text": "If you have critically struck with (varies by condition — check in-game), increase the critical strike chance of (varies by condition — check in-game) and (varies by condition — check in-game) by 10% and critical strike damage by 20% for 8.",
-                "uncertain": true
+                "text": "If you have critically struck with Shuriken Storm, increase the critical strike chance of Shuriken Storm and Black Powder by 10% and critical strike damage by 20% for 8.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -7508,10 +7558,10 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "After (varies by condition — check in-game) expires, gain (varies by condition — check in-game)% increased (varies by condition — check in-game) damage for 30.",
-                            "uncertain": true
+                            "text": "After Shadow Blades expires, gain 30% increased Shadow damage for 30.",
+                            "uncertain": false
                         },
-                        "category": "Offensive",
+                        "category": "Other",
                         "cooldown": {
                             "seconds": null,
                             "base_seconds": null,
@@ -7524,10 +7574,10 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "After (varies by condition — check in-game) expires, gain (varies by condition — check in-game)% increased (varies by condition — check in-game) damage for 30.",
-                            "uncertain": true
+                            "text": "After Shadow Blades expires, gain 30% increased Shadow damage for 30.",
+                            "uncertain": false
                         },
-                        "category": "Offensive",
+                        "category": "Other",
                         "cooldown": {
                             "seconds": null,
                             "base_seconds": null,
@@ -8185,7 +8235,7 @@
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-08-03T12:23:13.000000Z",
-                                    "updated_at": "2026-10-18T02:31:01.000000Z"
+                                    "updated_at": "2026-11-03T23:00:54.000000Z"
                                 },
                                 {
                                     "id": 17296,
@@ -11271,8 +11321,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game) has (varies by condition — check in-game)% increased critical strike chance and now triggers Unseen Blade when available.",
-                            "uncertain": true
+                            "text": "Shuriken Storm has 10% increased critical strike chance and now triggers Unseen Blade when available.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -11371,8 +11421,8 @@
             "spellId": 9601,
             "category": "Other",
             "description": {
-                "text": "When you consume an application of Deathstalker's Mark, the damage of your next (varies by condition — check in-game) is increased by 50%(varies by condition — check in-game).",
-                "uncertain": true
+                "text": "When you consume an application of Deathstalker's Mark, the damage of your next Gloomblade is increased by 50% or Shadowstrike increased by 25%.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {

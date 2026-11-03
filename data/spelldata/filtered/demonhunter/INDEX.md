@@ -131,6 +131,8 @@ One line per spell record; each lists every file it appears in.
 - **Collapsing Star (id=1221167) [Spell Family (107), Passive, Hidden]** — `devourer.txt`
 - **Collapsing Star (id=1221171) [Spell Family (107), Hidden]** — `baseline.txt`
 - **Collapsing Star (id=1227702) [Spell Family (107)]** — `baseline.txt`
+- **Collapsing Star (id=1319061) [Spell Family (107), Hidden]** — `baseline.txt`
+- **Collapsing Star (id=1319066) [Spell Family (107), Hidden]** — `baseline.txt`
 - **Collective Anguish (id=337504) [Spell Family (107), Passive]** — `baseline.txt`
 - **Collective Anguish (id=390152) [Spell Family (107), Passive]** — `havoc.txt`
 - **Consume (id=1261710) [Spell Family (107)]** — `baseline.txt`

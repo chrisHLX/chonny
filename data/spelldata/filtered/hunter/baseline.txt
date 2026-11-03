@@ -1,6 +1,6 @@
 # Hunter — Baseline (no talent tree)
-# Extracted verbatim from hunter.txt (SimulationCraft 1210-01 for World of Warcraft 12.1.0.69933 Live)
-# 844 spell record(s). Mechanical regroup only — no content altered.
+# Extracted verbatim from hunter.txt (SimulationCraft 1210-01 for World of Warcraft 12.1.5.70688 Live)
+# 846 spell record(s). Mechanical regroup only — no content altered.
 
 Name             : Auto Shot (id=75) [Spell Family (9)] 
 Class            : Hunter
@@ -1368,7 +1368,6 @@ Effects          :
                    Base Value: 0 | Scaled Value: 0 | SP Coefficient: 1 | Misc Value: 22 | Target: Self (1)
                    Affected Spells: Multi-Shot (2643), Freezing Trap (3355), A Murder of Crows (131900), Tar Trap (135299), Steel Trap (162480), Steel Trap (162487), Cobra Shot (193455), Explosive Shot (212680), Barbed Shot (217200), Frenzy (217207), High Explosive Trap (236777), Multi-Shot (257620), Frenzy (272795), Black Arrow (466930), Black Arrow (468037), Black Arrow (468572)
                    Family Flags: 12, 36, 73, 78, 86, 91, 99
-Hotfixed         : Affects Spells
 #7 (id=1257982)  : Apply Aura (6) | Apply Percent Modifier w/ Label (218): Spell Direct Amount (0)
                    Base Value: 0 | Scaled Value: 0 | SP Coefficient: 1 | Misc Value 2: 5078 (Label) | Target: Self (1)
                    Affected Spells (Label): Bleak Powder (467914), Bleak Powder (472084)
@@ -5641,8 +5640,7 @@ Family Flags     : 34, 106
 Attributes       : Is Ability (4), Allow Cast While Dead (23), Initiates Combat (Enables Auto-Attack) (41), Ignore Line of Sight (66), Always AOE Line of Sight (186), Allow Class Ability Procs (416)
 Effects          :
 #1 (id=485317)   : School Damage (2): physical
-                   Base Value: 0 | Scaled Value: 0 (delta=0.05) | AP Coefficient: 1.85 | Radius: 8 yards | Target: at Enemy in Area (16)
-Hotfixed         : AP Coefficient (1.68 -> 1.85)
+                   Base Value: 0 | Scaled Value: 0 (delta=0.05) | AP Coefficient: 2.035 | Radius: 8 yards | Target: at Enemy in Area (16)
 Description      : $@spelldesc260243
 
 Name             : Bloodseeker (id=260249) [Spell Family (9)] 
@@ -6570,7 +6568,6 @@ Attributes       : Allow While Sitting (27), Not a Proc (105), Do Not Display Ra
 Effects          :
 #1 (id=709120)   : School Damage (2): fire
                    Base Value: 0 | Scaled Value: 0 (delta=0.05) | AP Coefficient: 1.9 | Target: Targeted Enemy (6)
-Hotfixed         : AP Coefficient (1.5795 -> 1.9)
 Description      : $@spelldesc259495
 
 Name             : Wildfire Bomb (id=265163) [Spell Family (9)] 
@@ -6742,7 +6739,6 @@ Attributes       : Is Ability (4), Ignore Line of Sight (66), Do Not Display Ran
 Effects          :
 #1 (id=718207)   : Apply Aura (6) | Periodic Damage (3): fire every 1 seconds
                    Base Value: 0 | Scaled Value: 0 | AP Coefficient: 0.252 | Target: Targeted Enemy (6)
-Hotfixed         : AP Coefficient (0.20988 -> 0.252)
 Description      : $@spelldesc259495
 Tooltip          : Suffering $w1 Fire damage every $t1 sec.
 
@@ -14336,7 +14332,6 @@ Attributes       : Is Ability (4), Ignore Line of Sight (66), Do Not Display Ran
 Effects          :
 #1 (id=1258741)  : Apply Aura (6) | Periodic Damage (3): physical every 1 seconds
                    Base Value: 0 | Scaled Value: 0 | AP Coefficient: 0.252 | Mechanic: Bleed | Target: Targeted Enemy (6)
-Hotfixed         : AP Coefficient (0.20988 -> 0.252)
 Description      : $@spelldesc259495
 Tooltip          : Bleeding for $w1 damage every $t1 sec.
 
@@ -14476,7 +14471,6 @@ Attributes       : Is Ability (4), Not Shapeshifted (16), Do Not Sheath (18), In
 Effects          :
 #1 (id=1259945)  : School Damage (2): physical
                    Base Value: 0 | Scaled Value: 0 (delta=0.05) | AP Coefficient: 12 | PvP Coefficient: 0.50625 | Radius: 0 - 8 yards | Target: At Enemy (53) -> at Enemy in Area (16)
-Hotfixed         : PvP Coefficient (0.5625 -> 0.50625)
 Description      : $@spelldesc1250646
 
 Name             : Takedown (id=1253860) [Spell Family (9)] 
@@ -14511,7 +14505,6 @@ Attributes       : Is Ability (4), Not Shapeshifted (16), Do Not Sheath (18), In
 Effects          :
 #1 (id=1259949)  : School Damage (2): physical
                    Base Value: 0 | Scaled Value: 0 | AP Coefficient: 6 | PvP Coefficient: 0.478125 | Radius: 0 - 8 yards | Target: At Enemy (53) -> at Enemy in Area (16)
-Hotfixed         : PvP Coefficient (0.5625 -> 0.478125)
 #2 (id=1259950)  : Energize Power (30)
                    Base Value: 50 | Scaled Value: 50 | Resource: focus | Target: Self (1)
 Description      : $@spelldesc1250646
@@ -14564,20 +14557,16 @@ Effects          :
                    Family Flags: 113
 #5 (id=1355322)  : Apply Aura (6) | Modify Flat PVP Multiplier by Label (648): Modify Effect 1 (5)
                    Base Value: 10 | Scaled Value: 10 | Misc Value: 5 | Misc Value 2: 5871 (Label) | Target: Self (1)
-Hotfixed         : NEW EFFECT
 #6 (id=1355323)  : Apply Aura (6) | Modify Flat PVP Multiplier by Label (648): Modify Effect 1 (5)
                    Base Value: 15 | Scaled Value: 15 | Misc Value: 5 | Misc Value 2: 7211 (Label) | Target: Self (1)
-Hotfixed         : NEW EFFECT
 #7 (id=1357256)  : Apply Aura (6) | Modify Percent PVP Multiplier (647): Direct Amount (0)
                    Base Value: 30 | Scaled Value: 30 | Target: Self (1)
                    Affected Spells: Black Arrow (466930), Black Arrow (468037), Black Arrow (468572)
                    Family Flags: 91
-Hotfixed         : NEW EFFECT
 #8 (id=1357257)  : Apply Aura (6) | Modify Percent PVP Multiplier (647): Periodic Amount (1)
                    Base Value: 30 | Scaled Value: 30 | Misc Value: 1 | Target: Self (1)
                    Affected Spells: Black Arrow (466930), Black Arrow (468037), Black Arrow (468572)
                    Family Flags: 91
-Hotfixed         : NEW EFFECT
 
 Name             : Marksmanship Hunter (id=1256940) [Spell Family (9), Passive, Hidden] 
 Class            : Marksmanship Hunter
@@ -14597,22 +14586,21 @@ Effects          :
                    Affected Spells: Multi-Shot (2643), Aimed Shot (19434), Kill Command (34026), Kill Shot (53351), Steady Shot (56641), A Murder of Crows (131900), Steel Trap (162487), Chimaera Shot (171454), Chimaera Shot (171457), Arcane Shot (185358), Raptor Strike (186270), Wind Arrow (191043), Hatchet Toss (193265), Cobra Shot (193455), Stomp (199530), Stampede (201594), Fury of the Eagle (203413), Explosive Shot (212431), Butchery (212436), Barbed Shot (217200), Rapid Fire (257045), Multi-Shot (257620), Mongoose Bite (259387), Chakrams (259398), Kill Command (259489), Flanking Strike (259516), Scorching Wildfire (259587), Violent Reaction (260231), Volley (260247), Rapid Fire (263585), Wildfire Bomb (265157), Raptor Strike (265189), Mongoose Bite (265888), Chakrams (267666), Wildfire Bomb (269747), Flanking Strike (269751), Flanking Strike (269752), Pheromone Bomb (270329), Pheromone Bomb (270332), Shrapnel Bomb (270338), Shrapnel Bomb (270339), Volatile Bomb (271048), Volatile Bomb (271049), Harpoon (271625), Wildfire Cluster (272745), Latent Poison (273289), Multi-Shot (278565), Resonating Arrow (308495), Kill Shot (320976), Bloodshed (321530), Bloodshed (321538), Flayed Shot (324149), Death Chakram (325028), Death Chakram (325037), Wild Spirits (328757), Wild Spirits (328837), Wildfire Cluster (336899), Chimaera Shot (344120), Chimaera Shot (344121), Wailing Arrow (354831), Wailing Arrow (355589), Wailing Arrow (355596), Coordinated Assault (360969), Death Chakram (361756), Latent Poison (378016), Spearhead (378957), Wailing Arrow (392058), Wailing Arrow (392060), Wailing Arrow (392061), Wailing Arrow (398388), Shadow Surge (444269), Spearhead (459690), Merciless Blow (459870), Rapid Fire (460496), Black Arrow (466930), Bleak Powder (467914), Black Arrow (468037), Boar Charge (471936), Boar Charge (471938), Rend Flesh (471999), Bleak Powder (472084), Merciless Blow (1217375), Spearhead (1221386), Hemorrhaging Strikes (1251683), Wildfire Imbuement (1252966), Sic 'Em (1253138), Wildfire Bomb (1253171), Lunar Storm (1253733), Takedown (1253859), Takedown (1253862), Rupturing Blow (1256931), Boomstick (1261215), Raptor Swipe (1262293), Raptor Swipe (1262343), Sticky Bomb (1262390), Moonlight Chakram (1264949), Moonlight Chakram (1266081), Twilight Requiem (1266096), Let Fly! (1271682)
                    Family Flags: 106
 #3 (id=1315650)  : Apply Aura (6) | Modify Percent PVP Multiplier (647): Direct Amount (0)
-                   Base Value: 0 | Scaled Value: 0 | Target: Self (1)
+                   Base Value: 40 | Scaled Value: 40 | Target: Self (1)
                    Affected Spells: Kill Shot (53351), Kill Shot (320976), Black Arrow (466930), Black Arrow (468037), Black Arrow (468572)
                    Family Flags: 11, 91
 #4 (id=1315651)  : Apply Aura (6) | Modify Percent PVP Multiplier (647): Periodic Amount (1)
-                   Base Value: 0 | Scaled Value: 0 | Misc Value: 1 | Target: Self (1)
+                   Base Value: 40 | Scaled Value: 40 | Misc Value: 1 | Target: Self (1)
                    Affected Spells: Kill Shot (53351), Kill Shot (320976), Black Arrow (466930), Black Arrow (468037), Black Arrow (468572)
                    Family Flags: 11, 91
 #5 (id=1355324)  : Apply Aura (6) | Modify Flat PVP Multiplier by Label (648): Modify Effect 1 (5)
                    Base Value: 10 | Scaled Value: 10 | Misc Value: 5 | Misc Value 2: 5871 (Label) | Target: Self (1)
-Hotfixed         : NEW EFFECT
 #6 (id=1355325)  : Apply Aura (6) | Modify Flat PVP Multiplier by Label (648): Modify Effect 1 (5)
                    Base Value: 15 | Scaled Value: 15 | Misc Value: 5 | Misc Value 2: 7211 (Label) | Target: Self (1)
-Hotfixed         : NEW EFFECT
+#7 (id=1367382)  : Apply Aura (6) | Modify Flat PVP Multiplier by Label (648): Modify Effect 1 (5)
+                   Base Value: 15 | Scaled Value: 15 | Misc Value: 5 | Misc Value 2: 4055 (Label) | Target: Self (1)
 
 Name             : Survival Hunter (id=1256941) [Spell Family (9), Passive, Hidden] 
-Hotfixed         : Attributes
 Class            : Survival Hunter
 School           : Physical
 Spell Type       : None
@@ -14631,10 +14619,8 @@ Effects          :
                    Family Flags: 106
 #3 (id=1355306)  : Apply Aura (6) | Modify Flat PVP Multiplier by Label (648): Modify Effect 1 (5)
                    Base Value: 10 | Scaled Value: 10 | Misc Value: 5 | Misc Value 2: 5871 (Label) | Target: Self (1)
-Hotfixed         : NEW EFFECT
 #4 (id=1355319)  : Apply Aura (6) | Modify Flat PVP Multiplier by Label (648): Modify Effect 1 (5)
                    Base Value: 15 | Scaled Value: 15 | Misc Value: 5 | Misc Value 2: 7211 (Label) | Target: Self (1)
-Hotfixed         : NEW EFFECT
 
 Name             : Precise Shots (id=1257703) [Spell Family (9), Hidden] 
 Class            : Hunter
@@ -14801,7 +14787,7 @@ Class            : Hunter
 School           : Physical
 Spell Type       : Melee
 Resource         : 30 Focus (2) (id=312838)
-Range            : 100 yards
+Range            : 40 yards
 Max Targets      : 5
 GCD              : 1.5 seconds
 Velocity         : 40 yards/sec
@@ -15202,7 +15188,6 @@ Attributes       : Allow Cast While Dead (23), Ignore Line of Sight (66), DoT St
 Effects          :
 #1 (id=1278279)  : School Damage (2): physical
                    Base Value: 0 | Scaled Value: 0 (delta=0.05) | AP Coefficient: 2.844 | PvP Coefficient: 0.595 | Target: Targeted Enemy (6)
-Hotfixed         : PvP Coefficient (0.7 -> 0.595)
 Description      : $@spelldesc1264949
 
 Name             : Twilight Requiem (id=1266096) [Spell Family (9)] 
@@ -16113,3 +16098,35 @@ Effects          :
                    Base Value: 7 | Scaled Value: 7 | Target: Self (1)
 Description      : Your next Aimed Shot will grant you Deathblow!
 Tooltip          : Your next Aimed Shot will grant you Deathblow!
+
+Name             : Blood Fletching (id=1319015) [Spell Family (9)] 
+Class            : Hunter
+School           : Physical
+Spell Type       : Ranged
+Range            : 100 yards
+Labels           : 16: Class Spells
+                 : 23: Hunter Spells
+                 : 292
+Mechanic         : Bleed
+Attributes       : Ignore Line of Sight (66), Allow Cast While Casting (135), Allow Cast While Channeling (308), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1352758)  : School Damage (2): physical
+                   Base Value: 0 | Scaled Value: 0 | AP Coefficient: 0.45 | Target: Targeted Enemy (6)
+Description      : $@spelldesc1319011
+
+Name             : Blood Fletching (id=1319016) [Spell Family (9)] 
+Class            : Hunter
+School           : Physical
+Spell Type       : Ranged
+Range            : 100 yards
+Duration         : 4 seconds
+Labels           : 16: Class Spells
+                 : 23: Hunter Spells
+                 : 292
+Mechanic         : Bleed
+Attributes       : Ignore Line of Sight (66), Allow Cast While Casting (135), Allow Cast While Channeling (308), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1352760)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 0 | Scaled Value: 0 | AP Coefficient: 1 | Target: Targeted Enemy (6)
+Description      : $@spelldesc1319011
+Tooltip          : Critical hits from $@auracaster will cause extra bleed damage.
