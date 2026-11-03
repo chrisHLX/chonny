@@ -57,7 +57,28 @@ function firstRunGuide(User $owner, array $attrs = []): UserGuide
 
 // ------------------------------------------------------------------ Home
 
-test('a brand-new account gets the first-run home: one thing to do, and a real plan to look at', function () {
+// Home reads each player's Your games folder under storage/app/coach/{id}. A test's second user has
+// the same id as a real local account, so the folders live in a scratch storage path here, never
+// the real one.
+beforeEach(function () {
+    $this->scratchStorage = sys_get_temp_dir().'/mc-home-test-'.uniqid();
+    \Illuminate\Support\Facades\File::ensureDirectoryExists($this->scratchStorage.'/app');
+    $this->app->useStoragePath($this->scratchStorage);
+});
+
+afterEach(function () {
+    \Illuminate\Support\Facades\File::deleteDirectory($this->scratchStorage);
+});
+
+/** Writes a Your games index for $user, as BuildCoachPages would. */
+function firstRunIndex(User $user, array $index): void
+{
+    $dir = \App\Jobs\BuildCoachPages::dir($user->id);
+    \Illuminate\Support\Facades\File::ensureDirectoryExists($dir);
+    \Illuminate\Support\Facades\File::put($dir.'/index.json', json_encode($index));
+}
+
+test('a brand-new account gets the app first: three steps, then other players\' guides', function () {
     $author = firstRunUser('author');
     firstRunGuide($author, [
         'title' => 'RMP into TSG',
@@ -70,28 +91,82 @@ test('a brand-new account gets the first-run home: one thing to do, and a real p
         ->assertOk()
         ->assertSee('Welcome, Newbie')
         ->assertDontSee('Welcome back')
-        ->assertSee('Build your first game plan')
-        ->assertSee('See one another player wrote')
-        ->assertSee('RMP into TSG')
+        ->assertSee('Get every arena game you play reviewed')
+        ->assertSee('Connect it with the key from Your Games')
         ->assertSee('Your characters')
-        // The hero comes first, then the feed of other players' plans.
-        ->assertSeeInOrder(['Build your first game plan', 'Everyone', 'RMP into TSG'])
-        // The hero's buttons replace the header's rather than repeating them.
-        ->assertDontSee('+ New comp guide')
+        // The app comes first, then other players' guides.
+        ->assertSeeInOrder(['Get every arena game you play reviewed', 'Player Guides', 'RMP into TSG'])
+        // Starting a guide is in the side column, no longer the page's main button.
+        ->assertDontSee('Build your first game plan')
+        ->assertSee('+ New comp guide')
         ->assertSee('aria-label="Main"', false);
 });
 
-test('a player who has written something gets the regular home back', function () {
+test('an account with the app connected and no games yet is told to play one', function () {
     $user = firstRunUser();
-    firstRunGuide($user, ['title' => 'My opener']);
+    $user->forceFill(['coach_token_at' => now()])->save();
 
-    $this->actingAs($user)
-        ->get(route('dashboard'))
-        ->assertOk()
-        ->assertSee('Welcome back, Newbie')
-        ->assertSee('+ New comp guide')
-        ->assertSee('My opener')
-        ->assertDontSee('Build your first game plan');
+    $this->actingAs($user)->get(route('dashboard'))->assertOk()
+        ->assertSee('The app is connected')
+        ->assertDontSee('Get every arena game you play reviewed');
+});
+
+test('games that arrived before their pages are built are said to be on their way', function () {
+    $user = firstRunUser();
+    \App\Models\ArenaRound::create(['user_id' => $user->id, 'lobby_id' => 'l1', 'match_id' => 'm1', 'roster_key' => 'r', 'bracket' => '3v3', 'played_at' => now(), 'payload' => []]);
+
+    $this->actingAs($user)->get(route('dashboard'))->assertOk()
+        ->assertSee('1 round arrived')
+        ->assertSee('Welcome back, Newbie');
+});
+
+test('a player with games gets their latest session: record, MMR, the games, the focus and the last loss', function () {
+    $user = firstRunUser();
+    $game = fn (string $at, array $record, ?int $mmr, array $against = ['Arms Warrior', 'Frost Mage', 'Holy Paladin']) => [
+        'playedAt' => $at, 'bracket' => '3v3', 'you' => 'Healbot', 'record' => $record, 'against' => $against, 'mmr' => $mmr,
+    ];
+    firstRunIndex($user, [
+        'generatedAt' => now()->toIso8601String(),
+        'games' => [
+            // An earlier session, more than three hours before the latest: not in it.
+            'old1' => $game('2026-11-01 18:00:00', [1, 0], 1900),
+            'g1' => $game('2026-11-02 13:00:00', [1, 0], 2050),
+            'g2' => $game('2026-11-02 13:05:00', [0, 1], 2062, ['Affliction Warlock', 'Feral Druid', 'Restoration Shaman']),
+            'g3' => $game('2026-11-02 13:10:00', [1, 0], 2081),
+            'sh' => ['playedAt' => '2026-11-02 12:30:00', 'bracket' => 'Rated Solo Shuffle', 'you' => 'Healbot', 'record' => [4, 2], 'against' => []],
+        ],
+        'characters' => ['Healbot-Realm-US' => ['name' => 'Healbot', 'spec' => 'Discipline Priest', 'games' => 40, 'file' => 'improve-abc.html',
+            'focus' => ['title' => 'Crowd control on the enemy healer', 'what' => 'Your goes with your crowd control on their healer.', 'you' => '40%', 'others' => '59%']]],
+    ]);
+
+    $this->actingAs($user)->get(route('dashboard'))->assertOk()
+        ->assertSee('Your Latest Session')
+        ->assertSee('All 5 games')
+        // 3v3: two won, one lost; the shuffle's 4-2 counts as won.
+        ->assertSeeInOrder(['3', '&ndash;', '1'], false)
+        ->assertSee('4 games on Monday 2 Nov, 12:30 to 13:10')
+        ->assertSee('team MMR 2050')
+        ->assertSee('2081')
+        ->assertSee('Crowd control on the enemy healer')
+        ->assertSee('You 40%, other Discipline Priests 59%')
+        ->assertSee('#improve=improve-abc.html', false)
+        // The last loss opens that game on Your Games.
+        ->assertSee('Your Last Loss')
+        ->assertSee('#game=g2.html', false)
+        ->assertSee('against Affliction Warlock, Feral Druid, Restoration Shaman')
+        ->assertSeeInOrder(['Your Latest Session', 'Player Guides'])
+        ->assertDontSee('Get every arena game you play reviewed');
+});
+
+test('the phone tab bar\'s middle button is Your Games, signed in or out', function () {
+    $bar = fn ($response) => \Illuminate\Support\Str::between($response->getContent(), 'aria-label="Main"', '</nav>');
+
+    foreach ([firstRunUser(), null] as $user) {
+        $response = ($user ? $this->actingAs($user) : $this)->get($user ? route('dashboard') : route('wow-comps'))->assertOk();
+        expect($bar($response))->toContain('href="'.route('coach').'"')->toContain('Your Games')
+            ->not->toContain('Build')->not->toContain(route('guides.try', ['type' => 'comp']));
+        auth()->logout();
+    }
 });
 
 test('the first-run hero starts a guide and goes to the builder', function () {

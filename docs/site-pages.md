@@ -4,7 +4,13 @@
 
 - `/` — MindCollector's home, a card per game (`PlatformController`, `config/platform.php`). `/wow` —
   `Landing`, WoW's home; signed-in players go to `dashboard`.
-- `/dashboard` — `Home` (feed, your guides, characters, friends).
+- `/dashboard` — `Home`. Since 2026-11-03 it leads with your own games (`RecentGamesService`, read
+  from the Your games index): the latest session's record, team MMR, its games with the comp met as
+  icons, the Improve focus for the character played most, and the last loss, each opening that page
+  on Your games (`#game=` / `#improve=`). An account without games gets the step it needs instead
+  (get the app, play a game, or "N rounds arrived" while pages build). Then other players' guides,
+  with game-data updates folded into one line, and your guides, characters and friends beside them.
+  The phone tab bar's gold middle button is Your Games (it was the guide builder).
 - `/wow/matchup-lab` — `MatchupLab`. Two comps on one clock: whose kill window opens first,
   and why, read at three execution settings. The only page answering a question about a
   *matchup* rather than about one spec or one comp.

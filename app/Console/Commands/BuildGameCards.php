@@ -151,7 +151,7 @@ class BuildGameCards extends Command
             $characters = [];
             foreach ($improve->build($user, $built['experience']) as $full => $c) {
                 $file = 'improve-'.substr(md5($full), 0, 10).'.html';
-                $characters[$full] = ['name' => $c['name'], 'spec' => $c['spec'], 'games' => $c['games'], 'file' => $file];
+                $characters[$full] = ['name' => $c['name'], 'spec' => $c['spec'], 'games' => $c['games'], 'file' => $file, 'focus' => $c['focus'] ?? null];
                 if ($dir) {
                     File::put("{$dir}/{$file}", $c['html']);
                     $improveDrawn++;

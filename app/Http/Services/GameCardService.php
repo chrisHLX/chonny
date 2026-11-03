@@ -63,12 +63,12 @@ class GameCardService
     {
         $this->payloads = [];
 
-        // Each round's list entry and signature need only its players, result, dispels and length
+        // Each round's list entry and signature need only its players, result, dispels, MMR and length
         // (2026-10-28): every round decoded and kept for the whole build was 650 MB for a 700-round
         // account. A card being drawn reads its own rounds in full, one game at a time.
         $this->summaries = [];
         $slim = ArenaRound::readSlim($user->id, fn (array $p) => isset($p['analysis']) ? [
-            'analysis' => ['players' => $p['analysis']['players'] ?? [], 'won' => $p['analysis']['won'] ?? false, 'dispels' => $p['analysis']['dispels'] ?? []],
+            'analysis' => ['players' => $p['analysis']['players'] ?? [], 'won' => $p['analysis']['won'] ?? false, 'dispels' => $p['analysis']['dispels'] ?? [], 'mmr' => $p['analysis']['mmr'] ?? null],
             'metadata' => ['durationInSeconds' => $p['metadata']['durationInSeconds'] ?? 0],
         ] : null);
         foreach ($slim as [$r, $summary]) {
@@ -121,6 +121,8 @@ class GameCardService
                 'you' => $me ? explode('-', $me['name'])[0] : null,
                 'record' => [$won, $rounds->count() - $won],
                 'against' => $shuffle ? [] : collect($first['players'])->where('side', 'them')->pluck('spec')->sort()->values()->all(),
+                // Your team's MMR as the log gives it, for the session line on the home page.
+                'mmr' => $shuffle ? null : ($first['mmr']['us'] ?? null),
                 'youtube' => isset($videos[$lobby]),
             ];
 

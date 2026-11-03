@@ -10,14 +10,18 @@ os.makedirs(out, exist_ok=True)
 CLASSES = ['Death Knight', 'Demon Hunter', 'Druid', 'Evoker', 'Hunter', 'Mage', 'Monk', 'Paladin',
            'Priest', 'Rogue', 'Shaman', 'Warlock', 'Warrior']
 
-NAME = re.compile(r'<span class="name"[^>]*>([^<]+)</span>(<span class="you">YOU</span>)?\s*<div class="small muted">\s*([^&<]+)', re.S)
+# A name is a <span>, or since 2026-11 a link to the player's page; a team's heading is a "label"
+# div, or since the dashboard redesign a "kicker" div with an icon before the words.
+NAME = re.compile(r'<(?:span|a) class="name"[^>]*>([^<]+)</(?:span|a)>(<span class="you">YOU</span>)?\s*<div class="small muted">\s*([^&<]+)', re.S)
+HEADING = r'<div class="(?:label|kicker)">'
 
 def rosters(text):
     """[(name, class, side, is_you)] from a card's team tables; side 'them' or 'us'."""
     rows = []
-    for chunk in re.split(r'<div class="label">', text)[1:]:
-        side = 'them' if chunk.startswith(('Enemy team', 'Them')) else 'us' if chunk.startswith('Your team') else 'any'
-        body = chunk.split('<div class="label">')[0]
+    for chunk in re.split(HEADING, text)[1:]:
+        words = re.sub(r'<[^>]+>', '', chunk[:2000]).strip().lower()
+        side = 'them' if words.startswith(('enemy team', 'them')) else 'us' if words.startswith('your team') else 'any'
+        body = re.split(HEADING, chunk)[0]
         for m in NAME.finditer(body):
             spec = html.unescape(m.group(3)).strip()
             cls = next((c for c in CLASSES if spec.endswith(c)), spec.split()[-1] if spec else 'player')
@@ -76,11 +80,28 @@ def anonymise(text, own_as_spec=False):
     pat = re.compile(r'(?<![\w])(' + '|'.join(re.escape(n) for n in names) + r")(?:-[\w']+)?(?![\w])")
     return pat.sub(lambda m: labels[m.group(1)], text)
 
+# A player's name as a link to their page (2026-11-03) carries the name lower case in its URL
+# (/wow/player/us/realm/name) and in its title, where the labels never reach: the link goes, the
+# name it showed stays, coloured as before.
+PLAYER_LINK = re.compile(r'<a\b[^>]*href="[^"]*/wow/player/[^"]*"[^>]*?(style="[^"]*")?[^>]*>(.*?)</a>', re.S)
+
+# A card's "Timeline" button opens its own game's Watch page, which a public copy does not have.
+WATCH_LINK = re.compile(r'<a\b[^>]*href="watch-[0-9a-f]{32}\.html"[^>]*>.*?</a>', re.S)
+
+def unlink(text):
+    text = WATCH_LINK.sub('', text)
+    return PLAYER_LINK.sub(lambda m: '<span class="name"' + (' ' + m.group(1) if m.group(1) else '') + '>' + m.group(2) + '</span>', text)
+
 report = {}
 for f in files:
-    text = anonymise(open(os.path.join(src, f), encoding='utf-8').read(), f.startswith('comp-')).replace('<span class="you">YOU</span>', '')
+    text = anonymise(unlink(open(os.path.join(src, f), encoding='utf-8').read()), f.startswith('comp-')).replace('<span class="you">YOU</span>', '')
     open(os.path.join(out, f), 'w', encoding='utf-8').write(text)
     plain = re.sub(r'<[^>]+>', ' ', re.sub(r'<(style|script)[^>]*>.*?</\1>', ' ', text, flags=re.S))
     left = sorted({n for n in (ALL | set(known)) - {'Player'} if re.search(r'(?<![\w])' + re.escape(n) + r'(?![\w])', plain)})
+    # And inside attributes, any case: a URL or a title holds a name lower case, where the text
+    # check above cannot see it. Names under four letters are too often part of a word to tell.
+    attrs = ' '.join(re.findall(r'\b(?:href|src|title|alt|data-[\w-]+)="([^"]*)"', text))
+    left += sorted({f'{n} (in an attribute)' for n in (ALL | set(known)) - {'Player'} if len(n) >= 4
+                    and re.search(r'(?<![a-z])' + re.escape(n.lower()) + r'(?![a-z])', attrs.lower())})
     report[f] = left
 print(json.dumps({'known': len(known), 'mine': sorted(mine), 'left': report}, ensure_ascii=False, indent=1))

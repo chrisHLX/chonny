@@ -38,7 +38,9 @@
 
 <div class="min-h-full py-4 px-4 lg:px-6">
     <div class="mx-auto space-y-4" style="max-width: 1500px" x-data="{ tab: @js($startTab), file: @js($games[0]['file'] ?? null) }"
-         x-init="if (location.hash === '#videos') tab = 'videos'; if (location.hash === '#youtube') { tab = 'upload'; $nextTick(() => document.getElementById('youtube')?.scrollIntoView()) }">
+         x-init="if (location.hash === '#videos') tab = 'videos'; if (location.hash === '#upload') tab = 'upload'; if (location.hash === '#youtube') { tab = 'upload'; $nextTick(() => document.getElementById('youtube')?.scrollIntoView()) }
+                 {{-- From the home page (2026-11-03): #game=FILE and #improve=FILE open that page. --}}
+                 const m = location.hash.match(/^#(game|improve)=([\w.-]+\.html)$/); if (m) { tab = m[1] === 'game' ? 'games' : 'improve'; file = m[2] }">
         <div class="page-hero !py-6">
             <p class="page-eyebrow">Only you can see this page</p>
             <h1 class="page-title">Your Games</h1>

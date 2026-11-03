@@ -11,33 +11,7 @@
     $pending = auth()->check() ? auth()->user()->pendingFriendRequestCount() : 0;
 @endphp
 
-{{-- The sheet sits OUTSIDE the <nav>: backdrop-blur on the nav creates a containing block for
-     fixed-position children, so a sheet inside it would be positioned against the bar rather than
-     the screen. --}}
-<div class="sm:hidden" x-data="{ buildOpen: false }">
-
-    @auth
-        {{-- The Build sheet: two ways to start a guide, plus the list of your own. POSTs, because
-             starting a guide creates a row — see the guides.create route. --}}
-        <div x-show="buildOpen" x-cloak x-on:click="buildOpen = false"
-             class="fixed inset-0 bg-black/50 z-40"></div>
-        <div x-show="buildOpen" x-cloak
-             x-transition:enter="transition ease-out duration-150"
-             x-transition:enter-start="opacity-0 translate-y-2"
-             x-transition:enter-end="opacity-100 translate-y-0"
-             class="fixed inset-x-3 bottom-20 z-50 linear-card p-3 space-y-2">
-            <p class="text-[11px] uppercase tracking-[0.13em] text-ink-subtle px-1">Start a guide</p>
-            <form method="POST" action="{{ route('guides.create', 'comp') }}">
-                @csrf
-                <button type="submit" class="btn-primary w-full justify-center">3v3 / 2v2 guide</button>
-            </form>
-            <form method="POST" action="{{ route('guides.create', 'class') }}">
-                @csrf
-                <button type="submit" class="btn-secondary w-full justify-center">Class guide</button>
-            </form>
-            <a href="{{ route('guides.index') }}" wire:navigate class="btn-ghost w-full justify-center">My guides</a>
-        </div>
-    @endauth
+<div class="sm:hidden">
 
 <nav class="fixed bottom-0 inset-x-0 z-10 border-t border-line bg-surface-0/95 backdrop-blur"
      style="padding-bottom: env(safe-area-inset-bottom)"
@@ -60,29 +34,16 @@
             Comps
         </a>
 
-        @auth
-            {{-- The middle, gold, and a button rather than a link: building a guide is the thing
-                 this site most wants a player to do. --}}
-            <button type="button" x-on:click="buildOpen = !buildOpen"
-                    class="flex flex-col items-center justify-center gap-1 text-gold">
-                <span class="w-9 h-9 -mt-1 rounded-full bg-gold-gradient text-surface-0 flex items-center justify-center shadow-gold-sm">
-                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M12 4v16m8-8H4"/></svg>
-                </span>
-                Build
-            </button>
-        @else
-            {{-- A guest tries the planner straight away (see GuestPlanService) rather than hitting a
-                 sign-up form first. POST, so a prefetch can never create a plan. --}}
-            <form method="POST" action="{{ route('guides.try', ['type' => 'comp']) }}" class="contents">
-                @csrf
-                <button type="submit" class="flex flex-col items-center justify-center gap-1 text-gold">
-                    <span class="w-9 h-9 -mt-1 rounded-full bg-gold-gradient text-surface-0 flex items-center justify-center shadow-gold-sm">
-                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M12 4v16m8-8H4"/></svg>
-                    </span>
-                    Try it
-                </button>
-            </form>
-        @endauth
+        {{-- The middle, gold: Your Games, what the product is (2026-11-03; it was the guide builder,
+             which an audit found left a phone with no way to its own games). A guest lands on the
+             sample game (CoachController::index). --}}
+        <a href="{{ route('coach') }}"
+           class="flex flex-col items-center justify-center gap-1 {{ request()->routeIs('coach', 'wow.sample') ? 'text-gold' : 'text-gold/90' }}">
+            <span class="w-9 h-9 -mt-1 rounded-full bg-gold-gradient text-surface-0 flex items-center justify-center shadow-gold-sm">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 17v-6m3 6V7m3 10v-4M5 21h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v14a2 2 0 002 2z"/></svg>
+            </span>
+            Your Games
+        </a>
 
         <a href="{{ route('guides.browse') }}" wire:navigate class="flex flex-col items-center justify-center gap-1 {{ $tab(request()->routeIs('guides.browse') || request()->routeIs('guides.show')) }}">
             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/></svg>

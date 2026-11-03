@@ -390,8 +390,8 @@ test('guildmates who are not friends yet are suggested on the friends page', fun
  */
 
 test('signing in lands on the arena home with the three main actions', function () {
-    // A player with a guide of their own; a brand-new account gets the first-run home instead
-    // (see FirstRunExperienceTest).
+    // A player with a guide of their own. What leads the page by the account's games is in
+    // FirstRunExperienceTest.
     $user = User::factory()->create();
     collabGuide($user);
 

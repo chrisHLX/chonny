@@ -148,6 +148,9 @@ class ImprovementService
                 'name' => $model['name'],
                 'spec' => $spec,
                 'games' => $mine->count(),
+                // The one thing to work on, for the signed-in home page (RecentGamesService), which
+                // reads the index rather than drawing this page.
+                'focus' => $model['focus'] ? array_intersect_key($model['focus'], array_flip(['title', 'what', 'you', 'others'])) : null,
                 'html' => view('desktop.improve', ['m' => $model])->render(),
             ];
         }

@@ -3,12 +3,13 @@
 
     $classColors = config('wow_classes.colors', []);
     $me = auth()->user();
-
-    // First run: no guide of their own yet. Leads with the one thing the account is for, and
-    // shows a real plan to copy. See App\Livewire\Home's docblock.
-    $firstRun = $this->myGuides->isEmpty();
-    $example = $firstRun ? $this->exampleGuide : null;
+    $games = $this->recentGames;
     $feed = $this->feed;
+    // Game-data updates fold into one line above the guides (2026-11-03): five "Tooltips updated"
+    // items used to lead the page.
+    $items = collect($feed['items']);
+    $dataUpdate = $items->firstWhere('type', 'data');
+    $guideItems = $items->where('type', 'guide');
 @endphp
 
 <div class="max-w-6xl mx-auto px-4 py-6 sm:py-8">
@@ -21,95 +22,21 @@
         <div class="rounded-md border border-green-500/40 bg-green-500/5 px-4 py-2.5 mb-5 text-[13px] text-ink">Email confirmed. Thanks.</div>
     @endif
 
-    {{-- The app, until this player has connected it (2026-10-12): the product, ahead of the planner. --}}
-    @if ($me->coach_token_at === null)
-        <a href="{{ route('app') }}" wire:navigate class="page-hero !py-6 flex flex-col sm:flex-row sm:items-center gap-4 mb-6 group">
-            <div class="flex-1 min-w-0">
-                <p class="page-eyebrow">MindCollector for Windows</p>
-                <p class="text-[22px] sm:text-[26px] font-extrabold text-ink leading-tight mt-1">Get every arena game you play reviewed</p>
-                <p class="text-[14px] text-ink-muted mt-1">The app sends each game here when it ends: who died, what killed them, and where you stand.</p>
-            </div>
-            <span class="btn-primary shrink-0 group-hover:bg-gold-light">Get the app</span>
-        </a>
-    @endif
+    <h1 class="font-display text-[26px] sm:text-3xl text-ink leading-tight mb-5">
+        {{ in_array($games['state'], ['none', 'waiting'], true) ? 'Welcome' : 'Welcome back' }}, {{ $me->name }}
+    </h1>
 
-    {{-- Header: a greeting and the one primary action. --}}
-    <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-6">
-        <div class="min-w-0">
-            <h1 class="font-display text-[26px] sm:text-3xl text-ink leading-tight">
-                {{ $firstRun ? 'Welcome' : 'Welcome back' }}, {{ $me->name }}
-            </h1>
-            <p class="text-[13.5px] text-ink-muted mt-1">
-                @if ($firstRun)
-                    Turn a matchup into a plan you can use in your games.
-                @else
-                    What players are planning, and what changed in the game.
-                @endif
-            </p>
-        </div>
-        @unless ($firstRun)
-            <div class="flex items-center gap-2 shrink-0">
-                <button type="button" wire:click="createGuide('comp')" class="btn-primary">+ New comp guide</button>
-                <button type="button" wire:click="createGuide('class')" class="btn-ghost">Class guide</button>
-            </div>
-        @endunless
-    </div>
-
-    @if ($firstRun)
-        {{-- First run: one thing to do, explained once ----------------------------------- --}}
-        <div class="linear-card border-line-gold relative overflow-hidden p-5 sm:p-7 mb-8">
-            <x-ornament.corner position="tr" class="absolute top-3 right-3 w-10 h-10 text-gold/20"/>
-
-            <h2 class="font-display text-[22px] sm:text-[26px] text-ink leading-tight">Build your first game plan</h2>
-            <p class="text-[13.5px] text-ink-muted mt-2 max-w-2xl">
-                Pick your comp, then drag in the abilities you'd press. MindCollector works
-                out how long the control lasts after diminishing returns and how often you can run it
-                again, from the game's own spell data.
-            </p>
-
-            {{-- What a plan is made of. Prompts, not section types: a guide has one sequence kind
-                 (see UserGuideSectionKind) and the author's own titles say which is which. --}}
-            <div class="grid sm:grid-cols-3 gap-3 mt-5">
-                <div class="border-l-2 border-gold/60 pl-3">
-                    <p class="text-[13px] font-semibold text-ink">The opener</p>
-                    <p class="text-[12px] text-ink-muted mt-0.5">The CC chain that sets up your first kill attempt.</p>
-                </div>
-                <div class="border-l-2 border-gold/60 pl-3">
-                    <p class="text-[13px] font-semibold text-ink">The go</p>
-                    <p class="text-[12px] text-ink-muted mt-0.5">Cooldowns and control stacked into one window.</p>
-                </div>
-                <div class="border-l-2 border-gold/60 pl-3">
-                    <p class="text-[13px] font-semibold text-ink">Their answers</p>
-                    <p class="text-[12px] text-ink-muted mt-0.5">The defensives you need them to spend first.</p>
-                </div>
-            </div>
-
-            <div class="flex flex-col sm:flex-row sm:items-center gap-2 mt-6">
-                <button type="button" wire:click="createGuide('comp')" class="btn-primary justify-center">Plan a 3v3 or 2v2</button>
-                <button type="button" wire:click="createGuide('class')" class="btn-secondary justify-center">Write a class guide</button>
-                <span class="text-[12px] text-ink-subtle sm:ml-2">Private until you publish it.</span>
-            </div>
-
-            @if ($example && ($exampleUrl = $example->publicUrl()))
-                <a href="{{ $exampleUrl }}" wire:navigate
-                   class="inline-flex items-center gap-2 mt-5 text-[12.5px] text-ink-muted hover:text-gold transition-colors">
-                    <span class="flex items-center gap-0.5">
-                        @foreach ($example->members as $member)
-                            @if ($member->specialization)
-                                <x-spec-icon :spec="$member->specialization" size="w-5 h-5"/>
-                            @endif
-                        @endforeach
-                    </span>
-                    See one another player wrote: <span class="text-ink">&ldquo;{{ $example->title }}&rdquo;</span> &rarr;
-                </a>
-            @endif
-        </div>
-    @endif
+    {{-- Your games first (2026-11-03): what the account is for. --}}
+    @include('livewire.partials.home-games', ['g' => $games])
 
     <div class="grid gap-10 lg:grid-cols-[minmax(0,1fr)_280px]">
 
-        {{-- The feed ------------------------------------------------------------------- --}}
+        {{-- Other players' guides --------------------------------------------------------- --}}
         <section class="min-w-0">
+            <h2 class="text-[11px] uppercase tracking-[0.13em] text-ink font-semibold mb-2">Player Guides</h2>
+            @if ($dataUpdate)
+                <x-feed.data-line :item="$dataUpdate"/>
+            @endif
             <div class="flex items-center justify-between gap-4 border-b border-line">
                 <div class="flex items-center gap-5" role="tablist">
                     @foreach (['everyone' => 'Everyone', 'circle' => 'Friends & guilds'] as $scope => $label)
@@ -125,12 +52,8 @@
             </div>
 
             <div wire:loading.class="opacity-60" wire:target="setFeedScope,loadMore">
-                @forelse ($feed['items'] as $item)
-                    @if ($item['type'] === 'guide')
-                        <x-feed.guide-item :item="$item" :class-colors="$classColors" wire:key="feed-g-{{ $item['guide']->id }}"/>
-                    @else
-                        <x-feed.data-update :item="$item" wire:key="feed-d-{{ $item['update']->id }}"/>
-                    @endif
+                @forelse ($guideItems as $item)
+                    <x-feed.guide-item :item="$item" :class-colors="$classColors" wire:key="feed-g-{{ $item['guide']->id }}"/>
                 @empty
                     <div class="py-10 text-center">
                         @if ($feedScope === 'circle')
@@ -157,16 +80,15 @@
         {{-- Your things: small, secondary ------------------------------------------------- --}}
         <aside class="space-y-7 min-w-0">
 
-            <x-quizzes.leaderboard :rows="$this->quizLeaderboard"/>
-
-            {{-- Your guides --}}
-            @unless ($firstRun)
-                <div>
-                    <div class="flex items-baseline justify-between gap-3 mb-2">
-                        <h2 class="text-[11px] uppercase tracking-[0.13em] text-ink font-semibold">Your guides</h2>
+            {{-- Your guides, and the way to start one: no longer the page's main button. --}}
+            <div>
+                <div class="flex items-baseline justify-between gap-3 mb-2">
+                    <h2 class="text-[11px] uppercase tracking-[0.13em] text-ink font-semibold">Your guides</h2>
+                    @if ($this->myGuides->isNotEmpty())
                         <a href="{{ route('guides.index') }}" wire:navigate class="text-[12px] text-ink-subtle hover:text-gold">All &rarr;</a>
-                    </div>
-                    @foreach ($this->myGuides as $guide)
+                    @endif
+                </div>
+                @foreach ($this->myGuides as $guide)
                         <a href="{{ route('guides.edit', $guide->slug) }}" wire:navigate wire:key="mine-{{ $guide->id }}"
                            class="flex items-center gap-2 py-1.5 group">
                             <span class="w-1.5 h-1.5 rounded-full shrink-0 {{ $guide->status === UserGuideStatus::Published ? 'bg-green-400' : 'bg-ink-subtle' }}"
@@ -175,8 +97,11 @@
                             <span class="text-[11px] text-ink-subtle shrink-0">{{ $guide->updated_at->diffForHumans(null, true, true) }}</span>
                         </a>
                     @endforeach
+                <div class="flex flex-wrap gap-x-4 gap-y-1 mt-1.5">
+                    <button type="button" wire:click="createGuide('comp')" class="text-[12.5px] text-gold hover:text-gold-light">+ New comp guide</button>
+                    <button type="button" wire:click="createGuide('class')" class="text-[12.5px] text-ink-subtle hover:text-gold">Class guide</button>
                 </div>
-            @endunless
+            </div>
 
             {{-- You can help edit --}}
             @if ($this->collaborating->isNotEmpty())
@@ -256,6 +181,8 @@
                     @endforeach
                 </div>
             @endif
+
+            <x-quizzes.leaderboard :rows="$this->quizLeaderboard"/>
 
             <p class="text-[12px] text-ink-subtle border-t border-line pt-4">
                 Your handle is <span class="font-mono text-gold">&#64;{{ $me->handle() }}</span>.

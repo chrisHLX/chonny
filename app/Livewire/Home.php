@@ -6,6 +6,7 @@ use App\Enums\UserGuideType;
 use App\Http\Services\BattlenetClient;
 use App\Http\Services\FriendshipService;
 use App\Http\Services\GuideFeed;
+use App\Http\Services\RecentGamesService;
 use App\Models\PageViewEvent;
 use App\Models\UserGuide;
 use Livewire\Attributes\Computed;
@@ -13,8 +14,15 @@ use Livewire\Attributes\Locked;
 use Livewire\Component;
 
 /**
- * Where a signed-in player lands: a feed of game plans, with their own things in a narrow column
- * beside it.
+ * Where a signed-in player lands: their own games first, then other players' guides, with their
+ * own things in a narrow column beside it.
+ *
+ * YOUR GAMES FIRST, 2026-11-03. An audit found this page opened on five "Tooltips updated" items
+ * and a "+ New comp guide" button, with the player's games nowhere on it, though reading their own
+ * games is what the product now is. The top is now RecentGamesService's panel: the latest session,
+ * its games and what to look at next, or the one step an account without games needs. Game-data
+ * updates fold into one line; starting a guide moved to the "Your guides" column. The first-run
+ * "Build your first game plan" block (below) is gone with it.
  *
  * FEED, 2026-09-14. This page used to be a dashboard — six equally weighted cards (build a guide,
  * characters, comps, your guides, friends' guides, popular guides) plus a side column — which read
@@ -34,8 +42,8 @@ use Livewire\Component;
  * same rule UserGuide::isReadableBy() applies, written as a query: public, shared with one of your
  * guilds, shared with you by name, or yours — never a draft.
  *
- * FIRST RUN (2026-09-14): a player with no guide of their own also gets a "Build your first game
- * plan" block above the feed, with a link to the most-liked public guide as an example.
+ * FIRST RUN (2026-09-14 to 2026-11-03): a player with no guide of their own got a "Build your first
+ * game plan" block above the feed. An account with no games now gets the app's three steps instead.
  */
 class Home extends Component
 {
@@ -112,16 +120,11 @@ class Home extends Component
         return app(GuideFeed::class)->build(auth()->user(), $this->feedScope, $this->feedLimit, self::FEED_PAGE);
     }
 
-    /** The most-liked public guide, shown to a brand-new player as an example of a finished plan. */
+    /** The top of the page: the player's latest session, or the step an account without games needs. */
     #[Computed]
-    public function exampleGuide(): ?UserGuide
+    public function recentGames(): array
     {
-        return UserGuide::listed()
-            ->humanAuthored()
-            ->with(['user', 'members.specialization.gameClass'])
-            ->orderByDesc('like_count')
-            ->orderByDesc('view_count')
-            ->first();
+        return app(RecentGamesService::class)->forUser(auth()->user());
     }
 
     #[Computed]
@@ -202,7 +205,7 @@ class Home extends Component
     {
         return view('livewire.home')->layout('layouts.app', [
             'title' => 'Home | MindCollector',
-            'description' => 'Game plans from WoW arena players, and updates to the game data behind them.',
+            'description' => 'Your latest arena session, and game plans from other WoW arena players.',
         ]);
     }
 }

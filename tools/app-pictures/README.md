@@ -51,5 +51,17 @@ Remove-Item -Recurse storage/app/app-pictures
    add it to `STOP` in `anon.py` rather than let it become "Player Mastery Hunter".
 
 On 2026-10-12 the pictures came from the 3v3 win `670ab495f9a3b601a5e0c13e8757e17f`, `improve-2140eee348`, `comp-1990193cc4` and the Solo Shuffle
-`8cbf035fbbfd1008106dcc135273dca1`. The crops are in `crop.py`. Headless Edge will not render narrower
+`8cbf035fbbfd1008106dcc135273dca1`. The sample was taken again from the same four on 2026-11-03,
+for the death chart and Crowd Control Broken.
+
+**Three things learned on 2026-11-03:**
+
+- Cards now link each player's name to their page (`/wow/player/us/realm/name`), which puts the
+  name lower case in a URL and a title, out of the labels' reach. `anon.py` turns those links back
+  into plain names, and its check now also reads every `href`, `src`, `title`, `alt` and `data-`
+  attribute, in any case. The text-only check had passed pages with all six names in their links.
+- `anon.py` learns each player's class from every card in the pages folder: copy all the cards in,
+  not only the four, or the comp page reads "Player 42".
+- Experience lookups expire. If a sample page says "not looked up yet", look its players up again
+  (`PlayerExperienceService::lookup`) and redraw before anonymising. The crops are in `crop.py`. Headless Edge will not render narrower
 than about 490px, so check the slider at phone width in a 390px iframe served from the same site.
