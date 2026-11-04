@@ -83,7 +83,7 @@ class PushRounds extends Command
 
         $measured = null;
         if ($this->option('measured')) {
-            $measured = $this->measuredHeaders($asked ?? null, $serverVersion);
+            $measured = $this->measuredHeaders($client, $site, $serverVersion);
             if ($measured === null) {
                 return self::FAILURE;
             }
@@ -174,10 +174,20 @@ class PushRounds extends Command
      * The headers a measured send carries, once this PC is shown to measure with what the server
      * would; null, with the reason said, otherwise.
      */
-    private function measuredHeaders(?\Illuminate\Http\Client\Response $asked, ?int $serverVersion): ?array
+    private function measuredHeaders(\Closure $client, string $site, ?int $serverVersion): ?array
     {
-        $server = $asked?->json() ?? [];
-        if (! isset($server['commit'])) {
+        // An empty measured request: an admin's key is told the server's commit and build (409),
+        // anyone else is refused (403). /api/coach/version cannot say: public/index.php answers it
+        // without booting Laravel, version only.
+        try {
+            $probe = $client()->post("{$site}/api/coach/measured");
+        } catch (\Throwable $e) {
+            $this->error('Could not reach the website: '.$e->getMessage());
+
+            return null;
+        }
+        $server = $probe->status() === 409 ? ($probe->json() ?? []) : [];
+        if (! isset($server['commit'], $server['build'])) {
             $this->error('The website does not take measured rounds from this key (an admin key only). Send without --measured.');
 
             return null;

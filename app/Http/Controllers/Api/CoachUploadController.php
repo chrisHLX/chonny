@@ -148,12 +148,9 @@ class CoachUploadController extends Controller
      */
     public function version(Request $request): JsonResponse
     {
-        $user = User::forCoachToken($request->bearerToken());
-        abort_unless($user, 401);
+        abort_unless(User::forCoachToken($request->bearerToken()), 401);
 
-        // An admin's PC may send its own measurements (measured()) and checks first that it measures
-        // with what this server would.
-        return response()->json(['version' => RoundAnalysisService::VERSION] + ($user->is_admin ? self::measuredWith() : []));
+        return response()->json(['version' => RoundAnalysisService::VERSION]);
     }
 
     /** What a round here is measured with: the deployed commit and the current WoW spell build. */
@@ -173,7 +170,9 @@ class CoachUploadController extends Controller
      * Trusted only because it is an admin's key, and only when it was measured with exactly what this
      * server would use: the same RoundAnalysisService::VERSION, the same deployed commit (X-Commit,
      * the PC's full HEAD, which starts with the short one deploy.sh writes) and the same spell build
-     * (X-Build). Anything else is refused with 409 and the PC sends the raw log instead. The body is
+     * (X-Build). Anything else is refused with 409, which names this server's commit and build: the
+     * PC asks with an empty request first to learn them (not /api/coach/version, which public/index.php
+     * answers without booting Laravel), and sends the raw log instead when they differ. The body is
      * the stored row, gzipped JSON. What ingestRound() learns from the raw text (a non-English
      * client's spell names) is not learned this way.
      */

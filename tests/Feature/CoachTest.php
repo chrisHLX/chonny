@@ -114,10 +114,11 @@ class CoachTest extends TestCase
         $playerKey = User::factory()->create()->issueCoachToken();
         $version = \App\Http\Services\RoundAnalysisService::VERSION;
 
-        // Only an admin's key is told what the server measures with.
-        $this->withHeader('Authorization', "Bearer {$playerKey}")->getJson('/api/coach/version')->assertExactJson(['version' => $version]);
-        $this->withHeader('Authorization', "Bearer {$adminKey}")->getJson('/api/coach/version')
-            ->assertExactJson(['version' => $version, 'commit' => 'abc1234', 'build' => '12.1.5.70688']);
+        // An empty request tells an admin's key what the server measures with, and nobody else
+        // (not /api/coach/version, which public/index.php answers before Laravel boots).
+        $this->withHeader('Authorization', "Bearer {$playerKey}")->postJson('/api/coach/measured')->assertStatus(403);
+        $this->withHeader('Authorization', "Bearer {$adminKey}")->postJson('/api/coach/measured')
+            ->assertStatus(409)->assertJson(['status' => 'mismatch', 'commit' => 'abc1234', 'build' => '12.1.5.70688']);
 
         $row = fn (int $v) => gzencode(json_encode([
             'match_id' => str_repeat('c', 32), 'lobby_id' => str_repeat('d', 32), 'roster_key' => 'k', 'sequence' => 1,
