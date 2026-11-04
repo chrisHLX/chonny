@@ -219,6 +219,54 @@ class WatchPageTest extends TestCase
         $this->assertStringContainsString('class="frames-data"', view('desktop.watch', $page)->render());
     }
 
+    /**
+     * Trinkets and racials (2026-11-04): pressed in the round, a tracked button once someone who knows
+     * gave its cooldown (SharedSpells), never with a made-up one; its icon either way.
+     */
+    public function test_a_trinket_or_racial_pressed_is_a_button_once_its_cooldown_is_known(): void
+    {
+        \App\Support\SharedSpells::use([
+            'Blood Fury' => ['spellId' => 20572, 'icon' => 'blood-fury.jpg', 'cooldown' => 120],
+            'Shadowmeld' => ['spellId' => 58984, 'icon' => 'shadowmeld.jpg', 'cooldown' => null],
+        ]);
+        try {
+            $user = User::factory()->create();
+            $round = ArenaRound::create([
+                'user_id' => $user->id, 'lobby_id' => 'lobby-t', 'match_id' => 'm', 'roster_key' => 'r',
+                'bracket' => '3v3', 'sequence' => 1, 'played_at' => '2026-10-25 19:10:59',
+                'payload' => ['analysis' => ['version' => 19, 'won' => true, 'goes' => [], 'deaths' => [],
+                    'players' => [['guid' => 'E-1', 'name' => 'Orc-Realm-US', 'spec' => 'Subtlety Rogue', 'classSlug' => 'rogue', 'side' => 'them', 'kit' => []]],
+                    'timeline' => ['hp' => [], 'control' => [], 'casts' => ['E-1' => [[10.0, 'Blood Fury', null], [12.0, 'Shadowmeld', null]]]]]],
+            ]);
+
+            $page = app(\App\Http\Services\WatchPageService::class)->page(collect([$round]));
+            $abilities = $page['rounds'][0]['frames'][0]['abilities'];
+
+            $this->assertSame(['Blood Fury'], array_column($abilities, 'name'), 'Shadowmeld has no cooldown on file, so it is not counted down');
+            $this->assertSame(['trinket', 120.0, [10.0]], [$abilities[0]['kind'], $abilities[0]['cd'], $abilities[0]['presses']]);
+            $this->assertStringEndsWith('shadowmeld.jpg', $page['rounds'][0]['castIcons']['Shadowmeld'], 'its icon all the same');
+        } finally {
+            \App\Support\SharedSpells::forget();
+        }
+    }
+
+    /** Every spell a moment names carries its icon in front of it (2026-11-04), and the text stays escaped. */
+    public function test_moments_put_each_spells_icon_in_front_of_its_name(): void
+    {
+        $html = $this->render([$this->round(['duration' => 100, 'castIcons' => ['Pain Suppression' => '/storage/spell-icons/ps.jpg', 'Blur' => '/storage/spell-icons/blur.jpg'],
+            'defensives' => [
+                ['t' => 40.3, 'side' => 'us', 'spell' => 'Pain Suppression', 'who' => 'Healer', 'on' => 'Tank'],
+                ['t' => 59.6, 'side' => 'them', 'spell' => 'Blurred <Vision>', 'who' => 'Elf', 'on' => null],
+            ],
+            'falls' => [['side' => 'them', 'on' => 'Tank', 'from' => 38.0, 'to' => 44.0, 'high' => 90, 'low' => 40, 'died' => false, 'kind' => 'cooldown',
+                'intensity' => 2, 'sync' => null, 'cooldowns' => [], 'control' => [], 'answers' => ['Pain Suppression (Healer)'], 'breakdown' => null]],
+        ])]);
+
+        $this->assertStringContainsString('<b><img class="si" src="/storage/spell-icons/ps.jpg" alt="">Pain Suppression</b>', $html);
+        $this->assertStringContainsString('Answered with: <img class="si" src="/storage/spell-icons/ps.jpg" alt="">Pain Suppression (Healer)', $html);
+        $this->assertStringContainsString('<b>Blurred &lt;Vision&gt;</b>', $html, 'a name that only starts like a spell gets no icon, and is escaped');
+    }
+
     public function test_defensives_are_drawn_and_listed_by_name(): void
     {
         $html = $this->render([$this->round(['duration' => 100, 'defensives' => [

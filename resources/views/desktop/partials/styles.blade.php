@@ -193,6 +193,9 @@
 
     @media (max-width: 560px) {
         .kt-head { flex-wrap: wrap; }
+        /* The website's card names each team by its comp, which can be longer than "Enemy team". */
+        .seg { flex-shrink: 1; max-width: 100%; }
+        .seg a { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; min-width: 0; }
         .kt-target { grid-template-columns: minmax(0, 1fr) auto; gap: 4px 12px; }
         .kt-target .bar { grid-column: 1 / -1; grid-row: 2; }
         .kt-target .fate { grid-column: 1 / -1; }

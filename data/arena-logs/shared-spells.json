@@ -1,0 +1,115 @@
+{
+    "_about": "Spells any class presses that the spell data does not hold: trinkets, racials, item effects. Written by wow:shared-spells (ids from the raw logs, icons from Blizzard). cooldown is hand-filled by the domain expert; null means it is not tracked as a button. See App\\Support\\SharedSpells.",
+    "spells": {
+        "Ancestral Call": {
+            "spellId": 274738,
+            "icon": "2021574.jpg",
+            "cooldown": null
+        },
+        "Arcane Torrent": {
+            "spellId": 202719,
+            "icon": "136222.jpg",
+            "cooldown": null
+        },
+        "Autographed Hearthstone Card": {
+            "spellId": 175513,
+            "icon": "item_hearthstone_card.jpg",
+            "cooldown": null
+        },
+        "Blood Fury": {
+            "spellId": 20572,
+            "icon": "135726.jpg",
+            "cooldown": null
+        },
+        "Bull Rush": {
+            "spellId": 255654,
+            "icon": "1723987.jpg",
+            "cooldown": null
+        },
+        "Darkmoon Firework": {
+            "spellId": 103740,
+            "icon": "inv_misc_missilesmallcluster_green.jpg",
+            "cooldown": null
+        },
+        "Essence of Yu'lon": {
+            "spellId": 440836,
+            "icon": "monk_stance_wiseserpent.jpg",
+            "cooldown": null
+        },
+        "Gift of the Naaru": {
+            "spellId": 121093,
+            "icon": "135923.jpg",
+            "cooldown": null
+        },
+        "Gladiator's Badge": {
+            "spellId": 345228,
+            "icon": "spell_holy_championsbond.jpg",
+            "cooldown": null
+        },
+        "Gladiator's Emblem": {
+            "spellId": 345231,
+            "icon": "ability_warrior_endlessrage.jpg",
+            "cooldown": null
+        },
+        "Haymaker": {
+            "spellId": 287712,
+            "icon": "2447782.jpg",
+            "cooldown": null
+        },
+        "Kindness of Chi-Ji": {
+            "spellId": 440839,
+            "icon": "monk_stance_redcrane.jpg",
+            "cooldown": null
+        },
+        "Quaking Palm": {
+            "spellId": 107079,
+            "icon": "572035.jpg",
+            "cooldown": null
+        },
+        "Rocket Jump": {
+            "spellId": 69070,
+            "icon": "370769.jpg",
+            "cooldown": null
+        },
+        "Shadowmeld": {
+            "spellId": 58984,
+            "icon": "132089.jpg",
+            "cooldown": null
+        },
+        "Spatial Rift": {
+            "spellId": 256948,
+            "icon": "1724004.jpg",
+            "cooldown": null
+        },
+        "Venomous Champion's Illustrious Banner": {
+            "spellId": 1306978,
+            "icon": "achievement_doublejeopardy.jpg",
+            "cooldown": null
+        },
+        "War Stomp": {
+            "spellId": 20549,
+            "icon": "132368.jpg",
+            "cooldown": null
+        },
+        "Will of the Forsaken": {
+            "spellId": 7744,
+            "icon": "136187.jpg",
+            "cooldown": null
+        },
+        "Will to Survive": {
+            "spellId": 59752,
+            "icon": "136129.jpg",
+            "cooldown": null
+        },
+        "Wing Buffet": {
+            "spellId": 357214,
+            "icon": "4622488.jpg",
+            "cooldown": null
+        },
+        "Winning Hand": {
+            "spellId": 176890,
+            "icon": "item_hearthstone_card.jpg",
+            "cooldown": null
+        }
+    }
+}

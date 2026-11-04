@@ -1,18 +1,19 @@
 {{-- Whom each team went after, and its goes (KillTargetService, 2026-11-01). Icons first, as few words as
-     will carry it, like PvP Guides' Empowered box. $kt is keyed by the attacking team. --}}
+     will carry it, like PvP Guides' Empowered box. $kt is keyed by the attacking team. $teams, on the
+     website's pooled card, names each team by its comp: there is no "you" there. --}}
 <div class="kt">
     <div class="kt-head">
         <div class="kicker">@include('desktop.partials.icon', ['n' => 'target'])Kill targets</div>
         <div class="seg">
-            <a class="on" onclick="ktShow(this, 'us')">Your team</a>
-            <a onclick="ktShow(this, 'them')">Enemy team</a>
+            <a class="on" onclick="ktShow(this, 'us')">{{ $teams['us'] ?? 'Your team' }}</a>
+            <a onclick="ktShow(this, 'them')">{{ $teams['them'] ?? 'Enemy team' }}</a>
         </div>
     </div>
-    @foreach (['us' => 'Their healer', 'them' => 'Your healer'] as $side => $healerLabel)
+    @foreach (isset($teams) ? ['us' => 'Their healer', 'them' => 'Their healer'] : ['us' => 'Their healer', 'them' => 'Your healer'] as $side => $healerLabel)
         <div class="kt-side" data-side="{{ $side }}" @if ($side === 'them') style="display: none" @endif>
             @foreach ($kt[$side]['targets'] as $i => $t)
                 <div class="kt-target">
-                    <div class="who"><span style="color: {{ $t['color'] }}">{{ $t['name'] }}</span> <span class="muted">{{ $t['spec'] }}</span>@if ($i === 0) <span class="chip neutral">Primary</span>@endif</div>
+                    <div class="who"><span style="color: {{ $t['color'] }}">{{ $t['name'] }}</span>@unless (str_contains($t['name'], $t['spec'])) <span class="muted">{{ $t['spec'] }}</span>@endunless @if ($i === 0) <span class="chip neutral">Primary</span>@endif</div>
                     <div class="bar"><span style="width: {{ $t['share'] }}%; background: {{ $t['color'] }}"></span></div>
                     <div class="amt">{{ $t['amount'] }}</div>
                     <div class="fate">@if ($t['died'])@include('desktop.partials.icon', ['n' => 'skull'])Died {{ $t['died'] }}@endif</div>

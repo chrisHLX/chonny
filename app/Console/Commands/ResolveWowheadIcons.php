@@ -5,7 +5,6 @@ namespace App\Console\Commands;
 use App\Models\Patch;
 use App\Models\Spell;
 use Illuminate\Console\Command;
-use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Http;
 
@@ -45,15 +44,18 @@ class ResolveWowheadIcons extends Command
 
     protected $description = 'Looks up icon filenames on Wowhead for spells Blizzard\'s own API does not index, and verifies each on Blizzard\'s icon CDN before trusting it.';
 
-    private const USER_AGENT = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0 Safari/537.36';
-    private const CDN_BASE = 'https://render.worldofwarcraft.com/us/icons/56/';
+    public const USER_AGENT = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0 Safari/537.36';
+
+    public const CDN_BASE = 'https://render.worldofwarcraft.com/us/icons/56/';
+
     private const OVERRIDES_PATH = 'data/spelldata/icon-name-overrides.txt';
 
     public function handle(): int
     {
         $patchId = Patch::where('is_current', true)->value('id');
-        if (!$patchId) {
+        if (! $patchId) {
             $this->error('No current patch found.');
+
             return self::FAILURE;
         }
 
@@ -61,6 +63,7 @@ class ResolveWowheadIcons extends Command
 
         if ($targets->isEmpty()) {
             $this->info('Nothing to resolve — every spell in the current patch already has an icon.');
+
             return self::SUCCESS;
         }
 
@@ -73,18 +76,20 @@ class ResolveWowheadIcons extends Command
         foreach ($targets as $anchorSpellId => $displayName) {
             usleep(300000); // 300ms courtesy delay — this is a small, occasional, human-triggered lookup, not a bulk crawl
 
-            $tooltip = $this->fetchTooltip($anchorSpellId);
+            $tooltip = self::fetchTooltip($anchorSpellId);
 
             if ($tooltip === null || empty($tooltip['icon'])) {
                 $this->line("  <fg=red>✗</> {$displayName} (spell_id {$anchorSpellId}) — no icon found on Wowhead");
+
                 continue;
             }
 
             $icon = $tooltip['icon'];
-            $verified = $this->verifyOnCdn($icon);
+            $verified = self::verifyOnCdn($icon);
 
-            if (!$verified) {
+            if (! $verified) {
                 $this->line("  <fg=red>✗</> {$displayName} (spell_id {$anchorSpellId}) — Wowhead says '{$icon}' but it 404s on Blizzard's CDN, skipping");
+
                 continue;
             }
 
@@ -98,26 +103,28 @@ class ResolveWowheadIcons extends Command
         }
 
         $this->newLine();
-        $this->info(count($resolved) . ' of ' . $targets->count() . ' resolved and verified.');
+        $this->info(count($resolved).' of '.$targets->count().' resolved and verified.');
 
-        if (!$this->option('apply')) {
+        if (! $this->option('apply')) {
             if ($newLines !== []) {
-                $this->comment('Re-run with --apply to append these to ' . self::OVERRIDES_PATH . ':');
+                $this->comment('Re-run with --apply to append these to '.self::OVERRIDES_PATH.':');
                 foreach ($newLines as $line) {
                     $this->line("  {$line}");
                 }
             }
+
             return self::SUCCESS;
         }
 
         if ($newLines === []) {
             $this->info('Nothing new to append (already in the overrides file or nothing resolved).');
+
             return self::SUCCESS;
         }
 
         $path = base_path(self::OVERRIDES_PATH);
-        file_put_contents($path, "\n" . implode("\n", $newLines) . "\n", FILE_APPEND);
-        $this->info(count($newLines) . ' line(s) appended to ' . self::OVERRIDES_PATH . '.');
+        file_put_contents($path, "\n".implode("\n", $newLines)."\n", FILE_APPEND);
+        $this->info(count($newLines).' line(s) appended to '.self::OVERRIDES_PATH.'.');
         $this->comment('Run `php data/spelldata/fetch-spell-icons.php` to actually download the files and update the database.');
 
         return self::SUCCESS;
@@ -130,10 +137,12 @@ class ResolveWowheadIcons extends Command
     {
         if ($single = $this->argument('spellId')) {
             $spell = Spell::where('spell_id', (int) $single)->where('patch_id', $patchId)->first();
-            if (!$spell) {
+            if (! $spell) {
                 $this->error("spell_id {$single} not found in the current patch.");
+
                 return collect();
             }
+
             return collect([$spell->spell_id => $spell->display_name]);
         }
 
@@ -196,11 +205,15 @@ class ResolveWowheadIcons extends Command
             $data = json_decode(file_get_contents($file), true);
             foreach (($data['topDpsWindowsByLength'] ?? []) as $window) {
                 foreach (($window['steps'] ?? []) as $step) {
-                    if (!empty($step['spellId'])) $rotationExternalIds[(int) $step['spellId']] = true;
+                    if (! empty($step['spellId'])) {
+                        $rotationExternalIds[(int) $step['spellId']] = true;
+                    }
                 }
             }
             foreach (($data['topDpsWindow']['steps'] ?? []) as $step) {
-                if (!empty($step['spellId'])) $rotationExternalIds[(int) $step['spellId']] = true;
+                if (! empty($step['spellId'])) {
+                    $rotationExternalIds[(int) $step['spellId']] = true;
+                }
             }
         }
         $rotationDbIds = $rotationExternalIds === []
@@ -213,7 +226,7 @@ class ResolveWowheadIcons extends Command
     private function existingOverrideSpellIds(): array
     {
         $path = base_path(self::OVERRIDES_PATH);
-        if (!is_file($path)) {
+        if (! is_file($path)) {
             return [];
         }
 
@@ -235,7 +248,7 @@ class ResolveWowheadIcons extends Command
     /**
      * @return array{name: string, icon: string}|null
      */
-    private function fetchTooltip(int $spellId): ?array
+    public static function fetchTooltip(int $spellId): ?array
     {
         try {
             $response = Http::withHeaders(['User-Agent' => self::USER_AGENT])
@@ -251,17 +264,17 @@ class ResolveWowheadIcons extends Command
         }
 
         $data = $response->json();
-        if (!is_array($data) || empty($data['name']) || empty($data['icon'])) {
+        if (! is_array($data) || empty($data['name']) || empty($data['icon'])) {
             return null;
         }
 
         return ['name' => $data['name'], 'icon' => $data['icon']];
     }
 
-    private function verifyOnCdn(string $icon): bool
+    public static function verifyOnCdn(string $icon): bool
     {
         try {
-            $response = Http::timeout(10)->head(self::CDN_BASE . $icon . '.jpg');
+            $response = Http::timeout(10)->head(self::CDN_BASE.$icon.'.jpg');
         } catch (\Throwable) {
             return false;
         }

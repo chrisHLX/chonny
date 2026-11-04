@@ -102,6 +102,47 @@ class CoachTest extends TestCase
         $send($two, 2)->assertOk()->assertJson(['status' => 'stored']);
     }
 
+    public function test_an_admins_pc_may_send_rounds_it_measured_with_what_the_server_would_use(): void
+    {
+        Queue::fake();
+        $this->mock(\App\Http\Services\TalentSelectionService::class, fn ($m) => $m->shouldReceive('deployedCodeFingerprint')->andReturn('abc1234'));
+        $wow = \App\Models\Game::create(['slug' => 'wow', 'name' => 'World of Warcraft']);
+        \App\Models\Patch::create(['game_id' => $wow->id, 'build_version' => '12.1.5.70688', 'is_current' => true]);
+        $admin = User::factory()->create();
+        $admin->forceFill(['is_admin' => true])->save();
+        $adminKey = $admin->issueCoachToken();
+        $playerKey = User::factory()->create()->issueCoachToken();
+        $version = \App\Http\Services\RoundAnalysisService::VERSION;
+
+        // Only an admin's key is told what the server measures with.
+        $this->withHeader('Authorization', "Bearer {$playerKey}")->getJson('/api/coach/version')->assertExactJson(['version' => $version]);
+        $this->withHeader('Authorization', "Bearer {$adminKey}")->getJson('/api/coach/version')
+            ->assertExactJson(['version' => $version, 'commit' => 'abc1234', 'build' => '12.1.5.70688']);
+
+        $row = fn (int $v) => gzencode(json_encode([
+            'match_id' => str_repeat('c', 32), 'lobby_id' => str_repeat('d', 32), 'roster_key' => 'k', 'sequence' => 1,
+            'bracket' => '3v3', 'played_at' => '2026-11-02 14:15:00',
+            'payload' => ['metadata' => ['durationInSeconds' => 187], 'analysis' => ['version' => $v, 'won' => true, 'players' => []]],
+        ]));
+        $send = fn (string $key, string $commit, string $build, string $body) => $this->call('POST', '/api/coach/measured', [], [], [], [
+            'HTTP_AUTHORIZATION' => "Bearer {$key}", 'HTTP_X_COMMIT' => $commit, 'HTTP_X_BUILD' => $build,
+            'CONTENT_TYPE' => 'application/gzip', 'HTTP_ACCEPT' => 'application/json',
+        ], $body);
+        $head = 'abc1234'.str_repeat('0', 33);
+
+        $send($playerKey, $head, '12.1.5.70688', $row($version))->assertStatus(403);
+        $send($adminKey, 'fff9999'.str_repeat('0', 33), '12.1.5.70688', $row($version))->assertStatus(409)->assertJson(['status' => 'mismatch', 'commit' => 'abc1234']);
+        $send($adminKey, $head, '12.1.0.69999', $row($version))->assertStatus(409);
+        $send($adminKey, $head, '12.1.5.70688', $row($version - 1))->assertStatus(409);
+        $this->assertSame(0, \App\Models\ArenaRound::count(), 'nothing measured differently is kept');
+
+        $send($adminKey, $head, '12.1.5.70688', $row($version))->assertOk()->assertJson(['status' => 'stored']);
+        $stored = \App\Models\ArenaRound::where('user_id', $admin->id)->sole();
+        $this->assertSame(str_repeat('d', 32), $stored->lobby_id);
+        $this->assertSame($version, $stored->payload['analysis']['version']);
+        $this->assertSame('2026-11-02 14:15:00', $stored->played_at->format('Y-m-d H:i:s'));
+    }
+
     public function test_finishing_a_batch_builds_the_pages_in_the_background(): void
     {
         Queue::fake();

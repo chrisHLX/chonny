@@ -185,13 +185,14 @@
     </div>
 
     @if (! empty($g['killTargets']))
-        <div class="card kt-card">@include('desktop.partials.kill-targets', ['kt' => $g['killTargets']])</div>
+        <div class="card kt-card">@include('desktop.partials.kill-targets', ['kt' => $g['killTargets']] + (empty($g['pool']) ? [] : ['teams' => $g['pool']]))</div>
     @endif
 
     {{-- ============================== the game on one line of time, and the checks beside it, with what
          broke crowd control under them: Key events runs long and Checks stops short (Chriso, 2026-11-02). --}}
     <div class="grid2 top">
-        <div class="card" @if (! empty($g['pool'])) style="grid-column: 1 / -1" @endif>
+        {{-- A pooled card has no Checks, so Key events takes the row unless something broke crowd control. --}}
+        <div class="card" @if (! empty($g['pool']) && empty($g['ccBreaks'])) style="grid-column: 1 / -1" @endif>
             <div class="kicker">@include('desktop.partials.icon', ['n' => 'clock'])Key events</div>
             <div class="events">
                 @forelse ($g['events'] ?? [] as $e)
@@ -214,6 +215,10 @@
                 @if (! empty($g['ccBreaks']))
                     <div class="card">@include('desktop.partials.cc-breaks', ['cb' => $g['ccBreaks']])</div>
                 @endif
+            </div>
+        @elseif (! empty($g['ccBreaks']))
+            <div class="side-stack">
+                <div class="card">@include('desktop.partials.cc-breaks', ['cb' => $g['ccBreaks'], 'teams' => $g['pool']])</div>
             </div>
         @endif
     </div>

@@ -22,6 +22,12 @@ use Illuminate\Support\Facades\Http;
  * result: the server measures it with the same code (Api\CoachUploadController). What was sent, and
  * at which RoundAnalysisService::VERSION, is kept in storage/app/pushed-rounds.json; when the version
  * goes up, every round is sent again so the server measures it anew, since it keeps no raw log.
+ *
+ * --measured (2026-11-04, an admin's key only) sends this PC's measurement instead, so a re-measure
+ * costs the server a database write rather than about 4s of its one core a round. It runs only when
+ * this PC measures with what the server would: its HEAD is the deployed commit, nothing under app/,
+ * config/ or data/ is changed, and the spell build is the server's (CoachUploadController::measured()).
+ * A round not measured at RoundAnalysisService::VERSION here, or too big for one request, goes raw.
  */
 class PushRounds extends Command
 {
@@ -31,7 +37,8 @@ class PushRounds extends Command
         {--newest : Newest games first, to see the latest on the website soon after a re-send starts}
         {--limit=150 : Rounds a run; the rest go next time}
         {--pause=1 : Seconds between rounds, to leave the server (one core) room for its visitors}
-        {--minutes=10 : Stop after this long and finish properly; the rest go next time}';
+        {--minutes=10 : Stop after this long and finish properly; the rest go next time}
+        {--measured : Send what this PC measured, not the raw log (an admin key, on the deployed commit)}';
 
     protected $description = "Send this PC's games to your account on the website (/wow/coach)";
 
@@ -74,6 +81,14 @@ class PushRounds extends Command
         }
         $version = min(RoundAnalysisService::VERSION, $serverVersion ?? RoundAnalysisService::VERSION);
 
+        $measured = null;
+        if ($this->option('measured')) {
+            $measured = $this->measuredHeaders($asked ?? null, $serverVersion);
+            if ($measured === null) {
+                return self::FAILURE;
+            }
+        }
+
         $todo = ArenaRound::where('user_id', $user->id)->orderBy('played_at', $this->option('newest') ? 'desc' : 'asc')->get(['match_id', 'lobby_id'])
             ->filter(fn ($r) => $this->option('all') || ($state[$r->match_id] ?? 0) < $version)
             ->values();
@@ -87,10 +102,17 @@ class PushRounds extends Command
         // so one shared client sent the first round's X-Match on every round after it (2026-10-05).
         $sent = 0;
         $failed = 0;
+        $raw = 0;
+        $refused = false;
         // The server measures each round as it arrives (about 4s on its one core), so a batch is
         // bounded by time too. The desktop app stops any step after 15 minutes; stopping here first
         // still asks the server to build the pages and reports what is left (2026-10-10).
-        $batch = $todo->take((int) $this->option('limit'))->values();
+        // A measured round costs the server a write, not a measurement: bigger batches, shorter pauses,
+        // unless asked otherwise.
+        $given = fn (string $o) => $this->input->hasParameterOption("--{$o}");
+        $limit = $measured && ! $given('limit') ? 2000 : (int) $this->option('limit');
+        $pause = $measured && ! $given('pause') ? 0.1 : (float) $this->option('pause');
+        $batch = $todo->take($limit)->values();
         $deadline = microtime(true) + 60 * (float) $this->option('minutes');
         foreach ($batch as $n => $r) {
             if (microtime(true) > $deadline) {
@@ -103,9 +125,17 @@ class PushRounds extends Command
 
                 continue;
             }
-            $bytes = File::get($path);
-            $parts = str_split($bytes, self::CHUNK);
             $result = null;
+            $body = $measured ? $this->measuredBody($user->id, $r->match_id) : null;
+            if ($body !== null) {
+                $result = $this->sendMeasured($client, $site, $r, $body, $measured);
+                if ($result === 'unauthorised' || $result === 'mismatch') {
+                    // The server still builds the pages of what got there.
+                    $refused = true;
+                    break;
+                }
+            }
+            $parts = $body === null ? str_split(File::get($path), self::CHUNK) : [];
             foreach ($parts as $i => $part) {
                 $result = $this->send($client, $site, $r, $part, $i + 1, count($parts));
                 if ($result === 'unauthorised') {
@@ -120,22 +150,113 @@ class PushRounds extends Command
             if ($result === 'stored') {
                 $state[$r->match_id] = $version;
                 $sent++;
+                $raw += $measured && $body === null ? 1 : 0;
             } else {
                 $failed++;
             }
             File::put($statePath, json_encode($state));
             // Read by the desktop app while the step runs, for its status line.
             $this->line(sprintf('  %d of %d sent', $n + 1, $batch->count()));
-            usleep((int) ((float) $this->option('pause') * 1e6));
+            usleep((int) ($pause * 1e6));
         }
 
         if ($sent > 0) {
             $client()->post("{$site}/api/coach/done");
         }
         $left = $todo->count() - $sent - $failed;
-        $this->info("Sent {$sent} game(s) to the website".($failed ? ", {$failed} not taken" : '').($left > 0 ? ", {$left} left for next time" : '').'.');
+        $this->info("Sent {$sent} game(s) to the website".($raw ? " ({$raw} as raw logs: not measured here at version ".RoundAnalysisService::VERSION.', or too big for one request)' : '')
+            .($failed ? ", {$failed} not taken" : '').($left > 0 ? ", {$left} left for next time" : '').'.');
 
-        return self::SUCCESS;
+        return $refused ? self::FAILURE : self::SUCCESS;
+    }
+
+    /**
+     * The headers a measured send carries, once this PC is shown to measure with what the server
+     * would; null, with the reason said, otherwise.
+     */
+    private function measuredHeaders(?\Illuminate\Http\Client\Response $asked, ?int $serverVersion): ?array
+    {
+        $server = $asked?->json() ?? [];
+        if (! isset($server['commit'])) {
+            $this->error('The website does not take measured rounds from this key (an admin key only). Send without --measured.');
+
+            return null;
+        }
+        if ($serverVersion !== RoundAnalysisService::VERSION) {
+            $this->error("The website measures at version {$serverVersion}, this PC at ".RoundAnalysisService::VERSION.'. Deploy first, or send without --measured.');
+
+            return null;
+        }
+
+        $git = fn (string ...$args) => trim((string) \Illuminate\Support\Facades\Process::path(base_path())->run(['git', ...$args])->output());
+        $head = $git('rev-parse', 'HEAD');
+        if ($head === '' || ! str_starts_with($head, (string) $server['commit'])) {
+            $this->error("The website runs commit {$server['commit']}, this PC is at ".substr($head, 0, 7).'. Deploy (or check out that commit) first, or send without --measured.');
+
+            return null;
+        }
+        $changed = $git('status', '--porcelain', '--', 'app', 'config', 'data');
+        if ($changed !== '') {
+            $this->error("Files the measurement reads are changed here, so this PC does not measure like the website:\n".$changed);
+
+            return null;
+        }
+        $build = \App\Http\Controllers\Api\CoachUploadController::measuredWith()['build'];
+        if ($build !== $server['build']) {
+            $this->error("The website's spell data is build {$server['build']}, this PC's is {$build}. Import the same build first.");
+
+            return null;
+        }
+
+        return ['X-Commit' => $head, 'X-Build' => (string) $build];
+    }
+
+    /** A round's stored row as gzipped JSON, or null to send its raw log instead. */
+    private function measuredBody(int $userId, string $match): ?string
+    {
+        $row = ArenaRound::where('user_id', $userId)->where('match_id', $match)->first(['match_id', 'lobby_id', 'roster_key', 'sequence', 'bracket', 'played_at', 'payload']);
+        if (! $row || ($row->payload['analysis']['version'] ?? null) !== RoundAnalysisService::VERSION) {
+            return null;
+        }
+        $body = gzencode(json_encode([
+            'match_id' => $row->match_id, 'lobby_id' => $row->lobby_id, 'roster_key' => $row->roster_key, 'sequence' => $row->sequence,
+            'bracket' => $row->bracket, 'played_at' => $row->played_at?->format('Y-m-d H:i:s'), 'payload' => $row->payload,
+        ]), 6);
+
+        return strlen($body) <= self::CHUNK ? $body : null;
+    }
+
+    /** One measured round; its status, 'unauthorised' or 'mismatch' (both said), or null on failure. */
+    private function sendMeasured(\Closure $client, string $site, ArenaRound $r, string $body, array $headers): ?string
+    {
+        for ($try = 0; $try < 3; $try++) {
+            try {
+                $res = $client()->withHeaders($headers)->withBody($body, 'application/gzip')->post("{$site}/api/coach/measured");
+            } catch (\Throwable $e) {
+                $this->warn("  {$r->match_id}: ".$e->getMessage());
+
+                return null;
+            }
+            if ($res->status() === 429) {
+                sleep(max(1, (int) $res->json('retryAfter', 10)));
+
+                continue;
+            }
+            if (in_array($res->status(), [401, 403, 409], true)) {
+                $this->error('The website refused a measured round: '.($res->json('reason') ?? $res->status()));
+
+                return $res->status() === 409 ? 'mismatch' : 'unauthorised';
+            }
+            if (! $res->successful()) {
+                $this->warn("  {$r->match_id}: HTTP {$res->status()} ".($res->json('reason') ?? $res->json('message') ?? ''));
+
+                return null;
+            }
+
+            return (string) $res->json('status');
+        }
+
+        return null;
     }
 
     /** One request; the round's status ('stored', 'part', ...), 'unauthorised', or null on failure. */

@@ -297,8 +297,16 @@ class WatchPageService
         $english = app(SpellNameTranslations::class)->english(array_keys($castNames));
         // A kit's button can come from the player's own talents, so a profile may not hold its icon.
         $kitNames = collect($analysis['players'] ?? [])->flatMap(fn ($p) => array_column($p['kit'] ?? [], 'name'))->all();
+        // And every spell the moments name that nobody cast by that name (2026-11-04, Chriso: icons
+        // in the moments): a killing blow, crowd control, a defensive buff.
+        $named = [
+            ...array_column(array_column($analysis['deaths'] ?? [], 'killingBlow'), 'spell'),
+            ...array_column($analysis['timeline']['control'] ?? [], 2),
+            ...array_column($analysis['defensives']['us']['rows'] ?? [], 'spell'),
+            ...array_column($analysis['defensives']['them']['rows'] ?? [], 'spell'),
+        ];
         $castIcons = [];
-        foreach ($icons ? app(SpellIconIndex::class)->for(array_values(array_unique([...array_keys($castNames), ...$kitNames]))) : [] as $spell => $model) {
+        foreach ($icons ? app(SpellIconIndex::class)->for(array_values(array_unique(array_filter([...array_keys($castNames), ...$kitNames, ...$named], 'is_string')))) : [] as $spell => $model) {
             if ($model?->icon_name) {
                 $castIcons[$spell] = \App\Support\DesktopAsset::icon($model->icon_name);
             }
@@ -349,6 +357,15 @@ class WatchPageService
             $spec = $own ? null : $this->spec($p);
             if ($spec !== null) {
                 $kit = array_values(array_filter($kit, fn ($a) => ! empty($pressed[$a['name']]) || ! $ledger->isTalent($a['name'], $spec)));
+            }
+            // Trinkets and racials the player pressed in this round, last (2026-11-04, Chriso). Only
+            // those with a cooldown from the domain expert (SharedSpells): pressing one shows the player
+            // has it, but no spell data says how long it is down.
+            $inKit = array_flip(array_column($kit, 'name'));
+            foreach (array_keys($pressed) as $spell) {
+                if (! isset($inKit[$spell]) && ($cd = \App\Support\SharedSpells::cooldown($spell)) !== null) {
+                    $kit[] = ['name' => $spell, 'kind' => 'trinket', 'cd' => $cd, 'charges' => (int) (\App\Support\SharedSpells::all()[$spell]['charges'] ?? 1) ?: 1];
+                }
             }
 
             $out[$p['guid']] = [
@@ -458,6 +475,7 @@ class WatchPageService
                 'kind' => $f['kind'],
                 'intensity' => $f['intensity'],
                 'sync' => $f['sync'] ? sprintf('%s on %s, %s on the healer, %ss apart', $f['sync']['targetBy'], $name($f['on']), $f['sync']['healerBy'], $f['sync']['gap']) : null,
+                // Each begins with its spell's name, which the page puts its icon in front of.
                 'cooldowns' => array_map(fn ($l) => $l['spell'].' ('.$name($l['by']).')', $offs),
                 'control' => array_map(fn ($l) => $l['spell'].' on '.$name($l['on']), $ccs),
                 'answers' => array_map(fn ($a) => $a['spell'].' ('.$name($a['who']).')', $f['answers']),

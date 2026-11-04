@@ -1,11 +1,12 @@
 {{-- Crowd control something broke (GameCardService::ccBreaksModel, 2026-11-02): one dot a landing, then
-     what broke each one and how long it had held. Icons first, like the Empowered box. --}}
+     what broke each one and how long it had held. Icons first, like the Empowered box. $teams as in
+     kill-targets. --}}
 <div class="kt">
     <div class="kt-head">
         <div class="kicker">@include('desktop.partials.icon', ['n' => 'target'])Crowd Control Broken</div>
         <div class="seg">
-            <a class="on" onclick="ktShow(this, 'us')">Your team</a>
-            <a onclick="ktShow(this, 'them')">Enemy team</a>
+            <a class="on" onclick="ktShow(this, 'us')">{{ $teams['us'] ?? 'Your team' }}</a>
+            <a onclick="ktShow(this, 'them')">{{ $teams['them'] ?? 'Enemy team' }}</a>
         </div>
     </div>
     @foreach (['us', 'them'] as $side)

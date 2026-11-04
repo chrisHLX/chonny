@@ -77,6 +77,15 @@ class SpellIconIndex
                     $this->cache[$name] = $rows->first(fn ($r) => str_starts_with($r->name, $name.' ('));
                 }
             }
+
+            // Trinkets, racials and item effects, which the spell data does not hold (SharedSpells):
+            // a row made in memory, never saved, so every page that draws an icon from it draws theirs.
+            foreach ($missing as $name) {
+                if ($this->cache[$name] === null && ($icon = \App\Support\SharedSpells::icon($name)) !== null) {
+                    $this->cache[$name] = (new Spell)->forceFill(['name' => $name, 'icon_name' => $icon,
+                        'spell_id' => \App\Support\SharedSpells::all()[$name]['spellId'] ?? null, 'is_passive' => false, 'not_in_spellbook' => false]);
+                }
+            }
         }
 
         return array_intersect_key($this->cache, array_flip($names));

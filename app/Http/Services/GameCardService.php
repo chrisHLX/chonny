@@ -355,12 +355,12 @@ class GameCardService
 
     /**
      * The Summary's Kill targets box: each team's targets by the damage they took, and its goes, with
-     * names and icons (KillTargetService). Null on a pooled card, which has no "your team", and for a
-     * round measured before version 18.
+     * names and icons (KillTargetService). Null for a round measured before version 18. A pooled card
+     * has it too (2026-11-04), its teams named by comp: the read is by guid and side, which flip() turns.
      */
     private function killTargetsModel(array $a, Collection $players): ?array
     {
-        $read = $this->pool ? null : app(KillTargetService::class)->read($a);
+        $read = app(KillTargetService::class)->read($a);
         if ($read === null) {
             return null;
         }
@@ -400,12 +400,12 @@ class GameCardService
      * damage), by the team that cast it. One dot a landing, held or broken, then what broke each. It
      * lists the lockouts of a kind that broke at least once; it makes no call on whether the break was
      * a mistake, since breaking one on purpose is part of the game. Melee swings write no break to
-     * the log, so a Polymorph ended by a swing reads as held. Null on a pooled card, for a round
-     * measured before version 19, and when nothing broke.
+     * the log, so a Polymorph ended by a swing reads as held. Null for a round measured before version
+     * 19, and when nothing broke. On a pooled card too (2026-11-04), its teams named by comp.
      */
     private function ccBreaksModel(array $a, Collection $players): ?array
     {
-        if ($this->pool || ($a['version'] ?? 0) < 19) {
+        if (($a['version'] ?? 0) < 19) {
             return null;
         }
         $byGuid = $players->keyBy('guid');

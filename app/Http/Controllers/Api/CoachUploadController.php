@@ -4,8 +4,12 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Http\Services\ArenaReviewIngestService;
+use App\Http\Services\RoundAnalysisService;
+use App\Http\Services\TalentSelectionService;
 use App\Jobs\BuildCoachPages;
+use App\Jobs\FetchPlayerExperience;
 use App\Models\ArenaRound;
+use App\Models\Patch;
 use App\Models\User;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
@@ -144,9 +148,88 @@ class CoachUploadController extends Controller
      */
     public function version(Request $request): JsonResponse
     {
-        abort_unless(User::forCoachToken($request->bearerToken()), 401);
+        $user = User::forCoachToken($request->bearerToken());
+        abort_unless($user, 401);
 
-        return response()->json(['version' => \App\Http\Services\RoundAnalysisService::VERSION]);
+        // An admin's PC may send its own measurements (measured()) and checks first that it measures
+        // with what this server would.
+        return response()->json(['version' => RoundAnalysisService::VERSION] + ($user->is_admin ? self::measuredWith() : []));
+    }
+
+    /** What a round here is measured with: the deployed commit and the current WoW spell build. */
+    public static function measuredWith(): array
+    {
+        return [
+            'commit' => app(TalentSelectionService::class)->deployedCodeFingerprint(),
+            'build' => Patch::where('is_current', true)->whereHas('game', fn ($q) => $q->where('slug', 'wow'))->value('build_version'),
+        ];
+    }
+
+    /**
+     * A round measured on an admin's own PC (2026-11-04, Chriso: "every time we have to use up server
+     * resources when we don't need to"). Every change to a measure re-sends every game, and measuring
+     * here is about 4s a round on one core; storing a finished payload is a database write.
+     *
+     * Trusted only because it is an admin's key, and only when it was measured with exactly what this
+     * server would use: the same RoundAnalysisService::VERSION, the same deployed commit (X-Commit,
+     * the PC's full HEAD, which starts with the short one deploy.sh writes) and the same spell build
+     * (X-Build). Anything else is refused with 409 and the PC sends the raw log instead. The body is
+     * the stored row, gzipped JSON. What ingestRound() learns from the raw text (a non-English
+     * client's spell names) is not learned this way.
+     */
+    public function measured(Request $request): JsonResponse
+    {
+        $user = User::forCoachToken($request->bearerToken());
+        if (! $user) {
+            return response()->json(['status' => 'unauthorised', 'reason' => 'Unknown key: make a new one on /wow/coach.'], 401);
+        }
+        if (! $user->is_admin) {
+            return response()->json(['status' => 'rejected', 'reason' => 'Only an admin may send measured rounds.'], 403);
+        }
+
+        $key = 'coach-upload:'.$user->id;
+        if (RateLimiter::tooManyAttempts($key, self::PER_MINUTE * 5)) {
+            return response()->json(['status' => 'rate-limited', 'retryAfter' => RateLimiter::availableIn($key)], 429);
+        }
+        RateLimiter::hit($key, 60);
+
+        $here = self::measuredWith();
+        $commit = (string) $request->header('X-Commit', '');
+        $build = (string) $request->header('X-Build', '');
+        if ($here['commit'] === 'dev' || $commit === '' || ! str_starts_with($commit, $here['commit']) || $build !== (string) $here['build']) {
+            return response()->json(['status' => 'mismatch', 'reason' => "This server measures with commit {$here['commit']} and spell build {$here['build']}."] + $here, 409);
+        }
+
+        $row = json_decode((string) @gzdecode($request->getContent()), true);
+        $payload = $row['payload'] ?? null;
+        $match = (string) ($row['match_id'] ?? '');
+        $lobby = (string) ($row['lobby_id'] ?? '');
+        if (! preg_match('/^[a-f0-9]{32}$/', $match) || ! preg_match('/^[a-f0-9]{32}$/', $lobby) || ! is_array($payload) || ! isset($payload['metadata'], $payload['analysis'])) {
+            return response()->json(['status' => 'rejected', 'reason' => 'Not a measured round.'], 422);
+        }
+        if (($payload['analysis']['version'] ?? null) !== RoundAnalysisService::VERSION) {
+            return response()->json(['status' => 'mismatch', 'reason' => 'Measured at version '.($payload['analysis']['version'] ?? '?').', this server is at '.RoundAnalysisService::VERSION.'.'] + $here, 409);
+        }
+
+        ArenaRound::updateOrCreate(
+            ['user_id' => $user->id, 'match_id' => $match],
+            [
+                'lobby_id' => $lobby,
+                'roster_key' => (string) ($row['roster_key'] ?? ''),
+                'sequence' => (int) ($row['sequence'] ?? 1),
+                'bracket' => (string) ($row['bracket'] ?? 'unknown'),
+                'played_at' => $row['played_at'] ?? null,
+                'payload' => $payload,
+            ]
+        );
+
+        $players = array_column($payload['analysis']['players'] ?? [], 'name');
+        if ($players !== [] && config('services.battlenet.client_id')) {
+            FetchPlayerExperience::dispatch($players, $user->id)->delay(now()->addSeconds(FetchPlayerExperience::DELAY_SECONDS));
+        }
+        BuildCoachPages::backup($user->id);
+
+        return response()->json(['status' => 'stored', 'matchId' => $match, 'lobbyId' => $lobby]);
     }
 
     public function done(Request $request, ArenaReviewIngestService $ingest): JsonResponse

@@ -74,6 +74,14 @@
     .rib .c.big { box-shadow: 0 0 0 1.5px #E8B84B; z-index: 2; }
     .rib .c .lt { display: block; font-size: 8px; color: #B3B3B3; text-align: center; line-height: 18px; }
     .rib .sec { position: absolute; top: 0; height: 100%; width: 1px; background: #232323; }
+    /* Crowd control on the casts line (2026-11-04, Chriso): the stretch a player could not press
+       anything stays marked as it slides back, so a gap in their casts reads as control, not idling. */
+    .rib .ccs { position: absolute; top: 0; height: 100%; background: rgba(239, 68, 68, .2); box-shadow: inset 0 2px 0 #EF4444; z-index: 1;
+        display: flex; align-items: center; gap: 3px; padding-left: 2px; overflow: hidden; white-space: nowrap; font-size: 9.5px; font-weight: 700; color: #fca5a5; }
+    .rib .ccs img { width: 14px; height: 14px; border-radius: 2px; flex: none; opacity: .9; }
+    .rib .ccs.dead { background: rgba(0, 0, 0, .55); box-shadow: none; color: #6A6A6A; }
+    .rib .c { z-index: 2; }
+    .si { width: 16px; height: 16px; border-radius: 3px; vertical-align: -3px; margin-right: 4px; }
     .blank { display: none; height: 22vh; min-height: 120px; background: #000000; color: #6A6A6A; align-items: center; justify-content: center; flex-direction: column; gap: 6px; }
     .blank .big { font-size: 34px; font-weight: 800; color: #FFFFFF; font-variant-numeric: tabular-nums; }
     .blank .small { font-size: 12px; }
@@ -317,38 +325,54 @@
         @php
             $dur = max(1, (float) $r['duration']);
             $pct = fn ($s) => max(0, min(100, 100 * $s / $dur));
+            // A spell's icon in front of any text that starts with its name (2026-11-04, Chriso: icons in
+            // the moments). Returns escaped HTML; text that names no known spell comes back as it was.
+            $icons = $r['castIcons'] ?? [];
+            $longest = array_keys($icons);
+            usort($longest, fn ($a, $b) => strlen($b) <=> strlen($a));
+            $ic = function (?string $text) use ($icons, $longest): string {
+                $text = (string) $text;
+                foreach ($longest as $n) {
+                    if ($n !== '' && str_starts_with($text, $n) && ! preg_match('/^[\pL\pN\']/u', substr($text, strlen($n)))) {
+                        return '<img class="si" src="'.e($icons[$n]).'" alt="">'.e($text);
+                    }
+                }
+
+                return e($text);
+            };
+            $list = fn (array $items) => implode(', ', array_map($ic, $items));
             $events = [];
             foreach ($r['goes'] as $g) {
                 $events[] = ['kind' => 'go', 't' => (float) $g['from'], 'side' => $g['side'],
-                    'label' => 'Old go on '.($g['target'] ?? '?').(! empty($g['kill']) ? ' — killed' : ''),
-                    'detail' => $g['chain'] ?? ''];
+                    'label' => e('Old go on '.($g['target'] ?? '?').(! empty($g['kill']) ? ' — killed' : '')),
+                    'detail' => e($g['chain'] ?? '')];
             }
             $kinds = ['cooldown' => 'cooldowns', 'control' => 'control, no cooldown', 'damage' => 'damage only'];
             foreach ($r['falls'] ?? [] as $f) {
                 $lines = array_filter([
-                    $f['sync'],
-                    $f['cooldowns'] ? 'Cooldowns: '.implode(', ', $f['cooldowns']) : null,
-                    $f['control'] ? 'Control: '.implode(', ', $f['control']) : null,
-                    $f['answers'] ? 'Answered with: '.implode(', ', $f['answers']) : null,
+                    $f['sync'] ? e($f['sync']) : null,
+                    $f['cooldowns'] ? 'Cooldowns: '.$list($f['cooldowns']) : null,
+                    $f['control'] ? 'Control: '.$list($f['control']) : null,
+                    $f['answers'] ? 'Answered with: '.$list($f['answers']) : null,
                 ]);
                 $events[] = ['kind' => 'fall', 't' => (float) $f['from'], 'side' => $f['side'],
-                    'label' => $f['on'].' '.$f['high'].'% → '.($f['died'] ? 'died' : $f['low'].'%').' · '.$kinds[$f['kind']],
-                    'detail' => implode("\n", $lines), 'bd' => $f['breakdown'] ?? null];
+                    'label' => e($f['on'].' '.$f['high'].'% → '.($f['died'] ? 'died' : $f['low'].'%').' · '.$kinds[$f['kind']]),
+                    'detail' => implode('<br>', $lines), 'bd' => $f['breakdown'] ?? null];
             }
             foreach ($r['unmoved'] ?? [] as $u) {
                 $events[] = ['kind' => 'unmoved', 't' => (float) $u['t'], 'side' => $u['side'],
-                    'label' => $u['spell'].' moved nobody',
-                    'detail' => $u['by'].($u['alone'] ? ', pressed with no control within 5s' : '')];
+                    'label' => $ic($u['spell'].' moved nobody'),
+                    'detail' => e($u['by'].($u['alone'] ? ', pressed with no control within 5s' : ''))];
             }
             foreach ($r['deaths'] as $d) {
                 $events[] = ['kind' => 'death', 't' => (float) $d['t'], 'side' => $d['side'] ?? null,
-                    'label' => 'Death: '.\Illuminate\Support\Str::before($d['name'] ?? ($d['who'] ?? '?'), '-'),
-                    'detail' => $d['killingBlow']['spell'] ?? ''];
+                    'label' => e('Death: '.\Illuminate\Support\Str::before($d['name'] ?? ($d['who'] ?? '?'), '-')),
+                    'detail' => $ic($d['killingBlow']['spell'] ?? '')];
             }
             foreach ($r['defensives'] ?? [] as $d) {
                 $events[] = ['kind' => 'def', 't' => (float) $d['t'], 'side' => $d['side'],
-                    'label' => $d['spell'],
-                    'detail' => $d['who'].(! empty($d['on']) ? ' on '.$d['on'] : '')];
+                    'label' => $ic($d['spell']),
+                    'detail' => e($d['who'].(! empty($d['on']) ? ' on '.$d['on'] : ''))];
             }
             usort($events, fn ($a, $b) => $a['t'] <=> $b['t']);
         @endphp
@@ -401,7 +425,8 @@
                     <tr data-t="{{ $e['t'] }}" data-kind="{{ $e['kind'] }}">
                         <td class="t">{{ $clock($e['t']) }}</td>
                         <td class="w">@if ($e['side'])<span class="pill {{ $e['side'] }}">{{ $e['side'] === 'us' ? 'you' : 'them' }}</span>@endif</td>
-                        <td><b>{{ $e['label'] }}</b>@if ($e['detail'])<div class="small subtle">{!! nl2br(e($e['detail'])) !!}</div>@endif
+                        {{-- label and detail are escaped HTML, built above with the spells' icons. --}}
+                        <td><b>{!! $e['label'] !!}</b>@if ($e['detail'] !== '')<div class="small subtle">{!! $e['detail'] !!}</div>@endif
                             @if (! empty($e['bd']))
                                 @php $bd = $e['bd']; $theirs = $e['side'] === 'us'; @endphp
                                 <button type="button" class="bd-toggle">Breakdown</button>
@@ -412,7 +437,7 @@
                                             @php $drLevel = str_ends_with($st['dr'] ?? '', 'half') ? 'half' : (str_ends_with($st['dr'] ?? '', 'immune') ? 'immune' : 'full'); @endphp
                                             <tr data-st="{{ $st['t'] }}">
                                                 <td class="at">{{ sprintf('%+.1fs', $st['at']) }}</td>
-                                                <td>{{ $st['text'] }} <span class="subtle">by {{ $st['by'] }}</span>
+                                                <td>{!! $ic($st['text']) !!} <span class="subtle">by {{ $st['by'] }}</span>
                                                     @if (! empty($st['dr']))<span class="drl {{ $drLevel }}">{{ $st['dr'] }}</span>@endif
                                                     @if (array_key_exists('kick', $st))
                                                         @if ($st['kick'])
@@ -429,14 +454,14 @@
                                     @foreach ($bd['defenders'] as $d)
                                         <div class="who"><b style="color: {{ $d['color'] }}">{{ $d['name'] }}</b>
                                             <span class="{{ $d['state'] === 'free' ? '' : 'subtle' }}">{{ $d['state'] === 'free' ? 'free' : ($d['state'] === 'dead' ? 'dead' : 'locked: '.$d['state']) }}</span>
-                                            @if ($d['ready']['answers'])<div class="small subtle">Defensives ready: {{ implode(', ', $d['ready']['answers']) }}</div>@endif
-                                            @if ($d['ready']['interrupts'])<div class="small subtle">Interrupt ready: {{ implode(', ', $d['ready']['interrupts']) }}</div>@endif
-                                            @if ($d['ready']['control'])<div class="small subtle">Control ready: {{ implode(', ', $d['ready']['control']) }}</div>@endif
+                                            @if ($d['ready']['answers'])<div class="small subtle">Defensives ready: {!! $list($d['ready']['answers']) !!}</div>@endif
+                                            @if ($d['ready']['interrupts'])<div class="small subtle">Interrupt ready: {!! $list($d['ready']['interrupts']) !!}</div>@endif
+                                            @if ($d['ready']['control'])<div class="small subtle">Control ready: {!! $list($d['ready']['control']) !!}</div>@endif
                                         </div>
                                     @endforeach
                                     <div class="fb-h">Spent</div>
-                                    <div class="small">Cooldowns: {{ $bd['spent'] ? implode(', ', $bd['spent']) : 'none, all control' }}</div>
-                                    <div class="small">Answered with: {{ $bd['answered'] ? implode(', ', $bd['answered']) : 'nothing' }}</div>
+                                    <div class="small">Cooldowns: {!! $bd['spent'] ? $list($bd['spent']) : 'none, all control' !!}</div>
+                                    <div class="small">Answered with: {!! $bd['answered'] ? $list($bd['answered']) : 'nothing' !!}</div>
                                     <div class="note">Click a step to see it from just before. Diminishing returns: a second control of a kind lasts half as long, a third does nothing, until 20 seconds pass without one. "Ready" means not pressed within its cooldown, so it could have been back sooner. Whether a kick was in range or in sight, the log cannot say.</div>
                                 </div>
                             @endif
@@ -754,10 +779,26 @@
     /** The casts line: what each player pressed in the RIBBON seconds before t, placed by time. */
     function drawRibbons(t) {
         ribbons.forEach(function (rb) {
-            var html = '<span class="now"></span>';
-            for (var s = Math.ceil(t - RIBBON); s < t; s++) {
-                html += '<span class="sec" style="left:' + (100 * (s - (t - RIBBON)) / RIBBON) + '%"></span>';
+            var html = '<span class="now"></span>', from = t - RIBBON;
+            for (var s = Math.ceil(from); s < t; s++) {
+                html += '<span class="sec" style="left:' + (100 * (s - from) / RIBBON) + '%"></span>';
             }
+            // Crowd control under the casts, cut to what has happened by t, and death from then on.
+            var spans = rb.p.locked.map(function (l) { return [l[0], l[1], l[2], '']; });
+            if (rb.p.died !== null) { spans.push([rb.p.died, Infinity, 'Dead', ' dead']); }
+            // Two at once (a stun inside a fear): each starts where the one before it ended, so the
+            // labels never print over each other.
+            spans.sort(function (x, y) { return x[0] - y[0]; });
+            var shown = -Infinity;
+            spans.forEach(function (l) {
+                var a = Math.max(l[0], from, shown), b = Math.min(l[1], t);
+                if (b <= a) { return; }
+                shown = b;
+                var icon = l[3] ? null : shownRound.castIcons[l[2]];
+                var tip = l[3] ? 'Dead' : l[2] + ', ' + (Math.round((l[1] - l[0]) * 10) / 10) + 's';
+                html += '<span class="ccs' + l[3] + '" style="left:' + (100 * (a - from) / RIBBON) + '%;width:' + (100 * (b - a) / RIBBON) + '%" title="' + tip.replace(/"/g, '&quot;') + '">'
+                    + (icon ? '<img src="' + icon + '" alt="">' : '') + l[2] + '</span>';
+            });
             var list = rb.p.casts;
             for (var i = 0; i < list.length; i++) {
                 var c = list[i];
@@ -792,7 +833,7 @@
                     + '<span class="st"></span><span class="abs"></span>';
                 var rib = document.createElement('div');
                 rib.className = 'rib';
-                rib.title = 'What ' + p.name + ' pressed in the last ' + RIBBON + 's, newest at the right';
+                rib.title = 'What ' + p.name + ' pressed in the last ' + RIBBON + 's, newest at the right; red where they were crowd-controlled';
                 wrap.appendChild(row);
                 wrap.appendChild(rib);
                 var tracked = {};

@@ -333,6 +333,38 @@ class GameCardTest extends TestCase
         $this->assertStringNotContainsString('Crowd Control Broken', $this->text(app(GameCardService::class)->build($user), 'm1'));
     }
 
+    public function test_the_websites_card_has_kill_targets_and_broken_crowd_control_by_comp(): void
+    {
+        $user = User::factory()->create();
+        // Names that are no part of a spec: pooled() refuses a page with a player's name on it.
+        $players = array_map(fn ($p) => ['name' => ['P-2' => 'Arrows-Realm-US', 'E-2' => 'Treehug-Realm-US'][$p['guid']] ?? $p['name']] + $p, $this->threes());
+        $this->storeRound($user, 'm1', 'm1', '3v3', '2026-10-01 14:43:00', false, $players);
+        $round = ArenaRound::where('match_id', 'm1')->first();
+        $payload = $round->payload;
+        $payload['analysis']['version'] = 19;
+        $payload['analysis']['taken'] = ['P-1' => 400000, 'P-2' => 900000, 'E-1' => 300000, 'E-2' => 100000];
+        $payload['analysis']['timeline']['control'] = [
+            ['E-2', 'P-2', 'Freezing Trap', 'Incapacitate', 40, 41.2, ['P-1', 'Shadow Word: Pain']],
+        ];
+        $round->update(['payload' => $payload]);
+        $sides = ['us' => 'Hunter Priest', 'them' => 'Warlock Druid'];
+
+        $html = html_entity_decode(app(GameCardService::class)->pooled($round->fresh(), false, $sides), ENT_QUOTES);
+        $this->assertStringContainsString('Kill targets', $html);
+        $this->assertStringContainsString('Crowd Control Broken', $html);
+        $this->assertStringContainsString("ktShow(this, 'us')\">Hunter Priest</a>", $html, 'each team by its comp, since no one is "you"');
+        $this->assertStringNotContainsString('<span>Your healer</span>', $html);
+        $this->assertStringContainsString('Shadow Word: Pain from Discipline Priest broke it on Restoration Druid at 0:41', $html);
+        $this->assertStringNotContainsString('Healz', $html);
+
+        $this->assertMatchesRegularExpression('/data-side="us"[^>]*>\s*<div class="cb">\s*<span class="sp">\s*<i[^>]*>\w+<\/i>\s*<b>Freezing Trap/', $html, "the Hunter's trap, under the Hunter's team");
+
+        // Read from the other side: the Hunter is the first team's target, and the trap the second team's.
+        $html = html_entity_decode(app(GameCardService::class)->pooled($round->fresh(), true, ['us' => 'Warlock Druid', 'them' => 'Hunter Priest']), ENT_QUOTES);
+        $this->assertMatchesRegularExpression('/data-side="us"[^>]*>\s*<div class="kt-target">\s*<div class="who"><span[^>]*>Marksmanship Hunter/', $html);
+        $this->assertMatchesRegularExpression('/data-side="them"[^>]*>\s*<div class="cb">\s*<span class="sp">\s*<i[^>]*>\w+<\/i>\s*<b>Freezing Trap/', $html);
+    }
+
     public function test_ready_defensives_are_sorted_by_whether_they_could_have_saved_them(): void
     {
         $user = User::factory()->create();
