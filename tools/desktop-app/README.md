@@ -159,6 +159,99 @@ The app drives the player's own OBS; it does not record anything itself (docs/vi
   later, the same 2.5s to "Round Won" with the warrior skulled. The same lag in both means no drift.
   That game is also where the buffering above was found (it stopped on the old quiet rule).
 
+## WoW Forever: PvP fights from the replay buffer (2026-11-06)
+
+Forever (Blizzard's level-60 game, launched 2026-11-04) has no arenas, so nothing above fires there.
+Settings > "Save each PvP fight in WoW Forever" (`RecordForever`) saves each fight against a player
+instead, with `ForeverRecorder`. Forever installs beside retail (`World of Warcraft\_forever_`, its exe
+also `Wow.exe`), and its log is the retail format (COMBAT_LOG_VERSION 22, your own lines 0x511).
+
+**What was measured first (2026-11-06, Forever 1.60.1.70790, a probe addon and a file watcher on Chriso's PC):**
+- An addon can call `LoggingCombat(true)` at `PLAYER_REGEN_DISABLED` (lockdown is not on yet). A
+  `/reload` turns logging off.
+- **WoW writes a fight to the file only when combat ends**, 0.3-0.5s after, for all seven writes
+  watched; nothing during a fight. Turning logging off and on keeps the same file (a new
+  COMBAT_LOG_VERSION header, no new file). So unlike arenas, nothing on disk says a fight has begun,
+  and the app cannot start OBS at the first hit.
+
+**So it uses OBS's replay buffer**, which keeps the last `ForeverBufferSeconds` (600) of video in memory
+and writes nothing until asked, then **cuts the clip to the fight** (`ClipCutter`): `ForeverLeadSeconds`
+(60) before the first hit to `ForeverTailSeconds` (8) after the last. Chriso asked for "1 min before,
+then until the fight is over"; holding ten minutes and cutting afterwards is how, since nothing says a
+fight has begun until it ends. The cut is Windows' own transcoder (Windows.Media.Transcoding, hence
+the Windows 10 target for every build since 0.6.9): frame-exact, at the source's measured bitrate, on
+the graphics card, about 11s for a 90s clip. The full clip and its timing file are written first and
+replaced only when the cut works. **`TrimStopTime` is where in the source to stop, not how much to take
+off the end**, whatever Microsoft's page says. The first test (`--replay-test 90`, 90s cut to 70.07s)
+passed only because it cut nothing off the end, and a stop of 0 means "to the end". The first real
+fight then failed (16:05, a 600s clip: a stop of 7s before a start of 519s throws a
+NullReferenceException from `PrepareFileTranscodeAsync`), and so did 5s/5s, which gave a 0.02s clip.
+Measured with `--cut SOURCE TARGET FROM_START FROM_END` (writes `cut.txt`): start 100 and stop 130 on
+a 179s clip gave 30.00s; the fixed cut of that 600s fight gave 74.03s (74.02s expected), 733 MB to
+90 MB, at the same 1.22 MB/s, in 16s.
+**Then it would not play in the window** ("error 3: PIPELINE_ERROR_DECODE: Failed to send audio packet
+for decoding", timestamp 0). Given the source's own audio profile, Windows copies the audio across
+without encoding it and starts the copy partway through an AAC frame: the first packet was 379 bytes
+lasting 640 samples and starting `1d 0a`, where every whole frame starts `21`. Edge's decoder refuses
+it and gives up on the whole video (headless Edge, muted, played it fine, which hid it). So the cut
+gives a fresh AAC profile (the source's rate and channels, 192 kbps) and the audio is encoded again:
+first packet 1024 samples, starting `21 7b`, and the clip plays in the window.
+
+**Retail or Forever (2026-11-06).** A switch under the wordmark picks the side; each has its own pages
+(`RetailPages`, `ForeverTabs` in MainForm), and the side follows the open page, so opening "This game"
+from the tray brings retail back. Forever has **Fights** (its clips, newest first, "Kill", "Died" or
+"Trade" as the badge) and **Opponents** (everyone in them, your kills of them and your deaths, a page
+of their fights: `ForeverPages`), and an overview of what it is watching when nothing is open. Its
+clips no longer show under retail's Videos. Sync hides on the Forever side, which sends nothing to the
+website yet. The side open last is kept (`Section` in settings.json).
+- **The addon** (`tools/wow-addon/MindCollectorForeverLog`, installed into `_forever_\Interface\AddOns`
+  when the setting is on) keeps logging on all session, since there is nothing to gain from switching
+  it. About 3 MB an hour of questing.
+- **A fight** (`FightFinder`) is lines between you (or your pet) and a hostile player-controlled unit
+  (flags 0x40 and 0x100), no more than 15s apart, and at least 3 lines or a death. Mobs are NPC-controlled
+  and never count. It is saved 15s after its last line: `SaveReplayBuffer`, the clip moved into the
+  videos folder as `Forever <first hit>.mp4`, with a timing file whose first frame is (the moment the
+  save was asked) less (the clip's length, read from the MP4's `mvhd`). Its one "round" is the fight's
+  first line, so the Videos tab has a **Fight starts** button. A fight longer than about nine minutes
+  loses its start, and the timing file says `startCutOff`.
+- **The buffer** starts when Forever is running and stops when it closes, if the app started it. A
+  closed OBS gets the buffer turned on in its profile (`basic.ini`, both output modes: `RecRB`,
+  `RecRBTime` 600, `RecRBSize` 4096 MB: up to ~2.4 GB of memory at 32 Mbps) before the app opens it. An open OBS without one is told to
+  restart, since OBS builds its replay buffer only as it starts. These stay set in the player's
+  profile. A buffer the player started is used and left running.
+- **Size:** Chriso's OBS records at 13-32 Mbps, so a cut clip of a 20s duel (about 90s) is 0.15-0.35 GB;
+  the same "Keep up to (GB)" limit removes the oldest, arena videos and clips together.
+
+Checks: `--check-forever LOG` lists the fights a log would give; `--replay-test [SECONDS]` runs the
+buffer and saves and cuts one clip as a fight would be; `--cut` runs the cutter alone on a file and
+prints what Windows reads of it; `--replay-stop` stops a buffer a killed app left. `RunningRetail()` now skips `_forever_`: before, a player
+with no retail folder found would have had Forever's logs taken as the arena logs.
+
+**The first real fight (2026-11-06, a duel in Durotar):** a duel opponent carries 0x10548 (hostile,
+player-controlled), so duels count with nothing special. 24 lines from 14:01:48.939 to 14:02:09.769,
+saved at 14:02:25.7 (OBS's log: "Wrote replay buffer" 14:02:26.452), a 179.45s clip with the duel at
+2:22.7-2:43.5. `--replay-test` before it: the clip's computed first frame 13:57:16.601 against OBS's
+"Replay Buffer Start" at 13:57:16.639. Questing beside it (275 lines with mobs, 0x0a48) made no fight.
+
+**The whole chain on a real fight (2026-11-08, world PvP in Stonetalon Mountains):** 14 lines from
+00:04:39.176 to 00:04:53.751, a kill. Saved at 00:05:58 (596s, 807 MB), cut to 82.58s in 28s (82.58s
+expected; 112 MB), the clip running 00:03:39.176 to 00:05:01.757, so exactly 60s before the first
+hit to 8s after the last, and its audio starts on whole AAC frames. The published single-file
+Release exe cuts the same way (179.45s less 30s and 20s gave 129.45s), so the Windows 10 target
+works in the one file that ships. A cut the app is closed in the middle of leaves
+`Forever ….mp4.cutting`; the next start deletes it.
+
+**NVIDIA Instant Replay was tried and dropped (2026-11-07).** NVIDIA gives another program no way
+to ask for a save, so the app could only press Alt+F10 and wait for a file. The keys did work (NVIDIA
+logs them as hotkey 0, then `IR_SAVE`, and the clip is the last N seconds up to the press). But the
+app can't turn Instant Replay on or see whether it is recording, and NVIDIA records nothing when its
+overlay started after the game. On Chriso's PC, Forever had to be restarted before a save worked. Any
+press could come to nothing without a word, so OBS, which the app drives and which reports each save,
+is the only capturer.
+
+Not yet: a battleground as one video (a fight longer than about nine minutes loses its start), and
+moving or deleting old Forever logs, which stay in `_forever_\Logs`.
+
 **The Videos tab (2026-10-25, `VideoLibrary`):** every video in the videos folder, newest first, named
 after its game when its round 1 matches a game on the website (the index's `playedAt` is that START
 cut to the second). It plays in the window: WebView2 serves the folder under a made-up host
@@ -317,7 +410,7 @@ Microsoft's `dotnet-install.ps1`, so it is not on the PATH):
 
 ```powershell
 $dn = "$env:LOCALAPPDATA\Microsoft\dotnet8\dotnet.exe"
-& $dn build -c Debug                                        # bin\Debug\net8.0-windows\win-x64\MindCollector.exe
+& $dn build -c Debug                                        # bin\Debug\net8.0-windows10.0.19041.0\win-x64\MindCollector.exe
 & $dn publish -c Release -o publish                         # publish\MindCollector.exe: one file, .NET inside
 ```
 

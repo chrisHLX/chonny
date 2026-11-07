@@ -130,9 +130,16 @@ class CoachUploadController extends Controller
     /**
      * Room for one round's measurement. PHP-FPM gives a request 128 MB and 30s; the largest archived
      * round (89,225 lines) peaked at 170 MB and took 6s on a dev PC (2026-10-05), a typical one 4 MB.
+     *
+     * Not under the test suite (2026-11-08): every test request shares one PHP process, so the first
+     * upload test started a 120s clock for the whole run, and the suite died "Maximum execution time
+     * of 120 seconds exceeded" two minutes later, wherever it had got to.
      */
     public static function roomToMeasure(): void
     {
+        if (app()->runningUnitTests()) {
+            return;
+        }
         @ini_set('memory_limit', '512M');
         @set_time_limit(120);
     }

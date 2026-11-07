@@ -504,7 +504,7 @@ public sealed class Recorder : IDisposable
         WriteSidecar(path, session, stoppedAt, rounds, bracket, reason);
         var mb = new FileInfo(path).Length / 1048576.0;
         _log($"Saved this game's video: {Path.GetFileName(path)} ({mb:N0} MB, {rounds.Count} round(s); stopped because {reason}).");
-        KeepWithinLimit(dir, keep: path);
+        KeepWithinLimit(_settings, dir, path, _log);
     }
 
     private static string Clock(DateTime t) => t.ToString("yyyy-MM-dd HH:mm:ss.fff", CultureInfo.InvariantCulture);
@@ -528,11 +528,11 @@ public sealed class Recorder : IDisposable
         catch (Exception e) { _log($"Could not write the video's timing file: {e.Message}"); }
     }
 
-    /// <summary>The size limit: the oldest videos this app recorded go first. Nothing else in the folder is touched.</summary>
-    private void KeepWithinLimit(string dir, string keep)
+    /// <summary>The size limit: the oldest videos this app recorded (arena games and Forever fights) go first. Nothing else in the folder is touched.</summary>
+    internal static void KeepWithinLimit(AppSettings settings, string dir, string keep, Action<string> log)
     {
-        if (_settings.VideoLimitGb <= 0) return;
-        var limit = _settings.VideoLimitGb * 1024L * 1024 * 1024;
+        if (settings.VideoLimitGb <= 0) return;
+        var limit = settings.VideoLimitGb * 1024L * 1024 * 1024;
         var ours = new DirectoryInfo(dir).GetFiles("*" + SidecarSuffix)
             .Select(s => (Sidecar: s, Video: new FileInfo(s.FullName[..^SidecarSuffix.Length])))
             .Where(x => x.Video.Exists)
@@ -549,7 +549,7 @@ public sealed class Recorder : IDisposable
                 video.Delete();
                 sidecar.Delete();
                 total -= size;
-                _log($"Deleted the oldest video, {video.Name}, to stay under {_settings.VideoLimitGb} GB.");
+                log($"Deleted the oldest video, {video.Name}, to stay under {settings.VideoLimitGb} GB.");
             }
             catch { }
         }

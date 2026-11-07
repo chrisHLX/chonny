@@ -38,6 +38,9 @@ public sealed class ObsClient : IAsyncDisposable
     /// <summary>RecordStateChanged: OBS's state name (OBS_WEBSOCKET_OUTPUT_STARTED, _STOPPED, ...) and the file, once there is one.</summary>
     public event Action<string, string?>? RecordStateChanged;
 
+    /// <summary>ReplayBufferSaved (2026-11-06, ForeverRecorder): the file a SaveReplayBuffer wrote, once it is written.</summary>
+    public event Action<string>? ReplayBufferSaved;
+
     public static async Task<ObsClient> ConnectAsync(int port, string? password, CancellationToken ct)
     {
         var client = new ObsClient();
@@ -157,6 +160,11 @@ public sealed class ObsClient : IAsyncDisposable
                             var state = ed.TryGetProperty("outputState", out var s) ? s.GetString() ?? "" : "";
                             var path = ed.TryGetProperty("outputPath", out var p) && p.ValueKind == JsonValueKind.String ? p.GetString() : null;
                             try { RecordStateChanged?.Invoke(state, path); } catch { }
+                        }
+                        else if (d.TryGetProperty("eventType", out var et2) && et2.GetString() == "ReplayBufferSaved" && d.TryGetProperty("eventData", out var rd)
+                            && rd.TryGetProperty("savedReplayPath", out var sp) && sp.ValueKind == JsonValueKind.String)
+                        {
+                            try { ReplayBufferSaved?.Invoke(sp.GetString()!); } catch { }
                         }
                         break;
                 }

@@ -280,6 +280,125 @@ public static class ObsSetup
             ?? await ProfileParameterAsync(obs, section, "RecFormat", ct);
     }
 
+    // ---------------------------------------------------------------- the replay buffer (WoW Forever)
+
+    /// <summary>The most memory the replay buffer may hold, in MB: 600s at the 32 Mbps measured on Chriso's PC is ~2.4 GB.</summary>
+    public const int ReplayBufferMb = 4096;
+
+    /// <summary>
+    /// The current profile's basic.ini (%APPDATA%\obs-studio\basic\profiles\NAME\basic.ini). OBS 31+
+    /// names the profile in user.ini, older ones in global.ini.
+    /// </summary>
+    public static string? ProfileIni()
+    {
+        foreach (var name in new[] { "user.ini", "global.ini" })
+        {
+            try
+            {
+                var path = Path.Combine(ObsDir, name);
+                if (!File.Exists(path)) continue;
+                var dir = File.ReadAllLines(path).Select(l => l.Trim()).FirstOrDefault(l => l.StartsWith("ProfileDir=", StringComparison.Ordinal))?["ProfileDir=".Length..];
+                if (string.IsNullOrEmpty(dir)) continue;
+                var ini = Path.Combine(ObsDir, "basic", "profiles", dir, "basic.ini");
+                if (File.Exists(ini)) return ini;
+            }
+            catch { }
+        }
+        return null;
+    }
+
+    /// <summary>
+    /// Turns OBS's replay buffer on in the profile's file, for both output modes, holding at least
+    /// <paramref name="seconds"/> and <see cref="ReplayBufferMb"/>. Only while OBS is closed: an open
+    /// OBS writes its own copy back, and builds its replay buffer only as it starts. The file's BOM
+    /// and line endings are kept as OBS wrote them.
+    /// </summary>
+    public static bool EnableReplayBufferInProfile(int seconds, out string message)
+    {
+        if (Running()) { message = "OBS is open."; return false; }
+        var ini = ProfileIni();
+        if (ini == null) { message = "OBS's profile was not found. Open OBS once, then try again."; return false; }
+        try
+        {
+            var bytes = File.ReadAllBytes(ini);
+            var bom = bytes.Length >= 3 && bytes[0] == 0xEF && bytes[1] == 0xBB && bytes[2] == 0xBF;
+            var text = System.Text.Encoding.UTF8.GetString(bytes, bom ? 3 : 0, bytes.Length - (bom ? 3 : 0));
+            var newline = text.Contains("\r\n") ? "\r\n" : "\n";
+            var lines = text.Split(newline).ToList();
+            var changed = false;
+            foreach (var section in new[] { "SimpleOutput", "AdvOut" })
+            {
+                changed |= SetIni(lines, section, "RecRB", "true", v => v == "true");
+                changed |= SetIni(lines, section, "RecRBTime", seconds.ToString(), v => int.TryParse(v, out var n) && n >= seconds);
+                changed |= SetIni(lines, section, "RecRBSize", ReplayBufferMb.ToString(), v => int.TryParse(v, out var n) && n >= ReplayBufferMb);
+            }
+            if (!changed) { message = "OBS's replay buffer was already on."; return true; }
+            var output = System.Text.Encoding.UTF8.GetBytes(string.Join(newline, lines));
+            File.WriteAllBytes(ini + ".tmp", bom ? [0xEF, 0xBB, 0xBF, .. output] : output);
+            File.Move(ini + ".tmp", ini, overwrite: true);
+            message = $"Turned on OBS's replay buffer ({seconds}s).";
+            return true;
+        }
+        catch (Exception e)
+        {
+            message = $"Could not change OBS's settings: {e.Message}";
+            return false;
+        }
+    }
+
+    /// <summary>Sets key=value in [section] unless <paramref name="good"/> already holds for its value; true when it changed.</summary>
+    private static bool SetIni(List<string> lines, string section, string key, string value, Func<string, bool> good)
+    {
+        var start = lines.FindIndex(l => l.Trim() == $"[{section}]");
+        if (start < 0)
+        {
+            if (lines.Count > 0 && lines[^1].Length == 0) lines.Insert(lines.Count - 1, $"[{section}]");
+            else lines.Add($"[{section}]");
+            start = lines.FindIndex(l => l.Trim() == $"[{section}]");
+        }
+        var end = lines.FindIndex(start + 1, l => l.TrimStart().StartsWith('['));
+        if (end < 0) end = lines.Count;
+        for (var i = start + 1; i < end; i++)
+        {
+            if (!lines[i].StartsWith(key + "=", StringComparison.Ordinal)) continue;
+            if (good(lines[i][(key.Length + 1)..].Trim())) return false;
+            lines[i] = $"{key}={value}";
+            return true;
+        }
+        // A section's last line may be the blank before the next section: insert above it.
+        var at = end;
+        while (at > start + 1 && lines[at - 1].Trim().Length == 0) at--;
+        lines.Insert(at, $"{key}={value}");
+        return true;
+    }
+
+    /// <summary>
+    /// The replay buffer, with OBS open (2026-11-06). Its length and size are read each time it starts,
+    /// so they are set here first. Whether it exists at all is fixed when OBS starts: when it is off,
+    /// it is turned on in the profile and the problem says to restart OBS.
+    /// Ours: the app started it (and so stops it). Problem: null when the buffer is running.
+    /// </summary>
+    public static async Task<(bool Ours, string? Problem)> StartReplayBufferAsync(ObsClient obs, int seconds, CancellationToken ct)
+    {
+        var mode = await ProfileParameterAsync(obs, "Output", "Mode", ct);
+        var section = string.Equals(mode, "Advanced", StringComparison.OrdinalIgnoreCase) ? "AdvOut" : "SimpleOutput";
+        if (!int.TryParse(await ProfileParameterAsync(obs, section, "RecRBTime", ct), out var time) || time < seconds)
+            await obs.TryRequestAsync("SetProfileParameter", new JsonObject { ["parameterCategory"] = section, ["parameterName"] = "RecRBTime", ["parameterValue"] = seconds.ToString() }, ct);
+        if (!int.TryParse(await ProfileParameterAsync(obs, section, "RecRBSize", ct), out var size) || size < ReplayBufferMb)
+            await obs.TryRequestAsync("SetProfileParameter", new JsonObject { ["parameterCategory"] = section, ["parameterName"] = "RecRBSize", ["parameterValue"] = ReplayBufferMb.ToString() }, ct);
+
+        var status = await obs.TryRequestAsync("GetReplayBufferStatus", null, ct);
+        if (status is not { } st)
+        {
+            // OBS built no replay buffer when it started. Turn it on for next time.
+            await obs.TryRequestAsync("SetProfileParameter", new JsonObject { ["parameterCategory"] = section, ["parameterName"] = "RecRB", ["parameterValue"] = "true" }, ct);
+            return (false, "OBS's replay buffer was off. It is on now, but OBS only picks that up when it starts: close OBS and open it again (or let the app open it).");
+        }
+        if (st.TryGetProperty("outputActive", out var active) && active.GetBoolean()) return (false, null);
+        await obs.RequestAsync("StartReplayBuffer", null, ct);
+        return (true, null);
+    }
+
     /// <summary>Containers the app's player (WebView2, Edge's engine) opens.</summary>
     public static bool Playable(string? format) =>
         format is null || format.Contains("mp4", StringComparison.OrdinalIgnoreCase) || format.Equals("mov", StringComparison.OrdinalIgnoreCase);

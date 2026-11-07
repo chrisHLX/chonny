@@ -7,14 +7,17 @@
   -->
   <PropertyGroup>
     <OutputType>WinExe</OutputType>
-    <TargetFramework>net8.0-windows</TargetFramework>
+    <!-- The Windows 10 target (2026-11-06) reaches Windows.Media.Transcoding, which cuts each WoW
+         Forever clip down to its fight (ClipCutter); the Store build already used it. -->
+    <TargetFramework>net8.0-windows10.0.19041.0</TargetFramework>
+    <SupportedOSPlatformVersion>10.0.17763.0</SupportedOSPlatformVersion>
     <UseWindowsForms>true</UseWindowsForms>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
     <RootNamespace>MindCollector.Desktop</RootNamespace>
     <AssemblyName>MindCollector</AssemblyName>
     <ApplicationIcon>mindcollector.ico</ApplicationIcon>
-    <Version>0.6.8</Version>
+    <Version>0.6.9</Version>
     <Product>MindCollector</Product>
     <Company>MindCollector</Company>
     <!-- What Windows shows in the file's Properties and in its install and SmartScreen prompts. -->
@@ -42,8 +45,6 @@
   -->
   <PropertyGroup Condition="'$(Store)' == 'true'">
     <DefineConstants>$(DefineConstants);STORE</DefineConstants>
-    <TargetFramework>net8.0-windows10.0.19041.0</TargetFramework>
-    <SupportedOSPlatformVersion>10.0.17763.0</SupportedOSPlatformVersion>
     <PublishSingleFile>false</PublishSingleFile>
     <EnableCompressionInSingleFile>false</EnableCompressionInSingleFile>
     <IncludeNativeLibrariesForSelfExtract>false</IncludeNativeLibrariesForSelfExtract>
@@ -63,6 +64,9 @@
   <ItemGroup>
     <EmbeddedResource Include="..\wow-addon\MindCollectorArenaLog\MindCollectorArenaLog.toc" LogicalName="addon/MindCollectorArenaLog.toc" />
     <EmbeddedResource Include="..\wow-addon\MindCollectorArenaLog\main.lua" LogicalName="addon/main.lua" />
+    <!-- WoW Forever's addon (2026-11-06): keeps logging on so ForeverRecorder sees each PvP fight. -->
+    <EmbeddedResource Include="..\wow-addon\MindCollectorForeverLog\MindCollectorForeverLog.toc" LogicalName="forever-addon/MindCollectorForeverLog.toc" />
+    <EmbeddedResource Include="..\wow-addon\MindCollectorForeverLog\main.lua" LogicalName="forever-addon/main.lua" />
   </ItemGroup>
 
 </Project>

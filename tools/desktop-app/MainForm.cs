@@ -19,6 +19,7 @@ internal sealed class MainForm : Form
     private readonly AppSettings _settings = AppSettings.Load();
     private readonly Syncer _syncer;
     private readonly Recorder _recorder;
+    private readonly ForeverRecorder _forever;
     private readonly LiveGame _live = new();
     private readonly NoteBook _notes;
     private readonly System.Windows.Forms.Timer _liveTimer = new() { Interval = 1000 };
@@ -83,6 +84,11 @@ internal sealed class MainForm : Form
             SetStatus(on ? "Recording this game with OBS" : WatchingText());
             if (!on && _tab is "Videos" or "Games") FillList();
         });
+        _forever = new ForeverRecorder(_settings, Log);
+        _forever.Saved += () => BeginInvoke(() => { if (InForever) FillList(); });
+        _forever.LogsFound += () => BeginInvoke(() => { _settings.Save(); CheckForeverAddon(); });
+        // The side open last time (the switch at the top of the menu).
+        if (_settings.Section == "forever") _tab = "Fights";
 
         Text = "MindCollector";
         Icon = Theme.AppIcon();
@@ -112,7 +118,7 @@ internal sealed class MainForm : Form
     // ------------------------------------------------------------------ layout
 
     /// <summary>What each library is called, and the icon (Segoe Fluent / MDL2) beside it.</summary>
-    private static readonly (string Name, string Glyph, string Title)[] Pages =
+    private static readonly (string Name, string Glyph, string Title)[] RetailPages =
     [
         ("This game", "", "The game you're in"),
         ("Games", "", "Your games"),
@@ -123,10 +129,28 @@ internal sealed class MainForm : Form
         ("Classes", "", "Players you've met"),
     ];
 
+    /// <summary>The WoW Forever side (2026-11-06, ForeverPages): its fight clips, and the players in them.</summary>
+    private static readonly (string Name, string Glyph, string Title)[] ForeverTabs =
+    [
+        ("Fights", "", "Your PvP fights"),
+        ("Opponents", "", "Players you've fought"),
+    ];
+
+    private static readonly (string Name, string Glyph, string Title)[] Pages = [.. RetailPages, .. ForeverTabs];
+
+    /// <summary>The Forever side is open: the side follows the open page, so it can never disagree with it.</summary>
+    private bool InForever => ForeverTabs.Any(p => p.Name == _tab);
+
+    private readonly SectionSwitch _section = new() { Dock = DockStyle.Top };
+    private RoundPanel? _nav;
+    private Button? _syncButton;
+    private string _lastRetailTab = "Games";
+    private string _lastForeverTab = "Fights";
+
     private void BuildLayout()
     {
-        // Left: the brand and the navigation, then the library, each in a rounded panel.
-        var nav = new RoundPanel { Dock = DockStyle.Top, Height = 64 + Pages.Length * 42 + 10, Padding = new Padding(8, 0, 8, 8) };
+        // Left: the brand, the Retail / Forever switch and the navigation, then the library, each in a rounded panel.
+        var nav = _nav = new RoundPanel { Dock = DockStyle.Top, Padding = new Padding(8, 0, 8, 8) };
         // The wordmark as on the site: "Mind" white, "Collector" gold, drawn as one word.
         var brand = new Panel { Dock = DockStyle.Top, Height = 60, BackColor = Theme.Panel };
         brand.Paint += (_, e) =>
@@ -148,6 +172,16 @@ internal sealed class MainForm : Form
             _tabs[name] = item;
             nav.Controls.Add(item);
         }
+        _section.Picked += side =>
+        {
+            _tab = side == 1 ? _lastForeverTab : _lastRetailTab;
+            _filling = true;
+            _list.ClearSelected();
+            _filling = false;
+            FillList();
+            ShowSectionStart();
+        };
+        nav.Controls.Add(_section);
         nav.Controls.Add(brand);
 
         _list.Dock = DockStyle.Fill;
@@ -166,6 +200,7 @@ internal sealed class MainForm : Form
             }
             if (file.StartsWith(SamplePrefix, StringComparison.Ordinal)) await ShowSampleAsync(file[SamplePrefix.Length..]);
             else if (file.StartsWith(VideoPrefix, StringComparison.Ordinal)) ShowVideo(file[VideoPrefix.Length..]);
+            else if (file.StartsWith(OpponentPrefix, StringComparison.Ordinal)) ShowOpponent(file[OpponentPrefix.Length..]);
             else await ShowPageAsync(file);
         };
         var library = new RoundPanel { Dock = DockStyle.Fill, Padding = new Padding(8, 6, 8, 8) };
@@ -207,7 +242,7 @@ internal sealed class MainForm : Form
         _status.Dock = DockStyle.Fill;
         _status.TextAlign = ContentAlignment.MiddleLeft;
         _status.AutoEllipsis = true;
-        var sync = Theme.Button("Sync now", primary: true);
+        var sync = _syncButton = Theme.Button("Sync now", primary: true);
         sync.Anchor = AnchorStyles.None;
         sync.Click += async (_, _) => await SyncAsync(manual: true);
         var buttons = new FlowLayoutPanel { Dock = DockStyle.Fill, FlowDirection = FlowDirection.RightToLeft, WrapContents = false, BackColor = Theme.Frame, Padding = new Padding(0, 18, 0, 0) };
@@ -240,7 +275,7 @@ internal sealed class MainForm : Form
         menu.Items.Add("Mark this moment (Ctrl+Shift+M)", null, (_, _) => AddMark());
         menu.Items.Add("Sync now", null, async (_, _) => await SyncAsync(manual: true));
         menu.Items.Add("-");
-        menu.Items.Add("Exit", null, (_, _) => { _exiting = true; _tray.Visible = false; _recorder.Dispose(); Application.Exit(); });
+        menu.Items.Add("Exit", null, (_, _) => { _exiting = true; _tray.Visible = false; _recorder.Dispose(); _forever.Dispose(); Application.Exit(); });
         _tray.ContextMenuStrip = menu;
         _tray.DoubleClick += (_, _) => ShowWindow();
     }
@@ -275,7 +310,14 @@ internal sealed class MainForm : Form
         _liveTimer.Tick += async (_, _) => await LiveTickAsync();
         _liveTimer.Start();
 
-        if (string.IsNullOrEmpty(_settings.Key))
+        if (InForever)
+        {
+            // Opened on the Forever side: its fights, and retail's games load behind it for the switch.
+            FillList();
+            ShowSectionStart();
+            await RefreshIndexAsync();
+        }
+        else if (string.IsNullOrEmpty(_settings.Key))
         {
             // A new player: one button, and the browser does the rest (ConnectAsync).
             FillList();
@@ -292,6 +334,7 @@ internal sealed class MainForm : Form
 
         _timer.Start();
         _recorder.Start();
+        _forever.Start();
         CleanUpOldUpdates();
         await CheckForUpdateAsync();
     }
@@ -307,9 +350,16 @@ internal sealed class MainForm : Form
         catch { }
     }
 
-    private string WatchingText() => _settings.WowLogsDir == null
+    private string WatchingText() => InForever ? ForeverText()
+        : _settings.WowLogsDir == null
         ? "Couldn't find World of Warcraft. Set its folder in Settings."
         : "Watching your WoW logs for arena games";
+
+    private string ForeverText() =>
+        !_settings.RecordForever ? "Saving Forever fights is off (Settings > Recording)"
+        : !ForeverRecorder.ForeverRunning() ? "Waiting for WoW Forever to open"
+        : _forever.Ready ? "Watching WoW Forever: each PvP fight is saved with OBS when it ends"
+        : _forever.Problem ?? "Starting OBS for WoW Forever…";
 
     // ------------------------------------------------------------------ connecting (2026-10-11)
 
@@ -526,6 +576,7 @@ internal sealed class MainForm : Form
             _index?.Dispose();
             _index = fresh;
             FillList();
+            if (InForever) return;   // retail's games refreshed behind the Forever side; its page stays
             // No games yet: say what to do next. The first time there are games, open the newest.
             var hasGames = _list.Items.OfType<LibraryRow>().Any(r => r.File != null && !r.File.StartsWith(SamplePrefix, StringComparison.Ordinal));
             if (!hasGames && _list.SelectedFile == null) ShowWelcome();
@@ -544,7 +595,8 @@ internal sealed class MainForm : Form
         var rows = new List<LibraryRow>();
 
         var root = _index?.RootElement;
-        if (root is not { } r || !r.TryGetProperty("built", out var built) || !built.GetBoolean())
+        if (InForever) rows.AddRange(ForeverRows());
+        else if (root is not { } r || !r.TryGetProperty("built", out var built) || !built.GetBoolean())
         {
             rows.Add(new LibraryRow("Nothing here yet", "Play an arena game. It's sent to the website when it ends."));
         }
@@ -652,11 +704,102 @@ internal sealed class MainForm : Form
 
     private void MarkTab()
     {
+        var forever = InForever;
+        if (forever) _lastForeverTab = _tab; else _lastRetailTab = _tab;
+        var side = forever ? ForeverTabs : RetailPages;
         foreach (var (name, item) in _tabs)
         {
+            item.Visible = side.Any(p => p.Name == name);
             item.Active = name == _tab;
             item.Invalidate();
         }
+        _section.SetSide(forever ? 1 : 0);
+        // The brand, the switch, and the side's own rows.
+        if (_nav != null) _nav.Height = 60 + _section.Height + side.Length * 42 + 10;
+        // Forever sends nothing to the website (yet), so it has nothing to sync.
+        if (_syncButton != null) _syncButton.Visible = !forever;
+        var section = forever ? "forever" : null;
+        if (_settings.Section != section)
+        {
+            _settings.Section = section;
+            _settings.Save();
+        }
+    }
+
+    /// <summary>What the page shows on opening a side: its newest fight or its overview for Forever, the usual start for retail.</summary>
+    private void ShowSectionStart()
+    {
+        if (InForever)
+        {
+            SetStatus(WatchingText());
+            ShowForeverOverview();
+            return;
+        }
+        SetStatus(_recording ? "Recording this game with OBS" : WatchingText());
+        if (string.IsNullOrEmpty(_settings.Key)) ShowWelcome();
+        else Blank("Pick a game to see who you played, how each death happened, and what to look at.");
+    }
+
+    // ------------------------------------------------------------------ WoW Forever (2026-11-06, ForeverPages)
+
+    private const string OpponentPrefix = "opponent:";
+
+    private List<VideoEntry> ForeverFights() => LoadVideos().Where(v => v.IsForever).ToList();
+
+    private void ShowForeverOverview()
+    {
+        if (_view.CoreWebView2 == null) return;
+        _shownFile = null;
+        Show(ForeverPages.Overview(_settings, _forever, ForeverFights()));
+    }
+
+    private IEnumerable<LibraryRow> ForeverRows()
+    {
+        var fights = ForeverFights();
+        if (fights.Count == 0)
+        {
+            yield return _settings.RecordForever
+                ? new LibraryRow("No fights yet", "Fight a player in Forever: the clip arrives here about half a minute after")
+                : new LibraryRow("Saving fights is off", "Settings > Recording saves each PvP fight in Forever");
+            yield break;
+        }
+
+        if (_tab == "Fights")
+        {
+            foreach (var v in fights)
+            {
+                var facts = new List<string> { ForeverPages.FoughtAt(v).ToString("ddd d MMM, HH:mm") };
+                if (v.Length is { } l) facts.Add(VideoLibrary.Duration(l));
+                if (v.Fight?.Zone is { Length: > 0 } zone) facts.Add(zone);
+                var outcome = v.Fight?.Outcome;
+                yield return new LibraryRow(v.Fight?.Title ?? (v.Bracket ?? "Fight").Replace("Forever: ", ""), string.Join(" · ", facts), outcome?.Text, outcome?.Tone ?? 0, VideoPrefix + v.Name);
+            }
+            yield break;
+        }
+
+        // Opponents: everyone in a fight, most fought first; the badge is your kills of them less your deaths.
+        var players = fights
+            .Where(v => v.Fight != null)
+            .SelectMany(v => v.Fight!.Opponents.Distinct().Select(name => (Name: name, Video: v)))
+            .GroupBy(x => x.Name)
+            .Select(g => (Name: g.Key, Fights: g.Select(x => x.Video).ToList()))
+            .OrderByDescending(p => p.Fights.Count).ThenByDescending(p => p.Fights[0].Started);
+        foreach (var (name, list) in players)
+        {
+            var kills = list.Count(v => v.Fight!.Killed.Contains(name));
+            var deaths = list.Count(v => v.Fight!.YouDied);
+            var sub = $"{list.Count} fight{(list.Count == 1 ? "" : "s")} · last {ForeverPages.FoughtAt(list[0]):ddd d MMM, HH:mm}";
+            yield return new LibraryRow(FightFinder.Fight.Short(name), sub, kills + deaths > 0 ? $"{kills}-{deaths}" : null, Math.Sign(kills - deaths), OpponentPrefix + name);
+        }
+    }
+
+    private void ShowOpponent(string name)
+    {
+        if (_view.CoreWebView2 == null) return;
+        var fights = ForeverFights().Where(v => v.Fight?.Opponents.Contains(name) == true).ToList();
+        if (fights.Count == 0) { ShowForeverOverview(); return; }
+        _shownFile = null;
+        Show(ForeverPages.Opponent(name, fights));
     }
 
     // ------------------------------------------------------------------ pages
@@ -800,7 +943,8 @@ internal sealed class MainForm : Form
 
     private IEnumerable<LibraryRow> VideoRows()
     {
-        foreach (var v in LoadVideos())
+        // Forever's fight clips are on the Forever side (Fights), not here.
+        foreach (var v in LoadVideos().Where(v => !v.IsForever))
         {
             var line = v.Started.ToString("ddd d MMM, HH:mm") + (v.Length is { } l ? $" · {VideoLibrary.Duration(l)}" : "") + (v.YouTubeId != null ? " · on YouTube" : "");
             yield return GameOf(v) is { } g
@@ -844,8 +988,9 @@ internal sealed class MainForm : Form
         MapVideos();
         var v = _videos.FirstOrDefault(x => x.Name == name) ?? LoadVideos().FirstOrDefault(x => x.Name == name);
         if (v == null) { Blank("That video is no longer in the videos folder."); return; }
-        var game = GameOf(v);
+        var game = v.IsForever ? null : GameOf(v);
         _shownFile = null;
+        if (v.Fight is { } fight) { Show(VideoLibrary.Page(v, fight.Title, null)); return; }
         if (game is { } g && !string.IsNullOrEmpty(_settings.Key))
         {
             try
@@ -891,6 +1036,8 @@ internal sealed class MainForm : Form
     private async Task LiveTickAsync()
     {
         if (++_lightTick % 5 == 0) UpdateRecordLight();
+        // Forever's state (open, OBS's buffer) has no event of its own: look every five seconds.
+        if (InForever && _lightTick % 5 == 0 && !_recording) SetStatus(WatchingText());
         var active = _live.Active;
         if (_tabs.TryGetValue("This game", out var nav) && nav.Dot != active)
         {
@@ -1103,6 +1250,23 @@ internal sealed class MainForm : Form
             Log($"Could not install the addon: {e.Message}");
             SetStatus($"Could not install the addon: {e.Message}");
         }
+        CheckForeverAddon();
+    }
+
+    /// <summary>WoW Forever's addon (keeps logging on), when Forever fights are recorded and Forever is found.</summary>
+    private void CheckForeverAddon()
+    {
+        if (!_settings.RecordForever) return;
+        _settings.ForeverLogsDir ??= AppSettings.DetectForeverLogs(_settings.WowLogsDir);
+        if (_settings.ForeverLogsDir == null) return;
+        try
+        {
+            var outcome = AddonInstaller.Ensure(AddonInstaller.Forever, _settings.ForeverLogsDir);
+            Log(outcome.Message);
+            if (outcome.State is AddonInstaller.State.Installed or AddonInstaller.State.Updated)
+                _tray.ShowBalloonTip(6000, "Forever addon ready", outcome.Message, ToolTipIcon.Info);
+        }
+        catch (Exception e) { Log($"Could not install the Forever addon: {e.Message}"); }
     }
 
     private void Log(string text)
@@ -1191,7 +1355,7 @@ internal sealed class MainForm : Form
 
     protected override void Dispose(bool disposing)
     {
-        if (disposing) { _timer.Dispose(); _liveTimer.Dispose(); _recorder.Dispose(); _tray.Dispose(); _index?.Dispose(); }
+        if (disposing) { _timer.Dispose(); _liveTimer.Dispose(); _recorder.Dispose(); _forever.Dispose(); _tray.Dispose(); _index?.Dispose(); }
         base.Dispose(disposing);
     }
 }

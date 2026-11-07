@@ -5,9 +5,23 @@ using System.Text.Json;
 namespace MindCollector.Desktop;
 
 /// <summary>One video in the videos folder, with what its timing file says (Recorder.WriteSidecar), if it has one.</summary>
-public sealed record VideoEntry(string Name, DateTime Started, DateTime? Stopped, string? Bracket, IReadOnlyList<DateTime> Rounds, long Bytes, string? YouTubeId = null)
+public sealed record VideoEntry(string Name, DateTime Started, DateTime? Stopped, string? Bracket, IReadOnlyList<DateTime> Rounds, long Bytes, string? YouTubeId = null, ForeverFight? Fight = null)
 {
     public TimeSpan? Length => Stopped is { } s && s > Started ? s - Started : null;
+
+    /// <summary>A WoW Forever fight's clip (ForeverRecorder): shown on the Forever side of the app, never under retail's Videos.</summary>
+    public bool IsForever => Fight != null || Bracket?.StartsWith("Forever", StringComparison.Ordinal) == true;
+}
+
+/// <summary>What a Forever clip's timing file says of its fight. Names are as the log has them, realm and all.</summary>
+public sealed record ForeverFight(DateTime First, DateTime Last, string? Zone, IReadOnlyList<string> Opponents, IReadOnlyList<string> Killed, bool YouDied)
+{
+    /// <summary>"vs Grish-Naz", "vs A, B, C +2".</summary>
+    public string Title => Opponents.Count == 0 ? "vs a player"
+        : "vs " + string.Join(", ", Opponents.Take(3).Select(FightFinder.Fight.Short)) + (Opponents.Count > 3 ? $" +{Opponents.Count - 3}" : "");
+
+    /// <summary>The badge: who died. Null when nobody did.</summary>
+    public (string Text, int Tone)? Outcome => YouDied && Killed.Count > 0 ? ("Trade", 0) : YouDied ? ("Died", -1) : Killed.Count > 0 ? ("Kill", 1) : null;
 }
 
 /// <summary>
@@ -37,6 +51,7 @@ internal static class VideoLibrary
                 DateTime? stopped = null;
                 string? bracket = null;
                 string? youtube = null;
+                ForeverFight? fight = null;
                 var rounds = new List<DateTime>();
                 var sidecar = path + Recorder.SidecarSuffix;
                 if (File.Exists(sidecar))
@@ -50,8 +65,11 @@ internal static class VideoLibrary
                     if (r.TryGetProperty("rounds", out var rs) && rs.ValueKind == JsonValueKind.Array)
                         foreach (var x in rs.EnumerateArray())
                             if (DateTime.TryParse(x.GetString(), CultureInfo.InvariantCulture, DateTimeStyles.None, out var t)) rounds.Add(t);
+                    if (r.TryGetProperty("fight", out var f) && f.ValueKind == JsonValueKind.Object && Clock(f, "first") is { } first)
+                        fight = new ForeverFight(first, Clock(f, "last") ?? first, f.TryGetProperty("zone", out var z) ? z.GetString() : null,
+                            Names(f, "opponents"), Names(f, "killed"), f.TryGetProperty("youDied", out var d) && d.ValueKind == JsonValueKind.True);
                 }
-                list.Add(new VideoEntry(info.Name, started, stopped, bracket, rounds, info.Length, youtube));
+                list.Add(new VideoEntry(info.Name, started, stopped, bracket, rounds, info.Length, youtube, fight));
             }
             catch { /* a video still being written, or a broken timing file: leave it out this time */ }
         }
@@ -85,6 +103,11 @@ internal static class VideoLibrary
     private static DateTime? Clock(JsonElement e, string name) =>
         e.TryGetProperty(name, out var p) && DateTime.TryParse(p.GetString(), CultureInfo.InvariantCulture, DateTimeStyles.None, out var t) ? t : null;
 
+    private static List<string> Names(JsonElement e, string name) =>
+        e.TryGetProperty(name, out var a) && a.ValueKind == JsonValueKind.Array
+            ? a.EnumerateArray().Select(x => x.GetString()).OfType<string>().ToList()
+            : [];
+
     public static string Duration(TimeSpan t) => t.TotalHours >= 1 ? t.ToString(@"h\:mm\:ss") : t.ToString(@"m\:ss");
 
     /// <summary>The player: the video, a button per round, and the way to its game and its file.</summary>
@@ -94,10 +117,11 @@ internal static class VideoLibrary
         var buttons = string.Join("", v.Rounds.Select((r, i) =>
         {
             var at = Math.Max(0, (r - v.Started).TotalSeconds);
-            var label = v.Rounds.Count > 1 ? $"Round {i + 1}" : "Gates open";
+            var label = v.IsForever ? "Fight starts"
+                : v.Rounds.Count > 1 ? $"Round {i + 1}" : "Gates open";
             return $"<button data-t=\"{at.ToString("0.##", CultureInfo.InvariantCulture)}\">{label} <span>{Duration(TimeSpan.FromSeconds(at))}</span></button>";
         }));
-        var facts = new List<string> { v.Started.ToString("ddd d MMM, HH:mm", CultureInfo.InvariantCulture) };
+        var facts = new List<string> { (v.Fight?.First ?? v.Started).ToString("ddd d MMM, HH:mm", CultureInfo.InvariantCulture) };
         if (v.Length is { } len) facts.Add(Duration(len));
         facts.Add($"{v.Bytes / (1024.0 * 1024):0} MB");
         var game = lobby == null ? "" : $"<a class=\"btn gold\" href=\"mc-app://game/{lobby}\">Open this game</a>";
@@ -118,7 +142,7 @@ internal static class VideoLibrary
             .gap{flex:1}
             .err{display:none;margin-top:14px;padding:12px 14px;background:#181818;border-radius:8px;color:#B3B3B3;font-size:13.5px}
             </style></head><body><div class="wrap">
-            <div class="eyebrow">Video</div>
+            <div class="eyebrow">{{{(v.IsForever ? "WoW Forever · PvP fight" : "Video")}}}</div>
             <h1>{{{WebUtility.HtmlEncode(title)}}}</h1>
             <div class="muted">{{{WebUtility.HtmlEncode(string.Join(" · ", facts))}}}</div>
             <video id="v" controls preload="metadata" src="{{{src}}}"></video>
@@ -127,7 +151,7 @@ internal static class VideoLibrary
             </div><script>
             (function(){
               var v=document.getElementById('v');
-              v.addEventListener('error',function(){document.getElementById('err').style.display='block';});
+              v.addEventListener('error',function(){var e=document.getElementById('err');e.style.display='block';if(v.error)e.appendChild(document.createTextNode(' (error '+v.error.code+(v.error.message?': '+v.error.message:'')+')'));});
               var bs=document.querySelectorAll('button[data-t]');
               for(var i=0;i<bs.length;i++){bs[i].onclick=function(){v.currentTime=parseFloat(this.getAttribute('data-t'));v.play().catch(function(){});};}
             })();

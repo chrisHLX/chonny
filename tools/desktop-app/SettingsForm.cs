@@ -11,6 +11,7 @@ internal sealed class SettingsForm : Form
     private readonly CheckBox _moveLogs = Check("Move each combat log out of WoW's folder once all of it is sent (after WoW closes)");
     private readonly CheckBox _startup = Check("Start MindCollector when Windows starts (minimised to the taskbar)");
     private readonly CheckBox _record = Check("Record each arena game with OBS: it starts as you zone in and stops when the game ends");
+    private readonly CheckBox _forever = Check("Save each PvP fight in WoW Forever: from a minute before the first hit to just after the last");
     private readonly TextBox _videos = Box();
     private readonly TextBox _limit = Box();
     private readonly Label _status = new() { AutoSize = true, ForeColor = Theme.Muted, Margin = new Padding(0, 10, 0, 0) };
@@ -27,7 +28,7 @@ internal sealed class SettingsForm : Form
         StartPosition = FormStartPosition.CenterParent;
         FormBorderStyle = FormBorderStyle.FixedDialog;
         MaximizeBox = MinimizeBox = false;
-        ClientSize = new Size(760, 680);
+        ClientSize = new Size(760, 710);
         Padding = new Padding(16);
 
         _server.Text = settings.ServerUrl;
@@ -38,6 +39,7 @@ internal sealed class SettingsForm : Form
         _moveLogs.Checked = settings.MoveLogs;
         _startup.Checked = Installer.StartsWithWindows();
         _record.Checked = settings.RecordGames;
+        _forever.Checked = settings.RecordForever;
         _videos.Text = Recorder.VideosDir(settings);
         _limit.Text = settings.VideoLimitGb.ToString();
 #if STORE
@@ -67,6 +69,7 @@ internal sealed class SettingsForm : Form
         grid.Controls.Add(new Label()); grid.Controls.Add(_startup); grid.Controls.Add(new Label());
         grid.Controls.Add(new Label { Text = "Recording", AutoSize = true, Margin = new Padding(0, 10, 8, 0) });
         grid.Controls.Add(_record); grid.Controls.Add(new Label());
+        grid.Controls.Add(new Label()); grid.Controls.Add(_forever); grid.Controls.Add(new Label());
         grid.Controls.Add(new Label());
         grid.Controls.Add(new Label { Text = "Needs OBS Studio (free, obsproject.com). Install it, then click Set up OBS below: it does the rest.", AutoSize = true, ForeColor = Theme.Muted, Margin = new Padding(0, 0, 0, 6) });
         grid.Controls.Add(new Label());
@@ -146,6 +149,7 @@ internal sealed class SettingsForm : Form
         _settings.MoveTo = _move.Text.Trim();
         _settings.MoveLogs = _moveLogs.Checked;
         _settings.RecordGames = _record.Checked;
+        _settings.RecordForever = _forever.Checked;
         _settings.VideosDir = string.IsNullOrWhiteSpace(_videos.Text) ? null : _videos.Text.Trim();
         _settings.VideoLimitGb = int.TryParse(_limit.Text.Trim(), out var gb) && gb >= 0 ? gb : _settings.VideoLimitGb;
         _settings.Save();

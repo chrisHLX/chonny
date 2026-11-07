@@ -38,6 +38,30 @@ public sealed class AppSettings
     /// <summary>Record each arena game with OBS (Recorder). Off until the player turns it on.</summary>
     public bool RecordGames { get; set; }
 
+    /// <summary>
+    /// Save each PvP fight in WoW Forever from OBS's replay buffer (ForeverRecorder, 2026-11-06). Off
+    /// until the player turns it on.
+    /// </summary>
+    public bool RecordForever { get; set; }
+
+    /// <summary>The side of the app last open: null for retail, "forever" for WoW Forever (the switch at the top of the menu).</summary>
+    public string? Section { get; set; }
+
+    /// <summary>Forever's Logs folder (World of Warcraft\_forever_\Logs); found by DetectForeverLogs when empty.</summary>
+    public string? ForeverLogsDir { get; set; }
+
+    /// <summary>
+    /// How much video OBS's replay buffer holds, in seconds (settings.json only): the longest fight
+    /// kept whole, less the lead and the wait. 600 at 32 Mbps is about 2.4 GB of memory.
+    /// </summary>
+    public int ForeverBufferSeconds { get; set; } = 600;
+
+    /// <summary>Kept before a fight's first hit, in seconds (settings.json only); the clip is cut to this.</summary>
+    public int ForeverLeadSeconds { get; set; } = 60;
+
+    /// <summary>Kept after a fight's last hit, in seconds (settings.json only).</summary>
+    public int ForeverTailSeconds { get; set; } = 8;
+
     /// <summary>Where the videos go; empty means beside the moved logs (DefaultVideosDir).</summary>
     public string? VideosDir { get; set; }
 
@@ -153,6 +177,27 @@ public sealed class AppSettings
         return DetectWowLogsOld() ?? WowRegistry.DriveScan();
     }
 
+    /// <summary>
+    /// WoW Forever's Logs folder (2026-11-06): the running Forever game, then a _forever_ folder beside
+    /// the retail one or wherever Battle.net and the registry say WoW is. Forever installs into the
+    /// same World of Warcraft folder as retail (C:\World of Warcraft\_forever_ on Chriso's PC).
+    /// </summary>
+    public static string? DetectForeverLogs(string? retailLogs)
+    {
+        var games = WowRegistry.RunningForever().ToList();
+        if (!string.IsNullOrEmpty(retailLogs) && Directory.GetParent(retailLogs.TrimEnd('\\', '/'))?.Parent is { } root)
+            games.Add(Path.Combine(root.FullName, "_forever_"));
+        foreach (var retail in WowRegistry.RetailFolders().Concat(WowRegistry.BattleNetFolders()))
+            if (Directory.GetParent(retail) is { } r) games.Add(Path.Combine(r.FullName, "_forever_"));
+        foreach (var game in games.Distinct(StringComparer.OrdinalIgnoreCase))
+        {
+            if (!File.Exists(Path.Combine(game, "Wow.exe"))) continue;
+            var logs = Path.Combine(game, "Logs");
+            try { Directory.CreateDirectory(logs); return logs; } catch { }
+        }
+        return null;
+    }
+
     private static string? DetectWowLogsOld()
     {
         // Where Battle.net says WoW is (2026-10-11): finds a game on any drive, not only the usual
@@ -187,8 +232,19 @@ public sealed class AppSettings
 /// <summary>WoW's _retail_ folder as Battle.net records it in the registry.</summary>
 internal static class WowRegistry
 {
-    /// <summary>The running game's own folder: wherever and however WoW is installed.</summary>
-    public static IEnumerable<string> RunningRetail()
+    /// <summary>
+    /// The running game's own folder: wherever and however WoW is installed. Not WoW Forever's
+    /// (2026-11-06): its exe is Wow.exe too, in _forever_, and taking it would point the arena sync
+    /// at Forever's logs and put the arena addon into Forever.
+    /// </summary>
+    public static IEnumerable<string> RunningRetail() => RunningGames().Where(d => !IsForever(d)).ToList();
+
+    /// <summary>The running WoW Forever's folder (…\World of Warcraft\_forever_), if it is running.</summary>
+    public static IEnumerable<string> RunningForever() => RunningGames().Where(IsForever).ToList();
+
+    private static bool IsForever(string dir) => Path.GetFileName(dir.TrimEnd('\\', '/')).Equals("_forever_", StringComparison.OrdinalIgnoreCase);
+
+    private static List<string> RunningGames()
     {
         var found = new List<string>();
         foreach (var name in new[] { "Wow", "WowT", "WowB" })

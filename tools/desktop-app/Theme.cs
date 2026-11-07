@@ -243,6 +243,67 @@ internal sealed class RoundPanel : Panel
     }
 }
 
+/// <summary>
+/// Retail or WoW Forever (2026-11-06): two halves of one pill under the wordmark, the open side gold.
+/// Each side has its own pages; the menu under it changes with it.
+/// </summary>
+internal sealed class SectionSwitch : Control
+{
+    private static readonly string[] Names = ["Retail", "Forever"];
+    private int _hover = -1;
+
+    /// <summary>0 retail, 1 Forever.</summary>
+    public int Selected { get; private set; }
+
+    /// <summary>The player clicked the other side.</summary>
+    public event Action<int>? Picked;
+
+    public SectionSwitch()
+    {
+        Height = 44;
+        Cursor = Cursors.Hand;
+        Font = new Font("Segoe UI Semibold", 10f);
+        BackColor = Theme.Panel;
+        SetStyle(ControlStyles.AllPaintingInWmPaint | ControlStyles.OptimizedDoubleBuffer | ControlStyles.UserPaint | ControlStyles.ResizeRedraw, true);
+        MouseMove += (_, e) => { var h = Half(e.X); if (h != _hover) { _hover = h; Invalidate(); } };
+        MouseLeave += (_, _) => { _hover = -1; Invalidate(); };
+        MouseClick += (_, e) => { var h = Half(e.X); if (h != Selected) Picked?.Invoke(h); };
+    }
+
+    public void SetSide(int side)
+    {
+        if (side == Selected) return;
+        Selected = side;
+        Invalidate();
+    }
+
+    private int Half(int x) => x < Width / 2 ? 0 : 1;
+
+    protected override void OnPaint(PaintEventArgs e)
+    {
+        var g = e.Graphics;
+        g.SmoothingMode = SmoothingMode.AntiAlias;
+        g.Clear(Theme.Panel);
+        var outer = new Rectangle(6, 4, Width - 13, Height - 12);
+        using (var path = Theme.Rounded(outer, outer.Height / 2))
+        using (var fill = new SolidBrush(Theme.Raised))
+            g.FillPath(fill, path);
+        var half = outer.Width / 2;
+        for (var i = 0; i < Names.Length; i++)
+        {
+            var r = new Rectangle(outer.X + i * half + 3, outer.Y + 3, half - 6, outer.Height - 6);
+            if (i == Selected)
+            {
+                using var path = Theme.Rounded(r, r.Height / 2);
+                using var fill = new SolidBrush(Theme.Gold);
+                g.FillPath(fill, path);
+            }
+            var ink = i == Selected ? Color.Black : i == _hover ? Theme.Ink : Theme.Muted;
+            TextRenderer.DrawText(g, Names[i], Font, r, ink, TextFormatFlags.HorizontalCenter | TextFormatFlags.VerticalCenter);
+        }
+    }
+}
+
 /// <summary>One row of the navigation: an icon and a name; white when it is the open page.</summary>
 internal sealed class NavItem : Control
 {

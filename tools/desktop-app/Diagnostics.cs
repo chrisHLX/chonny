@@ -10,8 +10,9 @@ namespace MindCollector.Desktop;
 ///       Lists every arena round the app would send from that log: when it starts, its bracket and
 ///       its size. Sends nothing. What a tester runs when "my games did not show up".
 ///
-///   MindCollector.exe --install-addon --logs FOLDER [--replace]
-///       Installs or updates the arena-log addon for that WoW Logs folder, as the app does at start.
+///   MindCollector.exe --install-addon --logs FOLDER [--replace] [--forever]
+///       Installs or updates the arena-log addon for that WoW Logs folder, as the app does at start;
+///       with --forever, WoW Forever's addon (FOLDER is then ...\_forever_\Logs).
 ///
 ///   MindCollector.exe --sync-once --server URL --key KEY --logs FOLDER [--move FOLDER]
 ///       One sync pass with these settings, as the window's timer would run it. For checking a
@@ -24,6 +25,12 @@ namespace MindCollector.Desktop;
 ///   MindCollector.exe --obs-test [SECONDS]
 ///       Finds OBS, opens it, connects, and says what it records. With SECONDS, records that long
 ///       into the videos folder exactly as a game would be (timing file included).
+///
+///   MindCollector.exe --check-forever LOG
+///       Replays a WoW Forever log and lists every PvP fight the app would save. Records nothing.
+///
+///   MindCollector.exe --replay-test [SECONDS]
+///       Starts OBS's replay buffer, waits, saves one clip as a Forever fight would be, and stops.
 /// </summary>
 internal static class Diagnostics
 {
@@ -82,11 +89,11 @@ internal static class Diagnostics
     }
 
     /// <summary>`--install-addon --logs FOLDER [--replace]`: what the app does at start, reported to install-addon.txt.</summary>
-    public static int InstallAddon(string logsDir, bool replace)
+    public static int InstallAddon(string logsDir, bool replace, bool forever = false)
     {
         try
         {
-            var outcome = AddonInstaller.Ensure(logsDir, replace);
+            var outcome = AddonInstaller.Ensure(forever ? AddonInstaller.Forever : AddonInstaller.Arena, logsDir, replace);
             Write("install-addon.txt", $"{outcome.State}: {outcome.Message}{Environment.NewLine}{outcome.Folder}");
             return outcome.State is AddonInstaller.State.NoWow or AddonInstaller.State.DifferentCopy ? 2 : 0;
         }
@@ -238,6 +245,129 @@ internal static class Diagnostics
         catch (Exception e)
         {
             Write("obs-test.txt", report + $"Error: {e.GetType().Name}: {e.Message}");
+            return 1;
+        }
+    }
+
+    /// <summary>
+    /// `--check-forever LOG`: replays a WoW Forever log through FightFinder on its own clock and lists
+    /// every PvP fight it would save (when, how long, who, deaths) and the hostile players it saw in
+    /// fights too small to save. Records nothing.
+    /// </summary>
+    public static int CheckForever(string path)
+    {
+        var report = new StringBuilder();
+        try
+        {
+            var finder = new FightFinder();
+            var fights = new List<FightFinder.Fight>();
+            DateTime? lastTime = null;
+            using var reader = new StreamReader(new FileStream(path, FileMode.Open, FileAccess.Read, FileShare.ReadWrite | FileShare.Delete));
+            string? line;
+            var lines = 0;
+            while ((line = reader.ReadLine()) != null)
+            {
+                lines++;
+                if (GameTrigger.LineTime(line) is { } t)
+                {
+                    // On the log's own clock, a fight is due Settle after its last line, as the app would see it.
+                    if (finder.Due(t) is { } due) fights.Add(due);
+                    lastTime = t;
+                }
+                if (finder.Feed(line) is { } f) fights.Add(f);
+            }
+            if (lastTime is { } end && finder.Due(end + TimeSpan.FromMinutes(1)) is { } tail) fights.Add(tail);
+
+            report.AppendLine($"{Path.GetFileName(path)}: {lines} lines, {fights.Count} PvP fight(s) to save");
+            foreach (var f in fights)
+                report.AppendLine($"  {f.First:HH:mm:ss.fff} to {f.Last:HH:mm:ss.fff} ({(f.Last - f.First).TotalSeconds,5:F1}s, {f.Lines,4} lines)  {f.Title()}{(f.Zone != null ? $"  [{f.Zone}]" : "")}");
+            Write("check-forever.txt", report.ToString());
+            return 0;
+        }
+        catch (Exception e)
+        {
+            Write("check-forever.txt", report + $"Error: {e.Message}");
+            return 1;
+        }
+    }
+
+    /// <summary>
+    /// `--replay-test [SECONDS]`: starts OBS's replay buffer as WoW Forever would (turning it on in
+    /// OBS's profile if OBS is closed), waits SECONDS (20 by default), saves one clip into the videos
+    /// folder as a fight would be (timing file included), and stops the buffer.
+    /// </summary>
+    public static int ReplayTest(string[] args)
+    {
+        var report = new StringBuilder();
+        var seconds = args.Length > 1 && int.TryParse(args[1], out var n) ? n : 20;
+        try
+        {
+            var settings = AppSettings.Load();
+            report.AppendLine($"OBS: {ObsSetup.ExePath() ?? "not found"}; open: {ObsSetup.Running()}; profile: {ObsSetup.ProfileIni() ?? "not found"}");
+            report.AppendLine($"Buffer {settings.ForeverBufferSeconds}s, waiting {seconds}s, saving into {Recorder.VideosDir(settings)}:");
+            var recorder = new ForeverRecorder(settings, line => report.AppendLine("  " + line));
+            recorder.TestAsync(TimeSpan.FromSeconds(seconds)).GetAwaiter().GetResult();
+            if (recorder.Problem != null) report.AppendLine($"Problem: {recorder.Problem}");
+            var newest = new DirectoryInfo(Recorder.VideosDir(settings)).GetFiles("Forever *.*").Where(f => !f.Name.EndsWith(Recorder.SidecarSuffix)).OrderByDescending(f => f.LastWriteTimeUtc).FirstOrDefault();
+            if (newest != null)
+            {
+                report.AppendLine($"Newest clip: {newest.Name}, {newest.Length / 1048576.0:N1} MB, length read from the file: {Mp4.Duration(newest.FullName)?.TotalSeconds.ToString("F3") ?? "(could not read)"}s");
+                var sidecar = newest.FullName + Recorder.SidecarSuffix;
+                if (File.Exists(sidecar)) report.AppendLine(File.ReadAllText(sidecar));
+            }
+            Write("replay-test.txt", report.ToString());
+            return 0;
+        }
+        catch (Exception e)
+        {
+            Write("replay-test.txt", report + $"Error: {e.GetType().Name}: {e.Message}");
+            return 1;
+        }
+    }
+
+    /// <summary>--cut SOURCE TARGET FROM_START_SECONDS FROM_END_SECONDS: ClipCutter on its own, the full error into cut.txt.</summary>
+    public static int Cut(string[] args)
+    {
+        var report = new StringBuilder();
+        try
+        {
+            var length = Mp4.Duration(args[1]) ?? TimeSpan.Zero;
+            report.AppendLine($"{args[1]}: {length.TotalSeconds:F2}s, {new FileInfo(args[1]).Length / 1048576.0:N0} MB");
+            var file = Windows.Storage.StorageFile.GetFileFromPathAsync(Path.GetFullPath(args[1])).AsTask().GetAwaiter().GetResult();
+            var p = Windows.Media.MediaProperties.MediaEncodingProfile.CreateFromFileAsync(file).AsTask().GetAwaiter().GetResult();
+            report.AppendLine($"container {p.Container?.Subtype ?? "none"}");
+            report.AppendLine(p.Video is { } v ? $"video {v.Subtype} {v.Width}x{v.Height} {v.FrameRate.Numerator}/{v.FrameRate.Denominator} fps, {v.Bitrate} b/s, profile {v.ProfileId}" : "video none");
+            report.AppendLine(p.Audio is { } a ? $"audio {a.Subtype} {a.ChannelCount}ch {a.SampleRate} Hz {a.BitsPerSample} bit, {a.Bitrate} b/s" : "audio none");
+            var started = DateTime.Now;
+            var why = ClipCutter.CutAsync(args[1], args[2], TimeSpan.FromSeconds(double.Parse(args[3], System.Globalization.CultureInfo.InvariantCulture)),
+                TimeSpan.FromSeconds(double.Parse(args[4], System.Globalization.CultureInfo.InvariantCulture)), length).GetAwaiter().GetResult();
+            report.AppendLine(why ?? $"Cut in {(DateTime.Now - started).TotalSeconds:N1}s: {args[2]} is {Mp4.Duration(args[2])?.TotalSeconds:F2}s, {new FileInfo(args[2]).Length / 1048576.0:N0} MB");
+        }
+        catch (Exception e)
+        {
+            report.AppendLine(e.ToString());
+        }
+        File.WriteAllText(Path.Combine(AppContext.BaseDirectory, "cut.txt"), report.ToString());
+        Console.WriteLine(report);
+        return 0;
+    }
+
+    /// <summary>`--replay-stop`: stops OBS's replay buffer, for one an app that was killed left running (replay-stop.txt).</summary>
+    public static int ReplayStop()
+    {
+        try
+        {
+            using var ct = new CancellationTokenSource(TimeSpan.FromSeconds(20));
+            var (client, message) = ObsSetup.ConnectAsync(openIfClosed: false, ct.Token).GetAwaiter().GetResult();
+            if (client == null) { Write("replay-stop.txt", message); return 2; }
+            var stopped = client.TryRequestAsync("StopReplayBuffer", null, ct.Token).GetAwaiter().GetResult() != null;
+            client.DisposeAsync().AsTask().GetAwaiter().GetResult();
+            Write("replay-stop.txt", stopped ? "Stopped OBS's replay buffer." : "OBS's replay buffer was not running.");
+            return 0;
+        }
+        catch (Exception e)
+        {
+            Write("replay-stop.txt", $"Error: {e.Message}");
             return 1;
         }
     }

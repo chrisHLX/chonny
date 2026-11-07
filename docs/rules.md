@@ -324,6 +324,11 @@ Say "same 12 pre-existing failures" only when you have actually confirmed the co
   touching application code.
 
 **Testing**
+- **A request's `set_time_limit()` or `ini_set()` changes the whole suite**, which runs every test
+  request in one PHP process. `CoachUploadController::roomToMeasure()` set 120s, so the first upload
+  test started a clock that killed the run two minutes later ("Maximum execution time of 120 seconds
+  exceeded", inside whatever test was running). Since 2026-11-08 it skips under `runningUnitTests()`;
+  a new per-request limit needs the same guard.
 - **Only the FIRST `Livewire::test()` of a given component in one PHP process returns full HTML**;
   later ones return a stub. Verify per-component renders in separate processes, or an empty render
   reads as a real page bug.

@@ -8,9 +8,13 @@ internal static class Program
         // Diagnostics, for a tester to run and send back, and for checking a build without the window.
         if (args.Length >= 2 && args[0] == "--check-log") return Diagnostics.CheckLog(args[1]);
         if (args.Length >= 1 && args[0] == "--sync-once") return Diagnostics.SyncOnce(args);
-        if (args.Length >= 3 && args[0] == "--install-addon") return Diagnostics.InstallAddon(args[2], replace: args.Contains("--replace"));
+        if (args.Length >= 3 && args[0] == "--install-addon") return Diagnostics.InstallAddon(args[2], replace: args.Contains("--replace"), forever: args.Contains("--forever"));
         if (args.Length >= 2 && args[0] == "--check-recorder") return Diagnostics.CheckRecorder(args.Skip(1));
         if (args.Length >= 1 && args[0] == "--obs-test") return Diagnostics.ObsTest(args);
+        if (args.Length >= 2 && args[0] == "--check-forever") return Diagnostics.CheckForever(args[1]);
+        if (args.Length >= 1 && args[0] == "--replay-test") return Diagnostics.ReplayTest(args);
+        if (args.Length >= 1 && args[0] == "--replay-stop") return Diagnostics.ReplayStop();
+        if (args.Length >= 5 && args[0] == "--cut") return Diagnostics.Cut(args);
         if (args.Length >= 1 && args[0] == "--check-record-light") return Diagnostics.CheckRecordLight();
         if (args.Length >= 1 && args[0] == "--check-notes") return Diagnostics.CheckNotes(args);
         if (args.Length >= 2 && args[0] == "--local-sync-once") return Diagnostics.LocalSyncOnce(args);

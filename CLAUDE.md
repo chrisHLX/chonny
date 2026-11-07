@@ -217,7 +217,7 @@ Full text in `docs/rules.md`.
 - **Tailwind:** an arbitrary variant inside a `{{ }}` ternary may not compile: grep the built CSS.
 - **Assets:** host-relative paths (`/storage/...`), never `asset()` or `Storage::url()`.
 - **Migrations:** no DB enums, string columns only; the suite runs on SQLite.
-- **Testing:** only the first `Livewire::test()` of a component in a process returns full HTML; spells only come from `import:spelldata`; never benchmark a write path against the real DB.
+- **Testing:** a request's `set_time_limit()` applies to the whole suite (one process), so guard it with `runningUnitTests()`; only the first `Livewire::test()` of a component in a process returns full HTML; spells only come from `import:spelldata`; never benchmark a write path against the real DB.
 - **Tooling:** PowerShell's `Set-Content` adds a BOM; quotes in a Bash heredoc break inline Python, so write the script with Write.
 - **Layout:** a box with its own scroll bar hides what's below it on a phone, and reads as missing.
 
