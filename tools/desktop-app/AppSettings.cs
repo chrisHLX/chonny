@@ -60,6 +60,24 @@ public sealed class AppSettings
     /// <summary>The side of the app last open: null for retail, "forever" for WoW Forever (the switch at the top of the menu).</summary>
     public string? Section { get; set; }
 
+    /// <summary>
+    /// Install the Observer addon in WoW Forever (2026-11-09): it remembers what you look at (items,
+    /// auction prices, talents) for the Looked at pages, and carries /ask. On unless turned off.
+    /// </summary>
+    public bool ForeverObserver { get; set; } = true;
+
+    /// <summary>
+    /// Answer /ask questions from Forever with Claude (AskBridge, 2026-11-09). Off until turned on: it
+    /// needs Claude Code on this PC and each question uses the player's Claude account.
+    /// </summary>
+    public bool AskClaude { get; set; }
+
+    /// <summary>claude.exe, when it isn't on the PATH, in ~/.local/bin or in VS Code's Claude extension.</summary>
+    public string? ClaudePath { get; set; }
+
+    /// <summary>The model /ask runs on: "sonnet" by default, which costs less per question than the largest.</summary>
+    public string AskModel { get; set; } = "sonnet";
+
     /// <summary>Forever's Logs folder (World of Warcraft\_forever_\Logs); found by DetectForeverLogs when empty.</summary>
     public string? ForeverLogsDir { get; set; }
 

@@ -20,6 +20,7 @@ internal sealed class MainForm : Form
     private readonly Syncer _syncer;
     private readonly Recorder _recorder;
     private readonly ForeverRecorder _forever;
+    private readonly AskBridge _ask;
     private readonly LiveGame _live = new();
     private readonly NoteBook _notes;
     private readonly System.Windows.Forms.Timer _liveTimer = new() { Interval = 1000 };
@@ -87,6 +88,9 @@ internal sealed class MainForm : Form
         _forever = new ForeverRecorder(_settings, Log);
         _forever.Saved += () => BeginInvoke(() => { if (InForever) FillList(); });
         _forever.LogsFound += () => BeginInvoke(() => { _settings.Save(); CheckForeverAddon(); });
+        _ask = new AskBridge(_settings, Log);
+        _ask.Asking += _ => BeginInvoke(() => { if (_tab == "Ask") { FillList(); RedrawObserverPage(); } });
+        _ask.Answered += a => BeginInvoke(() => OnAnswered(a));
         // The side open last time (the switch at the top of the menu).
         if (_settings.Section == "forever") _tab = "Fights";
 
@@ -134,6 +138,8 @@ internal sealed class MainForm : Form
     [
         ("Fights", "", "Your PvP fights"),
         ("Opponents", "", "Players you've fought"),
+        ("Looked at", "", "What you looked at"),
+        ("Ask", "", "Ask Claude"),
     ];
 
     private static readonly (string Name, string Glyph, string Title)[] Pages = [.. RetailPages, .. ForeverTabs];
@@ -168,6 +174,8 @@ internal sealed class MainForm : Form
                 _tab = name;
                 FillList();
                 if (name == "This game") ShowThisGame();
+                else if (name == "Looked at") ShowLookedOverview();
+                else if (name == "Ask") ShowAskOverview();
             };
             _tabs[name] = item;
             nav.Controls.Add(item);
@@ -201,6 +209,8 @@ internal sealed class MainForm : Form
             if (file.StartsWith(SamplePrefix, StringComparison.Ordinal)) await ShowSampleAsync(file[SamplePrefix.Length..]);
             else if (file.StartsWith(VideoPrefix, StringComparison.Ordinal)) ShowVideo(file[VideoPrefix.Length..]);
             else if (file.StartsWith(OpponentPrefix, StringComparison.Ordinal)) ShowOpponent(file[OpponentPrefix.Length..]);
+            else if (file.StartsWith(LookPrefix, StringComparison.Ordinal)) ShowLook(file[LookPrefix.Length..]);
+            else if (file.StartsWith(AskPrefix, StringComparison.Ordinal)) ShowAnswer(file[AskPrefix.Length..]);
             else await ShowPageAsync(file);
         };
         var library = new RoundPanel { Dock = DockStyle.Fill, Padding = new Padding(8, 6, 8, 8) };
@@ -275,7 +285,7 @@ internal sealed class MainForm : Form
         menu.Items.Add("Mark this moment (Ctrl+Shift+M)", null, (_, _) => AddMark());
         menu.Items.Add("Sync now", null, async (_, _) => await SyncAsync(manual: true));
         menu.Items.Add("-");
-        menu.Items.Add("Exit", null, (_, _) => { _exiting = true; _tray.Visible = false; _recorder.Dispose(); _forever.Dispose(); Application.Exit(); });
+        menu.Items.Add("Exit", null, (_, _) => { _exiting = true; _tray.Visible = false; _recorder.Dispose(); _forever.Dispose(); _ask.Dispose(); Application.Exit(); });
         _tray.ContextMenuStrip = menu;
         _tray.DoubleClick += (_, _) => ShowWindow();
     }
@@ -335,6 +345,7 @@ internal sealed class MainForm : Form
         _timer.Start();
         _recorder.Start();
         _forever.Start();
+        _ask.Start();
         CleanUpOldUpdates();
         await CheckForUpdateAsync();
     }
@@ -732,7 +743,9 @@ internal sealed class MainForm : Form
         if (InForever)
         {
             SetStatus(WatchingText());
-            ShowForeverOverview();
+            if (_tab == "Looked at") ShowLookedOverview();
+            else if (_tab == "Ask") ShowAskOverview();
+            else ShowForeverOverview();
             return;
         }
         SetStatus(_recording ? "Recording this game with OBS" : WatchingText());
@@ -755,6 +768,8 @@ internal sealed class MainForm : Form
 
     private IEnumerable<LibraryRow> ForeverRows()
     {
+        if (_tab == "Looked at") { foreach (var r in LookedRows()) yield return r; yield break; }
+        if (_tab == "Ask") { foreach (var r in AskRows()) yield return r; yield break; }
         var fights = ForeverFights();
         if (fights.Count == 0)
         {
@@ -800,6 +815,140 @@ internal sealed class MainForm : Form
         if (fights.Count == 0) { ShowForeverOverview(); return; }
         _shownFile = null;
         Show(ForeverPages.Opponent(name, fights));
+    }
+
+    // ------------------------------------------------------------------ Looked at and Ask (2026-11-09, ObserverPages)
+
+    private const string LookPrefix = "look:";
+    private const string AskPrefix = "ask:";
+    private ObserverData? _observer;
+    private DateTime _observerAt;
+    private string? _observerPage;   // what the page shows: "looked", "ask", "look:<key>" or "ask:<id>"
+
+    /// <summary>The Observer addon's saved data, read again only when WoW has written it since.</summary>
+    private ObserverData? Observer()
+    {
+        _settings.ForeverLogsDir ??= AppSettings.DetectForeverLogs(_settings.WowLogsDir);
+        var file = ObserverData.FindFile(_settings.ForeverLogsDir);
+        if (file == null) return _observer = null;
+        var at = File.GetLastWriteTimeUtc(file);
+        if (_observer != null && at == _observerAt && _observer.Path == file) return _observer;
+        try
+        {
+            _observer = ObserverData.Load(file);
+            _observerAt = at;
+        }
+        catch (Exception e) { Log($"Could not read the Observer addon's data: {e.Message}"); }
+        return _observer;
+    }
+
+    private bool ObserverChanged()
+    {
+        var file = ObserverData.FindFile(_settings.ForeverLogsDir);
+        return file != null && File.GetLastWriteTimeUtc(file) != _observerAt;
+    }
+
+    private IEnumerable<LibraryRow> LookedRows()
+    {
+        var data = Observer();
+        var subjects = data?.Subjects.Where(s => s.Kind is "item" or "talent").OrderByDescending(s => s.Last).Take(300).ToList() ?? [];
+        if (subjects.Count == 0)
+        {
+            yield return _settings.ForeverObserver
+                ? new LibraryRow("Nothing yet", "In Forever, hold your mouse over an item or a talent for a few seconds, then /reload")
+                : new LibraryRow("The Observer addon is off", "Settings > WoW Forever turns it on");
+            yield break;
+        }
+        foreach (var s in subjects)
+        {
+            var last = s.LastLook;
+            var sub = $"{(last?.Why != null ? "you said: " + last.Why : "probably " + (last?.Guess ?? "looking"))} · {s.Looks} look{(s.Looks == 1 ? "" : "s")} · {ObserverPages.When(s.Last)}";
+            (string Text, int Tone)? badge = null;
+            if (s.ItemId is { } id && ObserverData.FirstPricedLook(s)?.Price is { } was && data!.Latest(id) is { } now && now.At > s.First)
+                badge = ObserverPages.Change(was, now.Min);
+            else if (s.Kind == "talent") badge = s.TakenAt != null ? ("Taken", 1) : s.HadIt ? ("Had it", 0) : null;
+            yield return new LibraryRow(s.Name, sub, badge?.Text, badge?.Tone ?? 0, LookPrefix + s.Key);
+        }
+    }
+
+    private IEnumerable<LibraryRow> AskRows()
+    {
+        var answers = _ask.Answers();
+        if (_ask.Working > 0) yield return new LibraryRow("Working on it…", "Claude is looking it up; this usually takes a minute or two");
+        var data = Observer();
+        foreach (var a in data?.Asks.Where(a => a.Status != "answered" && DateTime.Now - a.At < TimeSpan.FromHours(2) && answers.All(x => x.Id != a.Id)) ?? [])
+            yield return new LibraryRow(a.Question, $"asked in game {ObserverPages.When(a.At)}; not answered yet");
+        if (answers.Count == 0 && _ask.Working == 0)
+        {
+            yield return new LibraryRow("No questions yet", _settings.AskClaude ? "Ask on the right, or with /ask in game" : "Settings > WoW Forever turns answering on");
+            yield break;
+        }
+        foreach (var a in answers)
+        {
+            var text = a.Text.Length > 90 ? a.Text[..90].TrimEnd() + "…" : a.Text;
+            yield return new LibraryRow(a.Question, text, a.Points.Count > 0 ? $"{a.Points.Count} on map" : null, 0, AskPrefix + a.Id);
+        }
+    }
+
+    private void ShowLookedOverview()
+    {
+        if (_view.CoreWebView2 == null) return;
+        _shownFile = null;
+        _observerPage = "looked";
+        Show(ObserverPages.LookedOverview(Observer(), _settings));
+    }
+
+    private void ShowLook(string key)
+    {
+        if (_view.CoreWebView2 == null) return;
+        var data = Observer();
+        var s = data?.Subjects.FirstOrDefault(x => x.Key == key);
+        if (data == null || s == null) { ShowLookedOverview(); return; }
+        _shownFile = null;
+        _observerPage = LookPrefix + key;
+        Show(ObserverPages.Subject(data, s));
+    }
+
+    private void ShowAskOverview()
+    {
+        if (_view.CoreWebView2 == null) return;
+        _shownFile = null;
+        _observerPage = "ask";
+        Show(ObserverPages.AskOverview(_ask, Observer()));
+    }
+
+    private void ShowAnswer(string id)
+    {
+        if (_view.CoreWebView2 == null) return;
+        var a = _ask.Answers().FirstOrDefault(x => x.Id == id);
+        if (a == null) { ShowAskOverview(); return; }
+        _shownFile = null;
+        _observerPage = AskPrefix + id;
+        Show(ObserverPages.Answer(a));
+    }
+
+    /// <summary>The Looked at or Ask page again, with what changed (Show skips it when nothing did).</summary>
+    private void RedrawObserverPage()
+    {
+        switch (_observerPage)
+        {
+            case "looked" when _tab == "Looked at": ShowLookedOverview(); break;
+            case "ask" when _tab == "Ask": ShowAskOverview(); break;
+            case { } p when p.StartsWith(LookPrefix, StringComparison.Ordinal) && _tab == "Looked at": ShowLook(p[LookPrefix.Length..]); break;
+            case { } p when p.StartsWith(AskPrefix, StringComparison.Ordinal) && _tab == "Ask": ShowAnswer(p[AskPrefix.Length..]); break;
+        }
+    }
+
+    private void OnAnswered(AskBridge.Answer a)
+    {
+        var text = a.Points.Count > 0 ? $"{a.Text} /reload in WoW to see the {a.Points.Count} points on your map." : a.Text;
+        _tray.ShowBalloonTip(10000, "Claude: " + (a.Question.Length > 50 ? a.Question[..50] + "…" : a.Question), text.Length > 250 ? text[..250] + "…" : text, ToolTipIcon.Info);
+        if (_tab == "Ask")
+        {
+            FillList();
+            if (_observerPage == "ask") ShowAnswer(a.Id);
+            else RedrawObserverPage();
+        }
     }
 
     // ------------------------------------------------------------------ pages
@@ -852,6 +1001,7 @@ internal sealed class MainForm : Form
                 case "video": ShowVideo(Uri.UnescapeDataString(uri.AbsolutePath.Trim('/'))); break;
                 case "game": OpenGame(uri.AbsolutePath.Trim('/')); break;
                 case "folder": ShowInFolder(Uri.UnescapeDataString(uri.AbsolutePath.Trim('/'))); break;
+                case "look": ShowLook(Uri.UnescapeDataString(uri.AbsolutePath.Trim('/'))); break;
             }
             return;
         }
@@ -1038,6 +1188,8 @@ internal sealed class MainForm : Form
         if (++_lightTick % 5 == 0) UpdateRecordLight();
         // Forever's state (open, OBS's buffer) has no event of its own: look every five seconds.
         if (InForever && _lightTick % 5 == 0 && !_recording) SetStatus(WatchingText());
+        // The Observer addon's data changes at each /reload in game: redraw its list and page then.
+        if (InForever && _tab is "Looked at" or "Ask" && _lightTick % 5 == 0 && ObserverChanged()) { FillList(); RedrawObserverPage(); }
         var active = _live.Active;
         if (_tabs.TryGetValue("This game", out var nav) && nav.Dot != active)
         {
@@ -1111,6 +1263,12 @@ internal sealed class MainForm : Form
             var m = doc.RootElement;
             var type = Str(m, "type");
             if (type == "mark") { AddMark(); return; }
+            if (type == "ask")
+            {
+                var question = Str(m, "text").Trim();
+                if (question.Length > 0 && _ask.CheckReady() == null) { _ask.AskFromApp(question); FillList(); }
+                return;
+            }
             if (type != "note") return;
 
             var text = Str(m, "text").Trim();
@@ -1253,20 +1411,27 @@ internal sealed class MainForm : Form
         CheckForeverAddon();
     }
 
-    /// <summary>WoW Forever's addon (keeps logging on), when Forever fights are recorded and Forever is found.</summary>
+    /// <summary>
+    /// WoW Forever's addons, once Forever is found: the log addon (keeps logging on) when fights are
+    /// recorded, and the Observer addon (Looked at, /ask) unless turned off.
+    /// </summary>
     private void CheckForeverAddon()
     {
-        if (!_settings.RecordForever) return;
+        if (!_settings.RecordForever && !_settings.ForeverObserver) return;
         _settings.ForeverLogsDir ??= AppSettings.DetectForeverLogs(_settings.WowLogsDir);
         if (_settings.ForeverLogsDir == null) return;
-        try
-        {
-            var outcome = AddonInstaller.Ensure(AddonInstaller.Forever, _settings.ForeverLogsDir);
-            Log(outcome.Message);
-            if (outcome.State is AddonInstaller.State.Installed or AddonInstaller.State.Updated)
-                _tray.ShowBalloonTip(6000, "Forever addon ready", outcome.Message, ToolTipIcon.Info);
-        }
-        catch (Exception e) { Log($"Could not install the Forever addon: {e.Message}"); }
+        var addons = new List<AddonInstaller.Addon>();
+        if (_settings.RecordForever) addons.Add(AddonInstaller.Forever);
+        if (_settings.ForeverObserver) addons.Add(AddonInstaller.Observer);
+        foreach (var addon in addons)
+            try
+            {
+                var outcome = AddonInstaller.Ensure(addon, _settings.ForeverLogsDir);
+                Log(outcome.Message);
+                if (outcome.State is AddonInstaller.State.Installed or AddonInstaller.State.Updated)
+                    _tray.ShowBalloonTip(6000, $"{addon.Title} ready", outcome.Message, ToolTipIcon.Info);
+            }
+            catch (Exception e) { Log($"Could not install the {addon.Title}: {e.Message}"); }
     }
 
     private void Log(string text)

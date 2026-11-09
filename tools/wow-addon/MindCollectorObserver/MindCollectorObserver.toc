@@ -1,0 +1,10 @@
+## Interface: 16001
+## Title: MindCollector Observer
+## Notes: Remembers what you look at (items, auction prices, talents), guesses why, and tells you later what changed. /ask sends a question to Claude.
+## SavedVariables: MindCollectorObserverDB
+
+Data.lua
+Answers.lua
+main.lua
+ui.lua
+ask.lua

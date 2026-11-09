@@ -20,10 +20,17 @@ namespace MindCollector.Desktop;
 /// </summary>
 public static class AddonInstaller
 {
-    public sealed record Addon(string FolderName, string Resource, string[] Files, string Title);
+    /// <summary>Files are kept identical to the build; Seeds are written only when missing (the app or the addon writes them later).</summary>
+    public sealed record Addon(string FolderName, string Resource, string[] Files, string Title, string[]? Seeds = null);
 
     public static readonly Addon Arena = new("MindCollectorArenaLog", "addon", ["MindCollectorArenaLog.toc", "main.lua"], "MindCollector addon");
     public static readonly Addon Forever = new("MindCollectorForeverLog", "forever-addon", ["MindCollectorForeverLog.toc", "main.lua"], "MindCollector Forever addon");
+    /// <summary>
+    /// The Observer (2026-11-09, tools/wow-addon/MindCollectorObserver): remembers what the player looks
+    /// at in Forever and carries /ask. Answers.lua is a seed: AskBridge writes it, so it is never compared.
+    /// </summary>
+    public static readonly Addon Observer = new("MindCollectorObserver", "observer-addon",
+        ["MindCollectorObserver.toc", "Data.lua", "main.lua", "ui.lua", "ask.lua"], "MindCollector Observer addon", ["Answers.lua"]);
 
     private const string Marker = ".installed-by-mindcollector";
 
@@ -58,6 +65,7 @@ public static class AddonInstaller
 
         if (same)
         {
+            WriteSeeds(addon, target);
             if (!ours) File.WriteAllText(Path.Combine(target, Marker), Hash(bundled));
             return new(State.UpToDate, $"The {addon.Title} is installed and up to date.", target);
         }
@@ -65,6 +73,8 @@ public static class AddonInstaller
         if (exists && !ours && !replaceDifferent)
             return new(State.DifferentCopy, $"A different copy of the {addon.Title} is installed, so it was left alone. Use Settings > Install the addon to replace it.", target);
 
+        // WoW lists an addon's files only when it starts: a new addon, or a new file in one, needs a restart.
+        var newFiles = !exists || addon.Files.Concat(addon.Seeds ?? []).Any(f => !File.Exists(Path.Combine(target, f)));
         Directory.CreateDirectory(target);
         foreach (var (name, bytes) in bundled)
         {
@@ -72,12 +82,24 @@ public static class AddonInstaller
             File.WriteAllBytes(path + ".tmp", bytes);
             File.Move(path + ".tmp", path, overwrite: true);
         }
+        WriteSeeds(addon, target);
         File.WriteAllText(Path.Combine(target, Marker), Hash(bundled));
 
-        var reload = Syncer.WowRunning() ? " WoW is running: type /reload in game to load it." : " It loads the next time WoW starts.";
+        var reload = !Syncer.WowRunning() ? " It loads the next time WoW starts."
+            : newFiles ? " WoW is running: restart it to load it (a /reload doesn't pick up an addon's new files)."
+            : " WoW is running: type /reload in game to load it.";
         return exists
             ? new(State.Updated, $"The {addon.Title} was updated." + reload, target)
             : new(State.Installed, $"The {addon.Title} was installed." + reload, target);
+    }
+
+    private static void WriteSeeds(Addon addon, string target)
+    {
+        foreach (var seed in addon.Seeds ?? [])
+        {
+            var path = Path.Combine(target, seed);
+            if (!File.Exists(path)) File.WriteAllBytes(path, Read(addon, seed));
+        }
     }
 
     private static byte[] Read(Addon addon, string name)

@@ -17,7 +17,7 @@
     <RootNamespace>MindCollector.Desktop</RootNamespace>
     <AssemblyName>MindCollector</AssemblyName>
     <ApplicationIcon>mindcollector.ico</ApplicationIcon>
-    <Version>0.6.10</Version>
+    <Version>0.6.11</Version>
     <Product>MindCollector</Product>
     <Company>MindCollector</Company>
     <!-- What Windows shows in the file's Properties and in its install and SmartScreen prompts. -->
@@ -67,6 +67,16 @@
     <!-- WoW Forever's addon (2026-11-06): keeps logging on so ForeverRecorder sees each PvP fight. -->
     <EmbeddedResource Include="..\wow-addon\MindCollectorForeverLog\MindCollectorForeverLog.toc" LogicalName="forever-addon/MindCollectorForeverLog.toc" />
     <EmbeddedResource Include="..\wow-addon\MindCollectorForeverLog\main.lua" LogicalName="forever-addon/main.lua" />
+    <!-- WoW Forever's Observer addon (2026-11-09): what the player looks at, and /ask. Answers.lua is
+         installed only when missing, since AskBridge writes it (AddonInstaller.Observer). -->
+    <EmbeddedResource Include="..\wow-addon\MindCollectorObserver\MindCollectorObserver.toc" LogicalName="observer-addon/MindCollectorObserver.toc" />
+    <EmbeddedResource Include="..\wow-addon\MindCollectorObserver\Data.lua" LogicalName="observer-addon/Data.lua" />
+    <EmbeddedResource Include="..\wow-addon\MindCollectorObserver\Answers.lua" LogicalName="observer-addon/Answers.lua" />
+    <EmbeddedResource Include="..\wow-addon\MindCollectorObserver\main.lua" LogicalName="observer-addon/main.lua" />
+    <EmbeddedResource Include="..\wow-addon\MindCollectorObserver\ui.lua" LogicalName="observer-addon/ui.lua" />
+    <EmbeddedResource Include="..\wow-addon\MindCollectorObserver\ask.lua" LogicalName="observer-addon/ask.lua" />
+    <!-- Forever's recipe facts for /ask (AskBridge.ItemFacts), from tools/forever-ask/build_item_facts.py. -->
+    <EmbeddedResource Include="..\forever-ask\item_facts.json" LogicalName="ask/item_facts.json" />
   </ItemGroup>
 
 </Project>

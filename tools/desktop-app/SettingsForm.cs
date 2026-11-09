@@ -13,6 +13,8 @@ internal sealed class SettingsForm : Form
     private readonly CheckBox _record = Check("Record each arena game with OBS: it starts as you zone in and stops when the game ends");
     private readonly CheckBox _forever = Check("Save each PvP fight in WoW Forever, cut to the fight (how much is set below)");
     private readonly CheckBox _gameCapture = Check("Record only the game (an OBS Game Capture) when your OBS scene is a screen capture");
+    private readonly CheckBox _observer = Check("Install the Observer addon: it remembers what you look at in Forever, for Looked at");
+    private readonly CheckBox _askClaude = Check("Answer /ask questions from Forever with Claude (each question uses your Claude account)");
     private readonly TrackBar _lead = Slider(0, 120, 5);
     private readonly TrackBar _tail = Slider(0, 60, 1);
     private readonly TextBox _videos = Box();
@@ -31,7 +33,7 @@ internal sealed class SettingsForm : Form
         StartPosition = FormStartPosition.CenterParent;
         FormBorderStyle = FormBorderStyle.FixedDialog;
         MaximizeBox = MinimizeBox = false;
-        ClientSize = new Size(760, 840);
+        ClientSize = new Size(760, 930);
         Padding = new Padding(16);
 
         _server.Text = settings.ServerUrl;
@@ -44,6 +46,8 @@ internal sealed class SettingsForm : Form
         _record.Checked = settings.RecordGames;
         _forever.Checked = settings.RecordForever;
         _gameCapture.Checked = settings.ObsGameCapture;
+        _observer.Checked = settings.ForeverObserver;
+        _askClaude.Checked = settings.AskClaude;
         _lead.Value = Math.Clamp(settings.ForeverLeadSeconds, _lead.Minimum, _lead.Maximum);
         _tail.Value = Math.Clamp(settings.ForeverTailSeconds, _tail.Minimum, _tail.Maximum);
         _videos.Text = Recorder.VideosDir(settings);
@@ -83,6 +87,16 @@ internal sealed class SettingsForm : Form
         grid.Controls.Add(new Label());
         Row(grid, "Save videos to", _videos, Browse(_videos), "Each game's video, with a small file beside it that lines the video up with the game.");
         Row(grid, "Keep up to (GB)", _limit, null, "Past this the oldest videos the app recorded are deleted. 0 keeps them all.");
+        CheckRow(grid, "WoW Forever", _observer);
+        CheckRow(grid, null, _askClaude);
+        var claude = AskBridge.FindClaude(settings.ClaudePath);
+        grid.Controls.Add(new Label());
+        grid.Controls.Add(new Label
+        {
+            Text = claude != null ? "Uses Claude Code on this PC, with your web browser for Wowhead's maps." : "Needs Claude Code on this PC (claude.com/claude-code), signed in to your Claude account.",
+            AutoSize = true, ForeColor = claude != null ? Theme.Muted : Theme.Lost, Margin = new Padding(0, 0, 0, 6),
+        });
+        grid.Controls.Add(new Label());
         Row(grid, "Website", _server, null, "Leave as it is unless told otherwise.");
 
         var install = Theme.Button("Install the addon");
@@ -159,6 +173,8 @@ internal sealed class SettingsForm : Form
         _settings.RecordGames = _record.Checked;
         _settings.RecordForever = _forever.Checked;
         _settings.ObsGameCapture = _gameCapture.Checked;
+        _settings.ForeverObserver = _observer.Checked;
+        _settings.AskClaude = _askClaude.Checked;
         _settings.ForeverLeadSeconds = _lead.Value;
         _settings.ForeverTailSeconds = _tail.Value;
         _settings.VideosDir = string.IsNullOrWhiteSpace(_videos.Text) ? null : _videos.Text.Trim();

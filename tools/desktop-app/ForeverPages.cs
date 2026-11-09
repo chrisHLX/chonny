@@ -66,9 +66,9 @@ internal static class ForeverPages
     /// <summary>When the fight began: its first hit, not the clip's start a minute before it.</summary>
     public static DateTime FoughtAt(VideoEntry v) => v.Fight?.First ?? v.Started;
 
-    private static string H(string s) => WebUtility.HtmlEncode(s);
+    internal static string H(string s) => WebUtility.HtmlEncode(s);
 
-    private static string Wrap(string eyebrow, string title, string body) => $$$"""
+    internal static string Wrap(string eyebrow, string title, string body) => $$$"""
         <!doctype html><html><head><meta charset="utf-8"><style>
         html,body{margin:0;background:#121212;color:#fff;font-family:'Segoe UI',Arial,sans-serif}
         .wrap{padding:24px 28px;max-width:860px}

@@ -89,11 +89,11 @@ internal static class Diagnostics
     }
 
     /// <summary>`--install-addon --logs FOLDER [--replace]`: what the app does at start, reported to install-addon.txt.</summary>
-    public static int InstallAddon(string logsDir, bool replace, bool forever = false)
+    public static int InstallAddon(string logsDir, bool replace, bool forever = false, bool observer = false)
     {
         try
         {
-            var outcome = AddonInstaller.Ensure(forever ? AddonInstaller.Forever : AddonInstaller.Arena, logsDir, replace);
+            var outcome = AddonInstaller.Ensure(observer ? AddonInstaller.Observer : forever ? AddonInstaller.Forever : AddonInstaller.Arena, logsDir, replace);
             Write("install-addon.txt", $"{outcome.State}: {outcome.Message}{Environment.NewLine}{outcome.Folder}");
             return outcome.State is AddonInstaller.State.NoWow or AddonInstaller.State.DifferentCopy ? 2 : 0;
         }
@@ -577,6 +577,72 @@ internal static class Diagnostics
         Directory.CreateDirectory(AppSettings.Dir);
         bmp.Save(Path.Combine(AppSettings.Dir, "record-light.png"), System.Drawing.Imaging.ImageFormat.Png);
         return 0;
+    }
+
+    /// <summary>
+    /// --check-observer [FILE]: reads the Observer addon's saved data (Forever's, found as the app finds
+    /// it, or FILE) and lists what the Looked at and Ask pages would show (check-observer.txt).
+    /// </summary>
+    public static int CheckObserver(string? file)
+    {
+        var report = new StringBuilder();
+        try
+        {
+            var settings = AppSettings.Load();
+            settings.ForeverLogsDir ??= AppSettings.DetectForeverLogs(settings.WowLogsDir);
+            file ??= ObserverData.FindFile(settings.ForeverLogsDir);
+            report.AppendLine($"File: {file ?? "none found"}");
+            var data = ObserverData.Load(file);
+            if (data == null) { Write("check-observer.txt", report.ToString()); return 2; }
+            report.AppendLine($"Saved {data.Saved:yyyy-MM-dd HH:mm:ss}; {data.Subjects.Count} things looked at; {data.Prices.Count} price histories; {data.Asks.Count} questions");
+            foreach (var g in data.Subjects.GroupBy(x => x.Kind).OrderByDescending(g => g.Count())) report.AppendLine($"  {g.Key}: {g.Count()}");
+            report.AppendLine(data.LastScan is { } sc ? $"Last scan {sc.At:yyyy-MM-dd HH:mm}: {sc.Auctions} auctions, {sc.Prices.Count} items" : "No full scan yet");
+            report.AppendLine();
+            foreach (var s in data.Subjects.Where(x => x.Kind is "item" or "talent").OrderByDescending(x => x.Last).Take(25))
+            {
+                var first = ObserverData.FirstPricedLook(s);
+                var now = s.ItemId is { } id ? data.Latest(id) : null;
+                var price = first?.Price is { } was && now != null ? $"{ObserverPages.Money(was)} -> {ObserverPages.Money(now.Min)}" : now != null ? ObserverPages.Money(now.Min) : "";
+                report.AppendLine($"{s.Last:dd MMM HH:mm}  {s.Kind,-6} {s.Name,-32} x{s.Looks,-3} {price,-20} {s.LastLook?.Why ?? s.LastLook?.Guess}");
+            }
+            foreach (var a in data.Asks) report.AppendLine($"ask {a.At:dd MMM HH:mm} [{a.Status}] {a.Question}{(a.Answer != null ? " => " + a.Answer : "")}");
+            // the pages themselves, so they can be looked at in a browser
+            File.WriteAllText(Path.Combine(AppSettings.Dir, "check-observer.html"), ObserverPages.LookedOverview(data, settings));
+            var item = data.Subjects.Where(x => x.Kind == "item").OrderByDescending(x => x.Looks).FirstOrDefault();
+            if (item != null) File.WriteAllText(Path.Combine(AppSettings.Dir, "check-observer-item.html"), ObserverPages.Subject(data, item));
+            Write("check-observer.txt", report.ToString());
+            return 0;
+        }
+        catch (Exception e)
+        {
+            Write("check-observer.txt", report + $"Error: {e}");
+            return 1;
+        }
+    }
+
+    /// <summary>--ask "QUESTION": one question through AskBridge as the Ask page sends it (ask.txt, ask.html). Uses the player's Claude account.</summary>
+    public static int Ask(string question)
+    {
+        var settings = AppSettings.Load();
+        settings.ForeverLogsDir ??= AppSettings.DetectForeverLogs(settings.WowLogsDir);
+        settings.AskClaude = true;   // this run only; nothing is saved
+        var log = new StringBuilder();
+        using var bridge = new AskBridge(settings, line => log.AppendLine(line));
+        var done = new ManualResetEventSlim();
+        AskBridge.Answer? answer = null;
+        bridge.Answered += a => { answer = a; done.Set(); };
+        log.AppendLine($"Claude: {AskBridge.FindClaude(settings.ClaudePath) ?? "not found"}; ready: {bridge.CheckReady() ?? "yes"}");
+        bridge.AskFromApp(question);
+        if (!done.Wait(TimeSpan.FromMinutes(9))) log.AppendLine("No answer in 9 minutes.");
+        if (answer != null)
+        {
+            log.AppendLine($"Answer: {answer.Text}");
+            foreach (var p in answer.Points.Take(10)) log.AppendLine($"  {p.Zone} {p.X}, {p.Y} {p.Label}");
+            if (answer.Points.Count > 10) log.AppendLine($"  ... {answer.Points.Count} points in all");
+            File.WriteAllText(Path.Combine(AppSettings.Dir, "ask.html"), ObserverPages.Answer(answer));
+        }
+        Write("ask.txt", log.ToString());
+        return answer != null ? 0 : 1;
     }
 
     private static void Write(string name, string text)
