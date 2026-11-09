@@ -178,7 +178,8 @@ also `Wow.exe`), and its log is the retail format (COMBAT_LOG_VERSION 22, your o
 and writes nothing until asked, then **cuts the clip to the fight** (`ClipCutter`): `ForeverLeadSeconds`
 (60) before the first hit to `ForeverTailSeconds` (8) after the last. Chriso asked for "1 min before,
 then until the fight is over"; holding ten minutes and cutting afterwards is how, since nothing says a
-fight has begun until it ends. The cut is Windows' own transcoder (Windows.Media.Transcoding, hence
+fight has begun until it ends. Both are sliders in Settings since 2026-11-09 (before 0-120s, after
+0-60s): Chriso found a minute before was usually about 40s of nothing. The cut is Windows' own transcoder (Windows.Media.Transcoding, hence
 the Windows 10 target for every build since 0.6.9): frame-exact, at the source's measured bitrate, on
 the graphics card, about 11s for a 90s clip. The full clip and its timing file are written first and
 replaced only when the cut works. **`TrimStopTime` is where in the source to stop, not how much to take
@@ -248,6 +249,37 @@ app can't turn Instant Replay on or see whether it is recording, and NVIDIA reco
 overlay started after the game. On Chriso's PC, Forever had to be restarted before a save worked. Any
 press could come to nothing without a word, so OBS, which the app drives and which reports each save,
 is the only capturer.
+
+**The app's own OBS scene: a Game Capture of WoW (2026-11-08, `ObsSetup.UseWowSceneAsync`).** Before
+this, recordings were whatever OBS showed; on Chriso's PC that was a Display Capture of the whole
+165 Hz game screen. Measured that day with Windows' own DXGI trace (`logman` + `tracerpt`, Present
+events per process; PresentMon needs admin), Forever at the login screen at 60 fps, twice each:
+
+| OBS showing | DWM composites WoW's frames | WoW frame time (sd) | OBS GPU |
+|---|---|---|---|
+| Display Capture of the screen | yes, 303 of 303 in 5 s | 16.67 ms (0.30) | 2.5–4.3% |
+| Game Capture of WoW | no, 0 | 16.68 ms (0.31) | 1.9% |
+| nothing | no, 0 | 16.67 ms (0.28) | 1.7% |
+
+Neither capture slows the game or makes its pacing uneven; a Display Capture makes Windows put every
+frame through the compositor (a refresh of delay) and records whatever else is on that screen. So
+while the app records (an arena game, or Forever's replay buffer) it switches OBS to the scene
+`MindCollector: WoW` (made once: Game Capture of Wow.exe, limited to OBS's frame rate, no cursor,
+fitted to the canvas) and back to the player's scene when it stops. Only when the player's scene is
+nothing but screen or window captures (or empty): a webcam, overlay, its own audio or a game capture
+of its own means it is theirs and is recorded as it is. Never while OBS streams. Settings has the
+switch (`ObsGameCapture`, on). `--obs-scene-test [SECONDS]` switches, holds and switches back
+(obs-scene-test.txt); checked on OBS 33.0.1 with the hook taking Forever's D3D12 frames and the
+player's scene put back. The scene owed back is kept in settings.json (`ObsSceneToRestore`) until
+it is put back, since 0.6.10: on 2026-11-08 the app closed with Windows while its scene showed, and
+the next start found its own scene up and no longer knew the player's. Now that start reads it from
+the file, and the next stop puts it back.
+
+**WoW in the background is the game's own cap, not the recording.** "Choppy while I was in Visual
+Studio" (Chriso, 2026-11-08): WoW measured 30.0 fps with another window focused and 60 with WoW
+focused (login screen, twice; Windows often refuses to move focus by script, so check the foreground
+window before believing such a test). 30 fps on 165 Hz holds frames 5 and 6 refreshes in turn, and
+the recording gets each frame twice. The fix is WoW's System > Graphics "Max Background FPS".
 
 Not yet: a battleground as one video (a fight longer than about nine minutes loses its start), and
 moving or deleting old Forever logs, which stay in `_forever_\Logs`.

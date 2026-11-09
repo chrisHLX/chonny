@@ -44,6 +44,19 @@ public sealed class AppSettings
     /// </summary>
     public bool RecordForever { get; set; }
 
+    /// <summary>
+    /// Record WoW with the app's own OBS scene, a Game Capture of the game, when the player's scene
+    /// is only a screen capture (ObsSetup.UseWowSceneAsync, 2026-11-08). On unless turned off.
+    /// </summary>
+    public bool ObsGameCapture { get; set; } = true;
+
+    /// <summary>
+    /// The player's own OBS scene while the app's WoW scene is showing; null when nothing is owed back.
+    /// Kept on disk so an app closed mid-recording (Windows shutting down, 2026-11-08) still puts it
+    /// back the next time it stops recording, instead of OBS staying on the app's scene for good.
+    /// </summary>
+    public string? ObsSceneToRestore { get; set; }
+
     /// <summary>The side of the app last open: null for retail, "forever" for WoW Forever (the switch at the top of the menu).</summary>
     public string? Section { get; set; }
 
@@ -56,10 +69,10 @@ public sealed class AppSettings
     /// </summary>
     public int ForeverBufferSeconds { get; set; } = 600;
 
-    /// <summary>Kept before a fight's first hit, in seconds (settings.json only); the clip is cut to this.</summary>
+    /// <summary>Kept before a fight's first hit, in seconds (a slider in Settings, 0-120); the clip is cut to this.</summary>
     public int ForeverLeadSeconds { get; set; } = 60;
 
-    /// <summary>Kept after a fight's last hit, in seconds (settings.json only).</summary>
+    /// <summary>Kept after a fight's last hit, in seconds (a slider in Settings, 0-60).</summary>
     public int ForeverTailSeconds { get; set; } = 8;
 
     /// <summary>Where the videos go; empty means beside the moved logs (DefaultVideosDir).</summary>

@@ -11,7 +11,10 @@ internal sealed class SettingsForm : Form
     private readonly CheckBox _moveLogs = Check("Move each combat log out of WoW's folder once all of it is sent (after WoW closes)");
     private readonly CheckBox _startup = Check("Start MindCollector when Windows starts (minimised to the taskbar)");
     private readonly CheckBox _record = Check("Record each arena game with OBS: it starts as you zone in and stops when the game ends");
-    private readonly CheckBox _forever = Check("Save each PvP fight in WoW Forever: from a minute before the first hit to just after the last");
+    private readonly CheckBox _forever = Check("Save each PvP fight in WoW Forever, cut to the fight (how much is set below)");
+    private readonly CheckBox _gameCapture = Check("Record only the game (an OBS Game Capture) when your OBS scene is a screen capture");
+    private readonly TrackBar _lead = Slider(0, 120, 5);
+    private readonly TrackBar _tail = Slider(0, 60, 1);
     private readonly TextBox _videos = Box();
     private readonly TextBox _limit = Box();
     private readonly Label _status = new() { AutoSize = true, ForeColor = Theme.Muted, Margin = new Padding(0, 10, 0, 0) };
@@ -28,7 +31,7 @@ internal sealed class SettingsForm : Form
         StartPosition = FormStartPosition.CenterParent;
         FormBorderStyle = FormBorderStyle.FixedDialog;
         MaximizeBox = MinimizeBox = false;
-        ClientSize = new Size(760, 710);
+        ClientSize = new Size(760, 840);
         Padding = new Padding(16);
 
         _server.Text = settings.ServerUrl;
@@ -40,6 +43,9 @@ internal sealed class SettingsForm : Form
         _startup.Checked = Installer.StartsWithWindows();
         _record.Checked = settings.RecordGames;
         _forever.Checked = settings.RecordForever;
+        _gameCapture.Checked = settings.ObsGameCapture;
+        _lead.Value = Math.Clamp(settings.ForeverLeadSeconds, _lead.Minimum, _lead.Maximum);
+        _tail.Value = Math.Clamp(settings.ForeverTailSeconds, _tail.Minimum, _tail.Maximum);
         _videos.Text = Recorder.VideosDir(settings);
         _limit.Text = settings.VideoLimitGb.ToString();
 #if STORE
@@ -65,11 +71,13 @@ internal sealed class SettingsForm : Form
         Row(grid, "Website key", _key, null, "Filled in by Connect. A key from Your games > Upload on the website works too.");
         Row(grid, "WoW's Logs folder", _wow, Browse(_wow), "Where WoW writes WoWCombatLog-*.txt, usually World of Warcraft\\_retail_\\Logs.");
         Row(grid, "Move logs to", _move, Browse(_move), "Logs go here once every round in them is sent, so WoW's folder stays small.");
-        grid.Controls.Add(new Label()); grid.Controls.Add(_moveLogs); grid.Controls.Add(new Label());
-        grid.Controls.Add(new Label()); grid.Controls.Add(_startup); grid.Controls.Add(new Label());
-        grid.Controls.Add(new Label { Text = "Recording", AutoSize = true, Margin = new Padding(0, 10, 8, 0) });
-        grid.Controls.Add(_record); grid.Controls.Add(new Label());
-        grid.Controls.Add(new Label()); grid.Controls.Add(_forever); grid.Controls.Add(new Label());
+        CheckRow(grid, null, _moveLogs);
+        CheckRow(grid, null, _startup);
+        CheckRow(grid, "Recording", _record);
+        CheckRow(grid, null, _forever);
+        SliderRow(grid, "Before the fight", _lead, "Seconds kept before the first hit, you or them. Lower it if the clips start too early.");
+        SliderRow(grid, "After the fight", _tail, "Seconds kept after the last hit.");
+        CheckRow(grid, null, _gameCapture);
         grid.Controls.Add(new Label());
         grid.Controls.Add(new Label { Text = "Needs OBS Studio (free, obsproject.com). Install it, then click Set up OBS below: it does the rest.", AutoSize = true, ForeColor = Theme.Muted, Margin = new Padding(0, 0, 0, 6) });
         grid.Controls.Add(new Label());
@@ -150,6 +158,9 @@ internal sealed class SettingsForm : Form
         _settings.MoveLogs = _moveLogs.Checked;
         _settings.RecordGames = _record.Checked;
         _settings.RecordForever = _forever.Checked;
+        _settings.ObsGameCapture = _gameCapture.Checked;
+        _settings.ForeverLeadSeconds = _lead.Value;
+        _settings.ForeverTailSeconds = _tail.Value;
         _settings.VideosDir = string.IsNullOrWhiteSpace(_videos.Text) ? null : _videos.Text.Trim();
         _settings.VideoLimitGb = int.TryParse(_limit.Text.Trim(), out var gb) && gb >= 0 ? gb : _settings.VideoLimitGb;
         _settings.Save();
@@ -216,6 +227,42 @@ internal sealed class SettingsForm : Form
         grid.Controls.Add(new Label { Text = hint, AutoSize = true, ForeColor = Theme.Muted, Margin = new Padding(0, 0, 0, 6) });
         grid.Controls.Add(new Label());
     }
+
+    /// <summary>A tick box across the box and button columns, so a long line is not cut off.</summary>
+    private static void CheckRow(TableLayoutPanel grid, string? label, CheckBox box)
+    {
+        grid.Controls.Add(label == null ? new Label() : new Label { Text = label, AutoSize = true, Margin = new Padding(0, 10, 8, 0) });
+        grid.Controls.Add(box);
+        grid.SetColumnSpan(box, 2);
+    }
+
+    /// <summary>A slider with its value in seconds beside it, and a hint under it, as Row lays out a box.</summary>
+    private static void SliderRow(TableLayoutPanel grid, string label, TrackBar slider, string hint)
+    {
+        var value = new Label { AutoSize = true, Margin = new Padding(0, 12, 0, 0), Text = $"{slider.Value} s" };
+        slider.ValueChanged += (_, _) => value.Text = $"{slider.Value} s";
+        grid.Controls.Add(new Label { Text = label, AutoSize = true, Margin = new Padding(0, 12, 8, 0) });
+        grid.Controls.Add(slider);
+        grid.Controls.Add(value);
+        grid.Controls.Add(new Label());
+        grid.Controls.Add(new Label { Text = hint, AutoSize = true, ForeColor = Theme.Muted, Margin = new Padding(0, 0, 0, 6) });
+        grid.Controls.Add(new Label());
+    }
+
+    private static TrackBar Slider(int min, int max, int step) => new()
+    {
+        Minimum = min,
+        Maximum = max,
+        SmallChange = step,
+        LargeChange = step * 2,
+        TickFrequency = max / 12,
+        TickStyle = TickStyle.BottomRight,
+        Dock = DockStyle.Fill,
+        BackColor = Theme.Panel,
+        Margin = new Padding(0, 4, 8, 0),
+        AutoSize = false,
+        Height = 34,
+    };
 
     private static Button Browse(TextBox target)
     {

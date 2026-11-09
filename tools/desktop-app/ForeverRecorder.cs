@@ -166,6 +166,7 @@ public sealed class ForeverRecorder : IDisposable
     private ObsClient? _obs;
     private bool _bufferOn;
     private bool _ours;
+    private string? _restoreScene; // the player's own OBS scene, while the app's WoW scene feeds the buffer
     private DateTime _retryAfter = DateTime.MinValue;
     private TaskCompletionSource<string>? _saved;
 
@@ -320,6 +321,12 @@ public sealed class ForeverRecorder : IDisposable
             _retryAfter = DateTime.Now.AddMinutes(2);
             return;
         }
+        if (_settings.ObsGameCapture && _restoreScene == null)
+        {
+            var (prior, note) = await ObsSetup.UseWowSceneAsync(_obs!, _settings, ct.Token);
+            _restoreScene = prior;
+            if (note != null) _log(note);
+        }
         var (ours, problem) = await ObsSetup.StartReplayBufferAsync(_obs!, _settings.ForeverBufferSeconds, ct.Token);
         if (problem != null)
         {
@@ -345,6 +352,12 @@ public sealed class ForeverRecorder : IDisposable
             await obs.TryRequestAsync("StopReplayBuffer", null, ct.Token);
             _log($"Stopped OBS's replay buffer ({reason}).");
         }
+        if (_obs is { Connected: true } still)
+        {
+            using var ct = new CancellationTokenSource(TimeSpan.FromSeconds(15));
+            await ObsSetup.RestoreSceneAsync(still, _restoreScene, _settings, ct.Token);
+        }
+        _restoreScene = null;
         _ours = false;
         if (_obs != null) { await _obs.DisposeAsync(); _obs = null; }
     }

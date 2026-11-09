@@ -14,6 +14,8 @@ internal static class Program
         if (args.Length >= 2 && args[0] == "--check-forever") return Diagnostics.CheckForever(args[1]);
         if (args.Length >= 1 && args[0] == "--replay-test") return Diagnostics.ReplayTest(args);
         if (args.Length >= 1 && args[0] == "--replay-stop") return Diagnostics.ReplayStop();
+        if (args.Length >= 2 && args[0] == "--settings-shot") return Diagnostics.SettingsShot(args[1]);
+        if (args.Length >= 1 && args[0] == "--obs-scene-test") return Diagnostics.ObsSceneTest(args);
         if (args.Length >= 5 && args[0] == "--cut") return Diagnostics.Cut(args);
         if (args.Length >= 1 && args[0] == "--check-record-light") return Diagnostics.CheckRecordLight();
         if (args.Length >= 1 && args[0] == "--check-notes") return Diagnostics.CheckNotes(args);

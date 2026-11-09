@@ -222,6 +222,7 @@ public sealed class Recorder : IDisposable
         public bool External;          // OBS was already recording: the player's, not ours
         public bool FolderSet;         // OBS wrote straight into the videos folder
         public string? RestoreFolder;  // the player's own OBS folder, still to be put back
+        public string? RestoreScene;   // the player's own OBS scene, while the app's WoW scene records
         public string? Log;
     }
 
@@ -428,6 +429,14 @@ public sealed class Recorder : IDisposable
         var folderSet = previous != null
             && await _obs.TryRequestAsync("SetRecordDirectory", new JsonObject { ["recordDirectory"] = dir }, ct.Token) != null;
 
+        string? restoreScene = null;
+        if (_settings.ObsGameCapture)
+        {
+            var (prior, note) = await ObsSetup.UseWowSceneAsync(_obs, _settings, ct.Token);
+            restoreScene = prior;
+            if (note != null) _log(note);
+        }
+
         _started = new TaskCompletionSource<DateTime>(TaskCreationOptions.RunContinuationsAsynchronously);
         var asked = DateTime.Now;
         await _obs.RequestAsync("StartRecord", null, ct.Token);
@@ -439,7 +448,7 @@ public sealed class Recorder : IDisposable
         var restore = folderSet
             && await _obs.TryRequestAsync("SetRecordDirectory", new JsonObject { ["recordDirectory"] = previous }, ct.Token) == null;
 
-        _session = new Session { StartedAt = startedAt, FolderSet = folderSet, RestoreFolder = restore ? previous : null, Log = _file };
+        _session = new Session { StartedAt = startedAt, FolderSet = folderSet, RestoreFolder = restore ? previous : null, RestoreScene = restoreScene, Log = _file };
         _log($"Recording this game with OBS (started {startedAt:HH:mm:ss.fff}).");
         LastFailure = null;
         RecordingChanged?.Invoke(true);
@@ -477,6 +486,7 @@ public sealed class Recorder : IDisposable
             try { path = await _stopped.Task.WaitAsync(TimeSpan.FromSeconds(20)) ?? path; } catch (TimeoutException) { }
             if (session.RestoreFolder != null)
                 await obs.TryRequestAsync("SetRecordDirectory", new JsonObject { ["recordDirectory"] = session.RestoreFolder }, ct.Token);
+            await ObsSetup.RestoreSceneAsync(obs, session.RestoreScene, _settings, ct.Token);
         }
         var stoppedAt = DateTime.Now;
 

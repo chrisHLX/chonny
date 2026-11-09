@@ -260,15 +260,149 @@ public static class ObsSetup
             ["sceneName"] = scene,
             ["inputName"] = "World of Warcraft",
             ["inputKind"] = "game_capture",
-            ["inputSettings"] = new JsonObject
-            {
-                ["capture_mode"] = "window",
-                ["window"] = "World of Warcraft:waApplication Window:Wow.exe",
-                ["priority"] = 2,
-            },
+            ["inputSettings"] = WowGameCaptureSettings(),
             ["sceneItemEnabled"] = true,
         }, ct);
         return "Added a Game Capture of WoW to OBS, since its scene was empty.";
+    }
+
+    /// <summary>
+    /// A Game Capture of WoW: window mode, matched by Wow.exe when the title or class differ (priority
+    /// 2), which finds retail and WoW Forever alike (both are Wow.exe with the same window class).
+    /// Limited to OBS's own frame rate, so a game running faster than the video is copied only as often
+    /// as OBS uses it. No cursor, as Chriso's own Display Capture had it.
+    /// </summary>
+    private static JsonObject WowGameCaptureSettings() => new()
+    {
+        ["capture_mode"] = "window",
+        ["window"] = "World of Warcraft:waApplication Window:Wow.exe",
+        ["priority"] = 2,
+        ["limit_framerate"] = true,
+        ["capture_cursor"] = false,
+    };
+
+    // ---------------------------------------------------------------- the app's own WoW scene
+
+    /// <summary>The scene the app records WoW with when the player's own is only a screen capture.</summary>
+    public const string WowSceneName = "MindCollector: WoW";
+
+    private const string WowSceneInput = "MindCollector: World of Warcraft";
+
+    /// <summary>
+    /// What a recording shows: a Game Capture of WoW rather than a capture of the whole screen
+    /// (2026-11-08). Measured that day on Chriso's PC, WoW Forever (D3D12) at 60 fps on a 165 Hz
+    /// screen, OBS recording at 60, twice each:
+    ///   Display Capture of the game's screen: Windows composited every one of WoW's frames (303 DWM
+    ///   presents in 5 s for WoW's 303), OBS's GPU use 2.5-4.3%.
+    ///   Game Capture of WoW: WoW's frames went to the screen without DWM (0 presents, as with nothing
+    ///   captured at all), OBS's GPU use 1.9%.
+    /// WoW's own frame pacing was the same in all three (16.67 ms, sd 0.3), so neither capture slows
+    /// the game; what Display Capture adds is Windows putting every frame through the compositor, which
+    /// costs a refresh of delay, and it records whatever else is on that screen.
+    ///
+    /// The player's scene is only replaced when it is nothing but screen or window captures (or
+    /// empty): a scene with a webcam, an overlay, its own audio or a capture of a game is theirs and is
+    /// recorded as it is. Never while OBS is streaming, so a live picture never changes. Returns the
+    /// scene to go back to when the recording stops and a line for the log, both null when nothing
+    /// was switched. With <paramref name="remember"/>, the scene to go back to is also kept in the
+    /// settings file, so if OBS is already on the app's scene when this runs (the app was closed
+    /// before it could switch back) the player's scene is still the one returned.
+    ///
+    /// Not a fix for a choppy WoW in the background: WoW drops itself to 30 fps when another window
+    /// has focus (measured the same day at the login screen, 60 focused), which is the game's own "Max
+    /// Background FPS" setting, not the capture.
+    /// </summary>
+    public static async Task<(string? Previous, string? Note)> UseWowSceneAsync(ObsClient obs, AppSettings? remember, CancellationToken ct)
+    {
+        var scene = await ProgramSceneAsync(obs, ct);
+        if (string.IsNullOrEmpty(scene)) return (null, null);
+        if (scene == WowSceneName) return (remember?.ObsSceneToRestore, null);
+        if (await obs.TryRequestAsync("GetStreamStatus", null, ct) is { } stream
+            && stream.TryGetProperty("outputActive", out var live) && live.GetBoolean()) return (null, null);
+
+        if (await obs.TryRequestAsync("GetSceneItemList", new JsonObject { ["sceneName"] = scene }, ct) is not { } items
+            || !items.TryGetProperty("sceneItems", out var list)) return (null, null);
+        foreach (var item in list.EnumerateArray())
+        {
+            if (item.TryGetProperty("sceneItemEnabled", out var on) && !on.GetBoolean()) continue;
+            var kind = item.TryGetProperty("inputKind", out var k) && k.ValueKind == JsonValueKind.String ? k.GetString() : null;
+            if (kind is not ("monitor_capture" or "window_capture")) return (null, null);
+        }
+
+        var created = await EnsureWowSceneAsync(obs, ct);
+        if (await obs.TryRequestAsync("SetCurrentProgramScene", new JsonObject { ["sceneName"] = WowSceneName }, ct) == null)
+            return (null, null);
+        if (remember != null) { remember.ObsSceneToRestore = scene; remember.Save(); }
+        return (scene, created
+            ? $"Recording WoW with a Game Capture of the game (a new OBS scene, \"{WowSceneName}\"), not your screen capture; OBS goes back to \"{scene}\" when the app stops recording."
+            : $"Recording WoW with the app's Game Capture scene; OBS goes back to \"{scene}\" when the app stops recording.");
+    }
+
+    /// <summary>
+    /// Puts the player's scene back, if OBS is still showing the app's, and forgets it in
+    /// <paramref name="remember"/> once nothing more is owed (put back, or the player moved OBS on).
+    /// </summary>
+    public static async Task RestoreSceneAsync(ObsClient obs, string? previous, AppSettings? remember, CancellationToken ct)
+    {
+        if (string.IsNullOrEmpty(previous) || !obs.Connected) return;
+        var now = await ProgramSceneAsync(obs, ct);
+        if (now == null) return;
+        if (now == WowSceneName
+            && await obs.TryRequestAsync("SetCurrentProgramScene", new JsonObject { ["sceneName"] = previous }, ct) == null) return;
+        if (remember != null && remember.ObsSceneToRestore != null) { remember.ObsSceneToRestore = null; remember.Save(); }
+    }
+
+    /// <summary>The app's scene with its Game Capture, fitted to the canvas; true when it was made now.</summary>
+    private static async Task<bool> EnsureWowSceneAsync(ObsClient obs, CancellationToken ct)
+    {
+        var scenes = await obs.TryRequestAsync("GetSceneList", null, ct);
+        var exists = scenes is { } s && s.TryGetProperty("scenes", out var arr)
+            && arr.EnumerateArray().Any(x => x.TryGetProperty("sceneName", out var n) && n.GetString() == WowSceneName);
+        if (exists) return false;
+
+        await obs.RequestAsync("CreateScene", new JsonObject { ["sceneName"] = WowSceneName }, ct);
+        JsonElement made;
+        if (await obs.TryRequestAsync("GetInputSettings", new JsonObject { ["inputName"] = WowSceneInput }, ct) != null)
+            made = await obs.RequestAsync("CreateSceneItem", new JsonObject { ["sceneName"] = WowSceneName, ["sourceName"] = WowSceneInput }, ct);
+        else
+            made = await obs.RequestAsync("CreateInput", new JsonObject
+            {
+                ["sceneName"] = WowSceneName,
+                ["inputName"] = WowSceneInput,
+                ["inputKind"] = "game_capture",
+                ["inputSettings"] = WowGameCaptureSettings(),
+                ["sceneItemEnabled"] = true,
+            }, ct);
+
+        // Fill the canvas whatever size WoW's window is (a windowed game is smaller than the screen).
+        if (made.TryGetProperty("sceneItemId", out var id)
+            && await obs.TryRequestAsync("GetVideoSettings", null, ct) is { } video
+            && video.TryGetProperty("baseWidth", out var w) && video.TryGetProperty("baseHeight", out var h))
+        {
+            await obs.TryRequestAsync("SetSceneItemTransform", new JsonObject
+            {
+                ["sceneName"] = WowSceneName,
+                ["sceneItemId"] = id.GetInt32(),
+                ["sceneItemTransform"] = new JsonObject
+                {
+                    ["positionX"] = 0,
+                    ["positionY"] = 0,
+                    ["alignment"] = 5,
+                    ["boundsType"] = "OBS_BOUNDS_SCALE_INNER",
+                    ["boundsAlignment"] = 0,
+                    ["boundsWidth"] = w.GetInt32(),
+                    ["boundsHeight"] = h.GetInt32(),
+                },
+            }, ct);
+        }
+        return true;
+    }
+
+    private static async Task<string?> ProgramSceneAsync(ObsClient obs, CancellationToken ct)
+    {
+        var current = await obs.TryRequestAsync("GetCurrentProgramScene", null, ct);
+        return current is { } c && c.TryGetProperty("currentProgramSceneName", out var n) ? n.GetString()
+            : current is { } c2 && c2.TryGetProperty("sceneName", out var n2) ? n2.GetString() : null;
     }
 
     /// <summary>The container OBS records into (mp4, hybrid_mp4, mkv, ...), or null when it would not say.</summary>

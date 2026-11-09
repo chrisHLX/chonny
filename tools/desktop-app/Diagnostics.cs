@@ -352,7 +352,61 @@ internal static class Diagnostics
         return 0;
     }
 
+    /// <summary>
+    /// `--obs-scene-test [SECONDS]`: what a recording would switch OBS to (ObsSetup.UseWowSceneAsync),
+    /// held for SECONDS (default 10), then put back as a recording's end does (obs-scene-test.txt).
+    /// </summary>
+    public static int ObsSceneTest(string[] args)
+    {
+        var lines = new List<string>();
+        try
+        {
+            var hold = args.Length >= 2 && int.TryParse(args[1], out var s) ? s : 10;
+            using var ct = new CancellationTokenSource(TimeSpan.FromSeconds(60 + hold));
+            var (client, message) = ObsSetup.ConnectAsync(openIfClosed: false, ct.Token).GetAwaiter().GetResult();
+            lines.Add(message);
+            if (client == null) { Write("obs-scene-test.txt", string.Join(Environment.NewLine, lines)); return 2; }
+            string? Scene() => client.TryRequestAsync("GetCurrentProgramScene", null, ct.Token).GetAwaiter().GetResult() is { } c
+                && c.TryGetProperty("currentProgramSceneName", out var n) ? n.GetString() : null;
+            lines.Add($"Before: \"{Scene()}\"");
+            var (previous, note) = ObsSetup.UseWowSceneAsync(client, null, ct.Token).GetAwaiter().GetResult();
+            lines.Add($"Switched: {(previous == null ? "no" : $"yes, from \"{previous}\"")}; now \"{Scene()}\"");
+            if (note != null) lines.Add(note);
+            Thread.Sleep(TimeSpan.FromSeconds(hold));
+            ObsSetup.RestoreSceneAsync(client, previous, null, ct.Token).GetAwaiter().GetResult();
+            lines.Add($"After: \"{Scene()}\"");
+            client.DisposeAsync().AsTask().GetAwaiter().GetResult();
+            Write("obs-scene-test.txt", string.Join(Environment.NewLine, lines));
+            return 0;
+        }
+        catch (Exception e)
+        {
+            lines.Add($"Error: {e.Message}");
+            Write("obs-scene-test.txt", string.Join(Environment.NewLine, lines));
+            return 1;
+        }
+    }
+
     /// <summary>`--replay-stop`: stops OBS's replay buffer, for one an app that was killed left running (replay-stop.txt).</summary>
+    /// <summary>
+    /// --settings-shot PATH: draws the Settings window, with this PC's settings, to a PNG and leaves
+    /// without showing it or saving anything. For checking the layout after a change.
+    /// </summary>
+    public static int SettingsShot(string path)
+    {
+        ApplicationConfiguration.Initialize();
+        using var form = new SettingsForm(AppSettings.Load());
+        form.StartPosition = FormStartPosition.Manual;
+        form.Location = new Point(-10000, -10000);
+        form.ShowInTaskbar = false;
+        form.Show();
+        Application.DoEvents();
+        using var bmp = new Bitmap(form.Width, form.Height);
+        form.DrawToBitmap(bmp, new Rectangle(Point.Empty, form.Size));
+        bmp.Save(path, System.Drawing.Imaging.ImageFormat.Png);
+        return 0;
+    }
+
     public static int ReplayStop()
     {
         try
