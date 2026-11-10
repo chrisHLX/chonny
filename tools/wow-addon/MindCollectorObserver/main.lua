@@ -449,10 +449,30 @@ local function scanStatus(text)
     if ns.refresh then ns.refresh() end
 end
 
+-- The four time-left bands (under 30m, 30m-2h, 2-12h, over 12h) as {shortest, longest} seconds, keyed
+-- by the raw value a scan reads. The API's enum counts from 0; the old auction API counted from 1. A full
+-- scan always holds some of the shortest and the longest, so a 0 or a 4 among the values settles which.
+local bands
+local function bandTimes()
+    local base = bands[0] and 0 or (bands[4] and 1 or 0)
+    local fallback = { { 0, 1800 }, { 1800, 7200 }, { 7200, 43200 }, { 43200, 172800 } }
+    local E = Enum and Enum.AuctionHouseTimeLeftBand or {}
+    local names = { "Short", "Medium", "Long", "VeryLong" }
+    local out = {}
+    for k = 0, 3 do
+        local lo, hi = fallback[k + 1][1], fallback[k + 1][2]
+        local ok, a, b = pcall(C_AuctionHouse.GetTimeLeftBandInfo, E[names[k + 1]] or k)
+        if ok and a and b and b > 0 then lo, hi = a, b end
+        out[k + base] = { lo, hi }
+    end
+    return out
+end
+
 local function finishScan(agg, n)
     scanStatus(nil)
     DB.prevScan = DB.lastScan
-    DB.lastScan = { t = time(), n = n, prices = agg }
+    DB.lastScan = { t = time(), n = n, prices = agg, bands = next(bands) and bandTimes() or nil }
+    for _, a in pairs(agg) do if a.tl and not next(a.tl) then a.tl = nil end end
     local moved, items = 0, 0
     for id, a in pairs(agg) do
         items = items + 1
@@ -469,6 +489,7 @@ end
 local function readScan()
     local n = C_AuctionHouse.GetNumReplicateItems()
     local agg, i = {}, 0
+    bands = {}
     local ticker
     ticker = C_Timer.NewTicker(0.01, function()
         local stop = math.min(i + 2000, n)
@@ -477,10 +498,19 @@ local function readScan()
             if itemID and buyout and buyout > 0 and count and count > 0 then
                 local unit = buyout / count
                 local a = agg[itemID]
-                if not a then agg[itemID] = { unit, count, name } -- the name too, so the app can show items you never hovered
+                if not a then
+                    a = { unit, count, name, tl = {} } -- the name too, so the app can show items you never hovered
+                    agg[itemID] = a
                 else
                     if unit < a[1] then a[1] = unit end
                     a[2] = a[2] + count
+                end
+                -- How long each listing has left, so the next scan can tell expiry from selling (2026-11-11).
+                -- Kept as the raw value: whether the game counts bands from 0 or 1 is settled in finishScan.
+                local band = C_AuctionHouse.GetReplicateItemTimeLeft and C_AuctionHouse.GetReplicateItemTimeLeft(i)
+                if band then
+                    a.tl[band] = (a.tl[band] or 0) + count
+                    bands[band] = (bands[band] or 0) + 1
                 end
             end
             i = i + 1

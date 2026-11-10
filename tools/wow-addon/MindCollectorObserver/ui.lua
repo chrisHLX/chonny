@@ -458,7 +458,22 @@ local function listingTrend(id)
     local text = string.format("listed %d > %d", was[2], now[2])
     -- under a 10% change in listings is noise: a few posted or bought between scans says nothing
     if math.abs(now[2] - was[2]) < math.max(was[2], 1) * 0.1 then return grey(text) end
-    if now[2] < was[2] and now[1] >= was[1] then return color("ff40d060", text .. ", price held: selling") end
+    if now[2] < was[2] and now[1] >= was[1] then
+        -- Fewer listed at the same price is selling only past what could simply have run out: listings
+        -- in the earlier scan whose time-left band starts before the gap between the scans may have
+        -- expired (Chriso's Rage Potions did, 2026-11-11). New posts in between hide more, so "at least".
+        local drop, gap = was[2] - now[2], a.t - b.t
+        if not (b.bands and was.tl) then return grey(text .. ", price held: sold or ran out") end
+        local could = 0
+        for band, q in pairs(was.tl) do
+            local t = b.bands[band]
+            if not t or t[1] < gap then could = could + q end
+        end
+        if drop > could then
+            return color("ff40d060", string.format("%s, price held: at least %d sold", text, drop - could))
+        end
+        return grey(string.format("%s, but %d could have run out: can't tell", text, could))
+    end
     if now[2] > was[2] and now[1] <= was[1] then return grey(text .. ", price no higher: not much selling") end
     return grey(text)
 end
@@ -1082,7 +1097,7 @@ local function drawDetail()
                 local p, pp = h[i].min, h[i - 1] and h[i - 1].min
                 local trend = ""
                 if q and pq and pp then
-                    if q < pq and p >= pp then trend = color("ff40d060", "  fewer listed, price held: selling")
+                    if q < pq and p >= pp then trend = grey("  fewer listed, price held: sold or ran out")
                     elseif q > pq and p <= pp then trend = grey("  more listed, price no higher: not much selling")
                     elseif q < pq then trend = grey("  fewer listed") elseif q > pq then trend = grey("  more listed") end
                 end
