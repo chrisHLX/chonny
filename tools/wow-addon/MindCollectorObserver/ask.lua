@@ -22,7 +22,9 @@ local function professionsText()
     return table.concat(out, ", ")
 end
 
-function ns.ask(q)
+-- ctx: what the addon has seen about the subject (prices, listings, costs), sent along so Claude
+-- answers from the live market as well as the web.
+function ns.ask(q, ctx)
     local DB = ns.DB
     q = (q or ""):gsub("^%s+", ""):gsub("%s+$", "")
     if q == "" then
@@ -43,10 +45,10 @@ function ns.ask(q)
     local _, class = UnitClass("player")
     table.insert(DB.asks, {
         id = string.format("%d-%04d", time(), math.random(0, 9999)), t = time(), q = q, status = "sent",
-        ch = UnitName("player"), level = UnitLevel("player"), class = class,
+        ch = UnitName("player"), level = UnitLevel("player"), class = class, faction = UnitFactionGroup("player"),
         zone = (info and info.name) or GetRealZoneText(), subzone = GetSubZoneText(), mapID = mapID,
         x = x and math.floor(x * 1000 + 0.5) / 10, y = y and math.floor(y * 1000 + 0.5) / 10,
-        profs = professionsText(),
+        profs = professionsText(), ctx = ctx,
     })
     while #DB.asks > 30 do table.remove(DB.asks, 1) end
     ns.say("asking Claude: " .. q)

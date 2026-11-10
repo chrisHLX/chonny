@@ -61,7 +61,7 @@ internal static class ObserverPages
 
         var sb = new StringBuilder(Css);
         var counts = data.Subjects.GroupBy(s => s.Kind).ToDictionary(g => g.Key, g => g.Count());
-        sb.Append($"<p class=\"muted\">As of your last /reload in game ({H(When(data.Saved))}): {counts.GetValueOrDefault("item")} items, {counts.GetValueOrDefault("talent")} talents, {counts.GetValueOrDefault("spell")} spells and {counts.GetValueOrDefault("player")} players looked at.</p>");
+        sb.Append($"<p class=\"muted\">As of your last /reload in game ({H(When(data.Saved))}): {counts.GetValueOrDefault("item")} items looked at.</p>");
 
         sb.Append("<h2>Prices that moved since you looked</h2>");
         if (moved.Count == 0) sb.Append("<p class=\"muted\">None by 10% or more yet. It needs a newer price than the one you saw: open the item again in the auction house, or scan the whole auction house from the addon's window.</p>");

@@ -11,15 +11,32 @@ local frame, list, detail, search
 local tab, selectedKey, query = "item", nil, ""
 local rows, histLines = {}, {}
 
+-- Items and professions only since 2026-11-10 (Chriso): talents, spells, players and the rest were noise.
 local TABS = {
     { key = "item", label = "Items" },
-    { key = "talent", label = "Talents" },
-    { key = "spell", label = "Spells" },
-    { key = "player", label = "Players" },
-    { key = "other", label = "Other" },
-    { key = "movers", label = "Market movers" },
+    { key = "prof", label = "Professions" },
+    { key = "movers", label = "Market" },
+    { key = "ledger", label = "Ledger" },
     { key = "ask", label = "Ask" },
 }
+local selProf -- the profession open in the Professions tab
+
+-- Where Wowhead's Forever data has been read (Data.lua ns.wh), its exact numbers replace the client
+-- data's estimates: the skill a recipe is learned at, its colours, the trainer's fee, how many a craft
+-- makes, and how it's obtained (2 drop, 4 quest, 5 vendor, 6 trainer).
+for _, list in pairs(ns.recipes or {}) do
+    for _, r in ipairs(list) do
+        local w = ns.wh and ns.wh[r[1]]
+        if w then
+            if w[1] > 0 and w[1] < 9999 then r[3], r[9] = w[1], 1 end
+            if w[3] > 0 then r[4] = w[3] end
+            if w[5] > 0 then r[5] = w[5] end
+            if w[4] > 0 then r.green = w[4] end
+            r.fee, r.src = w[7], w[6]
+            r.yield = (w[8] + w[9]) / 2
+        end
+    end
+end
 
 -- ---------------------------------------------------------------- small helpers
 
@@ -102,7 +119,12 @@ local function subjectsFor(k)
     for key, s in pairs(ns.DB.subjects) do
         if kindOf(s) == k and matches(s.name) then table.insert(out, { key = key, s = s }) end
     end
-    table.sort(out, function(a, b) return (a.s.last or 0) > (b.s.last or 0) end)
+    local function tracked(x) return x.s.kind == "item" and ns.isTracked and ns.isTracked(x.s.id) end
+    table.sort(out, function(a, b)
+        local ta, tb = tracked(a), tracked(b)
+        if ta ~= tb then return ta end
+        return (a.s.last or 0) > (b.s.last or 0)
+    end)
     return out
 end
 
@@ -124,10 +146,340 @@ local function movers()
 end
 
 local function counts()
-    local c = { item = 0, talent = 0, spell = 0, player = 0, other = 0 }
-    for _, s in pairs(ns.DB.subjects) do c[kindOf(s)] = c[kindOf(s)] + 1 end
+    local c = { item = 0 }
+    for _, s in pairs(ns.DB.subjects) do if s.kind == "item" then c.item = c.item + 1 end end
     c.ask = #(ns.DB.asks or {})
     return c
+end
+
+-- ---------------------------------------------------------------- the ledger
+
+local LEDGER_KIND = { craft = "made", post = "posted on the auction house", ahbuy = "bought at the auction house", ahsale = "sold at the auction house",
+    vbuy = "bought from a vendor", vsell = "sold to a vendor" }
+
+local function signedMoney(c)
+    if c == 0 then return "0" end
+    return (c > 0 and color("ff40d060", "+" .. ns.money(c))) or color("ffe05050", "-" .. ns.money(-c))
+end
+
+-- Totals since a time: crafts, spent (negative copper), earned (positive copper).
+local function ledgerTotals(since)
+    local t = { made = 0, spent = 0, earned = 0, value = 0 }
+    for _, e in ipairs(ns.DB.ledger or {}) do
+        if e.t >= since then
+            if e.k == "craft" then t.made = t.made + (e.q or 1); t.value = t.value + (e.v or 0)
+            elseif e.c < 0 then t.spent = t.spent - e.c
+            else t.earned = t.earned + e.c end
+        end
+    end
+    return t
+end
+
+-- Per item: made, bought, sold, and the money each way, newest activity first.
+local function ledgerItems()
+    local by, order = {}, {}
+    for _, e in ipairs(ns.DB.ledger or {}) do
+        local key = e.n or ("item " .. (e.i or 0))
+        local x = by[key]
+        if not x then
+            x = { name = key, i = e.i, made = 0, value = 0, bought = 0, spent = 0, sold = 0, earned = 0, posted = 0, last = 0, entries = {} }
+            by[key] = x
+            table.insert(order, x)
+        end
+        if (e.i or 0) > 0 then x.i = e.i end
+        if e.k == "craft" then x.made = x.made + (e.q or 1); x.value = x.value + (e.v or 0)
+        elseif e.k == "post" then x.posted = x.posted + (e.q or 1)
+        elseif e.k == "ahbuy" or e.k == "vbuy" then x.bought = x.bought + (e.q or 1); x.spent = x.spent - e.c
+        elseif e.k == "ahsale" or e.k == "vsell" then x.sold = x.sold + (e.q or 1); x.earned = x.earned + e.c end
+        x.last = math.max(x.last, e.t)
+        table.insert(x.entries, e)
+    end
+    table.sort(order, function(a, b) return a.last > b.last end)
+    return order, by
+end
+
+local function startOfToday()
+    local d = date("*t")
+    d.hour, d.min, d.sec = 0, 0, 0
+    return time(d)
+end
+
+-- ---------------------------------------------------------------- professions
+
+local PROF_ICONS = {
+    [171] = "Interface\\Icons\\Trade_Alchemy", [164] = "Interface\\Icons\\Trade_BlackSmithing",
+    [333] = "Interface\\Icons\\Trade_Engraving", [202] = "Interface\\Icons\\Trade_Engineering",
+    [165] = "Interface\\Icons\\Trade_LeatherWorking", [197] = "Interface\\Icons\\Trade_Tailoring",
+    [185] = "Interface\\Icons\\INV_Misc_Food_15", [129] = "Interface\\Icons\\Spell_Holy_SealOfSacrifice",
+    [182] = "Interface\\Icons\\Trade_Herbalism", [186] = "Interface\\Icons\\Trade_Mining",
+    [393] = "Interface\\Icons\\INV_Misc_Pelt_Wolf_01", [356] = "Interface\\Icons\\Trade_Fishing",
+}
+
+-- The colour a recipe shows at your skill, and the chance it gives a point (the game's own rule:
+-- orange always, then falling to nothing as it goes from yellow to grey).
+local function skillColor(r, rank)
+    local yellow, grey = r[4], r[5]
+    if rank < yellow then return "ffff8040", 1, "orange" end
+    if rank >= grey then return "ff808080", 0, "grey" end
+    local chance = (grey - rank) / math.max(grey - yellow, 1)
+    if rank < (r.green or (yellow + grey) / 2) then return "ffffff00", chance, "yellow" end
+    return "ff40c040", chance, "green"
+end
+
+local function itemName(id) return C_Item.GetItemNameByID(id) or (ns.itemNames and ns.itemNames[id]) or ("item " .. id) end
+
+-- An item's price: the newest the auction house showed (any age), else what a vendor sells it for.
+local function unitPrice(id)
+    local p = ns.latestPrice(id)
+    local v = (ns.DB.vendorPrices and ns.DB.vendorPrices[id]) or (ns.vendor and ns.vendor[id])
+    if v and (not p or v <= p.min) then return v, "vendor" end
+    if p then return p.min, "auction", p.t end
+end
+
+-- Where a recipe comes from, from what you've seen: the trainer (skill, level, cost, where they
+-- stand) or the vendor selling its recipe item. Returns a short text for the list, lines for the
+-- details, and a map point when a place is known.
+local function sourceOf(r, profName)
+    local lines, point, short = {}, nil, nil
+    local t = ns.DB.trainers and ns.DB.trainers[r[2]:lower()]
+    if t then
+        short = string.format("trainer: %s %d, level %d", profName or "skill", t.skill or 0, t.level or 0)
+        table.insert(lines, string.format("Trainer: needs %s %d and level %d%s", profName or "skill", t.skill or 0, t.level or 0,
+            (t.cost and t.cost > 0) and (", costs " .. ns.money(t.cost)) or ""))
+        for key in pairs(t.at or {}) do
+            local w = ns.DB.trainerSeen and ns.DB.trainerSeen[key]
+            if w then
+                table.insert(lines, grey(string.format("  %s, %s%s%s", w.name or "?", w.zone or "?",
+                    (w.sub and w.sub ~= "" and w.sub ~= w.zone) and (", " .. w.sub) or "", w.x and string.format(" (%.0f, %.0f)", w.x, w.y) or "")))
+                if w.x and not point then point = { zone = w.zone, x = w.x, y = w.y, label = (w.name or "Trainer") .. " (trainer)" } end
+            end
+        end
+    end
+    if not t and r.src and r.src:find("6") then
+        short = string.format("trainer: %s %d", profName or "skill", r[3])
+        table.insert(lines, string.format("Trainer: learn at %s %d%s", profName or "skill", r[3], (r.fee and r.fee > 0) and (", costs " .. ns.money(r.fee)) or ""))
+        table.insert(lines, grey("  Any trainer of your profession who teaches that level. Open one and its name and spot are saved here."))
+    end
+    local known = r[10] and r[10] > 0 and ns.recipeSources and ns.recipeSources[r[10]]
+    if known then
+        local mine = UnitFactionGroup("player") == "Alliance" and 3 or 4
+        local friendly, other = {}, {}
+        for _, v in ipairs(known.v or {}) do
+            local stock = (v[5] and v[5] > 0) and string.format(", %d at a time", v[5]) or ""
+            local text = string.format("  %s, %s, %s%s", v[1], v[2] ~= "" and v[2] or "?", ns.money(v[6] or 0), stock)
+            if (v[mine] or 0) >= 0 then table.insert(friendly, text) else table.insert(other, text) end
+        end
+        table.insert(lines, string.format("Recipe item: %s, needs %s %d", itemName(r[10]), profName or "skill", r[3]))
+        if #friendly > 0 then
+            short = short or ("recipe: vendor in " .. (known.v[1] and known.v[1][2] or "?"))
+            table.insert(lines, "Sold by:")
+            for _, l in ipairs(friendly) do table.insert(lines, grey(l)) end
+        end
+        if #other > 0 then
+            table.insert(lines, "Sold to the other faction only by:")
+            for _, l in ipairs(other) do table.insert(lines, grey(l)) end
+        end
+        if known.d and #known.d > 0 then
+            short = short or "recipe: drops"
+            table.insert(lines, string.format("Drops from%s:", (known.nd or 0) > #known.d and string.format(" (best of %d)", known.nd) or ""))
+            for _, d in ipairs(known.d) do
+                table.insert(lines, grey(string.format("  %s, %s, %s%%%s", d[1], d[2] ~= "" and d[2] or "?", d[3], (d[4] and d[4] > 0 and d[4] < 9999) and (", level " .. d[4]) or "")))
+            end
+        end
+        if known.q and #known.q > 0 then
+            short = short or "recipe: quest"
+            table.insert(lines, "Quest reward: " .. table.concat(known.q, ", "))
+        end
+        if #lines > 0 and not (ns.DB.vendors and ns.DB.vendors[r[10]]) then return short, lines, point end
+    elseif r.src and not t and (r.src:find("5") or r.src:find("2") or r.src:find("4")) then
+        local how = {}
+        if r.src:find("5") then table.insert(how, "sold by a vendor") end
+        if r.src:find("2") then table.insert(how, "drops") end
+        if r.src:find("4") then table.insert(how, "a quest reward") end
+        if #how > 0 then
+            table.insert(lines, (r[10] and r[10] > 0) and string.format("Recipe item: %s, needs %s %d", itemName(r[10]), profName or "skill", r[3])
+                or string.format("Recipe: needs %s %d", profName or "skill", r[3]))
+            table.insert(lines, grey("  Wowhead says it's " .. table.concat(how, " or ") .. "; ask where, or open the vendor when you find it."))
+            return short or ("recipe: " .. how[1]), lines, point
+        end
+    end
+    if r[6] == 1 and r[10] and r[10] > 0 then
+        local item = r[10]
+        local v = ns.DB.vendors and ns.DB.vendors[item]
+        local itemLine = string.format("Recipe item: %s, needs %s %d", itemName(item), profName or "skill", r[3])
+        if v then
+            short = short or ("recipe: sold in " .. (v.zone or "?"))
+            if not known then table.insert(lines, itemLine) end
+            table.insert(lines, "You've seen it at:")
+            table.insert(lines, grey(string.format("  sold by %s, %s%s%s, %s%s", v.by or "?", v.zone or "?",
+                (v.sub and v.sub ~= "" and v.sub ~= v.zone) and (", " .. v.sub) or "", v.x and string.format(" (%.0f, %.0f)", v.x, v.y) or "",
+                v.currency and "for a currency" or ns.money(v.price or 0), v.limited and string.format(", limited (%d left when seen)", v.limited) or "")))
+            if v.x and not point then point = { zone = v.zone, x = v.x, y = v.y, label = (v.by or "Vendor") .. " (" .. itemName(item) .. ")" } end
+        else
+            short = short or "recipe item"
+            table.insert(lines, itemLine)
+            table.insert(lines, grey("  Not seen at a vendor yet: it may drop, come from a quest, or be sold for Merchant's Favor."))
+        end
+    elseif not t and r.src == "" then
+        short = "source unknown"
+        table.insert(lines, grey("Wowhead doesn't list how to get this one yet. It may be new to Forever: ask, or open a trainer or vendor that has it."))
+    elseif not t and not (r.src and r.src:find("6")) then
+        short = "trainer"
+        table.insert(lines, string.format("Trainer: needs %s %s%d", profName or "skill", r[9] == 1 and "" or "about ", r[3]))
+        table.insert(lines, grey("  Open your profession trainer once and the exact skill, level and cost show here."))
+    end
+    return short, lines, point
+end
+
+-- Which recipe of a profession makes an item (Blackmouth Oil from Oily Blackmouth, a bar from ore).
+local makers = {}
+local function makerOf(pid, item)
+    local m = makers[pid]
+    if not m then
+        m = {}
+        for _, r in ipairs(ns.recipes and ns.recipes[pid] or {}) do
+            if r[7] > 0 and not m[r[7]] then m[r[7]] = r end
+        end
+        makers[pid] = m
+    end
+    return m[item]
+end
+
+local function buyCost(r)
+    local total = 0
+    for i = 1, #r[8], 2 do
+        local p = unitPrice(r[8][i])
+        if not p then return nil end
+        total = total + p * r[8][i + 1]
+    end
+    return total
+end
+
+-- What a recipe costs to make: each reagent bought, or made yourself when you can and that's cheaper
+-- (one step down: the oil from the fish, not the fish). made[item] = that cost, when it was used.
+-- Assumes one made per craft, which holds for the reagents alchemy and the rest make for themselves.
+local function recipeCost(r, pid, rank)
+    local total, missing, made = 0, 0, {}
+    for i = 1, #r[8], 2 do
+        local id, n = r[8][i], r[8][i + 1]
+        local p = unitPrice(id)
+        local m = pid and makerOf(pid, id)
+        local c = m and m[3] <= (rank or 0) and buyCost(m)
+        if c and (not p or c < p) then
+            made[id] = c
+            p = c
+        end
+        if p then total = total + p * n else missing = missing + 1 end
+    end
+    return total, missing, made
+end
+
+local AH_CUT = 0.05 -- the auction house keeps 5% of a sale
+
+-- What the thing you make sells for after the cut, or nil when it has no price.
+local function sellValue(r)
+    if r[7] == 0 then return nil end
+    local p = ns.latestPrice(r[7])
+    return p and p.min * (1 - AH_CUT) * (r.yield or 1), p
+end
+
+local function sortBySelling() return ns.DB and ns.DB.profSort == "sell" end
+
+local function reagentText(r)
+    local bits = {}
+    for i = 1, #r[8], 2 do table.insert(bits, r[8][i + 1] .. " " .. itemName(r[8][i])) end
+    return table.concat(bits, ", ")
+end
+
+local function knownRecipe(spell)
+    if not (C_TradeSkillUI and C_TradeSkillUI.GetRecipeInfo) then return nil end
+    local ok, info = pcall(C_TradeSkillUI.GetRecipeInfo, spell)
+    if ok and info then return info.learned end
+end
+
+-- The recipes that give a point at your skill, cheapest per point first; and the ones a little above it.
+local function recipesFor(pid, rank)
+    local now, soon = {}, {}
+    for idx, r in ipairs(ns.recipes and ns.recipes[pid] or {}) do
+        if matches(r[2]) then
+            local _, chance = skillColor(r, rank)
+            if r[3] <= rank and chance > 0 then
+                local cost, missing, made = recipeCost(r, pid, rank)
+                local sell = sellValue(r)
+                local perPoint = missing == 0 and cost / chance or nil
+                table.insert(now, { idx = idx, r = r, chance = chance, cost = cost, missing = missing, made = made, sell = sell,
+                    perPoint = perPoint, netPerPoint = perPoint and sell and (cost - sell) / chance or nil })
+            elseif r[3] > rank and r[3] <= rank + 30 then
+                table.insert(soon, { idx = idx, r = r })
+            end
+        end
+    end
+    local selling = sortBySelling()
+    local function key(x) return selling and (x.netPerPoint or x.perPoint) or x.perPoint end
+    table.sort(now, function(a, b)
+        local ka, kb = key(a), key(b)
+        if (ka ~= nil) ~= (kb ~= nil) then return ka ~= nil end
+        if ka and kb and ka ~= kb then return ka < kb end
+        return a.chance > b.chance
+    end)
+    table.sort(soon, function(a, b) return a.r[3] < b.r[3] end)
+    return now, soon
+end
+
+local function button(b, label, fn)
+    b:SetText(label)
+    b:SetWidth(b:GetFontString():GetStringWidth() + 24)
+    b:SetScript("OnClick", fn)
+    b:Show()
+end
+
+local function recipeMaking(id)
+    for pid, list in pairs(ns.recipes or {}) do
+        for _, r in ipairs(list) do if r[7] == id then return pid, r end end
+    end
+end
+
+-- Sends the item to Claude with what the addon has seen of it: price, listings, their history, its
+-- cost to make, and how your own listings did.
+local function researchItem(id)
+    local name = itemName(id)
+    local bits = {}
+    local p = ns.latestPrice(id)
+    if p then table.insert(bits, string.format("cheapest listing %s with %s listed (%s)", ns.money(p.min), tostring(p.q or "?"), date("%d %b %H:%M", p.t))) end
+    local h = ns.DB.prices[id]
+    if h and #h > 1 then
+        local hb = {}
+        for i = math.max(1, #h - 6), #h do table.insert(hb, string.format("%s %s, %s listed", h[i].d, ns.money(h[i].min), tostring(h[i].q or "?"))) end
+        table.insert(bits, "by day: " .. table.concat(hb, "; "))
+    end
+    local pid, r = recipeMaking(id)
+    if r then
+        local mine = ns.myProfessions and ns.myProfessions()[pid]
+        local cost, missing = recipeCost(r, pid, mine and mine.rank or 0)
+        if missing == 0 then table.insert(bits, "it costs about " .. ns.money(cost) .. " to make (" .. reagentText(r) .. ")") end
+    end
+    local posted, sold = 0, 0
+    for _, e in ipairs(ns.DB.ledger or {}) do
+        if e.i == id or e.n == name then
+            if e.k == "post" then posted = posted + (e.q or 1) elseif e.k == "ahsale" then sold = sold + (e.q or 1) end
+        end
+    end
+    if posted + sold > 0 then table.insert(bits, string.format("I have posted %d and sold %d so far", posted, sold)) end
+    ns.ask(string.format("Is %s actually selling on the WoW Forever auction house? Who buys it and what for, and is it worth making to sell?", name),
+        #bits > 0 and ("What my addon has seen: " .. table.concat(bits, ". ") .. ".") or nil)
+end
+
+local function trackButtons(id)
+    if not id then return end
+    button(detail.b1, ns.isTracked(id) and "Stop tracking" or "Track", function() ns.toggleTrack(id) end)
+    button(detail.b2, "Research", function() researchItem(id) end)
+end
+
+local function professionsSorted()
+    local out = {}
+    for id, p in pairs(ns.myProfessions and ns.myProfessions() or {}) do table.insert(out, { id = id, p = p }) end
+    table.sort(out, function(a, b) return (a.p.name or "") < (b.p.name or "") end)
+    return out
 end
 
 -- ---------------------------------------------------------------- frame pieces
@@ -176,7 +528,14 @@ local function makeRow(i)
             if link then ChatEdit_InsertLink(link) end
             return
         end
+        if self.key and self.key:match("^sortmode:") then
+            ns.DB.profSort = sortBySelling() and "make" or "sell"
+            refresh()
+            return
+        end
         selectedKey = self.key
+        local pid = self.key and self.key:match("^prof:(%d+)$")
+        if pid then selProf = (selProf == tonumber(pid)) and nil or tonumber(pid) end
         refresh()
     end)
     rows[i] = r
@@ -202,12 +561,16 @@ end
 -- ---------------------------------------------------------------- the list
 
 local function subLine(s)
+    if s.kind == "item" and ns.isTracked and ns.isTracked(s.id) and #s.events == 0 then
+        return color(GOLD_HEX, "tracking") .. "  ·  price and listings saved at every scan"
+    end
     local e = s.events[#s.events] or {}
     local why = e.why and ("you said: " .. e.why) or ("probably " .. (e.g or "looking"))
     local bits = { why, e.ctx or "?" }
     if s.kind == "player" and s.level then bits[2] = "level " .. s.level .. " " .. (s.class or ""):lower() .. ", " .. bits[2] end
     table.insert(bits, string.format("%d look%s, %ds", s.looks, s.looks == 1 and "" or "s", math.floor(s.secs + 0.5)))
     table.insert(bits, when(s.last))
+    if s.kind == "item" and ns.isTracked and ns.isTracked(s.id) then table.insert(bits, 1, color(GOLD_HEX, "tracking")) end
     return table.concat(bits, "  ·  ")
 end
 
@@ -252,10 +615,100 @@ local function drawList()
                 place(r)
             end
         end
+    elseif tab == "prof" then
+        local profs = professionsSorted()
+        list.note:SetText(#profs == 0 and "No professions yet. Learn one from a trainer." or "")
+        for _, pr in ipairs(profs) do
+            local pid, p = pr.id, pr.p
+            local hasRecipes = ns.recipes and ns.recipes[pid]
+            local now = hasRecipes and recipesFor(pid, p.rank) or {}
+            local cheapest = now[1] and now[1].perPoint
+            n = n + 1
+            local r = rows[n] or makeRow(n)
+            local sub = not hasRecipes and "a gathering skill: no recipes"
+                or (#now .. " recipe" .. (#now == 1 and "" or "s") .. " give a point now" .. (cheapest and ("  ·  cheapest about " .. ns.money(cheapest) .. " a point") or ""))
+            fillRow(r, "prof:" .. pid, PROF_ICONS[pid] or "Interface\\Icons\\INV_Misc_QuestionMark", p.name or "?", GOLD_HEX,
+                (p.rank or 0) .. " / " .. (p.max or "?"), sub)
+            place(r)
+            if selProf == pid and hasRecipes then
+                local _, soon = recipesFor(pid, p.rank)
+                n = n + 1
+                local sw = rows[n] or makeRow(n)
+                fillRow(sw, "sortmode:" .. pid, "Interface\\Icons\\INV_Misc_Coin_02",
+                    "   " .. (sortBySelling() and "Cheapest after selling what you make" or "Cheapest to make"), GOLD_HEX,
+                    grey("click to switch"), sortBySelling()
+                        and "   less what the product sells for on the auction house, after its 5% cut"
+                        or "   the reagents' cost per skill point; click to count what you'd sell the products for")
+                place(sw)
+                for i = 1, math.min(#now, 60) do
+                    local x = now[i]
+                    local hex = skillColor(x.r, p.rank)
+                    local known = knownRecipe(x.r[1])
+                    local value
+                    if sortBySelling() and x.netPerPoint then
+                        value = x.netPerPoint <= 0 and color("ff40d060", "earns " .. ns.money(-x.netPerPoint) .. " a point")
+                            or (ns.money(x.netPerPoint) .. " a point")
+                    else
+                        value = x.perPoint and ("about " .. ns.money(x.perPoint) .. " a point")
+                            or (x.missing > 0 and grey(x.missing .. " price" .. (x.missing == 1 and "" or "s") .. " unknown") or "")
+                    end
+                    local how = known == true and "known" or (sourceOf(x.r, p.name))
+                    if x.sell then how = how .. "  ·  sells " .. ns.money(x.sell / (1 - AH_CUT) / (x.r.yield or 1)) .. ((x.r.yield or 1) > 1 and (" (makes " .. x.r.yield .. ")") or "") end
+                    if next(x.made) then how = how .. "  ·  makes its own " .. (function()
+                        local t = {} for id in pairs(x.made) do table.insert(t, itemName(id)) end return table.concat(t, ", ") end)() end
+                    n = n + 1
+                    local rr = rows[n] or makeRow(n)
+                    fillRow(rr, "recipe:" .. pid .. ":" .. x.idx, (x.r[7] > 0 and C_Item.GetItemIconByID(x.r[7])) or C_Spell.GetSpellTexture(x.r[1]),
+                        "   " .. x.r[2], hex, value, "   " .. reagentText(x.r) .. "  ·  " .. how)
+                    place(rr)
+                end
+                if #soon > 0 then
+                    n = n + 1
+                    local rr = rows[n] or makeRow(n)
+                    local names = {}
+                    for i = 1, math.min(#soon, 6) do table.insert(names, soon[i].r[2] .. " (" .. soon[i].r[3] .. ")") end
+                    fillRow(rr, "soon:" .. pid, "Interface\\Icons\\INV_Misc_Book_09", "   Coming up", "ffaaaaaa", "",
+                        "   " .. table.concat(names, ", "))
+                    place(rr)
+                end
+            end
+        end
+    elseif tab == "ledger" then
+        local periods = { { "Today", startOfToday() }, { "Last 7 days", time() - 7 * 86400 }, { "All time", 0 } }
+        list.note:SetText(#(ns.DB.ledger or {}) == 0
+            and "Nothing yet. Craft something, buy or sell at the auction house, or collect a sale from the mailbox." or "")
+        for _, pd in ipairs(periods) do
+            local t = ledgerTotals(pd[2])
+            n = n + 1
+            local r = rows[n] or makeRow(n)
+            fillRow(r, "lsum:" .. pd[1], "Interface\\Icons\\INV_Misc_Coin_01", pd[1], GOLD_HEX, "net " .. signedMoney(t.earned - t.spent),
+                string.format("made %d  ·  spent %s  ·  earned %s", t.made, ns.money(t.spent), ns.money(t.earned)))
+            place(r)
+        end
+        local items = ledgerItems()
+        for i = 1, math.min(#items, 200) do
+            local x = items[i]
+            if matches(x.name) then
+                local bits = {}
+                if x.made > 0 then table.insert(bits, "made " .. x.made) end
+                if x.bought > 0 then table.insert(bits, string.format("bought %d for %s", x.bought, ns.money(x.spent))) end
+                if x.posted > 0 then table.insert(bits, "posted " .. x.posted) end
+                if x.sold > 0 then table.insert(bits, string.format("sold %d for %s", x.sold, ns.money(x.earned))) end
+                table.insert(bits, when(x.last))
+                n = n + 1
+                local r = rows[n] or makeRow(n)
+                fillRow(r, "ledger:" .. x.name, (x.i and x.i > 0) and C_Item.GetItemIconByID(x.i) or "Interface\\Icons\\INV_Misc_Bag_10",
+                    x.name, (x.i and x.i > 0) and nameColor({ kind = "item", id = x.i }) or "ffffffff",
+                    (x.earned - x.spent ~= 0) and signedMoney(x.earned - x.spent) or "", table.concat(bits, "  ·  "))
+                place(r)
+            end
+        end
     elseif tab == "movers" then
         local ms, label = movers()
+        local last = ns.DB.lastScan
         list.note:SetText(label and ("Whole auction house, " .. label .. ", at least 5 listed")
-            or "Needs two full scans: open the auction house and click Scan (or /mco scan), then again another day.")
+            or (last and string.format("One full scan so far (%s, %d auctions). Scan again another day and the biggest moves show here.", when(last.t), last.n or 0))
+            or "No full scan yet: open the auction house and click Scan (or /mco scan). Two scans on different days show the moves.")
         for i = 1, math.min(#ms, 300) do
             local m = ms[i]
             n = n + 1
@@ -323,12 +776,6 @@ local function findAsk(id)
     for _, a in ipairs(ns.DB.asks or {}) do if a.id == id then return a end end
 end
 
-local function button(b, label, fn)
-    b:SetText(label)
-    b:SetWidth(b:GetFontString():GetStringWidth() + 24)
-    b:SetScript("OnClick", fn)
-    b:Show()
-end
 
 local function drawAsk()
     local id = selectedKey and selectedKey:match("^ask:(.+)$")
@@ -341,7 +788,7 @@ local function drawAsk()
             grey("what is Briarthorn used for at 60?"), "",
             "The UI reloads to send it. The answer shows in the MindCollector Ask window on your desktop in a minute or two;",
             "then /reload here and it's in chat, in this tab, and on the map.", "",
-            grey("Needs the bridge running on your PC: tools/forever-ask/ask_bridge.py"),
+            grey("Needs the MindCollector app with Settings > WoW Forever > Answer /ask turned on."),
         }, nil, false)
     else
         local lines = {
@@ -379,12 +826,132 @@ local function drawDetail()
     detail.whyLabel:SetText(color(GOLD_HEX, "Why were you looking?"))
     detail.save:SetText("Save")
     if tab == "ask" then return drawAsk() end
-    if not selectedKey then
-        setDetail(nil, "Pick something on the left", GOLD_HEX,
-            { grey("Each row is something you held your mouse over, or opened in the auction house."), "",
-              grey("Shift-click an item to link it in chat.") }, nil, false)
+    if tab == "ledger" and selectedKey and selectedKey:match("^lsum:") then
+        local which = selectedKey:match("^lsum:(.+)$")
+        local since = which == "Today" and startOfToday() or which == "Last 7 days" and (time() - 7 * 86400) or 0
+        local t = ledgerTotals(since)
+        setDetail("Interface\\Icons\\INV_Misc_Coin_01", which, GOLD_HEX, {
+            string.format("Made %d things, with reagents worth about %s when you made them", t.made, ns.money(t.value)),
+            "Spent " .. ns.money(t.spent) .. " (auction house and vendors)",
+            "Earned " .. ns.money(t.earned) .. " (auction sales after the cut, and vendor sales)",
+            "",
+            "Net: " .. signedMoney(t.earned - t.spent),
+            "",
+            grey("Auction sales count when you take the gold at the mailbox. Vendor sales show as one line each, since the game doesn't say which item the gold was for."),
+        }, nil, false)
         return
     end
+    if tab == "ledger" and selectedKey and selectedKey:match("^ledger:") then
+        local _, by = ledgerItems()
+        local x = by[selectedKey:match("^ledger:(.+)$")]
+        if not x then selectedKey = nil return drawDetail() end
+        local lines = {}
+        if x.made > 0 then table.insert(lines, string.format("Made %d, reagents worth about %s (%s each)", x.made, ns.money(x.value), ns.money(x.value / x.made))) end
+        if x.bought > 0 then table.insert(lines, string.format("Bought %d for %s (%s each)", x.bought, ns.money(x.spent), ns.money(x.spent / x.bought))) end
+        if x.posted > 0 then table.insert(lines, string.format("Posted %d on the auction house, %d sold so far", x.posted, x.sold)) end
+        if x.sold > 0 then table.insert(lines, string.format("Sold %d for %s after the cut (%s each)", x.sold, ns.money(x.earned), ns.money(x.earned / x.sold))) end
+        if x.made > 0 and x.sold > 0 and x.value > 0 then
+            local each = x.earned / x.sold - x.value / x.made
+            table.insert(lines, "")
+            table.insert(lines, (each >= 0 and color("ff40d060", "About " .. ns.money(each) .. " profit on each one sold"))
+                or color("ffe05050", "About " .. ns.money(-each) .. " lost on each one sold"))
+        end
+        local hist = {}
+        for i = #x.entries, math.max(1, #x.entries - 11), -1 do
+            local e = x.entries[i]
+            table.insert(hist, string.format("%s  ·  %s %d%s", date("%d %b %H:%M", e.t), LEDGER_KIND[e.k] or e.k, e.q or 1,
+                e.c ~= 0 and ("  ·  " .. signedMoney(e.c)) or (e.v and ("  ·  reagents " .. ns.money(e.v)) or "")))
+        end
+        setDetail((x.i and x.i > 0) and C_Item.GetItemIconByID(x.i) or "Interface\\Icons\\INV_Misc_Bag_10", x.name,
+            (x.i and x.i > 0) and nameColor({ kind = "item", id = x.i }) or "ffffffff", lines, hist, false)
+        if x.i and x.i > 0 then trackButtons(x.i) end
+        return
+    end
+    if not selectedKey then
+        local hint = tab == "prof" and { grey("Click a profession to see the recipes that give a point at your skill, cheapest per point first."), "",
+                grey("A full auction house scan (Market tab, or /mco scan) prices every reagent at once.") }
+            or tab == "movers" and { grey("The biggest price moves on the whole auction house between your last two full scans.") }
+            or tab == "ledger" and { grey("What you made, bought and sold. Click a line for its details; click an item to see what each one cost and earned.") }
+            or { grey("Each row is an item you held your mouse over, or opened in the auction house."), "",
+                 grey("Shift-click an item to link it in chat.") }
+        setDetail(nil, "Pick something on the left", GOLD_HEX, hint, nil, false)
+        return
+    end
+    local profID = selectedKey:match("^prof:(%d+)$")
+    local rpid, ridx = selectedKey:match("^recipe:(%d+):(%d+)$")
+    if profID or rpid then
+        local pid = tonumber(profID or rpid)
+        local mine = ns.myProfessions and ns.myProfessions()[pid]
+        local rank = mine and mine.rank or 0
+        if profID then
+            local now = ns.recipes and ns.recipes[pid] and recipesFor(pid, rank) or nil
+            local lines = { grey("Profession"), "", string.format("Skill %d of %s", rank, mine and mine.max or "?"), "" }
+            if not now then
+                table.insert(lines, "A gathering skill, so there are no recipes to list. What you gather shows in Items when you look at it.")
+            else
+                table.insert(lines, #now .. " recipes give a point at your skill. They're listed cheapest per point first, from the prices you've seen.")
+                table.insert(lines, "")
+                table.insert(lines, grey("Orange always gives a point, yellow usually, green sometimes. Prices are the auction house's cheapest listing you last saw, or your last full scan; vials, thread and spices at the vendor's price."))
+            end
+            setDetail(PROF_ICONS[pid], mine and mine.name or "?", GOLD_HEX, lines, nil, false)
+            return
+        end
+        local r = ns.recipes and ns.recipes[pid] and ns.recipes[pid][tonumber(ridx)]
+        if not r then selectedKey = nil return drawDetail() end
+        local hex, chance, word = skillColor(r, rank)
+        local cost, missing, made = recipeCost(r, pid, rank)
+        local lines = {
+            grey((ns.PROF_NAMES[pid] or "Recipe") .. ", " .. word .. " at your " .. rank),
+            "",
+            chance >= 1 and "Gives a point every time" or chance > 0 and string.format("Gives a point about %d%% of the time", math.floor(chance * 100 + 0.5)) or "Gives no more points",
+            string.format("Turns yellow at %d, green at %d, grey at %d", r[4], math.floor((r[4] + r[5]) / 2), r[5]),
+            "",
+        }
+        local _, sourceLines, point = sourceOf(r, mine and mine.name or ns.PROF_NAMES[pid])
+        for _, l in ipairs(sourceLines) do table.insert(lines, l) end
+        table.insert(lines, "")
+        for i = 1, #r[8], 2 do
+            local id, cnt = r[8][i], r[8][i + 1]
+            local p, src, t = unitPrice(id)
+            local have = C_Item.GetItemCount(id, true) or 0
+            local priceText = p and (ns.money(p) .. " each (" .. (src == "vendor" and "vendor" or ("auction, " .. when(t))) .. ")") or grey("no price yet")
+            if made[id] then
+                priceText = color("ff40d060", "make it yourself: " .. ns.money(made[id]) .. " each") .. grey(p and ("  (buying: " .. ns.money(p) .. ")") or "")
+            end
+            table.insert(lines, string.format("%d x %s  ·  %s%s", cnt, itemName(id), priceText, have > 0 and ("  ·  you have " .. have) or ""))
+        end
+        table.insert(lines, "")
+        table.insert(lines, "Cost to make: " .. ns.money(cost) .. (missing > 0 and grey("  (" .. missing .. " reagent price" .. (missing == 1 and "" or "s") .. " unknown)") or ""))
+        if missing == 0 and chance > 0 then table.insert(lines, color(GOLD_HEX, "About " .. ns.money(cost / chance) .. " per skill point")) end
+        if r[7] > 0 then
+            local net, p = sellValue(r)
+            local made = (r.yield or 1) > 1 and (r.yield .. " ") or ""
+            table.insert(lines, "Makes " .. made .. itemName(r[7]) .. (p and string.format("; each sells for about %s (%s listed)", ns.money(p.min), p.q or "?") or ", with no auction price yet"))
+            if net and missing == 0 and chance > 0 then
+                local per = (cost - net) / chance
+                table.insert(lines, per <= 0
+                    and color("ff40d060", "Sold after the 5% cut, each point earns about " .. ns.money(-per))
+                    or ("Sold after the 5% cut, each point costs about " .. ns.money(per)))
+                if p and p.q and p.q > 200 then table.insert(lines, grey("Lots are listed already, so it may sell slowly or for less.")) end
+            end
+        end
+        setDetail((r[7] > 0 and C_Item.GetItemIconByID(r[7])) or C_Spell.GetSpellTexture(r[1]), r[2], hex, lines, nil, false)
+        if point then
+            button(detail.b1, "Show on map", function()
+                ns.showPins({ q = r[2], pins = { point } })
+                ns.openMapFor({ pins = { point } })
+            end)
+        elseif r[6] == 1 and r[10] and r[10] > 0 then
+            button(detail.b1, "Ask where to get it", function()
+                ns.ask("Where can I get " .. itemName(r[10]) .. " in WoW Forever? Mark the vendor or the mobs that drop it on the map.")
+            end)
+        end
+        if r[7] > 0 then
+            button(detail.b2, ns.isTracked(r[7]) and "Stop tracking it" or "Track what it makes", function() ns.toggleTrack(r[7]) end)
+        end
+        return
+    end
+    if selectedKey:match("^soon:") then selectedKey = nil return drawDetail() end
     local moverID = selectedKey:match("^mover:(%d+)$")
     if moverID then
         local id = tonumber(moverID)
@@ -424,6 +991,22 @@ local function drawDetail()
         if first and cur then table.insert(lines, "Change: " .. changeText(first.p, cur.min)) end
         local have = C_Item.GetItemCount(s.id, true)
         if have and have > 0 then table.insert(lines, "You have " .. have) end
+        local h = (ns.DB.track and ns.DB.track[s.id]) or ns.DB.prices[s.id]
+        if ns.isTracked(s.id) and h and #h > 0 then
+            table.insert(lines, "")
+            table.insert(lines, color(GOLD_HEX, "Tracking: each reading of the cheapest price and how many are listed"))
+            for i = #h, math.max(1, #h - 6), -1 do
+                local q, pq = h[i].q, h[i - 1] and h[i - 1].q
+                local p, pp = h[i].min, h[i - 1] and h[i - 1].min
+                local trend = ""
+                if q and pq and pp then
+                    if q < pq and p >= pp then trend = color("ff40d060", "  fewer listed, price held: selling")
+                    elseif q > pq and p <= pp then trend = grey("  more listed, price no higher: not much selling")
+                    elseif q < pq then trend = grey("  fewer listed") elseif q > pq then trend = grey("  more listed") end
+                end
+                table.insert(lines, string.format("%s  ·  %s  ·  %s listed%s", date("%d %b %H:%M", h[i].t), ns.money(p), tostring(q or "?"), trend))
+            end
+        end
     elseif s.kind == "talent" then
         table.insert(lines, "")
         table.insert(lines, s.takenAt and color("ff40d060", "Taken " .. ns.shortDate(s.takenAt))
@@ -446,6 +1029,7 @@ local function drawDetail()
         table.insert(hist, table.concat(bits, "  ·  "))
     end
     setDetail(iconOf(s.kind, s.id), displayName(s), nameColor(s), lines, hist, true, e.why)
+    if s.kind == "item" then trackButtons(s.id) end
 end
 
 refresh = function()
@@ -458,6 +1042,12 @@ refresh = function()
     end
     drawList()
     drawDetail()
+    -- the footer: a scan in progress, else when the last one was
+    local last = ns.DB.lastScan
+    frame.foot:SetText(ns.scanStatus and color(GOLD_HEX, "Scanning: " .. ns.scanStatus)
+        or last and string.format("Last full scan %s: %d auctions, %d items. The server allows one every 15 minutes.",
+            when(last.t), last.n or 0, (function() local c = 0 for _ in pairs(last.prices or {}) do c = c + 1 end return c end)())
+        or "No full scan yet. With the auction house open, Scan reads every listing at once.")
 end
 
 -- ---------------------------------------------------------------- building the window

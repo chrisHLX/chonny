@@ -851,11 +851,11 @@ internal sealed class MainForm : Form
     private IEnumerable<LibraryRow> LookedRows()
     {
         var data = Observer();
-        var subjects = data?.Subjects.Where(s => s.Kind is "item" or "talent").OrderByDescending(s => s.Last).Take(300).ToList() ?? [];
+        var subjects = data?.Subjects.Where(s => s.Kind == "item").OrderByDescending(s => s.Last).Take(300).ToList() ?? [];
         if (subjects.Count == 0)
         {
             yield return _settings.ForeverObserver
-                ? new LibraryRow("Nothing yet", "In Forever, hold your mouse over an item or a talent for a few seconds, then /reload")
+                ? new LibraryRow("Nothing yet", "In Forever, hold your mouse over an item for a few seconds, or open one in the auction house, then /reload")
                 : new LibraryRow("The Observer addon is off", "Settings > WoW Forever turns it on");
             yield break;
         }

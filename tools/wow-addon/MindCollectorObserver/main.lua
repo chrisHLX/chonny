@@ -52,6 +52,10 @@ local function initDB()
     DB.lastScan = DB.lastScan or nil  -- {t, n, prices = {[itemID] = {min, q}}}
     DB.prevScan = DB.prevScan or nil
     DB.told = DB.told or {}           -- [subjectKey] = time we last reported a change
+    -- Only items are kept since 2026-11-10: players, spells, talents and the rest were noise.
+    for key, s in pairs(DB.subjects) do
+        if s.kind ~= "item" then DB.subjects[key] = nil end
+    end
 end
 
 -- ---------------------------------------------------------------- your professions
@@ -71,6 +75,16 @@ local function myProfessions()
     end
     return out
 end
+
+-- Your professions as they are now, kept for the Professions tab and the desktop app.
+local function saveProfessions()
+    if not DB then return end
+    local out = {}
+    for id, p in pairs(myProfessions()) do out[id] = { name = p.name, rank = p.rank, max = p.max } end
+    DB.profs, DB.profsAt = out, time()
+    if ns.refresh then ns.refresh() end
+end
+ns.myProfessions = myProfessions
 
 -- ---------------------------------------------------------------- prices
 
@@ -101,9 +115,21 @@ local checkChange -- defined below
 local function notePrice(itemID, minPrice, qty, src, quiet)
     if not itemID or not minPrice or minPrice <= 0 then return end
     if src ~= "scan" then seen[itemID] = { t = time(), min = minPrice, q = qty, src = src } end
-    if not DB.subjects["item:" .. itemID] then
-        -- only keep a history for things you have looked at; the full scan keeps everything else
+    if not DB.subjects["item:" .. itemID] and not (DB.tracked and DB.tracked[itemID]) then
+        -- only keep a history for things you have looked at or track; the full scan keeps everything else
         return
+    end
+    -- A tracked item keeps every reading, not one a day: whether listings fall between two scans an
+    -- hour apart is the thing worth seeing (2026-11-10, 59 then 76 listed got folded into one day).
+    if DB.tracked and DB.tracked[itemID] then
+        DB.track = DB.track or {}
+        local t = DB.track[itemID] or {}
+        DB.track[itemID] = t
+        local prev = t[#t]
+        if not (prev and time() - prev.t < 120 and prev.min == minPrice and prev.q == qty) then
+            table.insert(t, { t = time(), min = minPrice, q = qty, src = src })
+            if #t > 300 then table.remove(t, 1) end
+        end
     end
     local h = DB.prices[itemID]
     if not h then h = {}; DB.prices[itemID] = h end
@@ -303,27 +329,8 @@ local function onTooltip(tooltip, data)
         local id = data.id
         if not id then return end
         begin(tooltip, "item", id, C_Item.GetItemNameByID(id) or firstLine, ctx)
-    elseif data.type == T.Spell then
-        if ctx == "talents" then
-            -- the talent hook records these with their rank; this only covers it if that hook never fired
-            local c = tracking[tooltip]
-            if not (c and c.kind == "talent") then begin(tooltip, "talent", data.id, C_Spell.GetSpellName(data.id), ctx) end
-            return
-        end
-        begin(tooltip, "spell", data.id, C_Spell.GetSpellName(data.id) or firstLine, ctx)
-    elseif data.type == T.Unit then
-        if UnitExists("mouseover") and UnitIsPlayer("mouseover") then
-            local name, realm = UnitName("mouseover")
-            local _, class = UnitClass("mouseover")
-            begin(tooltip, "player", name .. (realm and realm ~= "" and ("-" .. realm) or ""),
-                string.format("%s (%s %s)", name, UnitLevel("mouseover") or "?", class or "?"), ctx,
-                { class = class, level = UnitLevel("mouseover") })
-        end
-    else
-        local kind = "other"
-        for k, v in pairs(T) do if v == data.type then kind = k:lower() end end
-        if data.id or firstLine then begin(tooltip, kind, data.id or firstLine, firstLine, ctx) end
     end
+    -- Since 2026-11-10 only items are recorded (Chriso: focus on items and professions).
 end
 
 local function onTalentTooltip(_, button)
@@ -436,18 +443,25 @@ end
 
 local scanPending, scanTimer
 
+-- Where a full scan is, for the window's footer: nil when none is running.
+local function scanStatus(text)
+    ns.scanStatus = text
+    if ns.refresh then ns.refresh() end
+end
+
 local function finishScan(agg, n)
+    scanStatus(nil)
     DB.prevScan = DB.lastScan
     DB.lastScan = { t = time(), n = n, prices = agg }
     local moved, items = 0, 0
     for id, a in pairs(agg) do
         items = items + 1
-        if DB.subjects["item:" .. id] then
+        if DB.subjects["item:" .. id] or (DB.tracked and DB.tracked[id]) then
             notePrice(id, a[1], a[2], "scan", true)
             if checkChange("item:" .. id, true) then moved = moved + 1 end
         end
     end
-    say(string.format("scanned %d auctions, %d items. %d thing%s you looked at moved since; /mco to see.",
+    say(string.format("scanned %d auctions, %d items. %d thing%s you looked at moved since; /mco to see. WoW saves it for the app at your next /reload.",
         n, items, moved, moved == 1 and "" or "s"))
     if ns.refresh then ns.refresh() end
 end
@@ -456,7 +470,7 @@ local function readScan()
     local n = C_AuctionHouse.GetNumReplicateItems()
     local agg, i = {}, 0
     local ticker
-    ticker = C_Timer.NewTicker(0, function()
+    ticker = C_Timer.NewTicker(0.01, function()
         local stop = math.min(i + 2000, n)
         while i < stop do
             local name, _, count, _, _, _, _, _, _, buyout, _, _, _, _, _, _, itemID = C_AuctionHouse.GetReplicateItemInfo(i)
@@ -478,6 +492,29 @@ local function readScan()
     end)
 end
 
+-- The list can still be arriving when its event fires: read it once the count holds still for a second.
+local waiting
+local function waitForScan()
+    if waiting then return end
+    waiting = true
+    local last = -1
+    local function check()
+        if not scanPending then waiting = false return end
+        local n = C_AuctionHouse.GetNumReplicateItems() or 0
+        if n > 0 and n == last then
+            waiting, scanPending = false, false
+            say(string.format("reading %d auctions...", n))
+            scanStatus(string.format("Reading %d auctions...", n))
+            readScan()
+            return
+        end
+        last = n
+        scanStatus(n > 0 and string.format("Auctions arriving: %d so far...", n) or "Waiting for the auction house...")
+        C_Timer.After(1, check)
+    end
+    C_Timer.After(1, check)
+end
+
 local function scan()
     if not (AuctionHouseFrame and AuctionHouseFrame:IsShown()) then
         say("open the auction house first.")
@@ -487,17 +524,265 @@ local function scan()
     local ok, err = pcall(C_AuctionHouse.ReplicateItems)
     if not ok then
         scanPending = false
+        scanStatus(nil)
         say("the full scan isn't allowed here: " .. tostring(err))
         return
     end
     say("scanning the whole auction house; this takes a few seconds.")
+    scanStatus("Asked the auction house for everything...")
     if scanTimer then scanTimer:Cancel() end
-    scanTimer = C_Timer.NewTimer(60, function()
-        if scanPending then
+    scanTimer = C_Timer.NewTimer(90, function()
+        if scanPending and (C_AuctionHouse.GetNumReplicateItems() or 0) == 0 then
             scanPending = false
-            say("no scan came back. The server may allow one scan every 15 minutes, or not at all in Forever.")
+            scanStatus(nil)
+            say("no scan came back. The server allows one full scan every 15 minutes; if it has been longer, Forever may not allow it at all.")
         end
     end)
+end
+
+-- ---------------------------------------------------------------- trainers and vendors (2026-11-10)
+-- The client data doesn't say what skill a trainer recipe needs or where anything is taught or sold;
+-- Blizzard's servers do. So the addon writes down what you see: every recipe a profession trainer
+-- offers (skill, level, cost, the trainer and where they stand), and every recipe a vendor sells, with
+-- the vendor's price of reagents like vials.
+
+local function whereAmI()
+    local mapID = C_Map.GetBestMapForUnit("player")
+    local pos = mapID and C_Map.GetPlayerMapPosition(mapID, "player")
+    local x, y
+    if pos then x, y = pos:GetXY() end
+    return { zone = GetZoneText(), sub = GetSubZoneText(), mapID = mapID,
+        x = x and math.floor(x * 1000 + 0.5) / 10, y = y and math.floor(y * 1000 + 0.5) / 10 }
+end
+
+-- Reads only what the trainer window lists, and never touches its filters: switching a filter fires
+-- TRAINER_UPDATE, which read again and switched again, and on 2026-11-10 that froze the game at a
+-- trainer. One read at a time, at most one waiting.
+local readingTrainer, trainerQueued = false, false
+local function readTrainer()
+    trainerQueued = false
+    if readingTrainer or not (DB and IsTradeskillTrainer and IsTradeskillTrainer()) then return end
+    readingTrainer = true
+    local here = whereAmI()
+    local who = UnitName("npc") or "a trainer"
+    local key = who .. "@" .. (here.zone or "?")
+    DB.trainerSeen = DB.trainerSeen or {}
+    DB.trainers = DB.trainers or {}
+    DB.trainerSeen[key] = { name = who, zone = here.zone, sub = here.sub, mapID = here.mapID, x = here.x, y = here.y, t = time() }
+    local n = 0
+    for i = 1, (GetNumTrainerServices() or 0) do
+        local name, kind, _, reqLevel = GetTrainerServiceInfo(i)
+        if name and kind ~= "header" then
+            local _, rank = GetTrainerServiceSkillReq(i)
+            local cost = GetTrainerServiceCost(i)
+            local k = name:lower()
+            local rec = DB.trainers[k] or { at = {} }
+            rec.skill, rec.level, rec.cost, rec.t = rank, reqLevel, cost, time()
+            rec.at[key] = true
+            DB.trainers[k] = rec
+            n = n + 1
+        end
+    end
+    readingTrainer = false
+    if n > 0 and not DB.trainerSeen[key].told then
+        DB.trainerSeen[key].told = true
+        say(string.format("noted %d recipes %s teaches, with the skill and level each needs.", n, who))
+    end
+    if ns.refresh then ns.refresh() end
+end
+
+local function readVendor()
+    if not DB then return end
+    DB.vendors = DB.vendors or {}
+    DB.vendorPrices = DB.vendorPrices or {}
+    local here, who, found = nil, UnitName("npc") or "a vendor", 0
+    for i = 1, (GetMerchantNumItems() or 0) do
+        local link = GetMerchantItemLink(i)
+        local id = link and C_Item.GetItemInfoInstant(link)
+        local info = C_MerchantFrame and C_MerchantFrame.GetItemInfo and C_MerchantFrame.GetItemInfo(i)
+        if id and info then
+            if ns.recipeItems and ns.recipeItems[id] then
+                here = here or whereAmI()
+                DB.vendors[id] = { by = who, zone = here.zone, sub = here.sub, mapID = here.mapID, x = here.x, y = here.y,
+                    price = info.price, limited = (info.numAvailable or -1) >= 0 and info.numAvailable or nil,
+                    currency = info.hasExtendedCost or nil, t = time() }
+                found = found + 1
+            elseif ns.vendor and ns.vendor[id] and info.price and info.price > 0 and not info.hasExtendedCost then
+                DB.vendorPrices[id] = math.floor(info.price / math.max(info.stackCount or 1, 1) + 0.5)
+            end
+        end
+    end
+    if found > 0 and ns.refresh then ns.refresh() end
+end
+
+-- ---------------------------------------------------------------- the ledger (2026-11-10)
+-- What you make, what you spend and what you earn. It only listens: hooks run after the game's own
+-- call and events are read, nothing is changed, so it can't feed back on itself.
+--   craft     a recipe cast that finished (UNIT_SPELLCAST_SUCCEEDED), with its reagents' value then
+--   ahbuy     an auction house purchase, at the price you confirmed
+--   ahsale    gold from a sale taken at the mailbox, matched to its invoice (item, count, after the cut)
+--   vbuy      a vendor purchase;  vsell  gold from selling to a vendor (the item isn't known)
+-- Entry: {t, k, i = itemID or 0, n = item name, q = count, c = copper (+ in, - out), v = reagent value}
+
+local function ledger(entry)
+    if not DB then return end
+    DB.ledger = DB.ledger or {}
+    entry.t = entry.t or time()
+    table.insert(DB.ledger, entry)
+    while #DB.ledger > 3000 do table.remove(DB.ledger, 1) end
+    if ns.refresh then ns.refresh() end
+end
+ns.ledger = ledger
+
+-- recipe spell -> {profession, recipe}, built once
+local recipeBySpell
+local function recipeFor(spell)
+    if not recipeBySpell then
+        recipeBySpell = {}
+        for pid, list in pairs(ns.recipes or {}) do
+            for _, r in ipairs(list) do recipeBySpell[r[1]] = { pid, r } end
+        end
+    end
+    return recipeBySpell[spell]
+end
+
+local function reagentValue(r)
+    local total = 0
+    for i = 1, #r[8], 2 do
+        local id = r[8][i]
+        local p = latestPrice(id)
+        local v = (DB.vendorPrices and DB.vendorPrices[id]) or (ns.vendor and ns.vendor[id])
+        local price = (p and v and math.min(p.min, v)) or (p and p.min) or v
+        if not price then return nil end
+        total = total + price * r[8][i + 1]
+    end
+    return math.floor(total + 0.5)
+end
+
+local function onCast(unit, _, spell)
+    if unit ~= "player" or not spell then return end
+    local hit = recipeFor(spell)
+    if not hit then return end
+    local r = hit[2]
+    ledger({ k = "craft", i = r[7], n = r[2], q = 1, c = 0, v = reagentValue(r), p = hit[1] })
+end
+
+-- auction house purchases: the quote comes with COMMODITY_PRICE_UPDATED, the purchase with its success event
+local pendingCommodity, pendingBid
+local function hookAuctionHouse()
+    if not C_AuctionHouse then return end
+    if C_AuctionHouse.StartCommoditiesPurchase then
+        hooksecurefunc(C_AuctionHouse, "StartCommoditiesPurchase", function(itemID, quantity)
+            pendingCommodity = { i = itemID, q = quantity }
+        end)
+    end
+    if C_AuctionHouse.PlaceBid then
+        hooksecurefunc(C_AuctionHouse, "PlaceBid", function(auctionID, amount)
+            pendingBid = { id = auctionID, c = amount }
+        end)
+    end
+end
+
+-- the mailbox: a snapshot of sale invoices, so gold arriving can be matched to what sold
+local mailOpen, merchantOpen, ahOpen, invoices = false, false, false, {}
+-- Only adds: if the inbox refreshes before the gold lands in your bags, the invoice must still be
+-- here to match it. An invoice leaves the list when its gold is matched, or when the mailbox closes.
+local function snapshotMail(fresh)
+    if fresh then invoices = {} end
+    local have = {}
+    for _, inv in ipairs(invoices) do have[inv.key] = (have[inv.key] or 0) + 1 end
+    local seen = {}
+    for i = 1, (GetInboxNumItems and GetInboxNumItems() or 0) do
+        local _, _, _, subject, money = GetInboxHeaderInfo(i)
+        if money and money > 0 then
+            local kind, itemName, _, _, buyout, _, cut, _, _, _, count = GetInboxInvoiceInfo(i)
+            if kind == "seller" then
+                local key = (itemName or subject or "?") .. ":" .. money .. ":" .. (count or 0)
+                seen[key] = (seen[key] or 0) + 1
+                if seen[key] > (have[key] or 0) then
+                    table.insert(invoices, { key = key, money = money, n = itemName or subject, q = count, gross = buyout, cut = cut })
+                end
+            end
+        end
+    end
+end
+
+local lastMoney
+local function onMoney()
+    local now = GetMoney()
+    local delta = lastMoney and (now - lastMoney) or 0
+    lastMoney = now
+    if delta == 0 or not DB then return end
+    if mailOpen and delta > 0 then
+        for idx, inv in ipairs(invoices) do
+            if inv.money == delta then
+                table.remove(invoices, idx)
+                ledger({ k = "ahsale", i = 0, n = inv.n, q = inv.q or 1, c = delta, gross = inv.gross, cut = inv.cut })
+                return
+            end
+        end
+    elseif merchantOpen and delta > 0 then
+        ledger({ k = "vsell", i = 0, n = "Sold to a vendor", q = 1, c = delta })
+    end
+end
+
+if BuyMerchantItem then
+    hooksecurefunc("BuyMerchantItem", function(index, quantity)
+        local link = GetMerchantItemLink(index)
+        local id = link and C_Item.GetItemInfoInstant(link)
+        local info = C_MerchantFrame and C_MerchantFrame.GetItemInfo and C_MerchantFrame.GetItemInfo(index)
+        if not (id and info and info.price) or info.hasExtendedCost then return end
+        local stack = math.max(info.stackCount or 1, 1)
+        local q = quantity or stack
+        ledger({ k = "vbuy", i = id, n = info.name or C_Item.GetItemNameByID(id), q = q, c = -math.floor(info.price * q / stack + 0.5) })
+    end)
+end
+
+-- ---------------------------------------------------------------- tracking an item (2026-11-10)
+-- A tracked item keeps its cheapest price and how many are listed at every scan and every time the
+-- auction house shows it, so you can see whether listings get bought up and the price holds.
+
+function ns.isTracked(id) return DB and DB.tracked and DB.tracked[id] ~= nil end
+
+function ns.toggleTrack(id)
+    if not (DB and id) then return end
+    DB.tracked = DB.tracked or {}
+    if DB.tracked[id] then
+        DB.tracked[id] = nil
+        say((C_Item.GetItemNameByID(id) or "that item") .. ": no longer tracked.")
+    else
+        DB.tracked[id] = time()
+        -- it shows in Items from now on, looked at or not
+        local key = "item:" .. id
+        if not DB.subjects[key] then
+            DB.subjects[key] = { kind = "item", id = id, name = C_Item.GetItemNameByID(id) or (ns.itemNames and ns.itemNames[id]),
+                first = time(), last = time(), looks = 0, secs = 0, events = {} }
+        end
+        local p = seen[id] or (DB.lastScan and DB.lastScan.prices[id] and { min = DB.lastScan.prices[id][1], q = DB.lastScan.prices[id][2], src = "scan" })
+        if p then notePrice(id, p.min, p.q, p.src, true) end
+        say((C_Item.GetItemNameByID(id) or "that item") .. ": tracking its price and listings at every scan from now on.")
+    end
+    if ns.refresh then ns.refresh() end
+end
+
+-- What you post on the auction house, so the ledger can show posted against sold.
+local pendingPost
+local function postHook(kind)
+    return function(item, _, quantity, a, b)
+        local ok, id = pcall(C_Item.GetItemID, item)
+        if not ok or not id then return end
+        local unit = kind == "commodity" and a or (b and quantity and quantity > 0 and math.floor(b / quantity)) or a
+        pendingPost = { i = id, q = quantity or 1, unit = unit }
+    end
+end
+local function hookPosting()
+    if not C_AuctionHouse then return end
+    for _, f in ipairs({ "PostCommodity", "ConfirmPostCommodity" }) do
+        if C_AuctionHouse[f] then hooksecurefunc(C_AuctionHouse, f, postHook("commodity")) end
+    end
+    for _, f in ipairs({ "PostItem", "ConfirmPostItem" }) do
+        if C_AuctionHouse[f] then hooksecurefunc(C_AuctionHouse, f, postHook("item")) end
+    end
 end
 
 -- ---------------------------------------------------------------- shared with ui.lua
@@ -519,7 +804,21 @@ ev:RegisterEvent("AUCTION_HOUSE_BROWSE_RESULTS_ADDED")
 ev:RegisterEvent("COMMODITY_SEARCH_RESULTS_UPDATED")
 ev:RegisterEvent("ITEM_SEARCH_RESULTS_UPDATED")
 ev:RegisterEvent("REPLICATE_ITEM_LIST_UPDATE")
-ev:RegisterEvent("SPELLS_CHANGED")
+ev:RegisterEvent("SKILL_LINES_CHANGED")
+ev:RegisterEvent("UNIT_SPELLCAST_SUCCEEDED")
+ev:RegisterEvent("COMMODITY_PRICE_UPDATED")
+ev:RegisterEvent("COMMODITY_PURCHASE_SUCCEEDED")
+ev:RegisterEvent("ITEM_PURCHASED")
+ev:RegisterEvent("MAIL_SHOW")
+ev:RegisterEvent("MAIL_INBOX_UPDATE")
+ev:RegisterEvent("MAIL_CLOSED")
+ev:RegisterEvent("MERCHANT_CLOSED")
+ev:RegisterEvent("PLAYER_MONEY")
+ev:RegisterEvent("AUCTION_HOUSE_AUCTION_CREATED")
+ev:RegisterEvent("TRAINER_SHOW")
+ev:RegisterEvent("TRAINER_UPDATE")
+ev:RegisterEvent("MERCHANT_SHOW")
+ev:RegisterEvent("MERCHANT_UPDATE")
 
 local talentCheckQueued
 ev:SetScript("OnEvent", function(_, event, ...)
@@ -528,10 +827,12 @@ ev:SetScript("OnEvent", function(_, event, ...)
         TooltipDataProcessor.AddTooltipPostCall(TooltipDataProcessor.AllTypes, onTooltip)
         GameTooltip:HookScript("OnHide", function() hidden(GameTooltip) end)
         ItemRefTooltip:HookScript("OnHide", function() hidden(ItemRefTooltip) end)
-        if EventRegistry then EventRegistry:RegisterCallback("TalentDisplay.TooltipHook", onTalentTooltip, ns) end
         if ns.makeMinimapButton then ns.makeMinimapButton() end
         if ns.loadAnswers then C_Timer.After(3, ns.loadAnswers) end
-        C_Timer.After(8, function() checkTalents() end)
+        hookAuctionHouse()
+        hookPosting()
+        lastMoney = GetMoney()
+        C_Timer.After(5, saveProfessions)
     elseif event == "PLAYER_LOGOUT" then
         for _, tip in ipairs({ GameTooltip, ItemRefTooltip }) do
             local c = tracking[tip]
@@ -550,15 +851,49 @@ ev:SetScript("OnEvent", function(_, event, ...)
     elseif event == "ITEM_SEARCH_RESULTS_UPDATED" then
         onItemSearch((...))
     elseif event == "REPLICATE_ITEM_LIST_UPDATE" then
-        if scanPending then
-            scanPending = false
-            readScan()
+        if scanPending then waitForScan() end
+    elseif event == "UNIT_SPELLCAST_SUCCEEDED" then
+        onCast(...)
+    elseif event == "COMMODITY_PRICE_UPDATED" then
+        local _, total = ...
+        if pendingCommodity then pendingCommodity.c = total end
+    elseif event == "COMMODITY_PURCHASE_SUCCEEDED" then
+        local c = pendingCommodity
+        if c and c.c then ledger({ k = "ahbuy", i = c.i, n = C_Item.GetItemNameByID(c.i) or ("item " .. c.i), q = c.q, c = -c.c }) end
+        pendingCommodity = nil
+    elseif event == "ITEM_PURCHASED" then
+        local itemID = ...
+        if pendingBid and itemID then
+            ledger({ k = "ahbuy", i = itemID, n = C_Item.GetItemNameByID(itemID) or ("item " .. itemID), q = 1, c = -pendingBid.c })
         end
-    elseif event == "SPELLS_CHANGED" then
-        if DB and not talentCheckQueued then
-            talentCheckQueued = true
-            C_Timer.After(2, function() talentCheckQueued = false; checkTalents() end)
+        pendingBid = nil
+    elseif event == "MAIL_SHOW" then
+        mailOpen = true
+        snapshotMail(true)
+    elseif event == "MAIL_INBOX_UPDATE" then
+        if mailOpen then snapshotMail() end
+    elseif event == "MAIL_CLOSED" then
+        mailOpen = false
+        invoices = {}
+    elseif event == "PLAYER_MONEY" then
+        onMoney()
+    elseif event == "AUCTION_HOUSE_AUCTION_CREATED" then
+        local p = pendingPost
+        pendingPost = nil
+        if p then ledger({ k = "post", i = p.i, n = C_Item.GetItemNameByID(p.i) or ("item " .. p.i), q = p.q, c = 0, unit = p.unit }) end
+    elseif event == "SKILL_LINES_CHANGED" then
+        if DB then saveProfessions() end
+    elseif event == "TRAINER_SHOW" or event == "TRAINER_UPDATE" then
+        -- the list fills a moment after the window opens; UPDATE comes often, so one read waits at a time
+        if not trainerQueued then
+            trainerQueued = true
+            C_Timer.After(0.5, readTrainer)
         end
+    elseif event == "MERCHANT_SHOW" or event == "MERCHANT_UPDATE" then
+        merchantOpen = true
+        C_Timer.After(0.2, readVendor)
+    elseif event == "MERCHANT_CLOSED" then
+        merchantOpen = false
     end
 end)
 

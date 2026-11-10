@@ -41,6 +41,11 @@ Rules:
   (level, where they cluster, which is nearest the player). If you are unsure of something, say so.
 - When the prompt gives "From the Forever game files" facts about an item, they are exact (recipes, professions,
   skill, level required): use them over any website. A low level requirement doesn't mean nobody uses it at 60.
+- "What my addon has seen" is the player's own live auction house readings (cheapest listing, how many are listed,
+  by day, their own posts and sales). Use those numbers. Nobody can see auction house sales directly: say what the
+  numbers suggest (few listed can mean it sells fast or that few want it; listings falling over days while the price
+  holds suggests it sells) and how the player can find out (track it for a few days, post a handful and see how
+  many sell). Say who uses the item and when (raids, PvP, levelling), from Wowhead and the game files.
 - Close any browser tabs you opened."""
 
 SCHEMA = {
@@ -237,10 +242,12 @@ def ask_claude(claude, model, ask):
         where += f" ({ask['subzone']})"
     pos = f" at {ask['x']}, {ask['y']}" if ask.get("x") is not None else ""
     prompt = (f"Question: {ask.get('q', '')}\n\n"
-              f"Player: {ask.get('ch', '?')}, level {ask.get('level', '?')} {str(ask.get('class', '')).lower()}, "
+              f"Player: {ask.get('ch', '?')}, level {ask.get('level', '?')} {str(ask.get('class', '')).lower()}" + (f" ({ask['faction']}: only suggest what {ask['faction']} can use)" if ask.get('faction') else '') + ", "
               f"in {where}{pos} (map id {ask.get('mapID', '?')}).")
     if ask.get("profs"):
         prompt += f" Professions: {ask['profs']}."
+    if ask.get("ctx"):  # what the addon has seen of the subject: live prices, listings, costs, own sales
+        prompt += f"\n\n{ask['ctx']}"
     facts = facts_for(ask.get("q", ""))
     if facts:
         prompt += "\n\nFrom the Forever game files (recipe, skill, level required, count):\n" + "\n".join(facts)

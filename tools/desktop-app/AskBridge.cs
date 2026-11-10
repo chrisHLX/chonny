@@ -169,6 +169,11 @@ public sealed class AskBridge : IDisposable
           (level, where they cluster, which is nearest the player). If you are unsure of something, say so.
         - When the prompt gives "From the Forever game files" facts about an item, they are exact (recipes, professions,
           skill, level required): use them over any website. A low level requirement doesn't mean nobody uses it at 60.
+        - "What my addon has seen" is the player's own live auction house readings (cheapest listing, how many are listed,
+          by day, their own posts and sales). Use those numbers. Nobody can see auction house sales directly: say what the
+          numbers suggest (few listed can mean it sells fast or that few want it; listings falling over days while the price
+          holds suggests it sells) and how the player can find out (track it for a few days, post a handful and see how
+          many sell). Say who uses the item and when (raids, PvP, levelling), from Wowhead and the game files.
         - Close any browser tabs you opened.
         """;
 
@@ -187,8 +192,11 @@ public sealed class AskBridge : IDisposable
         {
             var where = S("subzone") != "" ? $"{S("zone")} ({S("subzone")})" : S("zone");
             var pos = S("x") != "" ? $" at {S("x")}, {S("y")}" : "";
-            prompt.Append($"Player: {S("ch")}, level {S("level")} {S("class").ToLowerInvariant()}, in {where}{pos} (map id {S("mapID")}).");
+            var faction = S("faction") != "" ? $" ({S("faction")}: only suggest what {S("faction")} can use)" : "";
+            prompt.Append($"Player: {S("ch")}, level {S("level")} {S("class").ToLowerInvariant()}{faction}, in {where}{pos} (map id {S("mapID")}).");
             if (S("profs") != "") prompt.Append($" Professions: {S("profs")}.");
+            // what the addon has seen of the subject (live prices, listings, costs, own sales), from Research
+            if (S("ctx") != "") prompt.Append($"\n\n{S("ctx")}");
         }
         else prompt.Append("Asked from the MindCollector app, not from inside the game, so the player's position isn't known.");
         var facts = ItemFacts.For(S("q"));
