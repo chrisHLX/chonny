@@ -52,6 +52,7 @@ question). `Grep` for `^##` or a spell, player or date, then `Read` with an offs
 | **Deploy or check production** | `DEPLOY.md` | When asked, do it. Production runs the branch checked out there: push it, then `./deploy.sh` |
 | **Training**: a lesson, notes, the reasoning check, claims | `docs/training.md` | Label invented figures as illustrative; a claim about the game cites the archive |
 | **Quizzes, modules, diagnostics** (dormant) | `system-integration.md`, rules 35–38 | `docs/architecture.md`, "Dormant"; `docs/archive/` |
+| **WoW: Forever**: the Observer addon, /ask, market data | `docs/forever/observer-handoff-2026-11-10.md` | The addon's README, `docs/forever/market-research-2026-11-07.md` |
 | **Product, usage, pricing** | `VISION.md`, `monetisation-read.md` | |
 | **How something fits together** | `docs/architecture.md` | |
 

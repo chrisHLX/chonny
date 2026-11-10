@@ -131,6 +131,7 @@ Read before writing advice, a tip, or a "how the top plays" line.
 | `docs/vision/feedback-loops-2026-10-23.md` | history | Chriso's account, verbatim, of what building MindCollector taught. Condensed in `VISION.md`. |
 | `docs/future-plan.md` | current | Ideas flagged for later, deliberately not built. |
 | `docs/forever/market-research-2026-11-07.md` | research | WoW: Forever: which materials later content will use (from the client's recipe data), the content calendar, and a design for a price-and-forecast addon. Scripts in `tools/forever-market/`. |
+| `docs/forever/observer-handoff-2026-11-10.md` | current | Forever Observer handover: what's built, Chriso's saved data on the server and how to fetch it, the plan to pool auction scans from app users, traps already hit. Read first for any Forever work. |
 | `tools/wow-addon/MindCollectorObserver/README.md` | current | Forever addon that remembers what you look at (items, auction prices, talents), guesses why, and reports what changed later. Not yet shipped by the desktop app. |
 | `tools/forever-ask/README.md` | current | `/ask` from inside Forever: the addon sends a question at a reload, `ask_bridge.py` answers with Claude (web, Wowhead in your Chrome, game-file item facts) into the addon's `Answers.lua`, and the next reload shows it, with map pins. |
 | `docs/history/engineering-log-2026.md` | history | Every dated write-up, bug trace and reversal through 2026-09-18 (790KB, the old CLAUDE.md). Search it for the *why*. |
