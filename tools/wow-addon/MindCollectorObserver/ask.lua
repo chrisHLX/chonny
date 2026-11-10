@@ -52,8 +52,10 @@ function ns.ask(q, ctx)
     })
     while #DB.asks > 30 do table.remove(DB.asks, 1) end
     ns.say("asking Claude: " .. q)
-    ns.say("reloading to send it. The answer takes a minute or two; it shows in the MindCollector Ask window on your desktop, then /reload here to see it.")
-    C_Timer.After(1.5, ReloadUI)
+    ns.say("reloading to send it (if it doesn't, type /reload). The answer takes a minute or two; it shows in the MindCollector Ask window on your desktop, then /reload here to see it.")
+    -- Straight from the click, slash command or Enter that called us: Forever blocks ReloadUI from a
+    -- timer ("Interface action failed because of an AddOn", 2026-11-11), since it isn't the player's action.
+    ReloadUI()
 end
 
 -- ---------------------------------------------------------------- map lookup
