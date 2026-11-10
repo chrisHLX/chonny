@@ -45,7 +45,7 @@
         <button type="button" wire:click="setTab('players')" class="tab-btn {{ $tabNow === 'players' ? 'tab-active' : 'tab-inactive' }}">Players</button>
     </div>
 
-    <div wire:loading.class="opacity-60" wire:target="setTab,setExp,setSpec,setFrom,setSort,setComp,setMmr,clearFilters,setRegion,toggleSeen,showMorePlayers,showMoreGames">
+    <div wire:loading.class="opacity-60" wire:target="setTab,setExp,setSpec,setFrom,setSort,setComp,setMmr,clearFilters,setRegion,setClass,toggleSeen,showMorePlayers,showMoreGames">
     @if ($tabNow === 'comps')
     <div class="lg:grid lg:grid-cols-[minmax(0,1fr)_300px] lg:gap-5">
     <div class="min-w-0">
@@ -237,29 +237,86 @@
             <button type="button" wire:click="showMoreGames" class="btn-ghost mt-3 text-[12.5px]">Show more games ({{ number_format($games['total'] - count($games['games'])) }} more)</button>
         @endif
     @else
-        @php $segBtn = fn (bool $on) => 'px-3.5 py-1.5 rounded-full text-[12.5px] font-semibold transition-colors '.($on ? 'bg-ink text-black' : 'text-ink-muted hover:text-ink'); @endphp
-        <div class="linear-card p-3 sm:p-4 mb-3 flex flex-wrap items-end gap-4">
-            <div>
-                <span class="block text-[10.5px] font-bold uppercase tracking-[.12em] text-ink-subtle mb-1.5">Ladder</span>
-                <div class="inline-flex p-1 rounded-full bg-black/40 border border-line">
-                    @foreach ($regions as $r)
-                        <button type="button" wire:click="setRegion('{{ $r }}')" class="{{ $segBtn($regionNow === $r) }}">{{ strtoupper($r) }}</button>
+        @php
+            $segBtn = fn (bool $on) => 'px-3 sm:px-3.5 py-1.5 rounded-full text-[12.5px] font-semibold whitespace-nowrap transition-colors '.($on ? 'bg-ink text-black' : 'text-ink-muted hover:text-ink');
+            $label = 'block text-[10.5px] font-bold uppercase tracking-[.12em] text-ink-subtle mb-1.5';
+            $filtered = $classNow || $ladderSpec;
+            // One column set for the header and every row (2026-10-31): a table cannot be made to fit a phone
+            // here, its games' width pushed the rating off the screen. Below lg a player's games go under them.
+            $ladderGrid = 'grid grid-cols-[2.5rem_minmax(0,1fr)_auto] lg:grid-cols-[3.5rem_minmax(0,11rem)_minmax(0,1fr)_4.5rem_4rem] gap-x-2 lg:gap-x-3 px-3 sm:px-4';
+            $compName = fn (array $c) => $c['nick'] ?? collect($c['classes'])->map(fn ($x) => \App\Http\Services\CompLeaderboardService::className($x))->implode(' + ');
+        @endphp
+        <div class="linear-card p-3 sm:p-4 mb-3">
+            <div class="flex flex-wrap items-end gap-x-4 gap-y-3">
+                <div class="min-w-0 max-w-full">
+                    <span class="{{ $label }}">Ladder</span>
+                    <div class="inline-flex p-1 rounded-full bg-black/40 border border-line max-w-full overflow-x-auto">
+                        @foreach ($regions as $r)
+                            <button type="button" wire:click="setRegion('{{ $r }}')" class="{{ $segBtn($regionNow === $r) }}">{{ strtoupper($r) }}</button>
+                        @endforeach
+                    </div>
+                </div>
+                <div class="min-w-0 max-w-full">
+                    <span class="{{ $label }}">Players</span>
+                    <div class="inline-flex p-1 rounded-full bg-black/40 border border-line max-w-full overflow-x-auto">
+                        <button type="button" wire:click="{{ $seenOnly ? 'toggleSeen' : '$refresh' }}" class="{{ $segBtn(! $seenOnly) }}">Everyone</button>
+                        <button type="button" wire:click="{{ $seenOnly ? '$refresh' : 'toggleSeen' }}" class="{{ $segBtn($seenOnly) }}">Seen in uploaded games</button>
+                    </div>
+                </div>
+            </div>
+            {{-- Class as a row of icons, then that class's specs (2026-10-31): one tap each, nothing to open. All
+                 and the 13 classes make two rows of seven on a phone. --}}
+            <div class="mt-3">
+                <span class="{{ $label }}">Class</span>
+                <div class="grid grid-cols-7 sm:flex sm:flex-wrap gap-1.5">
+                    <button type="button" wire:click="setClass(null)" class="h-8 sm:h-9 sm:w-9 rounded-md text-[11.5px] font-semibold transition-colors {{ $classNow ? 'bg-surface-2 text-ink-muted hover:text-ink' : 'bg-ink text-black' }}">All</button>
+                    @foreach ($classes as $slug => $c)
+                        @php $on = $classNow === $slug; @endphp
+                        <button type="button" wire:click="setClass({{ $on ? 'null' : "'".$slug."'" }})" title="{{ $c->name }}" aria-label="{{ $c->name }}" aria-pressed="{{ $on ? 'true' : 'false' }}"
+                                class="flex justify-center rounded-md transition {{ $on ? 'ring-2 ring-gold' : ($classNow ? 'opacity-50 hover:opacity-100' : 'hover:opacity-80') }}">
+                            <x-class-icon :class="$c" size="w-8 h-8 sm:w-9 sm:h-9"/>
+                        </button>
                     @endforeach
                 </div>
             </div>
-            <div>
-                <span class="block text-[10.5px] font-bold uppercase tracking-[.12em] text-ink-subtle mb-1.5">Players</span>
-                <div class="inline-flex p-1 rounded-full bg-black/40 border border-line">
-                    <button type="button" wire:click="{{ $seenOnly ? 'toggleSeen' : '$refresh' }}" class="{{ $segBtn(! $seenOnly) }}">Everyone</button>
-                    <button type="button" wire:click="{{ $seenOnly ? '$refresh' : 'toggleSeen' }}" class="{{ $segBtn($seenOnly) }}">Seen in uploaded games</button>
+            @if ($classNow)
+                <div class="mt-3">
+                    <span class="{{ $label }}">Spec</span>
+                    <div class="flex flex-wrap gap-1.5">
+                        <button type="button" wire:click="setSpec(null)" class="{{ $segBtn(! $ladderSpec) }} border border-line">Any</button>
+                        @foreach ($classSpecs as $s)
+                            @php $on = $ladderSpec?->is($s); @endphp
+                            <button type="button" wire:click="setSpec({{ $on ? 'null' : "'".$s->external_spec_id."'" }})"
+                                    class="flex items-center gap-1.5 pl-1.5 pr-3 py-1 rounded-full border text-[12.5px] font-semibold transition-colors {{ $on ? 'border-gold bg-gold-subtle text-gold-light' : 'border-line text-ink-muted hover:text-ink hover:border-gold/40' }}">
+                                <x-spec-icon :spec="$s" size="w-5 h-5"/> {{ $s->name }}
+                            </button>
+                        @endforeach
+                    </div>
                 </div>
-            </div>
+            @endif
+            @if ($ladder['season'])
+                <div class="flex flex-wrap items-center gap-2 mt-3 pt-3 border-t border-line text-[12px]">
+                    <span class="text-ink-muted tabular-nums">{{ number_format($ladder['matching']) }} {{ $ladder['matching'] === 1 ? 'player' : 'players' }}</span>
+                    @if ($classNow)
+                        <button type="button" wire:click="setClass(null)" class="inline-flex items-center gap-1.5 rounded-full border border-line-gold bg-gold-subtle text-gold-light pl-2.5 pr-2 py-0.5 hover:border-gold" title="Remove this filter">
+                            {{ $classes[$classNow]->name }} <span aria-hidden="true" class="text-[14px] leading-none">&times;</span>
+                        </button>
+                    @endif
+                    @if ($ladderSpec)
+                        <button type="button" wire:click="setSpec(null)" class="inline-flex items-center gap-1.5 rounded-full border border-line-gold bg-gold-subtle text-gold-light pl-2.5 pr-2 py-0.5 hover:border-gold" title="Remove this filter">
+                            {{ $ladderSpec->name }} <span aria-hidden="true" class="text-[14px] leading-none">&times;</span>
+                        </button>
+                    @endif
+                </div>
+            @endif
         </div>
         <p class="text-[12px] text-ink-subtle mb-4">
             @if ($ladder['season'])
                 Blizzard's {{ strtoupper($regionNow) }} 3v3 ladder this season, as of {{ $ladder['asOf']?->diffForHumans() }}.
-                Each player's games are the ones uploaded to MindCollector this season that they were in, newest first: open one to see it from their team's side.
-                {{ number_format($ladder['seen']) }} of its {{ number_format($ladder['total']) }} players are in an uploaded game.
+                {{ number_format($ladder['seen']) }} of its {{ number_format($ladder['total']) }} players are in an uploaded game: open one to see it from their team's side.
+                @if ($filtered)
+                    Class and spec come from each player's Solo Shuffle and Blitz entries and uploaded games, so a spec is one they have played, not always their 3v3 spec. Known for {{ number_format($ladder['known']) }} of {{ number_format($ladder['total']) }} players; the others are left out.
+                @endif
             @endif
         </p>
 
@@ -267,49 +324,57 @@
             @if (! $ladder['season'])
                 <p class="p-5 text-[13px] text-ink-subtle">Blizzard's {{ strtoupper($regionNow) }} 3v3 ladder has not been pulled yet.</p>
             @elseif ($ladder['players'] === [])
-                <p class="p-5 text-[13px] text-ink-subtle">No player on the {{ strtoupper($regionNow) }} ladder is in an uploaded game yet.</p>
+                <p class="p-5 text-[13px] text-ink-subtle">{{ $filtered ? 'No player on the '.strtoupper($regionNow).' ladder with these filters.' : 'No player on the '.strtoupper($regionNow).' ladder is in an uploaded game yet.' }}</p>
             @else
-                <table class="w-full text-[13px] tabular-nums">
-                    <thead class="text-[10.5px] uppercase tracking-wider text-ink-subtle">
-                        <tr class="border-b border-line">
-                            <th class="text-left font-normal py-2 pl-3 sm:pl-4 pr-2 w-10">#</th>
-                            <th class="text-left font-normal py-2 pr-2">Player</th>
-                            <th class="text-left font-normal py-2 pr-3 hidden sm:table-cell">Their games</th>
-                            <th class="text-right font-normal py-2 pr-3 hidden sm:table-cell">Won&ndash;lost</th>
-                            <th class="text-right font-normal py-2 pr-3 sm:pr-4">Rating</th>
-                        </tr>
-                    </thead>
-                    <tbody class="divide-y divide-line">
-                        @foreach ($ladder['players'] as $p)
-                            @php
-                                // The games a player was in (2026-10-30): each a link to that game, read from their side.
-                                $compName = fn (array $c) => $c['nick'] ?? collect($c['classes'])->map(fn ($x) => \App\Http\Services\CompLeaderboardService::className($x))->implode(' + ');
-                                $theirGames = collect($p['games'] ?? [])->map(fn ($g) => '<a href="'.e($g['url']).'" wire:navigate class="inline-flex items-center gap-1.5 mr-1.5 mb-1 rounded-md border border-line bg-surface-2 hover:border-line-strong px-2 py-0.5 whitespace-nowrap">'
-                                    .'<span class="w-1.5 h-1.5 rounded-full '.($g['won'] ? 'bg-green-400' : 'bg-red-400').'"></span>'
-                                    .'<span class="text-ink">'.e($compName($g)).'</span><span class="text-ink-subtle">vs '.e($compName($g['vs'])).'</span>'
-                                    .'<span class="text-ink-subtle tabular-nums">'.e($g['at']?->format('j M') ?? '').'</span></a>')->implode('')
-                                    .(($p['gamesTotal'] ?? 0) > count($p['games'] ?? []) ? '<span class="text-ink-subtle">+'.(($p['gamesTotal'] ?? 0) - count($p['games'] ?? [])).' more</span>' : '');
-                            @endphp
-                            <tr class="hover:bg-surface-2">
-                                <td class="py-2 pl-3 sm:pl-4 pr-2 text-ink-subtle align-top">{{ number_format($p['rank']) }}</td>
-                                <td class="py-2 pr-2">
-                                    <a href="{{ $p['url'] }}" wire:navigate class="font-semibold hover:underline" style="color: {{ $colors[$p['class']] ?? '#FFFFFF' }}">{{ $p['name'] }}</a>
-                                    <span class="text-[11.5px] text-ink-subtle">{{ $p['realm'] }}</span>
-                                    @if ($theirGames !== '')
-                                        <span class="block sm:hidden text-[11.5px] mt-1">{!! $theirGames !!}</span>
+                <div class="{{ $ladderGrid }} py-2 border-b border-line text-[10.5px] uppercase tracking-wider text-ink-subtle">
+                    <span>#</span>
+                    <span>Player</span>
+                    <span class="hidden lg:block">Their games</span>
+                    <span class="hidden lg:block text-right">Won&ndash;lost</span>
+                    <span class="text-right">Rating</span>
+                </div>
+                <ul class="divide-y divide-line text-[13px] tabular-nums">
+                    @foreach ($ladder['players'] as $p)
+                        @php
+                            // The spec by their name: the one filtered by if they have it, else their most played.
+                            $icon = $ladderSpec && in_array($ladderSpec->external_spec_id, $p['specs'], true) ? $ladderSpec->external_spec_id : ($p['specs'][0] ?? null);
+                            // The games a player was in (2026-10-30): each a link to that game, read from their
+                            // side. Both teams as spec icons (2026-10-31): the names ran off a phone's edge.
+                            $theirGames = collect($p['games'])->map(fn ($g) => '<a href="'.e($g['url']).'" wire:navigate title="'.e($compName($g).' vs '.$compName($g['vs'])).'" class="inline-flex items-center gap-1.5 max-w-full rounded-md border border-line bg-surface-2 hover:border-line-strong px-1.5 py-1">'
+                                .'<span class="shrink-0 w-1.5 h-1.5 rounded-full '.($g['won'] ? 'bg-green-400' : 'bg-red-400').'"></span>'
+                                .'<span class="flex gap-0.5 shrink-0">'.$teamIcons($g).'</span><span class="shrink-0 text-[10.5px] text-ink-subtle">vs</span><span class="flex gap-0.5 shrink-0">'.$teamIcons($g['vs']).'</span>'
+                                .'<span class="min-w-0 truncate text-[11px] text-ink-subtle">'.e($g['at']?->format('j M') ?? '').'</span></a>')->implode('');
+                            $more = $p['gamesTotal'] - count($p['games']);
+                        @endphp
+                        <li class="{{ $ladderGrid }} py-2.5 items-start hover:bg-surface-2">
+                            <span class="pt-0.5 text-ink-subtle">{{ number_format($p['rank']) }}</span>
+                            <div class="min-w-0 flex items-center gap-2">
+                                <span class="shrink-0 flex">{!! $teamIcons(['ids' => $icon ? [$icon] : [], 'classes' => [$p['class'] ?? 'unknown']]) !!}</span>
+                                <span class="min-w-0">
+                                    <a href="{{ $p['url'] }}" wire:navigate class="block truncate font-semibold leading-tight hover:underline" style="color: {{ $colors[$p['class']] ?? '#FFFFFF' }}">{{ $p['name'] }}</a>
+                                    <span class="block truncate text-[11.5px] leading-tight text-ink-subtle">{{ $p['realm'] }}</span>
+                                </span>
+                            </div>
+                            <div class="col-start-3 row-start-1 lg:col-start-5 text-right">
+                                <span class="block font-semibold text-ink leading-tight">{{ $p['rating'] }}</span>
+                                <span class="block lg:hidden text-[11.5px] leading-tight text-ink-subtle">{{ $p['won'] }}&ndash;{{ $p['lost'] }}</span>
+                            </div>
+                            <div class="hidden lg:block lg:col-start-4 lg:row-start-1 pt-0.5 text-right text-ink-muted">{{ $p['won'] }}&ndash;{{ $p['lost'] }}</div>
+                            @if ($theirGames !== '')
+                                <div class="col-start-2 col-span-2 lg:col-start-3 lg:col-span-1 lg:row-start-1 mt-1.5 lg:mt-0 min-w-0 flex flex-wrap items-center gap-1.5">
+                                    {!! $theirGames !!}
+                                    @if ($more > 0)
+                                        <a href="{{ $p['url'] }}" wire:navigate class="text-[11.5px] text-ink-subtle hover:text-ink">+{{ $more }} more</a>
                                     @endif
-                                </td>
-                                <td class="py-2 pr-3 text-[11.5px] hidden sm:table-cell">{!! $theirGames !== '' ? $theirGames : '<span class="text-ink-subtle">-</span>' !!}</td>
-                                <td class="py-2 pr-3 text-right text-ink-muted hidden sm:table-cell">{{ $p['won'] }}&ndash;{{ $p['lost'] }}</td>
-                                <td class="py-2 pr-3 sm:pr-4 text-right font-semibold text-ink">{{ $p['rating'] }}</td>
-                            </tr>
-                        @endforeach
-                    </tbody>
-                </table>
+                                </div>
+                            @endif
+                        </li>
+                    @endforeach
+                </ul>
             @endif
         </div>
 
-        @if ($ladder['season'] && count($ladder['players']) >= $ladderShown && $ladderShown < \App\Livewire\Leaderboards::LADDER_MAX)
+        @if (count($ladder['players']) < $ladder['matching'] && $ladderShown < \App\Livewire\Leaderboards::LADDER_MAX)
             <button type="button" wire:click="showMorePlayers" class="btn-ghost mt-3 text-[12.5px]">Show more players</button>
         @endif
     @endif

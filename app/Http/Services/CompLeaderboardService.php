@@ -85,7 +85,7 @@ class CompLeaderboardService
         // Kept until a 3v3 round is added or re-measured: one cheap query decides, so the board,
         // a card and the card's page never regroup every player on each request.
         $now = ArenaRoundPlayer::where('bracket', '3v3')->selectRaw('count(*) as n, max(id) as m')->first();
-        $key = 'comp-board:teams:v4:'.$now->n.':'.$now->m.':'.$this->season()['start']->timestamp;
+        $key = 'comp-board:teams:v5:'.$now->n.':'.$now->m.':'.$this->season()['start']->timestamp;
 
         return $this->teams = Cache::remember($key, now()->addHours(6), fn () => $this->groupTeams());
     }
@@ -117,6 +117,7 @@ class CompLeaderboardService
                 continue;
             }
             $keys = $sides->map(fn ($team) => self::keyOf($team));
+            $specs = $sides->map(fn ($team) => $team->pluck('spec_external_id')->filter()->map(fn ($s) => (int) $s)->sort()->values()->all());
             foreach ($sides as $side => $team) {
                 $teams->push([
                     'round' => $round,
@@ -124,15 +125,16 @@ class CompLeaderboardService
                     'side' => (string) $side,
                     'key' => $keys[$side],
                     'vs' => $keys->except($side)->first(),
-                    'specs' => $team->pluck('spec_external_id')->filter()->map(fn ($s) => (int) $s)->sort()->values()->all(),
+                    'specs' => $specs[$side],
+                    'vsSpecs' => $specs->except($side)->first(),
                     'won' => $team->first()->won,
                     'mmr' => $team->first()->mmr,
                     'at' => $team->first()->played_at,
                     // The game's region, from its players (2026-10-30): Chinese games can be told apart.
                     'region' => strtolower((string) $team->first()->region),
                     'names' => $team->map(fn ($p) => $p->name.'-'.$p->realm.'-'.strtoupper($p->region))->values()->all(),
-                    // Who played, as the ladder is matched (whoKey()), with their class.
-                    'who' => $team->map(fn ($p) => ['k' => self::whoKey($p->region, $p->realm_key, $p->name), 'n' => $p->name, 'c' => $p->class_slug])->values()->all(),
+                    // Who played, as the ladder is matched (whoKey()), with their class and spec.
+                    'who' => $team->map(fn ($p) => ['k' => self::whoKey($p->region, $p->realm_key, $p->name), 'n' => $p->name, 'c' => $p->class_slug, 's' => $p->spec_external_id])->values()->all(),
                 ]);
             }
         }
@@ -324,44 +326,63 @@ class CompLeaderboardService
      * the comps they were seen playing in the games uploaded this season. With $seenOnly, only the
      * players seen in an uploaded game. Null season when no ladder has been pulled.
      *
-     * @return array{season: ?int, asOf: ?Carbon, total: int, seen: int, players: list<array>}
+     * A 3v3 entry names no class or spec (2026-10-31, Chriso: "the ability to filter by class and
+     * spec"): both come from the same character's Shuffle and Blitz entries and the games they were
+     * seen in. `specs` is every spec those show, the ones played in 3v3 games first, so $spec means
+     * "has played it", not "plays it in 3v3". A player with neither source has no class and is left
+     * out of a filter; `known` says how many have one.
+     *
+     * @return array{season: ?int, asOf: ?Carbon, total: int, seen: int, known: int, matching: int, players: list<array>}
      */
-    public function ladder(string $region, bool $seenOnly = false, int $limit = 100): array
+    public function ladder(string $region, bool $seenOnly = false, int $limit = 100, ?string $class = null, ?int $spec = null): array
     {
         $season = $this->ladderSeasons()[$region] ?? null;
         if (! $season) {
-            return ['season' => null, 'asOf' => null, 'total' => 0, 'seen' => 0, 'players' => []];
+            return ['season' => null, 'asOf' => null, 'total' => 0, 'seen' => 0, 'known' => 0, 'matching' => 0, 'players' => []];
         }
         $teams = $this->teams();
         $asOf = PvpLeaderboardEntry::where('region', $region)->where('season', $season)->where('bracket', '3v3')->max('seen_at');
-        $cacheKey = 'comp-board:ladder:v2:'.implode(':', [$region, $season, $asOf, $teams->count(), $teams->max('round'), (int) $seenOnly, $limit]);
+        $cacheKey = 'comp-board:ladder:v3:'.implode(':', [$region, $season, $asOf, $teams->count(), $teams->max('round'), (int) $seenOnly, $limit, $class, $spec]);
 
-        return Cache::remember($cacheKey, now()->addMinutes(self::TTL_MINUTES), function () use ($region, $season, $teams, $seenOnly, $limit, $asOf) {
-            // Every comp each player was seen on, every game they were in, and their class from those games.
+        return Cache::remember($cacheKey, now()->addMinutes(self::TTL_MINUTES), function () use ($region, $season, $teams, $seenOnly, $limit, $asOf, $class, $spec) {
+            // Every comp each player was seen on, every game they were in, and their class and specs from those games.
             $seen = [];
             foreach ($teams as $t) {
                 foreach ($t['who'] as $w) {
                     $seen[$w['k']]['comps'][$t['key']] = ($seen[$w['k']]['comps'][$t['key']] ?? 0) + 1;
                     $seen[$w['k']]['class'] ??= $w['c'];
                     $seen[$w['k']]['games'][] = $t;
+                    if ($w['s'] ?? null) {
+                        $seen[$w['k']]['specs'][(int) $w['s']] = ($seen[$w['k']]['specs'][(int) $w['s']] ?? 0) + 1;
+                    }
                 }
             }
             // A player's games (2026-10-30, Chriso: "instead of showing the comp aggregation can we have
             // a link to the actual game"): newest first, each opening its card from their own team's side.
             $games = fn (array $list) => collect($list)->sortByDesc(fn ($t) => (string) $t['at'])->take(self::LADDER_GAMES)
-                ->map(fn ($t) => self::label($t['key']) + ['key' => $t['key'], 'won' => $t['won'], 'mmr' => $t['mmr'], 'at' => $t['at'],
-                    'vs' => self::label($t['vs']), 'url' => route('comps.game', ['round' => $t['round']] + ($t['side'] === 'them' ? ['as' => 'them'] : []))])
+                ->map(fn ($t) => self::label($t['key']) + ['key' => $t['key'], 'ids' => $t['specs'], 'won' => $t['won'], 'mmr' => $t['mmr'], 'at' => $t['at'],
+                    'vs' => self::label($t['vs']) + ['ids' => $t['vsSpecs']], 'url' => route('comps.game', ['round' => $t['round']] + ($t['side'] === 'them' ? ['as' => 'them'] : []))])
                 ->values()->all();
 
             $rows = PvpLeaderboardEntry::where('region', $region)->where('season', $season)->where('bracket', '3v3')
                 ->orderBy('rank')->get(['blizzard_character_id', 'name', 'realm_slug', 'rank', 'rating', 'won', 'lost']);
-            $rows->each(fn ($e) => $e->who = self::whoKey($region, $e->realm_slug, $e->name));
+            // A 3v3 entry names no spec; the same character's Shuffle or Blitz entries do, best-rated first.
+            $boards = PvpLeaderboardEntry::where('region', $region)->where('season', $season)->whereNotNull('class_slug')
+                ->whereIn('blizzard_character_id', $rows->pluck('blizzard_character_id'))->orderByDesc('rating')
+                ->toBase()->get(['blizzard_character_id', 'class_slug', 'spec_external_id'])->groupBy('blizzard_character_id');
+            $rows->each(function ($e) use ($region, $seen, $boards) {
+                $e->who = self::whoKey($region, $e->realm_slug, $e->name);
+                $own = $boards[$e->blizzard_character_id] ?? collect();
+                $e->class_seen = $own->first()?->class_slug ?? ($seen[$e->who]['class'] ?? null);
+                $e->specs_seen = collect($seen[$e->who]['specs'] ?? [])->sortDesc()->keys()
+                    ->merge($own->pluck('spec_external_id'))->filter()->map(fn ($s) => (int) $s)->unique()->values()->all();
+            });
             $seenCount = $rows->filter(fn ($e) => isset($seen[$e->who]))->count();
-            $shown = ($seenOnly ? $rows->filter(fn ($e) => isset($seen[$e->who])) : $rows)->take($limit)->values();
-
-            // A 3v3 entry names no spec; the same character's Shuffle or Blitz entries do.
-            $classes = PvpLeaderboardEntry::where('region', $region)->where('season', $season)->whereNotNull('class_slug')
-                ->whereIn('blizzard_character_id', $shown->pluck('blizzard_character_id'))->pluck('class_slug', 'blizzard_character_id');
+            $matching = $rows
+                ->when($seenOnly, fn ($r) => $r->filter(fn ($e) => isset($seen[$e->who])))
+                ->when($class, fn ($r) => $r->filter(fn ($e) => $e->class_seen === $class))
+                ->when($spec, fn ($r) => $r->filter(fn ($e) => in_array($spec, $e->specs_seen, true)));
+            $shown = $matching->take($limit)->values();
             $directory = app(RealmDirectory::class);
 
             return [
@@ -369,12 +390,15 @@ class CompLeaderboardService
                 'asOf' => $asOf ? Carbon::parse($asOf) : null,
                 'total' => $rows->count(),
                 'seen' => $seenCount,
+                'known' => $rows->whereNotNull('class_seen')->count(),
+                'matching' => $matching->count(),
                 'players' => $shown->map(fn ($e) => [
                     'rank' => (int) $e->rank,
                     'name' => $e->name,
                     'realm' => $directory->nameFor($e->realm_slug, $region) ?? $e->realm_slug,
                     'url' => PlayerUrl::to($region, $e->realm_slug, $e->name, false),
-                    'class' => $classes[$e->blizzard_character_id] ?? ($seen[$e->who]['class'] ?? null),
+                    'class' => $e->class_seen,
+                    'specs' => $e->specs_seen,
                     'rating' => (int) $e->rating,
                     'won' => (int) $e->won,
                     'lost' => (int) $e->lost,

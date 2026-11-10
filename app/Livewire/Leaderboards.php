@@ -5,6 +5,7 @@ namespace App\Livewire;
 use App\Http\Services\CompLeaderboardService;
 use App\Models\GameClass;
 use App\Models\PageViewEvent;
+use App\Models\Specialization;
 use Livewire\Attributes\Url;
 use Livewire\Component;
 
@@ -31,6 +32,9 @@ use Livewire\Component;
  * a spec on either team and by region (CompLeaderboardService::REGIONS: Chinese games apart from the
  * rest); the comps by the teams' experience and sorted by games, win rate, MMR or experience; the
  * games by a comp on either team and by the game's rating. Every filter is in the URL.
+ *
+ * The ladder filters by class and spec (2026-10-31, Chriso: "the ability to filter by class and spec
+ * as well"), read as CompLeaderboardService::ladder() says: Blizzard's 3v3 ladder names neither.
  *
  * The 3v3 comps page keeps a top-five preview of the comps tab (CompBoard).
  */
@@ -84,6 +88,10 @@ class Leaderboards extends Component
     #[Url(except: 'us')]
     public string $region = 'us';
 
+    /** The ladder's class on the Players tab (a class slug). A chosen $spec decides the class instead. */
+    #[Url(as: 'class', except: null)]
+    public ?string $playerClass = null;
+
     /** Comps offered as boxes on the Games tab: the first 12 shown, the rest behind "More comps". */
     public const COMP_BOXES = 24;
 
@@ -121,7 +129,17 @@ class Leaderboards extends Component
     {
         $this->spec = ctype_digit((string) $spec) ? (string) $spec : null;
         $this->all = false;
+        $this->ladderShown = self::LADDER_STEP;
         PageViewEvent::log('leaderboards', null, null, 'spec:'.($this->spec ?? 'any'));
+    }
+
+    /** A class on the ladder, and no spec: one of another class would otherwise decide it. */
+    public function setClass(?string $class): void
+    {
+        $this->playerClass = preg_match('/^[a-z]{3,20}$/', (string) $class) ? $class : null;
+        $this->spec = null;
+        $this->ladderShown = self::LADDER_STEP;
+        PageViewEvent::log('leaderboards', null, null, 'class:'.($this->playerClass ?? 'any'));
     }
 
     public function setFrom(?string $from): void
@@ -155,10 +173,11 @@ class Leaderboards extends Component
     /** Every filter of the open tab back to its default. */
     public function clearFilters(): void
     {
-        $this->exp = $this->spec = $this->from = $this->comp = $this->mmr = null;
+        $this->exp = $this->spec = $this->from = $this->comp = $this->mmr = $this->playerClass = null;
         $this->sort = 'games';
         $this->all = false;
         $this->gamesShown = self::GAMES_STEP;
+        $this->ladderShown = self::LADDER_STEP;
     }
 
     public function setRegion(string $region): void
@@ -209,8 +228,12 @@ class Leaderboards extends Component
             // Win rate over a handful of games says little: comps with fewer than 5 sort after the rest.
             $board['comps'] = collect($board['comps'])->sortByDesc(fn ($c) => [$sort === 'rate' ? (int) ($c['games'] >= 5) : 1, $c[$sort] ?? -1, $c['games']])->values()->all();
         }
+        $classes = GameClass::whereHas('game', fn ($q) => $q->where('slug', 'wow'))->orderBy('name')->get()->keyBy('slug');
+        // The ladder's filters (2026-10-31): a chosen spec decides the class, and one nobody knows is no filter.
+        $ladderSpec = $tab === 'players' && $spec ? Specialization::with('gameClass')->where('external_spec_id', $spec)->first() : null;
+        $classNow = $tab !== 'players' ? null : ($ladderSpec?->gameClass?->slug ?? (isset($classes[$this->playerClass]) ? $this->playerClass : null));
         $ladder = $tab === 'players'
-            ? $service->ladder($region, $this->seenOnly, max(self::LADDER_STEP, min(self::LADDER_MAX, $this->ladderShown)))
+            ? $service->ladder($region, $this->seenOnly, max(self::LADDER_STEP, min(self::LADDER_MAX, $this->ladderShown)), $classNow, $ladderSpec?->external_spec_id)
             : null;
         $games = $tab === 'games' ? $service->recentGames(max(self::GAMES_STEP, min(self::GAMES_MAX, $this->gamesShown)),
             ['spec' => $spec, 'comp' => $this->comp, 'region' => $from, 'mmr' => $this->mmr]) : null;
@@ -225,6 +248,7 @@ class Leaderboards extends Component
         $specIds = collect($board['comps'])->flatMap(fn ($c) => $c['lineups'][0]['ids'] ?? [])
             ->merge(collect($games['games'] ?? [])->flatMap(fn ($g) => array_merge($g['us']['ids'], $g['them']['ids'])))
             ->merge(collect($compOptions)->flatMap(fn ($c) => $c['ids']))
+            ->merge(collect($ladder['players'] ?? [])->flatMap(fn ($p) => collect($p['games'])->flatMap(fn ($g) => array_merge($g['ids'], $g['vs']['ids']))->merge($p['specs'])))
             ->unique()->values()->all();
 
         return view('livewire.leaderboards', [
@@ -253,8 +277,11 @@ class Leaderboards extends Component
             'compOptions' => $compOptions,
             'specModels' => \App\Models\Specialization::with('gameClass')->whereIn('external_spec_id', $specIds)->get()->keyBy('external_spec_id'),
             'bands' => CompLeaderboardService::EXP_BANDS,
+            'classNow' => $classNow,
+            'ladderSpec' => $ladderSpec,
+            'classSpecs' => $classNow ? Specialization::with('gameClass')->where('class_id', $classes[$classNow]->id)->orderBy('name')->get() : collect(),
             'comps' => $this->all ? $board['comps'] : array_slice($board['comps'], 0, self::SHOWN),
-            'classes' => GameClass::whereHas('game', fn ($q) => $q->where('slug', 'wow'))->get()->keyBy('slug'),
+            'classes' => $classes,
             'colors' => config('wow_classes.colors', []),
         ])->layout('layouts.app', [
             'title' => '3v3 Leaderboards: Comps and Players | MindCollector',

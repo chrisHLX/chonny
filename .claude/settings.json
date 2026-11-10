@@ -65,7 +65,8 @@
       "PowerShell(php \"C:\\\\Users\\\\chris\\\\AppData\\\\Local\\\\Temp\\\\claude\\\\c--Users-chris-Herd-chonny\\\\ddeac992-b130-43e8-b9c8-a726189ef579\\\\scratchpad\\\\check_cheap_shot.php\")",
       "Bash(curl -s -X POST \"https://wowarenalogs.com/api/graphql\" -H \"Content-Type: application/json\" -d '{\"query\":\"query{__type\\(name:\\\\\"CombatQueryResult\\\\\"\\){fields{name type{name kind ofType{name kind}}}}}\"}')",
       "Bash(curl -s -A \"Mozilla/5.0\" \"https://wowarenalogs.com/search\" -o /tmp/waljs/search.html)",
-      "Bash(curl -s -A \"Mozilla/5.0\" \"https://wowarenalogs.com/_next/static/chunks/app/\\(main\\)/search/page-892250cc35382db1.js\" -o search-page.js)"
+      "Bash(curl -s -A \"Mozilla/5.0\" \"https://wowarenalogs.com/_next/static/chunks/app/\\(main\\)/search/page-892250cc35382db1.js\" -o search-page.js)",
+      "ClaudeInChromeDomain(127.0.0.1:8324)"
     ],
     "additionalDirectories": []
   }

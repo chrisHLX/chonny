@@ -301,6 +301,53 @@ class CompBoardTest extends TestCase
         $this->get('/wow/leaderboards?tab=players&region=junk')->assertOk()->assertSee('Stranger');
     }
 
+    public function test_the_ladder_filters_by_class_and_spec_from_shuffle_entries_and_games(): void
+    {
+        $this->game(User::factory()->create(), 'm1', true);
+        $game = Game::firstOrCreate(['slug' => 'wow'], ['name' => 'WoW']);
+        foreach (['mage' => [[63, 'Fire'], [64, 'Frost']], 'warrior' => [[71, 'Arms']], 'rogue' => [[259, 'Assassination']]] as $class => $specs) {
+            $c = GameClass::firstOrCreate(['game_id' => $game->id, 'slug' => $class], ['name' => ucfirst($class)]);
+            foreach ($specs as [$id, $name]) {
+                Specialization::create(['class_id' => $c->id, 'name' => $name, 'slug' => strtolower($name), 'external_spec_id' => $id]);
+            }
+        }
+        $row = fn (int $id, string $name, string $realm, int $rank, string $bracket = '3v3', ?string $class = null, ?int $spec = null) => [
+            'region' => 'us', 'season' => 40, 'bracket' => $bracket, 'blizzard_character_id' => $id, 'name' => $name, 'realm_slug' => $realm,
+            'class_slug' => $class, 'spec_external_id' => $spec, 'rank' => $rank, 'rating' => 2900 - $rank, 'won' => 50, 'lost' => 40, 'seen_at' => now(),
+        ];
+        PvpLeaderboardEntry::query()->insert([
+            $row(1, 'Rogueguy', 'area-52', 1),                                      // known from a game alone
+            $row(2, 'Stranger', 'stormrage', 2),                                    // known from Shuffle alone
+            $row(2, 'Stranger', 'stormrage', 9, 'shuffle-warrior-arms', 'warrior', 71),
+            $row(3, 'Mageguy', 'area-52', 3),                                       // both: the game's spec first
+            $row(3, 'Mageguy', 'area-52', 7, 'shuffle-mage-frost', 'mage', 64),
+            $row(5, 'Nobody', 'stormrage', 4),                                      // no source: no class
+        ]);
+
+        $svc = app(CompLeaderboardService::class);
+        $all = $svc->ladder('us');
+        $this->assertSame([4, 3, 4], [$all['total'], $all['known'], $all['matching']]);
+        $this->assertSame([[259], [71], [63, 64], []], array_column($all['players'], 'specs'));
+
+        $names = fn (array $l) => array_column($l['players'], 'name');
+        $this->assertSame(['Mageguy'], $names($svc->ladder('us', false, 100, 'mage')));
+        $this->assertSame(['Stranger'], $names($svc->ladder('us', false, 100, null, 71)));
+        $this->assertSame(['Mageguy'], $names($svc->ladder('us', false, 100, 'mage', 64)), 'a spec from their Shuffle entry');
+        $this->assertSame([], $names($svc->ladder('us', true, 100, 'warrior')), 'seen only and a class apply together');
+        $this->assertSame(1, $svc->ladder('us', false, 1, 'mage')['matching']);
+
+        // Each game keeps both teams' specs, for the phone's icons.
+        $g = $all['players'][0]['games'][0];
+        $this->assertSame([[63, 256, 259], [103, 253, 257]], [$g['ids'], $g['vs']['ids']]);
+
+        // The page: a spec decides the class, a junk class is no filter, an empty one says so.
+        $this->get('/wow/leaderboards?tab=players&class=mage')->assertOk()->assertSee('Mageguy')->assertDontSee('Rogueguy')
+            ->assertSee('Known for 3 of 4 players')->assertSee('wire:click="setSpec(&#039;64&#039;)"', false);
+        $this->get('/wow/leaderboards?tab=players&spec=71')->assertOk()->assertSee('Stranger')->assertDontSee('Rogueguy');
+        $this->get('/wow/leaderboards?tab=players&class=junk')->assertOk()->assertSee('Nobody')->assertDontSee('Known for');
+        $this->get('/wow/leaderboards?tab=players&class=rogue&spec=71')->assertOk()->assertSee('Stranger')->assertDontSee('Rogueguy');
+    }
+
     public function test_the_preview_shows_the_top_comps_then_only_the_picked_one(): void
     {
         $this->game(User::factory()->create(), 'm1', true);

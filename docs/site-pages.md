@@ -127,12 +127,19 @@
       `arena_round_players`.
     - **Players** (Chriso: "integrate the comps to player leaderboard"). Blizzard's 3v3 ladder
       for a region (`?region=`, `pvp_leaderboard_entries`, pulled daily), 100 at a time to 1,000,
-      each player with the comps they were seen playing in uploaded games, linked to the comp's
-      card and their newest games linked straight to each game (`LADDER_GAMES`); "Seen in uploaded games" keeps only those. Blizzard's ladder names no team, so "seen
-      on" is only ever what uploads show, and the page says how many ladder players have any. A
-      3v3 entry names no spec, so a player's class comes from their Shuffle or Blitz entry, else
-      from their games. Matched on region, realm (`RealmDirectory::key()`) and name
-      (`CompLeaderboardService::whoKey()`).
+      each player with their newest games (`LADDER_GAMES`), each linked to the game and drawn as both
+      teams' spec icons; "Seen in uploaded games" keeps only those. Blizzard's ladder names no team, so "seen on" is only ever what
+      uploads show, and the page says how many ladder players have any. A 3v3 entry names no spec,
+      so a player's class comes from their Shuffle or Blitz entry, else from their games. Matched
+      on region, realm (`RealmDirectory::key()`) and name (`CompLeaderboardService::whoKey()`).
+      **Class and spec filters (2026-10-31**, Chriso: "the ability to filter by class and spec as
+      well"): `?class=` (a row of class icons, then that class's specs) and the tabs' shared
+      `?spec=`, which decides the class when both are set. A spec means one the player has played:
+      their uploaded games first, then their Shuffle and Blitz entries, so it can differ from what
+      they play in 3v3, and the page says so and how many players have a known class; the rest are
+      left out of a filter. **A grid, not a table:** the games' width pushed the rating off a
+      phone. Below `lg` a player's games go under them, and the header and rows share one column
+      set (`$ladderGrid`).
     Players are named here, where the comp card names no one: only players on Blizzard's public
     ladder, and the same games already show on their public player page.
   - **A comp's card** (`/wow/comps/played/{comp}/{vs?}`, `CompsPlayed`): the desktop app's comp
