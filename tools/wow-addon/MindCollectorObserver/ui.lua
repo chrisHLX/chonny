@@ -384,6 +384,10 @@ local function sellValue(r)
 end
 
 local function sortBySelling() return ns.DB and ns.DB.profSort == "sell" end
+-- Most profit (2026-11-10, Chriso: "things that dont level us up too but make profit"): every recipe at
+-- or under your skill, whatever its colour, by what one craft earns after the auction house's cut.
+local function sortByProfit() return ns.DB and ns.DB.profSort == "profit" end
+local NEXT_SORT = { make = "sell", sell = "profit", profit = "make" }
 
 local function reagentText(r)
     local bits = {}
@@ -424,6 +428,39 @@ local function recipesFor(pid, rank)
     end)
     table.sort(soon, function(a, b) return a.r[3] < b.r[3] end)
     return now, soon
+end
+
+-- Every recipe you have the skill for that makes something, most profit per craft first. Profit is the
+-- product's cheapest listing after the 5% cut, less the reagents; nil when a price is missing.
+local function profitsFor(pid, rank)
+    local out = {}
+    for idx, r in ipairs(ns.recipes and ns.recipes[pid] or {}) do
+        if r[7] > 0 and r[3] <= rank and matches(r[2]) then
+            local cost, missing, made = recipeCost(r, pid, rank)
+            local sell, p = sellValue(r)
+            table.insert(out, { idx = idx, r = r, cost = cost, missing = missing, made = made, sell = sell, p = p,
+                profit = missing == 0 and sell and sell - cost or nil })
+        end
+    end
+    table.sort(out, function(a, b)
+        if (a.profit ~= nil) ~= (b.profit ~= nil) then return a.profit ~= nil end
+        if a.profit and b.profit and a.profit ~= b.profit then return a.profit > b.profit end
+        return a.r[2] < b.r[2]
+    end)
+    return out
+end
+
+-- How an item's listings moved between your last two full scans: whether it is actually selling.
+local function listingTrend(id)
+    local a, b = ns.DB.lastScan, ns.DB.prevScan
+    local now, was = a and a.prices[id], b and b.prices[id]
+    if not (now and was) then return nil end
+    local text = string.format("listed %d > %d", was[2], now[2])
+    -- under a 10% change in listings is noise: a few posted or bought between scans says nothing
+    if math.abs(now[2] - was[2]) < math.max(was[2], 1) * 0.1 then return grey(text) end
+    if now[2] < was[2] and now[1] >= was[1] then return color("ff40d060", text .. ", price held: selling") end
+    if now[2] > was[2] and now[1] <= was[1] then return grey(text .. ", price no higher: not much selling") end
+    return grey(text)
 end
 
 local function button(b, label, fn)
@@ -529,7 +566,7 @@ local function makeRow(i)
             return
         end
         if self.key and self.key:match("^sortmode:") then
-            ns.DB.profSort = sortBySelling() and "make" or "sell"
+            ns.DB.profSort = NEXT_SORT[ns.DB.profSort] or "sell"
             refresh()
             return
         end
@@ -627,6 +664,13 @@ local function drawList()
             local r = rows[n] or makeRow(n)
             local sub = not hasRecipes and "a gathering skill: no recipes"
                 or (#now .. " recipe" .. (#now == 1 and "" or "s") .. " give a point now" .. (cheapest and ("  ·  cheapest about " .. ns.money(cheapest) .. " a point") or ""))
+            if hasRecipes and sortByProfit() then
+                local profits = profitsFor(pid, p.rank)
+                local earning = 0
+                for _, x in ipairs(profits) do if x.profit and x.profit > 0 then earning = earning + 1 end end
+                sub = earning .. " recipe" .. (earning == 1 and "" or "s") .. " make a profit"
+                    .. (earning > 0 and ("  ·  best about " .. ns.money(profits[1].profit) .. " a craft") or "")
+            end
             fillRow(r, "prof:" .. pid, PROF_ICONS[pid] or "Interface\\Icons\\INV_Misc_QuestionMark", p.name or "?", GOLD_HEX,
                 (p.rank or 0) .. " / " .. (p.max or "?"), sub)
             place(r)
@@ -635,12 +679,40 @@ local function drawList()
                 n = n + 1
                 local sw = rows[n] or makeRow(n)
                 fillRow(sw, "sortmode:" .. pid, "Interface\\Icons\\INV_Misc_Coin_02",
-                    "   " .. (sortBySelling() and "Cheapest after selling what you make" or "Cheapest to make"), GOLD_HEX,
-                    grey("click to switch"), sortBySelling()
-                        and "   less what the product sells for on the auction house, after its 5% cut"
+                    "   " .. (sortByProfit() and "Most profit" or sortBySelling() and "Cheapest after selling what you make" or "Cheapest to make"), GOLD_HEX,
+                    grey("click to switch"), sortByProfit()
+                        and "   everything you can make, points or not: what one craft earns after the 5% cut"
+                        or sortBySelling()
+                        and "   less what the product sells for on the auction house, after its 5% cut; click for most profit"
                         or "   the reagents' cost per skill point; click to count what you'd sell the products for")
                 place(sw)
-                for i = 1, math.min(#now, 60) do
+                if sortByProfit() then
+                    local profits = profitsFor(pid, p.rank)
+                    for i = 1, math.min(#profits, 60) do
+                        local x = profits[i]
+                        local hex = skillColor(x.r, p.rank)
+                        local value
+                        if x.profit then
+                            value = x.profit > 0 and color("ff40d060", "+" .. ns.money(x.profit) .. " a craft")
+                                or ("loses " .. ns.money(-x.profit) .. " a craft")
+                        else
+                            value = grey(x.missing > 0 and (x.missing .. " price" .. (x.missing == 1 and "" or "s") .. " unknown") or "no auction price")
+                        end
+                        local bits = { knownRecipe(x.r[1]) == true and "known" or (sourceOf(x.r, p.name)) }
+                        if x.p then
+                            table.insert(bits, "sells " .. ns.money(x.p.min) .. ((x.r.yield or 1) > 1 and (" (makes " .. x.r.yield .. ")") or "")
+                                .. (x.p.q and (", " .. x.p.q .. " listed") or ""))
+                        end
+                        local trend = listingTrend(x.r[7])
+                        if trend then table.insert(bits, trend) end
+                        n = n + 1
+                        local rr = rows[n] or makeRow(n)
+                        fillRow(rr, "recipe:" .. pid .. ":" .. x.idx, C_Item.GetItemIconByID(x.r[7]) or C_Spell.GetSpellTexture(x.r[1]),
+                            "   " .. x.r[2], hex, value, "   " .. table.concat(bits, "  ·  "))
+                        place(rr)
+                    end
+                end
+                for i = 1, sortByProfit() and 0 or math.min(#now, 60) do
                     local x = now[i]
                     local hex = skillColor(x.r, p.rank)
                     local known = knownRecipe(x.r[1])
@@ -662,7 +734,7 @@ local function drawList()
                         "   " .. x.r[2], hex, value, "   " .. reagentText(x.r) .. "  ·  " .. how)
                     place(rr)
                 end
-                if #soon > 0 then
+                if #soon > 0 and not sortByProfit() then
                     n = n + 1
                     local rr = rows[n] or makeRow(n)
                     local names = {}
@@ -891,6 +963,8 @@ local function drawDetail()
             else
                 table.insert(lines, #now .. " recipes give a point at your skill. They're listed cheapest per point first, from the prices you've seen.")
                 table.insert(lines, "")
+                table.insert(lines, "The switch at the top of the list also sorts by Most profit: everything you can make, points or not, by what one craft earns.")
+                table.insert(lines, "")
                 table.insert(lines, grey("Orange always gives a point, yellow usually, green sometimes. Prices are the auction house's cheapest listing you last saw, or your last full scan; vials, thread and spices at the vendor's price."))
             end
             setDetail(PROF_ICONS[pid], mine and mine.name or "?", GOLD_HEX, lines, nil, false)
@@ -927,6 +1001,14 @@ local function drawDetail()
             local net, p = sellValue(r)
             local made = (r.yield or 1) > 1 and (r.yield .. " ") or ""
             table.insert(lines, "Makes " .. made .. itemName(r[7]) .. (p and string.format("; each sells for about %s (%s listed)", ns.money(p.min), p.q or "?") or ", with no auction price yet"))
+            if net and missing == 0 then
+                local profit = net - cost
+                table.insert(lines, profit > 0
+                    and color("ff40d060", "Each craft sold earns about " .. ns.money(profit) .. " after the 5% cut")
+                    or ("Each craft sold loses about " .. ns.money(-profit) .. " after the 5% cut"))
+            end
+            local trend = listingTrend(r[7])
+            if trend then table.insert(lines, "Between your last two scans: " .. trend) end
             if net and missing == 0 and chance > 0 then
                 local per = (cost - net) / chance
                 table.insert(lines, per <= 0

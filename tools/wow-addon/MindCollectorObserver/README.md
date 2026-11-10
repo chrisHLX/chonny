@@ -28,6 +28,11 @@ what was saved of them is dropped at the next login.
   place has "Show on map"; a recipe item nobody has seen for sale has "Ask where to get it" (/ask).
   Making a reagent yourself is used when it's cheaper than buying it, and the switch at the top of a
   profession's list sorts by what's left after selling the product (less the auction house's 5%).
+- **Most profit** (2026-11-10; the same switch, clicked again): every recipe at or under your skill,
+  points or not, by what one craft earns: the product's cheapest listing less the 5% cut, less the
+  reagents. Each row also shows how many are listed and how that moved between your last two full scans
+  ("selling" when listings fell 10% or more and the price held; "not much selling" when they rose and
+  the price didn't). One cheapest listing is not a market: a thin one (2 listed) can't take many.
 - **`/mco scan`** (auction house open; also the button at the bottom of the window) reads the whole
   auction house with `C_AuctionHouse.ReplicateItems`. It waits until the list stops growing, then
   reads it, and says "scanned N auctions" when done. The server allows one every 15 minutes. One
