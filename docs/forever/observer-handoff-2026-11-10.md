@@ -99,5 +99,10 @@ Settle these before building:
   seconds, in the player's own Chrome. No bot-check workarounds.
 - **Still to fetch from Wowhead:** 99 of 137 Alchemy recipe items' vendors and drops, and all of First
   Aid and Cooking. Ask Chriso before a long crawl.
+- **Quests for crafting items are done** (2026-11-12, `wowhead/quests.json`): the 258 crafting items
+  Wowhead lists as quest objectives (filter 85), 504 quests. Even at one page every 5 seconds Wowhead
+  sent about 20 HTTP 405s; a 60-second pause after each one got through with nothing lost. The data
+  came out of Chrome in 400-character pieces and was checked against the page's length and hash.
+  The client has no quest-objective table, so Wowhead is the only source for this.
 - Check Forever's UI APIs against Gethe/wow-ui-source, branch `forever`; don't guess.
 - When Chriso asks a question in game, he's Horde. Never point him at an Alliance-only vendor.

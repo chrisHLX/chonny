@@ -44,6 +44,10 @@ what was saved of them is dropped at the next login.
   at and goes grey at, your colour for it, what the craft sells for, and "used at 60" when what it
   makes is used at max level (`used_at_60` in `observer_data.py`, field 11 of a recipe in
   `Data.lua`). Click a recipe to open it in Professions. The details scroll now, so long lists fit.
+  A **Quests** section (2026-11-12) lists the quests that ask for the item, the ones your faction and
+  class can take first, in the game's level colour, with level, zone (or class or profession) and
+  who it's limited to. From Wowhead's Forever item pages (`tools/forever-market/wowhead/quests.json`),
+  for the crafting items Wowhead lists as quest objectives; how many a quest asks for isn't there.
 - **`/mco scan`** (auction house open; also the button at the bottom of the window) reads the whole
   auction house with `C_AuctionHouse.ReplicateItems`. It waits until the list stops growing, then
   reads it, and says "scanned N auctions" when done. The server allows one every 15 minutes. One

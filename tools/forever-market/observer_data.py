@@ -19,6 +19,12 @@ the vendors (zone, faction, stock, price), the best drops and quests. Packed as
 {"S": {spell: [learn, orange, yellow, green, grey, "sources", fee, made min, made max]},
  "I": {item: [skill, spell, [[npc, zone, alliance, horde, stock, price]], [[npc, zone, pct, level]], drops, [quests]]},
  "N": {npc: name}}. Zone names come from the client's AreaTable.
+
+quests.json in the same folder (2026-11-12) holds the quests that ask for a crafting item, read from
+the "Objective of" tab of each item's Forever page; only items Wowhead lists as a quest objective
+(filter criterion 85) were read: {"items": {item: [quest]}, "quests": {quest: [name, level, required
+level, side, class mask, category]}}. The client data has no quest objectives (no QuestObjective
+table in wowf), so this is the only source. Class and profession quest names need QuestSort.csv.
 """
 import csv, json, sys
 from collections import defaultdict
@@ -170,9 +176,11 @@ if WH:
         for row in csv.DictReader(open(area_csv, encoding='utf-8', newline='')):
             areas[int(row['ID'])] = row['AreaName_lang']
     S, I, N = {}, {}, {}
+    QI, QQ = {}, {}   # quests.json: item -> quest ids it's an objective of; quest -> facts
     for f in sorted(glob.glob(os.path.join(WH, '*.json'))):
         j = json.load(open(f, encoding='utf-8'))
         S.update(j.get('S', {})); I.update(j.get('I', {})); N.update(j.get('N', {}))
+        QI.update(j.get('items', {})); QQ.update(j.get('quests', {}))
     zone = lambda z: areas.get(int(z), '') if z and int(z) > 0 else ''
     lines.append("-- From Wowhead's Forever pages, read in the player's browser on " + __import__('datetime').date.today().isoformat())
     lines.append('ns.wh = {')
@@ -189,6 +197,35 @@ if WH:
         lines.append(f'  [{it}] = {{skill = {skill}, spell = {spell}, v = {{{vs}}}, d = {{{ds}}}, nd = {ndrops}, q = {{{qs}}}}},')
     lines.append('}')
     print(f'wowhead: {len(S)} recipes, {len(I)} recipe items')
+
+    # Quests that ask for a crafting item (Wowhead's "Objective of" on the item's page, 2026-11-12):
+    # {quest: {name, level, required level, side (1 Alliance, 2 Horde, else both), class mask,
+    # where}}, where is the zone (AreaTable) or, for class and profession quests, the QuestSort name.
+    # How many a quest asks for isn't in that data.
+    if QI:
+        sorts = {}
+        qs_csv = f'{D}/QuestSort.csv'
+        if os.path.exists(qs_csv):
+            for row in csv.DictReader(open(qs_csv, encoding='utf-8', newline='')):
+                sorts[int(row['ID'])] = row['SortName_lang']
+        def where(cat):
+            cat = int(cat or 0)
+            return zone(cat) if cat > 0 else sorts.get(-cat, '')
+        # Wowhead keeps a few "<UNUSED>" quest records that aren't in the game
+        live_q = {q for q, v in QQ.items() if not v[0].startswith('<UNUSED>')}
+        QI = {it: [q for q in qs if str(q) in live_q] for it, qs in QI.items()}
+        used = sorted({int(q) for qs in QI.values() for q in qs})
+        lines.append('ns.quests = {')
+        for q in used:
+            name, lvl, req, side, cls, cat = QQ[str(q)]
+            lines.append(f'  [{q}] = {{{lua_str(name)}, {lvl}, {req}, {side}, {cls}, {lua_str(where(cat))}}},')
+        lines.append('}')
+        lines.append('ns.questUses = {')
+        for it, qs in sorted(QI.items(), key=lambda kv: int(kv[0])):
+            if qs:
+                lines.append(f'  [{it}] = {{{", ".join(str(q) for q in qs)}}},')
+        lines.append('}')
+        print(f'wowhead: {len(used)} quests for {sum(1 for v in QI.values() if v)} items')
 
 open(OUT, 'w', encoding='utf-8', newline='\n').write('\n'.join(lines) + '\n')
 print(f'{len(spans)} reagents, {sum(1 for l in lines if l.startswith("  [") and "p =" not in l)} recipe items -> {OUT}')

@@ -892,7 +892,7 @@ local function useLine(i)
     local hl = b:CreateTexture(nil, "HIGHLIGHT")
     hl:SetAllPoints()
     hl:SetColorTexture(1, 1, 1, 0.06)
-    b:SetScript("OnClick", function(self) openRecipe(self.pid, self.idx) end)
+    b:SetScript("OnClick", function(self) if self.pid then openRecipe(self.pid, self.idx) end end)
     useLines[i] = b
     return b
 end
@@ -918,6 +918,43 @@ local function useText(u, mine)
     return first .. "\n" .. grey(table.concat(facts, "  ·  "))
 end
 
+-- A quest that asks for the item (Data.lua ns.quests, from Wowhead): whether you can take it (your
+-- faction and class), its name in the game's level colour, then level, where, and who it's for.
+local SIDE = { [1] = "Alliance", [2] = "Horde" }
+local function questFacts(qid)
+    local q = ns.quests and ns.quests[qid]
+    if not q then return nil end
+    local name, level, req, side, mask, where = q[1], q[2], q[3], q[4], q[5], q[6]
+    local classes, mine = {}, false
+    local _, _, myClass = UnitClass("player")
+    if mask and mask > 0 then
+        for cid = 1, 13 do
+            if bit.band(mask, 2 ^ (cid - 1)) ~= 0 then
+                if cid == myClass then mine = true end
+                local info = C_CreatureInfo and C_CreatureInfo.GetClassInfo(cid)
+                if info then table.insert(classes, info.className) end
+            end
+        end
+    end
+    local forClass = not (mask and mask > 0) or mine or #classes > 3
+    local forSide = not SIDE[side] or SIDE[side] == UnitFactionGroup("player")
+    return { qid = qid, name = name, level = level, req = req, where = where, ok = forClass and forSide,
+        side = SIDE[side], classes = (#classes > 0 and #classes <= 3) and classes or nil }
+end
+
+local function questText(f)
+    local hex = "ff808080"
+    if f.ok then
+        local c = GetQuestDifficultyColor and GetQuestDifficultyColor(f.level)
+        hex = c and string.format("ff%02x%02x%02x", c.r * 255, c.g * 255, c.b * 255) or "ffffffff"
+    end
+    local facts = { string.format("level %d%s", f.level, f.req > 0 and (", from " .. f.req) or "") }
+    if f.where ~= "" then table.insert(facts, f.where) end
+    if f.side then table.insert(facts, f.side .. " only") end
+    if f.classes then table.insert(facts, table.concat(f.classes, ", ") .. " only") end
+    return color(hex, f.name) .. "\n" .. grey(table.concat(facts, "  ·  "))
+end
+
 -- Lays the sections out from y down inside the details; returns the y below them.
 local function drawUses(id, label, y)
     local nh, nl = 0, 0
@@ -934,34 +971,68 @@ local function drawUses(id, label, y)
             return (ns.PROF_NAMES[a] or "") < (ns.PROF_NAMES[b] or "")
         end)
         local total = #(USES[id] or {})
+        -- the quests that ask for it, ones you can take first, then by level
+        local quests = {}
+        for _, qid in ipairs(ns.questUses and ns.questUses[id] or {}) do
+            local f = questFacts(qid)
+            if f then table.insert(quests, f) end
+        end
+        table.sort(quests, function(a, b)
+            if a.ok ~= b.ok then return a.ok end
+            if a.level ~= b.level then return a.level < b.level end
+            return a.name < b.name
+        end)
+        if #quests > 0 then
+            -- after your own professions, before the rest
+            local at = 1
+            while order[at] and mine[order[at]] do at = at + 1 end
+            table.insert(order, at, "quests")
+        end
+        local bits = {}
+        if total > 0 then table.insert(bits, string.format("%d recipe%s, %d profession%s", total, total == 1 and "" or "s",
+            #order - (#quests > 0 and 1 or 0), #order - (#quests > 0 and 1 or 0) == 1 and "" or "s")) end
+        if #quests > 0 then table.insert(bits, #quests .. " quest" .. (#quests == 1 and "" or "s")) end
         detail.usesTitle:ClearAllPoints()
         detail.usesTitle:SetPoint("TOPLEFT", 0, y)
-        detail.usesTitle:SetText(color(GOLD_HEX, label or "Used in") .. "  " .. (total == 0
-            and grey("no Forever recipe takes it")
-            or grey(string.format("%d recipe%s, %d profession%s", total, total == 1 and "" or "s", #order, #order == 1 and "" or "s"))))
+        detail.usesTitle:SetText(color(GOLD_HEX, label or "Used in") .. "  "
+            .. grey(#bits == 0 and "no Forever recipe or quest takes it" or table.concat(bits, ", ")))
         detail.usesTitle:Show()
         y = y - 20
         for _, pid in ipairs(order) do
-            local my = mine[pid]
+            local isQuests = pid == "quests"
+            local my = not isQuests and mine[pid]
             local open = ns.DB.usesOpen and ns.DB.usesOpen[pid]
-            if open == nil then open = my ~= nil end
+            if open == nil then open = isQuests or my ~= nil end
             nh = nh + 1
             local h = useHead(nh)
             h.pid, h.open = pid, open
             h.sign:SetTexture(open and "Interface\\Buttons\\UI-MinusButton-Up" or "Interface\\Buttons\\UI-PlusButton-Up")
-            h.icon:SetTexture(PROF_ICONS[pid] or "Interface\\Icons\\INV_Misc_QuestionMark")
-            h.label:SetText(color(GOLD_HEX, ns.PROF_NAMES[pid] or "?") .. (my and grey("  yours, " .. my.rank) or ""))
-            h.value:SetText(#by[pid] .. " recipe" .. (#by[pid] == 1 and "" or "s"))
+            if isQuests then
+                local yours = 0
+                for _, f in ipairs(quests) do if f.ok then yours = yours + 1 end end
+                h.icon:SetTexture("Interface\\GossipFrame\\AvailableQuestIcon")
+                h.label:SetText(color(GOLD_HEX, "Quests") .. grey(yours < #quests and ("  " .. yours .. " you can take") or ""))
+                h.value:SetText(#quests .. " quest" .. (#quests == 1 and "" or "s"))
+            else
+                h.icon:SetTexture(PROF_ICONS[pid] or "Interface\\Icons\\INV_Misc_QuestionMark")
+                h.label:SetText(color(GOLD_HEX, ns.PROF_NAMES[pid] or "?") .. (my and grey("  yours, " .. my.rank) or ""))
+                h.value:SetText(#by[pid] .. " recipe" .. (#by[pid] == 1 and "" or "s"))
+            end
             h:ClearAllPoints()
             h:SetPoint("TOPLEFT", 0, y)
             h:Show()
             y = y - 24
             if open then
-                for _, u in ipairs(by[pid]) do
+                for _, u in ipairs(isQuests and quests or by[pid]) do
                     nl = nl + 1
                     local b = useLine(nl)
-                    b.pid, b.idx = u.pid, u.idx
-                    b.fs:SetText(useText(u, my))
+                    if isQuests then
+                        b.pid, b.idx = nil, nil -- nothing to open: a quest isn't in the window
+                        b.fs:SetText(questText(u))
+                    else
+                        b.pid, b.idx = u.pid, u.idx
+                        b.fs:SetText(useText(u, my))
+                    end
                     b:SetHeight(b.fs:GetStringHeight() + 6)
                     b:ClearAllPoints()
                     b:SetPoint("TOPLEFT", 0, y)
