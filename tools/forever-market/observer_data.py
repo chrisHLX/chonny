@@ -119,7 +119,8 @@ lines.append('}')
 
 # Every recipe, per profession, for the Professions tab: {spell, name, learnable from, yellow, grey,
 # taught by a recipe item (1) or a trainer (0), what it makes, {reagent, count, reagent, count, ...},
-# learnable-from is exact (1, the recipe item's) or estimated (0), the recipe item (0 for a trainer)}.
+# learnable-from is exact (1, the recipe item's) or estimated (0), the recipe item (0 for a trainer),
+# what it makes is used at 60 (1) or not (0; see used_at_60)}.
 # "Learnable from" is the recipe item's required skill when there is one, else yellow - 25 (the client
 # data has no required skill), so the tab says "about" for those.
 lines.append('ns.recipes = {')
@@ -139,7 +140,7 @@ for pid in sorted(set(PROF_ID.values())):
         if item:
             names[item] = items[item]['name']
         lines.append(f'    {{{r["spell"]}, {lua_str(r["name"])}, {lo}, {r["yellow"]}, {grey}, {1 if item else 0}, '
-                     f'{r["out"] or 0}, {{{reag}}}, {1 if item_rank else 0}, {item}}},')
+                     f'{r["out"] or 0}, {{{reag}}}, {1 if item_rank else 0}, {item}, {1 if used_at_60(r) else 0}}},')
     lines.append('  },')
 lines.append('}')
 

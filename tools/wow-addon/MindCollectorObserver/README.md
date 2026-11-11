@@ -38,6 +38,12 @@ what was saved of them is dropped at the next login.
   Only a drop bigger than that says "at least N sold"; otherwise "N could have run out: can't tell".
   Scans close together give the sharpest answer. Scans from before this change say "sold or ran out".
   One cheapest listing is not a market: a thin one (2 listed) can't take many.
+- **Used in** (2026-11-11): under any item's details (Items, Market, Ledger, and what a recipe
+  makes), every Forever recipe that takes it, one section per profession, yours first and open.
+  Click a header to open or close it. Each recipe shows how many it takes, the skill it's learned
+  at and goes grey at, your colour for it, what the craft sells for, and "used at 60" when what it
+  makes is used at max level (`used_at_60` in `observer_data.py`, field 11 of a recipe in
+  `Data.lua`). Click a recipe to open it in Professions. The details scroll now, so long lists fit.
 - **`/mco scan`** (auction house open; also the button at the bottom of the window) reads the whole
   auction house with `C_AuctionHouse.ReplicateItems`. It waits until the list stops growing, then
   reads it, and says "scanned N auctions" when done. The server allows one every 15 minutes. One

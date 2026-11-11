@@ -6,6 +6,7 @@ local _, ns = ...
 local GOLD = { 0.83, 0.69, 0.22 }
 local GOLD_HEX = "ffd4af37"
 local W, H, LIST_W, ROW_H = 920, 540, 570, 38
+local BODY_W = W - LIST_W - 76 -- the details' scrolling text, inside its scroll bar
 
 local frame, list, detail, search
 local tab, selectedKey, query = "item", nil, ""
@@ -34,6 +35,19 @@ for _, list in pairs(ns.recipes or {}) do
             if w[4] > 0 then r.green = w[4] end
             r.fee, r.src = w[7], w[6]
             r.yield = (w[8] + w[9]) / 2
+        end
+    end
+end
+
+-- What each item goes into: every recipe, in any profession, that takes it as a reagent. Feeds the
+-- "Used in" sections under an item's details (2026-11-11, Chriso: what a consumable can be used in).
+local USES = {}
+for pid, rl in pairs(ns.recipes or {}) do
+    for idx, r in ipairs(rl) do
+        for i = 1, #r[8], 2 do
+            local id = r[8][i]
+            USES[id] = USES[id] or {}
+            table.insert(USES[id], { pid = pid, idx = idx, r = r, n = r[8][i + 1] })
         end
     end
 end
@@ -825,27 +839,169 @@ end
 
 -- ---------------------------------------------------------------- the details
 
-local function setDetail(icon, title, titleHex, lines, history, canWhy, why)
+-- ---------------------------------------------------------------- what an item is used in
+
+-- One section per profession that uses the item, yours first: a header that opens and closes (which
+-- are open is kept in DB.usesOpen; yours start open), and under it each recipe with how many it takes,
+-- the skill it's learned and goes grey at, what the craft sells for, and whether it's used at 60.
+-- Clicking a recipe opens it in the Professions tab.
+local useHeads, useLines = {}, {}
+
+local function openRecipe(pid, idx)
+    tab = "prof"
+    if ns.myProfessions and ns.myProfessions()[pid] then selProf = pid end
+    selectedKey = "recipe:" .. pid .. ":" .. idx
+    refresh()
+end
+
+local function useHead(i)
+    local h = useHeads[i]
+    if h then return h end
+    h = CreateFrame("Button", nil, detail.inner, "BackdropTemplate")
+    backdrop(h, { 0.1, 0.1, 0.1, 1 }, { 0.3, 0.3, 0.3, 0.6 })
+    h:SetSize(BODY_W, 22)
+    h.sign = h:CreateTexture(nil, "ARTWORK")
+    h.sign:SetSize(14, 14)
+    h.sign:SetPoint("LEFT", 4, 0)
+    h.icon = h:CreateTexture(nil, "ARTWORK")
+    h.icon:SetSize(16, 16)
+    h.icon:SetPoint("LEFT", h.sign, "RIGHT", 4, 0)
+    h.icon:SetTexCoord(0.07, 0.93, 0.07, 0.93)
+    h.label = text(h, "GameFontNormalSmall")
+    h.label:SetPoint("LEFT", h.icon, "RIGHT", 6, 0)
+    h.value = text(h, "GameFontHighlightSmall", 0.6, 0.6, 0.6)
+    h.value:SetPoint("RIGHT", -6, 0)
+    h:SetScript("OnClick", function(self)
+        ns.DB.usesOpen = ns.DB.usesOpen or {}
+        ns.DB.usesOpen[self.pid] = not self.open
+        refresh()
+    end)
+    useHeads[i] = h
+    return h
+end
+
+local function useLine(i)
+    local b = useLines[i]
+    if b then return b end
+    b = CreateFrame("Button", nil, detail.inner)
+    b:SetWidth(BODY_W)
+    b.fs = text(b, "GameFontHighlightSmall", 0.9, 0.9, 0.9)
+    b.fs:SetPoint("TOPLEFT", 24, -2)
+    b.fs:SetWidth(BODY_W - 28)
+    b.fs:SetSpacing(1)
+    local hl = b:CreateTexture(nil, "HIGHLIGHT")
+    hl:SetAllPoints()
+    hl:SetColorTexture(1, 1, 1, 0.06)
+    b:SetScript("OnClick", function(self) openRecipe(self.pid, self.idx) end)
+    useLines[i] = b
+    return b
+end
+
+-- One recipe under a section: its name in your skill colour, then the facts in grey.
+local function useText(u, mine)
+    local r = u.r
+    local hex, _, word = "ffffffff", nil, nil
+    if mine then hex, _, word = skillColor(r, mine.rank) end
+    local name = r[7] > 0 and itemName(r[7]) or r[2]
+    local first = color(hex, name) .. grey("  ·  takes " .. u.n)
+    if r[11] == 1 then first = first .. color(GOLD_HEX, "  ·  used at 60") end
+    local facts = { string.format("learn at %d, grey at %d", r[3], r[5]) }
+    if mine then
+        table.insert(facts, r[3] > mine.rank and ("you need " .. r[3]) or (word == "grey" and "no points for you" or (word .. " for you")))
+    end
+    if r[7] > 0 then
+        local p = ns.latestPrice(r[7])
+        if p then table.insert(facts, "sells " .. ns.money(p.min) .. ((r.yield or 1) > 1 and (" (makes " .. r.yield .. ")") or "") .. (p.q and (", " .. p.q .. " listed") or "")) end
+    else
+        table.insert(facts, "an enchant")
+    end
+    return first .. "\n" .. grey(table.concat(facts, "  ·  "))
+end
+
+-- Lays the sections out from y down inside the details; returns the y below them.
+local function drawUses(id, label, y)
+    local nh, nl = 0, 0
+    if id and id > 0 then
+        local by, order = {}, {}
+        for _, u in ipairs(USES[id] or {}) do
+            if not by[u.pid] then by[u.pid] = {}; table.insert(order, u.pid) end
+            table.insert(by[u.pid], u)
+        end
+        local mine = ns.myProfessions and ns.myProfessions() or {}
+        table.sort(order, function(a, b)
+            if (mine[a] ~= nil) ~= (mine[b] ~= nil) then return mine[a] ~= nil end
+            if #by[a] ~= #by[b] then return #by[a] > #by[b] end
+            return (ns.PROF_NAMES[a] or "") < (ns.PROF_NAMES[b] or "")
+        end)
+        local total = #(USES[id] or {})
+        detail.usesTitle:ClearAllPoints()
+        detail.usesTitle:SetPoint("TOPLEFT", 0, y)
+        detail.usesTitle:SetText(color(GOLD_HEX, label or "Used in") .. "  " .. (total == 0
+            and grey("no Forever recipe takes it")
+            or grey(string.format("%d recipe%s, %d profession%s", total, total == 1 and "" or "s", #order, #order == 1 and "" or "s"))))
+        detail.usesTitle:Show()
+        y = y - 20
+        for _, pid in ipairs(order) do
+            local my = mine[pid]
+            local open = ns.DB.usesOpen and ns.DB.usesOpen[pid]
+            if open == nil then open = my ~= nil end
+            nh = nh + 1
+            local h = useHead(nh)
+            h.pid, h.open = pid, open
+            h.sign:SetTexture(open and "Interface\\Buttons\\UI-MinusButton-Up" or "Interface\\Buttons\\UI-PlusButton-Up")
+            h.icon:SetTexture(PROF_ICONS[pid] or "Interface\\Icons\\INV_Misc_QuestionMark")
+            h.label:SetText(color(GOLD_HEX, ns.PROF_NAMES[pid] or "?") .. (my and grey("  yours, " .. my.rank) or ""))
+            h.value:SetText(#by[pid] .. " recipe" .. (#by[pid] == 1 and "" or "s"))
+            h:ClearAllPoints()
+            h:SetPoint("TOPLEFT", 0, y)
+            h:Show()
+            y = y - 24
+            if open then
+                for _, u in ipairs(by[pid]) do
+                    nl = nl + 1
+                    local b = useLine(nl)
+                    b.pid, b.idx = u.pid, u.idx
+                    b.fs:SetText(useText(u, my))
+                    b:SetHeight(b.fs:GetStringHeight() + 6)
+                    b:ClearAllPoints()
+                    b:SetPoint("TOPLEFT", 0, y)
+                    b:Show()
+                    y = y - b:GetHeight()
+                end
+                y = y - 4
+            end
+        end
+        y = y - 8
+    else
+        detail.usesTitle:Hide()
+    end
+    for i = nh + 1, #useHeads do useHeads[i]:Hide() end
+    for i = nl + 1, #useLines do useLines[i]:Hide() end
+    return y
+end
+
+-- usesOf: an item id to show the "Used in" sections for (label overrides their heading).
+local function setDetail(icon, title, titleHex, lines, history, canWhy, why, usesOf, usesLabel)
     detail.icon:SetTexture(icon or "Interface\\Icons\\INV_Misc_QuestionMark")
     detail.title:SetText(color(titleHex or "ffffffff", title or ""))
     detail.facts:SetText(table.concat(lines or {}, "\n"))
-    local y = -(detail.facts:GetStringHeight() + 96)
+    local y = -(detail.facts:GetStringHeight() + 14)
+    y = drawUses(usesOf, usesLabel, y)
     detail.histTitle:ClearAllPoints()
-    detail.histTitle:SetPoint("TOPLEFT", 12, y)
+    detail.histTitle:SetPoint("TOPLEFT", 0, y)
     detail.histTitle:SetShown(history and #history > 0)
-    y = y - 18
-    local floor = -(detail:GetHeight() - 74) -- keep clear of the why box
+    if history and #history > 0 then y = y - 18 end
     for i = 1, 12 do
         local fs = histLines[i]
         if not fs then
-            fs = text(detail, "GameFontHighlightSmall", 0.8, 0.8, 0.8)
-            fs:SetWidth(W - LIST_W - 50)
+            fs = text(detail.inner, "GameFontHighlightSmall", 0.8, 0.8, 0.8)
+            fs:SetWidth(BODY_W)
             histLines[i] = fs
         end
         local h = history and history[i]
-        if h and y - 14 > floor then
+        if h then
             fs:ClearAllPoints()
-            fs:SetPoint("TOPLEFT", 12, y)
+            fs:SetPoint("TOPLEFT", 0, y)
             fs:SetText(h)
             fs:Show()
             y = y - fs:GetStringHeight() - 3
@@ -853,6 +1009,10 @@ local function setDetail(icon, title, titleHex, lines, history, canWhy, why)
             fs:Hide()
         end
     end
+    detail.inner:SetHeight(math.max(-y, 10))
+    -- back to the top for something new; kept when the same thing redraws (a section opening)
+    if detail.shown ~= selectedKey then detail.body:SetVerticalScroll(0) end
+    detail.shown = selectedKey
     detail.whyLabel:SetShown(canWhy)
     detail.why:SetShown(canWhy)
     detail.save:SetShown(canWhy)
@@ -950,7 +1110,7 @@ local function drawDetail()
                 e.c ~= 0 and ("  ·  " .. signedMoney(e.c)) or (e.v and ("  ·  reagents " .. ns.money(e.v)) or "")))
         end
         setDetail((x.i and x.i > 0) and C_Item.GetItemIconByID(x.i) or "Interface\\Icons\\INV_Misc_Bag_10", x.name,
-            (x.i and x.i > 0) and nameColor({ kind = "item", id = x.i }) or "ffffffff", lines, hist, false)
+            (x.i and x.i > 0) and nameColor({ kind = "item", id = x.i }) or "ffffffff", lines, hist, false, nil, x.i)
         if x.i and x.i > 0 then trackButtons(x.i) end
         return
     end
@@ -990,9 +1150,10 @@ local function drawDetail()
         local hex, chance, word = skillColor(r, rank)
         local cost, missing, made = recipeCost(r, pid, rank)
         local lines = {
-            grey((ns.PROF_NAMES[pid] or "Recipe") .. ", " .. word .. " at your " .. rank),
+            grey((ns.PROF_NAMES[pid] or "Recipe") .. ", " .. (mine and (word .. " at your " .. rank) or "not one of your professions")),
             "",
-            chance >= 1 and "Gives a point every time" or chance > 0 and string.format("Gives a point about %d%% of the time", math.floor(chance * 100 + 0.5)) or "Gives no more points",
+            not mine and string.format("Learned at %s %d", ns.PROF_NAMES[pid] or "skill", r[3])
+                or chance >= 1 and "Gives a point every time" or chance > 0 and string.format("Gives a point about %d%% of the time", math.floor(chance * 100 + 0.5)) or "Gives no more points",
             string.format("Turns yellow at %d, green at %d, grey at %d", r[4], math.floor((r[4] + r[5]) / 2), r[5]),
             "",
         }
@@ -1032,7 +1193,8 @@ local function drawDetail()
                 if p and p.q and p.q > 200 then table.insert(lines, grey("Lots are listed already, so it may sell slowly or for less.")) end
             end
         end
-        setDetail((r[7] > 0 and C_Item.GetItemIconByID(r[7])) or C_Spell.GetSpellTexture(r[1]), r[2], hex, lines, nil, false)
+        setDetail((r[7] > 0 and C_Item.GetItemIconByID(r[7])) or C_Spell.GetSpellTexture(r[1]), r[2], hex, lines, nil, false, nil,
+            r[7], r[7] > 0 and (itemName(r[7]) .. " is used in") or nil)
         if point then
             button(detail.b1, "Show on map", function()
                 ns.showPins({ q = r[2], pins = { point } })
@@ -1063,7 +1225,7 @@ local function drawDetail()
         table.insert(lines, s and color(GOLD_HEX, "You looked at this " .. s.looks .. " times, last " .. when(s.last) .. ".")
             or grey("You haven't looked at this."))
         setDetail(C_Item.GetItemIconByID(id), C_Item.GetItemNameByID(id) or ("item " .. id),
-            nameColor({ kind = "item", id = id }), lines, nil, false)
+            nameColor({ kind = "item", id = id }), lines, nil, false, nil, id)
         return
     end
     local s = ns.DB.subjects[selectedKey]
@@ -1125,7 +1287,7 @@ local function drawDetail()
         if ev.why then table.insert(bits, color(GOLD_HEX, "you: " .. ev.why)) end
         table.insert(hist, table.concat(bits, "  ·  "))
     end
-    setDetail(iconOf(s.kind, s.id), displayName(s), nameColor(s), lines, hist, true, e.why)
+    setDetail(iconOf(s.kind, s.id), displayName(s), nameColor(s), lines, hist, true, e.why, s.kind == "item" and s.id or nil)
     if s.kind == "item" then trackButtons(s.id) end
 end
 
@@ -1240,11 +1402,18 @@ local function makeWindow()
     detail.title:SetPoint("TOPLEFT", detail.icon, "TOPRIGHT", 10, -4)
     detail.title:SetPoint("RIGHT", -10, 0)
     detail.title:SetWordWrap(true)
-    detail.facts = text(detail, "GameFontHighlightSmall", 0.9, 0.9, 0.9)
-    detail.facts:SetPoint("TOPLEFT", 12, -66)
-    detail.facts:SetWidth(W - LIST_W - 50)
+    detail.body = CreateFrame("ScrollFrame", nil, detail, "UIPanelScrollFrameTemplate")
+    detail.body:SetPoint("TOPLEFT", 12, -66)
+    detail.body:SetPoint("BOTTOMRIGHT", -30, 100) -- clear of the buttons and the why box
+    detail.inner = CreateFrame("Frame", nil, detail.body)
+    detail.inner:SetSize(BODY_W, 10)
+    detail.body:SetScrollChild(detail.inner)
+    detail.facts = text(detail.inner, "GameFontHighlightSmall", 0.9, 0.9, 0.9)
+    detail.facts:SetPoint("TOPLEFT", 0, 0)
+    detail.facts:SetWidth(BODY_W)
     detail.facts:SetSpacing(2)
-    detail.histTitle = text(detail, "GameFontNormal")
+    detail.usesTitle = text(detail.inner, "GameFontNormal")
+    detail.histTitle = text(detail.inner, "GameFontNormal")
     detail.histTitle:SetText(color(GOLD_HEX, "Each look"))
     detail.whyLabel = text(detail, "GameFontNormal")
     detail.whyLabel:SetPoint("BOTTOMLEFT", 12, 40)
