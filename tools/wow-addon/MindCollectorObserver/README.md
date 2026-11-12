@@ -43,7 +43,10 @@ what was saved of them is dropped at the next login.
   into `Market.lua` (`MindCollectorObserverMarket`, read into `ns.pool` at load). A pooled reading
   is used when it's newer than yours, the selling read says "(all players)" when it comes from the
   pool, and the footer says how many players' scans the prices are from. `Market.lua` is a new file:
-  the first time, the game needs a full restart.
+  the first time, the game needs a full restart. **The neutral goblin auction house** (Booty Bay,
+  Gadgetzan, Everlook) has its own listings: opening one says so, its prices are not noted, and its
+  scan is kept apart (`DB.otherScans.Neutral`) and shared as its own market, so it never mixes
+  with your faction's prices here or in the pool.
 - **Used in** (2026-11-11): under any item's details (Items, Market, Ledger, and what a recipe
   makes), every Forever recipe that takes it, one section per profession, yours first and open.
   Click a header to open or close it. Each recipe shows how many it takes, the skill it's learned

@@ -91,7 +91,14 @@ Still open:
 - **Markets, settled 2026-11-12:** Forever is one realm per region (Chriso's WTF holds one realm
   folder, `91`, for all five characters, whose names carry suffixes like Crypto-Shot; portal US),
   and Horde and Alliance don't share an auction house (Chriso). So NA is two markets, one per
-  faction, which is what the `REGION/Realm/Faction` key already gives.
+  faction, which is what the `REGION/Realm/Faction` key already gives. **Plus a third: the neutral
+  goblin auction house** (Booty Bay, Gadgetzan, Everlook) has its own listings (Chriso). The addon
+  tells which house is open when it opens (`houseFaction()`: those towns, or an auctioneer of
+  neither faction, mean Neutral; the auction API doesn't say), notes no browse prices there, keeps
+  its scan in `DB.otherScans.Neutral` instead of `lastScan`, and the app sends it as faction
+  `Neutral`, its own market. The pool the app brings back is always the player's own faction's
+  (`side`). Not yet seen in game: whether a goblin auctioneer reports no faction; the town names
+  cover the three known houses either way.
 - **Scale.** `pooled()` reads up to 7 days of hourly readings per market in one pass; fine at a few
   players, worth a daily summary table if a market gets many.
 - **To ship it:** deploy (migrations run in `deploy.sh`), then build and publish the app (0.6.11 is

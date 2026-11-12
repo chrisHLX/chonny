@@ -416,7 +416,23 @@ end
 
 local ahOpenedItem -- the item page you opened, recorded as a look even without a tooltip
 
+-- Which auction house is open (2026-11-12, Chriso): your faction's, or a goblin one in Booty Bay,
+-- Gadgetzan or Everlook that belongs to neither and has its own listings. Its prices must not mix
+-- with your faction's, here or in everyone's pooled prices. The auction API doesn't say, so: the
+-- goblin towns, or an auctioneer of neither faction, mean the neutral house. Set when one opens.
+local NEUTRAL_TOWNS = { ["Booty Bay"] = true, ["Gadgetzan"] = true, ["Everlook"] = true }
+local ahHouse
+local function houseFaction()
+    if NEUTRAL_TOWNS[GetSubZoneText() or ""] or NEUTRAL_TOWNS[GetMinimapZoneText() or ""] then return "Neutral" end
+    local f = UnitExists("npc") and UnitFactionGroup("npc") or nil
+    if f == "Horde" or f == "Alliance" then return f end
+    if UnitExists("npc") then return "Neutral" end
+    return UnitFactionGroup("player")
+end
+local function atOwnHouse() return not ahHouse or ahHouse == UnitFactionGroup("player") end
+
 local function onBrowse(results)
+    if not atOwnHouse() then return end
     for _, r in ipairs(results or C_AuctionHouse.GetBrowseResults() or {}) do
         if r.itemKey then notePrice(r.itemKey.itemID, r.minPrice, r.totalQuantity, "browse") end
     end
@@ -434,19 +450,20 @@ local function onCommodity(itemID)
     if not itemID then return end
     openedItem(itemID)
     local info = C_AuctionHouse.GetCommoditySearchResultInfo(itemID, 1)
-    if info then notePrice(itemID, info.unitPrice, C_AuctionHouse.GetCommoditySearchResultsQuantity(itemID), "item page") end
+    if info and atOwnHouse() then notePrice(itemID, info.unitPrice, C_AuctionHouse.GetCommoditySearchResultsQuantity(itemID), "item page") end
 end
 
 local function onItemSearch(itemKey)
     if not itemKey or not itemKey.itemID then return end
     openedItem(itemKey.itemID)
     local info = C_AuctionHouse.GetItemSearchResultInfo(itemKey, 1)
-    if info and info.buyoutAmount then
+    if info and info.buyoutAmount and atOwnHouse() then
         notePrice(itemKey.itemID, info.buyoutAmount, C_AuctionHouse.GetItemSearchResultsQuantity(itemKey), "item page")
     end
 end
 
 local scanPending, scanTimer
+local scanHouse -- the auction house the running scan reads
 
 -- Where a full scan is, for the window's footer: nil when none is running.
 local function scanStatus(text)
@@ -475,15 +492,28 @@ end
 
 local function finishScan(agg, n)
     scanStatus(nil)
-    DB.prevScan = DB.lastScan
-    -- Where it was scanned, so the app can pool it with other players' scans of the same market
-    -- (2026-11-12): realm, region and faction. Forever is one realm per region, and Horde and
-    -- Alliance have separate auction houses (Chriso), so in practice a market is region and faction.
-    local okRegion, region = pcall(GetCurrentRegionName)
-    DB.lastScan = { t = time(), n = n, prices = agg, bands = next(bands) and bandTimes() or nil,
-        realm = (GetNormalizedRealmName and GetNormalizedRealmName()) or GetRealmName(),
-        region = okRegion and region or nil, faction = UnitFactionGroup("player") }
     for _, a in pairs(agg) do if a.tl and not next(a.tl) then a.tl = nil end end
+    -- Where it was scanned, so the app can pool it with other players' scans of the same market
+    -- (2026-11-12): realm, region, the auction house's faction (`faction`: Horde, Alliance or Neutral)
+    -- and yours (`side`). Forever is one realm per region, and Horde, Alliance and the goblin towns
+    -- each have their own auction house (Chriso), so in practice a market is region and house.
+    local okRegion, region = pcall(GetCurrentRegionName)
+    local mine = UnitFactionGroup("player")
+    local house = scanHouse or mine
+    local entry = { t = time(), n = n, prices = agg, bands = next(bands) and bandTimes() or nil,
+        realm = (GetNormalizedRealmName and GetNormalizedRealmName()) or GetRealmName(),
+        region = okRegion and region or nil, faction = house, side = mine }
+    if house ~= mine then
+        -- a neutral house: kept apart, never your last scan or a price in your history, but still
+        -- shared, as its own market
+        DB.otherScans = DB.otherScans or {}
+        DB.otherScans[house] = entry
+        say(string.format("scanned the %s auction house: %d auctions. Kept apart from your faction's prices.", house == "Neutral" and "neutral (goblin)" or house, n))
+        if ns.refresh then ns.refresh() end
+        return
+    end
+    DB.prevScan = DB.lastScan
+    DB.lastScan = entry
     local moved, items = 0, 0
     for id, a in pairs(agg) do
         items = items + 1
@@ -562,6 +592,7 @@ local function scan()
         return
     end
     scanPending = true
+    scanHouse = ahHouse or houseFaction()
     local ok, err = pcall(C_AuctionHouse.ReplicateItems)
     if not ok then
         scanPending = false
@@ -881,6 +912,8 @@ ev:SetScript("OnEvent", function(_, event, ...)
         end
     elseif event == "AUCTION_HOUSE_SHOW" then
         ahOpenedItem = nil
+        ahHouse = houseFaction()
+        if ahHouse ~= UnitFactionGroup("player") then say("this is the " .. (ahHouse == "Neutral" and "neutral (goblin)" or ahHouse) .. " auction house: its prices are kept apart from yours.") end
     elseif event == "AUCTION_HOUSE_CLOSED" then
         ahOpenedItem = nil
     elseif event == "AUCTION_HOUSE_BROWSE_RESULTS_UPDATED" then

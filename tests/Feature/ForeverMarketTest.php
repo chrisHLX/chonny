@@ -83,6 +83,21 @@ class ForeverMarketTest extends TestCase
         // 28 fewer listed over two hours, and 35 of the 40 had under 2 hours left: no proof of a sale.
     }
 
+    public function test_a_neutral_auction_house_scan_never_reaches_a_factions_prices(): void
+    {
+        // Booty Bay's goblin auction house has its own listings (Chriso, 2026-11-12): a Horde player
+        // scanning it sends faction "Neutral", which is its own market.
+        $key = User::factory()->create()->issueCoachToken();
+        $t = now()->subMinutes(30)->timestamp;
+        $this->send($key, $this->scan($t, 1000, [[7837, 3000, 40]]))->assertOk();
+        $this->send($key, ['faction' => 'Neutral'] + $this->scan($t + 60, 300, [[7837, 99999, 2]]))->assertOk()->assertJson(['status' => 'stored']);
+
+        $horde = $this->withHeader('Authorization', 'Bearer '.$key)->getJson('/api/forever/market?region=US&realm=Arugal&faction=Horde')->json();
+        $neutral = $this->withHeader('Authorization', 'Bearer '.$key)->getJson('/api/forever/market?region=US&realm=Arugal&faction=Neutral')->json();
+        $this->assertSame(3000, $horde['items']['7837'][1]);
+        $this->assertSame(99999, $neutral['items']['7837'][1]);
+    }
+
     public function test_a_resent_scan_is_stored_once(): void
     {
         $key = User::factory()->create()->issueCoachToken();

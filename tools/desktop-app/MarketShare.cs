@@ -90,17 +90,25 @@ public sealed class MarketShare : IDisposable
         if (SavedVariables.Read(file).GetValueOrDefault("MindCollectorObserverDB") is not Dictionary<object, object?> db) return false;
         var sent = false;
         using var api = new ApiClient(_settings.ServerUrl, _settings.Key!);
-        // oldest first, so a failure part way leaves the newer one for next time
+        // Your faction's last two scans, and the latest of any other house (the neutral goblin one in
+        // Booty Bay, Gadgetzan or Everlook), which the addon keeps apart and which is its own market.
+        var scans = new List<Dictionary<object, object?>>();
         foreach (var key in new[] { "prevScan", "lastScan" })
+            if (db.GetValueOrDefault(key) is Dictionary<object, object?> s) scans.Add(s);
+        if (db.GetValueOrDefault("otherScans") is Dictionary<object, object?> others)
+            scans.AddRange(others.Values.OfType<Dictionary<object, object?>>());
+
+        // oldest first, so a failure part way leaves the newer ones for next time
+        foreach (var scan in scans.OrderBy(s => AsLong(s.GetValueOrDefault("t")) ?? 0))
         {
-            if (db.GetValueOrDefault(key) is not Dictionary<object, object?> scan) continue;
             var t = AsLong(scan.GetValueOrDefault("t")) ?? 0;
             // scans from before the addon recorded where they were can't be placed in a market
             if (t <= state.LastSent || scan.GetValueOrDefault("realm") is not string realm
                 || scan.GetValueOrDefault("region") is not string region || scan.GetValueOrDefault("faction") is not string faction) continue;
+            // the prices to bring back are always your own faction's house, whichever house this was
             state.Region = region;
             state.Realm = realm;
-            state.Faction = faction;
+            state.Faction = scan.GetValueOrDefault("side") as string ?? state.Faction ?? faction;
             if (!_settings.ShareScans) { state.LastSent = t; continue; }
 
             var (json, items) = ScanJson(scan, region, realm, faction, t);
@@ -109,12 +117,12 @@ public sealed class MarketShare : IDisposable
             {
                 state.LastSent = t;
                 sent = true;
-                if (status == "stored") _log($"Shared your auction house scan of {realm} ({items:N0} items).");
+                if (status == "stored") _log($"Shared your scan of the {faction} auction house ({items:N0} items).");
             }
             else if (status == "rejected")
             {
                 state.LastSent = t;
-                _log($"The website didn't take your auction house scan of {realm}: {reason}");
+                _log($"The website didn't take your scan of the {faction} auction house: {reason}");
             }
             else
             {
