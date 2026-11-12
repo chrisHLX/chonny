@@ -45,6 +45,7 @@ public static class ObsCheck
         progress("Connecting to OBS…");
         var (obs, message) = await ObsSetup.ConnectAsync(openIfClosed: true, ct);
         if (obs == null) return new(false, [.. lines, message]);
+        string? encoderWas = null;
         try
         {
             Say(message);
@@ -53,56 +54,92 @@ public static class ObsCheck
             var format = await EnsureMp4Async(obs, ct);
             if (format != null) Say(format);
 
-            // 2. the replay buffer, for Forever: OBS builds it only as it starts
+            // 2. what OBS reads only as it starts, gathered so one restart (asked once) does it all
+            var fixes = new List<string>();
+            var edits = new List<Func<List<string>, bool>>();
+            var bufferWasRunning = false;
             if (forever)
             {
-                var (ours, problem, needsRestart) = await ObsSetup.StartReplayBufferAsync(obs, settings.ForeverBufferSeconds, ct);
-                if (needsRestart)
+                var status = await obs.TryRequestAsync("GetReplayBufferStatus", null, ct);
+                bufferWasRunning = status is { } st && st.TryGetProperty("outputActive", out var a) && a.GetBoolean();
+                if (status == null)
                 {
-                    if (await BusyAsync(obs, ct))
-                        return new(false, [.. lines, "OBS's replay buffer is off, and OBS is recording or streaming right now. When that's done, click Set up OBS again and the app will restart OBS to turn it on."]);
-                    if (!ask("OBS's replay buffer is off, and WoW Forever's fights are saved from it. OBS has to close and open again to turn it on (it isn't recording or streaming now).\n\nRestart OBS now?"))
-                        return new(false, [.. lines, "OBS's replay buffer is off, so Forever fights won't be saved. Click Set up OBS again when OBS can restart."]);
-                    progress("Restarting OBS to turn on its replay buffer…");
+                    fixes.Add("turn on its replay buffer, which WoW Forever's fights are saved from");
+                    edits.Add(lines => { ObsSetup.SetReplayBufferInProfile(true, settings.ForeverBufferSeconds, out _); return false; });
+                }
+            }
+            var encoder = await EncoderFixAsync(obs, ct);
+            if (encoder != null)
+            {
+                fixes.Add(encoder.Value.Why);
+                edits.Add(encoder.Value.Edit);
+            }
+            if (fixes.Count > 0)
+            {
+                var needed = forever && fixes[0].Contains("replay buffer");
+                if (await BusyAsync(obs, ct))
+                {
+                    if (needed) return new(false, [.. lines, "OBS's replay buffer is off, and OBS is recording or streaming right now. When that's done, click Set up OBS again and the app will restart OBS to turn it on."]);
+                    Say("OBS is recording or streaming, so its encoder was left as it is.");
+                }
+                else if (!ask($"OBS has to close and open again to {string.Join(", and to ", fixes)}. It isn't recording or streaming now.\n\nRestart OBS now?"))
+                {
+                    if (needed) return new(false, [.. lines, "OBS's replay buffer is off, so Forever fights won't be saved. Click Set up OBS again when OBS can restart."]);
+                    Say("Left OBS's encoder as it is.");
+                }
+                else
+                {
+                    progress("Restarting OBS…");
                     await obs.DisposeAsync();
                     obs = null;
-                    var (ok, why) = await RestartAsync(() => ObsSetup.EnableReplayBufferInProfile(settings.ForeverBufferSeconds, out _), ct);
+                    var (ok, why) = await RestartAsync(() =>
+                    {
+                        foreach (var edit in edits) ObsSetup.EditProfile(edit, out _, out _);
+                    }, ct);
                     if (!ok) return new(false, [.. lines, why]);
                     (obs, message) = await ObsSetup.ConnectAsync(openIfClosed: true, ct);
                     if (obs == null) return new(false, [.. lines, message]);
-                    (ours, problem, needsRestart) = await ObsSetup.StartReplayBufferAsync(obs, settings.ForeverBufferSeconds, ct);
-                    if (problem != null) return new(false, [.. lines, problem]);
-                    Say("Turned on OBS's replay buffer (restarted OBS).");
+                    if (encoder != null) encoderWas = encoder.Value.Was;
+                    Say($"Restarted OBS to {string.Join(", and to ", fixes)}.");
                 }
-                else if (problem != null) return new(false, [.. lines, problem]);
-
-                // 3a. the Forever test: a real save from the buffer
-                progress("Testing a Forever fight save (5 seconds)…");
-                await Task.Delay(TimeSpan.FromSeconds(5), ct);
-                var saved = await SaveReplayAsync(obs, ct);
-                if (ours && !ForeverOpen()) await obs.TryRequestAsync("StopReplayBuffer", null, ct);
-                if (saved == null) return new(false, [.. lines, "OBS didn't save a clip from its replay buffer. Check OBS's Settings > Output > Recording path exists."]);
-                var check = CheckVideo(saved, TimeSpan.FromSeconds(4), WowOpen());
-                TryDelete(saved);
-                if (check.Problem != null) return new(false, [.. lines, $"Forever test: {check.Problem}"]);
-                Say($"Forever fights: OBS saved a test clip ({check.Summary}).");
             }
 
-            // 3b. the arena test: a short recording the way a game gets one
+            // 3a. the Forever test. A buffer already running proves itself, and saving it would write
+            // the whole ten minutes at once (a freeze in WoW on 12 Nov); one the app has just started
+            // is saved after a few seconds, a small clip.
+            if (forever)
+            {
+                var (ours, problem, needsRestart) = await ObsSetup.StartReplayBufferAsync(obs, settings.ForeverBufferSeconds, ct);
+                if (problem != null) return new(false, [.. lines, problem]);
+                if (bufferWasRunning && !ours) Say("Forever fights: OBS's replay buffer is running.");
+                else
+                {
+                    progress("Testing a Forever fight save (5 seconds)…");
+                    await Task.Delay(TimeSpan.FromSeconds(5), ct);
+                    var saved = await SaveReplayAsync(obs, ct);
+                    if (ours && !ForeverOpen()) await obs.TryRequestAsync("StopReplayBuffer", null, ct);
+                    if (saved == null) return new(false, [.. lines, "OBS didn't save a clip from its replay buffer. Check OBS's Settings > Output > Recording path exists."]);
+                    var check = CheckVideo(saved, TimeSpan.FromSeconds(2), WowOpen());
+                    TryDelete(saved);
+                    if (check.Problem != null) return new(false, [.. lines, $"Forever test: {check.Problem}"]);
+                    Say($"Forever fights: OBS saved a test clip ({check.Summary}).");
+                }
+            }
+
+            // 3b. the arena test (retail and Forever alike): a short recording the way a game gets one
             await obs.DisposeAsync();
             obs = null;
-            progress("Testing a recording (6 seconds)…");
-            var since = DateTime.Now.AddSeconds(-2);
-            var log = new List<string>();
-            var recorder = new Recorder(settings, log.Add);
-            await recorder.RecordForAsync(TimeSpan.FromSeconds(6));
-            var video = Directory.Exists(Recorder.VideosDir(settings))
-                ? new DirectoryInfo(Recorder.VideosDir(settings)).GetFiles("*.mp4").Where(f => f.CreationTime >= since).OrderByDescending(f => f.CreationTime).FirstOrDefault()
-                : null;
-            if (video == null) return new(false, [.. lines, "The test recording didn't save a video. " + (log.LastOrDefault() ?? "")]);
-            var arena = CheckVideo(video.FullName, TimeSpan.FromSeconds(1), WowOpen());
-            TryDelete(video.FullName);
-            TryDelete(video.FullName[..^4] + ".mindcollector.json");
+            var arena = await TestRecordingAsync(settings, progress, ct);
+            if (arena.Problem != null && encoderWas != null)
+            {
+                // the graphics card's encoder didn't work here: put back what OBS had and try again
+                Say($"The test failed with the graphics card's encoder ({arena.Problem}), so OBS's encoder was put back.");
+                var was = encoderWas;
+                encoderWas = null;
+                var (ok, why) = await RestartAsync(() => ObsSetup.EditProfile(l => RestoreEncoder(l, was), out _, out _), ct);
+                if (!ok) return new(false, [.. lines, why]);
+                arena = await TestRecordingAsync(settings, progress, ct);
+            }
             if (arena.Problem != null) return new(false, [.. lines, $"Test recording: {arena.Problem}"]);
             Say($"Arena games: the test recording worked ({arena.Summary}).");
             if (!WowOpen()) Say("WoW isn't open, so the picture couldn't be checked: OBS records it once the game is running.");
@@ -116,6 +153,66 @@ public static class ObsCheck
         {
             if (obs != null) await obs.DisposeAsync();
         }
+    }
+
+    private static async Task<VideoCheck> TestRecordingAsync(AppSettings settings, Action<string> progress, CancellationToken ct)
+    {
+        progress("Testing a recording (6 seconds)…");
+        var since = DateTime.Now.AddSeconds(-2);
+        var log = new List<string>();
+        var recorder = new Recorder(settings, log.Add);
+        await recorder.RecordForAsync(TimeSpan.FromSeconds(6));
+        var dir = Recorder.VideosDir(settings);
+        var video = Directory.Exists(dir)
+            ? new DirectoryInfo(dir).GetFiles("*.mp4").Where(f => f.CreationTime >= since).OrderByDescending(f => f.CreationTime).FirstOrDefault()
+            : null;
+        if (video == null) return new("it didn't save a video. " + (log.LastOrDefault() ?? ""), "");
+        // OBS takes a moment to start writing (about 2s here, longer cold): proof is that it recorded
+        var check = CheckVideo(video.FullName, TimeSpan.FromSeconds(1), WowOpen());
+        TryDelete(video.FullName);
+        TryDelete(video.FullName[..^4] + ".mindcollector.json");
+        return check;
+    }
+
+    // ---------------------------------------------------------------- the encoder
+
+    /// <summary>
+    /// Recordings on the graphics card's encoder at OBS's "High Quality, Medium File Size" (Simple mode's
+    /// RecQuality=Small, as Chriso's OBS records), when OBS is in Simple mode and would record on the
+    /// processor (x264) or "same as stream" (the stream's bitrate, low for a recording: 2500-6000 kbps).
+    /// Advanced mode is the player's own setup and is left alone. Null when nothing needs changing, or
+    /// the PC has no graphics card OBS knows an encoder for. Was: what to put back if the test fails.
+    /// </summary>
+    private static async Task<(string Why, Func<List<string>, bool> Edit, string Was)?> EncoderFixAsync(ObsClient obs, CancellationToken ct)
+    {
+        var mode = await ObsSetup.ProfileParameterAsync(obs, "Output", "Mode", ct);
+        if (string.Equals(mode, "Advanced", StringComparison.OrdinalIgnoreCase)) return null;
+        var quality = await ObsSetup.ProfileParameterAsync(obs, "SimpleOutput", "RecQuality", ct) ?? "Stream";
+        var encoder = await ObsSetup.ProfileParameterAsync(obs, "SimpleOutput", "RecEncoder", ct) ?? "x264";
+        var stream = await ObsSetup.ProfileParameterAsync(obs, "SimpleOutput", "StreamEncoder", ct) ?? "x264";
+        var used = quality == "Stream" ? stream : encoder;
+        var software = used.StartsWith("x264", StringComparison.OrdinalIgnoreCase);
+        if (!software && quality != "Stream") return null;
+        var hardware = ObsSetup.HardwareEncoder();
+        var target = software ? hardware ?? encoder : encoder;
+        if (quality != "Stream" && target == encoder) return null;
+        var why = software && hardware != null
+            ? "record on your graphics card instead of the processor (smoother games, sharper video)"
+            : "record at high quality instead of the stream's low bitrate";
+        return (why, lines =>
+        {
+            var changed = ObsSetup.SetIni(lines, "SimpleOutput", "RecQuality", "Small", v => v == "Small");
+            changed |= ObsSetup.SetIni(lines, "SimpleOutput", "RecEncoder", target, v => v == target);
+            return changed;
+        }, $"{quality}|{encoder}");
+    }
+
+    private static bool RestoreEncoder(List<string> lines, string was)
+    {
+        var parts = was.Split('|');
+        var changed = ObsSetup.SetIni(lines, "SimpleOutput", "RecQuality", parts[0], v => v == parts[0]);
+        changed |= ObsSetup.SetIni(lines, "SimpleOutput", "RecEncoder", parts[1], v => v == parts[1]);
+        return changed;
     }
 
     // ---------------------------------------------------------------- restarting OBS

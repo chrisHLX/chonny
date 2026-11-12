@@ -12,6 +12,7 @@ internal sealed class SettingsForm : Form
     private readonly CheckBox _startup = Check("Start MindCollector when Windows starts (minimised to the taskbar)");
     private readonly CheckBox _record = Check("Record each arena game with OBS: it starts as you zone in and stops when the game ends");
     private readonly CheckBox _forever = Check("Save each PvP fight in WoW Forever, cut to the fight (how much is set below)");
+    private readonly CheckBox _wowSound = Check("Record WoW's sound only, not voice chat or music (OBS's Desktop Audio is muted while the app records)");
     private readonly CheckBox _gameCapture = Check("Record only the game (an OBS Game Capture) when your OBS scene is a screen capture");
     private readonly CheckBox _observer = Check("Install the Observer addon: it remembers what you look at in Forever, for Looked at");
     private readonly CheckBox _shareScans = Check("Share my auction house scans and get everyone's prices back (prices and how many are listed only, never what you look at or sell)");
@@ -34,7 +35,7 @@ internal sealed class SettingsForm : Form
         StartPosition = FormStartPosition.CenterParent;
         FormBorderStyle = FormBorderStyle.FixedDialog;
         MaximizeBox = MinimizeBox = false;
-        ClientSize = new Size(760, 962);
+        ClientSize = new Size(760, 994);
         Padding = new Padding(16);
 
         _server.Text = settings.ServerUrl;
@@ -47,6 +48,7 @@ internal sealed class SettingsForm : Form
         _record.Checked = settings.RecordGames;
         _forever.Checked = settings.RecordForever;
         _gameCapture.Checked = settings.ObsGameCapture;
+        _wowSound.Checked = settings.RecordSound != "everything";
         _observer.Checked = settings.ForeverObserver;
         _askClaude.Checked = settings.AskClaude;
         _shareScans.Checked = settings.ShareScans;
@@ -84,6 +86,7 @@ internal sealed class SettingsForm : Form
         SliderRow(grid, "Before the fight", _lead, "Seconds kept before the first hit, you or them. Lower it if the clips start too early.");
         SliderRow(grid, "After the fight", _tail, "Seconds kept after the last hit.");
         CheckRow(grid, null, _gameCapture);
+        CheckRow(grid, null, _wowSound);
         grid.Controls.Add(new Label());
         grid.Controls.Add(new Label { Text = "Needs OBS Studio (free). Click Set up OBS below: it installs OBS if it's missing, then does the rest.", AutoSize = true, ForeColor = Theme.Muted, Margin = new Padding(0, 0, 0, 6) });
         grid.Controls.Add(new Label());
@@ -176,6 +179,7 @@ internal sealed class SettingsForm : Form
         _settings.RecordGames = _record.Checked;
         _settings.RecordForever = _forever.Checked;
         _settings.ObsGameCapture = _gameCapture.Checked;
+        _settings.RecordSound = _wowSound.Checked ? "wow" : "everything";
         _settings.ForeverObserver = _observer.Checked;
         _settings.AskClaude = _askClaude.Checked;
         _settings.ShareScans = _shareScans.Checked;

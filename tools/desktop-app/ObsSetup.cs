@@ -316,7 +316,7 @@ public static class ObsSetup
     {
         var scene = await ProgramSceneAsync(obs, ct);
         if (string.IsNullOrEmpty(scene)) return (null, null);
-        if (scene == WowSceneName) return (remember?.ObsSceneToRestore, null);
+        if (scene == WowSceneName) return (remember?.ObsSceneToRestore, await ApplySoundAsync(obs, remember, ct));
         if (await obs.TryRequestAsync("GetStreamStatus", null, ct) is { } stream
             && stream.TryGetProperty("outputActive", out var live) && live.GetBoolean()) return (null, null);
 
@@ -333,9 +333,10 @@ public static class ObsSetup
         if (await obs.TryRequestAsync("SetCurrentProgramScene", new JsonObject { ["sceneName"] = WowSceneName }, ct) == null)
             return (null, null);
         if (remember != null) { remember.ObsSceneToRestore = scene; remember.Save(); }
-        return (scene, created
+        var sound = await ApplySoundAsync(obs, remember, ct);
+        return (scene, (created
             ? $"Recording WoW with a Game Capture of the game (a new OBS scene, \"{WowSceneName}\"), not your screen capture; OBS goes back to \"{scene}\" when the app stops recording."
-            : $"Recording WoW with the app's Game Capture scene; OBS goes back to \"{scene}\" when the app stops recording.");
+            : $"Recording WoW with the app's Game Capture scene; OBS goes back to \"{scene}\" when the app stops recording.") + (sound != null ? " " + sound : ""));
     }
 
     /// <summary>
@@ -344,12 +345,56 @@ public static class ObsSetup
     /// </summary>
     public static async Task RestoreSceneAsync(ObsClient obs, string? previous, AppSettings? remember, CancellationToken ct)
     {
+        await RestoreSoundAsync(obs, remember, ct);
         if (string.IsNullOrEmpty(previous) || !obs.Connected) return;
         var now = await ProgramSceneAsync(obs, ct);
         if (now == null) return;
         if (now == WowSceneName
             && await obs.TryRequestAsync("SetCurrentProgramScene", new JsonObject { ["sceneName"] = previous }, ct) == null) return;
         if (remember != null && remember.ObsSceneToRestore != null) { remember.ObsSceneToRestore = null; remember.Save(); }
+    }
+
+    /// <summary>
+    /// WoW's own sound only (Settings, <see cref="AppSettings.RecordSound"/> "wow", 2026-11-12): the app's
+    /// Game Capture captures the game's audio (OBS 30+ "Capture Audio", setting capture_audio, found in
+    /// OBS 33's win-capture.dll), and OBS's Desktop Audio is muted while the app's scene records, so voice
+    /// chat and music stay out and the game isn't heard twice (OBS's own tooltip warns of that). What was
+    /// muted is kept in settings and unmuted afterwards. "everything": no game audio capture, Desktop
+    /// Audio as the player has it. The microphone is left as the player has it either way.
+    /// </summary>
+    private static async Task<string?> ApplySoundAsync(ObsClient obs, AppSettings? remember, CancellationToken ct)
+    {
+        var wowOnly = remember?.RecordSound != "everything";
+        await obs.TryRequestAsync("SetInputSettings", new JsonObject
+        {
+            ["inputName"] = WowSceneInput,
+            ["inputSettings"] = new JsonObject { ["capture_audio"] = wowOnly },
+            ["overlay"] = true,
+        }, ct);
+        if (!wowOnly || remember == null) return null;
+        var special = await obs.TryRequestAsync("GetSpecialInputs", null, ct);
+        var muted = new List<string>();
+        foreach (var key in new[] { "desktop1", "desktop2" })
+        {
+            if (special is not { } sp || !sp.TryGetProperty(key, out var n) || n.ValueKind != JsonValueKind.String || n.GetString() is not { Length: > 0 } name) continue;
+            var state = await obs.TryRequestAsync("GetInputMute", new JsonObject { ["inputName"] = name }, ct);
+            if (state is { } st && st.TryGetProperty("inputMuted", out var already) && already.GetBoolean()) continue;
+            if (await obs.TryRequestAsync("SetInputMute", new JsonObject { ["inputName"] = name, ["inputMuted"] = true }, ct) != null) muted.Add(name);
+        }
+        if (muted.Count == 0) return null;
+        remember.ObsMutedForWow = [.. (remember.ObsMutedForWow ?? []).Union(muted)];
+        remember.Save();
+        return "Recording WoW's own sound only: OBS's Desktop Audio is muted while the app records.";
+    }
+
+    /// <summary>Unmutes what <see cref="ApplySoundAsync"/> muted.</summary>
+    private static async Task RestoreSoundAsync(ObsClient obs, AppSettings? remember, CancellationToken ct)
+    {
+        if (remember?.ObsMutedForWow is not { Count: > 0 } muted || !obs.Connected) return;
+        foreach (var name in muted)
+            await obs.TryRequestAsync("SetInputMute", new JsonObject { ["inputName"] = name, ["inputMuted"] = false }, ct);
+        remember.ObsMutedForWow = null;
+        remember.Save();
     }
 
     /// <summary>The app's scene with its Game Capture, fitted to the canvas; true when it was made now.</summary>
@@ -452,6 +497,30 @@ public static class ObsSetup
     /// <summary>The replay buffer on or off in the profile's file (off only for --obs-buffer-off, to reproduce Cbags' OBS).</summary>
     internal static bool SetReplayBufferInProfile(bool on, int seconds, out string message)
     {
+        var ok = EditProfile(lines =>
+        {
+            var changed = false;
+            foreach (var section in new[] { "SimpleOutput", "AdvOut" })
+            {
+                changed |= SetIni(lines, section, "RecRB", on ? "true" : "false", v => v == (on ? "true" : "false"));
+                if (!on) continue;
+                changed |= SetIni(lines, section, "RecRBTime", seconds.ToString(), v => int.TryParse(v, out var n) && n >= seconds);
+                changed |= SetIni(lines, section, "RecRBSize", ReplayBufferMb.ToString(), v => int.TryParse(v, out var n) && n >= ReplayBufferMb);
+            }
+            return changed;
+        }, out var changed, out message);
+        if (ok) message = !changed ? $"OBS's replay buffer was already {(on ? "on" : "off")}." : on ? $"Turned on OBS's replay buffer ({seconds}s)." : "Turned off OBS's replay buffer.";
+        return ok;
+    }
+
+    /// <summary>
+    /// Edits the current profile's basic.ini while OBS is closed (an open OBS writes its own copy back,
+    /// and reads most output settings only as it starts). The file's BOM and line endings are kept as
+    /// OBS wrote them. <paramref name="changed"/>: whether the edit changed anything.
+    /// </summary>
+    internal static bool EditProfile(Func<List<string>, bool> edit, out bool changed, out string message)
+    {
+        changed = false;
         if (Running()) { message = "OBS is open."; return false; }
         var ini = ProfileIni();
         if (ini == null) { message = "OBS's profile was not found. Open OBS once, then try again."; return false; }
@@ -462,19 +531,12 @@ public static class ObsSetup
             var text = System.Text.Encoding.UTF8.GetString(bytes, bom ? 3 : 0, bytes.Length - (bom ? 3 : 0));
             var newline = text.Contains("\r\n") ? "\r\n" : "\n";
             var lines = text.Split(newline).ToList();
-            var changed = false;
-            foreach (var section in new[] { "SimpleOutput", "AdvOut" })
-            {
-                changed |= SetIni(lines, section, "RecRB", on ? "true" : "false", v => v == (on ? "true" : "false"));
-                if (!on) continue;
-                changed |= SetIni(lines, section, "RecRBTime", seconds.ToString(), v => int.TryParse(v, out var n) && n >= seconds);
-                changed |= SetIni(lines, section, "RecRBSize", ReplayBufferMb.ToString(), v => int.TryParse(v, out var n) && n >= ReplayBufferMb);
-            }
-            if (!changed) { message = $"OBS's replay buffer was already {(on ? "on" : "off")}."; return true; }
+            changed = edit(lines);
+            message = "";
+            if (!changed) return true;
             var output = System.Text.Encoding.UTF8.GetBytes(string.Join(newline, lines));
             File.WriteAllBytes(ini + ".tmp", bom ? [0xEF, 0xBB, 0xBF, .. output] : output);
             File.Move(ini + ".tmp", ini, overwrite: true);
-            message = on ? $"Turned on OBS's replay buffer ({seconds}s)." : "Turned off OBS's replay buffer.";
             return true;
         }
         catch (Exception e)
@@ -484,8 +546,31 @@ public static class ObsSetup
         }
     }
 
+    /// <summary>
+    /// OBS's Simple-mode name for the graphics card's own encoder on this PC: NVIDIA "nvenc", AMD "amd",
+    /// Intel "qsv" (as OBS 33 writes them in basic.ini; Chriso's: RecEncoder=nvenc), from the display
+    /// adapters Windows has drivers for, discrete cards first. Null when none is known.
+    /// </summary>
+    public static string? HardwareEncoder()
+    {
+        var names = new List<string>();
+        try
+        {
+            using var adapters = Microsoft.Win32.Registry.LocalMachine.OpenSubKey(@"SYSTEM\CurrentControlSet\Control\Class\{4d36e968-e325-11ce-bfc1-08002be10318}");
+            foreach (var sub in adapters?.GetSubKeyNames() ?? [])
+            {
+                try { if (adapters!.OpenSubKey(sub)?.GetValue("DriverDesc") is string d) names.Add(d); } catch { }
+            }
+        }
+        catch { }
+        if (names.Any(n => n.Contains("NVIDIA", StringComparison.OrdinalIgnoreCase))) return "nvenc";
+        if (names.Any(n => n.Contains("Radeon", StringComparison.OrdinalIgnoreCase) || n.Contains("AMD", StringComparison.OrdinalIgnoreCase))) return "amd";
+        if (names.Any(n => n.Contains("Intel", StringComparison.OrdinalIgnoreCase))) return "qsv";
+        return null;
+    }
+
     /// <summary>Sets key=value in [section] unless <paramref name="good"/> already holds for its value; true when it changed.</summary>
-    private static bool SetIni(List<string> lines, string section, string key, string value, Func<string, bool> good)
+    internal static bool SetIni(List<string> lines, string section, string key, string value, Func<string, bool> good)
     {
         var start = lines.FindIndex(l => l.Trim() == $"[{section}]");
         if (start < 0)

@@ -57,6 +57,16 @@ public sealed class AppSettings
     /// </summary>
     public string? ObsSceneToRestore { get; set; }
 
+    /// <summary>
+    /// The sound in recordings made with the app's WoW scene (2026-11-12): "wow", WoW's own sound only
+    /// (the Game Capture captures the game's audio and OBS's Desktop Audio is muted while recording, so
+    /// voice chat and music aren't in it), or "everything", Desktop Audio as the player has it.
+    /// </summary>
+    public string RecordSound { get; set; } = "wow";
+
+    /// <summary>OBS audio sources the app muted for a WoW-only recording, to unmute afterwards (even after a crash).</summary>
+    public List<string>? ObsMutedForWow { get; set; }
+
     /// <summary>The side of the app last open: null for retail, "forever" for WoW Forever (the switch at the top of the menu).</summary>
     public string? Section { get; set; }
 
