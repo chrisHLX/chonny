@@ -1,10 +1,13 @@
-"""Reads Claude's replies aloud (Windows' own voices), from Claude Code hooks.
+r"""Reads Claude's replies aloud (Windows' own voices), from Claude Code hooks.
 
   Stop hook:              python speak_reply.py          speaks the reply that just finished
   UserPromptSubmit hook:  python speak_reply.py --stop   stops talking when you send the next message
 
-Settings in config.json beside this file: voice (a Windows voice name, e.g. George, Susan, Hazel),
-rate (1.0 is normal speed), max_chars. Create a file called "off" beside it to mute.
+When Claude Reader is installed (%LOCALAPPDATA%\Programs\ClaudeReader, tools/claude-reader in the
+MindCollector repo), each reply goes to it instead: it keeps them for replay (Ctrl+Alt+R), reads
+sentence by sentence, and never pops up over a fullscreen game. Voice and speed are set in its window.
+Without it, the old way: speak.ps1, with config.json beside this file (voice, rate, max_chars).
+Create a file called "off" beside this one to mute (with the reader, replies are still kept).
 Everything stays on this PC: it uses the speech voices installed with Windows.
 """
 import json, os, re, subprocess, sys, tempfile, time
@@ -110,11 +113,33 @@ def speak(text, cfg):
     PID_FILE.write_text(str(p.pid))
 
 
+READER = Path(os.environ.get("LOCALAPPDATA", "")) / "Programs" / "ClaudeReader" / "ClaudeReader.exe"
+INBOX = Path(os.environ.get("LOCALAPPDATA", "")) / "ClaudeReader" / "inbox"
+
+
+def to_reader(msg):
+    """Hands a message to Claude Reader (tools/claude-reader), starting it when it isn't running."""
+    INBOX.mkdir(parents=True, exist_ok=True)
+    tmp = INBOX / f"{time.time_ns()}.tmp"
+    tmp.write_text(json.dumps(msg), encoding="utf-8")
+    tmp.replace(tmp.with_suffix(".json"))
+    running = subprocess.run(["tasklist", "/FI", "IMAGENAME eq ClaudeReader.exe", "/NH"],
+                             capture_output=True, text=True).stdout
+    if "ClaudeReader.exe" not in running:
+        base = 0x00000200 | 0x08000000 | 0x00000008  # new process group, no window, detached
+        try:
+            subprocess.Popen([str(READER)], creationflags=base | 0x01000000, close_fds=True)  # | breakaway from job
+        except OSError:
+            subprocess.Popen([str(READER)], creationflags=base, close_fds=True)
+
+
 def main():
     if "--stop" in sys.argv:
         stop_speaking()
+        if READER.exists():
+            to_reader({"kind": "stop"})
         return
-    if (HERE / "off").exists():
+    if (HERE / "off").exists() and not READER.exists():
         return
     try:
         payload = json.load(sys.stdin)
@@ -133,6 +158,11 @@ def main():
         text = " ".join(a for a in sys.argv[1:] if a != "--test") or "This is how your replies will sound."
     text = for_speech(text)
     if not text:
+        return
+    if READER.exists():
+        # Claude Reader keeps every reply for replay, reads it sentence by sentence and stays out of the
+        # way of fullscreen games; the "off" file still mutes, the reply is kept all the same.
+        to_reader({"kind": "reply", "text": text, "silent": (HERE / "off").exists()})
         return
     cfg = config()
     if len(text) > cfg["max_chars"]:

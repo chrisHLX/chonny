@@ -1,5 +1,9 @@
 # Claude reads its replies aloud (Windows)
 
+**Since 2026-11-12 the replies go to Claude Reader** (`tools/claude-reader`) when it's installed: it keeps
+them for replay (Ctrl+Alt+R), reads text files and PDFs too, and never pops up over a fullscreen game.
+Without it, the script below speaks them itself as before.
+
 Two Claude Code hooks: when Claude finishes a reply it is read aloud with a Windows voice, and a small
 window in the bottom-right corner shows while it speaks, with Pause, Stop and Mute replies. Typing a
 new message stops the current reading.
