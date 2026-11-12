@@ -422,6 +422,10 @@ local ahOpenedItem -- the item page you opened, recorded as a look even without 
 -- Gadgetzan or Everlook that belongs to neither and has its own listings. Its prices must not mix
 -- with your faction's, here or in everyone's pooled prices. The auction API doesn't say, so: the
 -- goblin towns, or an auctioneer of neither faction, mean the neutral house. Set when one opens.
+-- That includes Auctioneer Quickcoin at the Azeroth Commerce Authority camp outside the Crossroads
+-- (Three Corners for Alliance): Wowhead's guide calls his a neutral house linked to the others, a
+-- player's sale mail came from the Blackwater (goblin) house, and his scan on 12 Nov held 16,567
+-- auctions against the Horde house's 205,329. Checked after briefly treating him as Horde: he isn't.
 local NEUTRAL_TOWNS = { ["Booty Bay"] = true, ["Gadgetzan"] = true, ["Everlook"] = true }
 local ahHouse
 local function houseFaction()
@@ -492,6 +496,34 @@ local function bandTimes()
     return out
 end
 
+-- Every scan of your own house, kept small (2026-11-12, Chriso: are prices higher in Aussie night
+-- hours than at US peak?). lastScan and prevScan hold only two, so a pattern by time of day needs
+-- these: when, how many auctions, and per item the cheapest price and how many listed, as one
+-- string ";id:price:count;..." (a Lua string loads far faster than a table of thousands, ~80 KB a
+-- scan). Up to HISTORY_MAX scans over HISTORY_DAYS days; a scan within 15 minutes of the last one
+-- replaces it, so scanning twice in a row doesn't count that hour twice.
+local HISTORY_MAX, HISTORY_DAYS = 90, 30
+local function keepScan(entry)
+    local parts = { "" }
+    for id, a in pairs(entry.prices or {}) do
+        if a[1] and a[2] then table.insert(parts, string.format("%d:%d:%d", id, math.floor(a[1] + 0.5), a[2])) end
+    end
+    table.insert(parts, "")
+    local h = { t = entry.t, n = entry.n, s = table.concat(parts, ";") }
+    if not DB.history then
+        -- the first time: the two scans already kept start it off
+        DB.history = {}
+        for _, old in ipairs({ DB.prevScan or false, DB.lastScan or false }) do
+            if old and old.t and old.prices and old.t < entry.t then keepScan(old) end
+        end
+    end
+    local last = DB.history[#DB.history]
+    if last and entry.t - last.t < 15 * 60 then DB.history[#DB.history] = h else table.insert(DB.history, h) end
+    while #DB.history > HISTORY_MAX or (#DB.history > 0 and DB.history[1].t < entry.t - HISTORY_DAYS * 86400) do
+        table.remove(DB.history, 1)
+    end
+end
+
 local function finishScan(agg, n)
     scanStatus(nil)
     for _, a in pairs(agg) do if a.tl and not next(a.tl) then a.tl = nil end end
@@ -504,7 +536,8 @@ local function finishScan(agg, n)
     local house = scanHouse or mine
     local entry = { t = time(), n = n, prices = agg, bands = next(bands) and bandTimes() or nil,
         realm = (GetNormalizedRealmName and GetNormalizedRealmName()) or GetRealmName(),
-        region = okRegion and region or nil, faction = house, side = mine }
+        region = okRegion and region or nil, faction = house, side = mine,
+        where = (GetSubZoneText() ~= "" and GetSubZoneText() .. ", " or "") .. (GetZoneText() or "") }
     if house ~= mine then
         -- a neutral house: kept apart, never your last scan or a price in your history, but still
         -- shared, as its own market
@@ -514,6 +547,7 @@ local function finishScan(agg, n)
         if ns.refresh then ns.refresh() end
         return
     end
+    keepScan(entry)
     DB.prevScan = DB.lastScan
     DB.lastScan = entry
     local moved, items = 0, 0

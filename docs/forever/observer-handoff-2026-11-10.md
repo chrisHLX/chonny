@@ -94,7 +94,11 @@ Still open:
   faction, which is what the `REGION/Realm/Faction` key already gives. **Plus a third: the neutral
   goblin auction house** (Booty Bay, Gadgetzan, Everlook) has its own listings (Chriso). The addon
   tells which house is open when it opens (`houseFaction()`: those towns, or an auctioneer of
-  neither faction, mean Neutral; the auction API doesn't say), notes no browse prices there, keeps
+  neither faction, mean Neutral; the auction API doesn't say. That includes Auctioneer Quickcoin
+  at the Azeroth Commerce Authority camp outside the Crossroads (Three Corners for Alliance), whose
+  spot rotates between a bank, a mailbox and him: Wowhead's ACA guide calls his a neutral house,
+  a player's sale mail came from the Blackwater house, and his scan on 12 Nov held 16,567 auctions
+  against the Horde house's 205,329. Each scan records `where` since 0.6.15), notes no browse prices there, keeps
   its scan in `DB.otherScans.Neutral` instead of `lastScan`, and the app sends it as faction
   `Neutral`, its own market. The pool the app brings back is always the player's own faction's
   (`side`). Not yet seen in game: whether a goblin auctioneer reports no faction; the town names

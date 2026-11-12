@@ -206,8 +206,10 @@ of their fights: `ForeverPages`), and an overview of what it is watching when no
 clips no longer show under retail's Videos. Sync hides on the Forever side, which sends nothing to the
 website yet. The side open last is kept (`Section` in settings.json).
 - **The addon** (`tools/wow-addon/MindCollectorForeverLog`, installed into `_forever_\Interface\AddOns`
-  when the setting is on) keeps logging on all session, since there is nothing to gain from switching
-  it. About 3 MB an hour of questing.
+  when the setting is on) keeps logging on out in the world. About 3 MB an hour of questing. In a
+  city or inn and out of combat it turns logging off (0.6.15, after big frame drops in a crowded
+  Orgrimmar, where WoW's main thread was at 97% of a core): every line the app uses puts you in
+  combat, which turns it on at once; it goes off again 10s after combat, once WoW has written the fight.
 - **A fight** (`FightFinder`) is lines between you (or your pet) and a hostile player-controlled unit
   (flags 0x40 and 0x100), no more than 15s apart, and at least 3 lines or a death. Mobs are NPC-controlled
   and never count. It is saved 15s after its last line: `SaveReplayBuffer`, the clip moved into the
