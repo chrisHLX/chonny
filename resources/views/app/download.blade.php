@@ -42,6 +42,16 @@
 
     <x-app-showcase class="mt-8"/>
 
+    <a href="{{ route('wow.forever') }}" class="linear-card p-5 mt-6 flex items-center gap-4 group">
+        <span class="w-11 h-11 rounded-full bg-gold text-black flex items-center justify-center shrink-0 group-hover:scale-105 transition">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>
+        </span>
+        <span class="flex-1">
+            <span class="block text-[16px] font-bold text-ink group-hover:text-gold">Playing WoW Forever?</span>
+            <span class="block text-[14px] text-ink-muted">The same app levels your professions for less, reads the auction house, and saves your PvP fights.</span>
+        </span>
+    </a>
+
     {{-- The Watch page (2026-10-26): falls, arena frames, the casts line, OBS recording. --}}
     <h2 class="text-[22px] font-bold text-ink mt-10 mb-3">Watch any game back</h2>
     <div class="linear-card p-5 space-y-3 text-[14px] text-ink-muted">
@@ -205,8 +215,11 @@
     {{-- What it reads and what happens to it (2026-10-12), said before anyone installs it. --}}
     <h2 class="text-[22px] font-bold text-ink mt-10 mb-3">What it reads, and what happens to it</h2>
     <div class="linear-card p-5 space-y-2.5 text-[14px] text-ink-muted">
-        <p><span class="text-ink font-semibold">It reads one thing:</span> your WoW combat log
-            (WoWCombatLog.txt), and it only sends the arena games in it. Nothing else on your PC.</p>
+        <p><span class="text-ink font-semibold">It reads your WoW combat log</span>
+            (WoWCombatLog.txt), and it only sends the arena games in it. If you play WoW Forever, it also reads
+            its own Forever addon's saved file and shares your auction house scans:
+            <a href="{{ route('wow.forever') }}" class="text-gold hover:underline">what that covers</a>.
+            Nothing else on your PC.</p>
         <p><span class="text-ink font-semibold">Your game pages are private.</span> Each game's page names the
             players in it, so only you can see it.</p>
         <p><span class="text-ink font-semibold">Player pages are public.</span> Everyone in your games, you

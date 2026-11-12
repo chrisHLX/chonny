@@ -257,6 +257,12 @@
     **"If something isn't working"** (`/wow/app#help`, 2026-10-26): the install problems the first
     players hit (Windows or antivirus, Connect, WoW not found, no games, old games, where to ask), in
     the app's own words. Keep it matching the app's labels when they change.
+    **`/wow/forever`** (2026-11-12, `AppDownloadController::forever`, `app/forever.blade.php`, tracked
+    as `forever_page`): what the app and its Observer addon do in WoW Forever (professions, the
+    auction house and shared prices, the ledger, PvP clips), getting started, and what it reads and
+    shares. Same download as `/wow/app`, which links to it from a card under its showcase, and whose
+    privacy line now says it reads the Forever addon's file and shares auction scans. Every claim is
+    what app 0.6.11 does: keep it true when the app changes.
   - `/wow` (`Landing`) is the WoW hub: the sample and the app's page up top, then the planning
     tools, "Learn the game" (basics check, class quizzes, spells) and the latest guides. The app's
     pitch, slides and setup steps are `/wow/app`'s alone; the two pages were nearly the same.

@@ -85,7 +85,7 @@ internal sealed class SettingsForm : Form
         SliderRow(grid, "After the fight", _tail, "Seconds kept after the last hit.");
         CheckRow(grid, null, _gameCapture);
         grid.Controls.Add(new Label());
-        grid.Controls.Add(new Label { Text = "Needs OBS Studio (free, obsproject.com). Install it, then click Set up OBS below: it does the rest.", AutoSize = true, ForeColor = Theme.Muted, Margin = new Padding(0, 0, 0, 6) });
+        grid.Controls.Add(new Label { Text = "Needs OBS Studio (free). Click Set up OBS below: it installs OBS if it's missing, then does the rest.", AutoSize = true, ForeColor = Theme.Muted, Margin = new Padding(0, 0, 0, 6) });
         grid.Controls.Add(new Label());
         Row(grid, "Save videos to", _videos, Browse(_videos), "Each game's video, with a small file beside it that lines the video up with the game.");
         Row(grid, "Keep up to (GB)", _limit, null, "Past this the oldest videos the app recorded are deleted. 0 keeps them all.");
@@ -202,6 +202,31 @@ internal sealed class SettingsForm : Form
         _status.ForeColor = Theme.Muted;
         try
         {
+            // No OBS yet: offer to install it, then carry on with the setup (2026-11-12).
+            if (ObsSetup.ExePath() == null)
+            {
+                var answer = MessageBox.Show(this,
+                    "OBS Studio isn't installed, and the app records your games with it.\n\n" +
+                    "Install it now? It's free (from OBS Project, about 150 MB), installed by Windows' own installer. " +
+                    "Windows will ask for permission. It takes a minute or two.",
+                    "Install OBS Studio?", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                if (answer != DialogResult.Yes)
+                {
+                    _status.Text = "OBS isn't installed, so games won't be recorded. Click Set up OBS any time to install it.";
+                    _status.ForeColor = Theme.Gold;
+                    return;
+                }
+                _status.Text = "Installing OBS… (a minute or two; say yes when Windows asks)";
+                var (ok, said) = await ObsInstaller.InstallAsync(CancellationToken.None);
+                if (!ok)
+                {
+                    _status.Text = said;
+                    _status.ForeColor = Theme.Lost;
+                    return;
+                }
+                _status.Text = "OBS is installed. Setting it up…";
+            }
+
             var (client, message) = await ObsSetup.ConnectAsync(openIfClosed: true, CancellationToken.None);
             if (client == null)
             {

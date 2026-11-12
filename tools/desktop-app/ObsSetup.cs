@@ -111,7 +111,7 @@ public static class ObsSetup
         var exe = ExePath();
         if (exe == null)
         {
-            message = "OBS is not installed. Get it from obsproject.com, then open Settings > Set up OBS.";
+            message = "OBS is not installed. Settings > Set up OBS installs it for you (free), then sets it up.";
             return false;
         }
         if (!Running()) ClearCrashMarkers();
@@ -177,7 +177,7 @@ public static class ObsSetup
     /// </summary>
     public static string? Problem()
     {
-        if (ExePath() == null) return "OBS is not installed. Get it from obsproject.com, then open Settings > Set up OBS.";
+        if (ExePath() == null) return "OBS is not installed. Settings > Set up OBS installs it for you (free), then sets it up.";
         var config = ReadConfig();
         var running = Running();
         if (!config.Enabled && running) return "OBS's WebSocket server is off. In OBS: Tools > WebSocket Server Settings > Enable WebSocket server.";

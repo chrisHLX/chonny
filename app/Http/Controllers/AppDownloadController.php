@@ -36,6 +36,14 @@ class AppDownloadController extends Controller
         return view('app.download', ['available' => is_file(DesktopAppController::path())]);
     }
 
+    /** /wow/forever: what the app and its Observer addon do in WoW Forever (2026-11-12). */
+    public function forever()
+    {
+        PageViewEvent::log('forever_page');
+
+        return view('app.forever', ['available' => is_file(DesktopAppController::path())]);
+    }
+
     public function connect(Request $request)
     {
         PageViewEvent::log('app_connect');

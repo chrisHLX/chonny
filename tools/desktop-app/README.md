@@ -294,7 +294,16 @@ list and a "Watch the video" button on its card; the video page links back to th
 Not yet: the Watch page (the timeline under the video) inside this app's window (its pages come from the website, and a local video
 needs a local page), and the prep for later arenas of a session.
 
-## Shared auction prices in Forever (0.6.11, 2026-11-12, unreleased)
+## Installing OBS for the player (0.6.11, 2026-11-12)
+
+Settings > Set up OBS, with no OBS on the PC, asks "Install OBS Studio?" and on yes runs Windows'
+winget with OBS's official package (`winget install --id OBSProject.OBSStudio --exact --silent
+--accept-source-agreements --accept-package-agreements`; checked with `winget show`, publisher OBS
+Project, 33.0.0 on 2026-11-12), then carries on with the usual setup. Windows asks for permission as
+the installer starts. No winget, a failure or more than 10 minutes opens obsproject.com/download
+instead (`ObsInstaller`). Not run end to end on Chriso's PC, which already has OBS.
+
+## Shared auction prices in Forever (0.6.11, 2026-11-12)
 
 `MarketShare` sends each new auction house scan the Observer addon saved to `POST /api/forever/scan`,
 and writes everyone's prices for that market (`GET /api/forever/market`) into the addon as
