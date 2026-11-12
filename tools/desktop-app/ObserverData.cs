@@ -194,8 +194,11 @@ public static class SavedVariables
             return t.IndexOfAny(['.', 'e', 'E']) >= 0 ? double.Parse(t, CultureInfo.InvariantCulture) : long.Parse(t, CultureInfo.InvariantCulture);
         }
 
-        private static readonly Regex Num = new(@"-?\d+(\.\d+)?([eE][-+]?\d+)?", RegexOptions.Compiled);
-        private static readonly Regex Name = new(@"[A-Za-z_]\w*\s*=", RegexOptions.Compiled);
+        // \G: a match only where the reader is. Without it, Match(s, i) searched on through the rest of
+        // the file whenever the next thing wasn't a number or a name, for every value: reading the
+        // addon's 1 MB file took 57 seconds on the window's thread, and the Looked at tab froze (13 Nov).
+        private static readonly Regex Num = new(@"\G-?\d+(\.\d+)?([eE][-+]?\d+)?", RegexOptions.Compiled);
+        private static readonly Regex Name = new(@"\G[A-Za-z_]\w*\s*=", RegexOptions.Compiled);
 
         private string Str()
         {

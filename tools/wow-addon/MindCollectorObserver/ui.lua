@@ -840,6 +840,14 @@ end
 
 local function valueText(s)
     if s.kind == "item" then
+        -- The last move: the reading before against the newest (13 Nov: an item tracked from Market,
+        -- never hovered, had no "price when first looked" and so showed no change at all).
+        local h = priceHistory(s.id)
+        if #h >= 2 then
+            local was, now = h[#h - 1].min, h[#h].min
+            if math.abs(now - was) < 1 then return ns.money(now) .. "  " .. grey("no change") end
+            return ns.money(was) .. " > " .. ns.money(now) .. "  " .. changeText(was, now)
+        end
         local first, cur = priceTrail(s)
         if first and cur then
             if math.abs(cur.min - first.p) < 1 then return ns.money(cur.min) end
