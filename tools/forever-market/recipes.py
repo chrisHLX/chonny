@@ -9,7 +9,8 @@ def rows(name):
     with open(os.path.join(D, name + '.csv'), encoding='utf-8', newline='') as f:
         yield from csv.DictReader(f)
 
-PROF = {164: 'Blacksmithing', 165: 'Leatherworking', 171: 'Alchemy', 185: 'Cooking', 197: 'Tailoring',
+# Mining (186) for its smelting, added 2026-11-12: a miner saw no recipes without it.
+PROF = {164: 'Blacksmithing', 165: 'Leatherworking', 171: 'Alchemy', 185: 'Cooking', 197: 'Tailoring', 186: 'Mining',
         202: 'Engineering', 333: 'Enchanting', 129: 'First Aid'}
 
 spellname = {int(r['ID']): r['Name_lang'] for r in rows('SpellName')}
@@ -53,6 +54,9 @@ for r in rows('SkillLineAbility'):
         continue
     eff = effects.get(sid, [])
     made = [e['item'] for e in eff if e['effect'] == 24 and e['item']]
+    # how many one craft makes: the create-item effect's base points (Fire Oil 2, ammo 200; checked
+    # against Wowhead's Forever pages 2026-11-12)
+    made_n = next((int(float(e['bp'] or 1)) for e in eff if e['effect'] == 24 and e['item']), 1)
     is_enchant = any(e['effect'] == 53 for e in eff)
     name = spellname.get(sid, f'spell {sid}')
     if '[DNT]' in name or 'zzOLD' in name or name.startswith('Test'):
@@ -61,7 +65,7 @@ for r in rows('SkillLineAbility'):
     recipes.append(dict(
         prof=PROF[sl], spell=sid, name=name, min=int(r['MinSkillLineRank']),
         yellow=int(r['TrivialSkillLineRankLow']), grey=int(r['TrivialSkillLineRankHigh']),
-        skillups=int(r['NumSkillUps']), out=out, out_name=items.get(out, {}).get('name', ''),
+        skillups=int(r['NumSkillUps']), out=out, out_n=max(1, made_n), out_name=items.get(out, {}).get('name', ''),
         out_q=items.get(out, {}).get('q', -1), out_reqlvl=items.get(out, {}).get('reqlvl', 0),
         out_class=itemclass.get(out, (None, None)), enchant=is_enchant,
         from_item=bool(taught_by_item.get(name.lower())),

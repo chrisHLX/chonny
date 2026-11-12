@@ -27,6 +27,8 @@ local selProf -- the profession open in the Professions tab
 -- makes, and how it's obtained (2 drop, 4 quest, 5 vendor, 6 trainer).
 for _, list in pairs(ns.recipes or {}) do
     for _, r in ipairs(list) do
+        -- how many one craft makes, from the game data (field 12, 2026-11-12): Fire Oil 2, ammo 200
+        if r[12] and r[12] > 1 then r.yield = r[12] end
         local w = ns.wh and ns.wh[r[1]]
         if w then
             if w[1] > 0 and w[1] < 9999 then r[3], r[9] = w[1], 1 end
@@ -68,6 +70,38 @@ end
 local function color(hex, s) return "|c" .. hex .. s .. "|r" end
 local function grey(s) return color("ff9a9a9a", s) end
 
+-- An item's name. The game knows it only once it has loaded the item, and a full scan holds thousands
+-- it never has, so their names came back empty (Chriso's screenshot, 2026-11-12). This asks the game
+-- to load the item and redraws the window when names arrive; until then the scan's own name,
+-- Data.lua's, or "item N". Only call it for what's on screen: each unknown id is one request.
+local pendingNames, nameRedraw = {}, false
+local function itemName(id, known)
+    local n = C_Item.GetItemNameByID(id)
+    if n and n ~= "" then return n end
+    if known and known ~= "" then return known end
+    if not pendingNames[id] and C_Item.RequestLoadItemDataByID then
+        pendingNames[id] = true
+        pcall(C_Item.RequestLoadItemDataByID, id)
+    end
+    return (ns.itemNames and ns.itemNames[id]) or ("item " .. id)
+end
+local nameEvents = CreateFrame("Frame")
+nameEvents:RegisterEvent("GET_ITEM_INFO_RECEIVED")
+nameEvents:SetScript("OnEvent", function(_, _, id)
+    if not (id and pendingNames[id]) then return end
+    pendingNames[id] = nil
+    -- kept in the scan too, so the app and later sessions have it
+    local sc = ns.DB and ns.DB.lastScan and ns.DB.lastScan.prices and ns.DB.lastScan.prices[id]
+    if sc and (not sc[3] or sc[3] == "") then sc[3] = C_Item.GetItemNameByID(id) end
+    if not nameRedraw and frame and frame:IsShown() then
+        nameRedraw = true
+        C_Timer.After(0.5, function()
+            nameRedraw = false
+            if frame and frame:IsShown() and ns.refresh then ns.refresh() end
+        end)
+    end
+end)
+
 local function nameColor(s)
     if s.kind == "item" then
         local q = C_Item.GetItemQualityByID(s.id)
@@ -94,7 +128,7 @@ local function iconOf(kind, id)
 end
 
 local function displayName(s)
-    local n = s.name or (s.kind .. " " .. tostring(s.id))
+    local n = s.name or (s.kind == "item" and itemName(s.id)) or (s.kind .. " " .. tostring(s.id))
     if s.kind == "player" then n = n:gsub(" %(.*%)$", "") end
     return n
 end
@@ -149,13 +183,51 @@ local function movers()
     for id, v in pairs(a.prices) do
         local old = b.prices[id]
         if old and old[1] > 0 and v[2] >= 5 then
-            local name = C_Item.GetItemNameByID(id) or v[3]
+            local name = C_Item.GetItemNameByID(id)
+            if not name or name == "" then name = (v[3] ~= "" and v[3]) or (ns.itemNames and ns.itemNames[id]) end
             if matches(name or "") then
-                table.insert(out, { id = id, name = name, was = old[1], now = v[1], q = v[2], p = (v[1] - old[1]) / old[1] })
+                -- at least how many sold: fewer listed at a held price, past what could have run out
+                local sold = 0
+                local drop = old[2] - v[2]
+                if drop > 0 and v[1] >= old[1] then
+                    local could = 0
+                    if b.bands and old.tl then
+                        for band, q in pairs(old.tl) do
+                            local t = b.bands[band]
+                            if not t or t[1] < a.t - b.t then could = could + q end
+                        end
+                        sold = math.max(0, drop - could)
+                    end
+                end
+                table.insert(out, { id = id, name = name, was = old[1], now = v[1], q = v[2], oq = old[2],
+                    p = (v[1] - old[1]) / old[1], sold = sold })
             end
         end
     end
-    table.sort(out, function(x, y) return math.abs(x.p) > math.abs(y.p) end)
+    -- the Sort menu (DB.marketSort): what each keeps, and its order
+    local mode = ns.DB.marketSort or "move"
+    local keep = {
+        up = function(m) return m.p > 0 end,
+        down = function(m) return m.p < 0 end,
+        selling = function(m) return m.sold > 0 end,
+        flood = function(m) return m.q > m.oq and m.now <= m.was end,
+    }
+    local key = {
+        move = function(m) return math.abs(m.p) end,
+        up = function(m) return m.p end,
+        down = function(m) return -m.p end,
+        selling = function(m) return m.sold end,
+        flood = function(m) return m.q - m.oq end,
+        listed = function(m) return m.q end,
+        gold = function(m) return m.now * m.q end,
+    }
+    if keep[mode] then
+        local kept = {}
+        for _, m in ipairs(out) do if keep[mode](m) then table.insert(kept, m) end end
+        out = kept
+    end
+    local k = key[mode] or key.move
+    table.sort(out, function(x, y) return k(x) > k(y) end)
     return out, string.format("%s compared with %s", ns.shortDate(a.t), ns.shortDate(b.t))
 end
 
@@ -240,7 +312,6 @@ local function skillColor(r, rank)
     return "ff40c040", chance, "green"
 end
 
-local function itemName(id) return C_Item.GetItemNameByID(id) or (ns.itemNames and ns.itemNames[id]) or ("item " .. id) end
 
 -- An item's price: the newest the auction house showed (any age), else what a vendor sells it for.
 local function unitPrice(id)
@@ -366,19 +437,34 @@ local function buyCost(r)
         if not p then return nil end
         total = total + p * r[8][i + 1]
     end
-    return total
+    -- per item made: a craft that makes 2 (Fire Oil) costs half each
+    return total / (r.yield or 1)
+end
+
+-- Your professions and skill, read at most once a second: recipeCost asks for every reagent.
+local profsNow, profsAt = {}, 0
+local function myProfs()
+    if GetTime() - profsAt > 1 then
+        profsNow, profsAt = ns.myProfessions and ns.myProfessions() or {}, GetTime()
+    end
+    return profsNow
 end
 
 -- What a recipe costs to make: each reagent bought, or made yourself when you can and that's cheaper
 -- (one step down: the oil from the fish, not the fish). made[item] = that cost, when it was used.
--- Assumes one made per craft, which holds for the reagents alchemy and the rest make for themselves.
+-- "Yourself" is any of your professions at the skill it needs (2026-11-12): a Blacksmith who mines
+-- can smelt their own bars.
 local function recipeCost(r, pid, rank)
     local total, missing, made = 0, 0, {}
     for i = 1, #r[8], 2 do
         local id, n = r[8][i], r[8][i + 1]
         local p = unitPrice(id)
-        local m = pid and makerOf(pid, id)
-        local c = m and m[3] <= (rank or 0) and buyCost(m)
+        local c
+        for opid, op in pairs(myProfs()) do
+            local m = makerOf(opid, id)
+            local mc = m and m[3] <= (op.rank or 0) and buyCost(m)
+            if mc and (not c or mc < c) then c = mc end
+        end
         if c and (not p or c < p) then
             made[id] = c
             p = c
@@ -727,6 +813,71 @@ local function placeList(top)
     list:SetWidth(LIST_W)
 end
 
+-- The Market's sorts (DB.marketSort), each a different question about where prices are going.
+local MARKET_SORTS = {
+    { value = "move", label = "Biggest change" },
+    { value = "up", label = "Rising most" },
+    { value = "down", label = "Falling most" },
+    { value = "selling", label = "Selling (fewer listed, price held)" },
+    { value = "flood", label = "Flooding (more listed, price no higher)" },
+    { value = "listed", label = "Most listed" },
+    { value = "gold", label = "Most gold on sale" },
+}
+
+-- One small popup list, shared by the Kind and Sort buttons.
+local menu
+local function openMenu(anchor, options, current, onPick)
+    if not menu then
+        menu = CreateFrame("Frame", nil, frame, "BackdropTemplate")
+        backdrop(menu, { 0.05, 0.05, 0.05, 0.98 }, { GOLD[1], GOLD[2], GOLD[3], 0.6 })
+        menu:SetFrameStrata("DIALOG")
+        menu:EnableMouse(true)
+        menu.buttons = {}
+    end
+    if menu:IsShown() and menu.anchor == anchor then menu:Hide() return end
+    menu.anchor = anchor
+    local width = 0
+    for i, o in ipairs(options) do
+        local b = menu.buttons[i]
+        if not b then
+            b = CreateFrame("Button", nil, menu)
+            b:SetHeight(18)
+            b.fs = text(b, "GameFontHighlightSmall")
+            b.fs:SetPoint("LEFT", 8, 0)
+            local hl = b:CreateTexture(nil, "HIGHLIGHT")
+            hl:SetAllPoints()
+            hl:SetColorTexture(1, 1, 1, 0.08)
+            menu.buttons[i] = b
+        end
+        b.fs:SetText(o.value == current and color(GOLD_HEX, o.label) or o.label)
+        width = math.max(width, b.fs:GetStringWidth())
+        b:SetScript("OnClick", function() menu:Hide() onPick(o.value) end)
+        b:ClearAllPoints()
+        b:SetPoint("TOPLEFT", 4, -4 - (i - 1) * 18)
+        b:Show()
+    end
+    for i = #options + 1, #menu.buttons do menu.buttons[i]:Hide() end
+    for i = 1, #options do menu.buttons[i]:SetWidth(width + 16) end
+    menu:SetSize(width + 24, #options * 18 + 8)
+    menu:ClearAllPoints()
+    menu:SetPoint("TOPLEFT", anchor, "BOTTOMLEFT", 0, -2)
+    menu:Show()
+end
+
+local function dropButton(bar, name)
+    local b = CreateFrame("Button", nil, bar, "BackdropTemplate")
+    backdrop(b, { 0.08, 0.08, 0.08, 1 }, { GOLD[1], GOLD[2], GOLD[3], 0.35 })
+    b:SetHeight(20)
+    b.label = text(b, "GameFontHighlightSmall")
+    b.label:SetPoint("LEFT", 8, 0)
+    b.arrow = b:CreateTexture(nil, "ARTWORK")
+    b.arrow:SetTexture("Interface\\Buttons\\Arrow-Down-Up")
+    b.arrow:SetSize(12, 12)
+    b.arrow:SetPoint("RIGHT", -4, -2)
+    bar[name] = b
+    return b
+end
+
 local function marketChip(i)
     local b = frame.mktBar.chips[i]
     if b then return b end
@@ -736,11 +887,7 @@ local function marketChip(i)
     b.label = text(b, "GameFontHighlightSmall")
     b.label:SetPoint("CENTER")
     b:SetScript("OnClick", function(self)
-        if self.level == 1 then
-            ns.DB.marketCat, ns.DB.marketSub = self.value, nil
-        else
-            ns.DB.marketSub = self.value
-        end
+        ns.DB.marketCat, ns.DB.marketSub = self.value, nil
         list.scroll:SetVerticalScroll(0)
         refresh()
     end)
@@ -748,41 +895,74 @@ local function marketChip(i)
     return b
 end
 
--- Lays the chips out over the list, the categories on the first line and the chosen category's
--- subclasses below, wrapping as needed; moves the list down under them.
+-- Lays the bar out over the list: the categories on the first line, then a Kind menu (the chosen
+-- category's kinds, as the game names them) and a Sort menu; moves the list down under it.
 local function drawMarketBar(cats, subs)
     local bar = frame.mktBar
     local sel, sub = ns.DB.marketCat or "all", ns.DB.marketSub
-    local chips = {}
+    local x, y, n = 0, 0, 0
     for _, c in ipairs(MARKET_CATS) do
         if c.key == "all" or (cats[c.key] or 0) > 0 or c.key == sel then
-            table.insert(chips, { level = 1, value = c.key, label = c.label .. "  " .. (cats[c.key] or 0), on = c.key == sel })
+            n = n + 1
+            local b = marketChip(n)
+            b.level, b.value = 1, c.key
+            local label = c.label .. grey(" " .. (cats[c.key] or 0))
+            b.label:SetText(c.key == sel and color(GOLD_HEX, c.label) .. grey(" " .. (cats[c.key] or 0)) or label)
+            b:SetWidth(b.label:GetStringWidth() + 12)
+            b:SetBackdropBorderColor(GOLD[1], GOLD[2], GOLD[3], c.key == sel and 0.9 or 0.15)
+            if x + b:GetWidth() > LIST_W then x, y = 0, y - 24 end
+            b:ClearAllPoints()
+            b:SetPoint("TOPLEFT", x, y)
+            b:Show()
+            x = x + b:GetWidth() + 4
         end
     end
+    for i = n + 1, #bar.chips do bar.chips[i]:Hide() end
+
+    -- second line: Kind (when a category is chosen) and Sort
+    y = y - 24
+    x = 0
+    local kind = bar.kind or dropButton(bar, "kind")
     if sel ~= "all" and next(subs) then
         local names = {}
         for st in pairs(subs) do table.insert(names, st) end
         table.sort(names, function(a, b) if subs[a] ~= subs[b] then return subs[a] > subs[b] end return a < b end)
-        table.insert(chips, { level = 2, value = nil, label = "Every kind", on = sub == nil, newLine = true })
-        for i = 1, math.min(#names, 16) do
-            table.insert(chips, { level = 2, value = names[i], label = names[i] .. "  " .. subs[names[i]], on = sub == names[i] })
-        end
+        local options = { { value = false, label = "Every kind" } }
+        for _, st in ipairs(names) do table.insert(options, { value = st, label = st .. "  " .. subs[st] }) end
+        kind.label:SetText(grey("Kind: ") .. (sub or "Every kind"))
+        kind:SetWidth(kind.label:GetStringWidth() + 28)
+        kind:SetScript("OnClick", function(self)
+            openMenu(self, options, sub or false, function(v)
+                ns.DB.marketSub = v or nil
+                list.scroll:SetVerticalScroll(0)
+                refresh()
+            end)
+        end)
+        kind:ClearAllPoints()
+        kind:SetPoint("TOPLEFT", x, y)
+        kind:Show()
+        x = x + kind:GetWidth() + 6
+    else
+        kind:Hide()
     end
-    local x, y = 0, 0
-    for i, c in ipairs(chips) do
-        local b = marketChip(i)
-        b.level, b.value = c.level, c.value
-        b.label:SetText(c.on and color(GOLD_HEX, c.label) or c.label)
-        b:SetWidth(b.label:GetStringWidth() + 18)
-        b:SetBackdropBorderColor(GOLD[1], GOLD[2], GOLD[3], c.on and 0.9 or 0.2)
-        if c.newLine or x + b:GetWidth() > LIST_W then x, y = 0, y - 24 end
-        b:ClearAllPoints()
-        b:SetPoint("TOPLEFT", x, y)
-        b:Show()
-        x = x + b:GetWidth() + 6
-    end
-    for i = #chips + 1, #bar.chips do bar.chips[i]:Hide() end
-    local height = -y + 24
+    local sort = bar.sort or dropButton(bar, "sort")
+    local mode = ns.DB.marketSort or "move"
+    local current = MARKET_SORTS[1].label
+    for _, o in ipairs(MARKET_SORTS) do if o.value == mode then current = o.label end end
+    sort.label:SetText(grey("Sort: ") .. current)
+    sort:SetWidth(sort.label:GetStringWidth() + 28)
+    sort:SetScript("OnClick", function(self)
+        openMenu(self, MARKET_SORTS, mode, function(v)
+            ns.DB.marketSort = v
+            list.scroll:SetVerticalScroll(0)
+            refresh()
+        end)
+    end)
+    sort:ClearAllPoints()
+    sort:SetPoint("TOPLEFT", x, y)
+    sort:Show()
+
+    local height = -y + 22
     bar:SetHeight(height)
     bar:Show()
     placeList(-72 - height - 4)
@@ -943,15 +1123,20 @@ local function drawList()
         list.note:SetText(label and (shown .. "Whole auction house, " .. label .. ", at least 5 listed")
             or (last and string.format("One full scan so far (%s, %d auctions). Scan again another day and the biggest moves show here.", when(last.t), last.n or 0))
             or "No full scan yet: open the auction house and click Scan (or /mco scan). Two scans on different days show the moves.")
+        local mode = ns.DB.marketSort or "move"
         for i = 1, math.min(#ms, 300) do
             local m = ms[i]
             n = n + 1
             local r = rows[n] or makeRow(n)
             local key = "mover:" .. m.id
-            local looked = ns.DB.subjects["item:" .. m.id] and color(GOLD_HEX, "you looked at this  ·  ") or ""
-            fillRow(r, key, C_Item.GetItemIconByID(m.id), m.name or ("item " .. m.id),
+            local bits = {}
+            if ns.DB.subjects["item:" .. m.id] then table.insert(bits, color(GOLD_HEX, "you looked at this")) end
+            table.insert(bits, string.format("listed %d > %d", m.oq, m.q))
+            if m.sold > 0 then table.insert(bits, color("ff40d060", "at least " .. m.sold .. " sold")) end
+            if mode == "gold" then table.insert(bits, ns.money(m.now * m.q) .. " on sale") end
+            fillRow(r, key, C_Item.GetItemIconByID(m.id), itemName(m.id, m.name),
                 nameColor({ kind = "item", id = m.id }), ns.money(m.was) .. " > " .. ns.money(m.now) .. "  " .. changeText(m.was, m.now),
-                looked .. m.q .. " listed", m.id)
+                table.concat(bits, "  ·  "), m.id)
             place(r)
         end
     else
@@ -970,6 +1155,7 @@ local function drawList()
     list.child:SetHeight(math.max(-y, 10))
     if tab ~= "movers" and frame.mktBar:IsShown() then
         frame.mktBar:Hide()
+        if menu then menu:Hide() end
         placeList(-72)
     end
 end
@@ -1041,8 +1227,8 @@ local function useText(u, mine)
     if mine then hex, _, word = skillColor(r, mine.rank) end
     local name = r[7] > 0 and itemName(r[7]) or r[2]
     local first = color(hex, name) .. grey("  ·  takes " .. u.n)
-    if r[11] == 1 then first = first .. color(GOLD_HEX, "  ·  used at 60") end
     local facts = { string.format("learn at %d, grey at %d", r[3], r[5]) }
+    if r[11] == 1 then table.insert(facts, 1, color(GOLD_HEX, "used at 60") .. "|cff9a9a9a") end
     if mine then
         table.insert(facts, r[3] > mine.rank and ("you need " .. r[3]) or (word == "grey" and "no points for you" or (word .. " for you")))
     end
@@ -1432,7 +1618,7 @@ local function drawDetail()
         table.insert(lines, "")
         table.insert(lines, s and color(GOLD_HEX, "You looked at this " .. s.looks .. " times, last " .. when(s.last) .. ".")
             or grey("You haven't looked at this."))
-        setDetail(C_Item.GetItemIconByID(id), C_Item.GetItemNameByID(id) or ("item " .. id),
+        setDetail(C_Item.GetItemIconByID(id), itemName(id, v and v[3]),
             nameColor({ kind = "item", id = id }), lines, nil, false, nil, id)
         return
     end

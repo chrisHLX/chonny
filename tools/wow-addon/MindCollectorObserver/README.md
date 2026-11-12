@@ -64,7 +64,21 @@ what was saved of them is dropped at the next login.
 - **Market filter** (2026-11-12): chips over the Market list pick a category (Materials, Consumables,
   Gear, Recipes, Bags, Other; by the item's class in the client data) and then a kind within it as
   the game names it (Herb, Cloth, Metal & Stone, Potion, Elixir, Food & Drink...), each with how
-  many moves it holds. The choice is remembered (`DB.marketCat`, `DB.marketSub`).
+  many moves it holds. The choice is remembered (`DB.marketCat`, `DB.marketSub`). Since the same day the
+  kinds and the order are two small menus under the categories: **Sort** by biggest change, rising
+  most, falling most, selling (fewer listed at a held price, past what could have expired: "at least
+  N sold"), flooding (more listed, price no higher), most listed, or most gold on sale
+  (`DB.marketSort`). Each row says how listings moved ("listed 12 > 24").
+- **Item names that load** (2026-11-12): a full scan holds thousands of items the game hasn't
+  loaded, whose names came back empty ("item 13468"). The window asks the game to load what it
+  shows (`C_Item.RequestLoadItemDataByID`) and redraws on `GET_ITEM_INFO_RECEIVED`; the name is
+  also kept in the scan.
+- **Every profession** (2026-11-12): recipes for Alchemy, Blacksmithing, Cooking, Enchanting,
+  Engineering, First Aid, Leatherworking, Tailoring and Mining's smelting, from the client data, with
+  how many one craft makes (Fire Oil 2, ammo 200) for all of them. Make-it-yourself looks across all
+  your professions, so a Blacksmith who mines smelts their own bars. Wowhead's extras (exact learn
+  skill, trainer fee, recipe vendors and drops) are still Alchemy only; elsewhere the learn skill
+  says "about" until you open a trainer.
 - **The window** (`/mco` or the spyglass on the minimap): Items, Professions, Market and Ask, with a
   search box. `ui.lua` draws it; `main.lua` records.
 
