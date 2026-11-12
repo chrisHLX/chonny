@@ -192,8 +192,9 @@ internal sealed class SettingsForm : Form
     }
 
     /// <summary>
-    /// Turns on OBS's remote control (or says how), opens OBS, connects, and checks it records into
-    /// a file the app can play. Ticks "Record each arena game" when it all works.
+    /// Installs OBS if it's missing, then ObsCheck: sets it up, restarts it when a setting needs that
+    /// (asking first), and tests a short recording (and a Forever replay save when that's ticked)
+    /// before it says ready. Ticks "Record each arena game" when it all works.
     /// </summary>
     private async Task SetUpObsAsync(Button button)
     {
@@ -227,29 +228,24 @@ internal sealed class SettingsForm : Form
                 _status.Text = "OBS is installed. Setting it up…";
             }
 
-            var (client, message) = await ObsSetup.ConnectAsync(openIfClosed: true, CancellationToken.None);
-            if (client == null)
+            // Set up and prove it (ObsCheck, 2026-11-12): fixes what it can, restarts OBS when a setting
+            // needs it (asking first), then a short test recording, checked, before it says ready.
+            // Off the window's thread; questions and progress come back to it.
+            bool Ask(string question) => (bool)Invoke(() => MessageBox.Show(this, question, "MindCollector: OBS",
+                MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes);
+            void Progress(string line) => BeginInvoke(() => { _status.Text = line; _status.ForeColor = Theme.Muted; });
+            var forever = _forever.Checked;
+            var outcome = await Task.Run(() => ObsCheck.SetUpAndTestAsync(_settings, forever, Ask, Progress, CancellationToken.None));
+            if (outcome.Ready)
             {
-                _status.Text = message;
-                _status.ForeColor = Theme.Lost;
-                return;
-            }
-            await using (client)
-            {
-                var added = await ObsSetup.EnsureWowCaptureAsync(client, CancellationToken.None);
-                if (added != null) message = $"{message} {added}";
-                var format = await ObsSetup.RecordFormatAsync(client, CancellationToken.None);
                 _record.Checked = true;
-                if (ObsSetup.Playable(format))
-                {
-                    _status.Text = $"{message} Each arena game will be recorded{(format != null ? $" as {format}" : "")}. Click Save.";
-                    _status.ForeColor = Theme.Won;
-                }
-                else
-                {
-                    _status.Text = $"{message} It records as {format}, which the app cannot play: in OBS, set Settings > Output > Recording Format to MP4 (or Hybrid MP4). Then click Save.";
-                    _status.ForeColor = Theme.Gold;
-                }
+                _status.Text = "Ready: " + string.Join(" ", outcome.Lines.Where(l => l.StartsWith("Arena") || l.StartsWith("Forever") || l.StartsWith("WoW isn't"))) + " Click Save.";
+                _status.ForeColor = Theme.Won;
+            }
+            else
+            {
+                _status.Text = outcome.Lines.LastOrDefault() ?? "OBS isn't ready.";
+                _status.ForeColor = Theme.Lost;
             }
         }
         catch (Exception e)

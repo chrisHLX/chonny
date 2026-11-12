@@ -682,11 +682,12 @@ internal static class Diagnostics
             var fps = args.Length > 2 && int.TryParse(args[2], out var f) ? f : 60;
             var sound = args.Length > 3 ? args[3] : "wow";
             var mbps = args.Length > 4 && int.TryParse(args[4], out var m) ? m : 25;
+            var fine = args.Length > 5 && args[5] == "fine";
             var hwnd = NativeRecorder.FindWow();
             if (hwnd == IntPtr.Zero) { Write("rec-test.txt", "No WoW window found."); return 2; }
             var path = Path.Combine(AppSettings.Dir, "rec-test.mp4");
             var cpu = System.Diagnostics.Process.GetCurrentProcess().TotalProcessorTime;
-            var r = NativeRecorder.RecordAsync(hwnd, path, TimeSpan.FromSeconds(seconds), new NativeRecorder.Options(fps, (uint)mbps * 1_000_000, sound)).GetAwaiter().GetResult();
+            var r = NativeRecorder.RecordAsync(hwnd, path, TimeSpan.FromSeconds(seconds), new NativeRecorder.Options(fps, (uint)mbps * 1_000_000, sound, fine)).GetAwaiter().GetResult();
             cpu = System.Diagnostics.Process.GetCurrentProcess().TotalProcessorTime - cpu;
             report.AppendLine($"{r.Width}x{r.Height}, asked {seconds}s at {fps} fps, {mbps} Mbps, sound: {sound}; took {r.Took.TotalSeconds:F1}s");
             report.AppendLine($"WoW drew {r.Captured} frames ({r.Captured / Math.Max(r.Length.TotalSeconds, 0.001):F1} a second); encoded {r.Encoded} at a steady {fps}, {r.Repeated} of them repeats; dropped {r.Dropped}; clock late {r.Late} times");
@@ -720,6 +721,64 @@ internal static class Diagnostics
         catch (Exception e)
         {
             Write("rec-test.txt", report + $"Error: {e}");
+            return 1;
+        }
+    }
+
+    /// <summary>
+    /// --obs-check [forever] [restart]: Settings' Set up OBS without the window (ObsCheck): sets OBS up
+    /// and records a test, a Forever replay save too with "forever". Restarts of OBS are answered no
+    /// unless "restart" is given (obs-check.txt).
+    /// </summary>
+    public static int ObsCheckRun(bool forever, bool restart)
+    {
+        var report = new StringBuilder();
+        try
+        {
+            var settings = AppSettings.Load();
+            var outcome = ObsCheck.SetUpAndTestAsync(settings, forever, q => { report.AppendLine($"asked: {q.Split(Environment.NewLine[^1])[0]} -> {(restart ? "yes" : "no")}"); return restart; },
+                line => report.AppendLine("  " + line), CancellationToken.None).GetAwaiter().GetResult();
+            report.AppendLine(outcome.Ready ? "READY" : "NOT READY");
+            foreach (var l in outcome.Lines) report.AppendLine("= " + l);
+            Write("obs-check.txt", report.ToString());
+            return outcome.Ready ? 0 : 2;
+        }
+        catch (Exception e)
+        {
+            Write("obs-check.txt", report + $"Error: {e}");
+            return 1;
+        }
+    }
+
+    /// <summary>--probe FILE: a video's size, frame rate, bitrate and sound as Windows reads them, and a still from its middle (probe.txt, probe.png).</summary>
+    public static int Probe(string path, bool full = false)
+    {
+        var report = new StringBuilder();
+        try
+        {
+            var file = Windows.Storage.StorageFile.GetFileFromPathAsync(path).AsTask().GetAwaiter().GetResult();
+            var clip = Windows.Media.Editing.MediaClip.CreateFromFileAsync(file).AsTask().GetAwaiter().GetResult();
+            var v = clip.GetVideoEncodingProperties();
+            var bytes = new FileInfo(path).Length;
+            report.AppendLine($"{Path.GetFileName(path)}: {clip.OriginalDuration.TotalSeconds:F2}s, {bytes / 1048576.0:F1} MB ({bytes * 8 / clip.OriginalDuration.TotalSeconds / 1e6:F1} Mbps overall)");
+            report.AppendLine($"video: {v.Subtype} {v.Width}x{v.Height}, {v.FrameRate.Numerator / (double)Math.Max(v.FrameRate.Denominator, 1):F2} fps, profile {v.ProfileId}, {v.Bitrate / 1e6:F1} Mbps");
+            foreach (var t in clip.EmbeddedAudioTracks)
+            {
+                var a = t.GetAudioEncodingProperties();
+                report.AppendLine($"sound: {a.Subtype} {a.SampleRate} Hz x{a.ChannelCount}, {a.Bitrate / 1000} kbps");
+            }
+            var comp = new Windows.Media.Editing.MediaComposition();
+            comp.Clips.Add(clip);
+            using var still = comp.GetThumbnailAsync(clip.OriginalDuration / 2, full ? (int)v.Width : 960, full ? (int)v.Height : 540, Windows.Media.Editing.VideoFramePrecision.NearestFrame).AsTask().GetAwaiter().GetResult();
+            using var input = still.AsStreamForRead();
+            using var output = File.Create(Path.Combine(AppSettings.Dir, "probe.png"));
+            input.CopyTo(output);
+            Write("probe.txt", report.ToString());
+            return 0;
+        }
+        catch (Exception e)
+        {
+            Write("probe.txt", report + $"Error: {e.Message}");
             return 1;
         }
     }

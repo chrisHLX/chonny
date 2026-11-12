@@ -22,6 +22,9 @@ internal static class Program
         if (args.Length >= 5 && args[0] == "--cut") return Diagnostics.Cut(args);
         if (args.Length >= 1 && args[0] == "--check-record-light") return Diagnostics.CheckRecordLight();
         if (args.Length >= 1 && args[0] == "--rec-test") return Diagnostics.RecTest(args);
+        if (args.Length >= 1 && args[0] == "--obs-buffer-off") { var (ok, m) = ObsCheck.RestartAsync(() => ObsSetup.SetReplayBufferInProfile(false, 0, out _), CancellationToken.None).GetAwaiter().GetResult(); Console.WriteLine(m); return ok ? 0 : 1; }
+        if (args.Length >= 1 && args[0] == "--obs-check") return Diagnostics.ObsCheckRun(args.Contains("forever"), args.Contains("restart"));
+        if (args.Length >= 2 && args[0] == "--probe") return Diagnostics.Probe(args[1], args.Contains("full"));
         if (args.Length >= 1 && args[0] == "--check-notes") return Diagnostics.CheckNotes(args);
         if (args.Length >= 2 && args[0] == "--local-sync-once") return Diagnostics.LocalSyncOnce(args);
         if (args.Length >= 2 && args[0] == "--check-live") return Diagnostics.CheckLive(args[1], args.Length > 2 && int.TryParse(args[2], out var from) ? from : 0);

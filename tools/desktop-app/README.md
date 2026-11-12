@@ -303,6 +303,36 @@ Project, 33.0.0 on 2026-11-12), then carries on with the usual setup. Windows as
 the installer starts. No winget, a failure or more than 10 minutes opens obsproject.com/download
 instead (`ObsInstaller`). Not run end to end on Chriso's PC, which already has OBS.
 
+## Set up OBS, proved with a test (2026-11-12, unreleased)
+
+After Cbags hit "OBS's replay buffer was off ... close OBS and open it again", Settings > Set up OBS
+(`ObsCheck.SetUpAndTestAsync`) fixes what it can instead of telling the player to, then proves it:
+installs OBS if missing (`ObsInstaller`), turns the remote control on, adds the WoW scene, sets MP4,
+turns the replay buffer on when Forever recording is ticked, and **restarts OBS itself** when a
+setting only takes effect as OBS starts (asking first in Settings; never while OBS records, streams or
+runs its virtual camera). It says ready only after a test: a 6s recording the way a game gets one, and
+for Forever a real save from the replay buffer, each read back by Windows (length, picture, sound, and
+not black while WoW is open), then deleted. `ForeverRecorder` does the same restart on its own when
+Forever opens and OBS's buffer is off, as long as OBS isn't busy.
+
+The restart closes OBS the way its own close button does (WM_CLOSE to its main window, so it saves its
+settings and leaves no crash marker), after stopping a running replay buffer and **waiting until OBS
+says it has stopped**: closing straight after the stop request got OBS's "Active Outputs, exit anyway?"
+on 12 Nov. If OBS asks anyway, the app answers no and leaves OBS as it was.
+
+Checked on Chriso's PC: `--obs-check forever` READY (Forever clip and a 5.4s test recording, 1920x1080
+60 fps with sound); Cbags' OBS reproduced with `--obs-buffer-off` (OBS restarted with RecRB=false), then
+`--obs-check forever` NOT READY when the restart was refused and READY in 30s when allowed (RecRB back
+to true). A PowerShell `Start-Process -Wait` on a check that restarts OBS waits for OBS too (it is the
+check's child): wait on the process itself.
+
+**The app's own recorder was tried and shelved the same day** (`NativeRecorder`, `AudioLoopback`,
+`--rec-test`): Windows' window capture into the hardware encoder, a steady 60 fps, WoW-only sound. It
+worked, and was as sharp as OBS on a still (edge measure 14.7 against OBS's 14.0), but cost WoW 2.5 of
+71.7 fps (3.5%) where OBS's Game Capture cost nothing measurable (`logman` DXGI presents, standing still).
+OBS's capture hooks the game's own frames; doing that ourselves means code inside WoW's process, which
+risks Warden and antivirus for a new unsigned app. Chriso's call: stay with OBS and make it smooth.
+
 ## Shared auction prices in Forever (0.6.11, 2026-11-12)
 
 `MarketShare` sends each new auction house scan the Observer addon saved to `POST /api/forever/scan`,

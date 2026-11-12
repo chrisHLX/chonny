@@ -447,7 +447,10 @@ public static class ObsSetup
     /// OBS writes its own copy back, and builds its replay buffer only as it starts. The file's BOM
     /// and line endings are kept as OBS wrote them.
     /// </summary>
-    public static bool EnableReplayBufferInProfile(int seconds, out string message)
+    public static bool EnableReplayBufferInProfile(int seconds, out string message) => SetReplayBufferInProfile(true, seconds, out message);
+
+    /// <summary>The replay buffer on or off in the profile's file (off only for --obs-buffer-off, to reproduce Cbags' OBS).</summary>
+    internal static bool SetReplayBufferInProfile(bool on, int seconds, out string message)
     {
         if (Running()) { message = "OBS is open."; return false; }
         var ini = ProfileIni();
@@ -462,15 +465,16 @@ public static class ObsSetup
             var changed = false;
             foreach (var section in new[] { "SimpleOutput", "AdvOut" })
             {
-                changed |= SetIni(lines, section, "RecRB", "true", v => v == "true");
+                changed |= SetIni(lines, section, "RecRB", on ? "true" : "false", v => v == (on ? "true" : "false"));
+                if (!on) continue;
                 changed |= SetIni(lines, section, "RecRBTime", seconds.ToString(), v => int.TryParse(v, out var n) && n >= seconds);
                 changed |= SetIni(lines, section, "RecRBSize", ReplayBufferMb.ToString(), v => int.TryParse(v, out var n) && n >= ReplayBufferMb);
             }
-            if (!changed) { message = "OBS's replay buffer was already on."; return true; }
+            if (!changed) { message = $"OBS's replay buffer was already {(on ? "on" : "off")}."; return true; }
             var output = System.Text.Encoding.UTF8.GetBytes(string.Join(newline, lines));
             File.WriteAllBytes(ini + ".tmp", bom ? [0xEF, 0xBB, 0xBF, .. output] : output);
             File.Move(ini + ".tmp", ini, overwrite: true);
-            message = $"Turned on OBS's replay buffer ({seconds}s).";
+            message = on ? $"Turned on OBS's replay buffer ({seconds}s)." : "Turned off OBS's replay buffer.";
             return true;
         }
         catch (Exception e)
@@ -511,8 +515,9 @@ public static class ObsSetup
     /// so they are set here first. Whether it exists at all is fixed when OBS starts: when it is off,
     /// it is turned on in the profile and the problem says to restart OBS.
     /// Ours: the app started it (and so stops it). Problem: null when the buffer is running.
+    /// NeedsRestart: OBS has no replay buffer until it starts again (ObsCheck.RestartAsync does that).
     /// </summary>
-    public static async Task<(bool Ours, string? Problem)> StartReplayBufferAsync(ObsClient obs, int seconds, CancellationToken ct)
+    public static async Task<(bool Ours, string? Problem, bool NeedsRestart)> StartReplayBufferAsync(ObsClient obs, int seconds, CancellationToken ct)
     {
         var mode = await ProfileParameterAsync(obs, "Output", "Mode", ct);
         var section = string.Equals(mode, "Advanced", StringComparison.OrdinalIgnoreCase) ? "AdvOut" : "SimpleOutput";
@@ -526,18 +531,18 @@ public static class ObsSetup
         {
             // OBS built no replay buffer when it started. Turn it on for next time.
             await obs.TryRequestAsync("SetProfileParameter", new JsonObject { ["parameterCategory"] = section, ["parameterName"] = "RecRB", ["parameterValue"] = "true" }, ct);
-            return (false, "OBS's replay buffer was off. It is on now, but OBS only picks that up when it starts: close OBS and open it again (or let the app open it).");
+            return (false, "OBS's replay buffer was off. It is on now, but OBS only picks that up when it starts: close OBS and open it again (or let the app open it).", true);
         }
-        if (st.TryGetProperty("outputActive", out var active) && active.GetBoolean()) return (false, null);
+        if (st.TryGetProperty("outputActive", out var active) && active.GetBoolean()) return (false, null, false);
         await obs.RequestAsync("StartReplayBuffer", null, ct);
-        return (true, null);
+        return (true, null, false);
     }
 
     /// <summary>Containers the app's player (WebView2, Edge's engine) opens.</summary>
     public static bool Playable(string? format) =>
         format is null || format.Contains("mp4", StringComparison.OrdinalIgnoreCase) || format.Equals("mov", StringComparison.OrdinalIgnoreCase);
 
-    private static async Task<string?> ProfileParameterAsync(ObsClient obs, string category, string name, CancellationToken ct)
+    internal static async Task<string?> ProfileParameterAsync(ObsClient obs, string category, string name, CancellationToken ct)
     {
         var r = await obs.TryRequestAsync("GetProfileParameter", new JsonObject { ["parameterCategory"] = category, ["parameterName"] = name }, ct);
         if (r is not { } v) return null;

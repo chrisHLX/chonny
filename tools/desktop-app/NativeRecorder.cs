@@ -31,7 +31,7 @@ public sealed class NativeRecorder
     /// Chriso's OBS records at. Sound: "wow" (WoW's own sound, Windows 10 2004 and later; everything
     /// the PC plays where that isn't there), "everything", or "none".
     /// </summary>
-    public sealed record Options(int Fps = 60, uint BitsPerSecond = 25_000_000, string Sound = "wow");
+    public sealed record Options(int Fps = 60, uint BitsPerSecond = 25_000_000, string Sound = "wow", bool FineColour = false);
 
     public sealed record Result(string Path, int Width, int Height, int Captured, int Encoded, int Repeated, int Dropped,
         int Late, TimeSpan Length, TimeSpan Took, long Bytes, string? Error, string? Audio = null);
@@ -214,6 +214,8 @@ public sealed class NativeRecorder
         using (var stream = await file.OpenAsync(FileAccessMode.ReadWrite))
         {
             var transcoder = new MediaTranscoder { HardwareAccelerationEnabled = true };
+            // the finer colour conversion (4:4:4 resampling) from the game's frames to the encoder's format
+            if (options.FineColour) transcoder.VideoProcessingAlgorithm = MediaVideoProcessingAlgorithm.MrfCrf444;
             var prepared = await transcoder.PrepareMediaStreamSourceTranscodeAsync(source, stream, profile);
             if (!prepared.CanTranscode) error = $"cannot encode: {prepared.FailureReason}";
             else

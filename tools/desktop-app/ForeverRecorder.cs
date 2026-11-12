@@ -314,7 +314,8 @@ public sealed class ForeverRecorder : IDisposable
 
     private async Task StartBufferAsync()
     {
-        using var ct = new CancellationTokenSource(TimeSpan.FromSeconds(45));
+        // long enough for a restart of OBS below (closing ~5s, opening and answering up to 30s)
+        using var ct = new CancellationTokenSource(TimeSpan.FromSeconds(120));
         if (!await ConnectAsync(ct.Token))
         {
             _log($"Could not start OBS's replay buffer for WoW Forever: {Problem}");
@@ -327,7 +328,27 @@ public sealed class ForeverRecorder : IDisposable
             _restoreScene = prior;
             if (note != null) _log(note);
         }
-        var (ours, problem) = await ObsSetup.StartReplayBufferAsync(_obs!, _settings.ForeverBufferSeconds, ct.Token);
+        var (ours, problem, needsRestart) = await ObsSetup.StartReplayBufferAsync(_obs!, _settings.ForeverBufferSeconds, ct.Token);
+        // OBS builds its replay buffer only as it starts (Cbags, 12 Nov: "close OBS and open it again").
+        // The app does that itself now, unless OBS is recording or streaming something.
+        if (needsRestart && !await ObsCheck.BusyAsync(_obs!, ct.Token))
+        {
+            _log("OBS's replay buffer was off: restarting OBS to turn it on (it wasn't recording or streaming).");
+            await _obs!.DisposeAsync();
+            _obs = null;
+            var (restarted, why) = await ObsCheck.RestartAsync(() => ObsSetup.EnableReplayBufferInProfile(_settings.ForeverBufferSeconds, out _), ct.Token);
+            if (restarted && await ConnectAsync(ct.Token))
+            {
+                if (_settings.ObsGameCapture)
+                {
+                    var (prior, note) = await ObsSetup.UseWowSceneAsync(_obs!, _settings, ct.Token);
+                    _restoreScene ??= prior;
+                    if (note != null) _log(note);
+                }
+                (ours, problem, needsRestart) = await ObsSetup.StartReplayBufferAsync(_obs!, _settings.ForeverBufferSeconds, ct.Token);
+            }
+            else problem = restarted ? Problem : why;
+        }
         if (problem != null)
         {
             Problem = problem;
