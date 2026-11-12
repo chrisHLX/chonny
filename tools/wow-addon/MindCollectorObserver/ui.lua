@@ -150,6 +150,65 @@ local function changeText(was, now)
     return ns.pctText(p)
 end
 
+-- ---------------------------------------------------------------- an item's price over time
+
+-- Every reading of an item's cheapest price and how many are listed, oldest first (13 Nov, Chriso:
+-- "$4 at 12pm, $6 at 2pm, $3 at 8pm" — the Market compares only the last two scans, so up, down and
+-- up again shows as the last move alone). From every full scan kept (DB.history, 30 days, whether or
+-- not you tracked it then) and, for a tracked item, each time the auction house showed it (DB.track).
+local function priceHistory(id)
+    local out = {}
+    local needle = ";" .. id .. ":"
+    for _, h in ipairs(ns.DB.history or {}) do
+        local at = h.s and h.s:find(needle, 1, true)
+        if at then
+            local price, q = h.s:match("^;%d+:(%d+):(%d+)", at)
+            if price then table.insert(out, { t = h.t, min = tonumber(price), q = tonumber(q), scan = true }) end
+        end
+    end
+    local function nearScan(t)
+        for _, x in ipairs(out) do if x.scan and math.abs(x.t - t) < 300 then return true end end
+        return false
+    end
+    for _, r in ipairs((ns.DB.track and ns.DB.track[id]) or {}) do
+        if r.min and not nearScan(r.t) then table.insert(out, { t = r.t, min = r.min, q = r.q, scan = r.src == "scan" }) end
+    end
+    table.sort(out, function(a, b) return a.t < b.t end)
+    return out
+end
+
+-- The readings as lines for an item's page, newest first, each with its change from the one before.
+local function historyLines(id, lines, most)
+    local h = priceHistory(id)
+    if #h == 0 then return end
+    table.insert(lines, "")
+    table.insert(lines, color(GOLD_HEX, string.format("Every reading (%d): the cheapest price, how many listed, and the change", #h)))
+    if #h > 1 then
+        local lo, hi = h[1], h[1]
+        for _, x in ipairs(h) do
+            if x.min < lo.min then lo = x end
+            if x.min > hi.min then hi = x end
+        end
+        table.insert(lines, grey(string.format("lowest %s on %s  ·  highest %s on %s", ns.money(lo.min), date("%d %b %H:%M", lo.t),
+            ns.money(hi.min), date("%d %b %H:%M", hi.t))))
+    end
+    for i = #h, math.max(1, #h - (most or 40) + 1), -1 do
+        local x, before = h[i], h[i - 1]
+        local bits = { date("%a %d %b %H:%M", x.t), ns.money(x.min), (x.q or "?") .. " listed" }
+        if before then
+            local change = changeText(before.min, x.min)
+            if change ~= "" then table.insert(bits, change) end
+            if x.q and before.q then
+                if x.q < before.q and x.min >= before.min then table.insert(bits, grey("fewer listed, price held"))
+                elseif x.q > before.q and x.min <= before.min then table.insert(bits, grey("more listed, price no higher")) end
+            end
+        end
+        if not x.scan then table.insert(bits, grey("seen at the auction house")) end
+        table.insert(lines, table.concat(bits, "  ·  "))
+    end
+    if #h > (most or 40) then table.insert(lines, grey(string.format("and %d older", #h - (most or 40)))) end
+end
+
 local function matches(name)
     if query == "" then return true end
     return name and name:lower():find(query, 1, true)
@@ -1657,9 +1716,11 @@ local function drawDetail()
         if v then table.insert(lines, "Now: " .. ns.money(v[1]) .. "  (" .. v[2] .. " listed)") end
         if o then table.insert(lines, "Before: " .. ns.money(o[1]) .. "  (" .. o[2] .. " listed)") end
         if v and o then table.insert(lines, "Change: " .. changeText(o[1], v[1])) end
-        table.insert(lines, "")
-        table.insert(lines, s and color(GOLD_HEX, "You looked at this " .. s.looks .. " times, last " .. when(s.last) .. ".")
-            or grey("You haven't looked at this."))
+        historyLines(id, lines)
+        if s and (s.looks or 0) > 0 then
+            table.insert(lines, "")
+            table.insert(lines, color(GOLD_HEX, "You looked at this " .. s.looks .. " times, last " .. when(s.last) .. "."))
+        end
         setDetail(C_Item.GetItemIconByID(id), itemName(id, v and v[3]),
             nameColor({ kind = "item", id = id }), lines, nil, false, nil, id)
         trackButtons(id)
@@ -1688,22 +1749,7 @@ local function drawDetail()
         if first and cur then table.insert(lines, "Change: " .. changeText(first.p, cur.min)) end
         local have = C_Item.GetItemCount(s.id, true)
         if have and have > 0 then table.insert(lines, "You have " .. have) end
-        local h = (ns.DB.track and ns.DB.track[s.id]) or ns.DB.prices[s.id]
-        if ns.isTracked(s.id) and h and #h > 0 then
-            table.insert(lines, "")
-            table.insert(lines, color(GOLD_HEX, "Tracking: each reading of the cheapest price and how many are listed"))
-            for i = #h, math.max(1, #h - 6), -1 do
-                local q, pq = h[i].q, h[i - 1] and h[i - 1].q
-                local p, pp = h[i].min, h[i - 1] and h[i - 1].min
-                local trend = ""
-                if q and pq and pp then
-                    if q < pq and p >= pp then trend = grey("  fewer listed, price held: sold or ran out")
-                    elseif q > pq and p <= pp then trend = grey("  more listed, price no higher: not much selling")
-                    elseif q < pq then trend = grey("  fewer listed") elseif q > pq then trend = grey("  more listed") end
-                end
-                table.insert(lines, string.format("%s  ·  %s  ·  %s listed%s", date("%d %b %H:%M", h[i].t), ns.money(p), tostring(q or "?"), trend))
-            end
-        end
+        historyLines(s.id, lines)
     elseif s.kind == "talent" then
         table.insert(lines, "")
         table.insert(lines, s.takenAt and color("ff40d060", "Taken " .. ns.shortDate(s.takenAt))
