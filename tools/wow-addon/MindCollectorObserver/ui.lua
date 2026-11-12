@@ -199,9 +199,10 @@ local function movers()
                             if not t or t[1] < a.t - b.t then could = could + q end
                         end
                         sold = math.max(0, drop - could)
-                    else
-                        sold, unsure = drop, true
                     end
+                    -- Nothing proven (scans a day apart: every listing could have run out, which left
+                    -- Selling empty on 12 Nov): the drop still shows, said as "sold or ran out".
+                    if sold == 0 then sold, unsure = drop, true end
                 end
                 table.insert(out, { id = id, name = name, was = old[1], now = v[1], q = v[2], oq = old[2],
                     p = (v[1] - old[1]) / old[1], sold = sold, unsure = unsure })
@@ -220,7 +221,7 @@ local function movers()
         move = function(m) return math.abs(m.p) end,
         up = function(m) return m.p end,
         down = function(m) return -m.p end,
-        selling = function(m) return m.sold end,
+        selling = function(m) return (m.unsure and 0 or 1e9) + m.sold end,   -- proven sales first
         flood = function(m) return m.q - m.oq end,
         listed = function(m) return m.q end,
         gold = function(m) return m.now * m.q end,
