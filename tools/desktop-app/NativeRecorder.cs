@@ -246,6 +246,35 @@ public sealed class NativeRecorder
         return new Result(path, width, height, captured, encoded, repeated, dropped, late, lastStamp + frameTime, watch.Elapsed, bytes, error, audioNote);
     }
 
+    /// <summary>
+    /// One frame of a window as a PNG, straight from Windows' capture (no video encoding): for clean
+    /// pictures of the game, e.g. the Forever page's pictures of the addon (2026-11-12).
+    /// </summary>
+    public static async Task SnapAsync(IntPtr hwnd, string path)
+    {
+        using var gpu = new Gpu();
+        var item = Capture.ForWindow(hwnd);
+        using var pool = Direct3D11CaptureFramePool.CreateFreeThreaded(gpu.Device, DirectXPixelFormat.B8G8R8A8UIntNormalized, 2, item.Size);
+        using var session = pool.CreateCaptureSession(item);
+        session.IsCursorCaptureEnabled = false;
+        var got = new TaskCompletionSource<Windows.Graphics.Imaging.SoftwareBitmap>();
+        pool.FrameArrived += async (p, _) =>
+        {
+            using var frame = p.TryGetNextFrame();
+            if (frame == null || got.Task.IsCompleted) return;
+            try { got.TrySetResult(await Windows.Graphics.Imaging.SoftwareBitmap.CreateCopyFromSurfaceAsync(frame.Surface, Windows.Graphics.Imaging.BitmapAlphaMode.Ignore)); }
+            catch (Exception e) { got.TrySetException(e); }
+        };
+        session.StartCapture();
+        using var bitmap = await got.Task.WaitAsync(TimeSpan.FromSeconds(5));
+        var folder = await StorageFolder.GetFolderFromPathAsync(System.IO.Path.GetDirectoryName(System.IO.Path.GetFullPath(path))!);
+        var file = await folder.CreateFileAsync(System.IO.Path.GetFileName(path), CreationCollisionOption.ReplaceExisting);
+        using var stream = await file.OpenAsync(FileAccessMode.ReadWrite);
+        var encoder = await Windows.Graphics.Imaging.BitmapEncoder.CreateAsync(Windows.Graphics.Imaging.BitmapEncoder.PngEncoderId, stream);
+        encoder.SetSoftwareBitmap(Windows.Graphics.Imaging.SoftwareBitmap.Convert(bitmap, Windows.Graphics.Imaging.BitmapPixelFormat.Bgra8, Windows.Graphics.Imaging.BitmapAlphaMode.Ignore));
+        await encoder.FlushAsync();
+    }
+
     /// <summary>The window of a running WoW (Forever's first when both run), or zero.</summary>
     public static IntPtr FindWow()
     {

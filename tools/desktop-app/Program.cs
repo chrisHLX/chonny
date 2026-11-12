@@ -22,6 +22,8 @@ internal static class Program
         if (args.Length >= 5 && args[0] == "--cut") return Diagnostics.Cut(args);
         if (args.Length >= 1 && args[0] == "--check-record-light") return Diagnostics.CheckRecordLight();
         if (args.Length >= 1 && args[0] == "--rec-test") return Diagnostics.RecTest(args);
+        // --snap PATH: one frame of the running WoW window as a PNG (pictures of the addon for the website)
+        if (args.Length >= 2 && args[0] == "--snap") { var w = NativeRecorder.FindWow(); if (w == IntPtr.Zero) return 2; NativeRecorder.SnapAsync(w, args[1]).GetAwaiter().GetResult(); return 0; }
         if (args.Length >= 1 && args[0] == "--obs-buffer-off") { var (ok, m) = ObsCheck.RestartAsync(() => ObsSetup.SetReplayBufferInProfile(false, 0, out _), CancellationToken.None).GetAwaiter().GetResult(); Console.WriteLine(m); return ok ? 0 : 1; }
         if (args.Length >= 1 && args[0] == "--obs-check") return Diagnostics.ObsCheckRun(args.Contains("forever"), args.Contains("restart"));
         if (args.Length >= 2 && args[0] == "--loudness") return Diagnostics.Loudness(args[1]);

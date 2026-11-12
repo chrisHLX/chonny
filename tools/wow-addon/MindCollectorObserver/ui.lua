@@ -187,20 +187,24 @@ local function movers()
             if not name or name == "" then name = (v[3] ~= "" and v[3]) or (ns.itemNames and ns.itemNames[id]) end
             if matches(name or "") then
                 -- at least how many sold: fewer listed at a held price, past what could have run out
-                local sold = 0
+                -- (12 Nov: Chriso's older scan had no time-left data, so Selling showed nothing at all.
+                -- Without it, the whole drop counts, said as "sold or ran out", not as sales.)
+                local sold, unsure = 0, false
                 local drop = old[2] - v[2]
                 if drop > 0 and v[1] >= old[1] then
-                    local could = 0
                     if b.bands and old.tl then
+                        local could = 0
                         for band, q in pairs(old.tl) do
                             local t = b.bands[band]
                             if not t or t[1] < a.t - b.t then could = could + q end
                         end
                         sold = math.max(0, drop - could)
+                    else
+                        sold, unsure = drop, true
                     end
                 end
                 table.insert(out, { id = id, name = name, was = old[1], now = v[1], q = v[2], oq = old[2],
-                    p = (v[1] - old[1]) / old[1], sold = sold })
+                    p = (v[1] - old[1]) / old[1], sold = sold, unsure = unsure })
             end
         end
     end
@@ -221,6 +225,7 @@ local function movers()
         listed = function(m) return m.q end,
         gold = function(m) return m.now * m.q end,
     }
+    local everything = out
     if keep[mode] then
         local kept = {}
         for _, m in ipairs(out) do if keep[mode](m) then table.insert(kept, m) end end
@@ -228,7 +233,7 @@ local function movers()
     end
     local k = key[mode] or key.move
     table.sort(out, function(x, y) return k(x) > k(y) end)
-    return out, string.format("%s compared with %s", ns.shortDate(a.t), ns.shortDate(b.t))
+    return out, string.format("%s compared with %s", ns.shortDate(a.t), ns.shortDate(b.t)), everything
 end
 
 local function counts()
@@ -820,16 +825,19 @@ local function marketCat(id)
 end
 
 -- The moves in the chosen category and subclass, and the counts the chips show.
-local function filterMarket(all)
+-- The categories and kinds count every move, before the sort's filter: counted after it, a sort that
+-- kept nothing hid every category (12 Nov, "All 0" and nothing to pick).
+local function filterMarket(all, everything)
     local sel, sub = ns.DB.marketCat or "all", ns.DB.marketSub
-    local cats, subs, out = { all = #all }, {}, {}
-    for _, m in ipairs(all) do
+    local cats, subs, out = { all = #(everything or all) }, {}, {}
+    for _, m in ipairs(everything or all) do
         local key, st = marketCat(m.id)
         cats[key] = (cats[key] or 0) + 1
-        if sel == "all" or key == sel then
-            if st and sel ~= "all" then subs[st] = (subs[st] or 0) + 1 end
-            if not sub or st == sub then table.insert(out, m) end
-        end
+        if st and sel ~= "all" and key == sel then subs[st] = (subs[st] or 0) + 1 end
+    end
+    for _, m in ipairs(all) do
+        local key, st = marketCat(m.id)
+        if (sel == "all" or key == sel) and (not sub or st == sub) then table.insert(out, m) end
     end
     return out, cats, subs
 end
@@ -1148,11 +1156,12 @@ local function drawList()
             end
         end
     elseif tab == "movers" then
-        local all, label = movers()
-        local ms, cats, subs = filterMarket(all)
+        local all, label, everything = movers()
+        local ms, cats, subs = filterMarket(all, everything)
         drawMarketBar(cats, subs)
         local last = ns.DB.lastScan
-        local shown = (ns.DB.marketCat or "all") ~= "all" and string.format("%d of %d moves. ", #ms, #all) or ""
+        local shown = #ms == 0 and #(everything or {}) > 0 and "Nothing here for this sort and category. "
+            or (ns.DB.marketCat or "all") ~= "all" and string.format("%d of %d moves. ", #ms, #all) or ""
         list.note:SetText(label and (shown .. "Whole auction house, " .. label .. ", at least 5 listed")
             or (last and string.format("One full scan so far (%s, %d auctions). Scan again another day and the biggest moves show here.", when(last.t), last.n or 0))
             or "No full scan yet: open the auction house and click Scan (or /mco scan). Two scans on different days show the moves.")
@@ -1165,7 +1174,9 @@ local function drawList()
             local bits = {}
             if ns.DB.subjects["item:" .. m.id] then table.insert(bits, color(GOLD_HEX, "you looked at this")) end
             table.insert(bits, string.format("listed %d > %d", m.oq, m.q))
-            if m.sold > 0 then table.insert(bits, color("ff40d060", "at least " .. m.sold .. " sold")) end
+            if m.sold > 0 then
+                table.insert(bits, m.unsure and grey(m.sold .. " fewer: sold or ran out") or color("ff40d060", "at least " .. m.sold .. " sold"))
+            end
             if mode == "gold" then table.insert(bits, ns.money(m.now * m.q) .. " on sale") end
             fillRow(r, key, C_Item.GetItemIconByID(m.id), itemName(m.id, m.name),
                 nameColor({ kind = "item", id = m.id }), ns.money(m.was) .. " > " .. ns.money(m.now) .. "  " .. changeText(m.was, m.now),
@@ -1347,8 +1358,9 @@ local function drawUses(id, label, y)
         detail.usesTitle:SetPoint("TOPLEFT", 0, y)
         detail.usesTitle:SetText(color(GOLD_HEX, label or "Used in") .. "  "
             .. grey(#bits == 0 and "no Forever recipe or quest takes it" or table.concat(bits, ", ")))
+        detail.usesTitle:SetWidth(BODY_W)
         detail.usesTitle:Show()
-        y = y - 20
+        y = y - detail.usesTitle:GetStringHeight() - 6
         for _, pid in ipairs(order) do
             local isQuests = pid == "quests"
             local my = not isQuests and mine[pid]
