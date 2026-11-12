@@ -132,6 +132,38 @@ public sealed class ApiClient : IDisposable
         return JsonDocument.Parse(await res.Content.ReadAsStringAsync(ct));
     }
 
+    /// <summary>
+    /// POST /api/forever/scan (ForeverMarketController): one Forever auction house scan as JSON,
+    /// gzipped. "stored" and "duplicate" mean done; "rejected" is final; anything else tries again later.
+    /// </summary>
+    public async Task<(string Status, string? Reason)> ShareScanAsync(string scanJson, CancellationToken ct)
+    {
+        using var content = new ByteArrayContent(Gzip(scanJson));
+        content.Headers.ContentType = new MediaTypeHeaderValue("application/gzip");
+        using var res = await _http.PostAsync($"{_base}/api/forever/scan", content, ct);
+        if (res.StatusCode == HttpStatusCode.Unauthorized) throw new KeyRejectedException();
+        var body = await res.Content.ReadAsStringAsync(ct);
+        if (res.StatusCode == HttpStatusCode.NotFound) return ("later", "The website doesn't take scans yet.");
+        try
+        {
+            using var doc = JsonDocument.Parse(body);
+            var status = doc.RootElement.TryGetProperty("status", out var s) ? s.GetString() ?? "?" : "?";
+            var reason = doc.RootElement.TryGetProperty("reason", out var r) ? r.GetString() : null;
+            return (status, reason);
+        }
+        catch (JsonException) { return ("later", $"Server said {(int)res.StatusCode}."); }
+    }
+
+    /// <summary>GET /api/forever/market: everyone's prices for one market, or null when the website can't say.</summary>
+    public async Task<JsonDocument?> MarketAsync(string region, string realm, string faction, CancellationToken ct)
+    {
+        var url = $"{_base}/api/forever/market?region={Uri.EscapeDataString(region)}&realm={Uri.EscapeDataString(realm)}&faction={Uri.EscapeDataString(faction)}";
+        using var res = await _http.GetAsync(url, ct);
+        if (res.StatusCode == HttpStatusCode.Unauthorized) throw new KeyRejectedException();
+        if (!res.IsSuccessStatusCode) return null;
+        return JsonDocument.Parse(await res.Content.ReadAsStringAsync(ct));
+    }
+
     public enum NoteOutcome { Stored, Refused, Later }
 
     /// <summary>

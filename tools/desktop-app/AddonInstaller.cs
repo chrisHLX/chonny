@@ -30,7 +30,7 @@ public static class AddonInstaller
     /// at in Forever and carries /ask. Answers.lua is a seed: AskBridge writes it, so it is never compared.
     /// </summary>
     public static readonly Addon Observer = new("MindCollectorObserver", "observer-addon",
-        ["MindCollectorObserver.toc", "Data.lua", "main.lua", "ui.lua", "ask.lua"], "MindCollector Observer addon", ["Answers.lua"]);
+        ["MindCollectorObserver.toc", "Data.lua", "main.lua", "ui.lua", "ask.lua"], "MindCollector Observer addon", ["Answers.lua", "Market.lua"]);
 
     private const string Marker = ".installed-by-mindcollector";
 

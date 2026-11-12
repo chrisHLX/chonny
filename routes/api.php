@@ -30,3 +30,7 @@ Route::get('/coach/page/{file}', [CoachPagesController::class, 'page'])
 // One game's Watch page for the app's Videos tab: its timeline under the video the app recorded.
 Route::get('/coach/watch/{lobby}', [CoachPagesController::class, 'watch'])
     ->where('lobby', '[0-9a-f]{32}')->middleware('throttle:60,1,app-watch')->name('api.coach.watch');
+
+// WoW Forever auction house scans shared by the app, and everyone's prices back (ForeverMarketController).
+Route::post('/forever/scan', [\App\Http\Controllers\Api\ForeverMarketController::class, 'scan'])->name('api.forever.scan');
+Route::get('/forever/market', [\App\Http\Controllers\Api\ForeverMarketController::class, 'market'])->name('api.forever.market');

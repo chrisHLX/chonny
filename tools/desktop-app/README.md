@@ -294,6 +294,21 @@ list and a "Watch the video" button on its card; the video page links back to th
 Not yet: the Watch page (the timeline under the video) inside this app's window (its pages come from the website, and a local video
 needs a local page), and the prep for later arenas of a session.
 
+## Shared auction prices in Forever (0.6.11, 2026-11-12, unreleased)
+
+`MarketShare` sends each new auction house scan the Observer addon saved to `POST /api/forever/scan`,
+and writes everyone's prices for that market (`GET /api/forever/market`) into the addon as
+`Market.lua`. Only the scan goes: per item the cheapest unit price, how many are listed and how many
+sit in each time-left band, with the realm, region and faction. Settings > "Share my auction house
+scans" (`ShareScans`) is on unless turned off; prices come back either way. It runs on its own timer,
+never on the window's thread or the recorder's, and logs any failure to Activity. Its state
+(`LastSent`, the market, when it last fetched) is `market.json` beside settings.json. The website
+side and its rules: `docs/forever/observer-handoff-2026-11-10.md`, "Shared auction prices".
+
+Check it without the window: `MindCollector.exe --share-market SAVEDVARIABLES SERVER KEY OUT.lua
+[REGION REALM FACTION]` sends the file's last scan and writes the pooled Lua to OUT.lua
+(`share-market.txt` in the data folder). Run it with `MINDCOLLECTOR_DATA` set and a local site's key.
+
 ## A first sync, and an empty list (0.6.0, 2026-10-26)
 
 The first stranger to connect (26 Oct) sent 113 rounds from two weeks of logs over eight minutes

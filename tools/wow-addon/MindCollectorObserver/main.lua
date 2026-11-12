@@ -44,6 +44,8 @@ local function initDB()
     MindCollectorObserverDB = MindCollectorObserverDB or {}
     DB = MindCollectorObserverDB
     ns.DB = DB
+    -- prices pooled from every player who shares their scans, written by the app (Market.lua)
+    ns.pool = type(MindCollectorObserverMarket) == "table" and MindCollectorObserverMarket or nil
     DB.version = 1
     DB.minDwell = DB.minDwell or 2.5
     DB.minChange = DB.minChange or 0.10
@@ -100,6 +102,9 @@ local function latestPrice(itemID, maxAge)
     if s and (not best or s.t > best.t) then best = s end
     local sc = DB.lastScan and DB.lastScan.prices[itemID]
     if sc and (not best or DB.lastScan.t > best.t) then best = { t = DB.lastScan.t, min = sc[1], q = sc[2], src = "scan" } end
+    -- everyone's scans, pooled by the app (Market.lua), when one is newer than anything of yours
+    local pl = ns.pool and ns.pool.items and ns.pool.items[itemID]
+    if pl and (not best or pl[1] > best.t) then best = { t = pl[1], min = pl[2], q = pl[3], src = "pool" } end
     if best and (not maxAge or time() - best.t <= maxAge) then return best end
     return nil
 end
@@ -471,7 +476,13 @@ end
 local function finishScan(agg, n)
     scanStatus(nil)
     DB.prevScan = DB.lastScan
-    DB.lastScan = { t = time(), n = n, prices = agg, bands = next(bands) and bandTimes() or nil }
+    -- Where it was scanned, so the app can pool it with other players' scans of the same market
+    -- (2026-11-12): realm, region and faction. Faction too until it's known whether Forever's auction
+    -- house is shared between them.
+    local okRegion, region = pcall(GetCurrentRegionName)
+    DB.lastScan = { t = time(), n = n, prices = agg, bands = next(bands) and bandTimes() or nil,
+        realm = (GetNormalizedRealmName and GetNormalizedRealmName()) or GetRealmName(),
+        region = okRegion and region or nil, faction = UnitFactionGroup("player") }
     for _, a in pairs(agg) do if a.tl and not next(a.tl) then a.tl = nil end end
     local moved, items = 0, 0
     for id, a in pairs(agg) do

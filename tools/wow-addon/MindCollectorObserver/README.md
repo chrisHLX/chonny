@@ -38,6 +38,12 @@ what was saved of them is dropped at the next login.
   Only a drop bigger than that says "at least N sold"; otherwise "N could have run out: can't tell".
   Scans close together give the sharpest answer. Scans from before this change say "sold or ran out".
   One cheapest listing is not a market: a thin one (2 listed) can't take many.
+- **Shared prices** (2026-11-12): each scan records its realm, region and faction, and the
+  MindCollector app (0.6.11) sends it to the website and writes everyone's prices for that market
+  into `Market.lua` (`MindCollectorObserverMarket`, read into `ns.pool` at load). A pooled reading
+  is used when it's newer than yours, the selling read says "(all players)" when it comes from the
+  pool, and the footer says how many players' scans the prices are from. `Market.lua` is a new file:
+  the first time, the game needs a full restart.
 - **Used in** (2026-11-11): under any item's details (Items, Market, Ledger, and what a recipe
   makes), every Forever recipe that takes it, one section per profession, yours first and open.
   Click a header to open or close it. Each recipe shows how many it takes, the skill it's learned

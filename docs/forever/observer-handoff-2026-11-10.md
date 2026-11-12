@@ -53,32 +53,49 @@ closed**, because WoW overwrites the file when you log out. The file is the plai
 | `trainers`, `trainerSeen`, `vendors`, `vendorPrices` | What each trainer or vendor you opened teaches or sells, and where it stands |
 | `asks` | /ask questions, with character, faction, zone and position |
 
-## The idea: market data on the server, for everyone with the app
+## Shared auction prices: built 2026-11-12, not yet deployed or released
 
-Chriso's direction (2026-11-10): keep this data on the server (MindCollector), so that everyone who
-uses the app pools their scans. Then price history and "is it actually selling" stop depending on one
-player scanning.
+Chriso's direction (2026-11-10, 11-12): everyone's auction house scans on the server, so everyone
+with the app gets them. Then price history and "is it actually selling" stop depending on one player
+scanning. Sharing is **on by default with a clear switch** (Chriso's call, 2026-11-12).
 
-A shape that fits how the app already works (sketch, not agreed):
+How it works:
 
-1. The desktop app already reads this file (`tools/desktop-app/ObserverData.cs`). It would upload the
-   **scans and price readings only** after each reload, to an authenticated endpoint the same way it
-   sends games.
-2. The server keeps a price history per realm and item. Each scan's cheapest unit price and listing
-   count go in as a row, and different players' scans of the same hour are de-duplicated.
-3. The addon and the app's Market page read back the pooled history. That covers listings going
-   down, price going up and price after a flood, which is how we judged Ogre Strength, Fire Oil,
-   Fire Protection and Waylaid Crate below.
+1. **The addon** records each scan's realm, region and faction on `lastScan` (`main.lua` finishScan).
+   Scans saved before this have none and are never sent.
+2. **The app** (`tools/desktop-app/MarketShare.cs`, own timer, every failure logged) watches the
+   addon's saved file. Each scan newer than the last one sent goes to `POST /api/forever/scan` as
+   gzipped JSON: per item the cheapest unit price, how many are listed and how many sit in each
+   time-left band. Nothing else in the file is read for it. Then `GET /api/forever/market` (after a
+   send, else every 30 minutes) is written into the addon as `Market.lua` for the next /reload.
+   State is in `market.json` beside settings.json. Settings: "Share my auction house scans"
+   (`ShareScans`); prices come back either way.
+3. **The server** (`ForeverMarketService`, `ForeverMarketController`, tables `forever_scans` and
+   `forever_prices`): a market is `REGION/Realm/Faction`. Each scan is kept whole, gzipped, in
+   `storage/app/forever/scans/`, and merged into one reading per market, item and hour: the most
+   complete scan wins, a later one breaks a tie, `sources` counts them. Refused: scans over 14 days
+   old or from the future, scans more than 3x the market's biggest of the last 3 days, mostly
+   unreadable items, and over 12 an hour per player. Readings older than 30 days are dropped (the
+   scans stay). The pooled view is cached until the market's next scan. `ForeverMarketTest`.
+4. **The addon reads the pool**: `latestPrice` takes a pooled reading when it's newer than the
+   player's own, the "selling" read uses the pooled pair when newer (marked "(all players)"), and
+   the footer says how many players' scans the prices come from.
 
-Settle these before building:
+Checked 2026-11-12 with `MindCollector.exe --share-market` against a local site: Chriso's real scan
+of 11 Nov (194,825 auctions, 5,147 items, all with time-left bands) was sent, stored, pooled and
+written back as 388 KB of Lua that parses; item 15347 matched the saved scan exactly. The same scan
+showed Forever counts the time-left bands from 1 and caps the longest at 24 hours.
 
-- **The realm isn't recorded.** The addon never saves `GetNormalizedRealmName()`, so this upload can't
-  be placed on a realm. Add it to scans first. Also check whether Forever's commodity auction house is
-  per realm or region-wide, as retail's is. Nobody has checked yet.
-- **Keep the personal parts private.** Ledger buyer names, /ask positions and what someone looked at
-  are that player's own and shouldn't go into the pool. Pool only auction scans.
-- **Production DB writes from a session are blocked.** Build it as a migration plus an endpoint, and
-  deploy with `./deploy.sh` (`DEPLOY.md`). Rule 28 applies to any new page.
+Still open:
+
+- **Per realm or region-wide?** Whether Forever's auction house (or its commodities) is shared
+  across realms or factions is unknown. Scans are kept whole, so markets can be merged once two
+  players on different realms or factions compare the same items.
+- **Scale.** `pooled()` reads up to 7 days of hourly readings per market in one pass; fine at a few
+  players, worth a daily summary table if a market gets many.
+- **To ship it:** deploy (migrations run in `deploy.sh`), then build and publish the app (0.6.11 is
+  still unreleased; it carries this, the Observer and /ask). The addon's new `Market.lua` needs a
+  full game restart the first time.
 
 ## Market reads so far (Chriso's realm, Horde, 2026-11-08 to 11-10)
 

@@ -464,25 +464,44 @@ local function profitsFor(pid, rank)
     return out
 end
 
--- How an item's listings moved between your last two full scans: whether it is actually selling.
-local function listingTrend(id)
+-- The two readings to compare for an item: your last two full scans, or the pooled pair (everyone's
+-- scans, Market.lua) when that's newer. Returns now {min, listed}, was {min, listed}, the seconds
+-- between them, and how much of "was" sat in each time-left band as {{shortest seconds, listed}, ...}
+-- (nil when not recorded).
+local POOL_BANDS = { 0, 1800, 7200, 43200 } -- the pool's four bands, shortest first: where each starts
+local function readingPair(id)
     local a, b = ns.DB.lastScan, ns.DB.prevScan
     local now, was = a and a.prices[id], b and b.prices[id]
+    local pl = ns.pool and ns.pool.items and ns.pool.items[id]
+    if pl and pl[4] and pl[4] > 0 and (not (now and was) or pl[1] > a.t) then
+        local bands
+        if pl[7] then bands = {} for k = 1, 4 do table.insert(bands, { POOL_BANDS[k], pl[6 + k] or 0 }) end end
+        return { pl[2], pl[3] }, { pl[5], pl[6] }, pl[1] - pl[4], bands, true
+    end
     if not (now and was) then return nil end
-    local text = string.format("listed %d > %d", was[2], now[2])
+    local bands
+    if b.bands and was.tl then
+        bands = {}
+        for band, q in pairs(was.tl) do table.insert(bands, { b.bands[band] and b.bands[band][1] or 0, q }) end
+    end
+    return now, was, a.t - b.t, bands, false
+end
+
+-- How an item's listings moved between the last two scans: whether it is actually selling.
+local function listingTrend(id)
+    local now, was, gap, bands, pooled = readingPair(id)
+    if not now then return nil end
+    local text = string.format("listed %d > %d", was[2], now[2]) .. (pooled and " (all players)" or "")
     -- under a 10% change in listings is noise: a few posted or bought between scans says nothing
     if math.abs(now[2] - was[2]) < math.max(was[2], 1) * 0.1 then return grey(text) end
     if now[2] < was[2] and now[1] >= was[1] then
         -- Fewer listed at the same price is selling only past what could simply have run out: listings
         -- in the earlier scan whose time-left band starts before the gap between the scans may have
         -- expired (Chriso's Rage Potions did, 2026-11-11). New posts in between hide more, so "at least".
-        local drop, gap = was[2] - now[2], a.t - b.t
-        if not (b.bands and was.tl) then return grey(text .. ", price held: sold or ran out") end
+        local drop = was[2] - now[2]
+        if not bands then return grey(text .. ", price held: sold or ran out") end
         local could = 0
-        for band, q in pairs(was.tl) do
-            local t = b.bands[band]
-            if not t or t[1] < gap then could = could + q end
-        end
+        for _, bq in ipairs(bands) do if bq[1] < gap then could = could + bq[2] end end
         if drop > could then
             return color("ff40d060", string.format("%s, price held: at least %d sold", text, drop - could))
         end
@@ -1374,9 +1393,14 @@ refresh = function()
     drawDetail()
     -- the footer: a scan in progress, else when the last one was
     local last = ns.DB.lastScan
+    local pool = ns.pool
+    -- with shared prices loaded, the footer says whose scans they are instead of the 15-minute rule
+    local tail = (pool and pool.t) and string.format(" Shared prices: %d player%s, newest %s.",
+        pool.players or 0, (pool.players or 0) == 1 and "" or "s", when(pool.t)) or " The server allows one every 15 minutes."
     frame.foot:SetText(ns.scanStatus and color(GOLD_HEX, "Scanning: " .. ns.scanStatus)
-        or last and string.format("Last full scan %s: %d auctions, %d items. The server allows one every 15 minutes.",
+        or last and string.format("Last full scan %s: %d auctions, %d items." .. tail,
             when(last.t), last.n or 0, (function() local c = 0 for _ in pairs(last.prices or {}) do c = c + 1 end return c end)())
+        or (pool and pool.t) and ("No full scan of yours yet." .. tail)
         or "No full scan yet. With the auction house open, Scan reads every listing at once.")
 end
 

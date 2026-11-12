@@ -1,4 +1,5 @@
 using System.Text;
+using System.Text.Json;
 
 namespace MindCollector.Desktop;
 
@@ -616,6 +617,53 @@ internal static class Diagnostics
         catch (Exception e)
         {
             Write("check-observer.txt", report + $"Error: {e}");
+            return 1;
+        }
+    }
+
+    /// <summary>
+    /// --share-market FILE SERVER KEY OUT.lua [REGION REALM FACTION]: the Observer's last scan in FILE as
+    /// MarketShare sends it, sent to SERVER with KEY, then that market's pooled prices written to OUT.lua
+    /// as the addon would get them (share-market.txt). The market words stand in for a scan saved before
+    /// the addon recorded where it was. For checking against a local site; nothing in settings changes.
+    /// </summary>
+    public static int ShareMarket(string[] args)
+    {
+        var report = new StringBuilder();
+        try
+        {
+            var (file, server, key, outLua) = (args[1], args[2], args[3], args[4]);
+            if (SavedVariables.Read(file).GetValueOrDefault("MindCollectorObserverDB") is not Dictionary<object, object?> db
+                || db.GetValueOrDefault("lastScan") is not Dictionary<object, object?> scan)
+            {
+                Write("share-market.txt", "No lastScan in " + file);
+                return 2;
+            }
+            var region = scan.GetValueOrDefault("region") as string ?? (args.Length > 5 ? args[5] : "US");
+            var realm = scan.GetValueOrDefault("realm") as string ?? (args.Length > 6 ? args[6] : "Unknown");
+            var faction = scan.GetValueOrDefault("faction") as string ?? (args.Length > 7 ? args[7] : "Horde");
+            var t = scan.GetValueOrDefault("t") switch { long l => l, double d => (long)d, _ => 0L };
+            var (json, items) = MarketShare.ScanJson(scan, region, realm, faction, t);
+            report.AppendLine($"Scan {DateTimeOffset.FromUnixTimeSeconds(t).LocalDateTime:yyyy-MM-dd HH:mm} of {region}/{realm}/{faction}: {items} items, {json.Length:N0} bytes of JSON");
+            using var doc0 = JsonDocument.Parse(json);
+            var withBands = doc0.RootElement.GetProperty("items").EnumerateArray().Count(r => r.GetArrayLength() == 7);
+            report.AppendLine($"  {withBands} items carry time-left bands");
+            foreach (var r in doc0.RootElement.GetProperty("items").EnumerateArray().Take(3)) report.AppendLine("  " + r.GetRawText());
+
+            using var api = new ApiClient(server, key);
+            var (status, reason) = api.ShareScanAsync(json, CancellationToken.None).GetAwaiter().GetResult();
+            report.AppendLine($"Sent: {status}{(reason != null ? " (" + reason + ")" : "")}");
+            using var pooled = api.MarketAsync(region, realm, faction, CancellationToken.None).GetAwaiter().GetResult();
+            if (pooled == null) { report.AppendLine("No pooled prices came back."); Write("share-market.txt", report.ToString()); return 3; }
+            var lua = MarketShare.MarketLua(pooled.RootElement);
+            File.WriteAllText(outLua, lua, new UTF8Encoding(false));
+            report.AppendLine($"Pooled: {pooled.RootElement.GetProperty("items").EnumerateObject().Count()} items, {pooled.RootElement.GetProperty("players")} players; {lua.Length:N0} chars of Lua in {outLua}");
+            Write("share-market.txt", report.ToString());
+            return 0;
+        }
+        catch (Exception e)
+        {
+            Write("share-market.txt", report + $"Error: {e}");
             return 1;
         }
     }

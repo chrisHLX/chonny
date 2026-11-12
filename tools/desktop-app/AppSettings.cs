@@ -72,6 +72,14 @@ public sealed class AppSettings
     /// </summary>
     public bool AskClaude { get; set; }
 
+    /// <summary>
+    /// Send each Forever auction house scan to the website and write everyone's prices back into the
+    /// Observer addon (MarketShare, 2026-11-12). On unless turned off (Chriso's call): only the scan
+    /// is sent, prices, listing counts and time left, never what the player looked at or sold.
+    /// Everyone's prices come back either way.
+    /// </summary>
+    public bool ShareScans { get; set; } = true;
+
     /// <summary>claude.exe, when it isn't on the PATH, in ~/.local/bin or in VS Code's Claude extension.</summary>
     public string? ClaudePath { get; set; }
 

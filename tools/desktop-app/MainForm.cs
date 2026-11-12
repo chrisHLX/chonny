@@ -21,6 +21,7 @@ internal sealed class MainForm : Form
     private readonly Recorder _recorder;
     private readonly ForeverRecorder _forever;
     private readonly AskBridge _ask;
+    private readonly MarketShare _market;
     private readonly LiveGame _live = new();
     private readonly NoteBook _notes;
     private readonly System.Windows.Forms.Timer _liveTimer = new() { Interval = 1000 };
@@ -89,6 +90,7 @@ internal sealed class MainForm : Form
         _forever.Saved += () => BeginInvoke(() => { if (InForever) FillList(); });
         _forever.LogsFound += () => BeginInvoke(() => { _settings.Save(); CheckForeverAddon(); });
         _ask = new AskBridge(_settings, Log);
+        _market = new MarketShare(_settings, Log);
         _ask.Asking += _ => BeginInvoke(() => { if (_tab == "Ask") { FillList(); RedrawObserverPage(); } });
         _ask.Answered += a => BeginInvoke(() => OnAnswered(a));
         // The side open last time (the switch at the top of the menu).
@@ -285,7 +287,7 @@ internal sealed class MainForm : Form
         menu.Items.Add("Mark this moment (Ctrl+Shift+M)", null, (_, _) => AddMark());
         menu.Items.Add("Sync now", null, async (_, _) => await SyncAsync(manual: true));
         menu.Items.Add("-");
-        menu.Items.Add("Exit", null, (_, _) => { _exiting = true; _tray.Visible = false; _recorder.Dispose(); _forever.Dispose(); _ask.Dispose(); Application.Exit(); });
+        menu.Items.Add("Exit", null, (_, _) => { _exiting = true; _tray.Visible = false; _recorder.Dispose(); _forever.Dispose(); _ask.Dispose(); _market.Dispose(); Application.Exit(); });
         _tray.ContextMenuStrip = menu;
         _tray.DoubleClick += (_, _) => ShowWindow();
     }
@@ -346,6 +348,7 @@ internal sealed class MainForm : Form
         _recorder.Start();
         _forever.Start();
         _ask.Start();
+        _market.Start();
         CleanUpOldUpdates();
         await CheckForUpdateAsync();
     }
