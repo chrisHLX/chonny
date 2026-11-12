@@ -26,15 +26,31 @@ namespace MindCollector.Desktop;
 /// </summary>
 public sealed class NativeRecorder
 {
-    public sealed record Options(int Fps = 60, uint BitsPerSecond = 16_000_000, bool Audio = true);
+    /// <summary>
+    /// Fps: the video's steady frame rate. BitsPerSecond: 25 Mbps by default, between the 13-32 Mbps
+    /// Chriso's OBS records at. Sound: "wow" (WoW's own sound, Windows 10 2004 and later; everything
+    /// the PC plays where that isn't there), "everything", or "none".
+    /// </summary>
+    public sealed record Options(int Fps = 60, uint BitsPerSecond = 25_000_000, string Sound = "wow");
 
-    public sealed record Result(string Path, int Width, int Height, int Captured, int Encoded, int Skipped, int Dropped,
-        TimeSpan Length, TimeSpan Took, long Bytes, string? Error, string? Audio = null);
+    public sealed record Result(string Path, int Width, int Height, int Captured, int Encoded, int Repeated, int Dropped,
+        int Late, TimeSpan Length, TimeSpan Took, long Bytes, string? Error, string? Audio = null);
 
     /// <summary>Our textures waiting for the encoder, at most; more than this and the oldest is dropped.</summary>
     private const int Backlog = 12;
 
-    /// <summary>Records <paramref name="hwnd"/> for <paramref name="length"/> into an MP4 at <paramref name="path"/>.</summary>
+    [DllImport("user32.dll")] private static extern uint GetWindowThreadProcessId(IntPtr hwnd, out int processId);
+    [DllImport("winmm.dll")] private static extern uint timeBeginPeriod(uint period);
+    [DllImport("winmm.dll")] private static extern uint timeEndPeriod(uint period);
+
+    /// <summary>
+    /// Records <paramref name="hwnd"/> for <paramref name="length"/> into an MP4 at <paramref name="path"/>.
+    ///
+    /// The video runs at a steady <see cref="Options.Fps"/> (12 Nov: passing frames on as WoW drew them,
+    /// ~50 a second and unevenly, played back choppy). Each captured frame is copied into one "latest"
+    /// texture; a timing thread, with Windows' timer at 1ms while it runs (as OBS does), takes a copy
+    /// of it at every tick for the encoder. A slower game repeats its last frame, as OBS does.
+    /// </summary>
     public static async Task<Result> RecordAsync(IntPtr hwnd, string path, TimeSpan length, Options? options = null)
     {
         options ??= new Options();
@@ -43,28 +59,37 @@ public sealed class NativeRecorder
         var item = Capture.ForWindow(hwnd);
         var width = item.Size.Width & ~1;
         var height = item.Size.Height & ~1;
+        GetWindowThreadProcessId(hwnd, out var processId);
 
         var textures = new TexturePool(gpu, Backlog + 6);
         var queue = new Queue<(TexturePool.Slot Slot, TimeSpan At)>();
         var gate = new SemaphoreSlim(0);
-        int captured = 0, skipped = 0, dropped = 0, encoded = 0;
-        var minGap = TimeSpan.FromSeconds(1.0 / options.Fps) - TimeSpan.FromMilliseconds(1);
-        TimeSpan? first = null, lastKept = null, lastStamp = null;
+        int captured = 0, repeated = 0, dropped = 0, late = 0, encoded = 0;
+        TexturePool.Slot? latest = null;
+        var fresh = false;
+        TimeSpan lastStamp = TimeSpan.Zero;
         var stopping = false;
 
-        // Stage 2: what the PC plays (AudioLoopback). Both streams count from the moment it starts.
+        // The sound, and one clock for both: everything counts from the moment the sound starts.
+        // Made on a background (MTA) thread and used only from those: WoW's own sound comes through an
+        // object Windows can't pass between threads of different kinds (E_NOINTERFACE from the UI thread).
         AudioLoopback? audio = null;
         string? audioNote = null;
-        if (options.Audio)
+        if (options.Sound == "wow")
         {
-            try { audio = new AudioLoopback(); }
-            catch (Exception e) { audioNote = $"no sound: {e.Message}"; }
+            try { audio = await Task.Run(() => new AudioLoopback(processId)); }
+            catch (Exception e) { audioNote = $"WoW-only sound isn't available here ({e.Message}), so everything the PC plays; "; }
+        }
+        if (audio == null && options.Sound != "none")
+        {
+            try { audio = await Task.Run(() => new AudioLoopback()); }
+            catch (Exception e) { audioNote += $"no sound: {e.Message}"; }
         }
         var chunks = new Queue<AudioLoopback.Chunk>();
         var chunkGate = new SemaphoreSlim(0);
         if (audio != null)
             audio.Data += c => { lock (chunks) chunks.Enqueue(c); chunkGate.Release(); };
-        TimeSpan? origin = null;
+        TimeSpan origin = TimeSpan.Zero;
 
         using var pool = Direct3D11CaptureFramePool.CreateFreeThreaded(gpu.Device, DirectXPixelFormat.B8G8R8A8UIntNormalized, 2, item.Size);
         using var session = pool.CreateCaptureSession(item);
@@ -72,20 +97,53 @@ public sealed class NativeRecorder
         pool.FrameArrived += (p, _) =>
         {
             using var frame = p.TryGetNextFrame();
-            if (frame == null) return;
+            if (frame == null || stopping) return;
             captured++;
-            var t = frame.SystemRelativeTime;
-            if (stopping || origin == null || t < origin || (lastKept is { } k && t - k < minGap)) { skipped++; return; }
-            var slot = textures.CopyOf(frame.Surface);
-            if (slot == null) { dropped++; return; }   // every texture is with the encoder
-            lastKept = t;
-            lock (queue)
-            {
-                while (queue.Count >= Backlog) { textures.Return(queue.Dequeue().Slot); dropped++; }
-                queue.Enqueue((slot, t));
-            }
-            gate.Release();
+            latest ??= textures.Fresh(frame.Surface);
+            textures.CopyInto(latest, frame.Surface);
+            fresh = true;
         };
+
+        // the steady clock: one frame for the encoder every 1/fps of a second
+        var sampler = new Thread(() =>
+        {
+            timeBeginPeriod(1);
+            try
+            {
+                long n = 0;
+                while (!stopping)
+                {
+                    var due = TimeSpan.FromTicks(n * TimeSpan.TicksPerSecond / options.Fps);
+                    var now = AudioLoopback.QpcNow() - origin;
+                    if (now < due)
+                    {
+                        var ms = (due - now).TotalMilliseconds;
+                        if (ms > 2) Thread.Sleep((int)ms - 1); else Thread.SpinWait(200);
+                        continue;
+                    }
+                    if (now - due > TimeSpan.FromMilliseconds(100))
+                    {
+                        // the PC stalled: carry on from now rather than rush out the missed frames
+                        late++;
+                        n = now.Ticks * options.Fps / TimeSpan.TicksPerSecond + 1;
+                        continue;
+                    }
+                    n++;
+                    if (latest == null) continue;
+                    var slot = textures.CopyOf(latest);
+                    if (slot == null) { dropped++; continue; }   // every texture is with the encoder
+                    if (!fresh) repeated++;
+                    fresh = false;
+                    lock (queue)
+                    {
+                        while (queue.Count >= Backlog) { textures.Return(queue.Dequeue().Slot); dropped++; }
+                        queue.Enqueue((slot, due));
+                    }
+                    gate.Release();
+                }
+            }
+            finally { timeEndPeriod(1); }
+        }) { IsBackground = true, Name = "MindCollector video clock", Priority = ThreadPriority.AboveNormal };
 
         var video = VideoEncodingProperties.CreateUncompressed(MediaEncodingSubtypes.Bgra8, (uint)width, (uint)height);
         var videoStream = new VideoStreamDescriptor(video);
@@ -100,6 +158,7 @@ public sealed class NativeRecorder
         source.BufferTime = TimeSpan.Zero;
         source.IsLive = true;
         source.Starting += (_, e) => e.Request.SetActualStartPosition(TimeSpan.Zero);
+        var frameTime = TimeSpan.FromTicks(TimeSpan.TicksPerSecond / options.Fps);
         source.SampleRequested += async (_, e) =>
         {
             var deferral = e.Request.GetDeferral();
@@ -128,13 +187,11 @@ public sealed class NativeRecorder
                     if (!await gate.WaitAsync(500)) continue;
                     lock (queue) { if (queue.Count > 0) next = queue.Dequeue(); }
                 }
-                if (next is not { } n) { e.Request.Sample = null; return; }   // the end of the stream
-                first ??= n.At;
-                var stamp = n.At - origin!.Value;
-                if (lastStamp is { } ls && stamp <= ls) stamp = ls + TimeSpan.FromMilliseconds(1);
-                lastStamp = stamp;
-                var sample = MediaStreamSample.CreateFromDirect3D11Surface(n.Slot.Surface, stamp);
-                sample.Processed += (_, _) => { textures.Return(n.Slot); Interlocked.Increment(ref encoded); };
+                if (next is not { } q) { e.Request.Sample = null; return; }   // the end of the stream
+                lastStamp = q.At;
+                var sample = MediaStreamSample.CreateFromDirect3D11Surface(q.Slot.Surface, q.At);
+                sample.Duration = frameTime;
+                sample.Processed += (_, _) => { textures.Return(q.Slot); Interlocked.Increment(ref encoded); };
                 e.Request.Sample = sample;
             }
             finally { deferral.Complete(); }
@@ -149,6 +206,7 @@ public sealed class NativeRecorder
         profile.Video.FrameRate.Denominator = 1;
         profile.Video.PixelAspectRatio.Numerator = 1;
         profile.Video.PixelAspectRatio.Denominator = 1;
+        profile.Video.ProfileId = H264ProfileIds.High;   // better picture than the default at the same size
 
         var folder = await StorageFolder.GetFolderFromPathAsync(System.IO.Path.GetDirectoryName(System.IO.Path.GetFullPath(path))!);
         var file = await folder.CreateFileAsync(System.IO.Path.GetFileName(path), CreationCollisionOption.ReplaceExisting);
@@ -163,6 +221,7 @@ public sealed class NativeRecorder
                 if (audio != null) { audio.Start(); origin = audio.Started; }
                 else origin = AudioLoopback.QpcNow();
                 session.StartCapture();
+                sampler.Start();
                 var run = prepared.TranscodeAsync().AsTask();
                 await Task.Delay(length);
                 stopping = true;
@@ -170,18 +229,19 @@ public sealed class NativeRecorder
                 chunkGate.Release();
                 try { await run.WaitAsync(TimeSpan.FromSeconds(20)); }
                 catch (Exception e) { error = e.Message; }
+                sampler.Join(1000);
             }
         }
         lock (queue) while (queue.Count > 0) textures.Return(queue.Dequeue().Slot);
         textures.Dispose();
         if (audio != null)
         {
-            audioNote = $"sound {audio.SampleRate} Hz x{audio.Channels}: {audio.Written / (double)audio.SampleRate:F2}s, " +
+            audioNote += $"sound ({audio.Source}) {audio.SampleRate} Hz x{audio.Channels}: {audio.Written / (double)audio.SampleRate:F2}s, " +
                 $"{audio.Padded / (double)audio.SampleRate:F2}s of it silence filled in, loudest {audio.Peak:F3}";
             audio.Dispose();
         }
         var bytes = new FileInfo(path).Length;
-        return new Result(path, width, height, captured, encoded, skipped, dropped, lastStamp ?? TimeSpan.Zero, watch.Elapsed, bytes, error, audioNote);
+        return new Result(path, width, height, captured, encoded, repeated, dropped, late, lastStamp + frameTime, watch.Elapsed, bytes, error, audioNote);
     }
 
     /// <summary>The window of a running WoW (Forever's first when both run), or zero.</summary>
@@ -263,6 +323,39 @@ public sealed class NativeRecorder
 
         [DllImport("d3d11.dll", ExactSpelling = true)]
         private static extern int CreateDirect3D11SurfaceFromDXGISurface(IntPtr dxgiSurface, out IntPtr graphicsSurface);
+
+        /// <summary>A texture of our own, outside the pool, shaped like a captured frame.</summary>
+        public Slot Fresh(IDirect3DSurface like)
+        {
+            var source = TextureOf(like);
+            try { lock (_free) { var s = Make(source); _all.Add(s); return s; } }
+            finally { Marshal.Release(source); }
+        }
+
+        /// <summary>A captured frame copied into <paramref name="slot"/>.</summary>
+        public void CopyInto(Slot slot, IDirect3DSurface captured)
+        {
+            var source = TextureOf(captured);
+            try { lock (gpu.Lock) Vtbl.Call<CopyResource>(gpu.Context, 47)(gpu.Context, slot.Texture, source); }
+            finally { Marshal.Release(source); }
+        }
+
+        /// <summary>A free texture with <paramref name="from"/> copied into it, or null when none is free.</summary>
+        public Slot? CopyOf(Slot from)
+        {
+            Slot? slot;
+            lock (_free)
+            {
+                if (!_free.TryPop(out slot))
+                {
+                    if (_all.Count >= max) return null;
+                    slot = Make(from.Texture);
+                    _all.Add(slot);
+                }
+            }
+            lock (gpu.Lock) Vtbl.Call<CopyResource>(gpu.Context, 47)(gpu.Context, slot.Texture, from.Texture);
+            return slot;
+        }
 
         public Slot? CopyOf(IDirect3DSurface captured)
         {

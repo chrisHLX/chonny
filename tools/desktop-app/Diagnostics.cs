@@ -669,9 +669,9 @@ internal static class Diagnostics
     }
 
     /// <summary>
-    /// --rec-test [SECONDS] [FPS]: the app's own recorder (NativeRecorder) on the running WoW window for
-    /// SECONDS (10), into rec-test.mp4 in the data folder; what it captured, encoded and dropped, and
-    /// this process's CPU time while it ran (rec-test.txt).
+    /// --rec-test [SECONDS] [FPS] [wow|everything|none] [MBPS]: the app's own recorder (NativeRecorder) on
+    /// the running WoW window for SECONDS (10), into rec-test.mp4 in the data folder; what it captured,
+    /// encoded, repeated and dropped, its sound, and this process's CPU time while it ran (rec-test.txt).
     /// </summary>
     public static int RecTest(string[] args)
     {
@@ -680,14 +680,16 @@ internal static class Diagnostics
         {
             var seconds = args.Length > 1 && int.TryParse(args[1], out var s) ? s : 10;
             var fps = args.Length > 2 && int.TryParse(args[2], out var f) ? f : 60;
+            var sound = args.Length > 3 ? args[3] : "wow";
+            var mbps = args.Length > 4 && int.TryParse(args[4], out var m) ? m : 25;
             var hwnd = NativeRecorder.FindWow();
             if (hwnd == IntPtr.Zero) { Write("rec-test.txt", "No WoW window found."); return 2; }
             var path = Path.Combine(AppSettings.Dir, "rec-test.mp4");
             var cpu = System.Diagnostics.Process.GetCurrentProcess().TotalProcessorTime;
-            var r = NativeRecorder.RecordAsync(hwnd, path, TimeSpan.FromSeconds(seconds), new NativeRecorder.Options(fps)).GetAwaiter().GetResult();
+            var r = NativeRecorder.RecordAsync(hwnd, path, TimeSpan.FromSeconds(seconds), new NativeRecorder.Options(fps, (uint)mbps * 1_000_000, sound)).GetAwaiter().GetResult();
             cpu = System.Diagnostics.Process.GetCurrentProcess().TotalProcessorTime - cpu;
-            report.AppendLine($"{r.Width}x{r.Height}, asked {seconds}s at {fps} fps; took {r.Took.TotalSeconds:F1}s");
-            report.AppendLine($"captured {r.Captured} frames, skipped {r.Skipped} (over {fps} fps), dropped {r.Dropped} (encoder behind), encoded {r.Encoded}");
+            report.AppendLine($"{r.Width}x{r.Height}, asked {seconds}s at {fps} fps, {mbps} Mbps, sound: {sound}; took {r.Took.TotalSeconds:F1}s");
+            report.AppendLine($"WoW drew {r.Captured} frames ({r.Captured / Math.Max(r.Length.TotalSeconds, 0.001):F1} a second); encoded {r.Encoded} at a steady {fps}, {r.Repeated} of them repeats; dropped {r.Dropped}; clock late {r.Late} times");
             report.AppendLine($"video {r.Length.TotalSeconds:F2}s, {r.Encoded / Math.Max(r.Length.TotalSeconds, 0.001):F1} fps encoded, {r.Bytes / 1048576.0:F1} MB ({r.Bytes * 8 / Math.Max(r.Length.TotalSeconds, 0.001) / 1e6:F1} Mbps)");
             report.AppendLine($"this process's CPU time: {cpu.TotalSeconds:F2}s over {r.Took.TotalSeconds:F1}s ({cpu.TotalSeconds / r.Took.TotalSeconds / Environment.ProcessorCount * 100:F1}% of the whole CPU)");
             if (r.Audio != null) report.AppendLine(r.Audio);
