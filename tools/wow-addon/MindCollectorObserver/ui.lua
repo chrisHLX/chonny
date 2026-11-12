@@ -321,6 +321,20 @@ local function unitPrice(id)
     if p then return p.min, "auction", p.t end
 end
 
+-- Which profession's recipe makes an item, if any: {pid, recipe}. Built once.
+local craftedByIndex
+local function craftedBy(item)
+    if not craftedByIndex then
+        craftedByIndex = {}
+        for pid, rl in pairs(ns.recipes or {}) do
+            for _, r in ipairs(rl) do
+                if r[7] > 0 and not craftedByIndex[r[7]] then craftedByIndex[r[7]] = { pid, r } end
+            end
+        end
+    end
+    return craftedByIndex[item]
+end
+
 -- Where a recipe comes from, from what you've seen: the trainer (skill, level, cost, where they
 -- stand) or the vendor selling its recipe item. Returns a short text for the list, lines for the
 -- details, and a map point when a place is known.
@@ -374,6 +388,20 @@ local function sourceOf(r, profName)
         if known.q and #known.q > 0 then
             short = short or "recipe: quest"
             table.insert(lines, "Quest reward: " .. table.concat(known.q, ", "))
+        end
+        -- Never nothing (2026-11-12): Recipe: Goblin Rocket Fuel has no vendor, drop or quest on Wowhead,
+        -- and the empty answer broke the Professions list for Chriso at Alchemy 225.
+        if not short and #other > 0 then short = "recipe: other faction's vendor only" end
+        if not short then
+            local by = craftedBy(r[10])
+            if by then
+                short = "recipe: made by " .. (ns.PROF_NAMES[by[1]] or "a profession")
+                table.insert(lines, string.format("Made by %s: %s, learned at %d", ns.PROF_NAMES[by[1]] or "a profession", by[2][2], by[2][3]))
+                table.insert(lines, grey("  Ask someone with it, or look for it on the auction house."))
+            else
+                short = "recipe: source unknown"
+                table.insert(lines, grey("  Wowhead lists no vendor, drop or quest for it yet: ask, or look on the auction house."))
+            end
         end
         if #lines > 0 and not (ns.DB.vendors and ns.DB.vendors[r[10]]) then return short, lines, point end
     elseif r.src and not t and (r.src:find("5") or r.src:find("2") or r.src:find("4")) then
@@ -969,6 +997,11 @@ local function drawMarketBar(cats, subs)
 end
 
 local function drawList()
+    if tab ~= "movers" and frame.mktBar:IsShown() then
+        frame.mktBar:Hide()
+        if menu then menu:Hide() end
+        placeList(-72)
+    end
     local n, y = 0, -2
     local function place(r)
         r:ClearAllPoints()
@@ -997,14 +1030,16 @@ local function drawList()
         for _, pr in ipairs(profs) do
             local pid, p = pr.id, pr.p
             local hasRecipes = ns.recipes and ns.recipes[pid]
-            local now = hasRecipes and recipesFor(pid, p.rank) or {}
+            -- worked out once per profession per redraw (each walks every recipe and reagent)
+            local now, soon = {}, {}
+            if hasRecipes then now, soon = recipesFor(pid, p.rank) end
+            local profits = hasRecipes and sortByProfit() and profitsFor(pid, p.rank) or nil
             local cheapest = now[1] and now[1].perPoint
             n = n + 1
             local r = rows[n] or makeRow(n)
             local sub = not hasRecipes and "a gathering skill: no recipes"
                 or (#now .. " recipe" .. (#now == 1 and "" or "s") .. " give a point now" .. (cheapest and ("  ·  cheapest about " .. ns.money(cheapest) .. " a point") or ""))
-            if hasRecipes and sortByProfit() then
-                local profits = profitsFor(pid, p.rank)
+            if profits then
                 local earning = 0
                 for _, x in ipairs(profits) do if x.profit and x.profit > 0 then earning = earning + 1 end end
                 sub = earning .. " recipe" .. (earning == 1 and "" or "s") .. " make a profit"
@@ -1014,7 +1049,6 @@ local function drawList()
                 (p.rank or 0) .. " / " .. (p.max or "?"), sub)
             place(r)
             if selProf == pid and hasRecipes then
-                local _, soon = recipesFor(pid, p.rank)
                 n = n + 1
                 local sw = rows[n] or makeRow(n)
                 fillRow(sw, "sortmode:" .. pid, "Interface\\Icons\\INV_Misc_Coin_02",
@@ -1025,8 +1059,7 @@ local function drawList()
                         and "   less what the product sells for on the auction house, after its 5% cut; click for most profit"
                         or "   the reagents' cost per skill point; click to count what you'd sell the products for")
                 place(sw)
-                if sortByProfit() then
-                    local profits = profitsFor(pid, p.rank)
+                if profits then
                     for i = 1, math.min(#profits, 60) do
                         local x = profits[i]
                         local hex = skillColor(x.r, p.rank)
@@ -1037,7 +1070,7 @@ local function drawList()
                         else
                             value = grey(x.missing > 0 and (x.missing .. " price" .. (x.missing == 1 and "" or "s") .. " unknown") or "no auction price")
                         end
-                        local bits = { knownRecipe(x.r[1]) == true and "known" or (sourceOf(x.r, p.name)) }
+                        local bits = { knownRecipe(x.r[1]) == true and "known" or (sourceOf(x.r, p.name)) or "source unknown" }
                         if x.p then
                             table.insert(bits, "sells " .. ns.money(x.p.min) .. ((x.r.yield or 1) > 1 and (" (makes " .. x.r.yield .. ")") or "")
                                 .. (x.p.q and (", " .. x.p.q .. " listed") or ""))
@@ -1063,7 +1096,7 @@ local function drawList()
                         value = x.perPoint and ("about " .. ns.money(x.perPoint) .. " a point")
                             or (x.missing > 0 and grey(x.missing .. " price" .. (x.missing == 1 and "" or "s") .. " unknown") or "")
                     end
-                    local how = known == true and "known" or (sourceOf(x.r, p.name))
+                    local how = known == true and "known" or (sourceOf(x.r, p.name)) or "source unknown"
                     if x.sell then how = how .. "  ·  sells " .. ns.money(x.sell / (1 - AH_CUT) / (x.r.yield or 1)) .. ((x.r.yield or 1) > 1 and (" (makes " .. x.r.yield .. ")") or "") end
                     if next(x.made) then how = how .. "  ·  makes its own " .. (function()
                         local t = {} for id in pairs(x.made) do table.insert(t, itemName(id)) end return table.concat(t, ", ") end)() end
@@ -1153,11 +1186,6 @@ local function drawList()
     end
     for i = n + 1, #rows do rows[i]:Hide() end
     list.child:SetHeight(math.max(-y, 10))
-    if tab ~= "movers" and frame.mktBar:IsShown() then
-        frame.mktBar:Hide()
-        if menu then menu:Hide() end
-        placeList(-72)
-    end
 end
 
 -- ---------------------------------------------------------------- the details
@@ -1693,8 +1721,19 @@ refresh = function()
         b.label:SetText(b.def.key == tab and color(GOLD_HEX, label) or label)
         b:SetBackdropBorderColor(GOLD[1], GOLD[2], GOLD[3], b.def.key == tab and 0.9 or 0.15)
     end
-    drawList()
-    drawDetail()
+    -- Each part draws on its own: an error in one is said in chat once (file and line, to pass on)
+    -- and the rest still draws, instead of a blank panel (2026-11-12).
+    for _, part in ipairs({ { "the list", drawList }, { "the details", drawDetail } }) do
+        local ok, err = pcall(part[2])
+        if not ok then
+            err = tostring(err)
+            ns.shownErrors = ns.shownErrors or {}
+            if not ns.shownErrors[err] then
+                ns.shownErrors[err] = true
+                if ns.say then ns.say("the window couldn't draw " .. part[1] .. ": " .. err) end
+            end
+        end
+    end
     -- the footer: a scan in progress, else when the last one was
     local last = ns.DB.lastScan
     local pool = ns.pool

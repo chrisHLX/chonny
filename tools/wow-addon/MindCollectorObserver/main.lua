@@ -325,7 +325,9 @@ end
 
 local function onTooltip(tooltip, data)
     if tooltip ~= GameTooltip and tooltip ~= ItemRefTooltip then return end
-    if not data or data.type == nil then return end
+    -- Items only, checked first (2026-11-12): this runs for every tooltip of every kind, and spell,
+    -- buff and unit tooltips refresh constantly while hovered, so nothing else is worked out for them.
+    if not data or data.type ~= Enum.TooltipDataType.Item then return end
     if ns.owns and ns.owns(tooltip:GetOwner()) then return end -- the addon's own window
     local T = Enum.TooltipDataType
     local ctx = contextOf(tooltip)
@@ -877,7 +879,7 @@ ev:RegisterEvent("COMMODITY_SEARCH_RESULTS_UPDATED")
 ev:RegisterEvent("ITEM_SEARCH_RESULTS_UPDATED")
 ev:RegisterEvent("REPLICATE_ITEM_LIST_UPDATE")
 ev:RegisterEvent("SKILL_LINES_CHANGED")
-ev:RegisterEvent("UNIT_SPELLCAST_SUCCEEDED")
+ev:RegisterUnitEvent("UNIT_SPELLCAST_SUCCEEDED", "player") -- your casts only: crafts for the ledger
 ev:RegisterEvent("COMMODITY_PRICE_UPDATED")
 ev:RegisterEvent("COMMODITY_PURCHASE_SUCCEEDED")
 ev:RegisterEvent("ITEM_PURCHASED")
