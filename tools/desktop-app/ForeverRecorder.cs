@@ -200,10 +200,49 @@ public sealed class ForeverRecorder : IDisposable
         {
             var dir = Recorder.VideosDir(_settings);
             if (Directory.Exists(dir))
-                foreach (var f in Directory.EnumerateFiles(dir, "Forever *.cutting")) File.Delete(f);
+            {
+                foreach (var f in Directory.EnumerateFiles(dir, "Forever *.cutting", SearchOption.AllDirectories)) File.Delete(f);
+                FileIntoFolders(dir, _log);
+            }
         }
         catch { }
         _timer.Change(1000, 1000);
+    }
+
+    /// <summary>
+    /// Clips from before 0.6.19, loose in the videos folder, moved into their games' folders (the
+    /// Fights tab's grouping), each with its timing file. A clip that can't be moved (playing) stays.
+    /// </summary>
+    internal static int FileIntoFolders(string dir, Action<string> log)
+    {
+        var loose = VideoLibrary.Load(dir).Where(v => v.IsForever && v.Fight != null && Path.GetDirectoryName(v.Name) is not { Length: > 0 }).ToList();
+        var moved = 0;
+        foreach (var game in ForeverPages.Groups(loose))
+        {
+            var folder = Path.Combine(dir, ForeverPages.FolderName(game[0].Fight!.First, game[0].Fight!.Zone));
+            Directory.CreateDirectory(folder);
+            foreach (var v in game)
+                try
+                {
+                    var from = Path.Combine(dir, v.Name);
+                    File.Move(from, Path.Combine(folder, v.Name));
+                    if (File.Exists(from + Recorder.SidecarSuffix)) File.Move(from + Recorder.SidecarSuffix, Path.Combine(folder, v.Name + Recorder.SidecarSuffix));
+                    moved++;
+                }
+                catch (Exception e) { log($"Could not move {v.Name} into its game's folder: {e.Message}"); }
+        }
+        if (moved > 0) log($"Moved {moved} Forever clip{(moved == 1 ? "" : "s")} into a folder for each game.");
+        return moved;
+    }
+
+    /// <summary>The folder this fight's clip goes in: the last clip's, when it's the same game, else a new one.</summary>
+    private static string GameFolder(string dir, FightFinder.Fight fight)
+    {
+        var prev = VideoLibrary.Load(dir).Where(v => v.IsForever && v.Fight != null).MaxBy(v => v.Fight!.First);
+        if (prev != null && Path.GetDirectoryName(prev.Name) is { Length: > 0 } folder
+            && ForeverPages.SameGame(prev.Fight!.Zone, prev.Fight.Entered, prev.Fight.Last, fight.Zone, fight.Entered, fight.First))
+            return Path.Combine(dir, folder);
+        return Path.Combine(dir, ForeverPages.FolderName(fight.First, fight.Zone));
     }
 
     /// <summary>The next fight will be saved: OBS's replay buffer runs.</summary>
@@ -398,9 +437,10 @@ public sealed class ForeverRecorder : IDisposable
 
         var dir = Recorder.VideosDir(_settings);
         Directory.CreateDirectory(dir);
-        var target = Path.Combine(dir, $"Forever {fight.First:yyyy-MM-dd HH-mm-ss}{Path.GetExtension(path)}");
-        try { await Task.Run(() => File.Move(path, target, overwrite: false)); path = target; }
-        catch (Exception e) { _log($"Could not move the clip into {dir}: {e.Message}"); }
+        var folder = GameFolder(dir, fight);
+        var target = Path.Combine(folder, $"Forever {fight.First:yyyy-MM-dd HH-mm-ss}{Path.GetExtension(path)}");
+        try { Directory.CreateDirectory(folder); await Task.Run(() => File.Move(path, target, overwrite: false)); path = target; }
+        catch (Exception e) { _log($"Could not move the clip into {folder}: {e.Message}"); }
 
         var length = Mp4.Duration(path);
         var clipStart = asked - (length ?? TimeSpan.FromSeconds(HeldSeconds));

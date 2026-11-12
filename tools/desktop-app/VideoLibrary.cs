@@ -37,11 +37,29 @@ internal static class VideoLibrary
 
     private static readonly string[] Kinds = [".mp4", ".mkv", ".mov", ".webm"];
 
+    /// <summary>
+    /// A WoW Forever game's folder in the videos folder (0.6.19, Chriso: "so when I want to delete
+    /// something I can just delete the whole folder"): "Forever 2026-11-13 00-34 Arathi Basin".
+    /// </summary>
+    public const string ForeverFolderPrefix = "Forever ";
+
+    /// <summary>
+    /// The videos in the folder and in its Forever game folders. A video's Name is its path inside the
+    /// videos folder ("Forever 2026-11-13 00-34 Arathi Basin\Forever 2026-11-13 00-34-12.mp4" in one),
+    /// so everything that joins it to the folder finds it. A deleted folder is simply gone next time.
+    /// </summary>
     public static List<VideoEntry> Load(string dir)
     {
         var list = new List<VideoEntry>();
         if (!Directory.Exists(dir)) return list;
-        foreach (var path in Directory.EnumerateFiles(dir))
+        var paths = Directory.EnumerateFiles(dir).ToList();
+        try
+        {
+            foreach (var sub in Directory.EnumerateDirectories(dir, ForeverFolderPrefix + "*"))
+                paths.AddRange(Directory.EnumerateFiles(sub));
+        }
+        catch { /* a folder deleted while being read: it's gone next time */ }
+        foreach (var path in paths)
         {
             if (!Kinds.Contains(Path.GetExtension(path), StringComparer.OrdinalIgnoreCase)) continue;
             try
@@ -70,7 +88,7 @@ internal static class VideoLibrary
                             Names(f, "opponents"), Names(f, "killed"), f.TryGetProperty("youDied", out var d) && d.ValueKind == JsonValueKind.True,
                             Clock(f, "entered"));
                 }
-                list.Add(new VideoEntry(info.Name, started, stopped, bracket, rounds, info.Length, youtube, fight));
+                list.Add(new VideoEntry(Path.GetRelativePath(dir, path), started, stopped, bracket, rounds, info.Length, youtube, fight));
             }
             catch { /* a video still being written, or a broken timing file: leave it out this time */ }
         }
@@ -109,12 +127,23 @@ internal static class VideoLibrary
             ? a.EnumerateArray().Select(x => x.GetString()).OfType<string>().ToList()
             : [];
 
+    /// <summary>A video's path inside the folder as a web address: each part escaped, joined by "/".</summary>
+    public static string Url(string name) => string.Join("/", name.Split('\\', '/').Select(Uri.EscapeDataString));
+
+    /// <summary>The video's full path, or null when the name would lead outside the videos folder.</summary>
+    public static string? FullPath(string dir, string name)
+    {
+        var full = Path.GetFullPath(Path.Combine(dir, name));
+        var root = Path.GetFullPath(dir).TrimEnd('\\') + "\\";
+        return full.StartsWith(root, StringComparison.OrdinalIgnoreCase) ? full : null;
+    }
+
     public static string Duration(TimeSpan t) => t.TotalHours >= 1 ? t.ToString(@"h\:mm\:ss") : t.ToString(@"m\:ss");
 
     /// <summary>The player: the video, a button per round, and the way to its game and its file.</summary>
     public static string Page(VideoEntry v, string title, string? lobby)
     {
-        var src = $"https://{Host}/{Uri.EscapeDataString(v.Name)}";
+        var src = $"https://{Host}/{Url(v.Name)}";
         var buttons = string.Join("", v.Rounds.Select((r, i) =>
         {
             var at = Math.Max(0, (r - v.Started).TotalSeconds);
@@ -148,7 +177,7 @@ internal static class VideoLibrary
             <div class="muted">{{{WebUtility.HtmlEncode(string.Join(" · ", facts))}}}</div>
             <video id="v" controls preload="metadata" src="{{{src}}}"></video>
             <div class="err" id="err">This video would not play here. The window plays MP4; Settings &gt; Set up OBS checks that OBS records MP4. Show it in its folder to open it in another player.</div>
-            <div class="bar">{{{buttons}}}<span class="gap"></span>{{{game}}}<a class="btn" href="mc-app://folder/{{{Uri.EscapeDataString(v.Name)}}}">Show in folder</a></div>
+            <div class="bar">{{{buttons}}}<span class="gap"></span>{{{game}}}<a class="btn" href="mc-app://folder/{{{Url(v.Name)}}}">Show in folder</a></div>
             </div><script>
             (function(){
               var v=document.getElementById('v');
@@ -162,7 +191,7 @@ internal static class VideoLibrary
 
     /// <summary>The button on a game's card that opens its video, in the note bar at the bottom (ThisGamePage.NoteBar), clear of the card.</summary>
     public static string WatchBar(string name) => $$$"""
-        <a id="mc-watch" href="mc-app://video/{{{Uri.EscapeDataString(name)}}}" style="margin-left:auto;background:#C8952C;color:#000;border-radius:999px;padding:8px 16px;font:700 13px 'Segoe UI',Arial,sans-serif;text-decoration:none;white-space:nowrap">&#9654; Watch the video</a>
+        <a id="mc-watch" href="mc-app://video/{{{Url(name)}}}" style="margin-left:auto;background:#C8952C;color:#000;border-radius:999px;padding:8px 16px;font:700 13px 'Segoe UI',Arial,sans-serif;text-decoration:none;white-space:nowrap">&#9654; Watch the video</a>
         <script>(function(){var a=document.getElementById('mc-watch'),bar=document.getElementById('mc-notebar');if(a&&bar)bar.appendChild(a);})();</script>
         """;
 }

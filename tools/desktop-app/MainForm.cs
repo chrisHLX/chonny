@@ -1142,6 +1142,7 @@ internal sealed class MainForm : Form
     private void Show(string html)
     {
         if (_view.CoreWebView2 == null || html == _shown) return;
+        if (!html.Contains(VideoLibrary.Host, StringComparison.Ordinal)) _shownVideo = null;   // not a video's page
         _shown = html;
         _view.CoreWebView2.NavigateToString(html);
     }
@@ -1176,6 +1177,9 @@ internal sealed class MainForm : Form
     private const string Recorded = "▶ ";
     private List<VideoEntry> _videos = [];
     private string? _mappedVideos;
+    private string? _shownVideo;   // the video the page plays, so deleting its folder clears the page
+    private FileSystemWatcher? _videoWatch;
+    private bool _videoWatchQueued;
 
     /// <summary>Serves the videos folder to the pages under VideoLibrary.Host; again whenever Settings may have moved it.</summary>
     private void MapVideos()
@@ -1189,8 +1193,41 @@ internal sealed class MainForm : Form
             if (_mappedVideos != null) _view.CoreWebView2.ClearVirtualHostNameToFolderMapping(VideoLibrary.Host);
             _view.CoreWebView2.SetVirtualHostNameToFolderMapping(VideoLibrary.Host, dir, CoreWebView2HostResourceAccessKind.Allow);
             _mappedVideos = dir;
+            WatchVideos(dir);
         }
         catch (Exception e) { Log($"Could not open the videos folder {dir}: {e.Message}"); }
+    }
+
+    /// <summary>
+    /// Videos deleted or moved outside the app, a game's whole folder included (0.6.19): the list
+    /// redraws half a second later without them, and a page playing one of them goes back to the overview.
+    /// </summary>
+    private void WatchVideos(string dir)
+    {
+        _videoWatch?.Dispose();
+        _videoWatch = new FileSystemWatcher(dir) { IncludeSubdirectories = true, NotifyFilter = NotifyFilters.FileName | NotifyFilters.DirectoryName };
+        FileSystemEventHandler changed = (_, _) => QueueVideoRefresh();
+        _videoWatch.Deleted += changed;
+        _videoWatch.Renamed += (_, _) => QueueVideoRefresh();
+        _videoWatch.EnableRaisingEvents = true;
+    }
+
+    private void QueueVideoRefresh()
+    {
+        if (_videoWatchQueued || IsDisposed) return;
+        _videoWatchQueued = true;
+        BeginInvoke(async () =>
+        {
+            await Task.Delay(500);
+            _videoWatchQueued = false;
+            LoadVideos();
+            if (_shownVideo != null && !_videos.Any(v => v.Name == _shownVideo))
+            {
+                _shownVideo = null;
+                if (InForever) ShowForeverOverview(); else Blank("That video is no longer in the videos folder.");
+            }
+            if (InForever ? _tab == "Fights" || _tab == "Opponents" : _tab is "Videos" or "Games") FillList();
+        });
     }
 
     private List<VideoEntry> LoadVideos() => _videos = VideoLibrary.Load(Recorder.VideosDir(_settings));
@@ -1255,6 +1292,8 @@ internal sealed class MainForm : Form
     private async void ShowVideo(string name)
     {
         if (_view.CoreWebView2 == null) return;
+        name = name.Replace('/', '\\');   // a link's path inside the videos folder
+        _shownVideo = name;
         MapVideos();
         var v = _videos.FirstOrDefault(x => x.Name == name) ?? LoadVideos().FirstOrDefault(x => x.Name == name);
         if (v == null) { Blank("That video is no longer in the videos folder."); return; }
@@ -1287,7 +1326,9 @@ internal sealed class MainForm : Form
 
     private void ShowInFolder(string name)
     {
-        var path = Path.Combine(Recorder.VideosDir(_settings), Path.GetFileName(name));
+        name = name.Replace('/', '\\');
+        var dir = Recorder.VideosDir(_settings);
+        var path = VideoLibrary.FullPath(dir, name) ?? Path.Combine(dir, Path.GetFileName(name));
         try { System.Diagnostics.Process.Start("explorer.exe", File.Exists(path) ? $"/select,\"{path}\"" : $"\"{Path.GetDirectoryName(path)}\""); }
         catch (Exception e) { Log($"Could not open the folder: {e.Message}"); }
     }

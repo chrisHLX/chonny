@@ -800,6 +800,22 @@ internal static class Diagnostics
         }
     }
 
+    /// <summary>--file-forever DIR: moves DIR's loose Forever clips into a folder per game (as the app does at start), then lists DIR (file-forever.txt). For a test copy.</summary>
+    public static int FileForever(string dir)
+    {
+        var report = new StringBuilder();
+        var moved = ForeverRecorder.FileIntoFolders(dir, l => report.AppendLine("log: " + l));
+        report.AppendLine($"moved {moved}");
+        foreach (var d in Directory.EnumerateDirectories(dir).OrderBy(x => x))
+            report.AppendLine($"{Path.GetFileName(d)}: {Directory.EnumerateFiles(d, "*.mp4").Count()} clips, {Directory.EnumerateFiles(d, "*.json").Count()} timing files");
+        report.AppendLine($"loose: {Directory.EnumerateFiles(dir).Count()} files");
+        foreach (var v in VideoLibrary.Load(dir).Where(v => v.IsForever).Take(2))
+            report.AppendLine($"name {v.Name} -> url {VideoLibrary.Url(v.Name)} -> path {VideoLibrary.FullPath(dir, v.Name)}");
+        report.AppendLine($"outside: {VideoLibrary.FullPath(dir, Path.Combine("..", "x.mp4")) ?? "refused"}");
+        Write("file-forever.txt", report.ToString());
+        return 0;
+    }
+
     /// <summary>--fight-groups DIR: how the Fights tab groups the Forever clips in DIR (fight-groups.txt).</summary>
     public static int FightGroups(string dir)
     {

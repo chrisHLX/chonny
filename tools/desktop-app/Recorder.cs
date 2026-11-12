@@ -543,7 +543,7 @@ public sealed class Recorder : IDisposable
     {
         if (settings.VideoLimitGb <= 0) return;
         var limit = settings.VideoLimitGb * 1024L * 1024 * 1024;
-        var ours = new DirectoryInfo(dir).GetFiles("*" + SidecarSuffix)
+        var ours = new DirectoryInfo(dir).GetFiles("*" + SidecarSuffix, SearchOption.AllDirectories)
             .Select(s => (Sidecar: s, Video: new FileInfo(s.FullName[..^SidecarSuffix.Length])))
             .Where(x => x.Video.Exists)
             .OrderBy(x => x.Video.CreationTimeUtc)
@@ -559,6 +559,10 @@ public sealed class Recorder : IDisposable
                 video.Delete();
                 sidecar.Delete();
                 total -= size;
+                // a game folder emptied by this goes too
+                if (video.Directory is { } folder && folder.FullName != Path.GetFullPath(dir).TrimEnd('\\')
+                    && folder.Name.StartsWith(VideoLibrary.ForeverFolderPrefix, StringComparison.Ordinal) && !folder.EnumerateFileSystemInfos().Any())
+                    folder.Delete();
                 log($"Deleted the oldest video, {video.Name}, to stay under {settings.VideoLimitGb} GB.");
             }
             catch { }

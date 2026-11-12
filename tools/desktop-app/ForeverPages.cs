@@ -62,7 +62,7 @@ internal static class ForeverPages
         if (v.Length is { } l) facts.Add(VideoLibrary.Duration(l));
         if (withZone && !string.IsNullOrEmpty(f.Zone)) facts.Add(f.Zone);
         var badge = f.Outcome is { } o ? $"<span class=\"badge {(o.Tone > 0 ? "won" : o.Tone < 0 ? "lost" : "")}\">{H(o.Text)}</span>" : "";
-        return $"<a class=\"row\" href=\"mc-app://video/{Uri.EscapeDataString(v.Name)}\"><span><b>{H(f.Title)}</b><br><span class=\"muted\">{H(string.Join(" · ", facts))}</span></span>{badge}</a>";
+        return $"<a class=\"row\" href=\"mc-app://video/{VideoLibrary.Url(v.Name)}\"><span><b>{H(f.Title)}</b><br><span class=\"muted\">{H(string.Join(" · ", facts))}</span></span>{badge}</a>";
     }));
 
     /// <summary>
@@ -75,17 +75,35 @@ internal static class ForeverPages
     public static List<List<VideoEntry>> Groups(IEnumerable<VideoEntry> fights)
     {
         var groups = new List<List<VideoEntry>>();
+        var folders = new Dictionary<string, List<VideoEntry>>(StringComparer.OrdinalIgnoreCase);
         foreach (var v in fights.Where(v => v.Fight != null).OrderBy(FoughtAt))
         {
-            var last = groups.Count > 0 ? groups[^1] : null;
+            // since 0.6.19 each game has its folder, which is the group
+            if (Path.GetDirectoryName(v.Name) is { Length: > 0 } folder)
+            {
+                if (folders.TryGetValue(folder, out var g)) g.Add(v);
+                else { folders[folder] = [v]; groups.Add(folders[folder]); }
+                continue;
+            }
+            var last = groups.Count > 0 && Path.GetDirectoryName(groups[^1][0].Name) is not { Length: > 0 } ? groups[^1] : null;
             var prev = last?[^1].Fight;
             var f = v.Fight!;
-            var same = prev != null && !string.IsNullOrEmpty(f.Zone) && prev.Zone == f.Zone
-                && (prev.Entered is { } a && f.Entered is { } b ? a == b : f.First - prev.Last <= GroupGap);
-            if (same) last!.Add(v); else groups.Add([v]);
+            if (prev != null && SameGame(prev.Zone, prev.Entered, prev.Last, f.Zone, f.Entered, f.First)) last!.Add(v); else groups.Add([v]);
         }
         groups.Reverse();
         return groups;
+    }
+
+    /// <summary>Two fights in a row are one game: the same zone, entered at the same time (or, unknown, no more than GroupGap apart).</summary>
+    public static bool SameGame(string? zone, DateTime? entered, DateTime last, string? nextZone, DateTime? nextEntered, DateTime nextFirst) =>
+        !string.IsNullOrEmpty(nextZone) && zone == nextZone
+        && (entered is { } a && nextEntered is { } b ? a == b : nextFirst - last <= GroupGap);
+
+    /// <summary>"Forever 2026-11-13 00-34 Arathi Basin": a game's folder, named for its first fight.</summary>
+    public static string FolderName(DateTime first, string? zone)
+    {
+        var safe = string.Concat((zone is { Length: > 0 } ? zone : "Fights").Select(c => Path.GetInvalidFileNameChars().Contains(c) ? '-' : c)).Trim();
+        return $"{VideoLibrary.ForeverFolderPrefix}{first:yyyy-MM-dd HH-mm} {safe}";
     }
 
     public static readonly TimeSpan GroupGap = TimeSpan.FromMinutes(10);

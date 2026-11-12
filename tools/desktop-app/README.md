@@ -204,7 +204,11 @@ from the tray brings retail back. Forever has **Fights** (its clips, newest firs
 "Trade" as the badge; since 0.6.16 one row per battleground game or stretch in one zone, kills-deaths as
 its badge, opening that game's fights in order: `ForeverPages.Groups`, by the zone and when the log said
 you entered it, or for older clips the same zone no more than 10 minutes apart. Chriso's first Arathi
-Basin made 21 clips; `--fight-groups DIR` prints the grouping) and **Opponents** (everyone in them, your kills of them and your deaths, a page
+Basin made 21 clips; `--fight-groups DIR` prints the grouping. Since 0.6.19 each game is a folder on
+disk too, "Forever 2026-11-13 00-34 Arathi Basin", so deleting a game is deleting its folder: a new
+clip goes in the last clip's folder when it's the same game, loose clips from before are moved in at
+start (`FileIntoFolders`, `--file-forever DIR` on a test copy), a video's Name is its path inside the
+videos folder, and a FileSystemWatcher redraws the list when files or folders go) and **Opponents** (everyone in them, your kills of them and your deaths, a page
 of their fights: `ForeverPages`), and an overview of what it is watching when nothing is open. Its
 clips no longer show under retail's Videos. Sync hides on the Forever side, which sends nothing to the
 website yet. The side open last is kept (`Section` in settings.json).
