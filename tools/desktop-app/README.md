@@ -201,7 +201,10 @@ first packet 1024 samples, starting `21 7b`, and the clip plays in the window.
 **Retail or Forever (2026-11-06).** A switch under the wordmark picks the side; each has its own pages
 (`RetailPages`, `ForeverTabs` in MainForm), and the side follows the open page, so opening "This game"
 from the tray brings retail back. Forever has **Fights** (its clips, newest first, "Kill", "Died" or
-"Trade" as the badge) and **Opponents** (everyone in them, your kills of them and your deaths, a page
+"Trade" as the badge; since 0.6.16 one row per battleground game or stretch in one zone, kills-deaths as
+its badge, opening that game's fights in order: `ForeverPages.Groups`, by the zone and when the log said
+you entered it, or for older clips the same zone no more than 10 minutes apart. Chriso's first Arathi
+Basin made 21 clips; `--fight-groups DIR` prints the grouping) and **Opponents** (everyone in them, your kills of them and your deaths, a page
 of their fights: `ForeverPages`), and an overview of what it is watching when nothing is open. Its
 clips no longer show under retail's Videos. Sync hides on the Forever side, which sends nothing to the
 website yet. The side open last is kept (`Section` in settings.json).
@@ -327,6 +330,12 @@ Checked on Chriso's PC: `--obs-check forever` READY (Forever clip and a 5.4s tes
 `--obs-check forever` NOT READY when the restart was refused and READY in 30s when allowed (RecRB back
 to true). A PowerShell `Start-Process -Wait` on a check that restarts OBS waits for OBS too (it is the
 check's child): wait on the process itself.
+
+**An echo (13 Nov, `--obs-audio`, read-only).** The first battleground clips echoed: the app on that PC
+was still 0.6.10, from before WoW-only sound, while an earlier test had left the app's Game Capture
+capturing WoW's audio, and Desktop Audio and the microphone were unmuted, so WoW was recorded twice a
+few milliseconds apart (and his voice). From 0.6.12 the app mutes Desktop Audio while it records; from
+0.6.16 the microphone too.
 
 **WoW-only sound and the encoder (same day, `--loudness`, `--obs-set-encoder`).** With music playing,
 two 10s recordings back to back: "everything" -16.0 dBFS and level every second (the music); WoW only

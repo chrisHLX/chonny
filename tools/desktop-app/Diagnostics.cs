@@ -1,5 +1,6 @@
 using System.Text;
 using System.Text.Json;
+using System.Text.Json.Nodes;
 
 namespace MindCollector.Desktop;
 
@@ -748,6 +749,73 @@ internal static class Diagnostics
             Write("obs-check.txt", report + $"Error: {e}");
             return 1;
         }
+    }
+
+    /// <summary>
+    /// --obs-audio: read-only, every OBS input that can carry sound, its kind, whether it's muted, its
+    /// volume, and a game capture's capture_audio; the special inputs and the current scene's items
+    /// (obs-audio.txt). For an echo: the same sound recorded twice, by Game Capture and desktop audio.
+    /// </summary>
+    public static int ObsAudio()
+    {
+        var report = new StringBuilder();
+        try
+        {
+            var (obs, message) = ObsSetup.ConnectAsync(false, CancellationToken.None).GetAwaiter().GetResult();
+            report.AppendLine(message);
+            if (obs == null) { Write("obs-audio.txt", report.ToString()); return 1; }
+            using var _ = new DisposeAsyncGuard(obs);
+            var ct = CancellationToken.None;
+            var special = obs.TryRequestAsync("GetSpecialInputs", null, ct).GetAwaiter().GetResult();
+            report.AppendLine($"special: {special}");
+            var scene = obs.TryRequestAsync("GetCurrentProgramScene", null, ct).GetAwaiter().GetResult();
+            var sceneName = scene?.GetProperty("currentProgramSceneName").GetString();
+            report.AppendLine($"scene: {sceneName}");
+            if (sceneName != null && obs.TryRequestAsync("GetSceneItemList", new JsonObject { ["sceneName"] = sceneName }, ct).GetAwaiter().GetResult() is { } items)
+                foreach (var i in items.GetProperty("sceneItems").EnumerateArray())
+                    report.AppendLine($"  item: {i.GetProperty("sourceName")} enabled={i.GetProperty("sceneItemEnabled")}");
+            var list = obs.RequestAsync("GetInputList", null, ct).GetAwaiter().GetResult();
+            foreach (var input in list.GetProperty("inputs").EnumerateArray())
+            {
+                var name = input.GetProperty("inputName").GetString()!;
+                var kind = input.GetProperty("inputKind").GetString();
+                var q = new JsonObject { ["inputName"] = name };
+                var mute = obs.TryRequestAsync("GetInputMute", q, ct).GetAwaiter().GetResult();
+                var vol = obs.TryRequestAsync("GetInputVolume", new JsonObject { ["inputName"] = name }, ct).GetAwaiter().GetResult();
+                var set = obs.TryRequestAsync("GetInputSettings", new JsonObject { ["inputName"] = name }, ct).GetAwaiter().GetResult();
+                var tracks = obs.TryRequestAsync("GetInputAudioTracks", new JsonObject { ["inputName"] = name }, ct).GetAwaiter().GetResult();
+                var monitor = obs.TryRequestAsync("GetInputAudioMonitorType", new JsonObject { ["inputName"] = name }, ct).GetAwaiter().GetResult();
+                report.AppendLine($"{name} [{kind}] muted={mute?.GetProperty("inputMuted")} db={vol?.GetProperty("inputVolumeDb")} tracks={tracks?.GetProperty("inputAudioTracks")} monitor={monitor?.GetProperty("monitorType")}");
+                report.AppendLine($"    settings: {set?.GetProperty("inputSettings")}");
+            }
+            foreach (var key in new[] { "RecTracks", "RecEncoder", "RecFormat2", "RecQuality" })
+                report.AppendLine($"profile {key}: {ObsSetup.ProfileParameterAsync(obs, "SimpleOutput", key, ct).GetAwaiter().GetResult()}");
+            Write("obs-audio.txt", report.ToString());
+            return 0;
+        }
+        catch (Exception e)
+        {
+            Write("obs-audio.txt", report + $"Error: {e}");
+            return 1;
+        }
+    }
+
+    /// <summary>--fight-groups DIR: how the Fights tab groups the Forever clips in DIR (fight-groups.txt).</summary>
+    public static int FightGroups(string dir)
+    {
+        var report = new StringBuilder();
+        foreach (var g in ForeverPages.Groups(VideoLibrary.Load(dir).Where(v => v.IsForever)))
+        {
+            var (k, d) = ForeverPages.Tally(g);
+            report.AppendLine($"{g[0].Fight!.Zone} {ForeverPages.FoughtAt(g[0]):ddd d MMM HH:mm} to {g[^1].Fight!.Last:HH:mm}: {g.Count} fights, {k}-{d}");
+        }
+        Write("fight-groups.txt", report.ToString());
+        return 0;
+    }
+
+    private sealed class DisposeAsyncGuard(ObsClient obs) : IDisposable
+    {
+        public void Dispose() => obs.DisposeAsync().AsTask().GetAwaiter().GetResult();
     }
 
     /// <summary>

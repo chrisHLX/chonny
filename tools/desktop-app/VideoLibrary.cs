@@ -14,7 +14,7 @@ public sealed record VideoEntry(string Name, DateTime Started, DateTime? Stopped
 }
 
 /// <summary>What a Forever clip's timing file says of its fight. Names are as the log has them, realm and all.</summary>
-public sealed record ForeverFight(DateTime First, DateTime Last, string? Zone, IReadOnlyList<string> Opponents, IReadOnlyList<string> Killed, bool YouDied)
+public sealed record ForeverFight(DateTime First, DateTime Last, string? Zone, IReadOnlyList<string> Opponents, IReadOnlyList<string> Killed, bool YouDied, DateTime? Entered = null)
 {
     /// <summary>"vs Grish-Naz", "vs A, B, C +2".</summary>
     public string Title => Opponents.Count == 0 ? "vs a player"
@@ -67,7 +67,8 @@ internal static class VideoLibrary
                             if (DateTime.TryParse(x.GetString(), CultureInfo.InvariantCulture, DateTimeStyles.None, out var t)) rounds.Add(t);
                     if (r.TryGetProperty("fight", out var f) && f.ValueKind == JsonValueKind.Object && Clock(f, "first") is { } first)
                         fight = new ForeverFight(first, Clock(f, "last") ?? first, f.TryGetProperty("zone", out var z) ? z.GetString() : null,
-                            Names(f, "opponents"), Names(f, "killed"), f.TryGetProperty("youDied", out var d) && d.ValueKind == JsonValueKind.True);
+                            Names(f, "opponents"), Names(f, "killed"), f.TryGetProperty("youDied", out var d) && d.ValueKind == JsonValueKind.True,
+                            Clock(f, "entered"));
                 }
                 list.Add(new VideoEntry(info.Name, started, stopped, bracket, rounds, info.Length, youtube, fight));
             }

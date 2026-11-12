@@ -360,7 +360,8 @@ public static class ObsSetup
     /// OBS 33's win-capture.dll), and OBS's Desktop Audio is muted while the app's scene records, so voice
     /// chat and music stay out and the game isn't heard twice (OBS's own tooltip warns of that). What was
     /// muted is kept in settings and unmuted afterwards. "everything": no game audio capture, Desktop
-    /// Audio as the player has it. The microphone is left as the player has it either way.
+    /// Audio as the player has it. The microphone is muted with it (0.6.16: Chriso's first battleground
+    /// clips had his own voice and an echo; WoW's sound only means only WoW's).
     /// </summary>
     private static async Task<string?> ApplySoundAsync(ObsClient obs, AppSettings? remember, CancellationToken ct)
     {
@@ -374,7 +375,7 @@ public static class ObsSetup
         if (!wowOnly || remember == null) return null;
         var special = await obs.TryRequestAsync("GetSpecialInputs", null, ct);
         var muted = new List<string>();
-        foreach (var key in new[] { "desktop1", "desktop2" })
+        foreach (var key in new[] { "desktop1", "desktop2", "mic1", "mic2", "mic3", "mic4" })
         {
             if (special is not { } sp || !sp.TryGetProperty(key, out var n) || n.ValueKind != JsonValueKind.String || n.GetString() is not { Length: > 0 } name) continue;
             var state = await obs.TryRequestAsync("GetInputMute", new JsonObject { ["inputName"] = name }, ct);
@@ -384,7 +385,7 @@ public static class ObsSetup
         if (muted.Count == 0) return null;
         remember.ObsMutedForWow = [.. (remember.ObsMutedForWow ?? []).Union(muted)];
         remember.Save();
-        return "Recording WoW's own sound only: OBS's Desktop Audio is muted while the app records.";
+        return "Recording WoW's own sound only: OBS's Desktop Audio and microphone are muted while the app records.";
     }
 
     /// <summary>Unmutes what <see cref="ApplySoundAsync"/> muted.</summary>

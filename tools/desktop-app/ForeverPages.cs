@@ -47,19 +47,65 @@ internal static class ForeverPages
     {
         var kills = fights.Count(v => v.Fight!.Killed.Contains(name));
         var deaths = fights.Count(v => v.Fight!.YouDied);
-        var list = string.Join("", fights.Select(v =>
-        {
-            var f = v.Fight!;
-            var facts = new List<string> { FoughtAt(v).ToString("ddd d MMM, HH:mm", CultureInfo.InvariantCulture) };
-            if (v.Length is { } l) facts.Add(VideoLibrary.Duration(l));
-            if (!string.IsNullOrEmpty(f.Zone)) facts.Add(f.Zone);
-            var badge = f.Outcome is { } o ? $"<span class=\"badge {(o.Tone > 0 ? "won" : o.Tone < 0 ? "lost" : "")}\">{H(o.Text)}</span>" : "";
-            return $"<a class=\"row\" href=\"mc-app://video/{Uri.EscapeDataString(v.Name)}\"><span><b>{H(f.Title)}</b><br><span class=\"muted\">{H(string.Join(" · ", facts))}</span></span>{badge}</a>";
-        }));
+        var list = FightList(fights, withZone: true);
         var tally = $"{fights.Count} fight{(fights.Count == 1 ? "" : "s")} · you killed them {kills} time{(kills == 1 ? "" : "s")} · you died {deaths} time{(deaths == 1 ? "" : "s")}";
         return Wrap("WoW Forever · player", FightFinder.Fight.Short(name), $"""
             <p class="muted">{H(tally)}</p>
             <div class="list">{list}</div>
+            """);
+    }
+
+    private static string FightList(IEnumerable<VideoEntry> fights, bool withZone) => string.Join("", fights.Select(v =>
+    {
+        var f = v.Fight!;
+        var facts = new List<string> { FoughtAt(v).ToString(withZone ? "ddd d MMM, HH:mm" : "HH:mm:ss", CultureInfo.InvariantCulture) };
+        if (v.Length is { } l) facts.Add(VideoLibrary.Duration(l));
+        if (withZone && !string.IsNullOrEmpty(f.Zone)) facts.Add(f.Zone);
+        var badge = f.Outcome is { } o ? $"<span class=\"badge {(o.Tone > 0 ? "won" : o.Tone < 0 ? "lost" : "")}\">{H(o.Text)}</span>" : "";
+        return $"<a class=\"row\" href=\"mc-app://video/{Uri.EscapeDataString(v.Name)}\"><span><b>{H(f.Title)}</b><br><span class=\"muted\">{H(string.Join(" · ", facts))}</span></span>{badge}</a>";
+    }));
+
+    /// <summary>
+    /// The fights of one battleground game, arena or stretch in one zone (0.6.16, Chriso after his first
+    /// Arathi Basin made 21 clips: "if all the vids are from one BG have them grouped"). Fights belong
+    /// together when they're in the same zone entered at the same time (the log's ZONE_CHANGE, kept by
+    /// FightFinder); clips from before that was kept are put together when no more than
+    /// <see cref="GroupGap"/> apart in the same zone. Newest group first, each in the order fought.
+    /// </summary>
+    public static List<List<VideoEntry>> Groups(IEnumerable<VideoEntry> fights)
+    {
+        var groups = new List<List<VideoEntry>>();
+        foreach (var v in fights.Where(v => v.Fight != null).OrderBy(FoughtAt))
+        {
+            var last = groups.Count > 0 ? groups[^1] : null;
+            var prev = last?[^1].Fight;
+            var f = v.Fight!;
+            var same = prev != null && !string.IsNullOrEmpty(f.Zone) && prev.Zone == f.Zone
+                && (prev.Entered is { } a && f.Entered is { } b ? a == b : f.First - prev.Last <= GroupGap);
+            if (same) last!.Add(v); else groups.Add([v]);
+        }
+        groups.Reverse();
+        return groups;
+    }
+
+    public static readonly TimeSpan GroupGap = TimeSpan.FromMinutes(10);
+
+    /// <summary>"3 kills · died 5 times" over a group of fights: kills are players you killed, deaths fights you died in.</summary>
+    public static (int Kills, int Deaths) Tally(IEnumerable<VideoEntry> fights) =>
+        (fights.Sum(v => v.Fight!.Killed.Count), fights.Count(v => v.Fight!.YouDied));
+
+    public static string Group(IReadOnlyList<VideoEntry> fights)
+    {
+        var first = fights[0];
+        var zone = first.Fight!.Zone is { Length: > 0 } z ? z : "Fights";
+        var (kills, deaths) = Tally(fights);
+        var start = FoughtAt(first);
+        var end = fights[^1].Fight!.Last;
+        var tally = $"{start.ToString("ddd d MMM, HH:mm", CultureInfo.InvariantCulture)} to {end.ToString("HH:mm", CultureInfo.InvariantCulture)} · "
+            + $"{fights.Count} fights · {kills} kill{(kills == 1 ? "" : "s")} · died {deaths} time{(deaths == 1 ? "" : "s")}";
+        return Wrap("WoW Forever · one game", zone, $"""
+            <p class="muted">{H(tally)}</p>
+            <div class="list">{FightList(fights, withZone: false)}</div>
             """);
     }
 

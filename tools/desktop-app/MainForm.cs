@@ -211,6 +211,7 @@ internal sealed class MainForm : Form
             if (file.StartsWith(SamplePrefix, StringComparison.Ordinal)) await ShowSampleAsync(file[SamplePrefix.Length..]);
             else if (file.StartsWith(VideoPrefix, StringComparison.Ordinal)) ShowVideo(file[VideoPrefix.Length..]);
             else if (file.StartsWith(OpponentPrefix, StringComparison.Ordinal)) ShowOpponent(file[OpponentPrefix.Length..]);
+            else if (file.StartsWith(GroupPrefix, StringComparison.Ordinal)) ShowGroup(file[GroupPrefix.Length..]);
             else if (file.StartsWith(LookPrefix, StringComparison.Ordinal)) ShowLook(file[LookPrefix.Length..]);
             else if (file.StartsWith(AskPrefix, StringComparison.Ordinal)) ShowAnswer(file[AskPrefix.Length..]);
             else await ShowPageAsync(file);
@@ -853,6 +854,7 @@ internal sealed class MainForm : Form
     // ------------------------------------------------------------------ WoW Forever (2026-11-06, ForeverPages)
 
     private const string OpponentPrefix = "opponent:";
+    private const string GroupPrefix = "game:";
 
     private List<VideoEntry> ForeverFights() => LoadVideos().Where(v => v.IsForever).ToList();
 
@@ -878,13 +880,15 @@ internal sealed class MainForm : Form
 
         if (_tab == "Fights")
         {
-            foreach (var v in fights)
+            // A battleground game's fights as one row that opens them all (0.6.16); a fight on its own as itself.
+            foreach (var v in fights.Where(v => v.Fight == null)) yield return FightRow(v);
+            foreach (var group in ForeverPages.Groups(fights))
             {
-                var facts = new List<string> { ForeverPages.FoughtAt(v).ToString("ddd d MMM, HH:mm") };
-                if (v.Length is { } l) facts.Add(VideoLibrary.Duration(l));
-                if (v.Fight?.Zone is { Length: > 0 } zone) facts.Add(zone);
-                var outcome = v.Fight?.Outcome;
-                yield return new LibraryRow(v.Fight?.Title ?? (v.Bracket ?? "Fight").Replace("Forever: ", ""), string.Join(" · ", facts), outcome?.Text, outcome?.Tone ?? 0, VideoPrefix + v.Name);
+                if (group.Count == 1) { yield return FightRow(group[0]); continue; }
+                var (kills, deaths) = ForeverPages.Tally(group);
+                var zone = group[0].Fight!.Zone ?? "Fights";
+                var sub = $"{ForeverPages.FoughtAt(group[0]):ddd d MMM, HH:mm} · {group.Count} fights";
+                yield return new LibraryRow(zone, sub, $"{kills}-{deaths}", Math.Sign(kills - deaths), GroupPrefix + group[0].Name);
             }
             yield break;
         }
@@ -903,6 +907,25 @@ internal sealed class MainForm : Form
             var sub = $"{list.Count} fight{(list.Count == 1 ? "" : "s")} · last {ForeverPages.FoughtAt(list[0]):ddd d MMM, HH:mm}";
             yield return new LibraryRow(FightFinder.Fight.Short(name), sub, kills + deaths > 0 ? $"{kills}-{deaths}" : null, Math.Sign(kills - deaths), OpponentPrefix + name);
         }
+    }
+
+    private LibraryRow FightRow(VideoEntry v)
+    {
+        var facts = new List<string> { ForeverPages.FoughtAt(v).ToString("ddd d MMM, HH:mm") };
+        if (v.Length is { } l) facts.Add(VideoLibrary.Duration(l));
+        if (v.Fight?.Zone is { Length: > 0 } zone) facts.Add(zone);
+        var outcome = v.Fight?.Outcome;
+        return new LibraryRow(v.Fight?.Title ?? (v.Bracket ?? "Fight").Replace("Forever: ", ""), string.Join(" · ", facts), outcome?.Text, outcome?.Tone ?? 0, VideoPrefix + v.Name);
+    }
+
+    /// <summary>The game whose first fight's clip is <paramref name="firstVideo"/>.</summary>
+    private void ShowGroup(string firstVideo)
+    {
+        if (_view.CoreWebView2 == null) return;
+        var group = ForeverPages.Groups(ForeverFights()).FirstOrDefault(g => g[0].Name == firstVideo);
+        if (group == null) { ShowForeverOverview(); return; }
+        _shownFile = null;
+        Show(ForeverPages.Group(group));
     }
 
     private void ShowOpponent(string name)

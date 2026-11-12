@@ -36,6 +36,9 @@ public sealed class FightFinder
         public DateTime Last;
         public int Lines;
         public string? Zone;
+        /// <summary>When the log last said you entered this zone (ZONE_CHANGE, also written when logging
+        /// starts): fights with the same zone and time are one battleground game (0.6.16, grouping).</summary>
+        public DateTime? Entered;
         public bool YouDied;
         public readonly List<string> Opponents = [];
         public readonly List<string> Killed = [];
@@ -59,6 +62,7 @@ public sealed class FightFinder
 
     private Fight? _current;
     private string? _zone;
+    private DateTime? _entered;
 
     public Fight? Current => _current;
 
@@ -72,7 +76,10 @@ public sealed class FightFinder
         if (body.StartsWith("ZONE_CHANGE,"))
         {
             var f = line[(sep + 2)..].Split(',');
-            if (f.Length > 2) _zone = f[2].Trim('"');
+            var zone = f.Length > 2 ? f[2].Trim('"') : null;
+            // Logging switched off and on again in town writes the zone again: the same zone keeps its time.
+            if (zone != _zone) _entered = t;
+            _zone = zone;
             return null;
         }
 
@@ -100,7 +107,7 @@ public sealed class FightFinder
             finished = _current.Counts ? _current : null;
             _current = null;
         }
-        _current ??= new Fight { First = t, Zone = _zone };
+        _current ??= new Fight { First = t, Zone = _zone, Entered = _entered };
         _current.Last = t;
         _current.Lines++;
         if (opponent != null && !_current.Opponents.Contains(opponent)) _current.Opponents.Add(opponent);
@@ -521,6 +528,7 @@ public sealed class ForeverRecorder : IDisposable
                 ["last"] = Clock(fight.Last),
                 ["lines"] = fight.Lines,
                 ["zone"] = fight.Zone,
+                ["entered"] = fight.Entered is { } entered ? Clock(entered) : null,
                 ["opponents"] = new JsonArray(fight.Opponents.Select(o => (JsonNode)o).ToArray()),
                 ["killed"] = new JsonArray(fight.Killed.Select(o => (JsonNode)o).ToArray()),
                 ["youDied"] = fight.YouDied,
