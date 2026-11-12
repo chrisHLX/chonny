@@ -12,10 +12,10 @@ internal sealed class SettingsForm : Form
     private readonly CheckBox _startup = Check("Start MindCollector when Windows starts (minimised to the taskbar)");
     private readonly CheckBox _record = Check("Record each arena game with OBS: it starts as you zone in and stops when the game ends");
     private readonly CheckBox _forever = Check("Save each PvP fight in WoW Forever, cut to the fight (how much is set below)");
-    private readonly CheckBox _wowSound = Check("Record WoW's sound only, not voice chat or music (OBS's Desktop Audio is muted while the app records)");
+    private readonly CheckBox _wowSound = Check("Record WoW's sound only, not voice chat or music");
     private readonly CheckBox _gameCapture = Check("Record only the game (an OBS Game Capture) when your OBS scene is a screen capture");
     private readonly CheckBox _observer = Check("Install the Observer addon: it remembers what you look at in Forever, for Looked at");
-    private readonly CheckBox _shareScans = Check("Share my auction house scans and get everyone's prices back (prices and how many are listed only, never what you look at or sell)");
+    private readonly CheckBox _shareScans = Check("Share my auction house scans and get everyone's prices back (prices only)");
     private readonly CheckBox _askClaude = Check("Answer /ask questions from Forever with Claude (each question uses your Claude account)");
     private readonly TrackBar _lead = Slider(0, 120, 5);
     private readonly TrackBar _tail = Slider(0, 60, 1);
