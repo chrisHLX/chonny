@@ -6,9 +6,10 @@ use Illuminate\Support\Facades\Schema;
 
 /**
  * WoW Forever auction house scans pooled from every app user who shares them (2026-11-12,
- * ForeverMarketService). A market is region, realm and faction ("US/Arugal/Horde"): faction too
- * until it's known whether Forever's auction house is shared between them; the scans are kept whole
- * (forever_scans.path) so markets can be merged later.
+ * ForeverMarketService). A market is region, realm and faction ("US/<realm>/Horde"). Forever is one
+ * realm per region (Chriso's WTF has one realm folder for every character, names carry a suffix like
+ * Crypto-Shot), and Horde and Alliance don't share an auction house (Chriso, 2026-11-12), so in NA
+ * that is one market per faction. The scans are kept whole (forever_scans.path) all the same.
  *
  *  - forever_scans: one row per scan a player sent, the scan itself gzipped on disk.
  *  - forever_prices: one reading per market, item and hour. Scans of the same hour from several

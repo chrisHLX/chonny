@@ -88,9 +88,10 @@ showed Forever counts the time-left bands from 1 and caps the longest at 24 hour
 
 Still open:
 
-- **Per realm or region-wide?** Whether Forever's auction house (or its commodities) is shared
-  across realms or factions is unknown. Scans are kept whole, so markets can be merged once two
-  players on different realms or factions compare the same items.
+- **Markets, settled 2026-11-12:** Forever is one realm per region (Chriso's WTF holds one realm
+  folder, `91`, for all five characters, whose names carry suffixes like Crypto-Shot; portal US),
+  and Horde and Alliance don't share an auction house (Chriso). So NA is two markets, one per
+  faction, which is what the `REGION/Realm/Faction` key already gives.
 - **Scale.** `pooled()` reads up to 7 days of hourly readings per market in one pass; fine at a few
   players, worth a daily summary table if a market gets many.
 - **To ship it:** deploy (migrations run in `deploy.sh`), then build and publish the app (0.6.11 is

@@ -477,8 +477,8 @@ local function finishScan(agg, n)
     scanStatus(nil)
     DB.prevScan = DB.lastScan
     -- Where it was scanned, so the app can pool it with other players' scans of the same market
-    -- (2026-11-12): realm, region and faction. Faction too until it's known whether Forever's auction
-    -- house is shared between them.
+    -- (2026-11-12): realm, region and faction. Forever is one realm per region, and Horde and
+    -- Alliance have separate auction houses (Chriso), so in practice a market is region and faction.
     local okRegion, region = pcall(GetCurrentRegionName)
     DB.lastScan = { t = time(), n = n, prices = agg, bands = next(bands) and bandTimes() or nil,
         realm = (GetNormalizedRealmName and GetNormalizedRealmName()) or GetRealmName(),

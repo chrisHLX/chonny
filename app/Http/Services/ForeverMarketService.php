@@ -20,6 +20,9 @@ use Illuminate\Support\Facades\DB;
  * Only the scan is sent: never what the player looked at, their ledger, their questions or where they
  * were. A market is "REGION/Realm/Faction"; scans are kept whole on disk so markets can be merged once
  * it's known whether Forever shares its auction house across realms or factions.
+ * Settled 2026-11-12: one realm per region, and a separate auction house per faction (Chriso), so in
+ * NA a market is effectively one per faction. Region and realm stay in the key in case of a second
+ * region or server.
  */
 class ForeverMarketService
 {
