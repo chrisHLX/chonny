@@ -61,6 +61,10 @@ what was saved of them is dropped at the next login.
   auction house with `C_AuctionHouse.ReplicateItems`. It waits until the list stops growing, then
   reads it, and says "scanned N auctions" when done. The server allows one every 15 minutes. One
   scan prices every reagent at once; two on different days fill the Market tab with the biggest moves.
+- **Market filter** (2026-11-12): chips over the Market list pick a category (Materials, Consumables,
+  Gear, Recipes, Bags, Other; by the item's class in the client data) and then a kind within it as
+  the game names it (Herb, Cloth, Metal & Stone, Potion, Elixir, Food & Drink...), each with how
+  many moves it holds. The choice is remembered (`DB.marketCat`, `DB.marketSub`).
 - **The window** (`/mco` or the spyglass on the minimap): Items, Professions, Market and Ask, with a
   search box. `ui.lua` draws it; `main.lua` records.
 

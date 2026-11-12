@@ -677,6 +677,117 @@ local function valueText(s)
     return ""
 end
 
+-- ---------------------------------------------------------------- the Market tab's filter
+
+-- Categories for the Market list (2026-11-12, Chriso: "see only material/consumables ... categories
+-- to break things into"), by the item's class from the client's own data (GetItemInfoInstant needs no
+-- cache). A category with items in it also offers its subclasses (Herb, Cloth, Potion, Elixir...),
+-- named as the game names them. The choice is kept in DB.marketCat and DB.marketSub.
+local MARKET_CATS = {
+    { key = "all", label = "All" },
+    { key = "mats", label = "Materials", classes = { [7] = true, [5] = true } }, -- trade goods, reagents
+    { key = "cons", label = "Consumables", classes = { [0] = true } },
+    { key = "gear", label = "Gear", classes = { [2] = true, [4] = true } },     -- weapons, armour
+    { key = "recipes", label = "Recipes", classes = { [9] = true } },
+    { key = "bags", label = "Bags", classes = { [1] = true } },
+    { key = "other", label = "Other" },
+}
+local catCache = {}
+local function marketCat(id)
+    local c = catCache[id]
+    if c then return c[1], c[2] end
+    local _, _, subType, _, _, classID = C_Item.GetItemInfoInstant(id)
+    local key = "other"
+    for _, cat in ipairs(MARKET_CATS) do
+        if cat.classes and classID and cat.classes[classID] then key = cat.key break end
+    end
+    catCache[id] = { key, subType ~= "" and subType or nil }
+    return key, catCache[id][2]
+end
+
+-- The moves in the chosen category and subclass, and the counts the chips show.
+local function filterMarket(all)
+    local sel, sub = ns.DB.marketCat or "all", ns.DB.marketSub
+    local cats, subs, out = { all = #all }, {}, {}
+    for _, m in ipairs(all) do
+        local key, st = marketCat(m.id)
+        cats[key] = (cats[key] or 0) + 1
+        if sel == "all" or key == sel then
+            if st and sel ~= "all" then subs[st] = (subs[st] or 0) + 1 end
+            if not sub or st == sub then table.insert(out, m) end
+        end
+    end
+    return out, cats, subs
+end
+
+local function placeList(top)
+    list:ClearAllPoints()
+    list:SetPoint("TOPLEFT", 12, top)
+    list:SetPoint("BOTTOMLEFT", 12, 44)
+    list:SetWidth(LIST_W)
+end
+
+local function marketChip(i)
+    local b = frame.mktBar.chips[i]
+    if b then return b end
+    b = CreateFrame("Button", nil, frame.mktBar, "BackdropTemplate")
+    backdrop(b, { 0.08, 0.08, 0.08, 1 }, { 0.3, 0.3, 0.3, 0.6 })
+    b:SetHeight(20)
+    b.label = text(b, "GameFontHighlightSmall")
+    b.label:SetPoint("CENTER")
+    b:SetScript("OnClick", function(self)
+        if self.level == 1 then
+            ns.DB.marketCat, ns.DB.marketSub = self.value, nil
+        else
+            ns.DB.marketSub = self.value
+        end
+        list.scroll:SetVerticalScroll(0)
+        refresh()
+    end)
+    frame.mktBar.chips[i] = b
+    return b
+end
+
+-- Lays the chips out over the list, the categories on the first line and the chosen category's
+-- subclasses below, wrapping as needed; moves the list down under them.
+local function drawMarketBar(cats, subs)
+    local bar = frame.mktBar
+    local sel, sub = ns.DB.marketCat or "all", ns.DB.marketSub
+    local chips = {}
+    for _, c in ipairs(MARKET_CATS) do
+        if c.key == "all" or (cats[c.key] or 0) > 0 or c.key == sel then
+            table.insert(chips, { level = 1, value = c.key, label = c.label .. "  " .. (cats[c.key] or 0), on = c.key == sel })
+        end
+    end
+    if sel ~= "all" and next(subs) then
+        local names = {}
+        for st in pairs(subs) do table.insert(names, st) end
+        table.sort(names, function(a, b) if subs[a] ~= subs[b] then return subs[a] > subs[b] end return a < b end)
+        table.insert(chips, { level = 2, value = nil, label = "Every kind", on = sub == nil, newLine = true })
+        for i = 1, math.min(#names, 16) do
+            table.insert(chips, { level = 2, value = names[i], label = names[i] .. "  " .. subs[names[i]], on = sub == names[i] })
+        end
+    end
+    local x, y = 0, 0
+    for i, c in ipairs(chips) do
+        local b = marketChip(i)
+        b.level, b.value = c.level, c.value
+        b.label:SetText(c.on and color(GOLD_HEX, c.label) or c.label)
+        b:SetWidth(b.label:GetStringWidth() + 18)
+        b:SetBackdropBorderColor(GOLD[1], GOLD[2], GOLD[3], c.on and 0.9 or 0.2)
+        if c.newLine or x + b:GetWidth() > LIST_W then x, y = 0, y - 24 end
+        b:ClearAllPoints()
+        b:SetPoint("TOPLEFT", x, y)
+        b:Show()
+        x = x + b:GetWidth() + 6
+    end
+    for i = #chips + 1, #bar.chips do bar.chips[i]:Hide() end
+    local height = -y + 24
+    bar:SetHeight(height)
+    bar:Show()
+    placeList(-72 - height - 4)
+end
+
 local function drawList()
     local n, y = 0, -2
     local function place(r)
@@ -824,9 +935,12 @@ local function drawList()
             end
         end
     elseif tab == "movers" then
-        local ms, label = movers()
+        local all, label = movers()
+        local ms, cats, subs = filterMarket(all)
+        drawMarketBar(cats, subs)
         local last = ns.DB.lastScan
-        list.note:SetText(label and ("Whole auction house, " .. label .. ", at least 5 listed")
+        local shown = (ns.DB.marketCat or "all") ~= "all" and string.format("%d of %d moves. ", #ms, #all) or ""
+        list.note:SetText(label and (shown .. "Whole auction house, " .. label .. ", at least 5 listed")
             or (last and string.format("One full scan so far (%s, %d auctions). Scan again another day and the biggest moves show here.", when(last.t), last.n or 0))
             or "No full scan yet: open the auction house and click Scan (or /mco scan). Two scans on different days show the moves.")
         for i = 1, math.min(#ms, 300) do
@@ -854,6 +968,10 @@ local function drawList()
     end
     for i = n + 1, #rows do rows[i]:Hide() end
     list.child:SetHeight(math.max(-y, 10))
+    if tab ~= "movers" and frame.mktBar:IsShown() then
+        frame.mktBar:Hide()
+        placeList(-72)
+    end
 end
 
 -- ---------------------------------------------------------------- the details
@@ -1482,12 +1600,17 @@ local function makeWindow()
     list.scroll:SetScrollChild(list.child)
     list.note = text(list, "GameFontHighlightSmall", 0.6, 0.6, 0.6)
     list.note:SetPoint("BOTTOMLEFT", list, "BOTTOMLEFT", 6, -16)
+    frame.mktBar = CreateFrame("Frame", nil, frame)
+    frame.mktBar:SetPoint("TOPLEFT", 12, -72)
+    frame.mktBar:SetSize(LIST_W, 24)
+    frame.mktBar.chips = {}
+    frame.mktBar:Hide()
     list.note:SetWidth(LIST_W)
 
     -- details
     detail = CreateFrame("Frame", nil, frame, "BackdropTemplate")
     backdrop(detail, { 0.06, 0.06, 0.06, 1 }, { 0.25, 0.25, 0.25, 0.6 })
-    detail:SetPoint("TOPLEFT", list, "TOPRIGHT", 10, 0)
+    detail:SetPoint("TOPLEFT", frame, "TOPLEFT", 12 + LIST_W + 10, -72)
     detail:SetPoint("BOTTOMRIGHT", -12, 44)
     detail.icon = detail:CreateTexture(nil, "ARTWORK")
     detail.icon:SetSize(44, 44)
