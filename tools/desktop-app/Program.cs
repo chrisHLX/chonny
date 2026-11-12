@@ -21,6 +21,7 @@ internal static class Program
         if (args.Length >= 1 && args[0] == "--obs-scene-test") return Diagnostics.ObsSceneTest(args);
         if (args.Length >= 5 && args[0] == "--cut") return Diagnostics.Cut(args);
         if (args.Length >= 1 && args[0] == "--check-record-light") return Diagnostics.CheckRecordLight();
+        if (args.Length >= 1 && args[0] == "--rec-test") return Diagnostics.RecTest(args);
         if (args.Length >= 1 && args[0] == "--check-notes") return Diagnostics.CheckNotes(args);
         if (args.Length >= 2 && args[0] == "--local-sync-once") return Diagnostics.LocalSyncOnce(args);
         if (args.Length >= 2 && args[0] == "--check-live") return Diagnostics.CheckLive(args[1], args.Length > 2 && int.TryParse(args[2], out var from) ? from : 0);
