@@ -99,7 +99,7 @@ internal sealed class MainForm : Form
         Text = "MindCollector";
         Icon = Theme.AppIcon();
         Size = new Size(1400, 880);
-        MinimumSize = new Size(900, 560);
+        MinimumSize = new Size(1040, 560);   // 1040 (0.6.14): room for the Update button beside Settings
         StartPosition = FormStartPosition.CenterScreen;
         BackColor = Theme.Frame;
         ForeColor = Theme.Ink;
@@ -261,11 +261,13 @@ internal sealed class MainForm : Form
         var settings = Theme.Button("Settings");
         var site = Theme.Button("Website");
         var activity = Theme.Button("Activity");
+        var update = Theme.Button("Update");
         settings.Click += (_, _) => OpenSettings();
+        update.Click += async (_, _) => await UpdateNowAsync();
         site.Click += (_, _) => OpenUrl($"{_settings.ServerUrl}/wow/coach");
         activity.Click += (_, _) => ShowActivity();
         _recLight.Click += (_, _) => OnRecordLightClick();
-        buttons.Controls.AddRange([settings, site, activity, _recLight]);
+        buttons.Controls.AddRange([settings, update, site, activity, _recLight]);
         UpdateRecordLight();
         bar.Controls.Add(_status, 0, 0);
         bar.Controls.Add(sync, 1, 0);
@@ -286,6 +288,7 @@ internal sealed class MainForm : Form
         menu.Items.Add("Show this game", null, (_, _) => { ShowWindow(); _tab = "This game"; FillList(); ShowThisGame(); });
         menu.Items.Add("Mark this moment (Ctrl+Shift+M)", null, (_, _) => AddMark());
         menu.Items.Add("Sync now", null, async (_, _) => await SyncAsync(manual: true));
+        menu.Items.Add("Update the app and addons", null, async (_, _) => await UpdateNowAsync());
         menu.Items.Add("-");
         menu.Items.Add("Exit", null, (_, _) => { _exiting = true; _tray.Visible = false; _recorder.Dispose(); _forever.Dispose(); _ask.Dispose(); _market.Dispose(); Application.Exit(); });
         _tray.ContextMenuStrip = menu;
@@ -507,6 +510,97 @@ internal sealed class MainForm : Form
             }
         }
         catch (Exception e) { Log($"Could not check for an update: {e.Message}"); }
+    }
+
+    /// <summary>
+    /// The Update button (0.6.14, 2026-11-12, so Cbags needn't wait three hours or restart the app):
+    /// a newer app is installed now, asking first when WoW is open; when this one is current, every
+    /// addon is put back as this build carries it, replacing a different copy.
+    /// </summary>
+    private async Task UpdateNowAsync()
+    {
+        if (Environment.GetEnvironmentVariable("MINDCOLLECTOR_DATA") != null)
+        {
+            SetStatus("Updates are off while testing with MINDCOLLECTOR_DATA.");
+            return;
+        }
+        SetStatus("Checking the website for a newer version…");
+        Version? newer;
+        try { newer = await Updater.NewerAsync(_settings.ServerUrl, CancellationToken.None); }
+        catch (Exception e)
+        {
+            Log($"Could not check for an update: {e.Message}");
+            SetStatus($"Could not reach the website to check for an update: {e.Message}");
+            return;
+        }
+
+        if (newer == null)
+        {
+            var addons = ReinstallAddons();
+            Log($"Update pressed: {Updater.Current.ToString(3)} is the newest. {addons}");
+            SetStatus($"You have the newest MindCollector ({Updater.Current.ToString(3)}). {addons}");
+            ShowWindow();
+            MessageBox.Show(this, $"You have the newest MindCollector ({Updater.Current.ToString(3)}).\n\n{addons}",
+                "MindCollector is up to date", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            return;
+        }
+
+        if (_busy)
+        {
+            SetStatus($"MindCollector {newer} is out. A sync is running: press Update again when it finishes.");
+            return;
+        }
+        if (Syncer.WowRunning())
+        {
+            ShowWindow();
+            var ok = MessageBox.Show(this,
+                $"MindCollector {newer} is out (you have {Updater.Current.ToString(3)}).\n\n" +
+                "WoW is open. Updating closes MindCollector for a few seconds, so a fight in that moment may not be saved. " +
+                "Restart WoW afterwards to load the new addon.\n\nUpdate now?",
+                "Update MindCollector", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (ok != DialogResult.Yes) { SetStatus(WatchingText()); return; }
+        }
+
+        SetStatus($"Downloading MindCollector {newer}…");
+        try
+        {
+            if (await Updater.InstallAsync(_settings.ServerUrl, newer, Log, CancellationToken.None))
+            {
+                _exiting = true;
+                _tray.Visible = false;
+                Application.Exit();
+                return;
+            }
+            SetStatus($"The update to {newer} did not download properly. Try Update again.");
+        }
+        catch (Exception e)
+        {
+            Log($"Could not update: {e.Message}");
+            SetStatus($"Could not update: {e.Message}");
+        }
+    }
+
+    /// <summary>Every addon this player uses, written again from this build; what changed, in a sentence or two.</summary>
+    private string ReinstallAddons()
+    {
+        var addons = new List<(AddonInstaller.Addon Addon, string? Dir)> { (AddonInstaller.Arena, _settings.WowLogsDir) };
+        _settings.ForeverLogsDir ??= AppSettings.DetectForeverLogs(_settings.WowLogsDir);
+        if (_settings.RecordForever) addons.Add((AddonInstaller.Forever, _settings.ForeverLogsDir));
+        if (_settings.ForeverObserver) addons.Add((AddonInstaller.Observer, _settings.ForeverLogsDir));
+
+        var said = new List<string>();
+        foreach (var (addon, dir) in addons)
+        {
+            if (dir == null) continue;   // that game isn't on this PC
+            try
+            {
+                var outcome = AddonInstaller.Ensure(addon, dir, replaceDifferent: true);
+                Log(outcome.Message);
+                if (outcome.State != AddonInstaller.State.UpToDate) said.Add(outcome.Message);
+            }
+            catch (Exception e) { said.Add($"Could not install the {addon.Title}: {e.Message}"); }
+        }
+        return said.Count == 0 ? "Your addons are up to date." : string.Join(" ", said);
     }
 
     private async Task TickAsync()

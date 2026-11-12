@@ -491,6 +491,11 @@ change reaches every player with a deploy. The window around them (this code) ch
 WoW is not running, `Updater` downloads it and the installer swaps it in, back minimised on the taskbar. Players on
 0.4.0 or older have no updater and need one more download from /wow/app.
 
+**The Update button (0.6.14).** Beside Settings, and "Update the app and addons" in the tray menu: checks
+now instead of waiting up to three hours. A newer version installs straight away (asking first when WoW
+is open, since the app closes for a few seconds); when this one is newest, every addon the player uses is
+written again from this build, replacing a different copy, and a box says so.
+
 **Publishing a new version:** bump `<Version>` in the csproj, `dotnet publish`, then upload
 `publish\MindCollector.exe` to the server's `storage/app/desktop/MindCollector.exe` **and** write
 `storage/app/desktop/version.json` as `{"version": "x.y.z", "sha256": "..."}` (DEPLOY.md, "Uploading a file"), the
