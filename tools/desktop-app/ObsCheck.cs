@@ -190,15 +190,17 @@ public static class ObsCheck
         var quality = await ObsSetup.ProfileParameterAsync(obs, "SimpleOutput", "RecQuality", ct) ?? "Stream";
         var encoder = await ObsSetup.ProfileParameterAsync(obs, "SimpleOutput", "RecEncoder", ct) ?? "x264";
         var stream = await ObsSetup.ProfileParameterAsync(obs, "SimpleOutput", "StreamEncoder", ct) ?? "x264";
-        var used = quality == "Stream" ? stream : encoder;
-        var software = used.StartsWith("x264", StringComparison.OrdinalIgnoreCase);
-        if (!software && quality != "Stream") return null;
+        static bool Software(string e) => e.StartsWith("x264", StringComparison.OrdinalIgnoreCase);
         var hardware = ObsSetup.HardwareEncoder();
-        var target = software ? hardware ?? encoder : encoder;
+        // Leaving "same as stream" makes OBS record with RecEncoder, so that has to be a good one too: the
+        // graphics card's, or the stream's when that already is (12 Nov: stream nvenc, RecEncoder x264,
+        // and raising the quality alone moved recording onto the processor).
+        var target = !Software(encoder) ? encoder : hardware ?? (!Software(stream) ? stream : encoder);
         if (quality != "Stream" && target == encoder) return null;
-        var why = software && hardware != null
+        var why = Software(quality == "Stream" ? stream : encoder) && !Software(target)
             ? "record on your graphics card instead of the processor (smoother games, sharper video)"
-            : "record at high quality instead of the stream's low bitrate";
+            : quality == "Stream" ? "record at high quality instead of the stream's low bitrate"
+            : "record on your graphics card instead of the processor (smoother games, sharper video)";
         return (why, lines =>
         {
             var changed = ObsSetup.SetIni(lines, "SimpleOutput", "RecQuality", "Small", v => v == "Small");

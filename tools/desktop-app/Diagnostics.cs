@@ -750,6 +750,49 @@ internal static class Diagnostics
         }
     }
 
+    /// <summary>
+    /// --loudness FILE: the sound track decoded to 16-bit PCM (Windows' own transcoder into a WAV beside
+    /// the data folder) and measured: overall loudness (RMS, dBFS) and the peak, per second too (loudness.txt).
+    /// </summary>
+    public static int Loudness(string path)
+    {
+        var report = new StringBuilder();
+        try
+        {
+            var src = Windows.Storage.StorageFile.GetFileFromPathAsync(Path.GetFullPath(path)).AsTask().GetAwaiter().GetResult();
+            var folder = Windows.Storage.StorageFolder.GetFolderFromPathAsync(AppSettings.Dir).AsTask().GetAwaiter().GetResult();
+            var dst = folder.CreateFileAsync("loudness.wav", Windows.Storage.CreationCollisionOption.ReplaceExisting).AsTask().GetAwaiter().GetResult();
+            var profile = Windows.Media.MediaProperties.MediaEncodingProfile.CreateWav(Windows.Media.MediaProperties.AudioEncodingQuality.High);
+            profile.Audio = Windows.Media.MediaProperties.AudioEncodingProperties.CreatePcm(48000, 2, 16);
+            var prepared = new Windows.Media.Transcoding.MediaTranscoder().PrepareFileTranscodeAsync(src, dst, profile).AsTask().GetAwaiter().GetResult();
+            if (!prepared.CanTranscode) { Write("loudness.txt", $"cannot decode: {prepared.FailureReason}"); return 1; }
+            prepared.TranscodeAsync().AsTask().GetAwaiter().GetResult();
+            var bytes = File.ReadAllBytes(dst.Path);
+            var data = 44;
+            for (var i = 12; i + 8 < bytes.Length; i += 8 + BitConverter.ToInt32(bytes, i + 4))
+                if (bytes[i] == 'd' && bytes[i + 1] == 'a' && bytes[i + 2] == 't' && bytes[i + 3] == 'a') { data = i + 8; break; }
+            var samples = (bytes.Length - data) / 2;
+            double sum = 0, peak = 0, secSum = 0;
+            var perSecond = new List<string>();
+            for (var i = 0; i < samples; i++)
+            {
+                var v = BitConverter.ToInt16(bytes, data + i * 2) / 32768.0;
+                sum += v * v; secSum += v * v;
+                peak = Math.Max(peak, Math.Abs(v));
+                if ((i + 1) % 96000 == 0) { perSecond.Add($"{10 * Math.Log10(secSum / 96000 + 1e-12):F1}"); secSum = 0; }
+            }
+            report.AppendLine($"{Path.GetFileName(path)}: {samples / 96000.0:F1}s of sound, loudness {10 * Math.Log10(sum / Math.Max(samples, 1) + 1e-12):F1} dBFS, peak {20 * Math.Log10(peak + 1e-12):F1} dBFS");
+            report.AppendLine("each second (dBFS): " + string.Join(" ", perSecond));
+            Write("loudness.txt", report.ToString());
+            return 0;
+        }
+        catch (Exception e)
+        {
+            Write("loudness.txt", report + $"Error: {e.Message}");
+            return 1;
+        }
+    }
+
     /// <summary>--probe FILE: a video's size, frame rate, bitrate and sound as Windows reads them, and a still from its middle (probe.txt, probe.png).</summary>
     public static int Probe(string path, bool full = false)
     {

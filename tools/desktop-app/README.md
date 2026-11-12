@@ -326,6 +326,15 @@ Checked on Chriso's PC: `--obs-check forever` READY (Forever clip and a 5.4s tes
 to true). A PowerShell `Start-Process -Wait` on a check that restarts OBS waits for OBS too (it is the
 check's child): wait on the process itself.
 
+**WoW-only sound and the encoder (same day, `--loudness`, `--obs-set-encoder`).** With music playing,
+two 10s recordings back to back: "everything" -16.0 dBFS and level every second (the music); WoW only
+-41.8 dBFS, moving with the game: 26 dB quieter, the music gone, Desktop Audio unmuted afterwards. The
+encoder: OBS set to the processor (`--obs-set-encoder x264 Stream x264`, the fresh-PC case), then setup
+moved recording to `nvenc` at `RecQuality=Small` in 31s, tests passed; streaming is left alone. **A bug
+this caught:** with the stream on `nvenc` and `RecEncoder=x264`, raising the quality alone moved
+recording onto the processor (leaving "same as stream" makes OBS use RecEncoder). Setup now makes
+RecEncoder the graphics card's, or the stream's when that already is.
+
 **The app's own recorder was tried and shelved the same day** (`NativeRecorder`, `AudioLoopback`,
 `--rec-test`): Windows' window capture into the hardware encoder, a steady 60 fps, WoW-only sound. It
 worked, and was as sharp as OBS on a still (edge measure 14.7 against OBS's 14.0), but cost WoW 2.5 of
