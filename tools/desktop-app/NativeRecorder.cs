@@ -1,5 +1,6 @@
 using System.Diagnostics;
 using System.Runtime.InteropServices;
+using System.Runtime.InteropServices.WindowsRuntime;
 using Windows.Graphics.Capture;
 using Windows.Graphics.DirectX;
 using Windows.Graphics.DirectX.Direct3D11;
@@ -25,10 +26,10 @@ namespace MindCollector.Desktop;
 /// </summary>
 public sealed class NativeRecorder
 {
-    public sealed record Options(int Fps = 60, uint BitsPerSecond = 16_000_000);
+    public sealed record Options(int Fps = 60, uint BitsPerSecond = 16_000_000, bool Audio = true);
 
     public sealed record Result(string Path, int Width, int Height, int Captured, int Encoded, int Skipped, int Dropped,
-        TimeSpan Length, TimeSpan Took, long Bytes, string? Error);
+        TimeSpan Length, TimeSpan Took, long Bytes, string? Error, string? Audio = null);
 
     /// <summary>Our textures waiting for the encoder, at most; more than this and the oldest is dropped.</summary>
     private const int Backlog = 12;
@@ -51,6 +52,20 @@ public sealed class NativeRecorder
         TimeSpan? first = null, lastKept = null, lastStamp = null;
         var stopping = false;
 
+        // Stage 2: what the PC plays (AudioLoopback). Both streams count from the moment it starts.
+        AudioLoopback? audio = null;
+        string? audioNote = null;
+        if (options.Audio)
+        {
+            try { audio = new AudioLoopback(); }
+            catch (Exception e) { audioNote = $"no sound: {e.Message}"; }
+        }
+        var chunks = new Queue<AudioLoopback.Chunk>();
+        var chunkGate = new SemaphoreSlim(0);
+        if (audio != null)
+            audio.Data += c => { lock (chunks) chunks.Enqueue(c); chunkGate.Release(); };
+        TimeSpan? origin = null;
+
         using var pool = Direct3D11CaptureFramePool.CreateFreeThreaded(gpu.Device, DirectXPixelFormat.B8G8R8A8UIntNormalized, 2, item.Size);
         using var session = pool.CreateCaptureSession(item);
         session.IsCursorCaptureEnabled = false;
@@ -60,7 +75,7 @@ public sealed class NativeRecorder
             if (frame == null) return;
             captured++;
             var t = frame.SystemRelativeTime;
-            if (stopping || (lastKept is { } k && t - k < minGap)) { skipped++; return; }
+            if (stopping || origin == null || t < origin || (lastKept is { } k && t - k < minGap)) { skipped++; return; }
             var slot = textures.CopyOf(frame.Surface);
             if (slot == null) { dropped++; return; }   // every texture is with the encoder
             lastKept = t;
@@ -73,13 +88,39 @@ public sealed class NativeRecorder
         };
 
         var video = VideoEncodingProperties.CreateUncompressed(MediaEncodingSubtypes.Bgra8, (uint)width, (uint)height);
-        var source = new MediaStreamSource(new VideoStreamDescriptor(video)) { BufferTime = TimeSpan.Zero, IsLive = true };
+        var videoStream = new VideoStreamDescriptor(video);
+        MediaStreamSource source;
+        if (audio != null)
+        {
+            var pcm = AudioEncodingProperties.CreatePcm((uint)audio.SampleRate, (uint)audio.Channels, 32);
+            pcm.Subtype = MediaEncodingSubtypes.Float;
+            source = new MediaStreamSource(videoStream, new AudioStreamDescriptor(pcm));
+        }
+        else source = new MediaStreamSource(videoStream);
+        source.BufferTime = TimeSpan.Zero;
+        source.IsLive = true;
         source.Starting += (_, e) => e.Request.SetActualStartPosition(TimeSpan.Zero);
         source.SampleRequested += async (_, e) =>
         {
             var deferral = e.Request.GetDeferral();
             try
             {
+                if (e.Request.StreamDescriptor is AudioStreamDescriptor)
+                {
+                    AudioLoopback.Chunk? chunk = null;
+                    while (chunk == null)
+                    {
+                        if (stopping) break;
+                        if (!await chunkGate.WaitAsync(500)) continue;
+                        lock (chunks) { if (chunks.Count > 0) chunk = chunks.Dequeue(); }
+                    }
+                    if (chunk == null) { e.Request.Sample = null; return; }
+                    var at = TimeSpan.FromSeconds(chunk.FirstFrame / (double)audio!.SampleRate);
+                    var sound = MediaStreamSample.CreateFromBuffer(chunk.Data.AsBuffer(), at);
+                    sound.Duration = TimeSpan.FromSeconds(chunk.Frames / (double)audio.SampleRate);
+                    e.Request.Sample = sound;
+                    return;
+                }
                 (TexturePool.Slot Slot, TimeSpan At)? next = null;
                 while (next == null)
                 {
@@ -89,7 +130,7 @@ public sealed class NativeRecorder
                 }
                 if (next is not { } n) { e.Request.Sample = null; return; }   // the end of the stream
                 first ??= n.At;
-                var stamp = n.At - first.Value;
+                var stamp = n.At - origin!.Value;
                 if (lastStamp is { } ls && stamp <= ls) stamp = ls + TimeSpan.FromMilliseconds(1);
                 lastStamp = stamp;
                 var sample = MediaStreamSample.CreateFromDirect3D11Surface(n.Slot.Surface, stamp);
@@ -100,7 +141,7 @@ public sealed class NativeRecorder
         };
 
         var profile = MediaEncodingProfile.CreateMp4(VideoEncodingQuality.HD1080p);
-        profile.Audio = null;
+        profile.Audio = audio != null ? AudioEncodingProperties.CreateAac((uint)audio.SampleRate, (uint)Math.Min(audio.Channels, 2), 192_000) : null;
         profile.Video.Width = (uint)width;
         profile.Video.Height = (uint)height;
         profile.Video.Bitrate = options.BitsPerSecond;
@@ -119,19 +160,28 @@ public sealed class NativeRecorder
             if (!prepared.CanTranscode) error = $"cannot encode: {prepared.FailureReason}";
             else
             {
+                if (audio != null) { audio.Start(); origin = audio.Started; }
+                else origin = AudioLoopback.QpcNow();
                 session.StartCapture();
                 var run = prepared.TranscodeAsync().AsTask();
                 await Task.Delay(length);
                 stopping = true;
                 gate.Release();
+                chunkGate.Release();
                 try { await run.WaitAsync(TimeSpan.FromSeconds(20)); }
                 catch (Exception e) { error = e.Message; }
             }
         }
         lock (queue) while (queue.Count > 0) textures.Return(queue.Dequeue().Slot);
         textures.Dispose();
+        if (audio != null)
+        {
+            audioNote = $"sound {audio.SampleRate} Hz x{audio.Channels}: {audio.Written / (double)audio.SampleRate:F2}s, " +
+                $"{audio.Padded / (double)audio.SampleRate:F2}s of it silence filled in, loudest {audio.Peak:F3}";
+            audio.Dispose();
+        }
         var bytes = new FileInfo(path).Length;
-        return new Result(path, width, height, captured, encoded, skipped, dropped, lastStamp ?? TimeSpan.Zero, watch.Elapsed, bytes, error);
+        return new Result(path, width, height, captured, encoded, skipped, dropped, lastStamp ?? TimeSpan.Zero, watch.Elapsed, bytes, error, audioNote);
     }
 
     /// <summary>The window of a running WoW (Forever's first when both run), or zero.</summary>

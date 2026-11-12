@@ -690,6 +690,7 @@ internal static class Diagnostics
             report.AppendLine($"captured {r.Captured} frames, skipped {r.Skipped} (over {fps} fps), dropped {r.Dropped} (encoder behind), encoded {r.Encoded}");
             report.AppendLine($"video {r.Length.TotalSeconds:F2}s, {r.Encoded / Math.Max(r.Length.TotalSeconds, 0.001):F1} fps encoded, {r.Bytes / 1048576.0:F1} MB ({r.Bytes * 8 / Math.Max(r.Length.TotalSeconds, 0.001) / 1e6:F1} Mbps)");
             report.AppendLine($"this process's CPU time: {cpu.TotalSeconds:F2}s over {r.Took.TotalSeconds:F1}s ({cpu.TotalSeconds / r.Took.TotalSeconds / Environment.ProcessorCount * 100:F1}% of the whole CPU)");
+            if (r.Audio != null) report.AppendLine(r.Audio);
             if (r.Error != null) report.AppendLine($"error: {r.Error}");
             // a still from the middle, to see it is the game and not a black or torn frame
             try
@@ -703,6 +704,12 @@ internal static class Diagnostics
                 using var output = File.Create(Path.Combine(AppSettings.Dir, "rec-test.png"));
                 input.CopyTo(output);
                 report.AppendLine($"Windows reads it as {clip.OriginalDuration.TotalSeconds:F2}s; still at the middle: rec-test.png");
+                foreach (var t in clip.EmbeddedAudioTracks)
+                {
+                    var p = t.GetAudioEncodingProperties();
+                    report.AppendLine($"sound track in the file: {p.Subtype} {p.SampleRate} Hz x{p.ChannelCount}, {p.Bitrate / 1000} kbps");
+                }
+                if (clip.EmbeddedAudioTracks.Count == 0) report.AppendLine("no sound track in the file");
             }
             catch (Exception e) { report.AppendLine($"still: {e.Message}"); }
             Write("rec-test.txt", report.ToString());
