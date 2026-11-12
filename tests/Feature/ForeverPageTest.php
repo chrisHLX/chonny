@@ -24,6 +24,14 @@ class ForeverPageTest extends TestCase
         $this->assertSame(1, PageViewEvent::where('page', 'forever_page')->count());
     }
 
+    public function test_both_home_pages_and_the_menu_lead_to_it(): void
+    {
+        // the site's home (with the menu) and WoW's home (2026-11-12: "reachable from the home page")
+        $home = $this->get('/')->assertOk()->assertSee('WoW Forever: crafting, prices and PvP')->getContent();
+        $this->assertGreaterThanOrEqual(2, substr_count($home, route('wow.forever')), 'the card and the menu');
+        $this->get('/wow')->assertOk()->assertSee('Playing WoW Forever?')->assertSee(route('wow.forever'), false);
+    }
+
     public function test_the_app_page_leads_to_it_and_says_what_forever_shares(): void
     {
         $this->get('/wow/app')->assertOk()

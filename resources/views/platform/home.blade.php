@@ -14,6 +14,23 @@
         </p>
     </section>
 
+    {{-- WoW Forever (2026-11-12): reachable from the home, with the addon's own window. --}}
+    <a href="{{ route('wow.forever') }}" wire:navigate
+       class="linear-card group p-5 grid md:grid-cols-2 gap-5 items-center hover:-translate-y-0.5 transition-transform"
+       style="background: linear-gradient(160deg, #C8952C1f, transparent 60%)">
+        <div>
+            <span class="badge-gold">New</span>
+            <h2 class="text-[20px] font-bold text-ink mt-3">WoW Forever: crafting, prices and PvP</h2>
+            <p class="text-[13.5px] text-ink-muted mt-2">
+                An addon that works out which recipes level you cheapest and which earn the most, reads the whole auction
+                house for what's selling, and shows what every item is used for. With OBS, the app saves every PvP fight.
+            </p>
+            <span class="inline-block mt-4 text-[13px] font-semibold text-gold group-hover:underline">See WoW Forever &rarr;</span>
+        </div>
+        <img src="/images/forever/professions.webp" alt="The MindCollector addon in WoW Forever, listing Alchemy recipes by what they earn"
+             loading="lazy" width="924" height="548" class="w-full h-auto rounded-lg border border-line shadow-xl">
+    </a>
+
     <section>
         <h2 class="text-[13px] font-bold text-ink-subtle uppercase tracking-[.12em] px-1 mb-3">Pick your game</h2>
         <div class="grid {{ count($games) === 2 ? 'md:grid-cols-2' : 'md:grid-cols-3' }} gap-4">

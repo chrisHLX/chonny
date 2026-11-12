@@ -109,6 +109,16 @@
             Get the App
         </a>
 
+        {{-- WoW Forever (2026-11-12, Chriso: "needs to be reachable from the home page"): the app's
+             Forever page, professions, prices and PvP clips. --}}
+        <a href="{{ route('wow.forever') }}" wire:navigate
+           class="sidebar-item {{ request()->routeIs('wow.forever') ? 'active' : '' }}">
+            <svg class="w-[18px] h-[18px] shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M9 3h6m-5 0v5.5L4.5 18A2 2 0 006.2 21h11.6a2 2 0 001.7-3L14 8.5V3M7.5 14h9"/>
+            </svg>
+            WoW Forever
+        </a>
+
         {{-- Leaderboards (2026-10-21): every comp this season from real games by experience, and
              Blizzard's 3v3 ladder with the comps each player was seen on. Lit on a comp's card too,
              which is where its rows lead. Beside Your games since 2026-10-27: its comps lead to real

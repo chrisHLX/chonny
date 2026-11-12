@@ -37,6 +37,18 @@
         </a>
     </section>
 
+    {{-- WoW Forever (2026-11-12) ---------------------------------------------------------------- --}}
+    <a href="{{ route('wow.forever') }}" wire:navigate class="linear-card group mt-10 p-5 flex flex-col sm:flex-row sm:items-center gap-4">
+        <img src="/images/forever/market.webp" alt="The MindCollector addon in WoW Forever: the auction house by category"
+             loading="lazy" width="924" height="548" class="w-full sm:w-64 h-auto rounded-md border border-line shrink-0">
+        <span class="flex-1">
+            <span class="block text-[12px] font-bold text-gold uppercase tracking-[.12em]">Playing WoW Forever?</span>
+            <span class="block text-[17px] font-bold text-ink mt-1 group-hover:text-gold">Crafting, prices and PvP clips</span>
+            <span class="block text-[13.5px] text-ink-muted mt-1">The same app adds an addon to Forever: what levels your professions cheapest, what's selling on the auction house, and a video of every PvP fight.</span>
+        </span>
+        <span class="text-gold text-[13px] font-semibold shrink-0">See how &rarr;</span>
+    </a>
+
     {{-- The planning tools -------------------------------------------------------------------- --}}
     <section class="mt-14">
         <h2 class="text-[22px] font-bold text-ink">Plan your games</h2>
