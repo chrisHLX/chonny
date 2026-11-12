@@ -816,6 +816,23 @@ internal static class Diagnostics
         return 0;
     }
 
+    /// <summary>--ask-pending FILE: what the Ask watcher sees in the addon's saved data, question by question (ask-pending.txt). Answers nothing.</summary>
+    public static int AskPending(string file)
+    {
+        var report = new StringBuilder();
+        var now = DateTimeOffset.UtcNow.ToUnixTimeSeconds();
+        var vars = SavedVariables.Read(file);
+        report.AppendLine($"variables: {string.Join(", ", vars.Keys)}");
+        if (vars.GetValueOrDefault("MindCollectorObserverDB") is not Dictionary<object, object?> db) { report.AppendLine("no MindCollectorObserverDB"); Write("ask-pending.txt", report.ToString()); return 2; }
+        foreach (var a in SavedVariables.List(db.GetValueOrDefault("asks")).OfType<Dictionary<object, object?>>())
+        {
+            var t = a.GetValueOrDefault("t");
+            report.AppendLine($"id={a.GetValueOrDefault("id")} ({a.GetValueOrDefault("id")?.GetType().Name}) status={a.GetValueOrDefault("status")} t={t} ({t?.GetType().Name}) age={(t is long l ? now - l : -1)}s q={a.GetValueOrDefault("q")}");
+        }
+        Write("ask-pending.txt", report.ToString());
+        return 0;
+    }
+
     /// <summary>--fight-groups DIR: how the Fights tab groups the Forever clips in DIR (fight-groups.txt).</summary>
     public static int FightGroups(string dir)
     {

@@ -191,7 +191,9 @@ public static class SavedVariables
             if (!m.Success || m.Index != i) throw new FormatException($"unexpected {s.Substring(i, Math.Min(20, s.Length - i))}");
             i += m.Length;
             var t = m.Value;
-            return t.IndexOfAny(['.', 'e', 'E']) >= 0 ? double.Parse(t, CultureInfo.InvariantCulture) : long.Parse(t, CultureInfo.InvariantCulture);
+            // (object) on one side: without it the ?: is typed double, so a whole number came back a double too, and
+            // AskBridge's `t is long` never matched: every question read as asked in 1970, too old, skipped (13 Nov).
+            return t.IndexOfAny(['.', 'e', 'E']) >= 0 ? (object)double.Parse(t, CultureInfo.InvariantCulture) : long.Parse(t, CultureInfo.InvariantCulture);
         }
 
         // \G: a match only where the reader is. Without it, Match(s, i) searched on through the rest of

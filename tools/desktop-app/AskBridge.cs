@@ -95,7 +95,7 @@ public sealed class AskBridge : IDisposable
             foreach (var a in SavedVariables.List(db.GetValueOrDefault("asks")).OfType<Dictionary<object, object?>>())
             {
                 if (a.GetValueOrDefault("id") is not string id || a.GetValueOrDefault("status") as string == "answered") continue;
-                var asked = a.GetValueOrDefault("t") is long t ? t : 0;
+                var asked = a.GetValueOrDefault("t") switch { long l => l, double d => (long)d, _ => 0 };
                 if (DateTimeOffset.UtcNow.ToUnixTimeSeconds() - asked > MaxAge.TotalSeconds) continue;
                 lock (_lock)
                 {
@@ -123,7 +123,7 @@ public sealed class AskBridge : IDisposable
         var answer = new Answer
         {
             Id = id, Question = q, FromApp = fromApp, Zone = ask.GetValueOrDefault("zone") as string,
-            Asked = ask.GetValueOrDefault("t") is long t ? t : DateTimeOffset.UtcNow.ToUnixTimeSeconds(),
+            Asked = ask.GetValueOrDefault("t") switch { long l => l, double d => (long)d, _ => DateTimeOffset.UtcNow.ToUnixTimeSeconds() },
         };
         try
         {
