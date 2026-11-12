@@ -14,7 +14,7 @@ local rows, histLines = {}, {}
 
 -- Items and professions only since 2026-11-10 (Chriso): talents, spells, players and the rest were noise.
 local TABS = {
-    { key = "item", label = "Items" },
+    { key = "item", label = "Tracked" },
     { key = "prof", label = "Professions" },
     { key = "movers", label = "Market" },
     { key = "ledger", label = "Ledger" },
@@ -157,22 +157,22 @@ end
 
 -- ---------------------------------------------------------------- data for each tab
 
-local function kindOf(s)
-    if s.kind == "item" or s.kind == "talent" or s.kind == "spell" or s.kind == "player" then return s.kind end
-    return "other"
-end
-
-local function subjectsFor(k)
+-- The Tracked tab (13 Nov, Chriso): the items you chose to track, from Market, Professions or an
+-- item's page, newest first, not every item you held the mouse over. What you look at is still
+-- recorded, for the app's "Looked at" tab and for Ask.
+local function trackedItems()
     local out = {}
-    for key, s in pairs(ns.DB.subjects) do
-        if kindOf(s) == k and matches(s.name) then table.insert(out, { key = key, s = s }) end
+    for id, since in pairs(ns.DB.tracked or {}) do
+        local key = "item:" .. id
+        local s = ns.DB.subjects[key]
+        if not s then   -- tracked before tracking made its row: made now, so its page opens
+            s = { kind = "item", id = id, name = C_Item.GetItemNameByID(id) or (ns.itemNames and ns.itemNames[id]),
+                first = since, last = since, looks = 0, secs = 0, events = {} }
+            ns.DB.subjects[key] = s
+        end
+        if matches(s.name or itemName(id)) then table.insert(out, { key = key, s = s, since = since }) end
     end
-    local function tracked(x) return x.s.kind == "item" and ns.isTracked and ns.isTracked(x.s.id) end
-    table.sort(out, function(a, b)
-        local ta, tb = tracked(a), tracked(b)
-        if ta ~= tb then return ta end
-        return (a.s.last or 0) > (b.s.last or 0)
-    end)
+    table.sort(out, function(a, b) return (a.since or 0) > (b.since or 0) end)
     return out
 end
 
@@ -239,7 +239,7 @@ end
 
 local function counts()
     local c = { item = 0 }
-    for _, s in pairs(ns.DB.subjects) do if s.kind == "item" then c.item = c.item + 1 end end
+    for _ in pairs(ns.DB.tracked or {}) do c.item = c.item + 1 end
     c.ask = #(ns.DB.asks or {})
     return c
 end
@@ -1173,7 +1173,7 @@ local function drawList()
             local r = rows[n] or makeRow(n)
             local key = "mover:" .. m.id
             local bits = {}
-            if ns.DB.subjects["item:" .. m.id] then table.insert(bits, color(GOLD_HEX, "you looked at this")) end
+            if ns.isTracked(m.id) then table.insert(bits, color(GOLD_HEX, "tracked")) end
             table.insert(bits, string.format("listed %d > %d", m.oq, m.q))
             if m.sold > 0 then
                 table.insert(bits, m.unsure and grey(m.sold .. " fewer: sold or ran out") or color("ff40d060", "at least " .. m.sold .. " sold"))
@@ -1185,8 +1185,8 @@ local function drawList()
             place(r)
         end
     else
-        local ss = subjectsFor(tab)
-        list.note:SetText(#ss == 0 and "Nothing here yet. Hold your mouse over something for a few seconds." or "")
+        local ss = trackedItems()
+        list.note:SetText(#ss == 0 and "Nothing tracked yet. Pick an item in Market or Professions and press Track on the right, and it shows here." or "")
         for i = 1, math.min(#ss, 400) do
             local key, s = ss[i].key, ss[i].s
             n = n + 1
@@ -1554,7 +1554,8 @@ local function drawDetail()
                 grey("A full auction house scan (Market tab, or /mco scan) prices every reagent at once.") }
             or tab == "movers" and { grey("The biggest price moves on the whole auction house between your last two full scans.") }
             or tab == "ledger" and { grey("What you made, bought and sold. Click a line for its details; click an item to see what each one cost and earned.") }
-            or { grey("Each row is an item you held your mouse over, or opened in the auction house."), "",
+            or { grey("The items you track. Each keeps its cheapest price and how many are listed at every scan."), "",
+                 grey("To add one, pick it in Market or Professions and press Track on the right."), "",
                  grey("Shift-click an item to link it in chat.") }
         setDetail(nil, "Pick something on the left", GOLD_HEX, hint, nil, false)
         return
@@ -1569,7 +1570,7 @@ local function drawDetail()
             local now = ns.recipes and ns.recipes[pid] and recipesFor(pid, rank) or nil
             local lines = { grey("Profession"), "", string.format("Skill %d of %s", rank, mine and mine.max or "?"), "" }
             if not now then
-                table.insert(lines, "A gathering skill, so there are no recipes to list. What you gather shows in Items when you look at it.")
+                table.insert(lines, "A gathering skill, so there are no recipes to list. Track what you gather from Market to see its price at every scan.")
             else
                 table.insert(lines, #now .. " recipes give a point at your skill. They're listed cheapest per point first, from the prices you've seen.")
                 table.insert(lines, "")
@@ -1661,18 +1662,20 @@ local function drawDetail()
             or grey("You haven't looked at this."))
         setDetail(C_Item.GetItemIconByID(id), itemName(id, v and v[3]),
             nameColor({ kind = "item", id = id }), lines, nil, false, nil, id)
+        trackButtons(id)
         return
     end
     local s = ns.DB.subjects[selectedKey]
     if not s then selectedKey = nil return drawDetail() end
     local e = s.events[#s.events] or {}
-    local lines = {
-        grey(s.kind == "item" and "Item" or s.kind:gsub("^%l", string.upper)),
-        "",
-        "First looked: " .. date("%d %b %H:%M", s.first),
-        "Last looked: " .. when(s.last),
-        string.format("Looked %d time%s, %d seconds in all", s.looks, s.looks == 1 and "" or "s", math.floor(s.secs + 0.5)),
-    }
+    local since = s.kind == "item" and ns.DB.tracked and ns.DB.tracked[s.id]
+    local lines = { grey(s.kind == "item" and (since and "Tracked item" or "Item") or s.kind:gsub("^%l", string.upper)), "" }
+    if since then table.insert(lines, "Tracking since " .. date("%d %b %H:%M", since)) end
+    if (s.looks or 0) > 0 then
+        table.insert(lines, "First looked: " .. date("%d %b %H:%M", s.first))
+        table.insert(lines, "Last looked: " .. when(s.last))
+        table.insert(lines, string.format("Looked %d time%s, %d seconds in all", s.looks, s.looks == 1 and "" or "s", math.floor(s.secs + 0.5)))
+    end
     if s.kind == "item" then
         local first, cur = priceTrail(s)
         table.insert(lines, "")

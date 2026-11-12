@@ -860,7 +860,7 @@ function ns.toggleTrack(id)
         say((C_Item.GetItemNameByID(id) or "that item") .. ": no longer tracked.")
     else
         DB.tracked[id] = time()
-        -- it shows in Items from now on, looked at or not
+        -- it shows in the Tracked tab from now on, looked at or not
         local key = "item:" .. id
         if not DB.subjects[key] then
             DB.subjects[key] = { kind = "item", id = id, name = C_Item.GetItemNameByID(id) or (ns.itemNames and ns.itemNames[id]),
