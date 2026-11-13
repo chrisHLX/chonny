@@ -368,10 +368,12 @@ internal sealed class MainForm : Form
         catch { }
     }
 
-    private string WatchingText() => InForever ? ForeverText()
+    private string WatchingText() =>
+        (_pendingUpdate is { } u ? $"MindCollector {u.Version} is downloaded and installs when WoW closes. " : "")
+        + (InForever ? ForeverText()
         : _settings.WowLogsDir == null
         ? "Couldn't find World of Warcraft. Set its folder in Settings."
-        : "Watching your WoW logs for arena games";
+        : "Watching your WoW logs for arena games");
 
     private string ForeverText() =>
         !_settings.RecordForever ? "Saving Forever fights is off (Settings > Recording)"
@@ -488,9 +490,16 @@ internal sealed class MainForm : Form
 
     private int _ticks;
 
+    /// <summary>A newer version downloaded while WoW was open, installed when WoW closes (InstallPendingUpdate).</summary>
+    private (Version Version, string Path)? _pendingUpdate;
+
     /// <summary>
     /// A newer app on the website, installed by itself (Updater): at start and every three hours,
     /// never while WoW is running or a sync is under way, so a game is never interrupted.
+    ///
+    /// With WoW open it is downloaded now and installed the moment WoW closes (0.6.24). Before, the
+    /// check was skipped altogether while WoW ran, so a player who kept WoW open all evening with the
+    /// app in the tray never updated: Cbags was on a build with a known echo for days (13 Nov).
     /// </summary>
     private async Task CheckForUpdateAsync()
     {
@@ -498,19 +507,44 @@ internal sealed class MainForm : Form
         await Task.CompletedTask;   // the Store keeps it up to date
         return;
 #endif
-        if (_busy || Syncer.WowRunning() || Environment.GetEnvironmentVariable("MINDCOLLECTOR_DATA") != null) return;
+        if (_busy || Environment.GetEnvironmentVariable("MINDCOLLECTOR_DATA") != null) return;
         try
         {
             var newer = await Updater.NewerAsync(_settings.ServerUrl, CancellationToken.None);
-            if (newer == null) return;
-            if (await Updater.InstallAsync(_settings.ServerUrl, newer, Log, CancellationToken.None))
+            if (newer == null) { _pendingUpdate = null; return; }
+            var path = _pendingUpdate is { } p && p.Version == newer && File.Exists(p.Path) ? p.Path
+                : await Updater.DownloadAsync(_settings.ServerUrl, newer, Log, CancellationToken.None);
+            if (path == null) return;
+            if (Syncer.WowRunning())
             {
-                _exiting = true;
-                _tray.Visible = false;
-                Application.Exit();
+                if (_pendingUpdate?.Version != newer)
+                {
+                    Log($"MindCollector {newer} is downloaded. It installs the moment WoW closes; press Update to install it now.");
+                    SetStatus(WatchingText());
+                }
+                _pendingUpdate = (newer, path);
+                return;
             }
+            InstallDownloaded(path, newer);
         }
         catch (Exception e) { Log($"Could not check for an update: {e.Message}"); }
+    }
+
+    /// <summary>Every tick: the version downloaded while WoW was open goes in once WoW has closed.</summary>
+    private void InstallPendingUpdate()
+    {
+        if (_pendingUpdate is not { } p || _busy || Syncer.WowRunning()) return;
+        if (!File.Exists(p.Path)) { _pendingUpdate = null; return; }
+        InstallDownloaded(p.Path, p.Version);
+    }
+
+    private void InstallDownloaded(string path, Version version)
+    {
+        _pendingUpdate = null;
+        if (!Updater.Launch(path, version, Log)) return;
+        _exiting = true;
+        _tray.Visible = false;
+        Application.Exit();
     }
 
     /// <summary>
@@ -607,6 +641,8 @@ internal sealed class MainForm : Form
     private async Task TickAsync()
     {
         if (++_ticks % 1080 == 0) await CheckForUpdateAsync();   // every three hours at ten seconds a tick
+        InstallPendingUpdate();
+        if (_exiting) return;
         // WoW not found yet (0.6.1): look again, so starting the game afterwards fixes it by itself.
         // The running game is checked every tick; the whole search, drives included, every minute.
         if (_settings.WowLogsDir == null && (WowRegistry.RunningRetail().Any() || _ticks % 6 == 0) && AppSettings.DetectWowLogs() is { } found)

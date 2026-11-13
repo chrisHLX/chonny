@@ -47,9 +47,23 @@ internal static class Updater
     }
 
     /// <summary>Downloads the new version and starts it; true when the caller should now exit.</summary>
-    public static async Task<bool> InstallAsync(string serverUrl, Version version, Action<string> log, CancellationToken ct)
+    public static async Task<bool> InstallAsync(string serverUrl, Version version, Action<string> log, CancellationToken ct) =>
+        await DownloadAsync(serverUrl, version, log, ct) is { } path && Launch(path, version, log);
+
+    /// <summary>
+    /// The new version in the temp folder, checked (megabytes, starts "MZ", the website's hash): its
+    /// path, or null when it did not come down properly. A good copy already there is used as it is,
+    /// so the download made while WoW was open (0.6.24) is not made twice.
+    /// </summary>
+    public static async Task<string?> DownloadAsync(string serverUrl, Version version, Action<string> log, CancellationToken ct)
     {
         var target = Path.Combine(Path.GetTempPath(), $"MindCollector-{version}.exe");
+        // The website's hash for this version, when it gives one: a download cut short or altered on the
+        // way is not started. It proves nothing if the website itself were taken over; only signing would.
+        var expected = await ExpectedHashAsync(serverUrl, ct);
+        if (expected != null && File.Exists(target) && (await HashAsync(target, ct)).Equals(expected, StringComparison.OrdinalIgnoreCase))
+            return target;
+
         using var http = new HttpClient { Timeout = TimeSpan.FromMinutes(10) };
         using (var res = await http.GetAsync($"{serverUrl.TrimEnd('/')}/wow/coach/app", HttpCompletionOption.ResponseHeadersRead, ct))
         {
@@ -65,26 +79,28 @@ internal static class Updater
         {
             log($"The update to {version} did not download properly; will try again later.");
             File.Delete(target);
-            return false;
+            return null;
         }
-
-        // The website's hash for this version, when it gives one: a download cut short or altered on the
-        // way is not started. It proves nothing if the website itself were taken over; only signing would.
-        if (await ExpectedHashAsync(serverUrl, ct) is { } expected)
+        if (expected != null && !(await HashAsync(target, ct)).Equals(expected, StringComparison.OrdinalIgnoreCase))
         {
-            await using var f = File.OpenRead(target);
-            var actual = Convert.ToHexString(await System.Security.Cryptography.SHA256.HashDataAsync(f, ct));
-            if (!actual.Equals(expected, StringComparison.OrdinalIgnoreCase))
-            {
-                log($"The update to {version} did not match the website's hash; will try again later.");
-                await f.DisposeAsync();
-                File.Delete(target);
-                return false;
-            }
+            log($"The update to {version} did not match the website's hash; will try again later.");
+            File.Delete(target);
+            return null;
         }
+        return target;
+    }
 
+    /// <summary>Starts a downloaded version, which replaces this one (Installer); true, so the caller exits.</summary>
+    public static bool Launch(string path, Version version, Action<string> log)
+    {
         log($"Updating MindCollector from {Current.ToString(3)} to {version}.");
-        Process.Start(new ProcessStartInfo(target, "--update") { UseShellExecute = true });
+        Process.Start(new ProcessStartInfo(path, "--update") { UseShellExecute = true });
         return true;
+    }
+
+    private static async Task<string> HashAsync(string path, CancellationToken ct)
+    {
+        await using var f = File.OpenRead(path);
+        return Convert.ToHexString(await System.Security.Cryptography.SHA256.HashDataAsync(f, ct));
     }
 }

@@ -313,6 +313,13 @@ length is read again a few times when the MP4 header isn't there the instant OBS
 it the clip's start was guessed from the buffer setting and the clip was never cut), and the Logs folder
 is listed every fifth second rather than every one.
 
+**Updates reach a player whose WoW is open (0.6.24, 2026-11-14).** The self-update ran at start and
+every three hours, and skipped itself whenever WoW was running. A player who starts WoW, then keeps
+the app in the tray all evening, was never updated: Cbags sat on a build with a known echo for days.
+Now the newer version is downloaded while WoW is open (checked against the website's hash, reused if
+already there), the status bar says so, and it installs on the first ten-second tick after WoW closes.
+Update still installs at once, after asking, when WoW is open.
+
 ## Installing OBS for the player (0.6.11, 2026-11-12)
 
 Settings > Set up OBS, with no OBS on the PC, asks "Install OBS Studio?" and on yes runs Windows'
