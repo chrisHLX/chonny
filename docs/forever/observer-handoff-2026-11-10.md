@@ -130,6 +130,22 @@ Still open:
   `t is long` never matched and every question read as asked in 1970 and was skipped silently. A
   question while answering is off now gets an answer saying so.
 
+## Prices by time of day (2026-11-14, app 0.6.25)
+
+Chriso's question of 12 Nov: are prices higher in Aussie evening hours than at US peak? `ui.lua`
+answers it in two places from `DB.history` (every full scan kept, 0.6.15, `keepScan`):
+
+- **An item's page** (Tracked, Market): the median cheapest price and listings in each four-hour block
+  of the player's clock that has readings, dearest and cheapest marked.
+- **The Market tab's panel before anything is picked**: the whole house by block. Each scan's level is
+  the median over its items of price / that item's median price across every scan kept; a block is
+  the mean of its scans. Usual, not a fixed day, so a joke listing can't move it. With two scans the
+  halves are symmetric by construction and the panel says so until six.
+
+Checked on 14 Nov against the real saved file (two scans, 5,221 items in both) through
+`tod_test.py` in the scratchpad and Redis's Lua: 96 ms, Thursday 12:00-16:00 1.8% above, 00:00-04:00
+1.8% below. The whole-house walk is cached by scan count, so it runs once per new scan.
+
 ## Market reads so far (Chriso's realm, Horde, 2026-11-08 to 11-10)
 
 - **Elixir of Ogre Strength, Fire Oil:** selling. Listings fell and the price rose, and he sold 26 and

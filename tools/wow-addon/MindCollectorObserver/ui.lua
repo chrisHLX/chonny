@@ -211,6 +211,136 @@ local function historyLines(id, lines, most)
     if #h > (most or 40) then table.insert(lines, grey(string.format("and %d older", #h - (most or 40)))) end
 end
 
+-- ---------------------------------------------------------------- prices by time of day (14 Nov)
+-- Chriso's question of 12 Nov: are prices higher in Aussie evening hours than at US peak, twelve
+-- hours later? Six four-hour blocks of the player's own clock. For one item, the typical (median)
+-- cheapest price and listings in each block it has readings in. For the whole house, each scan's
+-- level is the median over its items of price / that item's usual (median) price across every scan
+-- kept, and a block's level is the mean of its scans'. Usual, not a fixed day, so a joke listing or
+-- one item's swing can't move it much.
+
+local BLOCKS = 6
+local function blockOf(t) return math.floor(tonumber(date("%H", t)) / 4) + 1 end
+local function blockLabel(i) return string.format("%02d:00-%02d:00", (i - 1) * 4, i * 4) end
+
+local function median(list)
+    table.sort(list)
+    local n = #list
+    if n == 0 then return nil end
+    return n % 2 == 1 and list[(n + 1) / 2] or (list[n / 2] + list[n / 2 + 1]) / 2
+end
+
+local function daysSpanned(from, to) return math.max(1, math.floor((to - from) / 86400 + 0.5)) end
+
+-- One item's readings by block, as lines for its page.
+local function timeOfDayLines(id, lines)
+    local h = priceHistory(id)
+    if #h == 0 then return end
+    local blocks, used = {}, 0
+    for _, x in ipairs(h) do
+        local b = blockOf(x.t)
+        if not blocks[b] then blocks[b] = { prices = {}, listed = {} }; used = used + 1 end
+        table.insert(blocks[b].prices, x.min)
+        if x.q then table.insert(blocks[b].listed, x.q) end
+    end
+    table.insert(lines, "")
+    if used < 2 then
+        table.insert(lines, color(GOLD_HEX, "By time of day") .. grey(string.format("  needs readings at different hours: %d so far, all %s",
+            #h, blockLabel(blockOf(h[1].t)))))
+        return
+    end
+    local lo, hi
+    for i = 1, BLOCKS do
+        local b = blocks[i]
+        if b then
+            b.price, b.q, b.n = median(b.prices), median(b.listed), #b.prices
+            if not lo or b.price < blocks[lo].price then lo = i end
+            if not hi or b.price > blocks[hi].price then hi = i end
+        end
+    end
+    table.insert(lines, color(GOLD_HEX, "By time of day") .. grey(string.format("  your clock, %d reading%s over %d day%s",
+        #h, #h == 1 and "" or "s", daysSpanned(h[1].t, h[#h].t), daysSpanned(h[1].t, h[#h].t) == 1 and "" or "s")))
+    for i = 1, BLOCKS do
+        local b = blocks[i]
+        if b then
+            local bits = { blockLabel(i), "typical " .. ns.money(b.price) }
+            if b.q then table.insert(bits, string.format("~%d listed", b.q)) end
+            table.insert(bits, b.n .. (b.n == 1 and " reading" or " readings"))
+            if i == hi and hi ~= lo then table.insert(bits, color("ff40d060", "dearest")) end
+            if i == lo and hi ~= lo then table.insert(bits, color("ffe05050", "cheapest")) end
+            table.insert(lines, table.concat(bits, "  ·  "))
+        end
+    end
+end
+
+-- The whole house by block, from every scan kept. Walks each scan's price string once per new scan.
+local todCache
+local function marketTimeOfDay()
+    local hist = ns.DB.history or {}
+    if #hist < 2 then return nil end
+    local key = #hist .. ":" .. (hist[#hist].t or 0)
+    if todCache and todCache.key == key then return todCache end
+    local per, scans = {}, {}
+    for si, h in ipairs(hist) do
+        local map = {}
+        for id, price in (h.s or ""):gmatch(";(%d+):(%d+):%d+") do
+            id, price = tonumber(id), tonumber(price)
+            map[id] = price
+            per[id] = per[id] or {}
+            table.insert(per[id], price)
+        end
+        scans[si] = map
+    end
+    local usual, items = {}, 0
+    for id, list in pairs(per) do
+        if #list >= 2 then usual[id] = median(list); items = items + 1 end
+    end
+    local blocks, used = {}, 0
+    for si, h in ipairs(hist) do
+        local ratios = {}
+        for id, p in pairs(scans[si]) do
+            local u = usual[id]
+            if u and u > 0 then table.insert(ratios, p / u) end
+        end
+        local level = median(ratios)
+        if level then
+            local b = blockOf(h.t)
+            if not blocks[b] then blocks[b] = { sum = 0, n = 0 }; used = used + 1 end
+            blocks[b].sum, blocks[b].n = blocks[b].sum + level, blocks[b].n + 1
+        end
+    end
+    todCache = { key = key, blocks = blocks, used = used, scans = #hist, items = items, from = hist[1].t, to = hist[#hist].t }
+    return todCache
+end
+
+local function marketTimeOfDayLines(lines)
+    local m = marketTimeOfDay()
+    table.insert(lines, "")
+    if not m then
+        table.insert(lines, color(GOLD_HEX, "Prices by time of day") .. grey("  needs two full scans at different hours. Scan when you log on and again before bed, and this fills in."))
+        return
+    end
+    if m.used < 2 then
+        table.insert(lines, color(GOLD_HEX, "Prices by time of day") .. grey(string.format("  %d scan%s so far, all %s. Scan at another time of day and this fills in.",
+            m.scans, m.scans == 1 and "" or "s", blockLabel(blockOf(m.from)))))
+        return
+    end
+    table.insert(lines, color(GOLD_HEX, "Prices by time of day") .. grey(string.format("  your clock, %d scans over %d day%s, %d items",
+        m.scans, daysSpanned(m.from, m.to), daysSpanned(m.from, m.to) == 1 and "" or "s", m.items)))
+    table.insert(lines, grey("Against each item's usual price across every scan: above means the house as a whole was dearer then."))
+    if m.scans < 6 then table.insert(lines, grey("Early days: with two scans each is as far from usual as the other, whatever happened. It settles as scans build up.")) end
+    for i = 1, BLOCKS do
+        local b = m.blocks[i]
+        if b then
+            local pct = (b.sum / b.n - 1) * 100
+            local level = math.abs(pct) < 0.5 and grey("about usual")
+                or pct > 0 and color("ff40d060", string.format("%.1f%% above usual", pct))
+                or color("ffe05050", string.format("%.1f%% below usual", -pct))
+            table.insert(lines, string.format("%s  ·  %s  ·  %d scan%s", blockLabel(i), level, b.n, b.n == 1 and "" or "s"))
+        end
+    end
+end
+
 local function matches(name)
     if query == "" then return true end
     return name and name:lower():find(query, 1, true)
@@ -1648,6 +1778,7 @@ local function drawDetail()
             or { grey("The items you track. Each keeps its cheapest price and how many are listed at every scan."), "",
                  grey("To add one, pick it in Market or Professions and press Track on the right."), "",
                  grey("Shift-click an item to link it in chat.") }
+        if tab == "movers" then marketTimeOfDayLines(hint) end
         setDetail(nil, "Pick something on the left", GOLD_HEX, hint, nil, false)
         return
     end
@@ -1748,6 +1879,7 @@ local function drawDetail()
         if v then table.insert(lines, "Now: " .. ns.money(v[1]) .. "  (" .. v[2] .. " listed)") end
         if o then table.insert(lines, "Before: " .. ns.money(o[1]) .. "  (" .. o[2] .. " listed)") end
         if v and o then table.insert(lines, "Change: " .. changeText(o[1], v[1])) end
+        timeOfDayLines(id, lines)
         historyLines(id, lines)
         if s and (s.looks or 0) > 0 then
             table.insert(lines, "")
@@ -1781,6 +1913,7 @@ local function drawDetail()
         if first and cur then table.insert(lines, "Change: " .. changeText(first.p, cur.min)) end
         local have = C_Item.GetItemCount(s.id, true)
         if have and have > 0 then table.insert(lines, "You have " .. have) end
+        timeOfDayLines(s.id, lines)
         historyLines(s.id, lines)
     elseif s.kind == "talent" then
         table.insert(lines, "")
