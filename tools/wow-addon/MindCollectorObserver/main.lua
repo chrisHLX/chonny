@@ -907,6 +907,91 @@ local function hookPosting()
     end
 end
 
+-- ---------------------------------------------------------------- what you hold (14 Nov, the Holdings tab)
+-- Each character's bags, bank and gold, by item (Chriso: what we own in bulk, what we paid, how the
+-- price has moved, like a stock app). Bags are walked when the game says they changed, throttled to
+-- once a second and a half. The bank is read only while it's open: its counts are what
+-- GetItemCount(id, true) says over the bags, for every item known here (bags, bank last time, the
+-- ledger, tracked) plus whatever the bank's own bags hold. The data is account-wide, so the tab adds
+-- characters up. Nothing is priced here: ui.lua does that from the ledger and the scans.
+
+local bankOpen, holdQueued = false, false
+
+local function bagCounts()
+    local out = {}
+    local last = NUM_TOTAL_EQUIPPED_BAG_SLOTS or NUM_BAG_SLOTS or 4
+    for bag = 0, last do
+        local n = (C_Container and C_Container.GetContainerNumSlots and C_Container.GetContainerNumSlots(bag))
+            or (GetContainerNumSlots and GetContainerNumSlots(bag)) or 0
+        for slot = 1, n do
+            local id, count
+            if C_Container and C_Container.GetContainerItemInfo then
+                local info = C_Container.GetContainerItemInfo(bag, slot)
+                if info then id, count = info.itemID, info.stackCount end
+            elseif GetContainerItemInfo then
+                local _, c, _, _, _, _, _, _, _, itemID = GetContainerItemInfo(bag, slot)
+                id, count = itemID, c
+            end
+            if id then out[id] = (out[id] or 0) + (count or 1) end
+        end
+    end
+    return out
+end
+
+-- Every item in the bank's own bags, while it's open: the bag ids differ between clients, so each
+-- likely one is tried and a wrong one simply has no slots.
+local function bankItems(into)
+    if not (C_Container and C_Container.GetContainerNumSlots) then return end
+    local ids = { -1 }
+    local base = NUM_TOTAL_EQUIPPED_BAG_SLOTS or NUM_BAG_SLOTS or 4
+    for i = 1, (NUM_BANKBAGSLOTS or 7) do table.insert(ids, base + i) end
+    if Enum and Enum.BagIndex then
+        for k, v in pairs(Enum.BagIndex) do
+            if type(k) == "string" and type(v) == "number" and k:find("Bank") then table.insert(ids, v) end
+        end
+    end
+    for _, bag in ipairs(ids) do
+        local ok, n = pcall(C_Container.GetContainerNumSlots, bag)
+        for slot = 1, (ok and n or 0) do
+            local ok2, info = pcall(C_Container.GetContainerItemInfo, bag, slot)
+            if ok2 and info and info.itemID then into[info.itemID] = true end
+        end
+    end
+end
+
+local function recordHoldings()
+    holdQueued = false
+    if not DB then return end
+    DB.holdings = DB.holdings or {}
+    local me = UnitName("player")
+    if not me then return end
+    local mine = DB.holdings[me] or {}
+    DB.holdings[me] = mine
+    mine.bags = bagCounts()
+    if bankOpen then
+        local known = {}
+        for id in pairs(mine.bags) do known[id] = true end
+        for id in pairs(mine.bank or {}) do known[id] = true end
+        for id in pairs(DB.tracked or {}) do known[id] = true end
+        for _, e in ipairs(DB.ledger or {}) do if e.i and e.i > 0 then known[e.i] = true end end
+        bankItems(known)
+        local bank = {}
+        for id in pairs(known) do
+            local inBank = (C_Item.GetItemCount(id, true) or 0) - (mine.bags[id] or 0)
+            if inBank > 0 then bank[id] = inBank end
+        end
+        mine.bank, mine.bankAt = bank, time()
+    end
+    mine.t, mine.gold = time(), GetMoney()
+    if ns.refresh then ns.refresh() end
+end
+
+local function queueHoldings()
+    if holdQueued then return end
+    holdQueued = true
+    C_Timer.After(1.5, recordHoldings)
+end
+
 -- ---------------------------------------------------------------- shared with ui.lua
 
 ns.latestPrice, ns.money, ns.pctText, ns.shortDate, ns.scan, ns.say = latestPrice, money, pctText, shortDate, scan, say
@@ -941,6 +1026,9 @@ ev:RegisterEvent("TRAINER_SHOW")
 ev:RegisterEvent("TRAINER_UPDATE")
 ev:RegisterEvent("MERCHANT_SHOW")
 ev:RegisterEvent("MERCHANT_UPDATE")
+ev:RegisterEvent("BAG_UPDATE_DELAYED")
+ev:RegisterEvent("BANKFRAME_OPENED")
+ev:RegisterEvent("BANKFRAME_CLOSED")
 
 local talentCheckQueued
 ev:SetScript("OnEvent", function(_, event, ...)
@@ -955,6 +1043,7 @@ ev:SetScript("OnEvent", function(_, event, ...)
         hookPosting()
         lastMoney = GetMoney()
         C_Timer.After(5, saveProfessions)
+        C_Timer.After(6, queueHoldings)
     elseif event == "PLAYER_LOGOUT" then
         for _, tip in ipairs({ GameTooltip, ItemRefTooltip }) do
             local c = tracking[tip]
@@ -1001,6 +1090,15 @@ ev:SetScript("OnEvent", function(_, event, ...)
         invoices = {}
     elseif event == "PLAYER_MONEY" then
         onMoney()
+        local mine = DB and DB.holdings and DB.holdings[UnitName("player") or ""]
+        if mine then mine.gold = GetMoney() end
+    elseif event == "BAG_UPDATE_DELAYED" then
+        queueHoldings()
+    elseif event == "BANKFRAME_OPENED" then
+        bankOpen = true
+        queueHoldings()
+    elseif event == "BANKFRAME_CLOSED" then
+        bankOpen = false
     elseif event == "AUCTION_HOUSE_AUCTION_CREATED" then
         local p = pendingPost
         pendingPost = nil

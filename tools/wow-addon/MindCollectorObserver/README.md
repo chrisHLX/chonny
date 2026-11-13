@@ -47,6 +47,15 @@ what was saved of them is dropped at the next login.
   Gadgetzan, Everlook) has its own listings: opening one says so, its prices are not noted, and its
   scan is kept apart (`DB.otherScans.Neutral`) and shared as its own market, so it never mixes
   with your faction's prices here or in the pool.
+- **Holdings** (2026-11-14): what you hold across your characters, what you paid, and where the price
+  is now, like a stock app's positions. Bags are read as they change, the bank while it's open, gold
+  always (`DB.holdings[character]`). Paid is the ledger's average per unit for what you bought or made
+  since it began; the rest is said to be unknown. Worth is the cheapest listing after the 5% cut.
+  Rows: five or more held, or any with a cost known; a total row on top with gold per character.
+  `docs/forever/observer-handoff-2026-11-10.md`, "Holdings", has the rules and the test.
+- **Prices by time of day** (2026-11-14): on an item's page, its typical price and listings in each
+  four-hour block of your clock; on the Market tab's panel, the whole house per block against each
+  item's usual price, from every scan kept.
 - **Used in** (2026-11-11): under any item's details (Items, Market, Ledger, and what a recipe
   makes), every Forever recipe that takes it, one section per profession, yours first and open.
   Click a header to open or close it. Each recipe shows how many it takes, the skill it's learned

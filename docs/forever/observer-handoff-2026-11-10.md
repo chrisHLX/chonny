@@ -146,6 +146,25 @@ Checked on 14 Nov against the real saved file (two scans, 5,221 items in both) t
 `tod_test.py` in the scratchpad and Redis's Lua: 96 ms, Thursday 12:00-16:00 1.8% above, 00:00-04:00
 1.8% below. The whole-house walk is cached by scan count, so it runs once per new scan.
 
+## Holdings (2026-11-14, app 0.6.26)
+
+Chriso: "what we own in bulk and what we paid for them and how the price has moved, the same kind of
+thing you would see if you bought crypto or a stock". A tab of its own, since Tracked is prices
+watched, Market the whole house and Ledger the history; this is state.
+
+- **Data** (`main.lua`, `DB.holdings[character]`): bags walked on `BAG_UPDATE_DELAYED`, throttled to
+  1.5 s; the bank only while open, as `GetItemCount(id, true)` over the bags for every known id plus
+  whatever the bank's own bags hold (bag ids tried under `pcall`, since they differ by client); gold on
+  `PLAYER_MONEY`. Account-wide, so characters add up; a bank not opened since the feature went in is
+  "not seen yet", not zero.
+- **Pricing** (`ui.lua`, `costBasis`, `holdings`): average cost per unit from the ledger (buys at the
+  price confirmed, crafts at the reagents' value, crafts with a reagent unpriced not counted); units
+  known = min(held, bought + made − sold), sales matched by name since invoices carry no item id.
+  The rest is said to be unknown. Worth = cheapest listing × held × 0.95. Rows: held ≥ 5, or any
+  with a cost known. A total row on top with gold per character.
+- **Checked** with `hold_test.py` (scratchpad) under Redis's Lua on made-up data: two characters,
+  a buy, a sale, a vendor buy, a craft with no reagent value; every number as worked by hand.
+
 ## Market reads so far (Chriso's realm, Horde, 2026-11-08 to 11-10)
 
 - **Elixir of Ogre Strength, Fire Oil:** selling. Listings fell and the price rose, and he sold 26 and

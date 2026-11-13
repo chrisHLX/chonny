@@ -18,6 +18,7 @@ local TABS = {
     { key = "item", label = "Tracked" },
     { key = "prof", label = "Professions" },
     { key = "movers", label = "Market" },
+    { key = "hold", label = "Holdings" },
     { key = "ledger", label = "Ledger" },
     { key = "ask", label = "Ask" },
 }
@@ -888,6 +889,90 @@ local function professionsSorted()
     return out
 end
 
+-- ---------------------------------------------------------------- holdings (14 Nov)
+-- What you hold across characters (DB.holdings, main.lua), what you paid for it, and where the price
+-- is now, like a stock app's positions (Chriso). Paid is the average per unit from the ledger: bought
+-- at the price confirmed, crafted at the reagents' value then. Units from before the ledger began
+-- (10 Nov), or crafted with a reagent unpriced, have no cost: the row says how many are known and
+-- never guesses the rest. Worth is at the cheapest listing after the 5% cut, which a large lot sold
+-- at once won't hold.
+
+local HOLD_MIN = 5 -- fewer than this, with no cost known, is pocket change, not a holding
+
+-- Per item id: units bought or made with a cost, what they cost in all, and units sold since. Sales
+-- carry no item id (the invoice names it), so entries are matched by name as the ledger does.
+local function costBasis()
+    local byName, byId = {}, {}
+    for _, e in ipairs(ns.DB.ledger or {}) do
+        local key = e.n or ("item " .. (e.i or 0))
+        local x = byName[key]
+        if not x then x = { units = 0, paid = 0, sold = 0 }; byName[key] = x end
+        if (e.i or 0) > 0 then byId[e.i] = x end
+        if e.k == "ahbuy" or e.k == "vbuy" then
+            x.units, x.paid = x.units + (e.q or 1), x.paid - (e.c or 0)
+        elseif e.k == "craft" then
+            if e.v then x.units, x.paid = x.units + (e.q or 1), x.paid + e.v end
+        elseif e.k == "ahsale" or e.k == "vsell" then
+            x.sold = x.sold + (e.q or 1)
+        end
+    end
+    return byId
+end
+
+-- The positions, most worth first, and the totals: worth (items with a price), paid (units with a
+-- cost), gold (every character), and how many characters have been seen.
+local function holdings()
+    local totals, chars = {}, 0
+    for char, h in pairs(ns.DB.holdings or {}) do
+        chars = chars + 1
+        for _, part in ipairs({ { "bags", h.bags }, { "bank", h.bank } }) do
+            for id, c in pairs(part[2] or {}) do
+                local t = totals[id]
+                if not t then t = { n = 0, by = {} }; totals[id] = t end
+                t.n = t.n + c
+                t.by[char] = t.by[char] or { bags = 0, bank = 0 }
+                t.by[char][part[1]] = t.by[char][part[1]] + c
+            end
+        end
+    end
+    local basis, out = costBasis(), {}
+    local sum = { worth = 0, paid = 0, gold = 0, chars = chars, items = 0 }
+    for id, t in pairs(totals) do
+        local b = basis[id]
+        local known = b and math.max(0, math.min(t.n, b.units - b.sold)) or 0
+        local avg = b and b.units > 0 and b.paid / b.units or nil
+        if t.n >= HOLD_MIN or known > 0 then
+            sum.items = sum.items + 1
+            if matches(itemName(id)) then
+                local p = ns.latestPrice(id)
+                local worth = p and p.min * t.n * (1 - AH_CUT) or nil
+                local paid = avg and known > 0 and avg * known or nil
+                if worth then sum.worth = sum.worth + worth end
+                if paid then sum.paid = sum.paid + paid end
+                table.insert(out, { id = id, n = t.n, by = t.by, known = known, avg = avg, paid = paid,
+                    now = p and p.min, listed = p and p.q, at = p and p.t, worth = worth })
+            end
+        end
+    end
+    for _, h in pairs(ns.DB.holdings or {}) do sum.gold = sum.gold + (h.gold or 0) end
+    table.sort(out, function(a, b)
+        if (a.worth ~= nil) ~= (b.worth ~= nil) then return a.worth ~= nil end
+        if a.worth and b.worth and a.worth ~= b.worth then return a.worth > b.worth end
+        return a.n > b.n
+    end)
+    return out, sum
+end
+
+-- "Crypto-Shot 1,900, Shotalt 500": where a holding sits, most first.
+local function whoHolds(by)
+    local parts = {}
+    for char, c in pairs(by) do table.insert(parts, { char = char, n = c.bags + c.bank }) end
+    table.sort(parts, function(a, b) return a.n > b.n end)
+    local bits = {}
+    for _, p in ipairs(parts) do table.insert(bits, p.char .. " " .. p.n) end
+    return table.concat(bits, ", ")
+end
+
 -- ---------------------------------------------------------------- frame pieces
 
 local function backdrop(f, bg, border)
@@ -1347,6 +1432,34 @@ local function drawList()
                 end
             end
         end
+    elseif tab == "hold" then
+        local hs, sum = holdings()
+        list.note:SetText(sum.chars == 0 and "Nothing recorded yet: it fills in a moment after you log in, and the bank when you open it."
+            or (#hs == 0 and query == "" and string.format("Nothing held in bulk yet: %d or more of an item, or any you bought or made since the ledger began.", HOLD_MIN)) or "")
+        n = n + 1
+        local r = rows[n] or makeRow(n)
+        local bits = {}
+        if sum.paid > 0 then table.insert(bits, "paid " .. ns.money(sum.paid) .. " for the units with a known cost") end
+        if sum.gold > 0 then table.insert(bits, "gold " .. ns.money(sum.gold) .. (sum.chars > 1 and (" on " .. sum.chars .. " characters") or "")) end
+        fillRow(r, "holdsum", "Interface\\Icons\\INV_Misc_Coin_02", "Everything you hold", GOLD_HEX,
+            sum.worth > 0 and ("worth about " .. ns.money(sum.worth)) or grey("no prices yet: scan the auction house"),
+            table.concat(bits, "  ·  "))
+        place(r)
+        for i = 1, math.min(#hs, 200) do
+            local x = hs[i]
+            n = n + 1
+            r = rows[n] or makeRow(n)
+            local value = x.worth and (ns.money(x.worth) .. (x.avg and x.now and ("  " .. changeText(x.avg, x.now)) or "")) or grey("no price yet")
+            local sub = { string.format("%d held", x.n) }
+            if x.avg then
+                table.insert(sub, "paid ~" .. ns.money(x.avg) .. " each" .. (x.known < x.n and string.format(" (%d of them known)", x.known) or ""))
+            end
+            if x.now then table.insert(sub, "now " .. ns.money(x.now)) end
+            if sum.chars > 1 then table.insert(sub, whoHolds(x.by)) end
+            fillRow(r, "hold:" .. x.id, C_Item.GetItemIconByID(x.id), itemName(x.id), nameColor({ kind = "item", id = x.id }),
+                value, table.concat(sub, "  ·  "), x.id)
+            place(r)
+        end
     elseif tab == "ledger" then
         local periods = { { "Today", startOfToday() }, { "Last 7 days", time() - 7 * 86400 }, { "All time", 0 } }
         list.note:SetText(#(ns.DB.ledger or {}) == 0
@@ -1775,6 +1888,9 @@ local function drawDetail()
                 grey("A full auction house scan (Market tab, or /mco scan) prices every reagent at once.") }
             or tab == "movers" and { grey("The biggest price moves on the whole auction house between your last two full scans.") }
             or tab == "ledger" and { grey("What you made, bought and sold. Click a line for its details; click an item to see what each one cost and earned.") }
+            or tab == "hold" and { grey("What you hold across your characters: bags, and the bank as of your last visit on each."), "",
+                 grey("Paid is the average from the ledger, for what you bought or made since 10 Nov; the rest is said to be unknown, never guessed."), "",
+                 grey("Worth is at the cheapest listing after the 5% cut. A large lot sold at once won't hold that price.") }
             or { grey("The items you track. Each keeps its cheapest price and how many are listed at every scan."), "",
                  grey("To add one, pick it in Market or Professions and press Track on the right."), "",
                  grey("Shift-click an item to link it in chat.") }
@@ -1869,6 +1985,60 @@ local function drawDetail()
         return
     end
     if selectedKey:match("^soon:") then selectedKey = nil return drawDetail() end
+    if selectedKey == "holdsum" then
+        local _, sum = holdings()
+        local lines = {
+            sum.worth > 0 and ("Worth about " .. ns.money(sum.worth) .. " at the cheapest listings, after the 5% cut") or grey("No prices yet: a full scan prices everything at once."),
+            sum.paid > 0 and ("Paid " .. ns.money(sum.paid) .. " for the units with a known cost") or grey("No costs known yet: they come from what you buy and make from now on."),
+            (sum.worth > 0 and sum.paid > 0) and ("Difference: " .. signedMoney(sum.worth - sum.paid) .. grey("  (worth less paid, over the units with a known cost)")) or "",
+            "",
+        }
+        for char, h in pairs(ns.DB.holdings or {}) do
+            local nb, nk = 0, 0
+            for _, c in pairs(h.bags or {}) do nb = nb + c end
+            for _, c in pairs(h.bank or {}) do nk = nk + c end
+            table.insert(lines, string.format("%s  ·  %s  ·  %d items in bags%s", char, ns.money(h.gold or 0), nb,
+                h.bankAt and string.format(", %d in the bank (as of %s)", nk, when(h.bankAt)) or ", bank not seen yet"))
+        end
+        table.insert(lines, "")
+        table.insert(lines, grey(string.format("Counted: anything you hold %d or more of, and anything you bought or made since the ledger began. Bags update as they change; the bank when you open it.", HOLD_MIN)))
+        setDetail("Interface\\Icons\\INV_Misc_Coin_02", "Everything you hold", GOLD_HEX, lines, nil, false)
+        return
+    end
+    local holdID = selectedKey:match("^hold:(%d+)$")
+    if holdID then
+        local id = tonumber(holdID)
+        local hs = holdings()
+        local x
+        for _, h in ipairs(hs) do if h.id == id then x = h break end end
+        if not x then selectedKey = nil return drawDetail() end
+        local lines = { grey("Holding"), "", string.format("Held: %d", x.n) }
+        for char, c in pairs(x.by) do
+            local h = ns.DB.holdings[char]
+            table.insert(lines, grey(string.format("  %s: %d in bags%s", char, c.bags,
+                c.bank > 0 and string.format(", %d in the bank (as of %s)", c.bank, when(h and h.bankAt)) or "")))
+        end
+        table.insert(lines, "")
+        if x.avg then
+            table.insert(lines, "Paid: about " .. ns.money(x.avg) .. " each" .. (x.known < x.n
+                and string.format(", known for %d of the %d (the rest were here before the ledger, or made with a reagent unpriced)", x.known, x.n) or ""))
+        else
+            table.insert(lines, grey("Paid: unknown. These were here before the ledger began, or came another way."))
+        end
+        if x.now then
+            table.insert(lines, "Now: " .. ns.money(x.now) .. (x.listed and ("  (" .. x.listed .. " listed, " .. when(x.at) .. ")") or ""))
+            if x.avg then table.insert(lines, "Since you paid: " .. changeText(x.avg, x.now)) end
+            table.insert(lines, "Worth about " .. ns.money(x.worth) .. " at that price after the 5% cut" .. (x.n >= 50 and grey("; a lot this size sold at once won't hold it") or ""))
+            if x.paid and x.known == x.n then table.insert(lines, "Difference: " .. signedMoney(x.worth - x.paid)) end
+        else
+            table.insert(lines, grey("No price yet: open it in the auction house, or scan."))
+        end
+        timeOfDayLines(id, lines)
+        historyLines(id, lines)
+        setDetail(C_Item.GetItemIconByID(id), itemName(id), nameColor({ kind = "item", id = id }), lines, nil, false, nil, id)
+        trackButtons(id)
+        return
+    end
     local moverID = selectedKey:match("^mover:(%d+)$")
     if moverID then
         local id = tonumber(moverID)
