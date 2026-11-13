@@ -351,9 +351,10 @@ end
 
 -- ---------------------------------------------------------------- telling you what changed
 
+-- %.0f, not %d: a joke listing (9,999,999g against 11s) is a move of billions of percent, past WoW's %d
 local function pctText(p)
-    if p >= 0 then return string.format("|cff40d060up %d%%|r", math.floor(p * 100 + 0.5)) end
-    return string.format("|cffe05050down %d%%|r", math.floor(-p * 100 + 0.5))
+    if p >= 0 then return string.format("|cff40d060up %.0f%%|r", p * 100) end
+    return string.format("|cffe05050down %.0f%%|r", -p * 100)
 end
 
 -- The look this change is measured from: your most recent look at least a day old.
@@ -502,11 +503,20 @@ end
 -- string ";id:price:count;..." (a Lua string loads far faster than a table of thousands, ~80 KB a
 -- scan). Up to HISTORY_MAX scans over HISTORY_DAYS days; a scan within 15 minutes of the last one
 -- replaces it, so scanning twice in a row doesn't count that hour twice.
-local HISTORY_MAX, HISTORY_DAYS = 90, 30
+-- HISTORY_BYTES caps the whole (14 Nov): a scan of the Horde house is ~100 KB, and the saved file is
+-- read by the app at every change and by WoW at every login, so 90 of them was too much to carry.
+local HISTORY_MAX, HISTORY_DAYS, HISTORY_BYTES = 90, 30, 4 * 1024 * 1024
+local function historyBytes()
+    local n = 0
+    for _, h in ipairs(DB.history) do n = n + #(h.s or "") end
+    return n
+end
 local function keepScan(entry)
     local parts = { "" }
     for id, a in pairs(entry.prices or {}) do
-        if a[1] and a[2] then table.insert(parts, string.format("%d:%d:%d", id, math.floor(a[1] + 0.5), a[2])) end
+        -- %.0f, not %d: WoW's %d stops at 2^31 copper (214,748g), and on 13 Nov a listing at 9,999,999g
+        -- (item 18401) was up; an error here lost the whole scan
+        if a[1] and a[2] then table.insert(parts, string.format("%d:%.0f:%.0f", id, a[1], a[2])) end
     end
     table.insert(parts, "")
     local h = { t = entry.t, n = entry.n, s = table.concat(parts, ";") }
@@ -519,7 +529,8 @@ local function keepScan(entry)
     end
     local last = DB.history[#DB.history]
     if last and entry.t - last.t < 15 * 60 then DB.history[#DB.history] = h else table.insert(DB.history, h) end
-    while #DB.history > HISTORY_MAX or (#DB.history > 0 and DB.history[1].t < entry.t - HISTORY_DAYS * 86400) do
+    while #DB.history > HISTORY_MAX
+        or (#DB.history > 1 and (DB.history[1].t < entry.t - HISTORY_DAYS * 86400 or historyBytes() > HISTORY_BYTES)) do
         table.remove(DB.history, 1)
     end
 end
@@ -547,7 +558,9 @@ local function finishScan(agg, n)
         if ns.refresh then ns.refresh() end
         return
     end
-    keepScan(entry)
+    -- the history is extra: if it ever fails, the scan still counts
+    local okKeep, keepErr = pcall(keepScan, entry)
+    if not okKeep then say("couldn't add this scan to the price history: " .. tostring(keepErr)) end
     DB.prevScan = DB.lastScan
     DB.lastScan = entry
     local moved, items = 0, 0
@@ -558,6 +571,7 @@ local function finishScan(agg, n)
             if checkChange("item:" .. id, true) then moved = moved + 1 end
         end
     end
+    entry.items = items -- counted once here, not by the window's footer at every redraw
     say(string.format("scanned %d auctions, %d items. %d thing%s you looked at moved since; /mco to see. WoW saves it for the app at your next /reload.",
         n, items, moved, moved == 1 and "" or "s"))
     if ns.refresh then ns.refresh() end

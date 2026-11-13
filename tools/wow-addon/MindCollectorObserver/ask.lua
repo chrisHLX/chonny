@@ -258,7 +258,7 @@ function ns.loadAnswers()
     end
     for _, a in ipairs(DB.asks or {}) do
         if a.status == "sent" and time() - a.t < 1800 and a ~= newest then
-            ns.say("still waiting for an answer to: " .. a.q .. ". Is the bridge running? /reload again in a minute.")
+            ns.say("still waiting for an answer to: " .. a.q .. ". Is the MindCollector app open? /reload again in a minute.")
         end
     end
 end

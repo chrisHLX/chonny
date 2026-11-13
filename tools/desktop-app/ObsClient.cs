@@ -41,6 +41,12 @@ public sealed class ObsClient : IAsyncDisposable
     /// <summary>ReplayBufferSaved (2026-11-06, ForeverRecorder): the file a SaveReplayBuffer wrote, once it is written.</summary>
     public event Action<string>? ReplayBufferSaved;
 
+    /// <summary>
+    /// ReplayBufferStateChanged (14 Nov): whether the replay buffer runs now. Stopped from OBS's own
+    /// window, the app would otherwise go on believing it ran, and lose every fight after in silence.
+    /// </summary>
+    public event Action<bool>? ReplayBufferStateChanged;
+
     public static async Task<ObsClient> ConnectAsync(int port, string? password, CancellationToken ct)
     {
         var client = new ObsClient();
@@ -155,18 +161,26 @@ public sealed class ObsClient : IAsyncDisposable
                             tcs.TrySetResult(d);
                         break;
                     case 5:
-                        if (d.TryGetProperty("eventType", out var et) && et.GetString() == "RecordStateChanged" && d.TryGetProperty("eventData", out var ed))
+                    {
+                        var type = d.TryGetProperty("eventType", out var et) ? et.GetString() : null;
+                        if (!d.TryGetProperty("eventData", out var ed)) break;
+                        if (type == "RecordStateChanged")
                         {
                             var state = ed.TryGetProperty("outputState", out var s) ? s.GetString() ?? "" : "";
                             var path = ed.TryGetProperty("outputPath", out var p) && p.ValueKind == JsonValueKind.String ? p.GetString() : null;
                             try { RecordStateChanged?.Invoke(state, path); } catch { }
                         }
-                        else if (d.TryGetProperty("eventType", out var et2) && et2.GetString() == "ReplayBufferSaved" && d.TryGetProperty("eventData", out var rd)
-                            && rd.TryGetProperty("savedReplayPath", out var sp) && sp.ValueKind == JsonValueKind.String)
+                        else if (type == "ReplayBufferSaved" && ed.TryGetProperty("savedReplayPath", out var sp) && sp.ValueKind == JsonValueKind.String)
                         {
                             try { ReplayBufferSaved?.Invoke(sp.GetString()!); } catch { }
                         }
+                        else if (type == "ReplayBufferStateChanged" && ed.TryGetProperty("outputActive", out var active)
+                            && active.ValueKind is JsonValueKind.True or JsonValueKind.False)
+                        {
+                            try { ReplayBufferStateChanged?.Invoke(active.GetBoolean()); } catch { }
+                        }
                         break;
+                    }
                 }
             }
         }

@@ -83,15 +83,36 @@ class ForeverAskTest extends TestCase
         Http::assertNothingSent();
     }
 
-    public function test_an_answer_without_json_is_a_failure_not_a_guess(): void
+    public function test_an_empty_reply_is_a_failure_and_is_not_remembered(): void
     {
-        $this->gemini('I think it is somewhere in the Barrens.');
+        $this->gemini('');
         $user = User::factory()->create();
 
         $this->ask($user->issueCoachToken(), ['q' => 'Where is the Wailing Caverns?'])->assertStatus(502)->assertJson(['status' => 'failed']);
         // nothing remembered, nothing counted
         $this->assertSame(0, Cache::get('forever-ask-count:'.$user->id.':'.now()->toDateString(), 0));
         $this->assertNull(Cache::get('forever-ask:'.sha1('where is the wailing caverns?|')));
+    }
+
+    /** Not the JSON asked for (14 Nov): the words are still an answer, but never with points. */
+    public function test_a_reply_in_plain_words_or_cut_off_still_answers_without_points(): void
+    {
+        $this->assertSame(['answer' => 'It is in the Barrens, south of the Crossroads.', 'points' => []],
+            ForeverAskService::parse("It is in the **Barrens**, south of the Crossroads.\n"));
+        $this->assertSame(['answer' => 'Sold by Bro\'kin in Alterac "Mountains".', 'points' => []],
+            ForeverAskService::parse('{"answer": "Sold by Bro\'kin in Alterac \"Mountains\".", "points": [{"zone": "Alterac Mount'));
+        $this->assertNull(ForeverAskService::parse('{"points": [{"zone": "Alterac'));
+    }
+
+    /** Gemini with search can take over a minute (75 s on 14 Nov): the player gets a reason, not a server error. */
+    public function test_a_search_that_takes_too_long_says_so(): void
+    {
+        Http::fake(fn () => throw new \Illuminate\Http\Client\ConnectionException('cURL error 28: Operation timed out'));
+        $user = User::factory()->create();
+
+        $this->ask($user->issueCoachToken(), ['q' => 'Is there a better rage potion?'])->assertStatus(502)
+            ->assertJson(['status' => 'failed'])->assertJsonPath('reason', fn ($r) => str_contains($r, 'too long'));
+        $this->assertSame(0, Cache::get('forever-ask-count:'.$user->id.':'.now()->toDateString(), 0));
     }
 
     public function test_the_apps_key_is_required(): void

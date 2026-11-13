@@ -154,5 +154,19 @@ Still open:
   sent about 20 HTTP 405s; a 60-second pause after each one got through with nothing lost. The data
   came out of Chrome in 400-character pieces and was checked against the page's length and hash.
   The client has no quest-objective table, so Wowhead is the only source for this.
+- **WoW's `string.format("%d")` stops at 2^31** (2026-11-13). A listing at 9,999,999 gold is
+  999,999,900,000 copper; `%d` on it throws, WoW hides addon errors, and because the price history was
+  written before the scan was kept, every scan after 0.6.15 was thrown away in silence. `%.0f` for
+  anything in copper or a percentage of a price move. `keepScan` runs under `pcall` now, and says so in
+  chat if it fails.
+- **Redraw on an event, not in it** (2026-11-14). `ns.refresh` is asked for by every look, price, scan
+  tick and ledger line; the window used to redraw at each, and on the Market tab each redraw walked
+  all ~11,000 scanned items with a name lookup each. Now `refresh` gathers the asks into one `redraw`
+  50 ms later, nothing runs while the window is hidden, and the Market walk is cached until a scan, a
+  search or an item name changes. Keep it that way: new code calls `ns.refresh()`, never draws itself.
+- **Checking the addon compiles without WoW**: there's no Lua on this PC, but Herd's Redis is Lua 5.1,
+  the same as WoW. Wrap the file in `local f = function(...) <file> end return 1` (the scratchpad's
+  `luawrap.py` did it) and `redis-cli --eval wrapped.lua`: `1` means it compiled, "Error compiling
+  script" with a line number means it didn't. Do it before copying a file into the game.
 - Check Forever's UI APIs against Gethe/wow-ui-source, branch `forever`; don't guess.
 - When Chriso asks a question in game, he's Horde. Never point him at an Alliance-only vendor.

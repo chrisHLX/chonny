@@ -265,8 +265,9 @@ public sealed class ForeverRecorder : IDisposable
                 return;
             }
 
+            _ticks++;
             // Not found yet: the running game every tick, the whole search once a minute.
-            if (_settings.ForeverLogsDir == null && (ForeverRunning() || ++_ticks % 60 == 1))
+            if (_settings.ForeverLogsDir == null && (ForeverRunning() || _ticks % 60 == 1))
             {
                 _settings.ForeverLogsDir = AppSettings.DetectForeverLogs(_settings.WowLogsDir);
                 // Found after the app started (Forever installed or first opened later): its addon,
@@ -274,6 +275,15 @@ public sealed class ForeverRecorder : IDisposable
                 if (_settings.ForeverLogsDir != null) LogsFound?.Invoke();
             }
             var running = ForeverRunning();
+            // OBS closed or crashed under a running buffer (14 Nov): the app went on believing it ran,
+            // the next save said "not running" and left it so, and no fight was saved again until the app
+            // restarted. Noticed here instead, so the next tick opens OBS and starts it again.
+            if (_bufferOn && _obs is not { Connected: true })
+            {
+                _bufferOn = false;
+                _ours = false;
+                _log("OBS went away while its replay buffer was running (closed, or it crashed)." + (running ? " Opening it and starting the buffer again." : ""));
+            }
             var fights = ReadLog();
             if (_finder.Due(DateTime.Now) is { } due) fights.Add(due);
 
@@ -300,7 +310,10 @@ public sealed class ForeverRecorder : IDisposable
         var fights = new List<FightFinder.Fight>();
         var dir = _settings.ForeverLogsDir;
         if (string.IsNullOrEmpty(dir) || !Directory.Exists(dir)) return fights;
-        var newest = new DirectoryInfo(dir).GetFiles("WoWCombatLog*.txt").OrderByDescending(f => f.LastWriteTimeUtc).FirstOrDefault();
+        // The folder is listed every fifth second, not every one: a new log file (WoW opened again)
+        // is caught within that, and the known file's size check is all the other ticks need.
+        var newest = _file != null && _ticks % 5 != 0 && File.Exists(_file) ? new FileInfo(_file)
+            : new DirectoryInfo(dir).GetFiles("WoWCombatLog*.txt").OrderByDescending(f => f.LastWriteTimeUtc).FirstOrDefault();
         if (newest == null) return fights;
 
         if (!string.Equals(newest.FullName, _file, StringComparison.OrdinalIgnoreCase))
@@ -355,6 +368,16 @@ public sealed class ForeverRecorder : IDisposable
         }
         _obs = client;
         _obs.ReplayBufferSaved += path => _saved?.TrySetResult(path);
+        _obs.ReplayBufferStateChanged += on =>
+        {
+            // Stopped from OBS's own window (14 Nov): the app believed it still ran, and every fight
+            // after was lost without a word. A stop of the app's own asking has _bufferOn off already.
+            if (on || !_bufferOn) return;
+            _bufferOn = false;
+            _ours = false;
+            _retryAfter = DateTime.Now.AddSeconds(10);
+            _log("OBS's replay buffer was stopped while WoW Forever is open. Starting it again in a moment.");
+        };
         return true;
     }
 
@@ -442,7 +465,14 @@ public sealed class ForeverRecorder : IDisposable
         try { Directory.CreateDirectory(folder); await Task.Run(() => File.Move(path, target, overwrite: false)); path = target; }
         catch (Exception e) { _log($"Could not move the clip into {folder}: {e.Message}"); }
 
+        // OBS says "saved" as the file closes; its header can be a moment behind on a slow disk. Without
+        // a length the clip's start is guessed from the buffer setting and it is never cut, so a few tries.
         var length = Mp4.Duration(path);
+        for (var tries = 0; length == null && tries < 5; tries++)
+        {
+            await Task.Delay(400);
+            length = Mp4.Duration(path);
+        }
         var clipStart = asked - (length ?? TimeSpan.FromSeconds(HeldSeconds));
         WriteSidecar(path, fight, clipStart, asked, exact: length != null);
         var mb = new FileInfo(path).Length / 1048576.0;
@@ -465,6 +495,7 @@ public sealed class ForeverRecorder : IDisposable
         var asked = DateTime.Now;
         if (!_bufferOn || _obs is not { Connected: true } obs)
         {
+            _bufferOn = false; // not connected: the next tick starts it again, rather than failing every fight
             _log($"Did not save the {what}: OBS's replay buffer is not running{(Problem != null ? $" ({Problem})" : "")}.");
             return (null, asked);
         }

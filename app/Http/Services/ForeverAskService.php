@@ -4,6 +4,7 @@ namespace App\Http\Services;
 
 use App\Models\AiRequest;
 use App\Models\User;
+use Illuminate\Http\Client\ConnectionException;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Log;
@@ -32,6 +33,8 @@ class ForeverAskService
 
     public const MAX_POINTS = 25;
 
+    public const TIMEOUT = 55;
+
     private const SYSTEM = <<<'TXT'
         You answer a question typed inside World of Warcraft: Forever, Blizzard's level-60 remake of the original world
         (launched November 2026, with new zones, recipes and items). The answer is shown in the game and any points are
@@ -50,6 +53,10 @@ class ForeverAskService
         coordinate. If no source gives coordinates, return "points": [] and name the zone in the answer. At most 25 points.
 
         When the question comes with facts "From the Forever game files", they are exact: use them over any website.
+
+        You can't see Forever's auction house: no prices, listings or sales. For a question about what sells or what it's
+        worth, say that plainly and point to the MindCollector window's Market tab, which has the player's own scans.
+        Never say something is or isn't selling.
         TXT;
 
     public function __construct(private TokenService $tokens) {}
@@ -71,7 +78,15 @@ class ForeverAskService
             return ['status' => 'limit', 'reason' => 'That\'s today\'s '.self::DAILY_LIMIT.' questions. More tomorrow.', 'left' => 0];
         }
 
-        $result = $this->ask($user, $question, $context);
+        try {
+            $result = $this->ask($user, $question, $context);
+        } catch (ConnectionException $e) {
+            // Gemini with search took 7 to 75 seconds for the same kind of question (14 Nov); past the
+            // limit this was an uncaught error, which the app showed as a bare failure
+            Log::warning('Forever ask: Gemini timed out', ['error' => $e->getMessage()]);
+
+            return ['status' => 'failed', 'reason' => 'The search took too long this time. Ask again, or a little more narrowly.'];
+        }
         if ($result === null) {
             return ['status' => 'failed', 'reason' => 'The search didn\'t answer. Try again in a minute.'];
         }
@@ -91,14 +106,18 @@ class ForeverAskService
     {
         $prompt = "Question: {$question}".($context !== '' ? "\n\n{$context}" : '');
         $start = microtime(true);
-        $response = Http::timeout(45)->post(
+        // under nginx's 60 seconds, so a slow search ends as an answer saying so, not a gateway error
+        $response = Http::timeout(self::TIMEOUT)->post(
             'https://generativelanguage.googleapis.com/v1beta/models/'.self::MODEL.':generateContent?key='.config('services.gemini.key'),
             [
                 'systemInstruction' => ['parts' => [['text' => self::SYSTEM]]],
                 'contents' => [['role' => 'user', 'parts' => [['text' => $prompt]]]],
                 // Search grounding can't be combined with a JSON response type, so the JSON is asked for in words.
                 'tools' => [['google_search' => new \stdClass]],
-                'generationConfig' => ['temperature' => 0.1, 'maxOutputTokens' => 1200],
+                // Thinking counts against maxOutputTokens: at 1200, a 684-token think (14 Nov) left little
+                // room, and a longer one cuts the JSON off. Thinking is capped and the reply given room.
+                'generationConfig' => ['temperature' => 0.1, 'maxOutputTokens' => 3000,
+                    'thinkingConfig' => ['thinkingBudget' => 1024]],
             ]
         );
         $ms = (int) round((microtime(true) - $start) * 1000);
@@ -154,12 +173,20 @@ class ForeverAskService
     {
         $start = strpos($text, '{');
         $end = strrpos($text, '}');
-        if ($start === false || $end === false || $end < $start) {
-            return null;
-        }
-        $data = json_decode(substr($text, $start, $end - $start + 1), true);
+        $data = $start !== false && $end !== false && $end > $start ? json_decode(substr($text, $start, $end - $start + 1), true) : null;
         if (! is_array($data) || ! is_string($data['answer'] ?? null) || trim($data['answer']) === '') {
-            return null;
+            // Not the JSON asked for. The answer is still worth giving, without points: the answer field of
+            // a reply cut off partway, or a reply in plain words. Nothing at all is the only failure.
+            if (preg_match('/"answer"\s*:\s*"((?:[^"\\\\]|\\\\.)+)/', $text, $m)) {
+                $answer = json_decode('"'.$m[1].'"') ?? stripslashes($m[1]);
+            } elseif ($start === false) {
+                $answer = $text;
+            } else {
+                return null;
+            }
+            $answer = trim(preg_replace('/\s+/', ' ', strip_tags(str_replace(['**', '`'], '', $answer))));
+
+            return $answer === '' ? null : ['answer' => mb_substr($answer, 0, 400), 'points' => []];
         }
 
         $points = [];

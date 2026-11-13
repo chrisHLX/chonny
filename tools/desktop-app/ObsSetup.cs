@@ -255,16 +255,20 @@ public static class ObsSetup
         var items = await obs.TryRequestAsync("GetSceneItemList", new JsonObject { ["sceneName"] = scene }, ct);
         if (items is not { } list || !list.TryGetProperty("sceneItems", out var arr) || arr.GetArrayLength() > 0) return null;
 
-        await obs.RequestAsync("CreateInput", new JsonObject
+        var made = await obs.RequestAsync("CreateInput", new JsonObject
         {
             ["sceneName"] = scene,
-            ["inputName"] = "World of Warcraft",
+            ["inputName"] = OwnCaptureName,
             ["inputKind"] = "game_capture",
             ["inputSettings"] = WowGameCaptureSettings(),
             ["sceneItemEnabled"] = true,
         }, ct);
+        if (made.TryGetProperty("sceneItemId", out var id)) await FitToCanvasAsync(obs, scene, id.GetInt32(), ct);
         return "Added a Game Capture of WoW to OBS, since its scene was empty.";
     }
+
+    /// <summary>The name of the capture EnsureWowCaptureAsync adds to an empty scene.</summary>
+    private const string OwnCaptureName = "World of Warcraft";
 
     /// <summary>
     /// A Game Capture of WoW: window mode, matched by Wow.exe when the title or class differ (priority
@@ -316,12 +320,20 @@ public static class ObsSetup
     {
         var scene = await ProgramSceneAsync(obs, ct);
         if (string.IsNullOrEmpty(scene)) return (null, null);
-        if (scene == WowSceneName) return (remember?.ObsSceneToRestore, await ApplySoundAsync(obs, remember, ct));
+        if (scene == WowSceneName)
+        {
+            // fitted again in case OBS's picture size changed since the scene was made
+            if (await obs.TryRequestAsync("GetSceneItemId", new JsonObject { ["sceneName"] = WowSceneName, ["sourceName"] = WowSceneInput }, ct) is { } own
+                && own.TryGetProperty("sceneItemId", out var ownId))
+                await FitToCanvasAsync(obs, WowSceneName, ownId.GetInt32(), ct);
+            return (remember?.ObsSceneToRestore, await ApplySoundAsync(obs, remember, ct));
+        }
         if (await obs.TryRequestAsync("GetStreamStatus", null, ct) is { } stream
             && stream.TryGetProperty("outputActive", out var live) && live.GetBoolean()) return (null, null);
 
         if (await obs.TryRequestAsync("GetSceneItemList", new JsonObject { ["sceneName"] = scene }, ct) is not { } items
             || !items.TryGetProperty("sceneItems", out var list)) return (null, null);
+        await FitOwnCaptureAsync(obs, scene, list, ct);
         foreach (var item in list.EnumerateArray())
         {
             if (item.TryGetProperty("sceneItemEnabled", out var on) && !on.GetBoolean()) continue;
@@ -420,28 +432,52 @@ public static class ObsSetup
                 ["sceneItemEnabled"] = true,
             }, ct);
 
-        // Fill the canvas whatever size WoW's window is (a windowed game is smaller than the screen).
-        if (made.TryGetProperty("sceneItemId", out var id)
-            && await obs.TryRequestAsync("GetVideoSettings", null, ct) is { } video
-            && video.TryGetProperty("baseWidth", out var w) && video.TryGetProperty("baseHeight", out var h))
-        {
-            await obs.TryRequestAsync("SetSceneItemTransform", new JsonObject
-            {
-                ["sceneName"] = WowSceneName,
-                ["sceneItemId"] = id.GetInt32(),
-                ["sceneItemTransform"] = new JsonObject
-                {
-                    ["positionX"] = 0,
-                    ["positionY"] = 0,
-                    ["alignment"] = 5,
-                    ["boundsType"] = "OBS_BOUNDS_SCALE_INNER",
-                    ["boundsAlignment"] = 0,
-                    ["boundsWidth"] = w.GetInt32(),
-                    ["boundsHeight"] = h.GetInt32(),
-                },
-            }, ct);
-        }
+        if (made.TryGetProperty("sceneItemId", out var id)) await FitToCanvasAsync(obs, WowSceneName, id.GetInt32(), ct);
         return true;
+    }
+
+    /// <summary>
+    /// Fills OBS's picture with one capture, whatever size WoW runs at: a windowed game is smaller than
+    /// the screen, and a 1440p or ultrawide game is bigger than a 1080p picture. Unfitted, a bigger game
+    /// is recorded at full size from its corner: a zoomed-in look with the action bars and minimap cut
+    /// off (Cbags, 13 Nov). Idempotent, so it is safe before every recording.
+    /// </summary>
+    private static async Task FitToCanvasAsync(ObsClient obs, string scene, int itemId, CancellationToken ct)
+    {
+        if (await obs.TryRequestAsync("GetVideoSettings", null, ct) is not { } video
+            || !video.TryGetProperty("baseWidth", out var w) || !video.TryGetProperty("baseHeight", out var h)) return;
+        await obs.TryRequestAsync("SetSceneItemTransform", new JsonObject
+        {
+            ["sceneName"] = scene,
+            ["sceneItemId"] = itemId,
+            ["sceneItemTransform"] = new JsonObject
+            {
+                ["positionX"] = 0,
+                ["positionY"] = 0,
+                ["alignment"] = 5,
+                ["boundsType"] = "OBS_BOUNDS_SCALE_INNER",
+                ["boundsAlignment"] = 0,
+                ["boundsWidth"] = w.GetInt32(),
+                ["boundsHeight"] = h.GetInt32(),
+            },
+        }, ct);
+    }
+
+    /// <summary>
+    /// The Game Capture the app put in an empty scene (EnsureWowCaptureAsync), fitted to the picture.
+    /// Only when the scene holds that capture alone: a scene with anything else is the player's layout,
+    /// left as it is. Before 0.6.23 that capture was added unfitted, so installs set up then are fixed
+    /// here, at their next recording.
+    /// </summary>
+    private static async Task FitOwnCaptureAsync(ObsClient obs, string scene, JsonElement items, CancellationToken ct)
+    {
+        var all = items.EnumerateArray().ToList();
+        if (all.Count != 1) return;
+        var item = all[0];
+        if (item.TryGetProperty("sourceName", out var name) && name.GetString() == OwnCaptureName
+            && item.TryGetProperty("inputKind", out var kind) && kind.GetString() == "game_capture"
+            && item.TryGetProperty("sceneItemId", out var id))
+            await FitToCanvasAsync(obs, scene, id.GetInt32(), ct);
     }
 
     private static async Task<string?> ProgramSceneAsync(ObsClient obs, CancellationToken ct)

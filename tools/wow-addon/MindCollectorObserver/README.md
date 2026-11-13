@@ -104,3 +104,15 @@ Blizzard's Forever UI source (Gethe/wow-ui-source, branch `forever`, 1.60.1.7086
 `C_AuctionHouse` API and events and `TooltipDataProcessor.AddTooltipPostCall`. Recording items
 worked in game on 2026-11-09 (113 looks in the first day). The full scan and the Professions tab are
 untested in game.
+
+## Checking a change
+
+- **It compiles**: there is no Lua on this PC, but Herd's Redis runs Lua 5.1, which is WoW's. Wrap
+  the file in `local f = function(...) <file> end return 1` and `redis-cli --eval wrapped.lua`; `1`
+  means it compiled, "Error compiling script" gives the line. `docs/forever/observer-handoff-2026-11-10.md`,
+  "Traps already hit", has the rest.
+- **Numbers**: `%d` throws past 2^31; copper and price percentages use `%.0f`.
+- **Drawing**: call `ns.refresh()` and let the window redraw once, later; never draw from an event.
+- **Trying it in game**: copy the files into `_forever_\Interface\AddOns\MindCollectorObserver` and
+  `/reload`. The app puts its bundled copy back each time it starts, so a change lasts only until then
+  without a release.

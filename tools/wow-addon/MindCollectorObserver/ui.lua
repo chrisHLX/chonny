@@ -11,6 +11,7 @@ local BODY_W = W - LIST_W - 76 -- the details' scrolling text, inside its scroll
 local frame, list, detail, search
 local tab, selectedKey, query = "item", nil, ""
 local rows, histLines = {}, {}
+local moversCache -- the Market's walk over every scanned item, kept between redraws (see movers)
 
 -- Items and professions only since 2026-11-10 (Chriso): talents, spells, players and the rest were noise.
 local TABS = {
@@ -90,6 +91,7 @@ nameEvents:RegisterEvent("GET_ITEM_INFO_RECEIVED")
 nameEvents:SetScript("OnEvent", function(_, _, id)
     if not (id and pendingNames[id]) then return end
     pendingNames[id] = nil
+    moversCache = nil -- a name arrived: the Market's rows and the search over them are built again
     -- kept in the scan too, so the app and later sessions have it
     local sc = ns.DB and ns.DB.lastScan and ns.DB.lastScan.prices and ns.DB.lastScan.prices[id]
     if sc and (not sc[3] or sc[3] == "") then sc[3] = C_Item.GetItemNameByID(id) end
@@ -238,35 +240,45 @@ end
 local function movers()
     local a, b = ns.DB.lastScan, ns.DB.prevScan
     if not (a and b) then return {}, nil end
-    local out = {}
-    for id, v in pairs(a.prices) do
-        local old = b.prices[id]
-        if old and old[1] > 0 and v[2] >= 5 then
-            local name = C_Item.GetItemNameByID(id)
-            if not name or name == "" then name = (v[3] ~= "" and v[3]) or (ns.itemNames and ns.itemNames[id]) end
-            if matches(name or "") then
-                -- at least how many sold: fewer listed at a held price, past what could have run out
-                -- (12 Nov: Chriso's older scan had no time-left data, so Selling showed nothing at all.
-                -- Without it, the whole drop counts, said as "sold or ran out", not as sales.)
-                local sold, unsure = 0, false
-                local drop = old[2] - v[2]
-                if drop > 0 and v[1] >= old[1] then
-                    if b.bands and old.tl then
-                        local could = 0
-                        for band, q in pairs(old.tl) do
-                            local t = b.bands[band]
-                            if not t or t[1] < a.t - b.t then could = could + q end
+    -- The walk over every scanned item (thousands, a name lookup each) is kept between redraws (14 Nov):
+    -- a redraw came with every tooltip and every scan tick, and this walk ran each time. It only
+    -- changes with a new scan, the search text, or a name arriving (the event above clears it).
+    local cacheKey = (a.t or 0) .. ":" .. (b.t or 0) .. ":" .. query
+    local out
+    if moversCache and moversCache.key == cacheKey then
+        out = moversCache.rows
+    else
+        out = {}
+        for id, v in pairs(a.prices) do
+            local old = b.prices[id]
+            if old and old[1] > 0 and v[2] >= 5 then
+                local name = C_Item.GetItemNameByID(id)
+                if not name or name == "" then name = (v[3] ~= "" and v[3]) or (ns.itemNames and ns.itemNames[id]) end
+                if matches(name or "") then
+                    -- at least how many sold: fewer listed at a held price, past what could have run out
+                    -- (12 Nov: Chriso's older scan had no time-left data, so Selling showed nothing at all.
+                    -- Without it, the whole drop counts, said as "sold or ran out", not as sales.)
+                    local sold, unsure = 0, false
+                    local drop = old[2] - v[2]
+                    if drop > 0 and v[1] >= old[1] then
+                        if b.bands and old.tl then
+                            local could = 0
+                            for band, q in pairs(old.tl) do
+                                local t = b.bands[band]
+                                if not t or t[1] < a.t - b.t then could = could + q end
+                            end
+                            sold = math.max(0, drop - could)
                         end
-                        sold = math.max(0, drop - could)
+                        -- Nothing proven (scans a day apart: every listing could have run out, which left
+                        -- Selling empty on 12 Nov): the drop still shows, said as "sold or ran out".
+                        if sold == 0 then sold, unsure = drop, true end
                     end
-                    -- Nothing proven (scans a day apart: every listing could have run out, which left
-                    -- Selling empty on 12 Nov): the drop still shows, said as "sold or ran out".
-                    if sold == 0 then sold, unsure = drop, true end
+                    table.insert(out, { id = id, name = name, was = old[1], now = v[1], q = v[2], oq = old[2],
+                        p = (v[1] - old[1]) / old[1], sold = sold, unsure = unsure })
                 end
-                table.insert(out, { id = id, name = name, was = old[1], now = v[1], q = v[2], oq = old[2],
-                    p = (v[1] - old[1]) / old[1], sold = sold, unsure = unsure })
             end
         end
+    moversCache = { key = cacheKey, rows = out }
     end
     -- the Sort menu (DB.marketSort): what each keeps, and its order
     local mode = ns.DB.marketSort or "move"
@@ -761,7 +773,7 @@ local function text(parent, font, r, g, b)
     return fs
 end
 
-local refresh
+local refresh, redraw
 
 local function makeRow(i)
     local r = CreateFrame("Button", nil, list.child, "BackdropTemplate")
@@ -783,8 +795,20 @@ local function makeRow(i)
     r.value:SetJustifyH("RIGHT")
     r.value:SetPoint("TOPRIGHT", r, "TOPRIGHT", -8, -5)
     r.value:SetWidth(165)
-    r:SetScript("OnEnter", function(self) if self.key ~= selectedKey then self:SetBackdropColor(0.14, 0.12, 0.06, 0.95) end end)
-    r:SetScript("OnLeave", function(self) if self.key ~= selectedKey then self:SetBackdropColor(0.08, 0.08, 0.08, 0.9) end end)
+    -- the game's own tooltip for the row's item, or the recipe's spell when it makes no item (14 Nov)
+    r:SetScript("OnEnter", function(self)
+        if self.key ~= selectedKey then self:SetBackdropColor(0.14, 0.12, 0.06, 0.95) end
+        if self.itemID or self.spellID then
+            GameTooltip:SetOwner(self, "ANCHOR_NONE")
+            GameTooltip:SetPoint("TOPRIGHT", self, "TOPLEFT", -4, 0)
+            if self.itemID then GameTooltip:SetItemByID(self.itemID) else GameTooltip:SetSpellByID(self.spellID) end
+            GameTooltip:Show()
+        end
+    end)
+    r:SetScript("OnLeave", function(self)
+        if self.key ~= selectedKey then self:SetBackdropColor(0.08, 0.08, 0.08, 0.9) end
+        GameTooltip:Hide()
+    end)
     r:RegisterForClicks("LeftButtonUp")
     r:SetScript("OnClick", function(self)
         if IsShiftKeyDown() and self.itemID then
@@ -806,8 +830,8 @@ local function makeRow(i)
     return r
 end
 
-local function fillRow(r, key, icon, name, nameHex, value, sub, itemID)
-    r.key, r.itemID = key, itemID
+local function fillRow(r, key, icon, name, nameHex, value, sub, itemID, spellID)
+    r.key, r.itemID, r.spellID = key, itemID, spellID
     r.icon:SetTexture(icon or "Interface\\Icons\\INV_Misc_QuestionMark")
     r.name:SetText(color(nameHex or "ffffffff", name or "?"))
     r.value:SetText(value or "")
@@ -1156,7 +1180,7 @@ local function drawList()
                         n = n + 1
                         local rr = rows[n] or makeRow(n)
                         fillRow(rr, "recipe:" .. pid .. ":" .. x.idx, C_Item.GetItemIconByID(x.r[7]) or C_Spell.GetSpellTexture(x.r[1]),
-                            "   " .. x.r[2], hex, value, "   " .. table.concat(bits, "  ·  "))
+                            "   " .. x.r[2], hex, value, "   " .. table.concat(bits, "  ·  "), x.r[7] > 0 and x.r[7] or nil, x.r[1])
                         place(rr)
                     end
                 end
@@ -1179,7 +1203,7 @@ local function drawList()
                     n = n + 1
                     local rr = rows[n] or makeRow(n)
                     fillRow(rr, "recipe:" .. pid .. ":" .. x.idx, (x.r[7] > 0 and C_Item.GetItemIconByID(x.r[7])) or C_Spell.GetSpellTexture(x.r[1]),
-                        "   " .. x.r[2], hex, value, "   " .. reagentText(x.r) .. "  ·  " .. how)
+                        "   " .. x.r[2], hex, value, "   " .. reagentText(x.r) .. "  ·  " .. how, x.r[7] > 0 and x.r[7] or nil, x.r[1])
                     place(rr)
                 end
                 if #soon > 0 and not sortByProfit() then
@@ -1219,7 +1243,7 @@ local function drawList()
                 local r = rows[n] or makeRow(n)
                 fillRow(r, "ledger:" .. x.name, (x.i and x.i > 0) and C_Item.GetItemIconByID(x.i) or "Interface\\Icons\\INV_Misc_Bag_10",
                     x.name, (x.i and x.i > 0) and nameColor({ kind = "item", id = x.i }) or "ffffffff",
-                    (x.earned - x.spent ~= 0) and signedMoney(x.earned - x.spent) or "", table.concat(bits, "  ·  "))
+                    (x.earned - x.spent ~= 0) and signedMoney(x.earned - x.spent) or "", table.concat(bits, "  ·  "), (x.i and x.i > 0) and x.i or nil)
                 place(r)
             end
         end
@@ -1553,7 +1577,7 @@ local function drawAsk()
                     .. (ns.activeAsk == a and grey("  (showing now)") or ""))
             end
         else
-            table.insert(lines, "If the bridge is running, the answer is probably ready: reload to load it.")
+            table.insert(lines, "If the MindCollector app is open, the answer is probably ready: reload to load it.")
         end
         setDetail("Interface\\Icons\\INV_Misc_Note_01", a.q, "ffffffff", lines, nil, false)
         if a.status == "answered" and a.pins and #a.pins > 0 then
@@ -1783,7 +1807,7 @@ local function drawDetail()
     if s.kind == "item" then trackButtons(s.id) end
 end
 
-refresh = function()
+redraw = function()
     if not (frame and frame:IsShown() and ns.DB) then return end
     local c = counts()
     for _, b in ipairs(frame.tabs) do
@@ -1812,9 +1836,26 @@ refresh = function()
         pool.players or 0, (pool.players or 0) == 1 and "" or "s", when(pool.t)) or " The server allows one every 15 minutes."
     frame.foot:SetText(ns.scanStatus and color(GOLD_HEX, "Scanning: " .. ns.scanStatus)
         or last and string.format("Last full scan %s: %d auctions, %d items." .. tail,
-            when(last.t), last.n or 0, (function() local c = 0 for _ in pairs(last.prices or {}) do c = c + 1 end return c end)())
+            when(last.t), last.n or 0, last.items or (function() local c = 0 for _ in pairs(last.prices or {}) do c = c + 1 end return c end)())
         or (pool and pool.t) and ("No full scan of yours yet." .. tail)
         or "No full scan yet. With the auction house open, Scan reads every listing at once.")
+    if frame.scanBtn then
+        frame.scanBtn:SetEnabled(not ns.scanStatus)
+        frame.scanBtn:SetText(ns.scanStatus and "Scanning..." or "Scan auction house")
+    end
+end
+
+-- Every event asks for a redraw (a look, a price, a scan tick, a ledger line), and a redraw walks
+-- the open tab's data. Asked-for redraws are gathered into one a few frames later (14 Nov), and none
+-- happens while the window is hidden; opening it draws at once (OnShow).
+local redrawQueued = false
+refresh = function()
+    if redrawQueued or not (frame and frame:IsShown() and ns.DB) then return end
+    redrawQueued = true
+    C_Timer.After(0.05, function()
+        redrawQueued = false
+        redraw()
+    end)
 end
 
 -- ---------------------------------------------------------------- building the window
@@ -1978,14 +2019,29 @@ local function makeWindow()
     scanBtn:SetPoint("BOTTOMLEFT", 12, 12)
     scanBtn:SetText("Scan auction house")
     scanBtn:SetScript("OnClick", function() ns.scan() end)
+    frame.scanBtn = scanBtn
+    -- Reload (14 Nov): WoW writes the addon's data only at a reload, so scans and questions reach the
+    -- app then, and answers and everyone's prices load then. A button, since /reload was easy to forget.
+    local reloadBtn = CreateFrame("Button", nil, frame, "UIPanelButtonTemplate")
+    reloadBtn:SetSize(70, 24)
+    reloadBtn:SetPoint("LEFT", scanBtn, "RIGHT", 6, 0)
+    reloadBtn:SetText("Reload")
+    reloadBtn:SetScript("OnClick", function() ReloadUI() end)
+    reloadBtn:SetScript("OnEnter", function(self)
+        GameTooltip:SetOwner(self, "ANCHOR_TOP")
+        GameTooltip:SetText("Reload the UI")
+        GameTooltip:AddLine("WoW saves this addon's data only at a reload: your scans and questions reach the MindCollector app then, and its answers and everyone's prices load.", 1, 1, 1, true)
+        GameTooltip:Show()
+    end)
+    reloadBtn:SetScript("OnLeave", function() GameTooltip:Hide() end)
     local foot = text(frame, "GameFontHighlightSmall", 0.55, 0.55, 0.55)
-    foot:SetPoint("LEFT", scanBtn, "RIGHT", 12, 0)
+    foot:SetPoint("LEFT", reloadBtn, "RIGHT", 12, 0)
     foot:SetPoint("RIGHT", frame, "RIGHT", -14, 0)
     foot:SetText("A look is a tooltip held for " .. (ns.DB and ns.DB.minDwell or 2.5) ..
         "s or an item opened in the auction house. The reasons are guesses; tell it the real one and it keeps both.")
     frame.foot = foot
 
-    frame:SetScript("OnShow", refresh)
+    frame:SetScript("OnShow", redraw)
 end
 
 function ns.toggle()

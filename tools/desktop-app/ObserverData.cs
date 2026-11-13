@@ -204,8 +204,18 @@ public static class SavedVariables
 
         private string Str()
         {
-            var bytes = new List<byte>();
             i++;
+            // No escapes, the common case (a scan in the price history is ~100 KB of digits): one slice,
+            // not a byte at a time through a list.
+            var close = s.IndexOf('"', i);
+            if (close < 0) throw new FormatException("unterminated string");
+            if (s.IndexOf('\\', i, close - i) < 0)
+            {
+                var plain = Encoding.UTF8.GetString(Encoding.Latin1.GetBytes(s.Substring(i, close - i)));
+                i = close + 1;
+                return plain;
+            }
+            var bytes = new List<byte>();
             while (s[i] != '"')
             {
                 if (s[i] == '\\')

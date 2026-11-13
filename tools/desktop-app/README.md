@@ -303,6 +303,16 @@ list and a "Watch the video" button on its card; the video page links back to th
 Not yet: the Watch page (the timeline under the video) inside this app's window (its pages come from the website, and a local video
 needs a local page), and the prep for later arenas of a session.
 
+**The buffer's state is watched, not assumed (0.6.23, 2026-11-14).** Before, `_bufferOn` was set once
+when the app started the buffer and cleared only when the app stopped it. OBS closed, crashed, or the
+player pressing Stop Replay Buffer in OBS's window left the app believing it ran: the next fight's save
+said "not running" and left it so, and nothing was saved again until the app restarted. Now
+obs-websocket's `ReplayBufferStateChanged` clears it, every tick checks the connection is still open,
+and the next tick opens OBS and starts the buffer again. Two smaller ones from the same pass: the clip's
+length is read again a few times when the MP4 header isn't there the instant OBS says "saved" (without
+it the clip's start was guessed from the buffer setting and the clip was never cut), and the Logs folder
+is listed every fifth second rather than every one.
+
 ## Installing OBS for the player (0.6.11, 2026-11-12)
 
 Settings > Set up OBS, with no OBS on the PC, asks "Install OBS Studio?" and on yes runs Windows'
