@@ -141,7 +141,7 @@ internal sealed class MainForm : Form
         ("Fights", "", "Your PvP fights"),
         ("Opponents", "", "Players you've fought"),
         ("Looked at", "", "What you looked at"),
-        ("Ask", "", "Ask Claude"),
+        ("Ask", "", "Ask a question"),
     ];
 
     private static readonly (string Name, string Glyph, string Title)[] Pages = [.. RetailPages, .. ForeverTabs];
@@ -994,13 +994,13 @@ internal sealed class MainForm : Form
     private IEnumerable<LibraryRow> AskRows()
     {
         var answers = _ask.Answers();
-        if (_ask.Working > 0) yield return new LibraryRow("Working on it…", "Claude is looking it up; this usually takes a minute or two");
+        if (_ask.Working > 0) yield return new LibraryRow("Working on it…", _settings.AskClaude ? "Claude is looking it up; this usually takes a minute or two" : "Searching; this takes a few seconds");
         var data = Observer();
         foreach (var a in data?.Asks.Where(a => a.Status != "answered" && DateTime.Now - a.At < TimeSpan.FromHours(2) && answers.All(x => x.Id != a.Id)) ?? [])
             yield return new LibraryRow(a.Question, $"asked in game {ObserverPages.When(a.At)}; not answered yet");
         if (answers.Count == 0 && _ask.Working == 0)
         {
-            yield return new LibraryRow("No questions yet", _settings.AskClaude ? "Ask on the right, or with /ask in game" : "Settings > WoW Forever turns answering on");
+            yield return new LibraryRow("No questions yet", _settings.AskOn ? "Ask on the right, or with /ask in game" : "Settings > WoW Forever turns answering on");
             yield break;
         }
         foreach (var a in answers)
@@ -1062,7 +1062,7 @@ internal sealed class MainForm : Form
     private void OnAnswered(AskBridge.Answer a)
     {
         var text = a.Points.Count > 0 ? $"{a.Text} /reload in WoW to see the {a.Points.Count} points on your map." : a.Text;
-        _tray.ShowBalloonTip(10000, "Claude: " + (a.Question.Length > 50 ? a.Question[..50] + "…" : a.Question), text.Length > 250 ? text[..250] + "…" : text, ToolTipIcon.Info);
+        _tray.ShowBalloonTip(10000, "Answer: " + (a.Question.Length > 50 ? a.Question[..50] + "…" : a.Question), text.Length > 250 ? text[..250] + "…" : text, ToolTipIcon.Info);
         if (_tab == "Ask")
         {
             FillList();

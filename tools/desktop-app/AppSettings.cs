@@ -77,8 +77,15 @@ public sealed class AppSettings
     public bool ForeverObserver { get; set; } = true;
 
     /// <summary>
-    /// Answer /ask questions from Forever with Claude (AskBridge, 2026-11-09). Off until turned on: it
-    /// needs Claude Code on this PC and each question uses the player's Claude account.
+    /// Answer /ask questions from Forever (AskBridge). On unless turned off (0.6.22): the website's
+    /// search answers (Gemini with Google Search, ForeverAskService), free, a daily limit per player.
+    /// </summary>
+    public bool AskOn { get; set; } = true;
+
+    /// <summary>
+    /// Answer with Claude Code on this PC instead of the website's search (AskBridge, 2026-11-09):
+    /// slower, uses the player's Claude account, and reads every spawn point from Wowhead's map.
+    /// Off until turned on.
     /// </summary>
     public bool AskClaude { get; set; }
 

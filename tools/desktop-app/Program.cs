@@ -30,6 +30,7 @@ internal static class Program
         if (args.Length >= 1 && args[0] == "--obs-audio") return Diagnostics.ObsAudio();
         if (args.Length >= 2 && args[0] == "--fight-groups") return Diagnostics.FightGroups(args[1]);
         if (args.Length >= 2 && args[0] == "--ask-pending") return Diagnostics.AskPending(args[1]);
+        if (args.Length >= 4 && args[0] == "--ask-search") return Diagnostics.AskSearch(args[1], args[2], args[3]);
         if (args.Length >= 2 && args[0] == "--file-forever") return Diagnostics.FileForever(args[1]);
         // --obs-set-encoder ENCODER QUALITY [STREAMENCODER]: restarts OBS with Simple mode set so (a processor encoder, to test the setup switching it back)
         if (args.Length >= 3 && args[0] == "--obs-set-encoder") { var (enc, q) = (args[1], args[2]); var (ok, m) = ObsCheck.RestartAsync(() => ObsSetup.EditProfile(l => ObsSetup.SetIni(l, "SimpleOutput", "RecEncoder", enc, v => v == enc) | ObsSetup.SetIni(l, "SimpleOutput", "RecQuality", q, v => v == q) | (args.Length > 3 && ObsSetup.SetIni(l, "SimpleOutput", "StreamEncoder", args[3], v => v == args[3])), out _, out _), CancellationToken.None).GetAwaiter().GetResult(); Console.WriteLine(m); return ok ? 0 : 1; }

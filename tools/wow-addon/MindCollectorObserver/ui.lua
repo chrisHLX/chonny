@@ -1530,14 +1530,14 @@ local function drawAsk()
     local id = selectedKey and selectedKey:match("^ask:(.+)$")
     local a = id and findAsk(id)
     if not a then
-        setDetail("Interface\\Icons\\INV_Misc_Note_01", "Ask Claude", GOLD_HEX, {
+        setDetail("Interface\\Icons\\INV_Misc_Note_01", "Ask", GOLD_HEX, {
             "Type a question below, or /ask in chat. For example:", "",
             grey("where are the bears in Ashenvale? mark them on the map"),
             grey("which mobs near me drop Silk Cloth?"),
             grey("what is Briarthorn used for at 60?"), "",
-            "The UI reloads to send it. The answer shows in the MindCollector Ask window on your desktop in a minute or two;",
+            "The UI reloads to send it. The answer shows in the MindCollector app's Ask page, usually within a minute;",
             "then /reload here and it's in chat, in this tab, and on the map.", "",
-            grey("Needs the MindCollector app with Settings > WoW Forever > Answer /ask turned on."),
+            grey("Needs the MindCollector app open, with answering on (Settings > WoW Forever)."),
         }, nil, false)
     else
         local lines = {
@@ -1564,7 +1564,7 @@ local function drawAsk()
         end
     end
     -- the bottom box asks instead of noting why
-    detail.whyLabel:SetText(color(GOLD_HEX, "Ask Claude something"))
+    detail.whyLabel:SetText(color(GOLD_HEX, "Ask something"))
     detail.save:SetText("Ask")
     detail.whyLabel:Show(); detail.why:Show(); detail.save:Show()
     if not detail.why:HasFocus() then detail.why:SetText("") end

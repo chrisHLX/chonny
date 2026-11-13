@@ -16,7 +16,8 @@ internal sealed class SettingsForm : Form
     private readonly CheckBox _gameCapture = Check("Record only the game (an OBS Game Capture) when your OBS scene is a screen capture");
     private readonly CheckBox _observer = Check("Install the Observer addon: it remembers what you look at in Forever, for Looked at");
     private readonly CheckBox _shareScans = Check("Share my auction house scans and get everyone's prices back (prices only)");
-    private readonly CheckBox _askClaude = Check("Answer /ask questions from Forever with Claude (each question uses your Claude account)");
+    private readonly CheckBox _askOn = Check("Answer /ask questions from Forever: a short answer from a web search, free");
+    private readonly CheckBox _askClaude = Check("Use Claude Code on this PC instead: slower, marks every spawn point");
     private readonly TrackBar _lead = Slider(0, 120, 5);
     private readonly TrackBar _tail = Slider(0, 60, 1);
     private readonly TextBox _videos = Box();
@@ -35,7 +36,7 @@ internal sealed class SettingsForm : Form
         StartPosition = FormStartPosition.CenterParent;
         FormBorderStyle = FormBorderStyle.FixedDialog;
         MaximizeBox = MinimizeBox = false;
-        ClientSize = new Size(760, 994);
+        ClientSize = new Size(760, 1022);
         Padding = new Padding(16);
 
         _server.Text = settings.ServerUrl;
@@ -50,6 +51,7 @@ internal sealed class SettingsForm : Form
         _gameCapture.Checked = settings.ObsGameCapture;
         _wowSound.Checked = settings.RecordSound != "everything";
         _observer.Checked = settings.ForeverObserver;
+        _askOn.Checked = settings.AskOn;
         _askClaude.Checked = settings.AskClaude;
         _shareScans.Checked = settings.ShareScans;
         _lead.Value = Math.Clamp(settings.ForeverLeadSeconds, _lead.Minimum, _lead.Maximum);
@@ -94,12 +96,13 @@ internal sealed class SettingsForm : Form
         Row(grid, "Keep up to (GB)", _limit, null, "Past this the oldest videos the app recorded are deleted. 0 keeps them all.");
         CheckRow(grid, "WoW Forever", _observer);
         CheckRow(grid, null, _shareScans);
+        CheckRow(grid, null, _askOn);
         CheckRow(grid, null, _askClaude);
         var claude = AskBridge.FindClaude(settings.ClaudePath);
         grid.Controls.Add(new Label());
         grid.Controls.Add(new Label
         {
-            Text = claude != null ? "Uses Claude Code on this PC, with your web browser for Wowhead's maps." : "Needs Claude Code on this PC (claude.com/claude-code), signed in to your Claude account.",
+            Text = claude != null ? "Claude uses your Claude account and your web browser for Wowhead's maps." : "Claude needs Claude Code on this PC (claude.com/claude-code), signed in.",
             AutoSize = true, ForeColor = claude != null ? Theme.Muted : Theme.Lost, Margin = new Padding(0, 0, 0, 6),
         });
         grid.Controls.Add(new Label());
@@ -181,6 +184,7 @@ internal sealed class SettingsForm : Form
         _settings.ObsGameCapture = _gameCapture.Checked;
         _settings.RecordSound = _wowSound.Checked ? "wow" : "everything";
         _settings.ForeverObserver = _observer.Checked;
+        _settings.AskOn = _askOn.Checked;
         _settings.AskClaude = _askClaude.Checked;
         _settings.ShareScans = _shareScans.Checked;
         _settings.ForeverLeadSeconds = _lead.Value;

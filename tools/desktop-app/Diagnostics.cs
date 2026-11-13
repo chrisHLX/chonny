@@ -833,6 +833,19 @@ internal static class Diagnostics
         return 0;
     }
 
+    /// <summary>--ask-search SERVER KEY "question": one question through the website's search, as the app asks it (ask-search.txt).</summary>
+    public static int AskSearch(string server, string key, string question)
+    {
+        var settings = new AppSettings { ServerUrl = server, Key = key, AskOn = true };
+        var bridge = new AskBridge(settings, _ => { });
+        var ask = new Dictionary<object, object?> { ["q"] = question, ["zone"] = "Orgrimmar", ["level"] = 40L, ["class"] = "Shaman", ["faction"] = "Horde", ["ch"] = "Test" };
+        var started = DateTime.Now;
+        var (text, points, _) = bridge.AskSearch(ask);
+        Write("ask-search.txt", $"{(DateTime.Now - started).TotalSeconds:N1}s{Environment.NewLine}{text}{Environment.NewLine}"
+            + string.Join(Environment.NewLine, points.Select(p => $"  {p.Zone} {p.X}, {p.Y} {p.Label}")));
+        return 0;
+    }
+
     /// <summary>--fight-groups DIR: how the Fights tab groups the Forever clips in DIR (fight-groups.txt).</summary>
     public static int FightGroups(string dir)
     {

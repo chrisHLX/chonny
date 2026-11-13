@@ -34,3 +34,5 @@ Route::get('/coach/watch/{lobby}', [CoachPagesController::class, 'watch'])
 // WoW Forever auction house scans shared by the app, and everyone's prices back (ForeverMarketController).
 Route::post('/forever/scan', [\App\Http\Controllers\Api\ForeverMarketController::class, 'scan'])->name('api.forever.scan');
 Route::get('/forever/market', [\App\Http\Controllers\Api\ForeverMarketController::class, 'market'])->name('api.forever.market');
+// A WoW Forever /ask question answered with Gemini and Google Search, for players without Claude Code (ForeverAskService).
+Route::post('/forever/ask', [\App\Http\Controllers\Api\ForeverAskController::class, 'ask'])->name('api.forever.ask');

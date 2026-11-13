@@ -1,4 +1,4 @@
--- /ask: send a question to Claude through the MindCollector bridge (tools/forever-ask/ask_bridge.py),
+-- /ask: send a question through the MindCollector app (AskBridge: its web search, or Claude when chosen),
 -- and show what comes back: in chat, in the Ask tab, and as pins on the world map with a waypoint on
 -- the nearest one.
 --
@@ -51,8 +51,8 @@ function ns.ask(q, ctx)
         profs = professionsText(), ctx = ctx,
     })
     while #DB.asks > 30 do table.remove(DB.asks, 1) end
-    ns.say("asking Claude: " .. q)
-    ns.say("reloading to send it (if it doesn't, type /reload). The answer takes a minute or two; it shows in the MindCollector Ask window on your desktop, then /reload here to see it.")
+    ns.say("asking: " .. q)
+    ns.say("reloading to send it (if it doesn't, type /reload). The answer shows in the MindCollector app's Ask page, usually within a minute; then /reload here to see it.")
     -- Straight from the click, slash command or Enter that called us: Forever blocks ReloadUI from a
     -- timer ("Interface action failed because of an AddOn", 2026-11-11), since it isn't the player's action.
     ReloadUI()
@@ -112,7 +112,7 @@ local function pinFrame(i, canvas)
         f:EnableMouse(true)
         f:SetScript("OnEnter", function(self)
             GameTooltip:SetOwner(self, "ANCHOR_RIGHT")
-            GameTooltip:SetText(self.label ~= "" and self.label or "Marked by Claude")
+            GameTooltip:SetText(self.label ~= "" and self.label or "Marked for you")
             if ns.activeAsk then GameTooltip:AddLine(ns.activeAsk.q, 0.8, 0.8, 0.8, true) end
             GameTooltip:AddLine(string.format("%.1f, %.1f", self.x, self.y), 0.6, 0.6, 0.6)
             GameTooltip:Show()
@@ -251,7 +251,7 @@ function ns.loadAnswers()
         end
     end
     if newest then
-        ns.say("|cffd4af37Claude:|r " .. (newest.answer or ""))
+        ns.say("|cffd4af37Answer:|r " .. (newest.answer or ""))
         if newest.pins and #newest.pins > 0 then
             C_Timer.After(1, function() ns.showPins(newest) end)
         end

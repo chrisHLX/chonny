@@ -8,8 +8,11 @@ using System.Text.RegularExpressions;
 namespace MindCollector.Desktop;
 
 /// <summary>
-/// Answers /ask questions from WoW Forever with Claude (2026-11-09; first built as
-/// tools/forever-ask/ask_bridge.py, whose README has the reasoning).
+/// Answers /ask questions from WoW Forever (2026-11-09; first built as tools/forever-ask/ask_bridge.py,
+/// whose README has the reasoning). Since 0.6.22 the website's search answers by default (Gemini
+/// with Google Search, ForeverAskService: free, quick, points only where a page wrote them out), and
+/// Claude Code answers instead when the player turns it on (every spawn point, read from Wowhead).
+/// When answering is off, a question gets an answer saying so, rather than silence.
 ///
 /// An addon can't reach anything outside the game while WoW runs, so the question comes out through
 /// the Observer addon's saved data (written when its /ask reloads the UI), and the answer goes back
@@ -83,7 +86,6 @@ public sealed class AskBridge : IDisposable
 
     private void Poll()
     {
-        if (!_settings.AskClaude) return;
         try
         {
             var file = ObserverData.FindFile(_settings.ForeverLogsDir);
@@ -102,11 +104,39 @@ public sealed class AskBridge : IDisposable
                     if (_busy.Contains(id) || _answers.Any(x => x.Id == id)) continue;
                     _busy.Add(id);
                 }
+                if (!_settings.AskOn) { Off(id, a); continue; }
                 _ = Task.Run(() => Work(id, a, fromApp: false));
             }
         }
         catch (Exception e) { _log($"Ask: couldn't read Forever's saved data: {e.Message}"); }
     }
+
+    /// <summary>A question while answering is off: said in the game, once, instead of nothing happening (13 Nov).</summary>
+    private void Off(string id, Dictionary<object, object?> ask)
+    {
+        var answer = new Answer
+        {
+            Id = id, Question = ask.GetValueOrDefault("q") as string ?? "", Asked = AskedAt(ask),
+            Answered = DateTimeOffset.UtcNow.ToUnixTimeSeconds(),
+            Text = "Answering questions is off in the MindCollector app. Turn it on in the app's Settings, under WoW Forever, then ask again.",
+        };
+        lock (_lock)
+        {
+            _answers.RemoveAll(x => x.Id == id);
+            _answers.Add(answer);
+            _busy.Remove(id);
+            SaveState();
+            WriteAnswersLua();
+        }
+        _log($"Ask: a question came in from Forever while answering is off ({answer.Question}).");
+        Answered?.Invoke(answer);
+    }
+
+    private static long AskedAt(Dictionary<object, object?> ask) =>
+        ask.GetValueOrDefault("t") switch { long l => l, double d => (long)d, _ => DateTimeOffset.UtcNow.ToUnixTimeSeconds() };
+
+    /// <summary>Claude Code answers when the player chose it and it's on this PC; otherwise the website's search.</summary>
+    private bool UseClaude => _settings.AskClaude && FindClaude(_settings.ClaudePath) != null;
 
     /// <summary>A question typed in the app's Ask page; the answer reaches the game at the next /reload.</summary>
     public void AskFromApp(string question)
@@ -123,18 +153,19 @@ public sealed class AskBridge : IDisposable
         var answer = new Answer
         {
             Id = id, Question = q, FromApp = fromApp, Zone = ask.GetValueOrDefault("zone") as string,
-            Asked = ask.GetValueOrDefault("t") switch { long l => l, double d => (long)d, _ => DateTimeOffset.UtcNow.ToUnixTimeSeconds() },
+            Asked = AskedAt(ask),
         };
         try
         {
             _log($"Ask: {q}");
             Asking?.Invoke(q);
-            var (text, points, cost) = AskClaude(ask);
+            var (text, points, cost) = UseClaude ? AskClaude(ask) : AskSearch(ask);
             answer.Text = text.Length > 0 ? text : "No answer came back.";
             answer.Points = points;
             answer.Cost = cost;
         }
-        catch (TimeoutException) { answer.Text = "Claude took too long on this one. Try asking it more narrowly."; }
+        catch (TimeoutException) { answer.Text = "That took too long. Try asking it more narrowly."; }
+        catch (ApiClient.KeyRejectedException) { answer.Text = "The app isn't connected to your MindCollector account. Click Connect in the app, then ask again."; }
         catch (Exception e) { answer.Text = $"Couldn't answer: {e.Message}"; }
         answer.Answered = DateTimeOffset.UtcNow.ToUnixTimeSeconds();
         lock (_lock)
@@ -183,11 +214,11 @@ public sealed class AskBridge : IDisposable
         "required":["zone","x","y"]}}},"required":["answer","points"]}
         """;
 
-    private (string Text, List<Point> Points, double? Cost) AskClaude(Dictionary<object, object?> ask)
+    /// <summary>What goes with the question: the player (level, class, faction, where), what the addon has seen, and the game files' facts.</summary>
+    private static string Context(Dictionary<object, object?> ask)
     {
-        var claude = FindClaude(_settings.ClaudePath) ?? throw new InvalidOperationException("Claude Code isn't installed on this PC (Settings has where to point it).");
         string S(string k) => Convert.ToString(ask.GetValueOrDefault(k), CultureInfo.InvariantCulture) ?? "";
-        var prompt = new StringBuilder($"Question: {S("q")}\n\n");
+        var prompt = new StringBuilder();
         if (S("zone") != "")
         {
             var where = S("subzone") != "" ? $"{S("zone")} ({S("subzone")})" : S("zone");
@@ -198,9 +229,45 @@ public sealed class AskBridge : IDisposable
             // what the addon has seen of the subject (live prices, listings, costs, own sales), from Research
             if (S("ctx") != "") prompt.Append($"\n\n{S("ctx")}");
         }
-        else prompt.Append("Asked from the MindCollector app, not from inside the game, so the player's position isn't known.");
         var facts = ItemFacts.For(S("q"));
         if (facts.Count > 0) prompt.Append("\n\nFrom the Forever game files (recipe, skill, level required, count):\n" + string.Join("\n", facts));
+        return prompt.ToString().Trim();
+    }
+
+    // ------------------------------------------------------------------ the website's search
+
+    internal (string Text, List<Point> Points, double? Cost) AskSearch(Dictionary<object, object?> ask)
+    {
+        if (string.IsNullOrEmpty(_settings.Key)) throw new ApiClient.KeyRejectedException();
+        var q = ask.GetValueOrDefault("q") as string ?? "";
+        using var api = new ApiClient(_settings.ServerUrl, _settings.Key);
+        using var doc = api.ForeverAskAsync(q, Context(ask), ask.GetValueOrDefault("faction") as string, CancellationToken.None).GetAwaiter().GetResult();
+        var r = doc.RootElement;
+        string? Str(string k) => r.TryGetProperty(k, out var v) && v.ValueKind == JsonValueKind.String ? v.GetString() : null;
+        if (Str("status") != "ok") return (Str("reason") ?? "The search couldn't answer just now. Try again in a minute.", [], null);
+
+        var points = new List<Point>();
+        if (r.TryGetProperty("points", out var pts) && pts.ValueKind == JsonValueKind.Array)
+            foreach (var pt in pts.EnumerateArray())
+                if (pt.TryGetProperty("zone", out var z) && z.GetString() is { Length: > 0 } zone
+                    && pt.TryGetProperty("x", out var x) && x.ValueKind == JsonValueKind.Number && pt.TryGetProperty("y", out var y) && y.ValueKind == JsonValueKind.Number)
+                    points.Add(new Point { Zone = zone, X = x.GetDouble(), Y = y.GetDouble(), Label = pt.TryGetProperty("label", out var l) ? l.GetString() ?? "" : "" });
+        // where it came from, since search results can be Classic pages, not Forever's
+        var sources = r.TryGetProperty("sources", out var src) && src.ValueKind == JsonValueKind.Array
+            ? src.EnumerateArray().Select(s => s.GetString()).Where(s => !string.IsNullOrEmpty(s)).Take(3).ToList() : [];
+        var text = (Str("answer") ?? "").Trim();
+        if (sources.Count > 0) text += $" (From {string.Join(", ", sources)}.)";
+        return (text, points, null);
+    }
+
+    // ------------------------------------------------------------------ Claude
+
+    private (string Text, List<Point> Points, double? Cost) AskClaude(Dictionary<object, object?> ask)
+    {
+        var claude = FindClaude(_settings.ClaudePath) ?? throw new InvalidOperationException("Claude Code isn't installed on this PC (Settings has where to point it).");
+        var prompt = new StringBuilder($"Question: {ask.GetValueOrDefault("q") as string}\n\n");
+        var context = Context(ask);
+        prompt.Append(context.Length > 0 ? context : "Asked from the MindCollector app, not from inside the game, so the player's position isn't known.");
 
         Directory.CreateDirectory(StateDir);
         var psi = new ProcessStartInfo(claude)
@@ -276,12 +343,15 @@ public sealed class AskBridge : IDisposable
     /// <summary>Whether it can answer, in words for the Ask page: null when it can.</summary>
     public string? CheckReady()
     {
-        Problem = !_settings.AskClaude ? "Answering questions is off. Turn it on in Settings > WoW Forever."
-            : FindClaude(_settings.ClaudePath) == null ? "Claude Code isn't installed on this PC. Install it (claude.com/claude-code), or set where it is in Settings."
+        Problem = !_settings.AskOn ? "Answering questions is off. Turn it on in Settings > WoW Forever."
+            : !UseClaude && string.IsNullOrEmpty(_settings.Key) ? "Connect the app to your MindCollector account to get answers."
             : _settings.ForeverLogsDir == null ? "WoW Forever hasn't been found yet."
             : null;
         return Problem;
     }
+
+    /// <summary>Who answers, in words for the Ask page.</summary>
+    public string Engine => UseClaude ? "Claude Code on this PC" : "MindCollector's search";
 
     // ------------------------------------------------------------------ answers out
 

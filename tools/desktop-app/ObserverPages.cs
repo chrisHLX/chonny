@@ -249,8 +249,8 @@ internal static class ObserverPages
         var sb = new StringBuilder(Css);
         sb.Append(problem != null
             ? $"<p class=\"muted\">{H(problem)}</p><p><a class=\"btn gold\" href=\"mc-app://settings\">Open Settings</a></p>"
-            : bridge.Working > 0 ? "<p class=\"muted\">Working on a question now. Answers usually take a minute or two.</p>"
-            : "<p class=\"muted\">Ready. Ask here, or with /ask in game.</p>");
+            : bridge.Working > 0 ? "<p class=\"muted\">Working on a question now.</p>"
+            : $"<p class=\"muted\">Ready. Ask here, or with /ask in game. Answered by {H(bridge.Engine)}.</p>");
         if (problem == null)
             sb.Append("""
                 <input class="ask" id="q" maxlength="200" placeholder="where are the bears in Ashenvale? mark them on the map" autofocus>
@@ -258,7 +258,7 @@ internal static class ObserverPages
                 <script>
                 (function(){
                   var q=document.getElementById('q');
-                  function send(){ var t=q.value.trim(); if(!t) return; window.chrome.webview.postMessage({type:'ask', text:t}); q.value=''; document.getElementById('sent').textContent='Sent. The answer shows on the left in a minute or two.'; }
+                  function send(){ var t=q.value.trim(); if(!t) return; window.chrome.webview.postMessage({type:'ask', text:t}); q.value=''; document.getElementById('sent').textContent='Sent. The answer shows on the left when it comes.'; }
                   document.getElementById('go').addEventListener('click', send);
                   q.addEventListener('keydown', function(e){ if(e.key==='Enter') send(); });
                 })();
@@ -269,10 +269,11 @@ internal static class ObserverPages
             sb.Append("<h2>Asked in game, not answered yet</h2><div class=\"list\">" + string.Join("", waiting.Select(a => Row(null, a.Question, $"asked {When(a.At)}", null))) + "</div>");
         sb.Append("""
             <h2>How it works</h2>
-            <p>Claude looks it up on the web and on Wowhead's Forever pages, in your Chrome, and answers in a sentence or three. When it's about where something is, it reads every spawn point from Wowhead's map and sends them to the game: the next /reload in WoW puts them on your world map, with a waypoint on the nearest.</p>
-            <p>Asking in game with /ask reloads the UI to send the question, since an addon can't reach anything outside the game while it runs. Each question uses your Claude account.</p>
+            <p>MindCollector's search looks it up on the web in a few seconds and answers in a sentence or two, saying where it read it. It marks a place on your map only when a page gives its coordinates, so it sometimes names the zone without a pin. Search results can be from the original game rather than Forever. It's free, up to 30 questions a day.</p>
+            <p>Claude Code, if you have it and turn it on in Settings, takes a minute or two and uses your Claude account, but reads every spawn point from Wowhead's Forever map.</p>
+            <p>Either way the next /reload in WoW puts the points on your world map, with a waypoint on the nearest. Asking in game with /ask reloads the UI to send the question, since an addon can't reach anything outside the game while it runs.</p>
             """);
-        return ForeverPages.Wrap("WoW Forever", "Ask Claude", sb.ToString());
+        return ForeverPages.Wrap("WoW Forever", "Ask", sb.ToString());
     }
 
     public static string Answer(AskBridge.Answer a)

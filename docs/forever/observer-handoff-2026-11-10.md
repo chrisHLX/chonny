@@ -109,6 +109,27 @@ Still open:
   still unreleased; it carries this, the Observer and /ask). The addon's new `Market.lua` needs a
   full game restart the first time.
 
+## Ask without Claude Code (2026-11-13, app 0.6.22)
+
+- **Who answers.** By default the website: `POST /api/forever/ask` (`ForeverAskController`,
+  `ForeverAskService`) asks Gemini 2.5 Flash with Google Search grounding for a JSON answer of at most
+  two sentences and points. Claude Code answers instead when Settings has it ticked and it's installed
+  (`AskBridge.UseClaude`). `AppSettings.AskOn` (default on) is answering at all; `AskClaude` now means
+  "use Claude instead".
+- **Coordinates.** Google Search sees page text, not Wowhead's map data, and Wowhead answers this
+  server with 403 (tested 13 Nov), so a pin is kept only when a page wrote the coordinates out; Gemini
+  is told never to estimate one. The first real answer (Recipe: Frost Oil) gave Bro'kin in Alterac
+  Mountains, 38.2, 38.9, from metabot.gg, fandom.com and foreveroth.com: Classic-era pages, so the
+  in-game answer names its sources. Claude stays the exact option.
+- **Cost and limits.** Each answer is kept 3 days by question and faction, so a repeat by anyone costs
+  nothing (0.4s against 7.8s). 30 fresh answers a player a day; logged as `AiRequest` purpose
+  `forever_ask`. Gemini 2.5 Flash search grounding: about 1,500 free a day, then about $35 per 1,000
+  (Google's pricing, checked 13 Nov; it was changing for Gemini 3).
+- **Two bugs found on the way (0.6.20, 0.6.21).** The saved-data reader's regexes searched the rest of
+  the file on a miss (57s for 1 MB, the app froze), and its number `?:` was typed double, so
+  `t is long` never matched and every question read as asked in 1970 and was skipped silently. A
+  question while answering is off now gets an answer saying so.
+
 ## Market reads so far (Chriso's realm, Horde, 2026-11-08 to 11-10)
 
 - **Elixir of Ogre Strength, Fire Oil:** selling. Listings fell and the price rose, and he sold 26 and

@@ -154,6 +154,18 @@ public sealed class ApiClient : IDisposable
         catch (JsonException) { return ("later", $"Server said {(int)res.StatusCode}."); }
     }
 
+    /// <summary>POST /api/forever/ask: a /ask question answered by the website's search (ForeverAskService). The reply's JSON, whatever its status.</summary>
+    public async Task<JsonDocument> ForeverAskAsync(string question, string context, string? faction, CancellationToken ct)
+    {
+        var body = JsonSerializer.Serialize(new { q = question, context, faction = faction is "Horde" or "Alliance" ? faction : null });
+        using var content = new StringContent(body, Encoding.UTF8, "application/json");
+        using var res = await _http.PostAsync($"{_base}/api/forever/ask", content, ct);
+        if (res.StatusCode == HttpStatusCode.Unauthorized) throw new KeyRejectedException();
+        var text = await res.Content.ReadAsStringAsync(ct);
+        try { return JsonDocument.Parse(text); }
+        catch (JsonException) { return JsonDocument.Parse(JsonSerializer.Serialize(new { status = "failed", reason = $"The website said {(int)res.StatusCode}." })); }
+    }
+
     /// <summary>GET /api/forever/market: everyone's prices for one market, or null when the website can't say.</summary>
     public async Task<JsonDocument?> MarketAsync(string region, string realm, string faction, CancellationToken ct)
     {
