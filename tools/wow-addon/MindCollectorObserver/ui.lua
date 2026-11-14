@@ -2230,10 +2230,17 @@ end
 
 local function makeWindow()
     frame = CreateFrame("Frame", "MindCollectorObserverFrame", UIParent, "BackdropTemplate")
+    -- the saved size and place, kept on the screen: a bad save (the first resize doubled the window
+    -- and pushed it off the left edge, 15 Nov) must not come back at the next reload
     local win = ns.DB.win
-    frame:SetSize(win and win.w or W, win and win.h or H)
+    local sw, sh = UIParent:GetWidth(), UIParent:GetHeight()
+    local w = math.min(math.max(win and win.w or W, MIN_W), sw - 20)
+    local h = math.min(math.max(win and win.h or H, MIN_H), sh - 20)
+    frame:SetSize(w, h)
     if win and win.left and win.bottom then
-        frame:SetPoint("BOTTOMLEFT", UIParent, "BOTTOMLEFT", win.left, win.bottom)
+        local left = math.max(0, math.min(win.left, sw - w))
+        local bottom = math.max(0, math.min(win.bottom, sh - h))
+        frame:SetPoint("TOPLEFT", UIParent, "BOTTOMLEFT", left, bottom + h)
     else
         frame:SetPoint("CENTER")
     end
@@ -2257,7 +2264,18 @@ local function makeWindow()
     grip:SetNormalTexture("Interface\\ChatFrame\\UI-ChatIM-SizeGrabber-Up")
     grip:SetHighlightTexture("Interface\\ChatFrame\\UI-ChatIM-SizeGrabber-Highlight")
     grip:SetPushedTexture("Interface\\ChatFrame\\UI-ChatIM-SizeGrabber-Down")
-    grip:SetScript("OnMouseDown", function() frame:StartSizing("BOTTOMRIGHT") end)
+    grip:SetScript("OnMouseDown", function()
+        -- Sizing keeps the frame's anchor still. Anchored at its centre (how it opens the first time)
+        -- the window grew both ways at once, twice the drag, off the left of the screen (15 Nov). So
+        -- the top-left corner is made the anchor first, and the size is capped at the screen.
+        local left, top = frame:GetLeft(), frame:GetTop()
+        frame:ClearAllPoints()
+        frame:SetPoint("TOPLEFT", UIParent, "BOTTOMLEFT", left, top)
+        local maxW, maxH = UIParent:GetWidth() - left - 4, top - 4
+        if frame.SetResizeBounds then frame:SetResizeBounds(MIN_W, MIN_H, math.max(MIN_W, maxW), math.max(MIN_H, maxH))
+        elseif frame.SetMaxResize then frame:SetMaxResize(math.max(MIN_W, maxW), math.max(MIN_H, maxH)) end
+        frame:StartSizing("BOTTOMRIGHT")
+    end)
     grip:SetScript("OnMouseUp", function() frame:StopMovingOrSizing(); saveWindow(); layout(); redraw() end)
     frame:SetScript("OnSizeChanged", function() if list and detail then layout() end end)
 
