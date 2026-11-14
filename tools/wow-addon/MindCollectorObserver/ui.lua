@@ -1081,16 +1081,6 @@ local function holdings()
     return out, sum
 end
 
--- "Crypto-Shot 1,900, Shotalt 500": where a holding sits, most first.
-local function whoHolds(by)
-    local parts = {}
-    for char, c in pairs(by) do table.insert(parts, { char = char, n = c.bags + c.bank }) end
-    table.sort(parts, function(a, b) return a.n > b.n end)
-    local bits = {}
-    for _, p in ipairs(parts) do table.insert(bits, p.char .. " " .. p.n) end
-    return table.concat(bits, ", ")
-end
-
 -- ---------------------------------------------------------------- frame pieces
 
 local function backdrop(f, bg, border)
@@ -1577,13 +1567,12 @@ local function drawList()
             n = n + 1
             r = rows[n] or makeRow(n)
             local value = x.worth and (ns.money(x.worth) .. (x.avg and x.sellAt and ("  " .. changeText(x.avg, x.sellAt)) or "")) or grey("no price yet")
+            -- four things at a glance; how many have a known cost, and which characters hold it, are
+            -- on the item's page (a longer row was cut off at the window's width, 15 Nov)
             local sub = { commas(x.n) .. " held" }
-            if x.avg then
-                table.insert(sub, "paid ~" .. ns.money(x.avg) .. " each" .. (x.known < x.n and string.format(" (%d of them known)", x.known) or ""))
-            end
+            if x.avg then table.insert(sub, "paid ~" .. ns.money(x.avg) .. (x.known < x.n and " (some)" or "")) end
             if x.sellAt then table.insert(sub, (x.tier and ("sells under " .. ns.money(x.sellAt)) or ("now " .. ns.money(x.sellAt)))) end
             if x.st and x.st.rate then table.insert(sub, string.format("%.0f%% of what you post sells", x.st.rate * 100)) end
-            if sum.chars > 1 then table.insert(sub, whoHolds(x.by)) end
             fillRow(r, "hold:" .. x.id, C_Item.GetItemIconByID(x.id), itemName(x.id), nameColor({ kind = "item", id = x.id }),
                 value, table.concat(sub, "  ·  "), x.id)
             place(r)
