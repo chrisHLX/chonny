@@ -5,8 +5,14 @@ local _, ns = ...
 
 local GOLD = { 0.83, 0.69, 0.22 }
 local GOLD_HEX = "ffd4af37"
-local W, H, LIST_W, ROW_H = 920, 540, 570, 38
+-- The window: 1120x640 by default since 15 Nov (920x540 before, and the details' 274px wrapped every
+-- reading onto three lines), resizable from its corner between MIN_W x MIN_H and the screen. The list
+-- takes LIST_SHARE of the width, the details the rest; layout() works LIST_W and BODY_W out from the
+-- frame's size and is called whenever it changes. Size, position and the open tab are kept in DB.win.
+local W, H, MIN_W, MIN_H, ROW_H, LIST_SHARE = 1120, 640, 920, 540, 38, 0.56
+local LIST_W = math.floor(W * LIST_SHARE)
 local BODY_W = W - LIST_W - 76 -- the details' scrolling text, inside its scroll bar
+local FOOT_H = 62 -- below the list and details: the list's note line, then the buttons and the footer
 
 local frame, list, detail, search
 local tab, selectedKey, query = "item", nil, ""
@@ -71,6 +77,25 @@ end
 
 local function color(hex, s) return "|c" .. hex .. s .. "|r" end
 local function grey(s) return color("ff9a9a9a", s) end
+
+-- 220004 -> 220,004
+local function commas(n)
+    local s = tostring(math.floor((tonumber(n) or 0) + 0.5))
+    while true do
+        local t, k = s:gsub("^(-?%d+)(%d%d%d)", "%1,%2")
+        s = t
+        if k == 0 then break end
+    end
+    return s
+end
+
+-- "15 Nov compared with 14 Nov"; with the time when both scans fall on the same day, which read as
+-- "12 Nov compared with 12 Nov" before (Chriso's screenshot, 15 Nov).
+local function scanPairLabel(a, b)
+    local sameDay = date("%Y-%m-%d", a) == date("%Y-%m-%d", b)
+    local fmt = sameDay and "%d %b %H:%M" or "%d %b"
+    return string.format("%s compared with %s", date(fmt, a), date(fmt, b))
+end
 
 -- An item's name. The game knows it only once it has loaded the item, and a full scan holds thousands
 -- it never has, so their names came back empty (Chriso's screenshot, 2026-11-12). This asks the game
@@ -197,7 +222,7 @@ local function historyLines(id, lines, most)
     end
     for i = #h, math.max(1, #h - (most or 40) + 1), -1 do
         local x, before = h[i], h[i - 1]
-        local bits = { date("%a %d %b %H:%M", x.t), ns.money(x.min), (x.q or "?") .. " listed" }
+        local bits = { date("%d %b %H:%M", x.t), ns.money(x.min), (x.q or "?") .. " listed" }
         if before then
             local change = changeText(before.min, x.min)
             if change ~= "" then table.insert(bits, change) end
@@ -436,7 +461,7 @@ local function movers()
     end
     local k = key[mode] or key.move
     table.sort(out, function(x, y) return k(x) > k(y) end)
-    return out, string.format("%s compared with %s", ns.shortDate(a.t), ns.shortDate(b.t)), everything
+    return out, scanPairLabel(a.t, b.t), everything
 end
 
 local function counts()
@@ -1064,8 +1089,17 @@ end
 -- ---------------------------------------------------------------- the list
 
 local function subLine(s)
-    if s.kind == "item" and ns.isTracked and ns.isTracked(s.id) and #s.events == 0 then
-        return color(GOLD_HEX, "tracking") .. "  ·  price and listings saved at every scan"
+    -- A tracked item's row says what a tracker wants (15 Nov, Chriso's screenshots: "probably for
+    -- levelling Alchemy · auction · 1 look, 0s" was noise here): how many are listed, when that was
+    -- read, since when it's tracked, and the looks last. The guess stays on the item's page.
+    if s.kind == "item" and ns.isTracked and ns.isTracked(s.id) then
+        local bits = { color(GOLD_HEX, "tracking") }
+        local p = ns.latestPrice(s.id)
+        if p and p.q then table.insert(bits, commas(p.q) .. " listed " .. when(p.t)) end
+        local since = ns.DB.tracked and ns.DB.tracked[s.id]
+        if since then table.insert(bits, "since " .. date("%d %b", since)) end
+        if (s.looks or 0) > 0 then table.insert(bits, string.format("%d look%s", s.looks, s.looks == 1 and "" or "s")) end
+        return table.concat(bits, "  ·  ")
     end
     local e = s.events[#s.events] or {}
     local why = e.why and ("you said: " .. e.why) or ("probably " .. (e.g or "looking"))
@@ -1152,7 +1186,7 @@ end
 local function placeList(top)
     list:ClearAllPoints()
     list:SetPoint("TOPLEFT", 12, top)
-    list:SetPoint("BOTTOMLEFT", 12, 44)
+    list:SetPoint("BOTTOMLEFT", 12, FOOT_H)
     list:SetWidth(LIST_W)
 end
 
@@ -1450,7 +1484,7 @@ local function drawList()
             n = n + 1
             r = rows[n] or makeRow(n)
             local value = x.worth and (ns.money(x.worth) .. (x.avg and x.now and ("  " .. changeText(x.avg, x.now)) or "")) or grey("no price yet")
-            local sub = { string.format("%d held", x.n) }
+            local sub = { commas(x.n) .. " held" }
             if x.avg then
                 table.insert(sub, "paid ~" .. ns.money(x.avg) .. " each" .. (x.known < x.n and string.format(" (%d of them known)", x.known) or ""))
             end
@@ -1496,9 +1530,9 @@ local function drawList()
         drawMarketBar(cats, subs)
         local last = ns.DB.lastScan
         local shown = #ms == 0 and #(everything or {}) > 0 and "Nothing here for this sort and category. "
-            or (ns.DB.marketCat or "all") ~= "all" and string.format("%d of %d moves. ", #ms, #all) or ""
+            or (ns.DB.marketCat or "all") ~= "all" and string.format("%s of %s moves. ", commas(#ms), commas(#all)) or ""
         list.note:SetText(label and (shown .. "Whole auction house, " .. label .. ", at least 5 listed")
-            or (last and string.format("One full scan so far (%s, %d auctions). Scan again another day and the biggest moves show here.", when(last.t), last.n or 0))
+            or (last and string.format("One full scan so far (%s, %s auctions). Scan again another day and the biggest moves show here.", when(last.t), commas(last.n or 0)))
             or "No full scan yet: open the auction house and click Scan (or /mco scan). Two scans on different days show the moves.")
         local mode = ns.DB.marketSort or "move"
         for i = 1, math.min(#ms, 300) do
@@ -1754,6 +1788,12 @@ local function setDetail(icon, title, titleHex, lines, history, canWhy, why, use
     detail.icon:SetTexture(icon or "Interface\\Icons\\INV_Misc_QuestionMark")
     detail.title:SetText(color(titleHex or "ffffffff", title or ""))
     detail.facts:SetText(table.concat(lines or {}, "\n"))
+    -- the body starts under the title, however many lines it took (an /ask question is long: the body
+    -- drew over the title's third and fourth lines, 15 Nov)
+    local top = 12 + math.max(44, detail.title:GetStringHeight() + 8) + 10
+    detail.body:ClearAllPoints()
+    detail.body:SetPoint("TOPLEFT", 12, -top)
+    detail.body:SetPoint("BOTTOMRIGHT", -30, 100)
     local y = -(detail.facts:GetStringHeight() + 14)
     y = drawUses(usesOf, usesLabel, y)
     detail.histTitle:ClearAllPoints()
@@ -1895,7 +1935,7 @@ local function drawDetail()
                  grey("To add one, pick it in Market or Professions and press Track on the right."), "",
                  grey("Shift-click an item to link it in chat.") }
         if tab == "movers" then marketTimeOfDayLines(hint) end
-        setDetail(nil, "Pick something on the left", GOLD_HEX, hint, nil, false)
+        setDetail("Interface\\Icons\\INV_Misc_Spyglass_03", "Pick something on the left", GOLD_HEX, hint, nil, false)
         return
     end
     local profID = selectedKey:match("^prof:(%d+)$")
@@ -2138,8 +2178,8 @@ redraw = function()
     local tail = (pool and pool.t) and string.format(" Shared prices: %d player%s, newest %s.",
         pool.players or 0, (pool.players or 0) == 1 and "" or "s", when(pool.t)) or " The server allows one every 15 minutes."
     frame.foot:SetText(ns.scanStatus and color(GOLD_HEX, "Scanning: " .. ns.scanStatus)
-        or last and string.format("Last full scan %s: %d auctions, %d items." .. tail,
-            when(last.t), last.n or 0, last.items or (function() local c = 0 for _ in pairs(last.prices or {}) do c = c + 1 end return c end)())
+        or last and string.format("Last full scan %s: %s auctions, %s items." .. tail,
+            when(last.t), commas(last.n or 0), commas(last.items or (function() local c = 0 for _ in pairs(last.prices or {}) do c = c + 1 end return c end)()))
         or (pool and pool.t) and ("No full scan of yours yet." .. tail)
         or "No full scan yet. With the auction house open, Scan reads every listing at once.")
     if frame.scanBtn then
@@ -2163,19 +2203,63 @@ end
 
 -- ---------------------------------------------------------------- building the window
 
+-- Everything whose width follows the window's: called at creation and whenever it is resized.
+local function layout()
+    local w = frame:GetWidth()
+    LIST_W = math.floor(w * LIST_SHARE)
+    BODY_W = w - LIST_W - 76
+    list:SetWidth(LIST_W)
+    list.child:SetWidth(LIST_W - 30)
+    list.note:SetWidth(LIST_W)
+    frame.mktBar:SetWidth(LIST_W)
+    for _, r in ipairs(rows) do r:SetWidth(LIST_W - 30) end
+    detail:ClearAllPoints()
+    detail:SetPoint("TOPLEFT", frame, "TOPLEFT", 12 + LIST_W + 10, -72)
+    detail:SetPoint("BOTTOMRIGHT", -12, FOOT_H)
+    detail.inner:SetWidth(BODY_W)
+    detail.facts:SetWidth(BODY_W)
+    detail.usesTitle:SetWidth(BODY_W)
+    for _, h in ipairs(useHeads) do h:SetWidth(BODY_W) end
+    for _, b in ipairs(useLines) do b:SetWidth(BODY_W); b.fs:SetWidth(BODY_W - 28) end
+    for _, fs in ipairs(histLines) do fs:SetWidth(BODY_W) end
+end
+
+local function saveWindow()
+    ns.DB.win = { w = frame:GetWidth(), h = frame:GetHeight(), left = frame:GetLeft(), bottom = frame:GetBottom(), tab = tab }
+end
+
 local function makeWindow()
     frame = CreateFrame("Frame", "MindCollectorObserverFrame", UIParent, "BackdropTemplate")
-    frame:SetSize(W, H)
-    frame:SetPoint("CENTER")
+    local win = ns.DB.win
+    frame:SetSize(win and win.w or W, win and win.h or H)
+    if win and win.left and win.bottom then
+        frame:SetPoint("BOTTOMLEFT", UIParent, "BOTTOMLEFT", win.left, win.bottom)
+    else
+        frame:SetPoint("CENTER")
+    end
+    if win and win.tab then for _, def in ipairs(TABS) do if def.key == win.tab then tab = win.tab end end end
     backdrop(frame, { 0.03, 0.03, 0.03, 0.97 }, { GOLD[1], GOLD[2], GOLD[3], 0.8 })
     frame:SetMovable(true)
+    frame:SetResizable(true)
+    if frame.SetResizeBounds then frame:SetResizeBounds(MIN_W, MIN_H) elseif frame.SetMinResize then frame:SetMinResize(MIN_W, MIN_H) end
     frame:EnableMouse(true)
     frame:RegisterForDrag("LeftButton")
     frame:SetScript("OnDragStart", frame.StartMoving)
-    frame:SetScript("OnDragStop", frame.StopMovingOrSizing)
+    frame:SetScript("OnDragStop", function(self) self:StopMovingOrSizing(); saveWindow() end)
     frame:SetFrameStrata("HIGH")
     frame:SetClampedToScreen(true)
     table.insert(UISpecialFrames, "MindCollectorObserverFrame")
+
+    -- the resize grip, bottom right; the layout follows the drag, the lists redraw when it ends
+    local grip = CreateFrame("Button", nil, frame)
+    grip:SetSize(16, 16)
+    grip:SetPoint("BOTTOMRIGHT", -3, 3)
+    grip:SetNormalTexture("Interface\\ChatFrame\\UI-ChatIM-SizeGrabber-Up")
+    grip:SetHighlightTexture("Interface\\ChatFrame\\UI-ChatIM-SizeGrabber-Highlight")
+    grip:SetPushedTexture("Interface\\ChatFrame\\UI-ChatIM-SizeGrabber-Down")
+    grip:SetScript("OnMouseDown", function() frame:StartSizing("BOTTOMRIGHT") end)
+    grip:SetScript("OnMouseUp", function() frame:StopMovingOrSizing(); saveWindow(); layout(); redraw() end)
+    frame:SetScript("OnSizeChanged", function() if list and detail then layout() end end)
 
     local title = text(frame, "GameFontNormalLarge")
     title:SetPoint("TOPLEFT", 14, -12)
@@ -2198,6 +2282,7 @@ local function makeWindow()
             tab = def.key
             selectedKey = nil
             list.scroll:SetVerticalScroll(0)
+            saveWindow()
             refresh()
         end)
         b.label:SetText(def.label .. "  000")
@@ -2222,14 +2307,15 @@ local function makeWindow()
         self.hint:SetShown(query == "")
         refresh()
     end)
-    search:SetScript("OnEscapePressed", function(self) self:ClearFocus() end)
+    -- Escape clears the search first, then leaves it
+    search:SetScript("OnEscapePressed", function(self) if self:GetText() ~= "" then self:SetText("") else self:ClearFocus() end end)
     search:SetScript("OnEnterPressed", function(self) self:ClearFocus() end)
 
     -- list
     list = CreateFrame("Frame", nil, frame, "BackdropTemplate")
     backdrop(list, { 0.02, 0.02, 0.02, 1 }, { 0.25, 0.25, 0.25, 0.6 })
     list:SetPoint("TOPLEFT", 12, -72)
-    list:SetPoint("BOTTOMLEFT", 12, 44)
+    list:SetPoint("BOTTOMLEFT", 12, FOOT_H)
     list:SetWidth(LIST_W)
     list.scroll = CreateFrame("ScrollFrame", nil, list, "UIPanelScrollFrameTemplate")
     list.scroll:SetPoint("TOPLEFT", 4, -4)
@@ -2237,8 +2323,11 @@ local function makeWindow()
     list.child = CreateFrame("Frame", nil, list.scroll)
     list.child:SetSize(LIST_W - 30, 10)
     list.scroll:SetScrollChild(list.child)
-    list.note = text(list, "GameFontHighlightSmall", 0.6, 0.6, 0.6)
-    list.note:SetPoint("BOTTOMLEFT", list, "BOTTOMLEFT", 6, -16)
+    -- the note has its own line between the list and the buttons: it used to hang 16px under the list
+    -- and the Scan button ran through it (Chriso's screenshots, 15 Nov)
+    list.note = text(frame, "GameFontHighlightSmall", 0.6, 0.6, 0.6)
+    list.note:SetPoint("BOTTOMLEFT", frame, "BOTTOMLEFT", 18, 44)
+    list.note:SetWordWrap(false)
     frame.mktBar = CreateFrame("Frame", nil, frame)
     frame.mktBar:SetPoint("TOPLEFT", 12, -72)
     frame.mktBar:SetSize(LIST_W, 24)
@@ -2250,7 +2339,7 @@ local function makeWindow()
     detail = CreateFrame("Frame", nil, frame, "BackdropTemplate")
     backdrop(detail, { 0.06, 0.06, 0.06, 1 }, { 0.25, 0.25, 0.25, 0.6 })
     detail:SetPoint("TOPLEFT", frame, "TOPLEFT", 12 + LIST_W + 10, -72)
-    detail:SetPoint("BOTTOMRIGHT", -12, 44)
+    detail:SetPoint("BOTTOMRIGHT", -12, FOOT_H)
     detail.icon = detail:CreateTexture(nil, "ARTWORK")
     detail.icon:SetSize(44, 44)
     detail.icon:SetPoint("TOPLEFT", 12, -12)
@@ -2259,6 +2348,7 @@ local function makeWindow()
     detail.title:SetPoint("TOPLEFT", detail.icon, "TOPRIGHT", 10, -4)
     detail.title:SetPoint("RIGHT", -10, 0)
     detail.title:SetWordWrap(true)
+    detail.title:SetMaxLines(3) -- a long /ask question: three lines of title, the body under them (setDetail)
     detail.body = CreateFrame("ScrollFrame", nil, detail, "UIPanelScrollFrameTemplate")
     detail.body:SetPoint("TOPLEFT", 12, -66)
     detail.body:SetPoint("BOTTOMRIGHT", -30, 100) -- clear of the buttons and the why box
@@ -2344,6 +2434,7 @@ local function makeWindow()
         "s or an item opened in the auction house. The reasons are guesses; tell it the real one and it keeps both.")
     frame.foot = foot
 
+    layout() -- the saved size may not be the default
     frame:SetScript("OnShow", redraw)
 end
 

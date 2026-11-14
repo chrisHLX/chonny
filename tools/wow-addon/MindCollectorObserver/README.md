@@ -47,6 +47,12 @@ what was saved of them is dropped at the next login.
   Gadgetzan, Everlook) has its own listings: opening one says so, its prices are not noted, and its
   scan is kept apart (`DB.otherScans.Neutral`) and shared as its own market, so it never mixes
   with your faction's prices here or in the pool.
+- **The window** (2026-11-15, from Chriso's screenshots): 1120x640 by default and resizable from its
+  corner, the list 56% of the width; size, position and the open tab are kept (`DB.win`). The list's
+  note has its own line (the Scan button used to run through it), a long title pushes the body down
+  (an /ask question drew under the body), same-day scans are told apart by time, a tracked item's
+  row says listed, when, since and looks (the "probably…" guess stays on its page), thousands get
+  commas, and Escape clears the search.
 - **Holdings** (2026-11-14): what you hold across your characters, what you paid, and where the price
   is now, like a stock app's positions. Bags are read as they change, the bank while it's open, gold
   always (`DB.holdings[character]`). Paid is the ledger's average per unit for what you bought or made
