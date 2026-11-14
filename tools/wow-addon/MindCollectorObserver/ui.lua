@@ -474,7 +474,7 @@ end
 -- ---------------------------------------------------------------- the ledger
 
 local LEDGER_KIND = { craft = "made", post = "posted on the auction house", ahbuy = "bought at the auction house", ahsale = "sold at the auction house",
-    vbuy = "bought from a vendor", vsell = "sold to a vendor" }
+    vbuy = "bought from a vendor", vsell = "sold to a vendor", expired = "came back unsold", cancelled = "cancelled" }
 
 local function signedMoney(c)
     if c == 0 then return "0" end
@@ -501,13 +501,14 @@ local function ledgerItems()
         local key = e.n or ("item " .. (e.i or 0))
         local x = by[key]
         if not x then
-            x = { name = key, i = e.i, made = 0, value = 0, bought = 0, spent = 0, sold = 0, earned = 0, posted = 0, last = 0, entries = {} }
+            x = { name = key, i = e.i, made = 0, value = 0, bought = 0, spent = 0, sold = 0, earned = 0, posted = 0, expired = 0, last = 0, entries = {} }
             by[key] = x
             table.insert(order, x)
         end
         if (e.i or 0) > 0 then x.i = e.i end
         if e.k == "craft" then x.made = x.made + (e.q or 1); x.value = x.value + (e.v or 0)
         elseif e.k == "post" then x.posted = x.posted + (e.q or 1)
+        elseif e.k == "expired" then x.expired = x.expired + (e.q or 1)
         elseif e.k == "ahbuy" or e.k == "vbuy" then x.bought = x.bought + (e.q or 1); x.spent = x.spent - e.c
         elseif e.k == "ahsale" or e.k == "vsell" then x.sold = x.sold + (e.q or 1); x.earned = x.earned + e.c end
         x.last = math.max(x.last, e.t)
@@ -944,6 +945,93 @@ local function costBasis()
     return byId
 end
 
+-- Your own listings since the ledger began, per item id (15 Nov): units posted, sold, back unsold
+-- (expired), cancelled and still up; the share sold of what's resolved; and the typical hours from
+-- post to sale, each sale set against the oldest post still unmatched. Sales carry no item id, so
+-- entries are matched by name as the ledger does. One walk of the ledger for every item.
+local function listingStats()
+    local byName, byId = {}, {}
+    for _, e in ipairs(ns.DB.ledger or {}) do
+        local key = e.n or ("item " .. (e.i or 0))
+        local x = byName[key]
+        if not x then x = { posted = 0, sold = 0, expired = 0, cancelled = 0, posts = {}, sales = {} }; byName[key] = x end
+        if (e.i or 0) > 0 then byId[e.i] = x end
+        if e.k == "post" then x.posted = x.posted + (e.q or 1); table.insert(x.posts, { t = e.t, q = e.q or 1 })
+        elseif e.k == "ahsale" then x.sold = x.sold + (e.q or 1); table.insert(x.sales, { t = e.t, q = e.q or 1 })
+        elseif e.k == "expired" then x.expired = x.expired + (e.q or 1)
+        elseif e.k == "cancelled" then x.cancelled = x.cancelled + (e.q or 1) end
+    end
+    for _, x in pairs(byName) do
+        if x.posted + x.sold + x.expired > 0 then
+            x.any = true
+            x.up = math.max(0, x.posted - x.sold - x.expired - x.cancelled)
+            local resolved = x.sold + x.expired
+            x.rate = resolved > 0 and x.sold / resolved or nil
+            local hours, pi, left = {}, 1, x.posts[1] and x.posts[1].q or 0
+            for _, s in ipairs(x.sales) do
+                local need = s.q
+                while need > 0 and x.posts[pi] do
+                    if left <= 0 then
+                        pi = pi + 1
+                        left = x.posts[pi] and x.posts[pi].q or 0
+                    else
+                        local take = math.min(need, left)
+                        need, left = need - take, left - take
+                        if s.t >= x.posts[pi].t then table.insert(hours, (s.t - x.posts[pi].t) / 3600) end
+                    end
+                end
+            end
+            x.hours = #hours > 0 and median(hours) or nil
+        end
+    end
+    return byId
+end
+
+local function hoursText(h)
+    if h < 1 then return "an hour" end
+    if h < 48 then return string.format("%.0f hours", h) end
+    return string.format("%.1f days", h / 24)
+end
+
+-- "Your listings  120 posted · 95 sold (79%) · 25 came back unsold · 10 still up", for an item's page.
+local function listingLines(id, lines, stats)
+    local t = (stats or listingStats())[id]
+    if not (t and t.any) then return end
+    table.insert(lines, "")
+    local bits = { commas(t.posted) .. " posted" }
+    if t.rate then table.insert(bits, string.format("%s sold (%.0f%%)", commas(t.sold), t.rate * 100))
+    elseif t.sold > 0 then table.insert(bits, commas(t.sold) .. " sold") end
+    if t.expired > 0 then table.insert(bits, commas(t.expired) .. " came back unsold") end
+    if t.cancelled > 0 then table.insert(bits, commas(t.cancelled) .. " cancelled") end
+    if t.up > 0 then table.insert(bits, commas(t.up) .. " still up") end
+    table.insert(lines, color(GOLD_HEX, "Your listings") .. "  " .. table.concat(bits, "  ·  "))
+    if t.hours then table.insert(lines, grey("usually sells within about " .. hoursText(t.hours) .. " of posting")) end
+end
+
+-- The depth in your last scan: {price of the 10th cheapest unit, of the 50th, of the 200th}, or nil.
+local function depthNow(id)
+    local last = ns.DB.lastScan
+    local v = last and last.prices and last.prices[id]
+    return v and v.d, last and last.t
+end
+
+-- "Depth: 10 units under 2s 1c · 50 under 2s 38c · 200 under 2s 90c (3 min ago)"
+local function depthLine(id)
+    local d, at = depthNow(id)
+    if not d then return nil end
+    local tiers, bits = { 10, 50, 200 }, {}
+    for i = 1, 3 do if d[i] then table.insert(bits, tiers[i] .. " units under " .. ns.money(d[i])) end end
+    return color(GOLD_HEX, "Depth") .. "  " .. table.concat(bits, "  ·  ") .. grey("  (" .. when(at) .. ")")
+end
+
+-- The price a lot of n could be sold under: the deepest tier the lot reaches, else the cheapest listing.
+local function sellPriceFor(n, d, floor)
+    if not d then return floor, nil end
+    if n <= 10 then return d[1] or floor, 10 end
+    if n <= 50 then return d[2] or d[1] or floor, d[2] and 50 or 10 end
+    return d[3] or d[2] or d[1] or floor, d[3] and 200 or d[2] and 50 or 10
+end
+
 -- The positions, most worth first, and the totals: worth (items with a price), paid (units with a
 -- cost), gold (every character), and how many characters have been seen.
 local function holdings()
@@ -960,7 +1048,7 @@ local function holdings()
             end
         end
     end
-    local basis, out = costBasis(), {}
+    local basis, stats, out = costBasis(), listingStats(), {}
     local sum = { worth = 0, paid = 0, gold = 0, chars = chars, items = 0 }
     for id, t in pairs(totals) do
         local b = basis[id]
@@ -970,12 +1058,17 @@ local function holdings()
             sum.items = sum.items + 1
             if matches(itemName(id)) then
                 local p = ns.latestPrice(id)
-                local worth = p and p.min * t.n * (1 - AH_CUT) or nil
+                -- worth at the depth the lot reaches (the 200th unit's price for a big stack), not the
+                -- one cheapest listing, when the last scan has it
+                local d = depthNow(id)
+                local sellAt, tier = sellPriceFor(t.n, d, p and p.min)
+                local worth = sellAt and sellAt * t.n * (1 - AH_CUT) or nil
                 local paid = avg and known > 0 and avg * known or nil
                 if worth then sum.worth = sum.worth + worth end
                 if paid then sum.paid = sum.paid + paid end
                 table.insert(out, { id = id, n = t.n, by = t.by, known = known, avg = avg, paid = paid,
-                    now = p and p.min, listed = p and p.q, at = p and p.t, worth = worth })
+                    now = p and p.min, listed = p and p.q, at = p and p.t, worth = worth, sellAt = sellAt, tier = tier,
+                    st = stats[id] })
             end
         end
     end
@@ -1483,12 +1576,13 @@ local function drawList()
             local x = hs[i]
             n = n + 1
             r = rows[n] or makeRow(n)
-            local value = x.worth and (ns.money(x.worth) .. (x.avg and x.now and ("  " .. changeText(x.avg, x.now)) or "")) or grey("no price yet")
+            local value = x.worth and (ns.money(x.worth) .. (x.avg and x.sellAt and ("  " .. changeText(x.avg, x.sellAt)) or "")) or grey("no price yet")
             local sub = { commas(x.n) .. " held" }
             if x.avg then
                 table.insert(sub, "paid ~" .. ns.money(x.avg) .. " each" .. (x.known < x.n and string.format(" (%d of them known)", x.known) or ""))
             end
-            if x.now then table.insert(sub, "now " .. ns.money(x.now)) end
+            if x.sellAt then table.insert(sub, (x.tier and ("sells under " .. ns.money(x.sellAt)) or ("now " .. ns.money(x.sellAt)))) end
+            if x.st and x.st.rate then table.insert(sub, string.format("%.0f%% of what you post sells", x.st.rate * 100)) end
             if sum.chars > 1 then table.insert(sub, whoHolds(x.by)) end
             fillRow(r, "hold:" .. x.id, C_Item.GetItemIconByID(x.id), itemName(x.id), nameColor({ kind = "item", id = x.id }),
                 value, table.concat(sub, "  ·  "), x.id)
@@ -1515,6 +1609,7 @@ local function drawList()
                 if x.bought > 0 then table.insert(bits, string.format("bought %d for %s", x.bought, ns.money(x.spent))) end
                 if x.posted > 0 then table.insert(bits, "posted " .. x.posted) end
                 if x.sold > 0 then table.insert(bits, string.format("sold %d for %s", x.sold, ns.money(x.earned))) end
+                if x.expired > 0 then table.insert(bits, x.expired .. " came back unsold") end
                 table.insert(bits, when(x.last))
                 n = n + 1
                 local r = rows[n] or makeRow(n)
@@ -2066,13 +2161,18 @@ local function drawDetail()
             table.insert(lines, grey("Paid: unknown. These were here before the ledger began, or came another way."))
         end
         if x.now then
-            table.insert(lines, "Now: " .. ns.money(x.now) .. (x.listed and ("  (" .. x.listed .. " listed, " .. when(x.at) .. ")") or ""))
-            if x.avg then table.insert(lines, "Since you paid: " .. changeText(x.avg, x.now)) end
-            table.insert(lines, "Worth about " .. ns.money(x.worth) .. " at that price after the 5% cut" .. (x.n >= 50 and grey("; a lot this size sold at once won't hold it") or ""))
+            table.insert(lines, "Cheapest listing: " .. ns.money(x.now) .. (x.listed and ("  (" .. commas(x.listed) .. " listed, " .. when(x.at) .. ")") or ""))
+            local depth = depthLine(id)
+            if depth then table.insert(lines, depth) end
+            if x.avg then table.insert(lines, "Since you paid: " .. changeText(x.avg, x.sellAt)) end
+            table.insert(lines, "Worth about " .. ns.money(x.worth) .. (x.tier
+                and string.format(" sold under the %dth cheapest unit (%s), after the 5%% cut", x.tier, ns.money(x.sellAt))
+                or " at the cheapest listing after the 5% cut" .. (x.n >= 50 and grey("; a lot this size sold at once won't hold it") or "")))
             if x.paid and x.known == x.n then table.insert(lines, "Difference: " .. signedMoney(x.worth - x.paid)) end
         else
             table.insert(lines, grey("No price yet: open it in the auction house, or scan."))
         end
+        listingLines(id, lines)
         timeOfDayLines(id, lines)
         historyLines(id, lines)
         setDetail(C_Item.GetItemIconByID(id), itemName(id), nameColor({ kind = "item", id = id }), lines, nil, false, nil, id)
@@ -2089,6 +2189,9 @@ local function drawDetail()
         if v then table.insert(lines, "Now: " .. ns.money(v[1]) .. "  (" .. v[2] .. " listed)") end
         if o then table.insert(lines, "Before: " .. ns.money(o[1]) .. "  (" .. o[2] .. " listed)") end
         if v and o then table.insert(lines, "Change: " .. changeText(o[1], v[1])) end
+        local depth = depthLine(id)
+        if depth then table.insert(lines, depth) end
+        listingLines(id, lines)
         timeOfDayLines(id, lines)
         historyLines(id, lines)
         if s and (s.looks or 0) > 0 then
@@ -2123,6 +2226,9 @@ local function drawDetail()
         if first and cur then table.insert(lines, "Change: " .. changeText(first.p, cur.min)) end
         local have = C_Item.GetItemCount(s.id, true)
         if have and have > 0 then table.insert(lines, "You have " .. have) end
+        local depth = depthLine(s.id)
+        if depth then table.insert(lines, depth) end
+        listingLines(s.id, lines)
         timeOfDayLines(s.id, lines)
         historyLines(s.id, lines)
     elseif s.kind == "talent" then

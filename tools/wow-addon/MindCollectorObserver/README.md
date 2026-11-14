@@ -53,6 +53,11 @@ what was saved of them is dropped at the next login.
   (an /ask question drew under the body), same-day scans are told apart by time, a tracked item's
   row says listed, when, since and looks (the "probably…" guess stays on its page), thousands get
   commas, and Escape clears the search.
+- **Depth and your own sell-through** (2026-11-15): each scan keeps the price of the 10th, 50th and
+  200th cheapest unit per item, and Holdings values a lot at the tier it reaches, not the one cheapest
+  listing. Expired and cancelled auctions taken from the mail go in the ledger, so an item's page says
+  what share of what you post sells and how fast. `docs/forever/observer-handoff-2026-11-10.md`,
+  "Depth and sell-through".
 - **Holdings** (2026-11-14): what you hold across your characters, what you paid, and where the price
   is now, like a stock app's positions. Bags are read as they change, the bank while it's open, gold
   always (`DB.holdings[character]`). Paid is the ledger's average per unit for what you bought or made

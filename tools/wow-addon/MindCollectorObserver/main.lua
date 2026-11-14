@@ -505,7 +505,7 @@ end
 -- replaces it, so scanning twice in a row doesn't count that hour twice.
 -- HISTORY_BYTES caps the whole (14 Nov): a scan of the Horde house is ~100 KB, and the saved file is
 -- read by the app at every change and by WoW at every login, so 90 of them was too much to carry.
-local HISTORY_MAX, HISTORY_DAYS, HISTORY_BYTES = 90, 30, 4 * 1024 * 1024
+local HISTORY_MAX, HISTORY_DAYS, HISTORY_BYTES = 90, 30, 6 * 1024 * 1024
 local function historyBytes()
     local n = 0
     for _, h in ipairs(DB.history) do n = n + #(h.s or "") end
@@ -516,7 +516,13 @@ local function keepScan(entry)
     for id, a in pairs(entry.prices or {}) do
         -- %.0f, not %d: WoW's %d stops at 2^31 copper (214,748g), and on 13 Nov a listing at 9,999,999g
         -- (item 18401) was up; an error here lost the whole scan
-        if a[1] and a[2] then table.insert(parts, string.format("%d:%.0f:%.0f", id, a[1], a[2])) end
+        if a[1] and a[2] then
+            -- ";id:min:count", then the depth tiers when there are any (15 Nov): ":p10:p50:p200",
+            -- an empty field for a tier past what was listed
+            local d = a.d or {}
+            table.insert(parts, string.format("%d:%.0f:%.0f", id, a[1], a[2])
+                .. (d[1] and string.format(":%.0f:%s:%s", d[1], d[2] and string.format("%.0f", d[2]) or "", d[3] and string.format("%.0f", d[3]) or "") or ""))
+        end
     end
     table.insert(parts, "")
     local h = { t = entry.t, n = entry.n, s = table.concat(parts, ";") }
@@ -535,9 +541,36 @@ local function keepScan(entry)
     end
 end
 
+-- The depth tiers: the price of the Nth cheapest unit, for these N. "Cheapest listing" is often one
+-- unit at a silly price; what a stack can be sold under is the price further down the ladder.
+local DEPTH_TIERS = { 10, 50, 200 }
+
+-- An item's depth from its units-at-each-price: {price of the 10th unit, of the 50th, of the 200th},
+-- nil past what's listed. The map itself is dropped: thousands of items' price lists would not be
+-- worth saving.
+local function depthOf(a)
+    local prices = {}
+    for p in pairs(a.pc) do table.insert(prices, p) end
+    table.sort(prices)
+    local d, seen, tier = {}, 0, 1
+    for _, p in ipairs(prices) do
+        seen = seen + a.pc[p]
+        while DEPTH_TIERS[tier] and seen >= DEPTH_TIERS[tier] do
+            d[tier] = p
+            tier = tier + 1
+        end
+        if not DEPTH_TIERS[tier] then break end
+    end
+    a.pc = nil
+    return d[1] and d or nil
+end
+
 local function finishScan(agg, n)
     scanStatus(nil)
-    for _, a in pairs(agg) do if a.tl and not next(a.tl) then a.tl = nil end end
+    for _, a in pairs(agg) do
+        if a.tl and not next(a.tl) then a.tl = nil end
+        if a.pc then a.d = depthOf(a) end
+    end
     -- Where it was scanned, so the app can pool it with other players' scans of the same market
     -- (2026-11-12): realm, region, the auction house's faction (`faction`: Horde, Alliance or Neutral)
     -- and yours (`side`). Forever is one realm per region, and Horde, Alliance and the goblin towns
@@ -590,12 +623,14 @@ local function readScan()
                 local unit = buyout / count
                 local a = agg[itemID]
                 if not a then
-                    a = { unit, count, name, tl = {} } -- the name too, so the app can show items you never hovered
+                    a = { unit, count, name, tl = {}, pc = {} } -- the name too, so the app can show items you never hovered
                     agg[itemID] = a
                 else
                     if unit < a[1] then a[1] = unit end
                     a[2] = a[2] + count
                 end
+                -- how many units sit at each price, for the depth worked out in finishScan (15 Nov)
+                a.pc[unit] = (a.pc[unit] or 0) + count
                 -- How long each listing has left, so the next scan can tell expiry from selling (2026-11-11).
                 -- Kept as the raw value: whether the game counts bands from 0 or 1 is settled in finishScan.
                 local band = C_AuctionHouse.GetReplicateItemTimeLeft and C_AuctionHouse.GetReplicateItemTimeLeft(i)
@@ -828,6 +863,38 @@ local function snapshotMail(fresh)
         end
     end
 end
+
+-- Expired and cancelled auctions come back as mail with the item attached ("Auction expired: X",
+-- "Auction cancelled: X"). Written down as you take the item, so each mail counts once, and the
+-- ledger can say what share of what you post sells and how fast (ui.lua, listingStats; 15 Nov).
+local function subjectPattern(global, fallback)
+    local s = type(global) == "string" and global or fallback
+    local escaped = s:gsub("([%^%$%(%)%%%.%[%]%*%+%-%?])", "%%%1")
+    return "^" .. escaped:gsub("%%%%s", "(.+)") .. "$"
+end
+local EXPIRED_SUBJECT = subjectPattern(AUCTION_EXPIRED_MAIL_SUBJECT, "Auction expired: %s")
+local CANCELLED_SUBJECT = subjectPattern(AUCTION_REMOVED_MAIL_SUBJECT, "Auction cancelled: %s")
+local mailTaken = {}
+local function mailReturned(index)
+    if not (DB and GetInboxHeaderInfo) then return end
+    local _, _, _, subject, _, _, daysLeft, itemCount = GetInboxHeaderInfo(index)
+    if not subject then return end
+    local kind = subject:match(EXPIRED_SUBJECT) and "expired" or subject:match(CANCELLED_SUBJECT) and "cancelled"
+    if not kind then return end
+    -- the same mail, asked for twice in quick succession (a retry, or two hooks for one take)
+    local key = string.format("%s|%s|%.4f", subject, tostring(itemCount), daysLeft or 0)
+    if mailTaken[key] and GetTime() - mailTaken[key] < 5 then return end
+    mailTaken[key] = GetTime()
+    local name, id, q = nil, 0, 0
+    for slot = 1, (ATTACHMENTS_MAX_RECEIVE or 16) do
+        local n, itemID, _, count = GetInboxItem(index, slot)
+        if n then name, id, q = n, itemID or id, q + (count or 1) end
+    end
+    if q == 0 then return end
+    ledger({ k = kind, i = id, n = name or subject:match(EXPIRED_SUBJECT) or subject:match(CANCELLED_SUBJECT), q = q, c = 0 })
+end
+if TakeInboxItem then hooksecurefunc("TakeInboxItem", function(index) mailReturned(index) end) end
+if AutoLootMailItem then hooksecurefunc("AutoLootMailItem", function(index) mailReturned(index) end) end
 
 local lastMoney
 local function onMoney()

@@ -165,6 +165,26 @@ watched, Market the whole house and Ledger the history; this is state.
 - **Checked** with `hold_test.py` (scratchpad) under Redis's Lua on made-up data: two characters,
   a buy, a sale, a vendor buy, a craft with no reagent value; every number as worked by hand.
 
+## Depth and sell-through (2026-11-15, app 0.6.28)
+
+The two numbers a trader needs that the scans and the ledger didn't give (Chriso: "do you think the
+addon now tracks all the data you would need to make a lot of gold?").
+
+- **Depth** (`main.lua`, `depthOf`): each scan keeps, per item, the price of the 10th, 50th and 200th
+  cheapest unit (`a.d`, and `:p10:p50:p200` after the count in the history string, blank past what's
+  listed). Worked out from a units-at-each-price map built during the read and dropped after. Holdings
+  values a lot at the deepest tier it reaches, not the one cheapest listing (`sellPriceFor`), and the
+  item pages show the ladder (`depthLine`). The history cap went to 6 MB for it.
+- **Sell-through** (`main.lua` mail hooks, `ui.lua` `listingStats`): expired and cancelled auctions come
+  back as mail ("Auction expired: X"); taking the item writes a ledger line (`expired`, `cancelled`),
+  matched by subject pattern built from the game's own `AUCTION_EXPIRED_MAIL_SUBJECT`. Per item:
+  posted, sold, back unsold, cancelled, still up, sold share of what's resolved, and the median hours
+  from post to sale (each sale against the oldest post still unmatched). On the Holdings row ("80% of
+  what you post sells") and every item page.
+- **Checked** under Redis's Lua with `main_test.py` and `hold_test.py` (scratchpad): depth tiers,
+  a thin item, the subject patterns, and a 300-posted / 200-sold / 50-expired item: 80%, 10 hours,
+  worth at the 200th unit's price.
+
 ## Market reads so far (Chriso's realm, Horde, 2026-11-08 to 11-10)
 
 - **Elixir of Ogre Strength, Fire Oil:** selling. Listings fell and the price rose, and he sold 26 and
