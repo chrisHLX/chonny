@@ -745,6 +745,77 @@ local function sellValue(r)
     return p and p.min * (1 - AH_CUT) * (r.yield or 1), p
 end
 
+-- ---------------------------------------------------------------- what a recipe item teaches (15 Nov)
+-- Chriso: a recipe in your bags or on the auction house shows its reagents in the tooltip, but not
+-- what they cost, so it can't be judged without opening Professions. These lines give each reagent's
+-- price now, the total, what the product sells for, and the profit after the cut; on the recipe
+-- item's tooltip and its page in the window.
+
+-- recipe item id -> {pid, recipe}, built once from Data.lua
+local recipeByItemIndex
+local function recipeTaughtBy(item)
+    if not recipeByItemIndex then
+        recipeByItemIndex = {}
+        for pid, rl in pairs(ns.recipes or {}) do
+            for _, r in ipairs(rl) do
+                if r[10] and r[10] > 0 and not recipeByItemIndex[r[10]] then recipeByItemIndex[r[10]] = { pid, r } end
+            end
+        end
+    end
+    local hit = recipeByItemIndex[item]
+    if hit then return hit[1], hit[2] end
+end
+
+-- The lines for a recipe: one per reagent (count, name, price each, and the line's cost), then the
+-- total, the product's price and the profit. `short` keeps it to what a tooltip can carry.
+local function recipeCostLines(pid, r, short)
+    local out = {}
+    local mine = ns.myProfessions and ns.myProfessions()[pid]
+    local total, missing, made = recipeCost(r, pid, mine and mine.rank or 0)
+    local oldest
+    for i = 1, #r[8], 2 do
+        local id, n = r[8][i], r[8][i + 1]
+        local p, src, t = unitPrice(id)
+        if made[id] then p, src = made[id], "make" end
+        if t and (not oldest or t < oldest) then oldest = t end
+        local priceText = p and (ns.money(p * n) .. grey(n > 1 and ("  (" .. ns.money(p) .. " each" .. (src == "vendor" and ", vendor" or src == "make" and ", make it" or "") .. ")")
+            or (src == "vendor" and "  (vendor)" or src == "make" and "  (make it)" or ""))) or grey("no price yet")
+        table.insert(out, string.format("  %d x %s  ·  ", n, itemName(id)) .. priceText)
+    end
+    local yield = (r.yield or 1) > 1 and (" (makes " .. r.yield .. ")") or ""
+    table.insert(out, color(GOLD_HEX, "Mats cost about " .. ns.money(total)) .. (missing > 0 and grey(string.format("  (%d price%s unknown)", missing, missing == 1 and "" or "s")) or "")
+        .. (oldest and grey("  · prices " .. when(oldest)) or ""))
+    if r[7] > 0 then
+        local net, p = sellValue(r)
+        if p then
+            local line = itemName(r[7]) .. yield .. " sells " .. ns.money(p.min) .. (p.q and (", " .. commas(p.q) .. " listed") or "")
+            if missing == 0 then
+                local profit = net - total
+                line = line .. "  ·  " .. (profit >= 0 and color("ff40d060", "+" .. ns.money(profit) .. " a craft after the cut")
+                    or color("ffe05050", "loses " .. ns.money(-profit) .. " a craft after the cut"))
+            end
+            table.insert(out, line)
+        elseif not short then
+            table.insert(out, grey(itemName(r[7]) .. yield .. ": no auction price yet"))
+        end
+    end
+    if not short then
+        local need = ns.PROF_NAMES[pid] or "skill"
+        table.insert(out, grey(mine and string.format("Needs %s %d; you have %d", need, r[3], mine.rank or 0)
+            or string.format("Needs %s %d; not one of your professions", need, r[3])))
+    end
+    return out
+end
+
+-- On a recipe item's page in the window: what it teaches and what that costs to make now.
+local function teachesLines(id, lines)
+    local pid, r = recipeTaughtBy(id)
+    if not pid then return end
+    table.insert(lines, "")
+    table.insert(lines, color(GOLD_HEX, "Teaches ") .. r[2])
+    for _, l in ipairs(recipeCostLines(pid, r)) do table.insert(lines, l) end
+end
+
 local function sortBySelling() return ns.DB and ns.DB.profSort == "sell" end
 -- Most profit (2026-11-10, Chriso: "things that dont level us up too but make profit"): every recipe at
 -- or under your skill, whatever its colour, by what one craft earns after the auction house's cut.
@@ -2161,6 +2232,7 @@ local function drawDetail()
         else
             table.insert(lines, grey("No price yet: open it in the auction house, or scan."))
         end
+        teachesLines(id, lines)
         listingLines(id, lines)
         timeOfDayLines(id, lines)
         historyLines(id, lines)
@@ -2180,6 +2252,7 @@ local function drawDetail()
         if v and o then table.insert(lines, "Change: " .. changeText(o[1], v[1])) end
         local depth = depthLine(id)
         if depth then table.insert(lines, depth) end
+        teachesLines(id, lines)
         listingLines(id, lines)
         timeOfDayLines(id, lines)
         historyLines(id, lines)
@@ -2217,6 +2290,7 @@ local function drawDetail()
         if have and have > 0 then table.insert(lines, "You have " .. have) end
         local depth = depthLine(s.id)
         if depth then table.insert(lines, depth) end
+        teachesLines(s.id, lines)
         listingLines(s.id, lines)
         timeOfDayLines(s.id, lines)
         historyLines(s.id, lines)
@@ -2625,6 +2699,12 @@ local function tooltipLines(id)
     end
     local sold, at = lastSale(id)
     if sold then table.insert(out, grey("you last sold it at " .. ns.money(sold) .. " each, " .. date("%d %b", at))) end
+    -- a recipe: what its reagents cost now, and what the craft earns
+    local pid, r = recipeTaughtBy(id)
+    if pid then
+        table.insert(out, color(GOLD_HEX, "Teaches ") .. r[2])
+        for _, l in ipairs(recipeCostLines(pid, r, true)) do table.insert(out, l) end
+    end
     return out
 end
 

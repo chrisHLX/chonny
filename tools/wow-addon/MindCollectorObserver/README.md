@@ -57,7 +57,10 @@ what was saved of them is dropped at the next login.
   the cheapest listing at the last scan with how many were listed; the usual price (median over your
   scans, from three up) with "now N% over/under" past 5%, and the 50-unit depth; and what you last sold
   it for yourself. `/mco tip` turns it off (`DB.tipOff`). A scan sees listings, not sales, which is why
-  the words are "cheapest listed", never "sold for".
+  the words are "cheapest listed", never "sold for". **A recipe item** (in your bags, at a vendor, on
+  the auction house) also says what it teaches, each reagent's price now, the total, what the product
+  sells for and the profit a craft after the cut; the same block is on its page in the window
+  (`recipeTaughtBy`, `recipeCostLines`, from Data.lua's field 10).
 - **Depth and your own sell-through** (2026-11-15): each scan keeps the price of the 10th, 50th and
   200th cheapest unit per item, and Holdings values a lot at the tier it reaches, not the one cheapest
   listing. Expired and cancelled auctions taken from the mail go in the ledger, so an item's page says
