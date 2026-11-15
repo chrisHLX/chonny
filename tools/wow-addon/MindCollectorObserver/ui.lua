@@ -78,6 +78,12 @@ end
 local function color(hex, s) return "|c" .. hex .. s .. "|r" end
 local function grey(s) return color("ff9a9a9a", s) end
 
+-- Your note on an item (DB.notes[id] = {text, t}), from the Notes box on its page.
+local function noteOf(id)
+    local n = id and ns.DB and ns.DB.notes and ns.DB.notes[id]
+    return n and n.text
+end
+
 -- 220004 -> 220,004
 local function commas(n)
     local s = tostring(math.floor((tonumber(n) or 0) + 0.5))
@@ -1248,6 +1254,7 @@ local function subLine(s)
     -- read, since when it's tracked, and the looks last. The guess stays on the item's page.
     if s.kind == "item" and ns.isTracked and ns.isTracked(s.id) then
         local bits = { color(GOLD_HEX, "tracking") }
+        if noteOf(s.id) then table.insert(bits, color(GOLD_HEX, "note")) end
         local p = ns.latestPrice(s.id)
         if p and p.q then table.insert(bits, commas(p.q) .. " listed " .. when(p.t)) end
         local since = ns.DB.tracked and ns.DB.tracked[s.id]
@@ -1977,10 +1984,14 @@ local function setDetail(icon, title, titleHex, lines, history, canWhy, why, use
     -- back to the top for something new; kept when the same thing redraws (a section opening)
     if detail.shown ~= selectedKey then detail.body:SetVerticalScroll(0) end
     detail.shown = selectedKey
-    detail.whyLabel:SetShown(canWhy)
-    detail.why:SetShown(canWhy)
-    detail.save:SetShown(canWhy)
-    if canWhy and not detail.why:HasFocus() then detail.why:SetText(why or "") end
+    -- canWhy is now the item id whose note the box edits (15 Nov), or false for no box
+    local noteId = type(canWhy) == "number" and canWhy > 0 and canWhy or nil
+    if detail.noteId ~= noteId and detail.why:HasFocus() then detail.why:ClearFocus() end
+    detail.noteId = noteId
+    detail.whyLabel:SetShown(noteId ~= nil)
+    detail.why:SetShown(noteId ~= nil)
+    detail.save:SetShown(noteId ~= nil)
+    if noteId and not detail.why:HasFocus() then detail.why:SetText(noteOf(noteId) or "") end
 end
 
 local function findAsk(id)
@@ -2034,8 +2045,8 @@ end
 
 local function drawDetail()
     detail.b1:Hide(); detail.b2:Hide()
-    detail.whyLabel:SetText(color(GOLD_HEX, "Why were you looking?"))
-    detail.save:SetText("Save")
+    detail.whyLabel:SetText(color(GOLD_HEX, "Notes") .. grey("  yours, on this item; shown on its tooltip too"))
+    detail.save:SetText(GetTime() < (detail.savedUntil or 0) and "Saved" or "Save")
     if tab == "ask" then return drawAsk() end
     if tab == "ledger" and selectedKey and selectedKey:match("^lsum:") then
         local which = selectedKey:match("^lsum:(.+)$")
@@ -2074,7 +2085,7 @@ local function drawDetail()
                 e.c ~= 0 and ("  ·  " .. signedMoney(e.c)) or (e.v and ("  ·  reagents " .. ns.money(e.v)) or "")))
         end
         setDetail((x.i and x.i > 0) and C_Item.GetItemIconByID(x.i) or "Interface\\Icons\\INV_Misc_Bag_10", x.name,
-            (x.i and x.i > 0) and nameColor({ kind = "item", id = x.i }) or "ffffffff", lines, hist, false, nil, x.i)
+            (x.i and x.i > 0) and nameColor({ kind = "item", id = x.i }) or "ffffffff", lines, hist, (x.i and x.i > 0) and x.i or false, nil, x.i)
         if x.i and x.i > 0 then trackButtons(x.i) end
         return
     end
@@ -2162,7 +2173,7 @@ local function drawDetail()
                 if p and p.q and p.q > 200 then table.insert(lines, grey("Lots are listed already, so it may sell slowly or for less.")) end
             end
         end
-        setDetail((r[7] > 0 and C_Item.GetItemIconByID(r[7])) or C_Spell.GetSpellTexture(r[1]), r[2], hex, lines, nil, false, nil,
+        setDetail((r[7] > 0 and C_Item.GetItemIconByID(r[7])) or C_Spell.GetSpellTexture(r[1]), r[2], hex, lines, nil, r[7] > 0 and r[7] or false, nil,
             r[7], r[7] > 0 and (itemName(r[7]) .. " is used in") or nil)
         if point then
             button(detail.b1, "Show on map", function()
@@ -2236,7 +2247,7 @@ local function drawDetail()
         listingLines(id, lines)
         timeOfDayLines(id, lines)
         historyLines(id, lines)
-        setDetail(C_Item.GetItemIconByID(id), itemName(id), nameColor({ kind = "item", id = id }), lines, nil, false, nil, id)
+        setDetail(C_Item.GetItemIconByID(id), itemName(id), nameColor({ kind = "item", id = id }), lines, nil, id, nil, id)
         trackButtons(id)
         return
     end
@@ -2261,7 +2272,7 @@ local function drawDetail()
             table.insert(lines, color(GOLD_HEX, "You looked at this " .. s.looks .. " times, last " .. when(s.last) .. "."))
         end
         setDetail(C_Item.GetItemIconByID(id), itemName(id, v and v[3]),
-            nameColor({ kind = "item", id = id }), lines, nil, false, nil, id)
+            nameColor({ kind = "item", id = id }), lines, nil, id, nil, id)
         trackButtons(id)
         return
     end
@@ -2315,7 +2326,7 @@ local function drawDetail()
         if ev.why then table.insert(bits, color(GOLD_HEX, "you: " .. ev.why)) end
         table.insert(hist, table.concat(bits, "  ·  "))
     end
-    setDetail(iconOf(s.kind, s.id), displayName(s), nameColor(s), lines, hist, true, e.why, s.kind == "item" and s.id or nil)
+    setDetail(iconOf(s.kind, s.id), displayName(s), nameColor(s), lines, hist, s.kind == "item" and s.id or false, nil, s.kind == "item" and s.id or nil)
     if s.kind == "item" then trackButtons(s.id) end
 end
 
@@ -2551,7 +2562,7 @@ local function makeWindow()
     detail.histTitle:SetText(color(GOLD_HEX, "Each look"))
     detail.whyLabel = text(detail, "GameFontNormal")
     detail.whyLabel:SetPoint("BOTTOMLEFT", 12, 40)
-    detail.whyLabel:SetText(color(GOLD_HEX, "Why were you looking?"))
+    detail.whyLabel:SetText(color(GOLD_HEX, "Notes"))
     detail.why = CreateFrame("EditBox", nil, detail, "BackdropTemplate")
     backdrop(detail.why, { 0.1, 0.1, 0.1, 1 }, { 0.4, 0.4, 0.4, 0.6 })
     detail.why:SetPoint("BOTTOMLEFT", 12, 10)
@@ -2560,7 +2571,7 @@ local function makeWindow()
     detail.why:SetFontObject(ChatFontNormal)
     detail.why:SetTextInsets(8, 8, 0, 0)
     detail.why:SetAutoFocus(false)
-    detail.why:SetMaxLetters(120)
+    detail.why:SetMaxLetters(250)
     local function saveWhy()
         if tab == "ask" then
             local q = detail.why:GetText()
@@ -2568,12 +2579,16 @@ local function makeWindow()
             if q and q:find("%S") then detail.why:SetText(""); ns.ask(q) end
             return
         end
-        local s = selectedKey and ns.DB.subjects[selectedKey]
-        local e = s and s.events[#s.events]
-        if not e then return end
+        -- A note on the item (15 Nov). The "why were you looking" box wrote onto your last look at the
+        -- item, and an item tracked from Market and never hovered has none, so Save did nothing.
+        local id = detail.noteId
+        if not id then return end
         local v = detail.why:GetText():gsub("^%s+", ""):gsub("%s+$", "")
-        e.why = v ~= "" and v or nil
+        ns.DB.notes = ns.DB.notes or {}
+        ns.DB.notes[id] = v ~= "" and { text = v, t = time() } or nil
         detail.why:ClearFocus()
+        detail.savedUntil = GetTime() + 1.5
+        C_Timer.After(1.6, refresh)
         refresh()
     end
     detail.why:SetScript("OnEnterPressed", saveWhy)
@@ -2678,6 +2693,8 @@ end
 
 local function tooltipLines(id)
     local out = {}
+    local note = noteOf(id)
+    if note then table.insert(out, color(GOLD_HEX, "Note: ") .. note) end
     local p = ns.latestPrice(id)
     if p then
         local bits = { (p.src == "pool" and "cheapest listed (all players) " or "cheapest listed ") .. ns.money(p.min) }
@@ -2713,7 +2730,7 @@ local function onItemTooltip(tooltip, data)
     if tooltip ~= GameTooltip and tooltip ~= ItemRefTooltip then return end
     if not data or data.type ~= Enum.TooltipDataType.Item or not data.id then return end
     local lines = tooltipLines(data.id)
-    for _, l in ipairs(lines) do tooltip:AddLine(l, 0.9, 0.9, 0.9) end
+    for _, l in ipairs(lines) do tooltip:AddLine(l, 0.9, 0.9, 0.9, true) end -- wrapped: a note can be long
     if #lines > 0 then tooltip:Show() end
 end
 if TooltipDataProcessor and TooltipDataProcessor.AddTooltipPostCall and Enum and Enum.TooltipDataType then

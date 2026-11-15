@@ -53,6 +53,11 @@ what was saved of them is dropped at the next login.
   (an /ask question drew under the body), same-day scans are told apart by time, a tracked item's
   row says listed, when, since and looks (the "probably…" guess stays on its page), thousands get
   commas, and Escape clears the search.
+- **Notes on an item** (2026-11-15): the box under every item's page (Tracked, Market, Holdings,
+  Ledger, a recipe's product) keeps a note per item (`DB.notes[id] = {text, t}`), shown on its tooltip
+  and marked "note" on its Tracked row. It replaced "Why were you looking?", which wrote onto your
+  last look and so did nothing for an item never hovered (anything tracked from Market). Past
+  reasons still show on the looks they were given for.
 - **Prices on every item tooltip** (2026-11-15): bags, auction house, chat links. Up to three lines:
   the cheapest listing at the last scan with how many were listed; the usual price (median over your
   scans, from three up) with "now N% over/under" past 5%, and the 50-unit depth; and what you last sold
