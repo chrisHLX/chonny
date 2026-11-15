@@ -2568,6 +2568,78 @@ function ns.owns(f)
     return false
 end
 
+-- ---------------------------------------------------------------- prices on every item tooltip (15 Nov)
+-- Chriso: "when you hover an item it tells you what it last sold at in the AH". A scan sees listings,
+-- not sales, so the tooltip gives the nearest things: the cheapest listing at the last scan and how
+-- many were listed, the usual price over your scans and where the price sits against it, the
+-- 50-unit depth, and what you last sold it for yourself. Three lines at most; /mco tip turns it off.
+
+-- An item's usual price: the median of its cheapest listing across every scan kept, from three scans
+-- up. Cached per item until the next scan, since priceHistory walks every scan's string.
+local usualCache = {}
+local function usualPrice(id)
+    local hist = ns.DB.history or {}
+    local key = #hist .. ":" .. (hist[#hist] and hist[#hist].t or 0)
+    local c = usualCache[id]
+    if c and c.key == key then return c.usual, c.n end
+    local prices = {}
+    for _, x in ipairs(priceHistory(id)) do if x.scan then table.insert(prices, x.min) end end
+    local usual = #prices >= 3 and median(prices) or nil
+    usualCache[id] = { key = key, usual = usual, n = #prices }
+    return usual, #prices
+end
+
+-- What you last sold an item for, per unit, from the ledger's auction sales (matched by name: the
+-- invoice carries no item id), and when.
+local function lastSale(id)
+    local name = C_Item.GetItemNameByID(id)
+    local L = ns.DB.ledger or {}
+    for i = #L, 1, -1 do
+        local e = L[i]
+        if e.k == "ahsale" and (e.i == id or (name and e.n == name)) and (e.q or 0) > 0 then
+            return (e.gross or e.c) / e.q, e.t
+        end
+    end
+end
+
+local function tooltipLines(id)
+    local out = {}
+    local p = ns.latestPrice(id)
+    if p then
+        local bits = { (p.src == "pool" and "cheapest listed (all players) " or "cheapest listed ") .. ns.money(p.min) }
+        if p.q then table.insert(bits, commas(p.q) .. " listed") end
+        table.insert(bits, when(p.t))
+        table.insert(out, color(GOLD_HEX, "AH  ") .. table.concat(bits, "  ·  "))
+    end
+    local usual, n = usualPrice(id)
+    local d = depthNow(id)
+    if usual or (d and d[2]) then
+        local bits = {}
+        if usual then
+            local vs = p and p.min and (p.min - usual) / usual
+            local against = vs and math.abs(vs) >= 0.05 and string.format(", now %.0f%% %s", math.abs(vs) * 100, vs > 0 and "over" or "under") or ""
+            table.insert(bits, string.format("usual %s over %d scans%s", ns.money(usual), n, against))
+        end
+        if d and d[2] then table.insert(bits, "50 units under " .. ns.money(d[2])) end
+        table.insert(out, grey(table.concat(bits, "  ·  ")))
+    end
+    local sold, at = lastSale(id)
+    if sold then table.insert(out, grey("you last sold it at " .. ns.money(sold) .. " each, " .. date("%d %b", at))) end
+    return out
+end
+
+local function onItemTooltip(tooltip, data)
+    if not ns.DB or ns.DB.tipOff then return end
+    if tooltip ~= GameTooltip and tooltip ~= ItemRefTooltip then return end
+    if not data or data.type ~= Enum.TooltipDataType.Item or not data.id then return end
+    local lines = tooltipLines(data.id)
+    for _, l in ipairs(lines) do tooltip:AddLine(l, 0.9, 0.9, 0.9) end
+    if #lines > 0 then tooltip:Show() end
+end
+if TooltipDataProcessor and TooltipDataProcessor.AddTooltipPostCall and Enum and Enum.TooltipDataType then
+    TooltipDataProcessor.AddTooltipPostCall(Enum.TooltipDataType.Item, onItemTooltip)
+end
+
 -- ---------------------------------------------------------------- minimap button
 
 function ns.makeMinimapButton()

@@ -53,6 +53,11 @@ what was saved of them is dropped at the next login.
   (an /ask question drew under the body), same-day scans are told apart by time, a tracked item's
   row says listed, when, since and looks (the "probably…" guess stays on its page), thousands get
   commas, and Escape clears the search.
+- **Prices on every item tooltip** (2026-11-15): bags, auction house, chat links. Up to three lines:
+  the cheapest listing at the last scan with how many were listed; the usual price (median over your
+  scans, from three up) with "now N% over/under" past 5%, and the 50-unit depth; and what you last sold
+  it for yourself. `/mco tip` turns it off (`DB.tipOff`). A scan sees listings, not sales, which is why
+  the words are "cheapest listed", never "sold for".
 - **Depth and your own sell-through** (2026-11-15): each scan keeps the price of the 10th, 50th and
   200th cheapest unit per item, and Holdings values a lot at the tier it reaches, not the one cheapest
   listing. Expired and cancelled auctions taken from the mail go in the ledger, so an item's page says

@@ -1210,7 +1210,10 @@ SlashCmdList.MINDCOLLECTOROBSERVER = function(msg)
     elseif cmd == "min" then
         local v = tonumber(rest)
         if v and v >= 0.5 then DB.minDwell = v say("a look now needs " .. v .. "s.") else say("usage: /mco min 2.5") end
+    elseif cmd == "tip" then
+        DB.tipOff = not DB.tipOff
+        say("item tooltips " .. (DB.tipOff and "no longer show" or "now show") .. " auction house prices.")
     else
-        say("/mco (window), /mco scan, /mco why <text>, /mco min <seconds>, /mco clear (map points), /ask <question>")
+        say("/mco (window), /mco scan, /mco tip (prices on item tooltips on/off), /mco why <text>, /mco min <seconds>, /mco clear (map points), /ask <question>")
     end
 end
