@@ -198,6 +198,43 @@ if WH:
     lines.append('}')
     print(f'wowhead: {len(S)} recipes, {len(I)} recipe items')
 
+    # How every recipe item is got, for all professions (2026-11-15): recipe_sources.txt, read from the
+    # recipe listings (wowhead.com/forever/items/recipes/<profession>) in the player's Chrome. One line
+    # per item, "item|sources|type|id|zone|category|name": the sources are Wowhead's codes (1 crafted,
+    # 2 drop, 4 quest, 5 vendor, 16 fished, 21 pickpocketed, ...) and the rest is the one place the
+    # listing names (type 1 a mob or vendor, 2 an object, 3 a container item, 5 a quest, 6 a craft, 7 a
+    # zone), its zone (AreaTable) and, for a quest, its zone or QuestSort as the category. A vendor's
+    # name is often missing there; the item's own page has the rest (recipeSources, above).
+    # Written as ns.recipeFrom = {[item] = {"sources", name, where, type}}, only for recipe items a
+    # Forever recipe uses.
+    rs_file = os.path.join(WH, 'recipe_sources.txt')
+    if os.path.exists(rs_file):
+        sorts_rs = {}
+        if os.path.exists(f'{D}/QuestSort.csv'):
+            for row in csv.DictReader(open(f'{D}/QuestSort.csv', encoding='utf-8', newline='')):
+                sorts_rs[int(row['ID'])] = row['SortName_lang']
+        wanted = {iid for iid, _ in item_for_spell.values()}
+        got = {}
+        for raw in open(rs_file, encoding='utf-8'):
+            f = raw.rstrip('\n').split('|')
+            if not f[0] or f[0].startswith('#') or len(f) < 2 or not f[1]:
+                continue
+            f += [''] * (7 - len(f))
+            iid = int(f[0])
+            if iid not in wanted:
+                continue
+            t, z, c, name = f[2], f[4], f[5], f[6]
+            place = zone(z) if z else ''
+            if not place and c:
+                place = zone(c) if int(c) > 0 else sorts_rs.get(-int(c), '')
+            got[iid] = (f[1], name, place, int(t or 0))
+        lines.append('ns.recipeFrom = {')
+        for iid in sorted(got):
+            srcs, name, place, t = got[iid]
+            lines.append(f'  [{iid}] = {{{lua_str(srcs)}, {lua_str(name)}, {lua_str(place)}, {t}}},')
+        lines.append('}')
+        print(f'wowhead: how {len(got)} of {len(wanted)} recipe items are got')
+
     # Quests that ask for a crafting item (Wowhead's "Objective of" on the item's page, 2026-11-12):
     # {quest: {name, level, required level, side (1 Alliance, 2 Horde, else both), class mask,
     # where}}, where is the zone (AreaTable) or, for class and profession quests, the QuestSort name.

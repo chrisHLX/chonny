@@ -202,8 +202,14 @@ addon now tracks all the data you would need to make a lot of gold?").
   restart, not a /reload.
 - **Wowhead rate-limits after about 40 fast page loads** (HTTP 405). Fetch slowly, one page every few
   seconds, in the player's own Chrome. No bot-check workarounds.
-- **Still to fetch from Wowhead:** 99 of 137 Alchemy recipe items' vendors and drops, and all of First
-  Aid and Cooking. Ask Chriso before a long crawl.
+- **Still to fetch from Wowhead:** 99 of 137 Alchemy recipe items' full vendor and drop lists, and
+  the same for every other profession. Ask Chriso before a long crawl. **How each recipe item is got
+  is done** (2026-11-15, `wowhead/recipe_sources.txt`): eight listing pages
+  (`/forever/items/recipes/<profession>`), each item's `source` codes and the one place
+  `sourcemore` names, out of `g_listviews.items.data`. A direct request gets an empty 202, so it was
+  read in Chrome. The javascript tool returns about 1,400 characters, so the text went out through a
+  local `php -S` page (the tab navigated to it with the text in the URL fragment, and it POSTed it to
+  itself). The file's length matched the tab's.
 - **Quests for crafting items are done** (2026-11-12, `wowhead/quests.json`): the 258 crafting items
   Wowhead lists as quest objectives (filter 85), 504 quests. Even at one page every 5 seconds Wowhead
   sent about 20 HTTP 405s; a 60-second pause after each one got through with nothing lost. The data

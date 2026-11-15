@@ -59,6 +59,16 @@ what was saved of them is dropped at the next login.
   only reaches your skill, so flasks, major potions and endgame food never showed. Grouped by
   profession, yours first and open; each row has the skill it needs, mats cost now, what it sells for
   and the profit a craft, most profit first. Clicking one opens its recipe page.
+- **How every recipe is got** (2026-11-15, Chriso: "tells you if its like a drop off a mob or if its
+  from a vendor"): `ns.recipeFrom` in Data.lua, from Wowhead's recipe listing for each profession
+  (`tools/forever-market/wowhead/recipe_sources.txt`, read in Chrome). "drops from Northspring
+  Roguefeather, Feralas", "sold by Lokhtos Darkbargainer, Blackrock Depths", "quest: ... (zone)",
+  "found in Gordok Tribute", "fished", "made with Engineering", then any other way ("or sold by a
+  vendor"). The listing names one place at most, and a vendor's name is often missing: the recipe
+  item's own page (`recipeSources`, Alchemy only) has more, and a vendor you open is still recorded.
+  1,358 of the 1,606 recipes taught by an item say where; Wowhead lists nothing for the rest. Shown
+  on Used at 60 rows, the Professions rows and recipe pages, a recipe item's page and tooltip, and on
+  anything crafted ("Made with Alchemy 240, recipe drops from ...", on its page and tooltip).
 - **Notes on an item** (2026-11-15): the box under every item's page (Tracked, Market, Holdings,
   Ledger, a recipe's product) keeps a note per item (`DB.notes[id] = {text, t}`), shown on its tooltip
   and marked "note" on its Tracked row. It replaced "Why were you looking?", which wrote onto your

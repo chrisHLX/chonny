@@ -575,6 +575,52 @@ local function craftedBy(item)
     return craftedByIndex[item]
 end
 
+-- How a recipe item is got, every profession (2026-11-15, Chriso: "tells you if its like a drop off a
+-- mob or if its from a vendor"): Data.lua's ns.recipeFrom, from Wowhead's recipe listings. Sources are
+-- Wowhead's codes; the name is the one place the listing gives (a mob, vendor, quest, object, zone).
+-- "drops from Northspring Roguefeather, Feralas", "sold by Lokhtos Darkbargainer, Blackrock Depths",
+-- "quest: The Origins of Smithing (Blacksmithing)", then any other way: ", or sold by a vendor".
+local FROM_WORDS = { ["1"] = "made by a profession", ["2"] = "drops", ["3"] = "PvP", ["4"] = "a quest", ["5"] = "sold by a vendor",
+    ["11"] = "a world event", ["12"] = "an achievement", ["16"] = "fished", ["21"] = "pickpocketed" }
+local fromCache = {}
+local function recipeFrom(item)
+    if fromCache[item] ~= nil then return fromCache[item] or nil end
+    local f = ns.recipeFrom and ns.recipeFrom[item]
+    if not f then fromCache[item] = false return nil end
+    local codes, has = {}, {}
+    for c in f[1]:gmatch("%d+") do table.insert(codes, c) has[c] = true end
+    local name, place, t = f[2], f[3], f[4]
+    local at = place ~= "" and (", " .. place) or ""
+    local main, used
+    if name ~= "" and t == 1 then
+        if has["2"] then main, used = "drops from " .. name .. at, "2"
+        elseif has["5"] then main, used = "sold by " .. name .. at, "5"
+        elseif has["21"] then main, used = "pickpocketed from " .. name .. at, "21"
+        else main = "from " .. name .. at end
+    elseif name ~= "" and t == 5 then
+        main, used = "quest: " .. name .. (place ~= "" and (" (" .. place .. ")") or ""), "4"
+    elseif name ~= "" and (t == 2 or t == 3) then
+        main = "found in " .. name .. at
+        used = has["2"] and "2" or nil
+    elseif name ~= "" and t == 7 then
+        main, used = (has["16"] and "fished in " or "from ") .. name, has["16"] and "16" or nil
+    elseif has["1"] then
+        local by = craftedBy(item)
+        main, used = "made with " .. (by and ns.PROF_NAMES[by[1]] or "a profession"), "1"
+    end
+    local rest = {}
+    for _, c in ipairs(codes) do
+        if c ~= used and FROM_WORDS[c] then table.insert(rest, FROM_WORDS[c]) end
+    end
+    if not main then
+        main = table.remove(rest, 1)
+        if main and place ~= "" then main = main .. " in " .. place end
+    end
+    local text = main and (main .. (#rest > 0 and (", or " .. table.concat(rest, ", or ")) or "")) or nil
+    fromCache[item] = text or false
+    return text
+end
+
 -- Where a recipe comes from, from what you've seen: the trainer (skill, level, cost, where they
 -- stand) or the vendor selling its recipe item. Returns a short text for the list, lines for the
 -- details, and a map point when a place is known.
@@ -650,8 +696,14 @@ local function sourceOf(r, profName)
         if r.src:find("2") then table.insert(how, "drops") end
         if r.src:find("4") then table.insert(how, "a quest reward") end
         if #how > 0 then
+            local from = r[10] and r[10] > 0 and recipeFrom(r[10])
             table.insert(lines, (r[10] and r[10] > 0) and string.format("Recipe item: %s, needs %s %d", itemName(r[10]), profName or "skill", r[3])
                 or string.format("Recipe: needs %s %d", profName or "skill", r[3]))
+            if from then
+                table.insert(lines, "  " .. from:gsub("^%l", string.upper))
+                if from:find("sold by") then table.insert(lines, grey("  Open the vendor once and its spot shows here, with Show on map.")) end
+                return short or ("recipe: " .. from), lines, point
+            end
             table.insert(lines, grey("  Wowhead says it's " .. table.concat(how, " or ") .. "; ask where, or open the vendor when you find it."))
             return short or ("recipe: " .. how[1]), lines, point
         end
@@ -669,9 +721,16 @@ local function sourceOf(r, profName)
                 v.currency and "for a currency" or ns.money(v.price or 0), v.limited and string.format(", limited (%d left when seen)", v.limited) or "")))
             if v.x and not point then point = { zone = v.zone, x = v.x, y = v.y, label = (v.by or "Vendor") .. " (" .. itemName(item) .. ")" } end
         else
-            short = short or "recipe item"
+            local from = recipeFrom(item)
             table.insert(lines, itemLine)
-            table.insert(lines, grey("  Not seen at a vendor yet: it may drop, come from a quest, or be sold for Merchant's Favor."))
+            if from then
+                short = short or ("recipe: " .. from)
+                table.insert(lines, "  " .. from:gsub("^%l", string.upper))
+                if from:find("sold by") then table.insert(lines, grey("  Open the vendor once and its spot shows here, with Show on map.")) end
+            else
+                short = short or "recipe item"
+                table.insert(lines, grey("  Not seen at a vendor yet: it may drop, come from a quest, or be sold for Merchant's Favor."))
+            end
         end
     elseif not t and r.src == "" then
         short = "source unknown"
@@ -814,11 +873,33 @@ local function recipeCostLines(pid, r, short)
 end
 
 -- On a recipe item's page in the window: what it teaches and what that costs to make now.
+-- How a recipe is learned, in one line: the recipe item's source, or a trainer (15 Nov).
+local function learnedText(r)
+    if r[10] and r[10] > 0 then return "recipe " .. (recipeFrom(r[10]) or "item, source unknown") end
+    return "from a trainer"
+end
+
+-- Something a profession makes (the potion, not its recipe): which one, and how its recipe is got.
+local function madeByText(id)
+    local by = craftedBy(id)
+    if not by then return nil end
+    return string.format("Made with %s %d, %s", ns.PROF_NAMES[by[1]] or "a profession", by[2][3], learnedText(by[2]))
+end
+
 local function teachesLines(id, lines)
     local pid, r = recipeTaughtBy(id)
-    if not pid then return end
+    if not pid then
+        local made = madeByText(id)
+        if made then
+            table.insert(lines, "")
+            table.insert(lines, made)
+        end
+        return
+    end
     table.insert(lines, "")
     table.insert(lines, color(GOLD_HEX, "Teaches ") .. r[2])
+    local from = recipeFrom(id)
+    if from then table.insert(lines, "This recipe: " .. from) end
     for _, l in ipairs(recipeCostLines(pid, r)) do table.insert(lines, l) end
 end
 
@@ -1696,9 +1777,11 @@ local function drawList()
                         local value = x.profit and (x.profit >= 0 and color("ff40d060", "+" .. ns.money(x.profit) .. " a craft")
                             or ("loses " .. ns.money(-x.profit))) or (x.missing == 0 and ("costs " .. ns.money(x.cost)) or grey("prices unknown"))
                         local bits = { (my and r2[3] > rank) and color("ffff8040", "needs " .. r2[3]) or ("from " .. r2[3]) }
+                        if my and knownRecipe(r2[1]) == true then table.insert(bits, "known")
+                        elseif r2[10] and r2[10] > 0 then table.insert(bits, recipeFrom(r2[10]) or "recipe item, source unknown")
+                        else table.insert(bits, "trainer") end
                         if x.missing == 0 then table.insert(bits, "mats " .. ns.money(x.cost)) end
                         if x.p then table.insert(bits, "sells " .. ns.money(x.p.min) .. (x.p.q and (", " .. commas(x.p.q) .. " listed") or "")) end
-                        if my and knownRecipe(r2[1]) == true then table.insert(bits, "known") end
                         n = n + 1
                         local rr = rows[n] or makeRow(n)
                         fillRow(rr, "recipe:" .. pid .. ":" .. x.idx, (r2[7] > 0 and C_Item.GetItemIconByID(r2[7])) or C_Spell.GetSpellTexture(r2[1]),
@@ -2802,7 +2885,12 @@ local function tooltipLines(id)
     local pid, r = recipeTaughtBy(id)
     if pid then
         table.insert(out, color(GOLD_HEX, "Teaches ") .. r[2])
+        local from = recipeFrom(id)
+        if from then table.insert(out, grey((from:gsub("^%l", string.upper)))) end
         for _, l in ipairs(recipeCostLines(pid, r, true)) do table.insert(out, l) end
+    else
+        local made = madeByText(id)
+        if made then table.insert(out, grey(made)) end
     end
     return out
 end
