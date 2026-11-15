@@ -96,7 +96,7 @@ internal sealed class MainForm : Form
         // The side open last time (the switch at the top of the menu).
         if (_settings.Section == "forever") _tab = "Fights";
 
-        Text = "MindCollector";
+        Text = $"MindCollector {Application.ProductVersion.Split('+')[0]}";
         Icon = Theme.AppIcon();
         Size = new Size(1400, 880);
         MinimumSize = new Size(1040, 560);   // 1040 (0.6.14): room for the Update button beside Settings

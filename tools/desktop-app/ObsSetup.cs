@@ -326,14 +326,18 @@ public static class ObsSetup
             if (await obs.TryRequestAsync("GetSceneItemId", new JsonObject { ["sceneName"] = WowSceneName, ["sourceName"] = WowSceneInput }, ct) is { } own
                 && own.TryGetProperty("sceneItemId", out var ownId))
                 await FitToCanvasAsync(obs, WowSceneName, ownId.GetInt32(), ct);
-            return (remember?.ObsSceneToRestore, await ApplySoundAsync(obs, remember, ct));
+            return (remember?.ObsSceneToRestore, await ApplySoundAsync(obs, remember, WowSceneInput, ct));
         }
         if (await obs.TryRequestAsync("GetStreamStatus", null, ct) is { } stream
             && stream.TryGetProperty("outputActive", out var live) && live.GetBoolean()) return (null, null);
 
         if (await obs.TryRequestAsync("GetSceneItemList", new JsonObject { ["sceneName"] = scene }, ct) is not { } items
             || !items.TryGetProperty("sceneItems", out var list)) return (null, null);
-        await FitOwnCaptureAsync(obs, scene, list, ct);
+        // The player's scene holding only the capture the app added (an empty OBS, set up by the app):
+        // nothing to switch, but the sound is still the app's to set. Before 0.6.30 it was skipped here,
+        // so Desktop Audio stayed on and Cbags' clips had their music in them (15 Nov).
+        if (await FitOwnCaptureAsync(obs, scene, list, ct))
+            return (null, await ApplySoundAsync(obs, remember, OwnCaptureName, ct));
         foreach (var item in list.EnumerateArray())
         {
             if (item.TryGetProperty("sceneItemEnabled", out var on) && !on.GetBoolean()) continue;
@@ -345,7 +349,7 @@ public static class ObsSetup
         if (await obs.TryRequestAsync("SetCurrentProgramScene", new JsonObject { ["sceneName"] = WowSceneName }, ct) == null)
             return (null, null);
         if (remember != null) { remember.ObsSceneToRestore = scene; remember.Save(); }
-        var sound = await ApplySoundAsync(obs, remember, ct);
+        var sound = await ApplySoundAsync(obs, remember, WowSceneInput, ct);
         return (scene, (created
             ? $"Recording WoW with a Game Capture of the game (a new OBS scene, \"{WowSceneName}\"), not your screen capture; OBS goes back to \"{scene}\" when the app stops recording."
             : $"Recording WoW with the app's Game Capture scene; OBS goes back to \"{scene}\" when the app stops recording.") + (sound != null ? " " + sound : ""));
@@ -374,16 +378,24 @@ public static class ObsSetup
     /// muted is kept in settings and unmuted afterwards. "everything": no game audio capture, Desktop
     /// Audio as the player has it. The microphone is muted with it (0.6.16: Chriso's first battleground
     /// clips had his own voice and an echo; WoW's sound only means only WoW's).
+    /// <paramref name="capture"/> is the app's scene's capture, or the one it added to the player's empty
+    /// scene; that one sits in the player's own scene, so its game audio is turned off again afterwards
+    /// (RestoreSoundAsync), or OBS on its own would hear WoW twice once Desktop Audio is back.
     /// </summary>
-    private static async Task<string?> ApplySoundAsync(ObsClient obs, AppSettings? remember, CancellationToken ct)
+    private static async Task<string?> ApplySoundAsync(ObsClient obs, AppSettings? remember, string capture, CancellationToken ct)
     {
         var wowOnly = remember?.RecordSound != "everything";
         await obs.TryRequestAsync("SetInputSettings", new JsonObject
         {
-            ["inputName"] = WowSceneInput,
+            ["inputName"] = capture,
             ["inputSettings"] = new JsonObject { ["capture_audio"] = wowOnly },
             ["overlay"] = true,
         }, ct);
+        if (capture == OwnCaptureName && wowOnly && remember is { ObsOwnCaptureAudio: false })
+        {
+            remember.ObsOwnCaptureAudio = true;
+            remember.Save();
+        }
         if (!wowOnly || remember == null) return null;
         var special = await obs.TryRequestAsync("GetSpecialInputs", null, ct);
         var muted = new List<string>();
@@ -403,6 +415,17 @@ public static class ObsSetup
     /// <summary>Unmutes what <see cref="ApplySoundAsync"/> muted.</summary>
     private static async Task RestoreSoundAsync(ObsClient obs, AppSettings? remember, CancellationToken ct)
     {
+        if (remember is { ObsOwnCaptureAudio: true } && obs.Connected
+            && await obs.TryRequestAsync("SetInputSettings", new JsonObject
+            {
+                ["inputName"] = OwnCaptureName,
+                ["inputSettings"] = new JsonObject { ["capture_audio"] = false },
+                ["overlay"] = true,
+            }, ct) != null)
+        {
+            remember.ObsOwnCaptureAudio = false;
+            remember.Save();
+        }
         if (remember?.ObsMutedForWow is not { Count: > 0 } muted || !obs.Connected) return;
         foreach (var name in muted)
             await obs.TryRequestAsync("SetInputMute", new JsonObject { ["inputName"] = name, ["inputMuted"] = false }, ct);
@@ -469,15 +492,16 @@ public static class ObsSetup
     /// left as it is. Before 0.6.23 that capture was added unfitted, so installs set up then are fixed
     /// here, at their next recording.
     /// </summary>
-    private static async Task FitOwnCaptureAsync(ObsClient obs, string scene, JsonElement items, CancellationToken ct)
+    private static async Task<bool> FitOwnCaptureAsync(ObsClient obs, string scene, JsonElement items, CancellationToken ct)
     {
         var all = items.EnumerateArray().ToList();
-        if (all.Count != 1) return;
+        if (all.Count != 1) return false;
         var item = all[0];
-        if (item.TryGetProperty("sourceName", out var name) && name.GetString() == OwnCaptureName
+        if (!(item.TryGetProperty("sourceName", out var name) && name.GetString() == OwnCaptureName
             && item.TryGetProperty("inputKind", out var kind) && kind.GetString() == "game_capture"
-            && item.TryGetProperty("sceneItemId", out var id))
-            await FitToCanvasAsync(obs, scene, id.GetInt32(), ct);
+            && item.TryGetProperty("sceneItemId", out var id))) return false;
+        await FitToCanvasAsync(obs, scene, id.GetInt32(), ct);
+        return true;
     }
 
     private static async Task<string?> ProgramSceneAsync(ObsClient obs, CancellationToken ct)

@@ -67,6 +67,9 @@ public sealed class AppSettings
     /// <summary>OBS audio sources the app muted for a WoW-only recording, to unmute afterwards (even after a crash).</summary>
     public List<string>? ObsMutedForWow { get; set; }
 
+    /// <summary>The app turned on game audio on the capture it added to the player's own scene, to turn off afterwards (0.6.30).</summary>
+    public bool ObsOwnCaptureAudio { get; set; }
+
     /// <summary>The side of the app last open: null for retail, "forever" for WoW Forever (the switch at the top of the menu).</summary>
     public string? Section { get; set; }
 

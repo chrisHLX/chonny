@@ -358,6 +358,15 @@ capturing WoW's audio, and Desktop Audio and the microphone were unmuted, so WoW
 few milliseconds apart (and his voice). From 0.6.12 the app mutes Desktop Audio while it records; from
 0.6.16 the microphone too.
 
+**Music in the clips on an up-to-date app (15 Nov, Cbags).** WoW-only sound was applied only when the
+app switched OBS to its own scene. A player whose OBS was empty gets the app's "World of Warcraft" Game
+Capture added to their own scene instead (`EnsureWowCaptureAsync`), and that scene is a game capture, so
+nothing was switched and the sound step was skipped: Desktop Audio stayed on, with the music. From
+0.6.30 that capture gets the same treatment (game audio on, Desktop Audio and the microphone muted while
+the app records), and its game audio is turned off again afterwards (`ObsOwnCaptureAudio`), so OBS on
+its own doesn't hear WoW twice. A scene the player built themselves is still recorded as it is. The
+window title shows the version from 0.6.30, since there was no way to tell which one a player had.
+
 **WoW-only sound and the encoder (same day, `--loudness`, `--obs-set-encoder`).** With music playing,
 two 10s recordings back to back: "everything" -16.0 dBFS and level every second (the music); WoW only
 -41.8 dBFS, moving with the game: 26 dB quieter, the music gone, Desktop Audio unmuted afterwards. The
