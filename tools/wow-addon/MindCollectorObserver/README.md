@@ -53,6 +53,12 @@ what was saved of them is dropped at the next login.
   (an /ask question drew under the body), same-day scans are told apart by time, a tracked item's
   row says listed, when, since and looks (the "probably…" guess stays on its page), thousands get
   commas, and Escape clears the search.
+- **Used at 60** (2026-11-15): at the bottom of Professions, every profession's consumables and
+  enchants that Data.lua marks as used at max level (field 11; `used_at_60` in `observer_data.py`:
+  a consumable needing level 35+, or an enchant yellow at 250+), whatever your skill. The list above
+  only reaches your skill, so flasks, major potions and endgame food never showed. Grouped by
+  profession, yours first and open; each row has the skill it needs, mats cost now, what it sells for
+  and the profit a craft, most profit first. Clicking one opens its recipe page.
 - **Notes on an item** (2026-11-15): the box under every item's page (Tracked, Market, Holdings,
   Ledger, a recipe's product) keeps a note per item (`DB.notes[id] = {text, t}`), shown on its tooltip
   and marked "note" on its Tracked row. It replaced "Why were you looking?", which wrote onto your

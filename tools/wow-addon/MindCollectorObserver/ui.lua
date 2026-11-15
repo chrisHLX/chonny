@@ -1216,6 +1216,14 @@ local function makeRow(i)
             if link then ChatEdit_InsertLink(link) end
             return
         end
+        -- the Used at 60 section: its heading opens and closes it, a profession's heading opens that group
+        if self.key == "e60" or (self.key and self.key:match("^e60:")) then
+            ns.DB.e60Open = ns.DB.e60Open or {}
+            local k = self.key == "e60" and "all" or tonumber(self.key:match("^e60:(%d+)$"))
+            ns.DB.e60Open[k] = not self.open
+            refresh()
+            return
+        end
         if self.key and self.key:match("^sortmode:") then
             ns.DB.profSort = NEXT_SORT[ns.DB.profSort] or "sell"
             refresh()
@@ -1624,6 +1632,79 @@ local function drawList()
                     fillRow(rr, "soon:" .. pid, "Interface\\Icons\\INV_Misc_Book_09", "   Coming up", "ffaaaaaa", "",
                         "   " .. table.concat(names, ", "))
                     place(rr)
+                end
+            end
+        end
+        -- Used at 60 (15 Nov, Chriso: "the max level consumables from professions"): every recipe whose
+        -- product the game data marks as used at 60 (Data.lua field 11, observer_data.py used_at_60) and
+        -- is a consumable, plus enchants, in every profession, whatever your skill. The list above only
+        -- reaches your skill, so these never showed. Grouped by profession, yours first and open.
+        local mine, groups, order = ns.myProfessions and ns.myProfessions() or {}, {}, {}
+        for pid, rl in pairs(ns.recipes or {}) do
+            for idx, r in ipairs(rl) do
+                if r[11] == 1 and matches(r[2]) then
+                    -- worked out once per recipe: the item class never changes
+                    if r.cons == nil then r.cons = r[7] == 0 or select(6, C_Item.GetItemInfoInstant(r[7])) == 0 end
+                    if r.cons then
+                        if not groups[pid] then groups[pid] = {}; table.insert(order, pid) end
+                        table.insert(groups[pid], { idx = idx, r = r })
+                    end
+                end
+            end
+        end
+        table.sort(order, function(a, b)
+            if (mine[a] ~= nil) ~= (mine[b] ~= nil) then return mine[a] ~= nil end
+            return (ns.PROF_NAMES[a] or "") < (ns.PROF_NAMES[b] or "")
+        end)
+        local total = 0
+        for _, pid in ipairs(order) do total = total + #groups[pid] end
+        if total > 0 then
+            local open = not (ns.DB.e60Open and ns.DB.e60Open.all == false)
+            n = n + 1
+            local r = rows[n] or makeRow(n)
+            fillRow(r, "e60", "Interface\\Icons\\INV_Potion_97", "Used at 60", GOLD_HEX, grey(open and "click to close" or "click to open"),
+                string.format("%d consumables and enchants used at max level, in %d profession%s, whatever your skill", total, #order, #order == 1 and "" or "s"))
+            r.open = open
+            place(r)
+            for _, pid in ipairs(open and order or {}) do
+                local my = mine[pid]
+                local gOpen = ns.DB.e60Open and ns.DB.e60Open[pid]
+                if gOpen == nil then gOpen = my ~= nil end
+                n = n + 1
+                local h = rows[n] or makeRow(n)
+                fillRow(h, "e60:" .. pid, PROF_ICONS[pid] or "Interface\\Icons\\INV_Misc_QuestionMark", "   " .. (ns.PROF_NAMES[pid] or "?"), GOLD_HEX,
+                    #groups[pid] .. " recipes", "   " .. (my and ("yours, " .. (my.rank or 0)) or "not one of yours") .. "  ·  " .. (gOpen and "click to close" or "click to open"))
+                h.open = gOpen
+                place(h)
+                if gOpen then
+                    local rank = my and my.rank or 0
+                    local items = groups[pid]
+                    for _, x in ipairs(items) do
+                        x.cost, x.missing = recipeCost(x.r, pid, rank)
+                        x.net, x.p = sellValue(x.r)
+                        x.profit = x.missing == 0 and x.net and x.net - x.cost or nil
+                    end
+                    -- most profit first; those without a price after, by the skill they need
+                    table.sort(items, function(a, b)
+                        if (a.profit ~= nil) ~= (b.profit ~= nil) then return a.profit ~= nil end
+                        if a.profit and b.profit and a.profit ~= b.profit then return a.profit > b.profit end
+                        return a.r[3] > b.r[3]
+                    end)
+                    for _, x in ipairs(items) do
+                        local r2 = x.r
+                        local hex = my and (r2[3] > rank and "ffff8040" or skillColor(r2, rank)) or "ffffffff"
+                        local value = x.profit and (x.profit >= 0 and color("ff40d060", "+" .. ns.money(x.profit) .. " a craft")
+                            or ("loses " .. ns.money(-x.profit))) or (x.missing == 0 and ("costs " .. ns.money(x.cost)) or grey("prices unknown"))
+                        local bits = { (my and r2[3] > rank) and color("ffff8040", "needs " .. r2[3]) or ("from " .. r2[3]) }
+                        if x.missing == 0 then table.insert(bits, "mats " .. ns.money(x.cost)) end
+                        if x.p then table.insert(bits, "sells " .. ns.money(x.p.min) .. (x.p.q and (", " .. commas(x.p.q) .. " listed") or "")) end
+                        if my and knownRecipe(r2[1]) == true then table.insert(bits, "known") end
+                        n = n + 1
+                        local rr = rows[n] or makeRow(n)
+                        fillRow(rr, "recipe:" .. pid .. ":" .. x.idx, (r2[7] > 0 and C_Item.GetItemIconByID(r2[7])) or C_Spell.GetSpellTexture(r2[1]),
+                            "      " .. r2[2], hex, value, "      " .. table.concat(bits, "  ·  "), r2[7] > 0 and r2[7] or nil, r2[1])
+                        place(rr)
+                    end
                 end
             end
         end
@@ -2091,6 +2172,7 @@ local function drawDetail()
     end
     if not selectedKey then
         local hint = tab == "prof" and { grey("Click a profession to see the recipes that give a point at your skill, cheapest per point first."), "",
+                grey("Used at 60, at the bottom: the consumables and enchants every profession makes for max level, whatever your skill, most profit first."), "",
                 grey("A full auction house scan (Market tab, or /mco scan) prices every reagent at once.") }
             or tab == "movers" and { grey("The biggest price moves on the whole auction house between your last two full scans.") }
             or tab == "ledger" and { grey("What you made, bought and sold. Click a line for its details; click an item to see what each one cost and earned.") }
