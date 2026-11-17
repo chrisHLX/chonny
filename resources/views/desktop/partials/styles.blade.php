@@ -234,7 +234,7 @@
     .actions a.plain:hover { background: #3E3E3E; }
 
     .grid2 { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 14px; }
-    .grid2 + .grid2, .grid2 + .section, .section + .grid2 { margin-top: 14px; }
+    .grid2 + .grid2, .grid2 + .section, .section + .grid2, .kt-card + .grid2 { margin-top: 14px; }
     .grid2.lead { grid-template-columns: minmax(0, 2fr) minmax(0, 3fr); }
     .grid2.top { align-items: start; }
     .card { background: #181818; border-radius: 10px; padding: 14px 16px; min-width: 0; }
@@ -252,9 +252,11 @@
     .tile .v { font-size: 22px; font-weight: 800; letter-spacing: -.02em; margin-top: 4px; white-space: nowrap; font-variant-numeric: tabular-nums; }
     .tile .s { font-size: 11.5px; color: #6A6A6A; }
 
-    /* Key events: one line of time down the left. */
-    .events { position: relative; }
+    /* Key events: one line of time down the left. Evenly spaced, so two lit rows never run together;
+       margin 0 because a death row also matches the death cards' .death rule (2026-11-18). */
+    .events { position: relative; display: flex; flex-direction: column; gap: 4px; }
     .ev { display: flex; align-items: center; gap: 10px; padding: 5px 8px; border-radius: 8px; }
+    .events .ev { margin: 0; }
     .ev .t { width: 38px; flex-shrink: 0; color: #B3B3B3; font-variant-numeric: tabular-nums; font-size: 12.5px; }
     .ev .dot { width: 26px; height: 26px; flex-shrink: 0; border-radius: 13px; background: #232323; display: flex; align-items: center; justify-content: center; overflow: hidden; }
     .ev .dot img { width: 26px; height: 26px; }
