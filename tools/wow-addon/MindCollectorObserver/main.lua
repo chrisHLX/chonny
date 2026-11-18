@@ -833,9 +833,16 @@ local function hookAuctionHouse()
             pendingCommodity = { i = itemID, q = quantity }
         end)
     end
+    -- A single auction (a recipe, gear): Blizzard's buyout waits for AUCTION_HOUSE_PURCHASE_COMPLETED
+    -- with the auction's id; ITEM_PURCHASED never came for one (2026-11-18: 33 purchases in Chriso's
+    -- ledger, all stackable, none of the recipes he bought to flip). The item is read here, while the
+    -- auction is still in the search results. A bid under the buyout isn't a purchase yet.
     if C_AuctionHouse.PlaceBid then
         hooksecurefunc(C_AuctionHouse, "PlaceBid", function(auctionID, amount)
-            pendingBid = { id = auctionID, c = amount }
+            local info = C_AuctionHouse.GetAuctionInfoByID and C_AuctionHouse.GetAuctionInfoByID(auctionID)
+            local key = (info and info.itemKey) or (AuctionHouseFrame and AuctionHouseFrame.ItemBuyFrame and AuctionHouseFrame.ItemBuyFrame.itemKey)
+            local buyout = info and info.buyoutAmount
+            pendingBid = { id = auctionID, c = amount, i = key and key.itemID, bid = buyout and amount < buyout or nil }
         end)
     end
 end
@@ -1083,6 +1090,7 @@ ev:RegisterUnitEvent("UNIT_SPELLCAST_SUCCEEDED", "player") -- your casts only: c
 ev:RegisterEvent("COMMODITY_PRICE_UPDATED")
 ev:RegisterEvent("COMMODITY_PURCHASE_SUCCEEDED")
 ev:RegisterEvent("ITEM_PURCHASED")
+ev:RegisterEvent("AUCTION_HOUSE_PURCHASE_COMPLETED")
 ev:RegisterEvent("MAIL_SHOW")
 ev:RegisterEvent("MAIL_INBOX_UPDATE")
 ev:RegisterEvent("MAIL_CLOSED")
@@ -1141,12 +1149,16 @@ ev:SetScript("OnEvent", function(_, event, ...)
         local c = pendingCommodity
         if c and c.c then ledger({ k = "ahbuy", i = c.i, n = C_Item.GetItemNameByID(c.i) or ("item " .. c.i), q = c.q, c = -c.c }) end
         pendingCommodity = nil
-    elseif event == "ITEM_PURCHASED" then
-        local itemID = ...
-        if pendingBid and itemID then
-            ledger({ k = "ahbuy", i = itemID, n = C_Item.GetItemNameByID(itemID) or ("item " .. itemID), q = 1, c = -pendingBid.c })
+    elseif event == "AUCTION_HOUSE_PURCHASE_COMPLETED" or event == "ITEM_PURCHASED" then
+        -- whichever comes first records it; the other finds nothing pending
+        local b = pendingBid
+        local arg = ...
+        local itemID = event == "ITEM_PURCHASED" and arg or (b and b.i)
+        local matches = b and (event == "ITEM_PURCHASED" or arg == b.id)
+        if matches and itemID and not b.bid then
+            ledger({ k = "ahbuy", i = itemID, n = C_Item.GetItemNameByID(itemID) or ("item " .. itemID), q = 1, c = -b.c })
         end
-        pendingBid = nil
+        if matches then pendingBid = nil end
     elseif event == "MAIL_SHOW" then
         mailOpen = true
         snapshotMail(true)

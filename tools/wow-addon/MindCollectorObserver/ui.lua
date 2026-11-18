@@ -872,6 +872,57 @@ local function recipeCostLines(pid, r, short)
     return out
 end
 
+-- What you last paid for an item and last sold it for, per unit, from the ledger. One pass builds both,
+-- and only when the ledger has changed (its length and newest line), so a tooltip is a table lookup,
+-- not a walk of up to 3,000 lines each time it's drawn (2026-11-18). Sales are kept by name too: an
+-- auction invoice carries no item id.
+local ledgerIdx, ledgerKey
+local function ledgerIndex()
+    local L = ns.DB.ledger or {}
+    local last = L[#L]
+    local key = #L .. ":" .. (last and last.t or 0) .. ":" .. (last and last.k or "")
+    if key ~= ledgerKey then
+        local sale, buy = {}, {}
+        for i = 1, #L do
+            local e = L[i]
+            local q = e.q or 0
+            if q > 0 then
+                if e.k == "ahsale" then
+                    local v = { (e.gross or e.c) / q, e.t }
+                    if e.i and e.i > 0 then sale[e.i] = v end
+                    if e.n then sale[e.n] = v end
+                elseif (e.k == "ahbuy" or e.k == "vbuy") and e.i and e.i > 0 and e.c then
+                    buy[e.i] = { -e.c / q, e.t, e.k == "vbuy" and "vendor" or "auction" }
+                end
+            end
+        end
+        ledgerIdx, ledgerKey = { sale = sale, buy = buy }, key
+    end
+    return ledgerIdx
+end
+
+local function lastSale(id)
+    local x = ledgerIndex()
+    local v = x.sale[id] or x.sale[C_Item.GetItemNameByID(id) or false]
+    if v then return v[1], v[2] end
+end
+
+-- What you last paid for it: price each, when, and "auction" or "vendor".
+local function lastBuy(id)
+    local v = ledgerIndex().buy[id]
+    if v then return v[1], v[2], v[3] end
+end
+
+-- One line for a tooltip or an item's page: what you paid and what you sold at, the latest of each.
+local function tradeLine(id)
+    local bits = {}
+    local paid, pt, where = lastBuy(id)
+    if paid then table.insert(bits, "you paid " .. ns.money(paid) .. " each" .. (where == "vendor" and " at a vendor" or "") .. ", " .. date("%d %b", pt)) end
+    local sold, st = lastSale(id)
+    if sold then table.insert(bits, "sold at " .. ns.money(sold) .. " each, " .. date("%d %b", st)) end
+    if #bits > 0 then return table.concat(bits, "  ·  ") end
+end
+
 -- On a recipe item's page in the window: what it teaches and what that costs to make now.
 -- How a recipe is learned, in one line: the recipe item's source, or a trainer (15 Nov).
 local function learnedText(r)
@@ -2428,6 +2479,8 @@ local function drawDetail()
         if v and o then table.insert(lines, "Change: " .. changeText(o[1], v[1])) end
         local depth = depthLine(id)
         if depth then table.insert(lines, depth) end
+        local trade = tradeLine(id)
+        if trade then table.insert(lines, (trade:gsub("^%l", string.upper))) end
         teachesLines(id, lines)
         listingLines(id, lines)
         timeOfDayLines(id, lines)
@@ -2466,6 +2519,8 @@ local function drawDetail()
         if have and have > 0 then table.insert(lines, "You have " .. have) end
         local depth = depthLine(s.id)
         if depth then table.insert(lines, depth) end
+        local trade = tradeLine(s.id)
+        if trade then table.insert(lines, (trade:gsub("^%l", string.upper))) end
         teachesLines(s.id, lines)
         listingLines(s.id, lines)
         timeOfDayLines(s.id, lines)
@@ -2843,19 +2898,6 @@ local function usualPrice(id)
     return usual, #prices
 end
 
--- What you last sold an item for, per unit, from the ledger's auction sales (matched by name: the
--- invoice carries no item id), and when.
-local function lastSale(id)
-    local name = C_Item.GetItemNameByID(id)
-    local L = ns.DB.ledger or {}
-    for i = #L, 1, -1 do
-        local e = L[i]
-        if e.k == "ahsale" and (e.i == id or (name and e.n == name)) and (e.q or 0) > 0 then
-            return (e.gross or e.c) / e.q, e.t
-        end
-    end
-end
-
 local function tooltipLines(id)
     local out = {}
     local note = noteOf(id)
@@ -2879,8 +2921,8 @@ local function tooltipLines(id)
         if d and d[2] then table.insert(bits, "50 units under " .. ns.money(d[2])) end
         table.insert(out, grey(table.concat(bits, "  ·  ")))
     end
-    local sold, at = lastSale(id)
-    if sold then table.insert(out, grey("you last sold it at " .. ns.money(sold) .. " each, " .. date("%d %b", at))) end
+    local trade = tradeLine(id)
+    if trade then table.insert(out, grey((trade:gsub("^%l", string.upper)))) end
     -- a recipe: what its reagents cost now, and what the craft earns
     local pid, r = recipeTaughtBy(id)
     if pid then

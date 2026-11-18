@@ -59,6 +59,15 @@ what was saved of them is dropped at the next login.
   only reaches your skill, so flasks, major potions and endgame food never showed. Grouped by
   profession, yours first and open; each row has the skill it needs, mats cost now, what it sells for
   and the profit a craft, most profit first. Clicking one opens its recipe page.
+- **What you paid, for single auctions too** (2026-11-18, Chriso flipping recipes): a buyout of one
+  auction (a recipe, gear) was never written to the ledger. The addon waited for `ITEM_PURCHASED`,
+  which doesn't come for one; Blizzard's own buyout waits for `AUCTION_HOUSE_PURCHASE_COMPLETED` with
+  the auction's id. Of 33 purchases in his ledger, all were stackable (commodities). Now `PlaceBid`
+  notes the item from `GetAuctionInfoByID` (the buy frame's item as a fallback) and the completed event
+  writes the line; a bid under the buyout isn't a purchase. Purchases before this are lost. Item
+  tooltips and the Market and Tracked pages say "You paid X each, date · sold at Y each, date", from
+  one index of the ledger rebuilt only when it changes (the tooltip used to walk the whole ledger each
+  time it was drawn). Holdings picks the cost up as it does for herbs.
 - **How every recipe is got** (2026-11-15, Chriso: "tells you if its like a drop off a mob or if its
   from a vendor"): `ns.recipeFrom` in Data.lua, from Wowhead's recipe listing for each profession
   (`tools/forever-market/wowhead/recipe_sources.txt`, read in Chrome). "drops from Northspring
