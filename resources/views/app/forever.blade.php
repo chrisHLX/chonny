@@ -65,7 +65,7 @@
     {{-- What it does --}}
     <h2 class="text-[24px] font-bold text-ink mt-12 mb-4">What the addon does</h2>
     <div class="grid sm:grid-cols-2 gap-3">
-        <div class="linear-card p-5">
+        <div id="professions" class="linear-card p-5 scroll-mt-20">
             <div class="flex items-center gap-3 mb-3">
                 <x-mc-icon name="icon-flask" class="w-6 h-6 text-gold"/>
                 <h3 class="text-[17px] font-bold text-ink">Professions</h3>
@@ -80,7 +80,7 @@
                 <li class="flex gap-2"><span class="text-gold">•</span>Where each recipe comes from: the trainer's skill and fee, or the vendors and drops for its recipe</li>
             </ul>
         </div>
-        <div class="linear-card p-5">
+        <div id="auction" class="linear-card p-5 scroll-mt-20">
             <div class="flex items-center gap-3 mb-3">
                 <x-mc-icon name="icon-delta" class="w-6 h-6 text-gold"/>
                 <h3 class="text-[17px] font-bold text-ink">The auction house</h3>
@@ -95,7 +95,7 @@
                 <li class="flex gap-2"><span class="text-gold">•</span>Track an item to keep every reading of its price and listings</li>
             </ul>
         </div>
-        <div class="linear-card p-5">
+        <div id="uses" class="linear-card p-5 scroll-mt-20">
             <div class="flex items-center gap-3 mb-3">
                 <x-mc-icon name="icon-compass" class="w-6 h-6 text-gold"/>
                 <h3 class="text-[17px] font-bold text-ink">What every item is used for</h3>
@@ -109,7 +109,7 @@
                 <li class="flex gap-2"><span class="text-gold">•</span>Click a recipe to open it in Professions</li>
             </ul>
         </div>
-        <div class="linear-card p-5">
+        <div id="ledger" class="linear-card p-5 scroll-mt-20">
             <div class="flex items-center gap-3 mb-3">
                 <x-mc-icon name="icon-scroll" class="w-6 h-6 text-gold"/>
                 <h3 class="text-[17px] font-bold text-ink">Your ledger</h3>
@@ -122,7 +122,7 @@
     </div>
 
     {{-- Shared prices --}}
-    <div class="mt-3 rounded-xl p-6 bg-gold-subtle ring-1 ring-line-gold">
+    <div id="prices" class="mt-3 rounded-xl p-6 bg-gold-subtle ring-1 ring-line-gold scroll-mt-20">
         <div class="flex items-center gap-3 mb-2">
             <x-mc-icon name="icon-axis-hex" class="w-6 h-6 text-gold"/>
             <h3 class="text-[17px] font-bold text-ink">Prices from everyone's scans</h3>
@@ -135,7 +135,7 @@
     </div>
 
     {{-- PvP on video --}}
-    <h2 class="text-[24px] font-bold text-ink mt-12 mb-4">Your PvP fights on video</h2>
+    <h2 id="pvp" class="text-[24px] font-bold text-ink mt-12 mb-4 scroll-mt-20">Your PvP fights on video</h2>
     <div class="linear-card p-6 flex flex-col md:flex-row gap-6 items-start">
         <div class="flex-1 space-y-3 text-[14px] text-ink-muted leading-relaxed">
             <p>With OBS Studio (free), the app saves each fight you have against another player: duels, world PvP and
@@ -199,7 +199,7 @@
     </div>
 
     {{-- Questions --}}
-    <h2 class="text-[24px] font-bold text-ink mt-12 mb-3">Questions</h2>
+    <h2 id="faq" class="text-[24px] font-bold text-ink mt-12 mb-3 scroll-mt-20">Questions</h2>
     <div class="space-y-2">
         <details class="linear-card p-5">
             <summary class="cursor-pointer text-[15px] font-bold text-ink">What does it read, and what does it share?</summary>

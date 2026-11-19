@@ -26,10 +26,28 @@ class ForeverPageTest extends TestCase
 
     public function test_both_home_pages_and_the_menu_lead_to_it(): void
     {
-        // the site's home (with the menu) and WoW's home (2026-11-12: "reachable from the home page")
-        $home = $this->get('/')->assertOk()->assertSee('WoW Forever: crafting, prices and PvP')->getContent();
-        $this->assertGreaterThanOrEqual(2, substr_count($home, route('wow.forever')), 'the card and the menu');
+        // the site's home (with the menu) and WoW's home (2026-11-12: "reachable from the home page").
+        // Since 2026-11-19 Forever is a game card of its own and a tab in the menu's switcher.
+        $home = $this->get('/')->assertOk()->assertSee('WoW Forever')->assertSee('Open Forever')->getContent();
+        $this->assertGreaterThanOrEqual(2, substr_count($home, route('wow.forever')), 'the card and the tab');
         $this->get('/wow')->assertOk()->assertSee('Playing WoW Forever?')->assertSee(route('wow.forever'), false);
+    }
+
+    public function test_forever_is_a_tab_with_its_own_menu_kept_on_shared_pages(): void
+    {
+        // Forever's page shows Forever's menu, not Midnight's
+        $this->get('/wow/forever')->assertOk()
+            ->assertSee(route('wow.forever').'#uses', false)
+            ->assertDontSee(route('matchup-lab'), false);
+        $this->assertSame('forever', session('nav_game'));
+
+        // the home belongs to no one game, so it keeps the tab you were on
+        $this->get('/')->assertOk()->assertSee(route('wow.forever').'#uses', false);
+
+        // a Midnight page switches it back
+        $this->get('/wow')->assertOk()->assertSee(route('matchup-lab'), false)
+            ->assertDontSee(route('wow.forever').'#uses', false);
+        $this->assertSame('wow', session('nav_game'));
     }
 
     public function test_the_app_page_leads_to_it_and_says_what_forever_shares(): void

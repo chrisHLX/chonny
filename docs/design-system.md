@@ -70,7 +70,7 @@ must never restyle the site).
 
 Available: `icon-complete`, `icon-compass`, `icon-scroll`, `icon-hourglass`, `icon-leaf`,
 `icon-starburst`, `icon-lightning-circle`, `icon-flask`, `icon-axis-hex`, `icon-diamond`,
-`icon-delta`, `badge-wow`, `badge-sc2`, `badge-lol`,
+`icon-delta`, `badge-wow`, `badge-forever`, `badge-sc2`, `badge-lol`,
 `gem-mastered|strong|developing|weak|unknown`, `bg-arch`, `bg-constellation`.
 
 Also: `<x-spell-icon>`, `<x-class-icon>`, `<x-spec-icon>` (self-hosted, filename-keyed, with a

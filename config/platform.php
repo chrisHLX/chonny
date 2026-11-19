@@ -12,14 +12,33 @@
 
 return [
     'games' => [
+        // Retail WoW goes by its expansion since 2026-11-19 (Chriso), beside Forever as a tab of its
+        // own: the two are different games to the player, with different menus. `label` heads the
+        // game's menu in the sidebar; `image` is the home card's picture.
         'wow' => [
-            'name' => 'World of Warcraft',
-            'short' => 'WoW',
+            'name' => 'World of Warcraft: Midnight',
+            'short' => 'Midnight',
+            'label' => 'WoW: Midnight',
             'status' => 'live',
             'route' => 'wow.home',
             'icon' => 'badge-wow',
             'color' => '#C8952C',
             'tagline' => 'Arena: every game you play reviewed, PvP guides for every spec, 3v3 comps and the Matchup Lab.',
+            'image' => '/images/app/card.webp',
+            'cta' => 'Open Midnight',
+        ],
+        'forever' => [
+            'name' => 'WoW Forever',
+            'short' => 'Forever',
+            'label' => 'WoW Forever',
+            'status' => 'live',
+            'route' => 'wow.forever',
+            'icon' => 'badge-forever',
+            'color' => '#34C38F',
+            'tagline' => 'An addon that finds the cheapest way to level each profession and what each craft earns, reads the whole auction house, and with OBS saves every PvP fight.',
+            'image' => '/images/forever/professions.webp',
+            'cta' => 'Open Forever',
+            'new' => true,
         ],
         'sc2' => [
             'name' => 'StarCraft II',

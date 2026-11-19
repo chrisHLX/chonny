@@ -1,10 +1,11 @@
 @php
-    // The game this page belongs to (2026-10-17, the platform): /sc2 and /lol are their own games;
-    // everything else, the platform home included, shows WoW's menu, since WoW is the one game open.
+    // The game this page belongs to (2026-10-17, the platform), which picks the menu under the
+    // switcher. Since 2026-11-19 Midnight (retail) and Forever are tabs of their own, and a page of no
+    // one game keeps the last tab (PlatformController::navGame).
     $navGames = config('platform.games');
+    $navGame = \App\Http\Controllers\PlatformController::navGame();
     // The switcher shows the listed games, plus an unlisted one while you are on its page.
-    $navSwitch = array_filter($navGames, fn ($g, $slug) => ($g['listed'] ?? true) || request()->is($slug, $slug.'/*'), ARRAY_FILTER_USE_BOTH);
-    $navGame = request()->is('sc2', 'sc2/*') ? 'sc2' : (request()->is('lol', 'lol/*') ? 'lol' : 'wow');
+    $navSwitch = array_filter($navGames, fn ($g, $slug) => ($g['listed'] ?? true) || $slug === $navGame, ARRAY_FILTER_USE_BOTH);
 @endphp
 <aside class="fixed sm:relative inset-y-0 left-0 z-30
               flex flex-col gap-2 w-64 h-screen sm:h-full shrink-0
@@ -75,20 +76,22 @@
         @endcan
 
         {{-- The games (config/platform.php): one tab each, the page's own game lit in its colour. --}}
-        {{-- One row of pills (2026-10-27): the stacked icon-over-name tiles took two rows' height. --}}
-        <div class="grid {{ count($navSwitch) === 2 ? 'grid-cols-2' : 'grid-cols-3' }} gap-1 p-1 mt-2 mx-1 rounded-full bg-surface-1">
+        {{-- One row of pills (2026-10-27): the stacked icon-over-name tiles took two rows' height.
+             The open tab is lit on every page, the home too, so the menu below always has its tab. --}}
+        <div class="grid {{ count($navSwitch) === 2 ? 'grid-cols-2' : 'grid-cols-3' }} gap-0.5 p-1 mt-2 mx-1 rounded-full bg-surface-1">
             @foreach ($navSwitch as $gSlug => $g)
-                @php $gOn = $navGame === $gSlug && ! request()->routeIs('home'); @endphp
+                @php $gOn = $navGame === $gSlug; @endphp
                 <a href="{{ route($g['route']) }}" wire:navigate title="{{ $g['name'] }}{{ $g['status'] === 'soon' ? ' (coming soon)' : '' }}"
-                   class="flex items-center justify-center gap-1.5 rounded-full py-1.5 text-[12px] font-semibold transition-colors {{ $gOn ? 'bg-surface-3 text-ink' : 'text-ink-subtle hover:text-ink' }}">
-                    <x-mc-icon :name="$g['icon']" class="w-[18px] h-[18px] shrink-0" style="color: {{ $gOn || $g['status'] === 'live' ? $g['color'] : '#6A6A6A' }}" />
+                   @if ($gOn) aria-current="true" @endif
+                   class="flex items-center justify-center gap-1 rounded-full py-1.5 text-[11.5px] font-semibold transition-colors {{ $gOn ? 'bg-surface-3 text-ink shadow-sm' : 'text-ink-subtle hover:text-ink' }}">
+                    <x-mc-icon :name="$g['icon']" class="w-4 h-4 shrink-0" style="color: {{ $gOn || $g['status'] === 'live' ? $g['color'] : '#6A6A6A' }}" />
                     {{ $g['short'] }}
                 </a>
             @endforeach
         </div>
 
         @if ($navGame === 'wow')
-        <p class="px-3 pt-3 pb-1 text-[11px] font-bold uppercase tracking-[.12em]" style="color: {{ $navGames['wow']['color'] }}">World of Warcraft</p>
+        <p class="px-3 pt-3 pb-1 text-[11px] font-bold uppercase tracking-[.12em]" style="color: {{ $navGames['wow']['color'] }}">{{ $navGames['wow']['label'] }}</p>
 
         {{-- 2026-10-12: the player's games and the app first, then the planning tools. Guides keeps
              Claude's nested under it: NAV ONLY, the two listings stay separate pages (rule 30). --}}
@@ -109,15 +112,7 @@
             Get the App
         </a>
 
-        {{-- WoW Forever (2026-11-12, Chriso: "needs to be reachable from the home page"): the app's
-             Forever page, professions, prices and PvP clips. --}}
-        <a href="{{ route('wow.forever') }}" wire:navigate
-           class="sidebar-item {{ request()->routeIs('wow.forever') ? 'active' : '' }}">
-            <svg class="w-[18px] h-[18px] shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M9 3h6m-5 0v5.5L4.5 18A2 2 0 006.2 21h11.6a2 2 0 001.7-3L14 8.5V3M7.5 14h9"/>
-            </svg>
-            WoW Forever
-        </a>
+        {{-- WoW Forever was a link here from 2026-11-12; since 2026-11-19 it is a tab of its own. --}}
 
         {{-- Leaderboards (2026-10-21): every comp this season from real games by experience, and
              Blizzard's 3v3 ladder with the comps each player was seen on. Lit on a comp's card too,
@@ -204,6 +199,49 @@
             </svg>
             Arena Basics
         </a>
+        @elseif ($navGame === 'forever')
+            {{-- WoW Forever (2026-11-19): one page, so its menu is that page's parts. Plain links, not
+                 wire:navigate, so a part on the same page scrolls rather than reloads. --}}
+            @php $navFv = $navGames['forever']; $navFvUrl = route('wow.forever'); @endphp
+            <p class="px-3 pt-3 pb-1 text-[11px] font-bold uppercase tracking-[.12em]" style="color: {{ $navFv['color'] }}">{{ $navFv['label'] }}</p>
+            <a href="{{ $navFvUrl }}" wire:navigate class="sidebar-item {{ request()->routeIs('wow.forever') ? 'active' : '' }}">
+                <x-mc-icon :name="$navFv['icon']" class="w-[18px] h-[18px] shrink-0" style="color: {{ $navFv['color'] }}" />
+                Overview
+            </a>
+            <a href="{{ $navFvUrl }}#start" class="sidebar-item !text-gold hover:!text-gold-light">
+                <svg class="w-[18px] h-[18px] shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 4v12m0 0l-5-5m5 5l5-5M5 20h14"/>
+                </svg>
+                Get the App
+            </a>
+
+            <p class="px-3 pt-2.5 pb-0.5 text-[11px] font-bold text-ink-subtle uppercase tracking-[.12em]">The addon</p>
+            @foreach ([
+                ['professions', 'icon-flask', 'Professions'],
+                ['auction', 'icon-delta', 'Auction House'],
+                ['uses', 'icon-compass', 'Item Uses'],
+                ['ledger', 'icon-scroll', 'Your Ledger'],
+                ['prices', 'icon-axis-hex', 'Shared Prices'],
+            ] as [$navFvId, $navFvIcon, $navFvTitle])
+                <a href="{{ $navFvUrl }}#{{ $navFvId }}" class="sidebar-item">
+                    <x-mc-icon :name="$navFvIcon" class="w-[18px] h-[18px] shrink-0" />
+                    {{ $navFvTitle }}
+                </a>
+            @endforeach
+
+            <p class="px-3 pt-2.5 pb-0.5 text-[11px] font-bold text-ink-subtle uppercase tracking-[.12em]">The app</p>
+            <a href="{{ $navFvUrl }}#pvp" class="sidebar-item">
+                <svg class="w-[18px] h-[18px] shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M15 10l4.55-2.28A1 1 0 0121 8.62v6.76a1 1 0 01-1.45.9L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"/>
+                </svg>
+                PvP on Video
+            </a>
+            <a href="{{ $navFvUrl }}#faq" class="sidebar-item">
+                <svg class="w-[18px] h-[18px] shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                </svg>
+                Questions
+            </a>
         @else
             {{-- A game that is not open yet: its page, what is open already, and what is coming. --}}
             @php $g = $navGames[$navGame]; @endphp

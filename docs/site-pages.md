@@ -4,6 +4,11 @@
 
 - `/` — MindCollector's home, a card per game (`PlatformController`, `config/platform.php`). `/wow` —
   `Landing`, WoW's home; signed-in players go to `dashboard`.
+- **The sidebar's tabs (2026-11-19):** Midnight (retail, `/wow/*`), Forever (`/wow/forever`) and SC2,
+  each with its own menu under the switcher. Forever is one page, so its menu is that page's parts
+  (`#professions`, `#auction`, `#uses`, `#ledger`, `#prices`, `#pvp`, `#start`, `#faq`): keep those ids
+  if the page is laid out again. A page of no one game (the home, profile, friends) keeps the last tab,
+  from the session (`PlatformController::navGame`).
 - `/dashboard` — `Home`. Since 2026-11-03 it leads with your own games (`RecentGamesService`, read
   from the Your games index): the latest session's record, team MMR, its games with the comp met as
   icons, the Improve focus for the character played most, and the last loss, each opening that page

@@ -47,6 +47,35 @@ class PlatformController extends Controller
     }
 
     /**
+     * The sidebar's tab (2026-11-19): the game the page belongs to, and the menu shown under the
+     * switcher. A page of no one game (the home, your profile, friends) keeps the tab you were last
+     * on, held in the session, so moving between them doesn't swap the menu under you.
+     */
+    public static function navGame(): string
+    {
+        $request = request();
+        $game = match (true) {
+            $request->is('sc2', 'sc2/*') => 'sc2',
+            $request->is('lol', 'lol/*') => 'lol',
+            $request->routeIs('wow.forever') => 'forever',
+            $request->is('wow', 'wow/*') => 'wow',
+            default => null,
+        };
+
+        if ($game !== null) {
+            if (session('nav_game') !== $game) {
+                session(['nav_game' => $game]);
+            }
+
+            return $game;
+        }
+
+        $kept = session('nav_game');
+
+        return is_string($kept) && config("platform.games.{$kept}") !== null ? $kept : 'wow';
+    }
+
+    /**
      * The game's playstyle diagnostic at the game's own address (/sc2/diagnostic), so the sidebar
      * stays on that game. It is the learning platform's diagnostic module named by
      * app.screener_{game}_module_id, shown exactly as /modules/{slug}/quiz shows it.
