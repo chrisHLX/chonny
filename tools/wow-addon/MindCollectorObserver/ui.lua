@@ -18,6 +18,9 @@ local frame, list, detail, search
 local tab, selectedKey, query = "item", nil, ""
 local rows, histLines = {}, {}
 local moversCache -- the Market's walk over every scanned item, kept between redraws (see movers)
+local allCache -- the same for "Show all": every item in the newest scan, A to Z (see everythingRows)
+local MARKET_PAGE = 300 -- rows on one page of the Market; the pager steps through the rest
+local mktPage = 1
 
 -- Items and professions only since 2026-11-10 (Chriso): talents, spells, players and the rest were noise.
 local TABS = {
@@ -123,7 +126,7 @@ nameEvents:RegisterEvent("GET_ITEM_INFO_RECEIVED")
 nameEvents:SetScript("OnEvent", function(_, _, id)
     if not (id and pendingNames[id]) then return end
     pendingNames[id] = nil
-    moversCache = nil -- a name arrived: the Market's rows and the search over them are built again
+    moversCache, allCache = nil, nil -- a name arrived: the Market's rows and the search over them are built again
     -- kept in the scan too, so the app and later sessions have it
     local sc = ns.DB and ns.DB.lastScan and ns.DB.lastScan.prices and ns.DB.lastScan.prices[id]
     if sc and (not sc[3] or sc[3] == "") then sc[3] = C_Item.GetItemNameByID(id) end
@@ -468,6 +471,35 @@ local function movers()
     local k = key[mode] or key.move
     table.sort(out, function(x, y) return k(x) > k(y) end)
     return out, scanPairLabel(a.t, b.t), everything
+end
+
+-- "Show all" (20 Nov, Chriso: "if you want to see everything"): every item in the newest scan, however
+-- few are listed and whether or not the scan before had it, A to Z. Needs one scan, not two. Kept
+-- between redraws like the movers, since it walks every scanned item.
+local function everythingRows()
+    local a, b = ns.DB.lastScan, ns.DB.prevScan
+    if not (a and a.prices) then return {} end
+    local cacheKey = (a.t or 0) .. ":" .. (b and b.t or 0) .. ":" .. query
+    if allCache and allCache.key == cacheKey then return allCache.rows end
+    local out = {}
+    for id, v in pairs(a.prices) do
+        local name = C_Item.GetItemNameByID(id)
+        if not name or name == "" then name = (v[3] ~= "" and v[3]) or (ns.itemNames and ns.itemNames[id]) end
+        if matches(name or "") then
+            local old = b and b.prices and b.prices[id]
+            local was = old and old[1] > 0 and old[1] or nil
+            table.insert(out, { id = id, name = name, sortName = (name or ""):lower(), now = v[1], q = v[2],
+                was = was, oq = old and old[2], p = was and (v[1] - was) / was or 0, sold = 0, new = b ~= nil and old == nil })
+        end
+    end
+    -- named items A to Z, then the ones whose names haven't arrived yet
+    table.sort(out, function(x, y)
+        if (x.sortName == "") ~= (y.sortName == "") then return x.sortName ~= "" end
+        if x.sortName ~= y.sortName then return x.sortName < y.sortName end
+        return x.id < y.id
+    end)
+    allCache = { key = cacheKey, rows = out }
+    return out
 end
 
 local function counts()
@@ -935,6 +967,91 @@ local function madeByText(id)
     local by = craftedBy(id)
     if not by then return nil end
     return string.format("Made with %s %d, %s", ns.PROF_NAMES[by[1]] or "a profession", by[2][3], learnedText(by[2]))
+end
+
+-- Where an herb grows (20 Nov, Chriso: "what zones and how rare and what level"): Data.lua's ns.herbs,
+-- from Wowhead's Forever herb nodes: {skill, spots, rarity, {{zone, spots}}, {{bonus node, skill, pct}},
+-- main}. "Spots" are the spawn points on Wowhead's map; rarity ranks the herbs by them.
+local HERB_RARITY = { "one of the rarest herbs", "rarer than most herbs", "commoner than most herbs", "one of the most common herbs" }
+local function herbPct(p) return p > 0 and (p .. "%") or "under 1%" end
+
+-- One line for a tooltip: "Herbalism 150  ·  Stranglethorn Vale, Swamp of Sorrows, Wetlands".
+local function herbLine(id)
+    local h = ns.herbs and ns.herbs[id]
+    if not h then return nil end
+    if h[6] then
+        local names = {}
+        for i = 1, math.min(#h[4], 3) do table.insert(names, h[4][i][1]) end
+        return string.format("Herbalism %d  ·  %s%s", h[1], #names > 0 and table.concat(names, ", ") or "where it grows isn't known",
+            #h[4] > 3 and string.format(" +%d more", #h[4] - 3) or "")
+    end
+    local from = {}
+    for i = 1, math.min(#h[5], 3) do table.insert(from, h[5][i][1]) end
+    return string.format("A bonus from picking %s", table.concat(from, ", "))
+end
+
+-- The item page's "Where it grows": the skill, how rare, every zone with its spots, and the other
+-- herbs' nodes it also comes from.
+local function herbLines(id, lines)
+    local h = ns.herbs and ns.herbs[id]
+    if not h then return end
+    table.insert(lines, "")
+    table.insert(lines, color(GOLD_HEX, "Where it grows"))
+    if h[6] then
+        table.insert(lines, string.format("Herbalism %d to pick  ·  %s spots on Wowhead's map, %s", h[1], commas(h[2]), HERB_RARITY[h[3]] or "how rare isn't known"))
+        for i = 1, math.min(#h[4], 10) do
+            table.insert(lines, "   " .. h[4][i][1] .. "  " .. grey(commas(h[4][i][2]) .. " spot" .. (h[4][i][2] == 1 and "" or "s")))
+        end
+        if #h[4] > 10 then table.insert(lines, grey(string.format("   and %d more places", #h[4] - 10))) end
+        if #h[5] > 0 then
+            local also = {}
+            for _, o in ipairs(h[5]) do table.insert(also, string.format("%s %s", o[1], herbPct(o[3]))) end
+            table.insert(lines, grey("Also a bonus from picking " .. table.concat(also, ", ")))
+        end
+    else
+        table.insert(lines, "Not a plant of its own: picking these sometimes gives it, as often as Wowhead saw:")
+        for _, o in ipairs(h[5]) do
+            table.insert(lines, "   " .. o[1] .. "  " .. grey(string.format("Herbalism %d, %s of picks", o[2], herbPct(o[3]))))
+        end
+        if #h[4] > 0 then
+            local names = {}
+            for i = 1, math.min(#h[4], 5) do table.insert(names, h[4][i][1]) end
+            table.insert(lines, grey("They grow most in " .. table.concat(names, ", ")))
+        end
+    end
+end
+
+-- Herbalism's page in Professions: every herb by the skill it needs, the ones you can pick now and the
+-- next few, each with where it grows most.
+local function herbalismLines(rank, lines)
+    if not ns.herbs then return false end
+    local list = {}
+    for id, h in pairs(ns.herbs) do if h[6] then table.insert(list, { id = id, h = h }) end end
+    if #list == 0 then return false end
+    table.sort(list, function(a, b) if a.h[1] ~= b.h[1] then return a.h[1] < b.h[1] end return a.id < b.id end)
+    local function line(x, col)
+        local names = {}
+        for i = 1, math.min(#x.h[4], 3) do table.insert(names, x.h[4][i][1]) end
+        return color(col, string.format("%d  %s", x.h[1], itemName(x.id))) .. "  " .. grey(table.concat(names, ", "))
+    end
+    table.insert(lines, color(GOLD_HEX, "What you can pick now") .. grey("  (the skill it needs, then where it grows most)"))
+    local any = false
+    for i = #list, 1, -1 do
+        local x = list[i]
+        if x.h[1] <= rank then table.insert(lines, line(x, "ff40c040")); any = true end
+    end
+    if not any then table.insert(lines, grey("Nothing yet.")) end
+    local soon = 0
+    for _, x in ipairs(list) do
+        if x.h[1] > rank and soon < 6 then
+            if soon == 0 then table.insert(lines, ""); table.insert(lines, color(GOLD_HEX, "Next")) end
+            soon = soon + 1
+            table.insert(lines, line(x, "ffff8040"))
+        end
+    end
+    table.insert(lines, "")
+    table.insert(lines, grey("Pick any herb to see every zone it grows in and how rare it is. From Wowhead's Forever map."))
+    return true
 end
 
 local function teachesLines(id, lines)
@@ -1493,6 +1610,7 @@ end
 
 -- The Market's sorts (DB.marketSort), each a different question about where prices are going.
 local MARKET_SORTS = {
+    { value = "all", label = "Show all (A to Z)" },
     { value = "move", label = "Biggest change" },
     { value = "up", label = "Rising most" },
     { value = "down", label = "Falling most" },
@@ -1566,6 +1684,7 @@ local function marketChip(i)
     b.label:SetPoint("CENTER")
     b:SetScript("OnClick", function(self)
         ns.DB.marketCat, ns.DB.marketSub = self.value, nil
+        mktPage = 1
         list.scroll:SetVerticalScroll(0)
         refresh()
     end)
@@ -1575,7 +1694,23 @@ end
 
 -- Lays the bar out over the list: the categories on the first line, then a Kind menu (the chosen
 -- category's kinds, as the game names them) and a Sort menu; moves the list down under it.
-local function drawMarketBar(cats, subs)
+local function pagerButton(bar, name, label, step)
+    local b = CreateFrame("Button", nil, bar, "BackdropTemplate")
+    backdrop(b, { 0.08, 0.08, 0.08, 1 }, { GOLD[1], GOLD[2], GOLD[3], 0.35 })
+    b:SetSize(22, 20)
+    b.label = text(b, "GameFontHighlightSmall")
+    b.label:SetPoint("CENTER")
+    b.label:SetText(label)
+    b:SetScript("OnClick", function()
+        mktPage = mktPage + step
+        list.scroll:SetVerticalScroll(0)
+        refresh()
+    end)
+    bar[name] = b
+    return b
+end
+
+local function drawMarketBar(cats, subs, total)
     local bar = frame.mktBar
     local sel, sub = ns.DB.marketCat or "all", ns.DB.marketSub
     local x, y, n = 0, 0, 0
@@ -1612,6 +1747,7 @@ local function drawMarketBar(cats, subs)
         kind:SetScript("OnClick", function(self)
             openMenu(self, options, sub or false, function(v)
                 ns.DB.marketSub = v or nil
+                mktPage = 1
                 list.scroll:SetVerticalScroll(0)
                 refresh()
             end)
@@ -1632,6 +1768,7 @@ local function drawMarketBar(cats, subs)
     sort:SetScript("OnClick", function(self)
         openMenu(self, MARKET_SORTS, mode, function(v)
             ns.DB.marketSort = v
+            mktPage = 1
             list.scroll:SetVerticalScroll(0)
             refresh()
         end)
@@ -1639,6 +1776,30 @@ local function drawMarketBar(cats, subs)
     sort:ClearAllPoints()
     sort:SetPoint("TOPLEFT", x, y)
     sort:Show()
+    x = x + sort:GetWidth() + 6
+
+    -- pages of MARKET_PAGE rows: "301-600 of 5,432" with a button each way
+    local pages = math.max(1, math.ceil((total or 0) / MARKET_PAGE))
+    local prev = bar.prev or pagerButton(bar, "prev", "<", -1)
+    local nextB = bar.nextB or pagerButton(bar, "nextB", ">", 1)
+    if not bar.pageText then bar.pageText = text(bar, "GameFontHighlightSmall") end
+    if pages > 1 then
+        local first = (mktPage - 1) * MARKET_PAGE + 1
+        bar.pageText:SetText(grey(string.format("%s-%s of %s", commas(first), commas(math.min(total, mktPage * MARKET_PAGE)), commas(total))))
+        prev:ClearAllPoints()
+        prev:SetPoint("TOPLEFT", x, y)
+        bar.pageText:ClearAllPoints()
+        bar.pageText:SetPoint("LEFT", prev, "RIGHT", 6, 0)
+        nextB:ClearAllPoints()
+        nextB:SetPoint("LEFT", bar.pageText, "RIGHT", 6, 0)
+        prev:SetEnabled(mktPage > 1)
+        prev:SetAlpha(mktPage > 1 and 1 or 0.35)
+        nextB:SetEnabled(mktPage < pages)
+        nextB:SetAlpha(mktPage < pages and 1 or 0.35)
+        prev:Show(); nextB:Show(); bar.pageText:Show()
+    else
+        prev:Hide(); nextB:Hide(); bar.pageText:Hide()
+    end
 
     local height = -y + 22
     bar:SetHeight(height)
@@ -1902,30 +2063,44 @@ local function drawList()
             end
         end
     elseif tab == "movers" then
-        local all, label, everything = movers()
+        local mode = ns.DB.marketSort or "move"
+        local showAll = mode == "all"
+        local all, label, everything
+        if showAll then all = everythingRows(); everything = all
+        else all, label, everything = movers() end
         local ms, cats, subs = filterMarket(all, everything)
-        drawMarketBar(cats, subs)
+        local pages = math.max(1, math.ceil(#ms / MARKET_PAGE))
+        if mktPage > pages then mktPage = pages end
+        if mktPage < 1 then mktPage = 1 end
+        drawMarketBar(cats, subs, #ms)
         local last = ns.DB.lastScan
         local shown = #ms == 0 and #(everything or {}) > 0 and "Nothing here for this sort and category. "
-            or (ns.DB.marketCat or "all") ~= "all" and string.format("%s of %s moves. ", commas(#ms), commas(#all)) or ""
-        list.note:SetText(label and (shown .. "Whole auction house, " .. label .. ", at least 5 listed")
-            or (last and string.format("One full scan so far (%s, %s auctions). Scan again another day and the biggest moves show here.", when(last.t), commas(last.n or 0)))
-            or "No full scan yet: open the auction house and click Scan (or /mco scan). Two scans on different days show the moves.")
-        local mode = ns.DB.marketSort or "move"
-        for i = 1, math.min(#ms, 300) do
+            or (ns.DB.marketCat or "all") ~= "all" and string.format("%s of %s %s. ", commas(#ms), commas(#all), showAll and "items" or "moves") or ""
+        if showAll then
+            list.note:SetText(last and (shown .. string.format("Everything in your last scan (%s), A to Z: %s items", when(last.t), commas(#all)))
+                or "No full scan yet: open the auction house and click Scan (or /mco scan).")
+        else
+            list.note:SetText(label and (shown .. "Whole auction house, " .. label .. ", at least 5 listed")
+                or (last and string.format("One full scan so far (%s, %s auctions). Scan again another day and the biggest moves show here, or Sort: Show all lists everything now.", when(last.t), commas(last.n or 0)))
+                or "No full scan yet: open the auction house and click Scan (or /mco scan). Two scans on different days show the moves.")
+        end
+        for i = (mktPage - 1) * MARKET_PAGE + 1, math.min(#ms, mktPage * MARKET_PAGE) do
             local m = ms[i]
             n = n + 1
             local r = rows[n] or makeRow(n)
             local key = "mover:" .. m.id
             local bits = {}
             if ns.isTracked(m.id) then table.insert(bits, color(GOLD_HEX, "tracked")) end
-            table.insert(bits, string.format("listed %d > %d", m.oq, m.q))
+            if m.oq then table.insert(bits, string.format("listed %d > %d", m.oq, m.q))
+            else table.insert(bits, string.format("%d listed", m.q)) end
+            if m.new then table.insert(bits, grey("not in the scan before")) end
             if m.sold > 0 then
                 table.insert(bits, m.unsure and grey(m.sold .. " fewer: sold or ran out") or color("ff40d060", "at least " .. m.sold .. " sold"))
             end
             if mode == "gold" then table.insert(bits, ns.money(m.now * m.q) .. " on sale") end
             fillRow(r, key, C_Item.GetItemIconByID(m.id), itemName(m.id, m.name),
-                nameColor({ kind = "item", id = m.id }), ns.money(m.was) .. " > " .. ns.money(m.now) .. "  " .. changeText(m.was, m.now),
+                nameColor({ kind = "item", id = m.id }),
+                m.was and (ns.money(m.was) .. " > " .. ns.money(m.now) .. "  " .. changeText(m.was, m.now)) or ns.money(m.now),
                 table.concat(bits, "  ·  "), m.id)
             place(r)
         end
@@ -2329,7 +2504,9 @@ local function drawDetail()
         if profID then
             local now = ns.recipes and ns.recipes[pid] and recipesFor(pid, rank) or nil
             local lines = { grey("Profession"), "", string.format("Skill %d of %s", rank, mine and mine.max or "?"), "" }
-            if not now then
+            if not now and pid == 182 and herbalismLines(rank, lines) then
+                -- Herbalism: the herbs by skill, in place of recipes
+            elseif not now then
                 table.insert(lines, "A gathering skill, so there are no recipes to list. Track what you gather from Market to see its price at every scan.")
             else
                 table.insert(lines, #now .. " recipes give a point at your skill. They're listed cheapest per point first, from the prices you've seen.")
@@ -2460,6 +2637,7 @@ local function drawDetail()
             table.insert(lines, grey("No price yet: open it in the auction house, or scan."))
         end
         teachesLines(id, lines)
+        herbLines(id, lines)
         listingLines(id, lines)
         timeOfDayLines(id, lines)
         historyLines(id, lines)
@@ -2482,6 +2660,7 @@ local function drawDetail()
         local trade = tradeLine(id)
         if trade then table.insert(lines, (trade:gsub("^%l", string.upper))) end
         teachesLines(id, lines)
+        herbLines(id, lines)
         listingLines(id, lines)
         timeOfDayLines(id, lines)
         historyLines(id, lines)
@@ -2522,6 +2701,7 @@ local function drawDetail()
         local trade = tradeLine(s.id)
         if trade then table.insert(lines, (trade:gsub("^%l", string.upper))) end
         teachesLines(s.id, lines)
+        herbLines(s.id, lines)
         listingLines(s.id, lines)
         timeOfDayLines(s.id, lines)
         historyLines(s.id, lines)
@@ -2722,6 +2902,7 @@ local function makeWindow()
     search.hint:SetText("Search")
     search:SetScript("OnTextChanged", function(self)
         query = self:GetText():lower()
+        mktPage = 1
         self.hint:SetShown(query == "")
         refresh()
     end)
@@ -2923,6 +3104,8 @@ local function tooltipLines(id)
     end
     local trade = tradeLine(id)
     if trade then table.insert(out, grey((trade:gsub("^%l", string.upper)))) end
+    local herb = herbLine(id)
+    if herb then table.insert(out, color(GOLD_HEX, "Grows  ") .. herb) end
     -- a recipe: what its reagents cost now, and what the craft earns
     local pid, r = recipeTaughtBy(id)
     if pid then

@@ -210,6 +210,11 @@ addon now tracks all the data you would need to make a lot of gold?").
   read in Chrome. The javascript tool returns about 1,400 characters, so the text went out through a
   local `php -S` page (the tab navigated to it with the text in the URL fragment, and it POSTed it to
   itself). The file's length matched the tab's.
+- **Where herbs grow is done** (2026-11-20, `wowhead/herbs.json`): the 64 nodes on
+  `/forever/objects/herbs` (skill, `g_listviews.objects`) and each node's page, fetched from inside the
+  Wowhead tab one every 7 seconds: spawn points per zone from `g_mapperData` and what a pick gives from
+  the `herbalism` listview (count out of picks). Two 405s, each cleared by a 60-second pause. 12,161
+  bytes out through the local receiver, length and SHA-256 matched the tab's.
 - **Quests for crafting items are done** (2026-11-12, `wowhead/quests.json`): the 258 crafting items
   Wowhead lists as quest objectives (filter 85), 504 quests. Even at one page every 5 seconds Wowhead
   sent about 20 HTTP 405s; a 60-second pause after each one got through with nothing lost. The data

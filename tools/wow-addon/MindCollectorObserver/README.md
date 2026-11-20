@@ -59,6 +59,19 @@ what was saved of them is dropped at the next login.
   only reaches your skill, so flasks, major potions and endgame food never showed. Grouped by
   profession, yours first and open; each row has the skill it needs, mats cost now, what it sells for
   and the profit a craft, most profit first. Clicking one opens its recipe page.
+- **Where herbs grow** (2026-11-20, Chriso: "what zones and how rare and what level"): `ns.herbs` in
+  Data.lua, from Wowhead's Forever herb nodes (`tools/forever-market/wowhead/herbs.json`, the herb
+  listing and each node's page, read in Chrome): the Herbalism skill each node needs, its spawn points
+  per zone from the page's map, and what a pick gives. An herb's tooltip says "Grows  Herbalism 150 ·
+  three zones"; its page in Market or Tracked has "Where it grows" with every zone and its spots, how
+  rare it is (herbs ranked by spots: rarest fifth, rarer than most, commoner than most, commonest
+  fifth) and the other nodes it comes from as a bonus (Swiftthistle and the like say only that).
+  Herbalism's page in Professions lists what you can pick now and the next six by skill. The spots are
+  what Wowhead's players have recorded; Forever is new, so a count can be low for a zone few have mapped.
+- **Show all in Market** (2026-11-20, Chriso: "if you want to see everything"): Sort > Show all (A to Z)
+  lists every item in the newest scan, however few are listed and whether the scan before had it, so it
+  works after one scan. Every sort shows 300 rows a page with a pager beside Sort; the rows were cut at
+  300 before with no way to the rest.
 - **What you paid, for single auctions too** (2026-11-18, Chriso flipping recipes): a buyout of one
   auction (a recipe, gear) was never written to the ledger. The addon waited for `ITEM_PURCHASED`,
   which doesn't come for one; Blizzard's own buyout waits for `AUCTION_HOUSE_PURCHASE_COMPLETED` with

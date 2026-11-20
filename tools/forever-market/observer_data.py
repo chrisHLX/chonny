@@ -264,5 +264,50 @@ if WH:
         lines.append('}')
         print(f'wowhead: {len(used)} quests for {sum(1 for v in QI.values() if v)} items')
 
+    # Where herbs grow (2026-11-20, Chriso: "what zones and how rare and what level"): herbs.json, read
+    # from Wowhead's Forever herb nodes (wowhead.com/forever/objects/herbs and each node's page) in the
+    # player's Chrome. Per node: the Herbalism skill it needs, its spawn points per zone (the page's map,
+    # g_mapperData) and what picking it gives ("Herbalism" tab: item, times seen, out of how many picks).
+    # The client has no spawn data, so this is the only source. Written per herb item as
+    # ns.herbs = {[item] = {skill, spots, rarity, {{zone, spots}, ...}, {{bonus node, skill, pct}, ...}, main}}:
+    # skill and zones from the nodes it is the main herb of (half the picks or more; main = true), else
+    # from the nodes it is only a bonus from (main = false); the bonus list is those nodes either way. Rarity ranks the main herbs by spots: 1 one of the rarest (bottom fifth),
+    # 2 rarer than most, 3 commoner than most, 4 one of the most common (top fifth).
+    herb_file = os.path.join(WH, 'herbs.json')
+    if os.path.exists(herb_file):
+        nodes = json.load(open(herb_file, encoding='utf-8'))['nodes']
+        main, bonus = defaultdict(dict), defaultdict(dict)   # item -> node name -> facts
+        for oid, nd in nodes.items():
+            for iid, iname, count, outof, mn, mx in nd['items']:
+                pct = count / outof if outof else 0
+                into = main if pct >= 0.5 else bonus
+                f = into[iid].setdefault(nd['name'], {'skill': nd['skill'], 'zones': defaultdict(int), 'pct': 0})
+                f['skill'] = min(f['skill'], nd['skill'])
+                f['pct'] = max(f['pct'], pct)
+                for z, c in nd['zones'].items():
+                    f['zones'][int(z)] += c
+        herbs = {}
+        for iid in set(main) | set(bonus):
+            src = main.get(iid) or bonus[iid]
+            zones = defaultdict(int)
+            for f in src.values():
+                for z, c in f['zones'].items():
+                    zones[z] += c
+            zl = sorted(((zone(z), c) for z, c in zones.items() if zone(z)), key=lambda zc: -zc[1])
+            other = sorted(((n, f['skill'], round(f['pct'] * 100)) for n, f in bonus.get(iid, {}).items()), key=lambda x: x[1])
+            herbs[iid] = [min(f['skill'] for f in src.values()), sum(c for _, c in zl), 0, zl, other, iid in main]
+        ranked = sorted((v[1], iid) for iid, v in herbs.items() if v[5] and v[1] > 0)
+        for i, (_, iid) in enumerate(ranked):
+            q = i / max(len(ranked) - 1, 1)
+            herbs[iid][2] = 1 if q < 0.2 else 2 if q < 0.5 else 3 if q < 0.8 else 4
+        lines.append('ns.herbs = {')
+        for iid in sorted(herbs):
+            skill, spots, rarity, zl, other, is_main = herbs[iid]
+            zs = ', '.join(f'{{{lua_str(z)}, {c}}}' for z, c in zl)
+            os_ = ', '.join(f'{{{lua_str(n)}, {s}, {p}}}' for n, s, p in other)
+            lines.append(f'  [{iid}] = {{{skill}, {spots}, {rarity}, {{{zs}}}, {{{os_}}}, {"true" if is_main else "false"}}},')
+        lines.append('}')
+        print(f'wowhead: where {len(herbs)} herbs grow, from {len(nodes)} nodes')
+
 open(OUT, 'w', encoding='utf-8', newline='\n').write('\n'.join(lines) + '\n')
 print(f'{len(spans)} reagents, {sum(1 for l in lines if l.startswith("  [") and "p =" not in l)} recipe items -> {OUT}')
