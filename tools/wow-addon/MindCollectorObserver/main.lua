@@ -1,4 +1,4 @@
--- MindCollector Observer (WoW: Forever, interface 16001).
+-- MindCollector Auction House, formerly Observer (WoW: Forever, interface 16001).
 --
 -- Remembers what you look at for a while: any tooltip held up for DB.minDwell seconds (items, spells,
 -- talents, currencies, quests, players), and any item you open in the auction house. For each look it

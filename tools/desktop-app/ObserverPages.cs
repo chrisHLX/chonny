@@ -47,7 +47,7 @@ internal static class ObserverPages
     {
         if (data == null)
             return ForeverPages.Wrap("WoW Forever", "What you looked at", $"""
-                <p class="muted">{(settings.ForeverObserver ? "Nothing yet. The Observer addon is installed with the app; in game, hold your mouse over things for a few seconds, then /reload so WoW writes what it saw." : "The Observer addon is off. Turn it on in Settings > WoW Forever.")}</p>
+                <p class="muted">{(settings.ForeverObserver ? "Nothing yet. The Auction House addon is installed with the app; in game, hold your mouse over things for a few seconds, then /reload so WoW writes what it saw." : "The Auction House addon is off. Turn it on in Settings > WoW Forever.")}</p>
                 {HowItWorks}
                 """);
 

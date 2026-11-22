@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\DB;
  * WoW Forever auction prices pooled from every app user who shares their scans (2026-11-12, Chriso:
  * "everyone's scan data saved on the server so it can be accessed by everyone who has the app").
  *
- * The Observer addon scans the whole auction house (C_AuctionHouse.ReplicateItems) and keeps, per item,
+ * The Auction House addon (was Observer) scans the whole auction house (C_AuctionHouse.ReplicateItems) and keeps, per item,
  * the cheapest unit price, how many are listed and how many sit in each time-left band. The app sends
  * each new scan (store()), and writes the pooled view back into the addon (pooled()), so one player's
  * Professions, Market and "at least N sold" read from everyone's scans.

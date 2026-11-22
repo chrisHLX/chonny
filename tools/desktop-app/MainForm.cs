@@ -995,7 +995,7 @@ internal sealed class MainForm : Form
             _observer = ObserverData.Load(file);
             _observerAt = at;
         }
-        catch (Exception e) { Log($"Could not read the Observer addon's data: {e.Message}"); }
+        catch (Exception e) { Log($"Could not read the Auction House addon's data: {e.Message}"); }
         return _observer;
     }
 
@@ -1013,7 +1013,7 @@ internal sealed class MainForm : Form
         {
             yield return _settings.ForeverObserver
                 ? new LibraryRow("Nothing yet", "In Forever, hold your mouse over an item for a few seconds, or open one in the auction house, then /reload")
-                : new LibraryRow("The Observer addon is off", "Settings > WoW Forever turns it on");
+                : new LibraryRow("The Auction House addon is off", "Settings > WoW Forever turns it on");
             yield break;
         }
         foreach (var s in subjects)

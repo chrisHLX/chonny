@@ -2861,7 +2861,7 @@ local function makeWindow()
 
     local title = text(frame, "GameFontNormalLarge")
     title:SetPoint("TOPLEFT", 14, -12)
-    title:SetText(color(GOLD_HEX, "MindCollector") .. " Observer")
+    title:SetText(color(GOLD_HEX, "MindCollector") .. " Auction House")
     -- The X hides the window itself (22 Nov). The template's own click goes through HideUIPanel, which
     -- does nothing for an addon in combat (Forever's UIParentPanelManager.lua, CheckProtectedFunctionsAllowed),
     -- so Cbags' X did nothing. Hiding our own frame is allowed in combat; Escape already did this.
@@ -3175,7 +3175,7 @@ function ns.makeMinimapButton()
     b:SetScript("OnClick", function() ns.toggle() end)
     b:SetScript("OnEnter", function(self)
         GameTooltip:SetOwner(self, "ANCHOR_LEFT")
-        GameTooltip:SetText("MindCollector Observer")
+        GameTooltip:SetText("MindCollector Auction House")
         GameTooltip:AddLine("Click to open. Drag to move.", 1, 1, 1)
         GameTooltip:Show()
     end)

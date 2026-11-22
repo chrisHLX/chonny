@@ -4,6 +4,11 @@ A handover from the session on Chriso's desktop to whichever session picks this 
 one on the laptop). Read this, then `tools/wow-addon/MindCollectorObserver/README.md`, before changing
 the addon, the /ask bridge or the market scripts.
 
+**Named MindCollector Auction House since 2026-11-22** (Chriso). Only the name shown changed: the
+window title, the minimap button, the AddOns list, the app and the site. The folder, the `.toc` file,
+`MindCollectorObserverDB`, the SavedVariables file and `/mco` keep "Observer", because renaming the
+folder would orphan every player's saved scans, ledger and looks. Code and older docs still say Observer.
+
 ## What exists
 
 - **The addon** (`tools/wow-addon/MindCollectorObserver/`) records the items you look at, auction house

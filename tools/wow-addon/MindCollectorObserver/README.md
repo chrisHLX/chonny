@@ -1,4 +1,9 @@
-# MindCollector Observer (WoW: Forever)
+# MindCollector Auction House (WoW: Forever), formerly Observer
+
+**Named MindCollector Auction House since 2026-11-22** (Chriso). Only the name shown changed: the
+window title, the minimap button, the AddOns list, the app and the site. The folder, the `.toc` file,
+`MindCollectorObserverDB`, the SavedVariables file and `/mco` keep "Observer", because renaming the
+folder would orphan every player's saved scans, ledger and looks. Code and older docs still say Observer.
 
 Remembers the items you look at, prices your professions' recipes, and tells you later what changed.
 Items and professions only since 2026-11-10 (Chriso): talents, spells and players were noise, and

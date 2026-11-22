@@ -14,7 +14,7 @@ internal sealed class SettingsForm : Form
     private readonly CheckBox _forever = Check("Save each PvP fight in WoW Forever, cut to the fight (how much is set below)");
     private readonly CheckBox _wowSound = Check("Record WoW's sound only, not voice chat or music");
     private readonly CheckBox _gameCapture = Check("Record only the game (an OBS Game Capture) when your OBS scene is a screen capture");
-    private readonly CheckBox _observer = Check("Install the Observer addon: it remembers what you look at in Forever, for Looked at");
+    private readonly CheckBox _observer = Check("Install the Auction House addon in Forever: prices, professions, and what you look at");
     private readonly CheckBox _shareScans = Check("Share my auction house scans and get everyone's prices back (prices only)");
     private readonly CheckBox _askOn = Check("Answer /ask questions from Forever: a short answer from a web search, free");
     private readonly CheckBox _askClaude = Check("Use Claude Code on this PC instead: slower, marks every spawn point");

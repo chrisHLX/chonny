@@ -1,5 +1,5 @@
 {{-- The app's WoW Forever page (/wow/forever, 2026-11-12; laid out as a product page the same evening,
-     Chriso: "make the forever page on the website nice"). What the app and its Observer addon do in
+     Chriso: "make the forever page on the website nice"). What the app and its Auction House addon (named Observer until 22 Nov) do in
      Forever, and how to start. Same download as /wow/app. See AppDownloadController::forever and
      docs/forever/observer-handoff-2026-11-10.md. Every claim here is what app 0.6.12 does: keep it true.
      The pictures are the addon's own window, taken from the game (public/images/forever/). --}}
@@ -17,7 +17,7 @@
         <p class="page-eyebrow">WoW Forever · Free for Windows 10 and 11</p>
         <h1 class="page-title">Crafting, Prices and PvP in WoW Forever</h1>
         <p class="text-[16px] text-ink-muted mt-4 max-w-2xl leading-relaxed">
-            An addon that works out which recipes level you cheapest and which ones earn the most, reads the
+            MindCollector Auction House is an addon that works out which recipes level you cheapest and which ones earn the most, reads the
             whole auction house for what's actually selling, and shows what every item is used for. With OBS,
             the app also saves a video of every fight you have against another player.
         </p>
@@ -50,7 +50,7 @@
                 </div>
                 <div class="relative rounded-lg overflow-hidden bg-surface-0">
                     @foreach ($shots as $k => [$key, $label, $caption])
-                        <img src="/images/forever/{{ $key }}.webp" alt="The MindCollector Observer window in WoW Forever: {{ $label }}"
+                        <img src="/images/forever/{{ $key }}.webp" alt="The MindCollector Auction House window in WoW Forever: {{ $label }}"
                              loading="{{ $k === 0 ? 'eager' : 'lazy' }}" width="924" height="548"
                              class="w-full h-auto {{ $k > 0 ? 'hidden' : '' }}" x-show="i === {{ $k }}" @if ($k > 0) x-cloak @endif>
                     @endforeach

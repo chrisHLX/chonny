@@ -282,7 +282,7 @@ Route::prefix('wow')->group(function () {
     // it is connected to an account), and connecting it from the browser. See AppDownloadController.
     Route::get('/coach/app', [\App\Http\Controllers\DesktopAppController::class, 'download'])->middleware('throttle:20,1,app-download')->name('coach.app');
     Route::get('/app', [\App\Http\Controllers\AppDownloadController::class, 'page'])->name('app');
-    // The app in WoW Forever (2026-11-12): the Observer addon, shared auction prices, PvP clips.
+    // The app in WoW Forever (2026-11-12): the Auction House addon (was Observer), shared auction prices, PvP clips.
     Route::get('/forever', [\App\Http\Controllers\AppDownloadController::class, 'forever'])->name('wow.forever');
 
     // Player lookup (2026-10-19): any character's ratings, exp, titles, gear and talents, as on

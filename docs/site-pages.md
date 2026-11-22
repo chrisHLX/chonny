@@ -263,7 +263,7 @@
     players hit (Windows or antivirus, Connect, WoW not found, no games, old games, where to ask), in
     the app's own words. Keep it matching the app's labels when they change.
     **`/wow/forever`** (2026-11-12, `AppDownloadController::forever`, `app/forever.blade.php`, tracked
-    as `forever_page`): what the app and its Observer addon do in WoW Forever (professions, the
+    as `forever_page`): what the app and its Auction House addon (Observer in code) do in WoW Forever (professions, the
     auction house and shared prices, the ledger, PvP clips), getting started, and what it reads and
     shares. Same download as `/wow/app`, which links to it from a card under its showcase, and whose
     privacy line now says it reads the Forever addon's file and shares auction scans. Every claim is

@@ -215,7 +215,7 @@
                 Get the App
             </a>
 
-            <p class="px-3 pt-2.5 pb-0.5 text-[11px] font-bold text-ink-subtle uppercase tracking-[.12em]">The addon</p>
+            <p class="px-3 pt-2.5 pb-0.5 text-[11px] font-bold text-ink-subtle uppercase tracking-[.12em]">Auction House addon</p>
             @foreach ([
                 ['professions', 'icon-flask', 'Professions'],
                 ['auction', 'icon-delta', 'Auction House'],
