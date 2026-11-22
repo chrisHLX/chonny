@@ -73,13 +73,14 @@
                 <h3 class="text-[17px] font-bold text-ink">Professions</h3>
             </div>
             <p class="text-[14px] text-ink-muted leading-relaxed">
-                Every recipe that still gives you a skill point, cheapest per point first, priced from the auction
-                house. Switch to what each craft earns after the 5% cut, whether or not it gives a point.
+                The cheapest recipes to level every profession, priced from the AH, cheapest per skill point first.
+                Switch to the most profitable crafts after the 5% AH cut.
             </p>
             <ul class="mt-3 space-y-1.5 text-[13.5px] text-ink-muted">
-                <li class="flex gap-2"><span class="text-gold">•</span>Counts reagents you can make yourself across all your professions, so a blacksmith who mines smelts their own bars</li>
-                <li class="flex gap-2"><span class="text-gold">•</span>How many one craft makes, for every profession</li>
+                <li class="flex gap-2"><span class="text-gold">•</span>Counts the reagents you can make yourself across all your professions, so a blacksmith who mines smelts their own bars</li>
+                <li class="flex gap-2"><span class="text-gold">•</span>How many items each craft makes, for every profession</li>
                 <li class="flex gap-2"><span class="text-gold">•</span>Where each recipe comes from: the trainer's skill and fee, or the vendors and drops for its recipe</li>
+                <li class="flex gap-2"><span class="text-gold">•</span>Where every herb grows, the Herbalism skill it needs and how rare it is</li>
             </ul>
         </div>
         <div id="auction" class="linear-card p-5 scroll-mt-20">
@@ -88,13 +89,13 @@
                 <h3 class="text-[17px] font-bold text-ink">The auction house</h3>
             </div>
             <p class="text-[14px] text-ink-muted leading-relaxed">
-                One click reads every listing. Two scans show the biggest price moves, which you can narrow to
-                materials, consumables or gear, then to herbs, cloth, potions and the rest.
+                One click scans every listing. Compare two scans to see what's rising, what's falling, what's selling
+                and what's flooding the market, from all materials down to herbs, cloth and potions.
             </p>
             <ul class="mt-3 space-y-1.5 text-[13.5px] text-ink-muted">
                 <li class="flex gap-2"><span class="text-gold">•</span>Sort by rising, falling, selling, flooding, most listed or most gold on sale</li>
-                <li class="flex gap-2"><span class="text-gold">•</span>"At least 12 sold" only counts what expiring listings can't explain: each scan notes how long every listing has left</li>
-                <li class="flex gap-2"><span class="text-gold">•</span>Track an item to keep every reading of its price and listings</li>
+                <li class="flex gap-2"><span class="text-gold">•</span>Listings that just expired aren't counted as sales, so "at least 12 sold" means real sales</li>
+                <li class="flex gap-2"><span class="text-gold">•</span>Track any item to see its price and listings at every scan</li>
             </ul>
         </div>
         <div id="uses" class="linear-card p-5 scroll-mt-20">
@@ -103,8 +104,8 @@
                 <h3 class="text-[17px] font-bold text-ink">What every item is used for</h3>
             </div>
             <p class="text-[14px] text-ink-muted leading-relaxed">
-                Under any item, every recipe in any profession that takes it, grouped by profession with yours first,
-                and the quests that ask for it, the ones you can take first.
+                Open any item to see every recipe that uses it across all professions, yours first, plus the quests
+                that ask for it.
             </p>
             <ul class="mt-3 space-y-1.5 text-[13.5px] text-ink-muted">
                 <li class="flex gap-2"><span class="text-gold">•</span>What each craft sells for, and whether it's used at level 60</li>
@@ -117,8 +118,8 @@
                 <h3 class="text-[17px] font-bold text-ink">Your ledger</h3>
             </div>
             <p class="text-[14px] text-ink-muted leading-relaxed">
-                What you craft, buy at the auction house and vendors, post and sell, kept as you play, so you can
-                see what each item cost you and what it actually earned.
+                Tracks everything you craft, buy from the AH and vendors, post and sell as you play, so you know
+                what every item cost you and what it actually made you.
             </p>
         </div>
     </div>
@@ -130,9 +131,9 @@
             <h3 class="text-[17px] font-bold text-ink">Prices from everyone's scans</h3>
         </div>
         <p class="text-[14px] text-ink-muted leading-relaxed max-w-3xl">
-            Everyone who uses the app shares their auction scans, so your prices are as fresh as the latest scan
-            anyone on your side made, even before you've scanned yourself. Horde, Alliance and the goblin auction
-            houses in Booty Bay, Gadgetzan and Everlook each have their own listings, and the app keeps them apart.
+            Everyone who uses the app shares their AH scans, so your prices are as fresh as the latest scan anyone
+            on your side made, even before you've scanned yourself. Horde, Alliance and the goblin AHs in Booty Bay,
+            Gadgetzan and Everlook are each tracked separately.
         </p>
     </div>
 
@@ -140,7 +141,7 @@
     <h2 id="pvp" class="text-[24px] font-bold text-ink mt-12 mb-4 scroll-mt-20">Your PvP fights on video</h2>
     <div class="linear-card p-6 flex flex-col md:flex-row gap-6 items-start">
         <div class="flex-1 space-y-3 text-[14px] text-ink-muted leading-relaxed">
-            <p>With OBS Studio (free), the app saves each fight you have against another player: duels, world PvP and
+            <p>With OBS Studio (free), the app records every fight against another player: duels, world PvP and
                 battlegrounds. It keeps the last ten minutes in memory and, when a fight ends, saves it from a minute
                 before the first hit to a few seconds after the last. Both are sliders in Settings. Fights against
                 monsters aren't saved.</p>

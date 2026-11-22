@@ -2,16 +2,17 @@
 @php
     $appSchema = \App\Http\Controllers\AppDownloadController::schema();
 @endphp
-<x-app-layout title="MindCollector for Windows: WoW Arena Game Reviews" description="Free Windows app for WoW arena. Every game you play gets a review and a timeline you can play back: who fell and why, every player's cooldowns at each moment, and how you compare with players of your spec." og-image="/images/app/card.webp" :schema="$appSchema">
+<x-app-layout title="MindCollector for Windows: WoW Arena Game Reviews" description="In-depth arena analysis for every game you play. Find out why you lost and what to improve, and replay each match on a timeline of every GCD. Free for Windows." og-image="/images/app/card.webp" :schema="$appSchema">
 <div class="max-w-4xl mx-auto px-4 py-6 sm:py-10">
 
     <section class="page-hero">
         <p class="page-eyebrow">For Windows 10 and 11</p>
         <h1 class="page-title">Review Every Arena Game You Play</h1>
         <p class="text-[15px] text-ink-muted mt-4 max-w-2xl">
-            The MindCollector app watches your games while you play and sends each one to your page
-            when it ends. You get a card for every game, a timeline you can play back, and a page
-            that sets your play against other players of your spec.
+            The MindCollector app tracks every arena game you play and uploads it the moment it ends. See who
+            died and why, your goes and defensive misplays, and replay the whole match on a timeline of each
+            GCD. Compare your damage, defensives and CC with other players of your spec and find out what you
+            need to improve.
         </p>
         {{-- The Store first when there is a listing (MICROSOFT_STORE_URL): it is signed, so Windows
              raises nothing, and the direct download becomes the fallback for people who want the
@@ -48,7 +49,7 @@
         </span>
         <span class="flex-1">
             <span class="block text-[16px] font-bold text-ink group-hover:text-gold">Playing WoW Forever?</span>
-            <span class="block text-[14px] text-ink-muted">The same app levels your professions for less, reads the auction house, and saves your PvP fights.</span>
+            <span class="block text-[14px] text-ink-muted">The same app installs MindCollector Auction House: the cheapest recipes to level, the most profitable crafts, price tracking, and every PvP fight on video.</span>
         </span>
     </a>
 

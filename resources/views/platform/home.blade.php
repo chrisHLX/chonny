@@ -32,14 +32,14 @@
                         <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4v12m0 0l-5-5m5 5l5-5M5 20h14"/></svg>
                         Get the app
                     </a>
-                    <a href="{{ route('wow.sample') }}" class="btn-secondary !px-6 !py-3 !text-[14px]">See a game read</a>
+                    <a href="{{ route('wow.sample') }}" class="btn-secondary !px-6 !py-3 !text-[14px]">See a sample game</a>
                 </div>
                 <p class="text-[12.5px] text-ink-subtle mt-4">Free for Windows 10 and 11. It updates itself.</p>
             </div>
 
             {{-- Two of the real pages, one over the other: a game read in Midnight, the addon in Forever. --}}
             <div class="relative hidden sm:block lg:pl-4 pb-10 lg:pb-14">
-                <img src="/images/app/card.webp" alt="A Midnight arena game read in MindCollector" width="1600" height="1045"
+                <img src="/images/app/card.webp" alt="A Midnight arena game in MindCollector" width="1600" height="1045"
                      class="w-full h-auto rounded-xl ring-1 ring-white/10 shadow-2xl shadow-black/70">
                 @if (isset($games['forever']))
                     <img src="/images/forever/professions.webp" alt="MindCollector Auction House in WoW Forever" width="924" height="548" loading="lazy"

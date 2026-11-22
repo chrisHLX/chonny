@@ -187,7 +187,7 @@
 
         <div class="linear-card p-4 border border-line-gold bg-gold-subtle">
             <h2 class="font-display text-lg text-ink leading-tight">Add your own games</h2>
-            <p class="text-[12.5px] text-ink-muted mt-1 mb-3">The app reads your combat log after each game: how every death happened, your buttons and where you stand against your spec.</p>
+            <p class="text-[12.5px] text-ink-muted mt-1 mb-3">The app tracks every arena game you play: how every death happened, your goes and defensives, and how you compare with your spec.</p>
             <a href="{{ route('app') }}" wire:navigate class="btn-primary text-[12.5px]">Get the app</a>
         </div>
     </aside>

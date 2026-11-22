@@ -103,7 +103,7 @@
     <section class="linear-card border-line-gold p-5 sm:p-6 mb-8">
         <h2 class="text-[11px] uppercase tracking-[0.13em] text-gold font-semibold">Your Games</h2>
         <p class="text-[20px] font-bold text-ink mt-1">The app is connected</p>
-        <p class="text-[14px] text-ink-muted mt-1 max-w-2xl">Play an arena game with the app running. The game appears here about a minute after it ends: who died, what killed them, and where you stand.</p>
+        <p class="text-[14px] text-ink-muted mt-1 max-w-2xl">Play an arena game with the app running. The game shows up here about a minute after it ends: who died, what killed them, and how you compare with your spec.</p>
         <div class="flex flex-wrap items-center gap-3 mt-4">
             <a href="{{ route('wow.sample') }}" class="btn-secondary">See a sample game</a>
             <a href="{{ $coach }}#upload" class="text-[13px] text-ink-subtle hover:text-gold">Or upload a combat log &rarr;</a>
