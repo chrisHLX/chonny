@@ -9,7 +9,7 @@
         ['market', 'Market', 'The whole auction house between two scans, by category, with what\'s actually selling.'],
     ])->filter(fn ($s) => is_file(public_path("images/forever/{$s[0]}.webp")))->values();
 @endphp
-<x-app-layout title="MindCollector for WoW Forever: Professions, Auction Prices and PvP Clips" description="Free Windows app and addon for WoW Forever. See which recipes level you cheapest and which earn the most, read the auction house for what's selling, and save a video of every PvP fight.">
+<x-app-layout title="MindCollector for WoW Forever: Professions, Auction Prices and PvP Clips" description="MindCollector Auction House for WoW Forever scans the AH and calculates the cheapest recipes to make, the most profitable crafts and how prices move over time. Free with the Windows app.">
 <div class="max-w-5xl mx-auto px-4 py-6 sm:py-10">
 
     {{-- Hero --}}
@@ -17,9 +17,11 @@
         <p class="page-eyebrow">WoW Forever · Free for Windows 10 and 11</p>
         <h1 class="page-title">Crafting, Prices and PvP in WoW Forever</h1>
         <p class="text-[16px] text-ink-muted mt-4 max-w-2xl leading-relaxed">
-            MindCollector Auction House is an addon that works out which recipes level you cheapest and which ones earn the most, reads the
-            whole auction house for what's actually selling, and shows what every item is used for. With OBS,
-            the app also saves a video of every fight you have against another player.
+            {{-- Chriso's own words (22 Nov) --}}
+            MindCollector Auction House scans the AH and calculates the cheapest recipes for you to make, the most
+            profitable given the current price, and tracks price fluctuations across time. Keeps track of your
+            earnings, spending, what materials are used in, recipe locations, material scarcity, price difference,
+            profit margins, what's selling, what isn't and much more! With OBS the app also records every PvP fight.
         </p>
         <div class="flex flex-col sm:flex-row sm:items-center gap-3 mt-7">
             @if ($available)

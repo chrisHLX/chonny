@@ -3,7 +3,7 @@
      their own: a hero with the two things to do, then Midnight, Forever and StarCraft II side by side,
      each in its own colour, as the sidebar's tabs are. --}}
 <x-app-layout title="MindCollector: Understand Your Games"
-              description="MindCollector reads the games you play and shows what happened in them, set against the players you meet. World of Warcraft arena and WoW Forever now; StarCraft II next."
+              description="In-depth arena analysis that understands goes, defensive misplays and missed opportunities. Find out why you lost and what to improve. Plus MindCollector Auction House for WoW Forever."
               og-image="/images/app/card.webp">
 <div class="max-w-6xl mx-auto px-4 py-6 sm:py-10 space-y-12">
 
@@ -21,8 +21,11 @@
                     Understand<br>Your Games
                 </h1>
                 <p class="text-[16px] text-ink-muted mt-5 max-w-xl leading-relaxed">
-                    MindCollector reads the games you play and shows what happened in them, set against the players
-                    you meet. Midnight arena and WoW Forever today, StarCraft II next.
+                    {{-- Chriso's own words (22 Nov), in place of the generated line --}}
+                    In-depth arena analysis with context-aware tracking that understands goes, defensive misplays
+                    and missed opportunities. Find out why you lost and what areas you need to improve in. Record
+                    matches with a timeline display of each GCD. Uses minimal resources and learns from the games
+                    you play.
                 </p>
                 <div class="flex flex-wrap items-center gap-3 mt-7">
                     <a href="{{ route('app') }}" wire:navigate class="btn-primary !px-7 !py-3 !text-[15px]">
@@ -39,7 +42,7 @@
                 <img src="/images/app/card.webp" alt="A Midnight arena game read in MindCollector" width="1600" height="1045"
                      class="w-full h-auto rounded-xl ring-1 ring-white/10 shadow-2xl shadow-black/70">
                 @if (isset($games['forever']))
-                    <img src="/images/forever/professions.webp" alt="The MindCollector addon in WoW Forever" width="924" height="548" loading="lazy"
+                    <img src="/images/forever/professions.webp" alt="MindCollector Auction House in WoW Forever" width="924" height="548" loading="lazy"
                          class="absolute -bottom-2 -left-4 lg:-left-6 w-[58%] h-auto rounded-lg ring-1 ring-white/10 shadow-2xl shadow-black/80">
                 @endif
             </div>
@@ -112,8 +115,8 @@
         <ol class="grid sm:grid-cols-3 gap-4">
             @foreach ([
                 ['Play as you normally do', 'The MindCollector app picks up each game when it ends. Nothing to start, nothing to export.'],
-                ['Every game gets read', 'Who died and why, and what was left unused.'],
-                ['Where you stand', 'Your damage, defensives and crowd control set against other players of your spec, session by session, so you can see them move.'],
+                ['Every game analysed', 'Who died and why, your goes, defensive misplays and the cooldowns you never pressed.'],
+                ['See what to improve', 'Your damage, defensives and CC compared with other players of your spec, session by session.'],
             ] as $i => [$title, $body])
                 <li class="relative rounded-xl bg-surface-1 ring-1 ring-white/5 p-5">
                     <span class="font-display text-[44px] leading-none text-gold/25">{{ $i + 1 }}</span>

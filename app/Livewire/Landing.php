@@ -95,7 +95,7 @@ class Landing extends Component
     {
         return view('livewire.landing')->layout('layouts.app', [
             'title' => 'MindCollector: WoW Arena Game Reviews',
-            'description' => 'A free Windows app that reviews every arena game you play: who died, what killed them, what you had left, and how you compare with players of your spec. Plus 3v3 comps, class guides and the Matchup Lab.',
+            'description' => 'In-depth arena analysis for every game you play. Find out why you lost and what to improve, with a timeline of each GCD. Plus 3v3 comps, PvP guides and the Matchup Lab.',
         ]);
     }
 }

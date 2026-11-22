@@ -16,9 +16,7 @@
             <p class="page-eyebrow">World of Warcraft arena</p>
             <h1 class="page-title max-w-3xl">Review Every Arena Game You Play</h1>
             <p class="text-[16px] text-ink-muted mt-4 max-w-2xl">
-                The free MindCollector app sends each game here when it ends. You get a card for every game with
-                who died and why, a timeline you can play back with every player's cooldowns, and where you stand
-                against the players of your spec you meet.
+                In-depth arena analysis with context-aware tracking that understands goes, defensive misplays and missed opportunities. Find out why you lost and what areas you need to improve in. Record matches with a timeline display of each GCD. Uses minimal resources and learns from the games you play.
             </p>
             <div class="flex flex-col sm:flex-row sm:items-center gap-3 mt-7">
                 <a href="{{ route('wow.sample') }}" class="btn-primary !px-7 !py-3 !text-[15px]">See a Sample Game</a>
@@ -39,12 +37,12 @@
 
     {{-- WoW Forever (2026-11-12) ---------------------------------------------------------------- --}}
     <a href="{{ route('wow.forever') }}" wire:navigate class="linear-card group mt-10 p-5 flex flex-col sm:flex-row sm:items-center gap-4">
-        <img src="/images/forever/market.webp" alt="The MindCollector addon in WoW Forever: the auction house by category"
+        <img src="/images/forever/market.webp" alt="MindCollector Auction House in WoW Forever: the auction house by category"
              loading="lazy" width="924" height="548" class="w-full sm:w-64 h-auto rounded-md border border-line shrink-0">
         <span class="flex-1">
             <span class="block text-[12px] font-bold text-gold uppercase tracking-[.12em]">Playing WoW Forever?</span>
             <span class="block text-[17px] font-bold text-ink mt-1 group-hover:text-gold">Crafting, prices and PvP clips</span>
-            <span class="block text-[13.5px] text-ink-muted mt-1">The same app adds an addon to Forever: what levels your professions cheapest, what's selling on the auction house, and a video of every PvP fight.</span>
+            <span class="block text-[13.5px] text-ink-muted mt-1">The same app installs MindCollector Auction House. It scans the AH for the cheapest recipes to level, the most profitable crafts and what's selling. With OBS it records every PvP fight too.</span>
         </span>
         <span class="text-gold text-[13px] font-semibold shrink-0">See how &rarr;</span>
     </a>
