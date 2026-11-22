@@ -858,8 +858,10 @@
     }
 
     function drawFrames(v) {
-        var r = null;
-        for (var i = 0; i < rounds.length; i++) { if (v - offset >= rounds[i].start - 60) { r = rounds[i]; } }
+        // A round's players from a minute before it starts; before round 1's minute (a recording with a
+        // long prep: 72s on 21 Nov, so the column stood empty at 0:00), round 1's players.
+        var r = rounds.length ? rounds[0] : null;
+        for (var i = 1; i < rounds.length; i++) { if (v - offset >= rounds[i].start - 60) { r = rounds[i]; } }
         if (!r || !r.frames.length) { framesEl.style.display = 'none'; return; }
         if (r !== shownRound) { buildFrames(r); shownRound = r; }
         var t = v - offset - r.start, rows = [];

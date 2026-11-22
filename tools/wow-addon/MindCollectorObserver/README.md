@@ -53,6 +53,10 @@ what was saved of them is dropped at the next login.
   (an /ask question drew under the body), same-day scans are told apart by time, a tracked item's
   row says listed, when, since and looks (the "probably…" guess stays on its page), thousands get
   commas, and Escape clears the search.
+- **The X closes the window in combat** (2026-11-22, Cbags: "the X didn't work"; app 0.6.33). The
+  close button's template calls `HideUIPanel`, which Forever's `UIParentPanelManager.lua` refuses for
+  an addon in combat (`CheckProtectedFunctionsAllowed`: "Interface action failed because of an
+  AddOn"). The X now hides the window itself, as Escape and `/mco` always did.
 - **Used at 60** (2026-11-15): at the bottom of Professions, every profession's consumables and
   enchants that Data.lua marks as used at max level (field 11; `used_at_60` in `observer_data.py`:
   a consumable needing level 35+, or an enchant yellow at 250+), whatever your skill. The list above

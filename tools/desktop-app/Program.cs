@@ -37,6 +37,7 @@ internal static class Program
         if (args.Length >= 2 && args[0] == "--probe") return Diagnostics.Probe(args[1], args.Contains("full"));
         if (args.Length >= 1 && args[0] == "--check-notes") return Diagnostics.CheckNotes(args);
         if (args.Length >= 2 && args[0] == "--local-sync-once") return Diagnostics.LocalSyncOnce(args);
+        if (args.Length >= 2 && args[0] == "--check-pages") return PageCheck.Run(args.Skip(1).ToList());
         if (args.Length >= 2 && args[0] == "--check-live") return Diagnostics.CheckLive(args[1], args.Length > 2 && int.TryParse(args[2], out var from) ? from : 0);
 
         // Opened from Downloads: install, open the installed copy, and leave (Installer). A development

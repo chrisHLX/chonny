@@ -228,7 +228,9 @@ public sealed class Syncer
         }
         if (ingested == 0) return;
 
-        var (synced, syncOut) = await ArtisanAsync("wow:sync --skip-ingest", ct);
+        // Named, never guessed: two "Sync test" accounts made while checking 0.6.0 (26 Oct) left wow:sync
+        // unable to choose, and every local build failed from 28 Oct to 22 Nov.
+        var (synced, syncOut) = await ArtisanAsync("wow:sync --skip-ingest" + (_settings.LocalSyncUser is { } who ? $" --user={who}" : ""), ct);
         _log(synced ? $"Local archive: {ingested} log(s) read, reviews built. {LastLine(syncOut)}" : $"Local archive: building reviews failed. {LastLine(syncOut)}");
         Warn(syncOut);
 

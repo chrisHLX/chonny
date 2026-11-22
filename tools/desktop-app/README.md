@@ -88,6 +88,10 @@ the project:
 - `WARNING:` lines from the ingest (a new patch or log version) come up as a tray balloon, as they
   did in the developer app.
 - Logs last written before `LocalSyncSince` are left alone: the developer app had read them.
+- **`wow:sync` is given `--user=LocalSyncUser` (0.6.33).** Before, it guessed the user, and two throwaway
+  accounts from checking 0.6.0 on 26 Oct ("Sync test 0.6.0", an `@example.org` address the guess doesn't
+  skip) made it refuse: every local build failed from 28 Oct to 22 Nov ("building reviews failed. 23
+  kozey.lilla@example.com", the last line of its list of users). The logs were still read into the archive.
 - **Trap (2026-10-25):** "Move logs to" is also read for logs to send, so pointing it at a folder of
   logs another app already sent sends them all again (it did: about 95 rounds re-measured on the
   one-core server before it was stopped). Mark such logs as sent first: a `Files` entry per log with
@@ -302,6 +306,29 @@ list and a "Watch the video" button on its card; the video page links back to th
 
 Not yet: the Watch page (the timeline under the video) inside this app's window (its pages come from the website, and a local video
 needs a local page), and the prep for later arenas of a session.
+
+**Pages from a made-up address, not NavigateToString (0.6.33, 2026-11-22, `PageHost`).** Chriso's two
+shuffles of 21 Nov played with no timeline, and an uploaded 3v3's timeline showed YouTube's "error 153".
+Two faults of NavigateToString, which drew every page:
+- **It refuses a page over 2 MB once URL-encoded** ("Value does not fall within the expected range",
+  thrown at once). Quotes, brackets and spaces cost three bytes each, so the limit falls between 1.2 and
+  1.6 MB of shuffle timeline. The 16:48 shuffle's page (1.57 MB) was refused and the app fell back to the
+  plain player; six of the nine shuffle videos then on disk are 1.05-1.66 MB. The 1.18 MB 18:31 page
+  loaded: its players were only missing at 0:00 (below).
+- **A page from a string has no address**, so YouTube's embed got no Referer and answered error 153. The
+  card's "Watch the timeline" (`watch-<lobby>.html`, built on the website without the recording) plays
+  YouTube for an uploaded game, so every uploaded game failed in the window. It played on the website.
+
+Now every page is answered from memory at `https://app.mindcollector.invalid/page/N`
+(WebResourceRequested), with no size limit, and that address is the Referer. "Watch the timeline" for a
+game with a recording on this PC opens the recording instead of YouTube's copy. Checked with
+`--check-pages` on the pages the app is sent: the 16:48 shuffle refused before, loaded after with its
+17:38 video and 62 ability buttons; the YouTube page "Video player configuration error, Error 153"
+before, the 412s video ready after.
+
+**A round's players from 0:00 (website, watch.blade.php).** The frames draw a round from 60s before
+its start, so a recording with a long prep (the 18:31 shuffle: round 1 at 72s) showed an empty players
+column until 0:12. Before round 1's minute, round 1's players show.
 
 **The buffer's state is watched, not assumed (0.6.23, 2026-11-14).** Before, `_bufferOn` was set once
 when the app started the buffer and cleared only when the app stopped it. OBS closed, crashed, or the
@@ -578,6 +605,11 @@ Each switch writes its report to the app's data folder (`%APPDATA%\MindCollector
   Records nothing.
 - `MindCollector.exe --check-live LOG [FROM-LINE]` replays a log as "This game" reads it and lists each
   round's two teams, specs and which player is you (`check-live.txt`).
+- `MindCollector.exe --check-pages FILE [FILE...]` loads saved pages (a Watch page as
+  `/api/coach/watch/{lobby}` sends it) in a real WebView2, by NavigateToString and by `PageHost`, and
+  reports for each whether it loaded, its ability buttons at 0:00 and at 2:00, the video's or YouTube
+  player's state, with pictures (`check-pages.txt`, `check-pages-N.png`). Opens a window while it runs.
+  To fetch a page as the app does, send `video`, `started` and `rounds[]` from the video's timing file.
 - `MindCollector.exe --check-notes --server URL --key KEY [--players NAME...]` brings the developer
   app's notes over, writes a note, a mark and a next-game note, sends them, and asks about the
   players (`check-notes.txt`). Run it with `MINDCOLLECTOR_DATA` set, against a local server.

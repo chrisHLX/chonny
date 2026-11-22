@@ -319,6 +319,7 @@ internal sealed class MainForm : Form
         _view.CoreWebView2.NavigationStarting += OnNavigationStarting;
         _view.CoreWebView2.NewWindowRequested += (_, e) => { e.Handled = true; OpenUrl(e.Uri); };
         _view.CoreWebView2.WebMessageReceived += OnPageMessage;
+        _pages = new PageHost(_view.CoreWebView2);
         MapVideos();
         _view.CoreWebView2.NavigationCompleted += (_, _) => { if (_tab == "This game") { _sentVersion = -1; SendLiveState(); } };
         CheckAddon();
@@ -1115,6 +1116,14 @@ internal sealed class MainForm : Form
     {
         _pageShown = true;
         if (string.IsNullOrEmpty(file) || string.IsNullOrEmpty(_settings.Key) || _view.CoreWebView2 == null) return;
+        // The card's "Watch the timeline" for a game recorded on this PC: the timeline over that recording,
+        // not over the YouTube copy the website would play (2026-11-22).
+        if (System.Text.RegularExpressions.Regex.Match(file, "^watch-([0-9a-f]{32})\\.html$") is { Success: true } watch
+            && GamePlayedAt(watch.Groups[1].Value) is { } playedAt && (VideoFor(playedAt) ?? VideoLibrary.ForGame(LoadVideos(), playedAt)) is { } local)
+        {
+            ShowVideo(local.Name);
+            return;
+        }
         try
         {
             using var api = new ApiClient(_settings.ServerUrl, _settings.Key);
@@ -1143,7 +1152,7 @@ internal sealed class MainForm : Form
     /// <summary>A link inside a page to another page opens it here; anything else opens in the browser.</summary>
     private async void OnNavigationStarting(object? sender, CoreWebView2NavigationStartingEventArgs e)
     {
-        if (!Uri.TryCreate(e.Uri, UriKind.Absolute, out var uri) || uri.Scheme is "data" or "about") return;
+        if (!Uri.TryCreate(e.Uri, UriKind.Absolute, out var uri) || uri.Scheme is "data" or "about" || PageHost.Owns(uri)) return;
 
         // The welcome page's buttons (ShowWelcome).
         if (uri.Scheme == "mc-app")
@@ -1173,14 +1182,15 @@ internal sealed class MainForm : Form
     private string? _shown;
     private string? _shownFile;
     private DateTime? _reloadAt;
+    private PageHost? _pages;
 
     /// <summary>Draws a page, unless it is the one already showing (no flash, no jump to the top).</summary>
     private void Show(string html)
     {
-        if (_view.CoreWebView2 == null || html == _shown) return;
+        if (_view.CoreWebView2 == null || _pages == null || html == _shown) return;
         if (!html.Contains(VideoLibrary.Host, StringComparison.Ordinal)) _shownVideo = null;   // not a video's page
         _shown = html;
-        _view.CoreWebView2.NavigateToString(html);
+        _pages.Show(html);
     }
 
     // ------------------------------------------------------------------ samples (0.6.0)
