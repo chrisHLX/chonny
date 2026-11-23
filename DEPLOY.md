@@ -21,15 +21,22 @@ is `pm.max_children = 12`, `pm.max_requests = 500`. Size workers from **PSS** in
 queue name needs `/etc/supervisor/conf.d` changed first.
 
 **No scheduler:** `schedule:run` is not in cron, so every `Schedule::command(...)` in
-`routes/console.php` (e.g. `next-steps:expire`) is inert on live. **Cron is one line**, deliberately a
-direct command so it wakes nothing else:
+`routes/console.php` (e.g. `next-steps:expire`) is inert on live. **Cron is two lines**, deliberately
+direct commands so they wake nothing else:
 
 ```
 0 18 * * * cd /var/www/mindcollector && nice -n 15 sudo -u www-data php -d memory_limit=512M artisan wow:pvp-leaderboards >> storage/logs/leaderboards.log 2>&1
+0 20 * * * cd /var/www/mindcollector && sudo -u www-data php artisan ops:daily-report >> storage/logs/daily-report.log 2>&1
 ```
 
 18:00 UTC: every PvP leaderboard of the season for US and EU, ~170 Blizzard calls, ~380,000 entries, a
 few minutes. As www-data, so the files it writes are the site's own.
+
+20:00 UTC (7am Sydney in summer): **the daily check email** to `ADMIN_EMAIL` (`ops:daily-report`,
+2026-11-23). Website answers, a queue worker takes a test job, failed jobs, both regions' leaderboards
+pulled within 26h, errors in `laravel.log`, disk, the HTTPS certificate; then the day's sign-ups,
+uploads and scans. The subject names anything to look at. No email means the box or cron is down.
+`--dry-run` prints it without sending.
 
 ## Connecting
 
