@@ -1,7 +1,7 @@
 {
     "class": "Paladin",
     "talent_tree_id": 790,
-    "fetched_at": "2026-11-03T21:14:23+00:00",
+    "fetched_at": "2026-11-23T07:47:43+00:00",
     "source": "Blizzard Game Data API (static-us, en_US)",
     "class_talents": {
         "nodes": [
@@ -111,7 +111,7 @@
                                 "talent_name": "Holy Prism",
                                 "spell_id": 114165,
                                 "spell_name": "Holy Prism",
-                                "description": "Fires a beam of light that scatters to strike a clump of targets. \r\n\r\nIf the beam is aimed at an enemy target, it deals 2,483 Holy damage and radiates 2,625 healing to 5 allies within 30 yds.\r\n\r\nIf the beam is aimed at a friendly target, it heals for 6,129 and radiates 919 Holy damage to 5 enemies within 30 yds.\r\n\r\nGenerates 3 Holy Power.",
+                                "description": "Fires a beam of light that scatters to strike a clump of targets. \r\n\r\nIf the beam is aimed at an enemy target, it deals 2,431 Holy damage and radiates 2,577 healing to 5 allies within 30 yds.\r\n\r\nIf the beam is aimed at a friendly target, it heals for 6,007 and radiates 947 Holy damage to 5 enemies within 30 yds.\r\n\r\nGenerates 3 Holy Power.",
                                 "cast_time": "Instant",
                                 "cooldown": "45 sec cooldown",
                                 "range": "40 yd range"
@@ -2054,7 +2054,7 @@
                         "talent_name": "Holy Ritual",
                         "spell_id": 199422,
                         "spell_name": "Holy Ritual",
-                        "description": "Allies are healed for 7,786 when you cast Blessing of Protection or Blessing of Sacrifice on them.",
+                        "description": "Allies are healed for 7,701 when you cast Blessing of Protection or Blessing of Sacrifice on them.",
                         "cast_time": "Passive",
                         "cooldown": null,
                         "range": null
@@ -2525,7 +2525,7 @@
                             "talent_name": "Light's Guidance",
                             "spell_id": 427445,
                             "spell_name": "Light's Guidance",
-                            "description": "Wake of Ashes is replaced with Hammer of Light for 20 sec after it is cast.\r\n\r\n Hammer of Light:\r\nHammer down your enemy with the power of the Light, dealing 369 Holy damage and 185 Holy damage up to 7 nearby enemies. \r\n\r\nAdditionally, calls down Empyrean Hammers from the sky to strike 3 nearby enemies for 18 Holy damage each.\r\n\r\nCosts 5 Holy Power.\r\n",
+                            "description": "Wake of Ashes is replaced with Hammer of Light for 20 sec after it is cast.\r\n\r\n Hammer of Light:\r\nHammer down your enemy with the power of the Light, dealing 366 Holy damage and 185 Holy damage up to 7 nearby enemies. \r\n\r\nAdditionally, calls down Empyrean Hammers from the sky to strike 3 nearby enemies for 18 Holy damage each.\r\n\r\nCosts 5 Holy Power.\r\n",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -3815,7 +3815,7 @@
                             "talent_name": "Light's Guidance",
                             "spell_id": 427445,
                             "spell_name": "Light's Guidance",
-                            "description": "Wake of Ashes is replaced with Hammer of Light for 20 sec after it is cast.\r\n\r\n Hammer of Light:\r\nHammer down your enemy with the power of the Light, dealing 369 Holy damage and 182 Holy damage up to 7 nearby enemies. \r\n\r\nAdditionally, calls down Empyrean Hammers from the sky to strike 3 nearby enemies for 18 Holy damage each.\r\n\r\nCosts 5 Holy Power.\r\n",
+                            "description": "Wake of Ashes is replaced with Hammer of Light for 20 sec after it is cast.\r\n\r\n Hammer of Light:\r\nHammer down your enemy with the power of the Light, dealing 363 Holy damage and 178 Holy damage up to 7 nearby enemies. \r\n\r\nAdditionally, calls down Empyrean Hammers from the sky to strike 3 nearby enemies for 18 Holy damage each.\r\n\r\nCosts 5 Holy Power.\r\n",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -3842,7 +3842,7 @@
                             "talent_name": "Avenger's Shield",
                             "spell_id": 31935,
                             "spell_name": "Avenger's Shield",
-                            "description": "Hurls your shield at an enemy target, dealing 69 Holy damage, interrupting and silencing the non-Player target for 3 sec, and then jumping to 2 additional nearby enemies. \r\n",
+                            "description": "Hurls your shield at an enemy target, dealing 70 Holy damage, interrupting and silencing the non-Player target for 3 sec, and then jumping to 2 additional nearby enemies. \r\n",
                             "cast_time": "Instant",
                             "cooldown": "15 sec cooldown",
                             "range": "30 yd range"
@@ -5997,7 +5997,7 @@
                             "talent_name": "Holy Shock",
                             "spell_id": 20473,
                             "spell_name": "Holy Shock",
-                            "description": "Triggers a burst of Light on the target, dealing 819 Holy damage to an enemy, or 4,270 healing to an ally.\r\n\r\nGenerates 1 Holy Power.\r\n",
+                            "description": "Triggers a burst of Light on the target, dealing 832 Holy damage to an enemy, or 4,345 healing to an ally.\r\n\r\nGenerates 1 Holy Power.\r\n",
                             "cast_time": "Instant",
                             "cooldown": null,
                             "range": "40 yd range"
@@ -7023,7 +7023,7 @@
                             "talent_name": "Shining Righteousness",
                             "spell_id": 414443,
                             "spell_name": "Shining Righteousness",
-                            "description": "Shield of the Righteous deals 968 damage to its first target struck.\r\n\r\nShield of the Righteous now has a 35% chance to activate Divine Purpose if talented.",
+                            "description": "Shield of the Righteous deals 988 damage to its first target struck.\r\n\r\nShield of the Righteous now has a 35% chance to activate Divine Purpose if talented.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -7715,7 +7715,7 @@
                                     "talent_name": "Avenging Crusader",
                                     "spell_id": 216331,
                                     "spell_name": "Avenging Crusader",
-                                    "description": "You become the ultimate crusader of light, for 15 sec. Auto-attack damage is increased by 1,000%, Judgment and Crusader Strike heal up to 5 injured allies within 40 yds for 55% of the damage done, split evenly among them.\r\n\r\nThis spell is replaced with Crusader Strike while active.\r\n\r\nCrusader Strike:\r\nStrike the target for 48 Physical damage.\r\n\r\nGenerates 1 Holy Power.",
+                                    "description": "You become the ultimate crusader of light, for 15 sec. Auto-attack damage is increased by 1,000%, Judgment and Crusader Strike heal up to 5 injured allies within 40 yds for 55% of the damage done, split evenly among them.\r\n\r\nThis spell is replaced with Crusader Strike while active.\r\n\r\nCrusader Strike:\r\nStrike the target for 49 Physical damage.\r\n\r\nGenerates 1 Holy Power.",
                                     "cast_time": "Instant",
                                     "cooldown": "1 min cooldown",
                                     "range": null
@@ -8297,7 +8297,7 @@
                             "talent_name": "Light's Guidance",
                             "spell_id": 427445,
                             "spell_name": "Light's Guidance",
-                            "description": "Wake of Ashes is replaced with Hammer of Light for 20 sec after it is cast.\r\n\r\n Hammer of Light:\r\nHammer down your enemy with the power of the Light, dealing 366 Holy damage and 183 Holy damage up to 7 nearby enemies. \r\n\r\nAdditionally, calls down Empyrean Hammers from the sky to strike 3 nearby enemies for 18 Holy damage each.\r\n\r\nCosts 5 Holy Power.\r\n",
+                            "description": "Wake of Ashes is replaced with Hammer of Light for 20 sec after it is cast.\r\n\r\n Hammer of Light:\r\nHammer down your enemy with the power of the Light, dealing 364 Holy damage and 184 Holy damage up to 7 nearby enemies. \r\n\r\nAdditionally, calls down Empyrean Hammers from the sky to strike 3 nearby enemies for 18 Holy damage each.\r\n\r\nCosts 5 Holy Power.\r\n",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -8353,7 +8353,7 @@
                             "talent_name": "Blade of Justice",
                             "spell_id": 184575,
                             "spell_name": "Blade of Justice",
-                            "description": "Pierce an enemy with a blade of light, dealing 67 Holy damage.\r\n\r\nGenerates 1 Holy Power.",
+                            "description": "Pierce an enemy with a blade of light, dealing 66 Holy damage.\r\n\r\nGenerates 1 Holy Power.",
                             "cast_time": "Instant",
                             "cooldown": null,
                             "range": "12 yd range"
@@ -8465,7 +8465,7 @@
                             "talent_name": "Divine Hammer",
                             "spell_id": 432929,
                             "spell_name": "Divine Hammer",
-                            "description": "Divine Toll summons Divine Hammers that spin around you for 8 sec.\r\n\r\nDivine Hammer\r\nStrikes all enemies nearby for 50 Holy damage every 2 sec. Deals reduced damage beyond 8 targets.",
+                            "description": "Divine Toll summons Divine Hammers that spin around you for 8 sec.\r\n\r\nDivine Hammer\r\nStrikes all enemies nearby for 51 Holy damage every 2 sec. Deals reduced damage beyond 8 targets.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -9298,7 +9298,7 @@
                             "talent_name": "Final Verdict",
                             "spell_id": 383328,
                             "spell_name": "Final Verdict",
-                            "description": "Unleashes a powerful weapon strike that deals 163 Holy damage to an enemy target,\r\n\r\nHas a 15% chance to reset the cooldown of Judgment.",
+                            "description": "Unleashes a powerful weapon strike that deals 160 Holy damage to an enemy target,\r\n\r\nHas a 15% chance to reset the cooldown of Judgment.",
                             "cast_time": "Instant",
                             "cooldown": null,
                             "range": "12 yd range"
@@ -9841,7 +9841,7 @@
                                     "talent_name": "Templar Strikes",
                                     "spell_id": 406646,
                                     "spell_name": "Templar Strikes",
-                                    "description": "Crusader Strike loses a charge but is now a combo ability.\r\n\r\nTemplar Strike slashes an enemy for 65 Radiant damage and gets followed up by Templar Slash that deals 75 Radiant damage. Templar Slash always critically strikes.",
+                                    "description": "Crusader Strike loses a charge but is now a combo ability.\r\n\r\nTemplar Strike slashes an enemy for 66 Radiant damage and gets followed up by Templar Slash that deals 75 Radiant damage. Templar Slash always critically strikes.",
                                     "cast_time": "Passive",
                                     "cooldown": null,
                                     "range": null
@@ -9982,7 +9982,7 @@
                             "talent_name": "Wake of Ashes",
                             "spell_id": 255937,
                             "spell_name": "Wake of Ashes",
-                            "description": "Lash out at your enemies, dealing 113 Radiant damage to all enemies within 14 yds in front of you, and applying Truth's Wake, burning the targets for an additional 67 damage over 9 sec.\r\n\r\nDemon and Undead enemies are also stunned for 5 sec.\r\n\r\nGenerates 3 Holy Power.",
+                            "description": "Lash out at your enemies, dealing 111 Radiant damage to all enemies within 14 yds in front of you, and applying Truth's Wake, burning the targets for an additional 67 damage over 9 sec.\r\n\r\nDemon and Undead enemies are also stunned for 5 sec.\r\n\r\nGenerates 3 Holy Power.",
                             "cast_time": "Instant",
                             "cooldown": null,
                             "range": null

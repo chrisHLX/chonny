@@ -1,7 +1,7 @@
 {
     "class": "Shaman",
     "talent_tree_id": 786,
-    "fetched_at": "2026-11-03T21:14:05+00:00",
+    "fetched_at": "2026-11-23T07:47:26+00:00",
     "source": "Blizzard Game Data API (static-us, en_US)",
     "class_talents": {
         "nodes": [
@@ -219,7 +219,7 @@
                         "talent_name": "Chain Lightning",
                         "spell_id": 188443,
                         "spell_name": "Chain Lightning",
-                        "description": "Hurls a lightning bolt at the enemy, dealing 451 Nature damage and then jumping to additional nearby enemies. Affects 3 total targets",
+                        "description": "Hurls a lightning bolt at the enemy, dealing 438 Nature damage and then jumping to additional nearby enemies. Affects 3 total targets",
                         "cast_time": "2 sec cast",
                         "cooldown": null,
                         "range": "40 yd range"
@@ -366,7 +366,7 @@
                         "talent_name": "Chain Heal",
                         "spell_id": 1064,
                         "spell_name": "Chain Heal",
-                        "description": "Heals the friendly target for 886, then jumps up to 20 yards to heal the 3 most injured nearby allies. Healing is reduced by 30% with each jump.",
+                        "description": "Heals the friendly target for 882, then jumps up to 20 yards to heal the 3 most injured nearby allies. Healing is reduced by 30% with each jump.",
                         "cast_time": "2 sec cast",
                         "cooldown": null,
                         "range": "40 yd range"
@@ -396,7 +396,7 @@
                         "talent_name": "Healing Stream Totem",
                         "spell_id": 5394,
                         "spell_name": "Healing Stream Totem",
-                        "description": "Summons a totem at your feet for 15 sec that heals an injured party or raid member within 40 yards for 261 every 1.8 sec.\r\n\r\nIf you already know Healing Stream Totem, instead gain 1 additional charge of Healing Stream Totem.",
+                        "description": "Summons a totem at your feet for 15 sec that heals an injured party or raid member within 40 yards for 251 every 1.8 sec.\r\n\r\nIf you already know Healing Stream Totem, instead gain 1 additional charge of Healing Stream Totem.",
                         "cast_time": "Instant",
                         "cooldown": null,
                         "range": null
@@ -543,7 +543,7 @@
                         "talent_name": "Earth Shield",
                         "spell_id": 974,
                         "spell_name": "Earth Shield",
-                        "description": "Protects the target with an earthen shield, increasing your healing on them by 20% and healing them for 332 when they take damage. This heal can only occur once every 3 sec. Maximum 9 charges.\r\n\r\nEarth Shield can only be placed on one target at a time. Only one Elemental Shield can be active on the Shaman.",
+                        "description": "Protects the target with an earthen shield, increasing your healing on them by 20% and healing them for 338 when they take damage. This heal can only occur once every 3 sec. Maximum 9 charges.\r\n\r\nEarth Shield can only be placed on one target at a time. Only one Elemental Shield can be active on the Shaman.",
                         "cast_time": "Instant",
                         "cooldown": null,
                         "range": "40 yd range"
@@ -571,7 +571,7 @@
                         "talent_name": "Lava Burst",
                         "spell_id": 51505,
                         "spell_name": "Lava Burst",
-                        "description": "Hurls molten lava at the target, dealing 688 Fire damage. Lava Burst will always critically strike if the target is affected by Flame Shock and its damage is increased by your critical strike chance.",
+                        "description": "Hurls molten lava at the target, dealing 676 Fire damage. Lava Burst will always critically strike if the target is affected by Flame Shock and its damage is increased by your critical strike chance.",
                         "cast_time": "2 sec cast",
                         "cooldown": null,
                         "range": "40 yd range"
@@ -1546,7 +1546,7 @@
                         "talent_name": "Frost Shock",
                         "spell_id": 196840,
                         "spell_name": "Frost Shock",
-                        "description": "Chills the target with frost, causing 276 Frost damage and reducing the target's movement speed by 50% for 6 sec.",
+                        "description": "Chills the target with frost, causing 274 Frost damage and reducing the target's movement speed by 50% for 6 sec.",
                         "cast_time": "Instant",
                         "cooldown": null,
                         "range": "40 yd range"
@@ -1836,7 +1836,7 @@
                             "talent_name": "Surging Totem",
                             "spell_id": 444995,
                             "spell_name": "Surging Totem",
-                            "description": "Summons a totem at the target location that creates a Tremor immediately and every 5.4 sec for 43 Flamestrike damage. Damage reduced beyond 5 targets. Lasts 25 sec.",
+                            "description": "Summons a totem at the target location that creates a Tremor immediately and every 5.4 sec for 42 Flamestrike damage. Damage reduced beyond 5 targets. Lasts 25 sec.",
                             "cast_time": "Instant",
                             "cooldown": "25 sec cooldown",
                             "range": "40 yd range"
@@ -1963,7 +1963,7 @@
                             "talent_name": "Totemic Rebound",
                             "spell_id": 445025,
                             "spell_name": "Totemic Rebound",
-                            "description": "Chain Heal now jumps to a nearby totem within 20 yards once it reaches its last target, causing the totem to cast Chain Heal on an injured ally within 30 yards for 823. Jumps to 2 nearby targets within 20 yards.",
+                            "description": "Chain Heal now jumps to a nearby totem within 20 yards once it reaches its last target, causing the totem to cast Chain Heal on an injured ally within 30 yards for 824. Jumps to 2 nearby targets within 20 yards.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -3022,7 +3022,7 @@
                             "talent_name": "Riptide",
                             "spell_id": 61295,
                             "spell_name": "Riptide",
-                            "description": "Restorative waters wash over a friendly target, healing them for 2,294 and an additional 2,036 over 18 sec.",
+                            "description": "Restorative waters wash over a friendly target, healing them for 2,282 and an additional 2,036 over 18 sec.",
                             "cast_time": "Instant",
                             "cooldown": null,
                             "range": "40 yd range"
@@ -3051,7 +3051,7 @@
                             "talent_name": "Surging Totem",
                             "spell_id": 444995,
                             "spell_name": "Surging Totem",
-                            "description": "Summons a totem at the target location that creates a Tremor immediately and every 5.4 sec for 43 Flamestrike damage. Damage reduced beyond 5 targets. Lasts 25 sec.",
+                            "description": "Summons a totem at the target location that creates a Tremor immediately and every 5.4 sec for 41 Flamestrike damage. Damage reduced beyond 5 targets. Lasts 25 sec.",
                             "cast_time": "Instant",
                             "cooldown": "25 sec cooldown",
                             "range": "40 yd range"
@@ -3221,7 +3221,7 @@
                             "talent_name": "Healing Rain",
                             "spell_id": 73920,
                             "spell_name": "Healing Rain",
-                            "description": "Blanket the target area in healing rains, restoring 1,069 health to up to 6 allies over 18 sec.\r\n\r\nYou can only have one Healing Rain active at a time.",
+                            "description": "Blanket the target area in healing rains, restoring 1,074 health to up to 6 allies over 18 sec.\r\n\r\nYou can only have one Healing Rain active at a time.",
                             "cast_time": "2 sec cast",
                             "cooldown": "12 sec cooldown",
                             "range": "40 yd range"
@@ -3250,7 +3250,7 @@
                             "talent_name": "Healing Stream Totem",
                             "spell_id": 5394,
                             "spell_name": "Healing Stream Totem",
-                            "description": "Summons a totem at your feet for 15 sec that heals an injured party or raid member within 40 yards for 260 every 1.8 sec.\r\n\r\nIf you already know Healing Stream Totem, instead gain 1 additional charge of Healing Stream Totem.",
+                            "description": "Summons a totem at your feet for 15 sec that heals an injured party or raid member within 40 yards for 251 every 1.8 sec.\r\n\r\nIf you already know Healing Stream Totem, instead gain 1 additional charge of Healing Stream Totem.",
                             "cast_time": "Instant",
                             "cooldown": null,
                             "range": null
@@ -3278,7 +3278,7 @@
                             "talent_name": "Totemic Rebound",
                             "spell_id": 445025,
                             "spell_name": "Totemic Rebound",
-                            "description": "Chain Heal now jumps to a nearby totem within 20 yards once it reaches its last target, causing the totem to cast Chain Heal on an injured ally within 30 yards for 819. Jumps to 2 nearby targets within 20 yards.",
+                            "description": "Chain Heal now jumps to a nearby totem within 20 yards once it reaches its last target, causing the totem to cast Chain Heal on an injured ally within 30 yards for 844. Jumps to 2 nearby targets within 20 yards.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -3546,7 +3546,7 @@
                             "talent_name": "Acid Rain",
                             "spell_id": 378443,
                             "spell_name": "Acid Rain",
-                            "description": "Deal 384 Nature damage every 1.8 sec to up to 5 enemies inside of your Healing Rain.",
+                            "description": "Deal 375 Nature damage every 1.8 sec to up to 5 enemies inside of your Healing Rain.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -3579,7 +3579,7 @@
                                     "talent_name": "Ascendance",
                                     "spell_id": 114052,
                                     "spell_name": "Ascendance",
-                                    "description": "Immediately heals for 4,852 split between allies within 20 yds and transforms into a Water Ascendant for 15 sec.\r\n\r\nWhile ascended, Chain Heal jumps to 3 additional allies with 10% healing reduced for all jumps, Healing Wave always critical heals and heals 1 additional ally at 50% effectiveness, and the mana cost of Chain Heal and Healing Wave is reduced by 25%.",
+                                    "description": "Immediately heals for 4,975 split between allies within 20 yds and transforms into a Water Ascendant for 15 sec.\r\n\r\nWhile ascended, Chain Heal jumps to 3 additional allies with 10% healing reduced for all jumps, Healing Wave always critical heals and heals 1 additional ally at 50% effectiveness, and the mana cost of Chain Heal and Healing Wave is reduced by 25%.",
                                     "cast_time": "Instant",
                                     "cooldown": "3 min cooldown",
                                     "range": null
@@ -3589,7 +3589,7 @@
                                     "talent_name": "Healing Tide Totem",
                                     "spell_id": 108280,
                                     "spell_name": "Healing Tide Totem",
-                                    "description": "Summons a totem at your feet for 10 sec, which pulses every 1.8 sec, healing all party or raid members within 40 yards for 1,996.\r\n\r\nHealing reduced beyond 5 targets.",
+                                    "description": "Summons a totem at your feet for 10 sec, which pulses every 1.8 sec, healing all party or raid members within 40 yards for 1,992.\r\n\r\nHealing reduced beyond 5 targets.",
                                     "cast_time": "Instant",
                                     "cooldown": "3 min cooldown",
                                     "range": null
@@ -4463,7 +4463,7 @@
                             "talent_name": "Unleash Life",
                             "spell_id": 73685,
                             "spell_name": "Unleash Life",
-                            "description": "Unleash elemental forces of Life, healing a friendly target for 4,594.\r\n\r\nIncreases the healing of your next Riptide, Chain Heal, or Healing Wave by 25% and reduces its cast time by 30%.",
+                            "description": "Unleash elemental forces of Life, healing a friendly target for 4,676.\r\n\r\nIncreases the healing of your next Riptide, Chain Heal, or Healing Wave by 25% and reduces its cast time by 30%.",
                             "cast_time": "Instant",
                             "cooldown": null,
                             "range": null
@@ -4745,7 +4745,7 @@
                             "talent_name": "Downpour",
                             "spell_id": 462486,
                             "spell_name": "Downpour",
-                            "description": "Casting Healing Rain grants a use of Downpour for 16 sec.\r\n\r\n Downpour\r\nA burst of water at your Healing Rain's location heals up to 5 injured allies within 12 yards for 1,257.",
+                            "description": "Casting Healing Rain grants a use of Downpour for 16 sec.\r\n\r\n Downpour\r\nA burst of water at your Healing Rain's location heals up to 5 injured allies within 12 yards for 1,215.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -5167,7 +5167,7 @@
                             "talent_name": "Stormstream Totem",
                             "spell_id": 1267016,
                             "spell_name": "Stormstream Totem",
-                            "description": "Riptide has a 6% chance to upgrade your next Healing Stream Totem to Stormstream Totem which heals for 10% more, heals 1 additional ally at 100% effectiveness, and heals 2 injured allies for 5,040 healing when used.",
+                            "description": "Riptide has a 6% chance to upgrade your next Healing Stream Totem to Stormstream Totem which heals for 10% more, heals 1 additional ally at 100% effectiveness, and heals 2 injured allies for 5,101 healing when used.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -5319,7 +5319,7 @@
                             "talent_name": "Totemic Rebound",
                             "spell_id": 445025,
                             "spell_name": "Totemic Rebound",
-                            "description": "Chain Heal now jumps to a nearby totem within 20 yards once it reaches its last target, causing the totem to cast Chain Heal on an injured ally within 30 yards for 829. Jumps to 2 nearby targets within 20 yards.",
+                            "description": "Chain Heal now jumps to a nearby totem within 20 yards once it reaches its last target, causing the totem to cast Chain Heal on an injured ally within 30 yards for 819. Jumps to 2 nearby targets within 20 yards.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -5474,7 +5474,7 @@
                             "talent_name": "Crash Lightning",
                             "spell_id": 187874,
                             "spell_name": "Crash Lightning",
-                            "description": "Electrocutes all enemies in front of you, dealing 64 Nature damage. \r\n\r\nEnhances your weapons for 12 sec, causing Stormstrike and Lava Lash to discharge 34 Nature damage split between up to 5 enemies in front of you. ",
+                            "description": "Electrocutes all enemies in front of you, dealing 63 Nature damage. \r\n\r\nEnhances your weapons for 12 sec, causing Stormstrike and Lava Lash to discharge 34 Nature damage split between up to 5 enemies in front of you. ",
                             "cast_time": "Instant",
                             "cooldown": null,
                             "range": "Melee Range"
@@ -6169,7 +6169,7 @@
                             "talent_name": "Voltaic Blaze",
                             "spell_id": 470057,
                             "spell_name": "Voltaic Blaze",
-                            "description": "Instantly shocks the target and 5 enemies within 10 yds with blazing thunder, applying Flame Shock and dealing 1,553 Nature damage. Always critically strikes.\r\n\r\nGenerates 1 stack of Maelstrom Weapon.",
+                            "description": "Instantly shocks the target and 5 enemies within 10 yds with blazing thunder, applying Flame Shock and dealing 1,496 Nature damage. Always critically strikes.\r\n\r\nGenerates 1 stack of Maelstrom Weapon.",
                             "cast_time": "Instant",
                             "cooldown": "10 sec cooldown",
                             "range": "40 yd range"
@@ -6717,7 +6717,7 @@
                             "talent_name": "Sundering",
                             "spell_id": 197214,
                             "spell_name": "Sundering",
-                            "description": "Shatters a line of earth in front of you with your main hand weapon, causing 89 Flamestrike damage to any enemy hit.",
+                            "description": "Shatters a line of earth in front of you with your main hand weapon, causing 88 Flamestrike damage to any enemy hit.",
                             "cast_time": "Instant",
                             "cooldown": "30 sec cooldown",
                             "range": null
@@ -7140,7 +7140,7 @@
                             "talent_name": "Primordial Storm",
                             "spell_id": 1218047,
                             "spell_name": "Primordial Storm",
-                            "description": "Sundering transforms into a single use Primordial Storm for 15 sec after it is cast.\r\n\r\nPrimordial Storm\r\nDevastate nearby enemies with a Primordial Storm dealing 41 Flamestrike, 41 Froststrike, 41 Stormstrike damage, and unleashing a Lightning Bolt or a Chain Lightning at 150% effectiveness. Deals reduced damage beyond 5 targets.\r\n\r\nConsumes Maelstrom Weapon for increased damage.",
+                            "description": "Sundering transforms into a single use Primordial Storm for 15 sec after it is cast.\r\n\r\nPrimordial Storm\r\nDevastate nearby enemies with a Primordial Storm dealing 41 Flamestrike, 42 Froststrike, 41 Stormstrike damage, and unleashing a Lightning Bolt or a Chain Lightning at 150% effectiveness. Deals reduced damage beyond 5 targets.\r\n\r\nConsumes Maelstrom Weapon for increased damage.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -7233,7 +7233,7 @@
                                     "talent_name": "Earth Shock",
                                     "spell_id": 8042,
                                     "spell_name": "Earth Shock",
-                                    "description": "Instantly shocks the target with concussive force, causing 2,987 Nature damage.",
+                                    "description": "Instantly shocks the target with concussive force, causing 2,982 Nature damage.",
                                     "cast_time": "Instant",
                                     "cooldown": null,
                                     "range": "40 yd range"
@@ -7243,7 +7243,7 @@
                                     "talent_name": "Elemental Blast",
                                     "spell_id": 117014,
                                     "spell_name": "Elemental Blast",
-                                    "description": "Harnesses the raw power of the elements, dealing 768 Elemental damage and increasing your Critical Strike or Haste by 3% or Mastery by 6% for 10 sec.",
+                                    "description": "Harnesses the raw power of the elements, dealing 769 Elemental damage and increasing your Critical Strike or Haste by 3% or Mastery by 6% for 10 sec.",
                                     "cast_time": "2 sec cast",
                                     "cooldown": null,
                                     "range": "40 yd range"
@@ -7415,7 +7415,7 @@
                                     "talent_name": "Earthquake",
                                     "spell_id": 462620,
                                     "spell_name": "Earthquake",
-                                    "description": "Causes the earth within 8 yards of your target to tremble and break, dealing 1,439 Nature damage over 6 sec and has a 5% chance to knock the enemy down. Multiple uses of Earthquake may overlap.\r\n\r\nThis spell is cast at your target.",
+                                    "description": "Causes the earth within 8 yards of your target to tremble and break, dealing 1,435 Nature damage over 6 sec and has a 5% chance to knock the enemy down. Multiple uses of Earthquake may overlap.\r\n\r\nThis spell is cast at your target.",
                                     "cast_time": "Instant",
                                     "cooldown": null,
                                     "range": "40 yd range"
@@ -7425,7 +7425,7 @@
                                     "talent_name": "Earthquake",
                                     "spell_id": 61882,
                                     "spell_name": "Earthquake",
-                                    "description": "Causes the earth within 8 yards of the target location to tremble and break, dealing 1,422 Nature damage over 6 sec and has a 5% chance to knock the enemy down. Multiple uses of Earthquake may overlap.\r\n\r\nThis spell is cast at a selected location.",
+                                    "description": "Causes the earth within 8 yards of the target location to tremble and break, dealing 1,456 Nature damage over 6 sec and has a 5% chance to knock the enemy down. Multiple uses of Earthquake may overlap.\r\n\r\nThis spell is cast at a selected location.",
                                     "cast_time": "Instant",
                                     "cooldown": null,
                                     "range": "40 yd range"
@@ -8603,7 +8603,7 @@
                             "talent_name": "Earthen Rage",
                             "spell_id": 170374,
                             "spell_name": "Earthen Rage",
-                            "description": "Your damaging spells incite the earth around you to come to your aid for 6 sec, repeatedly dealing 164 Nature damage to your most recently attacked target.",
+                            "description": "Your damaging spells incite the earth around you to come to your aid for 6 sec, repeatedly dealing 158 Nature damage to your most recently attacked target.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -9146,7 +9146,7 @@
                             "talent_name": "Voltaic Blaze",
                             "spell_id": 470057,
                             "spell_name": "Voltaic Blaze",
-                            "description": "Instantly shocks the target and 5 enemies within 10 yds with blazing thunder, applying Flame Shock and dealing 1,518 Nature damage. Always critically strikes.\r\n\r\nGenerates 1 stack of Maelstrom Weapon.",
+                            "description": "Instantly shocks the target and 5 enemies within 10 yds with blazing thunder, applying Flame Shock and dealing 1,504 Nature damage. Always critically strikes.\r\n\r\nGenerates 1 stack of Maelstrom Weapon.",
                             "cast_time": "Instant",
                             "cooldown": "10 sec cooldown",
                             "range": "40 yd range"
