@@ -47,6 +47,17 @@ class PlatformController extends Controller
     }
 
     /**
+     * The game tabs, in the sidebar's switcher and the phone's bottom bar (2026-11-24): the listed
+     * games, plus an unlisted one while you are on its page.
+     */
+    public static function switcher(): array
+    {
+        $on = self::navGame();
+
+        return array_filter(config('platform.games'), fn (array $g, string $slug) => ($g['listed'] ?? true) || $slug === $on, ARRAY_FILTER_USE_BOTH);
+    }
+
+    /**
      * The sidebar's tab (2026-11-19): the game the page belongs to, and the menu shown under the
      * switcher. A page of no one game (the home, your profile, friends) keeps the tab you were last
      * on, held in the session, so moving between them doesn't swap the menu under you.

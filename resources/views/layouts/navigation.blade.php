@@ -5,7 +5,7 @@
     $navGames = config('platform.games');
     $navGame = \App\Http\Controllers\PlatformController::navGame();
     // The switcher shows the listed games, plus an unlisted one while you are on its page.
-    $navSwitch = array_filter($navGames, fn ($g, $slug) => ($g['listed'] ?? true) || $slug === $navGame, ARRAY_FILTER_USE_BOTH);
+    $navSwitch = \App\Http\Controllers\PlatformController::switcher();
 @endphp
 <aside class="fixed sm:relative inset-y-0 left-0 z-30
               flex flex-col gap-2 w-64 h-screen sm:h-full shrink-0
@@ -77,8 +77,10 @@
 
         {{-- The games (config/platform.php): one tab each, the page's own game lit in its colour. --}}
         {{-- One row of pills (2026-10-27): the stacked icon-over-name tiles took two rows' height.
-             The open tab is lit on every page, the home too, so the menu below always has its tab. --}}
-        <div class="grid {{ count($navSwitch) === 2 ? 'grid-cols-2' : 'grid-cols-3' }} gap-0.5 p-1 mt-2 mx-1 rounded-full bg-surface-1">
+             The open tab is lit on every page, the home too, so the menu below always has its tab.
+             Not on a phone (2026-11-24, Chriso: too small to tap): the bottom bar's game tabs switch
+             there, and the menu below is headed with the game's name. --}}
+        <div class="hidden sm:grid {{ count($navSwitch) === 2 ? 'grid-cols-2' : 'grid-cols-3' }} gap-0.5 p-1 mt-2 mx-1 rounded-full bg-surface-1">
             @foreach ($navSwitch as $gSlug => $g)
                 @php $gOn = $navGame === $gSlug; @endphp
                 <a href="{{ route($g['route']) }}" wire:navigate title="{{ $g['name'] }}{{ $g['status'] === 'soon' ? ' (coming soon)' : '' }}"

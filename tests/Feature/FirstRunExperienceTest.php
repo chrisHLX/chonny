@@ -158,13 +158,22 @@ test('a player with games gets their latest session: record, MMR, the games, the
         ->assertDontSee('Get every arena game you play reviewed');
 });
 
-test('the phone tab bar\'s middle button is Your Games, signed in or out', function () {
+test('the phone tab bar is Menu then the games, the page\'s game lit, signed in or out', function () {
     $bar = fn ($response) => \Illuminate\Support\Str::between($response->getContent(), 'aria-label="Main"', '</nav>');
 
-    foreach ([firstRunUser(), null] as $user) {
-        $response = ($user ? $this->actingAs($user) : $this)->get($user ? route('dashboard') : route('wow-comps'))->assertOk();
-        expect($bar($response))->toContain('href="'.route('coach').'"')->toContain('Your Games')
-            ->not->toContain('Build')->not->toContain(route('guides.try', ['type' => 'comp']));
+    foreach ([[firstRunUser(), route('dashboard'), null], [null, route('wow-comps'), 'wow'], [null, route('wow.forever'), 'forever']] as [$user, $url, $lit]) {
+        $html = $bar(($user ? $this->actingAs($user) : $this)->get($url)->assertOk());
+        expect($html)->toContain('Menu')
+            ->toContain('href="'.route('wow.home').'"')->toContain('Midnight')
+            ->toContain('href="'.route('wow.forever').'"')->toContain('Forever')
+            ->toContain('href="'.route('sc2').'"')->toContain('SC2')
+            ->not->toContain('href="'.route('wow-comps').'"')->not->toContain('href="'.route('guides.browse').'"');
+        if ($lit) {
+            // the one tab marked current is the page's own game
+            expect(substr_count($html, 'aria-current="true"'))->toBe(1)
+                ->and(\Illuminate\Support\Str::before(\Illuminate\Support\Str::after($html, 'aria-current="true"'), '</a>'))
+                ->toContain(config("platform.games.{$lit}.short"));
+        }
         auth()->logout();
     }
 });
