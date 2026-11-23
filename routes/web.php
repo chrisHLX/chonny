@@ -284,6 +284,9 @@ Route::prefix('wow')->group(function () {
     Route::get('/app', [\App\Http\Controllers\AppDownloadController::class, 'page'])->name('app');
     // The app in WoW Forever (2026-11-12): the Auction House addon (was Observer), shared auction prices, PvP clips.
     Route::get('/forever', [\App\Http\Controllers\AppDownloadController::class, 'forever'])->name('wow.forever');
+    // Forever's PvP Guides (2026-11-23): each class's abilities by retail's categories. ForeverPvpController.
+    Route::get('/forever/pvp/{classSlug?}', [\App\Http\Controllers\ForeverPvpController::class, 'show'])
+        ->where('classSlug', '[a-z]+')->name('wow.forever.pvp');
 
     // Player lookup (2026-10-19): any character's ratings, exp, titles, gear and talents, as on
     // Check-PvP. The page serves what is stored; only a browser asks Blizzard (Players\Show).

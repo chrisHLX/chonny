@@ -958,6 +958,9 @@ class ModuleSpellReferenceService
         'Distract' => 'Utility',
         'Knockback' => 'Utility',
         'Snare' => 'Utility',
+        // 2026-11-23, for WoW Forever's Disarm (mechanic 3): retail's Disarm reaches Crowd Control by
+        // its curated dr_category, and no retail spell's data names this mechanic, so retail is unchanged.
+        'Disarm' => 'Crowd Control',
     ];
 
     /**
@@ -1284,8 +1287,11 @@ class ModuleSpellReferenceService
      * preloadCategorize() below can find which spells actually need that query WITHOUT calling
      * categorize() itself for each one first (which would just run the very queries this exists
      * to batch away).
+     *
+     * Public since 2026-11-23 so WoW Forever's abilities (`forever:abilities`, built from that
+     * game's own tables, never stored as Spell rows) are sorted by exactly these rules.
      */
-    private function categorizeFromOwnEffects(Spell $spell): ?string
+    public function categorizeFromOwnEffects(Spell $spell): ?string
     {
         // Curated, verified columns outrank any effect-string inference (added 2026-08-28 after
         // a full RMP-spell audit found categorize() never consulted them). dr_category is
@@ -1406,7 +1412,7 @@ class ModuleSpellReferenceService
      * Bonus" were added rather than left as an unresolved "Other" alongside the genuinely
      * ambiguous summon/generic-stat cases.
      */
-    private function categorizeFromEffects(Collection $effects): string
+    public function categorizeFromEffects(Collection $effects): string
     {
         $meaningfulTypes = $effects
             ->reject(function (SpellEffect $effect) {
@@ -1458,7 +1464,11 @@ class ModuleSpellReferenceService
         // A plain teleport wins over its own incidental mechanic-immunity (Blink/Shimmer/Heroic
         // Leap). `Energize` and `Threat Reduction`/`Aggro` are dropped entirely — a resource gain
         // or a threat drop is never itself the point of a cooldown.
-        $dealsDamage = (bool) preg_match('/School Damage|Periodic Damage|Weapon % Damage|Damage Done%/i', $joined);
+        // `Weapon Damage` since 2026-11-23: the old `Weapon % Damage` matched no type the data has
+        // ("Weapon Damage% (31)", "Weapon Damage (17)", "Normalized Weapon Damage (121)"), so a strike
+        // with only weapon damage read as Other (retail's Auto Shot, Warbreaker, Windlash; in WoW
+        // Forever, Sinister Strike and Heroic Strike). Retail's stored category follows at the next import.
+        $dealsDamage = (bool) preg_match('/School Damage|Periodic Damage|Weapon Damage|Damage Done%/i', $joined);
         $ampsDamage = (bool) preg_match('/Auto Attack Speed%|Modify All Haste%|Critical Strike%|Critical Bonus|Empower/i', $joined);
         $hasCcString = (bool) preg_match('/Stun|Fear|Root|Silence|Incapacitate|Disorient|Charm|Polymorph|Freeze|Sleep|Horror|Confuse|Possess|Banish/i', $joined);
         // Split out of $utility 2026-09-01 (own bucket, previously folded into 'Utility' below —

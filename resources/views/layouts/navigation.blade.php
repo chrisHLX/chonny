@@ -214,6 +214,12 @@
                 </svg>
                 Get the App
             </a>
+            <a href="{{ route('wow.forever.pvp') }}" wire:navigate class="sidebar-item {{ request()->routeIs('wow.forever.pvp') ? 'active' : '' }}">
+                <svg class="w-[18px] h-[18px] shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M14.5 17.5L3 6V3h3l11.5 11.5M13 19l6-6M16 16l4 4M19 21l2-2"/>
+                </svg>
+                PvP Guides
+            </a>
 
             <p class="px-3 pt-2.5 pb-0.5 text-[11px] font-bold text-ink-subtle uppercase tracking-[.12em]">Auction House addon</p>
             @foreach ([

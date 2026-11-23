@@ -57,7 +57,7 @@ class PlatformController extends Controller
         $game = match (true) {
             $request->is('sc2', 'sc2/*') => 'sc2',
             $request->is('lol', 'lol/*') => 'lol',
-            $request->routeIs('wow.forever') => 'forever',
+            $request->routeIs('wow.forever', 'wow.forever.*') => 'forever',
             $request->is('wow', 'wow/*') => 'wow',
             default => null,
         };

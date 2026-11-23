@@ -53,6 +53,7 @@ question). `Grep` for `^##` or a spell, player or date, then `Read` with an offs
 | **Training**: a lesson, notes, the reasoning check, claims | `docs/training.md` | Label invented figures as illustrative; a claim about the game cites the archive |
 | **Quizzes, modules, diagnostics** (dormant) | `system-integration.md`, rules 35–38 | `docs/architecture.md`, "Dormant"; `docs/archive/` |
 | **WoW: Forever**: the Auction House addon (Observer in code), /ask, market data | `docs/forever/observer-handoff-2026-11-10.md` | The addon's README, `docs/forever/market-research-2026-11-07.md` |
+| **WoW: Forever PvP Guides**, its class abilities | `docs/forever/pvp-guides.md` | `forever:abilities` rebuilds `data/forever/abilities.json` |
 | **Product, usage, pricing** | `VISION.md`, `monetisation-read.md` | |
 | **How something fits together** | `docs/architecture.md` | |
 

@@ -59,6 +59,7 @@ class PageUsage extends Component
         'desktop_app' => 'Desktop app download',
         'app_page' => 'Desktop app page (/wow/app)',
         'forever_page' => 'WoW Forever page (/wow/forever)',
+        'forever_pvp' => 'WoW Forever PvP Guides (/wow/forever/pvp/{class}; slot is the class)',
         'spec_pvp_index' => 'PvP guides, every spec (/wow/pvp)',
         'spec_pvp' => 'PvP guide for one spec (/wow/pvp/{class}/{spec})',
         'app_connect' => 'Desktop app: connect to an account',

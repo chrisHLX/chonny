@@ -4,8 +4,9 @@
 
 - `/` — MindCollector's home, a card per game (`PlatformController`, `config/platform.php`). `/wow` —
   `Landing`, WoW's home; signed-in players go to `dashboard`.
-- **The sidebar's tabs (2026-11-19):** Midnight (retail, `/wow/*`), Forever (`/wow/forever`) and SC2,
-  each with its own menu under the switcher. Forever is one page, so its menu is that page's parts
+- **The sidebar's tabs (2026-11-19):** Midnight (retail, `/wow/*`), Forever (`/wow/forever`, and since
+  2026-11-23 `/wow/forever/pvp`) and SC2, each with its own menu under the switcher. Forever's menu is
+  mostly the Forever page's parts
   (`#professions`, `#auction`, `#uses`, `#ledger`, `#prices`, `#pvp`, `#start`, `#faq`): keep those ids
   if the page is laid out again. A page of no one game (the home, profile, friends) keeps the last tab,
   from the session (`PlatformController::navGame`).
@@ -262,6 +263,9 @@
     **"If something isn't working"** (`/wow/app#help`, 2026-10-26): the install problems the first
     players hit (Windows or antivirus, Connect, WoW not found, no games, old games, where to ask), in
     the app's own words. Keep it matching the app's labels when they change.
+    **`/wow/forever/pvp/{class}`** (2026-11-23, `ForeverPvpController`, tracked as `forever_pvp`, in Forever's
+    menu as PvP Guides): each class's abilities by retail's categories, no talent builds yet
+    (`docs/forever/pvp-guides.md`).
     **`/wow/forever`** (2026-11-12, `AppDownloadController::forever`, `app/forever.blade.php`, tracked
     as `forever_page`): what the app and its Auction House addon (Observer in code) do in WoW Forever (professions, the
     auction house and shared prices, the ledger, PvP clips), getting started, and what it reads and
