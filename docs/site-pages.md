@@ -16,8 +16,8 @@
   on Your games (`#game=` / `#improve=`). An account without games gets the step it needs instead
   (get the app, play a game, or "N rounds arrived" while pages build). Then other players' guides,
   with game-data updates folded into one line, and your guides, characters and friends beside them.
-  The phone tab bar is Menu, then one tab per game (Midnight, Forever, SC2; 2026-11-24), the page's
-  game lit in its colour; Your Games, Comps and Guides are in that game's menu in the sidebar.
+  The phone tab bar is Menu, the gold Your Games, then one tab per game (Midnight, Forever, SC2;
+  2026-11-24), the page's game lit in its colour; Comps and Guides are in that game's sidebar menu.
 - `/wow/matchup-lab` — `MatchupLab`. Two comps on one clock: whose kill window opens first,
   and why, read at three execution settings. The only page answering a question about a
   *matchup* rather than about one spec or one comp.

@@ -158,12 +158,13 @@ test('a player with games gets their latest session: record, MMR, the games, the
         ->assertDontSee('Get every arena game you play reviewed');
 });
 
-test('the phone tab bar is Menu then the games, the page\'s game lit, signed in or out', function () {
+test('the phone tab bar is Menu, Your Games, then the games, the page\'s game lit, signed in or out', function () {
     $bar = fn ($response) => \Illuminate\Support\Str::between($response->getContent(), 'aria-label="Main"', '</nav>');
 
     foreach ([[firstRunUser(), route('dashboard'), null], [null, route('wow-comps'), 'wow'], [null, route('wow.forever'), 'forever']] as [$user, $url, $lit]) {
         $html = $bar(($user ? $this->actingAs($user) : $this)->get($url)->assertOk());
         expect($html)->toContain('Menu')
+            ->toContain('href="'.route('coach').'"')->toContain('Your Games')
             ->toContain('href="'.route('wow.home').'"')->toContain('Midnight')
             ->toContain('href="'.route('wow.forever').'"')->toContain('Forever')
             ->toContain('href="'.route('sc2').'"')->toContain('SC2')

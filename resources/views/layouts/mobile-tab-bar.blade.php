@@ -3,9 +3,9 @@
      and no way to reach the rest. This bar keeps the full sidebar behind "Menu", one tap away.
 
      Menu, then the games (2026-11-24, Chriso): the sidebar's game pills were too small to tap on a
-     phone, so the games moved down here as full-size tabs, the open one lit in its colour. Comps,
-     Guides and Your Games left the bar for the game's own menu in the sidebar, where every one of
-     them already was. Same tabs as the sidebar's switcher (PlatformController::switcher).
+     phone, so the games moved down here as full-size tabs, the open one lit in its colour. Comps
+     and Guides left the bar for the game's own menu in the sidebar; Your Games stayed. Same tabs as
+     the sidebar's switcher (PlatformController::switcher).
 
      z-10, under the sidebar's backdrop (z-20) and the sidebar itself (z-30), so opening the menu
      covers the bar instead of leaving half of it clickable beside the drawer. Modals (z-50) sit
@@ -21,7 +21,7 @@
 <nav class="fixed bottom-0 inset-x-0 z-10 border-t border-line bg-surface-0/95 backdrop-blur"
      style="padding-bottom: env(safe-area-inset-bottom)"
      aria-label="Main">
-    <div class="grid h-16 text-[11px]" style="grid-template-columns: repeat({{ 1 + count($barGames) }}, minmax(0, 1fr))">
+    <div class="grid h-16 text-[11px]" style="grid-template-columns: repeat({{ 2 + count($barGames) }}, minmax(0, 1fr))">
         <button type="button" x-on:click="sidebarOpen = true"
                 class="relative flex flex-col items-center justify-center gap-1 text-ink-subtle active:text-ink">
             <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
@@ -31,6 +31,17 @@
                 <span class="absolute top-2 right-[calc(50%-20px)] min-w-4 h-4 px-1 rounded-full bg-gold text-surface-0 text-[9.5px] font-semibold flex items-center justify-center tabular-nums">{{ $pending }}</span>
             @endif
         </button>
+
+        {{-- Gold, Your Games: what the product is (2026-11-03; it was the guide builder, which an
+             audit found left a phone with no way to its own games). Kept beside Menu when the games
+             took the bar (Chriso, 2026-11-24). A guest lands on the sample game (CoachController::index). --}}
+        <a href="{{ route('coach') }}"
+           class="flex flex-col items-center justify-center gap-1 font-semibold {{ request()->routeIs('coach', 'wow.sample') ? 'text-gold' : 'text-gold/90' }}">
+            <span class="w-9 h-9 -mt-1 rounded-full bg-gold-gradient text-surface-0 flex items-center justify-center shadow-gold-sm">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 17v-6m3 6V7m3 10v-4M5 21h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v14a2 2 0 002 2z"/></svg>
+            </span>
+            Your Games
+        </a>
 
         @foreach ($barGames as $gSlug => $g)
             @php $gOn = $barOn === $gSlug; @endphp
