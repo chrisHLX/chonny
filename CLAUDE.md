@@ -56,6 +56,7 @@ question). `Grep` for `^##` or a spell, player or date, then `Read` with an offs
 | **WoW: Forever PvP Guides**, its class abilities | `docs/forever/pvp-guides.md` | `forever:abilities` rebuilds `data/forever/abilities.json` |
 | **Product, usage, pricing** | `VISION.md`, `monetisation-read.md` | |
 | **How something fits together** | `docs/architecture.md` | |
+| **A scheduled or background task**, the daily check email | `docs/automation.md` | `DEPLOY.md` for the cron lines |
 
 ### What "done" looks like for the spell data
 

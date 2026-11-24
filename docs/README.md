@@ -22,6 +22,7 @@ row is relabelled in place"), that is the old 790KB CLAUDE.md: search
 | `CLAUDE.md` | current | The library: vision, task routing, commands, environment, one-line rule and trap indexes. |
 | `docs/rules.md` | current | The full text of rules 1–39, the traps, the test baseline, working practice. |
 | `docs/architecture.md` | current | How the pieces fit, security, and every smaller service, command and page. |
+| `docs/automation.md` | current | Everything that runs on its own: cron, the daily check email, queue jobs, deploys, the app, the PC. Read before adding a scheduled task. |
 | `docs/design-system.md` | current | Tokens, component classes, icons, pickers. |
 
 ## The current work: the match review and the desktop app
