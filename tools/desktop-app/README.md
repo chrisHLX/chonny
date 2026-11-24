@@ -15,7 +15,7 @@ is, for the archive and the research tools.
    start. A round still being written is left alone, and each log is read on from where the last
    read stopped. (`RoundScanner`)
 3. **Sends each finished round's log text** to `POST /api/coach/round`, compressed, in 768 KB
-   parts when larger. The **server** measures every round itself (`CoachUploadController` →
+   parts when larger. The **server** measures every round itself (`CoachUploadController` â†’
    `ingestRound()`), the same code `wow:sync` runs; the app never sends a measurement. After a
    batch, and only between shuffle lobbies, it calls `POST /api/coach/done`, which assembles the
    lobbies and builds the player's pages in the background. (`Syncer`, `ApiClient`)
@@ -236,6 +236,17 @@ website yet. The side open last is kept (`Section` in settings.json).
 - **Size:** Chriso's OBS records at 13-32 Mbps, so a cut clip of a 20s duel (about 90s) is 0.15-0.35 GB;
   the same "Keep up to (GB)" limit removes the oldest, arena videos and clips together.
 
+- **The logs** (`ForeverLogKeeper`, 0.6.35, 2026-11-24): when Forever closes (and at start, if it
+  is closed), each game folder whose clips' timing files name a log gets that game's lines under the
+  log's own name, so the clip and its lines sit together and go when the folder is deleted. A
+  battleground runs from entering to leaving it; a world fight from 15 min before the first fight
+  to 5 min after the last, or leaving the zone. Then every finished log is moved to
+  `forever-logs` beside the retail logs' folder (copy, check the size, delete; oldest first, stopping at
+  the first that fails, since the recorder follows the newest). The size limit removes a folder's lines
+  with its last clip; the whole log stays in `forever-logs`. `MoveForeverLogs` in settings.json turns it
+  off. First run on Chriso's PC: 40 logs, 594 MB, off C: in 1.5s, and 16 game folders given 0.15-12.5 MB
+  each. `--keep-forever-logs LOGS VIDEOS ARCHIVE` runs it on test copies.
+
 Checks: `--check-forever LOG` lists the fights a log would give; `--replay-test [SECONDS]` runs the
 buffer and saves and cuts one clip as a fight would be; `--cut` runs the cutter alone on a file and
 prints what Windows reads of it; `--replay-stop` stops a buffer a killed app left. `RunningRetail()` now skips `_forever_`: before, a player
@@ -253,7 +264,7 @@ expected; 112 MB), the clip running 00:03:39.176 to 00:05:01.757, so exactly 60s
 hit to 8s after the last, and its audio starts on whole AAC frames. The published single-file
 Release exe cuts the same way (179.45s less 30s and 20s gave 129.45s), so the Windows 10 target
 works in the one file that ships. A cut the app is closed in the middle of leaves
-`Forever ….mp4.cutting`; the next start deletes it.
+`Forever â€¦.mp4.cutting`; the next start deletes it.
 
 **NVIDIA Instant Replay was tried and dropped (2026-11-07).** NVIDIA gives another program no way
 to ask for a save, so the app could only press Alt+F10 and wait for a file. The keys did work (NVIDIA
@@ -270,7 +281,7 @@ events per process; PresentMon needs admin), Forever at the login screen at 60 f
 
 | OBS showing | DWM composites WoW's frames | WoW frame time (sd) | OBS GPU |
 |---|---|---|---|
-| Display Capture of the screen | yes, 303 of 303 in 5 s | 16.67 ms (0.30) | 2.5–4.3% |
+| Display Capture of the screen | yes, 303 of 303 in 5 s | 16.67 ms (0.30) | 2.5â€“4.3% |
 | Game Capture of WoW | no, 0 | 16.68 ms (0.31) | 1.9% |
 | nothing | no, 0 | 16.67 ms (0.28) | 1.7% |
 
@@ -301,7 +312,7 @@ moving or deleting old Forever logs, which stay in `_forever_\Logs`.
 after its game when its round 1 matches a game on the website (the index's `playedAt` is that START
 cut to the second). It plays in the window: WebView2 serves the folder under a made-up host
 (`SetVirtualHostNameToFolderMapping`), so nothing is copied and no file:/// address is needed. A
-button per round jumps to its start, from the timing file. A game with a video shows ▶ in the Games
+button per round jumps to its start, from the timing file. A game with a video shows â–¶ in the Games
 list and a "Watch the video" button on its card; the video page links back to the game.
 
 Not yet: the Watch page (the timeline under the video) inside this app's window (its pages come from the website, and a local video
@@ -446,7 +457,7 @@ rounds, pages asked for after logs 1 and 2, done at the end, 15 sent, none faile
 
 A player in China connected and the app never read a log: it had looked for WoW in two registry keys
 and six folders, once, at start. `AppSettings.DetectWowLogs()` now tries, in order: the running game
-itself (`Wow.exe`'s folder), every uninstall entry naming World of Warcraft or 魔兽世界 (32- and 64-bit
+itself (`Wow.exe`'s folder), every uninstall entry naming World of Warcraft or é­”å…½ä¸–ç•Œ (32- and 64-bit
 views, and this user), Battle.net's installed-games list (`ProgramData\Battle.net\Agent\product.db`,
 its paths are plain text: on Chriso's PC it gives `C:/World of Warcraft`), the usual folders, then every
 fixed drive at the top and one folder down. While WoW is still missing the app looks again: the
@@ -474,7 +485,7 @@ website offers YouTube (and the index's `youtube` flag shows the app's row) only
 accounts in `YOUTUBE_TESTERS` (user ids; Chriso's app sends to account 8). `YOUTUBE_PUBLIC=true` opens
 it to everyone once Google has approved. Google project: `mindcollector-youtube`.
 
-The Videos tab's first row, **Upload to YouTube…**, opens `YouTubeQueueForm`: the recordings matched
+The Videos tab's first row, **Upload to YouTubeâ€¦**, opens `YouTubeQueueForm`: the recordings matched
 to a game and not on YouTube yet, the last day's ticked, and who can see them (unlisted unless the
 player picks otherwise). For each ticked game the website's `/api/coach/youtube/prepare` gives a
 short-lived token and the title and chapters (written from the game, specs never names), then
@@ -485,7 +496,7 @@ twice and the list says "on YouTube". The player links the channel on the websit
 YouTube). The row appears only when the website's index says `youtube: true` (its Google client set
 up); shipped in 0.6.1 hidden, and to be checked with one real upload before it is relied on.
 
-**Sharing (2026-10-28).** The row is now **YouTube: upload and share…**, and the window has a second
+**Sharing (2026-10-28).** The row is now **YouTube: upload and shareâ€¦**, and the window has a second
 half, **On your channel**: each uploaded video as the website last heard from YouTube
 (`/api/coach/youtube/videos`): public, unlisted, private or gone, still processing, in the video
 library, its views. **Open its page** and **Copy link** give the game's page on the website

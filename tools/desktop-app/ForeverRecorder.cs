@@ -168,6 +168,7 @@ public sealed class ForeverRecorder : IDisposable
     private readonly List<byte> _carry = [];
     private int _busy;
     private int _ticks;
+    private bool _wasRunning;
     private bool _disposed;
 
     private ObsClient? _obs;
@@ -206,7 +207,22 @@ public sealed class ForeverRecorder : IDisposable
             }
         }
         catch { }
+        if (!ForeverRunning()) KeepLogs();
         _timer.Change(1000, 1000);
+    }
+
+    private int _keeping;
+
+    /// <summary>Forever's finished logs off WoW's drive (ForeverLogKeeper), in the background: only while Forever is closed.</summary>
+    private void KeepLogs()
+    {
+        if (!_settings.MoveForeverLogs || Interlocked.Exchange(ref _keeping, 1) == 1) return;
+        _ = Task.Run(() =>
+        {
+            try { if (!ForeverRunning()) ForeverLogKeeper.Run(_settings, _log); }
+            catch (Exception e) { _log($"Keeping Forever's logs: {e.Message}"); }
+            finally { Interlocked.Exchange(ref _keeping, 0); }
+        });
     }
 
     /// <summary>
@@ -291,6 +307,9 @@ public sealed class ForeverRecorder : IDisposable
             foreach (var fight in fights) await SaveAsync(fight);
 
             if (!running && _bufferOn && _finder.Current == null) await StopBufferAsync("WoW Forever closed");
+            // Forever closed and its last fight saved: its log is finished, so it can leave WoW's folder.
+            if (running) _wasRunning = true;
+            else if (_wasRunning && _finder.Current == null) { _wasRunning = false; KeepLogs(); }
         }
         catch (Exception e)
         {

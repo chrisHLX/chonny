@@ -559,10 +559,11 @@ public sealed class Recorder : IDisposable
                 video.Delete();
                 sidecar.Delete();
                 total -= size;
-                // a game folder emptied by this goes too
+                // a game folder emptied by this goes too, with its log lines (ForeverLogKeeper: the whole log is kept apart)
                 if (video.Directory is { } folder && folder.FullName != Path.GetFullPath(dir).TrimEnd('\\')
-                    && folder.Name.StartsWith(VideoLibrary.ForeverFolderPrefix, StringComparison.Ordinal) && !folder.EnumerateFileSystemInfos().Any())
-                    folder.Delete();
+                    && folder.Name.StartsWith(VideoLibrary.ForeverFolderPrefix, StringComparison.Ordinal)
+                    && folder.EnumerateFileSystemInfos().All(i => i is FileInfo && i.Name.StartsWith("WoWCombatLog", StringComparison.OrdinalIgnoreCase)))
+                    folder.Delete(recursive: true);
                 log($"Deleted the oldest video, {video.Name}, to stay under {settings.VideoLimitGb} GB.");
             }
             catch { }

@@ -109,6 +109,9 @@ public sealed class AppSettings
     /// <summary>Forever's Logs folder (World of Warcraft\_forever_\Logs); found by DetectForeverLogs when empty.</summary>
     public string? ForeverLogsDir { get; set; }
 
+    /// <summary>Forever's finished logs moved out of WoW's folder, each game's lines into its clips' folder (ForeverLogKeeper; settings.json only).</summary>
+    public bool MoveForeverLogs { get; set; } = true;
+
     /// <summary>
     /// How much video OBS's replay buffer holds, in seconds (settings.json only): the longest fight
     /// kept whole, less the lead and the wait. 600 at 32 Mbps is about 2.4 GB of memory.

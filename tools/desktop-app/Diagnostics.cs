@@ -816,6 +816,24 @@ internal static class Diagnostics
         return 0;
     }
 
+    /// <summary>--keep-forever-logs LOGS VIDEOS ARCHIVE: ForeverLogKeeper on test copies, then what each game folder holds.</summary>
+    public static int KeepForeverLogs(string logs, string videos, string archive)
+    {
+        var report = new StringBuilder();
+        var sw = System.Diagnostics.Stopwatch.StartNew();
+        var (pieces, moved) = ForeverLogKeeper.Run(logs, videos, archive, l => report.AppendLine("log: " + l));
+        report.AppendLine($"pieces {pieces}, moved {moved}, {sw.Elapsed.TotalSeconds:N1}s");
+        foreach (var d in Directory.EnumerateDirectories(videos).OrderBy(x => x))
+            foreach (var f in Directory.EnumerateFiles(d, "WoWCombatLog*"))
+            {
+                var lines = File.ReadLines(f).ToList();
+                report.AppendLine($"{Path.GetFileName(d)}\\{Path.GetFileName(f)}: {new FileInfo(f).Length / 1024:N0} KB, {lines.Count} lines, {lines.FirstOrDefault()?[..Math.Min(60, lines[0].Length)]} .. {lines.LastOrDefault()?[..Math.Min(40, lines[^1].Length)]}");
+            }
+        report.AppendLine($"left in logs: {Directory.EnumerateFiles(logs).Count()}, in archive: {(Directory.Exists(archive) ? Directory.EnumerateFiles(archive).Count() : 0)}");
+        Write("keep-forever-logs.txt", report.ToString());
+        return 0;
+    }
+
     /// <summary>--ask-pending FILE: what the Ask watcher sees in the addon's saved data, question by question (ask-pending.txt). Answers nothing.</summary>
     public static int AskPending(string file)
     {
