@@ -5,8 +5,9 @@ using System.Text.Json;
 namespace MindCollector.Desktop;
 
 /// <summary>One video in the videos folder, with what its timing file says (Recorder.WriteSidecar), if it has one.</summary>
-public sealed record VideoEntry(string Name, DateTime Started, DateTime? Stopped, string? Bracket, IReadOnlyList<DateTime> Rounds, long Bytes, string? YouTubeId = null, ForeverFight? Fight = null)
+public sealed record VideoEntry(string Name, DateTime Started, DateTime? Stopped, string? Bracket, IReadOnlyList<DateTime> Rounds, long Bytes, string? YouTubeId = null, ForeverFight? Fight = null, string? Custom = null, bool Starred = false)
 {
+    // Custom: the name the player gave it (ClipTools, 0.6.36), else null; Starred: kept as a favourite.
     public TimeSpan? Length => Stopped is { } s && s > Started ? s - Started : null;
 
     /// <summary>A WoW Forever fight's clip (ForeverRecorder): shown on the Forever side of the app, never under retail's Videos.</summary>
@@ -37,6 +38,8 @@ internal static class VideoLibrary
     public const string Host = "videos.mindcollector.invalid";
 
     private static readonly string[] Kinds = [".mp4", ".mkv", ".mov", ".webm"];
+
+    public static bool IsVideo(string path) => Kinds.Contains(Path.GetExtension(path), StringComparer.OrdinalIgnoreCase);
 
     /// <summary>
     /// A WoW Forever game's folder in the videos folder (0.6.19, Chriso: "so when I want to delete
@@ -71,6 +74,8 @@ internal static class VideoLibrary
                 string? bracket = null;
                 string? youtube = null;
                 ForeverFight? fight = null;
+                string? custom = null;
+                var starred = false;
                 var rounds = new List<DateTime>();
                 var sidecar = path + Recorder.SidecarSuffix;
                 if (File.Exists(sidecar))
@@ -80,6 +85,8 @@ internal static class VideoLibrary
                     if (Clock(r, "recordingStarted") is { } s) started = s;
                     stopped = Clock(r, "recordingStopped");
                     bracket = r.TryGetProperty("bracket", out var b) ? b.GetString() : null;
+                    custom = r.TryGetProperty("title", out var ti) && ti.ValueKind == JsonValueKind.String && ti.GetString() is { Length: > 0 } name ? name : null;
+                    starred = r.TryGetProperty("starred", out var st) && st.ValueKind == JsonValueKind.True;
                     youtube = r.TryGetProperty("youtube", out var y) && y.ValueKind == JsonValueKind.Object && y.TryGetProperty("id", out var yid) ? yid.GetString() : null;
                     if (r.TryGetProperty("rounds", out var rs) && rs.ValueKind == JsonValueKind.Array)
                         foreach (var x in rs.EnumerateArray())
@@ -89,7 +96,7 @@ internal static class VideoLibrary
                             Names(f, "opponents"), Names(f, "killed"), f.TryGetProperty("youDied", out var d) && d.ValueKind == JsonValueKind.True,
                             Clock(f, "entered"), r.TryGetProperty("log", out var lg) && lg.ValueKind == JsonValueKind.String ? lg.GetString() : null);
                 }
-                list.Add(new VideoEntry(Path.GetRelativePath(dir, path), started, stopped, bracket, rounds, info.Length, youtube, fight));
+                list.Add(new VideoEntry(Path.GetRelativePath(dir, path), started, stopped, bracket, rounds, info.Length, youtube, fight, custom, starred));
             }
             catch { /* a video still being written, or a broken timing file: leave it out this time */ }
         }
@@ -141,13 +148,23 @@ internal static class VideoLibrary
 
     public static string Duration(TimeSpan t) => t.TotalHours >= 1 ? t.ToString(@"h\:mm\:ss") : t.ToString(@"m\:ss");
 
-    /// <summary>The player: the video, a button per round, and the way to its game and its file.</summary>
-    public static string Page(VideoEntry v, string title, string? lobby)
+    /// <summary>
+    /// The player: the video, a button per round, the clip's own buttons (star, rename, trim, delete:
+    /// ClipTools, 0.6.36), and the way to its game and its file. <paramref name="original"/> is the name
+    /// the app gives it; the player's own name, when it has one, shows instead, with the original under it.
+    /// <paramref name="tool"/> opens rename, trim or delete as the page loads (from the list's menu);
+    /// <paramref name="toast"/> says what just happened (a trim, say).
+    /// </summary>
+    public static string Page(VideoEntry v, string original, string? lobby, string? tool = null, string? toast = null)
     {
         var src = $"https://{Host}/{Url(v.Name)}";
+        var title = v.Custom ?? original;
         var buttons = string.Join("", v.Rounds.Select((r, i) =>
         {
-            var at = Math.Max(0, (r - v.Started).TotalSeconds);
+            var raw = (r - v.Started).TotalSeconds;
+            // a round trimmed off the clip has no button (a fight that began just before the clip still starts it at 0:00)
+            if (raw < -5 || (v.Length is { } len && raw > len.TotalSeconds)) return "";
+            var at = Math.Max(0, raw);
             var label = v.IsForever ? "Fight starts"
                 : v.Rounds.Count > 1 ? $"Round {i + 1}" : "Gates open";
             return $"<button data-t=\"{at.ToString("0.##", CultureInfo.InvariantCulture)}\">{label} <span>{Duration(TimeSpan.FromSeconds(at))}</span></button>";
@@ -164,6 +181,7 @@ internal static class VideoLibrary
             .eyebrow{color:#C8952C;font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase}
             h1{font-size:26px;font-weight:800;letter-spacing:-.02em;margin:6px 0 2px}
             .muted{color:#B3B3B3;font-size:13.5px;margin-bottom:16px}
+            .orig{color:#6A6A6A;font-size:13px;margin:0 0 4px}
             video{display:block;width:100%;max-height:68vh;background:#000;border-radius:8px}
             .bar{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px;align-items:center}
             button,.btn{border:0;border-radius:999px;padding:8px 14px;font-weight:700;font-size:13px;cursor:pointer;background:#2A2A2A;color:#fff;text-decoration:none;font-family:inherit}
@@ -174,11 +192,12 @@ internal static class VideoLibrary
             .err{display:none;margin-top:14px;padding:12px 14px;background:#181818;border-radius:8px;color:#B3B3B3;font-size:13.5px}
             </style></head><body><div class="wrap">
             <div class="eyebrow">{{{(v.IsForever ? "WoW Forever · PvP fight" : "Video")}}}</div>
-            <h1>{{{WebUtility.HtmlEncode(title)}}}</h1>
+            <h1 id="mc-title">{{{WebUtility.HtmlEncode(title)}}}</h1>
+            <div id="mc-orig" class="orig"{{{(v.Custom == null ? " style=\"display:none\"" : "")}}}>{{{WebUtility.HtmlEncode(original)}}}</div>
             <div class="muted">{{{WebUtility.HtmlEncode(string.Join(" · ", facts))}}}</div>
             <video id="v" controls preload="metadata" src="{{{src}}}"></video>
             <div class="err" id="err">This video would not play here. The window plays MP4; Settings &gt; Set up OBS checks that OBS records MP4. Show it in its folder to open it in another player.</div>
-            <div class="bar">{{{buttons}}}<span class="gap"></span>{{{game}}}<a class="btn" href="mc-app://folder/{{{Url(v.Name)}}}">Show in folder</a></div>
+            <div class="bar" id="mc-bar">{{{buttons}}}<span class="gap"></span><span id="mc-clip-actions"></span>{{{game}}}<a class="btn" href="mc-app://folder/{{{Url(v.Name)}}}">Show in folder</a></div>
             </div><script>
             (function(){
               var v=document.getElementById('v');
@@ -186,7 +205,7 @@ internal static class VideoLibrary
               var bs=document.querySelectorAll('button[data-t]');
               for(var i=0;i<bs.length;i++){bs[i].onclick=function(){v.currentTime=parseFloat(this.getAttribute('data-t'));v.play().catch(function(){});};}
             })();
-            </script></body></html>
+            </script>{{{ClipTools.Snippet(v, original, tool, toast)}}}</body></html>
             """;
     }
 

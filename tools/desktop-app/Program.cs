@@ -20,6 +20,12 @@ internal static class Program
         if (args.Length >= 2 && args[0] == "--settings-shot") return Diagnostics.SettingsShot(args[1]);
         if (args.Length >= 1 && args[0] == "--obs-scene-test") return Diagnostics.ObsSceneTest(args);
         if (args.Length >= 5 && args[0] == "--cut") return Diagnostics.Cut(args);
+        // --clip-test DIR NAME FROM TO [delete]: rename, star and trim a clip in a test copy of a videos folder, then delete it (ClipTools; clip-test.txt)
+        if (args.Length >= 5 && args[0] == "--clip-test") return Diagnostics.ClipTest(args);
+        // --clip-page DIR NAME OUT [rename|trim|delete]: the clip's page as the app draws it, to look at in a browser
+        if (args.Length >= 4 && args[0] == "--clip-page") return Diagnostics.ClipPage(args);
+        // --library-shot PATH [query]: the clip list with its search, stars and menu, drawn off-screen to a PNG
+        if (args.Length >= 2 && args[0] == "--library-shot") return Diagnostics.LibraryShot(args);
         if (args.Length >= 1 && args[0] == "--check-record-light") return Diagnostics.CheckRecordLight();
         if (args.Length >= 1 && args[0] == "--rec-test") return Diagnostics.RecTest(args);
         // --snap PATH: one frame of the running WoW window as a PNG (pictures of the addon for the website)

@@ -36,6 +36,7 @@ internal sealed class MainForm : Form
     private readonly RecordLight _recLight = new();
     private int _lightTick;
     private readonly LibraryList _list = new();
+    private readonly ClipFilter _filter = new() { Visible = false };
     private readonly Label _libTitle = new() { Dock = DockStyle.Top, Height = 44, Font = Theme.Heading, ForeColor = Theme.Ink, BackColor = Theme.Panel, TextAlign = ContentAlignment.MiddleLeft, Padding = new Padding(10, 0, 0, 0) };
     private readonly WebView2 _view = new();
     private readonly Label _status = new() { AutoSize = true, ForeColor = Theme.Muted };
@@ -218,8 +219,26 @@ internal sealed class MainForm : Form
         };
         var library = new RoundPanel { Dock = DockStyle.Fill, Padding = new Padding(8, 6, 8, 8) };
         library.Controls.Add(_list);
+        library.Controls.Add(_filter);
         library.Controls.Add(_character);
         library.Controls.Add(_libTitle);
+        // The clips' search and Starred (0.6.36), their right-click menu, and F2 / Del / Ctrl+F.
+        _filter.Changed += FillList;
+        _list.MouseUp += (_, e) =>
+        {
+            if (e.Button != MouseButtons.Right) return;
+            var i = _list.IndexFromPoint(e.Location);
+            if (i >= 0 && i < _list.Items.Count && _list.Items[i] is LibraryRow { File: { } f } && f.StartsWith(VideoPrefix, StringComparison.Ordinal))
+                ShowClipMenu(f[VideoPrefix.Length..], i, e.Location);
+        };
+        _list.KeyDown += (_, e) =>
+        {
+            if (e.Control && e.KeyCode == Keys.F && _filter.Visible) { _filter.FocusSearch(); e.Handled = e.SuppressKeyPress = true; return; }
+            if (_list.SelectedFile is not { } f || !f.StartsWith(VideoPrefix, StringComparison.Ordinal)) return;
+            var name = f[VideoPrefix.Length..];
+            if (e.KeyCode == Keys.F2) { OpenClipTool(name, "rename"); e.Handled = true; }
+            else if (e.KeyCode == Keys.Delete) { OpenClipTool(name, "delete"); e.Handled = true; }
+        };
         // The character picker (the developer app's): the Games list shows one character's games.
         _character.SelectedIndexChanged += (_, _) =>
         {
@@ -771,15 +790,18 @@ internal sealed class MainForm : Form
             rows.Add(new LibraryRow("Sample · watch a game", "Play it back with everyone's cooldowns", null, 0, SamplePrefix + "watch"));
         }
 
+        _filter.Visible = _tab is "Videos" or "Fights";
         if (_tab == "Videos")
         {
             rows.Clear();
             rows.AddRange(VideoRows());
+            if (rows.Count == 0 && _filter.Active)
+                rows.Add(NoMatch());
             // Only once the website has YouTube set up (its index says so): until then it could only say "not yet".
-            if (rows.Count > 0 && _index?.RootElement is { } ix && ix.TryGetProperty("youtube", out var yt) && yt.ValueKind == System.Text.Json.JsonValueKind.True)
+            if (rows.Count > 0 && !_filter.Active && _index?.RootElement is { } ix && ix.TryGetProperty("youtube", out var yt) && yt.ValueKind == System.Text.Json.JsonValueKind.True)
                 rows.Insert(0, new LibraryRow("YouTube: upload and share…", "Send games to your channel, and see who can watch the ones there, their views and their pages", null, 0, YouTubeAction));
             // Set up, but testers only while Google reviews it, and this player is not one yet (2026-10-29).
-            else if (rows.Count > 0 && _index?.RootElement is { } iv && iv.TryGetProperty("youtubeInvite", out var inv) && inv.ValueKind == System.Text.Json.JsonValueKind.True)
+            else if (rows.Count > 0 && !_filter.Active && _index?.RootElement is { } iv && iv.TryGetProperty("youtubeInvite", out var inv) && inv.ValueKind == System.Text.Json.JsonValueKind.True)
                 rows.Insert(0, new LibraryRow("YouTube uploads: testers for now", "Google is still reviewing it. Click to see how to be added", null, 0, YouTubeInviteAction));
             if (rows.Count == 0)
                 rows.Add(_settings.RecordGames
@@ -915,6 +937,15 @@ internal sealed class MainForm : Form
             yield break;
         }
 
+        if (_tab == "Fights" && _filter.Active)
+        {
+            // Searching or Starred (0.6.36): each matching clip on its own row, newest first, so it can be starred, renamed or deleted from here.
+            var found = fights.Where(ClipMatches).OrderByDescending(ForeverPages.FoughtAt).ToList();
+            if (found.Count == 0) { yield return NoMatch(); yield break; }
+            foreach (var v in found) yield return FightRow(v);
+            yield break;
+        }
+
         if (_tab == "Fights")
         {
             // A battleground game's fights as one row that opens them all (0.6.16); a fight on its own as itself.
@@ -952,8 +983,29 @@ internal sealed class MainForm : Form
         if (v.Length is { } l) facts.Add(VideoLibrary.Duration(l));
         if (v.Fight?.Zone is { Length: > 0 } zone) facts.Add(zone);
         var outcome = v.Fight?.Outcome;
-        return new LibraryRow(v.Fight?.Title ?? (v.Bracket ?? "Fight").Replace("Forever: ", ""), string.Join(" · ", facts), outcome?.Text, outcome?.Tone ?? 0, VideoPrefix + v.Name);
+        var original = FightTitle(v);
+        if (v.Custom != null) facts.Insert(0, original);
+        return new LibraryRow(v.Custom ?? original, string.Join(" · ", facts), outcome?.Text, outcome?.Tone ?? 0, VideoPrefix + v.Name, v.Starred);
     }
+
+    private static string FightTitle(VideoEntry v) => v.Fight?.Title ?? (v.Bracket ?? "Fight").Replace("Forever: ", "");
+
+    /// <summary>What the search box looks through: the clip's own name, the app's name for it, the players, the zone, the bracket and the day.</summary>
+    private bool ClipMatches(VideoEntry v)
+    {
+        if (_filter.StarredOnly && !v.Starred) return false;
+        var q = _filter.Query;
+        if (q.Length == 0) return true;
+        var said = new List<string?> { v.Custom, v.Bracket, v.Fight?.Title, v.Fight?.Zone, ForeverPages.FoughtAt(v).ToString("dddd d MMMM yyyy HH:mm") };
+        if (v.Fight != null) said.AddRange(v.Fight.Opponents);
+        if (!v.IsForever && GameOf(v) is { } g) { said.Add(g.Row.Title); said.Add(g.Row.Sub); }
+        var hay = string.Join(" ", said.Where(x => x != null));
+        return q.Split(' ', StringSplitOptions.RemoveEmptyEntries).All(word => hay.Contains(word, StringComparison.OrdinalIgnoreCase));
+    }
+
+    private LibraryRow NoMatch() => _filter.Query.Length == 0
+        ? new LibraryRow("No starred clips yet", "Star one from its page, or right-click it in this list")
+        : new LibraryRow("Nothing matches", _filter.StarredOnly ? "Among your starred clips. Try another word, or turn Starred off" : "Try a player, a zone, or a name you gave a clip");
 
     /// <summary>The game whose first fight's clip is <paramref name="firstVideo"/>.</summary>
     private void ShowGroup(string firstVideo)
@@ -1267,7 +1319,7 @@ internal sealed class MainForm : Form
             await Task.Delay(500);
             _videoWatchQueued = false;
             LoadVideos();
-            if (_shownVideo != null && !_videos.Any(v => v.Name == _shownVideo))
+            if (!_clipBusy && _shownVideo != null && !_videos.Any(v => v.Name == _shownVideo))
             {
                 _shownVideo = null;
                 if (InForever) ShowForeverOverview(); else Blank("That video is no longer in the videos folder.");
@@ -1297,12 +1349,14 @@ internal sealed class MainForm : Form
     private IEnumerable<LibraryRow> VideoRows()
     {
         // Forever's fight clips are on the Forever side (Fights), not here.
-        foreach (var v in LoadVideos().Where(v => !v.IsForever))
+        foreach (var v in LoadVideos().Where(v => !v.IsForever && ClipMatches(v)))
         {
             var line = v.Started.ToString("ddd d MMM, HH:mm") + (v.Length is { } l ? $" · {VideoLibrary.Duration(l)}" : "") + (v.YouTubeId != null ? " · on YouTube" : "");
-            yield return GameOf(v) is { } g
-                ? new LibraryRow(g.Row.Title, line, g.Row.Badge, g.Row.Tone, VideoPrefix + v.Name)
-                : new LibraryRow((v.Bracket ?? "Video").Replace("Rated ", ""), line, null, 0, VideoPrefix + v.Name);
+            var g = GameOf(v);
+            var original = g?.Row.Title ?? (v.Bracket ?? "Video").Replace("Rated ", "");
+            // a clip with its own name keeps the app's name in its second line
+            if (v.Custom != null) line = $"{original} · {line}";
+            yield return new LibraryRow(v.Custom ?? original, line, g?.Row.Badge, g?.Row.Tone ?? 0, VideoPrefix + v.Name, v.Starred);
         }
     }
 
@@ -1335,7 +1389,9 @@ internal sealed class MainForm : Form
         FillList();
     }
 
-    private async void ShowVideo(string name)
+    /// <param name="tool">"rename", "trim" or "delete": opened as the page loads (the list's menu, F2, Del).</param>
+    /// <param name="toast">A line the page shows as it opens: what just happened.</param>
+    private async void ShowVideo(string name, string? tool = null, string? toast = null)
     {
         if (_view.CoreWebView2 == null) return;
         name = name.Replace('/', '\\');   // a link's path inside the videos folder
@@ -1345,7 +1401,7 @@ internal sealed class MainForm : Form
         if (v == null) { Blank("That video is no longer in the videos folder."); return; }
         var game = v.IsForever ? null : GameOf(v);
         _shownFile = null;
-        if (v.Fight is { } fight) { Show(VideoLibrary.Page(v, fight.Title, null)); return; }
+        if (v.Fight != null) { Show(VideoLibrary.Page(v, FightTitle(v), null, tool, toast)); return; }
         if (game is { } g && !string.IsNullOrEmpty(_settings.Key))
         {
             try
@@ -1353,14 +1409,204 @@ internal sealed class MainForm : Form
                 using var api = new ApiClient(_settings.ServerUrl, _settings.Key);
                 if (await api.WatchPageAsync(g.Lobby, v, CancellationToken.None) is { } html)
                 {
+                    if (_shownVideo != name) return;   // another clip was opened meanwhile
+                    // the clip's own buttons (ClipTools) join "Open this game" and "Show in folder" at its top
+                    var snippet = ClipTools.Snippet(v, g.Row.Title, tool, toast);
+                    html = html.Contains("</body>", StringComparison.OrdinalIgnoreCase)
+                        ? html.Replace("</body>", snippet + "</body>", StringComparison.OrdinalIgnoreCase) : html + snippet;
                     Show(html.Replace("<head>", $"<head><base href=\"{_settings.ServerUrl}/\">", StringComparison.OrdinalIgnoreCase));
                     return;
                 }
             }
             catch (Exception e) { Log($"Could not load this game's timeline: {e.Message}"); }
         }
-        Show(VideoLibrary.Page(v, game?.Row.Title ?? (v.Bracket ?? "Video").Replace("Rated ", ""), game?.Lobby));
+        Show(VideoLibrary.Page(v, game?.Row.Title ?? (v.Bracket ?? "Video").Replace("Rated ", ""), game?.Lobby, tool, toast));
     }
+
+    // ------------------------------------------------------------------ a clip's name, star, trim and delete (0.6.36, ClipTools)
+
+    private bool _clipBusy;
+
+    /// <summary>The clip's menu in the list: open, rename, star, trim, show in folder, delete.</summary>
+    private void ShowClipMenu(string name, int index, Point at)
+    {
+        var v = _videos.FirstOrDefault(x => x.Name == name) ?? LoadVideos().FirstOrDefault(x => x.Name == name);
+        if (v == null) return;
+        var menu = DarkMenu.Create();
+        DarkMenu.Item(menu, "Open", () => OpenClipTool(name, null), bold: true);
+        DarkMenu.Item(menu, "Rename…", () => OpenClipTool(name, "rename"), "F2");
+        DarkMenu.Item(menu, v.Starred ? "Remove star" : "Star", () => StarClip(v, !v.Starred));
+        DarkMenu.Item(menu, "Trim…", () => OpenClipTool(name, "trim"));
+        DarkMenu.Line(menu);
+        DarkMenu.Item(menu, "Show in folder", () => ShowInFolder(name));
+        DarkMenu.Line(menu);
+        DarkMenu.Item(menu, "Delete…", () => OpenClipTool(name, "delete"), "Del", danger: true);
+        _list.MenuIndex = index;
+        menu.Closed += (_, _) => { _list.MenuIndex = -1; BeginInvoke(menu.Dispose); };
+        menu.Show(_list, at);
+    }
+
+    /// <summary>
+    /// Opens the clip with one of its tools. On the page already playing it, the page opens the tool
+    /// (no reload, so the video keeps its place); otherwise the clip's page opens with the tool.
+    /// </summary>
+    private void OpenClipTool(string name, string? tool)
+    {
+        SelectQuietly(VideoPrefix + name);
+        // the dialog's keys (Enter, Esc) go to the page, not the list
+        if (tool != null) _view.Focus();
+        if (_shownVideo == name && _view.CoreWebView2 != null)
+        {
+            if (tool != null) PostClip(new { type = "clip-open", tool });
+            return;
+        }
+        ShowVideo(name, tool);
+    }
+
+    /// <summary>Lights a row without opening it again.</summary>
+    private void SelectQuietly(string file)
+    {
+        for (var i = 0; i < _list.Items.Count; i++)
+        {
+            if (_list.Items[i] is not LibraryRow r || r.File != file) continue;
+            if (_list.SelectedIndex == i) return;
+            _filling = true;
+            _list.SelectedIndex = i;
+            _filling = false;
+            return;
+        }
+    }
+
+    private void StarClip(VideoEntry v, bool on)
+    {
+        try
+        {
+            ClipTools.SetStarred(Recorder.VideosDir(_settings), v.Name, on);
+            if (_shownVideo == v.Name) PostClip(new { type = "clip-star", on });
+            LoadVideos();
+            FillList();
+            SetStatus(on ? $"Starred {ClipName(v)}" : $"Took the star off {ClipName(v)}");
+        }
+        catch (Exception e) { Log($"Could not star the clip: {e.Message}"); SetStatus("Couldn't star that clip: see Activity"); }
+    }
+
+    private string ClipName(VideoEntry v) => "\u201C" + (v.Custom ?? (v.IsForever ? FightTitle(v) : GameOf(v)?.Row.Title ?? v.Bracket ?? "the video")) + "\u201D";
+
+    /// <summary>A clip's page asked for something (ClipTools' script). Only ever for the clip that page is showing.</summary>
+    private async void OnClipMessage(JsonElement m)
+    {
+        var name = Str(m, "name").Replace('/', '\\');
+        if (name.Length == 0 || name != _shownVideo) return;
+        var dir = Recorder.VideosDir(_settings);
+        var v = LoadVideos().FirstOrDefault(x => x.Name == name);
+        if (v == null) { PostClip(new { type = "clip-error", message = "That clip is no longer in the videos folder." }); return; }
+        try
+        {
+            switch (Str(m, "action"))
+            {
+                case "star":
+                    ClipTools.SetStarred(dir, name, m.TryGetProperty("on", out var on) && on.ValueKind == JsonValueKind.True);
+                    LoadVideos();
+                    FillList();
+                    break;
+
+                case "rename":
+                    ClipTools.SetTitle(dir, name, Str(m, "title"));
+                    LoadVideos();
+                    FillList();
+                    break;
+
+                case "trim":
+                {
+                    if (_clipBusy) return;
+                    _clipBusy = true;
+                    var started = DateTime.Now;
+                    var lastSent = -1;
+                    string? why;
+                    try
+                    {
+                        why = await ClipTools.TrimAsync(dir, v, Seconds(m, "from"), Seconds(m, "to"), p =>
+                        {
+                            var pc = (int)p;
+                            if (pc == lastSent) return;
+                            lastSent = pc;
+                            BeginInvoke(() => { if (_shownVideo == name) PostClip(new { type = "clip-progress", p }); });
+                        });
+                    }
+                    finally { _clipBusy = false; }
+                    if (why != null)
+                    {
+                        Log($"Could not trim {name}: {why}");
+                        PostClip(new { type = "clip-error", message = why });
+                        return;
+                    }
+                    var after = LoadVideos().FirstOrDefault(x => x.Name == name);
+                    var kept = after?.Length is { } k ? VideoLibrary.Duration(k) : null;
+                    Log($"Trimmed {name} to {kept ?? "?"} in {(DateTime.Now - started).TotalSeconds:N0}s; the original is in the Recycle Bin.");
+                    FillList();
+                    _shown = null;
+                    ShowVideo(name, toast: kept != null ? $"Trimmed to {kept}. The original is in the Recycle Bin" : "Trimmed. The original is in the Recycle Bin");
+                    break;
+                }
+
+                case "delete":
+                {
+                    if (_clipBusy) return;
+                    _clipBusy = true;
+                    string? why;
+                    // the row below takes its place in the list, as in Explorer
+                    var at = -1;
+                    for (var i = 0; i < _list.Items.Count; i++)
+                        if (_list.Items[i] is LibraryRow r && r.File == VideoPrefix + name) { at = i; break; }
+                    try { why = await ClipTools.DeleteAsync(dir, v); }
+                    finally { _clipBusy = false; }
+                    if (why != null)
+                    {
+                        Log($"Could not delete {name}: {why}");
+                        PostClip(new { type = "clip-error", message = why });
+                        return;
+                    }
+                    Log($"Moved {name} to the Recycle Bin.");
+                    var said = $"Deleted {ClipName(v)}. It's in the Recycle Bin";
+                    _shownVideo = null;
+                    LoadVideos();
+                    FillList();
+                    SetStatus(said);
+                    string? next = null;
+                    if (at >= 0 && at < _list.Items.Count && _list.Items[at] is LibraryRow { File: { } below } && below.StartsWith(VideoPrefix, StringComparison.Ordinal)) next = below;
+                    else if (at > 0 && at - 1 < _list.Items.Count && _list.Items[at - 1] is LibraryRow { File: { } above } && above.StartsWith(VideoPrefix, StringComparison.Ordinal)) next = above;
+                    if (next != null)
+                    {
+                        SelectQuietly(next);
+                        ShowVideo(next[VideoPrefix.Length..], toast: said);
+                    }
+                    else if (InForever && Path.GetDirectoryName(name) is { Length: > 0 } folder
+                        && ForeverPages.Groups(ForeverFights()).FirstOrDefault(g => g.Any(x => Path.GetDirectoryName(x.Name) == folder)) is { } game)
+                    {
+                        // opened from a battleground's page: back to that game, without it
+                        if (game.Count == 1) { SelectQuietly(VideoPrefix + game[0].Name); ShowVideo(game[0].Name, toast: said); }
+                        else { SelectQuietly(GroupPrefix + game[0].Name); ShowGroup(game[0].Name); }
+                    }
+                    else if (InForever) ShowForeverOverview();
+                    else Blank(said + ".");
+                    break;
+                }
+            }
+        }
+        catch (Exception e)
+        {
+            Log($"Could not change the clip {name}: {e.Message}");
+            PostClip(new { type = "clip-error", message = $"That didn't work: {e.Message}" });
+        }
+    }
+
+    private void PostClip(object message)
+    {
+        try { _view.CoreWebView2?.PostWebMessageAsJson(JsonSerializer.Serialize(message)); } catch { }
+    }
+
+    private static double Seconds(JsonElement e, string name) =>
+        e.TryGetProperty(name, out var n) && n.ValueKind == JsonValueKind.Number ? n.GetDouble() : 0;
 
     private async void OpenGame(string lobby)
     {
@@ -1469,6 +1715,7 @@ internal sealed class MainForm : Form
             using var doc = JsonDocument.Parse(e.WebMessageAsJson);
             var m = doc.RootElement;
             var type = Str(m, "type");
+            if (type == "clip") { OnClipMessage(m.Clone()); return; }
             if (type == "mark") { AddMark(); return; }
             if (type == "ask")
             {

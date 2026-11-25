@@ -17,8 +17,8 @@ namespace MindCollector.Desktop;
 /// </summary>
 internal static class ClipCutter
 {
-    /// <summary>Writes the cut to <paramref name="target"/>. Null when it worked, else why not.</summary>
-    public static async Task<string?> CutAsync(string source, string target, TimeSpan fromStart, TimeSpan fromEnd, TimeSpan sourceLength)
+    /// <summary>Writes the cut to <paramref name="target"/>. Null when it worked, else why not. Also trims a clip from its page (ClipTools).</summary>
+    public static async Task<string?> CutAsync(string source, string target, TimeSpan fromStart, TimeSpan fromEnd, TimeSpan sourceLength, Action<double>? progress = null)
     {
         if (sourceLength <= TimeSpan.Zero) return "the video's length is unknown";
         var src = await StorageFile.GetFileFromPathAsync(source);
@@ -60,7 +60,10 @@ internal static class ClipCutter
             try { await dst.DeleteAsync(); } catch { }
             return $"Windows cannot cut this video ({prepared.FailureReason})";
         }
-        await prepared.TranscodeAsync();
+        // progress: 0 to 100, from Windows' own transcoder (the Trim panel's bar, ClipTools)
+        var op = prepared.TranscodeAsync();
+        if (progress != null) op.Progress = (_, p) => progress(p);
+        await op;
         return null;
     }
 }

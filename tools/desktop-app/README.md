@@ -358,6 +358,51 @@ Now the newer version is downloaded while WoW is open (checked against the websi
 already there), the status bar says so, and it installs on the first ten-second tick after WoW closes.
 Update still installs at once, after asking, when WoW is open.
 
+## Clips: rename, star, trim and delete (0.6.36, 2026-11-25)
+
+Chriso: "allow users to rename and organise their mindcollector clips ... and trim", "pay particular
+attention to UI/UX"; crop was left out on purpose. Retail videos and Forever fight clips alike
+(`ClipTools`, `ClipFilter`, `DarkMenu` in Theme.cs).
+
+- **Where the buttons are.** Every clip's page has Star, Rename, Trim and Delete: under the video on
+  the app's own player (`VideoLibrary.Page`), and in the header beside "Open this game" and "Show in
+  folder" on the website's Watch page, where `MainForm.ShowVideo` adds the same block of CSS and script
+  (`ClipTools.Snippet`). Clicking the title also renames; F2 renames and Del deletes, on the page and
+  in the list. A right-click on a clip in the list (Videos, or Fights while searching) gives Open,
+  Rename, Star, Trim, Show in folder and Delete; the row stays lit while the menu is open
+  (`LibraryList.MenuIndex`).
+- **A name and a star are kept in the clip's timing file** (`"title"`, `"starred"`), never as the
+  file's name: renaming the file would cut off the page playing it and its Forever game folder. A
+  renamed clip keeps the app's name in its second line, and under the title on its page. Names are one
+  line, at most 80 characters; "Use the original name" takes it off.
+- **Search and Starred** sit above the Videos and Fights lists. The search looks through the clip's own
+  name, the app's name, the players, the zone, the bracket and the day (every word must match).
+  Searching or Starred turns Fights from one row per game into one row per clip, so each can be
+  right-clicked. Ctrl+F from the list goes to the box; Esc clears it.
+- **Trim** opens a panel under the video (above it on the Watch page): gold handles to drag (dragging
+  scrubs the video), I and O to set the start and end at the playhead (past the other end, the other
+  end moves out of the way, as in video editors), arrow keys on a handle (0.1s, Shift 1s), Preview
+  plays the kept part and stops at its end. Save cuts with `ClipCutter` to `NAME.trimming.mp4`, shows
+  its progress, and only then sends the original and its timing file to the **Recycle Bin**
+  (`SHFileOperation` with undo) and moves the trim into its place. The page lets go of the video first
+  (it removes the `src`), and recycling is tried for three seconds in case the player still holds it.
+  The timing file's `recordingStarted` moves on by what was cut and `recordingStopped` is the new end,
+  so round buttons, the Watch page's timeline (lined up by the start) and YouTube chapters stay right;
+  the rounds keep their real times, and a round cut off has no button. `"trimmed"` records what was
+  done. Measured with `--clip-test` on copies of real clips: a 23.77s Forever clip cut to 10-20s gave
+  10.00s, its "Fight starts" moved from 15.00s to 5.00s, 84.5 MB to 35.7 MB in 4.6s.
+- **Delete** asks once (Delete is focused: it can be undone), then the clip and its timing file go to the
+  Recycle Bin; a Forever game folder left with no clip goes too (its log lines are a copy: forever-logs
+  keeps the whole log). The row below opens in its place, as in Explorer, with "Deleted ... It's in the
+  Recycle Bin" on the page and in the status bar.
+- **Only the clip a page is showing can be changed** from it (`OnClipMessage` checks the name against
+  `_shownVideo`): the Watch page comes from the website, and no page can name another file.
+- **Checking it:** `--clip-test DIR NAME FROM TO [delete]` names, stars, trims and (optionally) deletes
+  a clip in a test copy of a videos folder (`clip-test.txt`); `--clip-page DIR NAME OUT [tool] [toast]`
+  writes a clip's page to look at in a browser; `--library-shot PATH` draws the list, search and menu
+  off-screen (WinForms draws overlapping controls in the wrong order there, so a TextBox's placeholder
+  doesn't show in it).
+
 ## Installing OBS for the player (0.6.11, 2026-11-12)
 
 Settings > Set up OBS, with no OBS on the PC, asks "Install OBS Studio?" and on yes runs Windows'

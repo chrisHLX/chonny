@@ -355,6 +355,60 @@ internal static class Diagnostics
     }
 
     /// <summary>
+    /// `--clip-test DIR NAME FROM TO [delete]` (0.6.36): on a test copy of a videos folder, names and stars
+    /// the clip, trims it to FROM-TO seconds as the page's Save trim does, and reports its length and timing
+    /// file before and after; with "delete", sends it to the Recycle Bin last. Writes clip-test.txt.
+    /// </summary>
+    public static int ClipTest(string[] args)
+    {
+        var report = new StringBuilder();
+        try
+        {
+            var (dir, name) = (Path.GetFullPath(args[1]), args[2]);
+            var from = double.Parse(args[3], System.Globalization.CultureInfo.InvariantCulture);
+            var to = double.Parse(args[4], System.Globalization.CultureInfo.InvariantCulture);
+            VideoEntry Entry() => VideoLibrary.Load(dir).First(v => v.Name == name);
+            void Say(string when)
+            {
+                var v = Entry();
+                var path = Path.Combine(dir, name);
+                report.AppendLine($"{when}: {Mp4.Duration(path)?.TotalSeconds:F2}s, {new FileInfo(path).Length / 1048576.0:N1} MB, started {v.Started:HH:mm:ss.fff}, "
+                    + $"rounds {string.Join(", ", v.Rounds.Select(r => (r - v.Started).TotalSeconds.ToString("F2")))}s in, name \"{v.Custom}\", starred {v.Starred}");
+            }
+            Say("before");
+            ClipTools.SetTitle(dir, name, "  A test	name  ");
+            ClipTools.SetStarred(dir, name, true);
+            Say("named and starred");
+            var started = DateTime.Now;
+            var ticks = 0;
+            var why = ClipTools.TrimAsync(dir, Entry(), from, to, _ => ticks++).GetAwaiter().GetResult();
+            report.AppendLine(why ?? $"trimmed in {(DateTime.Now - started).TotalSeconds:N1}s ({ticks} progress reports); expected {to - from:F2}s");
+            Say("after");
+            report.AppendLine(File.ReadAllText(Path.Combine(dir, name) + Recorder.SidecarSuffix));
+            ClipTools.SetTitle(dir, name, "");
+            report.AppendLine($"name cleared: \"{Entry().Custom}\"");
+            if (args.Contains("delete"))
+            {
+                var gone = ClipTools.DeleteAsync(dir, Entry()).GetAwaiter().GetResult();
+                report.AppendLine(gone ?? $"deleted: video there {File.Exists(Path.Combine(dir, name))}, timing file there {File.Exists(Path.Combine(dir, name) + Recorder.SidecarSuffix)}");
+            }
+        }
+        catch (Exception e) { report.AppendLine(e.ToString()); }
+        File.WriteAllText(Path.Combine(AppContext.BaseDirectory, "clip-test.txt"), report.ToString());
+        Console.WriteLine(report);
+        return 0;
+    }
+
+    /// <summary>`--clip-page DIR NAME OUT [rename|trim|delete]`: the clip's page as the app draws it (0.6.36).</summary>
+    public static int ClipPage(string[] args)
+    {
+        var v = VideoLibrary.Load(Path.GetFullPath(args[1])).First(x => x.Name == args[2]);
+        var original = v.Fight?.Title ?? (v.Bracket ?? "Video").Replace("Rated ", "");
+        File.WriteAllText(args[3], VideoLibrary.Page(v, original, null, args.Length > 4 ? args[4] : null, args.Length > 5 ? args[5] : null));
+        return 0;
+    }
+
+    /// <summary>
     /// `--obs-scene-test [SECONDS]`: what a recording would switch OBS to (ObsSetup.UseWowSceneAsync),
     /// held for SECONDS (default 10), then put back as a recording's end does (obs-scene-test.txt).
     /// </summary>
@@ -394,6 +448,55 @@ internal static class Diagnostics
     /// --settings-shot PATH: draws the Settings window, with this PC's settings, to a PNG and leaves
     /// without showing it or saving anything. For checking the layout after a change.
     /// </summary>
+    /// <summary>`--library-shot PATH [query]` (0.6.36): the Videos list with sample rows, its search and Starred, and the clip menu, drawn off-screen.</summary>
+    public static int LibraryShot(string[] args)
+    {
+        ApplicationConfiguration.Initialize();
+        using var form = new Form { StartPosition = FormStartPosition.Manual, Location = new Point(-10000, -10000), ShowInTaskbar = false, Size = new Size(380 + 260, 520), BackColor = Theme.Frame, FormBorderStyle = FormBorderStyle.None };
+        var library = new RoundPanel { Dock = DockStyle.Left, Width = 380, Padding = new Padding(8, 6, 8, 8) };
+        var list = new LibraryList { Dock = DockStyle.Fill };
+        var filter = new ClipFilter();
+        var title = new Label { Dock = DockStyle.Top, Height = 44, Font = Theme.Heading, ForeColor = Theme.Ink, BackColor = Theme.Panel, TextAlign = ContentAlignment.MiddleLeft, Padding = new Padding(10, 0, 0, 0), Text = "Your videos   5" };
+        library.Controls.Add(list);
+        library.Controls.Add(filter);
+        library.Controls.Add(title);
+        form.Controls.Add(library);
+        list.Items.Add(new LibraryRow("Comeback vs RMD", "Crawlordx · 3v3 · Sun 25 Oct, 17:11 · 0:26", "Won", 1, "video:a", true));
+        list.Items.Add(new LibraryRow("Crawlordx · 3v3", "Sun 25 Oct, 17:51 · 2:14", "Lost", -1, "video:b"));
+        list.Items.Add(new LibraryRow("Skylake · Solo Shuffle", "Mon 26 Oct, 20:03 · 18:40 · on YouTube", "4-2", 1, "video:c", true));
+        list.Items.Add(new LibraryRow("Crawlordx · 2v2", "Tue 27 Oct, 21:15 · 3:02", "Won", 1, "video:d"));
+        list.Items.Add(new LibraryRow("Skylake · 3v3", "Wed 28 Oct, 13:34 · 4:51", "Lost", -1, "video:e"));
+        form.Show();
+        list.SelectedIndex = 0;
+        list.MenuIndex = 2;
+        list.Focus();   // as in the app, where the list or the page has the cursor, not the search box
+        if (args.Length > 2) { foreach (Control c in filter.Controls) foreach (Control t in c.Controls) if (t is TextBox box) box.Text = args[2]; }
+        Application.DoEvents();
+        using var bmp = new Bitmap(form.Width, form.Height);
+        form.DrawToBitmap(bmp, new Rectangle(Point.Empty, form.Size));
+        // the menu, drawn beside the list
+        var menu = DarkMenu.Create();
+        DarkMenu.Item(menu, "Open", () => { }, bold: true);
+        DarkMenu.Item(menu, "Rename…", () => { }, "F2");
+        DarkMenu.Item(menu, "Remove star", () => { });
+        DarkMenu.Item(menu, "Trim…", () => { });
+        DarkMenu.Line(menu);
+        DarkMenu.Item(menu, "Show in folder", () => { });
+        DarkMenu.Line(menu);
+        DarkMenu.Item(menu, "Delete…", () => { }, "Del", danger: true);
+        menu.Show(new Point(-9000, -9000));
+        Application.DoEvents();
+        using (var g = Graphics.FromImage(bmp))
+        using (var mb = new Bitmap(menu.Width, menu.Height))
+        {
+            menu.DrawToBitmap(mb, new Rectangle(Point.Empty, menu.Size));
+            g.DrawImage(mb, 400, 170);
+        }
+        menu.Close();
+        bmp.Save(args[1], System.Drawing.Imaging.ImageFormat.Png);
+        return 0;
+    }
+
     public static int SettingsShot(string path)
     {
         ApplicationConfiguration.Initialize();

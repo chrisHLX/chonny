@@ -34,6 +34,8 @@ internal static class Theme
 
     /// <summary>Windows 11's icon font, with Windows 10's as the fallback.</summary>
     public static readonly Font Icons = new(FontFamily.Families.Any(f => f.Name == "Segoe Fluent Icons") ? "Segoe Fluent Icons" : "Segoe MDL2 Assets", 12f);
+    /// <summary>The icon font at the size of a search box's magnifier and ×.</summary>
+    public static readonly Font SmallIcons = new(Icons.FontFamily, 10f);
 
     public static Button Button(string text, bool primary = false) => new PillButton(text, primary);
 
@@ -349,6 +351,78 @@ internal sealed class NavItem : Control
             var x = 52 + TextRenderer.MeasureText(g, Text, Font).Width + 4;
             using var dot = new SolidBrush(Theme.Gold);
             g.FillEllipse(dot, x, Height / 2 - 4, 8, 8);
+        }
+    }
+}
+
+/// <summary>
+/// A right-click menu in the app's colours (0.6.36, the clip menu), not Windows' white one: dark,
+/// a lighter row under the mouse, roomy rows, and Delete in red.
+/// </summary>
+internal static class DarkMenu
+{
+    public static ContextMenuStrip Create()
+    {
+        var menu = new ContextMenuStrip
+        {
+            Renderer = new Renderer(),
+            ShowImageMargin = false,
+            BackColor = Theme.Raised,
+            ForeColor = Theme.Ink,
+            Font = new Font("Segoe UI", 10f),
+            Padding = new Padding(4),
+        };
+        return menu;
+    }
+
+    public static ToolStripMenuItem Item(ContextMenuStrip menu, string text, Action click, string? keys = null, bool danger = false, bool bold = false)
+    {
+        var item = new ToolStripMenuItem(text)
+        {
+            ShortcutKeyDisplayString = keys,
+            ForeColor = danger ? Theme.Lost : Theme.Ink,
+            Padding = new Padding(6, 5, 6, 5),
+            Font = bold ? new Font("Segoe UI Semibold", 10f) : menu.Font,
+        };
+        item.Click += (_, _) => click();
+        menu.Items.Add(item);
+        return item;
+    }
+
+    public static void Line(ContextMenuStrip menu) => menu.Items.Add(new ToolStripSeparator());
+
+    private sealed class Colours : ProfessionalColorTable
+    {
+        public override Color ToolStripDropDownBackground => Theme.Raised;
+        public override Color MenuBorder => Theme.Line;
+        public override Color MenuItemBorder => Theme.Selected;
+        public override Color MenuItemSelected => Theme.Selected;
+        public override Color MenuItemSelectedGradientBegin => Theme.Selected;
+        public override Color MenuItemSelectedGradientEnd => Theme.Selected;
+        public override Color ImageMarginGradientBegin => Theme.Raised;
+        public override Color ImageMarginGradientMiddle => Theme.Raised;
+        public override Color ImageMarginGradientEnd => Theme.Raised;
+        public override Color SeparatorDark => Theme.Line;
+        public override Color SeparatorLight => Theme.Raised;
+    }
+
+    private sealed class Renderer : ToolStripProfessionalRenderer
+    {
+        public Renderer() : base(new Colours()) { RoundedEdges = false; }
+
+        protected override void OnRenderItemText(ToolStripItemTextRenderEventArgs e)
+        {
+            // the shortcut ("F2", "Del") quieter than the item's own words
+            if (e.Item is ToolStripMenuItem m && e.Text == m.ShortcutKeyDisplayString) e.TextColor = Theme.Subtle;
+            else e.TextColor = e.Item.ForeColor;
+            base.OnRenderItemText(e);
+        }
+
+        protected override void OnRenderSeparator(ToolStripSeparatorRenderEventArgs e)
+        {
+            var y = e.Item.Height / 2;
+            using var pen = new Pen(Theme.Line);
+            e.Graphics.DrawLine(pen, 8, y, e.Item.Width - 8, y);
         }
     }
 }

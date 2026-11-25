@@ -62,7 +62,10 @@ internal static class ForeverPages
         if (v.Length is { } l) facts.Add(VideoLibrary.Duration(l));
         if (withZone && !string.IsNullOrEmpty(f.Zone)) facts.Add(f.Zone);
         var badge = f.Outcome is { } o ? $"<span class=\"badge {(o.Tone > 0 ? "won" : o.Tone < 0 ? "lost" : "")}\">{H(o.Text)}</span>" : "";
-        return $"<a class=\"row\" href=\"mc-app://video/{VideoLibrary.Url(v.Name)}\"><span><b>{H(f.Title)}</b><br><span class=\"muted\">{H(string.Join(" · ", facts))}</span></span>{badge}</a>";
+        // a clip's own name and star (ClipTools, 0.6.36), the app's name kept beside the facts
+        if (v.Custom != null) facts.Insert(0, f.Title);
+        var star = v.Starred ? "<span class=\"star\" title=\"Starred\">★</span>" : "";
+        return $"<a class=\"row\" href=\"mc-app://video/{VideoLibrary.Url(v.Name)}\"><span>{star}<b>{H(v.Custom ?? f.Title)}</b><br><span class=\"muted\">{H(string.Join(" · ", facts))}</span></span>{badge}</a>";
     }));
 
     /// <summary>
@@ -152,6 +155,7 @@ internal static class ForeverPages
         .row:hover{background:#242424}
         .badge{border-radius:999px;padding:3px 10px;font-size:12px;font-weight:700;background:#2A2A2A;color:#B3B3B3;white-space:nowrap}
         .badge.won{background:#163420;color:#86EFAC}.badge.lost{background:#3E181A;color:#FCA5A5}
+        .star{color:#C8952C;margin-right:6px}
         </style></head><body><div class="wrap">
         <div class="eyebrow">{{{H(eyebrow)}}}</div>
         <h1>{{{H(title)}}}</h1>

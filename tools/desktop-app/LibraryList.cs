@@ -2,8 +2,8 @@ using System.Drawing.Drawing2D;
 
 namespace MindCollector.Desktop;
 
-/// <summary>One row of the library: a title, a line under it, and a result pill on the right.</summary>
-internal sealed record LibraryRow(string Title, string Sub, string? Badge = null, int Tone = 0, string? File = null);
+/// <summary>One row of the library: a title, a line under it, and a result pill on the right. Starred: a gold star before the title (a starred clip, ClipTools).</summary>
+internal sealed record LibraryRow(string Title, string Sub, string? Badge = null, int Tone = 0, string? File = null, bool Starred = false);
 
 /// <summary>
 /// The library on the left of the window, drawn the way Spotify draws "Your Library" (2026-10-11):
@@ -40,6 +40,23 @@ internal sealed class LibraryList : ListBox
     }
 
     public string? SelectedFile => SelectedItem is LibraryRow r ? r.File : null;
+
+    private int _menu = -1;
+
+    /// <summary>The row a right-click menu is open for: lit as if under the mouse until the menu closes.</summary>
+    public int MenuIndex
+    {
+        get => _menu;
+        set
+        {
+            var old = _menu;
+            _menu = value;
+            if (old >= 0 && old < Items.Count) Invalidate(GetItemRectangle(old));
+            if (value >= 0 && value < Items.Count) Invalidate(GetItemRectangle(value));
+        }
+    }
+
+    private static readonly Font StarFont = new("Segoe UI Symbol", 10f);
 
     [System.Runtime.InteropServices.DllImport("uxtheme.dll", CharSet = System.Runtime.InteropServices.CharSet.Unicode)]
     private static extern int SetWindowTheme(IntPtr hwnd, string? app, string? idList);
@@ -94,7 +111,7 @@ internal sealed class LibraryList : ListBox
 
         var selected = (state & DrawItemState.Selected) != 0;
         var box = new Rectangle(bounds.X, bounds.Y + 1, bounds.Width - 1, bounds.Height - 3);
-        if (selected || index == _hover)
+        if (selected || index == _hover || index == _menu)
         {
             using var path = Theme.Rounded(box, 6);
             using var fill = new SolidBrush(selected ? Theme.Selected : Theme.Raised);
@@ -120,7 +137,14 @@ internal sealed class LibraryList : ListBox
         }
 
         var textWidth = box.Width - 24 - (badgeWidth > 0 ? badgeWidth + 16 : 0);
-        TextRenderer.DrawText(g, row.Title, Theme.Bold, new Rectangle(box.X + 14, box.Y + 9, textWidth, 22), Theme.Ink,
+        var star = 0;
+        if (row.Starred)
+        {
+            TextRenderer.DrawText(g, "★", StarFont, new Rectangle(box.X + 13, box.Y + 9, 20, 22), Theme.Gold,
+                TextFormatFlags.NoPadding | TextFormatFlags.VerticalCenter | Buffered);
+            star = 19;
+        }
+        TextRenderer.DrawText(g, row.Title, Theme.Bold, new Rectangle(box.X + 14 + star, box.Y + 9, textWidth - star, 22), Theme.Ink,
             TextFormatFlags.EndEllipsis | TextFormatFlags.NoPrefix | Buffered);
         TextRenderer.DrawText(g, row.Sub, Theme.Small, new Rectangle(box.X + 14, box.Y + 31, textWidth, 20), Theme.Muted,
             TextFormatFlags.EndEllipsis | TextFormatFlags.NoPrefix | Buffered);
