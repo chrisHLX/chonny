@@ -77,6 +77,56 @@ internal static class PageCheck
         return allOk;
     }
 
+    /// <summary>
+    /// `--swap-test DIR A B` (2026-11-25): what the window's player does when a video's file is replaced
+    /// at the same address, as a trim does. Plays A as DIR\swap.mp4, puts B in its place, loads the page
+    /// again at the same address and then with a query on it. Writes swap-test.txt. Its window is off-screen.
+    /// </summary>
+    public static int SwapTest(string dir, string a, string b)
+    {
+        var log = new StringBuilder();
+        Application.EnableVisualStyles();
+        using var form = new Form { Text = "MindCollector swap test", ClientSize = new Size(900, 600), StartPosition = FormStartPosition.Manual, Location = new Point(-4000, -4000), ShowInTaskbar = false };
+        var view = new WebView2 { Dock = DockStyle.Fill };
+        form.Controls.Add(view);
+        form.Shown += async (_, _) =>
+        {
+            try
+            {
+                var env = await CoreWebView2Environment.CreateAsync(null, Path.Combine(Path.GetTempPath(), "MindCollector-swap-test-" + Environment.TickCount64));
+                await view.EnsureCoreWebView2Async(env);
+                var web = view.CoreWebView2;
+                web.SetVirtualHostNameToFolderMapping(VideoLibrary.Host, dir, CoreWebView2HostResourceAccessKind.Allow);
+                var host = new PageHost(web);
+                var target = Path.Combine(dir, "swap.mp4");
+                async Task Try(string label, string query)
+                {
+                    var html = $$"""
+                        <!DOCTYPE html><html><body><video id="v" preload="metadata" src="https://{{VideoLibrary.Host}}/swap.mp4{{query}}"></video>
+                        <script>window.__r=null;var v=document.getElementById('v');v.addEventListener('loadedmetadata',function(){__r='ok '+v.duration.toFixed(2)+'s';v.currentTime=v.duration-2;});v.addEventListener('error',function(){__r='error '+v.error.code+' '+v.error.message;});</script></body></html>
+                        """;
+                    await Loaded(web, () => host.Show(html));
+                    await Task.Delay(6000);
+                    log.AppendLine($"{label}: {System.Text.Json.JsonSerializer.Deserialize<string>(await web.ExecuteScriptAsync("String(window.__r)"))}");
+                }
+                File.Copy(a, target, true);
+                log.AppendLine($"A {new FileInfo(a).Length} bytes, B {new FileInfo(b).Length} bytes");
+                await Try("A, first load", "");
+                await Try("A, again", "");
+                await Loaded(web, () => host.Show("<!DOCTYPE html><html><body>blank</body></html>"));
+                File.Copy(b, target, true);
+                await Try("B at the same address", "");
+                await Try("B with ?v=2", "?v=2");
+            }
+            catch (Exception e) { log.AppendLine("Failed: " + e); }
+            form.Close();
+        };
+        Application.Run(form);
+        Directory.CreateDirectory(AppSettings.Dir);
+        File.WriteAllText(Path.Combine(AppSettings.Dir, "swap-test.txt"), log.ToString());
+        return 0;
+    }
+
     /// <summary>Gives the video, or YouTube's player, time to get going, then what the page shows and a picture of it.</summary>
     private static async Task<string> Look(CoreWebView2 web, string picture)
     {

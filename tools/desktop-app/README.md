@@ -395,6 +395,11 @@ attention to UI/UX"; crop was left out on purpose. Retail videos and Forever fig
   Recycle Bin; a Forever game folder left with no clip goes too (its log lines are a copy: forever-logs
   keeps the whole log). The row below opens in its place, as in Explorer, with "Deleted ... It's in the
   Recycle Bin" on the page and in the status bar.
+- **A video's address carries its file's size** (`?v=`, `VideoLibrary.Src` and `WithSrc`, 0.6.37). The
+  window caches what it plays by address, and the folder mapping doesn't notice a file change: in
+  0.6.36 the first real trim (a 2:07 Arathi Basin clip to 1:54) came back with "MEDIA_ELEMENT_ERROR:
+  Format error", the old clip's cached bytes served for the new file. `--swap-test DIR A B` shows it: B
+  put in A's place plays at A's length until the address changes.
 - **Only the clip a page is showing can be changed** from it (`OnClipMessage` checks the name against
   `_shownVideo`): the Watch page comes from the website, and no page can name another file.
 - **Checking it:** `--clip-test DIR NAME FROM TO [delete]` names, stars, trims and (optionally) deletes

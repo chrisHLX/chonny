@@ -1412,6 +1412,7 @@ internal sealed class MainForm : Form
                     if (_shownVideo != name) return;   // another clip was opened meanwhile
                     // the clip's own buttons (ClipTools) join "Open this game" and "Show in folder" at its top
                     var snippet = ClipTools.Snippet(v, g.Row.Title, tool, toast);
+                    html = VideoLibrary.WithSrc(html, v);   // a trimmed file at a new address, not the old one from the cache
                     html = html.Contains("</body>", StringComparison.OrdinalIgnoreCase)
                         ? html.Replace("</body>", snippet + "</body>", StringComparison.OrdinalIgnoreCase) : html + snippet;
                     Show(html.Replace("<head>", $"<head><base href=\"{_settings.ServerUrl}/\">", StringComparison.OrdinalIgnoreCase));

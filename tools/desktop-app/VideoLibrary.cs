@@ -1,6 +1,7 @@
 using System.Globalization;
 using System.Net;
 using System.Text.Json;
+using System.Text.RegularExpressions;
 
 namespace MindCollector.Desktop;
 
@@ -138,6 +139,25 @@ internal static class VideoLibrary
     /// <summary>A video's path inside the folder as a web address: each part escaped, joined by "/".</summary>
     public static string Url(string name) => string.Join("/", name.Split('\\', '/').Select(Uri.EscapeDataString));
 
+    /// <summary>
+    /// The address a page plays the video from, with the file's size on it (0.6.37). The window keeps
+    /// what it has played in its cache by address, and the folder mapping says nothing when a file
+    /// changes: after a trim it went on serving the old clip's bytes for the new file, and the player
+    /// gave "MEDIA_ELEMENT_ERROR: Format error" (2026-11-25, a 2:07 Arathi Basin clip trimmed to 1:54;
+    /// `--swap-test` shows the old length served after a swap and the new one with a query).
+    /// </summary>
+    public static string Src(VideoEntry v) => $"https://{Host}/{Url(v.Name)}?v={v.Bytes:x}";
+
+    /// <summary>
+    /// The website's Watch page names the video without a size (CoachPagesController::VIDEO_HOST):
+    /// the same query is put on it here, whether the address is written plainly or JSON-escaped.
+    /// </summary>
+    public static string WithSrc(string html, VideoEntry v)
+    {
+        var name = Regex.Escape(Url(v.Name)).Replace("/", @"\\?/");
+        return Regex.Replace(html, @"(https:\\?/\\?/" + Regex.Escape(Host) + @"\\?/" + name + ")(?=[\"'<\\s\\\\])", m => m.Groups[1].Value + $"?v={v.Bytes:x}");
+    }
+
     /// <summary>The video's full path, or null when the name would lead outside the videos folder.</summary>
     public static string? FullPath(string dir, string name)
     {
@@ -157,7 +177,7 @@ internal static class VideoLibrary
     /// </summary>
     public static string Page(VideoEntry v, string original, string? lobby, string? tool = null, string? toast = null)
     {
-        var src = $"https://{Host}/{Url(v.Name)}";
+        var src = Src(v);
         var title = v.Custom ?? original;
         var buttons = string.Join("", v.Rounds.Select((r, i) =>
         {
