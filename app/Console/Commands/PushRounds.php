@@ -225,7 +225,7 @@ class PushRounds extends Command
     private function measuredBody(int $userId, string $match): ?string
     {
         $row = ArenaRound::where('user_id', $userId)->where('match_id', $match)->first(['match_id', 'lobby_id', 'roster_key', 'sequence', 'bracket', 'played_at', 'payload']);
-        if (! $row || ($row->payload['analysis']['version'] ?? null) !== RoundAnalysisService::VERSION) {
+        if (! $row || (($row->payload ?: [])['analysis']['version'] ?? null) !== RoundAnalysisService::VERSION) {
             return null;
         }
         $body = gzencode(json_encode([

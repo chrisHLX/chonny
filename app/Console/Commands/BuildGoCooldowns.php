@@ -57,7 +57,7 @@ class BuildGoCooldowns extends Command
 
         ArenaRound::query()->select('id', 'payload')->chunkById(50, function ($rows) use (&$count, &$control, &$runs, &$healerGoes, &$goes, &$players, &$rounds) {
             foreach ($rows as $round) {
-                $analysis = $round->payload['analysis'] ?? null;
+                $analysis = ($round->payload ?: [])['analysis'] ?? null;
 
                 if (! $analysis) {
                     continue;

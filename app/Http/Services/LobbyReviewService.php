@@ -62,7 +62,7 @@ class LobbyReviewService
         $rows = collect();
         $payloads = [];
         foreach (ArenaReview::query()->where('user_id', $user->id)->lazyById(50) as $r) {
-            $p = $r->payload ?? [];
+            $p = $r->payload ?: [];
             $payloads[$r->id] = [
                 'players' => array_map(fn ($pl) => [
                     'name' => $pl['name'] ?? null, 'isYou' => $pl['isYou'] ?? false,

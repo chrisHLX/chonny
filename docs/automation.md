@@ -60,8 +60,19 @@ Two queue workers run under Supervisor (`/etc/supervisor/conf.d/`), both on `car
 | An /ask question, answered by the site | `ForeverAskService` asks Gemini, in the request; answers kept 3 days |
 
 **Known timeouts** (2026-11-23): `BuildCoachPages` for big accounts (Muroto, 468 rounds) sometimes
-runs past its limit, and the next upload's build catches it up; `RefreshPopulationNorms` often times
-out and may only really finish in a deploy. Both show as warnings in the email.
+runs past its limit, and the next upload's build catches it up. Both show as warnings in the email.
+
+**`RefreshPopulationNorms` timing out** (23 failures in the 10 days to 2026-11-26, fixed then): it
+rebuilds the live norms (`wow:population-refresh` = `wow:pool-export` + the aggregate) after uploads.
+Alone it had grown from ~11s (25 Oct) to ~60s against its 85s limit; it failed whenever a
+`BuildCoachPages` ran on the other worker, since the two share the one vCPU. A failure costs nothing
+lasting (the next upload re-queues it and the norms catch up), but the time was waste: the export
+decoded every round's ~180 KB payload four times. `$model->payload['x'] ?? y` on an `array` cast
+decodes the JSON twice (`__isset`, then `__get`), and it read two keys that way. Reading the payload
+once took the export from 42s to 14s on production's 3,164 rounds, with identical output. **Read a
+round's payload once, `$p = $r->payload ?: []`, never `$r->payload[...] ?? ...`.** The same fix went
+into `ArenaRound::readSlim()` (the page builds), `TeammatesService`, `RoundPlayerIndexer` and the
+other round readers, so `BuildCoachPages` decodes each round once too.
 
 ## On every deploy
 

@@ -52,7 +52,7 @@ class ArenaRound extends Model
     {
         $out = [];
         foreach (static::where('user_id', $userId)->lazyById(50) as $r) {
-            $kept = $keep($r->payload ?? [], $r);
+            $kept = $keep($r->payload ?: [], $r);
             $r->setRawAttributes(array_diff_key($r->getAttributes(), ['payload' => true]), true);
             if ($kept !== null) {
                 $out[] = [$r, $kept];

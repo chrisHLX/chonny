@@ -92,7 +92,7 @@ class TeammatesService
     {
         $loggers = [];
         foreach (ArenaRound::where('user_id', $user->id)->whereIn('bracket', self::BRACKETS)->lazyById(50) as $r) {
-            $logger = collect($r->payload['analysis']['players'] ?? [])->first(fn ($p) => ! empty($p['logger']))['guid'] ?? null;
+            $logger = collect(($r->payload ?: [])['analysis']['players'] ?? [])->first(fn ($p) => ! empty($p['logger']))['guid'] ?? null;
             if ($logger !== null) {
                 $loggers[$r->id] = $logger;
             }

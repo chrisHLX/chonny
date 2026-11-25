@@ -101,7 +101,7 @@ class MatchAnalysisService
             ->orderBy('played_at')
             ->get()
             ->map(function (ArenaRound $r) {
-                $a = $r->payload['analysis'] ?? null;
+                $a = ($r->payload ?: [])['analysis'] ?? null;
                 if (! $a) {
                     return null;
                 }

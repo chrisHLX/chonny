@@ -41,10 +41,15 @@ class ExportPopulationPool extends Command
         // Players who opted out on Your games (users.pool_opt_out_at) are left out entirely.
         $optedOut = \App\Models\User::whereNotNull('pool_opt_out_at')->pluck('id')->all();
 
-        ArenaRound::query()->whereNotIn('user_id', $optedOut)->orderBy('id')->chunkById(25, function ($rounds) use ($gz, &$seen, &$written, &$older) {
+        // The payload is read once per round: each `$r->payload[...] ?? x` decodes the whole JSON
+        // twice (__isset, then __get), so the two reads this used to make cost four decodes of
+        // ~180 KB a round. That took the export from 14s to 42s on 3,164 rounds (2026-11-26), and
+        // RefreshPopulationNorms past its 85s limit whenever a page build shared the CPU.
+        ArenaRound::query()->select(['id', 'match_id', 'payload'])->whereNotIn('user_id', $optedOut)->orderBy('id')->chunkById(25, function ($rounds) use ($gz, &$seen, &$written, &$older) {
             foreach ($rounds as $r) {
-                $a = $r->payload['analysis'] ?? null;
-                $meta = $r->payload['metadata'] ?? null;
+                $p = $r->payload ?: [];
+                $a = $p['analysis'] ?? null;
+                $meta = $p['metadata'] ?? null;
                 if (! is_array($a) || ! is_array($meta) || ($a['version'] ?? 0) !== RoundAnalysisService::VERSION) {
                     $older++;
 

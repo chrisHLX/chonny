@@ -17,7 +17,7 @@ class RoundPlayerIndexer
 {
     public function index(ArenaRound $round): int
     {
-        $p = $round->payload ?? [];
+        $p = $round->payload ?: [];
         $a = $p['analysis'] ?? [];
         $throughput = $p['throughput']['players'] ?? [];
         $won = isset($a['won']) ? (bool) $a['won'] : null;

@@ -43,7 +43,7 @@ class BuildSharedSpells extends Command
         $matches = [];
         ArenaRound::query()->select(['id', 'match_id', 'payload'])->chunkById(50, function ($rows) use (&$classes, &$presses, &$matches) {
             foreach ($rows as $r) {
-                $a = $r->payload['analysis'] ?? [];
+                $a = ($r->payload ?: [])['analysis'] ?? [];
                 $cls = array_column($a['players'] ?? [], 'classSlug', 'guid');
                 $matches[$r->match_id] = true;
                 foreach ($a['timeline']['casts'] ?? [] as $guid => $list) {

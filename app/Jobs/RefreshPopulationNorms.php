@@ -13,7 +13,8 @@ use Illuminate\Support\Facades\Artisan;
  * Rebuilds the live norms after uploads (wow:population-refresh, 2026-10-11), so every player's
  * comparisons include the games uploaded since. Queued from /api/coach/done with a short delay and
  * unique until it starts: a burst of uploads (a backfill sends a batch every few seconds) gives one
- * rebuild, not one per batch. About 10 seconds; the queue's limit is 90.
+ * rebuild, not one per batch. About 25 seconds for 3,000 games alone (2026-11-26), longer when a page
+ * build shares the CPU; the job's limit is 85 (docs/automation.md, "Known timeouts").
  */
 class RefreshPopulationNorms implements ShouldBeUniqueUntilProcessing, ShouldQueue
 {
