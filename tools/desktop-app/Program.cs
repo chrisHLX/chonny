@@ -12,6 +12,7 @@ internal static class Program
         if (args.Length >= 1 && args[0] == "--check-observer") return Diagnostics.CheckObserver(args.Length > 1 ? args[1] : null);
         if (args.Length >= 2 && args[0] == "--ask") return Diagnostics.Ask(args[1]);
         if (args.Length >= 5 && args[0] == "--share-market") return Diagnostics.ShareMarket(args);
+        if (args.Length >= 3 && args[0] == "--gear-json") return Diagnostics.GearJson(args);
         if (args.Length >= 2 && args[0] == "--check-recorder") return Diagnostics.CheckRecorder(args.Skip(1));
         if (args.Length >= 1 && args[0] == "--obs-test") return Diagnostics.ObsTest(args);
         if (args.Length >= 2 && args[0] == "--check-forever") return Diagnostics.CheckForever(args[1]);

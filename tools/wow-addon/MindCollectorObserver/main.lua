@@ -14,6 +14,7 @@
 -- /mco scan       full auction house scan (auction house open; the server allows one every 15 min)
 -- /mco why <text> say why you looked at the last thing; the guess stays, your answer is kept beside it
 -- /mco min <sec>  how long a tooltip must stay up to count as a look (default 2.5)
+-- /mco items      ask the game for every weapon and armour piece, for the website's gear page (Gear.lua)
 
 local _, ns = ...
 local DB
@@ -571,6 +572,7 @@ local function finishScan(agg, n)
         if a.tl and not next(a.tl) then a.tl = nil end
         if a.pc then a.d = depthOf(a) end
     end
+    if ns.gearVariantsAfterScan then pcall(ns.gearVariantsAfterScan) end
     -- Where it was scanned, so the app can pool it with other players' scans of the same market
     -- (2026-11-12): realm, region, the auction house's faction (`faction`: Horde, Alliance or Neutral)
     -- and yours (`side`). Forever is one realm per region, and Horde, Alliance and the goblin towns
@@ -642,6 +644,8 @@ local function readScan()
                 end
                 -- how many units sit at each price, for the depth worked out in finishScan (15 Nov)
                 a.pc[unit] = (a.pc[unit] or 0) + count
+                -- a weapon or armour piece's suffix versions, each with its own price (Gear.lua, 26 Nov)
+                if ns.gearVariant then ns.gearVariant(a, i, itemID, unit, count) end
                 -- How long each listing has left, so the next scan can tell expiry from selling (2026-11-11).
                 -- Kept as the raw value: whether the game counts bands from 0 or 1 is settled in finishScan.
                 local band = C_AuctionHouse.GetReplicateItemTimeLeft and C_AuctionHouse.GetReplicateItemTimeLeft(i)
@@ -780,6 +784,8 @@ local function readVendor()
             end
         end
     end
+    -- the whole list, for the gear page: price, honor or marks, stock, reputation (Gear.lua, 26 Nov)
+    if ns.gearVendorList then pcall(ns.gearVendorList, here or whereAmI(), who) end
     if found > 0 and ns.refresh then ns.refresh() end
 end
 
@@ -1233,10 +1239,12 @@ SlashCmdList.MINDCOLLECTOROBSERVER = function(msg)
     elseif cmd == "min" then
         local v = tonumber(rest)
         if v and v >= 0.5 then DB.minDwell = v say("a look now needs " .. v .. "s.") else say("usage: /mco min 2.5") end
+    elseif cmd == "items" then
+        if ns.itemSweep then ns.itemSweep(rest) end
     elseif cmd == "tip" then
         DB.tipOff = not DB.tipOff
         say("item tooltips " .. (DB.tipOff and "no longer show" or "now show") .. " auction house prices.")
     else
-        say("/mco (window), /mco scan, /mco tip (prices on item tooltips on/off), /mco why <text>, /mco min <seconds>, /mco clear (map points), /ask <question>")
+        say("/mco (window), /mco scan, /mco items (read every weapon and armour from the game, once a patch), /mco tip (prices on item tooltips on/off), /mco why <text>, /mco min <seconds>, /mco clear (map points), /ask <question>")
     end
 end

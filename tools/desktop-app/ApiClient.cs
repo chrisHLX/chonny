@@ -136,14 +136,22 @@ public sealed class ApiClient : IDisposable
     /// POST /api/forever/scan (ForeverMarketController): one Forever auction house scan as JSON,
     /// gzipped. "stored" and "duplicate" mean done; "rejected" is final; anything else tries again later.
     /// </summary>
-    public async Task<(string Status, string? Reason)> ShareScanAsync(string scanJson, CancellationToken ct)
+    public Task<(string Status, string? Reason)> ShareScanAsync(string scanJson, CancellationToken ct) =>
+        PostGzipAsync("/api/forever/scan", scanJson, ct);
+
+    /// <summary>POST /api/forever/items or /api/forever/vendors: what the addon read about weapons, armour and vendors (ForeverGearController).</summary>
+    public Task<(string Status, string? Reason)> ShareGearAsync(string what, string json, CancellationToken ct) =>
+        PostGzipAsync($"/api/forever/{what}", json, ct);
+
+    /// <summary>Gzipped JSON to a Forever endpoint: the reply's status and reason, "later" when the website can't take it yet.</summary>
+    private async Task<(string Status, string? Reason)> PostGzipAsync(string path, string json, CancellationToken ct)
     {
-        using var content = new ByteArrayContent(Gzip(scanJson));
+        using var content = new ByteArrayContent(Gzip(json));
         content.Headers.ContentType = new MediaTypeHeaderValue("application/gzip");
-        using var res = await _http.PostAsync($"{_base}/api/forever/scan", content, ct);
+        using var res = await _http.PostAsync($"{_base}{path}", content, ct);
         if (res.StatusCode == HttpStatusCode.Unauthorized) throw new KeyRejectedException();
         var body = await res.Content.ReadAsStringAsync(ct);
-        if (res.StatusCode == HttpStatusCode.NotFound) return ("later", "The website doesn't take scans yet.");
+        if (res.StatusCode == HttpStatusCode.NotFound) return ("later", "The website doesn't take this yet.");
         try
         {
             using var doc = JsonDocument.Parse(body);

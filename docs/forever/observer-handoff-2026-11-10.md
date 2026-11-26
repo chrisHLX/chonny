@@ -160,6 +160,57 @@ Chriso: "the website could display the most profitable crafts for the week". `/w
 - **First look** (US2 Horde, 13 to 20 Nov, 23 scans by one player): 1,219 crafts priced, 8 with a
   material never listed, 617 profitable among steady items.
 
+## Gear: every weapon and armour piece from the game (2026-11-27, building)
+
+Chriso: recommend the best gear a player can get at their level, from the AH and from drops; vendor
+gear like the battleground reputation items too. Built: the addon side (`Gear.lua`, `GearIds.lua`),
+the website's storage (`ForeverGearService`, `Api\ForeverGearController`, migration
+`2026_11_27_000001_create_forever_gear`, `ForeverGearTest`), the app's sending (`MarketShare`, next
+app version) and the page, the Gear Finder (`/wow/forever/gear`, `ForeverGearFinder`,
+`ForeverGearFinderTest`; `docs/site-pages.md`). **The player picks the stats and their weights**
+(Chriso, 2026-11-27: "we just filter gear and level"), so the site holds no stat priorities.
+
+- **Why the addon.** wago's copy of Forever's ItemSparse holds stats for only 7,921 of the 19,048
+  weapon and armour numbers in Item.csv; the server sends the rest when the game asks
+  (`C_Item.RequestLoadItemDataByID`, `ITEM_DATA_LOAD_RESULT`), which is how loot addons fill boss
+  pages (the installed ForeverDungeonJournal does the same; its loot lists are typed in from
+  wowsrc.com and the like). A probe on 26 Nov: all ten items the files also describe came back with
+  the files' stats; answers in ~0.01s, refusals in ~0.35s; 500 at 25 a second drew no complaint.
+- **`/mco items`** asks for every number in `GearIds.lua` (`tools/forever-market/gear_ids.py` from
+  wago Item.csv) at 25 a second, pausing in combat, carrying on after a /reload, once per build. It
+  waits with `IsItemDataCachedByID`, never `GetItemInfo`, which asks the server again (the probe asked
+  each refused item ~20 times that way). Chriso's first sweep (build 1.60.1.71139): **13,146 in the
+  game, 5,902 refused, none unanswered.** Refused = not in Forever: other WoW versions' numbers, and
+  raid gear (MC tier, ZG, AQ; no raid is out yet, Chriso).
+- **What an item carries:** name, quality, item level, required level, slot, class/subclass, bind,
+  sell price, `GetItemStats` (77 keys; ITEM_MOD_ and _SHORT dropped, RESISTANCE0_NAME is armour), weapon
+  damage and speed from the tooltip, and the tooltip lines starting Equip:, Use:, Chance on hit:,
+  Classes: (1,586 items), Unique, and Requires other than level (reputation such as "The Defilers -
+  Revered", PvP rank such as "Legionnaire", professions).
+- **Required level isn't availability.** Many bind-on-pickup drops have none: the "best Agility head
+  a level 40 can wear" came out as Darkmantle Cap and Beastmaster's Cap, level-60 dungeon set pieces.
+  A drop needs its source's level. There are also same-name items under two numbers (two Darkmantle
+  Caps, 25 and 26 Agility): look before deduping.
+- **Suffix versions.** Forever marks "of the Bandit" as a bonus number on the link (item:15602 with
+  bonus 12751, field 12 the count, 13 on the numbers), not the old suffix field. A scan keeps each
+  version's cheapest price and count in the item's `v` (`GetReplicateItemLink`), the app sends them
+  as the scan's `variants`, and `forever_variant_prices` merges them by the same rule as prices. Each
+  new version's stats go to `DB.variants` after the scan. The files have the suffix tables too
+  (ItemBonus type 2 is a stat's share of RandPropPoints, type 5 the name: 6.07, 15.6 and 13.81 at item
+  level 45, Ancient Crown of the Bandit's 6, 16 and 14), a cross-check, not the source.
+- **Vendors:** every list the player opens, by NPC number: price, other costs ([[count, item number or
+  currency name]] from `GetMerchantItemCostItem`), stock, and Requires lines from the merchant
+  tooltip. A newer list replaces the vendor's rows; an older one sent late changes nothing.
+- **Sending:** a finished sweep once, in parts of 4,000 items (nginx takes 1 MB; the whole sweep is
+  497 KB gzipped, the parts about 150 KB). `--gear-json FILE DIR` writes the parts without sending;
+  checked against the sweep read straight from the file: all 13,146 items identical. A refusal never
+  overwrites an item a sweep found. Anyone with an app key can send; the newest wins, `user_id` kept.
+- **Not yet tried in game:** a scan's suffix versions and a vendor list (the sweep has been).
+- **Testing it by hand:** the app replaces its own copy of the addon at every start, so the test
+  copy in Chriso's AddOns folder has its `.installed-by-mindcollector` marker removed (the app then
+  leaves it alone, logging "a different copy"). Put the marker back, or Settings > Install the addon,
+  once the version carrying Gear.lua ships.
+
 ## Ask without Claude Code (2026-11-13, app 0.6.22)
 
 - **Who answers.** By default the website: `POST /api/forever/ask` (`ForeverAskController`,

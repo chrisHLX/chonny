@@ -137,7 +137,9 @@
         </p>
         <p class="text-[14px] text-ink-muted leading-relaxed max-w-3xl mt-2">
             The same scans show what every craft earns this week on
-            <a href="{{ route('wow.forever.crafts') }}" wire:navigate class="text-gold hover:underline">Crafting Profits</a>.
+            <a href="{{ route('wow.forever.crafts') }}" wire:navigate class="text-gold hover:underline">Crafting Profits</a>,
+            and the addon's read of every weapon and armour piece finds the best gear for your level on the
+            <a href="{{ route('wow.forever.gear') }}" wire:navigate class="text-gold hover:underline">Gear Finder</a>.
         </p>
     </div>
 

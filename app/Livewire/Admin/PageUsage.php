@@ -61,6 +61,7 @@ class PageUsage extends Component
         'forever_page' => 'WoW Forever page (/wow/forever)',
         'forever_pvp' => 'WoW Forever PvP Guides (/wow/forever/pvp/{class}; slot is the class)',
         'forever_crafts' => 'WoW Forever Crafting Profits (/wow/forever/crafts; slot is the auction house)',
+        'forever_gear' => 'WoW Forever Gear Finder (/wow/forever/gear; slot is the stats picked)',
         'spec_pvp_index' => 'PvP guides, every spec (/wow/pvp)',
         'spec_pvp' => 'PvP guide for one spec (/wow/pvp/{class}/{spec})',
         'app_connect' => 'Desktop app: connect to an account',

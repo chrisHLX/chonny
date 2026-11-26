@@ -487,6 +487,13 @@ refused; a market is region and faction, and a state needs only those two to fet
 waits 30 minutes (`State.Tried`) instead of retrying every 30 seconds. The bundled addon saves no
 empty realm, and prices what a craft makes at its usual price (handoff doc, "Crafting Profits").
 
+**0.6.39 (2026-11-27): gear.** The addon carries `Gear.lua` and `GearIds.lua` (`/mco items` reads every
+weapon and armour piece from the game; scans keep suffix versions apart; vendor lists are kept), and
+`MarketShare.SendGearAsync` sends a finished sweep once (parts of 4,000 items to `/api/forever/items`),
+new suffix versions, and vendor lists newer than the last sent (`/api/forever/vendors`); a scan carries
+`variants`. Only with sharing on. `--gear-json FILE DIR` writes the sweep's parts without sending. The
+website's side and the Gear Finder page: `docs/forever/observer-handoff-2026-11-10.md`, "Gear".
+
 Check it without the window: `MindCollector.exe --share-market SAVEDVARIABLES SERVER KEY OUT.lua
 [REGION REALM FACTION]` sends the file's last scan and writes the pooled Lua to OUT.lua
 (`share-market.txt` in the data folder). Run it with `MINDCOLLECTOR_DATA` set and a local site's key.

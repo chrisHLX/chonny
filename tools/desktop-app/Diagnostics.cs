@@ -726,6 +726,40 @@ internal static class Diagnostics
     }
 
     /// <summary>
+    /// --gear-json FILE OUTDIR: the addon's item sweep in FILE as MarketShare sends it, one JSON file per part
+    /// (items-1.json...), and gear-json.txt with the counts. Nothing is sent.
+    /// </summary>
+    public static int GearJson(string[] args)
+    {
+        var report = new StringBuilder();
+        try
+        {
+            var (file, dir) = (args[1], args[2]);
+            if (SavedVariables.Read(file).GetValueOrDefault("MindCollectorObserverDB") is not Dictionary<object, object?> db
+                || db.GetValueOrDefault("items") is not Dictionary<object, object?> sweep || sweep.GetValueOrDefault("build") is not string build)
+            {
+                Write("gear-json.txt", "No item sweep in " + file);
+                return 2;
+            }
+            Directory.CreateDirectory(dir);
+            var parts = MarketShare.ItemsJson(sweep, build);
+            for (var i = 0; i < parts.Count; i++)
+            {
+                File.WriteAllText(Path.Combine(dir, $"items-{i + 1}.json"), parts[i], new UTF8Encoding(false));
+                using var doc = JsonDocument.Parse(parts[i]);
+                report.AppendLine($"Part {i + 1}: {doc.RootElement.GetProperty("items").EnumerateObject().Count()} items, {doc.RootElement.GetProperty("gone").GetArrayLength()} refused, {parts[i].Length:N0} bytes");
+            }
+            Write("gear-json.txt", report.ToString());
+            return 0;
+        }
+        catch (Exception e)
+        {
+            Write("gear-json.txt", report + $"Error: {e}");
+            return 1;
+        }
+    }
+
+    /// <summary>
     /// --share-market FILE SERVER KEY OUT.lua [REGION REALM FACTION]: the Observer's last scan in FILE as
     /// MarketShare sends it, sent to SERVER with KEY, then that market's pooled prices written to OUT.lua
     /// as the addon would get them (share-market.txt). The market words stand in for a scan saved before

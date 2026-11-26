@@ -5,7 +5,7 @@
 - `/` — MindCollector's home, a card per game (`PlatformController`, `config/platform.php`). `/wow` —
   `Landing`, WoW's home; signed-in players go to `dashboard`.
 - **The sidebar's tabs (2026-11-19):** Midnight (retail, `/wow/*`), Forever (`/wow/forever`, and since
-  2026-11-23 `/wow/forever/pvp`, since 2026-11-26 `/wow/forever/crafts`) and SC2, each with its own menu under the switcher. Forever's menu is
+  2026-11-23 `/wow/forever/pvp`, since 2026-11-26 `/wow/forever/crafts`, since 2026-11-27 `/wow/forever/gear`) and SC2, each with its own menu under the switcher. Forever's menu is
   mostly the Forever page's parts
   (`#professions`, `#auction`, `#uses`, `#ledger`, `#prices`, `#pvp`, `#start`, `#faq`): keep those ids
   if the page is laid out again. A page of no one game (the home, profile, friends) keeps the last tab,
@@ -275,6 +275,15 @@
     (`forever:recipe-cooldowns`). The crafts go to the browser as JSON and are drawn there 100 at a
     time: drawn as HTML, 1,200 crafts were 3.3 MB (505 KB now, 76 KB gzipped). See
     `docs/forever/observer-handoff-2026-11-10.md`, "Crafting Profits".
+    **`/wow/forever/gear`** (2026-11-27, `ForeverGearFinderController`, tracked as `forever_gear` with the
+    picked stats as slot, in Forever's menu as Gear Finder, linked from `/wow/forever#prices`): the best
+    weapons and armour for a level by the stats the player picks, each with a weight (Chriso: players put
+    in the stats they want; no priorities of ours). Filters: level, class (from items' "Classes:" lines),
+    slot, lowest quality, armour and weapon types. A plain GET form, so a search is a link.
+    `ForeverGearFinder` ranks the addon's sweep (`forever_items`, plus suffix versions) and adds the AH
+    price this week, vendors and the recipe that makes it. Hit and crit count as the tooltip's %. Items
+    with no level requirement more than 10 item levels above the player are hidden unless asked: many
+    boss drops have none. See `docs/forever/observer-handoff-2026-11-10.md`, "Gear".
     **`/wow/forever`** (2026-11-12, `AppDownloadController::forever`, `app/forever.blade.php`, tracked
     as `forever_page`): what the app and its Auction House addon (Observer in code) do in WoW Forever (professions, the
     auction house and shared prices, the ledger, PvP clips), getting started, and what it reads and

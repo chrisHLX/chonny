@@ -51,7 +51,9 @@ class ForeverMarketService
     /**
      * Checks and keeps one scan: {region, faction, t, n, items: [[id, min, listed, e0, e1, e2, e3], ...]} (a realm
      * the app sends is ignored)
-     * (the e's optional: how many of `listed` have under 30m, 30m-2h, 2-12h, over 12h left).
+     * (the e's optional: how many of `listed` have under 30m, 30m-2h, 2-12h, over 12h left), and optionally
+     * variants: [[id, bonus, min, listed], ...], a weapon or armour piece's suffix versions by the bonus
+     * numbers on their links ("12751", or "a.b"), from app 0.6.39 (2026-11-27, ForeverGearService).
      *
      * @return array{status: string, reason?: string, items?: int}
      */
@@ -86,6 +88,14 @@ class ForeverMarketService
         if ($items === [] || count($items) < count($scan['items']) * 0.95) {
             return ['status' => 'rejected', 'reason' => 'The scan has too many unreadable items.'];
         }
+        $variants = [];
+        foreach (is_array($scan['variants'] ?? null) ? $scan['variants'] : [] as $row) {
+            [$id, $bonus, $min, $listed] = (is_array($row) ? $row : []) + [null, null, null, null];
+            if (is_int($id) && isset($items[$id]) && is_string($bonus) && preg_match('/^\d{1,7}(\.\d{1,7}){0,15}$/', $bonus)
+                && is_numeric($min) && $min >= 1 && $min <= 100_000_000_000 && is_int($listed) && $listed >= 1 && $listed <= 10_000_000) {
+                $variants[$id.':'.$bonus] = [$id, $bonus, (int) round($min), $listed];
+            }
+        }
 
         $auctions = (int) $scan['n'];
         $biggest = ForeverScan::where('market', $market)->where('scanned_at', '>', now()->subDays(3))->max('auctions');
@@ -104,12 +114,14 @@ class ForeverMarketService
         }
         file_put_contents($full, gzencode(json_encode($scan), 9));
 
-        DB::transaction(function () use ($user, $market, $at, $auctions, $items, $path) {
+        DB::transaction(function () use ($user, $market, $at, $auctions, $items, $variants, $path) {
             ForeverScan::create([
                 'user_id' => $user->id, 'market' => $market, 'scanned_at' => $at,
                 'auctions' => $auctions, 'items' => count($items), 'path' => $path,
             ]);
             $this->merge($market, $at, $auctions, $items);
+            $this->mergeVariants($market, $at, $auctions, $variants);
+            DB::table('forever_variant_prices')->where('market', $market)->where('hour', '<', now()->subDays(self::KEEP_DAYS))->delete();
             DB::table('forever_prices')->where('market', $market)->where('hour', '<', now()->subDays(self::KEEP_DAYS))->delete();
         });
 
@@ -149,6 +161,29 @@ class ForeverMarketService
         }
         foreach (array_chunk($seen, 500) as $chunk) {
             DB::table('forever_prices')->where('market', $market)->where('hour', $hour)->whereIn('item_id', $chunk)->increment('sources');
+        }
+    }
+
+    /** Suffix versions' readings, merged by the same rule as merge(): the scan with more auctions wins the hour. */
+    private function mergeVariants(string $market, Carbon $at, int $auctions, array $variants): void
+    {
+        if ($variants === []) {
+            return;
+        }
+        $hour = $at->copy()->startOfHour();
+        $existing = DB::table('forever_variant_prices')->where('market', $market)->where('hour', $hour)
+            ->get(['item_id', 'bonus', 'scan_auctions', 'scanned_at'])->keyBy(fn ($r) => $r->item_id.':'.$r->bonus);
+        $wins = [];
+        foreach ($variants as $key => [$id, $bonus, $min, $listed]) {
+            $ex = $existing->get($key);
+            if ($ex && ($auctions < $ex->scan_auctions || ($auctions === (int) $ex->scan_auctions && $at->lte(Carbon::parse($ex->scanned_at))))) {
+                continue;
+            }
+            $wins[] = ['market' => $market, 'item_id' => $id, 'bonus' => $bonus, 'hour' => $hour, 'scanned_at' => $at,
+                'min_unit' => $min, 'quantity' => $listed, 'scan_auctions' => $auctions];
+        }
+        foreach (array_chunk($wins, 500) as $chunk) {
+            DB::table('forever_variant_prices')->upsert($chunk, ['market', 'item_id', 'bonus', 'hour'], ['scanned_at', 'min_unit', 'quantity', 'scan_auctions']);
         }
     }
 

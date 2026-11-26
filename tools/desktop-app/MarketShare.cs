@@ -16,6 +16,12 @@ namespace MindCollector.Desktop;
 /// Then GET /api/forever/market gives the pooled view of that market, written into the addon as
 /// Market.lua for the next /reload. Prices come back whether or not sharing is on (Settings).
 ///
+/// Also, from 0.6.39 (2026-11-27), what the addon read about weapons, armour and vendors for the gear
+/// page (Gear.lua, ForeverGearService): a finished /mco items sweep, once per sweep, in parts of 4,000
+/// items (nginx takes 1 MB; a whole sweep is about 500 KB gzipped); the suffix versions it has the
+/// stats of; and each vendor list newer than the last sent. A scan carries its suffix versions' prices.
+/// Sent only when sharing is on.
+///
 /// Runs on its own timer and never on the window's thread or the recorder's; every failure is logged
 /// and tried again on a later tick.
 /// </summary>
@@ -41,6 +47,12 @@ public sealed class MarketShare : IDisposable
         /// <summary>The last fetch tried, worked or not, so a failing one waits FetchEvery (2026-11-26: it
         /// was retried every 30-second tick, about 1,500 refused requests a day).</summary>
         public DateTime Tried { get; set; }
+        /// <summary>The item sweep last sent, as "build:when it finished".</summary>
+        public string? ItemsSent { get; set; }
+        /// <summary>How many suffix versions were sent; more in the file means some are new.</summary>
+        public int VariantsSent { get; set; }
+        /// <summary>The newest vendor list sent.</summary>
+        public long VendorsSent { get; set; }
     }
 
     public MarketShare(AppSettings settings, Action<string> log)
@@ -76,10 +88,12 @@ public sealed class MarketShare : IDisposable
         if (file != null)
         {
             var at = File.GetLastWriteTimeUtc(file);
-            if (at != _seenFile && DateTime.UtcNow - at > TimeSpan.FromSeconds(1))
+            if (at != _seenFile && DateTime.UtcNow - at > TimeSpan.FromSeconds(1)
+                && SavedVariables.Read(file).GetValueOrDefault("MindCollectorObserverDB") is Dictionary<object, object?> db)
             {
                 _seenFile = at;
-                sent = await SendNewScansAsync(file, state, ct);
+                sent = await SendNewScansAsync(db, state, ct);
+                if (_settings.ShareScans) await SendGearAsync(db, state, ct);
             }
         }
 
@@ -89,9 +103,8 @@ public sealed class MarketShare : IDisposable
         SaveState(state);
     }
 
-    private async Task<bool> SendNewScansAsync(string file, State state, CancellationToken ct)
+    private async Task<bool> SendNewScansAsync(Dictionary<object, object?> db, State state, CancellationToken ct)
     {
-        if (SavedVariables.Read(file).GetValueOrDefault("MindCollectorObserverDB") is not Dictionary<object, object?> db) return false;
         var sent = false;
         using var api = new ApiClient(_settings.ServerUrl, _settings.Key!);
         // Your faction's last two scans, and the latest of any other house (the neutral goblin one in
@@ -141,8 +154,9 @@ public sealed class MarketShare : IDisposable
     }
 
     /// <summary>
-    /// One scan as the website takes it: {region, realm, faction, t, n, items: [[id, min, listed, e0, e1, e2, e3]]},
-    /// the e's how many of `listed` sit in each time-left band, shortest first. The addon keeps a band by
+    /// One scan as the website takes it: {region, realm, faction, t, n, items: [[id, min, listed, e0, e1, e2, e3]],
+    /// variants: [[id, bonus, min, listed]]}, the e's how many of `listed` sit in each time-left band, shortest first,
+    /// and the variants a weapon or armour piece's suffix versions, by the bonus numbers on their links (0.6.39). The addon keeps a band by
     /// whatever value the game gave it, and its `bands` table says where each starts; sorting by that
     /// puts them in order whichever way the game counts.
     /// </summary>
@@ -158,11 +172,19 @@ public sealed class MarketShare : IDisposable
         }
 
         var items = new List<long[]>();
+        var variants = new List<object[]>();
         if (scan.GetValueOrDefault("prices") is Dictionary<object, object?> prices)
             foreach (var (k, v) in prices)
             {
                 var arr = SavedVariables.List(v);
                 if (AsLong(k) is not { } id || arr.Count < 2 || AsDouble(arr[0]) is not { } min || min <= 0 || AsLong(arr[1]) is not { } listed || listed <= 0) continue;
+                if (v is Dictionary<object, object?> withV && withV.GetValueOrDefault("v") is Dictionary<object, object?> vs)
+                    foreach (var (bonus, pair) in vs)
+                    {
+                        var p = SavedVariables.List(pair);
+                        if (bonus is string b && p.Count >= 2 && AsDouble(p[0]) is { } vmin && vmin > 0 && AsLong(p[1]) is { } vq && vq > 0)
+                            variants.Add([id, b, (long)Math.Round(vmin), vq]);
+                    }
                 var row = new List<long> { id, (long)Math.Round(min), listed };
                 if (order.Count == 4 && v is Dictionary<object, object?> d && d.GetValueOrDefault("tl") is Dictionary<object, object?> tl)
                 {
@@ -179,8 +201,125 @@ public sealed class MarketShare : IDisposable
             region, realm, faction, t,
             n = AsLong(scan.GetValueOrDefault("n")) ?? 0,
             items,
+            variants,
         });
         return (json, items.Count);
+    }
+
+    /// <summary>The item sweep, suffix versions and vendor lists the addon kept (Gear.lua), each sent once.</summary>
+    private async Task SendGearAsync(Dictionary<object, object?> db, State state, CancellationToken ct)
+    {
+        using var api = new ApiClient(_settings.ServerUrl, _settings.Key!);
+
+        var sweep = db.GetValueOrDefault("items") as Dictionary<object, object?>;
+        var build = sweep?.GetValueOrDefault("build") as string;
+        var done = AsLong(sweep?.GetValueOrDefault("done"));
+        if (sweep != null && build != null && done != null && state.ItemsSent != $"{build}:{done}")
+        {
+            var parts = ItemsJson(sweep, build);
+            var ok = true;
+            foreach (var part in parts)
+            {
+                var (status, reason) = await api.ShareGearAsync("items", part, ct);
+                if (status != "stored")
+                {
+                    _log($"Couldn't send the game's weapons and armour to the website yet ({reason ?? status}); trying again later.");
+                    ok = false;
+                    break;
+                }
+            }
+            if (ok)
+            {
+                state.ItemsSent = $"{build}:{done}";
+                _log($"Sent the game's weapons and armour to the website ({(sweep.GetValueOrDefault("got") as Dictionary<object, object?>)?.Count ?? 0:N0} items).");
+            }
+        }
+
+        if (db.GetValueOrDefault("variants") is Dictionary<object, object?> variants && variants.Count != state.VariantsSent && build != null)
+        {
+            var json = JsonSerializer.Serialize(new
+            {
+                build,
+                items = new Dictionary<string, object?>(),
+                variants = variants.Where(v => v.Key is string).ToDictionary(v => (string)v.Key, v =>
+                {
+                    var p = SavedVariables.List(v.Value);
+                    return (object?)new object?[] { p.Count > 0 ? p[0] : null, p.Count > 1 ? Plain(p[1]) : null };
+                }),
+            });
+            var (status, _) = await api.ShareGearAsync("items", json, ct);
+            if (status == "stored") state.VariantsSent = variants.Count;
+        }
+
+        if (db.GetValueOrDefault("vendorLists") is Dictionary<object, object?> lists)
+        {
+            var fresh = lists
+                .Select(l => (Npc: AsLong(l.Key), List: l.Value as Dictionary<object, object?>))
+                .Where(l => l.Npc != null && l.List != null && (AsLong(l.List.GetValueOrDefault("t")) ?? 0) > state.VendorsSent)
+                .ToList();
+            if (fresh.Count > 0)
+            {
+                var json = JsonSerializer.Serialize(new
+                {
+                    vendors = fresh.Select(l => new Dictionary<string, object?>
+                    {
+                        ["npc"] = l.Npc, ["name"] = l.List!.GetValueOrDefault("name"), ["zone"] = l.List.GetValueOrDefault("zone"),
+                        ["sub"] = l.List.GetValueOrDefault("sub"), ["mapID"] = l.List.GetValueOrDefault("mapID"),
+                        ["x"] = l.List.GetValueOrDefault("x"), ["y"] = l.List.GetValueOrDefault("y"), ["t"] = l.List.GetValueOrDefault("t"),
+                        ["items"] = SavedVariables.List(l.List.GetValueOrDefault("items")).Select(i => Positions(i, 6)).ToList(),
+                    }).ToList(),
+                });
+                var (status, reason) = await api.ShareGearAsync("vendors", json, ct);
+                if (status == "stored")
+                {
+                    state.VendorsSent = fresh.Max(l => AsLong(l.List!.GetValueOrDefault("t")) ?? 0);
+                    _log($"Sent {fresh.Count} vendor list{(fresh.Count == 1 ? "" : "s")} to the website.");
+                }
+                else _log($"Couldn't send vendor lists to the website yet ({reason ?? status}); trying again later.");
+            }
+        }
+    }
+
+    /// <summary>
+    /// A sweep as the website takes it, in parts of 4,000 items: {build, items: {id: [name, quality, item level,
+    /// required level, slot, class, subclass, bind, sell price, stats, lines, damage]}}, the refusals (`gone`) in the last.
+    /// </summary>
+    internal static List<string> ItemsJson(Dictionary<object, object?> sweep, string build)
+    {
+        var got = (sweep.GetValueOrDefault("got") as Dictionary<object, object?> ?? [])
+            .Where(i => AsLong(i.Key) != null)
+            .Select(i => (Id: AsLong(i.Key)!.Value.ToString(CultureInfo.InvariantCulture), Row: Positions(i.Value, 12)))
+            .ToList();
+        var gone = (sweep.GetValueOrDefault("gone") as Dictionary<object, object?> ?? [])
+            .Select(g => AsLong(g.Key)).Where(g => g != null).ToList();
+        var parts = new List<string>();
+        for (var at = 0; at < got.Count || parts.Count == 0; at += 4000)
+        {
+            var chunk = got.Skip(at).Take(4000).ToDictionary(i => i.Id, i => (object?)i.Row);
+            var last = at + 4000 >= got.Count;
+            parts.Add(JsonSerializer.Serialize(new Dictionary<string, object?>
+            {
+                ["build"] = build, ["items"] = chunk, ["gone"] = last ? gone : new List<long?>(),
+            }));
+        }
+        return parts;
+    }
+
+    /// <summary>A Lua array with holes (nil stats, say) as a JSON array of a fixed length, nulls in the holes.</summary>
+    private static object?[] Positions(object? v, int n)
+    {
+        var d = v as Dictionary<object, object?>;
+        var row = new object?[n];
+        for (var k = 0; k < n; k++) row[k] = d != null && d.TryGetValue((long)(k + 1), out var x) ? Plain(x) : null;
+        return row;
+    }
+
+    /// <summary>A Lua value as plain JSON: a table with keys 1..n becomes a list, any other table an object.</summary>
+    private static object? Plain(object? v)
+    {
+        if (v is not Dictionary<object, object?> d) return v;
+        if (d.Count > 0 && d.Keys.All(k => k is long)) return Enumerable.Range(1, d.Count).Select(i => d.TryGetValue((long)i, out var x) ? Plain(x) : null).ToList();
+        return d.ToDictionary(e => Convert.ToString(e.Key, CultureInfo.InvariantCulture)!, e => Plain(e.Value));
     }
 
     private async Task FetchAsync(string? logs, State state, CancellationToken ct)

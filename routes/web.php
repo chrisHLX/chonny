@@ -289,6 +289,8 @@ Route::prefix('wow')->group(function () {
         ->where('classSlug', '[a-z]+')->name('wow.forever.pvp');
     // Forever's Crafting Profits (2026-11-26): each craft's profit over an AH's last week of shared scans.
     Route::get('/forever/crafts', [\App\Http\Controllers\ForeverCraftsController::class, 'show'])->name('wow.forever.crafts');
+    // The best weapons and armour for a level, by the stats the player picks (ForeverGearFinder).
+    Route::get('/forever/gear', [\App\Http\Controllers\ForeverGearFinderController::class, 'show'])->name('wow.forever.gear');
 
     // Player lookup (2026-10-19): any character's ratings, exp, titles, gear and talents, as on
     // Check-PvP. The page serves what is stored; only a browser asks Blizzard (Players\Show).

@@ -229,6 +229,12 @@
                 </svg>
                 Crafting Profits
             </a>
+            <a href="{{ route('wow.forever.gear') }}" wire:navigate class="sidebar-item {{ request()->routeIs('wow.forever.gear') ? 'active' : '' }}">
+                <svg class="w-[18px] h-[18px] shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 3l7 3v5c0 4.5-3 8.5-7 10-4-1.5-7-5.5-7-10V6l7-3z"/>
+                </svg>
+                Gear Finder
+            </a>
 
             <p class="px-3 pt-2.5 pb-0.5 text-[11px] font-bold text-ink-subtle uppercase tracking-[.12em]">Auction House addon</p>
             @foreach ([

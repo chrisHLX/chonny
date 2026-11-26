@@ -17,7 +17,7 @@
     <RootNamespace>MindCollector.Desktop</RootNamespace>
     <AssemblyName>MindCollector</AssemblyName>
     <ApplicationIcon>mindcollector.ico</ApplicationIcon>
-    <Version>0.6.38</Version>
+    <Version>0.6.39</Version>
     <Product>MindCollector</Product>
     <Company>MindCollector</Company>
     <!-- What Windows shows in the file's Properties and in its install and SmartScreen prompts. -->
@@ -74,6 +74,8 @@
     <EmbeddedResource Include="..\wow-addon\MindCollectorObserver\Answers.lua" LogicalName="observer-addon/Answers.lua" />
     <EmbeddedResource Include="..\wow-addon\MindCollectorObserver\Market.lua" LogicalName="observer-addon/Market.lua" />
     <EmbeddedResource Include="..\wow-addon\MindCollectorObserver\main.lua" LogicalName="observer-addon/main.lua" />
+    <EmbeddedResource Include="..\wow-addon\MindCollectorObserver\Gear.lua" LogicalName="observer-addon/Gear.lua" />
+    <EmbeddedResource Include="..\wow-addon\MindCollectorObserver\GearIds.lua" LogicalName="observer-addon/GearIds.lua" />
     <EmbeddedResource Include="..\wow-addon\MindCollectorObserver\ui.lua" LogicalName="observer-addon/ui.lua" />
     <EmbeddedResource Include="..\wow-addon\MindCollectorObserver\ask.lua" LogicalName="observer-addon/ask.lua" />
     <!-- Forever's recipe facts for /ask (AskBridge.ItemFacts), from tools/forever-ask/build_item_facts.py. -->
