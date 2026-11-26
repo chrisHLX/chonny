@@ -5,7 +5,7 @@
 - `/` — MindCollector's home, a card per game (`PlatformController`, `config/platform.php`). `/wow` —
   `Landing`, WoW's home; signed-in players go to `dashboard`.
 - **The sidebar's tabs (2026-11-19):** Midnight (retail, `/wow/*`), Forever (`/wow/forever`, and since
-  2026-11-23 `/wow/forever/pvp`) and SC2, each with its own menu under the switcher. Forever's menu is
+  2026-11-23 `/wow/forever/pvp`, since 2026-11-26 `/wow/forever/crafts`) and SC2, each with its own menu under the switcher. Forever's menu is
   mostly the Forever page's parts
   (`#professions`, `#auction`, `#uses`, `#ledger`, `#prices`, `#pvp`, `#start`, `#faq`): keep those ids
   if the page is laid out again. A page of no one game (the home, profile, friends) keeps the last tab,
@@ -267,6 +267,14 @@
     **`/wow/forever/pvp/{class}`** (2026-11-23, `ForeverPvpController`, tracked as `forever_pvp`, in Forever's
     menu as PvP Guides): each class's abilities by retail's categories, no talent builds yet
     (`docs/forever/pvp-guides.md`).
+    **`/wow/forever/crafts`** (2026-11-26, `ForeverCraftsController`, tracked as `forever_crafts` with the
+    auction house as slot, in Forever's menu as Crafting Profits, linked from `/wow/forever#prices`): what
+    each craft earns on one auction house over the 7 days up to its newest shared scan, most profit a
+    craft first. `ForeverCraftsService` does the sums, cached until the market's next scan; the recipes
+    are the addon's own Data.lua (`ForeverRecipes`), cooldowns `data/forever/recipe-cooldowns.json`
+    (`forever:recipe-cooldowns`). The crafts go to the browser as JSON and are drawn there 100 at a
+    time: drawn as HTML, 1,200 crafts were 3.3 MB (505 KB now, 76 KB gzipped). See
+    `docs/forever/observer-handoff-2026-11-10.md`, "Crafting Profits".
     **`/wow/forever`** (2026-11-12, `AppDownloadController::forever`, `app/forever.blade.php`, tracked
     as `forever_page`): what the app and its Auction House addon (Observer in code) do in WoW Forever (professions, the
     auction house and shared prices, the ledger, PvP clips), getting started, and what it reads and

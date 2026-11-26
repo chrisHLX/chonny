@@ -38,6 +38,9 @@ public sealed class MarketShare : IDisposable
         public string? Realm { get; set; }
         public string? Faction { get; set; }
         public DateTime Fetched { get; set; }
+        /// <summary>The last fetch tried, worked or not, so a failing one waits FetchEvery (2026-11-26: it
+        /// was retried every 30-second tick, about 1,500 refused requests a day).</summary>
+        public DateTime Tried { get; set; }
     }
 
     public MarketShare(AppSettings settings, Action<string> log)
@@ -80,7 +83,8 @@ public sealed class MarketShare : IDisposable
             }
         }
 
-        if (state.Realm != null && state.Region != null && state.Faction != null && (sent || DateTime.UtcNow - state.Fetched > FetchEvery))
+        // A market is region and faction; the realm is sent but the website ignores it (2026-11-26).
+        if (!string.IsNullOrEmpty(state.Region) && !string.IsNullOrEmpty(state.Faction) && (sent || DateTime.UtcNow - state.Tried > FetchEvery))
             await FetchAsync(logs, state, ct);
         SaveState(state);
     }
@@ -102,12 +106,15 @@ public sealed class MarketShare : IDisposable
         foreach (var scan in scans.OrderBy(s => AsLong(s.GetValueOrDefault("t")) ?? 0))
         {
             var t = AsLong(scan.GetValueOrDefault("t")) ?? 0;
-            // scans from before the addon recorded where they were can't be placed in a market
-            if (t <= state.LastSent || scan.GetValueOrDefault("realm") is not string realm
-                || scan.GetValueOrDefault("region") is not string region || scan.GetValueOrDefault("faction") is not string faction) continue;
+            // scans from before the addon recorded where they were can't be placed in a market. The realm
+            // isn't needed: Forever has one auction house per region and faction, and from 22 Nov the game
+            // reports no realm (2026-11-26).
+            if (t <= state.LastSent || scan.GetValueOrDefault("region") is not string { Length: > 0 } region
+                || scan.GetValueOrDefault("faction") is not string { Length: > 0 } faction) continue;
+            var realm = scan.GetValueOrDefault("realm") as string ?? "";
             // the prices to bring back are always your own faction's house, whichever house this was
             state.Region = region;
-            state.Realm = realm;
+            if (realm != "") state.Realm = realm;
             state.Faction = scan.GetValueOrDefault("side") as string ?? state.Faction ?? faction;
             if (!_settings.ShareScans) { state.LastSent = t; continue; }
 
@@ -180,8 +187,9 @@ public sealed class MarketShare : IDisposable
     {
         var addon = AddonFolder(logs);
         if (addon == null) return;
+        state.Tried = DateTime.UtcNow;
         using var api = new ApiClient(_settings.ServerUrl, _settings.Key!);
-        using var doc = await api.MarketAsync(state.Region!, state.Realm!, state.Faction!, ct);
+        using var doc = await api.MarketAsync(state.Region!, state.Realm ?? "", state.Faction!, ct);
         if (doc == null) return;
         var root = doc.RootElement;
         if (!root.TryGetProperty("items", out var items) || items.ValueKind != JsonValueKind.Object) return;
@@ -195,7 +203,7 @@ public sealed class MarketShare : IDisposable
         var count = items.EnumerateObject().Count();
         var players = root.TryGetProperty("players", out var p) && p.ValueKind == JsonValueKind.Number ? p.GetInt32() : 0;
         if (first || count > 0)
-            _log($"Everyone's auction prices for {state.Realm}: {count:N0} items from {players} player{(players == 1 ? "" : "s")}. /reload in Forever to load them.");
+            _log($"Everyone's {state.Faction} auction prices: {count:N0} items from {players} player{(players == 1 ? "" : "s")}. /reload in Forever to load them.");
     }
 
     /// <summary>The pooled view as the addon reads it (tools/wow-addon/MindCollectorObserver/Market.lua).</summary>

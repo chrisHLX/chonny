@@ -578,8 +578,19 @@ local function finishScan(agg, n)
     local okRegion, region = pcall(GetCurrentRegionName)
     local mine = UnitFactionGroup("player")
     local house = scanHouse or mine
+    -- The first realm name that isn't empty, kept only as a note: the website's market is region and
+    -- auction house, since Forever has no realms (2026-11-26). From 22 Nov the game answers "" to both
+    -- calls (and 0 to GetRealmID), and the old `GetNormalizedRealmName() or GetRealmName()` kept that
+    -- "" (true in Lua). nil when neither has a name.
+    local realm
+    for _, fn in ipairs({ GetNormalizedRealmName or false, GetRealmName or false }) do
+        local ok, name = false, nil
+        if fn then ok, name = pcall(fn) end
+        name = ok and type(name) == "string" and name:gsub("%s", "") or ""
+        if not realm and name ~= "" then realm = name end
+    end
     local entry = { t = time(), n = n, prices = agg, bands = next(bands) and bandTimes() or nil,
-        realm = (GetNormalizedRealmName and GetNormalizedRealmName()) or GetRealmName(),
+        realm = realm,
         region = okRegion and region or nil, faction = house, side = mine,
         where = (GetSubZoneText() ~= "" and GetSubZoneText() .. ", " or "") .. (GetZoneText() or "") }
     if house ~= mine then

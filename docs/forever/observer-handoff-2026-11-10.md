@@ -93,6 +93,19 @@ showed Forever counts the time-left bands from 1 and caps the longest at 24 hour
 
 Still open:
 
+- **Markets are region and faction, without the realm (2026-11-26).** From 22 Nov every scan was
+  refused: the game began answering "" to `GetNormalizedRealmName()` and `GetRealmName()` (and 0 to
+  `GetRealmID()`, nil to the `realmName` CVar; Chriso, in game), the addon kept the "" (true in Lua),
+  and the server required a realm. The installed app then asked for prices with `realm=` every 30
+  seconds, about 1,500 refused requests a day. Forever has no realms: one server per region, a second
+  name on each character for its shard (UnitFullName's realm part, "Cuz"), and an auction house per
+  region and faction (Chriso). Checked on the scans: the one scan labelled CAMWOWAU1Realm2PvP and a
+  CAMWOWUS2Realm2PvP scan 12 minutes earlier held 156,690 and 157,617 auctions, and 89% of the 5,792
+  items in both had the same cheapest price (two US2 scans 1.5 hours apart: 65%). So a market is now
+  `US/Horde`; the server accepts and ignores a realm (any app version works), and migration
+  `2026_11_26_000001_forever_markets_without_realm` renamed the stored scans and merged the AU1 hour into
+  US/Horde. The addon no longer saves "" and the app waits 30 minutes after a failed price fetch
+  (in the repo 2026-11-26, in the next app version). The rest of this bullet is the earlier understanding.
 - **Markets, settled 2026-11-12:** Forever is one realm per region (Chriso's WTF holds one realm
   folder, `91`, for all five characters, whose names carry suffixes like Crypto-Shot; portal US),
   and Horde and Alliance don't share an auction house (Chriso). So NA is two markets, one per
@@ -113,6 +126,31 @@ Still open:
 - **To ship it:** deploy (migrations run in `deploy.sh`), then build and publish the app (0.6.11 is
   still unreleased; it carries this, the Observer and /ask). The addon's new `Market.lua` needs a
   full game restart the first time.
+
+## Crafting Profits on the site (2026-11-26)
+
+Chriso: "the website could display the most profitable crafts for the week". `/wow/forever/crafts`
+(`ForeverCraftsController`, `ForeverCraftsService`, `forever/crafts.blade.php`, `ForeverCraftsTest`).
+
+- **Recipes** are the addon's own: `ForeverRecipes` reads `Data.lua` (ns.recipes, itemNames, vendor,
+  and ns.wh laid over as ui.lua does), so the page and the Professions tab can't disagree. 1,965 of
+  its 2,145 recipes make an item from materials. Re-generating Data.lua changes the page with it.
+- **The sum** is ui.lua's `profitsFor`: the product's price less the 5% cut, times what a craft makes
+  (Data.lua field 12, the client's own count: Fire Oil 2, Cured Rugged Hide 2, Thorium Grenade 3), less
+  the materials at their price or the vendor's when lower. **Unlike the addon** a price is the median
+  cheapest listing over the week's readings, not the newest, and materials are bought, never made
+  (the site doesn't know your professions).
+- **The week** is the 7 days up to the market's newest scan, so a market nobody scanned lately keeps
+  its last week, and the page says when it was. Cached until the market's next scan (~1.3s to build
+  locally on the 23-scan market).
+- **Steady:** by default only products on the AH in at least half the week's readings. The first run
+  was topped by gear with one listing (Lionheart Helm at 1,200g, seen in 5 of 23); "Include items
+  rarely on the AH" shows them.
+- **Cooldowns** from the game's SpellCooldowns (`forever:recipe-cooldowns {dir} --download` writes
+  `data/forever/recipe-cooldowns.json`): 15 recipes, Mooncloth 95 hours, Transmute: Arcanite and
+  Legionite 47 hours, nine transmutes 23 hours, all those shared as "Transmute - Alchemy".
+- **First look** (US2 Horde, 13 to 20 Nov, 23 scans by one player): 1,219 crafts priced, 8 with a
+  material never listed, 617 profitable among steady items.
 
 ## Ask without Claude Code (2026-11-13, app 0.6.22)
 

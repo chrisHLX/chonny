@@ -75,7 +75,7 @@ class ForeverMarketTest extends TestCase
         $pool = $this->withHeader('Authorization', 'Bearer '.$keyB)
             ->getJson('/api/forever/market?region=US&realm=Arugal&faction=Horde')
             ->assertOk()->json();
-        $this->assertSame('US/Arugal/Horde', $pool['market']);
+        $this->assertSame('US/Horde', $pool['market']);
         $this->assertSame(2, $pool['players']);
         $this->assertSame($hour2 + 600, $pool['t']);
         // [t, min, listed, prev t, prev min, prev listed, e0..e3 of prev, lowest in 7 days, scans]
@@ -120,8 +120,11 @@ class ForeverMarketTest extends TestCase
         $this->send($key, $this->scan(now()->addHour()->timestamp, 2000, [[2589, 12, 500]]))->assertStatus(422);
         // Mostly unreadable items.
         $this->send($key, $this->scan(now()->subMinutes(5)->timestamp, 2000, [[2589, -5, 500], ['x', 1, 1]]))->assertStatus(422);
-        // A market name that could reach another market's files.
-        $this->send($key, ['region' => 'US', 'realm' => '../x', 'faction' => 'Horde', 't' => now()->timestamp, 'n' => 10, 'items' => [[1, 1, 1]]])
+        // A market name that could reach another market's files (the realm is ignored since 2026-11-26,
+        // so only the region and faction make the name).
+        $this->send($key, ['region' => '../x', 'faction' => 'Horde', 't' => now()->timestamp, 'n' => 10, 'items' => [[1, 1, 1]]])
+            ->assertStatus(422);
+        $this->send($key, ['region' => 'US', 'faction' => '../Horde', 't' => now()->timestamp, 'n' => 10, 'items' => [[1, 1, 1]]])
             ->assertStatus(422);
 
         $this->assertSame(1, ForeverScan::count());
@@ -134,5 +137,24 @@ class ForeverMarketTest extends TestCase
         $this->withHeader('Authorization', 'Bearer '.$key)
             ->getJson('/api/forever/market?region=EU&realm=Nowhere&faction=Alliance')
             ->assertOk()->assertJson(['status' => 'ok', 'players' => 0, 'items' => []]);
+    }
+
+    public function test_the_realm_is_ignored_so_every_scan_of_a_house_is_one_market(): void
+    {
+        // Forever has one auction house per region and faction; the client's realm names were shard
+        // labels, and from 22 Nov it sends "" (2026-11-26), which used to be refused.
+        $key = User::factory()->create()->issueCoachToken();
+        $this->send($key, ['realm' => 'CAMWOWUS2Realm2PvP'] + $this->scan(now()->subHours(5)->timestamp, 1000, [[7837, 3000, 40]]))->assertOk();
+        $this->send($key, ['realm' => 'CAMWOWAU1Realm2PvP'] + $this->scan(now()->subHours(3)->timestamp, 1000, [[7837, 2950, 40]]))->assertOk();
+        $this->send($key, ['realm' => ''] + $this->scan(now()->subHour()->timestamp, 1000, [[7837, 2900, 41]]))
+            ->assertOk()->assertJson(['status' => 'stored']);
+        $scan = $this->scan(now()->subMinutes(30)->timestamp, 1000, [[7837, 2800, 42]]);
+        unset($scan['realm']);
+        $this->send($key, $scan)->assertOk()->assertJson(['status' => 'stored']);
+
+        $this->assertSame(['US/Horde'], ForeverScan::distinct()->pluck('market')->all());
+        $this->withHeader('Authorization', 'Bearer '.$key)
+            ->getJson('/api/forever/market?region=US&realm=&faction=Horde')
+            ->assertOk()->assertJson(['market' => 'US/Horde', 'players' => 1]);
     }
 }

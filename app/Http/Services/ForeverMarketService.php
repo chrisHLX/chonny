@@ -18,11 +18,16 @@ use Illuminate\Support\Facades\DB;
  * Professions, Market and "at least N sold" read from everyone's scans.
  *
  * Only the scan is sent: never what the player looked at, their ledger, their questions or where they
- * were. A market is "REGION/Realm/Faction"; scans are kept whole on disk so markets can be merged once
- * it's known whether Forever shares its auction house across realms or factions.
- * Settled 2026-11-12: one realm per region, and a separate auction house per faction (Chriso), so in
- * NA a market is effectively one per faction. Region and realm stay in the key in case of a second
- * region or server.
+ * were. A market is "REGION/Faction" (US/Horde, US/Alliance, US/Neutral for the goblin house).
+ *
+ * The realm is not part of it (2026-11-26). Forever is one server per region, with a second name on
+ * every character (Crypto-Shot) that puts it on a shard, and one auction house per region and faction
+ * (Chriso). UnitFullName's realm part is that second name ("Cuz"), not a realm. Measured: a scan
+ * the client called realm CAMWOWAU1Realm2PvP and one called CAMWOWUS2Realm2PvP, 12 minutes apart, held
+ * 156,690 and 157,617 auctions, and 89% of the 5,792 items in both had the same cheapest price (two
+ * scans of one house 1.5 hours apart: 65%). From 22 Nov the client reports no realm at all
+ * (GetNormalizedRealmName and GetRealmName both "", GetRealmID 0), and with the realm in the key every
+ * scan was refused. Region and faction still come from the game; the realm the app sends is ignored.
  */
 class ForeverMarketService
 {
@@ -35,20 +40,21 @@ class ForeverMarketService
     /** A scan more than this many times the market's biggest recent one is not believed. */
     private const MAX_GROWTH = 3;
 
-    public static function market(string $region, string $realm, string $faction): string
+    public static function market(string $region, string $faction): string
     {
-        return strtoupper($region).'/'.$realm.'/'.ucfirst(strtolower($faction));
+        return strtoupper($region).'/'.ucfirst(strtolower($faction));
     }
 
     /**
-     * Checks and keeps one scan: {region, realm, faction, t, n, items: [[id, min, listed, e0, e1, e2, e3], ...]}
+     * Checks and keeps one scan: {region, faction, t, n, items: [[id, min, listed, e0, e1, e2, e3], ...]} (a realm
+     * the app sends is ignored)
      * (the e's optional: how many of `listed` have under 30m, 30m-2h, 2-12h, over 12h left).
      *
      * @return array{status: string, reason?: string, items?: int}
      */
     public function store(User $user, array $scan): array
     {
-        $market = self::market($scan['region'], $scan['realm'], $scan['faction']);
+        $market = self::market($scan['region'], $scan['faction']);
         $t = (int) $scan['t'];
         if ($t > now()->addMinutes(10)->timestamp || $t < now()->subDays(14)->timestamp) {
             return ['status' => 'rejected', 'reason' => 'The scan is too old, or from the future.'];

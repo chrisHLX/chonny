@@ -16,9 +16,14 @@ use Illuminate\Support\Facades\Validator;
  */
 class ForeverMarketController extends Controller
 {
+    /**
+     * A market is region and faction. The realm the app sends is accepted and ignored (2026-11-26):
+     * Forever has none, and from 22 Nov the game reports it as "", which this used to refuse, so every
+     * scan from then on was turned away (ForeverMarketService's class comment).
+     */
     private const MARKET_RULES = [
         'region' => ['required', 'string', 'regex:/^[A-Za-z]{2,8}$/'],
-        'realm' => ['required', 'string', 'max:64', 'regex:/^[^\/]+$/u'],
+        'realm' => ['nullable', 'string', 'max:64'],
         'faction' => ['required', 'in:Alliance,Horde,Neutral'],
     ];
 
@@ -54,7 +59,7 @@ class ForeverMarketController extends Controller
         return response()->json($result, $result['status'] === 'rejected' ? 422 : 200);
     }
 
-    /** GET /api/forever/market?region=&realm=&faction=: everyone's prices for that market. */
+    /** GET /api/forever/market?region=&faction=: everyone's prices for that market (a realm= is ignored). */
     public function market(Request $request, ForeverMarketService $market): JsonResponse
     {
         $user = User::forCoachToken($request->bearerToken());
@@ -73,6 +78,6 @@ class ForeverMarketController extends Controller
         }
         $q = $v->validated();
 
-        return response()->json($market->pooled(ForeverMarketService::market($q['region'], $q['realm'], $q['faction'])));
+        return response()->json($market->pooled(ForeverMarketService::market($q['region'], $q['faction'])));
     }
 }

@@ -222,6 +222,13 @@
                 </svg>
                 PvP Guides
             </a>
+            <a href="{{ route('wow.forever.crafts') }}" wire:navigate class="sidebar-item {{ request()->routeIs('wow.forever.crafts') ? 'active' : '' }}">
+                <svg class="w-[18px] h-[18px] shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                    <circle cx="9" cy="9" r="5.5"/>
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M15.5 9.6a5.5 5.5 0 11-5.9 5.9"/>
+                </svg>
+                Crafting Profits
+            </a>
 
             <p class="px-3 pt-2.5 pb-0.5 text-[11px] font-bold text-ink-subtle uppercase tracking-[.12em]">Auction House addon</p>
             @foreach ([

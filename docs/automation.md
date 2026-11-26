@@ -56,7 +56,7 @@ Two queue workers run under Supervisor (`/etc/supervisor/conf.d/`), both on `car
 | A browser upload on the site | The same, through `ArenaUploadController` |
 | A note or a YouTube link from the app | `BuildCoachPages`, cards only |
 | A Battle.net account is linked | `SyncBattlenetCharacter` |
-| A Forever auction scan arrives | Stored and folded into that market's prices in the request (`docs/forever/observer-handoff-2026-11-10.md`) |
+| A Forever auction scan arrives | Stored and folded into that market's prices in the request (`docs/forever/observer-handoff-2026-11-10.md`). Crafting Profits (`/wow/forever/crafts`) reprices that market on its next view: no timer, the cache is keyed on the newest scan |
 | An /ask question, answered by the site | `ForeverAskService` asks Gemini, in the request; answers kept 3 days |
 
 **Known timeouts** (2026-11-23): `BuildCoachPages` for big accounts (Muroto, 468 rounds) sometimes

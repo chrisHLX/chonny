@@ -135,6 +135,10 @@
             on your side made, even before you've scanned yourself. Horde, Alliance and the goblin AHs in Booty Bay,
             Gadgetzan and Everlook are each tracked separately.
         </p>
+        <p class="text-[14px] text-ink-muted leading-relaxed max-w-3xl mt-2">
+            The same scans show what every craft earns this week on
+            <a href="{{ route('wow.forever.crafts') }}" wire:navigate class="text-gold hover:underline">Crafting Profits</a>.
+        </p>
     </div>
 
     {{-- PvP on video --}}
