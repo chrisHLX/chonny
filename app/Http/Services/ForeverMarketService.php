@@ -37,6 +37,9 @@ class ForeverMarketService
     /** What the app downloads covers this many days. */
     public const POOL_DAYS = 7;
 
+    /** Bump when an item's fields in pooled() change, so a cached view of the old shape isn't served (rule 20). */
+    private const POOL_SHAPE = 2;
+
     /** A scan more than this many times the market's biggest recent one is not believed. */
     private const MAX_GROWTH = 3;
 
@@ -167,7 +170,7 @@ class ForeverMarketService
             return ['status' => 'ok', 'market' => $market, 't' => null, 'players' => 0, 'items' => new \stdClass];
         }
 
-        return Cache::remember("forever-market:{$market}:{$lastScan}", now()->addDay(), function () use ($market) {
+        return Cache::remember('forever-market:v'.self::POOL_SHAPE.":{$market}:{$lastScan}", now()->addDay(), function () use ($market) {
             $since = now()->subDays(self::POOL_DAYS);
             $items = [];
             $newest = 0;
