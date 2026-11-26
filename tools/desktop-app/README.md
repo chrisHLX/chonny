@@ -482,6 +482,11 @@ never on the window's thread or the recorder's, and logs any failure to Activity
 (`LastSent`, the market, when it last fetched) is `market.json` beside settings.json. The website
 side and its rules: `docs/forever/observer-handoff-2026-11-10.md`, "Shared auction prices".
 
+**0.6.38 (2026-11-26).** The realm is optional: from 22 Nov the game reports none, and every scan was
+refused; a market is region and faction, and a state needs only those two to fetch. A failed fetch
+waits 30 minutes (`State.Tried`) instead of retrying every 30 seconds. The bundled addon saves no
+empty realm, and prices what a craft makes at its usual price (handoff doc, "Crafting Profits").
+
 Check it without the window: `MindCollector.exe --share-market SAVEDVARIABLES SERVER KEY OUT.lua
 [REGION REALM FACTION]` sends the file's last scan and writes the pooled Lua to OUT.lua
 (`share-market.txt` in the data folder). Run it with `MINDCOLLECTOR_DATA` set and a local site's key.

@@ -105,7 +105,7 @@ Still open:
   `US/Horde`; the server accepts and ignores a realm (any app version works), and migration
   `2026_11_26_000001_forever_markets_without_realm` renamed the stored scans and merged the AU1 hour into
   US/Horde. The addon no longer saves "" and the app waits 30 minutes after a failed price fetch
-  (in the repo 2026-11-26, in the next app version). The rest of this bullet is the earlier understanding.
+  (app 0.6.38, 2026-11-26). The rest of this bullet is the earlier understanding.
 - **Markets, settled 2026-11-12:** Forever is one realm per region (Chriso's WTF holds one realm
   folder, `91`, for all five characters, whose names carry suffixes like Crypto-Shot; portal US),
   and Horde and Alliance don't share an auction house (Chriso). So NA is two markets, one per
@@ -137,9 +137,17 @@ Chriso: "the website could display the most profitable crafts for the week". `/w
   its 2,145 recipes make an item from materials. Re-generating Data.lua changes the page with it.
 - **The sum** is ui.lua's `profitsFor`: the product's price less the 5% cut, times what a craft makes
   (Data.lua field 12, the client's own count: Fire Oil 2, Cured Rugged Hide 2, Thorium Grenade 3), less
-  the materials at their price or the vendor's when lower. **Unlike the addon** a price is the median
-  cheapest listing over the week's readings, not the newest, and materials are bought, never made
-  (the site doesn't know your professions).
+  the materials at their price or the vendor's when lower. A price is the median cheapest listing over
+  the week's readings, not the newest, and materials are bought, never made (the site doesn't know
+  your professions).
+- **The addon prices what you make at its usual price too (2026-11-26, app 0.6.38).** Chriso
+  made Elixir of the Mongoose on the addon's "76s a craft", which came from one dear hour (the pool
+  held 82s on 20 Nov and 1g 50s on the 26th, 171 listed against 1,155). The pool now carries two more
+  fields per item, the 7-day median and how many hourly readings it is of, and the app passes them
+  through unchanged (any app version). ui.lua's `usualPrice` takes whichever median has more readings,
+  the pool's or your own scans', three at least; `sellValue` uses it, and every "sells" line reads
+  "usually 83s, 1g 50s now (81% over)" when today's price is 10% or more away. Reagents stay at today's
+  price, which is what buying them costs. With no usual price yet the line says so and uses today's.
 - **The week** is the 7 days up to the market's newest scan, so a market nobody scanned lately keeps
   its last week, and the page says when it was. Cached until the market's next scan (~1.3s to build
   locally on the 23-scan market).

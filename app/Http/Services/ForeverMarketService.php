@@ -151,8 +151,11 @@ class ForeverMarketService
 
     /**
      * The pooled view of a market for the app to hand the addon: per item the newest reading, the
-     * one before it (with its time-left bands), the lowest price in POOL_DAYS days, and how many
-     * scans saw the newest. Cached until the market's next scan.
+     * one before it (with its time-left bands), the lowest price in POOL_DAYS days, how many scans saw
+     * the newest, the usual price (the median of the cheapest listing over those days' hourly readings,
+     * as ForeverCraftsService prices a craft) and how many readings it is the median of. They come last
+     * so an older addon, which reads the first twelve, is unaffected (2026-11-26, Chriso made Elixir of the Mongoose on a "76s a
+     * craft" that came from one hour's dear listing). Cached until the market's next scan.
      *
      * @return array{status: string, market: string, t: ?int, players: int, items: array<int, array>}
      */
@@ -183,6 +186,8 @@ class ForeverMarketService
                     ...$e,
                     (int) min(array_map(fn ($r) => (int) $r->min_unit, $rows)),
                     (int) $now->sources,
+                    (int) round(ForeverCraftsService::median(array_map(fn ($r) => (int) $r->min_unit, $rows))),
+                    count($rows),
                 ];
             };
 

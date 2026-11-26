@@ -835,11 +835,51 @@ end
 
 local AH_CUT = 0.05 -- the auction house keeps 5% of a sale
 
--- What the thing you make sells for after the cut, or nil when it has no price.
+-- An item's usual price (2026-11-26): the median of its cheapest listing, from whichever has more
+-- readings: everyone's scans over the last 7 days (Market.lua's 13th and 14th fields, the site's
+-- Crafting Profits sum) or your own scans kept. Three readings at least, or there is no usual price:
+-- the pool held two readings of Elixir of the Mongoose that week, 82s and 1g 50s, after scans were
+-- refused for five days. Returns the price, how many readings, and "pool" or "yours". Your own is
+-- cached per item until the next scan, since priceHistory walks every scan's string.
+local USUAL_MIN = 3
+local usualCache = {}
+local function usualPrice(id)
+    local hist = ns.DB.history or {}
+    local key = #hist .. ":" .. (hist[#hist] and hist[#hist].t or 0)
+    local c = usualCache[id]
+    if not (c and c.key == key) then
+        local prices = {}
+        for _, x in ipairs(priceHistory(id)) do if x.scan then table.insert(prices, x.min) end end
+        c = { key = key, usual = #prices >= USUAL_MIN and median(prices) or nil, n = #prices }
+        usualCache[id] = c
+    end
+    local pl = ns.pool and ns.pool.items and ns.pool.items[id]
+    local poolN = pl and pl[13] and pl[13] > 0 and pl[14] or 0
+    if poolN >= USUAL_MIN and poolN >= c.n then return pl[13], poolN, "pool" end
+    return c.usual, c.n, c.usual and "yours"
+end
+
+-- What the thing you make sells for after the cut, or nil when it has no price. At its usual price when
+-- there is one, else the cheapest listing now (2026-11-26, Chriso: a scan said Elixir of the Mongoose
+-- made 76s a craft; he made some, and that was one dear hour, well above what it usually sells for).
+-- The reagents stay at today's price: that is what buying them costs now.
+-- Returns the value, the newest reading and the usual price.
 local function sellValue(r)
     if r[7] == 0 then return nil end
     local p = ns.latestPrice(r[7])
-    return p and p.min * (1 - AH_CUT) * (r.yield or 1), p
+    local usual = usualPrice(r[7])
+    local each = usual or (p and p.min)
+    return each and each * (1 - AH_CUT) * (r.yield or 1), p, usual
+end
+
+-- "usually 40s" with today's price beside it when it's 10% or more away: "usually 40s, 76s now (90% over)".
+local function sellsText(p, usual)
+    if usual then
+        local vs = p and p.min and (p.min - usual) / usual
+        return "usually " .. ns.money(usual) .. (vs and math.abs(vs) >= 0.1
+            and string.format(", %s now (%.0f%% %s)", ns.money(p.min), math.abs(vs) * 100, vs > 0 and "over" or "under") or "")
+    end
+    return p and (ns.money(p.min) .. " now, no usual price yet") or "no price yet"
 end
 
 -- ---------------------------------------------------------------- what a recipe item teaches (15 Nov)
@@ -883,9 +923,9 @@ local function recipeCostLines(pid, r, short)
     table.insert(out, color(GOLD_HEX, "Mats cost about " .. ns.money(total)) .. (missing > 0 and grey(string.format("  (%d price%s unknown)", missing, missing == 1 and "" or "s")) or "")
         .. (oldest and grey("  · prices " .. when(oldest)) or ""))
     if r[7] > 0 then
-        local net, p = sellValue(r)
-        if p then
-            local line = itemName(r[7]) .. yield .. " sells " .. ns.money(p.min) .. (p.q and (", " .. commas(p.q) .. " listed") or "")
+        local net, p, usual = sellValue(r)
+        if net then
+            local line = itemName(r[7]) .. yield .. " sells " .. sellsText(p, usual) .. (p and p.q and (", " .. commas(p.q) .. " listed") or "")
             if missing == 0 then
                 local profit = net - total
                 line = line .. "  ·  " .. (profit >= 0 and color("ff40d060", "+" .. ns.money(profit) .. " a craft after the cut")
@@ -1119,14 +1159,14 @@ local function recipesFor(pid, rank)
 end
 
 -- Every recipe you have the skill for that makes something, most profit per craft first. Profit is the
--- product's cheapest listing after the 5% cut, less the reagents; nil when a price is missing.
+-- product's usual price (sellValue) after the 5% cut, less the reagents; nil when a price is missing.
 local function profitsFor(pid, rank)
     local out = {}
     for idx, r in ipairs(ns.recipes and ns.recipes[pid] or {}) do
         if r[7] > 0 and r[3] <= rank and matches(r[2]) then
             local cost, missing, made = recipeCost(r, pid, rank)
-            local sell, p = sellValue(r)
-            table.insert(out, { idx = idx, r = r, cost = cost, missing = missing, made = made, sell = sell, p = p,
+            local sell, p, usual = sellValue(r)
+            table.insert(out, { idx = idx, r = r, cost = cost, missing = missing, made = made, sell = sell, p = p, usual = usual,
                 profit = missing == 0 and sell and sell - cost or nil })
         end
     end
@@ -1865,7 +1905,7 @@ local function drawList()
                 fillRow(sw, "sortmode:" .. pid, "Interface\\Icons\\INV_Misc_Coin_02",
                     "   " .. (sortByProfit() and "Most profit" or sortBySelling() and "Cheapest after selling what you make" or "Cheapest to make"), GOLD_HEX,
                     grey("click to switch"), sortByProfit()
-                        and "   everything you can make, points or not: what one craft earns after the 5% cut"
+                        and "   everything you can make, points or not: what one craft earns at the usual price, after the 5% cut"
                         or sortBySelling()
                         and "   less what the product sells for on the auction house, after its 5% cut; click for most profit"
                         or "   the reagents' cost per skill point; click to count what you'd sell the products for")
@@ -1882,9 +1922,9 @@ local function drawList()
                             value = grey(x.missing > 0 and (x.missing .. " price" .. (x.missing == 1 and "" or "s") .. " unknown") or "no auction price")
                         end
                         local bits = { knownRecipe(x.r[1]) == true and "known" or (sourceOf(x.r, p.name)) or "source unknown" }
-                        if x.p then
-                            table.insert(bits, "sells " .. ns.money(x.p.min) .. ((x.r.yield or 1) > 1 and (" (makes " .. x.r.yield .. ")") or "")
-                                .. (x.p.q and (", " .. x.p.q .. " listed") or ""))
+                        if x.p or x.usual then
+                            table.insert(bits, "sells " .. sellsText(x.p, x.usual) .. ((x.r.yield or 1) > 1 and (" (makes " .. x.r.yield .. ")") or "")
+                                .. (x.p and x.p.q and (", " .. x.p.q .. " listed") or ""))
                         end
                         local trend = listingTrend(x.r[7])
                         if trend then table.insert(bits, trend) end
@@ -1974,7 +2014,7 @@ local function drawList()
                     local items = groups[pid]
                     for _, x in ipairs(items) do
                         x.cost, x.missing = recipeCost(x.r, pid, rank)
-                        x.net, x.p = sellValue(x.r)
+                        x.net, x.p, x.usual = sellValue(x.r)
                         x.profit = x.missing == 0 and x.net and x.net - x.cost or nil
                     end
                     -- most profit first; those without a price after, by the skill they need
@@ -1993,7 +2033,7 @@ local function drawList()
                         elseif r2[10] and r2[10] > 0 then table.insert(bits, recipeFrom(r2[10]) or "recipe item, source unknown")
                         else table.insert(bits, "trainer") end
                         if x.missing == 0 then table.insert(bits, "mats " .. ns.money(x.cost)) end
-                        if x.p then table.insert(bits, "sells " .. ns.money(x.p.min) .. (x.p.q and (", " .. commas(x.p.q) .. " listed") or "")) end
+                        if x.p or x.usual then table.insert(bits, "sells " .. sellsText(x.p, x.usual) .. (x.p and x.p.q and (", " .. commas(x.p.q) .. " listed") or "")) end
                         n = n + 1
                         local rr = rows[n] or makeRow(n)
                         fillRow(rr, "recipe:" .. pid .. ":" .. x.idx, (r2[7] > 0 and C_Item.GetItemIconByID(r2[7])) or C_Spell.GetSpellTexture(r2[1]),
@@ -2193,8 +2233,8 @@ local function useText(u, mine)
         table.insert(facts, r[3] > mine.rank and ("you need " .. r[3]) or (word == "grey" and "no points for you" or (word .. " for you")))
     end
     if r[7] > 0 then
-        local p = ns.latestPrice(r[7])
-        if p then table.insert(facts, "sells " .. ns.money(p.min) .. ((r.yield or 1) > 1 and (" (makes " .. r.yield .. ")") or "") .. (p.q and (", " .. p.q .. " listed") or "")) end
+        local p, usual = ns.latestPrice(r[7]), usualPrice(r[7])
+        if p or usual then table.insert(facts, "sells " .. sellsText(p, usual) .. ((r.yield or 1) > 1 and (" (makes " .. r.yield .. ")") or "") .. (p and p.q and (", " .. p.q .. " listed") or "")) end
     else
         table.insert(facts, "an enchant")
     end
@@ -2513,7 +2553,7 @@ local function drawDetail()
                 table.insert(lines, "")
                 table.insert(lines, "The switch at the top of the list also sorts by Most profit: everything you can make, points or not, by what one craft earns.")
                 table.insert(lines, "")
-                table.insert(lines, grey("Orange always gives a point, yellow usually, green sometimes. Prices are the auction house's cheapest listing you last saw, or your last full scan; vials, thread and spices at the vendor's price."))
+                table.insert(lines, grey("Orange always gives a point, yellow usually, green sometimes. Reagents are priced at the auction house's cheapest listing now, or the vendor's for vials, thread and spices; what you make at its usual price this week, so one dear hour can't make a craft look good."))
             end
             setDetail(PROF_ICONS[pid], mine and mine.name or "?", GOLD_HEX, lines, nil, false)
             return
@@ -2547,9 +2587,9 @@ local function drawDetail()
         table.insert(lines, "Cost to make: " .. ns.money(cost) .. (missing > 0 and grey("  (" .. missing .. " reagent price" .. (missing == 1 and "" or "s") .. " unknown)") or ""))
         if missing == 0 and chance > 0 then table.insert(lines, color(GOLD_HEX, "About " .. ns.money(cost / chance) .. " per skill point")) end
         if r[7] > 0 then
-            local net, p = sellValue(r)
+            local net, p, usual = sellValue(r)
             local made = (r.yield or 1) > 1 and (r.yield .. " ") or ""
-            table.insert(lines, "Makes " .. made .. itemName(r[7]) .. (p and string.format("; each sells for about %s (%s listed)", ns.money(p.min), p.q or "?") or ", with no auction price yet"))
+            table.insert(lines, "Makes " .. made .. itemName(r[7]) .. (net and string.format("; each sells %s (%s listed)", sellsText(p, usual), p and p.q or "?") or ", with no auction price yet"))
             if net and missing == 0 then
                 local profit = net - cost
                 table.insert(lines, profit > 0
@@ -3068,21 +3108,6 @@ end
 -- many were listed, the usual price over your scans and where the price sits against it, the
 -- 50-unit depth, and what you last sold it for yourself. Three lines at most; /mco tip turns it off.
 
--- An item's usual price: the median of its cheapest listing across every scan kept, from three scans
--- up. Cached per item until the next scan, since priceHistory walks every scan's string.
-local usualCache = {}
-local function usualPrice(id)
-    local hist = ns.DB.history or {}
-    local key = #hist .. ":" .. (hist[#hist] and hist[#hist].t or 0)
-    local c = usualCache[id]
-    if c and c.key == key then return c.usual, c.n end
-    local prices = {}
-    for _, x in ipairs(priceHistory(id)) do if x.scan then table.insert(prices, x.min) end end
-    local usual = #prices >= 3 and median(prices) or nil
-    usualCache[id] = { key = key, usual = usual, n = #prices }
-    return usual, #prices
-end
-
 local function tooltipLines(id)
     local out = {}
     local note = noteOf(id)
@@ -3094,14 +3119,15 @@ local function tooltipLines(id)
         table.insert(bits, when(p.t))
         table.insert(out, color(GOLD_HEX, "AH  ") .. table.concat(bits, "  ·  "))
     end
-    local usual, n = usualPrice(id)
+    local usual, n, from = usualPrice(id)
     local d = depthNow(id)
     if usual or (d and d[2]) then
         local bits = {}
         if usual then
             local vs = p and p.min and (p.min - usual) / usual
             local against = vs and math.abs(vs) >= 0.05 and string.format(", now %.0f%% %s", math.abs(vs) * 100, vs > 0 and "over" or "under") or ""
-            table.insert(bits, string.format("usual %s over %d scans%s", ns.money(usual), n, against))
+            table.insert(bits, from == "pool" and string.format("usual %s over %d readings this week%s", ns.money(usual), n, against)
+                or string.format("usual %s over %d scans%s", ns.money(usual), n, against))
         end
         if d and d[2] then table.insert(bits, "50 units under " .. ns.money(d[2])) end
         table.insert(out, grey(table.concat(bits, "  ·  ")))

@@ -215,7 +215,7 @@ public sealed class MarketShare : IDisposable
         var sb = new StringBuilder();
         sb.Append("-- Written by the MindCollector app ").Append(DateTime.Now.ToString("yyyy-MM-dd HH:mm", CultureInfo.InvariantCulture))
           .Append(": auction house prices pooled from every player who shares their scans.\n");
-        sb.Append("-- Each item: { t, min, listed, prev t, prev min, prev listed, prev listed by time left (4), lowest in 7 days, scans }\n");
+        sb.Append("-- Each item: { t, min, listed, prev t, prev min, prev listed, prev listed by time left (4), lowest in 7 days, scans, usual (median over 7 days), readings }\n");
         sb.Append("MindCollectorObserverMarket = {\n");
         sb.Append("  market = ").Append(Str(root.TryGetProperty("market", out var m) ? m.GetString() ?? "" : "")).Append(",\n");
         sb.Append("  at = ").Append(DateTimeOffset.UtcNow.ToUnixTimeSeconds()).Append(",\n");

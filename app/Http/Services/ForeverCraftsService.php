@@ -160,7 +160,8 @@ class ForeverCraftsService
         ];
     }
 
-    private static function median(array $values): float
+    /** The middle value; for an even count, the mean of the middle two. ForeverMarketService uses it too. */
+    public static function median(array $values): float
     {
         sort($values);
         $n = count($values);

@@ -78,8 +78,9 @@ class ForeverMarketTest extends TestCase
         $this->assertSame('US/Horde', $pool['market']);
         $this->assertSame(2, $pool['players']);
         $this->assertSame($hour2 + 600, $pool['t']);
-        // [t, min, listed, prev t, prev min, prev listed, e0..e3 of prev, lowest in 7 days, scans]
-        $this->assertSame([$hour2 + 600, 3100, 12, $hour1, 3000, 40, 30, 5, 5, 0, 3000, 2], $pool['items']['7837']);
+        // [t, min, listed, prev t, prev min, prev listed, e0..e3 of prev, lowest in 7 days, scans, usual, readings]
+        // usual: the median of the two hourly readings, 3000 and 3100
+        $this->assertSame([$hour2 + 600, 3100, 12, $hour1, 3000, 40, 30, 5, 5, 0, 3000, 2, 3050, 2], $pool['items']['7837']);
         // 28 fewer listed over two hours, and 35 of the 40 had under 2 hours left: no proof of a sale.
     }
 
