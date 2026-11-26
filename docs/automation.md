@@ -62,6 +62,15 @@ Two queue workers run under Supervisor (`/etc/supervisor/conf.d/`), both on `car
 **Known timeouts** (2026-11-23): `BuildCoachPages` for big accounts (Muroto, 468 rounds) sometimes
 runs past its limit, and the next upload's build catches it up. Both show as warnings in the email.
 
+**`BuildCoachPages` timing out on spell tooltips** (9 of its 12 failures from 17 to 26 Nov, fixed
+2026-11-27): every one died in `SpellTips::kitEntries()`. `CompLibraryService::tip()` asks the
+container for `SpellTips` once per spell, and with no binding each ask was a new instance, so every
+tooltip not yet in the cache re-read all 40 spell kits (21 MB, 0.26s a read on the server). The
+tooltip cache is keyed by the deployed code, so after each deploy the next player's Classes page needed
+a few hundred of them. It is now `scoped` in `AppServiceProvider` (one per request or job): 120 cold
+tooltips went from 27.7s to 0.4s with identical results. **A class that keeps a memo must be bound
+`scoped` (or held in one variable) before it is fetched with `app()` in a loop.**
+
 **`RefreshPopulationNorms` timing out** (23 failures in the 10 days to 2026-11-26, fixed then): it
 rebuilds the live norms (`wow:population-refresh` = `wow:pool-export` + the aggregate) after uploads.
 Alone it had grown from ~11s (25 Oct) to ~60s against its 85s limit; it failed whenever a

@@ -20,6 +20,15 @@ class AppServiceProvider extends ServiceProvider
     {
         // Training's lesson files, read once per request (App\Training\Curriculum).
         $this->app->singleton(\App\Training\Curriculum::class);
+
+        // One SpellTips per request or queued job (2026-11-27), so its memo and the 21 MB of spell kits
+        // it reads are kept for the whole page build. CompLibraryService asks the container once per
+        // spell; unbound, each ask was a new instance that read every kit again for each uncached tip
+        // (0.26s a read on the server). After a deploy, when no tip is cached, that put a player's
+        // Classes page past BuildCoachPages' 85s limit: 9 of its 12 timeouts from 17 to 26 Nov. 120
+        // cold tips: 27.7s before, 0.4s after, same results. Scoped, not a singleton: a queue worker
+        // drops it between jobs, so a kit rebuilt by hand is read by the next job.
+        $this->app->scoped(\App\Support\SpellTips::class);
     }
 
     /**
