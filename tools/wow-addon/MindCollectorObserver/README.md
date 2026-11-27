@@ -193,7 +193,10 @@ each packed into one string by `ns.packScan`, read with `ns.scanPrice` or `ns.pr
 text and a string its length, so the scans kept as tables of tables were the dear part, along with
 the Market and Gear tabs' lists, held all session. Now: older scans are packed strings, the sent sweep
 goes, and the tabs drop their lists when you leave them or close the window (`forgetTabs` in ui.lua,
-`ns.gearForget`). Nothing of the price history is dropped: Market.lua's `history` brings day by day
+`ns.gearForget`). Once suffix versions were kept apart (each its own small table, about 15,000 in a
+scan, 2.6 MB), they too became one string per item, `"bonus=min/count|..."` (`ns.packVariants`, read
+with `ns.eachVariant`). `/mco mem` measures each part in the game: its tables by copying them, its
+text by adding up its strings. Nothing of the price history is dropped: Market.lua's `history` brings day by day
 prices from the website, which keeps them for good.
 
 `Data.lua` is generated: `python tools/forever-market/observer_data.py <wago wowf folder> Data.lua`

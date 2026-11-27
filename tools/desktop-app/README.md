@@ -506,6 +506,12 @@ when you leave the tab or close the window. Market.lua also carries day by day p
 the items you track or have looked at, from `/api/forever/history`; the website keeps those days for
 good (handoff doc, "Memory and price history").
 
+**0.6.41 (2026-11-27).** After 0.6.40 the game reported 39.9 MB: with suffix versions kept apart, the
+newest scan held about 15,000 small tables for them. The addon packs each item's into one string, and
+`SavedVariables.Variants` reads either form; `--scan-json` on Chriso's scan gave identical JSON (6,964
+items, 16,157 suffix prices) for the table, the string and the packed scan. `/mco mem` in game measures
+the addon's memory by part.
+
 Check it without the window: `MindCollector.exe --share-market SAVEDVARIABLES SERVER KEY OUT.lua
 [REGION REALM FACTION]` sends the file's last scan and writes the pooled Lua to OUT.lua
 (`share-market.txt` in the data folder). Run it with `MINDCOLLECTOR_DATA` set and a local site's key.

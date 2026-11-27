@@ -68,13 +68,16 @@ local function initDB()
     for _, e in pairs(DB.otherScans or {}) do scans[#scans + 1] = e end
     for _, sc in ipairs(scans) do
         for _, a in pairs(sc and sc.prices or {}) do
-            if type(a) == "table" and a.v then
+            if type(a) == "table" and type(a.v) == "table" then
                 for key in pairs(a.v) do
                     if key:match("^%d$") then a.v[key] = nil end
                 end
                 if next(a.v) == nil then a.v = nil end
             end
         end
+    end
+    for _, a in pairs(DB.lastScan and DB.lastScan.prices or {}) do
+        if type(a) == "table" and type(a.v) == "table" then a.v = ns.packVariants(a.v) end
     end
     -- The scan before last and the goblin house's, packed into strings from 27 Nov (ns.packScan): the
     -- ones saved as tables before are packed here.
@@ -592,6 +595,36 @@ end
 -- its length. The same data: only the auction house's own item names are left out, and the newest
 -- scan stays a table, since every price lookup reads it.
 local function whole(x) return string.format("%.0f", x) end
+
+-- An item's suffix versions in a scan, "bonus=min/count|...", one string (27 Nov). As a table each version
+-- was its own small table: about 15,000 in one scan once they were kept apart, 2.6 MB of game memory.
+-- A scan builds them as a table while it reads (Gear.lua gearVariant) and packs them in finishScan.
+function ns.packVariants(v)
+    if type(v) ~= "table" then return v end
+    local out = {}
+    for bonus, x in pairs(v) do out[#out + 1] = bonus .. "=" .. whole(x[1]) .. "/" .. whole(x[2]) end
+    return #out > 0 and table.concat(out, "|") or nil
+end
+
+-- Each suffix version of an item in a scan, packed or not: for bonus, min, count in ns.eachVariant(a.v).
+function ns.eachVariant(v)
+    if type(v) == "table" then
+        local k
+        return function()
+            local x
+            k, x = next(v, k)
+            if k == nil then return nil end
+            return k, x[1], x[2]
+        end
+    end
+    local it = (type(v) == "string" and v or ""):gmatch("([%d.]+)=(%d+)/(%d+)")
+    return function()
+        local bonus, m, n = it()
+        if not bonus then return nil end
+        return bonus, tonumber(m), tonumber(n)
+    end
+end
+
 function ns.packScan(entry)
     if not entry or not entry.prices then return entry end
     local parts = { "" }
@@ -599,7 +632,7 @@ function ns.packScan(entry)
         if type(id) == "number" and type(a) == "table" and a[1] and a[2] then
             local tl, v = {}, {}
             for band, q in pairs(a.tl or {}) do tl[#tl + 1] = band .. "=" .. whole(q) end
-            for bonus, x in pairs(a.v or {}) do v[#v + 1] = bonus .. "=" .. whole(x[1]) .. "/" .. whole(x[2]) end
+            for bonus, m, n in ns.eachVariant(a.v) do v[#v + 1] = bonus .. "=" .. whole(m) .. "/" .. whole(n) end
             local d = a.d
             local ds = d and d[1] and (whole(d[1]) .. "," .. (d[2] and whole(d[2]) or "") .. "," .. (d[3] and whole(d[3]) or "")) or ""
             parts[#parts + 1] = id .. ":" .. whole(a[1]) .. ":" .. whole(a[2]) .. ":" .. table.concat(tl, ",") .. ":" .. ds .. ":" .. table.concat(v, "|")
@@ -612,7 +645,7 @@ function ns.packScan(entry)
     return out
 end
 
--- One item of a packed scan back as the table a scan keeps: { min, listed, tl = {}, d = {}, v = {} }.
+-- One item of a packed scan back as the table a scan keeps: { min, listed, tl = {}, d = {}, v = "..." }.
 local function unpackItem(rec)
     local id, min, q, tl, d, v = rec:match("^(%d+):(%d+):(%d+):([^:]*):([^:]*):(.*)$")
     if not id then return nil end
@@ -625,10 +658,7 @@ local function unpackItem(rec)
         local p1, p2, p3 = d:match("^(%d*),(%d*),(%d*)$")
         a.d = { tonumber(p1), tonumber(p2), tonumber(p3) }
     end
-    if v ~= "" then
-        a.v = {}
-        for bonus, m, n in v:gmatch("([%d.]+)=(%d+)/(%d+)") do a.v[bonus] = { tonumber(m), tonumber(n) } end
-    end
+    if v ~= "" then a.v = v end
     return tonumber(id), a
 end
 
@@ -691,6 +721,10 @@ local function finishScan(agg, n)
     for _, a in pairs(agg) do
         if a.tl and not next(a.tl) then a.tl = nil end
         if a.pc then a.d = depthOf(a) end
+    end
+    -- each suffix version packed into one string (gearVariantsAfterScan reads the links it kept, not these)
+    for _, a in pairs(agg) do
+        if a.v then a.v = ns.packVariants(a.v) end
     end
     if ns.gearVariantsAfterScan then pcall(ns.gearVariantsAfterScan) end
     -- Where it was scanned, so the app can pool it with other players' scans of the same market
@@ -1337,6 +1371,60 @@ ev:SetScript("OnEvent", function(_, event, ...)
     end
 end)
 
+-- /mco mem (27 Nov): what each part of the addon's data takes in game memory. The game's own number
+-- (47 MB on 27 Nov) was well above what the saved file suggested, so each part is measured here: its
+-- tables by copying them and seeing how much the copy takes, its text by adding up its strings (a
+-- copy shares those). The copies are dropped after. Takes a second or so.
+local function memoryReport()
+    local function copyOf(v, depth)
+        if type(v) ~= "table" or depth > 12 then return v end -- the data is never this deep: a loop
+        local c = {}
+        for k, x in pairs(v) do c[k] = copyOf(x, depth + 1) end
+        return c
+    end
+    local function textOf(v, seen)
+        if type(v) == "string" then
+            if seen[v] then return 0 end
+            seen[v] = true
+            return #v + 25
+        end
+        if type(v) ~= "table" or seen[v] then return 0 end
+        seen[v] = true
+        local n = 0
+        for k, x in pairs(v) do n = n + textOf(k, seen) + textOf(x, seen) end
+        return n
+    end
+    local function measure(v)
+        collectgarbage("collect")
+        local before = collectgarbage("count")
+        local c = copyOf(v, 0)
+        local tables = collectgarbage("count") - before
+        c = nil
+        return tables * 1024 + textOf(v, {})
+    end
+    local parts = {}
+    for k, v in pairs(DB) do
+        if type(v) == "table" then parts[#parts + 1] = { "saved " .. tostring(k), measure(v) } end
+    end
+    if ns.pool then parts[#parts + 1] = { "everyone's prices (Market.lua)", measure(ns.pool) } end
+    local data = 0
+    for k, v in pairs(ns) do
+        if type(v) == "table" and k ~= "DB" and k ~= "pool" and not v.GetObjectType then data = data + measure(v) end
+    end
+    parts[#parts + 1] = { "recipes, reagents and the rest (Data.lua)", data }
+    collectgarbage("collect")
+    UpdateAddOnMemoryUsage()
+    local total = GetAddOnMemoryUsage("MindCollectorObserver") * 1024
+    table.sort(parts, function(a, b) return a[2] > b[2] end)
+    local counted = 0
+    for _, p in ipairs(parts) do counted = counted + p[2] end
+    say(string.format("memory: %.1f MB in all (the game's count, after clearing).", total / 1048576))
+    for i, p in ipairs(parts) do
+        if i <= 10 and p[2] >= 51200 then say(string.format("   %.1f MB  %s", p[2] / 1048576, p[1])) end
+    end
+    say(string.format("   %.1f MB  the rest: the window, code, and what the game hands the addon", math.max(0, total - counted) / 1048576))
+end
+
 SLASH_MINDCOLLECTOROBSERVER1 = "/mco"
 SlashCmdList.MINDCOLLECTOROBSERVER = function(msg)
     local cmd, rest = (msg or ""):match("^%s*(%S*)%s*(.-)%s*$")
@@ -1360,10 +1448,12 @@ SlashCmdList.MINDCOLLECTOROBSERVER = function(msg)
         if v and v >= 0.5 then DB.minDwell = v say("a look now needs " .. v .. "s.") else say("usage: /mco min 2.5") end
     elseif cmd == "items" then
         if ns.itemSweep then ns.itemSweep(rest) end
+    elseif cmd == "mem" then
+        memoryReport()
     elseif cmd == "tip" then
         DB.tipOff = not DB.tipOff
         say("item tooltips " .. (DB.tipOff and "no longer show" or "now show") .. " auction house prices.")
     else
-        say("/mco (window), /mco scan, /mco items (read every weapon and armour from the game, once a patch), /mco tip (prices on item tooltips on/off), /mco why <text>, /mco min <seconds>, /mco clear (map points)")
+        say("/mco (window), /mco scan, /mco items (read every weapon and armour from the game, once a patch), /mco tip (prices on item tooltips on/off), /mco mem (memory used), /mco why <text>, /mco min <seconds>, /mco clear (map points)")
     end
 end

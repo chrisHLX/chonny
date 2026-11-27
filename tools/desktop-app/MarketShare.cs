@@ -185,13 +185,9 @@ public sealed class MarketShare : IDisposable
             {
                 var arr = SavedVariables.List(v);
                 if (AsLong(k) is not { } id || arr.Count < 2 || AsDouble(arr[0]) is not { } min || min <= 0 || AsLong(arr[1]) is not { } listed || listed <= 0) continue;
-                if (v is Dictionary<object, object?> withV && withV.GetValueOrDefault("v") is Dictionary<object, object?> vs)
-                    foreach (var (bonus, pair) in vs)
-                    {
-                        var p = SavedVariables.List(pair);
-                        if (bonus is string b && p.Count >= 2 && AsDouble(p[0]) is { } vmin && vmin > 0 && AsLong(p[1]) is { } vq && vq > 0)
-                            variants.Add([id, b, (long)Math.Round(vmin), vq]);
-                    }
+                if (v is Dictionary<object, object?> withV)
+                    foreach (var (b, vmin, vq) in SavedVariables.Variants(withV.GetValueOrDefault("v")))
+                        if (vmin > 0 && vq > 0) variants.Add([id, b, (long)Math.Round(vmin), vq]);
                 var row = new List<long> { id, (long)Math.Round(min), listed };
                 if (order.Count == 4 && v is Dictionary<object, object?> d && d.GetValueOrDefault("tl") is Dictionary<object, object?> tl)
                 {

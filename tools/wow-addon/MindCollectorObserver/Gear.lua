@@ -574,12 +574,12 @@ function ns.gearView()
         local a = scan[id]
         if type(a) == "table" and a.v then
             -- suffix versions: each priced and described on its own, the base item not at all
-            for bonus, v in pairs(a.v) do
+            for bonus, vmin in ns.eachVariant(a.v) do
                 local var = DB.variants and DB.variants[id .. ":" .. bonus]
                 if var then
                     local values = valuesOf(var[2], order)
                     if values[first] > 0 then
-                        add(slot, { name = var[1], id = id, link = var[3], icon = it.icon, q = it.q, req = it.req, price = v[1],
+                        add(slot, { name = var[1], id = id, link = var[3], icon = it.icon, q = it.q, req = it.req, price = vmin,
                             when = DB.lastScan.t, values = values })
                     end
                 end

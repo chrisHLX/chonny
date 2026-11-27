@@ -240,6 +240,15 @@ length, which is why the price history (one string a scan) was cheap and the ful
   and writes them into Market.lua as `history`, one string per item, and each item's page shows them
   under "Day by day, everyone's scans". The whole scans stay on disk as before. The addon still keeps
   its own scans for 30 days (its time-of-day reads use them).
+- **After 0.6.40 (39.9 MB):** the sweep was still there (Market.lua said "sent" a minute after the
+  save; the next /reload drops it), and keeping suffix versions apart had put about 15,000 small
+  tables into the newest scan (2.8 MB became 5.4). 0.6.41 packs each item's into one string
+  (`ns.packVariants`); the app's JSON from all three forms of that scan was identical. About 10 MB
+  between the model and the game's count was still unexplained: `/mco mem` measures it in game.
+- **Measured with 0.6.41's addon, after a /reload (`/mco mem`): 25.0 MB in all** (47 before): newest
+  scan 4.3, scan history 3.9, Data.lua 3.8, everyone's prices (Market.lua, with its day by day
+  history) 3.7, looked-at items 1.9, their price readings 1.9, ledger 0.7, suffix names and stats 0.6,
+  scan before last 0.2, tracked readings 0.2; the window, code and the rest 3.6.
 - **Not done:** the usual price is still found by searching every kept scan per item (cached until
   the next scan); Professions sorted by profit does that for hundreds of items at once.
 

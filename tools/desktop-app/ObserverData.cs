@@ -161,6 +161,27 @@ public static class SavedVariables
     /// From app 0.6.40 (2026-11-27) the addon keeps the scan before last and the goblin house's as one string,
     /// `packed` = ";id:min:listed:tl:d:v;..." (main.lua's ns.packScan); this reads either.
     /// </summary>
+    public static IEnumerable<(string Bonus, double Min, long Count)> Variants(object? v)
+    {
+        // a table {bonus: {min, count}} (0.6.39), or from 0.6.40 one string "bonus=min/count|..." (main.lua ns.packVariants)
+        if (v is Dictionary<object, object?> d)
+        {
+            foreach (var (k, pair) in d)
+            {
+                var p = List(pair);
+                if (k is string b && p.Count >= 2 && p[0] is long or double && p[1] is long or double)
+                    yield return (b, Convert.ToDouble(p[0], CultureInfo.InvariantCulture), Convert.ToInt64(p[1], CultureInfo.InvariantCulture));
+            }
+        }
+        else if (v is string s)
+        {
+            foreach (var part in s.Split('|', StringSplitOptions.RemoveEmptyEntries))
+                if (part.Split('=') is [var b, var mc] && mc.Split('/') is [var m, var c]
+                    && double.TryParse(m, NumberStyles.Float, CultureInfo.InvariantCulture, out var vm) && long.TryParse(c, out var vc))
+                    yield return (b, vm, vc);
+        }
+    }
+
     public static Dictionary<object, object?>? ScanPrices(Dictionary<object, object?> scan)
     {
         if (scan.GetValueOrDefault("prices") is Dictionary<object, object?> prices) return prices;
@@ -186,14 +207,7 @@ public static class SavedVariables
                     if (long.TryParse(tiers[i], out var p)) d[(long)(i + 1)] = p;
                 item["d"] = d;
             }
-            if (f[5] != "")
-            {
-                var v = new Dictionary<object, object?>();
-                foreach (var part in f[5].Split('|'))
-                    if (part.Split('=') is [var bonus, var mc] && mc.Split('/') is [var m, var c] && long.TryParse(m, out var vm) && long.TryParse(c, out var vc))
-                        v[bonus] = new Dictionary<object, object?> { [1L] = vm, [2L] = vc };
-                item["v"] = v;
-            }
+            if (f[5] != "") item["v"] = f[5];
             outp[id] = item;
         }
         return outp;
