@@ -32,9 +32,12 @@ internal sealed class SettingsForm : Form
         ForeColor = Theme.Ink;
         Font = Theme.Ui;
         StartPosition = FormStartPosition.CenterParent;
-        FormBorderStyle = FormBorderStyle.FixedDialog;
+        // Sizeable, and the settings scroll above buttons that stay put (0.6.42, 2026-11-27): at 1022
+        // high a fixed dialog ran off a laptop screen at 125% scaling, Save and Cancel with it.
+        FormBorderStyle = FormBorderStyle.Sizable;
         MaximizeBox = MinimizeBox = false;
         ClientSize = new Size(760, 1022);
+        MinimumSize = new Size(560, 360);
         Padding = new Padding(16);
 
         _server.Text = settings.ServerUrl;
@@ -62,7 +65,7 @@ internal sealed class SettingsForm : Form
         }
 #endif
 
-        var grid = new TableLayoutPanel { Dock = DockStyle.Fill, ColumnCount = 3, AutoSize = true };
+        var grid = new TableLayoutPanel { Dock = DockStyle.Top, ColumnCount = 3, AutoSize = true, AutoSizeMode = AutoSizeMode.GrowAndShrink };
         grid.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 150));
         grid.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100));
         grid.ColumnStyles.Add(new ColumnStyle(SizeType.AutoSize));
@@ -121,10 +124,39 @@ internal sealed class SettingsForm : Form
         buttons.Controls.AddRange([cancel, save, install, obs]);
         grid.Controls.Add(new Label()); grid.Controls.Add(_status); grid.Controls.Add(new Label());
 
-        Controls.Add(grid);
+        var scroll = new ScrollPanel { Dock = DockStyle.Fill, AutoScroll = true };
+        scroll.Controls.Add(grid);
+        Controls.Add(scroll);
         Controls.Add(buttons);
         AcceptButton = save;
         CancelButton = cancel;
+    }
+
+    /// <summary>No taller than the screen it opens on, and wholly on it, centred over the app.</summary>
+    protected override void OnLoad(EventArgs e)
+    {
+        base.OnLoad(e);
+        var area = Screen.FromControl(Owner ?? (Control)this).WorkingArea;
+        Height = Math.Min(Height, area.Height);
+        if (StartPosition == FormStartPosition.Manual) return;   // --settings-shot places it off screen
+        var x = Owner == null ? area.Left + (area.Width - Width) / 2 : Owner.Left + (Owner.Width - Width) / 2;
+        var y = Owner == null ? area.Top + (area.Height - Height) / 2 : Owner.Top + (Owner.Height - Height) / 2;
+        StartPosition = FormStartPosition.Manual;
+        Location = new Point(Math.Clamp(x, area.Left, Math.Max(area.Left, area.Right - Width)),
+            Math.Clamp(y, area.Top, Math.Max(area.Top, area.Bottom - Height)));
+    }
+
+    /// <summary>Windows' dark scrollbar (Windows 10 1809+), not the white default, as in LibraryList.</summary>
+    private sealed class ScrollPanel : Panel
+    {
+        [System.Runtime.InteropServices.DllImport("uxtheme.dll", CharSet = System.Runtime.InteropServices.CharSet.Unicode)]
+        private static extern int SetWindowTheme(IntPtr hwnd, string? app, string? idList);
+
+        protected override void OnHandleCreated(EventArgs e)
+        {
+            base.OnHandleCreated(e);
+            try { SetWindowTheme(Handle, "DarkMode_Explorer", null); } catch { }
+        }
     }
 
     private async Task SaveAsync()
@@ -318,5 +350,28 @@ internal sealed class SettingsForm : Form
         Margin = new Padding(0, 6, 8, 0),
     };
 
-    private static CheckBox Check(string text) => new() { Text = text, AutoSize = true, Margin = new Padding(0, 8, 0, 0) };
+    private static CheckBox Check(string text) => new WrapCheck { Text = text, AutoSize = true, Margin = new Padding(0, 8, 0, 0) };
+
+    /// <summary>
+    /// A tick box whose text wraps to the width it is given (0.6.42). A CheckBox asks for its text on one
+    /// line whatever the column, so a long one ran past the window's edge and was cut off.
+    /// </summary>
+    private sealed class WrapCheck : CheckBox
+    {
+        public WrapCheck()
+        {
+            CheckAlign = ContentAlignment.TopLeft;
+            TextAlign = ContentAlignment.TopLeft;
+        }
+
+        public override Size GetPreferredSize(Size proposedSize)
+        {
+            var one = base.GetPreferredSize(Size.Empty);
+            if (proposedSize.Width <= 0 || proposedSize.Width >= one.Width) return one;
+            var line = TextRenderer.MeasureText(Text, Font);
+            var glyph = one.Width - line.Width;   // the box, the gap and the padding
+            var text = TextRenderer.MeasureText(Text, Font, new Size(Math.Max(1, proposedSize.Width - glyph), 0), TextFormatFlags.WordBreak);
+            return new Size(proposedSize.Width, one.Height - line.Height + text.Height);
+        }
+    }
 }

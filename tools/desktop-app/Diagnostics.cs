@@ -497,7 +497,8 @@ internal static class Diagnostics
         return 0;
     }
 
-    public static int SettingsShot(string path)
+    /// <summary>--settings-shot PATH [WIDTH]: the settings window as a PNG, at WIDTH to check long lines wrap.</summary>
+    public static int SettingsShot(string path, int? width = null)
     {
         ApplicationConfiguration.Initialize();
         using var form = new SettingsForm(AppSettings.Load());
@@ -505,6 +506,7 @@ internal static class Diagnostics
         form.Location = new Point(-10000, -10000);
         form.ShowInTaskbar = false;
         form.Show();
+        if (width is { } w) form.Width = w;
         Application.DoEvents();
         using var bmp = new Bitmap(form.Width, form.Height);
         form.DrawToBitmap(bmp, new Rectangle(Point.Empty, form.Size));

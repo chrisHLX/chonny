@@ -18,7 +18,7 @@ internal static class Program
         if (args.Length >= 2 && args[0] == "--check-forever") return Diagnostics.CheckForever(args[1]);
         if (args.Length >= 1 && args[0] == "--replay-test") return Diagnostics.ReplayTest(args);
         if (args.Length >= 1 && args[0] == "--replay-stop") return Diagnostics.ReplayStop();
-        if (args.Length >= 2 && args[0] == "--settings-shot") return Diagnostics.SettingsShot(args[1]);
+        if (args.Length >= 2 && args[0] == "--settings-shot") return Diagnostics.SettingsShot(args[1], args.Length > 2 && int.TryParse(args[2], out var sw) ? sw : null);
         if (args.Length >= 1 && args[0] == "--obs-scene-test") return Diagnostics.ObsSceneTest(args);
         if (args.Length >= 5 && args[0] == "--cut") return Diagnostics.Cut(args);
         // --clip-test DIR NAME FROM TO [delete]: rename, star and trim a clip in a test copy of a videos folder, then delete it (ClipTools; clip-test.txt)

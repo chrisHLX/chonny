@@ -358,6 +358,16 @@ Now the newer version is downloaded while WoW is open (checked against the websi
 already there), the status bar says so, and it installs on the first ten-second tick after WoW closes.
 Update still installs at once, after asking, when WoW is open.
 
+## Settings fit a laptop screen (0.6.42, 2026-11-27)
+
+Settings was a fixed dialog 1022 high, so on Chriso's laptop (125% scaling, 1020 pixels above the
+taskbar) its bottom rows and Save and Cancel were off the screen, with no way to resize or scroll to
+them. The window is now sizeable, no taller than the screen it opens on and placed wholly on it, the
+settings scroll (Windows' dark scrollbar, as in the clip list) and the buttons stay under them. Long
+tick-box lines wrap to the column (`WrapCheck`) instead of running past the edge: a CheckBox asks for
+its text on one line whatever room it is given. `--settings-shot PATH [WIDTH]` draws it at a width;
+checked at the default 778 and at 560.
+
 ## Clips: rename, star, trim and delete (0.6.36, 2026-11-25)
 
 Chriso: "allow users to rename and organise their mindcollector clips ... and trim", "pay particular
