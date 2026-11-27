@@ -10,9 +10,9 @@ internal static class Program
         if (args.Length >= 1 && args[0] == "--sync-once") return Diagnostics.SyncOnce(args);
         if (args.Length >= 3 && args[0] == "--install-addon") return Diagnostics.InstallAddon(args[2], replace: args.Contains("--replace"), forever: args.Contains("--forever"), observer: args.Contains("--observer"));
         if (args.Length >= 1 && args[0] == "--check-observer") return Diagnostics.CheckObserver(args.Length > 1 ? args[1] : null);
-        if (args.Length >= 2 && args[0] == "--ask") return Diagnostics.Ask(args[1]);
         if (args.Length >= 5 && args[0] == "--share-market") return Diagnostics.ShareMarket(args);
         if (args.Length >= 3 && args[0] == "--gear-json") return Diagnostics.GearJson(args);
+        if (args.Length >= 4 && args[0] == "--scan-json") return Diagnostics.ScanJsonOffline(args);
         if (args.Length >= 2 && args[0] == "--check-recorder") return Diagnostics.CheckRecorder(args.Skip(1));
         if (args.Length >= 1 && args[0] == "--obs-test") return Diagnostics.ObsTest(args);
         if (args.Length >= 2 && args[0] == "--check-forever") return Diagnostics.CheckForever(args[1]);
@@ -36,8 +36,6 @@ internal static class Program
         if (args.Length >= 2 && args[0] == "--loudness") return Diagnostics.Loudness(args[1]);
         if (args.Length >= 1 && args[0] == "--obs-audio") return Diagnostics.ObsAudio();
         if (args.Length >= 2 && args[0] == "--fight-groups") return Diagnostics.FightGroups(args[1]);
-        if (args.Length >= 2 && args[0] == "--ask-pending") return Diagnostics.AskPending(args[1]);
-        if (args.Length >= 4 && args[0] == "--ask-search") return Diagnostics.AskSearch(args[1], args[2], args[3]);
         if (args.Length >= 2 && args[0] == "--file-forever") return Diagnostics.FileForever(args[1]);
         // --keep-forever-logs LOGS VIDEOS ARCHIVE: ForeverLogKeeper on test copies (keep-forever-logs.txt)
         if (args.Length >= 4 && args[0] == "--keep-forever-logs") return Diagnostics.KeepForeverLogs(args[1], args[2], args[3]);

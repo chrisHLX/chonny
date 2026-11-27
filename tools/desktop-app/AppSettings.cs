@@ -75,22 +75,11 @@ public sealed class AppSettings
 
     /// <summary>
     /// Install the Observer addon in WoW Forever (2026-11-09): it remembers what you look at (items,
-    /// auction prices, talents) for the Looked at pages, and carries /ask. On unless turned off.
+    /// auction prices, talents) for the Looked at pages. On unless turned off. (It carried /ask until
+    /// 2026-11-27; the AskOn, AskClaude, ClaudePath and AskModel settings went with it, and an old
+    /// settings.json's values for them are ignored.)
     /// </summary>
     public bool ForeverObserver { get; set; } = true;
-
-    /// <summary>
-    /// Answer /ask questions from Forever (AskBridge). On unless turned off (0.6.22): the website's
-    /// search answers (Gemini with Google Search, ForeverAskService), free, a daily limit per player.
-    /// </summary>
-    public bool AskOn { get; set; } = true;
-
-    /// <summary>
-    /// Answer with Claude Code on this PC instead of the website's search (AskBridge, 2026-11-09):
-    /// slower, uses the player's Claude account, and reads every spawn point from Wowhead's map.
-    /// Off until turned on.
-    /// </summary>
-    public bool AskClaude { get; set; }
 
     /// <summary>
     /// Send each Forever auction house scan to the website and write everyone's prices back into the
@@ -99,12 +88,6 @@ public sealed class AppSettings
     /// Everyone's prices come back either way.
     /// </summary>
     public bool ShareScans { get; set; } = true;
-
-    /// <summary>claude.exe, when it isn't on the PATH, in ~/.local/bin or in VS Code's Claude extension.</summary>
-    public string? ClaudePath { get; set; }
-
-    /// <summary>The model /ask runs on: "sonnet" by default, which costs less per question than the largest.</summary>
-    public string AskModel { get; set; } = "sonnet";
 
     /// <summary>Forever's Logs folder (World of Warcraft\_forever_\Logs); found by DetectForeverLogs when empty.</summary>
     public string? ForeverLogsDir { get; set; }

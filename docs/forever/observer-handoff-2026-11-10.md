@@ -192,7 +192,10 @@ app version) and the page, the Gear Finder (`/wow/forever/gear`, `ForeverGearFin
   A drop needs its source's level. There are also same-name items under two numbers (two Darkmantle
   Caps, 25 and 26 Agility): look before deduping.
 - **Suffix versions.** Forever marks "of the Bandit" as a bonus number on the link (item:15602 with
-  bonus 12751, field 12 the count, 13 on the numbers), not the old suffix field. A scan keeps each
+  bonus 12751), not the old suffix field. Two layouts: a shift-clicked link has the count in field 12
+  (`15602::::::::41:1485::1:12751`), an auction house link has a context field first and the count in
+  13 (`1994::::::::1:1489::1:1:12727:1:28:5255`). 0.6.39 read only the first, so every auction's key
+  was "1"; the server refuses one-digit bonuses and a migration dropped those rows. A scan keeps each
   version's cheapest price and count in the item's `v` (`GetReplicateItemLink`), the app sends them
   as the scan's `variants`, and `forever_variant_prices` merges them by the same rule as prices. Each
   new version's stats go to `DB.variants` after the scan. The files have the suffix tables too
@@ -211,7 +214,43 @@ app version) and the page, the Gear Finder (`/wow/forever/gear`, `ForeverGearFin
   leaves it alone, logging "a different copy"). Put the marker back, or Settings > Install the addon,
   once the version carrying Gear.lua ships.
 
-## Ask without Claude Code (2026-11-13, app 0.6.22)
+## Memory and price history (2026-11-27, app 0.6.40)
+
+Chriso's game reported 47 MB for the addon (Dungeon Journal: 13 MB). Measured from his saved data
+(a model of Lua 5.1's tables, checked against loading the parts under Redis's Lua): the saved data
+was about 22 MB loaded, the data files and code about 5, and the rest the Market and Gear tabs'
+lists, kept all session. A table of tables costs about five times its text; a string costs its
+length, which is why the price history (one string a scan) was cheap and the full scans dear.
+
+- **Packed scans:** the scan before last and the goblin house's are one string each,
+  `";id:min:listed:tl:d:v"` (main.lua `ns.packScan`). The newest stays a table. Round trip on
+  Chriso's two scans: all 6,918 and 6,961 items identical, prices to the copper; the app's JSON from a
+  packed and an unpacked copy of one scan identical (`--scan-json`). 3.1 MB became a 247 KB string.
+- **The item sweep:** once the app has sent it, Market.lua carries `itemsSent = "build:done"` and the
+  addon keeps only the counts (7.7 MB).
+- **The tabs:** the Market's two lists and the unpacked scan before last, and the Gear tab's item
+  facts, are dropped when you leave the tab or close the window.
+- **Price history, kept for good (Chriso: the history is the part most useful later; nothing of it
+  goes).** Until now both the addon and the website dropped prices after 30 days. The website now
+  rolls each day older than `KEEP_DAYS` into `forever_prices_daily` (cheapest, usual = median of the
+  hours, listed, readings) before removing its hours, a whole day per transaction
+  (`ForeverMarketService::rollUp`, run after each stored scan); suffix versions into
+  `forever_variant_prices_daily`. `GET /api/forever/history?ids=` gives kept days plus the recent
+  ones worked out the same way, for up to 400 items; the app asks for the tracked and looked-at items
+  and writes them into Market.lua as `history`, one string per item, and each item's page shows them
+  under "Day by day, everyone's scans". The whole scans stay on disk as before. The addon still keeps
+  its own scans for 30 days (its time-of-day reads use them).
+- **Not done:** the usual price is still found by searching every kept scan per item (cached until
+  the next scan); Professions sorted by profit does that for hundreds of items at once.
+
+## Ask without Claude Code (2026-11-13, app 0.6.22; removed 2026-11-27, app 0.6.40)
+
+**Removed.** Chriso, 2026-11-27: the built-in features cover what /ask was for, and the bridge and the
+AI calls were complexity for little. The addon's Ask tab is now the Gear tab; /ask, ask.lua,
+Answers.lua, the Research and "Ask where to get it" buttons, the app's AskBridge with its Ask tab and
+settings, tools/forever-ask/, and the site's `POST /api/forever/ask` (`ForeverAskService`, Gemini) are
+gone. The map pins stay (Map.lua), for recipe vendors from the addon's own data. What follows is the
+record of how it worked.
 
 - **Who answers.** By default the website: `POST /api/forever/ask` (`ForeverAskController`,
   `ForeverAskService`) asks Gemini 2.5 Flash with Google Search grounding for a JSON answer of at most

@@ -31,7 +31,7 @@ use Illuminate\Support\Facades\DB;
  */
 class ForeverMarketService
 {
-    /** Readings older than this are dropped from forever_prices (the scans stay on disk). */
+    /** forever_prices keeps each hour for this many days; older days become one row a day (rollUp), kept for good. */
     public const KEEP_DAYS = 30;
 
     /** What the app downloads covers this many days. */
@@ -91,7 +91,7 @@ class ForeverMarketService
         $variants = [];
         foreach (is_array($scan['variants'] ?? null) ? $scan['variants'] : [] as $row) {
             [$id, $bonus, $min, $listed] = (is_array($row) ? $row : []) + [null, null, null, null];
-            if (is_int($id) && isset($items[$id]) && is_string($bonus) && preg_match('/^\d{1,7}(\.\d{1,7}){0,15}$/', $bonus)
+            if (is_int($id) && isset($items[$id]) && is_string($bonus) && preg_match(ForeverGearService::BONUS, $bonus)
                 && is_numeric($min) && $min >= 1 && $min <= 100_000_000_000 && is_int($listed) && $listed >= 1 && $listed <= 10_000_000) {
                 $variants[$id.':'.$bonus] = [$id, $bonus, (int) round($min), $listed];
             }
@@ -121,11 +121,113 @@ class ForeverMarketService
             ]);
             $this->merge($market, $at, $auctions, $items);
             $this->mergeVariants($market, $at, $auctions, $variants);
-            DB::table('forever_variant_prices')->where('market', $market)->where('hour', '<', now()->subDays(self::KEEP_DAYS))->delete();
-            DB::table('forever_prices')->where('market', $market)->where('hour', '<', now()->subDays(self::KEEP_DAYS))->delete();
         });
+        // the stored scan counts whatever happens here; a day that fails to roll up keeps its hours
+        try {
+            $this->rollUp($market);
+        } catch (\Throwable $e) {
+            report($e);
+        }
 
         return ['status' => 'stored', 'items' => count($items)];
+    }
+
+    /** The hourly tables, the daily ones they roll up into, and the extra key a row has. */
+    private const ROLL_UP = [
+        ['forever_prices', 'forever_prices_daily', null],
+        ['forever_variant_prices', 'forever_variant_prices_daily', 'bonus'],
+    ];
+
+    /**
+     * A market's hourly readings older than KEEP_DAYS, one whole day at a time, oldest first: each item's
+     * day becomes one row in the daily table, kept for good (2026-11-27, Chriso: the price history is the
+     * part most useful later), and the day's hours go. Each day in one transaction, so a day is never
+     * half rolled up and half gone. Before this, readings past KEEP_DAYS were deleted. Returns the days
+     * rolled up.
+     */
+    public function rollUp(string $market): int
+    {
+        $cutoff = now()->subDays(self::KEEP_DAYS)->startOfDay();
+        $days = 0;
+        foreach (self::ROLL_UP as [$hourly, $daily, $extra]) {
+            while ($first = DB::table($hourly)->where('market', $market)->where('hour', '<', $cutoff)->min('hour')) {
+                $day = Carbon::parse($first)->startOfDay();
+                $next = $day->copy()->addDay();
+                DB::transaction(function () use ($hourly, $daily, $extra, $market, $day, $next) {
+                    $hours = fn () => DB::table($hourly)->where('market', $market)->where('hour', '>=', $day)->where('hour', '<', $next);
+                    $groups = [];
+                    foreach ($hours()->select(array_values(array_filter(['item_id', $extra, 'min_unit', 'quantity'])))->cursor() as $r) {
+                        $key = $r->item_id.($extra ? ':'.$r->{$extra} : '');
+                        $groups[$key] ??= ['item_id' => (int) $r->item_id, 'extra' => $extra ? $r->{$extra} : null, 'prices' => [], 'listed' => []];
+                        $groups[$key]['prices'][] = (int) $r->min_unit;
+                        $groups[$key]['listed'][] = (int) $r->quantity;
+                    }
+                    $rows = [];
+                    foreach ($groups as $g) {
+                        $row = ['market' => $market, 'item_id' => $g['item_id'], 'day' => $day->toDateString(),
+                            'low' => min($g['prices']), 'usual' => (int) round(ForeverCraftsService::median($g['prices'])),
+                            'listed' => (int) round(ForeverCraftsService::median($g['listed'])), 'readings' => min(count($g['prices']), 65535)];
+                        if ($extra) {
+                            $row[$extra] = $g['extra'];
+                        }
+                        $rows[] = $row;
+                    }
+                    $unique = array_values(array_filter(['market', 'item_id', $extra, 'day']));
+                    foreach (array_chunk($rows, 500) as $chunk) {
+                        DB::table($daily)->upsert($chunk, $unique, ['low', 'usual', 'listed', 'readings']);
+                    }
+                    $hours()->delete();
+                });
+                $days++;
+            }
+        }
+
+        return $days;
+    }
+
+    /** The most items one history request may ask for. */
+    public const HISTORY_IDS = 400;
+
+    /**
+     * Day by day prices for some items, for the addon's item pages (2026-11-27): the rolled-up days kept
+     * for good, then the last KEEP_DAYS worked out from the hourly readings the same way. Per item, oldest
+     * first: [[yyyymmdd, low, usual, listed, readings], ...]. Cached until the market's next scan.
+     *
+     * @param  array<int>  $ids
+     * @return array{status: string, market: string, items: array<int, array>|\stdClass}
+     */
+    public function history(string $market, array $ids): array
+    {
+        $ids = array_values(array_unique(array_slice($ids, 0, self::HISTORY_IDS)));
+        sort($ids);
+        $lastScan = (int) ForeverScan::where('market', $market)->max('id');
+        if ($ids === [] || $lastScan === 0) {
+            return ['status' => 'ok', 'market' => $market, 'items' => new \stdClass];
+        }
+
+        return Cache::remember("forever-history:{$market}:{$lastScan}:".md5(implode(',', $ids)), now()->addDay(), function () use ($market, $ids) {
+            $items = [];
+            foreach (DB::table('forever_prices_daily')->where('market', $market)->whereIn('item_id', $ids)
+                ->orderBy('day')->get(['item_id', 'day', 'low', 'usual', 'listed', 'readings']) as $r) {
+                $items[(int) $r->item_id][] = [(int) str_replace('-', '', substr((string) $r->day, 0, 10)),
+                    (int) $r->low, (int) $r->usual, (int) $r->listed, (int) $r->readings];
+            }
+            $recent = [];
+            foreach (DB::table('forever_prices')->where('market', $market)->whereIn('item_id', $ids)
+                ->orderBy('hour')->select(['item_id', 'hour', 'min_unit', 'quantity'])->cursor() as $r) {
+                $day = (int) Carbon::parse($r->hour)->format('Ymd');
+                $recent[(int) $r->item_id][$day]['prices'][] = (int) $r->min_unit;
+                $recent[(int) $r->item_id][$day]['listed'][] = (int) $r->quantity;
+            }
+            foreach ($recent as $id => $days) {
+                foreach ($days as $day => $d) {
+                    $items[$id][] = [$day, min($d['prices']), (int) round(ForeverCraftsService::median($d['prices'])),
+                        (int) round(ForeverCraftsService::median($d['listed'])), count($d['prices'])];
+                }
+            }
+
+            return ['status' => 'ok', 'market' => $market, 'items' => $items ?: new \stdClass];
+        });
     }
 
     /**

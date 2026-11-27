@@ -115,12 +115,12 @@ class ForeverGearTest extends TestCase
                 'items' => [[15602, 29900, 3]], 'variants' => $variants,
             ];
             $t = now()->subHours(2)->startOfHour()->addMinutes(5)->timestamp;
-            $this->send('/api/forever/scan', $key, $scan($t, 1000, [[15602, '12751', 29900, 1], [15602, '12755', 45000, 2], [99, '1', 5, 1], [15602, '../x', 1, 1]]))->assertOk();
+            $this->send('/api/forever/scan', $key, $scan($t, 1000, [[15602, '12751', 29900, 1], [15602, '12755', 45000, 2], [99, '12751', 5, 1], [15602, '../x', 1, 1], [15602, '1', 2, 1]]))->assertOk();
             // a smaller scan in the same hour doesn't move the reading
             $this->send('/api/forever/scan', $key, $scan($t + 300, 500, [[15602, '12751', 100, 1]]))->assertOk();
 
             $rows = DB::table('forever_variant_prices')->orderBy('bonus')->get();
-            $this->assertSame(['12751', '12755'], $rows->pluck('bonus')->all(), 'an item not in the scan and a bad bonus are dropped');
+            $this->assertSame(['12751', '12755'], $rows->pluck('bonus')->all(), 'an item not in the scan, a bad bonus and the old "1" key are dropped');
             $this->assertSame(29900, (int) $rows[0]->min_unit);
         } finally {
             File::deleteDirectory($storage);

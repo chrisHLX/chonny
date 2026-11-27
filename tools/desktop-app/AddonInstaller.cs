@@ -27,10 +27,12 @@ public static class AddonInstaller
     public static readonly Addon Forever = new("MindCollectorForeverLog", "forever-addon", ["MindCollectorForeverLog.toc", "main.lua"], "MindCollector Forever addon");
     /// <summary>
     /// The Observer (2026-11-09, tools/wow-addon/MindCollectorObserver): remembers what the player looks
-    /// at in Forever and carries /ask. Answers.lua is a seed: AskBridge writes it, so it is never compared.
+    /// at in Forever, prices crafts and finds gear. Market.lua is a seed: MarketShare writes it, so it is
+    /// never compared. ask.lua and Answers.lua, from before /ask was removed (2026-11-27), may still sit in
+    /// the folder; the .toc no longer loads them.
     /// </summary>
     public static readonly Addon Observer = new("MindCollectorObserver", "observer-addon",
-        ["MindCollectorObserver.toc", "Data.lua", "GearIds.lua", "main.lua", "Gear.lua", "ui.lua", "ask.lua"], "MindCollector Auction House addon", ["Answers.lua", "Market.lua"]);
+        ["MindCollectorObserver.toc", "Data.lua", "GearIds.lua", "main.lua", "Gear.lua", "ui.lua", "Map.lua"], "MindCollector Auction House addon", ["Market.lua"]);
 
     private const string Marker = ".installed-by-mindcollector";
 

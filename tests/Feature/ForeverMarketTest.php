@@ -158,4 +158,58 @@ class ForeverMarketTest extends TestCase
             ->getJson('/api/forever/market?region=US&realm=&faction=Horde')
             ->assertOk()->assertJson(['market' => 'US/Horde', 'players' => 1]);
     }
+
+    /** An hourly reading for the roll-up tests, written straight in: a scan that old would be refused. */
+    private function hour(string $hour, int $id, int $min, int $listed, ?string $bonus = null): void
+    {
+        $row = ['market' => 'US/Horde', 'item_id' => $id, 'hour' => $hour, 'scanned_at' => $hour, 'min_unit' => $min,
+            'quantity' => $listed, 'scan_auctions' => 1000];
+        if ($bonus) {
+            DB::table('forever_variant_prices')->insert($row + ['bonus' => $bonus]);
+        } else {
+            DB::table('forever_prices')->insert($row + ['expiring' => null, 'sources' => 1]);
+        }
+    }
+
+    public function test_days_past_the_hourly_window_are_kept_as_one_row_a_day(): void
+    {
+        $old = now()->subDays(40)->startOfDay();
+        $this->hour($old->copy()->addHours(1)->toDateTimeString(), 2840, 100, 10);
+        $this->hour($old->copy()->addHours(5)->toDateTimeString(), 2840, 300, 20);
+        $this->hour($old->copy()->addHours(9)->toDateTimeString(), 2840, 200, 40);
+        $this->hour($old->copy()->addHours(2)->toDateTimeString(), 15602, 5000, 2, '12751');
+        $recent = now()->subDays(2)->startOfHour()->toDateTimeString();
+        $this->hour($recent, 2840, 150, 12);
+
+        $days = app(\App\Http\Services\ForeverMarketService::class)->rollUp('US/Horde');
+
+        $this->assertSame(2, $days, 'one day of prices and one of a suffix version');
+        $day = DB::table('forever_prices_daily')->where('item_id', 2840)->first();
+        $this->assertSame($old->toDateString(), substr((string) $day->day, 0, 10));
+        $this->assertSame([100, 200, 20, 3], [(int) $day->low, (int) $day->usual, (int) $day->listed, (int) $day->readings]);
+        $this->assertSame(1, DB::table('forever_prices')->count(), 'the old hours go, the recent one stays');
+        $this->assertSame('12751', DB::table('forever_variant_prices_daily')->value('bonus'));
+        $this->assertSame(0, DB::table('forever_variant_prices')->count());
+    }
+
+    public function test_history_gives_kept_days_then_recent_ones_for_the_items_asked(): void
+    {
+        $key = User::factory()->create()->issueCoachToken();
+        $old = now()->subDays(40)->startOfDay();
+        $this->hour($old->copy()->addHours(3)->toDateTimeString(), 2840, 100, 10);
+        app(\App\Http\Services\ForeverMarketService::class)->rollUp('US/Horde');
+        $t = now()->subHours(2)->startOfHour()->addMinutes(5)->timestamp;
+        $this->send($key, $this->scan($t, 1000, [[2840, 150, 12], [3355, 80, 30]]))->assertOk();
+
+        $res = $this->withHeader('Authorization', 'Bearer '.$key)
+            ->getJson('/api/forever/history?region=US&faction=Horde&ids=2840')
+            ->assertOk()->json();
+
+        $this->assertSame([(int) $old->format('Ymd'), 100, 100, 10, 1], $res['items']['2840'][0]);
+        $this->assertSame([(int) now()->setTimestamp($t)->format('Ymd'), 150, 150, 12, 1], $res['items']['2840'][1]);
+        $this->assertArrayNotHasKey('3355', $res['items'], 'only the items asked for');
+
+        $this->withHeader('Authorization', 'Bearer '.$key)
+            ->getJson('/api/forever/history?region=US&faction=Horde&ids=1,x')->assertStatus(422);
+    }
 }

@@ -5,8 +5,8 @@ using System.Text.Json;
 namespace MindCollector.Desktop;
 
 /// <summary>
-/// The Forever side's Looked at and Ask pages (2026-11-09), from the Observer addon's saved data
-/// (ObserverData) and the app's own answers (AskBridge).
+/// The Forever side's Looked at pages (2026-11-09), from the Observer addon's saved data (ObserverData).
+/// The Ask pages went with /ask on 2026-11-27.
 /// </summary>
 internal static class ObserverPages
 {
@@ -239,57 +239,5 @@ internal static class ObserverPages
         var b = badge is { } x ? $"<span class=\"badge {(x.Tone > 0 ? "up" : x.Tone < 0 ? "down" : "")}\">{H(x.Text)}</span>" : "";
         var inner = $"<span><b>{H(title)}</b><br><span class=\"muted\">{H(sub)}</span></span>{b}";
         return link != null ? $"<a class=\"row\" href=\"mc-app://{link}\">{inner}</a>" : $"<div class=\"row\">{inner}</div>";
-    }
-
-    // ------------------------------------------------------------------ Ask
-
-    public static string AskOverview(AskBridge bridge, ObserverData? data)
-    {
-        var problem = bridge.CheckReady();
-        var sb = new StringBuilder(Css);
-        sb.Append(problem != null
-            ? $"<p class=\"muted\">{H(problem)}</p><p><a class=\"btn gold\" href=\"mc-app://settings\">Open Settings</a></p>"
-            : bridge.Working > 0 ? "<p class=\"muted\">Working on a question now.</p>"
-            : $"<p class=\"muted\">Ready. Ask here, or with /ask in game. Answered by {H(bridge.Engine)}.</p>");
-        if (problem == null)
-            sb.Append("""
-                <input class="ask" id="q" maxlength="200" placeholder="where are the bears in Ashenvale? mark them on the map" autofocus>
-                <br><button class="btn gold" id="go">Ask</button> <span class="muted" id="sent"></span>
-                <script>
-                (function(){
-                  var q=document.getElementById('q');
-                  function send(){ var t=q.value.trim(); if(!t) return; window.chrome.webview.postMessage({type:'ask', text:t}); q.value=''; document.getElementById('sent').textContent='Sent. The answer shows on the left when it comes.'; }
-                  document.getElementById('go').addEventListener('click', send);
-                  q.addEventListener('keydown', function(e){ if(e.key==='Enter') send(); });
-                })();
-                </script>
-                """);
-        var waiting = data?.Asks.Where(a => a.Status != "answered" && DateTime.Now - a.At < TimeSpan.FromHours(2) && bridge.Answers().All(x => x.Id != a.Id)).ToList() ?? [];
-        if (waiting.Count > 0)
-            sb.Append("<h2>Asked in game, not answered yet</h2><div class=\"list\">" + string.Join("", waiting.Select(a => Row(null, a.Question, $"asked {When(a.At)}", null))) + "</div>");
-        sb.Append("""
-            <h2>How it works</h2>
-            <p>MindCollector's search looks it up on the web in a few seconds and answers in a sentence or two, saying where it read it. It marks a place on your map only when a page gives its coordinates, so it sometimes names the zone without a pin. Search results can be from the original game rather than Forever. It's free, up to 30 questions a day.</p>
-            <p>Claude Code, if you have it and turn it on in Settings, takes a minute or two and uses your Claude account, but reads every spawn point from Wowhead's Forever map.</p>
-            <p>Either way the next /reload in WoW puts the points on your world map, with a waypoint on the nearest. Asking in game with /ask reloads the UI to send the question, since an addon can't reach anything outside the game while it runs.</p>
-            """);
-        return ForeverPages.Wrap("WoW Forever", "Ask", sb.ToString());
-    }
-
-    public static string Answer(AskBridge.Answer a)
-    {
-        var asked = DateTimeOffset.FromUnixTimeSeconds(a.Asked).LocalDateTime;
-        var sb = new StringBuilder(Css);
-        var facts = new List<string> { $"asked {When(asked)}", a.FromApp ? "from the app" : "in game" + (a.Zone != null ? $", in {a.Zone}" : "") };
-        if (a.Cost is { } c) facts.Add($"${c:F2}");
-        sb.Append($"<p class=\"muted\">{H(string.Join(" · ", facts))}</p><p style=\"font-size:15px\">{H(a.Text)}</p>");
-        if (a.Points.Count > 0)
-        {
-            var zones = a.Points.GroupBy(p => p.Zone).Select(g => $"{g.Count()} in {g.Key}");
-            sb.Append($"<h2>{a.Points.Count} point{(a.Points.Count == 1 ? "" : "s")} for the map</h2><p class=\"muted\">{H(string.Join(", ", zones))}. Type /reload in WoW to see them on your world map, with a waypoint on the nearest; /mco clear takes them off.</p>");
-            sb.Append("<details><summary>Every point</summary><table class=\"looks\"><tr><th>Zone</th><th>Where</th><th>What</th></tr>" +
-                      string.Join("", a.Points.Select(p => $"<tr><td>{H(p.Zone)}</td><td>{p.X.ToString("F1", Inv)}, {p.Y.ToString("F1", Inv)}</td><td>{H(p.Label)}</td></tr>")) + "</table></details>");
-        }
-        return ForeverPages.Wrap("WoW Forever · Ask", a.Question, sb.ToString());
     }
 }

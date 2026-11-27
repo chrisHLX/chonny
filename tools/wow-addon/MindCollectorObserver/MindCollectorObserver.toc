@@ -1,13 +1,12 @@
 ## Interface: 16001
 ## Title: MindCollector Auction House
-## Notes: Reads the whole auction house for what sells, works out the cheapest recipes to level, and remembers what you look at. /ask sends a question to Claude.
+## Notes: Reads the whole auction house for what sells, works out the cheapest recipes to level, finds the best gear on the AH for you, and remembers what you look at.
 ## SavedVariables: MindCollectorObserverDB
 
 Data.lua
 GearIds.lua
-Answers.lua
 Market.lua
 main.lua
 Gear.lua
 ui.lua
-ask.lua
+Map.lua

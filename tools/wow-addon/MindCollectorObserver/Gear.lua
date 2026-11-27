@@ -100,7 +100,9 @@ local sweep      -- the state in DB.items while a sweep runs this session
 local pending = {} -- [id] = when it was asked
 local ticker
 
+-- In the game and not: once the app has sent the sweep only the counts are kept (main.lua's initDB).
 local function counts(s)
+    if not s.got then return s.gotN or 0, s.goneN or 0 end
     local got, gone = 0, 0
     for _ in pairs(s.got) do got = got + 1 end
     for _ in pairs(s.gone) do gone = gone + 1 end
@@ -216,21 +218,30 @@ local function gear(id)
     return g
 end
 
--- The link's bonus numbers as "12751" (or "a.b" for several), or nil when it has none. Forever's link
--- is item:id:enchant:gem1-4:suffix:unique:level:spec:context:count:bonus...; 15602::::::::41:1485::1:12751.
+-- The bonus count at field `at` and the bonus numbers after it, as "12751" (or "a.b" for several).
+-- A bonus number is never one digit, which keeps a context field from being read as one.
+local function bonusesAt(f, at)
+    local n = tonumber(f[at] or "")
+    if not n or n < 1 or n > 16 then return nil end
+    local b = {}
+    for k = at + 1, at + n do
+        local x = tonumber(f[k] or "")
+        if not x or x < 10 then return nil end
+        b[#b + 1] = f[k]
+    end
+    return table.concat(b, ".")
+end
+
+-- The link's bonus numbers, or nil when it has none. Forever writes two layouts (read in game,
+-- 2026-11-27): an auction house link has a context field before the count,
+-- item:1994::::::::1:1489::1:1:12727:1:28:5255, and a shift-clicked one does not,
+-- item:15602::::::::41:1485::1:12751. 0.6.39 read only the second, so every auction's key was "1".
 local function bonusKey(link)
     local s = link:match("item:([%-%d:]+)")
     if not s then return nil end
     local f = {}
     for v in (s .. ":"):gmatch("([^:]*):") do f[#f + 1] = v end
-    local n = tonumber(f[12] or "")
-    if not n or n < 1 or n > 16 then return nil end
-    local b = {}
-    for k = 13, 12 + n do
-        if not tonumber(f[k] or "") then return nil end
-        b[#b + 1] = f[k]
-    end
-    return table.concat(b, ".")
+    return bonusesAt(f, 13) or bonusesAt(f, 12)
 end
 
 local scanLinks = {} -- ["15602:12751"] = a link, for this scan's suffix versions
@@ -253,14 +264,16 @@ function ns.gearVariant(a, index, id, unit, count)
     scanLinks[id .. ":" .. key] = scanLinks[id .. ":" .. key] or link
 end
 
--- From finishScan: each suffix version not seen before gets its name and stats, a few a second.
+-- From finishScan: each suffix version not seen before gets its name, stats and link (for its tooltip
+-- in the Gear tab), a few a second. The app sends only the name and stats.
 function ns.gearVariantsAfterScan()
     local DB = ns.DB
     if not DB then return end
     DB.variants = DB.variants or {}
     local todo = {}
     for key, link in pairs(scanLinks) do
-        if not DB.variants[key] then todo[#todo + 1] = { key, link, 0 } end
+        -- one kept before 27 Nov has no link (its third field): read it again for the Gear tab's tooltip
+        if not DB.variants[key] or not DB.variants[key][3] then todo[#todo + 1] = { key, link, 0 } end
     end
     scanLinks = {}
     if #todo == 0 then return end
@@ -275,7 +288,7 @@ function ns.gearVariantsAfterScan()
         end
         local name = C_Item.GetItemInfo(x[2])
         if name then
-            DB.variants[x[1]] = { name, stats(x[2]) }
+            DB.variants[x[1]] = { name, stats(x[2]), x[2] }
         elseif x[3] < 3 then
             -- the base item isn't loaded yet: ask, and look again at the end
             x[3] = x[3] + 1
@@ -331,12 +344,290 @@ function ns.gearVendorList(here, who)
         t = time(), items = items }
 end
 
+-- ---------------------------------------------------------------- the Gear tab (27 Nov)
+-- The best gear on the auction house for this character, by the stats the player puts in order
+-- (Chriso, 27 Nov: a list of stats you move up and down, say Intellect, Spirit, Stamina, and gear is
+-- ranked by it; one stat on its own works too). Candidates are the items in the newest prices (your
+-- scan, or everyone's pooled ones) that the game says this character can use (C_PlayerInfo.CanUseItem)
+-- at their level; suffix versions from your own scan come in on their own.
+--
+-- How gear is ranked, as Chriso put it: an item must have your first stat; the ones with all your
+-- stats come first, then those missing one, and so on; among those, the ones with your higher stats
+-- first (Intellect and Spirit before Intellect and Stamina); then the most of your first stat, then of
+-- your second. What you wear in the slot is ranked the same way, so an item ranked above it is better.
+-- Hit and crit count as the tooltip's % (10 hit rating, 14 crit rating to 1% at any level).
+
+-- key, label, short label, the game's stat keys with a factor
+ns.GEAR_STATS = {
+    { "str", "Strength", "Str", { { "STRENGTH", 1 } } },
+    { "agi", "Agility", "Agi", { { "AGILITY", 1 } } },
+    { "sta", "Stamina", "Sta", { { "STAMINA", 1 } } },
+    { "int", "Intellect", "Int", { { "INTELLECT", 1 } } },
+    { "spi", "Spirit", "Spi", { { "SPIRIT", 1 } } },
+    { "armor", "Armor", "Armor", { { "RESISTANCE0_NAME", 1 } } },
+    { "ap", "Attack Power", "AP", { { "ATTACK_POWER", 1 }, { "MELEE_ATTACK_POWER", 1 } } },
+    { "rap", "Ranged Attack Power", "RAP", { { "ATTACK_POWER", 1 }, { "RANGED_ATTACK_POWER", 1 } } },
+    { "crit", "Crit %", "Crit %", { { "CRIT_RATING", 1 / 14 } } },
+    { "hit", "Hit %", "Hit %", { { "HIT_RATING", 1 / 10 } } },
+    { "sp", "Spell Damage", "Spell dmg", { { "SPELL_POWER", 1 }, { "SPELL_DAMAGE_DONE", 1 } } },
+    { "heal", "Healing", "Healing", { { "SPELL_POWER", 1 }, { "SPELL_HEALING_DONE", 1 } } },
+    { "mp5", "Mana per 5 sec", "MP5", { { "MANA_REGENERATION", 1 } } },
+    { "def", "Defense", "Def", { { "DEFENSE_SKILL_RATING", 1 } } },
+    { "dodge", "Dodge rating", "Dodge", { { "DODGE_RATING", 1 } } },
+    { "parry", "Parry rating", "Parry", { { "PARRY_RATING", 1 } } },
+    { "block", "Block rating", "Block", { { "BLOCK_RATING", 1 } } },
+    { "dps", "Weapon DPS", "DPS", { { "DAMAGE_PER_SECOND", 1 } } },
+}
+local STAT_BY_KEY = {}
+for _, s in ipairs(ns.GEAR_STATS) do STAT_BY_KEY[s[1]] = s end
+ns.GEAR_STAT_BY_KEY = STAT_BY_KEY
+
+-- name, the slots an item can have, the character sheet slots it replaces (the weaker of two rings or trinkets)
+ns.GEAR_SLOTS = {
+    { "Head", { "INVTYPE_HEAD" }, { 1 } }, { "Neck", { "INVTYPE_NECK" }, { 2 } },
+    { "Shoulder", { "INVTYPE_SHOULDER" }, { 3 } }, { "Back", { "INVTYPE_CLOAK" }, { 15 } },
+    { "Chest", { "INVTYPE_CHEST", "INVTYPE_ROBE" }, { 5 } }, { "Wrist", { "INVTYPE_WRIST" }, { 9 } },
+    { "Hands", { "INVTYPE_HAND" }, { 10 } }, { "Waist", { "INVTYPE_WAIST" }, { 6 } },
+    { "Legs", { "INVTYPE_LEGS" }, { 7 } }, { "Feet", { "INVTYPE_FEET" }, { 8 } },
+    { "Finger", { "INVTYPE_FINGER" }, { 11, 12 } }, { "Trinket", { "INVTYPE_TRINKET" }, { 13, 14 } },
+    { "One-hand", { "INVTYPE_WEAPON", "INVTYPE_WEAPONMAINHAND" }, { 16 } }, { "Two-hand", { "INVTYPE_2HWEAPON" }, { 16 } },
+    { "Off hand", { "INVTYPE_WEAPONOFFHAND", "INVTYPE_SHIELD", "INVTYPE_HOLDABLE" }, { 17 } },
+    { "Ranged", { "INVTYPE_RANGED", "INVTYPE_RANGEDRIGHT", "INVTYPE_THROWN", "INVTYPE_RELIC" }, { 18 } },
+}
+local SLOT_OF = {}
+for _, s in ipairs(ns.GEAR_SLOTS) do for _, loc in ipairs(s[2]) do SLOT_OF[loc] = s[1] end end
+
+local function charKey() return UnitName("player") or "?" end
+
+-- This character's stats, most wanted first: { "int", "spi", "sta" }.
+function ns.gearOrder()
+    local DB = ns.DB
+    return DB and DB.gearOrder and DB.gearOrder[charKey()] or {}
+end
+
+local function saveOrder(order)
+    ns.DB.gearOrder = ns.DB.gearOrder or {}
+    ns.DB.gearOrder[charKey()] = order
+end
+
+-- The stat panel's buttons: add a stat at the bottom, take one out, move one up (-1) or down (+1).
+function ns.gearAdd(key)
+    local order = ns.gearOrder()
+    for _, k in ipairs(order) do if k == key then return end end
+    if not STAT_BY_KEY[key] then return end
+    local copy = { unpack(order) }
+    copy[#copy + 1] = key
+    saveOrder(copy)
+end
+
+function ns.gearRemove(key)
+    local copy = {}
+    for _, k in ipairs(ns.gearOrder()) do if k ~= key then copy[#copy + 1] = k end end
+    saveOrder(copy)
+end
+
+function ns.gearMove(key, step)
+    local copy = { unpack(ns.gearOrder()) }
+    for i, k in ipairs(copy) do
+        local j = i + step
+        if k == key and copy[j] then
+            copy[i], copy[j] = copy[j], copy[i]
+            break
+        end
+    end
+    saveOrder(copy)
+end
+
+-- The picked stats' values in an item, from its stats table (keys as stats() gives them).
+local function valuesOf(st, order)
+    local values = {}
+    for _, key in ipairs(order) do
+        local v = 0
+        for _, f in ipairs(STAT_BY_KEY[key] and STAT_BY_KEY[key][4] or {}) do v = v + (st and st[f[1]] or 0) * f[2] end
+        values[key] = v
+    end
+    return values
+end
+
+-- Whether values a rank above values b for this order (the rule at the top of this section); nil
+-- when they rank the same.
+local function above(a, b, order)
+    local na, nb = 0, 0
+    for _, k in ipairs(order) do
+        if a[k] > 0 then na = na + 1 end
+        if b[k] > 0 then nb = nb + 1 end
+    end
+    if na ~= nb then return na > nb end
+    for _, k in ipairs(order) do
+        if (a[k] > 0) ~= (b[k] > 0) then return a[k] > 0 end
+    end
+    for _, k in ipairs(order) do
+        if math.abs(a[k] - b[k]) > 0.001 then return a[k] > b[k] end
+    end
+    return nil
+end
+ns.gearAbove = above
+
+local function shown(key, v)
+    local r = math.floor(v * 10 + 0.5) / 10
+    local s = r % 1 == 0 and string.format("%d", r) or string.format("%.1f", r)
+    return (key == "crit" or key == "hit") and (s .. "%") or s
+end
+
+-- "Int 12  ·  Spi 4": the picked stats an item has, in the order picked.
+function ns.gearValuesText(values, order)
+    local out = {}
+    for _, k in ipairs(order) do
+        if values[k] > 0 then out[#out + 1] = STAT_BY_KEY[k][3]:gsub(" %%", "") .. " " .. shown(k, values[k]) end
+    end
+    return table.concat(out, "  ·  ")
+end
+
+-- What an item changes against what you wear, in the order picked: { {"+6 Int", true}, {"-3 Sta", false} }.
+-- Stats that don't change are left out.
+function ns.gearDiff(values, mine, order)
+    local out = {}
+    for _, k in ipairs(order) do
+        local d = values[k] - (mine and mine[k] or 0)
+        if math.abs(d) > 0.001 then
+            out[#out + 1] = { (d > 0 and "+" or "-") .. shown(k, math.abs(d)) .. " " .. STAT_BY_KEY[k][3]:gsub(" %%", ""), d > 0 }
+        end
+    end
+    return out
+end
+
+-- What the game says about one item, kept for the session: nil while it isn't loaded. Items the client
+-- lacks are asked for, at most ASK_AT_ONCE each time the tab draws: the sweep asks 25 a second, and a
+-- first look could otherwise send a few thousand requests at once.
+local ASK_AT_ONCE = 150
+local info, asked, budget = {}, {}, 0
+local function itemInfo(id)
+    local i = info[id]
+    if i then return i end
+    if not C_Item.IsItemDataCachedByID(id) then
+        if not asked[id] and budget > 0 then
+            asked[id] = true
+            budget = budget - 1
+            C_Item.RequestLoadItemDataByID(id)
+        end
+        return nil
+    end
+    local name, link, q, _, req, _, _, _, loc, icon = C_Item.GetItemInfo(id)
+    if not name then return nil end
+    local ok, usable = pcall(C_PlayerInfo.CanUseItem, id)
+    i = { id = id, name = name, link = link, q = q or 1, req = req or 0, loc = loc, icon = icon, stats = stats(link),
+        usable = not ok or usable ~= false }
+    info[id] = i
+    return i
+end
+
+-- What you wear in a slot: of its places (two rings, two trinkets) the one ranked lower, since that's
+-- the one an upgrade replaces. { name, link, values, empty }.
+local function wearing(places, order)
+    local worst
+    for _, inv in ipairs(places) do
+        local link = GetInventoryItemLink("player", inv)
+        local w = { link = link, empty = link == nil, values = valuesOf(link and stats(link), order),
+            name = link and C_Item.GetItemInfo(link) }
+        if not worst or above(worst.values, w.values, order) then worst = w end
+    end
+    return worst
+end
+
+-- The Gear tab's content: per slot what you wear and what's on the auction house, best first.
+-- { order, slots = { {name, mine, list = { {name, id, link, icon, q, req, price, when, values, better}, ... }} }, loading = n }
+-- Kept until the prices, the stats picked, your level or what you wear change, and while nothing is
+-- still loading: the list and the details both draw from it, and it walks every priced item.
+local viewCache
+function ns.gearView()
+    local order = ns.gearOrder()
+    local DB = ns.DB
+    local level = UnitLevel("player") or 60
+    local worn = {}
+    for inv = 1, 18 do worn[inv] = GetInventoryItemLink("player", inv) or "" end
+    local key = table.concat({ DB.lastScan and DB.lastScan.t or 0, ns.pool and ns.pool.t or 0, table.concat(order, ","), level,
+        table.concat(worn, ";") }, "|")
+    if viewCache and viewCache.key == key then return viewCache.view end
+    local out = { order = order, slots = {}, loading = 0 }
+    if #order == 0 then return out end
+    local first = order[1]
+    budget = ASK_AT_ONCE
+    local scan = DB.lastScan and DB.lastScan.prices or {}
+    local pool = ns.pool and ns.pool.items or {}
+    local seen, bySlot = {}, {}
+    local function add(slot, x)
+        bySlot[slot] = bySlot[slot] or {}
+        table.insert(bySlot[slot], x)
+    end
+    local function consider(id)
+        if seen[id] then return end
+        seen[id] = true
+        local _, _, _, loc, _, classID = C_Item.GetItemInfoInstant(id)
+        local slot = SLOT_OF[loc or ""]
+        if not slot or (classID ~= 2 and classID ~= 4) then return end
+        local it = itemInfo(id)
+        if not it then
+            out.loading = out.loading + 1
+            return
+        end
+        if not it.usable or it.req > level then return end
+        local a = scan[id]
+        if type(a) == "table" and a.v then
+            -- suffix versions: each priced and described on its own, the base item not at all
+            for bonus, v in pairs(a.v) do
+                local var = DB.variants and DB.variants[id .. ":" .. bonus]
+                if var then
+                    local values = valuesOf(var[2], order)
+                    if values[first] > 0 then
+                        add(slot, { name = var[1], id = id, link = var[3], icon = it.icon, q = it.q, req = it.req, price = v[1],
+                            when = DB.lastScan.t, values = values })
+                    end
+                end
+            end
+            return
+        end
+        local values = valuesOf(it.stats, order)
+        if values[first] <= 0 then return end
+        local p = ns.latestPrice(id)
+        if not p then return end
+        add(slot, { name = it.name, id = id, link = it.link, icon = it.icon, q = it.q, req = it.req, price = p.min, when = p.t, values = values })
+    end
+    for id in pairs(scan) do if type(id) == "number" then consider(id) end end
+    for id in pairs(pool) do if type(id) == "number" then consider(id) end end
+    for _, slot in ipairs(ns.GEAR_SLOTS) do
+        local list = bySlot[slot[1]] or {}
+        table.sort(list, function(a, b)
+            local r = above(a.values, b.values, order)
+            if r ~= nil then return r end
+            return a.price < b.price
+        end)
+        local mine = wearing(slot[3], order)
+        for _, x in ipairs(list) do x.better = above(x.values, mine.values, order) == true end
+        table.insert(out.slots, { name = slot[1], mine = mine, list = list })
+    end
+    viewCache = out.loading == 0 and { key = key, view = out } or nil
+    return out
+end
+
+-- What the Gear tab keeps while it's open (27 Nov): what the game said of each item it ranked, thousands
+-- of small tables, and the ranked lists. The window drops them when it closes or you leave the tab;
+-- coming back reads the items again from the game's own cache, which is quick.
+function ns.gearForget()
+    info, viewCache = {}, nil
+end
+
 -- ---------------------------------------------------------------- events
 
 local f = CreateFrame("Frame")
 f:RegisterEvent("ITEM_DATA_LOAD_RESULT")
+local redrawQueued
 f:SetScript("OnEvent", function(_, _, id, success)
     if sweep and pending[id] then settle(id, success) end
+    -- an item the Gear tab asked for arrived: draw again once a batch is in
+    if asked[id] and not redrawQueued and ns.refresh then
+        redrawQueued = true
+        C_Timer.After(1, function() redrawQueued = false; ns.refresh() end)
+    end
 end)
 
 function ns.itemSweep(arg)

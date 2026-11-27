@@ -17,6 +17,10 @@ local FOOT_H = 62 -- below the list and details: the list's note line, then the 
 local frame, list, detail, search
 local tab, selectedKey, query = "item", nil, ""
 local rows, histLines = {}, {}
+-- The Gear tab's stat column sits left of its list (27 Nov), so on that tab the list starts SIDE_W + 8 further right.
+local SIDE_W = 170
+local function sideW() return tab == "gear" and (SIDE_W + 8) or 0 end
+local function rowW() return LIST_W - sideW() - 30 end
 local moversCache -- the Market's walk over every scanned item, kept between redraws (see movers)
 local allCache -- the same for "Show all": every item in the newest scan, A to Z (see everythingRows)
 local MARKET_PAGE = 300 -- rows on one page of the Market; the pager steps through the rest
@@ -29,7 +33,7 @@ local TABS = {
     { key = "movers", label = "Market" },
     { key = "hold", label = "Holdings" },
     { key = "ledger", label = "Ledger" },
-    { key = "ask", label = "Ask" },
+    { key = "gear", label = "Gear" },
 }
 local selProf -- the profession open in the Professions tab
 
@@ -215,7 +219,36 @@ local function priceHistory(id)
 end
 
 -- The readings as lines for an item's page, newest first, each with its change from the one before.
+local historyLinesOwn
+-- The item's prices day by day from everyone's scans, kept for good on the website (27 Nov, Chriso: the
+-- price history is what the addon is for later on). The app brings them for the items you track or
+-- have looked at, in Market.lua: ";yyyymmdd:cheapest:usual:listed:readings;...", oldest first.
+local function websiteHistoryLines(id, lines, most)
+    local s = ns.pool and ns.pool.history and ns.pool.history[id]
+    if type(s) ~= "string" or s == "" then return end
+    local days = {}
+    for d, low, usual, listed in s:gmatch(";(%d+):(%d+):(%d+):(%d+):%d+") do
+        days[#days + 1] = { d = d, low = tonumber(low), usual = tonumber(usual), listed = tonumber(listed) }
+    end
+    if #days == 0 then return end
+    local months = { "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec" }
+    local function day(d) return tonumber(d:sub(7, 8)) .. " " .. (months[tonumber(d:sub(5, 6))] or "?") .. " " .. d:sub(1, 4) end
+    table.insert(lines, "")
+    table.insert(lines, color(GOLD_HEX, string.format("Day by day, everyone's scans (%d day%s)", #days, #days == 1 and "" or "s"))
+        .. grey("  kept for good on the website"))
+    for i = #days, math.max(1, #days - (most or 30) + 1), -1 do
+        local x = days[i]
+        table.insert(lines, table.concat({ day(x.d), "cheapest " .. ns.money(x.low), "usual " .. ns.money(x.usual), x.listed .. " listed" }, "  ·  "))
+    end
+    if #days > (most or 30) then table.insert(lines, grey(string.format("and %d older day%s", #days - (most or 30), #days - (most or 30) == 1 and "" or "s"))) end
+end
+
 local function historyLines(id, lines, most)
+    historyLinesOwn(id, lines, most)
+    websiteHistoryLines(id, lines)
+end
+
+historyLinesOwn = function(id, lines, most)
     local h = priceHistory(id)
     if #h == 0 then return end
     table.insert(lines, "")
@@ -403,7 +436,7 @@ local function trackedItems()
 end
 
 local function movers()
-    local a, b = ns.DB.lastScan, ns.DB.prevScan
+    local a, b = ns.DB.lastScan, ns.prevScan()
     if not (a and b) then return {}, nil end
     -- The walk over every scanned item (thousands, a name lookup each) is kept between redraws (14 Nov):
     -- a redraw came with every tooltip and every scan tick, and this walk ran each time. It only
@@ -477,7 +510,7 @@ end
 -- few are listed and whether or not the scan before had it, A to Z. Needs one scan, not two. Kept
 -- between redraws like the movers, since it walks every scanned item.
 local function everythingRows()
-    local a, b = ns.DB.lastScan, ns.DB.prevScan
+    local a, b = ns.DB.lastScan, ns.prevScan()
     if not (a and a.prices) then return {} end
     local cacheKey = (a.t or 0) .. ":" .. (b and b.t or 0) .. ":" .. query
     if allCache and allCache.key == cacheKey then return allCache.rows end
@@ -505,7 +538,6 @@ end
 local function counts()
     local c = { item = 0 }
     for _ in pairs(ns.DB.tracked or {}) do c.item = c.item + 1 end
-    c.ask = #(ns.DB.asks or {})
     return c
 end
 
@@ -1185,7 +1217,7 @@ end
 local POOL_BANDS = { 0, 1800, 7200, 43200 } -- the pool's four bands, shortest first: where each starts
 local function readingPair(id)
     local a, b = ns.DB.lastScan, ns.DB.prevScan
-    local now, was = a and a.prices[id], b and b.prices[id]
+    local now, was = a and a.prices[id], b and ns.scanPrice(b, id)
     local pl = ns.pool and ns.pool.items and ns.pool.items[id]
     if pl and pl[4] and pl[4] > 0 and (not (now and was) or pl[1] > a.t) then
         local bands
@@ -1238,40 +1270,9 @@ local function recipeMaking(id)
     end
 end
 
--- Sends the item to Claude with what the addon has seen of it: price, listings, their history, its
--- cost to make, and how your own listings did.
-local function researchItem(id)
-    local name = itemName(id)
-    local bits = {}
-    local p = ns.latestPrice(id)
-    if p then table.insert(bits, string.format("cheapest listing %s with %s listed (%s)", ns.money(p.min), tostring(p.q or "?"), date("%d %b %H:%M", p.t))) end
-    local h = ns.DB.prices[id]
-    if h and #h > 1 then
-        local hb = {}
-        for i = math.max(1, #h - 6), #h do table.insert(hb, string.format("%s %s, %s listed", h[i].d, ns.money(h[i].min), tostring(h[i].q or "?"))) end
-        table.insert(bits, "by day: " .. table.concat(hb, "; "))
-    end
-    local pid, r = recipeMaking(id)
-    if r then
-        local mine = ns.myProfessions and ns.myProfessions()[pid]
-        local cost, missing = recipeCost(r, pid, mine and mine.rank or 0)
-        if missing == 0 then table.insert(bits, "it costs about " .. ns.money(cost) .. " to make (" .. reagentText(r) .. ")") end
-    end
-    local posted, sold = 0, 0
-    for _, e in ipairs(ns.DB.ledger or {}) do
-        if e.i == id or e.n == name then
-            if e.k == "post" then posted = posted + (e.q or 1) elseif e.k == "ahsale" then sold = sold + (e.q or 1) end
-        end
-    end
-    if posted + sold > 0 then table.insert(bits, string.format("I have posted %d and sold %d so far", posted, sold)) end
-    ns.ask(string.format("Is %s actually selling on the WoW Forever auction house? Who buys it and what for, and is it worth making to sell?", name),
-        #bits > 0 and ("What my addon has seen: " .. table.concat(bits, ". ") .. ".") or nil)
-end
-
 local function trackButtons(id)
     if not id then return end
     button(detail.b1, ns.isTracked(id) and "Stop tracking" or "Track", function() ns.toggleTrack(id) end)
-    button(detail.b2, "Research", function() researchItem(id) end)
 end
 
 local function professionsSorted()
@@ -1466,7 +1467,7 @@ local refresh, redraw
 
 local function makeRow(i)
     local r = CreateFrame("Button", nil, list.child, "BackdropTemplate")
-    r:SetSize(LIST_W - 30, ROW_H)
+    r:SetSize(rowW(), ROW_H)
     backdrop(r, { 0.08, 0.08, 0.08, 0.9 }, { 0, 0, 0, 0 })
     r.icon = r:CreateTexture(nil, "ARTWORK")
     r.icon:SetSize(28, 28)
@@ -1643,9 +1644,11 @@ end
 
 local function placeList(top)
     list:ClearAllPoints()
-    list:SetPoint("TOPLEFT", 12, top)
-    list:SetPoint("BOTTOMLEFT", 12, FOOT_H)
-    list:SetWidth(LIST_W)
+    list:SetPoint("TOPLEFT", 12 + sideW(), top)
+    list:SetPoint("BOTTOMLEFT", 12 + sideW(), FOOT_H)
+    list:SetWidth(LIST_W - sideW())
+    list.child:SetWidth(rowW())
+    for _, r in ipairs(rows) do r:SetWidth(rowW()) end
 end
 
 -- The Market's sorts (DB.marketSort), each a different question about where prices are going.
@@ -1847,6 +1850,97 @@ local function drawMarketBar(cats, subs, total)
     placeList(-72 - height - 4)
 end
 
+-- The Gear tab (27 Nov): an item's quality colour, and what it changes against yours, green up, red down.
+local function qualityHex(q)
+    local c = ITEM_QUALITY_COLORS and ITEM_QUALITY_COLORS[q or 1]
+    return c and c.hex and c.hex:gsub("^|c", "") or "ffffffff"
+end
+local function diffText(values, mine, order, most)
+    local out = {}
+    for i, d in ipairs(ns.gearDiff(values, mine and mine.values, order)) do
+        if most and i > most then break end
+        out[#out + 1] = color(d[2] and "ff40d060" or "ffe05050", d[1])
+    end
+    return table.concat(out, "  ")
+end
+
+-- The Gear tab's stat column: the picked stats in order, each with up, down and x, then every other
+-- stat to add. Rows are made once and reused.
+local function sideRow(i)
+    local side = frame.gearSide
+    local r = side.rows[i]
+    if r then return r end
+    r = CreateFrame("Button", nil, side)
+    r:SetSize(SIDE_W - 12, 18)
+    r:SetHighlightTexture("Interface\\Buttons\\UI-Listbox-Highlight2", "ADD")
+    r.label = text(r, "GameFontHighlightSmall")
+    r.label:SetPoint("LEFT", 4, 0)
+    r.label:SetPoint("RIGHT", -52, 0)
+    r.label:SetWordWrap(false)
+    local function small(tex, x)
+        local b = CreateFrame("Button", nil, r)
+        b:SetSize(16, 16)
+        b:SetPoint("RIGHT", x, 0)
+        if tex then
+            b:SetNormalTexture(tex .. "-Up")
+            b:SetPushedTexture(tex .. "-Down")
+            b:SetHighlightTexture("Interface\\Buttons\\ButtonHilight-Square", "ADD")
+        end
+        return b
+    end
+    r.up = small("Interface\\ChatFrame\\UI-ChatIcon-ScrollUp", -36)
+    r.down = small("Interface\\ChatFrame\\UI-ChatIcon-ScrollDown", -18)
+    r.del = small(nil, -1)
+    r.del.x = text(r.del, "GameFontNormal", 0.85, 0.35, 0.35)
+    r.del.x:SetPoint("CENTER", 0, 1)
+    r.del.x:SetText("x")
+    r.up:SetScript("OnClick", function() ns.gearMove(r.stat, -1); refresh() end)
+    r.down:SetScript("OnClick", function() ns.gearMove(r.stat, 1); refresh() end)
+    r.del:SetScript("OnClick", function() ns.gearRemove(r.stat); refresh() end)
+    r:SetScript("OnClick", function() if not r.picked then ns.gearAdd(r.stat); refresh() end end)
+    side.rows[i] = r
+    return r
+end
+
+local function drawGearSide()
+    local side = frame.gearSide
+    local order = ns.gearOrder()
+    local y = -32
+    local n = 0
+    local function put(stat, label, picked, i)
+        n = n + 1
+        local r = sideRow(n)
+        r.stat, r.picked = stat, picked
+        r.label:SetText(label)
+        r.up:SetShown(picked and i > 1)
+        r.down:SetShown(picked and i < #order)
+        r.del:SetShown(picked)
+        r:ClearAllPoints()
+        r:SetPoint("TOPLEFT", 6, y)
+        r:Show()
+        y = y - 18
+    end
+    local picked = {}
+    for i, k in ipairs(order) do
+        picked[k] = true
+        put(k, color(GOLD_HEX, i .. ".") .. " " .. ns.GEAR_STAT_BY_KEY[k][2], true, i)
+    end
+    side.none:SetShown(#order == 0)
+    if #order == 0 then
+        side.none:ClearAllPoints()
+        side.none:SetPoint("TOPLEFT", 10, y - 2)
+        y = y - 18
+    end
+    y = y - 8
+    side.addTitle:ClearAllPoints()
+    side.addTitle:SetPoint("TOPLEFT", 10, y)
+    y = y - 18
+    for _, st in ipairs(ns.GEAR_STATS) do
+        if not picked[st[1]] then put(st[1], grey("+ " .. st[2]), false, 0) end
+    end
+    for i = n + 1, #side.rows do side.rows[i]:Hide() end
+end
+
 local function drawList()
     if tab ~= "movers" and frame.mktBar:IsShown() then
         frame.mktBar:Hide()
@@ -1859,19 +1953,39 @@ local function drawList()
         r:SetPoint("TOPLEFT", 2, y)
         y = y - ROW_H - 3
     end
-    if tab == "ask" then
-        local asks = ns.DB.asks or {}
-        list.note:SetText(#asks == 0 and "No questions yet. Type one in the box on the right, or /ask in chat." or "")
-        for i = #asks, math.max(1, #asks - 49), -1 do
-            local a = asks[i]
-            if matches(a.q) then
+    local side = tab == "gear"
+    if frame.gearSide:IsShown() ~= side then
+        frame.gearSide:SetShown(side)
+        placeList(-72)
+    end
+    if tab == "gear" then
+        drawGearSide()
+        local G = ns.gearView()
+        if #G.order == 0 then
+            list.note:SetText("Add the stats you want on the left, most wanted first.")
+        else
+            local priced = 0
+            for _, sl in ipairs(G.slots) do if #sl.list > 0 then priced = priced + 1 end end
+            list.note:SetText(G.loading > 0 and string.format("Loading %d items from the game; this fills in as they arrive.", G.loading)
+                or (priced == 0 and "Nothing on the auction house for you yet: a scan, or everyone's prices after a /reload, fills this in." or ""))
+            for _, sl in ipairs(G.slots) do
+                local best, mine = sl.list[1], sl.mine
+                local wear = "yours: " .. ((mine and not mine.empty) and (mine.name or "something") or "nothing")
+                local value, sub
+                if best and best.better then
+                    value = diffText(best.values, mine, G.order, 3)
+                    sub = color(qualityHex(best.q), best.name) .. "  ·  " .. ns.money(best.price) .. "  ·  " .. wear
+                elseif best then
+                    value = grey("nothing better")
+                    sub = wear
+                else
+                    value, sub = grey("none on the AH"), wear
+                end
                 n = n + 1
                 local r = rows[n] or makeRow(n)
-                local done = a.status == "answered"
-                local sub = done and (a.answer or "") or ("sent " .. when(a.t) .. "; the answer loads on your next /reload")
-                local value = done and ((a.pins and #a.pins > 0) and color(GOLD_HEX, #a.pins .. " on the map") or grey("answered"))
-                    or color("ffe0a040", "waiting")
-                fillRow(r, "ask:" .. a.id, "Interface\\Icons\\INV_Misc_Note_01", a.q, "ffffffff", value, sub)
+                local up = best and best.better and best
+                local icon = (up and up.icon) or (mine and mine.link and C_Item.GetItemIconByID(mine.link)) or "Interface\\Icons\\INV_Misc_QuestionMark"
+                fillRow(r, "gear:" .. sl.name, icon, sl.name, GOLD_HEX, value, sub, up and up.id)
                 place(r)
             end
         end
@@ -2169,6 +2283,7 @@ end
 -- the skill it's learned and goes grey at, what the craft sells for, and whether it's used at 60.
 -- Clicking a recipe opens it in the Professions tab.
 local useHeads, useLines = {}, {}
+local gearLines = {} -- the Gear tab's items in a slot's details, each with the game's tooltip (drawGearRows)
 
 local function openRecipe(pid, idx)
     tab = "prof"
@@ -2376,18 +2491,20 @@ local function drawUses(id, label, y)
 end
 
 -- usesOf: an item id to show the "Used in" sections for (label overrides their heading).
-local function setDetail(icon, title, titleHex, lines, history, canWhy, why, usesOf, usesLabel)
+local drawGearRows
+local function setDetail(icon, title, titleHex, lines, history, canWhy, why, usesOf, usesLabel, gear)
     detail.icon:SetTexture(icon or "Interface\\Icons\\INV_Misc_QuestionMark")
     detail.title:SetText(color(titleHex or "ffffffff", title or ""))
     detail.facts:SetText(table.concat(lines or {}, "\n"))
-    -- the body starts under the title, however many lines it took (an /ask question is long: the body
-    -- drew over the title's third and fourth lines, 15 Nov)
+    -- the body starts under the title, however many lines it took (a long title drew over the body's
+    -- first lines, 15 Nov)
     local top = 12 + math.max(44, detail.title:GetStringHeight() + 8) + 10
     detail.body:ClearAllPoints()
     detail.body:SetPoint("TOPLEFT", 12, -top)
     detail.body:SetPoint("BOTTOMRIGHT", -30, 100)
     local y = -(detail.facts:GetStringHeight() + 14)
     y = drawUses(usesOf, usesLabel, y)
+    y = drawGearRows(gear, y)
     detail.histTitle:ClearAllPoints()
     detail.histTitle:SetPoint("TOPLEFT", 0, y)
     detail.histTitle:SetShown(history and #history > 0)
@@ -2424,60 +2541,117 @@ local function setDetail(icon, title, titleHex, lines, history, canWhy, why, use
     if noteId and not detail.why:HasFocus() then detail.why:SetText(noteOf(noteId) or "") end
 end
 
-local function findAsk(id)
-    for _, a in ipairs(ns.DB.asks or {}) do if a.id == id then return a end end
+-- One item in a slot's details (27 Nov, Chriso: hovering only showed the first): its icon, two lines,
+-- and the game's tooltip on hover, from the item's own link so a suffix version shows its stats.
+-- Shift-click puts the link in chat.
+local function gearLine(i)
+    local b = gearLines[i]
+    if b then return b end
+    b = CreateFrame("Button", nil, detail.inner)
+    b:SetWidth(BODY_W)
+    b.icon = b:CreateTexture(nil, "ARTWORK")
+    b.icon:SetSize(18, 18)
+    b.icon:SetPoint("TOPLEFT", 2, -2)
+    b.icon:SetTexCoord(0.07, 0.93, 0.07, 0.93)
+    b.fs = text(b, "GameFontHighlightSmall", 0.9, 0.9, 0.9)
+    b.fs:SetPoint("TOPLEFT", 24, -2)
+    b.fs:SetWidth(BODY_W - 28)
+    b.fs:SetSpacing(2)
+    local hl = b:CreateTexture(nil, "HIGHLIGHT")
+    hl:SetAllPoints()
+    hl:SetColorTexture(1, 1, 1, 0.06)
+    b:SetScript("OnEnter", function(self)
+        GameTooltip:SetOwner(self, "ANCHOR_NONE")
+        GameTooltip:SetPoint("TOPRIGHT", self, "TOPLEFT", -4, 0)
+        local h = self.link and self.link:match("|H(item:[^|]+)|h")
+        if h then GameTooltip:SetHyperlink(h) else GameTooltip:SetItemByID(self.itemID) end
+        GameTooltip:Show()
+    end)
+    b:SetScript("OnLeave", function() GameTooltip:Hide() end)
+    b:SetScript("OnClick", function(self)
+        if not IsShiftKeyDown() then return end
+        local link = self.link or select(2, C_Item.GetItemInfo(self.itemID))
+        if link then ChatEdit_InsertLink(link) end
+    end)
+    gearLines[i] = b
+    return b
 end
 
+-- gear = { list, mine, order }: up to 15 rows from y down; returns where the next thing goes.
+drawGearRows = function(gear, y)
+    local n = 0
+    for i = 1, gear and math.min(#gear.list, 15) or 0 do
+        local x = gear.list[i]
+        n = n + 1
+        local b = gearLine(n)
+        b.itemID, b.link = x.id, x.link
+        b.icon:SetTexture(x.icon or "Interface\\Icons\\INV_Misc_QuestionMark")
+        local d = diffText(x.values, gear.mine, gear.order)
+        b.fs:SetText(color(qualityHex(x.q), x.name) .. "  "
+            .. (x.better and color("ff40d060", "better") or grey("not better"))
+            .. grey("  ·  level " .. x.req .. "  ·  " .. ns.money(x.price) .. "  ·  " .. when(x.when)) .. "\n"
+            .. ns.gearValuesText(x.values, gear.order) .. (d ~= "" and ("     " .. d) or ""))
+        b:SetHeight(b.fs:GetStringHeight() + 6)
+        b:ClearAllPoints()
+        b:SetPoint("TOPLEFT", 0, y)
+        b:Show()
+        y = y - b:GetHeight() - 2
+    end
+    for i = n + 1, #gearLines do gearLines[i]:Hide() end
+    return y
+end
 
-local function drawAsk()
-    local id = selectedKey and selectedKey:match("^ask:(.+)$")
-    local a = id and findAsk(id)
-    if not a then
-        setDetail("Interface\\Icons\\INV_Misc_Note_01", "Ask", GOLD_HEX, {
-            "Type a question below, or /ask in chat. For example:", "",
-            grey("where are the bears in Ashenvale? mark them on the map"),
-            grey("which mobs near me drop Silk Cloth?"),
-            grey("what is Briarthorn used for at 60?"), "",
-            "The UI reloads to send it. The answer shows in the MindCollector app's Ask page, usually within a minute;",
-            "then /reload here and it's in chat, in this tab, and on the map.", "",
-            grey("Needs the MindCollector app open, with answering on (Settings > WoW Forever)."),
-        }, nil, false)
-    else
+-- The Gear tab's details (27 Nov): a slot's items on the auction house against yours, or how it works.
+local function drawGear()
+    local G = ns.gearView()
+    local order = G.order
+    local slotName = selectedKey and selectedKey:match("^gear:(.+)$")
+    local sl
+    for _, x in ipairs(G.slots) do if x.name == slotName then sl = x end end
+    local how = grey("How it ranks: gear must have your first stat. Gear with all your stats comes first, then gear "
+        .. "missing one, and so on, keeping your higher stats. After that, the most of your first stat, then of your second.")
+    if sl and #order > 0 then
+        local mine = sl.mine
+        local yours = ns.gearValuesText(mine.values, order)
         local lines = {
-            grey((a.status == "answered" and "Answered " .. when(a.at) or "Waiting for an answer") .. "  ·  asked " .. when(a.t)),
-            grey(string.format("You were in %s%s", a.zone or "?", a.x and string.format(" at %.1f, %.1f", a.x, a.y) or "")),
+            "You wear: " .. (mine.empty and grey("nothing") or ((mine.name or "?") .. "  " .. grey(yours ~= "" and yours or "none of your stats"))),
             "",
         }
-        if a.status == "answered" then
-            table.insert(lines, a.answer or "")
-            if a.pins and #a.pins > 0 then
-                table.insert(lines, "")
-                table.insert(lines, color(GOLD_HEX, #a.pins .. " point" .. (#a.pins == 1 and "" or "s") .. " for the map")
-                    .. (ns.activeAsk == a and grey("  (showing now)") or ""))
-            end
+        if #sl.list == 0 then
+            table.insert(lines, grey("Nothing for this slot on the auction house with your first stat that you can use at your level."))
         else
-            table.insert(lines, "If the MindCollector app is open, the answer is probably ready: reload to load it.")
+            local better = 0
+            for _, x in ipairs(sl.list) do if x.better then better = better + 1 end end
+            table.insert(lines, color(GOLD_HEX, "On the auction house, best first") .. grey("  ·  " .. (better == 0 and "none beat yours"
+                or (better .. " beat" .. (better == 1 and "s" or "") .. " yours")) .. "  ·  hover one for its tooltip"))
         end
-        setDetail("Interface\\Icons\\INV_Misc_Note_01", a.q, "ffffffff", lines, nil, false)
-        if a.status == "answered" and a.pins and #a.pins > 0 then
-            button(detail.b1, "Show on map", function() ns.showPins(a); ns.openMapFor(a); refresh() end)
-            button(detail.b2, "Clear map", function() ns.clearPins(); refresh() end)
-        elseif a.status ~= "answered" then
-            button(detail.b1, "Reload to check", function() ReloadUI() end)
-        end
+        table.insert(lines, 3, how)
+        table.insert(lines, 4, "")
+        setDetail((sl.list[1] and sl.list[1].icon) or "Interface\\Icons\\INV_Chest_Chain", slotName, GOLD_HEX, lines, nil, false,
+            nil, nil, nil, { list = sl.list, mine = mine, order = order })
+        return
     end
-    -- the bottom box asks instead of noting why
-    detail.whyLabel:SetText(color(GOLD_HEX, "Ask something"))
-    detail.save:SetText("Ask")
-    detail.whyLabel:Show(); detail.why:Show(); detail.save:Show()
-    if not detail.why:HasFocus() then detail.why:SetText("") end
+    local names = {}
+    for _, k in ipairs(order) do names[#names + 1] = ns.GEAR_STAT_BY_KEY[k][2] end
+    setDetail("Interface\\Icons\\INV_Chest_Chain", "Gear", GOLD_HEX, {
+        #order > 0 and ("Your stats, most wanted first: " .. table.concat(names, ", ")) or "Add the stats you want from the list on the left.",
+        "",
+        grey("Put them in order with the arrows, most wanted at the top, and take one out with the x. One stat on its own works too."),
+        "",
+        how,
+        "",
+        grey("Each slot shows the best on the auction house that this character can use at its level, and what it adds or loses "
+            .. "against what you wear. Click a slot to see the top 15. Hit and crit count as the % the tooltip shows."),
+        "",
+        grey("Prices are from your last scan, or everyone's after a /reload. The Gear Finder on the website looks further: vendors, crafting and every item in the game."),
+    }, nil, false)
 end
 
 local function drawDetail()
     detail.b1:Hide(); detail.b2:Hide()
     detail.whyLabel:SetText(color(GOLD_HEX, "Notes") .. grey("  yours, on this item; shown on its tooltip too"))
     detail.save:SetText(GetTime() < (detail.savedUntil or 0) and "Saved" or "Save")
-    if tab == "ask" then return drawAsk() end
+    if tab == "gear" then return drawGear() end
     if tab == "ledger" and selectedKey and selectedKey:match("^lsum:") then
         local which = selectedKey:match("^lsum:(.+)$")
         local since = which == "Today" and startOfToday() or which == "Last 7 days" and (time() - 7 * 86400) or 0
@@ -2613,10 +2787,6 @@ local function drawDetail()
                 ns.showPins({ q = r[2], pins = { point } })
                 ns.openMapFor({ pins = { point } })
             end)
-        elseif r[6] == 1 and r[10] and r[10] > 0 then
-            button(detail.b1, "Ask where to get it", function()
-                ns.ask("Where can I get " .. itemName(r[10]) .. " in WoW Forever? Mark the vendor or the mobs that drop it on the map.")
-            end)
         end
         if r[7] > 0 then
             button(detail.b2, ns.isTracked(r[7]) and "Stop tracking it" or "Track what it makes", function() ns.toggleTrack(r[7]) end)
@@ -2689,7 +2859,7 @@ local function drawDetail()
     if moverID then
         local id = tonumber(moverID)
         local v = ns.DB.lastScan and ns.DB.lastScan.prices[id]
-        local o = ns.DB.prevScan and ns.DB.prevScan.prices[id]
+        local o = ns.scanPrice(ns.DB.prevScan, id)
         local s = ns.DB.subjects["item:" .. id]
         local lines = {}
         if v then table.insert(lines, "Now: " .. ns.money(v[1]) .. "  (" .. v[2] .. " listed)") end
@@ -2828,11 +2998,11 @@ local function layout()
     local w = frame:GetWidth()
     LIST_W = math.floor(w * LIST_SHARE)
     BODY_W = w - LIST_W - 76
-    list:SetWidth(LIST_W)
-    list.child:SetWidth(LIST_W - 30)
+    list:SetWidth(LIST_W - sideW())
+    list.child:SetWidth(rowW())
     list.note:SetWidth(LIST_W)
     frame.mktBar:SetWidth(LIST_W)
-    for _, r in ipairs(rows) do r:SetWidth(LIST_W - 30) end
+    for _, r in ipairs(rows) do r:SetWidth(rowW()) end
     detail:ClearAllPoints()
     detail:SetPoint("TOPLEFT", frame, "TOPLEFT", 12 + LIST_W + 10, -72)
     detail:SetPoint("BOTTOMRIGHT", -12, FOOT_H)
@@ -2842,6 +3012,20 @@ local function layout()
     for _, h in ipairs(useHeads) do h:SetWidth(BODY_W) end
     for _, b in ipairs(useLines) do b:SetWidth(BODY_W); b.fs:SetWidth(BODY_W - 28) end
     for _, fs in ipairs(histLines) do fs:SetWidth(BODY_W) end
+    for _, b in ipairs(gearLines) do b:SetWidth(BODY_W); b.fs:SetWidth(BODY_W - 28) end
+end
+
+-- The tabs' working memory (27 Nov). The Market keeps a row for every scanned item, twice (its movers
+-- and "Show all"), plus the scan before last unpacked; the Gear tab what the game said of every item it
+-- ranked. Kept all session, that was most of the 47 MB the game reported for the addon with its saved
+-- data at about 27. Now only the open tab keeps its own, and closing the window drops them all; coming
+-- back builds them again. `keep` is the tab whose lists stay.
+local function forgetTabs(keep)
+    if keep ~= "movers" then
+        moversCache, allCache, catCache = nil, nil, {}
+        if ns.forgetPrevScan then ns.forgetPrevScan() end
+    end
+    if keep ~= "gear" and ns.gearForget then ns.gearForget() end
 end
 
 local function saveWindow()
@@ -2922,6 +3106,7 @@ local function makeWindow()
         b:SetPoint("TOPLEFT", x, -40)
         b:SetScript("OnClick", function()
             tab = def.key
+            forgetTabs(tab)
             selectedKey = nil
             list.scroll:SetVerticalScroll(0)
             saveWindow()
@@ -2977,6 +3162,22 @@ local function makeWindow()
     frame.mktBar.chips = {}
     frame.mktBar:Hide()
     list.note:SetWidth(LIST_W)
+    -- the Gear tab's stat column (drawGearSide), shown on that tab only
+    local side = CreateFrame("Frame", nil, frame, "BackdropTemplate")
+    backdrop(side, { 0.02, 0.02, 0.02, 1 }, { 0.25, 0.25, 0.25, 0.6 })
+    side:SetPoint("TOPLEFT", 12, -72)
+    side:SetPoint("BOTTOMLEFT", 12, FOOT_H)
+    side:SetWidth(SIDE_W)
+    side.title = text(side, "GameFontNormal")
+    side.title:SetPoint("TOPLEFT", 10, -9)
+    side.title:SetText(color(GOLD_HEX, "Your stats, in order"))
+    side.none = text(side, "GameFontHighlightSmall", 0.6, 0.6, 0.6)
+    side.none:SetText("None yet: add one below.")
+    side.addTitle = text(side, "GameFontNormalSmall")
+    side.addTitle:SetText(color(GOLD_HEX, "Add a stat"))
+    side.rows = {}
+    side:Hide()
+    frame.gearSide = side
 
     -- details
     detail = CreateFrame("Frame", nil, frame, "BackdropTemplate")
@@ -2991,7 +3192,7 @@ local function makeWindow()
     detail.title:SetPoint("TOPLEFT", detail.icon, "TOPRIGHT", 10, -4)
     detail.title:SetPoint("RIGHT", -10, 0)
     detail.title:SetWordWrap(true)
-    detail.title:SetMaxLines(3) -- a long /ask question: three lines of title, the body under them (setDetail)
+    detail.title:SetMaxLines(3) -- a long title: three lines, the body under them (setDetail)
     detail.body = CreateFrame("ScrollFrame", nil, detail, "UIPanelScrollFrameTemplate")
     detail.body:SetPoint("TOPLEFT", 12, -66)
     detail.body:SetPoint("BOTTOMRIGHT", -30, 100) -- clear of the buttons and the why box
@@ -3018,12 +3219,6 @@ local function makeWindow()
     detail.why:SetAutoFocus(false)
     detail.why:SetMaxLetters(250)
     local function saveWhy()
-        if tab == "ask" then
-            local q = detail.why:GetText()
-            detail.why:ClearFocus()
-            if q and q:find("%S") then detail.why:SetText(""); ns.ask(q) end
-            return
-        end
         -- A note on the item (15 Nov). The "why were you looking" box wrote onto your last look at the
         -- item, and an item tracked from Market and never hovered has none, so Save did nothing.
         local id = detail.noteId
@@ -3083,6 +3278,7 @@ local function makeWindow()
 
     layout() -- the saved size may not be the default
     frame:SetScript("OnShow", redraw)
+    frame:SetScript("OnHide", function() forgetTabs(nil) end)
 end
 
 function ns.toggle()

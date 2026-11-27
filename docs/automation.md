@@ -57,7 +57,6 @@ Two queue workers run under Supervisor (`/etc/supervisor/conf.d/`), both on `car
 | A note or a YouTube link from the app | `BuildCoachPages`, cards only |
 | A Battle.net account is linked | `SyncBattlenetCharacter` |
 | A Forever auction scan arrives | Stored and folded into that market's prices in the request (`docs/forever/observer-handoff-2026-11-10.md`). Crafting Profits (`/wow/forever/crafts`) reprices that market on its next view: no timer, the cache is keyed on the newest scan |
-| An /ask question, answered by the site | `ForeverAskService` asks Gemini, in the request; answers kept 3 days |
 
 **Known timeouts** (2026-11-23): `BuildCoachPages` for big accounts (Muroto, 468 rounds) sometimes
 runs past its limit, and the next upload's build catches it up. Both show as warnings in the email.
@@ -102,8 +101,8 @@ on a player's PC reports back when it fails**, so the daily email can't see it.
 
 ## On Chriso's PC
 
-- **The /ask bridge** (`tools/forever-ask/`, `start-ask-bridge.cmd`): answers in-game questions with
-  headless Claude Code while its window is open. Off by default since app 0.6.22; the site answers.
+- **The /ask bridge was removed** on 2026-11-27 (app 0.6.40), with the site's Gemini answers
+  (`ForeverAskService`) and the addon's Ask tab: the built-in features cover it (Chriso). In git history.
 - **Not yet built:** a weekly usage read by `claude -p` from Task Scheduler, on plan usage (talked
   through 2026-11-23). It would read a server report and write recommendations; it needs the PC on.
 

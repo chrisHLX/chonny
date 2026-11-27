@@ -30,7 +30,7 @@ what was saved of them is dropped at the next login.
   see: opening a profession trainer records every recipe it offers (skill, level, cost, the trainer
   and their spot), and opening a vendor records any recipe items for sale (price, limited supply,
   bought with a currency) and its real prices for vials, thread and spices. A recipe with a known
-  place has "Show on map"; a recipe item nobody has seen for sale has "Ask where to get it" (/ask).
+  place has "Show on map" (Map.lua). ("Ask where to get it" went with /ask on 2026-11-27.)
   Making a reagent yourself is used when it's cheaper than buying it, and the switch at the top of a
   profession's list sorts by what's left after selling the product (less the auction house's 5%).
 - **Most profit** (2026-11-10; the same switch, clicked again): every recipe at or under your skill,
@@ -43,6 +43,20 @@ what was saved of them is dropped at the next login.
   Only a drop bigger than that says "at least N sold"; otherwise "N could have run out: can't tell".
   Scans close together give the sharpest answer. Scans from before this change say "sold or ran out".
   One cheapest listing is not a market: a thin one (2 listed) can't take many.
+- **The Gear tab** (2026-11-27, Chriso: in place of Ask; `Gear.lua`'s `ns.gearView`): a column of
+  the player's stats in order, most wanted first (arrows move one, x takes it out, the rest are listed
+  to add; `DB.gearOrder` per character), and per slot the best item on the auction house this
+  character can use (`C_PlayerInfo.CanUseItem`, and its level) against what they wear (the weaker
+  ring or trinket), with what it adds and loses. Ranking (`ns.gearAbove`): an item needs the first
+  stat; more of the picked stats first; then the higher stats (Int + Spi before Int + Sta); then the
+  most of the first stat, then the second. Candidates are the newest prices (your scan, or everyone's
+  pooled ones); suffix versions from your own scan come in on their own, their base item not at all.
+  Hit and crit count as the tooltip's % (10 and 14 rating to 1%). Items the client hasn't loaded are
+  asked for, 150 at a time, and the tab redraws as they arrive. The website's Gear Finder still
+  scores by weights, and also has vendors, crafting and every item in the game.
+- **/mco items** (2026-11-26, `Gear.lua`): asks the game for every weapon and armour number for the
+  website's gear page; vendor lists and suffix versions in a scan are kept for it too. See the
+  handoff doc, "Gear".
 - **Shared prices** (2026-11-12): each scan records its realm, region and faction, and the
   MindCollector app (0.6.11) sends it to the website and writes everyone's prices for that market
   into `Market.lua` (`MindCollectorObserverMarket`, read into `ns.pool` at load). A pooled reading
@@ -169,8 +183,18 @@ scans you start; the addon never searches the auction house on its own.
 ## Data
 
 `MindCollectorObserverDB` (account-wide SavedVariables): `subjects` (every looked-at item, up to 30
-looks each), `prices` (a daily price history for those), `lastScan` and `prevScan` (one price per
-item, with its name, from the last two full scans), `profs` (your professions and skill), `asks`.
+looks each), `prices` (a daily price history for those), `lastScan` (one price per item, with its
+name, from the last full scan), `prevScan` and `otherScans` (the scan before and the goblin house's,
+each packed into one string by `ns.packScan`, read with `ns.scanPrice` or `ns.prevScan`), `history`
+(every scan for 30 days, one string each), `profs` (your professions and skill), `items` (the
+`/mco items` sweep, reduced to its counts once the app has sent it).
+
+**Memory (2026-11-27).** The game reported 47 MB for the addon. A Lua table costs about five times its
+text and a string its length, so the scans kept as tables of tables were the dear part, along with
+the Market and Gear tabs' lists, held all session. Now: older scans are packed strings, the sent sweep
+goes, and the tabs drop their lists when you leave them or close the window (`forgetTabs` in ui.lua,
+`ns.gearForget`). Nothing of the price history is dropped: Market.lua's `history` brings day by day
+prices from the website, which keeps them for good.
 
 `Data.lua` is generated: `python tools/forever-market/observer_data.py <wago wowf folder> Data.lua`
 (see `docs/forever/market-research-2026-11-07.md`, "Re-running the numbers"). It holds which

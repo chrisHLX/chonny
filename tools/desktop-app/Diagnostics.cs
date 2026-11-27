@@ -699,7 +699,7 @@ internal static class Diagnostics
             report.AppendLine($"File: {file ?? "none found"}");
             var data = ObserverData.Load(file);
             if (data == null) { Write("check-observer.txt", report.ToString()); return 2; }
-            report.AppendLine($"Saved {data.Saved:yyyy-MM-dd HH:mm:ss}; {data.Subjects.Count} things looked at; {data.Prices.Count} price histories; {data.Asks.Count} questions");
+            report.AppendLine($"Saved {data.Saved:yyyy-MM-dd HH:mm:ss}; {data.Subjects.Count} things looked at; {data.Prices.Count} price histories");
             foreach (var g in data.Subjects.GroupBy(x => x.Kind).OrderByDescending(g => g.Count())) report.AppendLine($"  {g.Key}: {g.Count()}");
             report.AppendLine(data.LastScan is { } sc ? $"Last scan {sc.At:yyyy-MM-dd HH:mm}: {sc.Auctions} auctions, {sc.Prices.Count} items" : "No full scan yet");
             report.AppendLine();
@@ -710,7 +710,6 @@ internal static class Diagnostics
                 var price = first?.Price is { } was && now != null ? $"{ObserverPages.Money(was)} -> {ObserverPages.Money(now.Min)}" : now != null ? ObserverPages.Money(now.Min) : "";
                 report.AppendLine($"{s.Last:dd MMM HH:mm}  {s.Kind,-6} {s.Name,-32} x{s.Looks,-3} {price,-20} {s.LastLook?.Why ?? s.LastLook?.Guess}");
             }
-            foreach (var a in data.Asks) report.AppendLine($"ask {a.At:dd MMM HH:mm} [{a.Status}] {a.Question}{(a.Answer != null ? " => " + a.Answer : "")}");
             // the pages themselves, so they can be looked at in a browser
             File.WriteAllText(Path.Combine(AppSettings.Dir, "check-observer.html"), ObserverPages.LookedOverview(data, settings));
             var item = data.Subjects.Where(x => x.Kind == "item").OrderByDescending(x => x.Looks).FirstOrDefault();
@@ -765,6 +764,24 @@ internal static class Diagnostics
     /// as the addon would get them (share-market.txt). The market words stand in for a scan saved before
     /// the addon recorded where it was. For checking against a local site; nothing in settings changes.
     /// </summary>
+    /// <summary>
+    /// --scan-json FILE KEY OUT: one scan of the Observer's saved data (lastScan, prevScan, or otherScans.House) as
+    /// the app would send it, written to OUT, sending nothing. For checking a packed scan (0.6.40) reads the same.
+    /// </summary>
+    public static int ScanJsonOffline(string[] args)
+    {
+        var (file, key, outFile) = (args[1], args[2], args[3]);
+        if (SavedVariables.Read(file).GetValueOrDefault("MindCollectorObserverDB") is not Dictionary<object, object?> db) return 2;
+        var parts = key.Split('.');
+        var scan = db.GetValueOrDefault(parts[0]) as Dictionary<object, object?>;
+        if (parts.Length > 1) scan = scan?.GetValueOrDefault(parts[1]) as Dictionary<object, object?>;
+        if (scan == null) return 3;
+        var t = scan.GetValueOrDefault("t") switch { long l => l, double d => (long)d, _ => 0L };
+        var (json, items) = MarketShare.ScanJson(scan, "US", "", scan.GetValueOrDefault("faction") as string ?? "Horde", t);
+        File.WriteAllText(outFile, json);
+        return items > 0 ? 0 : 4;
+    }
+
     public static int ShareMarket(string[] args)
     {
         var report = new StringBuilder();
@@ -971,36 +988,6 @@ internal static class Diagnostics
         return 0;
     }
 
-    /// <summary>--ask-pending FILE: what the Ask watcher sees in the addon's saved data, question by question (ask-pending.txt). Answers nothing.</summary>
-    public static int AskPending(string file)
-    {
-        var report = new StringBuilder();
-        var now = DateTimeOffset.UtcNow.ToUnixTimeSeconds();
-        var vars = SavedVariables.Read(file);
-        report.AppendLine($"variables: {string.Join(", ", vars.Keys)}");
-        if (vars.GetValueOrDefault("MindCollectorObserverDB") is not Dictionary<object, object?> db) { report.AppendLine("no MindCollectorObserverDB"); Write("ask-pending.txt", report.ToString()); return 2; }
-        foreach (var a in SavedVariables.List(db.GetValueOrDefault("asks")).OfType<Dictionary<object, object?>>())
-        {
-            var t = a.GetValueOrDefault("t");
-            report.AppendLine($"id={a.GetValueOrDefault("id")} ({a.GetValueOrDefault("id")?.GetType().Name}) status={a.GetValueOrDefault("status")} t={t} ({t?.GetType().Name}) age={(t is long l ? now - l : -1)}s q={a.GetValueOrDefault("q")}");
-        }
-        Write("ask-pending.txt", report.ToString());
-        return 0;
-    }
-
-    /// <summary>--ask-search SERVER KEY "question": one question through the website's search, as the app asks it (ask-search.txt).</summary>
-    public static int AskSearch(string server, string key, string question)
-    {
-        var settings = new AppSettings { ServerUrl = server, Key = key, AskOn = true };
-        var bridge = new AskBridge(settings, _ => { });
-        var ask = new Dictionary<object, object?> { ["q"] = question, ["zone"] = "Orgrimmar", ["level"] = 40L, ["class"] = "Shaman", ["faction"] = "Horde", ["ch"] = "Test" };
-        var started = DateTime.Now;
-        var (text, points, _) = bridge.AskSearch(ask);
-        Write("ask-search.txt", $"{(DateTime.Now - started).TotalSeconds:N1}s{Environment.NewLine}{text}{Environment.NewLine}"
-            + string.Join(Environment.NewLine, points.Select(p => $"  {p.Zone} {p.X}, {p.Y} {p.Label}")));
-        return 0;
-    }
-
     /// <summary>--fight-groups DIR: how the Fights tab groups the Forever clips in DIR (fight-groups.txt).</summary>
     public static int FightGroups(string dir)
     {
@@ -1093,31 +1080,6 @@ internal static class Diagnostics
             Write("probe.txt", report + $"Error: {e.Message}");
             return 1;
         }
-    }
-
-    /// <summary>--ask "QUESTION": one question through AskBridge as the Ask page sends it (ask.txt, ask.html). Uses the player's Claude account.</summary>
-    public static int Ask(string question)
-    {
-        var settings = AppSettings.Load();
-        settings.ForeverLogsDir ??= AppSettings.DetectForeverLogs(settings.WowLogsDir);
-        settings.AskClaude = true;   // this run only; nothing is saved
-        var log = new StringBuilder();
-        using var bridge = new AskBridge(settings, line => log.AppendLine(line));
-        var done = new ManualResetEventSlim();
-        AskBridge.Answer? answer = null;
-        bridge.Answered += a => { answer = a; done.Set(); };
-        log.AppendLine($"Claude: {AskBridge.FindClaude(settings.ClaudePath) ?? "not found"}; ready: {bridge.CheckReady() ?? "yes"}");
-        bridge.AskFromApp(question);
-        if (!done.Wait(TimeSpan.FromMinutes(9))) log.AppendLine("No answer in 9 minutes.");
-        if (answer != null)
-        {
-            log.AppendLine($"Answer: {answer.Text}");
-            foreach (var p in answer.Points.Take(10)) log.AppendLine($"  {p.Zone} {p.X}, {p.Y} {p.Label}");
-            if (answer.Points.Count > 10) log.AppendLine($"  ... {answer.Points.Count} points in all");
-            File.WriteAllText(Path.Combine(AppSettings.Dir, "ask.html"), ObserverPages.Answer(answer));
-        }
-        Write("ask.txt", log.ToString());
-        return answer != null ? 0 : 1;
     }
 
     private static void Write(string name, string text)

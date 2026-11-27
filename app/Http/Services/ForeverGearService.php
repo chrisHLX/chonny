@@ -22,6 +22,12 @@ use Illuminate\Support\Facades\DB;
  */
 class ForeverGearService
 {
+    /**
+     * A suffix version's bonus numbers, "12751" or "a.b". Never one digit: app 0.6.39's addon read a
+     * link's context field as the bonus, so every auction house suffix came as "1" (Gear.lua bonusKey).
+     */
+    public const BONUS = '/^\d{2,7}(\.\d{2,7}){0,15}$/';
+
     /** Positions in an item the addon sends: Gear.lua's readItem. */
     private const NAME = 0;
 
@@ -88,7 +94,7 @@ class ForeverGearService
 
         $variants = [];
         foreach (is_array($data['variants'] ?? null) ? $data['variants'] : [] as $key => $v) {
-            if (! preg_match('/^(\d{1,7}):(\d{1,7}(?:\.\d{1,7}){0,15})$/', (string) $key, $m) || ! is_array($v)
+            if (! preg_match('/^(\d{1,7}):(.+)$/', (string) $key, $m) || ! preg_match(self::BONUS, $m[2]) || ! is_array($v)
                 || ! is_string($v[0] ?? null) || $v[0] === '' || mb_strlen($v[0]) > 160) {
                 continue;
             }

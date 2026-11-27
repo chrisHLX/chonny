@@ -80,4 +80,32 @@ class ForeverMarketController extends Controller
 
         return response()->json($market->pooled(ForeverMarketService::market($q['region'], $q['faction'])));
     }
+
+    /**
+     * GET /api/forever/history?region=&faction=&ids=1,2,3: day by day prices for the items the player
+     * tracks or has looked at, for the addon's item pages (ForeverMarketService::history, 2026-11-27).
+     */
+    public function history(Request $request, ForeverMarketService $market): JsonResponse
+    {
+        $user = User::forCoachToken($request->bearerToken());
+        if (! $user) {
+            return response()->json(['status' => 'unauthorised'], 401);
+        }
+        $key = 'forever-history:'.$user->id;
+        if (RateLimiter::tooManyAttempts($key, 60)) {
+            return response()->json(['status' => 'rate-limited', 'retryAfter' => RateLimiter::availableIn($key)], 429);
+        }
+        RateLimiter::hit($key, 3600);
+
+        $v = Validator::make($request->query(), self::MARKET_RULES + [
+            'ids' => ['required', 'string', 'max:4000', 'regex:/^\d{1,7}(,\d{1,7})*$/'],
+        ]);
+        if ($v->fails()) {
+            return response()->json(['status' => 'rejected', 'reason' => $v->errors()->first()], 422);
+        }
+        $q = $v->validated();
+        $ids = array_map('intval', explode(',', $q['ids']));
+
+        return response()->json($market->history(ForeverMarketService::market($q['region'], $q['faction']), $ids));
+    }
 }

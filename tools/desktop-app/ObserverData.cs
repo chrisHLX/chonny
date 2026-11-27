@@ -6,7 +6,7 @@ namespace MindCollector.Desktop;
 
 /// <summary>
 /// What the Observer addon (tools/wow-addon/MindCollectorObserver) saved in WoW Forever: everything
-/// the player looked at, the prices it saw, the last two full auction house scans, and their /ask
+/// the player looked at, the prices it saw, the last two full auction house scans, and until 2026-11-27 their /ask
 /// questions. Read from WTF\Account\*\SavedVariables\MindCollectorObserver.lua, which WoW writes at a
 /// /reload or logout, so it is as fresh as the player's last reload.
 /// </summary>
@@ -22,7 +22,6 @@ public sealed class ObserverData
     }
     public sealed record PricePoint(DateTime At, long Min, int? Listed, string? Source);
     public sealed record Scan(DateTime At, int Auctions, IReadOnlyDictionary<int, (long Min, int Listed, string? Name)> Prices);
-    public sealed record Ask(string Id, DateTime At, string Question, string Status, string? Answer, int Points, string? Zone);
 
     public required string Path { get; init; }
     public required DateTime Saved { get; init; }
@@ -30,7 +29,6 @@ public sealed class ObserverData
     public required IReadOnlyDictionary<int, IReadOnlyList<PricePoint>> Prices { get; init; }
     public Scan? LastScan { get; init; }
     public Scan? PrevScan { get; init; }
-    public required IReadOnlyList<Ask> Asks { get; init; }
     public double MinDwell { get; init; } = 2.5;
 
     /// <summary>The newest saved-data file under a Forever install (the folder holding Wow.exe), or null.</summary>
@@ -67,12 +65,6 @@ public sealed class ObserverData
                         .Select(p => new PricePoint(Time(p.GetValueOrDefault("t")), (long)(AsDouble(p.GetValueOrDefault("min")) ?? 0), AsInt(p.GetValueOrDefault("q")), p.GetValueOrDefault("src") as string))
                         .Where(p => p.Min > 0).OrderBy(p => p.At).ToList();
 
-        var asks = SavedVariables.List(db.GetValueOrDefault("asks")).OfType<Dictionary<object, object?>>()
-            .Select(a => new Ask(a.GetValueOrDefault("id") as string ?? "", Time(a.GetValueOrDefault("t")), a.GetValueOrDefault("q") as string ?? "",
-                a.GetValueOrDefault("status") as string ?? "sent", a.GetValueOrDefault("answer") as string,
-                SavedVariables.List(a.GetValueOrDefault("pins")).Count, a.GetValueOrDefault("zone") as string))
-            .Where(a => a.Id != "").ToList();
-
         return new ObserverData
         {
             Path = path,
@@ -81,7 +73,6 @@ public sealed class ObserverData
             Prices = prices,
             LastScan = ReadScan(db.GetValueOrDefault("lastScan")),
             PrevScan = ReadScan(db.GetValueOrDefault("prevScan")),
-            Asks = asks,
             MinDwell = AsDouble(db.GetValueOrDefault("minDwell")) ?? 2.5,
         };
     }
@@ -118,7 +109,7 @@ public sealed class ObserverData
 
     private static Scan? ReadScan(object? v)
     {
-        if (v is not Dictionary<object, object?> d || d.GetValueOrDefault("prices") is not Dictionary<object, object?> ps) return null;
+        if (v is not Dictionary<object, object?> d || SavedVariables.ScanPrices(d) is not { } ps) return null;
         var prices = new Dictionary<int, (long, int, string?)>();
         foreach (var (k, p) in ps)
         {
@@ -163,6 +154,49 @@ public static class SavedVariables
         var list = new List<object?>();
         for (long i = 1; d.TryGetValue(i, out var x); i++) list.Add(x);
         return list;
+    }
+
+    /// <summary>
+    /// A scan's prices as the saved data's tables: {id: {1: min, 2: listed, "tl": {band: n}, "d": {...}, "v": {bonus: {1: min, 2: n}}}}.
+    /// From app 0.6.40 (2026-11-27) the addon keeps the scan before last and the goblin house's as one string,
+    /// `packed` = ";id:min:listed:tl:d:v;..." (main.lua's ns.packScan); this reads either.
+    /// </summary>
+    public static Dictionary<object, object?>? ScanPrices(Dictionary<object, object?> scan)
+    {
+        if (scan.GetValueOrDefault("prices") is Dictionary<object, object?> prices) return prices;
+        if (scan.GetValueOrDefault("packed") is not string packed) return null;
+        var outp = new Dictionary<object, object?>();
+        foreach (var rec in packed.Split(';', StringSplitOptions.RemoveEmptyEntries))
+        {
+            var f = rec.Split(':', 6);
+            if (f.Length < 6 || !long.TryParse(f[0], out var id) || !long.TryParse(f[1], out var min) || !long.TryParse(f[2], out var q)) continue;
+            var item = new Dictionary<object, object?> { [1L] = min, [2L] = q };
+            if (f[3] != "")
+            {
+                var tl = new Dictionary<object, object?>();
+                foreach (var pair in f[3].Split(','))
+                    if (pair.Split('=') is [var b, var n] && long.TryParse(b, out var band) && long.TryParse(n, out var count)) tl[band] = count;
+                item["tl"] = tl;
+            }
+            if (f[4] != "")
+            {
+                var d = new Dictionary<object, object?>();
+                var tiers = f[4].Split(',');
+                for (var i = 0; i < tiers.Length; i++)
+                    if (long.TryParse(tiers[i], out var p)) d[(long)(i + 1)] = p;
+                item["d"] = d;
+            }
+            if (f[5] != "")
+            {
+                var v = new Dictionary<object, object?>();
+                foreach (var part in f[5].Split('|'))
+                    if (part.Split('=') is [var bonus, var mc] && mc.Split('/') is [var m, var c] && long.TryParse(m, out var vm) && long.TryParse(c, out var vc))
+                        v[bonus] = new Dictionary<object, object?> { [1L] = vm, [2L] = vc };
+                item["v"] = v;
+            }
+            outp[id] = item;
+        }
+        return outp;
     }
 
     private sealed class Reader(string s, int i)

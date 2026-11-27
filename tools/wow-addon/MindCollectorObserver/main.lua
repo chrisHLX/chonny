@@ -55,6 +55,49 @@ local function initDB()
     DB.lastScan = DB.lastScan or nil  -- {t, n, prices = {[itemID] = {min, q}}}
     DB.prevScan = DB.prevScan or nil
     DB.told = DB.told or {}           -- [subjectKey] = time we last reported a change
+    -- /ask was removed on 2026-11-27 (Chriso: the built-in features cover it); its questions go too.
+    DB.asks = nil
+    -- The Gear tab's first try took stats with weights typed in a box; they're picked in order now (DB.gearOrder).
+    DB.gearStats = nil
+    -- 0.6.39 gave every suffix version on the auction house the key "1" (Gear.lua's bonusKey), so
+    -- those prices and the name and stats kept for them were one version's, or a mix: drop them.
+    for key in pairs(DB.variants or {}) do
+        if key:match(":%d$") then DB.variants[key] = nil end
+    end
+    local scans = { DB.lastScan or false, DB.prevScan or false }
+    for _, e in pairs(DB.otherScans or {}) do scans[#scans + 1] = e end
+    for _, sc in ipairs(scans) do
+        for _, a in pairs(sc and sc.prices or {}) do
+            if type(a) == "table" and a.v then
+                for key in pairs(a.v) do
+                    if key:match("^%d$") then a.v[key] = nil end
+                end
+                if next(a.v) == nil then a.v = nil end
+            end
+        end
+    end
+    -- The scan before last and the goblin house's, packed into strings from 27 Nov (ns.packScan): the
+    -- ones saved as tables before are packed here.
+    if DB.prevScan and DB.prevScan.prices then
+        local ok, packed = pcall(ns.packScan, DB.prevScan)
+        if ok then DB.prevScan = packed end
+    end
+    for house, e in pairs(DB.otherScans or {}) do
+        if e.prices then
+            local ok, packed = pcall(ns.packScan, e)
+            if ok then DB.otherScans[house] = packed end
+        end
+    end
+    -- The item sweep (/mco items, Gear.lua) once the app has sent it (27 Nov): the website keeps every
+    -- item, so only the counts stay. The list took 7.7 MB of game memory and nothing here reads it
+    -- again. The app says what it sent in Market.lua, as "build:when the sweep finished".
+    local s = DB.items
+    if s and s.done and s.got and ns.pool and ns.pool.itemsSent == (s.build .. ":" .. s.done) then
+        local got, gone = 0, 0
+        for _ in pairs(s.got) do got = got + 1 end
+        for _ in pairs(s.gone or {}) do gone = gone + 1 end
+        s.got, s.gone, s.none, s.gotN, s.goneN = nil, nil, nil, got, gone
+    end
     -- Only items are kept since 2026-11-10: players, spells, talents and the rest were noise.
     for key, s in pairs(DB.subjects) do
         if s.kind ~= "item" then DB.subjects[key] = nil end
@@ -542,6 +585,83 @@ local function keepScan(entry)
     end
 end
 
+-- A whole scan as one string (27 Nov): per item ";id:min:listed:tl:d:v", tl the listings by time left
+-- "band=count,...", d the depth "p10,p50,p200" (a tier not reached left empty), v the suffix versions
+-- "bonus=min/count|...". The scan before last and the goblin house's scan are kept this way. As tables
+-- of tables they took 3.1 MB and 1.1 MB of game memory, about five times their text; a string costs
+-- its length. The same data: only the auction house's own item names are left out, and the newest
+-- scan stays a table, since every price lookup reads it.
+local function whole(x) return string.format("%.0f", x) end
+function ns.packScan(entry)
+    if not entry or not entry.prices then return entry end
+    local parts = { "" }
+    for id, a in pairs(entry.prices) do
+        if type(id) == "number" and type(a) == "table" and a[1] and a[2] then
+            local tl, v = {}, {}
+            for band, q in pairs(a.tl or {}) do tl[#tl + 1] = band .. "=" .. whole(q) end
+            for bonus, x in pairs(a.v or {}) do v[#v + 1] = bonus .. "=" .. whole(x[1]) .. "/" .. whole(x[2]) end
+            local d = a.d
+            local ds = d and d[1] and (whole(d[1]) .. "," .. (d[2] and whole(d[2]) or "") .. "," .. (d[3] and whole(d[3]) or "")) or ""
+            parts[#parts + 1] = id .. ":" .. whole(a[1]) .. ":" .. whole(a[2]) .. ":" .. table.concat(tl, ",") .. ":" .. ds .. ":" .. table.concat(v, "|")
+        end
+    end
+    parts[#parts + 1] = ""
+    local out = {}
+    for k, x in pairs(entry) do if k ~= "prices" then out[k] = x end end
+    out.packed = table.concat(parts, ";")
+    return out
+end
+
+-- One item of a packed scan back as the table a scan keeps: { min, listed, tl = {}, d = {}, v = {} }.
+local function unpackItem(rec)
+    local id, min, q, tl, d, v = rec:match("^(%d+):(%d+):(%d+):([^:]*):([^:]*):(.*)$")
+    if not id then return nil end
+    local a = { tonumber(min), tonumber(q) }
+    if tl ~= "" then
+        a.tl = {}
+        for band, n in tl:gmatch("(%d+)=(%d+)") do a.tl[tonumber(band)] = tonumber(n) end
+    end
+    if d ~= "" then
+        local p1, p2, p3 = d:match("^(%d*),(%d*),(%d*)$")
+        a.d = { tonumber(p1), tonumber(p2), tonumber(p3) }
+    end
+    if v ~= "" then
+        a.v = {}
+        for bonus, m, n in v:gmatch("([%d.]+)=(%d+)/(%d+)") do a.v[bonus] = { tonumber(m), tonumber(n) } end
+    end
+    return tonumber(id), a
+end
+
+-- One item's prices from a scan, packed or not, without unpacking the rest.
+function ns.scanPrice(entry, id)
+    if not entry then return nil end
+    if entry.prices then return entry.prices[id] end
+    local s = entry.packed
+    local at = s and s:find(";" .. id .. ":", 1, true)
+    if not at then return nil end
+    local _, a = unpackItem(s:match("^;([^;]*)", at))
+    return a
+end
+
+-- The scan before last as a table, for the Market's lists, which walk every item. Unpacked once and
+-- kept until ns.forgetPrevScan (the window drops it when it closes or you leave the Market).
+local prevCache
+function ns.prevScan()
+    local p = DB.prevScan
+    if not p or p.prices then return p end
+    if prevCache and prevCache.src == p then return prevCache.scan end
+    local scan = {}
+    for k, x in pairs(p) do if k ~= "packed" then scan[k] = x end end
+    scan.prices = {}
+    for rec in (p.packed or ""):gmatch(";([^;]+)") do
+        local id, a = unpackItem(rec)
+        if id then scan.prices[id] = a end
+    end
+    prevCache = { src = p, scan = scan }
+    return scan
+end
+function ns.forgetPrevScan() prevCache = nil end
+
 -- The depth tiers: the price of the Nth cheapest unit, for these N. "Cheapest listing" is often one
 -- unit at a silly price; what a stack can be sold under is the price further down the ladder.
 local DEPTH_TIERS = { 10, 50, 200 }
@@ -599,7 +719,8 @@ local function finishScan(agg, n)
         -- a neutral house: kept apart, never your last scan or a price in your history, but still
         -- shared, as its own market
         DB.otherScans = DB.otherScans or {}
-        DB.otherScans[house] = entry
+        local okPack, packed = pcall(ns.packScan, entry)
+        DB.otherScans[house] = okPack and packed or entry
         say(string.format("scanned the %s auction house: %d auctions. Kept apart from your faction's prices.", house == "Neutral" and "neutral (goblin)" or house, n))
         if ns.refresh then ns.refresh() end
         return
@@ -607,7 +728,9 @@ local function finishScan(agg, n)
     -- the history is extra: if it ever fails, the scan still counts
     local okKeep, keepErr = pcall(keepScan, entry)
     if not okKeep then say("couldn't add this scan to the price history: " .. tostring(keepErr)) end
-    DB.prevScan = DB.lastScan
+    local okPack, packed = pcall(ns.packScan, DB.lastScan)
+    DB.prevScan = okPack and packed or DB.lastScan
+    if ns.forgetPrevScan then ns.forgetPrevScan() end
     DB.lastScan = entry
     local moved, items = 0, 0
     for id, a in pairs(agg) do
@@ -1130,7 +1253,6 @@ ev:SetScript("OnEvent", function(_, event, ...)
         GameTooltip:HookScript("OnHide", function() hidden(GameTooltip) end)
         ItemRefTooltip:HookScript("OnHide", function() hidden(ItemRefTooltip) end)
         if ns.makeMinimapButton then ns.makeMinimapButton() end
-        if ns.loadAnswers then C_Timer.After(3, ns.loadAnswers) end
         hookAuctionHouse()
         hookPosting()
         lastMoney = GetMoney()
@@ -1215,9 +1337,6 @@ ev:SetScript("OnEvent", function(_, event, ...)
     end
 end)
 
-SLASH_MINDCOLLECTORASK1 = "/ask"
-SlashCmdList.MINDCOLLECTORASK = function(msg) if ns.ask then ns.ask(msg) end end
-
 SLASH_MINDCOLLECTOROBSERVER1 = "/mco"
 SlashCmdList.MINDCOLLECTOROBSERVER = function(msg)
     local cmd, rest = (msg or ""):match("^%s*(%S*)%s*(.-)%s*$")
@@ -1245,6 +1364,6 @@ SlashCmdList.MINDCOLLECTOROBSERVER = function(msg)
         DB.tipOff = not DB.tipOff
         say("item tooltips " .. (DB.tipOff and "no longer show" or "now show") .. " auction house prices.")
     else
-        say("/mco (window), /mco scan, /mco items (read every weapon and armour from the game, once a patch), /mco tip (prices on item tooltips on/off), /mco why <text>, /mco min <seconds>, /mco clear (map points), /ask <question>")
+        say("/mco (window), /mco scan, /mco items (read every weapon and armour from the game, once a patch), /mco tip (prices on item tooltips on/off), /mco why <text>, /mco min <seconds>, /mco clear (map points)")
     end
 end

@@ -1,62 +1,8 @@
--- /ask: send a question through the MindCollector app (AskBridge: its web search, or Claude when chosen),
--- and show what comes back: in chat, in the Ask tab, and as pins on the world map with a waypoint on
--- the nearest one.
---
--- An addon can't reach anything outside the game while it runs. So a question is saved and the UI
--- reloads (that is when WoW writes saved data to disk); the bridge answers into Answers.lua, and the
--- next reload loads it.
+-- Points on the world map, with a waypoint on the nearest: a recipe's vendor, from the addon's own data
+-- (Data.lua's Wowhead reads). Moved out of ask.lua when /ask was removed (2026-11-27, Chriso: the
+-- built-in features cover it, and the AI bridge was complexity for little).
 
 local _, ns = ...
-
--- ---------------------------------------------------------------- asking
-
-local function professionsText()
-    local out = {}
-    for i = 1, select("#", GetProfessions()) do
-        local idx = select(i, GetProfessions())
-        if idx then
-            local name, _, rank = GetProfessionInfo(idx)
-            if name then table.insert(out, name .. " " .. (rank or 0)) end
-        end
-    end
-    return table.concat(out, ", ")
-end
-
--- ctx: what the addon has seen about the subject (prices, listings, costs), sent along so Claude
--- answers from the live market as well as the web.
-function ns.ask(q, ctx)
-    local DB = ns.DB
-    q = (q or ""):gsub("^%s+", ""):gsub("%s+$", "")
-    if q == "" then
-        local last = DB.asks and DB.asks[#DB.asks]
-        if last then
-            ns.say("last question: " .. last.q .. (last.status == "answered" and " (answered; /mco, Ask tab)" or " (waiting; /reload in a minute)"))
-        else
-            ns.say("type /ask and your question, e.g. /ask where are the bears in Ashenvale? mark them on the map")
-        end
-        return
-    end
-    DB.asks = DB.asks or {}
-    local mapID = C_Map.GetBestMapForUnit("player")
-    local pos = mapID and C_Map.GetPlayerMapPosition(mapID, "player")
-    local x, y
-    if pos then x, y = pos:GetXY() end
-    local info = mapID and C_Map.GetMapInfo(mapID)
-    local _, class = UnitClass("player")
-    table.insert(DB.asks, {
-        id = string.format("%d-%04d", time(), math.random(0, 9999)), t = time(), q = q, status = "sent",
-        ch = UnitName("player"), level = UnitLevel("player"), class = class, faction = UnitFactionGroup("player"),
-        zone = (info and info.name) or GetRealZoneText(), subzone = GetSubZoneText(), mapID = mapID,
-        x = x and math.floor(x * 1000 + 0.5) / 10, y = y and math.floor(y * 1000 + 0.5) / 10,
-        profs = professionsText(), ctx = ctx,
-    })
-    while #DB.asks > 30 do table.remove(DB.asks, 1) end
-    ns.say("asking: " .. q)
-    ns.say("reloading to send it (if it doesn't, type /reload). The answer shows in the MindCollector app's Ask page, usually within a minute; then /reload here to see it.")
-    -- Straight from the click, slash command or Enter that called us: Forever blocks ReloadUI from a
-    -- timer ("Interface action failed because of an AddOn", 2026-11-11), since it isn't the player's action.
-    ReloadUI()
-end
 
 -- ---------------------------------------------------------------- map lookup
 
@@ -97,8 +43,8 @@ end
 -- ---------------------------------------------------------------- pins on the world map
 
 local provider, pinPool = nil, {}
-ns.activePins = nil -- { {mapID, x, y, label}, ... } for the answer being shown
-ns.activeAsk = nil
+ns.activePins = nil -- { {mapID, x, y, label}, ... } being shown
+local activeTitle -- what they are for, on each pin's tooltip
 
 local PIN = 14
 
@@ -113,7 +59,7 @@ local function pinFrame(i, canvas)
         f:SetScript("OnEnter", function(self)
             GameTooltip:SetOwner(self, "ANCHOR_RIGHT")
             GameTooltip:SetText(self.label ~= "" and self.label or "Marked for you")
-            if ns.activeAsk then GameTooltip:AddLine(ns.activeAsk.q, 0.8, 0.8, 0.8, true) end
+            if activeTitle then GameTooltip:AddLine(activeTitle, 0.8, 0.8, 0.8, true) end
             GameTooltip:AddLine(string.format("%.1f, %.1f", self.x, self.y), 0.6, 0.6, 0.6)
             GameTooltip:Show()
         end)
@@ -168,10 +114,11 @@ local function ensureProvider()
     return false
 end
 
--- Put an answer's points on the map and a waypoint on the one nearest you.
+-- Put the points on the map and a waypoint on the one nearest you. a = { q = what they are for, pins =
+-- { {zone, x, y, label}, ... } }.
 function ns.showPins(a, quiet)
     if not (a and a.pins and #a.pins > 0) then
-        if not quiet then ns.say("that answer has no map points.") end
+        if not quiet then ns.say("there are no map points for that.") end
         return
     end
     local pins, missing = {}, {}
@@ -183,7 +130,7 @@ function ns.showPins(a, quiet)
             missing[p.zone] = true
         end
     end
-    ns.activePins, ns.activeAsk = pins, a
+    ns.activePins, activeTitle = pins, a.q
     for zone in pairs(missing) do ns.say("couldn't find the map for \"" .. zone .. "\", so those points aren't shown.") end
     if #pins == 0 then return end
     if ensureProvider() then provider:RefreshAllData() end
@@ -214,7 +161,7 @@ function ns.showPins(a, quiet)
 end
 
 function ns.clearPins()
-    ns.activePins, ns.activeAsk = nil, nil
+    ns.activePins, activeTitle = nil, nil
     if provider then provider:RemoveAllData() end
     if C_Map.HasUserWaypoint and C_Map.HasUserWaypoint() then C_Map.ClearUserWaypoint() end
 end
@@ -224,41 +171,4 @@ function ns.openMapFor(a)
     local mapID = p and ns.findMap(p.zone)
     if not mapID then return end
     if OpenWorldMap then OpenWorldMap(mapID) elseif WorldMapFrame then ShowUIPanel(WorldMapFrame); WorldMapFrame:SetMapID(mapID) end
-end
-
--- ---------------------------------------------------------------- answers arriving (at login or reload)
-
-function ns.loadAnswers()
-    local DB = ns.DB
-    local A = MindCollectorObserverAnswers or {}
-    local newest
-    DB.asks = DB.asks or {}
-    -- questions asked in the desktop app instead of in game: add them, answered
-    local known = {}
-    for _, a in ipairs(DB.asks) do known[a.id] = true end
-    for id, ans in pairs(A) do
-        if ans.app and not known[id] then
-            table.insert(DB.asks, { id = id, t = ans.asked or ans.t, q = ans.q or "?", status = "sent", fromApp = true })
-        end
-    end
-    table.sort(DB.asks, function(x, y) return (x.t or 0) < (y.t or 0) end)
-    while #DB.asks > 30 do table.remove(DB.asks, 1) end
-    for _, a in ipairs(DB.asks or {}) do
-        local ans = A[a.id]
-        if ans and a.status ~= "answered" then
-            a.status, a.answer, a.pins, a.at = "answered", ans.answer, ans.pins, ans.t
-            newest = a
-        end
-    end
-    if newest then
-        ns.say("|cffd4af37Answer:|r " .. (newest.answer or ""))
-        if newest.pins and #newest.pins > 0 then
-            C_Timer.After(1, function() ns.showPins(newest) end)
-        end
-    end
-    for _, a in ipairs(DB.asks or {}) do
-        if a.status == "sent" and time() - a.t < 1800 and a ~= newest then
-            ns.say("still waiting for an answer to: " .. a.q .. ". Is the MindCollector app open? /reload again in a minute.")
-        end
-    end
 end

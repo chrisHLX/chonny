@@ -494,6 +494,18 @@ new suffix versions, and vendor lists newer than the last sent (`/api/forever/ve
 `variants`. Only with sharing on. `--gear-json FILE DIR` writes the sweep's parts without sending. The
 website's side and the Gear Finder page: `docs/forever/observer-handoff-2026-11-10.md`, "Gear".
 
+**0.6.40 (2026-11-27): no Ask, a Gear tab, less memory.** The Ask tab, its bridge (Claude Code or the
+website's search) and its settings are gone, with the addon's /ask and Research button; the addon's Ask
+tab is now Gear (stats in order, the best on the auction house per slot against what you wear). Suffix
+versions on the auction house keep their own key (0.6.39 gave them all "1"). The addon used 47 MB of
+game memory: it now keeps the scan before last and the goblin house's scan packed into one string each
+(`SavedVariables.ScanPrices` reads either form; `--scan-json FILE KEY OUT` writes one scan as it would
+be sent, and a packed and an unpacked copy of the same scan gave identical JSON), lets its copy of the
+item sweep go once Market.lua says it was sent (`itemsSent`), and drops the Market and Gear tabs' lists
+when you leave the tab or close the window. Market.lua also carries day by day prices (`history`) for
+the items you track or have looked at, from `/api/forever/history`; the website keeps those days for
+good (handoff doc, "Memory and price history").
+
 Check it without the window: `MindCollector.exe --share-market SAVEDVARIABLES SERVER KEY OUT.lua
 [REGION REALM FACTION]` sends the file's last scan and writes the pooled Lua to OUT.lua
 (`share-market.txt` in the data folder). Run it with `MINDCOLLECTOR_DATA` set and a local site's key.

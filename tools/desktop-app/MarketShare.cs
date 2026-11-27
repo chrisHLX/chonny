@@ -14,7 +14,10 @@ namespace MindCollector.Desktop;
 /// each time-left band, with the realm, region and faction it was scanned on. Nothing else in the file
 /// is read for this: not what the player looked at, their ledger, their questions or their position.
 /// Then GET /api/forever/market gives the pooled view of that market, written into the addon as
-/// Market.lua for the next /reload. Prices come back whether or not sharing is on (Settings).
+/// Market.lua for the next /reload. Prices come back whether or not sharing is on (Settings). From 0.6.40
+/// Market.lua also carries day by day prices for the items the player tracks or has looked at
+/// (/api/forever/history), and `itemsSent`, so the addon can let its copy of a sent sweep go. The scan
+/// before last and the goblin house's may be packed into one string (SavedVariables.ScanPrices).
 ///
 /// Also, from 0.6.39 (2026-11-27), what the addon read about weapons, armour and vendors for the gear
 /// page (Gear.lua, ForeverGearService): a finished /mco items sweep, once per sweep, in parts of 4,000
@@ -35,6 +38,8 @@ public sealed class MarketShare : IDisposable
     private System.Threading.Timer? _timer;
     private int _busy;
     private DateTime _seenFile;
+    /// <summary>The items the player tracks or has prices kept for, whose day by day history Market.lua carries.</summary>
+    private List<long> _historyIds = [];
 
     /// <summary>What has been sent and fetched, in its own file so it never races the settings.</summary>
     private sealed class State
@@ -92,8 +97,10 @@ public sealed class MarketShare : IDisposable
                 && SavedVariables.Read(file).GetValueOrDefault("MindCollectorObserverDB") is Dictionary<object, object?> db)
             {
                 _seenFile = at;
+                _historyIds = HistoryIds(db);
                 sent = await SendNewScansAsync(db, state, ct);
-                if (_settings.ShareScans) await SendGearAsync(db, state, ct);
+                // a sweep just sent: fetch now, so Market.lua tells the addon it can let its copy go
+                if (_settings.ShareScans && await SendGearAsync(db, state, ct)) sent = true;
             }
         }
 
@@ -173,7 +180,7 @@ public sealed class MarketShare : IDisposable
 
         var items = new List<long[]>();
         var variants = new List<object[]>();
-        if (scan.GetValueOrDefault("prices") is Dictionary<object, object?> prices)
+        if (SavedVariables.ScanPrices(scan) is { } prices)
             foreach (var (k, v) in prices)
             {
                 var arr = SavedVariables.List(v);
@@ -206,15 +213,20 @@ public sealed class MarketShare : IDisposable
         return (json, items.Count);
     }
 
-    /// <summary>The item sweep, suffix versions and vendor lists the addon kept (Gear.lua), each sent once.</summary>
-    private async Task SendGearAsync(Dictionary<object, object?> db, State state, CancellationToken ct)
+    /// <summary>
+    /// The item sweep, suffix versions and vendor lists the addon kept (Gear.lua), each sent once. True when
+    /// the sweep itself went: Market.lua then says so (`itemsSent`), and the addon keeps only its counts.
+    /// </summary>
+    private async Task<bool> SendGearAsync(Dictionary<object, object?> db, State state, CancellationToken ct)
     {
         using var api = new ApiClient(_settings.ServerUrl, _settings.Key!);
+        var sweepSent = false;
 
         var sweep = db.GetValueOrDefault("items") as Dictionary<object, object?>;
         var build = sweep?.GetValueOrDefault("build") as string;
         var done = AsLong(sweep?.GetValueOrDefault("done"));
-        if (sweep != null && build != null && done != null && state.ItemsSent != $"{build}:{done}")
+        // no `got` once the addon has let its copy go (0.6.40): it was sent
+        if (sweep != null && build != null && done != null && sweep.GetValueOrDefault("got") is Dictionary<object, object?> && state.ItemsSent != $"{build}:{done}")
         {
             var parts = ItemsJson(sweep, build);
             var ok = true;
@@ -231,6 +243,7 @@ public sealed class MarketShare : IDisposable
             if (ok)
             {
                 state.ItemsSent = $"{build}:{done}";
+                sweepSent = true;
                 _log($"Sent the game's weapons and armour to the website ({(sweep.GetValueOrDefault("got") as Dictionary<object, object?>)?.Count ?? 0:N0} items).");
             }
         }
@@ -278,6 +291,21 @@ public sealed class MarketShare : IDisposable
                 else _log($"Couldn't send vendor lists to the website yet ({reason ?? status}); trying again later.");
             }
         }
+        return sweepSent;
+    }
+
+    /// <summary>
+    /// The items whose day by day prices to bring back: the ones tracked, then the ones the addon keeps
+    /// prices for (looked at), at most ForeverMarketService::HISTORY_IDS (400).
+    /// </summary>
+    internal static List<long> HistoryIds(Dictionary<object, object?> db)
+    {
+        var ids = new List<long>();
+        foreach (var key in new[] { "tracked", "prices" })
+            if (db.GetValueOrDefault(key) is Dictionary<object, object?> d)
+                foreach (var k in d.Keys)
+                    if (AsLong(k) is { } id && id > 0 && !ids.Contains(id)) ids.Add(id);
+        return ids.Take(400).ToList();
     }
 
     /// <summary>
@@ -333,7 +361,14 @@ public sealed class MarketShare : IDisposable
         var root = doc.RootElement;
         if (!root.TryGetProperty("items", out var items) || items.ValueKind != JsonValueKind.Object) return;
 
-        var lua = MarketLua(root);
+        // the day by day history; the prices are written without it if it can't be had
+        JsonDocument? history = null;
+        if (_historyIds.Count > 0)
+            try { history = await api.HistoryAsync(state.Region!, state.Faction!, _historyIds, ct); }
+            catch (ApiClient.KeyRejectedException) { throw; }
+            catch (Exception e) { _log($"Couldn't fetch price history yet ({e.Message})."); }
+        using var historyDoc = history;
+        var lua = MarketLua(root, history?.RootElement, state.ItemsSent);
         var path = Path.Combine(addon, "Market.lua");
         File.WriteAllText(path + ".tmp", lua, new UTF8Encoding(false));
         File.Move(path + ".tmp", path, overwrite: true);
@@ -346,7 +381,7 @@ public sealed class MarketShare : IDisposable
     }
 
     /// <summary>The pooled view as the addon reads it (tools/wow-addon/MindCollectorObserver/Market.lua).</summary>
-    internal static string MarketLua(JsonElement root)
+    internal static string MarketLua(JsonElement root, JsonElement? history = null, string? itemsSent = null)
     {
         static string Num(JsonElement e) => e.ValueKind == JsonValueKind.Number ? e.GetRawText() : "nil";
         static string Str(string s) => "\"" + s.Replace("\\", "\\\\").Replace("\"", "\\\"").Replace("\n", " ") + "\"";
@@ -360,6 +395,24 @@ public sealed class MarketShare : IDisposable
         sb.Append("  at = ").Append(DateTimeOffset.UtcNow.ToUnixTimeSeconds()).Append(",\n");
         sb.Append("  t = ").Append(root.TryGetProperty("t", out var t) ? Num(t) : "nil").Append(",\n");
         sb.Append("  players = ").Append(root.TryGetProperty("players", out var p) ? Num(p) : "0").Append(",\n");
+        // the item sweep the website has, as "build:when it finished": the addon then keeps only its counts
+        if (!string.IsNullOrEmpty(itemsSent)) sb.Append("  itemsSent = ").Append(Str(itemsSent)).Append(",\n");
+        // day by day prices kept for good (ForeverMarketService::history), one string per item, oldest first:
+        // ";yyyymmdd:cheapest:usual:listed:readings;..." (a string costs the addon its length, a table about five times)
+        if (history is { } h && h.TryGetProperty("items", out var hi) && hi.ValueKind == JsonValueKind.Object)
+        {
+            sb.Append("  history = {\n");
+            foreach (var item in hi.EnumerateObject())
+            {
+                if (!long.TryParse(item.Name, out var hid) || item.Value.ValueKind != JsonValueKind.Array) continue;
+                var days = item.Value.EnumerateArray()
+                    .Where(d => d.ValueKind == JsonValueKind.Array && d.GetArrayLength() == 5 && d.EnumerateArray().All(x => x.ValueKind == JsonValueKind.Number))
+                    .Select(d => string.Join(":", d.EnumerateArray().Select(x => x.GetRawText())))
+                    .ToList();
+                if (days.Count > 0) sb.Append("    [").Append(hid).Append("] = \";").Append(string.Join(";", days)).Append(";\",\n");
+            }
+            sb.Append("  },\n");
+        }
         sb.Append("  items = {\n");
         var items = root.TryGetProperty("items", out var it) && it.ValueKind == JsonValueKind.Object
             ? it.EnumerateObject().ToList() : [];
