@@ -89,6 +89,13 @@ fi
 
 
 echo "==> Deploying ${BEFORE_COMMIT:0:7} -> ${AFTER_COMMIT:0:7}"
+
+# While this runs, storage/app/deploying exists: a norms rebuild queued meanwhile waits until after
+# it (RefreshPopulationNorms), since the import and kit rebuild below take the one vCPU and pushed
+# that job past its limit (2026-11-27). Removed however the script ends.
+touch storage/app/deploying
+trap 'rm -f storage/app/deploying' EXIT
+
 CHANGED_FILES=$(git diff --name-only "$BEFORE_COMMIT" "$AFTER_COMMIT" || true)
 echo "--- Changed files ---"
 echo "$CHANGED_FILES"

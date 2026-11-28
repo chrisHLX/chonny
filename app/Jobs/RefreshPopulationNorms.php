@@ -27,8 +27,23 @@ class RefreshPopulationNorms implements ShouldBeUniqueUntilProcessing, ShouldQue
 
     public int $timeout = 85;
 
+    /**
+     * Seconds a rebuild queued during a deploy waits before trying again (2026-11-28). deploy.sh
+     * keeps storage/app/deploying while it runs; its spell import and kit rebuild take the one vCPU,
+     * and the rebuild that ran into them timed out (2026-11-27 09:26, two minutes into a deploy).
+     * A marker older than half an hour is a deploy that died without clearing it, and is ignored.
+     */
+    public const DEPLOY_WAIT = 300;
+
     public function handle(): void
     {
+        $marker = storage_path('app/deploying');
+        if (is_file($marker) && time() - filemtime($marker) < 1800) {
+            static::dispatch()->delay(now()->addSeconds(self::DEPLOY_WAIT));
+
+            return;
+        }
+
         ini_set('memory_limit', '1G');
         Artisan::call('wow:population-refresh');
     }

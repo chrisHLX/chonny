@@ -70,6 +70,12 @@ a few hundred of them. It is now `scoped` in `AppServiceProvider` (one per reque
 tooltips went from 27.7s to 0.4s with identical results. **A class that keeps a memo must be bound
 `scoped` (or held in one variable) before it is fetched with `app()` in a loop.**
 
+**Jobs during a deploy** (2026-11-28): the one `RefreshPopulationNorms` failure after that fix came
+two minutes into a deploy (27 Nov, 09:26), while the spell import and kit rebuild held the vCPU. The
+deploy rebuilds the norms itself at the end, so nothing was lost, but it showed in the email.
+`deploy.sh` now keeps `storage/app/deploying` while it runs, and a norms rebuild that finds it queues
+itself five minutes later instead (a marker over half an hour old is ignored).
+
 **`RefreshPopulationNorms` timing out** (23 failures in the 10 days to 2026-11-26, fixed then): it
 rebuilds the live norms (`wow:population-refresh` = `wow:pool-export` + the aggregate) after uploads.
 Alone it had grown from ~11s (25 Oct) to ~60s against its 85s limit; it failed whenever a
